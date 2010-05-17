@@ -42,40 +42,40 @@
 #include <sampling/moSampling.h>
 
 /**
- * To compute the density of states: 
+ * To compute the density of states:
  *   Sample the fitness of random solution in the search space
  *   The fitness values of solutions are collected during the random search
- * 
+ *
  */
 template <class Neighbor>
 class moDensityOfStatesSampling : public moSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _init initialisation method of the solution
-   * @param _fullEval Fitness function, full evaluation function
-   * @param _nbSol Number of solutions in the sample
-   */
-  moDensityOfStatesSampling(eoInit<EOT> & _init, 
-			    eoEvalFunc<EOT>& _fullEval, 
-			    unsigned int _nbSol) : 
-    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat){}
+    using moSampling<Neighbor>::localSearch;
 
-  /** 
-   * default destructor
-   */
-  ~moDensityOfStatesSampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
-    delete localSearch;
-  }
+    /**
+     * Default Constructor
+     * @param _init initialisation method of the solution
+     * @param _fullEval Fitness function, full evaluation function
+     * @param _nbSol Number of solutions in the sample
+     */
+    moDensityOfStatesSampling(eoInit<EOT> & _init,
+                              eoEvalFunc<EOT>& _fullEval,
+                              unsigned int _nbSol) :
+            moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat) {}
+
+    /**
+     * default destructor
+     */
+    ~moDensityOfStatesSampling() {
+        // delete the pointer on the local search which has been constructed in the constructor
+        delete localSearch;
+    }
 
 protected:
-  moFitnessStat<EOT> fitnessStat;
+    moFitnessStat<EOT> fitnessStat;
 
 };
 

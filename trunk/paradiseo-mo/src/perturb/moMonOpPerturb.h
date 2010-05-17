@@ -42,30 +42,30 @@ template< class Neighbor >
 class moMonOpPerturb : public moPerturbation<Neighbor>, public moDummyMemory<Neighbor> {
 
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-	/**
-	 * Default Constructor
-	 * @param _monOp an eoMonOp (pertubation operator)
-	 * @param _fullEval a full evaluation function
-	 */
-	moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval):monOp(_monOp), fullEval(_fullEval){}
+    /**
+     * Default Constructor
+     * @param _monOp an eoMonOp (pertubation operator)
+     * @param _fullEval a full evaluation function
+     */
+    moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval):monOp(_monOp), fullEval(_fullEval) {}
 
-	/**
-	 * Apply monOp on the solution
-	 * @param _solution to perturb
-	 * @return value of monOp
-	 */
-	bool operator()(EOT& _solution){
-		bool res = monOp(_solution);
-		fullEval(_solution);
-		return res;
-	}
+    /**
+     * Apply monOp on the solution
+     * @param _solution to perturb
+     * @return value of monOp
+     */
+    bool operator()(EOT& _solution) {
+        bool res = monOp(_solution);
+        fullEval(_solution);
+        return res;
+    }
 
 private:
-	/** monOp */
-	eoMonOp<EOT>& monOp;
-	eoEvalFunc<EOT>& fullEval;
+    /** monOp */
+    eoMonOp<EOT>& monOp;
+    eoEvalFunc<EOT>& fullEval;
 };
 
 #endif

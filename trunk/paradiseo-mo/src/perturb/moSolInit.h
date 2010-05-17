@@ -39,22 +39,22 @@ template< class EOT >
 class moSolInit : public eoInit<EOT> {
 public:
 
-  /**
-   * Default Constructor
-   * @param _extSol external solution of the intiialization
-   */
-  moSolInit(EOT & _extSol) : extSol(_extSol) {}
-  
-  /**
-   * Initialization on the externatl solution
-   * @param _solution to initialize
-   */
-  void operator()(EOT& _solution){
-    _solution = extSol;
-  }
+    /**
+     * Default Constructor
+     * @param _extSol external solution of the intiialization
+     */
+    moSolInit(EOT & _extSol) : extSol(_extSol) {}
+
+    /**
+     * Initialization on the externatl solution
+     * @param _solution to initialize
+     */
+    void operator()(EOT& _solution) {
+        _solution = extSol;
+    }
 
 private:
-  EOT& extSol;
+    EOT& extSol;
 };
 
 #endif

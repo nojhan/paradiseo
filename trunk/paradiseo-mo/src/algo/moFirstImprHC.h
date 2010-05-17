@@ -39,7 +39,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * First improvement HC:
  * Hill-Climber local search
- * 
+ *
  * At each iteration,
  *   one of the random solution in the neighborhood is selected
  *   if the selected neighbor have higher fitness than the current solution
@@ -50,55 +50,55 @@ template<class Neighbor>
 class moFirstImprHC: public moLocalSearch<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT;
-  typedef moNeighborhood<Neighbor> Neighborhood ;
+    typedef typename Neighbor::EOT EOT;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-  /**
-   * Basic constructor for a hill-climber
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   */
-  moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval):
-    moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
-  {}
-  
-  /**
-   * Simple constructor for a hill-climber
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _cont an external continuator
-   */
-  moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
-  {}
-  
-  /**
-   * General constructor for a hill-climber
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _cont an external continuator
-   * @param _compN  a neighbor vs neighbor comparator
-   * @param _compSN a solution vs neighbor comparator
-   */
-  moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, _compN, _compSN)
-  {}
-  
+    /**
+     * Basic constructor for a hill-climber
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     */
+    moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval):
+            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
+            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
+    {}
+
+    /**
+     * Simple constructor for a hill-climber
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _cont an external continuator
+     */
+    moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
+    {}
+
+    /**
+     * General constructor for a hill-climber
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _cont an external continuator
+     * @param _compN  a neighbor vs neighbor comparator
+     * @param _compSN a solution vs neighbor comparator
+     */
+    moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            explorer(_neighborhood, _eval, _compN, _compSN)
+    {}
+
 private:
-  // always true continuator
-  moTrueContinuator<Neighbor> trueCont;
-  // compare the fitness values of neighbors: true is strictly greater
-  moNeighborComparator<Neighbor> defaultNeighborComp;
-  // compare the fitness values of the solution and the neighbor: true if strictly greater 
-  moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-  // the explorer of the first improvement HC
-  moFirstImprHCexplorer<Neighbor> explorer;
+    // always true continuator
+    moTrueContinuator<Neighbor> trueCont;
+    // compare the fitness values of neighbors: true is strictly greater
+    moNeighborComparator<Neighbor> defaultNeighborComp;
+    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
+    // the explorer of the first improvement HC
+    moFirstImprHCexplorer<Neighbor> explorer;
 };
 
 #endif

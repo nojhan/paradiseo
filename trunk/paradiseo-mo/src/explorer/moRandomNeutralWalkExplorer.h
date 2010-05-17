@@ -63,7 +63,7 @@ public:
      * @param _nbStep maximum number of step to do
      */
     moRandomNeutralWalkExplorer(Neighborhood& _neighborhood,
-								moEval<Neighbor>& _eval,
+                                moEval<Neighbor>& _eval,
                                 moSolNeighborComparator<Neighbor>& _solNeighborComparator,
                                 unsigned _nbStep):
             moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),

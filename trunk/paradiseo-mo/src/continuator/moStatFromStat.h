@@ -44,40 +44,40 @@ template <class EOT, class T>
 class moStatFromStat : public moStat<EOT, T>
 {
 public :
-  using moStat< EOT , T >::value;
-  
-  /**
-   * Default Constructor
-   * @param _stat a stat
-   */
-  moStatFromStat(moStat<EOT,T> & _stat): moStat<EOT, T>(0, _stat.description()), stat(_stat) {
-  }
-  
-  /**
-   * The value of this stat is a copy of the value of the initial stat
-   * @param _sol a solution
-   */
-  virtual void init(EOT & _sol) {
-    value() = stat.value();
-  }
-  
-  /**
-   * The value of this stat is a copy of the value of the initial stat
-   * @param _sol a solution
-   */
-  virtual void operator()(EOT & _sol) {
-    value() = stat.value();
-  }
-  
-  /**
-   * @return name of the class
-   */
-  virtual std::string className(void) const {
-    return "moStatFromStat";
-  }
-  
+    using moStat< EOT , T >::value;
+
+    /**
+     * Default Constructor
+     * @param _stat a stat
+     */
+    moStatFromStat(moStat<EOT,T> & _stat): moStat<EOT, T>(0, _stat.description()), stat(_stat) {
+    }
+
+    /**
+     * The value of this stat is a copy of the value of the initial stat
+     * @param _sol a solution
+     */
+    virtual void init(EOT & _sol) {
+        value() = stat.value();
+    }
+
+    /**
+     * The value of this stat is a copy of the value of the initial stat
+     * @param _sol a solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value() = stat.value();
+    }
+
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moStatFromStat";
+    }
+
 private:
-  moStat<EOT, T> & stat;
+    moStat<EOT, T> & stat;
 };
 
 #endif

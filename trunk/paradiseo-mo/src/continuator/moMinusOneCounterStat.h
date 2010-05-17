@@ -45,46 +45,46 @@ template <class EOT>
 class moMinusOneCounterStat : public moStat<EOT, unsigned int>
 {
 public :
-  using moStat< EOT, unsigned int>::value;
-  
-  /**
-   * Default Constructor
-   */
-  moMinusOneCounterStat(): moStat<EOT, unsigned int>(0, "counter")  {
-    counter = 0;
-  }
-  
-  /**
-   * Give the number of iteration
-   * @param _sol a solution
-   */
-  virtual void init(EOT & _sol) {
-    counter = 0;
-    value() = 0;
-  }
-  
-  /**
-   * Give the number of iteration
-   * @param _sol a solution
-   */
-  virtual void operator()(EOT & _sol) {
-    counter++;
-    if (counter > 0)
-      value() = counter - 1;
-    else
-      value() = 0;
-  }
-  
-  /**
-   * @return name of the class
-   */
-  virtual std::string className(void) const {
-    return "moMinusOneCounterStat";
-  }
+    using moStat< EOT, unsigned int>::value;
+
+    /**
+     * Default Constructor
+     */
+    moMinusOneCounterStat(): moStat<EOT, unsigned int>(0, "counter")  {
+        counter = 0;
+    }
+
+    /**
+     * Give the number of iteration
+     * @param _sol a solution
+     */
+    virtual void init(EOT & _sol) {
+        counter = 0;
+        value() = 0;
+    }
+
+    /**
+     * Give the number of iteration
+     * @param _sol a solution
+     */
+    virtual void operator()(EOT & _sol) {
+        counter++;
+        if (counter > 0)
+            value() = counter - 1;
+        else
+            value() = 0;
+    }
+
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moMinusOneCounterStat";
+    }
 
 private:
-  unsigned int counter;
-  
+    unsigned int counter;
+
 };
 
 #endif

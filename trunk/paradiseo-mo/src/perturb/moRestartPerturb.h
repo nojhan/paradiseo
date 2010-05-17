@@ -43,34 +43,34 @@ template< class Neighbor >
 class moRestartPerturb : public moPerturbation<Neighbor>, public moCountMoveMemory<Neighbor> {
 
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-	/**
-	 * Default Constructor
-	 * @param _initializer an initializer of solution
-	 * @param _fullEval a full evaluation function
-	 * @param _threshold maximum number of iteration with no improvement
-	 */
-	moRestartPerturb(eoInit<EOT>& _initializer, eoEvalFunc<EOT>& _fullEval, unsigned int _threshold):initializer(_initializer), fullEval(_fullEval), threshold(_threshold) {}
+    /**
+     * Default Constructor
+     * @param _initializer an initializer of solution
+     * @param _fullEval a full evaluation function
+     * @param _threshold maximum number of iteration with no improvement
+     */
+    moRestartPerturb(eoInit<EOT>& _initializer, eoEvalFunc<EOT>& _fullEval, unsigned int _threshold):initializer(_initializer), fullEval(_fullEval), threshold(_threshold) {}
 
-	/**
-	 * Apply restart when necessary
-	 * @param _solution to restart
-	 * @return true
-	 */
-	bool operator()(EOT& _solution){
-		if((*this).getCounter()>= threshold){
-			initializer(_solution);
-			fullEval(_solution);
-			(*this).initCounter();
-		}
-		return true;
-	}
+    /**
+     * Apply restart when necessary
+     * @param _solution to restart
+     * @return true
+     */
+    bool operator()(EOT& _solution) {
+        if ((*this).getCounter()>= threshold) {
+            initializer(_solution);
+            fullEval(_solution);
+            (*this).initCounter();
+        }
+        return true;
+    }
 
 private:
-	eoInit<EOT>& initializer;
-	eoEvalFunc<EOT>& fullEval;
-	unsigned int threshold;
+    eoInit<EOT>& initializer;
+    eoEvalFunc<EOT>& fullEval;
+    unsigned int threshold;
 };
 
 

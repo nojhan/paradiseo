@@ -36,13 +36,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Dummy Neighborhood
  */
 template< class EOT >
-class moDummyNeighbor : public moNeighbor< EOT >{
+class moDummyNeighbor : public moNeighbor< EOT > {
 public:
 
     /**
      * NOTHING TO DO
      * @param _solution the related solution
      */
-    virtual void move(EOT& _solution){}
+    virtual void move(EOT& _solution) {}
 };
 #endif

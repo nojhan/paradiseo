@@ -45,7 +45,7 @@
 #include <sampling/moSampling.h>
 
 /**
- * To compute the fitness distance correlation: 
+ * To compute the fitness distance correlation:
  *   Sample the fitness and the distance from a particular solution of random solution in the search space
  *   The fitness values and distances of solutions are collected during the random search
  *   Then the correlation between the fitness and the distance can be computed
@@ -55,40 +55,40 @@ template <class Neighbor>
 class moFDCsampling : public moSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _init initialisation method of the solution
-   * @param _fullEval a full evaluation function
-   * @param _dist the distance function between solution
-   * @param _refSol the reference solution to compute the distance (think of global optimum when possible)
-   * @param _nbSol Number of solutions of the sample
-   */
-  moFDCsampling(eoInit<EOT> & _init, 
-		eoEvalFunc<EOT>& _fullEval,
-		eoDistance<EOT>& _dist,
-		EOT& _refSol,
-		unsigned int _nbSol) : 
-    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat),
-    distStat(_dist, _refSol)
-  {
-    add(distStat);
-  }
+    using moSampling<Neighbor>::localSearch;
 
-  /** 
-   * default destructor
-   */
-  ~moFDCsampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
-    delete localSearch;
-  }
+    /**
+     * Default Constructor
+     * @param _init initialisation method of the solution
+     * @param _fullEval a full evaluation function
+     * @param _dist the distance function between solution
+     * @param _refSol the reference solution to compute the distance (think of global optimum when possible)
+     * @param _nbSol Number of solutions of the sample
+     */
+    moFDCsampling(eoInit<EOT> & _init,
+                  eoEvalFunc<EOT>& _fullEval,
+                  eoDistance<EOT>& _dist,
+                  EOT& _refSol,
+                  unsigned int _nbSol) :
+            moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat),
+            distStat(_dist, _refSol)
+    {
+        add(distStat);
+    }
+
+    /**
+     * default destructor
+     */
+    ~moFDCsampling() {
+        // delete the pointer on the local search which has been constructed in the constructor
+        delete localSearch;
+    }
 
 protected:
-  moFitnessStat<EOT> fitnessStat;
-  moDistanceStat<EOT> distStat;
+    moFitnessStat<EOT> fitnessStat;
+    moDistanceStat<EOT> distStat;
 };
 
 

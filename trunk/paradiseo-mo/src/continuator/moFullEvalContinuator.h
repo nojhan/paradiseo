@@ -37,53 +37,53 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Continue until a maximum fixed number of full evaluation is reached
  *
- * Becareful 1: The number of full evaluations considered is within the local search (not before it) 
+ * Becareful 1: The number of full evaluations considered is within the local search (not before it)
  * Becareful 2: Can not be used if the evaluation function is used in parallel
  */
 template< class Neighbor >
 class moFullEvalContinuator : public moContinuator<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default constructor
-   * @param _eval evaluation function to count
-   * @param _maxFullEval number maximum of iterations
-   */
-  moFullEvalContinuator(eoEvalFuncCounter<EOT> & _eval, unsigned int _maxFullEval): eval(_eval), maxFullEval(_maxFullEval) {
-    nbEval_start = eval.value();
-  }
-  
-  /**
-   * Test if continue
-   * @param _solution a solution
-   * @return true if number of evaluations < maxFullEval
-   */
-  virtual bool operator()(EOT & _solution) {
-    return (eval.value() - nbEval_start < maxFullEval);
-  }
-  
-  /**
-   * Reset the number of evaluations
-   * @param _solution a solution
-   */
-  virtual void init(EOT & _solution) {
-    nbEval_start = eval.value();
-  }
-  
+    /**
+     * Default constructor
+     * @param _eval evaluation function to count
+     * @param _maxFullEval number maximum of iterations
+     */
+    moFullEvalContinuator(eoEvalFuncCounter<EOT> & _eval, unsigned int _maxFullEval): eval(_eval), maxFullEval(_maxFullEval) {
+        nbEval_start = eval.value();
+    }
+
+    /**
+     * Test if continue
+     * @param _solution a solution
+     * @return true if number of evaluations < maxFullEval
+     */
+    virtual bool operator()(EOT & _solution) {
+        return (eval.value() - nbEval_start < maxFullEval);
+    }
+
+    /**
+     * Reset the number of evaluations
+     * @param _solution a solution
+     */
+    virtual void init(EOT & _solution) {
+        nbEval_start = eval.value();
+    }
+
     /**
      * the current number of evaluation from the begining
      * @return the number of evaluation
      */
     unsigned int value() {
-      return eval.value() - nbEval_start ;
+        return eval.value() - nbEval_start ;
     }
 
 private:
-  eoEvalFuncCounter<EOT> & eval;
-  unsigned int nbEval_start ;
-  unsigned int maxFullEval ;
-  
+    eoEvalFuncCounter<EOT> & eval;
+    unsigned int nbEval_start ;
+    unsigned int maxFullEval ;
+
 };
 #endif

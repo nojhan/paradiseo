@@ -58,8 +58,8 @@
  * To explore the evolvability of solutions in a neutral networks:
  *   Perform a random neutral walk based on the neighborhood,
  *   The measures of evolvability of solutions are collected during the random neutral walk
- *   The distribution and autocorrelation can be computed from the serie of values  
- * 
+ *   The distribution and autocorrelation can be computed from the serie of values
+ *
  *    Informations collected:
  *         - the current solution of the walk
  *         - the distance from the starting solution
@@ -76,71 +76,71 @@ template <class Neighbor>
 class moNeutralWalkSampling : public moSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _initSol the first the solution of the walk
-   * @param _neighborhood neighborhood giving neighbor in random order
-   * @param _fullEval Fitness function, full evaluation function
-   * @param _eval neighbor evaluation, incremental evaluation function
-   * @param _distance the distance to measure the distance from the initial solution
-   * @param _nbStep Number of steps of the random walk 
-   */
-  moNeutralWalkSampling(EOT & _initSol, 
-			moNeighborhood<Neighbor> & _neighborhood, 
-			eoEvalFunc<EOT>& _fullEval, 
-			moEval<Neighbor>& _eval, 
-			eoDistance<EOT> & _distance,
-			unsigned int _nbStep) : 
-    moSampling<Neighbor>(init, * new moRandomNeutralWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), solutionStat),
-    init(_initSol),
-    distStat(_distance, _initSol),
-    neighborhoodStat(_neighborhood, _eval),
-    minStat(neighborhoodStat),
-    averageStat(neighborhoodStat),
-    stdStat(neighborhoodStat),
-    maxStat(neighborhoodStat),
-    nbSupStat(neighborhoodStat),
-    nbInfStat(neighborhoodStat),
-    sizeStat(neighborhoodStat),
-    ndStat(neighborhoodStat)
-  {
-    add(neighborhoodStat, false);
-    add(distStat);
-    add(minStat);
-    add(averageStat);
-    add(stdStat);
-    add(maxStat);
-    add(sizeStat);
-    add(nbInfStat);
-    add(ndStat);
-    add(nbSupStat);
-  }
+    using moSampling<Neighbor>::localSearch;
 
-  /** 
-   * default destructor
-   */
-  ~moNeutralWalkSampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
-    delete localSearch;
-  }
+    /**
+     * Default Constructor
+     * @param _initSol the first the solution of the walk
+     * @param _neighborhood neighborhood giving neighbor in random order
+     * @param _fullEval Fitness function, full evaluation function
+     * @param _eval neighbor evaluation, incremental evaluation function
+     * @param _distance the distance to measure the distance from the initial solution
+     * @param _nbStep Number of steps of the random walk
+     */
+    moNeutralWalkSampling(EOT & _initSol,
+                          moNeighborhood<Neighbor> & _neighborhood,
+                          eoEvalFunc<EOT>& _fullEval,
+                          moEval<Neighbor>& _eval,
+                          eoDistance<EOT> & _distance,
+                          unsigned int _nbStep) :
+            moSampling<Neighbor>(init, * new moRandomNeutralWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), solutionStat),
+            init(_initSol),
+            distStat(_distance, _initSol),
+            neighborhoodStat(_neighborhood, _eval),
+            minStat(neighborhoodStat),
+            averageStat(neighborhoodStat),
+            stdStat(neighborhoodStat),
+            maxStat(neighborhoodStat),
+            nbSupStat(neighborhoodStat),
+            nbInfStat(neighborhoodStat),
+            sizeStat(neighborhoodStat),
+            ndStat(neighborhoodStat)
+    {
+        add(neighborhoodStat, false);
+        add(distStat);
+        add(minStat);
+        add(averageStat);
+        add(stdStat);
+        add(maxStat);
+        add(sizeStat);
+        add(nbInfStat);
+        add(ndStat);
+        add(nbSupStat);
+    }
+
+    /**
+     * default destructor
+     */
+    ~moNeutralWalkSampling() {
+        // delete the pointer on the local search which has been constructed in the constructor
+        delete localSearch;
+    }
 
 protected:
-  moSolInit<EOT> init;
-  moSolutionStat<EOT> solutionStat;
-  moDistanceStat<EOT> distStat;
-  moNeighborhoodStat< Neighbor > neighborhoodStat;
-  moMinNeighborStat< Neighbor > minStat;
-  moAverageFitnessNeighborStat< Neighbor > averageStat;
-  moStdFitnessNeighborStat< Neighbor > stdStat;
-  moMaxNeighborStat< Neighbor > maxStat;
-  moNbSupNeighborStat< Neighbor > nbSupStat;
-  moNbInfNeighborStat< Neighbor > nbInfStat;
-  moSizeNeighborStat< Neighbor > sizeStat;
-  moNeutralDegreeNeighborStat< Neighbor > ndStat;
+    moSolInit<EOT> init;
+    moSolutionStat<EOT> solutionStat;
+    moDistanceStat<EOT> distStat;
+    moNeighborhoodStat< Neighbor > neighborhoodStat;
+    moMinNeighborStat< Neighbor > minStat;
+    moAverageFitnessNeighborStat< Neighbor > averageStat;
+    moStdFitnessNeighborStat< Neighbor > stdStat;
+    moMaxNeighborStat< Neighbor > maxStat;
+    moNbSupNeighborStat< Neighbor > nbSupStat;
+    moNbInfNeighborStat< Neighbor > nbInfStat;
+    moSizeNeighborStat< Neighbor > sizeStat;
+    moNeutralDegreeNeighborStat< Neighbor > ndStat;
 
 };
 

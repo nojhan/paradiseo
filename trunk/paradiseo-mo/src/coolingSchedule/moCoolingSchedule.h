@@ -39,23 +39,23 @@
 
 /**
  * Cooling Schedule of the temperature in the simulated algorithm
- * 
+ *
  */
 template< class EOT >
 class moCoolingSchedule : public eoUF<double, bool>
 {
 public:
-  /**
-   * Initial temperature
-   * @param _solution initial solution 
-   */
-  virtual double init(EOT & _solution) = 0;
+    /**
+     * Initial temperature
+     * @param _solution initial solution
+     */
+    virtual double init(EOT & _solution) = 0;
 
-  /**
-   * update the temperature
-   * @param _temp current temperature to update
-   */
-  virtual void update(double& _temp) = 0;
+    /**
+     * update the temperature
+     * @param _temp current temperature to update
+     */
+    virtual void update(double& _temp) = 0;
 
 };
 

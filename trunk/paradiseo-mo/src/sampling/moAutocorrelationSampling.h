@@ -46,42 +46,42 @@
  * To compute the autocorrelation function:
  *   Perform a random walk based on the neighborhood,
  *   The fitness values of solutions are collected during the random walk
- *   The autocorrelation can be computed from the serie of fitness values  
- * 
+ *   The autocorrelation can be computed from the serie of fitness values
+ *
  */
 template <class Neighbor>
 class moAutocorrelationSampling : public moSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _init initialisation method of the solution
-   * @param _neighborhood neighborhood giving neighbor in random order
-   * @param _fullEval Fitness function, full evaluation function
-   * @param _eval neighbor evaluation, incremental evaluation function
-   * @param _nbStep Number of steps of the random walk 
-   */
-  moAutocorrelationSampling(eoInit<EOT> & _init, 
-			    moNeighborhood<Neighbor> & _neighborhood, 
-			    eoEvalFunc<EOT>& _fullEval,
-			    moEval<Neighbor>& _eval,
-			    unsigned int _nbStep) : 
-    moSampling<Neighbor>(_init, * new moRandomWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat){}
+    using moSampling<Neighbor>::localSearch;
 
-  /** 
-   * default destructor
-   */
-  ~moAutocorrelationSampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
-    delete localSearch;
-  }
+    /**
+     * Default Constructor
+     * @param _init initialisation method of the solution
+     * @param _neighborhood neighborhood giving neighbor in random order
+     * @param _fullEval Fitness function, full evaluation function
+     * @param _eval neighbor evaluation, incremental evaluation function
+     * @param _nbStep Number of steps of the random walk
+     */
+    moAutocorrelationSampling(eoInit<EOT> & _init,
+                              moNeighborhood<Neighbor> & _neighborhood,
+                              eoEvalFunc<EOT>& _fullEval,
+                              moEval<Neighbor>& _eval,
+                              unsigned int _nbStep) :
+            moSampling<Neighbor>(_init, * new moRandomWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat) {}
+
+    /**
+     * default destructor
+     */
+    ~moAutocorrelationSampling() {
+        // delete the pointer on the local search which has been constructed in the constructor
+        delete localSearch;
+    }
 
 protected:
-  moFitnessStat<EOT> fitnessStat;
+    moFitnessStat<EOT> fitnessStat;
 
 };
 

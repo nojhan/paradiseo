@@ -44,66 +44,66 @@
 #include <sampling/moFitnessCloudSampling.h>
 
 /**
- * To compute an estimation of the fitness cloud, 
- *   i.e. the scatter plot of solution fitness versus neighbor fitness: 
+ * To compute an estimation of the fitness cloud,
+ *   i.e. the scatter plot of solution fitness versus neighbor fitness:
  *
  *   Sample the fitness of random solution in the search space
  *   and the fitness of one random neighbor
  *
  *   The values are collected during the random search
- * 
+ *
  */
 template <class Neighbor>
 class moRndRndFitnessCloudSampling : public moFitnessCloudSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
-  using moSampling<Neighbor>::checkpoint;
-  using moSampling<Neighbor>::monitorVec;
-  using moSampling<Neighbor>::continuator;
-  using moFitnessCloudSampling<Neighbor>::fitnessStat;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _init initialisation method of the solution
-   * @param _neighborhood neighborhood to get one random neighbor (supposed to be random neighborhood)
-   * @param _fullEval Fitness function, full evaluation function
-   * @param _eval neighbor evaluation, incremental evaluation function
-   * @param _nbSol Number of solutions in the sample
-   */
-  moRndRndFitnessCloudSampling(eoInit<EOT> & _init, 
-			  moNeighborhood<Neighbor> & _neighborhood, 
-			  eoEvalFunc<EOT>& _fullEval, 
-			  moEval<Neighbor>& _eval, 
-			  unsigned int _nbSol) : 
-    moFitnessCloudSampling<Neighbor>(_init, _neighborhood, _fullEval, _eval, _nbSol),
-    neighborFitnessStat(_neighborhood, _eval)
-  {
-    // delete the dummy local search
-    delete localSearch;
-    
-    // random sampling
-    localSearch = new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol);
+    using moSampling<Neighbor>::localSearch;
+    using moSampling<Neighbor>::checkpoint;
+    using moSampling<Neighbor>::monitorVec;
+    using moSampling<Neighbor>::continuator;
+    using moFitnessCloudSampling<Neighbor>::fitnessStat;
 
-    // delete the checkpoint with the wrong continuator
-    delete checkpoint;
+    /**
+     * Default Constructor
+     * @param _init initialisation method of the solution
+     * @param _neighborhood neighborhood to get one random neighbor (supposed to be random neighborhood)
+     * @param _fullEval Fitness function, full evaluation function
+     * @param _eval neighbor evaluation, incremental evaluation function
+     * @param _nbSol Number of solutions in the sample
+     */
+    moRndRndFitnessCloudSampling(eoInit<EOT> & _init,
+                                 moNeighborhood<Neighbor> & _neighborhood,
+                                 eoEvalFunc<EOT>& _fullEval,
+                                 moEval<Neighbor>& _eval,
+                                 unsigned int _nbSol) :
+            moFitnessCloudSampling<Neighbor>(_init, _neighborhood, _fullEval, _eval, _nbSol),
+            neighborFitnessStat(_neighborhood, _eval)
+    {
+        // delete the dummy local search
+        delete localSearch;
 
-    // set the continuator
-    continuator = localSearch->getContinuator();
+        // random sampling
+        localSearch = new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol);
 
-    // re-construction of the checkpoint
-    checkpoint = new moCheckpoint<Neighbor>(*continuator);
-    checkpoint->add(fitnessStat);
-    checkpoint->add(*monitorVec[0]);
+        // delete the checkpoint with the wrong continuator
+        delete checkpoint;
 
-    // one random neighbor
-    add(neighborFitnessStat);
-  }
+        // set the continuator
+        continuator = localSearch->getContinuator();
+
+        // re-construction of the checkpoint
+        checkpoint = new moCheckpoint<Neighbor>(*continuator);
+        checkpoint->add(fitnessStat);
+        checkpoint->add(*monitorVec[0]);
+
+        // one random neighbor
+        add(neighborFitnessStat);
+    }
 
 protected:
-  moNeighborFitnessStat< Neighbor > neighborFitnessStat;
+    moNeighborFitnessStat< Neighbor > neighborFitnessStat;
 
 };
 

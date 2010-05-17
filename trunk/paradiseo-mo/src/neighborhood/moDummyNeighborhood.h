@@ -37,7 +37,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Dummy Neighborhood
  */
 template< class Neighbor >
-class moDummyNeighborhood : public moNeighborhood<Neighbor>{
+class moDummyNeighborhood : public moNeighborhood<Neighbor> {
 public:
     typedef typename Neighbor::EOT EOT;
 
@@ -46,8 +46,8 @@ public:
      * @param _solution a solution (unused)
      * @return always false
      */
-    virtual bool hasNeighbor(EOT & _solution){
-    	return false;
+    virtual bool hasNeighbor(EOT & _solution) {
+        return false;
     }
 
     /**
@@ -55,22 +55,22 @@ public:
      * @param _solution a solution (unused)
      * @param _current a neighbor (unused)
      */
-    virtual void init(EOT & _solution, Neighbor & _current){}
+    virtual void init(EOT & _solution, Neighbor & _current) {}
 
     /**
      * NOTHING TO DO
      * @param _solution a solution (unused)
      * @param _current a neighbor (unused)
      */
-    virtual void next(EOT & _solution, Neighbor & _current){}
+    virtual void next(EOT & _solution, Neighbor & _current) {}
 
     /**
      * NOTHING TO DO
      * @param _solution a solution (unused)
      * @return always false
      */
-    virtual bool cont(EOT & _solution){
-    	return false;
+    virtual bool cont(EOT & _solution) {
+        return false;
     }
 
 };

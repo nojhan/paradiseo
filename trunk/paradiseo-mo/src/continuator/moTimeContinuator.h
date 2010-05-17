@@ -40,14 +40,14 @@ class moTimeContinuator: public moContinuator<Neighbor>
 {
 public:
 
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
     /**
      * Ctor.
      * @param _max maximum running time$
      * @param _verbose verbose mode true/false -> on/off
      */
-    moTimeContinuator(time_t _max, bool _verbose=true): max(_max), verbose(_verbose){
+    moTimeContinuator(time_t _max, bool _verbose=true): max(_max), verbose(_verbose) {
         start = time(NULL);
     }
 
@@ -58,11 +58,11 @@ public:
      */
     virtual bool operator() (EOT& _sol)
     {
-    	bool res;
+        bool res;
         time_t elapsed = (time_t) difftime(time(NULL), start);
         res = (elapsed < max);
-        if(!res && verbose)
-    		std::cout << "STOP in moTimeContinuator: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
+        if (!res && verbose)
+            std::cout << "STOP in moTimeContinuator: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
         return res;
     }
 

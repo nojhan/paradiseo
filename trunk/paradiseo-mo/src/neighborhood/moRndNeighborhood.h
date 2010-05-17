@@ -40,9 +40,9 @@ class moRndNeighborhood : virtual public moNeighborhood<Neighbor> {
 
 public:
 
-	/**
-	 * @return true
-	 */
+    /**
+     * @return true
+     */
     bool isRandom() {
         return true;
     }

@@ -37,20 +37,20 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Acceptance Criterion for extreme diversification : always accept new solution
  */
 template< class Neighbor >
-class moAlwaysAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor>{
+class moAlwaysAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor> {
 
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-	/**
-	 * Always accept the new solution
-	 * @param _sol1 the previous solution
-	 * @param _sol2 the new solution after local search
-	 * @return always true
-	 */
-	bool operator()(EOT& _sol1, EOT& _sol2){
-		return true;
-	}
+    /**
+     * Always accept the new solution
+     * @param _sol1 the previous solution
+     * @param _sol2 the new solution after local search
+     * @return always true
+     */
+    bool operator()(EOT& _sol1, EOT& _sol2) {
+        return true;
+    }
 
 };
 

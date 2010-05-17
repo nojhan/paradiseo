@@ -48,51 +48,55 @@ public:
     typedef typename Neighbor::EOT EOT;
     typedef typename EOT::Fitness Fitness ;
 
-  moDummyExplorer(): moNeighborhoodExplorer<Neighbor>() { }
+    moDummyExplorer(): moNeighborhoodExplorer<Neighbor>() { }
 
     /**
      * NOTHING TO DO
      * @param _solution a solution (unused)
      */
-  void initParam (EOT& _solution) { } ;
+    void initParam (EOT& _solution) { } ;
 
     /**
      * NOTHING TO DO
      * @param _solution a solution (unused)
      */
-  void updateParam (EOT& _solution) { } ;
-
-    /**
-     * NOTHING TO DO
-     * @param _solution a solution (unused)
-     * @return always false
-     */
-  bool isContinue(EOT& _solution) { return false; } ;
-
-    /**
-     * NOTHING TO DO
-     * @param _solution a solution (unused)
-     */
-  void move(EOT& _solution) { } ;
+    void updateParam (EOT& _solution) { } ;
 
     /**
      * NOTHING TO DO
      * @param _solution a solution (unused)
      * @return always false
      */
-  virtual bool accept(EOT& _solution) { return false; } ;
+    bool isContinue(EOT& _solution) {
+        return false;
+    } ;
 
     /**
      * NOTHING TO DO
      * @param _solution a solution (unused)
      */
-  virtual void terminate(EOT& _solution) { } ;
+    void move(EOT& _solution) { } ;
+
+    /**
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
+     * @return always false
+     */
+    virtual bool accept(EOT& _solution) {
+        return false;
+    } ;
 
     /**
      * NOTHING TO DO
      * @param _solution a solution (unused)
      */
-   void operator()(EOT & _solution) { }
+    virtual void terminate(EOT& _solution) { } ;
+
+    /**
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
+     */
+    void operator()(EOT & _solution) { }
 
     /**
      * Return the class id.

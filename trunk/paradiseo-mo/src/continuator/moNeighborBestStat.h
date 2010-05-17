@@ -63,12 +63,12 @@ public :
      * @param _solNeighborComparator a comparator between a solution and a neighbor
      * @param _k number of neighbors visited
      */
-  moNeighborBestStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _k = 0):
-      moStat<EOT, Fitness>(true, "neighborhood"),
-      neighborhood(_neighborhood), eval(_eval),
-      neighborComparator(_neighborComparator),
-      solNeighborComparator(_solNeighborComparator),
-      kmax(_k)
+    moNeighborBestStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _k = 0):
+            moStat<EOT, Fitness>(true, "neighborhood"),
+            neighborhood(_neighborhood), eval(_eval),
+            neighborComparator(_neighborComparator),
+            solNeighborComparator(_solNeighborComparator),
+            kmax(_k)
     {}
 
     /**
@@ -79,12 +79,12 @@ public :
      * @param _eval an evaluation function
      * @param _k number of neighbors visited (default all)
      */
-  moNeighborBestStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _k = 0):
-      moStat<EOT, Fitness>(Fitness(), "best"),
-      neighborhood(_neighborhood), eval(_eval),
-      neighborComparator(defaultNeighborComp),
-      solNeighborComparator(defaultSolNeighborComp),
-      kmax(_k)
+    moNeighborBestStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _k = 0):
+            moStat<EOT, Fitness>(Fitness(), "best"),
+            neighborhood(_neighborhood), eval(_eval),
+            neighborComparator(defaultNeighborComp),
+            solNeighborComparator(defaultSolNeighborComp),
+            kmax(_k)
     {}
 
     /**
@@ -92,7 +92,7 @@ public :
      * @param _solution the first solution
      */
     virtual void init(EOT & _solution) {
-      operator()(_solution);
+        operator()(_solution);
     }
 
     /**
@@ -113,8 +113,8 @@ public :
             //initialize the best neighbor
             best   = current;
 
-	    // number of visited neighbors
-	    unsigned int k = 1;
+            // number of visited neighbors
+            unsigned int k = 1;
 
             //test all others neighbors
             while ( ( (kmax == 0) || (k < kmax) ) && neighborhood.cont(_solution)) {
@@ -127,14 +127,14 @@ public :
                 if (neighborComparator(best, current))
                     best = current;
 
-		k++;
+                k++;
             }
 
             value() = best.fitness();
         }
         else {
             //if _solution hasn't neighbor,
-	  value() = Fitness();
+            value() = Fitness();
         }
     }
 
@@ -146,22 +146,22 @@ public :
     }
 
 private:
-  // to explore the neighborhood
-  Neighborhood& neighborhood ;
-  moEval<Neighbor>& eval;
-  
-  // comparator betwenn solution and neighbor or between neighbors
-  moNeighborComparator<Neighbor>& neighborComparator;
-  moSolNeighborComparator<Neighbor>& solNeighborComparator;
-  
-  // default comparators
-  // compare the fitness values of neighbors: true is strictly greater
-  moNeighborComparator<Neighbor> defaultNeighborComp;
-  // compare the fitness values of the solution and the neighbor: true if strictly greater 
-  moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-  
-  // number of neighbor to explore
-  unsigned int kmax;
+    // to explore the neighborhood
+    Neighborhood& neighborhood ;
+    moEval<Neighbor>& eval;
+
+    // comparator betwenn solution and neighbor or between neighbors
+    moNeighborComparator<Neighbor>& neighborComparator;
+    moSolNeighborComparator<Neighbor>& solNeighborComparator;
+
+    // default comparators
+    // compare the fitness values of neighbors: true is strictly greater
+    moNeighborComparator<Neighbor> defaultNeighborComp;
+    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
+
+    // number of neighbor to explore
+    unsigned int kmax;
 };
 
 #endif

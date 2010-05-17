@@ -54,7 +54,7 @@ public:
     /**
      * first call of a statistical operator
      */
-    virtual void init(EOT &){}
+    virtual void init(EOT &) {}
 
 };
 

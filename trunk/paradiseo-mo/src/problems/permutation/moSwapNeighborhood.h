@@ -45,8 +45,8 @@ public:
     /**
      * @return if there are available Neighbor
      */
-    virtual bool hasNeighbor(EOT& _solution){
-    	return (_solution.size() > 1);
+    virtual bool hasNeighbor(EOT& _solution) {
+        return (_solution.size() > 1);
     };
 
     /**
@@ -54,11 +54,11 @@ public:
      * @param _solution the solution to explore
      * @param _current the first neighbor
      */
-    virtual void init(EOT& _solution, Neighbor& _current){
-    	indices.first=0;
-    	indices.second=1;
-    	size=_solution.size();
-    	_current.setIndices(0,1);
+    virtual void init(EOT& _solution, Neighbor& _current) {
+        indices.first=0;
+        indices.second=1;
+        size=_solution.size();
+        _current.setIndices(0,1);
     }
 
     /**
@@ -66,14 +66,14 @@ public:
      * @param _solution the solution to explore
      * @param _current the next neighbor
      */
-    virtual void next(EOT& _solution, Neighbor& _current){
-    	if(indices.second==size-1){
-    		indices.first++;
-    		indices.second=indices.first+1;
-    	}
-    	else
-    		indices.second++;
-    	_current.setIndices(indices.first, indices.second);
+    virtual void next(EOT& _solution, Neighbor& _current) {
+        if (indices.second==size-1) {
+            indices.first++;
+            indices.second=indices.first+1;
+        }
+        else
+            indices.second++;
+        _current.setIndices(indices.first, indices.second);
     }
 
     /**
@@ -81,8 +81,8 @@ public:
      * @param _solution the solution to explore
      * @return if there is again a neighbor not explored
      */
-    virtual bool cont(EOT& _solution){
-    	return !((indices.first == (size-2)) && (indices.second == (size-1)));
+    virtual bool cont(EOT& _solution) {
+        return !((indices.first == (size-2)) && (indices.second == (size-1)));
     }
 
     /**
@@ -90,7 +90,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moSwapNeighborhood";
+        return "moSwapNeighborhood";
     }
 
 private:

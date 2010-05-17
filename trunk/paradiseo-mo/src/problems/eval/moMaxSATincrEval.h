@@ -39,83 +39,83 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 template <class Neighbor>
 class moMaxSATincrEval : public moEval <Neighbor> {
 public :
-  typedef typename Neighbor::EOT EOT;
-  
-  moMaxSATincrEval(MaxSATeval<EOT> & _fulleval) : fulleval(_fulleval) { 
-    nbClauses = _fulleval.nbClauses;
-    nbVar     = _fulleval.nbVar;
+    typedef typename Neighbor::EOT EOT;
 
-    clauses   =  _fulleval.clauses;
-    variables = _fulleval.variables;
-  }
+    moMaxSATincrEval(MaxSATeval<EOT> & _fulleval) : fulleval(_fulleval) {
+        nbClauses = _fulleval.nbClauses;
+        nbVar     = _fulleval.nbVar;
 
-  /*
-   * incremental evaluation of the neighbor for the max SAT problem
-   * @param _solution the solution (of type bit string) to move 
-   * @param _neighbor the neighbor (of type moBitNeigbor) to consider 
-   */
-  virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-    // the difference of fitness
-    int delta = 0;
-
-    // the flipped bit
-    unsigned int bit = _neighbor.index();
-
-    // clauses which can be modified by the flipped bit
-    const vector<int> & modifiedClauses = variables[bit + 1] ; // remember that the variables start at index 1 and not 0
-    unsigned int size = modifiedClauses.size();
-
-    int nc;
-    bool litt;
-
-    for(unsigned int k = 0; k < size; k++) {
-      // number of the clause
-      nc = modifiedClauses[k];
-      
-      // negative means that the not(variable) is in the clause 
-      if (nc < 0) {
-	nc = - nc;
-	litt = !_solution[bit];
-      } else
-	litt = _solution[bit];
-
-      if (litt) { 
-	// the litteral was true and becomes false
-	_solution[bit] = !_solution[bit];
-	
-	if (!fulleval.clauseEval(nc, _solution))
-	  // the clause was true and becomes false
-	  delta--;
-	
-	_solution[bit] = !_solution[bit];
-      } else { 
-	// the litteral was false and becomes true
-	if (!fulleval.clauseEval(nc, _solution))
-	  // the clause was false and becomes true
-	  delta++;
-      }	  
+        clauses   =  _fulleval.clauses;
+        variables = _fulleval.variables;
     }
-    
-    _neighbor.fitness(_solution.fitness() + delta);
-  }
+
+    /*
+     * incremental evaluation of the neighbor for the max SAT problem
+     * @param _solution the solution (of type bit string) to move
+     * @param _neighbor the neighbor (of type moBitNeigbor) to consider
+     */
+    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
+        // the difference of fitness
+        int delta = 0;
+
+        // the flipped bit
+        unsigned int bit = _neighbor.index();
+
+        // clauses which can be modified by the flipped bit
+        const vector<int> & modifiedClauses = variables[bit + 1] ; // remember that the variables start at index 1 and not 0
+        unsigned int size = modifiedClauses.size();
+
+        int nc;
+        bool litt;
+
+        for (unsigned int k = 0; k < size; k++) {
+            // number of the clause
+            nc = modifiedClauses[k];
+
+            // negative means that the not(variable) is in the clause
+            if (nc < 0) {
+                nc = - nc;
+                litt = !_solution[bit];
+            } else
+                litt = _solution[bit];
+
+            if (litt) {
+                // the litteral was true and becomes false
+                _solution[bit] = !_solution[bit];
+
+                if (!fulleval.clauseEval(nc, _solution))
+                    // the clause was true and becomes false
+                    delta--;
+
+                _solution[bit] = !_solution[bit];
+            } else {
+                // the litteral was false and becomes true
+                if (!fulleval.clauseEval(nc, _solution))
+                    // the clause was false and becomes true
+                    delta++;
+            }
+        }
+
+        _neighbor.fitness(_solution.fitness() + delta);
+    }
 
 protected:
-  // number of variables
-  unsigned int nbVar; 
-  // number of clauses
-  unsigned int nbClauses;
+    // number of variables
+    unsigned int nbVar;
+    // number of clauses
+    unsigned int nbClauses;
 
-  // list of clauses: 
-  //   each clause has the number of the variable (from 1 to nbVar) 
-  //   when the value, litteral = not(variable)
-  vector<int> * clauses;
+    // list of clauses:
+    //   each clause has the number of the variable (from 1 to nbVar)
+    //   when the value, litteral = not(variable)
+    vector<int> * clauses;
 
-  // list of variables:
-  //   for each variable, the list of clauses
-  vector<int> * variables;
-  
-  //full eval of the max SAT
-  MaxSATeval<EOT> & fulleval;
+    // list of variables:
+    //   for each variable, the list of clauses
+    vector<int> * variables;
+
+    //full eval of the max SAT
+    MaxSATeval<EOT> & fulleval;
 };
 
 #endif

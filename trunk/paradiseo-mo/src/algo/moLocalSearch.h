@@ -48,9 +48,9 @@ template<class Neighbor>
 class moLocalSearch: public eoMonOp<typename Neighbor::EOT>
 {
 public:
-  typedef moNeighborhood<Neighbor> Neighborhood;
-  typedef moNeighborhoodExplorer<Neighbor> NeighborhoodExplorer;
-  typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood;
+    typedef moNeighborhoodExplorer<Neighbor> NeighborhoodExplorer;
+    typedef typename Neighbor::EOT EOT ;
 
     /**
      * Constructor of a moLocalSearch
@@ -101,23 +101,23 @@ public:
         return true;
     };
 
-    /** 
+    /**
      * Set an external continuator
      * @param _cont the external continuator
     */
-  void setContinuator(moContinuator<Neighbor> & _cont) {
-    cont = &_cont ;
-  }
+    void setContinuator(moContinuator<Neighbor> & _cont) {
+        cont = &_cont ;
+    }
 
-    /** 
+    /**
      * external continuator object
-     * 
+     *
      * @overload
-     * @return the external continuator 
+     * @return the external continuator
     */
-  moContinuator<Neighbor>* getContinuator() const {
-    return cont ;
-  }
+    moContinuator<Neighbor>* getContinuator() const {
+        return cont ;
+    }
 
 protected:
     // make the exploration of the neighborhood according to a local search heuristic

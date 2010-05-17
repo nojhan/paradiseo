@@ -37,6 +37,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Abstract class for diversification strategy
  */
 template< class Neighbor >
-class moDiversification : virtual public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool>{};
+class moDiversification : virtual public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool> {};
 
 #endif

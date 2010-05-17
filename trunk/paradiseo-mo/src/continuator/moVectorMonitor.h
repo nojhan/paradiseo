@@ -42,165 +42,165 @@
 /**
  * To save the values of the same type (double, unsigned int, or EOT) in a vector
  * It is similar to eoFileMonitor
- * 
+ *
  */
 template <class EOT>
 class moVectorMonitor : public eoMonitor
 {
 public:
-  
-  /**
-   * Default Constructor
-   * @param _param the parameter of type double to save in the vector
-   */
-  moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL), eotParam(NULL)
-  { }
 
-  /**
-   * Default Constructor
-   * @param _param the parameter of type unsigned int to save in the vector
-   */
-  moVectorMonitor(eoValueParam<unsigned int> & _param) : doubleParam(NULL), intParam(&_param), eotParam(NULL)
-  { }
+    /**
+     * Default Constructor
+     * @param _param the parameter of type double to save in the vector
+     */
+    moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL), eotParam(NULL)
+    { }
 
-  /**
-   * Default Constructor
-   * @param _param the parameter of type EOT to save in the vector
-   */
-  moVectorMonitor(eoValueParam<EOT> & _param) : doubleParam(NULL), intParam(NULL), eotParam(&_param)
-  { }
+    /**
+     * Default Constructor
+     * @param _param the parameter of type unsigned int to save in the vector
+     */
+    moVectorMonitor(eoValueParam<unsigned int> & _param) : doubleParam(NULL), intParam(&_param), eotParam(NULL)
+    { }
 
-  /**
-    * Default Constructor
-    * @param _param the parameter of type eoScalarFitness to save in the vector
-    */
-  template <class ScalarType, class Compare>
-   moVectorMonitor(eoValueParam<eoScalarFitness<ScalarType, Compare> > & _param) : doubleParam( & (eoValueParam<double>&)_param), intParam(NULL), eotParam(NULL)
-   { }
+    /**
+     * Default Constructor
+     * @param _param the parameter of type EOT to save in the vector
+     */
+    moVectorMonitor(eoValueParam<EOT> & _param) : doubleParam(NULL), intParam(NULL), eotParam(&_param)
+    { }
 
-  /**
-   * Default Constructor
-   * @param _param unvalid Parameter
-   */
-  template <class T>
-  moVectorMonitor(eoValueParam<T> & _param) : doubleParam(NULL), intParam(NULL), eotParam(NULL)
-  {
-    std::cerr << "Sorry the type can not be in a vector of moVectorMonitor" << std::endl;
-  }
+    /**
+      * Default Constructor
+      * @param _param the parameter of type eoScalarFitness to save in the vector
+      */
+    template <class ScalarType, class Compare>
+    moVectorMonitor(eoValueParam<eoScalarFitness<ScalarType, Compare> > & _param) : doubleParam( & (eoValueParam<double>&)_param), intParam(NULL), eotParam(NULL)
+    { }
 
-  /**
-   * To test if the value are basic type (double or unsigned int), or EOT type
-   *
-   * @return true if the type is a EOT type
-   */
-  bool solutionType() {
-    return eotParam != NULL;
-  }
-
-  /**
-   * To "print" the value of the parameter in the vector
-   *
-   * @return this monitor (sorry I don't why, but it is like this in EO)
-   */
-  eoMonitor& operator()(void) {
-    if (doubleParam != NULL)
-      valueVec.push_back(doubleParam->value());
-    else 
-      if (intParam != NULL)
-	valueVec.push_back((double) intParam->value());
-      else
-	eotVec.push_back(eotParam->value());
-
-    return *this ;
-  }
-
-  /**
-   * To have all the values
-   *
-   * @return the vector of values
-   */
-  const std::vector<double>& getValues() const {
-    return valueVec;
-  } 
-
-  /**
-   * To have all the solutions
-   *
-   * @return the vector of solutions
-   */
-  const std::vector<EOT>& getSolutions() const {
-    return eotVec;
-  } 
-
-  /**
-   * to get the value out.
-   * @return the string of the value
-   */
-  std::string getValue(unsigned int i) const {
-    std::ostringstream os;
-
-    if (eotParam == NULL)
-      os << (valueVec[i]) ;
-    else 
-      os << (eotVec[i]) ;
-
-    return os.str();
-  }
-
-  /**
-   * clear the vector
-   */
-  void clear() {
-    valueVec.clear();
-    eotVec.clear();
-  }
-
-  /**
-   * number of value
-   * @return size of the vector
-   */
-  unsigned int size() {
-    if (eotParam == NULL)
-      return valueVec.size();
-    else
-      return eotVec.size();
-  }
-
-  /**
-   * to export the vector of values into one file
-   * @param _filename file name 
-   */
-  void fileExport(std::string _filename) {
-    // create file
-    std::ofstream os(_filename.c_str());
-
-    if (!os) {
-      std::string str = "moVectorMonitor: Could not open " + _filename;
-      throw std::runtime_error(str);
+    /**
+     * Default Constructor
+     * @param _param unvalid Parameter
+     */
+    template <class T>
+    moVectorMonitor(eoValueParam<T> & _param) : doubleParam(NULL), intParam(NULL), eotParam(NULL)
+    {
+        std::cerr << "Sorry the type can not be in a vector of moVectorMonitor" << std::endl;
     }
-    
-    for(unsigned int i = 0; i < size(); i++) {
-      os << getValue(i);
-      
-      os << std::endl ;
-    }
-    
-  }
 
-  /**
-   * @return name of the class
-   */
-  virtual std::string className(void) const {
-    return "moVectorMonitor";
-  }
-  
+    /**
+     * To test if the value are basic type (double or unsigned int), or EOT type
+     *
+     * @return true if the type is a EOT type
+     */
+    bool solutionType() {
+        return eotParam != NULL;
+    }
+
+    /**
+     * To "print" the value of the parameter in the vector
+     *
+     * @return this monitor (sorry I don't why, but it is like this in EO)
+     */
+    eoMonitor& operator()(void) {
+        if (doubleParam != NULL)
+            valueVec.push_back(doubleParam->value());
+        else
+            if (intParam != NULL)
+                valueVec.push_back((double) intParam->value());
+            else
+                eotVec.push_back(eotParam->value());
+
+        return *this ;
+    }
+
+    /**
+     * To have all the values
+     *
+     * @return the vector of values
+     */
+    const std::vector<double>& getValues() const {
+        return valueVec;
+    }
+
+    /**
+     * To have all the solutions
+     *
+     * @return the vector of solutions
+     */
+    const std::vector<EOT>& getSolutions() const {
+        return eotVec;
+    }
+
+    /**
+     * to get the value out.
+     * @return the string of the value
+     */
+    std::string getValue(unsigned int i) const {
+        std::ostringstream os;
+
+        if (eotParam == NULL)
+            os << (valueVec[i]) ;
+        else
+            os << (eotVec[i]) ;
+
+        return os.str();
+    }
+
+    /**
+     * clear the vector
+     */
+    void clear() {
+        valueVec.clear();
+        eotVec.clear();
+    }
+
+    /**
+     * number of value
+     * @return size of the vector
+     */
+    unsigned int size() {
+        if (eotParam == NULL)
+            return valueVec.size();
+        else
+            return eotVec.size();
+    }
+
+    /**
+     * to export the vector of values into one file
+     * @param _filename file name
+     */
+    void fileExport(std::string _filename) {
+        // create file
+        std::ofstream os(_filename.c_str());
+
+        if (!os) {
+            std::string str = "moVectorMonitor: Could not open " + _filename;
+            throw std::runtime_error(str);
+        }
+
+        for (unsigned int i = 0; i < size(); i++) {
+            os << getValue(i);
+
+            os << std::endl ;
+        }
+
+    }
+
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moVectorMonitor";
+    }
+
 protected:
-  eoValueParam<double> * doubleParam ;
-  eoValueParam<unsigned int> * intParam ;
-  eoValueParam<EOT> * eotParam ;
+    eoValueParam<double> * doubleParam ;
+    eoValueParam<unsigned int> * intParam ;
+    eoValueParam<EOT> * eotParam ;
 
-  std::vector<double> valueVec;
-  std::vector<EOT> eotVec;
+    std::vector<double> valueVec;
+    std::vector<EOT> eotVec;
 };
 
 

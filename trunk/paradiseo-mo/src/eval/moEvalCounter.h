@@ -33,7 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <utils/eoParam.h>
 
-/** 
+/**
     Counts the number of neighbor evaluations actually performed, thus checks first
     if it has to evaluate.. etc.
 */
@@ -41,25 +41,25 @@ template<class Neighbor>
 class moEvalCounter : public moEval<Neighbor>, public eoValueParam<unsigned long>
 {
 public:
-  typedef typename Neighbor::EOT EOT;
-  typedef typename EOT::Fitness Fitness;
-  
-  moEvalCounter(moEval<Neighbor>& _eval, std::string _name = "Neighbor Eval. ") 
-    : eoValueParam<unsigned long>(0, _name), eval(_eval) {}
-  
-  /**
-   * Increase the number of neighbor evaluations and perform the evaluation
-   *
-   * @param _solution a solution
-   * @param _neighbor a neighbor
-   */
-  void operator()(EOT& _solution, Neighbor& _neighbor) {
-    value()++;
-    eval(_solution, _neighbor);
-  }
+    typedef typename Neighbor::EOT EOT;
+    typedef typename EOT::Fitness Fitness;
+
+    moEvalCounter(moEval<Neighbor>& _eval, std::string _name = "Neighbor Eval. ")
+            : eoValueParam<unsigned long>(0, _name), eval(_eval) {}
+
+    /**
+     * Increase the number of neighbor evaluations and perform the evaluation
+     *
+     * @param _solution a solution
+     * @param _neighbor a neighbor
+     */
+    void operator()(EOT& _solution, Neighbor& _neighbor) {
+        value()++;
+        eval(_solution, _neighbor);
+    }
 
 private:
-  moEval<Neighbor> & eval;
+    moEval<Neighbor> & eval;
 
 };
 

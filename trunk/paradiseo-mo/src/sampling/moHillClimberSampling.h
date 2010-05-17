@@ -52,58 +52,58 @@
  *   Perform a simple Hill-climber based on the neighborhood (adaptive walk),
  *   The lengths of HC are collected and the final solution which are local optima
  *   The adaptive walk is repeated several times
- * 
+ *
  */
 template <class Neighbor>
 class moHillClimberSampling : public moSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _init initialisation method of the solution
-   * @param _neighborhood neighborhood giving neighbor in random order
-   * @param _fullEval a full evaluation function
-   * @param _eval an incremental evaluation of neighbors
-   * @param _nbAdaptWalk Number of adaptive walks 
-   */
-  moHillClimberSampling(eoInit<EOT> & _init, 
-			moNeighborhood<Neighbor> & _neighborhood, 
-			eoEvalFunc<EOT>& _fullEval,
-			moEval<Neighbor>& _eval,
-			unsigned int _nbAdaptWalk) : 
-    moSampling<Neighbor>(initHC, * new moRandomSearch<Neighbor>(initHC, _fullEval, _nbAdaptWalk), copyStat), 
-    copyStat(lengthStat),
-    checkpoint(trueCont),
-    hc(_neighborhood, _fullEval, _eval, checkpoint),
-    initHC(_init, hc)
-  {
-    // to count the number of step in the HC
-    checkpoint.add(lengthStat);
+    using moSampling<Neighbor>::localSearch;
 
-    // add the solution into statistics
-    add(solStat);
-  }
+    /**
+     * Default Constructor
+     * @param _init initialisation method of the solution
+     * @param _neighborhood neighborhood giving neighbor in random order
+     * @param _fullEval a full evaluation function
+     * @param _eval an incremental evaluation of neighbors
+     * @param _nbAdaptWalk Number of adaptive walks
+     */
+    moHillClimberSampling(eoInit<EOT> & _init,
+                          moNeighborhood<Neighbor> & _neighborhood,
+                          eoEvalFunc<EOT>& _fullEval,
+                          moEval<Neighbor>& _eval,
+                          unsigned int _nbAdaptWalk) :
+            moSampling<Neighbor>(initHC, * new moRandomSearch<Neighbor>(initHC, _fullEval, _nbAdaptWalk), copyStat),
+            copyStat(lengthStat),
+            checkpoint(trueCont),
+            hc(_neighborhood, _fullEval, _eval, checkpoint),
+            initHC(_init, hc)
+    {
+        // to count the number of step in the HC
+        checkpoint.add(lengthStat);
 
-  /** 
-   * default destructor
-   */
-  ~moHillClimberSampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
-    delete localSearch;
-  }
+        // add the solution into statistics
+        add(solStat);
+    }
+
+    /**
+     * default destructor
+     */
+    ~moHillClimberSampling() {
+        // delete the pointer on the local search which has been constructed in the constructor
+        delete localSearch;
+    }
 
 protected:
-  moSolutionStat<EOT> solStat;
-  moMinusOneCounterStat<EOT> lengthStat;
-  moTrueContinuator<Neighbor> trueCont;
-  moStatFromStat<EOT, unsigned int> copyStat;
-  moCheckpoint<Neighbor> checkpoint;
-  moSimpleHC<Neighbor> hc;
-  moLocalSearchInit<Neighbor> initHC;
+    moSolutionStat<EOT> solStat;
+    moMinusOneCounterStat<EOT> lengthStat;
+    moTrueContinuator<Neighbor> trueCont;
+    moStatFromStat<EOT, unsigned int> copyStat;
+    moCheckpoint<Neighbor> checkpoint;
+    moSimpleHC<Neighbor> hc;
+    moLocalSearchInit<Neighbor> initHC;
 };
 
 

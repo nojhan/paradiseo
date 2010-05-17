@@ -37,7 +37,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Continue until a maximum fixed number of neighbor evaluation is reached
  *
- * Becareful 1: The number of full evaluations considered is within the local search (not before it) 
+ * Becareful 1: The number of full evaluations considered is within the local search (not before it)
  * Becareful 2: Can not be used if the evaluation function is used in parallel
  */
 template< class Neighbor >
@@ -46,42 +46,42 @@ class moNeighborEvalContinuator : public moContinuator<Neighbor>
 public:
     typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default constructor
-   * @param _eval neighbor evaluation function to count
-   * @param _maxNeighborEval number maximum of iterations
-   */
- moNeighborEvalContinuator(moEvalCounter<Neighbor> & _eval, unsigned int _maxNeighborEval): eval(_eval), maxNeighborEval(_maxNeighborEval){}
+    /**
+     * Default constructor
+     * @param _eval neighbor evaluation function to count
+     * @param _maxNeighborEval number maximum of iterations
+     */
+    moNeighborEvalContinuator(moEvalCounter<Neighbor> & _eval, unsigned int _maxNeighborEval): eval(_eval), maxNeighborEval(_maxNeighborEval) {}
 
-  /**
-   * Test if continue
-   * @param _solution a solution
-   * @return true if number of evaluations < maxNeighborEval
-   */
-  virtual bool operator()(EOT & _solution) {
-    return (eval.value() - nbEval_start < maxNeighborEval);
-  }
-  
-  /**
-   * Reset the number of evaluations
-   * @param _solution a solution
-   */
-  virtual void init(EOT & _solution) {
-    nbEval_start = eval.value();
-  }
-  
-  /**
-   * the current number of evaluation from the begining
-   * @return the number of evaluation
-   */
-  unsigned int value() {
-    return eval.value() - nbEval_start ;
-  }
-  
+    /**
+     * Test if continue
+     * @param _solution a solution
+     * @return true if number of evaluations < maxNeighborEval
+     */
+    virtual bool operator()(EOT & _solution) {
+        return (eval.value() - nbEval_start < maxNeighborEval);
+    }
+
+    /**
+     * Reset the number of evaluations
+     * @param _solution a solution
+     */
+    virtual void init(EOT & _solution) {
+        nbEval_start = eval.value();
+    }
+
+    /**
+     * the current number of evaluation from the begining
+     * @return the number of evaluation
+     */
+    unsigned int value() {
+        return eval.value() - nbEval_start ;
+    }
+
 private:
-  moEvalCounter<Neighbor> & eval;
-  unsigned int maxNeighborEval;
-  unsigned int nbEval_start ;
-  
+    moEvalCounter<Neighbor> & eval;
+    unsigned int maxNeighborEval;
+    unsigned int nbEval_start ;
+
 };
 #endif

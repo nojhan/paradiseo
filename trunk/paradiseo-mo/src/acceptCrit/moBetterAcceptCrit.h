@@ -38,25 +38,25 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Acceptance Criterion for extreme intensification : accept if the new solution is better than previous one
  */
 template< class Neighbor >
-class moBetterAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor>{
+class moBetterAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor> {
 
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-	moBetterAcceptCrit(moSolComparator<EOT>& _comparator):comparator(_comparator){}
+    moBetterAcceptCrit(moSolComparator<EOT>& _comparator):comparator(_comparator) {}
 
-	/**
-	 * Accept if the new solution is better than previous one
-	 * @param _sol1 the previous solution
-	 * @param _sol2 the new solution after local search
-	 * @return true if the new solution is better than previous one
-	 */
-	bool operator()(EOT& _sol1, EOT& _sol2){
-		return comparator(_sol1, _sol2);
-	}
+    /**
+     * Accept if the new solution is better than previous one
+     * @param _sol1 the previous solution
+     * @param _sol2 the new solution after local search
+     * @return true if the new solution is better than previous one
+     */
+    bool operator()(EOT& _sol1, EOT& _sol2) {
+        return comparator(_sol1, _sol2);
+    }
 
 private:
-	moSolComparator<EOT>& comparator;
+    moSolComparator<EOT>& comparator;
 
 };
 

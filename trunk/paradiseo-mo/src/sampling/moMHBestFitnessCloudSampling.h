@@ -44,8 +44,8 @@
 #include <sampling/moFitnessCloudSampling.h>
 
 /**
- * To compute an estimation of the fitness cloud, 
- *   i.e. the scatter plot of solution fitness versus neighbor fitness: 
+ * To compute an estimation of the fitness cloud,
+ *   i.e. the scatter plot of solution fitness versus neighbor fitness:
  *
  *   Here solution are sampled with Metropolis-Hasting method
  *
@@ -53,59 +53,59 @@
  *   and the best fitness of k random neighbor
  *
  *   The values are collected during the Metropolis-Hasting walk
- * 
+ *
  */
 template <class Neighbor>
 class moMHBestFitnessCloudSampling : public moFitnessCloudSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
-  using moSampling<Neighbor>::checkpoint;
-  using moSampling<Neighbor>::monitorVec;
-  using moSampling<Neighbor>::continuator;
-  using moFitnessCloudSampling<Neighbor>::fitnessStat;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _init initialisation method of the solution
-   * @param _neighborhood neighborhood to get one random neighbor (supposed to be random neighborhood)
-   * @param _fullEval Fitness function, full evaluation function
-   * @param _eval neighbor evaluation, incremental evaluation function
-   * @param _nbStep Number of step of the MH sampling
-   */
-  moMHBestFitnessCloudSampling(eoInit<EOT> & _init, 
-			  moNeighborhood<Neighbor> & _neighborhood, 
-			  eoEvalFunc<EOT>& _fullEval, 
-			  moEval<Neighbor>& _eval, 
-			  unsigned int _nbStep) : 
-    moFitnessCloudSampling<Neighbor>(_init, _neighborhood, _fullEval, _eval, _nbStep),
-    neighborBestStat(_neighborhood, _eval)
-  {
-    // delete the dummy local search
-    delete localSearch;
-    
-    // Metropolis-Hasting sampling
-    localSearch = new moMetropolisHasting<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep);
+    using moSampling<Neighbor>::localSearch;
+    using moSampling<Neighbor>::checkpoint;
+    using moSampling<Neighbor>::monitorVec;
+    using moSampling<Neighbor>::continuator;
+    using moFitnessCloudSampling<Neighbor>::fitnessStat;
 
-    // delete the checkpoint with the wrong continuator
-    delete checkpoint;
+    /**
+     * Default Constructor
+     * @param _init initialisation method of the solution
+     * @param _neighborhood neighborhood to get one random neighbor (supposed to be random neighborhood)
+     * @param _fullEval Fitness function, full evaluation function
+     * @param _eval neighbor evaluation, incremental evaluation function
+     * @param _nbStep Number of step of the MH sampling
+     */
+    moMHBestFitnessCloudSampling(eoInit<EOT> & _init,
+                                 moNeighborhood<Neighbor> & _neighborhood,
+                                 eoEvalFunc<EOT>& _fullEval,
+                                 moEval<Neighbor>& _eval,
+                                 unsigned int _nbStep) :
+            moFitnessCloudSampling<Neighbor>(_init, _neighborhood, _fullEval, _eval, _nbStep),
+            neighborBestStat(_neighborhood, _eval)
+    {
+        // delete the dummy local search
+        delete localSearch;
 
-    // set the continuator
-    continuator = localSearch->getContinuator();
+        // Metropolis-Hasting sampling
+        localSearch = new moMetropolisHasting<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep);
 
-    // re-construction of the checkpoint
-    checkpoint = new moCheckpoint<Neighbor>(*continuator);
-    checkpoint->add(fitnessStat);
-    checkpoint->add(*monitorVec[0]);
+        // delete the checkpoint with the wrong continuator
+        delete checkpoint;
 
-    // one random neighbor
-    add(neighborBestStat);
-  }
+        // set the continuator
+        continuator = localSearch->getContinuator();
+
+        // re-construction of the checkpoint
+        checkpoint = new moCheckpoint<Neighbor>(*continuator);
+        checkpoint->add(fitnessStat);
+        checkpoint->add(*monitorVec[0]);
+
+        // one random neighbor
+        add(neighborBestStat);
+    }
 
 protected:
-  moNeighborBestStat< Neighbor > neighborBestStat;
+    moNeighborBestStat< Neighbor > neighborBestStat;
 
 };
 

@@ -46,67 +46,67 @@ template< class Neighbor >
 class moNeighborFitnessStat : public moStat<typename Neighbor::EOT, typename Neighbor::EOT::Fitness>
 {
 public :
-  typedef typename Neighbor::EOT EOT ;
-  typedef moNeighborhood<Neighbor> Neighborhood ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
+    typedef typename EOT::Fitness Fitness ;
 
-  using moStat< EOT, Fitness >::value;
+    using moStat< EOT, Fitness >::value;
 
-  /**
-   * Default Constructor
-   * @param _neighborhood a neighborhood
-   * @param _eval an evaluation function
-   */
-  moNeighborFitnessStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):
-    moStat<EOT, Fitness>(Fitness(), "neighborhood"),
-    neighborhood(_neighborhood), eval(_eval)
-  {
-    if (!neighborhood.isRandom()) {
-      std::cout << "moNeighborFitnessStat::Warning -> the neighborhood used is not random, the neighbor will not be random" << std::endl;
-    }   
-  }
-
-  /**
-   * Compute the fitness of one random neighbor
-   * @param _solution the first solution
-   */
-  virtual void init(EOT & _solution) {
-    operator()(_solution);
-  }
-
-  /**
-   * Compute the fitness of one random neighbor
-   * @param _solution the corresponding solution
-   */
-  virtual void operator()(EOT & _solution) {
-    if (neighborhood.hasNeighbor(_solution)) {
-      Neighbor current ;
-
-      //init the first neighbor which is suppoed to be random
-      neighborhood.init(_solution, current);
-
-      //eval the _solution moved with the neighbor and stock the result in the neighbor
-      eval(_solution, current);
-
-      // the fitness value is collected
-      value() = current.fitness();
-    } else {
-      //if _solution hasn't neighbor,
-      value() = Fitness();
+    /**
+     * Default Constructor
+     * @param _neighborhood a neighborhood
+     * @param _eval an evaluation function
+     */
+    moNeighborFitnessStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):
+            moStat<EOT, Fitness>(Fitness(), "neighborhood"),
+            neighborhood(_neighborhood), eval(_eval)
+    {
+        if (!neighborhood.isRandom()) {
+            std::cout << "moNeighborFitnessStat::Warning -> the neighborhood used is not random, the neighbor will not be random" << std::endl;
+        }
     }
-  }
 
-  /**
-   * @return the class name
-   */
-  virtual std::string className(void) const {
-    return "moNeighborFitnessStat";
-  }
+    /**
+     * Compute the fitness of one random neighbor
+     * @param _solution the first solution
+     */
+    virtual void init(EOT & _solution) {
+        operator()(_solution);
+    }
+
+    /**
+     * Compute the fitness of one random neighbor
+     * @param _solution the corresponding solution
+     */
+    virtual void operator()(EOT & _solution) {
+        if (neighborhood.hasNeighbor(_solution)) {
+            Neighbor current ;
+
+            //init the first neighbor which is suppoed to be random
+            neighborhood.init(_solution, current);
+
+            //eval the _solution moved with the neighbor and stock the result in the neighbor
+            eval(_solution, current);
+
+            // the fitness value is collected
+            value() = current.fitness();
+        } else {
+            //if _solution hasn't neighbor,
+            value() = Fitness();
+        }
+    }
+
+    /**
+     * @return the class name
+     */
+    virtual std::string className(void) const {
+        return "moNeighborFitnessStat";
+    }
 
 private:
-  // to explore the neighborhood
-  Neighborhood& neighborhood ;
-  moEval<Neighbor>& eval;
+    // to explore the neighborhood
+    Neighborhood& neighborhood ;
+    moEval<Neighbor>& eval;
 
 };
 

@@ -49,58 +49,58 @@ template<class Neighbor>
 class moNeutralHC: public moLocalSearch<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT;
-  typedef moNeighborhood<Neighbor> Neighborhood ;
+    typedef typename Neighbor::EOT EOT;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-  /**
-   * Basic constructor for a hill-climber
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _nbStep maximum step to do
-   */
-  moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep):
-    moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
-  {}
-  
-  /**
-   * Simple constructor for a hill-climber
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _nbStep maximum step to do
-   * @param _cont an external continuator
-   */
-  moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
-  {}
-  
-  /**
-   * General constructor for a hill-climber
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _nbStep maximum step to do
-   * @param _cont an external continuator
-   * @param _compN  a neighbor vs neighbor comparator
-   * @param _compSN a solution vs neighbor comparator
-   */
-  moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, _compN, _compSN, _nbStep)
-  {}
-  
+    /**
+     * Basic constructor for a hill-climber
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _nbStep maximum step to do
+     */
+    moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep):
+            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
+            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
+    {}
+
+    /**
+     * Simple constructor for a hill-climber
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _nbStep maximum step to do
+     * @param _cont an external continuator
+     */
+    moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
+    {}
+
+    /**
+     * General constructor for a hill-climber
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _nbStep maximum step to do
+     * @param _cont an external continuator
+     * @param _compN  a neighbor vs neighbor comparator
+     * @param _compSN a solution vs neighbor comparator
+     */
+    moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            explorer(_neighborhood, _eval, _compN, _compSN, _nbStep)
+    {}
+
 private:
-  // always true continuator
-  moTrueContinuator<Neighbor> trueCont;
-  // compare the fitness values of neighbors: true is strictly greater
-  moNeighborComparator<Neighbor> defaultNeighborComp;
-  // compare the fitness values of the solution and the neighbor: true if strictly greater 
-  moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-  // the explorer of the HC with neutral move (equals fitness move)
-  moNeutralHCexplorer<Neighbor> explorer;
+    // always true continuator
+    moTrueContinuator<Neighbor> trueCont;
+    // compare the fitness values of neighbors: true is strictly greater
+    moNeighborComparator<Neighbor> defaultNeighborComp;
+    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
+    // the explorer of the HC with neutral move (equals fitness move)
+    moNeutralHCexplorer<Neighbor> explorer;
 };
 
 #endif

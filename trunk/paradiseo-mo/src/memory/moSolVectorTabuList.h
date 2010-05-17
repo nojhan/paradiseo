@@ -88,10 +88,10 @@ public:
      * @param _neighbor the current neighbor (unused)
      */
     virtual void update(EOT & _sol, Neighbor & _neighbor) {
-    	if(howlong > 0)
-    		for (unsigned int i=0; i<tabuList.size(); i++)
-    			if(tabuList[i].second > 0)
-    				tabuList[i].second--;
+        if (howlong > 0)
+            for (unsigned int i=0; i<tabuList.size(); i++)
+                if (tabuList[i].second > 0)
+                    tabuList[i].second--;
     }
 
     /**

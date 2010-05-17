@@ -37,7 +37,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Abstract class for Acceptance criteria
  */
 template< class Neighbor >
-class moAcceptanceCriterion : public eoBF<typename Neighbor::EOT&, typename Neighbor::EOT&, bool>, virtual public moMemory<Neighbor>{
+class moAcceptanceCriterion : public eoBF<typename Neighbor::EOT&, typename Neighbor::EOT&, bool>, virtual public moMemory<Neighbor> {
 
 };
 

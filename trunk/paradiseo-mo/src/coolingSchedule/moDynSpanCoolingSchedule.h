@@ -39,86 +39,86 @@
 
 /**
  * Cooling Schedule of the temperature in the simulated algorithm
- * 
+ *
  */
 template< class EOT >
 class moDynSpanCoolingSchedule : public moCoolingSchedule<EOT>
 {
 public:
-  /**
-   * default constructor
-   * @param _initT initial temperature
-   * @param _alpha factor of decreasing
-   * @param _spanMove maximum number of move with equal temperature
-   * @param _spanNoMove maximum number of no improvement with equal temperature
-   * @param _nbSpan maximum number of span with no improvmement before stopping the search
-   */
-  moDynSpanCoolingSchedule(double _initT, double _alpha, unsigned int _spanMove, unsigned int _spanNoMove, unsigned int _nbSpan) : initT(_initT), alpha(_alpha), spanMove(_spanMove), spanNoMove(_spanNoMove), nbSpan(_nbSpan) {
-  }
-
-  /**
-   * Initial temperature
-   * @param _solution initial solution 
-   */
-  virtual double init(EOT & _solution) {
-    // number of successive moves since the last temperature change
-    nbMove = 0;
-
-    // number of no improvement since the last temperature change
-    nbNoMove = 0;
-
-    // number of span with no improvement
-    nbSpan = 0;
-
-    return initT;
-  }
-
-  /**
-   * update the temperature by a factor
-   * @param _temp current temperature to update
-   */
-  virtual void update(double& _temp) {
-    if (nbMove >= spanMove || nbNoMove >= spanNoMove) {
-      _temp *= alpha;
-
-      nbMove   = 0;
-      nbNoMove = 0;
-    } else {
-      nbMove++;
-      nbNoMove++;
+    /**
+     * default constructor
+     * @param _initT initial temperature
+     * @param _alpha factor of decreasing
+     * @param _spanMove maximum number of move with equal temperature
+     * @param _spanNoMove maximum number of no improvement with equal temperature
+     * @param _nbSpan maximum number of span with no improvmement before stopping the search
+     */
+    moDynSpanCoolingSchedule(double _initT, double _alpha, unsigned int _spanMove, unsigned int _spanNoMove, unsigned int _nbSpan) : initT(_initT), alpha(_alpha), spanMove(_spanMove), spanNoMove(_spanNoMove), nbSpan(_nbSpan) {
     }
-  }
 
-  /**
-   * compare the temperature to the threshold
-   * @param _temp current temperature 
-   * @return true if the current temperature is over the threshold (final temperature) 
-   */
-  virtual bool operator()(double _temp) {
-    return _temp > finalT;
-  }
+    /**
+     * Initial temperature
+     * @param _solution initial solution
+     */
+    virtual double init(EOT & _solution) {
+        // number of successive moves since the last temperature change
+        nbMove = 0;
+
+        // number of no improvement since the last temperature change
+        nbNoMove = 0;
+
+        // number of span with no improvement
+        nbSpan = 0;
+
+        return initT;
+    }
+
+    /**
+     * update the temperature by a factor
+     * @param _temp current temperature to update
+     */
+    virtual void update(double& _temp) {
+        if (nbMove >= spanMove || nbNoMove >= spanNoMove) {
+            _temp *= alpha;
+
+            nbMove   = 0;
+            nbNoMove = 0;
+        } else {
+            nbMove++;
+            nbNoMove++;
+        }
+    }
+
+    /**
+     * compare the temperature to the threshold
+     * @param _temp current temperature
+     * @return true if the current temperature is over the threshold (final temperature)
+     */
+    virtual bool operator()(double _temp) {
+        return _temp > finalT;
+    }
 
 private:
-  // initial temperature
-  double initT;
+    // initial temperature
+    double initT;
 
-  // coefficient of decrease
-  double alpha;
+    // coefficient of decrease
+    double alpha;
 
-  //
-  unsigned int spanMove;
+    //
+    unsigned int spanMove;
 
-  //
-  unsigned int spanNoMove;
+    //
+    unsigned int spanNoMove;
 
-  // maximum number of iterations at the same temperature
-  unsigned int nbSpan;
+    // maximum number of iterations at the same temperature
+    unsigned int nbSpan;
 
-  // threshold temperature
-  double finalT;
+    // threshold temperature
+    double finalT;
 
-  // number of steps with the same temperature
-  unsigned int step;
+    // number of steps with the same temperature
+    unsigned int step;
 };
 
 

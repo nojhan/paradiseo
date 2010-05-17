@@ -41,49 +41,49 @@ class moSwapNeighbor: public moBackableNeighbor<EOT>
 {
 public:
 
-	/**
-	 * Apply the swap
-	 * @param _solution the solution to move
-	 */
-	virtual void move(EOT& _solution){
-		unsigned int tmp;
-		tmp=_solution[indices.first];
-		_solution[indices.first]=_solution[indices.second];
-		_solution[indices.second]=tmp;
-		_solution.invalidate();
-	}
+    /**
+     * Apply the swap
+     * @param _solution the solution to move
+     */
+    virtual void move(EOT& _solution) {
+        unsigned int tmp;
+        tmp=_solution[indices.first];
+        _solution[indices.first]=_solution[indices.second];
+        _solution[indices.second]=tmp;
+        _solution.invalidate();
+    }
 
-	/**
-	 * apply the swap to restore the solution (use by moFullEvalByModif)
-	 * @param _solution the solution to move
-	 */
-	virtual void moveBack(EOT& _solution){
-		unsigned int tmp;
-		tmp=_solution[indices.first];
-		_solution[indices.first]=_solution[indices.second];
-		_solution[indices.second]=tmp;
-		_solution.invalidate();
-	}
+    /**
+     * apply the swap to restore the solution (use by moFullEvalByModif)
+     * @param _solution the solution to move
+     */
+    virtual void moveBack(EOT& _solution) {
+        unsigned int tmp;
+        tmp=_solution[indices.first];
+        _solution[indices.first]=_solution[indices.second];
+        _solution[indices.second]=tmp;
+        _solution.invalidate();
+    }
 
-	/**
-	 * Setter to fix the two indexes to swap
-	 * @param _first first index
-	 * @param _second second index
-	 */
-	void setIndices(unsigned int _first, unsigned int _second){
-		indices.first = _first;
-		indices.second = _second;
-	}
+    /**
+     * Setter to fix the two indexes to swap
+     * @param _first first index
+     * @param _second second index
+     */
+    void setIndices(unsigned int _first, unsigned int _second) {
+        indices.first = _first;
+        indices.second = _second;
+    }
 
-	/**
-	 * Print the Neighbor
-	 */
-	void print(){
-		std::cout << "[" << indices.first << ", " << indices.second << "] -> " << (*this).fitness() << std::endl;
-	}
+    /**
+     * Print the Neighbor
+     */
+    void print() {
+        std::cout << "[" << indices.first << ", " << indices.second << "] -> " << (*this).fitness() << std::endl;
+    }
 
 private:
-	std::pair<unsigned int, unsigned int> indices;
+    std::pair<unsigned int, unsigned int> indices;
 
 };
 

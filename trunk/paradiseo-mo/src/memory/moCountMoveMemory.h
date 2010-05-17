@@ -36,19 +36,19 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Count the number of move, noMove and  the number of successive stagnation since the last Move
  */
 template< class Neighbor >
-class moCountMoveMemory : virtual public moMemory<Neighbor>{
+class moCountMoveMemory : virtual public moMemory<Neighbor> {
 
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
     /**
      * Init all the counters
      * @param _sol unused solution
      */
     void init(EOT & _sol) {
-    	nbMove=0;
-    	nbNoMove=0;
-    	counter=0;
+        nbMove=0;
+        nbNoMove=0;
+        counter=0;
     }
 
     /**
@@ -56,8 +56,8 @@ public:
      * @param _neighbor unused neighbor
      */
     void add(EOT & _sol, Neighbor & _neighbor) {
-    	nbMove++;
-    	counter=0;
+        nbMove++;
+        counter=0;
     }
 
     /**
@@ -65,48 +65,48 @@ public:
      * @param _neighbor unused neighbor
      */
     void update(EOT & _sol, Neighbor & _neighbor) {
-    	nbNoMove++;
-    	counter++;
+        nbNoMove++;
+        counter++;
     }
 
     /**
      * ClearMemory : Reinit all the counters
      */
     void clearMemory() {
-    	nbMove=0;
-    	nbNoMove=0;
-    	counter=0;
+        nbMove=0;
+        nbNoMove=0;
+        counter=0;
     }
 
     /**
      * Getter of the number of move
      * @return the counter
      */
-    unsigned int getNbMove(){
-    	return nbMove;
+    unsigned int getNbMove() {
+        return nbMove;
     }
 
     /**
      * Getter of the number of no move
      * @return the counter
      */
-    unsigned int getNbNoMove(){
-    	return nbNoMove;
+    unsigned int getNbNoMove() {
+        return nbNoMove;
     }
 
     /**
      * Getter of the number of successive stagnation since the last Move
      * @return the counter
      */
-    unsigned int getCounter(){
-    	return counter;
+    unsigned int getCounter() {
+        return counter;
     }
 
     /**
      * Init counter
      */
-    void initCounter(){
-    	counter=0;
+    void initCounter() {
+        counter=0;
     }
 
 private:

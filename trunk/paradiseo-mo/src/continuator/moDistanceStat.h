@@ -60,9 +60,9 @@ public :
      * Compute distance between the first solution and the reference solution
      * @param _sol the first solution
      */
-  virtual void init(EOT & _sol) {
-    value() = dist(_sol, refSolution);
-  }
+    virtual void init(EOT & _sol) {
+        value() = dist(_sol, refSolution);
+    }
 
     /**
      * Compute distance between a solution and the reference solution

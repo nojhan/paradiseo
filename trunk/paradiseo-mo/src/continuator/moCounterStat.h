@@ -44,37 +44,37 @@ template <class EOT>
 class moCounterStat : public moStat<EOT, unsigned int>
 {
 public :
-  using moStat< EOT, unsigned int>::value;
-  
-  /**
-   * Default Constructor
-   */
-  moCounterStat(): moStat<EOT, unsigned int>(0, "counter") {
-  }
-  
-  /**
-   * Give the number of iteration
-   * @param _sol a solution
-   */
-  virtual void init(EOT & _sol) {
-    value() = 0;
-  }
-  
-  /**
-   * Give the number of iteration
-   * @param _sol a solution
-   */
-  virtual void operator()(EOT & _sol) {
-    value() = value() + 1;
-  }
-  
-  /**
-   * @return name of the class
-   */
-  virtual std::string className(void) const {
-    return "moCounterStat";
-  }
-  
+    using moStat< EOT, unsigned int>::value;
+
+    /**
+     * Default Constructor
+     */
+    moCounterStat(): moStat<EOT, unsigned int>(0, "counter") {
+    }
+
+    /**
+     * Give the number of iteration
+     * @param _sol a solution
+     */
+    virtual void init(EOT & _sol) {
+        value() = 0;
+    }
+
+    /**
+     * Give the number of iteration
+     * @param _sol a solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value() = value() + 1;
+    }
+
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moCounterStat";
+    }
+
 };
 
 #endif

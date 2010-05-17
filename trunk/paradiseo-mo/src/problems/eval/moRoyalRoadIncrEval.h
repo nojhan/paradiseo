@@ -40,48 +40,48 @@ template< class Neighbor >
 class moRoyalRoadIncrEval : public moEval<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-  /**
-   * Default constructor
-   * @param _rr full evaluation of the Royal Road (to have the same block size)
-   */
-  moRoyalRoadIncrEval(RoyalRoadEval<EOT> & _rr) : k(_rr.blockSize()) {}
+    /**
+     * Default constructor
+     * @param _rr full evaluation of the Royal Road (to have the same block size)
+     */
+    moRoyalRoadIncrEval(RoyalRoadEval<EOT> & _rr) : k(_rr.blockSize()) {}
 
-  /*
-   * incremental evaluation of the neighbor for the Royal Road problem
-   * @param _solution the solution to move (bit string)
-   * @param _neighbor the neighbor to consider (of type moBitNeigbor)
-   */
-  virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-    // which block can be changed?
-    unsigned int n = _neighbor.index() / k;
-    
-    // complete block?
-    unsigned int offset = n * k;
-    
-    unsigned int j = 0;
-    while (_solution[offset + j] && j < k) j++;
-    
-    if (j == k) // the block is complete, so the fitness decreases from one
-      _neighbor.fitness(_solution.fitness() - 1);
-    else {
-      if ((_solution[_neighbor.index()] == 0) && (offset + j == _neighbor.index())) { // can the block be filled?
-	j++; // next bit
-	while (_solution[offset + j] && j < k) j++;
+    /*
+     * incremental evaluation of the neighbor for the Royal Road problem
+     * @param _solution the solution to move (bit string)
+     * @param _neighbor the neighbor to consider (of type moBitNeigbor)
+     */
+    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
+        // which block can be changed?
+        unsigned int n = _neighbor.index() / k;
 
-	if (j == k) // the block can be filled, so the fitness increases from one
-	  _neighbor.fitness(_solution.fitness() + 1);
-	else
-	  _neighbor.fitness(_solution.fitness());
-      } else 
-	_neighbor.fitness(_solution.fitness());
+        // complete block?
+        unsigned int offset = n * k;
+
+        unsigned int j = 0;
+        while (_solution[offset + j] && j < k) j++;
+
+        if (j == k) // the block is complete, so the fitness decreases from one
+            _neighbor.fitness(_solution.fitness() - 1);
+        else {
+            if ((_solution[_neighbor.index()] == 0) && (offset + j == _neighbor.index())) { // can the block be filled?
+                j++; // next bit
+                while (_solution[offset + j] && j < k) j++;
+
+                if (j == k) // the block can be filled, so the fitness increases from one
+                    _neighbor.fitness(_solution.fitness() + 1);
+                else
+                    _neighbor.fitness(_solution.fitness());
+            } else
+                _neighbor.fitness(_solution.fitness());
+        }
     }
-  }
 
 protected:
-  // size of the blocks
-  unsigned int k;
+    // size of the blocks
+    unsigned int k;
 };
 
 #endif

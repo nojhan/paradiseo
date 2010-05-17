@@ -51,7 +51,7 @@ class moTS: public moLocalSearch<Neighbor>
 {
 public:
 
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
     /**
@@ -62,17 +62,17 @@ public:
      * @param _time the time limit for stopping criteria
      * @param _tabuListSize the size of the tabu list
      */
-	moTS(Neighborhood& _neighborhood,
-			eoEvalFunc<EOT>& _fullEval,
-			moEval<Neighbor>& _eval,
-			unsigned int _time,
-			unsigned int _tabuListSize
-			):
-		moLocalSearch<Neighbor>(explorer, timeCont, _fullEval),
-		timeCont(_time),
-		tabuList(_tabuListSize,0),
-		explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, tabuList, dummyIntensification, dummyDiversification, defaultAspiration)
-	{}
+    moTS(Neighborhood& _neighborhood,
+         eoEvalFunc<EOT>& _fullEval,
+         moEval<Neighbor>& _eval,
+         unsigned int _time,
+         unsigned int _tabuListSize
+        ):
+            moLocalSearch<Neighbor>(explorer, timeCont, _fullEval),
+            timeCont(_time),
+            tabuList(_tabuListSize,0),
+            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, tabuList, dummyIntensification, dummyDiversification, defaultAspiration)
+    {}
 
     /**
      * Simple constructor for a tabu search
@@ -82,16 +82,16 @@ public:
      * @param _time the time limit for stopping criteria
      * @param _tabuList the tabu list
      */
-	moTS(Neighborhood& _neighborhood,
-			eoEvalFunc<EOT>& _fullEval,
-			moEval<Neighbor>& _eval,
-			unsigned int _time,
-			moTabuList<Neighbor>& _tabuList):
-		moLocalSearch<Neighbor>(explorer, timeCont, _fullEval),
-		timeCont(_time),
-		tabuList(0,0),
-		explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _tabuList, dummyIntensification, dummyDiversification, defaultAspiration)
-	{}
+    moTS(Neighborhood& _neighborhood,
+         eoEvalFunc<EOT>& _fullEval,
+         moEval<Neighbor>& _eval,
+         unsigned int _time,
+         moTabuList<Neighbor>& _tabuList):
+            moLocalSearch<Neighbor>(explorer, timeCont, _fullEval),
+            timeCont(_time),
+            tabuList(0,0),
+            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _tabuList, dummyIntensification, dummyDiversification, defaultAspiration)
+    {}
 
     /**
      * General constructor for a tabu search
@@ -106,31 +106,31 @@ public:
      * @param _diversification the diversification strategy
      * @param _aspiration the aspiration Criteria
      */
-	moTS(Neighborhood& _neighborhood,
-			eoEvalFunc<EOT>& _fullEval,
-			moEval<Neighbor>& _eval,
-			moNeighborComparator<Neighbor>& _neighborComp,
-			moSolNeighborComparator<Neighbor>& _solNeighborComp,
-			moContinuator<Neighbor>& _cont,
-			moTabuList<Neighbor>& _tabuList,
-			moIntensification<Neighbor>& _intensification,
-			moDiversification<Neighbor>& _diversification,
-			moAspiration<Neighbor>& _aspiration):
-		moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-		timeCont(0),
-		tabuList(0,0),
-		explorer(_neighborhood, _eval, _neighborComp, _solNeighborComp, _tabuList, _intensification, _diversification, _aspiration)
-	{}
+    moTS(Neighborhood& _neighborhood,
+         eoEvalFunc<EOT>& _fullEval,
+         moEval<Neighbor>& _eval,
+         moNeighborComparator<Neighbor>& _neighborComp,
+         moSolNeighborComparator<Neighbor>& _solNeighborComp,
+         moContinuator<Neighbor>& _cont,
+         moTabuList<Neighbor>& _tabuList,
+         moIntensification<Neighbor>& _intensification,
+         moDiversification<Neighbor>& _diversification,
+         moAspiration<Neighbor>& _aspiration):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            timeCont(0),
+            tabuList(0,0),
+            explorer(_neighborhood, _eval, _neighborComp, _solNeighborComp, _tabuList, _intensification, _diversification, _aspiration)
+    {}
 
 
 private:
-	moTimeContinuator<Neighbor> timeCont;
-	moNeighborComparator<Neighbor> defaultNeighborComp;
-	moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-	moNeighborVectorTabuList<Neighbor> tabuList;
-	moDummyIntensification<Neighbor> dummyIntensification;
-	moDummyDiversification<Neighbor> dummyDiversification;
-	moBestImprAspiration<Neighbor> defaultAspiration;
-	moTSexplorer<Neighbor> explorer;
+    moTimeContinuator<Neighbor> timeCont;
+    moNeighborComparator<Neighbor> defaultNeighborComp;
+    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
+    moNeighborVectorTabuList<Neighbor> tabuList;
+    moDummyIntensification<Neighbor> dummyIntensification;
+    moDummyDiversification<Neighbor> dummyDiversification;
+    moBestImprAspiration<Neighbor> defaultAspiration;
+    moTSexplorer<Neighbor> explorer;
 };
 #endif

@@ -42,52 +42,52 @@ template< class Neighbor >
 class moCombinedContinuator : public moContinuator<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default constructor (moCheckpoint must have at least one continuator)
-   * @param _cont a continuator
-   */
-  moCombinedContinuator(moContinuator<Neighbor>& _cont) {
-    continuators.push_back(&_cont);
-  }
+    /**
+     * Default constructor (moCheckpoint must have at least one continuator)
+     * @param _cont a continuator
+     */
+    moCombinedContinuator(moContinuator<Neighbor>& _cont) {
+        continuators.push_back(&_cont);
+    }
 
-  /**
-   * add a continuator to the combined continuator
-   * @param _cont a continuator
-   */
-  void add(moContinuator<Neighbor>& _cont) {
-    continuators.push_back(&_cont);
-  }
-  
-  /**
-   * init all continuators
-   * @param _solution a solution
-   */
-  virtual void init(EOT & _solution) {
-	    for(unsigned int i = 0; i < continuators.size(); ++i)
-	    	continuators[i]->init(_solution);
-  }
+    /**
+     * add a continuator to the combined continuator
+     * @param _cont a continuator
+     */
+    void add(moContinuator<Neighbor>& _cont) {
+        continuators.push_back(&_cont);
+    }
 
-  /**
-   *@param _solution a solution
-   *@return true all the continuators are true
-   */
-  virtual bool operator()(EOT & _solution) {
-    bool bContinue = true;
+    /**
+     * init all continuators
+     * @param _solution a solution
+     */
+    virtual void init(EOT & _solution) {
+        for (unsigned int i = 0; i < continuators.size(); ++i)
+            continuators[i]->init(_solution);
+    }
 
-    // some data may be update in each continuator. 
-    // So, all continuators are tested
-    for(unsigned int i = 0; i < continuators.size(); ++i)
-      if ( !(*continuators[i])(_solution) )
-    	  bContinue = false;
-    
-    return bContinue;
-  }
-  
+    /**
+     *@param _solution a solution
+     *@return true all the continuators are true
+     */
+    virtual bool operator()(EOT & _solution) {
+        bool bContinue = true;
+
+        // some data may be update in each continuator.
+        // So, all continuators are tested
+        for (unsigned int i = 0; i < continuators.size(); ++i)
+            if ( !(*continuators[i])(_solution) )
+                bContinue = false;
+
+        return bContinue;
+    }
+
 private:
-  /** continuators vector */
-  std::vector< moContinuator<Neighbor>* > continuators;
-  
+    /** continuators vector */
+    std::vector< moContinuator<Neighbor>* > continuators;
+
 };
 #endif

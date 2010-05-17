@@ -42,23 +42,23 @@ class moIterContinuator : public moContinuator<Neighbor>
 public:
     typedef typename Neighbor::EOT EOT ;
 
-	/**
-	 * @param _maxIter number maximum of iterations
-	 * @param _verbose true/false : verbose mode on/off
-	 */
-    moIterContinuator(unsigned int _maxIter, bool _verbose=true): maxIter(_maxIter), verbose(_verbose){}
+    /**
+     * @param _maxIter number maximum of iterations
+     * @param _verbose true/false : verbose mode on/off
+     */
+    moIterContinuator(unsigned int _maxIter, bool _verbose=true): maxIter(_maxIter), verbose(_verbose) {}
 
     /**
      *@param _solution a solution
      *@return true if counter < maxIter
      */
     virtual bool operator()(EOT & _solution) {
-      bool res;
-      cpt++;
-      res = (cpt < maxIter);
-      if(!res && verbose)
-          std::cout << "STOP in moIterContinuator: Reached maximum number of iterations [" << cpt << "/" << maxIter << "]" << std::endl;
-      return res;
+        bool res;
+        cpt++;
+        res = (cpt < maxIter);
+        if (!res && verbose)
+            std::cout << "STOP in moIterContinuator: Reached maximum number of iterations [" << cpt << "/" << maxIter << "]" << std::endl;
+        return res;
     }
 
     /**
@@ -66,7 +66,7 @@ public:
      * @param _solution a solution
      */
     virtual void init(EOT & _solution) {
-    	cpt = 0;
+        cpt = 0;
     }
 
     /**
@@ -74,7 +74,7 @@ public:
      * @return the number of iteration
      */
     unsigned int value() {
-      return cpt ;
+        return cpt ;
     }
 
 private:

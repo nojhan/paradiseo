@@ -39,7 +39,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Random Search:
  * Pure random search local search
- * 
+ *
  * At each iteration,
  *   one random solution is selected and replace the current solution
  *   the algorithm stops when the number of solution is reached
@@ -48,43 +48,43 @@ template<class Neighbor>
 class moRandomSearch: public moLocalSearch<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-  /**
-   * Simple constructor for a random search
-   * @param _init the solution initializer, to explore at random the search space
-   * @param _fullEval the full evaluation function
-   * @param _nbSolMax number of solutions
-   */
-  moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax):
-    moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-      explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
-  {}
-  
-  /**
-   * General constructor for a random search
-   * @param _init the solution initializer, to explore at random the search space
-   * @param _fullEval the full evaluation function
-   * @param _nbSolMax number of solutions
-   * @param _cont external continuator
-   */
-  moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax, moContinuator<Neighbor>& _cont):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
-  {}
-  
-  /**
-   * @return name of the class
-   */
-  virtual std::string className(void) const {
-    return "moRandomSearch";
-  }
-  
+    /**
+     * Simple constructor for a random search
+     * @param _init the solution initializer, to explore at random the search space
+     * @param _fullEval the full evaluation function
+     * @param _nbSolMax number of solutions
+     */
+    moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax):
+            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
+            explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
+    {}
+
+    /**
+     * General constructor for a random search
+     * @param _init the solution initializer, to explore at random the search space
+     * @param _fullEval the full evaluation function
+     * @param _nbSolMax number of solutions
+     * @param _cont external continuator
+     */
+    moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax, moContinuator<Neighbor>& _cont):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
+    {}
+
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moRandomSearch";
+    }
+
 private:
-  // always true continuator
-  moTrueContinuator<Neighbor> trueCont;
-  // the explorer of the random walk
-  moRandomSearchExplorer<Neighbor> explorer;
+    // always true continuator
+    moTrueContinuator<Neighbor> trueCont;
+    // the explorer of the random walk
+    moRandomSearchExplorer<Neighbor> explorer;
 };
 
 #endif

@@ -39,28 +39,28 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 template< class Neighbor >
 class moLocalSearchInit : public eoInit<typename Neighbor::EOT> {
 public:
-  typedef typename Neighbor::EOT EOT;
-  
-  /**
-   * Default Constructor
-   * @param _init initialization of the solution before the local search
-   * @param _ls the local search to apply to the solution
-   */
-  moLocalSearchInit(eoInit<EOT>& _init, moLocalSearch<Neighbor>& _ls) : init(_init), ls(_ls) {
-  }
-  
-  /**
-   * Apply the local search on the solution
-   * @param _solution to perturb
-   */
-  void operator()(EOT& _solution){
-    init(_solution);
-    ls(_solution);
-  }
+    typedef typename Neighbor::EOT EOT;
+
+    /**
+     * Default Constructor
+     * @param _init initialization of the solution before the local search
+     * @param _ls the local search to apply to the solution
+     */
+    moLocalSearchInit(eoInit<EOT>& _init, moLocalSearch<Neighbor>& _ls) : init(_init), ls(_ls) {
+    }
+
+    /**
+     * Apply the local search on the solution
+     * @param _solution to perturb
+     */
+    void operator()(EOT& _solution) {
+        init(_solution);
+        ls(_solution);
+    }
 
 private:
-  eoInit<EOT>& init;
-  moLocalSearch<Neighbor> & ls;
+    eoInit<EOT>& init;
+    moLocalSearch<Neighbor> & ls;
 };
 
 #endif

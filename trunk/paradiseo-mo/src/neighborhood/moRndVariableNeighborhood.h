@@ -40,7 +40,7 @@ template< class EOT, class Fitness >
 class moRndVariableNeighborhood : public moVariableNeighborhood<EOT, Fitness>
 {
 public:
-	typedef moNeighbor<EOT, Fitness> Neighbor;
+    typedef moNeighbor<EOT, Fitness> Neighbor;
 
     using moVariableNeighborhood<EOT, Fitness>::currentNH;
     using moVariableNeighborhood<EOT, Fitness>::neighborhoodVector;
@@ -50,7 +50,7 @@ public:
      * @param _firstNH first neighborhood in the vector
      */
     moRndVariableNeighborhood(moNeighborhood<Neighbor>& _firstNH) : moVariableNeighborhood<EOT, Fitness>(_firstNH) {
-		indexVector.push_back(0);
+        indexVector.push_back(0);
     }
 
     /**
@@ -58,8 +58,8 @@ public:
      * @param _nh the neighborhood to add at the end of the vector of neighborhood
      */
     virtual void add(moNeighborhood<Neighbor>& _nh) {
-		neighborhoodVector.push_back(_nh);
-		indexVector.push_back(indexVector.size());
+        neighborhoodVector.push_back(_nh);
+        indexVector.push_back(indexVector.size());
     }
 
 
@@ -76,24 +76,24 @@ public:
      * @return true if there is some neighborhood to explore
      */
     virtual bool contNeighborhood() {
-    	return (index < neighborhoodVector.size() - 1);
+        return (index < neighborhoodVector.size() - 1);
     }
 
     /**
      * put the current neighborhood on the first one
      */
     virtual void initNeighborhood() {
-    	std::random_shuffle(indexVector.begin(), indexVector.end());
-    	index = 0;
-    	currentNH = indexVector[index];
+        std::random_shuffle(indexVector.begin(), indexVector.end());
+        index = 0;
+        currentNH = indexVector[index];
     }
 
     /**
      * put the current neighborhood on the next one
      */
     virtual void nextNeighborhood() {
-    	index++;
-    	currentNH = indexVector[index];
+        index++;
+        currentNH = indexVector[index];
     }
 
 private:

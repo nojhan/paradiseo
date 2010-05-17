@@ -43,7 +43,7 @@
 #include <utils/eoRNG.h>
 
 /**
- * Explorer for Hill-Climbing 
+ * Explorer for Hill-Climbing
  * which choose randomly one of the best solution in the neighborhood at each iteration
  */
 template< class Neighbor >
@@ -64,9 +64,9 @@ public:
      * @param _solNeighborComparator solution vs neighbor comparator
      */
     moRandomBestHCexplorer(Neighborhood& _neighborhood,
-                              moEval<Neighbor>& _eval,
-                              moNeighborComparator<Neighbor>& _neighborComparator,
-                              moSolNeighborComparator<Neighbor>& _solNeighborComparator) :
+                           moEval<Neighbor>& _eval,
+                           moNeighborComparator<Neighbor>& _neighborComparator,
+                           moSolNeighborComparator<Neighbor>& _solNeighborComparator) :
             moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),
             neighborComparator(_neighborComparator),
             solNeighborComparator(_solNeighborComparator) {

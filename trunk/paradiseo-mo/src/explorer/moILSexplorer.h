@@ -53,73 +53,73 @@ class moILSexplorer : public moNeighborhoodExplorer< moDummyNeighbor<typename Ne
 public:
     typedef moNeighborhood<Neighbor> Neighborhood ;
     typedef typename Neighbor::EOT EOT;
-	typedef moDummyNeighbor<EOT> dummyNeighbor;
-	typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
+    typedef moDummyNeighbor<EOT> dummyNeighbor;
+    typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
 
-	/**
-	 * Constructor
-	 * @param _ls a local search
-	 * @param _perturb a perturbation operator
-	 * @param _acceptCrit a acceptance criteria
-	 */
-    moILSexplorer(moLocalSearch<Neighbor>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : moNeighborhoodExplorer<dummyNeighbor>(), ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit){
-    	firstIteration=true;
+    /**
+     * Constructor
+     * @param _ls a local search
+     * @param _perturb a perturbation operator
+     * @param _acceptCrit a acceptance criteria
+     */
+    moILSexplorer(moLocalSearch<Neighbor>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : moNeighborhoodExplorer<dummyNeighbor>(), ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit) {
+        firstIteration=true;
     }
 
-	/**
-	 * Destructor
-	 */
-    ~moILSexplorer(){
+    /**
+     * Destructor
+     */
+    ~moILSexplorer() {
 
     }
 
-	/**
-	 * Init perturbation and acceptance criteria
-	 * @param _solution the current solution
-	 */
-    virtual void initParam(EOT & _solution){
-    	firstIteration=true;
-    	perturb.init(_solution);
-    	acceptCrit.init(_solution);
+    /**
+     * Init perturbation and acceptance criteria
+     * @param _solution the current solution
+     */
+    virtual void initParam(EOT & _solution) {
+        firstIteration=true;
+        perturb.init(_solution);
+        acceptCrit.init(_solution);
     };
 
-	/**
-	 * Update perturbation and acceptance criteria
-	 * @param _solution the current solution
-	 */
-    virtual void updateParam(EOT & _solution){
-    	if((*this).moveApplied()){
-    		perturb.add(_solution,emptyNeighbor);
-    		acceptCrit.add(_solution,emptyNeighbor);
-    	}
-    	perturb.update(_solution, emptyNeighbor);
-    	acceptCrit.update(_solution, emptyNeighbor);
+    /**
+     * Update perturbation and acceptance criteria
+     * @param _solution the current solution
+     */
+    virtual void updateParam(EOT & _solution) {
+        if ((*this).moveApplied()) {
+            perturb.add(_solution,emptyNeighbor);
+            acceptCrit.add(_solution,emptyNeighbor);
+        }
+        perturb.update(_solution, emptyNeighbor);
+        acceptCrit.update(_solution, emptyNeighbor);
     };
 
-	/**
-	 * terminate: NOTHING TO DO
+    /**
+     * terminate: NOTHING TO DO
      * @param _solution a solution (unused)
-	 */
-    virtual void terminate(EOT & _solution){};
+     */
+    virtual void terminate(EOT & _solution) {};
 
     /**
      * Perturb and apply local search on a solution
      * @param _solution the solution
      */
-    virtual void operator()(EOT & _solution){
-    	//copy the solution to perform new local search
-    	current=_solution;
+    virtual void operator()(EOT & _solution) {
+        //copy the solution to perform new local search
+        current=_solution;
 
-    	//perturb solution exept at the first iteration
-    	if(!firstIteration){
-    		perturb(current);
+        //perturb solution exept at the first iteration
+        if (!firstIteration) {
+            perturb(current);
 
-    	}
-    	else
-    		firstIteration=false;
+        }
+        else
+            firstIteration=false;
 
-    	//apply the local search on the copy
-    	ls(current);
+        //apply the local search on the copy
+        ls(current);
 
     };
 
@@ -129,7 +129,7 @@ public:
      * @return always true
      */
     virtual bool isContinue(EOT & _solution) {
-    	return true;
+        return true;
     };
 
     /**
@@ -137,7 +137,7 @@ public:
      * @param _solution the solution
      */
     virtual void move(EOT & _solution) {
-    	_solution=current;
+        _solution=current;
     };
 
     /**
@@ -146,7 +146,7 @@ public:
      * @return true if acceptance criteria is verified
      */
     virtual bool accept(EOT & _solution) {
-    	return acceptCrit(_solution, current);
+        return acceptCrit(_solution, current);
     };
 
     /**
@@ -154,12 +154,12 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moILSexplorer";
+        return "moILSexplorer";
     }
 
 private:
     //Usefull to use the momory of tabuSearch
-	Neighbor emptyNeighbor;
+    Neighbor emptyNeighbor;
     EOT current;
     moLocalSearch<Neighbor>& ls;
     moPerturbation<Neighbor> & perturb;

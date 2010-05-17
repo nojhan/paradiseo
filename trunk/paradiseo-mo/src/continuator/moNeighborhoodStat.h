@@ -89,7 +89,7 @@ public :
      * @param _solution the first solution
      */
     virtual void init(EOT & _solution) {
-      operator()(_solution);
+        operator()(_solution);
     }
 
     /**
@@ -246,7 +246,7 @@ private:
     // default comparators
     // compare the fitness values of neighbors: true is strictly greater
     moNeighborComparator<Neighbor> defaultNeighborComp;
-    // compare the fitness values of the solution and the neighbor: true if strictly greater 
+    // compare the fitness values of the solution and the neighbor: true if strictly greater
     moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
 
     // the stastics of the fitness

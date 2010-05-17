@@ -36,17 +36,17 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Dummy Evaluation function
  */
 template<class Neighbor>
-class moDummyEval : public moEval<Neighbor>{
+class moDummyEval : public moEval<Neighbor> {
 public:
     typedef typename Neighbor::EOT EOT;
     typedef typename EOT::Fitness Fitness;
 
     /**
-	 * NOTHING TO DO
-	 * @param _sol a solution (unused)
-	 * @param _n a neighbor (unused)
-	 */
-	void operator()(EOT& _sol, Neighbor& _n){}
+     * NOTHING TO DO
+     * @param _sol a solution (unused)
+     * @param _n a neighbor (unused)
+     */
+    void operator()(EOT& _sol, Neighbor& _n) {}
 
 };
 

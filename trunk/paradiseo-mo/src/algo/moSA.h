@@ -46,7 +46,7 @@ class moSA: public moLocalSearch<Neighbor>
 {
 public:
 
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
 
@@ -60,11 +60,11 @@ public:
      * @param _span number of iteration with equal temperature for cooling schedule (default = 100)
      * @param _finalT final temperature, threshold of the stopping criteria for cooling schedule (default = 0.01)
      */
-	moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, double _initT=10, double _alpha=0.9, unsigned _span=100, double _finalT=0.01):
-		moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-		defaultCool(_initT, _alpha, _span, _finalT),
-		explorer(_neighborhood, _eval, defaultSolNeighborComp, defaultCool)
-	{}
+    moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, double _initT=10, double _alpha=0.9, unsigned _span=100, double _finalT=0.01):
+            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
+            defaultCool(_initT, _alpha, _span, _finalT),
+            explorer(_neighborhood, _eval, defaultSolNeighborComp, defaultCool)
+    {}
 
     /**
      * Simple constructor for a simulated annealing
@@ -73,11 +73,11 @@ public:
      * @param _eval neighbor's evaluation function
      * @param _cool a cooling schedule
      */
-	moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moCoolingSchedule<EOT>& _cool):
-		moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-		defaultCool(0, 0, 0, 0),
-		explorer(_neighborhood, _eval, defaultSolNeighborComp, _cool)
-	{}
+    moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moCoolingSchedule<EOT>& _cool):
+            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
+            defaultCool(0, 0, 0, 0),
+            explorer(_neighborhood, _eval, defaultSolNeighborComp, _cool)
+    {}
 
     /**
      * General constructor for a simulated annealing
@@ -88,19 +88,19 @@ public:
      * @param _comp a solution vs neighbor comparator
      * @param _cont an external continuator
      */
-	moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moCoolingSchedule<EOT>& _cool, moSolNeighborComparator<Neighbor>& _comp, moContinuator<Neighbor>& _cont):
-		moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-		defaultCool(0, 0, 0, 0),
-		explorer(_neighborhood, _eval, _comp, _cool)
-	{}
+    moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moCoolingSchedule<EOT>& _cool, moSolNeighborComparator<Neighbor>& _comp, moContinuator<Neighbor>& _cont):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            defaultCool(0, 0, 0, 0),
+            explorer(_neighborhood, _eval, _comp, _cool)
+    {}
 
 
 
 private:
-	moTrueContinuator<Neighbor> trueCont;
-	moSimpleCoolingSchedule<EOT> defaultCool;
-	moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-	moSAexplorer<Neighbor> explorer;
+    moTrueContinuator<Neighbor> trueCont;
+    moSimpleCoolingSchedule<EOT> defaultCool;
+    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
+    moSAexplorer<Neighbor> explorer;
 };
 
 #endif

@@ -47,11 +47,11 @@ class moComparator : public eoBF<const T1 & , const T2 & , bool>
 {
 public:
 
-	/**
-	 * @param _ref1 a reference on a variable of type T1
-	 * @param _ref2 a reference on a variable of type T2
-	 * @return true if _ref1 and _ref2 are equals
-	 */
+    /**
+     * @param _ref1 a reference on a variable of type T1
+     * @param _ref2 a reference on a variable of type T2
+     * @return true if _ref1 and _ref2 are equals
+     */
     virtual bool equals(const T1& _ref1, const T2& _ref2) = 0;
 
 };

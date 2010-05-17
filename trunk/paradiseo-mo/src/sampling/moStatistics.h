@@ -41,174 +41,174 @@
 
 /**
  * Tools to compute some basic statistics
- *   
+ *
  *   Remember it is better to use some statistic tool like R, etc.
  *   But it could be usefull to have here in paradisEO
  */
-class moStatistics 
+class moStatistics
 {
 public:
-  /**
-   * Default Constructor
-   */
-  moStatistics() { }
+    /**
+     * Default Constructor
+     */
+    moStatistics() { }
 
-  /**
-   * To compute min, max , average and standard deviation of a vector of double
-   *
-   * @param data vector of double 
-   * @param min to compute
-   * @param max to compute
-   * @param avg average to compute
-   * @param std standard deviation to compute
-   */
-  void basic(const std::vector<double> & data,
-	double & min, double & max, double & avg, double & std) {
-    
-    if (data.size() == 0) {
-      min = 0.0;
-      max = 0.0;
-      avg = 0.0;
-      std = 0.0;
-    } else {
-      unsigned int n = data.size();
+    /**
+     * To compute min, max , average and standard deviation of a vector of double
+     *
+     * @param data vector of double
+     * @param min to compute
+     * @param max to compute
+     * @param avg average to compute
+     * @param std standard deviation to compute
+     */
+    void basic(const std::vector<double> & data,
+               double & min, double & max, double & avg, double & std) {
 
-      min = data[0];
-      max = data[0];
-      avg = 0.0;
-      std = 0.0;   
+        if (data.size() == 0) {
+            min = 0.0;
+            max = 0.0;
+            avg = 0.0;
+            std = 0.0;
+        } else {
+            unsigned int n = data.size();
 
-      double d;
-      for(unsigned int i = 0; i < n; i++) {
-	d = data[i];
-	if (d < min)
-	  min = d;
-	if (max < d)
-	  max = d;
-	avg += d;
-	std += d * d;
-      }
+            min = data[0];
+            max = data[0];
+            avg = 0.0;
+            std = 0.0;
 
-      avg /= n;
+            double d;
+            for (unsigned int i = 0; i < n; i++) {
+                d = data[i];
+                if (d < min)
+                    min = d;
+                if (max < d)
+                    max = d;
+                avg += d;
+                std += d * d;
+            }
 
-      std = std / n - avg * avg ;
-      if (std > 0)
-	std = sqrt(std);
+            avg /= n;
+
+            std = std / n - avg * avg ;
+            if (std > 0)
+                std = sqrt(std);
+        }
     }
-  }
 
-  /**
-   * To compute the distance between solutions
-   *
-   * @param data vector of solutions
-   * @param distance method to compute the distance
-   * @param matrix matrix of distances between solutions
-   */
-  template <class EOT>
-  void distances(const std::vector<EOT> & data, eoDistance<EOT> & distance,
-		 std::vector< std::vector<double> > & matrix) {
-    if (data.size() == 0) {
-      matrix.resize(0);
-    } else {
-      unsigned int n = data.size();
+    /**
+     * To compute the distance between solutions
+     *
+     * @param data vector of solutions
+     * @param distance method to compute the distance
+     * @param matrix matrix of distances between solutions
+     */
+    template <class EOT>
+    void distances(const std::vector<EOT> & data, eoDistance<EOT> & distance,
+                   std::vector< std::vector<double> > & matrix) {
+        if (data.size() == 0) {
+            matrix.resize(0);
+        } else {
+            unsigned int n = data.size();
 
-      matrix.resize(n);
-      for(unsigned i = 0; i < n; i++)
-	matrix[i].resize(n);
+            matrix.resize(n);
+            for (unsigned i = 0; i < n; i++)
+                matrix[i].resize(n);
 
-      unsigned j;
-      for(unsigned i = 0; i < n; i++) {
-	matrix[i][i] = 0.0;
-	for(j = 0; j < i; j++) {
-	  matrix[i][j] = distance(data[i], data[j]);
-	  matrix[j][i] = matrix[i][j];
-	}
-      }
+            unsigned j;
+            for (unsigned i = 0; i < n; i++) {
+                matrix[i][i] = 0.0;
+                for (j = 0; j < i; j++) {
+                    matrix[i][j] = distance(data[i], data[j]);
+                    matrix[j][i] = matrix[i][j];
+                }
+            }
+        }
     }
-  }
 
-  /**
-   * To compute the autocorrelation and partial autocorrelation
-   *
-   * @param data vector of double
-   * @param nbS number of correlation coefficients
-   * @param rho autocorrelation coefficients
-   * @param phi partial autocorrelation coefficients
-   */
-  void autocorrelation(const std::vector<double> & data, unsigned int nbS,
-		       std::vector<double> & rho, std::vector<double> & phi) {
-    if (data.size() == 0) {
-      rho.resize(0);
-      phi.resize(0);
-    } else {
-      unsigned int n = data.size();
+    /**
+     * To compute the autocorrelation and partial autocorrelation
+     *
+     * @param data vector of double
+     * @param nbS number of correlation coefficients
+     * @param rho autocorrelation coefficients
+     * @param phi partial autocorrelation coefficients
+     */
+    void autocorrelation(const std::vector<double> & data, unsigned int nbS,
+                         std::vector<double> & rho, std::vector<double> & phi) {
+        if (data.size() == 0) {
+            rho.resize(0);
+            phi.resize(0);
+        } else {
+            unsigned int n = data.size();
 
-      double cov[nbS+1];
-      double m[nbS+1];
-      double sig[nbS+1];
+            double cov[nbS+1];
+            double m[nbS+1];
+            double sig[nbS+1];
 
-      rho.resize(nbS+1);
-      phi.resize(nbS+1);
-      rho[0] = 1.0;
-      phi[0] = 1.0; // ?
-      
-      unsigned s, k;
+            rho.resize(nbS+1);
+            phi.resize(nbS+1);
+            rho[0] = 1.0;
+            phi[0] = 1.0; // ?
 
-      for(s = 0; s <= nbS; s++) {
-	cov[s] = 0;
-	m[s]   = 0;
-	sig[s] = 0;
-      }
+            unsigned s, k;
 
-      double m0, s0;
-      unsigned j;
+            for (s = 0; s <= nbS; s++) {
+                cov[s] = 0;
+                m[s]   = 0;
+                sig[s] = 0;
+            }
 
-      k = 0;
-      s = nbS;
-      while (s > 0) {
-	while (k + s < n) {
-	  for(j = 0; j <= s; j++) {
-	    m[j]   += data[k+j];
-	    sig[j] += data[k+j] * data[k+j];
-	    cov[j] += data[k] * data[k+j];
-	  }
-	  k++;
-	}
-      
-	m[s]  /= n - s;
-	sig[s] = sig[s] / (n - s) - m[s] * m[s];
-	if (sig[s] <= 0)
-	  sig[s] = 0;
-	else
-	  sig[s] = sqrt(sig[s]);
-	m0 = m[0] / (n - s);
-	s0 = sqrt(sig[0] / (n - s) - m0 * m0);
-	cov[s] = cov[s] / (n - s) - (m[0] / (n - s)) * m[s];
-	rho[s] = cov[s] / (sig[s] * s0);
-	s--;
-      }
+            double m0, s0;
+            unsigned j;
 
-      double phi2[nbS+1][nbS+1];
-      double tmp1, tmp2;
+            k = 0;
+            s = nbS;
+            while (s > 0) {
+                while (k + s < n) {
+                    for (j = 0; j <= s; j++) {
+                        m[j]   += data[k+j];
+                        sig[j] += data[k+j] * data[k+j];
+                        cov[j] += data[k] * data[k+j];
+                    }
+                    k++;
+                }
 
-      phi2[1][1] = rho[1];
-      for(k = 2; k <= nbS; k++) {
-	tmp1 = 0;
-	tmp2 = 0;
-	for(j = 1; j < k; j++) {
-	  tmp1 += phi2[k-1][j] * rho[k-j];
-	  tmp2 += phi2[k-1][j] * rho[j];
-	}
-	phi2[k][k] = (rho[k] - tmp1) / (1 - tmp2);
-	for(j = 1; j < k; j++) 
-	  phi2[k][j] = phi2[k-1][j] - phi2[k][k] * phi2[k-1][k-j];
-      }
-      
-      for(j = 1; j <= nbS; j++)
-	phi[j] = phi2[j][j];
-      
+                m[s]  /= n - s;
+                sig[s] = sig[s] / (n - s) - m[s] * m[s];
+                if (sig[s] <= 0)
+                    sig[s] = 0;
+                else
+                    sig[s] = sqrt(sig[s]);
+                m0 = m[0] / (n - s);
+                s0 = sqrt(sig[0] / (n - s) - m0 * m0);
+                cov[s] = cov[s] / (n - s) - (m[0] / (n - s)) * m[s];
+                rho[s] = cov[s] / (sig[s] * s0);
+                s--;
+            }
+
+            double phi2[nbS+1][nbS+1];
+            double tmp1, tmp2;
+
+            phi2[1][1] = rho[1];
+            for (k = 2; k <= nbS; k++) {
+                tmp1 = 0;
+                tmp2 = 0;
+                for (j = 1; j < k; j++) {
+                    tmp1 += phi2[k-1][j] * rho[k-j];
+                    tmp2 += phi2[k-1][j] * rho[j];
+                }
+                phi2[k][k] = (rho[k] - tmp1) / (1 - tmp2);
+                for (j = 1; j < k; j++)
+                    phi2[k][j] = phi2[k-1][j] - phi2[k][k] * phi2[k-1][k-j];
+            }
+
+            for (j = 1; j <= nbS; j++)
+                phi[j] = phi2[j][j];
+
+        }
     }
-  }
 
 };
 

@@ -36,10 +36,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Dummy memory to make an empty memory
  */
 template< class Neighbor >
-class moDummyMemory : virtual public moMemory<Neighbor>{
+class moDummyMemory : virtual public moMemory<Neighbor> {
 
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
     /**
      * Init : NOTHIING TO DO

@@ -39,7 +39,7 @@ template< class EOT >
 class moBackwardVariableNeighborhood : public moVariableNeighborhood<EOT>
 {
 public:
-	typedef moNeighbor<EOT> Neighbor;
+    typedef moNeighbor<EOT> Neighbor;
 
     using moVariableNeighborhood<EOT>::currentNH;
     using moVariableNeighborhood<EOT>::neighborhoodVector;
@@ -63,21 +63,21 @@ public:
      * @return true if there is some neighborhood to explore
      */
     virtual bool contNeighborhood() {
-    	return (currentNH > 0);
+        return (currentNH > 0);
     }
 
     /**
      * put the current neighborhood on the last one
      */
     virtual void initNeighborhood() {
-    	currentNH = neighborhoodVector.size() - 1;
+        currentNH = neighborhoodVector.size() - 1;
     }
 
     /**
      * put the current neighborhood on the next one
      */
     virtual void nextNeighborhood() {
-    	currentNH--;
+        currentNH--;
     }
 
 };

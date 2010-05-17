@@ -44,40 +44,40 @@ template <class EOT>
 class moFitnessStat : public moStat<EOT, typename EOT::Fitness>
 {
 public :
-  typedef typename EOT::Fitness Fitness;
-  using moStat< EOT, Fitness >::value;
+    typedef typename EOT::Fitness Fitness;
+    using moStat< EOT, Fitness >::value;
 
-  /**
-   * Default Constructor
-   * @param _description a description of the stat
-   */
-  moFitnessStat(std::string _description = "fitness"):
-    moStat<EOT, Fitness>(Fitness(), _description) {}
-  
-  /**
-   * store the initial fitness value
-   * @param _sol the initial solution
-   */
-  virtual void init(EOT & _sol)
-  {
-    value() = _sol.fitness();
-  }
-  
-  /**
-   * store fitness value
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol)
-  {
-    value() = _sol.fitness();
-  }
-  
-  /**
-   * @return the name of the class
-   */
-  virtual std::string className(void) const {
-    return "moFitnessStat";
-  }
+    /**
+     * Default Constructor
+     * @param _description a description of the stat
+     */
+    moFitnessStat(std::string _description = "fitness"):
+            moStat<EOT, Fitness>(Fitness(), _description) {}
+
+    /**
+     * store the initial fitness value
+     * @param _sol the initial solution
+     */
+    virtual void init(EOT & _sol)
+    {
+        value() = _sol.fitness();
+    }
+
+    /**
+     * store fitness value
+     * @param _sol the corresponding solution
+     */
+    virtual void operator()(EOT & _sol)
+    {
+        value() = _sol.fitness();
+    }
+
+    /**
+     * @return the name of the class
+     */
+    virtual std::string className(void) const {
+        return "moFitnessStat";
+    }
 };
 
 #endif

@@ -45,8 +45,8 @@
 #include <sampling/moSampling.h>
 
 /**
- * To compute an estimation of the fitness cloud, 
- *   i.e. the scatter plot of solution fitness versus neighbor fitness: 
+ * To compute an estimation of the fitness cloud,
+ *   i.e. the scatter plot of solution fitness versus neighbor fitness:
  *
  * This class do nothing. See others mo(...)FitnessCloudSampling classes
  * with different fitness sampling methods
@@ -55,44 +55,44 @@ template <class Neighbor>
 class moFitnessCloudSampling : public moSampling<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  
-  using moSampling<Neighbor>::localSearch;
+    typedef typename Neighbor::EOT EOT ;
 
-  /**
-   * Default Constructor
-   * @param _init initialisation method of the solution
-   * @param _neighborhood neighborhood to get a neighbor 
-   * @param _fullEval Fitness function, full evaluation function
-   * @param _eval neighbor evaluation, incremental evaluation function
-   * @param _nbSol Number of solutions in the sample
-   */
-  moFitnessCloudSampling(eoInit<EOT> & _init, 
-			  moNeighborhood<Neighbor> & _neighborhood, 
-			  eoEvalFunc<EOT>& _fullEval, 
-			  moEval<Neighbor>& _eval, 
-			  unsigned int _nbSol) : 
-    moSampling<Neighbor>(_init, * new moDummyLS<Neighbor>(_fullEval), fitnessStat),
-    neighborhood(_neighborhood),
-    fullEval(_fullEval), 
-    eval(_eval),
-    nbSol(_nbSol)
-  {}
+    using moSampling<Neighbor>::localSearch;
 
-  /** 
-   * default destructor
-   */
-  ~moFitnessCloudSampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
-    delete localSearch;
-  }
+    /**
+     * Default Constructor
+     * @param _init initialisation method of the solution
+     * @param _neighborhood neighborhood to get a neighbor
+     * @param _fullEval Fitness function, full evaluation function
+     * @param _eval neighbor evaluation, incremental evaluation function
+     * @param _nbSol Number of solutions in the sample
+     */
+    moFitnessCloudSampling(eoInit<EOT> & _init,
+                           moNeighborhood<Neighbor> & _neighborhood,
+                           eoEvalFunc<EOT>& _fullEval,
+                           moEval<Neighbor>& _eval,
+                           unsigned int _nbSol) :
+            moSampling<Neighbor>(_init, * new moDummyLS<Neighbor>(_fullEval), fitnessStat),
+            neighborhood(_neighborhood),
+            fullEval(_fullEval),
+            eval(_eval),
+            nbSol(_nbSol)
+    {}
+
+    /**
+     * default destructor
+     */
+    ~moFitnessCloudSampling() {
+        // delete the pointer on the local search which has been constructed in the constructor
+        delete localSearch;
+    }
 
 protected:
-  moNeighborhood<Neighbor> & neighborhood;
-  eoEvalFunc<EOT>& fullEval;
-  moEval<Neighbor>& eval;
-  unsigned int nbSol;
-  moFitnessStat<EOT> fitnessStat;
+    moNeighborhood<Neighbor> & neighborhood;
+    eoEvalFunc<EOT>& fullEval;
+    moEval<Neighbor>& eval;
+    unsigned int nbSol;
+    moFitnessStat<EOT> fitnessStat;
 
 };
 

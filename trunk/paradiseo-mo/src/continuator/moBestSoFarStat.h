@@ -38,44 +38,44 @@
 #include <continuator/moStat.h>
 
 /**
- * The statistic which save the best solution found during the search 
+ * The statistic which save the best solution found during the search
  */
 template <class EOT>
 class moBestSoFarStat : public moStat<EOT, EOT&>
 {
 public :
-  using moStat< EOT , EOT& >::value;
-  
-  /**
-   * Default Constructor
-   */
- moBestSoFarStat(): moStat<EOT, EOT&>(EOT(), "best") {
-  }
-  
-  /**
-   * Initialization of the best solution on the first one
-   * @param _sol the first solution
-   */
-  virtual void init(EOT & _sol) {
-    value() = _sol;
-  }
-  
-  /**
-   * Update the best solution
-   * @param _sol the current solution
-   */
-  virtual void operator()(EOT & _sol) {
-    if (value().fitness() < _sol.fitness())
-      value() = _sol;
-  }
-  
-  /**
-   * @return name of the class
-   */
-  virtual std::string className(void) const {
-    return "moBestSoFarStat";
-  }
-  
+    using moStat< EOT , EOT& >::value;
+
+    /**
+     * Default Constructor
+     */
+    moBestSoFarStat(): moStat<EOT, EOT&>(EOT(), "best") {
+    }
+
+    /**
+     * Initialization of the best solution on the first one
+     * @param _sol the first solution
+     */
+    virtual void init(EOT & _sol) {
+        value() = _sol;
+    }
+
+    /**
+     * Update the best solution
+     * @param _sol the current solution
+     */
+    virtual void operator()(EOT & _sol) {
+        if (value().fitness() < _sol.fitness())
+            value() = _sol;
+    }
+
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moBestSoFarStat";
+    }
+
 };
 
 #endif

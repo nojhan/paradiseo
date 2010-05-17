@@ -37,6 +37,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Abstract class for intensification strategy
  */
 template< class Neighbor >
-class moIntensification : virtual public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool>{};
+class moIntensification : virtual public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool> {};
 
 #endif

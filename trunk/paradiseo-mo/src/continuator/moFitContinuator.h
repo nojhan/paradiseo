@@ -40,24 +40,24 @@ template< class Neighbor >
 class moFitContinuator : public moContinuator<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
 
-  /**
-   * @param _maxFit maximum fitness to reach
-   */
-  moFitContinuator(Fitness _maxFit): maxFit(_maxFit){}
-  
-  /**
-   *@param _solution a solution
-   *@return true if counter < maxFit
-   */
-  virtual bool operator()(EOT & _solution) {
-    return (_solution.fitness() < maxFit);
-  }
-  
+    /**
+     * @param _maxFit maximum fitness to reach
+     */
+    moFitContinuator(Fitness _maxFit): maxFit(_maxFit) {}
+
+    /**
+     *@param _solution a solution
+     *@return true if counter < maxFit
+     */
+    virtual bool operator()(EOT & _solution) {
+        return (_solution.fitness() < maxFit);
+    }
+
 private:
-  Fitness maxFit;
-  
+    Fitness maxFit;
+
 };
 #endif

@@ -39,65 +39,65 @@
 
 /**
  * Classical cooling Schedule of the temperature in the simulated algorithm with initial and final temperature and a factor of decrease
- * 
+ *
  */
 template< class EOT >
 class moSimpleCoolingSchedule : public moCoolingSchedule<EOT>
 {
 public:
-  /**
-   * default constructor
-   * @param _initT initial temperature
-   * @param _alpha factor of decreasing
-   * @param _span number of iteration with equal temperature
-   * @param _finalT final temperature, threshold of the stopping criteria
-   */
-  moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT) : initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {}
+    /**
+     * default constructor
+     * @param _initT initial temperature
+     * @param _alpha factor of decreasing
+     * @param _span number of iteration with equal temperature
+     * @param _finalT final temperature, threshold of the stopping criteria
+     */
+    moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT) : initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {}
 
-  /**
-   * Initial temperature
-   * @param _solution initial solution
-   * @return the initial temperature
-   */
-  virtual double init(EOT & _solution) {
-    // number of iteration with the same temperature
-    step = 0;
+    /**
+     * Initial temperature
+     * @param _solution initial solution
+     * @return the initial temperature
+     */
+    virtual double init(EOT & _solution) {
+        // number of iteration with the same temperature
+        step = 0;
 
-    return initT;
-  }
+        return initT;
+    }
 
-  /**
-   * update the temperature by a factor
-   * @param _temp current temperature to update
-   */
-  virtual void update(double& _temp) {
-    if (step >= span) {
-      _temp *= alpha;
-      step = 0;
-    } else
-      step++;
-  }
+    /**
+     * update the temperature by a factor
+     * @param _temp current temperature to update
+     */
+    virtual void update(double& _temp) {
+        if (step >= span) {
+            _temp *= alpha;
+            step = 0;
+        } else
+            step++;
+    }
 
-  /**
-   * compare the temperature to the threshold
-   * @param _temp current temperature 
-   * @return true if the current temperature is over the threshold (final temperature) 
-   */
-  virtual bool operator()(double _temp) {
-    return _temp > finalT;
-  }
+    /**
+     * compare the temperature to the threshold
+     * @param _temp current temperature
+     * @return true if the current temperature is over the threshold (final temperature)
+     */
+    virtual bool operator()(double _temp) {
+        return _temp > finalT;
+    }
 
 private:
-  // initial temperature
-  double initT;
-  // coefficient of decrease
-  double alpha;
-  // maximum number of iterations at the same temperature
-  unsigned int span;
-  // threshold temperature
-  double finalT;
-  // number of steps with the same temperature
-  unsigned int step;
+    // initial temperature
+    double initT;
+    // coefficient of decrease
+    double alpha;
+    // maximum number of iterations at the same temperature
+    unsigned int span;
+    // threshold temperature
+    double finalT;
+    // number of steps with the same temperature
+    unsigned int step;
 };
 
 

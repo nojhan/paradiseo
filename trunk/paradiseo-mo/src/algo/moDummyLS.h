@@ -36,36 +36,36 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 /**
  * Dummy Local Search:
- * 
+ *
  * To do nothing, only the full evaluation of the solution if necessary ;-)
 */
 template<class Neighbor>
 class moDummyLS: public moLocalSearch<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT;
-  typedef moNeighborhood<Neighbor> Neighborhood ;
+    typedef typename Neighbor::EOT EOT;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-  /**
-   * Simple constructor 
-   * @param _fullEval the full evaluation function
-   */
-  moDummyLS(eoEvalFunc<EOT>& _fullEval):
-    moLocalSearch<Neighbor>(explorer, trueCont, _fullEval)
-  {}
-  
-  /**
-   * @return name of the class
-   */
-  virtual std::string className(void) const {
-    return "moDummyLS";
-  }
-  
+    /**
+     * Simple constructor
+     * @param _fullEval the full evaluation function
+     */
+    moDummyLS(eoEvalFunc<EOT>& _fullEval):
+            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval)
+    {}
+
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moDummyLS";
+    }
+
 private:
-  // always true continuator
-  moTrueContinuator<Neighbor> trueCont;
-  // the explorer of the simple HC
-  moDummyExplorer<Neighbor> explorer;
+    // always true continuator
+    moTrueContinuator<Neighbor> trueCont;
+    // the explorer of the simple HC
+    moDummyExplorer<Neighbor> explorer;
 };
 
 #endif

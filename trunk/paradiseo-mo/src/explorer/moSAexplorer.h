@@ -48,7 +48,7 @@
  * Explorer for the Simulated Annealing
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
  * Fitness must be > 0
- * 
+ *
  */
 template< class Neighbor >
 class moSAexplorer : public moNeighborhoodExplorer<Neighbor>
@@ -67,7 +67,7 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _coolingSchedule the cooling schedule
      */
-  moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
+    moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
         isAccept = false;
 
         if (!neighborhood.isRandom()) {
@@ -83,11 +83,11 @@ public:
 
     /**
      * initialization of the initial temperature
-     * @param _solution the solution 
+     * @param _solution the solution
      */
     virtual void initParam(EOT & _solution) {
-      temperature = coolingSchedule.init(_solution);
-      isAccept = true;
+        temperature = coolingSchedule.init(_solution);
+        isAccept = true;
     };
 
     /**
@@ -95,7 +95,7 @@ public:
      * @param _solution the solution (unused here)
      */
     virtual void updateParam(EOT & _solution) {
-      coolingSchedule.update(temperature);
+        coolingSchedule.update(temperature);
     };
 
     /**
@@ -129,7 +129,7 @@ public:
      * @return true if the criteria from the cooling schedule is true
      */
     virtual bool isContinue(EOT & _solution) {
-      return coolingSchedule(temperature);
+        return coolingSchedule(temperature);
     };
 
     /**
@@ -152,16 +152,16 @@ public:
         double alpha=0.0;
         double fit1, fit2;
         if (neighborhood.hasNeighbor(_solution)) {
-        	if (solNeighborComparator(_solution, current)) // accept if the current neighbor is better than the solution
+            if (solNeighborComparator(_solution, current)) // accept if the current neighbor is better than the solution
                 isAccept = true;
             else {
-            	fit1=(double)current.fitness();
-            	fit2=(double)_solution.fitness();
-            	if (fit1 < fit2) // this is a maximization
-            		alpha = exp((fit1 - fit2) / temperature );
-            	else // this is a minimization
-            		alpha = exp((fit2 - fit1) / temperature );
-            	isAccept = (rng.uniform() < alpha) ;
+                fit1=(double)current.fitness();
+                fit2=(double)_solution.fitness();
+                if (fit1 < fit2) // this is a maximization
+                    alpha = exp((fit1 - fit2) / temperature );
+                else // this is a minimization
+                    alpha = exp((fit2 - fit1) / temperature );
+                isAccept = (rng.uniform() < alpha) ;
             }
         }
         return isAccept;
@@ -171,8 +171,8 @@ public:
      * Getter
      * @return the temperature
      */
-    double getTemperature(){
-    	return temperature;
+    double getTemperature() {
+        return temperature;
     }
 
 private:

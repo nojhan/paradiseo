@@ -39,7 +39,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Random Neutral Walk:
  * Random Neutral walk local search
- * 
+ *
  * At each iteration,
  *   one random neighbor with the same fitness is selected and replace the current solution
  *   the algorithm stops when the number of steps is reached
@@ -48,55 +48,55 @@ template<class Neighbor>
 class moRandomNeutralWalk: public moLocalSearch<Neighbor>
 {
 public:
-  typedef typename Neighbor::EOT EOT;
-  typedef moNeighborhood<Neighbor> Neighborhood ;
+    typedef typename Neighbor::EOT EOT;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-  /**
-   * Basic constructor for a random walk
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _nbStepMax number of step of the walk
-   */
-  moRandomNeutralWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax):
-    moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-    explorer(_neighborhood, _eval, defaultSolNeighborComp, _nbStepMax)
-  {}
-  
-  /**
-   * Simple constructor for a random walk
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _nbStepMax number of step of the walk
-   * @param _cont an external continuator
-   */
-  moRandomNeutralWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax, moContinuator<Neighbor>& _cont):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, defaultSolNeighborComp, _nbStepMax)
-  {}
-  
-  /**
-   * General constructor for a random walk
-   * @param _neighborhood the neighborhood
-   * @param _fullEval the full evaluation function
-   * @param _eval neighbor's evaluation function
-   * @param _nbStepMax number of step of the walk
-   * @param _cont an external continuator
-   * @param _comp a solution vs neighbor comparator
-   */
-  moRandomNeutralWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax, moContinuator<Neighbor>& _cont, moSolNeighborComparator<Neighbor>& _comp):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, _comp, _nbStepMax)
-  {}
-  
+    /**
+     * Basic constructor for a random walk
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _nbStepMax number of step of the walk
+     */
+    moRandomNeutralWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax):
+            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
+            explorer(_neighborhood, _eval, defaultSolNeighborComp, _nbStepMax)
+    {}
+
+    /**
+     * Simple constructor for a random walk
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _nbStepMax number of step of the walk
+     * @param _cont an external continuator
+     */
+    moRandomNeutralWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax, moContinuator<Neighbor>& _cont):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            explorer(_neighborhood, _eval, defaultSolNeighborComp, _nbStepMax)
+    {}
+
+    /**
+     * General constructor for a random walk
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _nbStepMax number of step of the walk
+     * @param _cont an external continuator
+     * @param _comp a solution vs neighbor comparator
+     */
+    moRandomNeutralWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax, moContinuator<Neighbor>& _cont, moSolNeighborComparator<Neighbor>& _comp):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            explorer(_neighborhood, _eval, _comp, _nbStepMax)
+    {}
+
 private:
-  // always true continuator
-  moTrueContinuator<Neighbor> trueCont;
-  // the explorer of the random walk
-  moRandomNeutralWalkExplorer<Neighbor> explorer;
-  // compare the fitness values of the solution and the neighbor: true if strictly greater 
-  moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
+    // always true continuator
+    moTrueContinuator<Neighbor> trueCont;
+    // the explorer of the random walk
+    moRandomNeutralWalkExplorer<Neighbor> explorer;
+    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
 };
 
 #endif
