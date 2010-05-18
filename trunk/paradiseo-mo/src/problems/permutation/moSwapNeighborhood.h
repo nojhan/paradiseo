@@ -36,11 +36,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Swap Neighborhood
  */
-template <class EOT>
-class moSwapNeighborhood : public moNeighborhood<moSwapNeighbor<EOT> >
+template <class EOT, class Fitness=typename EOT::Fitness>
+class moSwapNeighborhood : public moNeighborhood<moSwapNeighbor<EOT, Fitness> >
 {
 public:
-    typedef moSwapNeighbor<EOT> Neighbor;
+    typedef moSwapNeighbor<EOT, Fitness> Neighbor;
 
     /**
      * @return if there are available Neighbor

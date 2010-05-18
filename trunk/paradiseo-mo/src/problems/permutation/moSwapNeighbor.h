@@ -36,8 +36,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Swap Neighbor
  */
-template <class EOT>
-class moSwapNeighbor: public moBackableNeighbor<EOT>
+template <class EOT, class Fitness=typename EOT::Fitness>
+class moSwapNeighbor: public moBackableNeighbor<EOT, Fitness>
 {
 public:
 

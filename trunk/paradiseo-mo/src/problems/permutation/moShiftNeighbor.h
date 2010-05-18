@@ -35,12 +35,12 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Indexed Shift Neighbor
  */
-template <class EOT>
-class moShiftNeighbor: public moIndexNeighbor<EOT>
+template <class EOT, class Fitness=typename EOT::Fitness>
+class moShiftNeighbor: public moIndexNeighbor<EOT, Fitness>
 {
 public:
 
-    using moIndexNeighbor<EOT>::key;
+    using moIndexNeighbor<EOT, Fitness>::key;
 
     /**
      * Apply move on a solution regarding a key

@@ -35,8 +35,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Dummy Neighborhood
  */
-template< class EOT >
-class moDummyNeighbor : public moNeighbor< EOT > {
+template< class EOT, class Fitness=typename EOT::Fitness >
+class moDummyNeighbor : public moNeighbor< EOT, Fitness > {
 public:
 
     /**

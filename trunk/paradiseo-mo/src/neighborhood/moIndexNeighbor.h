@@ -40,23 +40,23 @@
 /**
  * Index Neighbor
  */
-template< class EOT >
-class moIndexNeighbor : virtual public moNeighbor<EOT>
+template< class EOT, class Fitness=typename EOT::Fitness >
+class moIndexNeighbor : virtual public moNeighbor<EOT, Fitness>
 {
 public:
 
-    using moNeighbor<EOT>::fitness;
+    using moNeighbor<EOT, Fitness>::fitness;
 
     /**
      * Default Constructor
      */
-    moIndexNeighbor() : moNeighbor<EOT>(), key(0) {}
+    moIndexNeighbor() : moNeighbor<EOT, Fitness>(), key(0) {}
 
     /**
      * Copy Constructor
      * @param _n the neighbor to copy
      */
-    moIndexNeighbor(const moIndexNeighbor& _n) : moNeighbor<EOT>(_n) {
+    moIndexNeighbor(const moIndexNeighbor& _n) : moNeighbor<EOT, Fitness>(_n) {
         this->key = _n.key ;
     }
 
@@ -64,8 +64,8 @@ public:
      * Assignment operator
      * @param _source the source neighbor
      */
-    virtual moIndexNeighbor<EOT> & operator=(const moIndexNeighbor<EOT> & _source) {
-        moNeighbor<EOT>::operator=(_source);
+    virtual moIndexNeighbor<EOT, Fitness> & operator=(const moIndexNeighbor<EOT, Fitness> & _source) {
+        moNeighbor<EOT, Fitness>::operator=(_source);
         this->key = _source.key ;
         return *this ;
     }

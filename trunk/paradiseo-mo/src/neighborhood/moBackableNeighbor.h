@@ -40,8 +40,8 @@
 /**
  * Neighbor with a move back function to use in a moFullEvalByModif
  */
-template< class EOT >
-class moBackableNeighbor : virtual public moNeighbor<EOT>
+template< class EOT, class Fitness=typename EOT::Fitness >
+class moBackableNeighbor : virtual public moNeighbor<EOT, Fitness>
 {
 public:
 
