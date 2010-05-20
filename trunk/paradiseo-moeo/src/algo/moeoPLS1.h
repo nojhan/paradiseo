@@ -64,6 +64,8 @@ public:
 	 * @param _continuator a stop creterion
 	 * @param _eval a evaluation function
 	 * @param _archive a archive to store no-dominated individuals
+	 * @param _neighborhood a neighborhood
+	 * @param _incrEval neighbor evaluation function
 	 */
     moeoPLS1(
     		eoContinue < MOEOT > & _continuator,

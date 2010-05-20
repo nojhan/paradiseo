@@ -42,7 +42,7 @@
 #include <explorer/moeoSubNeighborhoodExplorer.h>
 
 /**
- * Explorer which explore a part of the neighborhood
+ * Explorer which explore the neighborhood until a no desimproving neighbor is found.
  */
 template < class Neighbor >
 class moeoNoDesimprovingNeighborhoodExplorer : public moeoSubNeighborhoodExplorer < Neighbor >
@@ -60,6 +60,7 @@ public:
 	/**
 	 * Ctor
 	 * @param _neighborhood a neighborhood
+	 * @param _eval a neighbor evaluation function
 	 */
     moeoNoDesimprovingNeighborhoodExplorer(
     		moNeighborhood<Neighbor>& _neighborhood,

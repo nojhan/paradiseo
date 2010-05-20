@@ -42,7 +42,8 @@
 #include <explorer/moeoSubNeighborhoodExplorer.h>
 
 /**
- * Explorer which explore a part of the neighborhood
+ * Explorer which explore the neighborhood until a improving neighbor is found.
+ * No dominating neighbor are keeped.
  */
 template < class Neighbor >
 class moeoFirstImprovingNeighborhoodExplorer : public moeoSubNeighborhoodExplorer < Neighbor >
@@ -59,9 +60,8 @@ public:
 
 	/**
 	 * Ctor
-	 * @param _moveInit the move initializer
-	 * @param _nextMove allow to do or not a move
-	 * @param _incrEval a (generally) efficient evaluation fonction
+	 * @param _neighborhood a neighborhood
+	 * @param _eval neighbor evaluation funtion
 	 */
     moeoFirstImprovingNeighborhoodExplorer(
 			moNeighborhood<Neighbor>& _neighborhood,
@@ -94,6 +94,11 @@ private:
 		}
 	}
 
+	/**
+	 * subfunction of explore
+	 * @param _src the individual to explore
+	 * @param _dest contains new generated individuals
+	 */
 	void cycle(MOEOT & _src, eoPop < MOEOT > & _dest){
 		eval(_src, neighbor);
 		if(!comparator(neighbor.fitness(), _src.objectiveVector())){

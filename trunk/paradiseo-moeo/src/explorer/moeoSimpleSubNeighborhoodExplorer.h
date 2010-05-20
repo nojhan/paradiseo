@@ -60,10 +60,8 @@ public:
 
 	/**
 	 * Ctor
-	 * @param _moveInit the move initializer
-	 * @param _nextMove allow to do or not a move
-	 * @param _incrEval a (generally) efficient evaluation fonction
-	 * @param _number the number of neighbor to explore
+	 * @param _neighborhood a neighborhood
+	 * @param _eval an neighbor evaluation function
 	 */
     moeoSimpleSubNeighborhoodExplorer(
 			moNeighborhood<Neighbor>& _neighborhood,
@@ -100,6 +98,11 @@ private:
 		}
 	}
 
+	/**
+	 * subfunction of explore
+	 * @param _src the individual to explore
+	 * @param _dest contains new generated individuals
+	 */
 	void cycle(MOEOT & _src, eoPop < MOEOT > & _dest){
 		eval(_src, neighbor);
 		//copy the solution (_src) at the end of the destination (_dest)

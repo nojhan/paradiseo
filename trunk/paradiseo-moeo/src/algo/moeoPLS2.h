@@ -73,9 +73,8 @@ public:
 	 * @param _continuator a stop creterion
 	 * @param _eval a evaluation function
 	 * @param _archive a archive to store no-dominated individuals
-	 * @param _moveInit the move initializer
-	 * @param _nextMove allow to do or not a move
-	 * @param _incrEval a (generally) efficient evaluation fonction
+	 * @param _neighborhood a neighborhood
+	 * @param _incrEval neighbor evaluation function
 	 */
     moeoPLS2(
             eoContinue < MOEOT > & _continuator,
