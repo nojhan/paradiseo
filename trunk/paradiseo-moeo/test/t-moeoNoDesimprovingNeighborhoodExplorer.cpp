@@ -1,5 +1,5 @@
 /*
-<t-moeoExhaustiveNeighborhoodExplorer.cpp>
+<t-moeoNoDesimprovingNeighborhoodExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Arnaud Liefooghe, Jérémie Humeau
@@ -27,22 +27,24 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include "moeoTestClass.h"
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
+#include "moeoTestClass.h"
+#include <explorer/moeoNoDesimprovingNeighborhoodExplorer.h>
+
 int main(){
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => START" << std::endl;
+	std::cout << "[t-moeoNoDesimprovingNeighborhoodExplorer] => START" << std::endl;
 
 	//init all components
 	Solution s;
-	evalSolution eval(8);
+	evalSolution eval(8, -1);
 	ObjectiveVector o;
 	SolNeighbor n;
 	SolNeighborhood nh(8);
-	moeoExhaustiveNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
+	moeoNoDesimprovingNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
 
 	//create source and destination population
 	eoPop<Solution> src;
@@ -80,35 +82,19 @@ int main(){
 	//copy the solution in the source population
 	src.push_back(s);
 
-	//test the explorer
+	//test explorer, the evaluation function is adapt to test this explorer
 	explorer(src, v, dest);
 
-	//verify the destination population
-	assert(dest.size()==8);
-
-	assert(dest[0].objectiveVector()[0]==6);
-	assert(dest[1].objectiveVector()[0]==6);
-	assert(dest[2].objectiveVector()[0]==6);
-	assert(dest[3].objectiveVector()[0]==8);
-	assert(dest[4].objectiveVector()[0]==6);
-	assert(dest[5].objectiveVector()[0]==6);
-	assert(dest[6].objectiveVector()[0]==6);
-	assert(dest[7].objectiveVector()[0]==6);
-
-	assert(dest[0].objectiveVector()[1]==2);
-	assert(dest[1].objectiveVector()[1]==2);
-	assert(dest[2].objectiveVector()[1]==2);
-	assert(dest[3].objectiveVector()[1]==0);
-	assert(dest[4].objectiveVector()[1]==2);
-	assert(dest[5].objectiveVector()[1]==2);
-	assert(dest[6].objectiveVector()[1]==2);
-	assert(dest[7].objectiveVector()[1]==2);
+	//verify destination population
+	assert(dest.size()==1);
+	assert(dest[0].objectiveVector()[0]==10);
+	assert(dest[0].objectiveVector()[1]==0);
 
 	std::cout << "destination:" << std::endl;
 	for(unsigned int i=0; i<dest.size(); i++)
 		std::cout << dest[i] << std::endl;
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => OK" << std::endl;
+	std::cout << "[t-moeoNoDesimprovingNeighborhoodExplorer] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

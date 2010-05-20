@@ -1,8 +1,8 @@
 /*
-<t-moeoExhaustiveNeighborhoodExplorer.cpp>
+<t-moeoDMLSGenUpdater.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-Arnaud Liefooghe, Jérémie Humeau
+Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -28,31 +28,38 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #include "moeoTestClass.h"
+#include <algo/moeoPLS1.h>
+#include <eoTimeContinue.h>
+#include <archive/moeoUnboundedArchive.h>
+#include <hybridization/moeoDMLSGenUpdater.h>
+#include <selection/moeoExhaustiveUnvisitedSelect.h>
+#include <explorer/moeoExhaustiveNeighborhoodExplorer.h>
+#include <eoGenContinue.h>
+
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
 int main(){
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => START" << std::endl;
+	std::cout << "[t-moeoDMLSGenUpdater] => START" << std::endl;
 
 	//init all components
+	moeoUnboundedArchive<Solution> arch(false);
+	moeoUnboundedArchive<Solution> globalArch(false);
+	eoTimeContinue<Solution> cont(1);
+	fullEvalSolution fullEval(8);
 	Solution s;
 	evalSolution eval(8);
 	ObjectiveVector o;
 	SolNeighbor n;
 	SolNeighborhood nh(8);
+	moeoPLS1<SolNeighbor> pls1(cont, fullEval, arch, nh, eval);
+	moeoExhaustiveUnvisitedSelect<Solution> select;
 	moeoExhaustiveNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
+	eoGenContinue<Solution> genCont(2);
 
-	//create source and destination population
-	eoPop<Solution> src;
-	eoPop<Solution> dest;
-
-	//create a vector for selection
-	std::vector<unsigned int> v;
-	v.push_back(0);
-
-	//create a solution
+	//Create a solution
 	s.push_back(true);
 	s.push_back(true);
 	s.push_back(true);
@@ -62,53 +69,37 @@ int main(){
 	s.push_back(true);
 	s.push_back(true);
 
-	//set its objective vector
+	//Set its objective Vector
 	o[0]=8;
 	o[1]=0;
 	s.objectiveVector(o);
 
-	// aplly a move on th solution
-	n.index(3);
-	eval(s,n);
-	n.move(s);
-	s.objectiveVector(n.fitness());
+	globalArch(s);
+	assert(globalArch.size()==1);
 
-	//print initial sol
-	std::cout << "solution:" << std::endl;
+	//test constructor 1 with a dmls, its archive, a global archive and a generational continuator
+	moeoDMLSGenUpdater<SolNeighbor> test1(pls1, arch, globalArch, genCont);
+
+	//test constructor 2 with a full evaluation function, an explorer, a selector, a global archive and a generational continuator
+	moeoDMLSGenUpdater<SolNeighbor> test2(fullEval, explorer, select, globalArch, genCont);
+
+	//test constructor 3 with a full evaluation function, an explorer, a selector, a global archive and a generational continuator
+	moeoDMLSGenUpdater<SolNeighbor> test3(fullEval, arch, explorer, select, globalArch, genCont);
+
+	std::cout << "initial solution:"  << std::endl;
 	std::cout << s << std::endl;
 
-	//copy the solution in the source population
-	src.push_back(s);
+	test1();
+	assert(globalArch.size()==1);
+	test1();
+	assert(globalArch.size()==9);
 
-	//test the explorer
-	explorer(src, v, dest);
+	std::cout << "global arch:"  << std::endl;
+	for(unsigned int i=0; i<globalArch.size(); i++)
+		std::cout << globalArch[i] << std::endl;
 
-	//verify the destination population
-	assert(dest.size()==8);
 
-	assert(dest[0].objectiveVector()[0]==6);
-	assert(dest[1].objectiveVector()[0]==6);
-	assert(dest[2].objectiveVector()[0]==6);
-	assert(dest[3].objectiveVector()[0]==8);
-	assert(dest[4].objectiveVector()[0]==6);
-	assert(dest[5].objectiveVector()[0]==6);
-	assert(dest[6].objectiveVector()[0]==6);
-	assert(dest[7].objectiveVector()[0]==6);
-
-	assert(dest[0].objectiveVector()[1]==2);
-	assert(dest[1].objectiveVector()[1]==2);
-	assert(dest[2].objectiveVector()[1]==2);
-	assert(dest[3].objectiveVector()[1]==0);
-	assert(dest[4].objectiveVector()[1]==2);
-	assert(dest[5].objectiveVector()[1]==2);
-	assert(dest[6].objectiveVector()[1]==2);
-	assert(dest[7].objectiveVector()[1]==2);
-
-	std::cout << "destination:" << std::endl;
-	for(unsigned int i=0; i<dest.size(); i++)
-		std::cout << dest[i] << std::endl;
-
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => OK" << std::endl;
+	std::cout << "[t-moeoDMLSGenUpdater] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

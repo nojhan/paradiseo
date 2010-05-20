@@ -51,13 +51,13 @@
 /**
  * A class to design dominance based local searches
  */
-template < class Neighborhood >
-class moeoUnifiedDominanceBasedLS : public moeoPopLS < Neighborhood >
+template < class Neighbor >
+class moeoUnifiedDominanceBasedLS : public moeoPopLS < Neighbor >
 {
 public:
 
 	/** Alias for the type */
-    typedef typename Neighborhood::EOT MOEOT;
+    typedef typename Neighbor::EOT MOEOT;
 
 	/**
 	 * Ctor
@@ -71,7 +71,7 @@ public:
         eoContinue < MOEOT > & _continuator,
         eoEvalFunc < MOEOT > & _eval,
         moeoArchive < MOEOT > & _archive,
-        moeoPopNeighborhoodExplorer < Neighborhood > & _explorer,
+        moeoPopNeighborhoodExplorer < Neighbor > & _explorer,
         moeoUnvisitedSelect < MOEOT > & _select) :
             continuator(_continuator), loopEval(_eval), popEval(loopEval), archive(_archive), explorer(_explorer), select(_select) {}
 
@@ -108,7 +108,7 @@ protected:
     /** archive */
     moeoArchive < MOEOT > & archive;
     /** explorer */
-    moeoPopNeighborhoodExplorer < Neighborhood > & explorer;
+    moeoPopNeighborhoodExplorer < Neighbor > & explorer;
     /** selector */
     moeoUnvisitedSelect < MOEOT > & select;
 

@@ -1,8 +1,8 @@
 /*
-<t-moeoExhaustiveNeighborhoodExplorer.cpp>
+<t-moeoDMLSMonOp.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-Arnaud Liefooghe, Jérémie Humeau
+Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,32 +27,36 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include "moeoTestClass.h"
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
+#include "moeoTestClass.h"
+#include <algo/moeoPLS1.h>
+#include <eoTimeContinue.h>
+#include <archive/moeoUnboundedArchive.h>
+#include <hybridization/moeoDMLSMonOp.h>
+#include <selection/moeoExhaustiveUnvisitedSelect.h>
+#include <explorer/moeoExhaustiveNeighborhoodExplorer.h>
+
 int main(){
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => START" << std::endl;
+	std::cout << "[t-moeoDMLSMonOp] => START" << std::endl;
 
 	//init all components
+	moeoUnboundedArchive<Solution> arch(false);
+	eoTimeContinue<Solution> cont(1);
+	fullEvalSolution fullEval(8);
 	Solution s;
 	evalSolution eval(8);
 	ObjectiveVector o;
 	SolNeighbor n;
 	SolNeighborhood nh(8);
+	moeoPLS1<SolNeighbor> pls1(cont, fullEval, arch, nh, eval);
+	moeoExhaustiveUnvisitedSelect<Solution> select;
 	moeoExhaustiveNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
 
-	//create source and destination population
-	eoPop<Solution> src;
-	eoPop<Solution> dest;
-
-	//create a vector for selection
-	std::vector<unsigned int> v;
-	v.push_back(0);
-
-	//create a solution
+	//Create a solution
 	s.push_back(true);
 	s.push_back(true);
 	s.push_back(true);
@@ -62,53 +66,29 @@ int main(){
 	s.push_back(true);
 	s.push_back(true);
 
-	//set its objective vector
+	//Set its objective Vector
 	o[0]=8;
 	o[1]=0;
 	s.objectiveVector(o);
 
-	// aplly a move on th solution
-	n.index(3);
-	eval(s,n);
-	n.move(s);
-	s.objectiveVector(n.fitness());
+	//test constructor 1 with a dmls and its archive
+	moeoDMLSMonOp<SolNeighbor> test1(pls1, arch);
 
-	//print initial sol
-	std::cout << "solution:" << std::endl;
+	//test constructor 2 with an incremental evaluation function, a selector and an explorer
+	moeoDMLSMonOp<SolNeighbor> test2(fullEval, explorer, select, 2, true);
+
+	//test constructor 3 with an incremental evaluation function, a selector and an explorer and the dmls archive
+	moeoDMLSMonOp<SolNeighbor> test3(fullEval, arch, explorer, select, 2, true);
+
+	std::cout << "initial solution:"  << std::endl;
 	std::cout << s << std::endl;
 
-	//copy the solution in the source population
-	src.push_back(s);
+	test1(s);
 
-	//test the explorer
-	explorer(src, v, dest);
+	std::cout << "mutate solution:"  << std::endl;
+	std::cout << s << std::endl;
 
-	//verify the destination population
-	assert(dest.size()==8);
-
-	assert(dest[0].objectiveVector()[0]==6);
-	assert(dest[1].objectiveVector()[0]==6);
-	assert(dest[2].objectiveVector()[0]==6);
-	assert(dest[3].objectiveVector()[0]==8);
-	assert(dest[4].objectiveVector()[0]==6);
-	assert(dest[5].objectiveVector()[0]==6);
-	assert(dest[6].objectiveVector()[0]==6);
-	assert(dest[7].objectiveVector()[0]==6);
-
-	assert(dest[0].objectiveVector()[1]==2);
-	assert(dest[1].objectiveVector()[1]==2);
-	assert(dest[2].objectiveVector()[1]==2);
-	assert(dest[3].objectiveVector()[1]==0);
-	assert(dest[4].objectiveVector()[1]==2);
-	assert(dest[5].objectiveVector()[1]==2);
-	assert(dest[6].objectiveVector()[1]==2);
-	assert(dest[7].objectiveVector()[1]==2);
-
-	std::cout << "destination:" << std::endl;
-	for(unsigned int i=0; i<dest.size(); i++)
-		std::cout << dest[i] << std::endl;
-
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => OK" << std::endl;
+	std::cout << "[t-moeoDMLSMonOp] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

@@ -1,5 +1,5 @@
 /*
-<t-moeoExhaustiveNeighborhoodExplorer.cpp>
+<t-moeoSimpleSubNeighborhoodExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Arnaud Liefooghe, Jérémie Humeau
@@ -27,14 +27,16 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include "moeoTestClass.h"
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
+#include "moeoTestClass.h"
+#include <explorer/moeoSimpleSubNeighborhoodExplorer.h>
+
 int main(){
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => START" << std::endl;
+	std::cout << "[t-moeoSimpleSubNeighborhoodExplorer] => START" << std::endl;
 
 	//init all components
 	Solution s;
@@ -42,7 +44,7 @@ int main(){
 	ObjectiveVector o;
 	SolNeighbor n;
 	SolNeighborhood nh(8);
-	moeoExhaustiveNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
+	moeoSimpleSubNeighborhoodExplorer<SolNeighbor> explorer(nh, 4, eval);
 
 	//create source and destination population
 	eoPop<Solution> src;
@@ -80,35 +82,27 @@ int main(){
 	//copy the solution in the source population
 	src.push_back(s);
 
-	//test the explorer
+	//test the explorer (only 4 neighbors are visited)
 	explorer(src, v, dest);
 
 	//verify the destination population
-	assert(dest.size()==8);
+	assert(dest.size()==4);
 
 	assert(dest[0].objectiveVector()[0]==6);
 	assert(dest[1].objectiveVector()[0]==6);
 	assert(dest[2].objectiveVector()[0]==6);
 	assert(dest[3].objectiveVector()[0]==8);
-	assert(dest[4].objectiveVector()[0]==6);
-	assert(dest[5].objectiveVector()[0]==6);
-	assert(dest[6].objectiveVector()[0]==6);
-	assert(dest[7].objectiveVector()[0]==6);
 
 	assert(dest[0].objectiveVector()[1]==2);
 	assert(dest[1].objectiveVector()[1]==2);
 	assert(dest[2].objectiveVector()[1]==2);
 	assert(dest[3].objectiveVector()[1]==0);
-	assert(dest[4].objectiveVector()[1]==2);
-	assert(dest[5].objectiveVector()[1]==2);
-	assert(dest[6].objectiveVector()[1]==2);
-	assert(dest[7].objectiveVector()[1]==2);
 
 	std::cout << "destination:" << std::endl;
 	for(unsigned int i=0; i<dest.size(); i++)
 		std::cout << dest[i] << std::endl;
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => OK" << std::endl;
+	std::cout << "[t-moeoSimpleSubNeighborhoodExplorer] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

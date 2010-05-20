@@ -1,5 +1,5 @@
 /*
-* <moeoPopNeighborhoodExplorer.h>
+* <moeoPLS1.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,25 +36,49 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOPOPNEIGHBORHOODEXPLORER_H
-#define _MOEOPOPNEIGHBORHOODEXPLORER_H
+#ifndef _MOEOPLS1_H
+#define _MOEOPLS1_H
 
-#include <eoPop.h>
+#include <algo/moeoUnifiedDominanceBasedLS.h>
+#include <selection/moeoNumberUnvisitedSelect.h>
+#include <explorer/moeoExhaustiveNeighborhoodExplorer.h>
 
 /**
- * Abstract class for multi-objective local search neighborhood exploration
+ * PLS1 algorithm
+ *
+ * Paquete L, Chiarandini M, St ̈ tzle T (2004) Pareto local optimum sets in the biobjective
+ * traveling salesman problem: An experimental study. In: Metaheuristics for Multiobjective
+ * Optimisation, Lecture Notes in Economics and Mathematical Systems, vol 535, Springer-
+ * Verlag, Berlin, Germany, chap 7, pp 177–199
  */
 template < class Neighbor >
-class moeoPopNeighborhoodExplorer: public eoFunctorBase{
-
+class moeoPLS1 : public moeoUnifiedDominanceBasedLS < Neighbor >
+{
 public:
 
-	typedef typename Neighbor::EOT MOEOT;
+	/** Alias for the type */
+    typedef typename Neighbor::EOT MOEOT;
+    typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 	/**
-	 * abstract functor which realise exploration
+	 * Ctor
+	 * @param _continuator a stop creterion
+	 * @param _eval a evaluation function
+	 * @param _archive a archive to store no-dominated individuals
 	 */
-	virtual void operator()(eoPop<MOEOT> &, std::vector <unsigned int>, eoPop<MOEOT> &) = 0;
-
+    moeoPLS1(
+    		eoContinue < MOEOT > & _continuator,
+            eoEvalFunc < MOEOT > & _eval,
+            moeoArchive < MOEOT > & _archive,
+    		moNeighborhood<Neighbor>& _neighborhood,
+        	moEval < Neighbor > & _incrEval):
+            	moeoUnifiedDominanceBasedLS<Neighbor>(
+            			_continuator,
+            			_eval,
+            			_archive,
+            			*(new moeoExhaustiveNeighborhoodExplorer<Neighbor>(_neighborhood, _incrEval)),
+            			*(new moeoNumberUnvisitedSelect<MOEOT>(1))
+            	){}
+    
 };
 
-#endif /*MOEONEIGHBORHOODEXPLORER_H_*/
+#endif /*MOEOPLS1_H_*/

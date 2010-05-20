@@ -47,7 +47,7 @@
 #include <ga/eoBit.h>
 #include <eoScalarFitness.h>
 #include <neighborhood/moOrderNeighborhood.h>
-#include <neighborhood/moBitNeighbor.h>
+#include <problems/bitString/moBitNeighbor.h>
 
 class ObjectiveVectorTraits : public moeoObjectiveVectorTraits
 {
@@ -85,24 +85,74 @@ class evalSolution : public moEval< SolNeighbor >
 {
 private:
     unsigned size;
+    int flag;
 
 public:
-    evalSolution(unsigned _size) : size(_size) {};
+    evalSolution(unsigned _size, int _flag=1) : size(_size), flag(_flag) {};
 
     ~evalSolution(void) {} ;
 
     void operator() (Solution& _sol, SolNeighbor& _n){
     	ObjectiveVector objVec=_sol.objectiveVector();
-        if (_sol[_n.index()]){
-            objVec[0]--;
-            objVec[1]++;
-        }
-        else{
-            objVec[0]++;
-            objVec[1]--;
-        }
-        _n.fitness(objVec);
+    	if(flag>0){
+			if (_sol[_n.index()]){
+				objVec[0]--;
+				objVec[1]++;
+			}
+			else{
+				objVec[0]++;
+				objVec[1]--;
+			}
+			_n.fitness(objVec);
+    	}
+    	else if(flag==0){
+			if (_sol[_n.index()]){
+				objVec[0]--;
+				objVec[1]--;
+			}
+			else{
+				objVec[0]++;
+				objVec[1]--;
+			}
+			_n.fitness(objVec);
+    	}
+    	else{
+			if (_sol[_n.index()]){
+				objVec[0]++;
+				objVec[1]++;
+			}
+			else{
+				objVec[0]++;
+				objVec[1]--;
+			}
+			_n.fitness(objVec);
+    	}
     }
+
 };
+
+class fullEvalSolution : public eoEvalFunc< Solution >
+{
+private:
+    unsigned size;
+
+public:
+    fullEvalSolution(unsigned _size) : size(_size){};
+
+    ~fullEvalSolution(void) {} ;
+
+    void operator() (Solution& _sol){
+    	ObjectiveVector o;
+    	for(unsigned int i=0; i<size; i++)
+    		if(_sol[i])
+    			o[0]++;
+    		else
+    			o[1]++;
+    	_sol.objectiveVector(o);
+    }
+
+};
+
+
 
 #endif

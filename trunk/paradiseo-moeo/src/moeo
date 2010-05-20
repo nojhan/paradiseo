@@ -60,6 +60,8 @@
 #include <algo/moeoVFAS.h>
 #include <algo/moeoPopLS.h>
 #include <algo/moeoUnifiedDominanceBasedLS.h>
+#include <algo/moeoPLS1.h>
+#include <algo/moeoPLS2.h>
 
 #include <archive/moeoArchive.h>
 #include <archive/moeoArchiveIndex.h>
@@ -119,13 +121,15 @@
 #include <diversity/moeoNearestNeighborDiversityAssignment.h>
 #include <diversity/moeoSharingDiversityAssignment.h>
 
-#include <dmls/moeoDMLSArchive.h>
-#include <dmls/moeoNewArchive.h>
 
 #include <explorer/moeoHCMoveLoopExpl.h>
 #include <explorer/moeoTSMoveLoopExpl.h>
 #include <explorer/moeoPopNeighborhoodExplorer.h>
 #include <explorer/moeoExhaustiveNeighborhoodExplorer.h>
+#include <explorer/moeoFirstImprovingNeighborhoodExplorer.h>
+#include <explorer/moeoSimpleSubNeighborhoodExplorer.h>
+#include <explorer/moeoNoDesimprovingNeighborhoodExplorer.h>
+#include <explorer/moeoSubNeighborhoodExplorer.h>
 
 #include <fitness/moeoAchievementFitnessAssignment.h>
 #include <fitness/moeoAggregationFitnessAssignment.h>
@@ -151,6 +155,8 @@
 #include <fitness/moeoAugmentedWeightedChebychevMetricFitnessAssignment.h>
 #include <fitness/moeoIncrEvalSingleObjectivizer.h>
 
+#include <hybridization/moeoDMLSGenUpdater.h>
+#include <hybridization/moeoDMLSMonOp.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoContributionMetric.h>

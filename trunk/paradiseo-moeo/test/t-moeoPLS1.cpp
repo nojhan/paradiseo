@@ -1,5 +1,5 @@
 /*
-<t-moeoExhaustiveNeighborhoodExplorer.cpp>
+<t-moeoPLS1.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Arnaud Liefooghe, Jérémie Humeau
@@ -27,32 +27,34 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include "moeoTestClass.h"
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
+#include "moeoTestClass.h"
+#include <algo/moeoPLS1.h>
+#include <eoTimeContinue.h>
+#include <archive/moeoUnboundedArchive.h>
+
 int main(){
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => START" << std::endl;
+	std::cout << "[t-moeoPLS1] => START" << std::endl;
 
 	//init all components
+	moeoUnboundedArchive<Solution> arch(false);
+	eoTimeContinue<Solution> cont(1);
+	fullEvalSolution fullEval(8);
 	Solution s;
 	evalSolution eval(8);
 	ObjectiveVector o;
 	SolNeighbor n;
 	SolNeighborhood nh(8);
-	moeoExhaustiveNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
+	moeoPLS1<SolNeighbor> test(cont, fullEval, arch, nh, eval);
 
-	//create source and destination population
+	//create source population
 	eoPop<Solution> src;
-	eoPop<Solution> dest;
 
-	//create a vector for selection
-	std::vector<unsigned int> v;
-	v.push_back(0);
-
-	//create a solution
+	//Create a solution
 	s.push_back(true);
 	s.push_back(true);
 	s.push_back(true);
@@ -62,53 +64,54 @@ int main(){
 	s.push_back(true);
 	s.push_back(true);
 
-	//set its objective vector
+	//Set its objective Vector
 	o[0]=8;
 	o[1]=0;
 	s.objectiveVector(o);
 
-	// aplly a move on th solution
+	//apply a move on the solution and compute new objective vector
 	n.index(3);
 	eval(s,n);
 	n.move(s);
 	s.objectiveVector(n.fitness());
 
-	//print initial sol
-	std::cout << "solution:" << std::endl;
-	std::cout << s << std::endl;
-
 	//copy the solution in the source population
 	src.push_back(s);
 
-	//test the explorer
-	explorer(src, v, dest);
+	//test PLS1
+	test(src);
 
-	//verify the destination population
-	assert(dest.size()==8);
+	//verify all objective vector was found.
+	assert(arch.size()==9);
+	assert(arch[0].objectiveVector()[0]==7);
+	assert(arch[1].objectiveVector()[0]==6);
+	assert(arch[2].objectiveVector()[0]==8);
+	assert(arch[3].objectiveVector()[0]==5);
+	assert(arch[4].objectiveVector()[0]==4);
+	assert(arch[5].objectiveVector()[0]==3);
+	assert(arch[6].objectiveVector()[0]==2);
+	assert(arch[7].objectiveVector()[0]==1);
+	assert(arch[8].objectiveVector()[0]==0);
 
-	assert(dest[0].objectiveVector()[0]==6);
-	assert(dest[1].objectiveVector()[0]==6);
-	assert(dest[2].objectiveVector()[0]==6);
-	assert(dest[3].objectiveVector()[0]==8);
-	assert(dest[4].objectiveVector()[0]==6);
-	assert(dest[5].objectiveVector()[0]==6);
-	assert(dest[6].objectiveVector()[0]==6);
-	assert(dest[7].objectiveVector()[0]==6);
+	assert(arch[0].objectiveVector()[1]==1);
+	assert(arch[1].objectiveVector()[1]==2);
+	assert(arch[2].objectiveVector()[1]==0);
+	assert(arch[3].objectiveVector()[1]==3);
+	assert(arch[4].objectiveVector()[1]==4);
+	assert(arch[5].objectiveVector()[1]==5);
+	assert(arch[6].objectiveVector()[1]==6);
+	assert(arch[7].objectiveVector()[1]==7);
+	assert(arch[8].objectiveVector()[1]==8);
 
-	assert(dest[0].objectiveVector()[1]==2);
-	assert(dest[1].objectiveVector()[1]==2);
-	assert(dest[2].objectiveVector()[1]==2);
-	assert(dest[3].objectiveVector()[1]==0);
-	assert(dest[4].objectiveVector()[1]==2);
-	assert(dest[5].objectiveVector()[1]==2);
-	assert(dest[6].objectiveVector()[1]==2);
-	assert(dest[7].objectiveVector()[1]==2);
+	//Print
+	std::cout << "source:" << std::endl;
+	std::cout << src << std::endl;
 
-	std::cout << "destination:" << std::endl;
-	for(unsigned int i=0; i<dest.size(); i++)
-		std::cout << dest[i] << std::endl;
+	std::cout << "archive:" << std::endl;
+	for(unsigned int i=0; i<arch.size(); i++)
+		std::cout << arch[i] << std::endl;
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => OK" << std::endl;
+	std::cout << "[t-moeoPLS1] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

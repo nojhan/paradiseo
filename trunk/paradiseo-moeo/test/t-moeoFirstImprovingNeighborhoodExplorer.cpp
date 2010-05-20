@@ -1,5 +1,5 @@
 /*
-<t-moeoExhaustiveNeighborhoodExplorer.cpp>
+<t-moeoFirstImprovingNeighborhoodExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Arnaud Liefooghe, Jérémie Humeau
@@ -28,21 +28,24 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #include "moeoTestClass.h"
+#include <explorer/moeoFirstImprovingNeighborhoodExplorer.h>
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
 int main(){
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => START" << std::endl;
+	std::cout << "[t-moeoFirstImprovingNeighborhoodExplorer] => START" << std::endl;
 
 	//init all components
 	Solution s;
 	evalSolution eval(8);
+	evalSolution eval2(8, 0);
 	ObjectiveVector o;
 	SolNeighbor n;
 	SolNeighborhood nh(8);
-	moeoExhaustiveNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
+	moeoFirstImprovingNeighborhoodExplorer<SolNeighbor> explorer(nh, eval);
+	moeoFirstImprovingNeighborhoodExplorer<SolNeighbor> explorer2(nh, eval2);
 
 	//create source and destination population
 	eoPop<Solution> src;
@@ -83,9 +86,7 @@ int main(){
 	//test the explorer
 	explorer(src, v, dest);
 
-	//verify the destination population
 	assert(dest.size()==8);
-
 	assert(dest[0].objectiveVector()[0]==6);
 	assert(dest[1].objectiveVector()[0]==6);
 	assert(dest[2].objectiveVector()[0]==6);
@@ -108,7 +109,23 @@ int main(){
 	for(unsigned int i=0; i<dest.size(); i++)
 		std::cout << dest[i] << std::endl;
 
-	std::cout << "[t-moeoExhaustiveNeighborhoodExplorer] => OK" << std::endl;
+	//test explorer2 (eval function is changed to have solutions dominates other ones
+	explorer2(dest, v, src);
+
+	assert(src.size()==3);
+
+	assert(src[1].objectiveVector()[0]==7);
+	assert(src[2].objectiveVector()[0]==5);
+
+	assert(src[1].objectiveVector()[1]==1);
+	assert(src[2].objectiveVector()[1]==1);
+
+	std::cout << "source: (after an exploration dest -> src)" << std::endl;
+	for(unsigned int i=0; i<src.size(); i++)
+		std::cout << src[i] << std::endl;
+
+
+	std::cout << "[t-moeoFirstImprovingNeighborhoodExplorer] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

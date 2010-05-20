@@ -1,5 +1,5 @@
 /*
-* <moeoExhaustiveNeighborhoodExplorer.h>
+* <moeoSubNeighborhoodExplorer.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,20 +36,19 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H
-#define _MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H
+#ifndef _MOEOSUBNEIGHBORHOODEXPLORER_H
+#define _MOEOSUBNEIGHBORHOODEXPLORER_H
 
 #include <eoPop.h>
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
 #include <explorer/moeoPopNeighborhoodExplorer.h>
-#include <eval/moEval.h>
 
 /**
- * Explorer which explore all the neighborhood
+ * Explorer which explore a part of the neighborhood
  */
-template < class Neighbor>
-class moeoExhaustiveNeighborhoodExplorer : public moeoPopNeighborhoodExplorer <Neighbor>
+template < class Neighbor >
+class moeoSubNeighborhoodExplorer : public moeoPopNeighborhoodExplorer < Neighbor >
 {
 	/** Alias for the type */
     typedef typename Neighbor::EOT MOEOT;
@@ -61,69 +60,42 @@ public:
 	/**
 	 * Ctor
 	 * @param _neighborhood a neighborhood
-	 * @param _eval neighbor evaluation funtion
+	 * @param _number the number of neighbor to explore
 	 */
-    moeoExhaustiveNeighborhoodExplorer(
-    	moNeighborhood<Neighbor>& _neighborhood,
-    	moEval < Neighbor > & _eval):
-    	neighborhood(_neighborhood), eval(_eval){}
+    moeoSubNeighborhoodExplorer(
+    		moNeighborhood<Neighbor>& _neighborhood,
+    		unsigned int _number)
+            : neighborhood(_neighborhood), number(_number){}
 
-    /**
-     * functor to explore the neighborhood
-     * @param _src the population to explore
-     * @param _select contains index of individuals from the population to explore
-     * @param _dest contains new generated individuals
-     */
-    void operator()(eoPop < MOEOT > & _src, std::vector < unsigned int> _select, eoPop < MOEOT > & _dest)
+	/**
+	 * functor to explore the neighborhood
+	 * @param _src the population to explore
+	 * @param _select contains index of individuals from the population to explore
+	 * @param _dest contains new generated individuals
+	 */
+    void operator()(eoPop < MOEOT > & _src, std::vector <unsigned int> _select, eoPop < MOEOT > & _dest)
     {
-        for(unsigned int i=0; i<_select.size(); i++)
-        	explore(_src[_select[i]], _dest);
+		for(unsigned int i=0; i<_select.size(); i++)
+			explore(_src[_select[i]], _dest);
     }
 
-private:
+protected:
 
 	/**
 	 * explorer of one individual
 	 * @param _src the individual to explore
 	 * @param _dest contains new generated individuals
 	 */
-	void explore(MOEOT & _src , eoPop < MOEOT > & _dest)
-	{
-		//if the neighborhood is not empty
-		if(neighborhood.hasNeighbor(_src)){
-			//init the neighborhood
-			neighborhood.init(_src, neighbor);
-			//copy the solution (_src) at the end of the destination (_dest)
-			_dest.push_back(_src);
-			//eval the neighbor
-			eval(_dest.back(),neighbor);
-			//move the copy
-			neighbor.move(_dest.back());
-			//affect objective vector to the copy
-			_dest.back().objectiveVector(neighbor.fitness());
-			//fix its flag to 0 (unvisited solution)
-			_dest.back().flag(0);
-			//repeat all instructions for each neighbor in the neighborhood
-			while (neighborhood.cont(_src)){
-				neighborhood.next(_src, neighbor);
-				_dest.push_back(_src);
-				eval(_dest.back(),neighbor);
-				neighbor.move(_dest.back());
-				_dest.back().objectiveVector(neighbor.fitness());
-				_dest.back().flag(0);
-			}
-			//fix the source flag to 1 (visited solution)
-			_src.flag(1);
-		}
-	}
+	virtual void explore(MOEOT & _src, eoPop < MOEOT > & _dest) = 0;
 
 	/** Neighbor */
 	Neighbor neighbor;
 	/** Neighborhood */
-	moNeighborhood<Neighbor>& neighborhood;
-    /** the incremental evaluation */
-    moEval < Neighbor > & eval;
+	moNeighborhood<Neighbor> & neighborhood;
+
+    /** number of neighbor to explore for each selected individual*/
+    unsigned int number;
 
 };
 
-#endif /*_MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H_*/
+#endif /*_MOEOSUBNEIGHBORHOODEXPLORER_H_*/

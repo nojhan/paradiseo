@@ -72,7 +72,7 @@ SET (TEST_LIST
 		t-moeoDetArchiveSelect
 		t-moeoASEEA
 		#t-moeoEpsilonHyperboxArchive
-		t-moeoQuadTreeIndex
+		#t-moeoQuadTreeIndex
 		t-moeoQuickUnboundedArchiveIndex
 		t-moeoAggregationFitnessAssignment
 		t-moeoConstraintFitnessAssignment
@@ -94,6 +94,15 @@ SET (TEST_LIST
 		t-moeoFixedTimeBothDirectionWeightStrategy
 		t-moeoDichoWeightStrategy
 		t-moeoExhaustiveNeighborhoodExplorer
+		t-moeoFirstImprovingNeighborhoodExplorer
+		t-moeoSimpleSubNeighborhoodExplorer
+		t-moeoNoDesimprovingNeighborhoodExplorer
+		t-moeoPLS1
+		t-moeoPLS2
+		t-moeoExhaustiveUnvisitedSelect
+		t-moeoNumberUnvisitedSelect
+		t-moeoDMLSMonOp
+		t-moeoDMLSGenUpdater
 )
 
 FOREACH (test ${TEST_LIST})
