@@ -81,12 +81,12 @@ public:
     using moSampling<Neighbor>::localSearch;
 
     /**
-     * Default Constructor
-     * @param _initSol the first the solution of the walk
+     * Constructor
+     * @param _initSol the first solution of the walk
      * @param _neighborhood neighborhood giving neighbor in random order
      * @param _fullEval Fitness function, full evaluation function
      * @param _eval neighbor evaluation, incremental evaluation function
-     * @param _distance the distance to measure the distance from the initial solution
+     * @param _distance component to measure the distance from the initial solution
      * @param _nbStep Number of steps of the random walk
      */
     moNeutralWalkSampling(EOT & _initSol,

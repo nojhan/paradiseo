@@ -46,7 +46,7 @@ class moCoolingSchedule : public eoUF<double, bool>
 {
 public:
     /**
-     * Initial temperature
+     * Init the solution with the initial temperature
      * @param _solution initial solution
      */
     virtual double init(EOT & _solution) = 0;

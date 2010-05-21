@@ -97,7 +97,7 @@ public:
     }
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

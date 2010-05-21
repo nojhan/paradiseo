@@ -43,8 +43,8 @@ public:
 
     /**
      * NOTHING TO DO
-     * @param _sol a solution (unused)
-     * @param _n a neighbor (unused)
+     * @param _sol unused solution
+     * @param _n unused neighbor
      */
     void operator()(EOT& _sol, Neighbor& _n) {}
 

@@ -62,7 +62,7 @@ public:
     }
 
     /**
-     * Compare two neighbors
+     * Test the equality between two neighbors
      * @param _sol the solution
      * @param _neighbor the neighbor
      * @return true if the neighbor is equal to the solution
@@ -72,7 +72,7 @@ public:
     }
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

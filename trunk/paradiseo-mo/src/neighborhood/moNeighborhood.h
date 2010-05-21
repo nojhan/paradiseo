@@ -55,7 +55,7 @@ public:
     moNeighborhood() {}
 
     /**
-     * @return if the neighborhood is random (default false)
+     * @return true if the neighborhood is random (default false)
      */
     virtual bool isRandom() {
         return false;
@@ -64,7 +64,7 @@ public:
     /**
      * Test if a solution has (again) a Neighbor
      * @param _solution the related solution
-     * @return if _solution has a Neighbor
+     * @return true if _solution has a Neighbor
      */
     virtual bool hasNeighbor(EOT & _solution) = 0 ;
 
@@ -85,12 +85,12 @@ public:
     /**
      * Test if there is again a neighbor
      * @param _solution the solution to explore
-     * @return if there is again a neighbor not explored
+     * @return true if there is again a neighbor not explored
      */
     virtual bool cont(EOT & _solution) = 0 ;
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

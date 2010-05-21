@@ -63,7 +63,7 @@ public:
     using moSampling<Neighbor>::localSearch;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialisation method of the solution
      * @param _neighborhood neighborhood giving neighbor in random order
      * @param _fullEval a full evaluation function
@@ -89,7 +89,7 @@ public:
     }
 
     /**
-     * default destructor
+     * Destructor
      */
     ~moHillClimberSampling() {
         // delete the pointer on the local search which has been constructed in the constructor

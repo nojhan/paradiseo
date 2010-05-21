@@ -38,8 +38,8 @@
 #include <continuator/moStat.h>
 
 /**
- * The statistic which only give the current solution
- * be careful, the solution is given by copy
+ * The statistic which only give the current solution.
+ * Be careful, the solution is given by copy
  *
  */
 template <class EOT>
@@ -49,7 +49,7 @@ public :
     using moStat< EOT, EOT >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _description a description of the parameter
      */
     moSolutionStat(std::string _description = "solution"):

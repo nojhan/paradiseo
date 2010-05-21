@@ -52,19 +52,19 @@ public:
 
     /**
      * NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     void initParam (EOT& _solution) { } ;
 
     /**
      * NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     void updateParam (EOT& _solution) { } ;
 
     /**
      * NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      * @return always false
      */
     bool isContinue(EOT& _solution) {
@@ -73,13 +73,13 @@ public:
 
     /**
      * NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     void move(EOT& _solution) { } ;
 
     /**
      * NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      * @return always false
      */
     virtual bool accept(EOT& _solution) {
@@ -88,18 +88,18 @@ public:
 
     /**
      * NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void terminate(EOT& _solution) { } ;
 
     /**
      * NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     void operator()(EOT & _solution) { }
 
     /**
-     * Return the class id.
+     * Return the class name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

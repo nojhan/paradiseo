@@ -48,7 +48,7 @@ class moStat : public eoValueParam<T>, public moStatBase<EOT>
 public:
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _value a default parameter's value
      * @param _description a description of the parameter
      */

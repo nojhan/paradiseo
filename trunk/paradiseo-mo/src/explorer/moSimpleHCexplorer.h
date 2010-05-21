@@ -76,26 +76,27 @@ public:
 
     /**
      * initParam: NOTHING TO DO
+     * @param _solution unused solution
      */
-    virtual void initParam(EOT & solution) {};
+    virtual void initParam(EOT & _solution) {};
 
     /**
      * updateParam: NOTHING TO DO
+     * @param _solution unused solution
      */
-    virtual void updateParam(EOT & solution) {};
+    virtual void updateParam(EOT & _solution) {};
 
     /**
      * terminate: NOTHING TO DO
+     * @param _solution unused solution
      */
-    virtual void terminate(EOT & solution) {};
+    virtual void terminate(EOT & _solution) {};
 
     /**
      * Explore the neighborhood of a solution
-     * @param _solution
+     * @param _solution the current solution
      */
     virtual void operator()(EOT & _solution) {
-
-        //est qu'on peut initializer
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
@@ -159,7 +160,7 @@ public:
     };
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

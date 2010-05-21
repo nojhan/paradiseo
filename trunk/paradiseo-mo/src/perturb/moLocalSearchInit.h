@@ -42,7 +42,7 @@ public:
     typedef typename Neighbor::EOT EOT;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialization of the solution before the local search
      * @param _ls the local search to apply to the solution
      */

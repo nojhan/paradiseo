@@ -60,7 +60,7 @@ public:
     using moSampling<Neighbor>::localSearch;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialisation method of the solution
      * @param _neighborhood neighborhood to get a neighbor
      * @param _fullEval Fitness function, full evaluation function

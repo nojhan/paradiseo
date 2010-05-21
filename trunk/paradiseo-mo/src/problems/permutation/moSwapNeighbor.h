@@ -55,7 +55,7 @@ public:
 
     /**
      * apply the swap to restore the solution (use by moFullEvalByModif)
-     * @param _solution the solution to move
+     * @param _solution the solution to move back
      */
     virtual void moveBack(EOT& _solution) {
         unsigned int tmp;

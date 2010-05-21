@@ -79,7 +79,7 @@ public:
     virtual void move(EOT & _solution) = 0 ;
 
     /**
-     * Get the fitness of the neighbor
+     * Get the fitness
      * @return fitness of the neighbor
      */
     const Fitness fitness() const {
@@ -104,6 +104,7 @@ public:
     }
 
     /**
+     * Test equality between two neighbors
      * @param _neighbor a neighbor
      * @return if _neighbor and this one are equals
      */
@@ -112,7 +113,7 @@ public:
     }
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

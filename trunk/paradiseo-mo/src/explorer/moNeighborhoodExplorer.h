@@ -40,7 +40,6 @@
 
 #include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
-//#include <neighborhood/moDummyNeighbor.h>
 #include <neighborhood/moDummyNeighborhood.h>
 #include <eval/moDummyEval.h>
 
@@ -102,9 +101,8 @@ public:
      */
     virtual void terminate(EOT& _solution) = 0 ;
 
-
     /**
-     * Getter for variable "isMoved"
+     * Getter of "isMoved"
      * @return true if move is applied
      */
     bool moveApplied() {
@@ -112,7 +110,7 @@ public:
     }
 
     /**
-     * Setter for variable "isMoved"
+     * Setter of "isMoved"
      * @param _isMoved
      */
     void moveApplied(bool _isMoved) {

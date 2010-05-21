@@ -61,7 +61,7 @@ public:
     typedef typename Neighbor::EOT EOT ;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialisation method of the solution
      * @param _localSearch  local search to sample the search space
      * @param _stat statistic to compute during the search
@@ -103,8 +103,7 @@ public:
     }
 
     /**
-     * To sample the search and get the statistics
-     * the statistics are stored in the moVectorMonitor vector
+     * To sample the search and get the statistics which are stored in the moVectorMonitor vector
      */
     void operator()(void) {
         // clear all statistic vectors
@@ -172,7 +171,7 @@ public:
 
     /**
      * to get one vector of values
-     * @param _numStat number of stattistics to get (in order of creation)
+     * @param _numStat number of statistics to get (in the order of creation)
      * @return the vector of value (all values are converted in double)
      */
     const std::vector<double> & getValues(unsigned int _numStat) {
@@ -181,7 +180,7 @@ public:
 
     /**
      * to get one vector of solutions values
-     * @param _numStat number of stattistics to get (in order of creation)
+     * @param _numStat number of statistics to get (in the order of creation)
      * @return the vector of value (all values are converted in double)
      */
     const std::vector<EOT> & getSolutions(unsigned int _numStat) {
@@ -202,7 +201,6 @@ protected:
     moContinuator<Neighbor> * continuator;
     moCheckpoint<Neighbor> * checkpoint;
 
-    //  std::vector<moStatBase<EOT>*> statVec;
     std::vector< moVectorMonitor<EOT> *> monitorVec;
 
 };

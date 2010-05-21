@@ -141,7 +141,7 @@ public:
     };
 
     /**
-     * accept test if an ameliorated neighbor was be found
+     * accept test if an ameliorated neighbor was found
      * @param _solution the solution
      * @return true if acceptance criteria is verified
      */
@@ -150,7 +150,7 @@ public:
     };
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

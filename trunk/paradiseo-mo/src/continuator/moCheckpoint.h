@@ -51,7 +51,7 @@ public :
     typedef typename Neighbor::EOT EOT ;
 
     /**
-     * Default constructor (moCheckpoint must have at least one continuator)
+     * Constructor (moCheckpoint must have at least one continuator)
      * @param _cont a continuator
      * @param _interval frequency to compute statistical operators
      */

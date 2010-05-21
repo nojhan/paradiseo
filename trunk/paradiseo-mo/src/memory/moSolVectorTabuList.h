@@ -65,7 +65,7 @@ public:
     /**
      * add a new solution in the tabuList
      * @param _sol the current solution
-     * @param _neighbor the current neighbor (unused)
+     * @param _neighbor unused neighbor
      */
     virtual void add(EOT & _sol, Neighbor & _neighbor) {
 

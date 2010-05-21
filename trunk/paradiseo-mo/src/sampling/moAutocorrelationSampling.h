@@ -58,7 +58,7 @@ public:
     using moSampling<Neighbor>::localSearch;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialisation method of the solution
      * @param _neighborhood neighborhood giving neighbor in random order
      * @param _fullEval Fitness function, full evaluation function
@@ -73,7 +73,7 @@ public:
             moSampling<Neighbor>(_init, * new moRandomWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat) {}
 
     /**
-     * default destructor
+     * Destructor
      */
     ~moAutocorrelationSampling() {
         // delete the pointer on the local search which has been constructed in the constructor

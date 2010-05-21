@@ -45,7 +45,7 @@
 #include <utils/eoRNG.h>
 
 /**
- * Explorer for the Metropolis-Hasting Sampling
+ * Explorer for the Metropolis-Hasting Sampling.
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
  * Fitness must be > 0
  */
@@ -84,7 +84,7 @@ public:
 
     /**
      * initialization of the number of step to be done
-     * @param _solution the solution (unused here)
+     * @param _solution unused solution
      */
     virtual void initParam(EOT & _solution) {
         step     = 0;
@@ -93,7 +93,7 @@ public:
 
     /**
      * increase the number of step
-     * @param _solution the solution (unused here)
+     * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {
         step++;
@@ -101,7 +101,7 @@ public:
 
     /**
      * terminate: NOTHING TO DO
-     * @param _solution the solution (unused here)
+     * @param _solution unused solution
      */
     virtual void terminate(EOT & _solution) {};
 
@@ -145,7 +145,7 @@ public:
     };
 
     /**
-     * accept test if an ameliorated neighbor was be found
+     * accept test if an ameliorated neighbor was found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */

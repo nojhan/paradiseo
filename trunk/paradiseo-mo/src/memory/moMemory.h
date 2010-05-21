@@ -17,7 +17,7 @@ public:
     virtual void init(EOT & _sol) = 0;
 
     /**
-     * Add data in the memory
+     * Add data to the memory
      * @param _sol the current solution
      * @param _neighbor the current neighbor
      */

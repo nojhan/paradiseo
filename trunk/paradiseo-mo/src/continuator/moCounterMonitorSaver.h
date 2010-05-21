@@ -45,7 +45,7 @@ class moCounterMonitorSaver : public eoUpdater {
 public :
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _interval frequency to call monitors
      * @param _mon a monitor
      */

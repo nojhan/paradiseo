@@ -60,7 +60,7 @@ public:
     using moSampling<Neighbor>::localSearch;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialisation method of the solution
      * @param _fullEval a full evaluation function
      * @param _dist the distance function between solution
@@ -79,7 +79,7 @@ public:
     }
 
     /**
-     * default destructor
+     * Destructor
      */
     ~moFDCsampling() {
         // delete the pointer on the local search which has been constructed in the constructor

@@ -83,7 +83,7 @@ public:
 
     /**
      * empty the vector of best solutions
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void initParam(EOT & _solution) {
         // delete all the best solutions
@@ -92,7 +92,7 @@ public:
 
     /**
      * empty the vector of best solutions
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {
         // delete all the best solutions
@@ -101,7 +101,7 @@ public:
 
     /**
      * terminate: NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void terminate(EOT & _solution) {};
 
@@ -170,7 +170,7 @@ public:
     };
 
     /**
-     * accept test if an amelirated neighbor was be found
+     * accept test if an amelirated neighbor was found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */

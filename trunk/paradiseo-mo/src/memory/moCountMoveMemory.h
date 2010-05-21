@@ -33,7 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <memory/moMemory.h>
 
 /**
- * Count the number of move, noMove and  the number of successive stagnation since the last Move
+ * Count the number of move, no move and  the successive stagnation since the last Move
  */
 template< class Neighbor >
 class moCountMoveMemory : virtual public moMemory<Neighbor> {
@@ -52,7 +52,7 @@ public:
     }
 
     /**
-     * @param _sol a solution (unused)
+     * @param _sol unused solution
      * @param _neighbor unused neighbor
      */
     void add(EOT & _sol, Neighbor & _neighbor) {

@@ -99,11 +99,11 @@ public:
 private:
     // always true continuator
     moTrueContinuator<Neighbor> trueCont;
-    // compare the fitness values of neighbors: true is strictly greater
+    // compare the fitness values of neighbors
     moNeighborComparator<Neighbor> defaultNeighborComp;
-    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    // compare the fitness values of the solution and the neighbor
     moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-    // the explorer of the HC with neutral move (equals fitness move)
+    // MetropolisHasting explorer
     moMetropolisHastingExplorer<Neighbor> explorer;
 };
 

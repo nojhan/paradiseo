@@ -45,7 +45,7 @@ public:
     typedef moNeighborhood<OtherNeighbor> OtherNH;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _otherNeighborhood a neighborhood
      * @param _eval an Evaluation Function
      */

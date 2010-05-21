@@ -74,19 +74,19 @@ public:
 
     /**
      * initParam: NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void initParam(EOT & _solution) {};
 
     /**
      * updateParam: NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {};
 
     /**
      * terminate: NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void terminate(EOT & _solution) {};
 
@@ -121,7 +121,7 @@ public:
     /**
      * continue if a move is accepted
      * @param _solution the solution
-     * @return true if an ameliorated neighbor was be found
+     * @return true if an ameliorated neighbor was found
      */
     virtual bool isContinue(EOT & _solution) {
         return isAccept ;
@@ -139,7 +139,7 @@ public:
     };
 
     /**
-     * accept test if an ameliorated neighbor was be found
+     * accept test if an ameliorated neighbor was found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */

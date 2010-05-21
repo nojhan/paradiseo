@@ -43,8 +43,8 @@ public:
     typedef typename Neighbor::EOT EOT;
 
     /**
-     * Ctor.
-     * @param _max maximum running time$
+     * Constructor
+     * @param _max maximum running time
      * @param _verbose verbose mode true/false -> on/off
      */
     moTimeContinuator(time_t _max, bool _verbose=true): max(_max), verbose(_verbose) {

@@ -64,7 +64,7 @@ public:
 
     /**
      * add a new neighbor in the tabuList
-     * @param _sol the current solution (unused)
+     * @param _sol unused solution
      * @param _neighbor the current neighbor
      */
     virtual void add(EOT & _sol, Neighbor & _neighbor) {
@@ -84,8 +84,8 @@ public:
 
     /**
      * update the tabulist
-     * @param _sol the current solution (unused)
-     * @param _neighbor the current neighbor (unused)
+     * @param _sol unused solution
+     * @param _neighbor unused neighbor
      */
     virtual void update(EOT & _sol, Neighbor & _neighbor) {
         if (howlong > 0)
@@ -96,7 +96,7 @@ public:
 
     /**
      * check if the move is tabu
-     * @param _sol the current solution (unused)
+     * @param _sol unused solution
      * @param _neighbor the current neighbor
      * @return true if tabuList contains _sol
      */

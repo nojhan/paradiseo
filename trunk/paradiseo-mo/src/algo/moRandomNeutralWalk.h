@@ -95,7 +95,7 @@ private:
     moTrueContinuator<Neighbor> trueCont;
     // the explorer of the random walk
     moRandomNeutralWalkExplorer<Neighbor> explorer;
-    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    // compare the fitness values of the solution and the neighbor
     moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
 };
 

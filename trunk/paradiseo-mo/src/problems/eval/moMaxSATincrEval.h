@@ -49,7 +49,7 @@ public :
         variables = _fulleval.variables;
     }
 
-    /*
+    /**
      * incremental evaluation of the neighbor for the max SAT problem
      * @param _solution the solution (of type bit string) to move
      * @param _neighbor the neighbor (of type moBitNeigbor) to consider

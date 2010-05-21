@@ -64,7 +64,7 @@ public:
 private:
     // always true continuator
     moTrueContinuator<Neighbor> trueCont;
-    // the explorer of the simple HC
+    // dummy Explorer
     moDummyExplorer<Neighbor> explorer;
 };
 

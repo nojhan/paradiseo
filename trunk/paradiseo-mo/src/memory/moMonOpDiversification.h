@@ -46,7 +46,7 @@ public:
     typedef typename Neighbor::EOT EOT;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _monOp an eoMonOp (diversification operator)
      * @param _fullEval a full evaluation function
      */

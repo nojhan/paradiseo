@@ -47,7 +47,7 @@ public :
     using moStat< EOT , T >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _stat a stat
      */
     moStatFromStat(moStat<EOT,T> & _stat): moStat<EOT, T>(0, _stat.description()), stat(_stat) {

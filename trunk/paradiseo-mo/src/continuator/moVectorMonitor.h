@@ -50,7 +50,7 @@ class moVectorMonitor : public eoMonitor
 public:
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _param the parameter of type double to save in the vector
      */
     moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL), eotParam(NULL)

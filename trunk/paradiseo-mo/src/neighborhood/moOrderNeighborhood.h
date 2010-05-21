@@ -38,7 +38,7 @@
 #include <neighborhood/moIndexNeighborhood.h>
 
 /**
- * A Ordered Neighborhood
+ * An ordered Neighborhood
  */
 template< class Neighbor >
 class moOrderNeighborhood : public moIndexNeighborhood<Neighbor>
@@ -59,7 +59,7 @@ public:
     moOrderNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize), currentIndex(0) {}
 
     /**
-     * Test if it exist a neighbor
+     * Test if a neighbor exists
      * @param _solution the solution to explore
      * @return true if the neighborhood was not empty
      */
@@ -107,7 +107,7 @@ public:
     }
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

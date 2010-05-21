@@ -50,7 +50,7 @@ public :
     using moStat< EOT, T >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _dist a distance
      * @param _ref the reference solution
      */

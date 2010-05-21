@@ -51,7 +51,7 @@ public:
     }
 
     /**
-     * Compare two solutions
+     * Test the equality between two solutions
      * @param _sol1 the first solution
      * @param _sol2 the second solution
      * @return true if the solution2 is equal to solution1
@@ -61,7 +61,7 @@ public:
     }
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

@@ -53,7 +53,7 @@ public :
     }
 
     /**
-     * Give the number of iteration
+     * Init the number of iteration
      * @param _sol a solution
      */
     virtual void init(EOT & _sol) {
@@ -61,7 +61,7 @@ public :
     }
 
     /**
-     * Give the number of iteration
+     * Set the number of iteration
      * @param _sol a solution
      */
     virtual void operator()(EOT & _sol) {

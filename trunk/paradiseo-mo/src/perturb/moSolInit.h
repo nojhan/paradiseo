@@ -40,13 +40,13 @@ class moSolInit : public eoInit<EOT> {
 public:
 
     /**
-     * Default Constructor
-     * @param _extSol external solution of the intiialization
+     * Constructor
+     * @param _extSol external solution of the initialization
      */
     moSolInit(EOT & _extSol) : extSol(_extSol) {}
 
     /**
-     * Initialization on the externatl solution
+     * Initialization on the external solution
      * @param _solution to initialize
      */
     void operator()(EOT& _solution) {

@@ -92,7 +92,7 @@ public:
 
     /**
      * decrease the temperature if necessary
-     * @param _solution the solution (unused here)
+     * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {
         coolingSchedule.update(temperature);
@@ -100,13 +100,13 @@ public:
 
     /**
      * terminate: NOTHING TO DO
-     * @param _solution the solution (unused here)
+     * @param _solution unused solution
      */
     virtual void terminate(EOT & _solution) {};
 
     /**
      * Explore one random solution in the neighborhood
-     * @param _solution
+     * @param _solution the solution
      */
     virtual void operator()(EOT & _solution) {
         //Test if _solution has a Neighbor
@@ -133,7 +133,7 @@ public:
     };
 
     /**
-     * move the solution on the accepted solution
+     * move the solution to the accepted solution
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {

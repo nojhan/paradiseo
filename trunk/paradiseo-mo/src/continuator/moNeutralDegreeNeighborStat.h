@@ -53,7 +53,7 @@ public :
     using moStat< EOT, unsigned >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _nhStat a neighborhoodStat
      */
     moNeutralDegreeNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):

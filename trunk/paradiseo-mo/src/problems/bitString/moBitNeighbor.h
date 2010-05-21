@@ -68,7 +68,7 @@ public:
     }
 
     /**
-     * Return the class id.
+     * return the class name
      * @return the class name as a std::string
      */
     virtual std::string className() const {
@@ -76,7 +76,7 @@ public:
     }
 
     /**
-     * Read object.\							\
+     * Read object.\
      * Calls base class, just in case that one had something to do.
      * The read and print methods should be compatible and have the same format.
      * In principle, format is "plain": they just print a number
@@ -92,7 +92,7 @@ public:
         }
         else {
             Fitness repFit ;
-            _is.seekg(pos); // rewind
+            _is.seekg(pos);
             _is >> repFit;
             _is >> key;
             fitness(repFit);

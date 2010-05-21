@@ -214,7 +214,7 @@ public:
 
 
     /**
-     * accept test if an ameliorated neighbor was be found
+     * accept test if an ameliorated neighbor was found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */

@@ -48,7 +48,7 @@ public :
     using moStat< EOT, Fitness >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _description a description of the stat
      */
     moFitnessStat(std::string _description = "fitness"):

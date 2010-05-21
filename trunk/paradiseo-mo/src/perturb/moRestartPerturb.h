@@ -46,7 +46,7 @@ public:
     typedef typename Neighbor::EOT EOT;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _initializer an initializer of solution
      * @param _fullEval a full evaluation function
      * @param _threshold maximum number of iteration with no improvement

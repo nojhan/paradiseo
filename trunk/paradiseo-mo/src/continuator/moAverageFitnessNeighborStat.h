@@ -51,14 +51,14 @@ public :
     using moStat< EOT, double >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _nhStat a neighborhoodStat
      */
     moAverageFitnessNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
             moStat<EOT, double >(0.0, "average"), nhStat(_nhStat) {}
 
     /**
-     * Set the average and the standard deviation of fitness in the neighborhood
+     * Set the average of fitness in the neighborhood
      * @param _sol the first solution
      */
     virtual void init(EOT & _sol) {
@@ -66,7 +66,7 @@ public :
     }
 
     /**
-     * Set the average and the standard deviation of fitness in the neighborhood
+     * Set the average of fitness in the neighborhood
      * @param _sol the corresponding solution
      */
     virtual void operator()(EOT & _sol) {

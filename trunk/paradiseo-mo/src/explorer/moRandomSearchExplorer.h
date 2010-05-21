@@ -72,7 +72,7 @@ public:
 
     /**
      * initialization of the number of step to be done
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void initParam(EOT & _solution) {
         step     = 0;
@@ -80,7 +80,7 @@ public:
 
     /**
      * increase the number of step
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {
         step++;
@@ -88,7 +88,7 @@ public:
 
     /**
      * terminate: NOTHING TO DO
-     * @param _solution a solution (unused)
+     * @param _solution unused solution
      */
     virtual void terminate(EOT & _solution) {};
 
@@ -106,7 +106,7 @@ public:
     };
 
     /**
-     * continue if it is remainds some steps to do
+     * continue if it is remains some steps to do
      * @param _solution the solution
      * @return true there is some steps to do
      */

@@ -52,7 +52,7 @@ public :
     using moStat< EOT, Fitness >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _nhStat a neighborhoodStat
      */
     moMinNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):

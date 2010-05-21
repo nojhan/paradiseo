@@ -47,7 +47,7 @@ public:
     typedef typename Neighbor::EOT EOT ;
 
     /**
-     * Default constructor
+     * Constructor
      * @param _eval evaluation function to count
      * @param _maxFullEval number maximum of iterations
      */

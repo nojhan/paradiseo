@@ -38,7 +38,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 /**
  * First improvement HC:
- * Hill-Climber local search
+ * Hill-Climbing local search
  *
  * At each iteration,
  *   one of the random solution in the neighborhood is selected
@@ -93,7 +93,7 @@ public:
 private:
     // always true continuator
     moTrueContinuator<Neighbor> trueCont;
-    // compare the fitness values of neighbors: true is strictly greater
+    // compare the fitness values of neighbors: true if strictly greater
     moNeighborComparator<Neighbor> defaultNeighborComp;
     // compare the fitness values of the solution and the neighbor: true if strictly greater
     moSolNeighborComparator<Neighbor> defaultSolNeighborComp;

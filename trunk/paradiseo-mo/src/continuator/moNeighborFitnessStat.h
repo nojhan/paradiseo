@@ -53,7 +53,7 @@ public :
     using moStat< EOT, Fitness >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _neighborhood a neighborhood
      * @param _eval an evaluation function
      */
@@ -82,7 +82,7 @@ public :
         if (neighborhood.hasNeighbor(_solution)) {
             Neighbor current ;
 
-            //init the first neighbor which is suppoed to be random
+            //init the first neighbor which is supposed to be random
             neighborhood.init(_solution, current);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
@@ -104,7 +104,7 @@ public :
     }
 
 private:
-    // to explore the neighborhood
+    // the neighborhood
     Neighborhood& neighborhood ;
     moEval<Neighbor>& eval;
 

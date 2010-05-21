@@ -38,7 +38,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 /**
  * Simple HC:
- * Hill-Climber local search
+ * Hill-Climbing local search
  *
  * At each iteration,
  *   the first best solution in the neighborhood is selected
@@ -93,9 +93,9 @@ public:
 private:
     // always true continuator
     moTrueContinuator<Neighbor> trueCont;
-    // compare the fitness values of neighbors: true is strictly greater
+    // compare the fitness values of neighbors
     moNeighborComparator<Neighbor> defaultNeighborComp;
-    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    // compare the fitness values of the solution and the neighbor
     moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
     // the explorer of the simple HC
     moSimpleHCexplorer<Neighbor> explorer;

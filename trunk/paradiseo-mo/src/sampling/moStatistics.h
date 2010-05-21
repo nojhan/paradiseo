@@ -150,7 +150,7 @@ public:
             rho.resize(nbS+1);
             phi.resize(nbS+1);
             rho[0] = 1.0;
-            phi[0] = 1.0; // ?
+            phi[0] = 1.0;
 
             unsigned s, k;
 

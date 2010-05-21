@@ -35,8 +35,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 
 /**
- * Combined several continuators
- * Continue until one of the continuators is false
+ * Combined several continuators.
+ * Continue until one of the continuators returns false
  */
 template< class Neighbor >
 class moCombinedContinuator : public moContinuator<Neighbor>
@@ -45,7 +45,7 @@ public:
     typedef typename Neighbor::EOT EOT ;
 
     /**
-     * Default constructor (moCheckpoint must have at least one continuator)
+     * Constructor (moCheckpoint must have at least one continuator)
      * @param _cont a continuator
      */
     moCombinedContinuator(moContinuator<Neighbor>& _cont) {

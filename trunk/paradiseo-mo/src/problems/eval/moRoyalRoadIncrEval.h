@@ -43,12 +43,12 @@ public:
     typedef typename Neighbor::EOT EOT;
 
     /**
-     * Default constructor
+     * Constructor
      * @param _rr full evaluation of the Royal Road (to have the same block size)
      */
     moRoyalRoadIncrEval(RoyalRoadEval<EOT> & _rr) : k(_rr.blockSize()) {}
 
-    /*
+    /**
      * incremental evaluation of the neighbor for the Royal Road problem
      * @param _solution the solution to move (bit string)
      * @param _neighbor the neighbor to consider (of type moBitNeigbor)

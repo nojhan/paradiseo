@@ -101,7 +101,7 @@ public:
     };
 
     /**
-     * continue if there is a neighbor and it is remainds some steps to do
+     * continue if there is a neighbor and it is remains some steps to do
      * @param _solution the solution
      * @return true there is some steps to do
      */

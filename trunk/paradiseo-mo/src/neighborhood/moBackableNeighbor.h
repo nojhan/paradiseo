@@ -46,7 +46,7 @@ class moBackableNeighbor : virtual public moNeighbor<EOT, Fitness>
 public:
 
     /**
-     * the move back function
+     * the function to move back a solution
      * @param _solution the solution to moveBack
      */
     virtual void moveBack(EOT & _solution)=0;

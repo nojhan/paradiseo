@@ -43,7 +43,7 @@ public:
     typedef moSwapNeighbor<EOT, Fitness> Neighbor;
 
     /**
-     * @return if there are available Neighbor
+     * @return true if there is at least an available neighbor
      */
     virtual bool hasNeighbor(EOT& _solution) {
         return (_solution.size() > 1);
@@ -79,14 +79,14 @@ public:
     /**
      * Test if there is again a neighbor
      * @param _solution the solution to explore
-     * @return if there is again a neighbor not explored
+     * @return true if there is again a neighbor not explored
      */
     virtual bool cont(EOT& _solution) {
         return !((indices.first == (size-2)) && (indices.second == (size-1)));
     }
 
     /**
-     * Return the class id.
+     * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {

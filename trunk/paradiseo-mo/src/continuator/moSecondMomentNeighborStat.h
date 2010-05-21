@@ -51,7 +51,7 @@ public :
     using moStat< EOT, std::pair<double, double> >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _nhStat a neighborhoodStat
      */
     moSecondMomentNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):

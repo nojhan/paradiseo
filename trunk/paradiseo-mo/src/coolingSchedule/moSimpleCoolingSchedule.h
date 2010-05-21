@@ -46,7 +46,7 @@ class moSimpleCoolingSchedule : public moCoolingSchedule<EOT>
 {
 public:
     /**
-     * default constructor
+     * Constructor
      * @param _initT initial temperature
      * @param _alpha factor of decreasing
      * @param _span number of iteration with equal temperature
@@ -55,7 +55,7 @@ public:
     moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT) : initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {}
 
     /**
-     * Initial temperature
+     * Getter on the initial temperature
      * @param _solution initial solution
      * @return the initial temperature
      */

@@ -56,7 +56,7 @@ public :
     using moStat< EOT, Fitness >::value;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _neighborhood a neighborhood
      * @param _eval an evaluation function
      * @param _neighborComparator a neighbor Comparator
@@ -155,9 +155,9 @@ private:
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
     // default comparators
-    // compare the fitness values of neighbors: true is strictly greater
+    // compare the fitness values of neighbors
     moNeighborComparator<Neighbor> defaultNeighborComp;
-    // compare the fitness values of the solution and the neighbor: true if strictly greater
+    // compare the fitness values of the solution and the neighbor
     moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
 
     // number of neighbor to explore

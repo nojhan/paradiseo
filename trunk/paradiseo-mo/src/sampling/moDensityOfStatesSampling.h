@@ -56,7 +56,7 @@ public:
     using moSampling<Neighbor>::localSearch;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialisation method of the solution
      * @param _fullEval Fitness function, full evaluation function
      * @param _nbSol Number of solutions in the sample

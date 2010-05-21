@@ -66,7 +66,7 @@ public:
     using moFitnessCloudSampling<Neighbor>::fitnessStat;
 
     /**
-     * Default Constructor
+     * Constructor
      * @param _init initialisation method of the solution
      * @param _neighborhood neighborhood to get one random neighbor (supposed to be random neighborhood)
      * @param _fullEval Fitness function, full evaluation function
