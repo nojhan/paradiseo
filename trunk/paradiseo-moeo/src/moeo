@@ -42,55 +42,44 @@
 #include <eo>
 
 #include <algo/moeoAlgo.h>
+#include <algo/moeoASEEA.h>
 #include <algo/moeoEA.h>
 #include <algo/moeoEasyEA.h>
 #include <algo/moeoIBEA.h>
 #include <algo/moeoMOGA.h>
 #include <algo/moeoNSGA.h>
 #include <algo/moeoNSGAII.h>
-#include <algo/moeoPopAlgo.h>
-#include <algo/moeoSEEA.h>
-#include <algo/moeoASEEA.h>
-#include <algo/moeoSPEA2.h>
-#include <algo/moeoHC.h>
-#include <algo/moeoTS.h>
-#include <algo/moeoVNS.h>
-#include <algo/moeoSA.h>
-#include <algo/moeoILS.h>
-#include <algo/moeoVFAS.h>
-#include <algo/moeoPopLS.h>
-#include <algo/moeoUnifiedDominanceBasedLS.h>
 #include <algo/moeoPLS1.h>
 #include <algo/moeoPLS2.h>
+#include <algo/moeoPopAlgo.h>
+#include <algo/moeoPopLS.h>
+#include <algo/moeoSEEA.h>
+#include <algo/moeoSPEA2.h>
+#include <algo/moeoUnifiedDominanceBasedLS.h>
 
 #include <archive/moeoArchive.h>
-#include <archive/moeoArchiveIndex.h>
 #include <archive/moeoBoundedArchive.h>
+#include <archive/moeoEpsilonHyperboxArchive.h>
+#include <archive/moeoFitDivBoundedArchive.h>
 #include <archive/moeoFixedSizeArchive.h>
-#include <archive/moeoIndexedArchive.h>
+#include <archive/moeoImprOnlyBoundedArchive.h>
 #include <archive/moeoSPEA2Archive.h>
 #include <archive/moeoUnboundedArchive.h>
-#include <archive/moeoImprOnlyBoundedArchive.h>
-#include <archive/moeoFitDivBoundedArchive.h>
-#include <archive/moeoEpsilonHyperboxArchive.h>
-#include <archive/moeoQuadTree.h>
-#include <archive/moeoQuickUnboundedArchiveIndex.h>
-
 
 #include <comparator/moeoAggregativeComparator.h>
 #include <comparator/moeoComparator.h>
 #include <comparator/moeoDiversityThenFitnessComparator.h>
 #include <comparator/moeoEpsilonObjectiveVectorComparator.h>
+#include <comparator/moeoFitnessComparator.h>
 #include <comparator/moeoFitnessThenDiversityComparator.h>
 #include <comparator/moeoGDominanceObjectiveVectorComparator.h>
-#include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoObjectiveObjectiveVectorComparator.h>
+#include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoOneObjectiveComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <comparator/moeoPtrComparator.h>
 #include <comparator/moeoStrictObjectiveVectorComparator.h>
 #include <comparator/moeoWeakObjectiveVectorComparator.h>
-#include <comparator/moeoFitnessComparator.h>
 
 #include <core/MOEO.h>
 #include <core/moeoBitVector.h>
@@ -104,14 +93,10 @@
 
 #include <distance/moeoDistance.h>
 #include <distance/moeoDistanceMatrix.h>
-#include <distance/moeoObjSpaceDistance.h>
 #include <distance/moeoEuclideanDistance.h>
 #include <distance/moeoManhattanDistance.h>
 #include <distance/moeoNormalizedDistance.h>
-#include <distance/moeoAchievementScalarizingFunctionDistance.h>
-#include <distance/moeoAugmentedAchievementScalarizingFunctionDistance.h>
-#include <distance/moeoAugmentedWeightedChebychevDistance.h>
-#include <distance/moeoWeightedChebychevDistance.h>
+#include <distance/moeoObjSpaceDistance.h>
 
 #include <diversity/moeoCrowdingDiversityAssignment.h>
 #include <diversity/moeoDiversityAssignment.h>
@@ -121,17 +106,14 @@
 #include <diversity/moeoNearestNeighborDiversityAssignment.h>
 #include <diversity/moeoSharingDiversityAssignment.h>
 
-
-#include <explorer/moeoHCMoveLoopExpl.h>
-#include <explorer/moeoTSMoveLoopExpl.h>
-#include <explorer/moeoPopNeighborhoodExplorer.h>
 #include <explorer/moeoExhaustiveNeighborhoodExplorer.h>
 #include <explorer/moeoFirstImprovingNeighborhoodExplorer.h>
-#include <explorer/moeoSimpleSubNeighborhoodExplorer.h>
 #include <explorer/moeoNoDesimprovingNeighborhoodExplorer.h>
+#include <explorer/moeoPopNeighborhoodExplorer.h>
+#include <explorer/moeoSimpleSubNeighborhoodExplorer.h>
 #include <explorer/moeoSubNeighborhoodExplorer.h>
 
-#include <fitness/moeoAchievementFitnessAssignment.h>
+
 #include <fitness/moeoAggregationFitnessAssignment.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoConstraintFitnessAssignment.h>
@@ -145,47 +127,80 @@
 #include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoFitnessAssignment.h>
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoReferencePointIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
-#include <fitness/moeoSingleObjectivization.h>
 #include <fitness/moeoUnaryIndicatorBasedFitnessAssignment.h>
-#include <fitness/moeoAchievementScalarizingFunctionMetricFitnessAssignment.h>
-#include <fitness/moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment.h>
-#include <fitness/moeoWeightedChebychevMetricFitnessAssignment.h>
-#include <fitness/moeoAugmentedWeightedChebychevMetricFitnessAssignment.h>
-#include <fitness/moeoIncrEvalSingleObjectivizer.h>
 
 #include <hybridization/moeoDMLSGenUpdater.h>
 #include <hybridization/moeoDMLSMonOp.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoContributionMetric.h>
+#include <metric/moeoDistanceMetric.h>
 #include <metric/moeoEntropyMetric.h>
 #include <metric/moeoHypervolumeBinaryMetric.h>
 #include <metric/moeoHyperVolumeDifferenceMetric.h>
 #include <metric/moeoHyperVolumeMetric.h>
 #include <metric/moeoMetric.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
-#include <metric/moeoVecVsVecEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecAdditiveEpsilonBinaryMetric.h>
+#include <metric/moeoVecVsVecEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
-#include <metric/moeoDistanceMetric.h>
 
 #include <replacement/moeoElitistReplacement.h>
 #include <replacement/moeoEnvironmentalReplacement.h>
 #include <replacement/moeoGenerationalReplacement.h>
 #include <replacement/moeoReplacement.h>
 
+#include <scalarStuffs/algo/moeoHC.h>
+#include <scalarStuffs/algo/moeoILS.h>
+#include <scalarStuffs/algo/moeoSA.h>
+#include <scalarStuffs/algo/moeoSolAlgo.h>
+#include <scalarStuffs/algo/moeoTS.h>
+#include <scalarStuffs/algo/moeoVFAS.h>
+#include <scalarStuffs/algo/moeoVNS.h>
+#include <scalarStuffs/archive/moeoArchiveIndex.h>
+#include <scalarStuffs/archive/moeoIndexedArchive.h>
+#include <scalarStuffs/archive/moeoQuadTree.h>
+#include <scalarStuffs/archive/moeoQuadTreeArchive.h>
+#include <scalarStuffs/archive/moeoQuickUnboundedArchiveIndex.h>
+#include <scalarStuffs/distance/moeoAchievementScalarizingFunctionDistance.h>
+#include <scalarStuffs/distance/moeoAugmentedAchievementScalarizingFunctionDistance.h>
+#include <scalarStuffs/distance/moeoAugmentedWeightedChebychevDistance.h>
+#include <scalarStuffs/distance/moeoWeightedChebychevDistance.h>
+#include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
+#include <scalarStuffs/explorer/moeoTSMoveLoopExpl.h>
+#include <scalarStuffs/fitness/moeoAchievementFitnessAssignment.h>
+#include <scalarStuffs/fitness/moeoAchievementScalarizingFunctionMetricFitnessAssignment.h>
+#include <scalarStuffs/fitness/moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment.h>
+#include <scalarStuffs/fitness/moeoAugmentedWeightedChebychevMetricFitnessAssignment.h>
+#include <scalarStuffs/fitness/moeoIncrEvalSingleObjectivizer.h>
+#include <scalarStuffs/fitness/moeoMetricFitnessAssignment.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/fitness/moeoWeightedChebychevMetricFitnessAssignment.h>
+#include <scalarStuffs/weighting/moeoAnytimeWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoAugmentedQexploreWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoDichoWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoDummyRefPointStrategy.h>
+#include <scalarStuffs/weighting/moeoDummyWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoFixedTimeBothDirectionWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoFixedTimeOneDirectionWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoQexploreWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoRandWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoVariableRefPointStrategy.h>
+#include <scalarStuffs/weighting/moeoVariableWeightStrategy.h>
+
+#include <selection/moeoDetArchiveSelect.h>
 #include <selection/moeoDetTournamentSelect.h>
+#include <selection/moeoExhaustiveUnvisitedSelect.h>
+#include <selection/moeoNumberUnvisitedSelect.h>
 #include <selection/moeoRandomSelect.h>
 #include <selection/moeoRouletteSelect.h>
 #include <selection/moeoSelectFromPopAndArch.h>
 #include <selection/moeoSelectOne.h>
 #include <selection/moeoSelectors.h>
 #include <selection/moeoStochTournamentSelect.h>
-#include <selection/moeoDetArchiveSelect.h>
 #include <selection/moeoUnvisitedSelect.h>
-#include <selection/moeoExhaustiveUnvisitedSelect.h>
-#include <selection/moeoNumberUnvisitedSelect.h>
 
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoArchiveUpdater.h>
@@ -194,19 +209,7 @@
 #include <utils/moeoBinaryMetricSavingUpdater.h>
 #include <utils/moeoConvertPopToObjectiveVectors.h>
 #include <utils/moeoDominanceMatrix.h>
+#include <utils/moeoObjectiveVectorNormalizer.h>
 #include <utils/moeoObjVecStat.h>
-#include <utils/moeoAnytimeWeightStrategy.h>
-#include <utils/moeoDummyRefPointStrategy.h>
-#include <utils/moeoDummyWeightStrategy.h>
-#include <utils/moeoRandWeightStrategy.h>
-#include <utils/moeoVariableWeightStrategy.h>
-#include <utils/moeoVariableRefPointStrategy.h>
-#include <utils/moeoQexploreWeightStrategy.h>
-#include <utils/moeoAugmentedQexploreWeightStrategy.h>
-#include <utils/moeoFixedTimeOneDirectionWeightStrategy.h>
-#include <utils/moeoFixedTimeBothDirectionWeightStrategy.h>
-#include <utils/moeoDichoWeightStrategy.h>
-
-
 
 #endif /*MOEO_*/

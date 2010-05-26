@@ -42,7 +42,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <moMoveIncrEval.h>
 #include <moMoveSelect.h>
 #include <moeo>
-#include <fitness/moeoIncrEvalSingleObjectivizer.h>
+#include <scalarStuffs/fitness/moeoIncrEvalSingleObjectivizer.h>
 /**
   move explorer for multiobjectives solutions
  */

@@ -1,5 +1,5 @@
 /*
-   <moeoSA.h>
+   <moeoTS.h>
    Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
    (C) OPAC Team, LIFL, 2002-2008
 
@@ -34,40 +34,56 @@
 Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __moeoSA_h
-#define __moeoSA_h
+#ifndef __moeoTS_h
+#define __moeoTS_h
 
+#include <moTS.h>
 #include <eoEvalFunc.h>
-#include <algo/moeoSolAlgo.h>
-#include <moTSMoveLoopExpl.h>
-#include <fitness/moeoSingleObjectivization.h>
-#include <explorer/moeoTSMoveLoopExpl.h>
-#include <moSA.h>
-//! Simulated annealing (SA)
+#include <scalarStuffs/algo/moeoSolAlgo.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/explorer/moeoTSMoveLoopExpl.h>
+//! Tabu Search (TS)
 /*!
-  Generic algorithm that describes a Simulated Annealing algorithm.
-  Adapts the moSA for a multi-objective problem using a moeoSingleObjectivization.
+  Generic algorithm that describes a tabu search.
+  Adapts the moTS for a multi-objective problem using a moeoSingleObjectivization.
   M is for Move
  */
 
 template < class M >
-class moeoSA:public moeoSolAlgo < typename M::EOType >
+class moeoTS:public moeoSolAlgo < typename M::EOType >
 {
 
 	public:
-
 		typedef typename M::EOType MOEOT;
 		typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 		typedef typename MOEOT::Fitness Fitness;
-		moeoSA (moRandMove < M > & _random_move_generator, moMoveIncrEval < M,ObjectiveVector > & _incremental_evaluation, 
-				moSolContinue < MOEOT > & _continue, double _initial_temperature, moCoolingSchedule & _cooling_schedule,
+
+		//! Full constructor.
+		/*!
+		  All the boxes are given in order the TS to use a moTSMoveLoopExpl.
+
+		  \param _move_initializer a move initialiser.
+		  \param _next_move_generator a neighborhood explorer.
+		  \param _incremental_evaluation a (generally) efficient evaluation function.
+		  \param _tabu_list The tabu list.
+		  \param _aspiration_criterion An aspiration criterion.
+		  \param _continue The stopping criterion.
+		  \param _singler a singleObjectivizer to translate objectiveVectors into fitness
+		 */
+		moeoTS (moMoveInit < M > & _move_initializer, moNextMove < M > & _next_move_generator, 
+				moMoveIncrEval < M, typename MOEOT::ObjectiveVector > & _incremental_evaluation, moTabuList < M > & _tabu_list, 
+				moAspirCrit < M > & _aspiration_criterion, moSolContinue < MOEOT > & _continue, 
 				moeoSingleObjectivization<MOEOT> &_singler):
 			incrEval(_singler,_incremental_evaluation),
-			algo(_random_move_generator,incrEval,_continue,_initial_temperature,_cooling_schedule, _singler)
+			moveLoop(_move_initializer,_next_move_generator,incrEval,_tabu_list,_aspiration_criterion),
+			algo(moveLoop,_continue,_singler)
 	{}
+
+		//! Function which launchs the Tabu Search
 		/*!
-		  Algorithm of the SA
-		  As a moHC, it can be used for HYBRIDATION in an evolutionary algorithm.
+		  Algorithm of the tabu search.
+		  As a moSA or a moHC, it can be used for HYBRIDATION in an evolutionary algorithm.
+		  For security a lock (pthread_mutex_t) is closed during the algorithm. 
 
 		  \param _solution a solution to improve.
 		  \return TRUE.
@@ -78,8 +94,9 @@ class moeoSA:public moeoSolAlgo < typename M::EOType >
 
 	private:
 		moeoIncrEvalSingleObjectivizer<MOEOT,M> incrEval;
+		moeoTSMoveLoopExpl<M> moveLoop;
 		//! the actual algo
-		moSA<M> algo;
+		moTS<M> algo;
 
 };
 #endif

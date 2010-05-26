@@ -4,8 +4,7 @@
 
 #include <eo>
 #include <moeo>
-#include <archive/moeoQuickUnboundedArchiveIndex.h> 
-#include <archive/moeoIndexedArchive.h> 
+
 //-----------------------------------------------------------------------------
 
 class ObjectiveVectorTraits : public moeoObjectiveVectorTraits

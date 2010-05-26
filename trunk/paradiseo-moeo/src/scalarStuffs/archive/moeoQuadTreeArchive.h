@@ -69,12 +69,6 @@ public:
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
 
-    /**
-     * Ctor where you can choose your own moeoObjectiveVectorComparator
-     * @param _comparator the functor used to compare objective vectors
-     * @param _epsilon the vector contains epsilon values for each objective
-     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
-     */
     moeoQuadTreeArchive() : moeoArchive < MOEOT >(){}
 
     /**

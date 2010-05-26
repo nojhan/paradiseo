@@ -40,7 +40,7 @@
 #define MOEOQUADTREE_H_
 
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
-#include <archive/moeoArchiveIndex.h>
+#include <scalarStuffs/archive/moeoArchiveIndex.h>
 template < class ObjectiveVector >
 class QuadTreeNode{
 public:

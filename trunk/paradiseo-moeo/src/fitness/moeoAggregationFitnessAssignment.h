@@ -41,7 +41,7 @@
 
 #include <eoPop.h>
 #include <eoEvalFunc.h>
-#include <fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
 
 /*
  * Fitness assignment scheme which use weight foreach objectives

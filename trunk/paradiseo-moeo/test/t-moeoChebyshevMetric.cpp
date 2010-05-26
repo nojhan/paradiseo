@@ -42,7 +42,6 @@
 #include <eo>
 #include <moeo>
 #include <cassert>
-#include <fitness/moeoAggregationFitnessAssignment.h>
 //-----------------------------------------------------------------------------
 
 class ObjectiveVectorTraits : public moeoObjectiveVectorTraits

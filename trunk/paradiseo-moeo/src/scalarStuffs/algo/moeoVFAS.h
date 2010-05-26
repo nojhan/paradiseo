@@ -40,14 +40,14 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <moComparator.h>
 
 #include <eoEvalFunc.h>
-#include <algo/moeoSolAlgo.h>
-#include <fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/algo/moeoSolAlgo.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
 #include <fitness/moeoAggregationFitnessAssignment.h>
-#include <explorer/moeoHCMoveLoopExpl.h>
-#include <utils/moeoVariableWeightStrategy.h>
-#include <utils/moeoVariableRefPointStrategy.h>
-#include <utils/moeoDummyWeightStrategy.h>
-#include <utils/moeoDummyRefPointStrategy.h>
+#include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
+#include <scalarStuffs/weighting/moeoVariableWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoVariableRefPointStrategy.h>
+#include <scalarStuffs/weighting/moeoDummyWeightStrategy.h>
+#include <scalarStuffs/weighting/moeoDummyRefPointStrategy.h>
 //! Variable fitness assignment search (vfas)
 /*!
   Search using multiple fitness assignment to search solution to a multi objective problem
@@ -61,38 +61,36 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 		typedef typename M::EOType MOEOT;
 		typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 		typedef typename MOEOT::Fitness Fitness;
-		/*!
-		  constructor using a moAlgo and a vector of weight
-		  take a base vector of weight, and modify it to relaunch the algo with a diferent fitness
-		  use a selectOne to determine which moeot should be the base for the algo launch
-		  use a eoPop to keep result from each iteration
-		  @param _algorithm The solution based heuristic to use. It should at least use the fitness value at some point.
-		  @param _continue The stopping criterion.
-		  @param _select a selector to choose on which moeot we use the algorithm
-		  @param _weights a vector containing the base weights, which will be changed at each iteration.
-		  @param _eval The evaluation function.
-		  @param _wstrat the strategy to change weights (should be constructed with the same weights as the fitness)
+		/**
+		 * constructor using a moAlgo and a vector of weight
+		 * take a base vector of weight, and modify it to relaunch the algo with a diferent fitness
+		 * use a selectOne to determine which moeot should be the base for the algo launch
+		 * use a eoPop to keep result from each iteration
+		 * @param _algorithm The solution based heuristic to use. It should at least use the fitness value at some point.
+		 * @param _continue The stopping criterion.
+		 * @param _select a selector to choose on which moeot we use the algorithm
+		 * @param _weights a vector containing the base weights, which will be changed at each iteration.
+		 * @param _eval The evaluation function.
+		 * @param _wstrat the strategy to change weights (should be constructed with the same weights as the fitness)
 		 */
 		moeoVFAS (moeoSolAlgo<MOEOT> & _algorithm, eoContinue <MOEOT> & _continue,moeoSelectOne<MOEOT> &_select,
 				std::vector<double> &_weights, eoEvalFunc< MOEOT > &_eval , moeoVariableWeightStrategy<MOEOT> &_wstrat ):
 			algo(_algorithm),cont(_continue), select(_select), weights(_weights),eval(_eval),refPoint(defaultRefPoint), wstrat(_wstrat), rstrat(defaultRstrat)
 	{}
 
-		/*!
-		  constructor using a moAlgo an ObjectiveVector and a vector of weight
-		  take a base vector of weight, and modify it to relaunch the algo with a diferent fitness
-		  use a selectOne to determine which moeot should be the base for the algo launch
-		  use a eoPop to keep result from each iteration
-
-
-		  @param _algorithm The solution based heuristic to use. It should at least use the fitness value at some point.
-		  @param _continue The stopping criterion.
-		  @param _select a selector to choose on which moeot we use the algorithm
-		  @param _weights a vector containing the base weights, which will be changed at each iteration.
-		  @param _refPoint a reference point changed at each iteration
-		  @param _eval The evaluation function.
-		  @param _wstrat the strategy to change weights (should be constructed with the same weights as the fitness)
-		  @param _rstrat the strategy to change the reference point
+		/**
+		 * constructor using a moAlgo an ObjectiveVector and a vector of weight
+		 * take a base vector of weight, and modify it to relaunch the algo with a diferent fitness
+		 * use a selectOne to determine which moeot should be the base for the algo launch
+		 * use a eoPop to keep result from each iteration
+		 * @param _algorithm The solution based heuristic to use. It should at least use the fitness value at some point.
+		 * @param _continue The stopping criterion.
+		 * @param _select a selector to choose on which moeot we use the algorithm
+		 * @param _weights a vector containing the base weights, which will be changed at each iteration.
+		 * @param _refPoint a reference point changed at each iteration
+		 * @param _eval The evaluation function.
+		 * @param _wstrat the strategy to change weights (should be constructed with the same weights as the fitness)
+		 * @param _rstrat the strategy to change the reference point
 		 */
 		moeoVFAS (moeoSolAlgo<MOEOT> & _algorithm, eoContinue <MOEOT> & _continue,moeoSelectOne<MOEOT> &_select,
 				std::vector<double> &_weights, ObjectiveVector &_refPoint, eoEvalFunc< MOEOT > &_eval , moeoVariableWeightStrategy<MOEOT> &_wstrat , moeoVariableRefPointStrategy<MOEOT>& _rstrat):
@@ -100,12 +98,13 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 	{}
 
 		/**
-		  constructor without the weights
-		  @param _algorithm The solution based heuristic to use. It should at least use the fitness value at some point.
-		  @param _continue The stopping criterion.
-		  @param _select a selector to choose on which moeot we use the algorithm
-		  @param _eval The evaluation function.
-		  **/
+		 * constructor without the weights
+		 * @param _algorithm The solution based heuristic to use. It should at least use the fitness value at some point.
+		 * @param _continue The stopping criterion.
+		 * @param _select a selector to choose on which moeot we use the algorithm
+		 * @param _eval The evaluation function.
+		 * @param _wstrat the strategy to change weights (should be constructed with the same weights as the fitness)
+		 */
 		moeoVFAS (moeoSolAlgo<MOEOT> & _algorithm, eoContinue <MOEOT> & _continue,moeoSelectOne<MOEOT> &_select,
 				eoEvalFunc< MOEOT > &_eval, moeoVariableWeightStrategy<MOEOT> &_wstrat):
 			algo(_algorithm),cont(_continue), select(_select), weights(defaultWeights), eval(_eval), refPoint(defaultRefPoint), wstrat(defaultWstrat), rstrat(defaultRstrat)

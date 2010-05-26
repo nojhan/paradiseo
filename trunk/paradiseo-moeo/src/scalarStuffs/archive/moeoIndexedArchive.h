@@ -3,7 +3,7 @@
 
 #include <eoPop.h>
 #include <archive/moeoArchive.h>
-#include <archive/moeoArchiveIndex.h>
+#include <scalarStuffs/archive/moeoArchiveIndex.h>
 
 /**
  * Archive used for 2 dimension vectors which remove pareto dominated values

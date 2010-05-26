@@ -41,6 +41,7 @@
 
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <metric/moeoMetric.h>
+#include <metric/moeoVecVsVecEpsilonBinaryMetric.h>
 
 /**
  * moeoVecVsVecAdditiveEpsilonBinaryMetric is the implementation of moeoVecVsVecEpsilonBinaryMetric whose calculate an additive epsilon indicator

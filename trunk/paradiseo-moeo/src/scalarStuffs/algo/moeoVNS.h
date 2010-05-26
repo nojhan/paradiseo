@@ -1,5 +1,5 @@
 /*
-   <moeoTS.h>
+   <moeoVNS.h>
    Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
    (C) OPAC Team, LIFL, 2002-2008
 
@@ -34,69 +34,53 @@
 Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __moeoTS_h
-#define __moeoTS_h
+#ifndef _moeoVNS_h
+#define _moeoVNS_h
 
-#include <moTS.h>
+#include <moAlgo.h>
 #include <eoEvalFunc.h>
-#include <algo/moeoSolAlgo.h>
-#include <fitness/moeoSingleObjectivization.h>
-#include <explorer/moeoTSMoveLoopExpl.h>
-//! Tabu Search (TS)
+#include <scalarStuffs/algo/moeoSolAlgo.h>
+#include <moHCMoveLoopExpl.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
+//! Variable Neighbors Search (VNS)
 /*!
-  Generic algorithm that describes a tabu search.
-  Adapts the moTS for a multi-objective problem using a moeoSingleObjectivization.
+  Class which describes the algorithm for a Variable Neighbors Search.
+  Adapts the moVNS for a multi-objective problem using a moeoSingleObjectivization.
   M is for Move
  */
 
-template < class M >
-class moeoTS:public moeoSolAlgo < typename M::EOType >
+template < class MOEOT >
+class moeoVNS:public moeoSolAlgo < MOEOT >
 {
 
 	public:
-		typedef typename M::EOType MOEOT;
+//		typedef typename M::EOType MOEOT;
 		typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 		typedef typename MOEOT::Fitness Fitness;
-
-		//! Full constructor.
+		//! Generic constructor
 		/*!
-		  All the boxes are given in order the TS to use a moTSMoveLoopExpl.
+		  Generic constructor using a moExpl
 
-		  \param _move_initializer a move initialiser.
-		  \param _next_move_generator a neighborhood explorer.
-		  \param _incremental_evaluation a (generally) efficient evaluation function.
-		  \param _tabu_list The tabu list.
-		  \param _aspiration_criterion An aspiration criterion.
-		  \param _continue The stopping criterion.
-		  \param _singler a singleObjectivizer to translate objectiveVectors into fitness
+		  \param _explorer Vector of Neighborhoods.
+		  \param _full_evaluation The singleObjectivization containing a full eval.
 		 */
-		moeoTS (moMoveInit < M > & _move_initializer, moNextMove < M > & _next_move_generator, 
-				moMoveIncrEval < M, typename MOEOT::ObjectiveVector > & _incremental_evaluation, moTabuList < M > & _tabu_list, 
-				moAspirCrit < M > & _aspiration_criterion, moSolContinue < MOEOT > & _continue, 
-				moeoSingleObjectivization<MOEOT> &_singler):
-			incrEval(_singler,_incremental_evaluation),
-			moveLoop(_move_initializer,_next_move_generator,incrEval,_tabu_list,_aspiration_criterion),
-			algo(moveLoop,_continue,_singler)
-	{}
-
-		//! Function which launchs the Tabu Search
+		moeoVNS(moExpl< MOEOT> & _explorer, moeoSingleObjectivization < MOEOT> & _full_evaluation): algo(_explorer,_full_evaluation) {}
+		
+		//! Function which launches the VNS
 		/*!
-		  Algorithm of the tabu search.
-		  As a moSA or a moHC, it can be used for HYBRIDATION in an evolutionary algorithm.
-		  For security a lock (pthread_mutex_t) is closed during the algorithm. 
+		  The VNS has to improve a current solution.
 
-		  \param _solution a solution to improve.
-		  \return TRUE.
+		  \param _solution a current solution to improve.
+		  \return true.
 		 */
 		bool operator()(MOEOT &_solution){
 			return algo(_solution);
 		}
 
 	private:
-		moeoIncrEvalSingleObjectivizer<MOEOT,M> incrEval;
-		moeoTSMoveLoopExpl<M> moveLoop;
 		//! the actual algo
-		moTS<M> algo;
+		moVNS<MOEOT> algo;
 
 };
 #endif

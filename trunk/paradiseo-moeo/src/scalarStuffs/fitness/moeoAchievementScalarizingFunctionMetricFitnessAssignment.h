@@ -40,8 +40,8 @@
 #define MOEOASFAFITNESSASSIGNMENT_H_
 
 #include <eoPop.h>
-#include <fitness/moeoSingleObjectivization.h>
-#include <distance/moeoAchievementScalarizingFunctionDistance.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/distance/moeoAchievementScalarizingFunctionDistance.h>
 #include <metric/moeoDistanceMetric.h>
 #include <utils/moeoObjectiveVectorNormalizer.h>
 

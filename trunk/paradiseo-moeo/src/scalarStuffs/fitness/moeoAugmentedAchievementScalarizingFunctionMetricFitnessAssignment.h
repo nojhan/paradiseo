@@ -1,5 +1,5 @@
 /*
- * <moeoWeightedChebychevMetricFitnessAssignment.h>
+ * <moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment.h>
  * Copyright (C) DOLPHIN Project-Team, INRIA Lille-Nord Europe, 2006-2008
  * (C) OPAC Team, LIFL, 2002-2008
  *
@@ -34,76 +34,79 @@
  *
  */
 //-----------------------------------------------------------------------------
-// moeoWeightedChebychevMetricFitnessAssignment.h
+// moeoAugmentedScalarizingFunctionMetricFitnessAssignment.h
 //-----------------------------------------------------------------------------
-#ifndef MOEOCHEVMETRICFITNESSASSIGNMENT_H_
-#define MOEOCHEVMETRICFITNESSASSIGNMENT_H_
+#ifndef MOEOAUGASFAFITNESSASSIGNMENT_H_
+#define MOEOAUGASFAFITNESSASSIGNMENT_H_
 
 #include <moeo>
 #include <eo>
 #include <vector>
 #include <eoPop.h>
-#include <fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
 #include <utils/moeoObjectiveVectorNormalizer.h>
-#include <distance/moeoWeightedChebychevDistance.h>
+#include <scalarStuffs/distance/moeoAugmentedAchievementScalarizingFunctionDistance.h>
 
 /*
  * Fitness assignment scheme which use a metric
  */
 template < class MOEOT>
-class moeoWeightedChebychevMetricFitnessAssignment : public moeoSingleObjectivization < MOEOT >
+class moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment : public moeoSingleObjectivization < MOEOT >
 {
 	public:
+
 
 		/** the objective vector type of the solutions */
 		typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 		typedef typename MOEOT::Fitness Fitness;
 		typedef typename ObjectiveVector::Type Type;
 
+
 		/**
 		 * ctor with normalizer
-		 * @param _rho
-		 * @param _reference the reference point
-		 * @param _weight the weights applied to the objectives
 		 * @param _normalizer the normalizer to apply to objectiveVectors
-		 */
-		moeoWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight, moeoObjectiveVectorNormalizer<MOEOT>& _normalizer) : normalizer(_normalizer), eval(defaultEval), distance(_rho, _weight), metric(distance, _reference, _normalizer){}
-
-		/**
-		 * ctor with an evaluation fonction, applied if give moeot is invalid
 		 * @param _rho
 		 * @param _reference the reference point
 		 * @param _weight the weights applied to the objectives
+		 */
+		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho,const ObjectiveVector &_reference,const ObjectiveVector &_weight,moeoObjectiveVectorNormalizer<MOEOT> &_normalizer) : normalizer(_normalizer),eval(defaultEval), distance(_rho,_weight), metric(distance,_reference,normalizer)
+	{}
+		/**
+		 * ctor with an evaluing fonction, applied if give moeot is invalid
 		 * @param _eval a evalFunc to regenerate the objectiveVector if needed
-		 */
-		moeoWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight, eoEvalFunc<MOEOT>& _eval) : normalizer(defaultNormalizer), eval(_eval), distance(_rho, _weight), metric(distance, _reference, normalizer){}
-
-		/**
-		 * ctor with an evaluation fonction, applied if give moeot is invalid, and a noramlizer, applied to ObjectiveVectors
 		 * @param _rho
 		 * @param _reference the reference point
 		 * @param _weight the weights applied to the objectives
+		 */
+		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector &_reference,const ObjectiveVector &_weight,eoEvalFunc<MOEOT> &_eval) : normalizer(defaultNormalizer), eval(_eval), distance(_rho,_weight), metric(distance,_reference,normalizer)
+	{}
+		/**
+		 * ctor with an evaluing fonction, applied if give moeot is invalid, and a noramlizer, applied to ObjectiveVectors
+		 * @param _eval a evalFunc to regenerate the objectiveVector if needed
 		 * @param _normalizer the normalizer to apply to objectiveVectors
-		 * @param _eval a evalFunc to regenerate the objectiveVector if needed
+		 * @param _rho
+		 * @param _reference the reference point
+		 * @param _weight the weights applied to the objectives
 		 */
-		moeoWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight, moeoObjectiveVectorNormalizer<MOEOT>& _normalizer, eoEvalFunc<MOEOT>& _eval) : normalizer(_normalizer), eval(_eval), distance(_rho, _weight), metric(distance, _reference, normalizer){}
-
+		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector &_reference,const ObjectiveVector &_weight,moeoObjectiveVectorNormalizer<MOEOT> &_normalizer,eoEvalFunc<MOEOT> &_eval) :normalizer(_normalizer),eval(_eval), distance(_rho,_weight), metric(distance,_reference,normalizer)
+	{}
 		/**
 		  default constructor
 		 * @param _rho
 		 * @param _reference the reference point
 		 * @param _weight the weights applied to the objectives
 		  */
-		moeoWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight) : normalizer(defaultNormalizer), eval(defaultEval), distance(_rho, _weight), metric(distance, _reference, normalizer){}
+		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector &_reference,const ObjectiveVector &_weight) : normalizer(defaultNormalizer), eval(defaultEval), distance(_rho,_weight), metric(distance,_reference,normalizer)
+	{}
 
 		 /** 
 		  * Sets the fitness values for a moeot
 		  * @param _mo the MOEOT
 		  */
 		void operator()(MOEOT &  _mo){
-			if (_mo.invalidObjectiveVector())
-				eval(_mo);
+			if (_mo.invalidObjectiveVector()) eval(_mo);
 			_mo.fitness(operator()(_mo.objectiveVector()));
+
 		}
 
 		/**
@@ -115,21 +118,30 @@ class moeoWeightedChebychevMetricFitnessAssignment : public moeoSingleObjectiviz
 			return -metric(_mo);
 		}
 
+
 		/**
-		 * Sets the fitness values for every solution contained in the population _pop  (and in the archive)
-		 * @param _pop the population
+		 * Sets the fitness values for every solution contained in the populing _pop  (and in the archive)
+		 * @param _pop the populing
 		 */
 		void operator()(eoPop < MOEOT > & _pop)
 		{
-			for (unsigned int k=0; k < _pop.size(); k++)
+			unsigned int pop_size= _pop.size();
+			for (unsigned int k=0; k<pop_size; k++){
 				operator()(_pop[k]);
+			}
 		}
 
+
+
+
 		/**
-		 * @param _pop the population
+		 * @param _pop the populing
 		 * @param _objVec the objective vector
 		 */
-		void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec){}
+		void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+		{
+		}
+
 
 	private:
 
@@ -139,10 +151,11 @@ class moeoWeightedChebychevMetricFitnessAssignment : public moeoSingleObjectiviz
 		} defaultEval;
 
 		moeoObjectiveVectorNormalizer<MOEOT> defaultNormalizer;
-		moeoObjectiveVectorNormalizer<MOEOT>& normalizer;
+		moeoObjectiveVectorNormalizer<MOEOT> &normalizer;
 		eoEvalFunc<MOEOT> &eval;
-		moeoWeightedChebychevDistance<MOEOT> distance;
+		moeoAugmentedAchievementScalarizingFunctionDistance<MOEOT> distance;
 		moeoDistanceMetric<MOEOT> metric;
+
 };
 
-#endif /*moeoWeightedChebychevMetricFitnessASSIGNMENT_H_*/
+#endif /*moeoAugmentedScalarizingFunctionMetricFitnessASSIGNMENT_H_*/

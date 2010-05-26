@@ -1,5 +1,5 @@
 /*
-   <moeoVNS.h>
+   <moeoHC.h>
    Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
    (C) OPAC Team, LIFL, 2002-2008
 
@@ -34,53 +34,66 @@
 Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef _moeoVNS_h
-#define _moeoVNS_h
-
-#include <moAlgo.h>
-#include <eoEvalFunc.h>
-#include <algo/moeoSolAlgo.h>
-#include <moHCMoveLoopExpl.h>
-#include <fitness/moeoSingleObjectivization.h>
-#include <explorer/moeoHCMoveLoopExpl.h>
-//! Variable Neighbors Search (VNS)
+#ifndef __moeoHC_h
+#define __moeoHC_h
+#include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/fitness/moeoIncrEvalSingleObjectivizer.h>
+#include <scalarStuffs/algo/moeoSolAlgo.h>
+#include <moHC.h>
+//! Hill Climbing (HC)
 /*!
-  Class which describes the algorithm for a Variable Neighbors Search.
-  Adapts the moVNS for a multi-objective problem using a moeoSingleObjectivization.
+  Class which describes the algorithm for a hill climbing.
+  Adapts the moHC for a multi-objective problem using a moeoSingleObjectivization.
   M is for Move
  */
-
-template < class MOEOT >
-class moeoVNS:public moeoSolAlgo < MOEOT >
+template <class M>
+class moeoHC : public moeoSolAlgo < typename M::EOType >
 {
 
 	public:
-//		typedef typename M::EOType MOEOT;
+		typedef typename M::EOType MOEOT;
 		typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 		typedef typename MOEOT::Fitness Fitness;
-		//! Generic constructor
-		/*!
-		  Generic constructor using a moExpl
 
-		  \param _explorer Vector of Neighborhoods.
-		  \param _full_evaluation The singleObjectivization containing a full eval.
-		 */
-		moeoVNS(moExpl< MOEOT> & _explorer, moeoSingleObjectivization < MOEOT> & _full_evaluation): algo(_explorer,_full_evaluation) {}
-		
-		//! Function which launches the VNS
+		//! Full constructor.
 		/*!
-		  The VNS has to improve a current solution.
+		  All the boxes are given in order the HC to use a moHCMoveLoopExpl.
+
+		  \param _move_initializer a move initialiser.
+		  \param _next_move_generator a neighborhood explorer.
+		  \param _incremental_evaluation a (generally) efficient evaluation function.
+		  \param _move_selection a move selector.
+		  \param _singler a singleObjectivizer to translate objectiveVectors into fitness
+		 */
+		moeoHC (moMoveInit < M > & _move_initializer, moNextMove < M > & _next_move_generator,
+				moMoveIncrEval < M,ObjectiveVector > & _incremental_evaluation, moMoveSelect < M > & _move_selection, moeoSingleObjectivization < MOEOT > & _singler) :
+			incrEval((new moeoIncrEvalSingleObjectivizer<MOEOT,M>(_singler,_incremental_evaluation))),
+			moveLoop(new moeoHCMoveLoopExpl<M>(_move_initializer,_next_move_generator,*(incrEval),_move_selection)),
+			algo(*(moveLoop), (_singler))
+	{}
+		//! Function which launches the HC
+		/*!
+		  The HC has to improve a current solution.
+		  As the moSA and the mo TS, it can be used for HYBRIDATION in an evolutionnary algorithm.
 
 		  \param _solution a current solution to improve.
 		  \return true.
 		 */
+
 		bool operator()(MOEOT &_solution){
+			if (_solution.invalidObjectiveVector()) {
+				(*incrEval)(_solution);
+			}else{
+			}
 			return algo(_solution);
 		}
 
 	private:
+		moeoIncrEvalSingleObjectivizer<MOEOT,M> *incrEval;
+		moeoHCMoveLoopExpl<M> *moveLoop;
 		//! the actual algo
-		moVNS<MOEOT> algo;
+		moHC<M> algo;
 
 };
 #endif

@@ -43,7 +43,7 @@
 #include <eo>
 #include <vector>
 #include <eoPop.h>
-#include <fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
 #include <utils/moeoObjectiveVectorNormalizer.h>
 
 /*

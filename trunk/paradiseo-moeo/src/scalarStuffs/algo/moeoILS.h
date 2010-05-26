@@ -37,18 +37,18 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moeoILS_h
 #define _moeoILS_h
 
-#include <moILS.h>
 #include <moComparator.h>
-
-#include <algo/moeoHC.h>
-#include <algo/moeoTS.h>
-#include <algo/moeoSA.h>
-#include <eoEvalFunc.h>
-#include <algo/moeoSolAlgo.h>
-#include <moHCMoveLoopExpl.h>
-#include <fitness/moeoSingleObjectivization.h>
-#include <explorer/moeoHCMoveLoopExpl.h>
 #include <moILS.h>
+
+
+#include <scalarStuffs/algo/moeoHC.h>
+#include <scalarStuffs/algo/moeoTS.h>
+#include <scalarStuffs/algo/moeoSA.h>
+#include <eoEvalFunc.h>
+#include <scalarStuffs/algo/moeoSolAlgo.h>
+#include <moHCMoveLoopExpl.h>
+#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
 
 //! Iterated Local Search (ILS)
 /*!
