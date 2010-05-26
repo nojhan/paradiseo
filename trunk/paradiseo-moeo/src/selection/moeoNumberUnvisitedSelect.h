@@ -52,7 +52,7 @@ class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
 public:
 
 	/**
-	 * Ctor
+	 * Constructor
 	 * @param _number the number of individuals to select
 	 */
     moeoNumberUnvisitedSelect(unsigned int _number): number(_number){}

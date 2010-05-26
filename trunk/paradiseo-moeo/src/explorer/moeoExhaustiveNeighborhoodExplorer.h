@@ -59,9 +59,9 @@ class moeoExhaustiveNeighborhoodExplorer : public moeoPopNeighborhoodExplorer <N
 public:
 
 	/**
-	 * Ctor
+	 * Constructor
 	 * @param _neighborhood a neighborhood
-	 * @param _eval neighbor evaluation funtion
+	 * @param _eval neighbor evaluation function
 	 */
     moeoExhaustiveNeighborhoodExplorer(
     	moNeighborhood<Neighbor>& _neighborhood,
@@ -121,7 +121,7 @@ private:
 	Neighbor neighbor;
 	/** Neighborhood */
 	moNeighborhood<Neighbor>& neighborhood;
-    /** the incremental evaluation */
+	/** neighbor evaluation function */
     moEval < Neighbor > & eval;
 
 };

@@ -59,9 +59,10 @@ class moeoSimpleSubNeighborhoodExplorer : public moeoSubNeighborhoodExplorer < N
 public:
 
 	/**
-	 * Ctor
+	 * Constructor
 	 * @param _neighborhood a neighborhood
-	 * @param _eval an neighbor evaluation function
+	 * @param _number number of neighbor to explore
+	 * @param _eval a neighbor evaluation function
 	 */
     moeoSimpleSubNeighborhoodExplorer(
 			moNeighborhood<Neighbor>& _neighborhood,

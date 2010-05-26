@@ -51,9 +51,6 @@ class moeoExhaustiveUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
 
 public:
 
-	/**
-	 * Default ctor
-	 */
     moeoExhaustiveUnvisitedSelect(){}
 
     /**

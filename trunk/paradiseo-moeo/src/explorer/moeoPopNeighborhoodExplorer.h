@@ -51,7 +51,7 @@ public:
 
 	typedef typename Neighbor::EOT MOEOT;
 	/**
-	 * abstract functor which realise exploration
+	 * abstract functor which realize exploration
 	 */
 	virtual void operator()(eoPop<MOEOT> &, std::vector <unsigned int>, eoPop<MOEOT> &) = 0;
 

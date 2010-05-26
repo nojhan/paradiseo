@@ -58,7 +58,7 @@ class moeoNoDesimprovingNeighborhoodExplorer : public moeoSubNeighborhoodExplore
 public:
 
 	/**
-	 * Ctor
+	 * Constructor
 	 * @param _neighborhood a neighborhood
 	 * @param _eval a neighbor evaluation function
 	 */
@@ -105,7 +105,7 @@ private:
 
 	/** Objective Vector Pareto Comparator */
 	moeoParetoObjectiveVectorComparator<ObjectiveVector> comparator;
-	/** Incremental evaluation of a neighbor */
+	/** neighbor evaluation function */
 	moEval < Neighbor > & eval;
 };
 

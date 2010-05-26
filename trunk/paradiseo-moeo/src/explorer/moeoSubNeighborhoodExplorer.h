@@ -58,7 +58,7 @@ class moeoSubNeighborhoodExplorer : public moeoPopNeighborhoodExplorer < Neighbo
 public:
 
 	/**
-	 * Ctor
+	 * Constructor
 	 * @param _neighborhood a neighborhood
 	 * @param _number the number of neighbor to explore
 	 */
