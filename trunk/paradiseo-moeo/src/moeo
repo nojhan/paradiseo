@@ -133,7 +133,6 @@
 
 #include <fitness/moeoAchievementFitnessAssignment.h>
 #include <fitness/moeoAggregationFitnessAssignment.h>
-#include <fitness/moeoAggregativeFitnessAssignment.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoConstraintFitnessAssignment.h>
 #include <fitness/moeoCriterionBasedFitnessAssignment.h>
