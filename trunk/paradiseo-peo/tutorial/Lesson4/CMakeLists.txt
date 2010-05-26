@@ -38,7 +38,7 @@ EXECUTE_PROCESS(
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src  ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src)
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src ${OLDMO_SRC_DIR}/src ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src)
 
 ######################################################################################
 

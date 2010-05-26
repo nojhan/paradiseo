@@ -38,7 +38,7 @@
 #define __peo_h_
 
 #include <eo>
-#include <mo>
+#include <oldmo>
 #include <moeo>
 
 /** @mainpage Welcome to Paradiseo-PEO

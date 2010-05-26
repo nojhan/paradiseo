@@ -40,7 +40,7 @@
  * 
  */ 
 
-#include <mo>
+#include <oldmo>
 #include <peo>
 #include <string>
 #include "QAP.h"

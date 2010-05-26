@@ -34,7 +34,7 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <mo>
+#include <oldmo>
 #include <peo>
 #include <time.h>
 

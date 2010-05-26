@@ -37,7 +37,7 @@
 #ifndef MOVE_H
 #define MOVE_H
 
-#include <mo.h>
+#include <oldmo.h>
 #include <eo>
 #include "QAP.h"
 
