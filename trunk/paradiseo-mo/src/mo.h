@@ -148,6 +148,8 @@
 #include <perturb/moSolInit.h>
 
 #include <problems/bitString/moBitNeighbor.h>
+#include <problems/bitString/moPopBitNeighbor.h>
+#include <problems/bitString/moPopSol.h>
 #include <problems/eval/moOneMaxIncrEval.h>
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>

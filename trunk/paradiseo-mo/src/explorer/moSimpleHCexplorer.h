@@ -143,8 +143,10 @@ public:
     virtual void move(EOT & _solution) {
         //move the solution
         (*best).move(_solution);
+
         //update its fitness
         _solution.fitness((*best).fitness());
+
     };
 
     /**

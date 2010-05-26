@@ -57,6 +57,7 @@ public:
      */
     virtual void move(EOT & _solution) {
         _solution[key] = !_solution[key];
+        _solution.invalidate();
     }
 
     /**
