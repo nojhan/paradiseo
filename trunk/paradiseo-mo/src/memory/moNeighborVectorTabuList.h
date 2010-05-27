@@ -116,6 +116,12 @@ public:
         index = 0;
     }
 
+    void print(){
+    	std::cout << "TAbulist:" << std::endl;
+    	for(int i=0; i<tabuList.size(); i++)
+    		std::cout << i << ": " << tabuList[0].first.index() << std::endl;
+    }
+
 
 private:
     //tabu list
