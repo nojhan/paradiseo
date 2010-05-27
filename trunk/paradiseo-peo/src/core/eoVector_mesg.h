@@ -156,45 +156,45 @@ template <class Traits, class Type> void unpack (moeoObjectiveVector<Traits,Type
         unpack (_objVec[i]);
 }
 
-template <class ObjectiveVector, class Fitness, class Diversity, class Type> void unpack(moeoVector <ObjectiveVector, Fitness, Diversity, Type> & _v)
-{
-  unsigned int valid;
-  unsigned len;
-//   unpack(valid);
-//   if (! valid)
-//     _v.invalidateFitness();
+//template <class ObjectiveVector, class Fitness, class Diversity, class Type> void unpack(moeoVector <ObjectiveVector, Fitness, Diversity, Type> & _v)
+//{
+//  unsigned int valid;
+//  unsigned len;
+////   unpack(valid);
+////   if (! valid)
+////     _v.invalidateFitness();
+////   else
+////     {
+////       Fitness fit;
+////       unpack (fit);
+////  std::cerr << "fit = " << fit << std::endl;
+////       _v.fitness (fit);
+////     }
+//
+//  //Unpack fitness and diversity
+//
+////   unpack(valid);
+////   if (! valid)
+////     _v.invalidateDiversity();
+////   else
+////     {
+////       V diver;
+////       unpack(diver);
+////       _v.diversity(diver);
+////     }
+//  //Unpack Objective Vector
+// unpack(valid);
+//  if (! valid)
+//     _v.invalidateObjectiveVector();
 //   else
 //     {
-//       Fitness fit;
-//       unpack (fit);
-//  std::cerr << "fit = " << fit << std::endl;
-//       _v.fitness (fit);
-//     }
-
-  //Unpack fitness and diversity
-
-//   unpack(valid);
-//   if (! valid)
-//     _v.invalidateDiversity();
-//   else
-//     {
-//       V diver;
-//       unpack(diver);
-//       _v.diversity(diver);
-//     }
-  //Unpack Objective Vector
- unpack(valid);
-  if (! valid)
-     _v.invalidateObjectiveVector();
-   else
-     {
-       unpack(_v.objectiveVector());
-    }
-  unpack (len);
-  _v.resize (len);
-  for (unsigned i = 0 ; i < len; i ++)
-    unpack (_v [i]);
-}
+//       unpack(_v.objectiveVector());
+//    }
+//  unpack (len);
+//  _v.resize (len);
+//  for (unsigned i = 0 ; i < len; i ++)
+//    unpack (_v [i]);
+//}
 
 
 
@@ -211,39 +211,111 @@ template <class Traits, class Type> void pack (const moeoObjectiveVector<Traits,
 
 }
 
-template <class ObjectiveVector, class Fitness, class Diversity, class Type> void pack(const moeoVector <ObjectiveVector, Fitness, Diversity, Type> & _v)
+//template <class ObjectiveVector, class Fitness, class Diversity, class Type> void pack(const moeoVector <ObjectiveVector, Fitness, Diversity, Type> & _v)
+//{
+//  unsigned int len;
+////Pack fitness : in comment but maybe useful in the future
+////    if (_v.invalidFitness())
+////      pack((unsigned int) 0);
+////    else
+////      {
+////        pack((unsigned int) 1);
+//// 	std::cerr << "FITENNESSS" << _v.fitness() << std::endl;
+////        pack (_v.fitness());
+////      }
+//// //Pack diversity
+////   if (_v.invalidDiversity())
+////     pack((unsigned)0);
+////   else
+////     {
+////       pack((unsigned)1);
+////       pack(_v.diversity());
+////     }
+//  if (_v.invalidObjectiveVector())
+//    pack((unsigned int) 0);
+//  else
+//  {
+//     pack((unsigned int) 1);
+//      pack(_v.objectiveVector());
+//  }
+//  len = _v.size ();
+//  pack (len);
+//  for (unsigned i = 0 ; i < len; i ++)
+//    pack (_v[i]);
+//}
+template <class F, class T, class V, class W> void pack (moeoVector <F,T,V,W> &_v)
 {
-  unsigned int len;
-//Pack fitness : in comment but maybe useful in the future
-//    if (_v.invalidFitness())
-//      pack((unsigned int) 0);
-//    else
-//      {
-//        pack((unsigned int) 1);
-// 	std::cerr << "FITENNESSS" << _v.fitness() << std::endl;
-//        pack (_v.fitness());
-//      }
-// //Pack diversity 
-//   if (_v.invalidDiversity())
-//     pack((unsigned)0);
-//   else
-//     {
-//       pack((unsigned)1);
-//       pack(_v.diversity());
-//     }
-  if (_v.invalidObjectiveVector())
-    pack((unsigned int) 0);
+  if (_v.invalid())
+    pack((unsigned)0);
   else
-  {
-     pack((unsigned int) 1);
-      pack(_v.objectiveVector());
-  }
-  len = _v.size ();
+    {
+      pack((unsigned)1);
+      pack (_v.fitness ());
+    }
+  if (_v.invalidDiversity())
+    pack((unsigned)0);
+  else
+    {
+      pack((unsigned)1);
+      pack(_v.diversity());
+    }
+  unsigned len = _v.size ();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
     pack (_v[i]);
+  if (_v.invalidObjectiveVector())
+    pack((unsigned)0);
+  else
+    {
+      pack((unsigned)1);
+      F object;
+      object=_v.objectiveVector();
+      len=object.nObjectives();
+      pack (len);
+      for (unsigned i = 0 ; i < len; i ++)
+        pack (object[i]);
+    }
 }
 
+template <class F, class T, class V, class W> void unpack (moeoVector <F,T,V,W> &_v)
+{
+  unsigned valid;
+  unpack(valid);
+  if (! valid)
+    _v.invalidate();
+  else
+    {
+      T fit;
+      unpack (fit);
+      _v.fitness (fit);
+    }
+  unpack(valid);
+  if (! valid)
+    _v.invalidateDiversity();
+  else
+    {
+      V diver;
+      unpack(diver);
+      _v.diversity(diver);
+    }
+  unsigned len;
+  unpack (len);
+  _v.resize (len);
+  for (unsigned i = 0 ; i < len; i ++)
+    unpack (_v [i]);
+  unpack(valid);
+  if (! valid)
+    _v.invalidateObjectiveVector();
+  else
+    {
+      F object;
+      unpack (len);
+      object.resize(len);
+      for (unsigned i = 0 ; i < len; i ++)
+        unpack (object[i]);
+      _v.objectiveVector(object);
+    }
+}
 
 /*
 template <class F, class T, class V, class W> void unpack (moeoVector <F,T,V,W> &_v)

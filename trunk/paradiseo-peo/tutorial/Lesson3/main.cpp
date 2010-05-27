@@ -129,7 +129,7 @@ void main_function(int argc, char **argv)
   
   eoGenContinue<Problem> genCont(param.maxGen); // generation continuation
  
-  eoEasyEA<Problem> gga(genCont, plainEval, select, transform, replace);
+  eoEasyEA<Problem> gga(genCont, eval, select, transform, replace);
 
   // PEO ADD
   peo :: init( argc, argv );

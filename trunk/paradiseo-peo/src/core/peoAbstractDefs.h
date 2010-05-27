@@ -54,7 +54,7 @@ struct AbstractEntity
     template < typename EntityType > operator EntityType& ()
     {
 
-      return ( dynamic_cast< Entity< EntityType >& >( *this ) ).entity;
+      return ( reinterpret_cast< Entity< EntityType >& >( *this ) ).entity;
     }
   };
 
