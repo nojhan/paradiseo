@@ -48,7 +48,7 @@ public:
      * @param _maxSize maximum size of the tabu list
      * @param _howlong how many iteration a move is tabu (0 -> no limits)
      */
-    moNeighborVectorTabuList(unsigned int _maxSize, unsigned int _howlong) : maxSize(_maxSize), howlong(_howlong) {
+    moNeighborVectorTabuList(unsigned int _maxSize, unsigned int _howlong) : maxSize(_maxSize), howlong(_howlong), index(0) {
         tabuList.reserve(_maxSize);
         tabuList.resize(0);
     }
@@ -119,7 +119,7 @@ public:
     void print(){
     	std::cout << "TAbulist:" << std::endl;
     	for(int i=0; i<tabuList.size(); i++)
-    		std::cout << i << ": " << tabuList[0].first.index() << std::endl;
+    		std::cout << i << ": " << tabuList[i].first.index() << std::endl;
     }
 
 

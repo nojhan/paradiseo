@@ -53,16 +53,12 @@ int main() {
     n3.index(2);
     n4.index(3);
 
-    std::cout << n1.index() << std::endl;
-
     //n1 must be tabu
     test.add(sol, n1);
     assert(test.check(sol, n1));
     assert(!test.check(sol, n2));
     assert(!test.check(sol, n3));
     assert(!test.check(sol, n4));
-
-    test.print();
 
     //n1 and n2 must be tabu
     test.add(sol, n2);
@@ -71,25 +67,12 @@ int main() {
     assert(!test.check(sol, n3));
     assert(!test.check(sol, n4));
 
-    test.print();
-
     //n3 is added, so it replace n1 -> n2 and n3 must be tabu
     test.add(sol, n3);
-    if(test.check(sol, n1))
-    	std::cout << "n1 is in tabuList" << std::endl;
-    if(test.check(sol, n2))
-    	std::cout << "n2 is in tabuList" << std::endl;
-    if(test.check(sol, n3))
-    	std::cout << "n3 is in tabuList" << std::endl;
-    if(test.check(sol, n4))
-    	std::cout << "n4 is in tabuList" << std::endl;
-
-    test.print();
-
-//    assert(!test.check(sol, n1));
-//    assert(test.check(sol, n2));
-//    assert(test.check(sol, n3));
-//    assert(!test.check(sol, n4));
+    assert(!test.check(sol, n1));
+    assert(test.check(sol, n2));
+    assert(test.check(sol, n3));
+    assert(!test.check(sol, n4));
 
     //clear tabu list all neighbor must not be tabu
     test.init(sol);
