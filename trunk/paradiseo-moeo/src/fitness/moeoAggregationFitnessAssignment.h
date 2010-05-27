@@ -41,10 +41,10 @@
 
 #include <eoPop.h>
 #include <eoEvalFunc.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 
 /*
- * Fitness assignment scheme which use weight foreach objectives
+ * Fitness assignment scheme which use weight for each objective
  */
 template < class MOEOT >
 class moeoAggregationFitnessAssignment : public moeoSingleObjectivization < MOEOT >

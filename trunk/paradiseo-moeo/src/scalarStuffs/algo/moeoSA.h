@@ -40,7 +40,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eoEvalFunc.h>
 #include <scalarStuffs/algo/moeoSolAlgo.h>
 #include <moTSMoveLoopExpl.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <scalarStuffs/explorer/moeoTSMoveLoopExpl.h>
 #include <moSA.h>
 //! Simulated annealing (SA)

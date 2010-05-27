@@ -40,7 +40,7 @@
 #define MOEOCONSTRAINTFITNESSASSIGNMENT_H_
 
 #include <eoPop.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <utils/moeoObjectiveVectorNormalizer.h>
 
 /*

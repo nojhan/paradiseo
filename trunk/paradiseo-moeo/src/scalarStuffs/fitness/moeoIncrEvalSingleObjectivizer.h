@@ -42,7 +42,7 @@
 #include <eo>
 #include <moMoveIncrEval.h>
 #include <fitness/moeoFitnessAssignment.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <eoEvalFunc.h>
 
 /**

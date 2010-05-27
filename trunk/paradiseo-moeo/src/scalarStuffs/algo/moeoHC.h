@@ -37,7 +37,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef __moeoHC_h
 #define __moeoHC_h
 #include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <scalarStuffs/fitness/moeoIncrEvalSingleObjectivizer.h>
 #include <scalarStuffs/algo/moeoSolAlgo.h>
 #include <moHC.h>

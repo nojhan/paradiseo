@@ -41,7 +41,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <eoEvalFunc.h>
 #include <scalarStuffs/algo/moeoSolAlgo.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <fitness/moeoAggregationFitnessAssignment.h>
 #include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
 #include <scalarStuffs/weighting/moeoVariableWeightStrategy.h>

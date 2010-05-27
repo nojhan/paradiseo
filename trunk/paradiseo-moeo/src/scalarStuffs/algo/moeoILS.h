@@ -47,7 +47,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eoEvalFunc.h>
 #include <scalarStuffs/algo/moeoSolAlgo.h>
 #include <moHCMoveLoopExpl.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <scalarStuffs/explorer/moeoHCMoveLoopExpl.h>
 
 //! Iterated Local Search (ILS)

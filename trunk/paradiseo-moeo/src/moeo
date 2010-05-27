@@ -113,7 +113,6 @@
 #include <explorer/moeoSimpleSubNeighborhoodExplorer.h>
 #include <explorer/moeoSubNeighborhoodExplorer.h>
 
-
 #include <fitness/moeoAggregationFitnessAssignment.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoConstraintFitnessAssignment.h>
@@ -129,6 +128,7 @@
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoReferencePointIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <fitness/moeoUnaryIndicatorBasedFitnessAssignment.h>
 
 #include <hybridization/moeoDMLSGenUpdater.h>
@@ -176,7 +176,6 @@
 #include <scalarStuffs/fitness/moeoAugmentedWeightedChebychevMetricFitnessAssignment.h>
 #include <scalarStuffs/fitness/moeoIncrEvalSingleObjectivizer.h>
 #include <scalarStuffs/fitness/moeoMetricFitnessAssignment.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
 #include <scalarStuffs/fitness/moeoWeightedChebychevMetricFitnessAssignment.h>
 #include <scalarStuffs/weighting/moeoAnytimeWeightStrategy.h>
 #include <scalarStuffs/weighting/moeoAugmentedQexploreWeightStrategy.h>

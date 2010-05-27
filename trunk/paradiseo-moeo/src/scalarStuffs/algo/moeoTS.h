@@ -40,7 +40,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <moTS.h>
 #include <eoEvalFunc.h>
 #include <scalarStuffs/algo/moeoSolAlgo.h>
-#include <scalarStuffs/fitness/moeoSingleObjectivization.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <scalarStuffs/explorer/moeoTSMoveLoopExpl.h>
 //! Tabu Search (TS)
 /*!
