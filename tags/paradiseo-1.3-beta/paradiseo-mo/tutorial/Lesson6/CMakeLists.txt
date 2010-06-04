@@ -1,0 +1,31 @@
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src
+					${MO_SRC_DIR}/src
+					${PROBLEMS_SRC_DIR}
+					${CMAKE_CURRENT_SOURCE_DIR}/../src)
+					
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib)	
+
+
+ADD_EXECUTABLE(testRandomWalk testRandomWalk.cpp) 
+ADD_EXECUTABLE(testMetropolisHasting testMetropolisHasting.cpp) 
+ADD_EXECUTABLE(testRandomNeutralWalk testRandomNeutralWalk.cpp) 
+ADD_EXECUTABLE(sampling sampling.cpp) 
+ADD_EXECUTABLE(densityOfStates densityOfStates.cpp) 
+ADD_EXECUTABLE(autocorrelation autocorrelation.cpp) 
+ADD_EXECUTABLE(adaptiveWalks adaptiveWalks.cpp) 
+ADD_EXECUTABLE(fdc fdc.cpp) 
+ADD_EXECUTABLE(neutralDegree neutralDegree.cpp) 
+ADD_EXECUTABLE(fitnessCloud fitnessCloud.cpp) 
+ADD_EXECUTABLE(neutralWalk neutralWalk.cpp) 
+
+TARGET_LINK_LIBRARIES(testRandomWalk eoutils ga eo) 
+TARGET_LINK_LIBRARIES(testMetropolisHasting eoutils ga eo) 
+TARGET_LINK_LIBRARIES(testRandomNeutralWalk eoutils ga eo)
+TARGET_LINK_LIBRARIES(sampling eoutils ga eo)
+TARGET_LINK_LIBRARIES(densityOfStates eoutils ga eo)
+TARGET_LINK_LIBRARIES(autocorrelation eoutils ga eo)
+TARGET_LINK_LIBRARIES(adaptiveWalks eoutils ga eo)
+TARGET_LINK_LIBRARIES(fdc eoutils ga eo)
+TARGET_LINK_LIBRARIES(neutralDegree eoutils ga eo)
+TARGET_LINK_LIBRARIES(fitnessCloud eoutils ga eo)
+TARGET_LINK_LIBRARIES(neutralWalk eoutils ga eo)
