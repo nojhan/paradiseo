@@ -1,0 +1,20 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1275660123                        # -S : Random number seed
+
+######    Evolution Engine        ######
+# --nhSize=20                              # -G : neighborhood size
+# --popSize=20                             # -P : Population Size
+
+######    Persistence             ######
+# --Load=                                  # -L : A save file to restart from
+# --recomputeFitness=0                     # -r : Recompute the fitness after re-loading the pop.?
+# --status=./FlowShopDMLS.status           # Status file
+
+######    Representation          ######
+# --BenchmarkFile=../examples/flowshop/benchs/020_20_01.txt # -B : Benchmark file name
+
+######    Stopping criterion      ######
+# --maxGen=100                             # -G : Maximum number of gen.
