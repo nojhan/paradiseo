@@ -40,12 +40,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Neighbor related to a vector of Bit
  */
 template< class Fitness >
-class moPopBitNeighbor : public moBackableNeighbor< moPopSol<eoBit<Fitness> > >, public moIndexNeighbor< moPopSol<eoBit<Fitness> > >
+class moPopBitNeighbor : public moIndexNeighbor< moPopSol<eoBit<Fitness> > >
 {
 public:
     typedef moPopSol<eoBit<Fitness> > EOT ;
+    typedef eoBit<Fitness> SUBEOT;
 
-    using moBackableNeighbor<EOT>::fitness;
+    using moIndexNeighbor<EOT>::fitness;
     using moIndexNeighbor<EOT>::key;
 
     /**
@@ -53,23 +54,18 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-    	if(_solution.size()>0){
-    		size=_solution[0].size();
-    		_solution[key/size][key%size] = !_solution[key/size][key%size];
-//    		fit=_solution[key/size].fitness();
-    		_solution[key/size].invalidate();
-//    		fitSol=_solution.fitness();
+    	if(_solution[0].size()>0){
+    		unsigned size=_solution[0].size();
+    		unsigned s = key/size;
+    		unsigned b = key%size;
+    		_solution[s][b] = !_solution[s][b];
+    		_solution[s].fitness(subfit);
             _solution.invalidate();
     	}
     }
 
-    /**
-     * move back the solution (useful for the evaluation by modif)
-     * @param _solution the solution to move back
-     */
-    virtual void moveBack(EOT & _solution) {
-        _solution[key/size][key%size] = !_solution[key/size][key%size];
-//        _solution[key/size].fitness(fit);
+    void setSubFit(Fitness _subfit){
+    	subfit=_subfit;
     }
 
     /**
@@ -113,7 +109,7 @@ public:
     }
 
 private:
-    unsigned int size;
+    Fitness subfit;
 };
 
 #endif

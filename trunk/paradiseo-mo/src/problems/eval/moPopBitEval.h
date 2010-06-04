@@ -1,5 +1,5 @@
-	/*
-  <moFullEvalByCopy.h>
+/*
+  <moPopBitEval.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,50 +32,53 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moFullEvalByCopy_H
-#define moFullEvalByCopy_H
+#ifndef moPopBitEval_H
+#define moPopBitEval_H
 
-#include <eoEvalFunc.h>
+#include <eoFunctor.h>
 #include <eval/moEval.h>
 
 /**
- * Evaluation by copy
+ * Abstract class for the evaluation
  */
 template<class Neighbor>
-class moFullEvalByCopy : public moEval<Neighbor>
+class moPopBitEval : public moEval<Neighbor>
 {
 public:
-    typedef typename moEval<Neighbor>::EOT EOT;
-    typedef typename moEval<Neighbor>::Fitness Fitness;
+    typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::SUBEOT SUBEOT;
 
-    /**
-     * Ctor
-     * @param _eval the full evaluation object
-     */
-    moFullEvalByCopy(eoEvalFunc<EOT> & _eval) : eval(_eval) {}
+    typedef typename EOT::Fitness Fitness;
 
-    /**
-     * Full evaluation of the neighbor by copy
-     * @param _sol current solution
-     * @param _neighbor the neighbor to be evaluated
-     */
-    void operator()(EOT & _sol, Neighbor & _neighbor)
-    {
-        // tmp solution
-        EOT tmp(_sol);
-        // move tmp solution wrt _neighbor
-        _neighbor.move(tmp);
-        // eval copy
-        tmp.invalidate();
-        eval(tmp);
-        // set the fitness value to the neighbor
-        _neighbor.fitness(tmp.fitness());
+    moPopBitEval(eoEvalFunc<SUBEOT>& _eval, unsigned int _p):eval(_eval), p(_p){
+
     }
 
+    void operator()(EOT& _sol, Neighbor& _n){
+    	if(_sol[0].size()>0){
+    		unsigned int size=_sol[0].size();
+    		unsigned int s=_n.index()/size;
+    		unsigned int b=_n.index()%size;
+    		subfit=_sol[s].fitness();
+    		_sol[s][b]=!_sol[s][b];
+    		_sol[s].invalidate();
+    		eval(_sol[s]);
+        	double fit=0;
+            for (unsigned int i = 0; i < _sol.size(); i++){
+            	fit+=pow(_sol[i].fitness(), p);
+            }
+            fit=pow(fit, (double)1/p);
+            _n.setSubFit(_sol[s].fitness());
+            _n.fitness(fit);
+            _sol[s][b]=!_sol[s][b];
+            _sol[s].fitness(subfit);
+    	}
+    }
 
 private:
-    /** the full evaluation object */
-    eoEvalFunc<EOT> & eval;
+    eoEvalFunc<SUBEOT> & eval;
+    unsigned int p;
+    Fitness subfit;
 
 };
 

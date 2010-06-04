@@ -40,6 +40,8 @@
 
 /**
  * Full evaluation to use with a moBackableNeighbor
+ * !!!WARNING!!! Use only when your solution is composed by a fitness Value and a "genotype"
+ *
  */
 template<class BackableNeighbor>
 class moFullEvalByModif : public moEval<BackableNeighbor>
@@ -63,7 +65,6 @@ public:
     {
         // tmp fitness value of the current solution
         Fitness tmpFit;
-
 
         // save current fitness value
         tmpFit = _sol.fitness();

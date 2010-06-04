@@ -52,7 +52,7 @@ using namespace std;
 
 // fitness function
 #include <eval/oneMaxPopEval.h>
-#include <eval/moFullEvalByModif.h>
+#include <problems/eval/moPopBitEval.h>
 
 //Neighbors and Neighborhoods
 #include <problems/bitString/moPopBitNeighbor.h>
@@ -71,6 +71,8 @@ using namespace std;
 #include <continuator/moFitnessStat.h>
 #include <utils/eoFileMonitor.h>
 #include <continuator/moCounterMonitorSaver.h>
+
+#include "moPopFitContinuator.h"
 
 
 //-----------------------------------------------------------------------------
@@ -100,7 +102,7 @@ void main_function(int argc, char **argv)
     unsigned seed = seedParam.value();
 
     // description of genotype
-    eoValueParam<unsigned int> vecSizeParam(4, "vecSize", "Genotype size", 'V');
+    eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
     parser.processParam( vecSizeParam, "Representation" );
     unsigned vecSize = vecSizeParam.value();
 
@@ -174,7 +176,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moFullEvalByModif<Neighbor> moEval(popEval);
+    moPopBitEval<Neighbor> evalNeighbor(eval,2);
 
 //	Neighbor n;
 //
@@ -196,6 +198,7 @@ void main_function(int argc, char **argv)
 
     Neighborhood neighborhood(vecSize*popSize);
 
+    moPopFitContinuator<Neighbor> cont(vecSize);
 
     /* =========================================================
      *
@@ -203,7 +206,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSimpleHC<Neighbor> ls(neighborhood, popEval, moEval);
+    moSimpleHC<Neighbor> ls(neighborhood, popEval, evalNeighbor, cont);
 
     /* =========================================================
      *
