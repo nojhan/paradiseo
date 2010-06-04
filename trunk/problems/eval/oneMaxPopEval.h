@@ -47,7 +47,7 @@ public:
     void operator() (moPopSol<EOT>& _sol) {
     	double fit=0;
         for (unsigned int i = 0; i < _sol.size(); i++){
-//        	if(_sol[i].invalid())
+        	if(_sol[i].invalid())
         		eval(_sol[i]);
         	fit+=pow(_sol[i].fitness(), p);
         }
