@@ -47,6 +47,9 @@ IF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CM
     	COMMAND ${CMAKE_COMMAND} -E copy_if_different
 			${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA2.param
 			${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3/FlowShopEA2.param
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson4/FlowShopDMLS.param
+			${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson4/FlowShopDMLS.param
 	)
 ENDIF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
@@ -127,6 +130,13 @@ MACRO(ADD_COMMANDS_MOEO)
 	    	${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA2.param
 	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3
 	)
+	
+	ADD_CUSTOM_COMMAND(
+	    OUTPUT ${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson4/FlowShopDMLS.param
+	    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	    	${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson4/FlowShopDMLS.param
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson4
+	)
 ENDMACRO(ADD_COMMANDS_MOEO)
 
 MACRO(ADD_TARGET_MOEO n)
@@ -156,6 +166,23 @@ MACRO(ADD_TARGET_MOEO n)
 		ADD_CUSTOM_TARGET(lesson3 DEPENDS
 			${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3/FlowShopEA2
 			${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3/FlowShopEA2.param
+			${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_02.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_10_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_10_02.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_20_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/050_05_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/050_10_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/050_20_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/100_05_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/100_10_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/100_20_01.txt
+	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/200_10_01.txt
+		)
+	ELSEIF(${n} STREQUAL "lesson4")
+		ADD_CUSTOM_TARGET(lesson4 DEPENDS
+			${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson4/FlowShopDMLS
+			${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson4/FlowShopDMLS.param
 			${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_01.txt
 	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_02.txt
 	    	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_10_01.txt
@@ -215,6 +242,7 @@ ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(Lesson1)
 ADD_SUBDIRECTORY(Lesson2)
 ADD_SUBDIRECTORY(Lesson3)
+ADD_SUBDIRECTORY(Lesson4)
 
 ######################################################################################
 

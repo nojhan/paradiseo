@@ -17,7 +17,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MOEO_BINARY_DIR}/lib ${FLOWSHOP_B
 ######################################################################################
 
 IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-	SOURCE_GROUP(src FILES FlowShopEA2.cpp)
+	SOURCE_GROUP(src FILES FlowShopDMLS.cpp)
 	SOURCE_GROUP(benchs FILES
 		${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_01.txt
     	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_02.txt
@@ -32,9 +32,9 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
     	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/100_20_01.txt
     	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/200_10_01.txt
 	)
-	ADD_EXECUTABLE(FlowShopEA2 
-		FlowShopEA2.cpp
-		${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3/FlowShopEA2.param
+	ADD_EXECUTABLE(FlowShopDMLS
+		FlowShopDMLS.cpp
+		${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson4/FlowShopDMLS.param
 		${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_01.txt
     	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_02.txt
     	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_10_01.txt
@@ -50,27 +50,27 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
 	)
 ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")	
 	ADD_COMMANDS_MOEO()
-	ADD_TARGET_MOEO(lesson3)
+	ADD_TARGET_MOEO(lesson4)
 	IF(ENABLE_CMAKE_EXAMPLE)
-		ADD_EXECUTABLE(FlowShopEA2 FlowShopEA2.cpp)
+		ADD_EXECUTABLE(FlowShopDMLS FlowShopDMLS.cpp)
 	ELSE(ENABLE_CMAKE_EXAMPLE)
-		ADD_EXECUTABLE(FlowShopEA2 EXCLUDE_FROM_ALL FlowShopEA2.cpp)
+		ADD_EXECUTABLE(FlowShopDMLS EXCLUDE_FROM_ALL FlowShopDMLS.cpp)
 	ENDIF(ENABLE_CMAKE_EXAMPLE)
 ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
-ADD_DEPENDENCIES(FlowShopEA2 flowshop moeo)
+ADD_DEPENDENCIES(FlowShopDMLS flowshop moeo)
 
 ######################################################################################
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(FlowShopEA2_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(FlowShopEA2 PROPERTIES VERSION "${FlowShopEA2_VERSION}")
+SET(FlowShopDMLS_VERSION ${GLOBAL_VERSION})
+SET_TARGET_PROPERTIES(FlowShopDMLS PROPERTIES VERSION "${FlowShopDMLS_VERSION}")
 
 ######################################################################################
 ### 5) Link the librairies for your target(s)
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(FlowShopEA2 moeo flowshop eo eoutils)
+TARGET_LINK_LIBRARIES(FlowShopDMLS moeo flowshop eo eoutils)
 
 ######################################################################################

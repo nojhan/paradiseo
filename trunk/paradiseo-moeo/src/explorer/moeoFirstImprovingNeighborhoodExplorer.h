@@ -110,6 +110,7 @@ private:
 			_dest.back().objectiveVector(neighbor.fitness());
 			//fix its flag to 0 (unvisited solution)
 			_dest.back().flag(0);
+			_dest.back().fitness(0);
 		}
 	}
 
