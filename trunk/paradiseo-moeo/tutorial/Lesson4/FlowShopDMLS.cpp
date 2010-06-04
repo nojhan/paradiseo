@@ -67,10 +67,11 @@ int main(int argc, char* argv[])
     	//define a neighbor
         typedef moShiftNeighbor<FlowShop, FlowShopObjectiveVector> Neighbor;
 
-
         eoParser parser(argc, argv);  // for user-parameter reading
         eoState state;                // to keep all things allocated
 
+        unsigned int maxGen = parser.createParam((unsigned int)(100), "maxGen", "Maximum number of gen.",'G',"Stopping criterion").value();
+        unsigned int nhSize = parser.createParam((unsigned int)(20), "nhSize", "neighborhood size",'G',"Evolution Engine").value();
 
         /*** the representation-dependent things ***/
 
@@ -78,9 +79,6 @@ int main(int argc, char* argv[])
         eoEvalFuncCounter<FlowShop>& eval = do_make_eval(parser, state);
         // the genotype (through a genotype initializer)
         eoInit<FlowShop>& init = do_make_genotype(parser, state);
-        // the variation operators
-        eoGenOp<FlowShop>& op = do_make_op(parser, state);
-
 
         /*** the representation-independent things ***/
 
@@ -89,23 +87,26 @@ int main(int argc, char* argv[])
         // definition of the archive
         moeoUnboundedArchive<FlowShop> arch;
         // stopping criteria
-        unsigned int maxGen = parser.createParam((unsigned int)(100), "maxGen", "Maximum number of gen.",'G',"Stopping criterion").value();
+
+        //Continuator
         eoGenContinue<FlowShop> term(maxGen);
-        unsigned int nhSize = parser.createParam((unsigned int)(20), "nhSize", "neighborhood size",'G',"Evolution Engine").value();
+
         // checkpointing
         eoCheckPoint<FlowShop> checkpoint(term);
         moeoArchiveUpdater < FlowShop > updater(arch, pop);
         checkpoint.add(updater);
 
         //neighborhood
-        moOrderNeighborhood<Neighbor> neighborhood((nhSize-1) * (nhSize-1)); //!!!!!!!!!!!!!!!CHANGER CET VALEUR PAR RAPPORT AU PARAM
+        moOrderNeighborhood<Neighbor> neighborhood((nhSize-1) * (nhSize-1));
         //neighbor Evaluation function
         moeoFullEvalByCopy<Neighbor> moEval(eval);
+
         //Selection in the archive
         moeoNumberUnvisitedSelect<FlowShop> select(1);
         //explorer
         moeoFirstImprovingNeighborhoodExplorer<Neighbor> explor(neighborhood, moEval);
 
+        //DMLS(1.1>)
         moeoUnifiedDominanceBasedLS<Neighbor> algo(checkpoint, eval, arch, explor, select);
 
 
@@ -116,10 +117,9 @@ int main(int argc, char* argv[])
 
         // first evalution (for printing)
         apply<FlowShop>(eval, pop);
-        for(int i=0; i<pop.size(); i++)
+        for(unsigned int i=0; i<pop.size(); i++)
         	pop[i].fitness(0);
 
-        //arch(pop);
 
         // printing of the initial population
         cout << "Initial Population\n";
