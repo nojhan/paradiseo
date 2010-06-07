@@ -150,7 +150,10 @@
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/bitString/moPopBitNeighbor.h>
 #include <problems/bitString/moPopSol.h>
+#include <problems/eval/moMaxSATincrEval.h>
 #include <problems/eval/moOneMaxIncrEval.h>
+#include <problems/eval/moRoyalRoadIncrEval.h>
+#include <problems/eval/oneMaxFullEval.h>
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
