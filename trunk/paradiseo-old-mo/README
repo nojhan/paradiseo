@@ -1,12 +1,12 @@
-                      PARADISEO-MO README FILE
+                      PARADISEO-OLD-MO README FILE
 =======================================================================
          
 =======================================================================
 
-Welcome to PARADISEO-MO (Moving Objects), one part of the ParadisEO framework.
+Welcome to PARADISEO-OLD-MO (Moving Objects), a part of the ParadisEO framework.
 
 =======================================================================
-                      BUILDING PARADISEO-MO
+                      BUILDING PARADISEO-OLD-MO
 =======================================================================
 The basic installation procedure goes the following:
 
@@ -20,14 +20,14 @@ go to paradiseo-mo/build/ and run:
     > make doc
 
 To compile paradiseo-mo anywhere else, simply run:
-    > cmake $(MO) -Dconfig=<path to the install.cmake file>
+    > cmake $(OLD-MO) -Dconfig=<path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
     // optional (if the documentation is not already available)
     > make doc
 
-where $(MO) is the top-level directory of PARADISEO-MO.
+where $(OLD-MO) is the top-level directory of PARADISEO-MO.
 
 To clean everything, simply run
     > make clean
@@ -62,12 +62,20 @@ structure:
        |  +- tsp           traveling salesman problem (TSP) example sources.
        |     |
        |     +- benchs     TSP instance files.
-       |   
-       +- Lesson1          How make a Hill Climbing on the TSP example (source file and lesson_1.pdf).
        |
-       +- Lesson2          How make a Tabu Search on the TSP example (source file and lesson_2.pdf).
+       +- HybridLesson     How make a Hybridization between a algorithm genetic and a local search.
+       |   
+       +- Lesson1          How make a Hill Climbing on the TSP example.
+       |
+       +- Lesson2          How make a Tabu Search on the TSP example.
        |  
-       +- Lesson3          How make a Simulated Annealing on the TSP example (source file and lesson_3.pdf).
+       +- Lesson3          How make a Simulated Annealing on the TSP example.
+       |
+       +- Lesson4          How make a Iterated Tabu Search on the TSP example.
+       |
+       +- Lesson5          How make a Variable Neighbor Search on the TSP example.
+       |
+       +- OldLesson        Old lesson.
    
 ===================================================================
               NOTES
