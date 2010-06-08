@@ -74,6 +74,8 @@ structure:
        +-- Lesson2         A bi-objective flow-shop scheduling problem solved using main MOEAs.
        |
        +-- Lesson3         A bi-objective flow-shop scheduling problem solved using main MOEAs thanks to a parameter file.
+       |
+       +-- Lesson4         A bi-objective flow-shop scheduling problem solved using DMLS.
 
 =======================================================================
                                  NOTES
