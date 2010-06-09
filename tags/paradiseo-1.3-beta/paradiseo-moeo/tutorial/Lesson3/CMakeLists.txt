@@ -34,7 +34,7 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
 	)
 	ADD_EXECUTABLE(FlowShopEA2
 		FlowShopEA2.cpp
-		${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson4/FlowShopEA2.param
+		${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3/FlowShopEA2.param
 		${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_01.txt
     	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_05_02.txt
     	${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop/benchs/020_10_01.txt
