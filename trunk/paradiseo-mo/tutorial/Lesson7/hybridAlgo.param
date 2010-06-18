@@ -1,0 +1,11 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276172440                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./hybridAlgo.status             # Status file
+
+######    Representation          ######
+# --vecSize=8                              # -V : Genotype size

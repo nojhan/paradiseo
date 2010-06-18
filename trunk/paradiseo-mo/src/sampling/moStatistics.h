@@ -143,9 +143,15 @@ public:
         } else {
             unsigned int n = data.size();
 
-            double cov[nbS+1];
-            double m[nbS+1];
-            double sig[nbS+1];
+            std::vector<double> cov;
+            cov.resize(nbS+1);
+            //double cov[nbS+1];
+            std::vector<double> m;
+            m.resize(nbS+1);
+            //double m[nbS+1];
+            std::vector<double> sig;
+            sig.resize(nbS+1);
+            //double sig[nbS+1];
 
             rho.resize(nbS+1);
             phi.resize(nbS+1);
@@ -188,7 +194,11 @@ public:
                 s--;
             }
 
-            double phi2[nbS+1][nbS+1];
+            std::vector< std::vector<double> > phi2;
+            phi2.resize(nbS+1);
+            for(unsigned int i=0; i<phi2.size(); i++)
+            	phi2[i].resize(nbS+1);
+            //double phi2[nbS+1][nbS+1];
             double tmp1, tmp2;
 
             phi2[1][1] = rho[1];

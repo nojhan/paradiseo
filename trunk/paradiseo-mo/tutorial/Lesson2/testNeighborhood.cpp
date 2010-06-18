@@ -138,9 +138,9 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     swapNeighborhood swapNH;
-    orderShiftNeighborhood orderShiftNH(pow(vecSize-1, 2));
-    rndWithoutReplShiftNeighborhood rndNoReplShiftNH(pow(vecSize-1, 2));
-    rndWithReplShiftNeighborhood rndReplShiftNH(pow(vecSize-1, 2));
+    orderShiftNeighborhood orderShiftNH((vecSize-1) * (vecSize-1));
+    rndWithoutReplShiftNeighborhood rndNoReplShiftNH((vecSize-1) * (vecSize-1));
+    rndWithReplShiftNeighborhood rndReplShiftNH((vecSize-1) * (vecSize-1));
 
 
     /* =========================================================

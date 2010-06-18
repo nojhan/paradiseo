@@ -1,0 +1,14 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276179874                        # -S : Random number seed
+
+######    Persistence             ######
+# --out=out.dat                            # -o : Output file of the sampling
+# --status=./neutralDegree.status          # Status file
+
+######    Representation          ######
+# --vecSize=20                             # -V : Genotype size
+# --blockSize=4                            # -k : Block size of the Royal Road
+# --nbSol=100                              # -n : Number of random solution

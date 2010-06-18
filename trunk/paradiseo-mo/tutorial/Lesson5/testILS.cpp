@@ -165,7 +165,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    orderShiftNeighborhood orderShiftNH(pow(vecSize-1, 2));
+    orderShiftNeighborhood orderShiftNH((vecSize-1) * (vecSize-1));
 
 
     /* =========================================================

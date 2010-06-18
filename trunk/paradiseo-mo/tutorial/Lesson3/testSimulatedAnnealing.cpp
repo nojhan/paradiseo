@@ -140,7 +140,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    rndShiftNeighborhood rndShiftNH(pow(vecSize-1, 2));
+    rndShiftNeighborhood rndShiftNH((vecSize-1) * (vecSize-1));
 
     /* =========================================================
      *
