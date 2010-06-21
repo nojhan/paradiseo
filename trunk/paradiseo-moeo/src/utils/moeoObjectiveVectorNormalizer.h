@@ -97,7 +97,7 @@ class moeoObjectiveVectorNormalizer
 		 * @param max_param worst vector is set to it
 		 * @return a scale to use with the normalizer
 		 */
-		static Scale make_scale_from_pop(eoPop<MOEOT> &_pop, Type &max_param=100){
+		static Scale make_scale_from_pop(eoPop<MOEOT> &_pop, Type max_param=100){
 			Scale res;
 			if (_pop.empty()) {
 				std::cout<<"makeScale in moeoObjectiveVEctorNormalizer.h: pop is empty"<<std::endl;

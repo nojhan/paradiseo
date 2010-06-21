@@ -61,14 +61,14 @@ public:
         unsigned int offset = n * k;
 
         unsigned int j = 0;
-        while (_solution[offset + j] && j < k) j++;
+        while (j < k && _solution[offset + j]) j++;
 
         if (j == k) // the block is complete, so the fitness decreases from one
             _neighbor.fitness(_solution.fitness() - 1);
         else {
             if ((_solution[_neighbor.index()] == 0) && (offset + j == _neighbor.index())) { // can the block be filled?
                 j++; // next bit
-                while (_solution[offset + j] && j < k) j++;
+                while ( j < k && _solution[offset + j]) j++;
 
                 if (j == k) // the block can be filled, so the fitness increases from one
                     _neighbor.fitness(_solution.fitness() + 1);

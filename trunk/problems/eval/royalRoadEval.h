@@ -61,7 +61,7 @@ public:
       offset = i * k;
 
       j = 0;
-      while (_solution[offset + j] && j < k) j++;
+      while (j < k && _solution[offset + j]) j++;
       
       if (j == k)
 	sum++;

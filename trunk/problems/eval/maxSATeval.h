@@ -60,7 +60,9 @@ public:
     // the variables are numbered from 1 to nbVar
     variables = new vector<int>[nbVar + 1];
 
-    int var[nbVar];
+    //int var[nbVar];
+    std::vector<int> var;
+    var.resize(nbVar);
     unsigned i, j, ind;
 
     // to selected nbLitteral different variables in the clauses
