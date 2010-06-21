@@ -162,7 +162,7 @@ public:
         //If the archive is empty, put in the best elements of the pop
         if (borne < maxSize)
         {
-            foo= std::min(_pop.size(), maxSize-borne);
+            foo= std::min((unsigned int)_pop.size(), maxSize-borne);
             for (i=0; i< foo ; i++)
             {
                 push_back(_pop[copy_pop[i].index]);
