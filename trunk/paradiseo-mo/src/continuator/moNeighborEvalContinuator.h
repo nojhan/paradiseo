@@ -37,7 +37,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Continue until a maximum fixed number of neighbor evaluation is reached
  *
- * Becareful 1: The number of full evaluations considered is within the local search (not before it)
+ * Becareful 1: The number of neighbor evaluations (for example incremental evaluations) considered is within the local search (not before it)
  * Becareful 2: Can not be used if the evaluation function is used in parallel
  */
 template< class Neighbor >

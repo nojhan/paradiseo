@@ -76,6 +76,16 @@ public:
     }
 
     /**
+     * Get the two indexes to swap
+     * @param _first first index
+     * @param _second second index
+     */
+    void getIndices(unsigned int & _first, unsigned int & _second) {
+        _first  = indices.first;
+        _second = indices.second;
+    }
+
+    /**
      * Print the Neighbor
      */
     void print() {
