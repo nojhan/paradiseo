@@ -79,7 +79,7 @@ public :
     else
       s = " ";
 
-    system(s.c_str());
+    res=system(s.c_str());
     // all done
   }
 
