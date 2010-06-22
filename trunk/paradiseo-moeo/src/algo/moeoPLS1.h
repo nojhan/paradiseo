@@ -80,6 +80,7 @@ public:
             			*(new moeoExhaustiveNeighborhoodExplorer<Neighbor>(_neighborhood, _incrEval)),
             			*(new moeoNumberUnvisitedSelect<MOEOT>(1))
             	){}
+
     
 };
 

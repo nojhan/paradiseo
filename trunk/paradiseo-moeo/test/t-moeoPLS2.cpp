@@ -55,14 +55,15 @@ int main(){
 	eoPop<Solution> src;
 
 	//Create a solution
-	s.push_back(true);
-	s.push_back(true);
-	s.push_back(true);
-	s.push_back(true);
-	s.push_back(true);
-	s.push_back(true);
-	s.push_back(true);
-	s.push_back(true);
+	s.resize(8);
+	s[0]=true;
+	s[1]=true;
+	s[2]=true;
+	s[3]=true;
+	s[4]=true;
+	s[5]=true;
+	s[6]=true;
+	s[7]=true;
 
 	//Set its objective Vector
 	o[0]=8;

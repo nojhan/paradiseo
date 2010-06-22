@@ -4,6 +4,7 @@
 * (C) OPAC Team, LIFL, 2002-2007
 *
 * Arnaud Liefooghe
+* Jérémie Humeau
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -67,6 +68,8 @@ typedef MOEO < ObjectiveVector, double, double > Solution;
 
 int main()
 {
+	//!!!!!!!!!!!!VRAI TEST A FAIRE!!!!!!!!!!!!!!
+
     std::cout << "[moeoEpsilonHyperboxArchive]\t=>\t";
 
     std::cout << std::endl;
@@ -83,7 +86,7 @@ int main()
     unsigned int o3=50;
     unsigned int o4=50;
 
-    double tmp;
+
 
     for(int i=0; i< pop.size()/2; i++){
 //    	tmp=rng.uniform()*100;
