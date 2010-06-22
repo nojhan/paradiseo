@@ -74,6 +74,8 @@ using namespace std;
 
 #include "moPopFitContinuator.h"
 
+#include <mo>
+
 
 //-----------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
@@ -81,7 +83,32 @@ using namespace std;
 typedef moPopSol<eoBit<double> > Solution; //Permutation (Queen's problem representation)
 
 typedef moPopBitNeighbor<double> Neighbor; //shift Neighbor
-typedef moOrderNeighborhood<Neighbor> Neighborhood; //rnd shift Neighborhood (Indexed)
+typedef moRndWithReplNeighborhood<Neighbor> Neighborhood; //rnd shift Neighborhood (Indexed)
+
+
+class popInit: public eoInit<Solution>{
+
+public:
+
+	popInit( eoInitFixedLength<eoBit<double> > & _rnd, unsigned int _popSize):rnd(_rnd), popSize(_popSize){}
+
+	void operator()(Solution & _sol){
+
+
+
+	    eoBit<double> tmp;
+
+	    for(unsigned int i=0; i<popSize; i++){
+	    	rnd(tmp);
+	    	_sol.push_back(tmp);
+	    }
+	}
+
+private:
+	eoInitFixedLength<eoBit<double> >& rnd;
+	unsigned int popSize;
+
+};
 
 void main_function(int argc, char **argv)
 {
@@ -101,13 +128,18 @@ void main_function(int argc, char **argv)
     parser.processParam( seedParam );
     unsigned seed = seedParam.value();
 
+    // the number of steps of the random walk
+    eoValueParam<unsigned int> stepParam(100, "nbStep", "Number of steps of the random walk", 'n');
+    parser.processParam( stepParam, "Representation" );
+    unsigned nbStep = stepParam.value();
+
     // description of genotype
     eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
     parser.processParam( vecSizeParam, "Representation" );
     unsigned vecSize = vecSizeParam.value();
 
     // description of genotype
-    eoValueParam<unsigned int> popSizeParam(10, "popSize", "population size", 'V');
+    eoValueParam<unsigned int> popSizeParam(10, "popSize", "population size", 'P');
     parser.processParam( popSizeParam, "Representation" );
     unsigned popSize = popSizeParam.value();
 
@@ -115,6 +147,16 @@ void main_function(int argc, char **argv)
     string str_status = parser.ProgramName() + ".status"; // default value
     eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
     parser.processParam( statusParam, "Persistence" );
+
+    // the name of the output file
+    string str_out = "out.dat"; // default value
+    eoValueParam<string> outParam(str_out.c_str(), "out", "Output file of the sampling", 'o');
+    parser.processParam(outParam, "Persistence" );
+
+    // description of genotype
+    eoValueParam<unsigned int> pparam(10, "p", "p", 'p');
+    parser.processParam( pparam, "Representation" );
+    unsigned p = pparam.value();
 
     // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
     // i.e. in case you need parameters somewhere else, postpone these
@@ -145,7 +187,7 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     oneMaxEval< eoBit<double> > eval;
-    oneMaxPopEval< eoBit<double> > popEval(eval, 2);
+    oneMaxPopEval< eoBit<double> > popEval(eval, p);
 
 
     /* =========================================================
@@ -153,21 +195,13 @@ void main_function(int argc, char **argv)
      * Initilisation of the solution
      *
      * ========================================================= */
+
     eoUniformGenerator<bool> uGen;
-    eoInitFixedLength<eoBit<double> > random(vecSize, uGen);
+    eoInitFixedLength<eoBit<double> > rnd(vecSize, uGen);
 
-    moPopSol<eoBit<double> > sol;
-    eoBit<double> tmp(vecSize);
+	popInit random(rnd, popSize);
 
-    for(unsigned int i=0; i<popSize; i++){
-    	random(tmp);
-    	sol.push_back(tmp);
-    }
 
-    popEval(sol);
-    std::cout << "initial solution:" << std::endl;
-    sol.printOn(std::cout);
-    std::cout << std::endl;
 
 
     /* =========================================================
@@ -176,7 +210,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moPopBitEval<Neighbor> evalNeighbor(eval,2);
+    moPopBitEval<Neighbor> evalNeighbor(eval,p);
 
 //	Neighbor n;
 //
@@ -206,7 +240,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSimpleHC<Neighbor> ls(neighborhood, popEval, evalNeighbor, cont);
+    //moSimpleHC<Neighbor> ls(neighborhood, popEval, evalNeighbor, cont);
 
     /* =========================================================
      *
@@ -214,11 +248,65 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    ls(sol);
+//    ls(sol);
+//
+//    std::cout << "final solution:" << std::endl;
+//    sol.printOn(std::cout);
+//    std::cout << std::endl;
 
-    std::cout << "final solution:" << std::endl;
-    sol.printOn(std::cout);
-    std::cout << std::endl;
+
+
+
+    /* =========================================================
+     *
+     * The sampling of the search space
+     *
+     * ========================================================= */
+
+    // sampling object :
+    //    - random initialization
+    //    - neighborhood to compute the next step
+    //    - fitness function
+    //    - neighbor evaluation
+    //    - number of steps of the walk
+    moAutocorrelationSampling<Neighbor> sampling(random, neighborhood, popEval, evalNeighbor, nbStep);
+
+    /* =========================================================
+     *
+     * execute the sampling
+     *
+     * ========================================================= */
+
+    sampling();
+
+    /* =========================================================
+     *
+     * export the sampling
+     *
+     * ========================================================= */
+
+    // to export the statistics into file
+    sampling.fileExport(str_out);
+
+    // to get the values of statistics
+    // so, you can compute some statistics in c++ from the data
+    const std::vector<double> & fitnessValues = sampling.getValues(0);
+
+    std::cout << "First values:" << std::endl;
+    std::cout << "Fitness  " << fitnessValues[0] << std::endl;
+
+    std::cout << "Last values:" << std::endl;
+    std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
+
+    // more basic statistics on the distribution:
+    moStatistics statistics;
+
+    vector<double> rho, phi;
+
+    statistics.autocorrelation(fitnessValues, 20, rho, phi);
+
+    for (unsigned s = 0; s < rho.size(); s++)
+        std::cout << s << " " << "rho=" << rho[s] << ", phi=" << phi[s] << std::endl;
 
 //    Queen solution1, solution2;
 //

@@ -34,7 +34,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eoPop.h>
 
 template <class EOT>
-class moPopSol : public EO<double>, public eoPop<EOT>{
+class moPopSol : public EO<double>, public std::vector<EOT>{
 public:
 	typedef typename EO<double>::Fitness Fitness;
 	using EO<double>::invalidate;
