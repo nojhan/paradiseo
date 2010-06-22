@@ -125,18 +125,13 @@ class moeoObjectiveVectorNormalizer
 			for (unsigned int i=0;i<dim;i++){
 				std::vector<Type> coefs;
 				if(!max_param){
-//					std::cout<<"ampmax="<<amp_max;
-//					if(amps[i]==0) std::cerr<<"scale erronée"<<std::endl;
 					coefs.push_back(amps[i]==0?1:amp_max/amps[i]);
 				}
 				else{
-//					std::cout<<"maxparam="<<max_param;
-//					if(amps[i]==0) std::cerr<<"scale erronée"<<std::endl;
 					coefs.push_back(amps[i]==0?1:max_param/amps[i]);
 				}
 
 				coefs.push_back(mins[i]);
-//				std::cout<<"a="<<coefs[0]<<" b="<<coefs[1]<<std::endl;
 				res.push_back(coefs);
 			}
 			return res;
