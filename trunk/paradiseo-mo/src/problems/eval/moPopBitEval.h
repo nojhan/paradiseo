@@ -65,9 +65,9 @@ public:
     		eval(_sol[s]);
         	double fit=0;
             for (unsigned int i = 0; i < _sol.size(); i++){
-            	fit+=pow(_sol[i].fitness(), p);
+	      fit+=pow((double) _sol[i].fitness(), (int) p);
             }
-            fit=pow(fit, (double)1/p);
+            fit=pow((double) fit, (double)1/p);
             _n.setSubFit(_sol[s].fitness());
             _n.fitness(fit);
             _sol[s][b]=!_sol[s][b];

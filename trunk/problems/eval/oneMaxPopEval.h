@@ -49,9 +49,9 @@ public:
         for (unsigned int i = 0; i < _sol.size(); i++){
         	if(_sol[i].invalid())
         		eval(_sol[i]);
-        	fit+=pow(_sol[i].fitness(), p);
+        	fit+=pow((double) _sol[i].fitness(), (int) p);
         }
-        fit=pow(fit, (double)1/p);
+        fit=pow((double) fit, (double)1/p);
         _sol.fitness(fit);
     }
 
