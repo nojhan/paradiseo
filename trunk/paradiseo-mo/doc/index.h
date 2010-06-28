@@ -2,8 +2,16 @@
 
 @section Introduction
 
-ParadisEO-MO is a white-box object-oriented generic framework dedicated to the flexible design of local search algorithms.
+ParadisEO-MO is a white-box object-oriented generic framework dedicated to the flexible design of local search algorithms (hill-climbing, tabu search, simulated annealing, ...)
 
+@section tutorials Tutorials
+
+Tutorials for ParadisEO-MO are available in the "Tutorials section" of the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
+
+@section Design
+
+For an introduction to the design of ParadisEO-MO,
+you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
 
 @section LICENSE
 

@@ -8,7 +8,7 @@ aims to provide a set of classes allowing to ease and speed up the development o
 It is based on a clear conceptual distinction between the solution methods and the multi-objective problems they are intended to solve.
 This separation confers a maximum design and code reuse.
 ParadisEO-MOEO provides a broad range of archive-related features (such as elitism or performance metrics)
-and the most common Pareto-based fitness assignment strategies (MOGA, NSGA, SPEA, IBEA and more).
+and the most common Pareto-based fitness assignment strategies (MOGA, NSGA, SPEA, IBEA and more). Dominance-based Local Search are also available.
 Furthermore, parallel and distributed models as well as hybridization mechanisms can be applied to an algorithm designed within ParadisEO-MOEO
 using the whole version of ParadisEO.
 
@@ -16,14 +16,13 @@ using the whole version of ParadisEO.
 
 @section tutorials Tutorials
 
-Tutorials for ParadisEO-MOEO are available <a href="http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.UsersGuides">here</a>.
+Tutorials for ParadisEO-MOEO are available in the "Tutorials section" of the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
 
 
 
 @section Installation
 
-The installation procedure of the package is detailed in the <a
-href="../../README">README</a> file in the top-directory of the source-tree.
+The installation procedure of the package is detailed in the README file in the top-directory of the source-tree.
 
 
 
