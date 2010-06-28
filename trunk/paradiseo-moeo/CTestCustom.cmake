@@ -4,4 +4,5 @@ SET(CTEST_CUSTOM_COVERAGE_EXCLUDE
 "paradiseo-eo/"
 "paradiseo-mo/"
 "paradiseo-old-mo/"
+"tutorial/"
 )
