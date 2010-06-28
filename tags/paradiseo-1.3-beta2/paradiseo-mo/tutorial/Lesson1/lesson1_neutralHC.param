@@ -1,0 +1,12 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276179072                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./lesson1_neutralHC.status      # Status file
+
+######    Representation          ######
+# --vecSize=20                             # -V : Genotype size
+# --nbStepMax=10                           # -n : Number of steps of the random walk
