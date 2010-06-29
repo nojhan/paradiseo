@@ -59,7 +59,6 @@ SET (TEST_LIST
 		t-moMetropolisHastingExplorer
 		t-moRandomNeutralWalkExplorer
 		t-moTSexplorer
-		t-moForwardVariableNeighborhood
 		t-moSolComparator
 		t-moDummyEval
 		t-moDummyNeighbor
