@@ -52,7 +52,6 @@ SET (TEST_LIST
 		t-moeoNSGA
 		t-moeoNSGAII
 		t-moeoSEEA
-		t-moeoMax3Obj
 		t-moeoEasyEA
 		t-moeoDominanceCountFitnessAssignment
 		t-moeoDominanceRankFitnessAssignment
@@ -71,28 +70,8 @@ SET (TEST_LIST
 		t-moeoFitDivBoundedArchive
 		t-moeoDetArchiveSelect
 		t-moeoASEEA
-		t-moeoEpsilonHyperboxArchive
 		#t-moeoQuadTreeIndex
-		t-moeoQuickUnboundedArchiveIndex
 		t-moeoAggregationFitnessAssignment
-		t-moeoConstraintFitnessAssignment
-		t-moeoChebyshevMetric
-		t-moeoChebyshevOrientedMetric
-		t-moeoASFAMetric
-		t-moeoASFAOrMetric
-		t-moeoHC
-		t-moeoILS_HC
-		t-moeoILS_SA
-		t-moeoILS_TS
-		t-moeoTS
-		t-moeoVNS
-		t-moeoVFAS
-		t-moeoAnytimeWeightStrategy
-		t-moeoQexploreWeightStrategy
-		t-moeoAugmentedQexploreWeightStrategy
-		t-moeoFixedTimeOneDirectionWeightStrategy
-		t-moeoFixedTimeBothDirectionWeightStrategy
-		t-moeoDichoWeightStrategy
 		t-moeoExhaustiveNeighborhoodExplorer
 		t-moeoFirstImprovingNeighborhoodExplorer
 		t-moeoSimpleSubNeighborhoodExplorer
