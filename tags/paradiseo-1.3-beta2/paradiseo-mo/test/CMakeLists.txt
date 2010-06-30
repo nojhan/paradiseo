@@ -51,7 +51,7 @@ SET (TEST_LIST
 		t-moDummyMemory
 		t-moSolVectorTabuList
 		t-moBestImprAspiration
-		t-moSimpleHCexplorer
+		#t-moSimpleHCexplorer
 		t-moRandomBestHCexplorer
 		t-moNeutralHCexplorer
 		t-moFirstImprHCexplorer

@@ -223,14 +223,11 @@ protected:
         }
         return res;
     }
- 
-private:
+
     /** The moeoObjectiveVectorComparator used to compare solutions */
     moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
     /** A moeoObjectiveVectorComparator based on Pareto dominance (used as default) */
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
-
-protected:
 	/** boolean */
 	bool replace;
 };
