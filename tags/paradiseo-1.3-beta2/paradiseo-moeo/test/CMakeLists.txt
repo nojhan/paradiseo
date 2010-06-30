@@ -44,7 +44,6 @@ SET (TEST_LIST
 		t-moeoAggregativeComparator
 		t-moeoDiversityThenFitnessComparator
 		t-moeoFitnessThenDiversityComparator
-		t-moeoAchievementFitnessAssignment
 		t-moeoExpBinaryIndicatorBasedFitnessAssignment
 		t-moeoCrowdingDiversityAssignment
 		t-moeoSharingDiversityAssignment
