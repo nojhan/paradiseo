@@ -15,6 +15,9 @@
  *          Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifndef _doStats_h
+#define _doStats_h
+
 #include <cassert>
 #include <vector>
 
@@ -119,3 +122,5 @@ class CovMatrix {
     double get_cov(int i, int j) const { return sumcov[i][j] / (n-1); }
 
 };
+
+#endif // !_doStats_h

@@ -30,13 +30,15 @@ SET(DO_BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 ######################################################################################
 
 INCLUDE(FindDoxygen)
-
 INCLUDE(FindPkgConfig)
 
 PKG_CHECK_MODULES(EO eo REQUIRED)
+PKG_CHECK_MODULES(MO mo REQUIRED)
 
-INCLUDE_DIRECTORIES(${EO_INCLUDE_DIR})
-LINK_DIRECTORIES(${EO_LIBRARY_DIRS})
+INCLUDE_DIRECTORIES(
+  ${EO_INCLUDE_DIRS}
+  ${MO_INCLUDE_DIRS}
+  )
 
 ######################################################################################
 
@@ -95,14 +97,11 @@ SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 
 LINK_DIRECTORIES(${LIBRARY_OUTPUT_PATH})
 
-ADD_LIBRARY(${PROJECT_NAME} STATIC ${SAMPLE_SRCS})
-#ADD_LIBRARY(${PROJECT_NAME} SHARED ${SAMPLE_SRCS})
+ADD_LIBRARY(do STATIC ${SAMPLE_SRCS})
+INSTALL(TARGETS do ARCHIVE DESTINATION lib COMPONENT libraries)
 
-# INSTALL(
-#   TARGETS ${LIBRARY_OUTPUT_PATH}/lib${PROJECT_NAME}.a
-#   DESTINATION lib
-#   COMPONENT libraries
-#   )
+######################################################################################
+
 
 ######################################################################################
 ### 9) Include packaging

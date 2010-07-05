@@ -1,0 +1,4 @@
+namespace DO
+{
+    void	test(){}
+}
