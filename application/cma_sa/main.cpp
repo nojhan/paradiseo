@@ -1,12 +1,3 @@
-// #include <boost/numeric/ublas/matrix.hpp>
-// #include <boost/numeric/ublas/io.hpp>
-
-#ifndef HAVE_GNUPLOT
-// FIXME: temporary define to force use of gnuplot without compiling
-// again EO.
-# define HAVE_GNUPLOT
-#endif
-
 #include <eo>
 #include <mo>
 
@@ -18,15 +9,12 @@
 #include <do/make_continue.h>
 #include <do/make_checkpoint.h>
 
-//#include "BopoRosenbrock.h"
+#include <do>
+
 #include "Rosenbrock.h"
 #include "Sphere.h"
 
-#include <do>
-
 typedef eoReal<eoMinimizingFitness>	EOT;
-//typedef doUniform< EOT >		Distrib;
-//typedef doNormal< EOT >		Distrib;
 
 int	main(int ac, char** av)
 {

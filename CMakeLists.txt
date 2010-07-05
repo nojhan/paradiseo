@@ -16,60 +16,96 @@ SET(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 
 
 ######################################################################################
-### 2) Include the install configuration file where are defined the main variables
+### 2) Prepare some useful variables
 ######################################################################################
 
-INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/install.cmake)
-
-######################################################################################
-
-
-#####################################################################################
-### 3) Include required modules & utilities
-#####################################################################################
-
-INCLUDE(CMakeBackwardCompatibilityCXX)
-#INCLUDE(FindDoxygen)
-INCLUDE(CheckLibraryExists)
-#INCLUDE(Dart OPTIONAL)
-
-FIND_PACKAGE(Doxygen)
-FIND_PACKAGE(MPI REQUIRED)
-FIND_PACKAGE(Gnuplot REQUIRED)
-
-# Set a special flag if the environment is windows (should do the same in a config.g file)
-IF (WIN32)
-  ADD_DEFINITIONS(-D_WINDOWS=1)
-ENDIF (WIN32)
-
-######################################################################################
-
-
-#####################################################################################
-### 4) Manage the build type
-#####################################################################################
-
-INCLUDE(${CMAKE_SOURCE_DIR}/BuildConfig.cmake)
+SET(DO_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+SET(DO_BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 
 ######################################################################################
 
 
 ######################################################################################
-### 5) Now where we go ???
+### 3) Include useful features
 ######################################################################################
 
-# warning: you have to compile libraries before bopo sources because of dependencies.
-ADD_SUBDIRECTORY(lib)
-ADD_SUBDIRECTORY(doc)
+INCLUDE(FindDoxygen)
+
+INCLUDE(FindPkgConfig)
+
+PKG_CHECK_MODULES(EO eo REQUIRED)
+
+INCLUDE_DIRECTORIES(${EO_INCLUDE_DIR})
+LINK_DIRECTORIES(${EO_LIBRARY_DIRS})
+
+######################################################################################
+
+
+######################################################################################
+### 4) Include header files path
+######################################################################################
+
+INCLUDE_DIRECTORIES(
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
+  )
+
+######################################################################################
+
+
+######################################################################################
+### 5) Set compiler definitions
+######################################################################################
+
+IF(UNIX)
+  # enable warnings
+  ADD_DEFINITIONS( -Wall -W -Wextra )
+  # ADD_DEFINITIONS( -Weffc++)
+  # ADD_DEFINITIONS( -g3 )
+ENDIF()
+
+######################################################################################
+
+
+######################################################################################
+### 6) Prepare some variables for CMAKE usage
+######################################################################################
+
+SET(SAMPLE_SRCS)
+
+######################################################################################
+
+
+######################################################################################
+### 7) Now where we go ?
+######################################################################################
+
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(test)
 ADD_SUBDIRECTORY(application)
+ADD_SUBDIRECTORY(test)
+ADD_SUBDIRECTORY(doc)
 
 ######################################################################################
 
 
 ######################################################################################
-### 6) Include packaging
+### 8) Create executable, link libraries and prepare target
+######################################################################################
+
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+
+LINK_DIRECTORIES(${LIBRARY_OUTPUT_PATH})
+
+ADD_LIBRARY(${PROJECT_NAME} STATIC ${SAMPLE_SRCS})
+#ADD_LIBRARY(${PROJECT_NAME} SHARED ${SAMPLE_SRCS})
+
+# INSTALL(
+#   TARGETS ${LIBRARY_OUTPUT_PATH}/lib${PROJECT_NAME}.a
+#   DESTINATION lib
+#   COMPONENT libraries
+#   )
+
+######################################################################################
+### 9) Include packaging
 ######################################################################################
 
 INCLUDE(Packaging.cmake)
