@@ -1,0 +1,36 @@
+#ifndef _do_
+#define _do_
+
+#include "doAlgo.h"
+#include "doCMASA.h"
+
+#include "doDistrib.h"
+#include "doUniform.h"
+#include "doNormal.h"
+
+#include "doEstimator.h"
+#include "doEstimatorUniform.h"
+#include "doEstimatorNormal.h"
+
+#include "doModifier.h"
+#include "doModifierDispersion.h"
+#include "doModifierMass.h"
+#include "doUniformCenter.h"
+#include "doNormalCenter.h"
+
+#include "doSampler.h"
+#include "doSamplerUniform.h"
+#include "doSamplerNormal.h"
+
+#include "doDistribParams.h"
+#include "doVectorBounds.h"
+#include "doNormalParams.h"
+
+#include "doBounder.h"
+#include "doBounderNo.h"
+#include "doBounderBound.h"
+#include "doBounderRng.h"
+
+#include "doStats.h"
+
+#endif // !_do_
