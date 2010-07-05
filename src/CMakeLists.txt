@@ -1,35 +1,44 @@
+######################################################################################
+### 1) Include useful packages
+######################################################################################
+
 FIND_PACKAGE(Boost 1.33.0 REQUIRED)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+######################################################################################
 
-SET(RESOURCES
-  cma_sa.param
-  plot.py
+
+######################################################################################
+### 2) Include the sources
+######################################################################################
+
+INCLUDE_DIRECTORIES(
+  ${PARADISEO_EO_SRC_DIR}/src
+  ${PARADISEO_MO_SRC_DIR}/src
+  ${PARADISEO_MOEO_SRC_DIR}/src
+  ${PARADISEO_PEO_SRC_DIR}/src
+  ${CMAKE_SOURCE_DIR}/src
+  ${CMAKE_SOURCE_DIR}/lib/eometah
+  ${CMAKE_SOURCE_DIR}/lib/nk-landscapes
+  ${Boost_INCLUDE_DIRS}
   )
 
-FOREACH(file ${RESOURCES})
-  EXECUTE_PROCESS(
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    ${CMAKE_CURRENT_SOURCE_DIR}/${file}
-    ${CMAKE_CURRENT_BINARY_DIR}/${file}
-    )
-ENDFOREACH(file)
+######################################################################################
 
-ADD_EXECUTABLE(cma_sa main.cpp)
 
-TARGET_LINK_LIBRARIES(cma_sa
-  ${Boost_LIBRARIES}
-  BOPO
-  eoutils
-  pthread
-  moeo
-  eo
-  peo
-  rmc_mpi
-  eometah
-  nklandscapes
-  BOPO
-  #${MPICH2_LIBRARIES}
-  ${LIBXML2_LIBRARIES}
-  ${MPI_LIBRARIES}
-  )
+######################################################################################
+### 3) Define your target(s)
+######################################################################################
+
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+
+FILE(GLOB SOURCES *.cpp)
+
+ADD_LIBRARY(${PROJECT_NAME} STATIC ${SOURCES})
+
+# INSTALL(
+#   TARGETS ${LIBRARY_OUTPUT_PATH}/lib${PROJECT_NAME}.a
+#   DESTINATION lib
+#   COMPONENT libraries
+#   )
+
+######################################################################################
