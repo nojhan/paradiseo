@@ -16,17 +16,7 @@ SET(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 
 
 ######################################################################################
-### 2) Prepare some useful variables
-######################################################################################
-
-SET(DO_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-SET(DO_BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}")
-
-######################################################################################
-
-
-######################################################################################
-### 3) Include useful features
+### 2) Include useful features
 ######################################################################################
 
 INCLUDE(FindDoxygen)
@@ -44,7 +34,7 @@ INCLUDE_DIRECTORIES(
 
 
 ######################################################################################
-### 4) Include header files path
+### 3) Include header files path
 ######################################################################################
 
 INCLUDE_DIRECTORIES(
@@ -55,7 +45,7 @@ INCLUDE_DIRECTORIES(
 
 
 ######################################################################################
-### 5) Set compiler definitions
+### 4) Set compiler definitions
 ######################################################################################
 
 IF(UNIX)
@@ -69,7 +59,7 @@ ENDIF()
 
 
 ######################################################################################
-### 6) Prepare some variables for CMAKE usage
+### 5) Prepare some variables for CMAKE usage
 ######################################################################################
 
 SET(SAMPLE_SRCS)
@@ -78,7 +68,7 @@ SET(SAMPLE_SRCS)
 
 
 ######################################################################################
-### 7) Now where we go ?
+### 6) Now where we go ?
 ######################################################################################
 
 ADD_SUBDIRECTORY(src)
@@ -90,7 +80,7 @@ ADD_SUBDIRECTORY(doc)
 
 
 ######################################################################################
-### 8) Create executable, link libraries and prepare target
+### 7) Create executable, link libraries and prepare target
 ######################################################################################
 
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
@@ -104,7 +94,7 @@ INSTALL(TARGETS do ARCHIVE DESTINATION lib COMPONENT libraries)
 
 
 ######################################################################################
-### 9) Install pkg-config config file for EO
+### 8) Install pkg-config config file for EO
 ######################################################################################
 
 INSTALL(FILES do.pc DESTINATION lib/pkgconfig COMPONENT headers)
@@ -113,7 +103,7 @@ INSTALL(FILES do.pc DESTINATION lib/pkgconfig COMPONENT headers)
 
 
 ######################################################################################
-### 10) Include packaging
+### 9) Include packaging
 ######################################################################################
 
 INCLUDE(Packaging.cmake)
