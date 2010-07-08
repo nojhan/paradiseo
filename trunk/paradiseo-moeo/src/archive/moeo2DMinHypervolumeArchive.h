@@ -1,39 +1,39 @@
 /*
-* <moeo2DMinHypervolumeArchive.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
-*
-* Arnaud Liefooghe
-* Jérémie Humeau
-*
-* This software is governed by the CeCILL license under French law and
-* abiding by the rules of distribution of free software.  You can  use,
-* modify and/ or redistribute the software under the terms of the CeCILL
-* license as circulated by CEA, CNRS and INRIA at the following URL
-* "http://www.cecill.info".
-*
-* As a counterpart to the access to the source code and  rights to copy,
-* modify and redistribute granted by the license, users are provided only
-* with a limited warranty  and the software's author,  the holder of the
-* economic rights,  and the successive licensors  have only  limited liability.
-*
-* In this respect, the user's attention is drawn to the risks associated
-* with loading,  using,  modifying and/or developing or reproducing the
-* software by the user in light of its specific status of free software,
-* that may mean  that it is complicated to manipulate,  and  that  also
-* therefore means  that it is reserved for developers  and  experienced
-* professionals having in-depth computer knowledge. Users are therefore
-* encouraged to load and test the software's suitability as regards their
-* requirements in conditions enabling the security of their systems and/or
-* data to be ensured and,  more generally, to use and operate it in the
-* same conditions as regards security.
-* The fact that you are presently reading this means that you have had
-* knowledge of the CeCILL license and that you accept its terms.
-*
-* ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: paradiseo-help@lists.gforge.inria.fr
-*
-*/
+ * <moeo2DMinHypervolumeArchive.h>
+ * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
+ * (C) OPAC Team, LIFL, 2002-2007
+ *
+ * Arnaud Liefooghe
+ * Jérémie Humeau
+ *
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ *
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited liability.
+ *
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
+ * Contact: paradiseo-help@lists.gforge.inria.fr
+ *
+ */
 //-----------------------------------------------------------------------------
 
 #ifndef MOEO2DMINHYPERVOLUMEARCHIVE_H_
@@ -41,7 +41,6 @@
 
 #include <set>
 #include <climits>
-
 
 
 template < class MOEOT >
@@ -58,7 +57,7 @@ struct comp
 
 /** 2D (minimization) bounded archive by hypervolume , base on a set */
 template < class MOEOT >
-class moeo2DMinHypervolumeArchive : public std::set<MOEOT, comp < MOEOT > >
+class moeo2DMinHypervolumeArchive : public std::set<MOEOT , comp < MOEOT > >
 {
 public:
 
@@ -76,18 +75,17 @@ public:
 
 	/**
 	 * Ctr.
-	 * @param _maxSize size of the archive (must be >1)
+	 * @param _maxSize size of the archive (must be >= 2)
 	 * @param _maxValue fitness assigned to the first and the last solution in the archive (default LONG_MAX)
 	 */
-	moeo2DMinHypervolumeArchive(unsigned int _maxSize, double _maxValue=LONG_MAX) : std::set < MOEOT, comp<MOEOT> > (), maxSize(_maxSize), maxValue(_maxValue)
+	moeo2DMinHypervolumeArchive(unsigned int _maxSize=100, double _maxValue=LONG_MAX) : std::set < MOEOT, comp<MOEOT> > (), maxSize(_maxSize), maxValue(_maxValue)
 	{
-		if(maxSize<2)
-			maxSize=2;
+		maxSize = std::max((unsigned int) 2, maxSize);
 	}
 
 
 	/**
-	 * update the archive with a solution
+	 * Update the archive with a solution
 	 * @param _moeo a solution
 	 * @return true if _moeo has been added to the archive
 	 */
@@ -95,58 +93,41 @@ public:
 	{
 		//store result
 		bool result;
-
-		//used to affect the fitness value
-		MOEOT* tmp;
-
-		//used to find sol with minimum fitness value
-		double minFit=maxValue;
-		Iterator itMinFit;
+		Iterator it;
 
 		//If archive is empty -> add the sol and affect its fitness value
-		if (size()==0){
+		if (size()==0)
+		{
 			result = true;
 			insert(_moeo);
-			tmp = (MOEOT*)&(*begin());
-			tmp->fitness(maxValue);
+			it=begin();
+			fitness(it, maxValue);
 		}
-		else{
-			//else test if sol can be added to the archive
+		else   // test if sol can be added to the archive
+		{
 			result = insert(_moeo.objectiveVector());
-			if (result){
-				//if yes, insert it and recompute fitness value of MOEOT and its neighbors
+			if (result)
+			{
+				// if yes, insert it and recompute fitness value of MOEOT and its neighbors
 				insert(hint,_moeo);
-				if(size()>2){
+				if(size() > 2)
+				{
 					//general case
 					hint--;
 					computeFitness(hint);
 				}
-				else{
-					//archive size < 3, fitness=maxValue for each sol
-					Iterator it=begin();
-					while(it!=end()){
-						tmp = (MOEOT*)&(*it);
-						tmp->fitness(maxValue);
+				else
+				{
+					//archive size <= 2, fitness=maxValue for each sol
+					it=begin();
+					while(it!=end())
+					{
+						fitness(it, maxValue);
 						it++;
 					}
 				}
-				//remove MOEOT with the lowest fitness value if archive size > maxSize
-				if(size()>maxSize){
-					//find sol with minimum fitness
-					for(Iterator i=begin(); i!=end(); i++){
-						if(i->fitness() < minFit){
-							minFit=i->fitness();
-							itMinFit=i;
-						}
-					}
-					//remove it and recompute fitness of its neighbors
-					Iterator ittmp=itMinFit;
-					ittmp--;
-					erase(itMinFit);
-					compute(ittmp);
-					ittmp++;
-					compute(ittmp);
-				}
+				// remove MOEOT with the lowest fitness value (if archive size > maxSize)
+				filter();
 			}
 		}
 		return result;
@@ -170,8 +151,9 @@ public:
         return result;
 	}
 
+
 	/**
-	 * Test if insertion is possible and fix hint if yes
+	 * Test if insertion wrt Pareto-dominance is possible, and fix 'hint' if possible
 	 * @param _objVec the objective vector of the sol to insert
 	 * @return true if objVec can be added to the archive wrt Pareto-dominance
 	 */
@@ -205,29 +187,43 @@ public:
 		return result;
 	}
 
+
 	/**
 	 * print objective vector and fitness value of the archive
 	 */
 	void print(){
 		Iterator it = begin();
-		while(it!=end()){
+		while(it!=end())
+		{
 			std::cout << (*it).objectiveVector()[0] << " " << (*it).objectiveVector()[1] << ", fit: " << (*it).fitness() << std::endl;
 			it++;
 		}
 	}
 
-protected:
 
-	/** an empty MOEOT used for checking insertion */
-	MOEOT empty;
-	/** hint for the insertion */
-	Iterator hint;
+protected:
 
 	/** Size max of the archive*/
 	unsigned int maxSize;
-
 	/** fitness assigned to the first and the last solution in the archive */
 	double maxValue;
+	/** hint for the insertion */
+	Iterator hint;
+
+	/** an empty MOEOT used for checking insertion */
+	MOEOT empty;
+
+
+	/**
+	 * set fitness
+	 */
+	void fitness(Iterator & _it, double _fitnessValue)
+	{
+		MOEOT* tmp;
+		tmp = (MOEOT*)&(*_it);
+		tmp->fitness(_fitnessValue);
+	}
+
 
 	/**
 	 * remove solutions from the archive that are dominated by _objVec
@@ -245,47 +241,54 @@ protected:
 		}
 	}
 
+
 	/**
 	 * compute fitness value of a solution and its two neighbors
 	 * @param _it refer to the solution
 	 */
-	void computeFitness(Iterator& _it){
+	void computeFitness(Iterator & _it)
+	{
 		Iterator tmp;
-		if(_it!=begin()){
+		if(_it!=begin())
+		{
 			tmp=_it;
 			tmp--;
 			compute(tmp);
 		}
 		_it++;
-		if(_it!=end()){
+		if(_it!=end())
+		{
 			_it--;
 			tmp=_it;
 			tmp++;
 			compute(tmp);
 		}
-		else{
+		else
+		{
 			_it--;
 		}
 		compute(_it);
 	}
 
+
 	/**
 	 * compute fitness value of a solution
 	 * @param _it refer to the solution
 	 */
-	void compute(Iterator& _it){
+	void compute(Iterator & _it)
+	{
 		double x0, x1, y0, y1, fit;
-		MOEOT* tmp;
-		if(_it==begin()){
-			tmp = (MOEOT*)&(*_it);
-			tmp->fitness(maxValue);
+		if (_it==begin())
+		{
+			fitness(_it, maxValue);
 		}
-		else if((++_it)==end()){
+		else if ((++_it)==end())
+		{
 			_it--;
-			tmp = (MOEOT*)&(*_it);
-			tmp->fitness(maxValue);
+			fitness(_it, maxValue);
 		}
-		else{
+		else
+		{
 			_it--;
 			x0 = (*_it).objectiveVector()[0];
 			y0 = (*_it).objectiveVector()[1];
@@ -295,11 +298,46 @@ protected:
 			_it++;
 			y1 = (*_it).objectiveVector()[1];
 			_it--;
-			fit= (x1 - x0) * (y1 - y0);
-			tmp = (MOEOT*)&(*_it);
-			tmp->fitness(fit);
+			fit = (x1 - x0) * (y1 - y0);
+			fitness(_it, fit);
+			//tmp = (MOEOT*)&(*_it);
+			//tmp->fitness(fit);
 		}
 	}
+
+
+	/**
+	 * iteratively removes the less-contributing solution from the acrhive
+	 */
+	void filter()
+	{
+		// ierators
+		Iterator it, itd;
+		//used to find sol with minimum fitness value
+		double minFit = maxValue;
+
+		// remove MOEOT with the lowest fitness value while archive size > maxSize
+		while (size() > maxSize)
+		{
+			//find sol with minimum fitness
+			for(it=begin(); it!=end(); it++)
+			{
+				if(it->fitness() < minFit)
+				{
+					minFit = it->fitness();
+					itd = it;
+				}
+			}
+			//remove it and recompute fitness of its neighbors
+			it = itd;
+			it--;
+			erase(itd);
+			compute(it);
+			it++;
+			compute(it);
+		}
+	}
+
 };
 
 #endif /*MOEO2DMINHYPERVOLUMEARCHIVE_H_ */
