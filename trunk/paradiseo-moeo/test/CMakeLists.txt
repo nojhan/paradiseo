@@ -103,6 +103,7 @@ SET (TEST_LIST
 		t-moeoNumberUnvisitedSelect
 		t-moeoDMLSMonOp
 		t-moeoDMLSGenUpdater
+		t-moeo2DMinHypervolumeArchive
 )
 
 FOREACH (test ${TEST_LIST})
