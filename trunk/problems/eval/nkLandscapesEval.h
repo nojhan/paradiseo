@@ -79,7 +79,8 @@ public:
    */
   nkLandscapesEval(const char * _fileName)
   { 
-    load(_fileName);
+    string fname(_fileName);
+    load(fname);
   };
 
   /**
@@ -131,10 +132,10 @@ public:
    *
    * @param _fileName file name of the instance
    */
-  virtual void load(const char * _fileName)
+  virtual void load(const string _fileName)
   {
     fstream file;
-    file.open(_fileName, ios::in);
+    file.open(_fileName.c_str(), ios::in);
 
     if (file.is_open()) {
       string s;
@@ -249,7 +250,8 @@ public:
       }
       file.close();
     } else {
-      string str = "nkLandscapesEval.save: Could not open file [" + _fileName + "]." ;
+      string fname(_fileName);
+      string str = "nkLandscapesEval.save: Could not open file [" + fname + "]." ;
       throw runtime_error(str);
     }
   };
