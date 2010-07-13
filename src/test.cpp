@@ -1,4 +1,0 @@
-namespace DO
-{
-    void	test(){}
-}

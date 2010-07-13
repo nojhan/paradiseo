@@ -18,109 +18,96 @@
 #ifndef _doStats_h
 #define _doStats_h
 
-#include <cassert>
-#include <vector>
+#include <eoPrintable.h>
 
-class Mean {
+class doStats : public eoPrintable
+{
+public:
+    doStats();
 
-    double n;
-    double mean;
+    virtual void printOn(std::ostream&) const;
 
-    public:
-    Mean() : n(0), mean(0) {}
-
-    void update(double v) {
-	n++;
-	double d = v - mean;
-	mean += 1/n * d;
-    }
-
-    double get_mean() const { return mean; }
+protected:
+    double _n;
 };
 
-class Var {
-    double n;
-    double mean;
-    double sumvar;
+class doMean : public doStats
+{
+public:
+    doMean();
 
-    public:
-    Var() : n(0), mean(0), sumvar(0) {}
+    virtual void update(double);
+    virtual void printOn(std::ostream&) const;
 
-    void update(double v) {
-	n++;
-	double d = v - mean;
-	mean += 1/n * d;
-	sumvar += (n-1)/n * d * d;
-    }
+    double get_mean() const;
 
-    double get_mean() const { return mean;           }
-    double get_var()  const { return sumvar / (n-1); }
-    double get_std()  const { return sqrt(get_var());  }
+protected:
+    double _mean;
+};
+
+class doVar : public doMean
+{
+public:
+    doVar();
+
+    virtual void update(double);
+    virtual void printOn(std::ostream&) const;
+
+    double get_var() const;
+    double get_std() const;
+
+protected:
+    double _sumvar;
 };
 
 /** Single covariance between two variates */
-class Cov {
-    double n;
-    double meana;
-    double meanb;
-    double sumcov;
+class doCov : public doStats
+{
+public:
+    doCov();
 
-    public:
-    Cov() : n(0), meana(0), meanb(0), sumcov(0) {}
+    virtual void update(double, double);
+    virtual void printOn(std::ostream&) const;
 
-    void update(double a, double b) {
-	++n;
-	double da = a - meana;
-	double db = b - meanb;
+    double get_meana() const;
+    double get_meanb() const;
+    double get_cov()   const;
 
-	meana += 1/n * da;
-	meanb += 1/n * db;
-
-	sumcov += (n-1)/n * da * db;
-    }
-
-    double get_meana() const { return meana; }
-    double get_meanb() const { return meanb; }
-    double get_cov()   const { return sumcov / (n-1); }
+protected:
+    double _meana;
+    double _meanb;
+    double _sumcov;
 };
 
-class CovMatrix {
-    double n;
-    std::vector<double> mean;
-    std::vector< std::vector<double> > sumcov;
+class doCovMatrix : public doStats
+{
+public:
+    doCovMatrix(unsigned dim);
 
-    public:
-    CovMatrix(unsigned dim) : n(0), mean(dim), sumcov(dim , std::vector<double>(dim)) {}
+    virtual void update(const std::vector<double>&);
 
-    void update(const std::vector<double>& v) {
-	assert(v.size() == mean.size());
+    double get_mean(int) const;
+    double get_var(int) const;
+    double get_std(int) const;
+    double get_cov(int, int) const;
 
-	n++;
+protected:
+    std::vector< double > _mean;
+    std::vector< std::vector< double > > _sumcov;
+};
 
-	for (unsigned i = 0; i < v.size(); ++i) {
-	    double d = v[i] - mean[i];
-	    mean[i] += 1/n * d;
+class doHyperVolume : public doStats
+{
+public:
+    doHyperVolume();
 
-	    sumcov[i][i] += (n-1)/n * d * d;
+    virtual void update(double);
+    virtual void printOn(std::ostream&) const;
 
-	    for (unsigned j = i; j < v.size(); ++j) {
-		double e = v[j] - mean[j]; // mean[j] is not updated yet
+    double get_hypervolume() const;
 
-		double upd = (n-1)/n * d * e;
-
-		sumcov[i][j] += upd;
-		sumcov[j][i] += upd;
-
-	    }
-	}
-
-    }
-
-    double get_mean(int i) const { return mean[i]; }
-    double get_var(int i ) const { return sumcov[i][i] / (n-1); }
-    double get_std(int i) const  { return sqrt(get_var(i)); }
-    double get_cov(int i, int j) const { return sumcov[i][j] / (n-1); }
-
+protected:
+    double _hv;
 };
 
 #endif // !_doStats_h

@@ -33,6 +33,7 @@
 #include "doEstimator.h"
 #include "doModifierMass.h"
 #include "doSampler.h"
+#include "doStats.h"
 
 using namespace boost::numeric::ublas;
 
@@ -106,6 +107,7 @@ public:
 
 	eoPop< EOT > selected_pop;
 
+
 	//-------------------------------------------------------------
 	// Temporary solution used by plot to enumerate iterations in
 	// several files.
@@ -158,19 +160,16 @@ public:
 	    D distrib = _estimator(pop);
 
 	    double size = distrib.size();
-
 	    assert(size > 0);
 
-	    double vacc = 1;
+	    doHyperVolume hv;
 
 	    for (int i = 0; i < size; ++i)
 		{
-		    vacc *= sqrt(distrib.variance()[i]);
+		    hv.update( distrib.variance()[i] );
 		}
 
-	    assert(vacc <= std::numeric_limits<double>::max());
-
-	    ofs_params_var << vacc << std::endl;
+	    ofs_params_var << hv << std::endl;
 	}
 
 	do
@@ -297,30 +296,27 @@ public:
 		// dicreasement
 		//-------------------------------------------------------------
 
-		{
-		    // double size = distrib.size();
+		// {
+		//     double size = distrib.size();
+		//     assert(size > 0);
 
-		    // assert(size > 0);
+		//     vector< double > vmin(size);
+		//     vector< double > vmax(size);
 
-		    // vector< double > vmin(size);
-		    // vector< double > vmax(size);
+		//     std::copy(distrib.param(0).begin(), distrib.param(0).end(), vmin.begin());
+		//     std::copy(distrib.param(1).begin(), distrib.param(1).end(), vmax.begin());
 
-		    // std::copy(distrib.param(0).begin(), distrib.param(0).end(), vmin.begin());
-		    // std::copy(distrib.param(1).begin(), distrib.param(1).end(), vmax.begin());
+		//     vector< double > vrange = vmax - vmin;
 
-		    // vector< double > vrange = vmax - vmin;
+		//     doHyperVolume hv;
 
-		    // double vacc = 1;
+		//     for (int i = 0, size = vrange.size(); i < size; ++i)
+		//     	{
+		// 	    hv.update( vrange(i) );
+		//     	}
 
-		    // for (int i = 0, size = vrange.size(); i < size; ++i)
-		    // 	{
-		    // 	    vacc *= vrange(i);
-		    // 	}
-
-		    // assert(vacc <= std::numeric_limits<double>::max());
-
-		    // ofs_params << vacc << std::endl;
-		}
+		//     ofs_params << hv << std::endl;
+		// }
 
 		//-------------------------------------------------------------
 
@@ -332,19 +328,16 @@ public:
 
 		{
 		    double size = distrib.size();
-
 		    assert(size > 0);
 
-		    double vacc = 1;
+		    doHyperVolume hv;
 
 		    for (int i = 0; i < size; ++i)
 			{
-			    vacc *= sqrt(distrib.variance()[i]);
+			    hv.update( distrib.variance()[i] );
 			}
 
-		    assert(vacc <= std::numeric_limits<double>::max());
-
-		    ofs_params_var << vacc << std::endl;
+		    ofs_params_var << hv << std::endl;
 		}
 
 		//-------------------------------------------------------------
