@@ -129,11 +129,6 @@ int main(int argc, char* argv[])
         // run the algo
         algo(pop);
 
-        // printing of the final population
-        cout << "Final Population\n";
-        pop.sortedPrintOn(cout);
-        cout << endl;
-
         // printing of the final archive
         cout << "Final Archive\n";
         arch.sortedPrintOn(cout);
