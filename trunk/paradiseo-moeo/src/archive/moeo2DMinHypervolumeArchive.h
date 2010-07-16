@@ -111,26 +111,29 @@ public:
 			result = insert(_moeo.objectiveVector());
 			if (result)
 			{
+				if(size() < maxSize){
 				// if yes, insert it and recompute fitness value of MOEOT and its neighbors
-				insert(hint,_moeo);
-				if(size() > 2)
-				{
-					//general case
-					hint--;
-					computeFitness(hint);
-				}
-				else
-				{
-					//archive size <= 2, fitness=maxValue for each sol
-					it=begin();
-					while(it!=end())
+					insert(hint,_moeo);
+					if(size() > 2)
 					{
-						fitness(it, maxValue);
-						it++;
+						//general case
+						hint--;
+						computeFitness(hint);
+					}
+					else
+					{
+						//archive size <= 2, fitness=maxValue for each sol
+						it=begin();
+						while(it!=end())
+						{
+							fitness(it, maxValue);
+							it++;
+						}
 					}
 				}
-				// remove MOEOT with the lowest fitness value (if archive size > maxSize)
-				filter();
+				else{
+					result = filter(_moeo);
+				}
 			}
 		}
 		return result;
@@ -148,6 +151,7 @@ public:
     	bool tmp = false;
         for (unsigned int i=0; i<_pop.size(); i++)
         {
+        	std::cout << "insert " << _pop[i].objectiveVector()[0] << ", " << _pop[i].objectiveVector()[1] << std::endl;
             tmp = (*this)(_pop[i]);
             result = tmp || result;
         }
@@ -308,13 +312,40 @@ protected:
 		}
 	}
 
+	double computeTmp(const ObjectiveVector & _objVec, int _where){
+		double res, tmp;
+		if(hint==begin() || hint==end())
+			res=maxValue;
+		else{
+			if(_where==0){
+				//on calcule la fit de celui à potentiellement inserer
+				res= (*hint).objectiveVector()[1] - _objVec[1];
+				hint--;
+				res*= ((*hint).objectiveVector()[0] - _objVec[0]);
+				hint++;
+			}
+			else if(_where <0){
+				// on calcule la fit de son predecesseur
+				res=  _objVec[1] - (*hint).objectiveVector()[1];
+				tmp=(*hint).objectiveVector()[0];
+				hint--;
+				res*= ((*hint).objectiveVector()[0] - tmp);
+				hint++;
+			}
+			else{
+				// on calcule la fit de son successeur
+				res= _objVec[0] - (*hint).objectiveVector()[0];
+				tmp=(*hint).objectiveVector()[1];
+				hint++;
+				res*= ((*hint).objectiveVector()[1] - tmp);
+				hint--;
+			}
+		}
+		return res;
+	}
 
-	/**
-	 * iteratively removes the less-contributing solution from the acrhive
-	 */
-	void filter()
-	{
-		// ierators
+
+	void filterbis(){
 		Iterator it, itd;
 		//used to find sol with minimum fitness value
 		double minFit = maxValue;
@@ -339,6 +370,64 @@ protected:
 			it++;
 			compute(it);
 		}
+	}
+
+	/**
+	 * iteratively removes the less-contributing solution from the acrhive
+	 */
+	bool filter(const MOEOT & _moeo)
+	{
+		bool res;
+		double x, y, pred, succ, tmp=0;
+
+		if(hint==begin() || hint==end()){
+			insert(hint, _moeo);
+			hint--;
+			computeFitness(hint);
+			filterbis();
+			res=true;
+		}
+		else{
+			//compute fitness tmp
+			tmp=computeTmp(_moeo.objectiveVector(), 0);
+			hint--;
+			pred=computeTmp(_moeo.objectiveVector(), -1);
+			hint++;
+			succ=computeTmp(_moeo.objectiveVector(), 1);
+			if(tmp > succ || tmp>pred){
+				insert(hint, _moeo);
+				hint--;
+				//ici faudrait utiliser les valeurs qu'on vient de calculer pour les affecter direct (faire attention à ou on se trouve)
+				computeFitness(hint);
+				filterbis();
+				res=true;
+			}
+			else{
+				Iterator it;
+				double minFit = maxValue;
+				for(it=begin(); it!=end(); it++)
+				{
+					if(it->fitness() < minFit)
+					{
+						minFit = it->fitness();
+					}
+				}
+				if(tmp<=minFit){
+					res=false;
+				}
+				else{
+					//REDONDANT arranger le code
+					insert(hint, _moeo);
+					hint--;
+					//ici faudrait utiliser les valeurs qu'on vient de calculer pour les affecter direct (faire attention à ou on se trouve)
+					computeFitness(hint);
+					filterbis();
+					res=true;
+				}
+			}
+		}
+
+		return res;
 	}
 
 };
