@@ -157,7 +157,11 @@ int main()
     a.objectiveVector(obj);
     pop.push_back(a);
 
-    arch(pop);
+    for(int i=0; i< pop.size(); i++){
+    	arch(pop[i]);
+		arch.print();
+		std::cout << std::endl;
+    }
 
     moeo2DMinHypervolumeArchive< Solution >::iterator it;
     it=arch.begin();
@@ -180,6 +184,7 @@ int main()
     assert(it->objectiveVector()[0]==1);
     assert(it->objectiveVector()[1]==15);
     assert(it->fitness()==1000);
+
 
     std::cout << "OK" << std::endl;
     return EXIT_SUCCESS;
