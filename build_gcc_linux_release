@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+mkdir release
+cd release
+cmake ..
+make
+cd ..
