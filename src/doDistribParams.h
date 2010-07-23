@@ -11,6 +11,18 @@ public:
 	: _params(n)
     {}
 
+    doDistribParams(const doDistribParams& p) { *this = p; }
+
+    doDistribParams& operator=(const doDistribParams& p)
+    {
+	if (this != &p)
+	    {
+		this->_params = p._params;
+	    }
+
+	return *this;
+    }
+
     EOT& param(unsigned int i = 0){return _params[i];}
 
     unsigned int param_size(){return _params.size();}

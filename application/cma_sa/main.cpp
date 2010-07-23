@@ -48,9 +48,6 @@ int	main(int ac, char** av)
     doModifierMass< doNormal< EOT > >* modifier = new doNormalCenter< EOT >();
     state.storeFunctor(modifier);
 
-    // EOT min(2, 42);
-    // EOT max(2, 32);
-
     //eoEvalFunc< EOT >* plainEval = new BopoRosenbrock< EOT, double, const EOT& >();
     eoEvalFunc< EOT >* plainEval = new Sphere< EOT >();
     state.storeFunctor(plainEval);
@@ -119,11 +116,11 @@ int	main(int ac, char** av)
     // stopping criteria
     // ... and creates the parameter letters: C E g G s T
 
-    eoContinue< EOT >& monitoringContinue = do_make_continue(parser, state, eval);
+    eoContinue< EOT >& monitoring_continue = do_make_continue(parser, state, eval);
 
     // output
 
-    eoCheckPoint< EOT >& checkpoint = do_make_checkpoint(parser, state, eval, monitoringContinue);
+    eoCheckPoint< EOT >& checkpoint = do_make_checkpoint(parser, state, eval, monitoring_continue);
 
     // appends some missing code to checkpoint
 
@@ -146,10 +143,10 @@ int	main(int ac, char** av)
 
     // --------------------------
 
-    // eoPopStat< EOT >* popStat = new eoPopStat<EOT>;
-    // state.storeFunctor(popStat);
+    eoPopStat< EOT >* popStat = new eoPopStat<EOT>;
+    state.storeFunctor(popStat);
 
-    // checkpoint.add(*popStat);
+    checkpoint.add(*popStat);
 
     // eoMonitor* fileSnapshot = new doFileSnapshot< std::vector< std::string > >("ResPop");
     // state.storeFunctor(fileSnapshot);

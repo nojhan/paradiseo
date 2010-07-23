@@ -17,6 +17,10 @@ public:
 	max() = _max;
     }
 
+    doVectorBounds(const doVectorBounds& v)
+	: doDistribParams< EOT >( v )
+    {}
+
     EOT& min(){return this->param(0);}
     EOT& max(){return this->param(1);}
 };

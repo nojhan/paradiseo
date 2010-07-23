@@ -17,6 +17,10 @@ public:
 	variance() = _variance;
     }
 
+    doNormalParams(const doNormalParams& p)
+	: doDistribParams< EOT >( p )
+    {}
+
     EOT& mean(){return this->param(0);}
     EOT& variance(){return this->param(1);}
 };

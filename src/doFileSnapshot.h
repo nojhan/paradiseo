@@ -83,20 +83,13 @@ public :
 	    // now make sure there is a dir without any genXXX file in it
 	    if (res)                    // no dir present
 	    {
-		//s = std::string("mkdir ")+dirname;
 		::mkdir(dirname.c_str(), 0755);
 	    }
 	    else if (!res && _rmFiles)
 	    {
-		//s = std::string("/bin/rm ")+dirname+ "/" + filename + "*";
 		std::string s = dirname+ "/" + filename + "*";
 		::unlink(s.c_str());
 	    }
-	    // else
-	    //   s = " ";
-
-	    //int nothing = system(s.c_str());
-	    // all done
 	}
 
     /** accessor: has something changed (for gnuplot subclass)
@@ -148,43 +141,23 @@ public :
     */
     eoMonitor& operator()(std::ostream& _os)
 	{
-	    //eo::log << eo::debug << "TOTO" << std::endl;
-
-	    //_os << "TOTO" << "\n";
-
-	    //_os << v[0] << "\n";
-
-	    // const eoValueParam<std::vector<double> >  * ptParam =
-	    //   static_cast<const eoValueParam<std::vector<double> >* >(vec[0]);
-
-	    // what's the size of vec ?!?
-
-	    eo::log << eo::debug;
-
-	    eo::log << "vec size: " << vec.size() << std::endl;
-
 	    const eoValueParam< EOTParam >  * ptParam =
 		static_cast< const eoValueParam< EOTParam >* >(vec[0]);
 
-	    //const std::vector<double>  v = ptParam->value();
 	    EOTParam v(ptParam->value());
 	    if (vec.size() == 1)	   // only one std::vector: -> add number in front
 	    {
 		eo::log << "I am here..." << std::endl;
-
-		//eo::log << *vec[0] << std::endl;
 
 	    	for (unsigned k=0; k<v.size(); k++)
 	    	    _os << k << " " << v[k] << "\n" ;
 	    }
 	    else			   // need to get all other std::vectors
 	    {
-	    	//std::vector<std::vector<double> > vv(vec.size());
 	    	std::vector< EOTParam > vv(vec.size());
 	    	vv[0]=v;
 	    	for (unsigned i=1; i<vec.size(); i++)
 	    	{
-	    	    //ptParam = static_cast<const eoValueParam<std::vector<double> >* >(vec[1]);
 	    	    ptParam = static_cast< const eoValueParam< EOTParam >* >(vec[1]);
 	    	    vv[i] = ptParam->value();
 	    	    if (vv[i].size() != v.size())
