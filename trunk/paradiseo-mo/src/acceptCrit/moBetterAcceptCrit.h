@@ -43,10 +43,21 @@ class moBetterAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDumm
 public:
     typedef typename Neighbor::EOT EOT;
 
+  /*
+    constructor with a specific comparator
+
+    @param _comparator the comparaison method of two solutions
+  */
     moBetterAcceptCrit(moSolComparator<EOT>& _comparator):comparator(_comparator) {}
 
+  /*
+    default constructor:
+    compare the fitness value: accept if the fitness is higher
+  */
+    moBetterAcceptCrit():comparator(defaultComparator) {}
+
     /**
-     * Accept if the new solution is better than previous one
+     * Accept if the new solution is better than previous one according to the comparator
      * @param _sol1 the previous solution
      * @param _sol2 the new solution after local search
      * @return true if the new solution is better than previous one
@@ -57,6 +68,8 @@ public:
 
 private:
     moSolComparator<EOT>& comparator;
+
+    moSolComparator<EOT> defaultComparator;
 
 };
 
