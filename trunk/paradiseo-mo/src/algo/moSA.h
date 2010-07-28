@@ -85,6 +85,20 @@ public:
      * @param _fullEval the full evaluation function
      * @param _eval neighbor's evaluation function
      * @param _cool a cooling schedule
+     * @param _cont an external continuator
+     */
+    moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moCoolingSchedule<EOT>& _cool, moContinuator<Neighbor>& _cont):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            defaultCool(0, 0, 0, 0),
+            explorer(_neighborhood, _eval, defaultSolNeighborComp, _cool)
+    {}
+
+    /**
+     * General constructor for a simulated annealing
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _cool a cooling schedule
      * @param _comp a solution vs neighbor comparator
      * @param _cont an external continuator
      */
