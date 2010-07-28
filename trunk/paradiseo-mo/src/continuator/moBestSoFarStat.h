@@ -41,15 +41,15 @@
  * The statistic which save the best solution found during the search
  */
 template <class EOT>
-class moBestSoFarStat : public moStat<EOT, EOT&>
+class moBestSoFarStat : public moStat<EOT, EOT>
 {
 public :
-    using moStat< EOT , EOT& >::value;
+    using moStat< EOT , EOT >::value;
 
     /**
      * Default Constructor
      */
-    moBestSoFarStat(): moStat<EOT, EOT&>(EOT(), "best") {
+    moBestSoFarStat(): moStat<EOT, EOT>(EOT(), "best") {
     }
 
     /**
