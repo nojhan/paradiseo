@@ -41,20 +41,26 @@
 #include <algo/moLocalSearch.h>
 #include <perturb/moPerturbation.h>
 #include <acceptCrit/moAcceptanceCriterion.h>
-#include <neighborhood/moDummyNeighborhood.h>
-#include <neighborhood/moDummyNeighbor.h>
+//#include <neighborhood/moDummyNeighborhood.h>
+//#include <neighborhood/moDummyNeighbor.h>
 
 /**
  * Explorer for an Iterated Local Search
  */
-template< class Neighbor >
-class moILSexplorer : public moNeighborhoodExplorer< moDummyNeighbor<typename Neighbor::EOT> >
+
+//template< class Neighbor >
+//class moILSexplorer : public moNeighborhoodExplorer< moDummyNeighbor<typename Neighbor::EOT> >
+
+template< class Neighbor, class NeighborLO >
+class moILSexplorer : public moNeighborhoodExplorer< NeighborLO >
 {
 public:
-    typedef moNeighborhood<Neighbor> Neighborhood ;
-    typedef typename Neighbor::EOT EOT;
-    typedef moDummyNeighbor<EOT> dummyNeighbor;
-    typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
+  typedef moNeighborhood<Neighbor> Neighborhood ;
+  typedef typename Neighbor::EOT EOT;
+  typedef moNeighborhood<NeighborLO> NeighborhoodLO;
+  
+  //typedef moDummyNeighbor<EOT> dummyNeighbor;
+  //typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
 
     /**
      * Constructor
@@ -62,7 +68,7 @@ public:
      * @param _perturb a perturbation operator
      * @param _acceptCrit a acceptance criteria
      */
-    moILSexplorer(moLocalSearch<Neighbor>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : moNeighborhoodExplorer<dummyNeighbor>(), ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit) {
+    moILSexplorer(moLocalSearch<Neighbor>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : moNeighborhoodExplorer<NeighborLO>(), ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit) {
         firstIteration=true;
     }
 
