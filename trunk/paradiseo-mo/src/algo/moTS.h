@@ -109,6 +109,31 @@ public:
     moTS(Neighborhood& _neighborhood,
          eoEvalFunc<EOT>& _fullEval,
          moEval<Neighbor>& _eval,
+         moContinuator<Neighbor>& _cont,
+         moTabuList<Neighbor>& _tabuList,
+         moAspiration<Neighbor>& _aspiration):
+            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
+            timeCont(0),
+            tabuList(0,0),
+            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _tabuList, dummyIntensification, dummyDiversification, _aspiration)
+    {}
+
+    /**
+     * General constructor for a tabu search
+     * @param _neighborhood the neighborhood
+     * @param _fullEval the full evaluation function
+     * @param _eval neighbor's evaluation function
+     * @param _neighborComp a comparator between 2 neighbors
+     * @param _solNeighborComp a solution vs neighbor comparator
+     * @param _cont an external continuator
+     * @param _tabuList the tabu list
+     * @param _intensification the intensification strategy
+     * @param _diversification the diversification strategy
+     * @param _aspiration the aspiration Criteria
+     */
+    moTS(Neighborhood& _neighborhood,
+         eoEvalFunc<EOT>& _fullEval,
+         moEval<Neighbor>& _eval,
          moNeighborComparator<Neighbor>& _neighborComp,
          moSolNeighborComparator<Neighbor>& _solNeighborComp,
          moContinuator<Neighbor>& _cont,

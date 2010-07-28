@@ -36,6 +36,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eoOp.h>
 #include <neighborhood/moDummyNeighbor.h>
 #include <perturb/moMonOpPerturb.h>
+#include <perturb/moPerturbation.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
@@ -44,13 +45,14 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Iterated Local Search
  */
-template<class Neighbor>
-class moILS: public moLocalSearch<moDummyNeighbor<typename Neighbor::EOT> >
+template<class Neighbor, class NeighborLO = moDummyNeighbor<typename Neighbor::EOT> >
+class moILS: public moLocalSearch< NeighborLO >
 {
 public:
 
     typedef typename Neighbor::EOT EOT;
     typedef moNeighborhood<Neighbor> Neighborhood ;
+
 
     /**
      * Basic constructor for Iterated Local Search
@@ -60,7 +62,7 @@ public:
      * @param _nbIteration the time limit for search
      */
     moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, eoMonOp<EOT>& _op, unsigned int _nbIteration):
-            moLocalSearch<moDummyNeighbor<EOT> >(explorer, iterCont, _fullEval),
+            moLocalSearch< moDummyNeighbor<EOT> >(explorer, iterCont, _fullEval),
             iterCont(_nbIteration),
             defaultPerturb(_op, _fullEval),
             explorer(_ls, defaultPerturb, defaultAccept)
@@ -73,8 +75,8 @@ public:
      * @param _op the operator used to perturb solution
      * @param _cont a continuator
      */
-    moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, eoMonOp<EOT>& _op, moContinuator<moDummyNeighbor<EOT> >& _cont):
-            moLocalSearch<moDummyNeighbor<EOT> >(explorer, _cont, _fullEval),
+    moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, eoMonOp<EOT>& _op, moContinuator<NeighborLO>& _cont):
+            moLocalSearch< NeighborLO >(explorer, _cont, _fullEval),
             iterCont(0),
             defaultPerturb(_op, _fullEval),
             explorer(_ls, defaultPerturb, defaultAccept)
@@ -88,13 +90,15 @@ public:
      * @param _perturb a perturbation operator
      * @param _accept a acceptance criteria
      */
-    moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, moContinuator<moDummyNeighbor<EOT> >& _cont, moMonOpPerturb<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _accept):
-            moLocalSearch<moDummyNeighbor<EOT> >(explorer, _cont, _fullEval),
+  //    moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, moContinuator<moDummyNeighbor<EOT> >& _cont, moMonOpPerturb<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _accept):
+  //  moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, moContinuator<NeighborLO>& _cont, moPerturbation<Neighbor>& _perturb):
+  moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, moContinuator<NeighborLO>& _cont, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _accept):
+            moLocalSearch<NeighborLO>(explorer, _cont, _fullEval),
             iterCont(0),
             defaultPerturb(dummyOp, _fullEval),
             explorer(_ls, _perturb, _accept)
     {}
-
+  
 private:
 
     class dummmyMonOp: public eoMonOp<EOT> {
@@ -102,11 +106,12 @@ private:
         bool operator()(EOT&) {
             return false;
         }
-    }dummyOp;
-    moIterContinuator<moDummyNeighbor<EOT> > iterCont;
-    moMonOpPerturb<Neighbor> defaultPerturb;
-    moAlwaysAcceptCrit<Neighbor> defaultAccept;
-    moILSexplorer<Neighbor> explorer;
+    } dummyOp;
+
+  moIterContinuator<moDummyNeighbor<EOT> > iterCont;
+  moMonOpPerturb<Neighbor> defaultPerturb;
+  moAlwaysAcceptCrit<Neighbor> defaultAccept;
+  moILSexplorer< Neighbor , NeighborLO > explorer; // inherits from moNeighborhoodExplorer< NeighborLO >
 };
 
 
