@@ -37,7 +37,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Continue until a maximum fixed number of neighbor evaluation is reached
  *
- * Becareful 1: The number of neighbor evaluations (for example incremental evaluations) considered is within the local search (not before it)
+ *
+ * Becareful 1: if restartCounter is true, then the number of neighbor evaluations (for example incremental evaluations) is considered during the local search (not before it)
+ *
  * Becareful 2: Can not be used if the evaluation function is used in parallel
  */
 template< class Neighbor >
@@ -50,8 +52,9 @@ public:
      * Constructor
      * @param _eval neighbor evaluation function to count
      * @param _maxNeighborEval number maximum of iterations
+     * @param _restartCounter if true the counter of number of evaluations restarts to "zero" at initialization, if false, the number is cumulative
      */
-    moNeighborEvalContinuator(moEvalCounter<Neighbor> & _eval, unsigned int _maxNeighborEval): eval(_eval), maxNeighborEval(_maxNeighborEval) {}
+  moNeighborEvalContinuator(moEvalCounter<Neighbor> & _eval, unsigned int _maxNeighborEval, bool _restartCounter = true): eval(_eval), maxNeighborEval(_maxNeighborEval), restartCounter(_restartCounter) {}
 
     /**
      * Test if continue
@@ -67,7 +70,10 @@ public:
      * @param _solution a solution
      */
     virtual void init(EOT & _solution) {
+      if (restartCounter)
         nbEval_start = eval.value();
+      else
+	nbEval_start = 0;
     }
 
     /**
@@ -79,9 +85,10 @@ public:
     }
 
 private:
-    moEvalCounter<Neighbor> & eval;
-    unsigned int maxNeighborEval;
-    unsigned int nbEval_start ;
+  moEvalCounter<Neighbor> & eval;
+  unsigned int maxNeighborEval;
+  bool restartCounter;
+  unsigned int nbEval_start ;
 
 };
 #endif
