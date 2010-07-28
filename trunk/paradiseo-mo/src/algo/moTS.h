@@ -98,12 +98,8 @@ public:
      * @param _neighborhood the neighborhood
      * @param _fullEval the full evaluation function
      * @param _eval neighbor's evaluation function
-     * @param _neighborComp a comparator between 2 neighbors
-     * @param _solNeighborComp a solution vs neighbor comparator
      * @param _cont an external continuator
      * @param _tabuList the tabu list
-     * @param _intensification the intensification strategy
-     * @param _diversification the diversification strategy
      * @param _aspiration the aspiration Criteria
      */
     moTS(Neighborhood& _neighborhood,
