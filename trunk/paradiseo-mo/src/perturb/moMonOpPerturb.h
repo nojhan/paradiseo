@@ -58,6 +58,7 @@ public:
      */
     bool operator()(EOT& _solution) {
         bool res = monOp(_solution);
+	_solution.invalidate();
         fullEval(_solution);
         return res;
     }
