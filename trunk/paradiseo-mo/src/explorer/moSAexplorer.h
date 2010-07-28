@@ -86,8 +86,8 @@ public:
      * @param _solution the solution
      */
     virtual void initParam(EOT & _solution) {
-        temperature = coolingSchedule.init(_solution);
-        isAccept = true;
+      temperature = coolingSchedule.init(_solution);
+      isAccept = true;
     };
 
     /**
@@ -95,7 +95,7 @@ public:
      * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {
-        coolingSchedule.update(temperature);
+        coolingSchedule.update(temperature, this->moveApplied());
     };
 
     /**

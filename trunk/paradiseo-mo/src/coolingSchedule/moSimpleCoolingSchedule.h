@@ -69,8 +69,9 @@ public:
     /**
      * update the temperature by a factor
      * @param _temp current temperature to update
+     * @param _acceptedMove true when the move is accepted, false otherwise
      */
-    virtual void update(double& _temp) {
+    virtual void update(double& _temp, bool _acceptedMove) {
         if (step >= span) {
             _temp *= alpha;
             step = 0;

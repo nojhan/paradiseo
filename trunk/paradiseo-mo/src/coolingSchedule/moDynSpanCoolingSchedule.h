@@ -39,6 +39,8 @@
 
 /**
  * Cooling Schedule of the temperature in the simulated algorithm
+ * dynamic span : maximum number of tries and maximum number of moves
+ * stop on the number of span with no move 
  *
  */
 template< class EOT >
@@ -49,11 +51,12 @@ public:
      * default constructor
      * @param _initT initial temperature
      * @param _alpha factor of decreasing
-     * @param _spanMove maximum number of move with equal temperature
-     * @param _spanNoMove maximum number of no improvement with equal temperature
-     * @param _nbSpan maximum number of span with no improvmement before stopping the search
+     * @param _spanTriesMax maximum number of total move at equal temperature
+     * @param _spanMoveMax maximum number of moves at equal temperature
+     * @param _nbSpanMax maximum number of span with no move before stopping the search
      */
-    moDynSpanCoolingSchedule(double _initT, double _alpha, unsigned int _spanMove, unsigned int _spanNoMove, unsigned int _nbSpan) : initT(_initT), alpha(_alpha), spanMove(_spanMove), spanNoMove(_spanNoMove), nbSpan(_nbSpan) {
+    moDynSpanCoolingSchedule(double _initT, double _alpha, unsigned int _spanTriesMax, unsigned int _spanMoveMax, unsigned int _nbSpanMax) : 
+      initT(_initT), alpha(_alpha), spanTriesMax(_spanTriesMax), spanMoveMax(_spanMoveMax), nbSpanMax(_nbSpanMax) {
     }
 
     /**
@@ -61,41 +64,49 @@ public:
      * @param _solution initial solution
      */
     virtual double init(EOT & _solution) {
-        // number of successive moves since the last temperature change
-        nbMove = 0;
+        // number of tries since the last temperature change
+        spanTries = 0;
 
-        // number of no improvement since the last temperature change
-        nbNoMove = 0;
+        // number of move since the last temperature change
+        spanMove = 0;
 
-        // number of span with no improvement
+        // number of successive span with no move
         nbSpan = 0;
 
         return initT;
     }
 
-    /**
-     * update the temperature by a factor
-     * @param _temp current temperature to update
-     */
-    virtual void update(double& _temp) {
-        if (nbMove >= spanMove || nbNoMove >= spanNoMove) {
-            _temp *= alpha;
+  /**
+   * update the temperature by a factor
+   * @param _temp current temperature to update
+   * @param _acceptedMove true when the move is accepted, false otherwise
+   */
+  virtual void update(double& _temp, bool _acceptedMove) {
+    spanTries++;
 
-            nbMove   = 0;
-            nbNoMove = 0;
-        } else {
-            nbMove++;
-            nbNoMove++;
-        }
-    }
+    if (_acceptedMove) 
+      spanMove++;
 
+    if (spanTries >= spanTriesMax || spanMove >= spanMoveMax) {
+      _temp *= alpha;
+
+      if (spanMove == 0) // no move during this span ?
+	nbSpan++;
+      else
+	nbSpan = 0;
+
+      spanTries     = 0;
+      spanMove = 0;
+    } 
+  }
+  
     /**
-     * compare the temperature to the threshold
+     * compare the number of span with no move
      * @param _temp current temperature
-     * @return true if the current temperature is over the threshold (final temperature)
+     * @return true if the search can continue
      */
     virtual bool operator()(double _temp) {
-        return _temp > finalT;
+        return nbSpan <= nbSpanMax;
     }
 
 private:
@@ -105,17 +116,23 @@ private:
     // coefficient of decrease
     double alpha;
 
-    //
+    // number of total move at equal temperature
+    unsigned int spanTries;
+
+    // number of move at equal temperature
     unsigned int spanMove;
 
-    //
-    unsigned int spanNoMove;
-
-    // maximum number of iterations at the same temperature
+    // number of successive spans with no move
     unsigned int nbSpan;
 
-    // threshold temperature
-    double finalT;
+    // maximum number of total move at equal temperature
+    unsigned int spanTriesMax;
+
+    // maximum number of move at equal temperature
+    unsigned int spanMoveMax;
+
+    // maximum number of successive spans with no move
+    unsigned int nbSpanMax;
 
     // number of steps with the same temperature
     unsigned int step;
