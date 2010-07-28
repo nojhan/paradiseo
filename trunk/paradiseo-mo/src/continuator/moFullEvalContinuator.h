@@ -37,7 +37,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Continue until a maximum fixed number of full evaluation is reached
  *
- * Becareful 1: The number of full evaluations considered is within the local search (not before it)
+ *
+ * Becareful 1: if restartCounter is true, then the number of full evaluations is considered during the local search (not before it)
+ *
  * Becareful 2: Can not be used if the evaluation function is used in parallel
  */
 template< class Neighbor >
@@ -50,8 +52,9 @@ public:
      * Constructor
      * @param _eval evaluation function to count
      * @param _maxFullEval number maximum of iterations
+     * @param _restartCounter if true the counter of number of evaluations restarts to "zero" at initialization, if false, the number is cumulative
      */
-    moFullEvalContinuator(eoEvalFuncCounter<EOT> & _eval, unsigned int _maxFullEval): eval(_eval), maxFullEval(_maxFullEval) {
+    moFullEvalContinuator(eoEvalFuncCounter<EOT> & _eval, unsigned int _maxFullEval, bool _restartCounter = true): eval(_eval), maxFullEval(_maxFullEval), restartCounter(_restartCounter)  {
         nbEval_start = eval.value();
     }
 
@@ -69,7 +72,10 @@ public:
      * @param _solution a solution
      */
     virtual void init(EOT & _solution) {
+      if (restartCounter)
         nbEval_start = eval.value();
+      else
+	nbEval_start = 0;
     }
 
     /**
@@ -81,9 +87,10 @@ public:
     }
 
 private:
-    eoEvalFuncCounter<EOT> & eval;
-    unsigned int nbEval_start ;
-    unsigned int maxFullEval ;
+  eoEvalFuncCounter<EOT> & eval;
+  unsigned int nbEval_start ;
+  bool restartCounter;
+  unsigned int maxFullEval ;
 
 };
 #endif
