@@ -140,7 +140,7 @@ public:
 
 
 	//-------------------------------------------------------------
-	// Temporary solution to store bounds valeur for each distribution.
+	// Temporary solution to store bounds values for each distribution.
 	//-------------------------------------------------------------
 
 	std::string bounds_results_destination("ResBounds");
@@ -151,7 +151,7 @@ public:
 	    ::system(ss.str().c_str());
 	}
 
-	::mkdir(bounds_results_destination.c_str(), 0755); // create a first time the
+	::mkdir(bounds_results_destination.c_str(), 0755); // create once directory
 
 	//-------------------------------------------------------------
 
@@ -283,8 +283,8 @@ public:
 		    std::ofstream ofs(ss.str().c_str());
 
 		    ofs << size << " ";
-		    std::copy(distrib.param(0).begin(), distrib.param(0).end(), std::ostream_iterator< double >(ofs, " "));
-		    std::copy(distrib.param(1).begin(), distrib.param(1).end(), std::ostream_iterator< double >(ofs, " "));
+		    std::copy(distrib.mean().begin(), distrib.mean().end(), std::ostream_iterator< double >(ofs, " "));
+		    std::copy(distrib.variance().begin(), distrib.variance().end(), std::ostream_iterator< double >(ofs, " "));
 		    ofs << std::endl;
 		}
 

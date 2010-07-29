@@ -1,28 +1,30 @@
 #ifndef _doVectorBounds_h
 #define _doVectorBounds_h
 
-#include "doDistribParams.h"
-
 template < typename EOT >
-class doVectorBounds : public doDistribParams< EOT >
+class doVectorBounds
 {
 public:
-    doVectorBounds(EOT _min, EOT _max)
-	: doDistribParams< EOT >(2)
+    doVectorBounds(EOT min, EOT max)
+	: _min(min), _max(max)
     {
 	assert(_min.size() > 0);
 	assert(_min.size() == _max.size());
-
-	min() = _min;
-	max() = _max;
     }
 
-    doVectorBounds(const doVectorBounds& v)
-	: doDistribParams< EOT >( v )
-    {}
+    EOT& min(){return _min;}
+    EOT& max(){return _max;}
 
-    EOT& min(){return this->param(0);}
-    EOT& max(){return this->param(1);}
+
+    unsigned int size()
+    {
+	assert(_min.size() == _max.size());
+	return _min.size();
+    }
+
+private:
+    EOT _min;
+    EOT _max;
 };
 
 #endif // !_doVectorBounds_h

@@ -110,4 +110,9 @@ protected:
     double _hv;
 };
 
+class doCholesky : public doStats
+{
+    
+};
+
 #endif // !_doStats_h

@@ -22,7 +22,6 @@
 #include "doSamplerUniform.h"
 #include "doSamplerNormal.h"
 
-#include "doDistribParams.h"
 #include "doVectorBounds.h"
 #include "doNormalParams.h"
 
