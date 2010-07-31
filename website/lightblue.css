@@ -35,17 +35,27 @@ body {
     margin-right:5%;
 }
 
-ul.shortcuts {
+.shortcuts {
     text-align:left;
+}
+
+.shortcuts p {
+    margin-top:2em;
+    margin-bottom:0em;
+}
+
+.shortcuts ul {
+    margin-top:0em;
 }
 
 ul.badges {
     list-style-type:none;
+    margin-top:2em;
 }
 
 ul.badges li {
     margin-left:0px;
-    margin-top:0.1em;
+    margin-top:0.5em;
 }
 
 #menu {
