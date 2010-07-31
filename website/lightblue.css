@@ -32,7 +32,7 @@ body {
     float:left;
     width:20%;
     text-align:center;
-    margin-right:2%;
+    margin-right:5%;
 }
 
 ul.shortcuts {
@@ -54,7 +54,7 @@ ul.badges li {
 
 #main {
     float:right;
-    width:78%;
+    width:75%;
 }
 
 blockquote {
