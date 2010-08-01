@@ -75,6 +75,11 @@ table.examples {
     margin-right:0.5em;
 }
 
+ul.publications em {
+    font-width:bold;
+    color:#f0f;
+}
+
 h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl,
 fieldset, address { margin:0.75em 0;}
 
