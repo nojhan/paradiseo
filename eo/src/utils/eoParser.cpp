@@ -66,6 +66,7 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
                      string _lFileParamName, char _shortHand) :
     programName(_argv[0]),
     programDescription( _programDescription),
+    needHelpMessage( false ),
     needHelp(false, "help", "Prints this message", 'h'),
     stopOnUnknownParam(true, "stopOnUnknownParam", "Stop if unkown param entered", '\0')
 {
@@ -120,18 +121,19 @@ void eoParser::processParam(eoParam& param, std::string section)
     // this param enters the parser: add the prefix to the long name
     if (prefix != "")
     {
-	param.setLongName(prefix+param.longName());
-	section = prefix + section;  // and to section
+        param.setLongName(prefix+param.longName());
+        section = prefix + section;  // and to section
     }
     doRegisterParam(param); // plainly register it
     params.insert(make_pair(section, &param));
 }
 
-void eoParser::doRegisterParam(eoParam& param) const
+void eoParser::doRegisterParam(eoParam& param)
 {
     if (param.required() && !isItThere(param))
     {
         string msg = "Required parameter: " + param.longName() + " missing";
+        needHelpMessage = true;
         messages.push_back(msg);
     }
     pair<bool, string> value = getValue(param);
@@ -166,7 +168,7 @@ pair<bool, string> eoParser::getValue(eoParam& _param) const
     return result;
 }
 
-void eoParser::updateParameters() const
+void eoParser::updateParameters()
 {
  typedef MultiMapType::const_iterator It;
 
@@ -351,49 +353,60 @@ bool eoParser::userNeedsHelp(void)
   // first, check if we want to check that !
   if (stopOnUnknownParam.value())
     {
+      // search for unknown long names
       for (LongNameMapType::const_iterator lIt = longNameMap.begin(); lIt != longNameMap.end(); ++lIt)
-	{
-	  string entry = lIt->first;
+        {
+          string entry = lIt->first;
 
-	  MultiMapType::const_iterator it;
+          MultiMapType::const_iterator it;
 
-	  for (it = params.begin(); it != params.end(); ++it)
-	    {
-	      if (entry == it->second->longName())
-		{
-		  break;
-		}
-	    }
+          for (it = params.begin(); it != params.end(); ++it)
+            {
+              if (entry == it->second->longName())
+            {
+              break;
+            }
+          }
 
-	  if (it == params.end())
-	    {
-	      string msg = "Unknown parameter: --" + entry + " entered, type -h or --help to see available parameters";
-	      messages.push_back(msg);
-	    }
-	}
+          if (it == params.end())
+            {
+              string msg = "Unknown parameter: --" + entry + " entered";
+              needHelpMessage = true;
+              messages.push_back(msg);
+            }
+        } // for lIt
 
+      // search for unknown short names
       for (ShortNameMapType::const_iterator sIt = shortNameMap.begin(); sIt != shortNameMap.end(); ++sIt)
-	{
-	  char entry = sIt->first;
-
-	  MultiMapType::const_iterator it;
-
-	  for (it = params.begin(); it != params.end(); ++it)
 	    {
-	      if (entry == it->second->shortName())
-		{
-		  break;
-		}
-	    }
+          char entry = sIt->first;
 
-	  if (it == params.end())
-	    {
-	      string entryString(1, entry);
-	      string msg = "Unknown parameter: -" + entryString + " entered, type -h or --help to see available parameters";
-	      messages.push_back(msg);
-	    }
-	}
-    }
+          MultiMapType::const_iterator it;
+
+          for (it = params.begin(); it != params.end(); ++it)
+            {
+              if (entry == it->second->shortName())
+                {
+                  break;
+                }
+            }
+
+          if (it == params.end())
+            {
+              string entryString(1, entry);
+              string msg = "Unknown parameter: -" + entryString + " entered";
+              needHelpMessage = true;
+              messages.push_back(msg);
+            }
+        } // for sIt
+
+        if( needHelpMessage ) {
+            string msg = "Use -h or --help to get help about available parameters";
+            messages.push_back( msg );
+        }
+        
+    } // if stopOnUnknownParam
+
   return needHelp.value() || !messages.empty();
 }
 

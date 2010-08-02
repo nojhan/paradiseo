@@ -55,16 +55,16 @@ void make_help(eoParser & _parser)
     // Only help parameter will not be in status file - but who cares???
     if (statusParam.value() != "")
       {
-	ofstream os(statusParam.value().c_str());
-	os << _parser;		// and you can use that file as parameter file
+        ofstream os(statusParam.value().c_str());
+        os << _parser;		// and you can use that file as parameter file
       }
    // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
    // i.e. in case you need parameters somewhere else, postpone these
     if (_parser.userNeedsHelp())
       {
         _parser.printHelp(cout);
-	cout << "You can use an edited copy of file " << statusParam.value()
-	     << " as parameter file" << endl;
+        cout << "You can use an edited copy of file " << statusParam.value()
+             << " as parameter file" << endl;
         exit(1);
       }
 }

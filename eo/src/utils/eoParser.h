@@ -244,11 +244,11 @@ public:
 
 private:
 
-  void doRegisterParam(eoParam& param) const;
+  void doRegisterParam(eoParam& param);
 
   std::pair<bool, std::string> getValue(eoParam& _param) const;
 
-  void updateParameters() const;
+  void updateParameters();
 
   typedef std::multimap<std::string, eoParam*> MultiMapType;
 
@@ -263,6 +263,10 @@ private:
 
   typedef std::map<std::string, std::string> LongNameMapType;
   LongNameMapType longNameMap;
+
+  // flag that marks if the user need to know that there was a problem
+  // used to display the message about "-h" only once
+  bool needHelpMessage;
 
   eoValueParam<bool>   needHelp;
   eoValueParam<bool>   stopOnUnknownParam;
