@@ -52,7 +52,8 @@ int	main(int ac, char** av)
     eoEvalFunc< EOT >* plainEval = new Sphere< EOT >();
     state.storeFunctor(plainEval);
 
-    eoEvalFuncCounter< EOT > eval(*plainEval);
+    unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
+    eoEvalFuncCounter< EOT > eval(*plainEval, max_eval);
 
     eoRndGenerator< double >* gen = new eoUniformGenerator< double >(-5, 5);
     //eoRndGenerator< double >* gen = new eoNormalGenerator< double >(0, 1);
@@ -122,31 +123,20 @@ int	main(int ac, char** av)
 
     eoCheckPoint< EOT >& checkpoint = do_make_checkpoint(parser, state, eval, monitoring_continue);
 
-    // appends some missing code to checkpoint
+    // eoPopStat< EOT >* popStat = new eoPopStat<EOT>;
+    // state.storeFunctor(popStat);
 
-    // eoValueParam<bool>& plotPopParam = parser.createParam(false, "plotPop", "Plot sorted pop. every gen.", 0, "Graphical Output");
+    // checkpoint.add(*popStat);
 
-    // if (plotPopParam.value()) // we do want plot dump
-    // 	{
-    // 	    eoScalarFitnessStat<EOT>* fitStat = new eoScalarFitnessStat<EOT>;
-    // 	    state.storeFunctor(fitStat);
+    // eoGnuplot1DMonitor* gnuplot = new eoGnuplot1DMonitor("gnuplot.txt");
+    // state.storeFunctor(gnuplot);
 
-    // 	    checkpoint.add(*fitStat);
+    // gnuplot->add(eval);
+    // gnuplot->add(*popStat);
 
-    // 	    eoFileSnapshot* snapshot = new eoFileSnapshot("ResPop");
-    // 	    state.storeFunctor(snapshot);
+    //gnuplot->gnuplotCommand("set yrange [0:500]");
 
-    // 	    snapshot->add(*fitStat);
-
-    // 	    checkpoint.add(*snapshot);
-    // 	}
-
-    // --------------------------
-
-    eoPopStat< EOT >* popStat = new eoPopStat<EOT>;
-    state.storeFunctor(popStat);
-
-    checkpoint.add(*popStat);
+    // checkpoint.add(*gnuplot);
 
     // eoMonitor* fileSnapshot = new doFileSnapshot< std::vector< std::string > >("ResPop");
     // state.storeFunctor(fileSnapshot);
@@ -205,6 +195,10 @@ int	main(int ac, char** av)
     try
 	{
 	    do_run(*algo, pop);
+	}
+    catch (eoReachedThresholdException& e)
+	{
+	    eo::log << eo::warnings << e.what() << std::endl;
 	}
     catch (std::exception& e)
 	{
