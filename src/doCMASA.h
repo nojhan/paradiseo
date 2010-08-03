@@ -168,7 +168,7 @@ public:
 
 	    for (int i = 0; i < size; ++i)
 		{
-		    hv.update( distrib.variance()[i] );
+		    //hv.update( distrib.varcovar()[i] );
 		}
 
 	    _ofs_params_var << hv << std::endl;
@@ -286,7 +286,7 @@ public:
 
 		    ofs << size << " ";
 		    std::copy(distrib.mean().begin(), distrib.mean().end(), std::ostream_iterator< double >(ofs, " "));
-		    std::copy(distrib.variance().begin(), distrib.variance().end(), std::ostream_iterator< double >(ofs, " "));
+		    //std::copy(distrib.varcovar().begin(), distrib.varcovar().end(), std::ostream_iterator< double >(ofs, " "));
 		    ofs << std::endl;
 		}
 
@@ -336,7 +336,7 @@ public:
 
 		    for (int i = 0; i < size; ++i)
 			{
-			    hv.update( distrib.variance()[i] );
+			    //hv.update( distrib.varcovar()[i] );
 			}
 
 		    _ofs_params_var << hv << std::endl;

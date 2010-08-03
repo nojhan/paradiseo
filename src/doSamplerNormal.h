@@ -6,6 +6,7 @@
 #include "doSampler.h"
 #include "doNormal.h"
 #include "doBounder.h"
+#include "doStats.h"
 
 /**
  * doSamplerNormal
@@ -45,10 +46,16 @@ public:
 
 	for (unsigned int i = 0; i < size; ++i)
 	    {
-		solution.push_back(
-				   rng.normal(distrib.mean()[i],
-					      distrib.variance()[i])
-				   );
+		Cholesky< EOT > cholesky;
+
+		cholesky.update( distrib.varcovar() );
+
+		// solution.push_back(
+		// 		   rng.normal(distrib.mean()[i],
+		// 			      distrib.varcovar()[i])
+		// 		   );
+
+		//rng.normal() + 
 	    }
 
 	//-------------------------------------------------------------

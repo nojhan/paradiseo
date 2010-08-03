@@ -9,6 +9,8 @@ template < typename EOT >
 class doEstimatorNormal : public doEstimator< doNormal< EOT > >
 {
 public:
+    typedef typename EOT::AtomType AtomType;
+
     doNormal< EOT > operator()(eoPop<EOT>& pop)
     {
 	unsigned int popsize = pop.size();
@@ -17,23 +19,12 @@ public:
 	unsigned int dimsize = pop[0].size();
 	assert(dimsize > 0);
 
-	doCovMatrix cov(dimsize);
+	//doCovMatrix cov(dimsize);
+	doUblasCovMatrix< EOT > cov;
 
-	for (unsigned int i = 0; i < popsize; ++i)
-	    {
-		cov.update(pop[i]);
-	    }
+	cov.update(pop);
 
-	EOT mean(dimsize);
-	EOT covariance(dimsize);
-
-	for (unsigned int d = 0; d < dimsize; ++d)
-	    {
-		mean[d] = cov.get_mean(d);
-		covariance[d] = cov.get_var(d);
-	    }
-
-	return doNormal< EOT >(mean, covariance);
+	return doNormal< EOT >(cov.get_mean(), cov.get_varcovar());
     }
 };
 

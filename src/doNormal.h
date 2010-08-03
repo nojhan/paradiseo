@@ -8,8 +8,10 @@ template < typename EOT >
 class doNormal : public doDistrib< EOT >, public doNormalParams< EOT >
 {
 public:
-    doNormal(EOT mean, EOT variance)
-	: doNormalParams< EOT >(mean, variance)
+    typedef typename EOT::AtomType AtomType;
+
+    doNormal( const EOT& mean, const ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar )
+	: doNormalParams< EOT >( mean, varcovar )
     {}
 };
 
