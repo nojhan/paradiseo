@@ -38,6 +38,22 @@ AC_TYPE_SIZE_T
 dnl Checks for libraries and library functions.
 AC_CHECK_LIB(m, cos)
 
+
+dnl Check for C++ library yaml-cpp (AC_CHEC_LIB only supports checking for C libraries)
+AC_MSG_CHECKING('libyaml-cpp available')
+AC_LANG(C++)
+SAVED_LDFLAGS=$LDFLAGS
+LDFLAGS="$LDFLAGS -lyaml-cpp"
+AC_LINK_IFELSE(
+    [AC_LANG_PROGRAM([#include <yaml-cpp/yaml.h>], [YAML::Emitter  dummy])],
+        [ AC_MSG_RESULT([yes])
+          SAVED_LDFLAGS="$SAVED_LDFLAGS -lyaml-cpp"
+          AC_DEFINE(HAVE_LIBYAML_CPP,1,[Define to 1 if you have libyaml-cpp installed]) ],
+        [AC_MSG_RESULT([no])])
+LDFLAGS=$SAVED_LDFLAGS
+
+
+
 dnl user-switches
 AC_APPLICATIONS
 AC_DEBUG
