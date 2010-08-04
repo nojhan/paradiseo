@@ -145,12 +145,25 @@ public:
 
 	_varcovar.resize(s_size, s_size);
 
-	// variance-covariance matrix are symmetric (and semi-definite positive),
-	// thus a triangular storage is sufficient
+
+	//-------------------------------------------------------------
+	// variance-covariance matrix are symmetric (and semi-definite
+	// positive), thus a triangular storage is sufficient
+	//-------------------------------------------------------------
+
 	ublas::symmetric_matrix< AtomType, ublas::lower > var(s_size, s_size);
 
+	//-------------------------------------------------------------
+
+
+	//-------------------------------------------------------------
 	// variance-covariance matrix computation : A * transpose(A)
+	//-------------------------------------------------------------
+
 	var = ublas::prod( sample, ublas::trans( sample ) );
+
+	//-------------------------------------------------------------
+
 
 	for (unsigned int i = 0; i < s_size; ++i)
 	    {
@@ -161,8 +174,6 @@ public:
 			_varcovar(i, j) = var(i, j) / p_size;
 		    }
 	    }
-
-	//_varcovar = varcovar;
 
 	_mean.resize(s_size);
 
@@ -219,8 +230,8 @@ public:
 	    }
 
 	// end of the matrix
-	for ( i = 1; i < Vl; ++i )
-	    { // each column
+	for ( i = 1; i < Vl; ++i ) // each column
+	    {
 
 		// diagonal
 		double sum = 0.0;
@@ -234,9 +245,8 @@ public:
 
 		_L(i, i) = sqrt( V(i, i) - sum );
 
-		for ( j = i + 1; j < Vl; ++j )
-		    { // rows
-
+		for ( j = i + 1; j < Vl; ++j ) // rows
+		    {
 			// one element
 			sum = 0.0;
 
