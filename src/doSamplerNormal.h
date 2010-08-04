@@ -30,33 +30,58 @@ public:
 	assert(size > 0);
 
 	//-------------------------------------------------------------
-	// Point we want to sample to get higher a set of points
-	// (coordinates in n dimension)
-	// x = {x1, x2, ..., xn}
+	// Cholesky factorisation gererating matrix L from covariance
+	// matrix V.
+	// We must use cholesky.get_L() to get the resulting matrix.
+	//
+	// L = cholesky decomposition of varcovar
 	//-------------------------------------------------------------
 
-	EOT solution;
+	Cholesky< EOT > cholesky;
+	cholesky.update( distrib.varcovar() );
+	ublas::symmetric_matrix< AtomType, ublas::lower > L = cholesky.get_L();
 
 	//-------------------------------------------------------------
 
 
 	//-------------------------------------------------------------
-	// Sampling all dimensions
+	// T = vector of size elements drawn in N(0,1) rng.normal(1.0)
 	//-------------------------------------------------------------
 
-	for (unsigned int i = 0; i < size; ++i)
+	ublas::vector< AtomType > T( size );
+
+	for ( unsigned int i = 0; i < size; ++i )
 	    {
-		Cholesky< EOT > cholesky;
-
-		cholesky.update( distrib.varcovar() );
-
-		// solution.push_back(
-		// 		   rng.normal(distrib.mean()[i],
-		// 			      distrib.varcovar()[i])
-		// 		   );
-
-		//rng.normal() + 
+		T( i ) = rng.normal( 1.0 );
 	    }
+
+	//-------------------------------------------------------------
+
+
+	//-------------------------------------------------------------
+	// LT = prod( L, trans(T) ) ?
+	// LT = prod( L, T )
+	//-------------------------------------------------------------
+
+	//ublas::symmetric_matrix< AtomType, ublas::lower > LT = ublas::prod( L, ublas::trans( T ) );
+	ublas::vector< AtomType > LT = ublas::prod( L, T );
+
+	//-------------------------------------------------------------
+
+
+	//-------------------------------------------------------------
+	// solution = means + trans( LT ) ?
+	// solution = means + LT
+	//-------------------------------------------------------------
+
+	ublas::vector< AtomType > mean = distrib.mean();
+
+	ublas::vector< AtomType > ublas_solution = mean + LT;
+	//ublas::vector< AtomType > ublas_solution = mean + ublas::trans( LT );
+
+	EOT solution( size );
+
+	std::copy( ublas_solution.begin(), ublas_solution.end(), solution.begin() );
 
 	//-------------------------------------------------------------
 

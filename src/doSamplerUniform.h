@@ -20,8 +20,10 @@ public:
 	unsigned int size = distrib.size();
 	assert(size > 0);
 
+
 	//-------------------------------------------------------------
-	// Point we want to sample to get higher a population
+	// Point we want to sample to get higher a set of points
+	// (coordinates in n dimension)
 	// x = {x1, x2, ..., xn}
 	//-------------------------------------------------------------
 

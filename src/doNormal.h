@@ -10,7 +10,7 @@ class doNormal : public doDistrib< EOT >, public doNormalParams< EOT >
 public:
     typedef typename EOT::AtomType AtomType;
 
-    doNormal( const EOT& mean, const ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar )
+    doNormal( const ublas::vector< AtomType >& mean, const ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar )
 	: doNormalParams< EOT >( mean, varcovar )
     {}
 };

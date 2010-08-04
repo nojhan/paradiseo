@@ -170,22 +170,19 @@ public:
 	ublas::scalar_vector< AtomType > u( p_size, 1 );
 
 	// sum over columns
-	ublas::vector< AtomType > mean = ublas::prod( ublas::trans( sample ), u );
+	_mean = ublas::prod( ublas::trans( sample ), u );
 
 	// division by n
-	mean /= p_size;
-
-	// copy results in the params std::vector
-	std::copy(mean.begin(), mean.end(), _mean.begin());
+	_mean /= p_size;
     }
 
     const ublas::symmetric_matrix< AtomType, ublas::lower >& get_varcovar() const {return _varcovar;}
 
-    const EOT& get_mean() const {return _mean;}
+    const ublas::vector< AtomType >& get_mean() const {return _mean;}
 
 private:
     ublas::symmetric_matrix< AtomType, ublas::lower > _varcovar;
-    EOT _mean;
+    ublas::vector< AtomType > _mean;
 };
 
 template < typename EOT >

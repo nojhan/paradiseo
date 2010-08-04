@@ -12,7 +12,9 @@ public:
 
     void operator() ( doNormal< EOT >& distrib, EOT& mass )
     {
-	distrib.mean() = mass; // vive les references!!!
+	ublas::vector< AtomType > mean( distrib.size() );
+	std::copy( mass.begin(), mass.end(), mean.begin() );
+	distrib.mean() = mean;
     }
 };
 

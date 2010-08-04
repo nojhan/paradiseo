@@ -24,7 +24,7 @@ public:
 
 	cov.update(pop);
 
-	return doNormal< EOT >(cov.get_mean(), cov.get_varcovar());
+	return doNormal< EOT >( cov.get_mean(), cov.get_varcovar() );
     }
 };
 

@@ -12,7 +12,11 @@ class doNormalParams
 public:
     typedef typename EOT::AtomType AtomType;
 
-    doNormalParams(const EOT& mean, const ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar)
+    doNormalParams
+    (
+     const ublas::vector< AtomType >& mean,
+     const ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar
+     )
 	: _mean(mean), _varcovar(varcovar)
     {
 	assert(_mean.size() > 0);
@@ -20,7 +24,7 @@ public:
 	assert(_mean.size() == _varcovar.size2());
     }
 
-    EOT& mean(){return _mean;}
+    ublas::vector< AtomType >& mean(){return _mean;}
     ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar(){return _varcovar;}
 
     unsigned int size()
@@ -31,7 +35,7 @@ public:
     }
 
 private:
-    EOT _mean;
+    ublas::vector< AtomType > _mean;
     ublas::symmetric_matrix< AtomType, ublas::lower > _varcovar;
 };
 
