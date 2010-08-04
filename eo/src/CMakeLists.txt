@@ -16,7 +16,8 @@ SET (EO_SOURCES     eoFunctorStore.cpp
 					eoPrintable.cpp 
 					eoCtrlCContinue.cpp 
 					eoParetoFitness.cpp 
-					eoScalarFitnessAssembled.cpp)
+					eoScalarFitnessAssembled.cpp
+					eoSIGContinue.cpp)
 
  
 ADD_LIBRARY(eo STATIC ${EO_SOURCES})
