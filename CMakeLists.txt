@@ -25,9 +25,13 @@ INCLUDE(FindPkgConfig)
 PKG_CHECK_MODULES(EO eo REQUIRED)
 PKG_CHECK_MODULES(MO mo REQUIRED)
 
+FIND_PACKAGE(Boost 1.33.0)
+
 INCLUDE_DIRECTORIES(
   ${EO_INCLUDE_DIRS}
   ${MO_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
+  /Dev/ometah-0.3/common
   )
 
 ######################################################################################

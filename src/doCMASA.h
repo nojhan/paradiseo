@@ -86,8 +86,51 @@ public:
 	  _continuator(continuator),
 	  _cooling_schedule(cooling_schedule),
 	  _initial_temperature(initial_temperature),
-	  _replacor(replacor)
-    {}
+	  _replacor(replacor),
+
+	  _pop_results_destination("ResPop"),
+
+	  // directory where populations state are going to be stored.
+	  _ofs_params("ResParams.txt"),
+	  _ofs_params_var("ResVars.txt"),
+
+	  _bounds_results_destination("ResBounds")
+    {
+
+	//-------------------------------------------------------------
+	// Temporary solution to store populations state at each
+	// iteration for plotting.
+	//-------------------------------------------------------------
+
+	{
+	    std::stringstream ss;
+	    ss << "rm -rf " << _pop_results_destination;
+	    ::system(ss.str().c_str());
+	}
+
+	::mkdir(_pop_results_destination.c_str(), 0755); // create a first time the
+
+	//-------------------------------------------------------------
+
+
+	//-------------------------------------------------------------
+	// Temporary solution to store bounds values for each distribution.
+	//-------------------------------------------------------------
+
+	{
+	    std::stringstream ss;
+	    ss << "rm -rf " << _bounds_results_destination;
+	    ::system(ss.str().c_str());
+	}
+
+<<<<<<< HEAD
+	::mkdir(bounds_results_destination.c_str(), 0755); // create once directory
+=======
+	::mkdir(_bounds_results_destination.c_str(), 0755); // create once directory
+
+	//-------------------------------------------------------------
+
+    }
 
     //! function that launches the CMASA algorithm.
     /*!
@@ -114,44 +157,7 @@ public:
 	//-------------------------------------------------------------
 
 	int number_of_iterations = 0;
-
-	//-------------------------------------------------------------
-
-
-	//-------------------------------------------------------------
-	// Temporary solution to store populations state at each
-	// iteration for plotting.
-	//-------------------------------------------------------------
-
-	std::string pop_results_destination("ResPop");
-
-	{
-	    std::stringstream ss;
-	    ss << "rm -rf " << pop_results_destination;
-	    ::system(ss.str().c_str());
-	}
-
-	::mkdir(pop_results_destination.c_str(), 0755); // create a first time the
-	// directory where populations state are going to be stored.
-	std::ofstream ofs_params("ResParams.txt");
-	std::ofstream ofs_params_var("ResVars.txt");
-
-	//-------------------------------------------------------------
-
-
-	//-------------------------------------------------------------
-	// Temporary solution to store bounds values for each distribution.
-	//-------------------------------------------------------------
-
-	std::string bounds_results_destination("ResBounds");
-
-	{
-	    std::stringstream ss;
-	    ss << "rm -rf " << bounds_results_destination;
-	    ::system(ss.str().c_str());
-	}
-
-	::mkdir(bounds_results_destination.c_str(), 0755); // create once directory
+>>>>>>> 36ec42d36204631eb4c25ae7b31a8728903697f8
 
 	//-------------------------------------------------------------
 
@@ -166,10 +172,10 @@ public:
 
 	    for (int i = 0; i < size; ++i)
 		{
-		    hv.update( distrib.variance()[i] );
+		    //hv.update( distrib.varcovar()[i] );
 		}
 
-	    ofs_params_var << hv << std::endl;
+	    _ofs_params_var << hv << std::endl;
 	}
 
 	do
@@ -260,7 +266,7 @@ public:
 
 		{
 		    std::stringstream ss;
-		    ss << pop_results_destination << "/" << number_of_iterations;
+		    ss << _pop_results_destination << "/" << number_of_iterations;
 		    std::ofstream ofs(ss.str().c_str());
 		    ofs << current_pop;
 		}
@@ -279,12 +285,16 @@ public:
 		    assert(size > 0);
 
 		    std::stringstream ss;
-		    ss << bounds_results_destination << "/" << number_of_iterations;
+		    ss << _bounds_results_destination << "/" << number_of_iterations;
 		    std::ofstream ofs(ss.str().c_str());
 
 		    ofs << size << " ";
 		    std::copy(distrib.mean().begin(), distrib.mean().end(), std::ostream_iterator< double >(ofs, " "));
+<<<<<<< HEAD
 		    std::copy(distrib.variance().begin(), distrib.variance().end(), std::ostream_iterator< double >(ofs, " "));
+=======
+		    //std::copy(distrib.varcovar().begin(), distrib.varcovar().end(), std::ostream_iterator< double >(ofs, " "));
+>>>>>>> 36ec42d36204631eb4c25ae7b31a8728903697f8
 		    ofs << std::endl;
 		}
 
@@ -334,10 +344,10 @@ public:
 
 		    for (int i = 0; i < size; ++i)
 			{
-			    hv.update( distrib.variance()[i] );
+			    //hv.update( distrib.varcovar()[i] );
 			}
 
-		    ofs_params_var << hv << std::endl;
+		    _ofs_params_var << hv << std::endl;
 		}
 
 		//-------------------------------------------------------------
@@ -383,6 +393,27 @@ private:
 
     //! A EOT replacor
     eoReplacement < EOT > & _replacor;
+
+
+    //-------------------------------------------------------------
+    // Temporary solution to store populations state at each
+    // iteration for plotting.
+    //-------------------------------------------------------------
+
+    std::string _pop_results_destination;
+    std::ofstream _ofs_params;
+    std::ofstream _ofs_params_var;
+
+    //-------------------------------------------------------------
+
+    //-------------------------------------------------------------
+    // Temporary solution to store bounds values for each distribution.
+    //-------------------------------------------------------------
+
+    std::string _bounds_results_destination;
+
+    //-------------------------------------------------------------
+
 };
 
 #endif // !_doCMASA_h
