@@ -123,9 +123,6 @@ public:
 	    ::system(ss.str().c_str());
 	}
 
-<<<<<<< HEAD
-	::mkdir(bounds_results_destination.c_str(), 0755); // create once directory
-=======
 	::mkdir(_bounds_results_destination.c_str(), 0755); // create once directory
 
 	//-------------------------------------------------------------
@@ -157,7 +154,6 @@ public:
 	//-------------------------------------------------------------
 
 	int number_of_iterations = 0;
->>>>>>> 36ec42d36204631eb4c25ae7b31a8728903697f8
 
 	//-------------------------------------------------------------
 
@@ -290,11 +286,7 @@ public:
 
 		    ofs << size << " ";
 		    std::copy(distrib.mean().begin(), distrib.mean().end(), std::ostream_iterator< double >(ofs, " "));
-<<<<<<< HEAD
-		    std::copy(distrib.variance().begin(), distrib.variance().end(), std::ostream_iterator< double >(ofs, " "));
-=======
 		    //std::copy(distrib.varcovar().begin(), distrib.varcovar().end(), std::ostream_iterator< double >(ofs, " "));
->>>>>>> 36ec42d36204631eb4c25ae7b31a8728903697f8
 		    ofs << std::endl;
 		}
 
