@@ -38,7 +38,7 @@ int main(int ac, char** av)
     // Instantiate all need parameters for CMASA algorithm
     //-----------------------------------------------------------------------------
 
-    eoSelect< EOT >* selector = new eoDetSelect< EOT >(0.1);
+    eoSelect< EOT >* selector = new eoDetSelect< EOT >(0.5);
     state.storeFunctor(selector);
 
     doEstimator< Distrib >* estimator =
@@ -47,7 +47,7 @@ int main(int ac, char** av)
 	new doEstimatorNormalMulti< EOT >();
     state.storeFunctor(estimator);
 
-    eoSelectOne< EOT >* selectone = new eoDetTournamentSelect< EOT >();
+    eoSelectOne< EOT >* selectone = new eoDetTournamentSelect< EOT >( 2 );
     state.storeFunctor(selectone);
 
     doModifierMass< Distrib >* modifier =

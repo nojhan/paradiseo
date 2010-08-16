@@ -162,7 +162,7 @@ public:
 	// several files.
 	//-------------------------------------------------------------
 
-	//int number_of_iterations = 0;
+	int number_of_iterations = 0;
 
 	//-------------------------------------------------------------
 
@@ -212,6 +212,8 @@ public:
 		//-------------------------------------------------------------
 
 		_selector(pop, selected_pop);
+
+		assert( selected_pop.size() > 0 );
 
 		//-------------------------------------------------------------
 
@@ -351,23 +353,23 @@ public:
 		// dicreasement
 		//-------------------------------------------------------------
 
-		{
-		    double size = distrib.size();
-		    assert(size > 0);
+		// {
+		//     double size = distrib.size();
+		//     assert(size > 0);
 
-		    doHyperVolume< EOT > hv;
+		//     doHyperVolume< EOT > hv;
 
-		    for (int i = 0; i < size; ++i)
-			{
-			    //hv.update( distrib.varcovar()[i] );
-			}
+		//     for (int i = 0; i < size; ++i)
+		// 	{
+		// 	    //hv.update( distrib.varcovar()[i] );
+		// 	}
 
-		    //_ofs_params_var << hv << std::endl;
-		}
+		//     //_ofs_params_var << hv << std::endl;
+		// }
 
 		//-------------------------------------------------------------
 
-		//++number_of_iterations;
+		++number_of_iterations;
 
 	    }
 	while ( _cooling_schedule( temperature ) &&
