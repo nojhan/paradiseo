@@ -5,16 +5,23 @@
 #include "doNormalMono.h"
 
 template < typename EOT >
-class doStatNormalMono : public doStat< doNormalMono< EOT > >
+class doStatNormalMono : public doDistribStat< doNormalMono< EOT > >
 {
 public:
-    doStatNormalMono( doNormalMono< EOT >& distrib )
-	: doStat< doNormalMono< EOT > >( distrib )
+    using doDistribStat< doNormalMono< EOT > >::value;
+
+    doStatNormalMono( std::string desc = "" )
+	: doDistribStat< doNormalMono< EOT > >( desc )
     {}
 
-    virtual void printOn(std::ostream& os) const
+    void operator()( const doNormalMono< EOT >& distrib )
     {
-	os << this->distrib().mean() << " " << this->distrib().variance();
+	value() = "\n# ====== mono normal distribution dump =====\n";
+
+	std::ostringstream os;
+	os << distrib.mean() << " " << distrib.variance() << std::endl;
+
+	value() += os.str();
     }
 };
 

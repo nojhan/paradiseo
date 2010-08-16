@@ -5,16 +5,23 @@
 #include "doUniform.h"
 
 template < typename EOT >
-class doStatUniform : public doStat< doUniform< EOT > >
+class doStatUniform : public doDistribStat< doUniform< EOT > >
 {
 public:
-    doStatUniform( doUniform< EOT >& distrib )
-	: doStat< doUniform< EOT > >( distrib )
+    using doDistribStat< doUniform< EOT > >::value;
+
+    doStatUniform( std::string desc = "" )
+	: doDistribStat< doUniform< EOT > >( desc )
     {}
 
-    virtual void printOn(std::ostream& os) const
+    void operator()( const doUniform< EOT >& distrib )
     {
-	os << this->distrib().min() << " " << this->distrib().max();
+	value() = "\n# ====== uniform distribution dump =====\n";
+
+	std::ostringstream os;
+	os << distrib.min() << " " << distrib.max() << std::endl;
+
+	value() += os.str();
     }
 };
 

@@ -33,8 +33,8 @@ public:
 	return _mean.size();
     }
 
-    ublas::vector< AtomType >& mean(){return _mean;}
-    ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar(){return _varcovar;}
+    ublas::vector< AtomType > mean() const {return _mean;}
+    ublas::symmetric_matrix< AtomType, ublas::lower > varcovar() const {return _varcovar;}
 
 private:
     ublas::vector< AtomType > _mean;

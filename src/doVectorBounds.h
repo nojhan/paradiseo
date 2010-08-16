@@ -12,9 +12,8 @@ public:
 	assert(_min.size() == _max.size());
     }
 
-    EOT& min(){return _min;}
-    EOT& max(){return _max;}
-
+    EOT min(){return _min;}
+    EOT max(){return _max;}
 
     unsigned int size()
     {

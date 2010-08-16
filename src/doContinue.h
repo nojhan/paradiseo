@@ -24,4 +24,12 @@ public:
     }
 };
 
+template < typename D >
+class doDummyContinue : public doContinue< D >
+{
+    bool operator()(const D&){ return true; }
+
+    virtual std::string className() const { return "doNoContinue"; }
+};
+
 #endif // !_doContinue_h

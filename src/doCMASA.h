@@ -34,7 +34,8 @@
 #include "doModifierMass.h"
 #include "doSampler.h"
 #include "doHyperVolume.h"
-#include "doStats.h"
+#include "doStat.h"
+#include "doContinue.h"
 
 using namespace boost::numeric::ublas;
 
@@ -74,12 +75,12 @@ public:
 	     doModifierMass< D > & modifier,
 	     doSampler< D > & sampler,
 	     eoContinue< EOT > & monitoring_continue,
+	     doContinue< D > & distribution_continue,
 	     eoEvalFunc < EOT > & evaluation,
-	     moSolContinue < EOT > & continuator,
+	     moSolContinue < EOT > & sa_continue,
 	     moCoolingSchedule & cooling_schedule,
 	     double initial_temperature,
-	     eoReplacement< EOT > & replacor,
-	     doStats< D > & stats
+	     eoReplacement< EOT > & replacor
 	     )
 	: _selector(selector),
 	  _estimator(estimator),
@@ -87,20 +88,22 @@ public:
 	  _modifier(modifier),
 	  _sampler(sampler),
 	  _monitoring_continue(monitoring_continue),
+	  _distribution_continue(distribution_continue),
 	  _evaluation(evaluation),
-	  _continuator(continuator),
+	  _sa_continue(sa_continue),
 	  _cooling_schedule(cooling_schedule),
 	  _initial_temperature(initial_temperature),
-	  _replacor(replacor),
-	  _stats(stats),
+	  _replacor(replacor)
 
-	  _pop_results_destination("ResPop"),
+	// ,
 
-	  // directory where populations state are going to be stored.
-	  _ofs_params("ResParams.txt"),
-	  _ofs_params_var("ResVars.txt"),
+	//   _pop_results_destination("ResPop"),
 
-	  _bounds_results_destination("ResBounds")
+	//   // directory where populations state are going to be stored.
+	//   _ofs_params("ResParams.txt"),
+	//   _ofs_params_var("ResVars.txt"),
+
+	//   _bounds_results_destination("ResBounds")
     {
 
 	//-------------------------------------------------------------
@@ -108,13 +111,13 @@ public:
 	// iteration for plotting.
 	//-------------------------------------------------------------
 
-	{
-	    std::stringstream ss;
-	    ss << "rm -rf " << _pop_results_destination;
-	    ::system(ss.str().c_str());
-	}
+	// {
+	//     std::stringstream os;
+	//     os << "rm -rf " << _pop_results_destination;
+	//     ::system(os.str().c_str());
+	// }
 
-	::mkdir(_pop_results_destination.c_str(), 0755); // create a first time the
+	// ::mkdir(_pop_results_destination.c_str(), 0755); // create a first time the
 
 	//-------------------------------------------------------------
 
@@ -123,13 +126,13 @@ public:
 	// Temporary solution to store bounds values for each distribution.
 	//-------------------------------------------------------------
 
-	{
-	    std::stringstream ss;
-	    ss << "rm -rf " << _bounds_results_destination;
-	    ::system(ss.str().c_str());
-	}
+	// {
+	//     std::stringstream os;
+	//     os << "rm -rf " << _bounds_results_destination;
+	//     ::system(os.str().c_str());
+	// }
 
-	::mkdir(_bounds_results_destination.c_str(), 0755); // create once directory
+	//::mkdir(_bounds_results_destination.c_str(), 0755); // create once directory
 
 	//-------------------------------------------------------------
 
@@ -159,26 +162,39 @@ public:
 	// several files.
 	//-------------------------------------------------------------
 
-	int number_of_iterations = 0;
+	//int number_of_iterations = 0;
 
 	//-------------------------------------------------------------
 
 
-	{
-	    D distrib = _estimator(pop);
+	//-------------------------------------------------------------
+	// Estimating a first time the distribution parameter thanks
+	// to population.
+	//-------------------------------------------------------------
 
-	    double size = distrib.size();
-	    assert(size > 0);
+	D distrib = _estimator(pop);
 
-	    doHyperVolume< EOT > hv;
+	double size = distrib.size();
+	assert(size > 0);
 
-	    for (int i = 0; i < size; ++i)
-		{
-		    //hv.update( distrib.varcovar()[i] );
-		}
+	//-------------------------------------------------------------
 
-	    // _ofs_params_var << hv << std::endl;
-	}
+
+	// {
+	//     D distrib = _estimator(pop);
+
+	//     double size = distrib.size();
+	//     assert(size > 0);
+
+	//     doHyperVolume< EOT > hv;
+
+	//     for (int i = 0; i < size; ++i)
+	// 	{
+	// 	    //hv.update( distrib.varcovar()[i] );
+	// 	}
+
+	//     // _ofs_params_var << hv << std::endl;
+	// }
 
 	do
 	    {
@@ -200,14 +216,14 @@ public:
 		//-------------------------------------------------------------
 
 
-		_continuator.init();
+		_sa_continue.init();
 
 
 		//-------------------------------------------------------------
 		// (4) Estimation of the distribution parameters
 		//-------------------------------------------------------------
 
-		D distrib = _estimator(selected_pop);
+		distrib = _estimator(selected_pop);
 
 		//-------------------------------------------------------------
 
@@ -258,7 +274,7 @@ public:
 				current_solution = candidate_solution;
 			    }
 		    }
-		while ( _continuator( current_solution) );
+		while ( _sa_continue( current_solution) );
 
 
 		//-------------------------------------------------------------
@@ -266,12 +282,12 @@ public:
 		// at each iteration for plotting.
 		//-------------------------------------------------------------
 
-		{
-		    std::stringstream ss;
-		    ss << _pop_results_destination << "/" << number_of_iterations;
-		    std::ofstream ofs(ss.str().c_str());
-		    ofs << current_pop;
-		}
+		// {
+		//     std::ostringstream os;
+		//     os << _pop_results_destination << "/" << number_of_iterations;
+		//     std::ofstream ofs(os.str().c_str());
+		//     ofs << current_pop;
+		// }
 
 		//-------------------------------------------------------------
 
@@ -281,20 +297,21 @@ public:
 		// several files.
 		//-------------------------------------------------------------
 
-		{
-		    double size = distrib.size();
+		// {
+		//     double size = distrib.size();
 
-		    assert(size > 0);
+		//     assert(size > 0);
 
-		    std::stringstream ss;
-		    ss << _bounds_results_destination << "/" << number_of_iterations;
-		    std::ofstream ofs(ss.str().c_str());
+		//     std::stringstream os;
+		//     os << _bounds_results_destination << "/" << number_of_iterations;
+		//     std::ofstream ofs(os.str().c_str());
 
-		    ofs << size << " ";
-		    std::copy(distrib.mean().begin(), distrib.mean().end(), std::ostream_iterator< double >(ofs, " "));
+		//     ofs << size << " ";
+		    //ublas::vector< AtomType > mean = distrib.mean();
+		    //std::copy(mean.begin(), mean.end(), std::ostream_iterator< double >(ofs, " "));
 		    //std::copy(distrib.varcovar().begin(), distrib.varcovar().end(), std::ostream_iterator< double >(ofs, " "));
-		    ofs << std::endl;
-		}
+		//     ofs << std::endl;
+		// }
 
 		//-------------------------------------------------------------
 
@@ -350,11 +367,12 @@ public:
 
 		//-------------------------------------------------------------
 
-		++number_of_iterations;
+		//++number_of_iterations;
 
 	    }
 	while ( _cooling_schedule( temperature ) &&
-		_monitoring_continue( selected_pop ) );
+		_monitoring_continue( selected_pop ) &&
+		_distribution_continue( distrib ) );
     }
 
 private:
@@ -377,11 +395,14 @@ private:
     //! A EOT monitoring continuator
     eoContinue < EOT > & _monitoring_continue;
 
+    //! A D continuator
+    doContinue < D > & _distribution_continue;
+
     //! A full evaluation function.
     eoEvalFunc < EOT > & _evaluation;
 
     //! Stopping criterion before temperature update
-    moSolContinue < EOT > & _continuator;
+    moSolContinue < EOT > & _sa_continue;
 
     //! The cooling schedule
     moCoolingSchedule & _cooling_schedule;
@@ -392,17 +413,14 @@ private:
     //! A EOT replacor
     eoReplacement < EOT > & _replacor;
 
-    //! Stats to print distrib parameters out
-    doStats< D > & _stats;
-
     //-------------------------------------------------------------
     // Temporary solution to store populations state at each
     // iteration for plotting.
     //-------------------------------------------------------------
 
-    std::string _pop_results_destination;
-    std::ofstream _ofs_params;
-    std::ofstream _ofs_params_var;
+    // std::string _pop_results_destination;
+    // std::ofstream _ofs_params;
+    // std::ofstream _ofs_params_var;
 
     //-------------------------------------------------------------
 
@@ -410,7 +428,7 @@ private:
     // Temporary solution to store bounds values for each distribution.
     //-------------------------------------------------------------
 
-    std::string _bounds_results_destination;
+    // std::string _bounds_results_destination;
 
     //-------------------------------------------------------------
 

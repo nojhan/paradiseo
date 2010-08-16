@@ -13,21 +13,35 @@ public:
     virtual std::string className() const { return "doStatBase"; }
 };
 
-template < typename D >
-class doStat : doStatBase< D >
+template < typename D > class doCheckPoint;
+
+template < typename D, typename T >
+class doStat : public eoValueParam< T >, public doStatBase< D >
 {
 public:
-    typedef typename D::EOType EOType;
-    typedef typename EOType::AtomType AtomType;
+    doStat(T value, std::string description)
+	: eoValueParam< T >(value, description)
+    {}
 
+    virtual std::string className(void) const { return "doStat"; }
+
+    doStat< D, T >& addTo(doCheckPoint< D >& cp) { cp.add(*this); return *this; }
+
+    // TODO: doStat< D, T >& addTo(doMonitor& mon) { mon.add(*this); return *this; }
+};
+
+
+//! A parent class for any kind of distribution to dump parameter to std::string type
+
+template < typename D >
+class doDistribStat : public doStat< D, std::string >
+{
 public:
-    doStat(){}
+    using doStat< D, std::string >::value;
 
-
-    D& distrib() { return _distrib; }
-
-private:
-    D& _distrib;
+    doDistribStat(std::string desc)
+	: doStat< D, std::string >("", desc)
+    {}
 };
 
 #endif // !_doStat_h

@@ -75,11 +75,11 @@ int main(int ac, char** av)
     state.storeFunctor(init);
 
 
-    doStats< Distrib >* stats =
-	//new doStatsUniform< EOT >();
-	//new doStatsNormalMono< EOT >();
-	new doStatsNormalMulti< EOT >();
-    state.storeFunctor(stats);
+    // doStats< Distrib >* stats =
+    // 	//new doStatsUniform< EOT >();
+    // 	//new doStatsNormalMono< EOT >();
+    // 	new doStatsNormalMulti< EOT >();
+    // state.storeFunctor(stats);
 
     //-----------------------------------------------------------------------------
 
@@ -122,8 +122,8 @@ int main(int ac, char** av)
 
     unsigned int rho = parser.createParam((unsigned int)0, "rho", "Rho: metropolis sample size", 'p', section).value(); // p
 
-    moGenSolContinue< EOT >* continuator = new moGenSolContinue< EOT >(rho);
-    state.storeFunctor(continuator);
+    moGenSolContinue< EOT >* sa_continue = new moGenSolContinue< EOT >(rho);
+    state.storeFunctor(sa_continue);
 
     double threshold = parser.createParam((double)0.1, "threshold", "Threshold: temperature threshold stopping criteria", 't', section).value(); // t
     double alpha = parser.createParam((double)0.1, "alpha", "Alpha: temperature dicrease rate", 'a', section).value(); // a
@@ -134,11 +134,11 @@ int main(int ac, char** av)
     // stopping criteria
     // ... and creates the parameter letters: C E g G s T
 
-    eoContinue< EOT >& monitoring_continue = do_make_continue(parser, state, eval);
+    eoContinue< EOT >& eo_continue = do_make_continue(parser, state, eval);
 
     // output
 
-    eoCheckPoint< EOT >& checkpoint = do_make_checkpoint(parser, state, eval, monitoring_continue);
+    eoCheckPoint< EOT >& monitoring_continue = do_make_checkpoint(parser, state, eval, eo_continue);
 
     // eoPopStat< EOT >* popStat = new eoPopStat<EOT>;
     // state.storeFunctor(popStat);
@@ -162,6 +162,29 @@ int main(int ac, char** av)
     // checkpoint.add(*fileSnapshot);
 
 
+    doDummyContinue< Distrib >* dummy_continue = new doDummyContinue< Distrib >();
+    state.storeFunctor(dummy_continue);
+
+    doCheckPoint< Distrib >* distribution_continue = new doCheckPoint< Distrib >( *dummy_continue );
+    state.storeFunctor(distribution_continue);
+
+    doDistribStat< Distrib >* distrib_stat = new doStatNormalMulti< EOT >();
+    state.storeFunctor(distrib_stat);
+
+    distribution_continue->add( *distrib_stat );
+
+    eoMonitor* stdout_monitor = new eoStdoutMonitor();
+    state.storeFunctor(stdout_monitor);
+
+    stdout_monitor->add(*distrib_stat);
+    distribution_continue->add( *stdout_monitor );
+
+    eoFileMonitor* file_monitor = new eoFileMonitor("distribution.txt");
+    state.storeFunctor(file_monitor);
+
+    file_monitor->add(*distrib_stat);
+    distribution_continue->add( *file_monitor );
+
     //-----------------------------------------------------------------------------
     // eoEPRemplacement causes the using of the current and previous
     // sample for sampling.
@@ -184,7 +207,8 @@ int main(int ac, char** av)
 
     doAlgo< Distrib >* algo = new doCMASA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
-    	 checkpoint, eval, *continuator, *cooling_schedule,
+    	 monitoring_continue, *distribution_continue,
+	 eval, *sa_continue, *cooling_schedule,
     	 initial_temperature, *replacor);
 
     //-----------------------------------------------------------------------------

@@ -3,7 +3,6 @@
 
 #include "doEstimator.h"
 #include "doUniform.h"
-#include "doStats.h"
 
 template < typename EOT >
 class doEstimatorNormalMulti : public doEstimator< doNormalMulti< EOT > >

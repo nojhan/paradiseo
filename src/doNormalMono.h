@@ -20,8 +20,8 @@ public:
 	return _mean.size();
     }
 
-    EOT& mean(){return _mean;}
-    EOT& variance(){return _variance;}
+    EOT mean(){return _mean;}
+    EOT variance(){return _variance;}
 
 private:
     EOT _mean;

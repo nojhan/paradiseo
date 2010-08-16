@@ -10,7 +10,6 @@
 #include "doSampler.h"
 #include "doNormalMulti.h"
 #include "doBounder.h"
-#include "doStats.h"
 
 /**
  * doSamplerNormalMulti
@@ -26,7 +25,7 @@ public:
     class Cholesky
     {
     public:
-	virtual void update( const ublas::symmetric_matrix< AtomType, ublas::lower >& V)
+	void update( const ublas::symmetric_matrix< AtomType, ublas::lower >& V)
 	{
 	    unsigned int Vl = V.size1();
 

@@ -5,19 +5,36 @@
 
 #include "doStat.h"
 #include "doNormalMulti.h"
-#include "doDistrib.h"
 
 template < typename EOT >
-class doStatNormalMulti : public doStat< doNormalMulti< EOT > >
+class doStatNormalMulti : public doDistribStat< doNormalMulti< EOT > >
 {
 public:
-    doStatNormalMulti( doNormalMulti< EOT >& distrib )
-	: doStat< doNormalMulti< EOT > >( distrib )
+    typedef typename EOT::AtomType AtomType;
+
+    using doDistribStat< doNormalMulti< EOT > >::value;
+
+    doStatNormalMulti( std::string desc = "" )
+	: doDistribStat< doNormalMulti< EOT > >( desc )
     {}
 
-    virtual void printOn(std::ostream& os) const
+    void operator()( const doNormalMulti< EOT >& distrib )
     {
-	os << this->distrib().mean() << this->distrib().varcovar();
+	value() = "\n# ====== multi normal distribution dump =====\n";
+
+	std::ostringstream os;
+
+	os << distrib.mean() << " " << distrib.varcovar() << std::endl;
+
+	// ublas::vector< AtomType > mean = distrib.mean();
+	// std::copy(mean.begin(), mean.end(), std::ostream_iterator< std::string >( os, " " ));
+
+	// ublas::symmetric_matrix< AtomType, ublas::lower > varcovar = distrib.varcovar();
+	// std::copy(varcovar.begin(), varcovar.end(), std::ostream_iterator< std::string >( os, " " ));
+
+	// os << std::endl;
+
+	value() += os.str();
     }
 };
 

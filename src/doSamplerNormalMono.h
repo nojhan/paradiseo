@@ -6,7 +6,6 @@
 #include "doSampler.h"
 #include "doNormalMono.h"
 #include "doBounder.h"
-#include "doStats.h"
 
 /**
  * doSamplerNormalMono
