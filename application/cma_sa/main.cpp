@@ -14,9 +14,13 @@
 #include "Rosenbrock.h"
 #include "Sphere.h"
 
-typedef eoReal<eoMinimizingFitness>	EOT;
+typedef eoReal<eoMinimizingFitness> EOT;
 
-int	main(int ac, char** av)
+//typedef doUniform< EOT > Distrib;
+//typedef doNormalMono< EOT > Distrib;
+typedef doNormalMulti< EOT > Distrib;
+
+int main(int ac, char** av)
 {
     eoParserLogger	parser(ac, av);
 
@@ -37,19 +41,24 @@ int	main(int ac, char** av)
     eoSelect< EOT >* selector = new eoDetSelect< EOT >(0.1);
     state.storeFunctor(selector);
 
-    //doEstimator< doUniform< EOT > >* estimator = new doEstimatorUniform< EOT >();
-    doEstimator< doNormal< EOT > >* estimator = new doEstimatorNormal< EOT >();
+    doEstimator< Distrib >* estimator =
+	//new doEstimatorUniform< EOT >();
+	//new doEstimatorNormalMono< EOT >();
+	new doEstimatorNormalMulti< EOT >();
     state.storeFunctor(estimator);
 
     eoSelectOne< EOT >* selectone = new eoDetTournamentSelect< EOT >();
     state.storeFunctor(selectone);
 
-    //doModifierMass< doUniform< EOT > >* modifier = new doUniformCenter< EOT >();
-    doModifierMass< doNormal< EOT > >* modifier = new doNormalCenter< EOT >();
+    doModifierMass< Distrib >* modifier =
+	//new doUniformCenter< EOT >();
+	//new doNormalMonoCenter< EOT >();
+	new doNormalMultiCenter< EOT >();
     state.storeFunctor(modifier);
 
-    //eoEvalFunc< EOT >* plainEval = new BopoRosenbrock< EOT, double, const EOT& >();
-    eoEvalFunc< EOT >* plainEval = new Sphere< EOT >();
+    eoEvalFunc< EOT >* plainEval =
+	//new BopoRosenbrock< EOT, typename EOT::AtomType, const EOT& >();
+	new Sphere< EOT >();
     state.storeFunctor(plainEval);
 
     unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
@@ -65,6 +74,12 @@ int	main(int ac, char** av)
     eoInitFixedLength< EOT >* init = new eoInitFixedLength< EOT >( dimension_size, *gen );
     state.storeFunctor(init);
 
+
+    doStats< Distrib >* stats =
+	//new doStatsUniform< EOT >();
+	//new doStatsNormalMono< EOT >();
+	new doStatsNormalMulti< EOT >();
+    state.storeFunctor(stats);
 
     //-----------------------------------------------------------------------------
 
@@ -98,8 +113,10 @@ int	main(int ac, char** av)
 							*gen);
     state.storeFunctor(bounder);
 
-    //doSampler< doUniform< EOT > >* sampler = new doSamplerUniform< EOT >();
-    doSampler< doNormal< EOT > >* sampler = new doSamplerNormal< EOT >( *bounder );
+    doSampler< Distrib >* sampler =
+	//new doSamplerUniform< EOT >();
+	//new doSamplerNormalMono< EOT >( *bounder );
+	new doSamplerNormalMulti< EOT >( *bounder );
     state.storeFunctor(sampler);
 
 
@@ -165,8 +182,7 @@ int	main(int ac, char** av)
     // CMASA algorithm configuration
     //-----------------------------------------------------------------------------
 
-    //doAlgo< doUniform< EOT > >* algo = new doCMASA< doUniform< EOT > >
-    doAlgo< doNormal< EOT > >* algo = new doCMASA< doNormal< EOT > >
+    doAlgo< Distrib >* algo = new doCMASA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
     	 checkpoint, eval, *continuator, *cooling_schedule,
     	 initial_temperature, *replacor);

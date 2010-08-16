@@ -6,24 +6,27 @@
 
 #include "doDistrib.h"
 #include "doUniform.h"
-#include "doNormal.h"
+#include "doNormalMono.h"
+#include "doNormalMulti.h"
 
 #include "doEstimator.h"
 #include "doEstimatorUniform.h"
-#include "doEstimatorNormal.h"
+#include "doEstimatorNormalMono.h"
+#include "doEstimatorNormalMulti.h"
 
 #include "doModifier.h"
 #include "doModifierDispersion.h"
 #include "doModifierMass.h"
 #include "doUniformCenter.h"
-#include "doNormalCenter.h"
+#include "doNormalMonoCenter.h"
+#include "doNormalMultiCenter.h"
 
 #include "doSampler.h"
 #include "doSamplerUniform.h"
-#include "doSamplerNormal.h"
+#include "doSamplerNormalMono.h"
+#include "doSamplerNormalMulti.h"
 
 #include "doVectorBounds.h"
-#include "doNormalParams.h"
 
 #include "doBounder.h"
 #include "doBounderNo.h"
@@ -31,5 +34,8 @@
 #include "doBounderRng.h"
 
 #include "doStats.h"
+#include "doStatsUniform.h"
+#include "doStatsNormalMono.h"
+#include "doStatsNormalMulti.h"
 
 #endif // !_do_

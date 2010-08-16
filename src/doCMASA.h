@@ -33,6 +33,7 @@
 #include "doEstimator.h"
 #include "doModifierMass.h"
 #include "doSampler.h"
+#include "doHyperVolume.h"
 #include "doStats.h"
 
 using namespace boost::numeric::ublas;
@@ -41,8 +42,11 @@ template < typename D >
 class doCMASA : public doAlgo< D >
 {
 public:
-    //! Alias for the type
+    //! Alias for the type EOT
     typedef typename D::EOType EOT;
+
+    //! Alias for the atom type
+    typedef typename EOT::AtomType AtomType;
 
     //! Alias for the fitness
     typedef typename EOT::Fitness Fitness;
@@ -74,7 +78,8 @@ public:
 	     moSolContinue < EOT > & continuator,
 	     moCoolingSchedule & cooling_schedule,
 	     double initial_temperature,
-	     eoReplacement< EOT > & replacor
+	     eoReplacement< EOT > & replacor,
+	     doStats< D > & stats
 	     )
 	: _selector(selector),
 	  _estimator(estimator),
@@ -87,6 +92,7 @@ public:
 	  _cooling_schedule(cooling_schedule),
 	  _initial_temperature(initial_temperature),
 	  _replacor(replacor),
+	  _stats(stats),
 
 	  _pop_results_destination("ResPop"),
 
@@ -164,14 +170,14 @@ public:
 	    double size = distrib.size();
 	    assert(size > 0);
 
-	    doHyperVolume hv;
+	    doHyperVolume< EOT > hv;
 
 	    for (int i = 0; i < size; ++i)
 		{
 		    //hv.update( distrib.varcovar()[i] );
 		}
 
-	    _ofs_params_var << hv << std::endl;
+	    // _ofs_params_var << hv << std::endl;
 	}
 
 	do
@@ -332,14 +338,14 @@ public:
 		    double size = distrib.size();
 		    assert(size > 0);
 
-		    doHyperVolume hv;
+		    doHyperVolume< EOT > hv;
 
 		    for (int i = 0; i < size; ++i)
 			{
 			    //hv.update( distrib.varcovar()[i] );
 			}
 
-		    _ofs_params_var << hv << std::endl;
+		    //_ofs_params_var << hv << std::endl;
 		}
 
 		//-------------------------------------------------------------
@@ -386,6 +392,8 @@ private:
     //! A EOT replacor
     eoReplacement < EOT > & _replacor;
 
+    //! Stats to print distrib parameters out
+    doStats< D > & _stats;
 
     //-------------------------------------------------------------
     // Temporary solution to store populations state at each
