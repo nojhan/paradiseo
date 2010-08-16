@@ -27,7 +27,7 @@ public:
 
     doStat< D, T >& addTo(doCheckPoint< D >& cp) { cp.add(*this); return *this; }
 
-    // TODO: doStat< D, T >& addTo(doMonitor& mon) { mon.add(*this); return *this; }
+    // TODO: doStat< D, T >& addTo(eoMonitor& mon) { mon.add(*this); return *this; }
 };
 
 

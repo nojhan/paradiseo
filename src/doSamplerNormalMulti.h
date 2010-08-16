@@ -66,7 +66,9 @@ public:
 
 		    assert( ( V(i, i) - sum ) > 0 );
 
-		    _L(i, i) = sqrt( V(i, i) - sum );
+		    //_L(i, i) = sqrt( V(i, i) - sum );
+
+		    _L(i,i) = sqrt( fabs( V(i,i) - sum) );
 
 		    for ( j = i + 1; j < Vl; ++j ) // rows
 			{
