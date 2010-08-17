@@ -13,7 +13,7 @@ public:
     public:
 	typedef typename EOT::AtomType AtomType;
 
-	void update( const eoPop< EOT >& pop )
+	CovMatrix( const eoPop< EOT >& pop )
 	{
 	    unsigned int p_size = pop.size(); // population size
 
@@ -41,7 +41,7 @@ public:
 	    // positive), thus a triangular storage is sufficient
 	    //-------------------------------------------------------------
 
-	    ublas::symmetric_matrix< AtomType, ublas::lower > var(s_size, s_size);
+	    //ublas::symmetric_matrix< AtomType, ublas::lower > var; //(s_size, s_size);
 
 	    //-------------------------------------------------------------
 
@@ -50,20 +50,33 @@ public:
 	    // variance-covariance matrix computation : A * transpose(A)
 	    //-------------------------------------------------------------
 
-	    var = ublas::prod( sample, ublas::trans( sample ) );
+	    //ublas::matrix< AtomType > var = ublas::prod( sample, ublas::trans( sample ) );
+	    //ublas::symmetric_matrix< AtomType, ublas::lower > var = ublas::prod( sample, ublas::trans( sample ) );
+	    ublas::symmetric_matrix< AtomType, ublas::lower > var = ublas::prod( ublas::trans( sample ), sample );
+
+	    assert(var.size1() == s_size);
+	    assert(var.size2() == s_size);
+	    assert(var.size1() == _varcovar.size1());
+	    assert(var.size2() == _varcovar.size2());
+
+	    std::cout << "_varcovar: " << _varcovar << std::endl;
+	    std::cout << "var: " << var << std::endl;
 
 	    //-------------------------------------------------------------
 
 
-	    for (unsigned int i = 0; i < s_size; ++i)
-		{
-		    // triangular LOWER matrix, thus j is not going further than i
-		    for (unsigned int j = 0; j <= i; ++j)
-			{
-			    // we want a reducted covariance matrix
-			    _varcovar(i, j) = var(i, j) / p_size;
-			}
-		}
+	    // for (unsigned int i = 0; i < s_size; ++i)
+	    // 	{
+	    // 	    // triangular LOWER matrix, thus j is not going further than i
+	    // 	    for (unsigned int j = 0; j <= i; ++j)
+	    // 		{
+	    // 		    // we want a reducted covariance matrix
+	    // 		    std::cout << "i " << i << " j " << j << std::endl;
+	    // 		    _varcovar(i, j) = var(i, j) / p_size;
+	    // 		}
+	    // 	}
+
+	    _varcovar = var / p_size;
 
 	    _mean.resize(s_size);
 
@@ -97,9 +110,7 @@ public:
 	unsigned int dimsize = pop[0].size();
 	assert(dimsize > 0);
 
-	CovMatrix cov;
-
-	cov.update(pop);
+	CovMatrix cov( pop );
 
 	return doNormalMulti< EOT >( cov.get_mean(), cov.get_varcovar() );
     }

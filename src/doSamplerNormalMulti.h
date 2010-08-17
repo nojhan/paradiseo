@@ -25,7 +25,7 @@ public:
     class Cholesky
     {
     public:
-	void update( const ublas::symmetric_matrix< AtomType, ublas::lower >& V)
+	Cholesky( const ublas::symmetric_matrix< AtomType, ublas::lower >& V)
 	{
 	    unsigned int Vl = V.size1();
 
@@ -66,7 +66,7 @@ public:
 			    sum += _L(i, k) * _L(i, k);
 			}
 
-		    assert( ( V(i, i) - sum ) > 0 );
+		    // assert( ( V(i, i) - sum ) > 0 );
 
 		    //_L(i, i) = sqrt( V(i, i) - sum );
 
@@ -112,8 +112,7 @@ public:
 	// L = cholesky decomposition of varcovar
 	//-------------------------------------------------------------
 
-	Cholesky cholesky;
-	cholesky.update( distrib.varcovar() );
+	Cholesky cholesky( distrib.varcovar() );
 	ublas::symmetric_matrix< AtomType, ublas::lower > L = cholesky.get_L();
 
 	//-------------------------------------------------------------
