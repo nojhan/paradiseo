@@ -56,7 +56,7 @@
 
  * MS 10/04/2002:
  *    Added the possibility to have a negative number -
- *        when treated as a number: returns then (size - combien)
+ *        when treated as a number: returns then (size - count)
  *    Should not modify anything when a positive number is passed in the ctor
  *
  * MS 20/06/2002:
@@ -78,7 +78,7 @@ public:
       @param _interpret_as_rate to tell whether the rate actually is a rate
   */
   eoHowMany(double  _rate = 0.0, bool _interpret_as_rate = true):
-    rate(_rate), combien(0)
+    rate(_rate), count(0)
   {
     if (_interpret_as_rate)
       {
@@ -92,32 +92,32 @@ public:
     else
       {
         rate = 0.0;                   // just in case, but shoud be unused
-        combien = int(_rate);           // negative values are allowed here
-        if (combien != _rate)
+        count = int(_rate);           // negative values are allowed here
+        if (count != _rate)
           eo::log << eo::warnings << "Number was rounded in eoHowMany";
       }
   }
 
   /** Ctor from an int - both from int and unsigned int are needed
    *     to avoid ambiguity with the Ctor from a double */
-  eoHowMany(int _combien) : rate(0.0), combien(_combien) {}
+  eoHowMany(int _count) : rate(0.0), count(_count) {}
 
   /** Ctor from an unsigned int - both from int and unsigned int are needed
    *     to avoid ambiguity with the Ctor from a double */
-  eoHowMany(unsigned int _combien) : rate(0.0), combien(_combien) {}
+  eoHowMany(unsigned int _count) : rate(0.0), count(_count) {}
 
   /// Virtual dtor. They are needed in virtual class hierarchies.
   virtual ~eoHowMany() {}
 
   /** Does what it was designed for
-   *  - combien==0 : return rate*_size
+   *  - count==0 : return rate*_size
    *  - else
-   *    - combien>0 : return combien (regardless of _size)
-   *    - combien<0 : return _size-|combien|
+   *    - count>0 : return count (regardless of _size)
+   *    - count<0 : return _size-|count|
    */
   unsigned int operator()(unsigned int _size)
   {
-    if (combien == 0)
+    if (count == 0)
       {
         unsigned int res = static_cast<unsigned int>( std::ceil( rate * _size ) );
         
@@ -127,22 +127,22 @@ public:
 
         return res;
       }
-    if (combien < 0)
+    if (count < 0)
       {
-        unsigned int combloc = -combien;
+        unsigned int combloc = -count;
         if (_size<combloc)
           throw std::runtime_error("Negative result in eoHowMany");
         return _size-combloc;
       }
-    return unsigned(combien);
+    return unsigned(count);
   }
 
   virtual void printOn(std::ostream& _os) const
   {
-    if (combien == 0)
+    if (count == 0)
       _os << 100*rate << "% ";
     else
-      _os << combien << " ";
+      _os << count << " ";
     return;
 
   }
@@ -171,11 +171,11 @@ public:
     // now store
     if (interpret_as_rate)
       {
-        combien = 0;
+        count = 0;
         rate /= 100.0;
       }
     else
-      combien = int(rate);           // and rate will not be used
+      count = int(rate);           // and rate will not be used
 
     // minimal check
     if ( rate < 0.0 )
@@ -185,16 +185,16 @@ public:
   /** The unary - operator: reverses the computation */
   eoHowMany operator-()
   {
-    if (!combien)                   // only rate is used
+    if (!count)                   // only rate is used
       rate = 1.0-rate;
     else
-      combien = -combien;
+      count = -count;
     return (*this);
   }
 
 private :
   double rate;
-  int combien;
+  int count;
 };
 
 
