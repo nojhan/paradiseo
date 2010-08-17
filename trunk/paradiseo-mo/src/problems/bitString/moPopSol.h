@@ -36,16 +36,18 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 template <class EOT>
 class moPopSol : public EO<double>, public std::vector<EOT>{
 public:
-	typedef typename EO<double>::Fitness Fitness;
-	using EO<double>::invalidate;
+  typedef EOT SUBEOT; // public type of the solution
 
-	  virtual void printOn(std::ostream& _os) const
-	  {
-	        _os << (*this).size() << " " << (*this).fitness() << '\n';
-	        for(unsigned int i=0; i<(*this).size(); i++)
-	        	_os << (*this).operator[](i) << std::endl;
-	  }
-
+  typedef typename EO<double>::Fitness Fitness;
+  using EO<double>::invalidate;
+  
+  virtual void printOn(std::ostream& _os) const
+  {
+    _os << (*this).size() << " " << (*this).fitness() << '\n';
+    for(unsigned int i=0; i<(*this).size(); i++)
+      _os << (*this).operator[](i) << std::endl;
+  }
+  
 };
 
 #endif

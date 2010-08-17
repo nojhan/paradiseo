@@ -2,7 +2,7 @@
   <moPopBitEval.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
+  Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -39,46 +39,70 @@
 #include <eval/moEval.h>
 
 /**
- * Abstract class for the evaluation
+ * Class to compute the fitness of the solution-set after mutation of one bit
  */
 template<class Neighbor>
 class moPopBitEval : public moEval<Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
-    typedef typename Neighbor::SUBEOT SUBEOT;
+  typedef typename Neighbor::EOT EOT;
+  typedef typename Neighbor::SUBEOT SUBEOT; // type of the solution
 
-    typedef typename EOT::Fitness Fitness;
+  typedef typename SUBEOT::Fitness Fitness; // fitness type of the solution
 
-    moPopBitEval(eoEvalFunc<SUBEOT>& _eval, unsigned int _p):eval(_eval), p(_p){
+  /**
+   * Default constructor
+   *
+   * @param _eval evaluation function of the solution
+   * @param _p exponent of the p-norm to compute the fitness of the solution-set 
+   */
+  moPopBitEval(eoEvalFunc<SUBEOT>& _eval, unsigned int _p):eval(_eval), p(_p){
 
+  }
+
+  /**
+   * Compute the fitness of the neighbor after one bit mutation
+   *
+   * @param _sol the solution-set
+   * @param _n the neighbor which is supposed to be indexed
+   */
+  void operator()(EOT& _sol, Neighbor& _n){
+    if(_sol[0].size()>0) {
+      // index of the solution and the bit
+      unsigned int size = _sol[0].size();
+      unsigned int s    = _n.index() / size; // solution index
+      unsigned int b    = _n.index() % size; // bit index
+
+      // flip the right bit
+      _sol[s][b] = !_sol[s][b];
+
+      // compute and save the fitness of the solution s
+      fitOfSol = _sol[s].fitness();
+
+      _sol[s].invalidate();
+      eval(_sol[s]);
+
+      _n.setSubFit(_sol[s].fitness());
+
+      // compute the fitness of the solution-set
+      double fit = 0;
+      for (unsigned int i = 0; i < _sol.size(); i++) 
+	fit += pow((double) _sol[i].fitness(), (int) p);
+      
+      fit = pow((double) fit, (double)1/p);
+
+      _n.fitness(fit);
+
+      // come back to the initial solution
+      _sol[s][b] = !_sol[s][b];
+      _sol[s].fitness(fitOfSol);
     }
-
-    void operator()(EOT& _sol, Neighbor& _n){
-    	if(_sol[0].size()>0){
-    		unsigned int size=_sol[0].size();
-    		unsigned int s=_n.index()/size;
-    		unsigned int b=_n.index()%size;
-    		subfit=_sol[s].fitness();
-    		_sol[s][b]=!_sol[s][b];
-    		_sol[s].invalidate();
-    		eval(_sol[s]);
-        	double fit=0;
-            for (unsigned int i = 0; i < _sol.size(); i++){
-	      fit+=pow((double) _sol[i].fitness(), (int) p);
-            }
-            fit=pow((double) fit, (double)1/p);
-            _n.setSubFit(_sol[s].fitness());
-            _n.fitness(fit);
-            _sol[s][b]=!_sol[s][b];
-            _sol[s].fitness(subfit);
-    	}
-    }
+  }
 
 private:
-    eoEvalFunc<SUBEOT> & eval;
-    unsigned int p;
-    Fitness subfit;
+  eoEvalFunc<SUBEOT> & eval;
+  unsigned int p;
+  Fitness fitOfSol;
 
 };
 
