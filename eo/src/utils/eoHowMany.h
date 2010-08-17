@@ -4,6 +4,8 @@
 // eoHowMany_h.h
 //   Base class for choosing a number of guys to apply something from a popsize
 // (c) Marc Schoenauer, 2000
+// (c) Thales group, 2010 (Johann Dréo <johann.dreo@thalesgroup.com>)
+
 /*
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
@@ -66,6 +68,8 @@
 
 #include <sstream>
 
+#include <utils/eoLogger.h>
+
 class eoHowMany : public eoPersistent
 {
 public:
@@ -78,19 +82,19 @@ public:
   {
     if (_interpret_as_rate)
       {
-	if (_rate<0)
-	  {
-	    rate = 1.0+_rate;
-	    if (rate < 0)	   // was < -1
-	      throw std::logic_error("rate<-1 in eoHowMany!");
-	  }
+        if (_rate<0)
+          {
+            rate = 1.0+_rate;
+            if (rate < 0)           // was < -1
+              throw std::logic_error("rate<-1 in eoHowMany!");
+          }
       }
     else
       {
-	rate = 0.0;		   // just in case, but shoud be unused
-	combien = int(_rate);	   // negative values are allowed here
-	if (combien != _rate)
-	  std::cerr << "Warning: Number was rounded in eoHowMany";
+        rate = 0.0;                   // just in case, but shoud be unused
+        combien = int(_rate);           // negative values are allowed here
+        if (combien != _rate)
+          eo::log << eo::warnings << "Number was rounded in eoHowMany";
       }
   }
 
@@ -115,14 +119,20 @@ public:
   {
     if (combien == 0)
       {
-	return (unsigned int) (rate * _size);
+        unsigned int res = static_cast<unsigned int>( std::ceil( rate * _size ) );
+        
+        if( res == 0 ) {
+            eo::log << eo::warnings << "Call to a eoHowMany instance returns 0 (rate=" << rate << ", size=" << _size << ")" << std::endl;
+        }
+
+        return res;
       }
     if (combien < 0)
       {
-	unsigned int combloc = -combien;
-	if (_size<combloc)
-	  throw std::runtime_error("Negative result in eoHowMany");
-	return _size-combloc;
+        unsigned int combloc = -combien;
+        if (_size<combloc)
+          throw std::runtime_error("Negative result in eoHowMany");
+        return _size-combloc;
       }
     return unsigned(combien);
   }
@@ -152,8 +162,8 @@ public:
     size_t pos =  _value.find('%');
     if (pos < _value.size())  //  found a %
       {
-	interpret_as_rate = true;
-	_value.resize(pos);	   // get rid of %
+        interpret_as_rate = true;
+        _value.resize(pos);           // get rid of %
       }
 
     std::istringstream is(_value);
@@ -161,11 +171,11 @@ public:
     // now store
     if (interpret_as_rate)
       {
-	combien = 0;
-	rate /= 100.0;
+        combien = 0;
+        rate /= 100.0;
       }
     else
-      combien = int(rate);	   // and rate will not be used
+      combien = int(rate);           // and rate will not be used
 
     // minimal check
     if ( rate < 0.0 )
@@ -175,7 +185,7 @@ public:
   /** The unary - operator: reverses the computation */
   eoHowMany operator-()
   {
-    if (!combien)		   // only rate is used
+    if (!combien)                   // only rate is used
       rate = 1.0-rate;
     else
       combien = -combien;
