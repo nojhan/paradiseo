@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // eoLogger.h
-// (c) GeNeura Team, 1998 - EEAAX 1999, Maarten Keijzer 2000
+// (c) Thales group, 2010
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -18,11 +18,9 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    Authors: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mak@dhi.dk
-	     Johann Dréo <nojhan@gmail.com>
-	     Caner Candan <caner@candan.fr>
+    Authors: 
+	     Johann Dréo <johann.dreo@thalesgroup.com>
+	     Caner Candan <caner.candan@thalesgroup.com>
  */
 //-----------------------------------------------------------------------------
 
