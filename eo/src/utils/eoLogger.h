@@ -59,20 +59,20 @@
    eo::log << eo::setlevel("errors");
    eo::log << eo::setlevel(eo::errors);
 
-   // Now we are writting a quiet message.
-   eo::log << eo::quiet << "1) Must be in quiet mode" << std::endl;
+   // Now we are writting a message, that will be displayed only if we are above the "quiet" level
+   eo::log << eo::quiet << "1) Must be in quiet mode to see that" << std::endl;
 
    // And so on...
-   eo::log << eo::setlevel(eo::warnings) << eo::warnings << "2) Must be in warnings mode" << std::endl;
+   eo::log << eo::setlevel(eo::warnings) << eo::warnings << "2) Must be in warnings mode to see that" << std::endl;
 
    eo::log << eo::setlevel(eo::logging);
 
    eo::log << eo::errors;
-   eo::log << "3) Must be in errors mode";
+   eo::log << "3) Must be in errors mode to see that";
    eo::log << std::endl;
 
    eo::log << eo::debug << 4 << ')'
-   << " Must be in debug mode\n";
+   << " Must be in debug mode to see that\n";
 
    return 0;
    }
@@ -146,7 +146,7 @@ public:
 private:
     /**
      * outbuf
-     * this class is inherits of std::streambuf which is used by eoLogger to write the buffer in an output.
+     * this class inherits from std::streambuf which is used by eoLogger to write the buffer in an output stream
      */
     class	outbuf : public std::streambuf
     {
@@ -185,7 +185,7 @@ public:
     friend eoLogger&	operator<<(eoLogger&, eo::setlevel);
 
     /**
-     * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to the standard output.
+     * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to a standard output.
      */
     friend eoLogger&	operator<<(eoLogger&, std::ostream&);
 
