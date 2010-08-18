@@ -25,7 +25,9 @@ SET (EOUTILS_SOURCES 	eoData.cpp
 						eoStdoutMonitor.cpp
 						eoUpdater.cpp
 						make_help.cpp
-						pipecom.cpp)
+						pipecom.cpp
+						eoLogger.cpp
+						eoParserLogger.cpp)
 
 
 ADD_LIBRARY(eoutils STATIC ${EOUTILS_SOURCES})

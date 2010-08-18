@@ -67,6 +67,7 @@ SET (TEST_LIST  t-eoParetoFitness
 				t-eoExtendedVelocity
 				# t-eoFrontSorter 
 				# t-eoEpsMOEA
+				t-eoLogger
 				)
 				
 FOREACH (test ${TEST_LIST})
