@@ -100,17 +100,15 @@ public:
 	  _sa_continue(sa_continue),
 	  _cooling_schedule(cooling_schedule),
 	  _initial_temperature(initial_temperature),
-	  _replacor(replacor)
+	  _replacor(replacor),
 
-	// ,
+	  _pop_results_destination("ResPop")//,
 
-	//   _pop_results_destination("ResPop"),
+	  // directory where populations state are going to be stored.
+	  // _ofs_params("ResParams.txt"),
+	  // _ofs_params_var("ResVars.txt"),
 
-	//   // directory where populations state are going to be stored.
-	//   _ofs_params("ResParams.txt"),
-	//   _ofs_params_var("ResVars.txt"),
-
-	//   _bounds_results_destination("ResBounds")
+	  // _bounds_results_destination("ResBounds")
     {
 
 	//-------------------------------------------------------------
@@ -118,13 +116,13 @@ public:
 	// iteration for plotting.
 	//-------------------------------------------------------------
 
-	// {
-	//     std::stringstream os;
-	//     os << "rm -rf " << _pop_results_destination;
-	//     ::system(os.str().c_str());
-	// }
+	{
+	    std::stringstream os;
+	    os << "rm -rf " << _pop_results_destination;
+	    ::system(os.str().c_str());
+	}
 
-	// ::mkdir(_pop_results_destination.c_str(), 0755); // create a first time the
+	::mkdir(_pop_results_destination.c_str(), 0755); // create a first time
 
 	//-------------------------------------------------------------
 
@@ -291,12 +289,12 @@ public:
 		// at each iteration for plotting.
 		//-------------------------------------------------------------
 
-		// {
-		//     std::ostringstream os;
-		//     os << _pop_results_destination << "/" << number_of_iterations;
-		//     std::ofstream ofs(os.str().c_str());
-		//     ofs << current_pop;
-		// }
+		{
+		    std::ostringstream os;
+		    os << _pop_results_destination << "/" << number_of_iterations;
+		    std::ofstream ofs(os.str().c_str());
+		    ofs << current_pop;
+		}
 
 		//-------------------------------------------------------------
 
@@ -380,8 +378,9 @@ public:
 
 	    }
 	while ( _cooling_schedule( temperature ) &&
-		_monitoring_continue( selected_pop ) &&
-		_distribution_continue( distrib ) );
+		_distribution_continue( distrib ) &&
+		_monitoring_continue( selected_pop )
+		);
     }
 
 private:
@@ -427,7 +426,7 @@ private:
     // iteration for plotting.
     //-------------------------------------------------------------
 
-    // std::string _pop_results_destination;
+    std::string _pop_results_destination;
     // std::ofstream _ofs_params;
     // std::ofstream _ofs_params_var;
 

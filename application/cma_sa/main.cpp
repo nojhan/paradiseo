@@ -74,13 +74,6 @@ int main(int ac, char** av)
     eoInitFixedLength< EOT >* init = new eoInitFixedLength< EOT >( dimension_size, *gen );
     state.storeFunctor(init);
 
-
-    // doStats< Distrib >* stats =
-    // 	//new doStatsUniform< EOT >();
-    // 	//new doStatsNormalMono< EOT >();
-    // 	new doStatsNormalMulti< EOT >();
-    // state.storeFunctor(stats);
-
     //-----------------------------------------------------------------------------
 
 
@@ -173,15 +166,13 @@ int main(int ac, char** av)
 
     distribution_continue->add( *distrib_stat );
 
-    eoMonitor* stdout_monitor = new eoStdoutMonitor();
-    state.storeFunctor(stdout_monitor);
+    // eoMonitor* stdout_monitor = new eoStdoutMonitor();
+    // state.storeFunctor(stdout_monitor);
+    // stdout_monitor->add(*distrib_stat);
+    // distribution_continue->add( *stdout_monitor );
 
-    stdout_monitor->add(*distrib_stat);
-    distribution_continue->add( *stdout_monitor );
-
-    eoFileMonitor* file_monitor = new eoFileMonitor("distribution.txt");
+    eoFileMonitor* file_monitor = new eoFileMonitor("distribution_bounds.txt");
     state.storeFunctor(file_monitor);
-
     file_monitor->add(*distrib_stat);
     distribution_continue->add( *file_monitor );
 
