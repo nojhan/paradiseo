@@ -55,6 +55,12 @@ class eoDetSelect : public eoSelect<EOT>
     unsigned int pSize = _source.size();
     size_t target = howMany(pSize);
 
+    if ( target == 0 )
+	{
+	    eo::log << eo::warnings << "Call to a eoHowMany instance returns 0 (target=" << target << ") it will be replaced by 1 to continue." << std::endl;
+	    target = 1;
+	}
+
     _dest.resize(target);
 
     unsigned remain = target % pSize;
