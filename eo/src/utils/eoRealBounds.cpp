@@ -49,7 +49,7 @@ long int read_int(std::string _s)
 
 // need to rewrite copy ctor and assignement operator because of ownedBounds
 eoRealVectorBounds::eoRealVectorBounds(const eoRealVectorBounds & _b):
-  eoRealBaseVectorBounds(_b)
+    eoRealBaseVectorBounds(_b), eoPersistent()
 {
   factor = _b.factor;
   ownedBounds = _b.ownedBounds;
