@@ -21,6 +21,10 @@ SET (EO_SOURCES     eoFunctorStore.cpp
 
  
 ADD_LIBRARY(eo STATIC ${EO_SOURCES})
+INSTALL(TARGETS eo ARCHIVE DESTINATION lib COMPONENT libraries)
+
+FILE(GLOB HDRS *.h eo)
+INSTALL(FILES ${HDRS} DESTINATION include/eo COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal: define your target(s)'s version: no effect for windows

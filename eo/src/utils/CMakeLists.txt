@@ -31,6 +31,10 @@ SET (EOUTILS_SOURCES 	eoData.cpp
 
 
 ADD_LIBRARY(eoutils STATIC ${EOUTILS_SOURCES})
+INSTALL(TARGETS eoutils ARCHIVE DESTINATION lib COMPONENT libraries)
+
+FILE(GLOB HDRS *.h checkpointing)
+INSTALL(FILES ${HDRS} DESTINATION include/eo/utils COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal

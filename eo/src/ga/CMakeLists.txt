@@ -22,6 +22,10 @@ SET (GA_SOURCES 	make_algo_scalar_ga.cpp
 
 
 ADD_LIBRARY(ga STATIC ${GA_SOURCES})
+INSTALL(TARGETS ga ARCHIVE DESTINATION lib COMPONENT libraries)
+
+FILE(GLOB HDRS *.h)
+INSTALL(FILES ${HDRS} DESTINATION include/eo/ga COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal

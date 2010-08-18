@@ -35,7 +35,13 @@ SET (CMA_SOURCES 	eig.cpp
 
  
 ADD_LIBRARY(es STATIC ${ES_SOURCES})
+INSTALL(TARGETS es ARCHIVE DESTINATION lib COMPONENT libraries)
+
 ADD_LIBRARY(cma STATIC ${CMA_SOURCES})
+INSTALL(TARGETS cma ARCHIVE DESTINATION lib COMPONENT libraries)
+
+FILE(GLOB HDRS *.h)
+INSTALL(FILES ${HDRS} DESTINATION include/eo/es COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal
