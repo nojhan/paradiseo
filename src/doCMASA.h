@@ -1,3 +1,10 @@
+// (c) Thales group, 2010
+/*
+    Authors:
+             Johann Dreo <johann.dreo@thalesgroup.com>
+             Caner Candan <caner.candan@thalesgroup.com>
+*/
+
 #ifndef _doCMASA_h
 #define _doCMASA_h
 

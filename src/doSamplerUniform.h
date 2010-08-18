@@ -1,3 +1,10 @@
+// (c) Thales group, 2010
+/*
+    Authors:
+             Johann Dreo <johann.dreo@thalesgroup.com>
+             Caner Candan <caner.candan@thalesgroup.com>
+*/
+
 #ifndef _doSamplerUniform_h
 #define _doSamplerUniform_h
 

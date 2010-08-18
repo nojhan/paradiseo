@@ -1,3 +1,10 @@
+// (c) Thales group, 2010
+/*
+    Authors:
+             Johann Dreo <johann.dreo@thalesgroup.com>
+             Caner Candan <caner.candan@thalesgroup.com>
+*/
+
 #ifndef _doEstimatorNormalMulti_h
 #define _doEstimatorNormalMulti_h
 
@@ -39,28 +46,16 @@ public:
 	    //-------------------------------------------------------------
 	    // variance-covariance matrix are symmetric (and semi-definite
 	    // positive), thus a triangular storage is sufficient
+	    //
+	    // variance-covariance matrix computation : transpose(A) * A
 	    //-------------------------------------------------------------
 
-	    //ublas::symmetric_matrix< AtomType, ublas::lower > var; //(s_size, s_size);
-
-	    //-------------------------------------------------------------
-
-
-	    //-------------------------------------------------------------
-	    // variance-covariance matrix computation : A * transpose(A)
-	    //-------------------------------------------------------------
-
-	    //ublas::matrix< AtomType > var = ublas::prod( sample, ublas::trans( sample ) );
-	    //ublas::symmetric_matrix< AtomType, ublas::lower > var = ublas::prod( sample, ublas::trans( sample ) );
 	    ublas::symmetric_matrix< AtomType, ublas::lower > var = ublas::prod( ublas::trans( sample ), sample );
 
 	    assert(var.size1() == s_size);
 	    assert(var.size2() == s_size);
 	    assert(var.size1() == _varcovar.size1());
 	    assert(var.size2() == _varcovar.size2());
-
-	    std::cout << "_varcovar: " << _varcovar << std::endl;
-	    std::cout << "var: " << var << std::endl;
 
 	    //-------------------------------------------------------------
 
@@ -71,7 +66,6 @@ public:
 	    // 	    for (unsigned int j = 0; j <= i; ++j)
 	    // 		{
 	    // 		    // we want a reducted covariance matrix
-	    // 		    std::cout << "i " << i << " j " << j << std::endl;
 	    // 		    _varcovar(i, j) = var(i, j) / p_size;
 	    // 		}
 	    // 	}

@@ -1,3 +1,10 @@
+// (c) Thales group, 2010
+/*
+    Authors:
+             Johann Dreo <johann.dreo@thalesgroup.com>
+             Caner Candan <caner.candan@thalesgroup.com>
+*/
+
 #ifndef _doSamplerNormalMulti_h
 #define _doSamplerNormalMulti_h
 
@@ -65,10 +72,6 @@ public:
 			{
 			    sum += _L(i, k) * _L(i, k);
 			}
-
-		    // assert( ( V(i, i) - sum ) > 0 );
-
-		    //_L(i, i) = sqrt( V(i, i) - sum );
 
 		    _L(i,i) = sqrt( fabs( V(i,i) - sum) );
 
