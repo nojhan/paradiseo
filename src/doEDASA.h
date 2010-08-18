@@ -5,8 +5,8 @@
              Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#ifndef _doCMASA_h
-#define _doCMASA_h
+#ifndef _doEDASA_h
+#define _doEDASA_h
 
 //-----------------------------------------------------------------------------
 // Temporary solution to store populations state at each iteration for plotting.
@@ -47,7 +47,7 @@
 using namespace boost::numeric::ublas;
 
 template < typename D >
-class doCMASA : public doAlgo< D >
+class doEDASA : public doAlgo< D >
 {
 public:
     //! Alias for the type EOT
@@ -61,9 +61,9 @@ public:
 
 public:
 
-    //! doCMASA constructor
+    //! doEDASA constructor
     /*!
-      All the boxes used by a CMASA need to be given.
+      All the boxes used by a EDASA need to be given.
 
       \param selector The EOT selector
       \param estomator The EOT selector
@@ -76,7 +76,7 @@ public:
       \param initial_temperature The initial temperature.
       \param replacor The EOT replacor
     */
-    doCMASA (eoSelect< EOT > & selector,
+    doEDASA (eoSelect< EOT > & selector,
 	     doEstimator< D > & estimator,
 	     eoSelectOne< EOT > & selectone,
 	     doModifierMass< D > & modifier,
@@ -143,9 +143,9 @@ public:
 
     }
 
-    //! function that launches the CMASA algorithm.
+    //! function that launches the EDASA algorithm.
     /*!
-      As a moTS or a moHC, the CMASA can be used for HYBRIDATION in an evolutionary algorithm.
+      As a moTS or a moHC, the EDASA can be used for HYBRIDATION in an evolutionary algorithm.
 
       \param pop A population to improve.
       \return TRUE.
@@ -442,4 +442,4 @@ private:
 
 };
 
-#endif // !_doCMASA_h
+#endif // !_doEDASA_h

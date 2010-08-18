@@ -35,7 +35,7 @@ int main(int ac, char** av)
     eoState state;
 
     //-----------------------------------------------------------------------------
-    // Instantiate all need parameters for CMASA algorithm
+    // Instantiate all need parameters for EDASA algorithm
     //-----------------------------------------------------------------------------
 
     eoSelect< EOT >* selector = new eoDetSelect< EOT >(0.5);
@@ -193,10 +193,10 @@ int main(int ac, char** av)
 
 
     //-----------------------------------------------------------------------------
-    // CMASA algorithm configuration
+    // EDASA algorithm configuration
     //-----------------------------------------------------------------------------
 
-    doAlgo< Distrib >* algo = new doCMASA< Distrib >
+    doAlgo< Distrib >* algo = new doEDASA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
     	 monitoring_continue, *distribution_continue,
 	 eval, *sa_continue, *cooling_schedule,

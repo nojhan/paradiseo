@@ -9,7 +9,7 @@
 #define _do_
 
 #include "doAlgo.h"
-#include "doCMASA.h"
+#include "doEDASA.h"
 
 #include "doDistrib.h"
 #include "doUniform.h"

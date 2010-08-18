@@ -1,4 +1,4 @@
-PROJECT(cma_sa)
+PROJECT(eda_sa)
 
 FIND_PACKAGE(Boost 1.33.0)
 
@@ -8,7 +8,7 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
 SET(RESOURCES
-  cma_sa.param
+  eda_sa.param
   plot.py
   )
 

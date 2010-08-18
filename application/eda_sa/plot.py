@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""plot.py -- Plot CMA-SA results file"""
+"""plot.py -- Plot EDA-SA results file"""
 
 import os, time, math, tempfile
 import numpy
