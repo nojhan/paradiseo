@@ -57,8 +57,8 @@ int main(int ac, char** av)
     state.storeFunctor(modifier);
 
     eoEvalFunc< EOT >* plainEval =
-	//new BopoRosenbrock< EOT, typename EOT::AtomType, const EOT& >();
-	new Sphere< EOT >();
+	new Rosenbrock< EOT >();
+    //new Sphere< EOT >();
     state.storeFunctor(plainEval);
 
     unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
@@ -112,6 +112,8 @@ int main(int ac, char** av)
 	new doSamplerNormalMulti< EOT >( *bounder );
     state.storeFunctor(sampler);
 
+
+    // FIXME: should I set the default value of rho to pop size ?!?
 
     unsigned int rho = parser.createParam((unsigned int)0, "rho", "Rho: metropolis sample size", 'p', section).value(); // p
 
