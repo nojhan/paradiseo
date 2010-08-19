@@ -819,7 +819,7 @@ private :
     {
     public:
 
-        using base_iterator::node;
+        using base_const_iterator::node;
 
         typedef std::forward_iterator_tag iterator_category;
         typedef const subtree value_type;
