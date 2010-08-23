@@ -8,29 +8,6 @@
 #ifndef _doEDASA_h
 #define _doEDASA_h
 
-//-----------------------------------------------------------------------------
-// Temporary solution to store populations state at each iteration for plotting.
-//-----------------------------------------------------------------------------
-
-// system header inclusion
-#include <cstdlib>
-// end system header inclusion
-
-// mkdir headers inclusion
-#include <sys/stat.h>
-#include <sys/types.h>
-// end mkdir headers inclusion
-
-#include <fstream>
-#include <numeric>
-
-#include <limits>
-
-#include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublas/io.hpp>
-
-//-----------------------------------------------------------------------------
-
 #include <eo>
 #include <mo>
 
@@ -43,8 +20,6 @@
 #include "doHyperVolume.h"
 #include "doStat.h"
 #include "doContinue.h"
-
-using namespace boost::numeric::ublas;
 
 template < typename D >
 class doEDASA : public doAlgo< D >
@@ -82,6 +57,7 @@ public:
 	     doModifierMass< D > & modifier,
 	     doSampler< D > & sampler,
 	     eoContinue< EOT > & monitoring_continue,
+	     eoContinue< EOT > & pop_continue,
 	     doContinue< D > & distribution_continue,
 	     eoEvalFunc < EOT > & evaluation,
 	     moSolContinue < EOT > & sa_continue,
@@ -95,53 +71,14 @@ public:
 	  _modifier(modifier),
 	  _sampler(sampler),
 	  _monitoring_continue(monitoring_continue),
+	  _pop_continue(pop_continue),
 	  _distribution_continue(distribution_continue),
 	  _evaluation(evaluation),
 	  _sa_continue(sa_continue),
 	  _cooling_schedule(cooling_schedule),
 	  _initial_temperature(initial_temperature),
-	  _replacor(replacor),
-
-	  _pop_results_destination("ResPop")//,
-
-	  // directory where populations state are going to be stored.
-	  // _ofs_params("ResParams.txt"),
-	  // _ofs_params_var("ResVars.txt"),
-
-	  // _bounds_results_destination("ResBounds")
-    {
-
-	//-------------------------------------------------------------
-	// Temporary solution to store populations state at each
-	// iteration for plotting.
-	//-------------------------------------------------------------
-
-	{
-	    std::stringstream os;
-	    os << "rm -rf " << _pop_results_destination;
-	    ::system(os.str().c_str());
-	}
-
-	::mkdir(_pop_results_destination.c_str(), 0755); // create a first time
-
-	//-------------------------------------------------------------
-
-
-	//-------------------------------------------------------------
-	// Temporary solution to store bounds values for each distribution.
-	//-------------------------------------------------------------
-
-	// {
-	//     std::stringstream os;
-	//     os << "rm -rf " << _bounds_results_destination;
-	//     ::system(os.str().c_str());
-	// }
-
-	//::mkdir(_bounds_results_destination.c_str(), 0755); // create once directory
-
-	//-------------------------------------------------------------
-
-    }
+	  _replacor(replacor)
+    {}
 
     //! function that launches the EDASA algorithm.
     /*!
@@ -150,7 +87,6 @@ public:
       \param pop A population to improve.
       \return TRUE.
     */
-    //bool operator ()(eoPop< EOT > & pop)
     void operator ()(eoPop< EOT > & pop)
     {
         assert(pop.size() > 0);
@@ -160,16 +96,6 @@ public:
 	eoPop< EOT > current_pop = pop;
 
 	eoPop< EOT > selected_pop;
-
-
-	//-------------------------------------------------------------
-	// Temporary solution used by plot to enumerate iterations in
-	// several files.
-	//-------------------------------------------------------------
-
-	int number_of_iterations = 0;
-
-	//-------------------------------------------------------------
 
 
 	//-------------------------------------------------------------
@@ -184,22 +110,6 @@ public:
 
 	//-------------------------------------------------------------
 
-
-	// {
-	//     D distrib = _estimator(pop);
-
-	//     double size = distrib.size();
-	//     assert(size > 0);
-
-	//     doHyperVolume< EOT > hv;
-
-	//     for (int i = 0; i < size; ++i)
-	// 	{
-	// 	    //hv.update( distrib.varcovar()[i] );
-	// 	}
-
-	//     // _ofs_params_var << hv << std::endl;
-	// }
 
 	do
 	    {
@@ -283,102 +193,10 @@ public:
 		    }
 		while ( _sa_continue( current_solution) );
 
-
-		//-------------------------------------------------------------
-		// Temporary solution to store populations state
-		// at each iteration for plotting.
-		//-------------------------------------------------------------
-
-		{
-		    std::ostringstream os;
-		    os << _pop_results_destination << "/" << number_of_iterations;
-		    std::ofstream ofs(os.str().c_str());
-		    ofs << current_pop;
-		}
-
-		//-------------------------------------------------------------
-
-
-		//-------------------------------------------------------------
-		// Temporary solution used by plot to enumerate iterations in
-		// several files.
-		//-------------------------------------------------------------
-
-		// {
-		//     double size = distrib.size();
-
-		//     assert(size > 0);
-
-		//     std::stringstream os;
-		//     os << _bounds_results_destination << "/" << number_of_iterations;
-		//     std::ofstream ofs(os.str().c_str());
-
-		//     ofs << size << " ";
-		    //ublas::vector< AtomType > mean = distrib.mean();
-		    //std::copy(mean.begin(), mean.end(), std::ostream_iterator< double >(ofs, " "));
-		    //std::copy(distrib.varcovar().begin(), distrib.varcovar().end(), std::ostream_iterator< double >(ofs, " "));
-		//     ofs << std::endl;
-		// }
-
-		//-------------------------------------------------------------
-
-
-		//-------------------------------------------------------------
-		// Temporary saving to get a proof for distribution bounds
-		// dicreasement
-		//-------------------------------------------------------------
-
-		// {
-		//     double size = distrib.size();
-		//     assert(size > 0);
-
-		//     vector< double > vmin(size);
-		//     vector< double > vmax(size);
-
-		//     std::copy(distrib.param(0).begin(), distrib.param(0).end(), vmin.begin());
-		//     std::copy(distrib.param(1).begin(), distrib.param(1).end(), vmax.begin());
-
-		//     vector< double > vrange = vmax - vmin;
-
-		//     doHyperVolume hv;
-
-		//     for (int i = 0, size = vrange.size(); i < size; ++i)
-		//     	{
-		// 	    hv.update( vrange(i) );
-		//     	}
-
-		//     ofs_params << hv << std::endl;
-		// }
-
-		//-------------------------------------------------------------
-
-
-		//-------------------------------------------------------------
-		// Temporary saving to get a proof for distribution bounds
-		// dicreasement
-		//-------------------------------------------------------------
-
-		// {
-		//     double size = distrib.size();
-		//     assert(size > 0);
-
-		//     doHyperVolume< EOT > hv;
-
-		//     for (int i = 0; i < size; ++i)
-		// 	{
-		// 	    //hv.update( distrib.varcovar()[i] );
-		// 	}
-
-		//     //_ofs_params_var << hv << std::endl;
-		// }
-
-		//-------------------------------------------------------------
-
-		++number_of_iterations;
-
 	    }
 	while ( _cooling_schedule( temperature ) &&
 		_distribution_continue( distrib ) &&
+		_pop_continue( current_pop ) &&
 		_monitoring_continue( selected_pop )
 		);
     }
@@ -403,6 +221,9 @@ private:
     //! A EOT monitoring continuator
     eoContinue < EOT > & _monitoring_continue;
 
+    //! A EOT population continuator
+    eoContinue < EOT > & _pop_continue;
+
     //! A D continuator
     doContinue < D > & _distribution_continue;
 
@@ -426,7 +247,6 @@ private:
     // iteration for plotting.
     //-------------------------------------------------------------
 
-    std::string _pop_results_destination;
     // std::ofstream _ofs_params;
     // std::ofstream _ofs_params_var;
 

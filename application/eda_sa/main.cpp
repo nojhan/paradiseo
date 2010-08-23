@@ -24,18 +24,19 @@ int main(int ac, char** av)
 {
     eoParserLogger	parser(ac, av);
 
-    // Letters used by the following declarations :
+    // Letters used by the following declarations:
     // a d i p t
 
     std::string	section("Algorithm parameters");
 
-    // FIXME: a verifier la valeur par defaut
+    // FIXME: default value to check
     double initial_temperature = parser.createParam((double)10e5, "temperature", "Initial temperature", 'i', section).value(); // i
 
     eoState state;
 
+
     //-----------------------------------------------------------------------------
-    // Instantiate all need parameters for EDASA algorithm
+    // Instantiate all needed parameters for EDASA algorithm
     //-----------------------------------------------------------------------------
 
     eoSelect< EOT >* selector = new eoDetSelect< EOT >(0.5);
@@ -81,10 +82,10 @@ int main(int ac, char** av)
     // (1) Population init and sampler
     //-----------------------------------------------------------------------------
 
-    // Generation of population from do_make_pop (creates parameter, manages persistance and so on...)
-    // ... and creates the parameter letters: L P r S
+    // Generation of population from do_make_pop (creates parameters, manages persistance and so on...)
+    // ... and creates the parameters: L P r S
 
-    // this first sampler creates a uniform distribution independently of our distribution (it doesnot use doUniform).
+    // this first sampler creates a uniform distribution independently from our distribution (it does not use doUniform).
 
     eoPop< EOT >& pop = do_make_pop(parser, state, *init);
 
@@ -100,11 +101,24 @@ int main(int ac, char** av)
     //-----------------------------------------------------------------------------
 
 
+    //-----------------------------------------------------------------------------
+    // Prepare bounder class to set bounds of sampling.
+    // This is used by doSampler.
+    //-----------------------------------------------------------------------------
+
+
     //doBounder< EOT >* bounder = new doBounderNo< EOT >();
     doBounder< EOT >* bounder = new doBounderRng< EOT >(EOT(pop[0].size(), -5),
 							EOT(pop[0].size(), 5),
 							*gen);
     state.storeFunctor(bounder);
+
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // Prepare sampler class with a specific distribution
+    //-----------------------------------------------------------------------------
 
     doSampler< Distrib >* sampler =
 	//new doSamplerUniform< EOT >();
@@ -112,6 +126,12 @@ int main(int ac, char** av)
 	new doSamplerNormalMulti< EOT >( *bounder );
     state.storeFunctor(sampler);
 
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // Metropolis sample parameters
+    //-----------------------------------------------------------------------------
 
     // FIXME: should I set the default value of rho to pop size ?!?
 
@@ -120,42 +140,63 @@ int main(int ac, char** av)
     moGenSolContinue< EOT >* sa_continue = new moGenSolContinue< EOT >(rho);
     state.storeFunctor(sa_continue);
 
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // SA parameters
+    //-----------------------------------------------------------------------------
+
     double threshold = parser.createParam((double)0.1, "threshold", "Threshold: temperature threshold stopping criteria", 't', section).value(); // t
     double alpha = parser.createParam((double)0.1, "alpha", "Alpha: temperature dicrease rate", 'a', section).value(); // a
 
     moCoolingSchedule* cooling_schedule = new moGeometricCoolingSchedule(threshold, alpha);
     state.storeFunctor(cooling_schedule);
 
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
     // stopping criteria
     // ... and creates the parameter letters: C E g G s T
+    //-----------------------------------------------------------------------------
 
     eoContinue< EOT >& eo_continue = do_make_continue(parser, state, eval);
 
-    // output
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // general output
+    //-----------------------------------------------------------------------------
 
     eoCheckPoint< EOT >& monitoring_continue = do_make_checkpoint(parser, state, eval, eo_continue);
 
-    // eoPopStat< EOT >* popStat = new eoPopStat<EOT>;
-    // state.storeFunctor(popStat);
+    //-----------------------------------------------------------------------------
 
-    // checkpoint.add(*popStat);
 
-    // eoGnuplot1DMonitor* gnuplot = new eoGnuplot1DMonitor("gnuplot.txt");
-    // state.storeFunctor(gnuplot);
+    //-----------------------------------------------------------------------------
+    // population output
+    //-----------------------------------------------------------------------------
 
-    // gnuplot->add(eval);
-    // gnuplot->add(*popStat);
+    eoCheckPoint< EOT >* pop_continue = new eoCheckPoint< EOT >( eo_continue );
+    state.storeFunctor(pop_continue);
 
-    //gnuplot->gnuplotCommand("set yrange [0:500]");
+    doPopStat< EOT >* popStat = new doPopStat<EOT>;
+    state.storeFunctor(popStat);
+    pop_continue->add(*popStat);
 
-    // checkpoint.add(*gnuplot);
+    doFileSnapshot* fileSnapshot = new doFileSnapshot("ResPop");
+    state.storeFunctor(fileSnapshot);
+    fileSnapshot->add(*popStat);
+    pop_continue->add(*fileSnapshot);
 
-    // eoMonitor* fileSnapshot = new doFileSnapshot< std::vector< std::string > >("ResPop");
-    // state.storeFunctor(fileSnapshot);
+    //-----------------------------------------------------------------------------
 
-    // fileSnapshot->add(*popStat);
-    // checkpoint.add(*fileSnapshot);
 
+    //-----------------------------------------------------------------------------
+    // distribution output
+    //-----------------------------------------------------------------------------
 
     doDummyContinue< Distrib >* dummy_continue = new doDummyContinue< Distrib >();
     state.storeFunctor(dummy_continue);
@@ -179,6 +220,9 @@ int main(int ac, char** av)
     distribution_continue->add( *file_monitor );
 
     //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
     // eoEPRemplacement causes the using of the current and previous
     // sample for sampling.
     //-----------------------------------------------------------------------------
@@ -200,7 +244,7 @@ int main(int ac, char** av)
 
     doAlgo< Distrib >* algo = new doEDASA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
-    	 monitoring_continue, *distribution_continue,
+    	 monitoring_continue, *pop_continue, *distribution_continue,
 	 eval, *sa_continue, *cooling_schedule,
     	 initial_temperature, *replacor);
 
