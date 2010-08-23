@@ -16,6 +16,42 @@ except ImportError:
     import funcutils
     Gnuplot.funcutils = funcutils
 
+import optparse, logging, sys
+
+LEVELS = {'debug': logging.DEBUG,
+          'info': logging.INFO,
+          'warning': logging.WARNING,
+          'error': logging.ERROR,
+          'critical': logging.CRITICAL}
+
+def logger(level_name, filename='plot.log'):
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        filename=filename, filemode='a'
+        )
+
+    console = logging.StreamHandler()
+    console.setLevel(LEVELS.get(level_name, logging.NOTSET))
+    console.setFormatter(logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s'))
+    logging.getLogger('').addHandler(console)
+
+def parser(parser=optparse.OptionParser()):
+    parser.add_option('-v', '--verbose', choices=LEVELS.keys(), default='warning', help='set a verbose level')
+    parser.add_option('-f', '--file', help='give an input project filename', default='')
+    parser.add_option('-o', '--output', help='give an output filename for logging', default='plot.log')
+    parser.add_option('-d', '--dimension', help='give a dimension size', default=2)
+    parser.add_option('-m', '--multiplot', action="store_true", help='plot all graphics in one window', dest="multiplot", default=True)
+    parser.add_option('-p', '--plot', action="store_false", help='plot graphics separetly, one by window', dest="multiplot")
+
+    options, args = parser.parse_args()
+
+    logger(options.verbose, options.output)
+
+    return options
+
+options = parser()
+
 def wait(str=None, prompt='Press return to show results...\n'):
     if str is not None:
         print str
@@ -65,7 +101,10 @@ def plotXPointYFitness(path, fields='3:1', state=None, g=None):
     for filename in getSortedFiles(path):
         files.append(Gnuplot.File(path + '/' + filename, using=fields,
                                   with_='points',
-                                  title='distribution \'' + filename + '\''))
+                                  #title='distribution \'' + filename + '\''
+                                  title=""
+                                  )
+                     )
 
     g.plot(*files)
 
@@ -84,7 +123,10 @@ def plotXYPointZFitness(path, fields='4:3:1', state=None, g=None):
     for filename in getSortedFiles(path):
         files.append(Gnuplot.File(path + '/' + filename, using=fields,
                                   with_='points',
-                                  title='distribution \'' + filename + '\''))
+                                  #title='distribution \'' + filename + '\''
+                                  title=""
+                                  )
+                     )
 
     g.splot(*files)
 
@@ -102,7 +144,10 @@ def plotXYPoint(path, fields='3:4', state=None, g=None):
     for filename in getSortedFiles(path):
         files.append(Gnuplot.File(path + '/' + filename, using=fields,
                                   with_='points',
-                                  title='distribution \'' + filename + '\''))
+                                  #title='distribution \'' + filename + '\''
+                                  title=""
+                                  )
+                     )
 
     g.plot(*files)
 
@@ -121,7 +166,10 @@ def plotXYZPoint(path, fields='3:4:5', state=None, g=None):
     for filename in getSortedFiles(path):
         files.append(Gnuplot.File(path + '/' + filename, using=fields,
                                   with_='points',
-                                  title='distribution \'' + filename + '\''))
+                                  #title='distribution \'' + filename + '\''
+                                  title=""
+                                  )
+                     )
 
     g.splot(*files)
 
@@ -195,27 +243,60 @@ def plot2DRectFromFiles(path, state=None, g=None, plot=True):
 def main(n):
     gstate = []
 
-    if n >= 1:
-        plotXPointYFitness('./ResPop', state=gstate)
+    if options.multiplot:
+        g = Gnuplot.Gnuplot()
 
-    if n >= 2:
-        plotXPointYFitness('./ResPop', '4:1', state=gstate)
+        g('set size 1.0, 1.0')
+        g('set origin 0.0, 0.0')
+        g('set multiplot')
 
-    if n >= 2:
-        plotXYPointZFitness('./ResPop', state=gstate)
+        g('set size 0.5, 0.5')
+        g('set origin 0.0, 0.5')
 
-    if n >= 3:
-        plotXYZPoint('./ResPop', state=gstate)
+        if n >= 1:
+            plotXPointYFitness('./ResPop', state=gstate, g=g)
 
-    if n >= 1:
-        plotParams('./ResParams.txt', state=gstate)
+        g('set size 0.5, 0.5')
+        g('set origin 0.0, 0.0')
 
-    if n >= 2:
-        plot2DRectFromFiles('./ResBounds', state=gstate)
-        plotXYPoint('./ResPop', state=gstate)
+        if n >= 2:
+            plotXPointYFitness('./ResPop', '4:1', state=gstate, g=g)
 
-        g = plot2DRectFromFiles('./ResBounds', state=gstate, plot=False)
-        plotXYPoint('./ResPop', g=g)
+        g('set size 0.5, 0.5')
+        g('set origin 0.5, 0.5')
+
+        if n >= 2:
+            plotXYPointZFitness('./ResPop', state=gstate, g=g)
+
+        g('set size 0.5, 0.5')
+        g('set origin 0.5, 0.0')
+
+        if n >= 3:
+            plotXYZPoint('./ResPop', state=gstate, g=g)
+
+        g('unset multiplot')
+    else:
+        if n >= 1:
+            plotXPointYFitness('./ResPop', state=gstate)
+
+        if n >= 2:
+            plotXPointYFitness('./ResPop', '4:1', state=gstate)
+
+        if n >= 2:
+            plotXYPointZFitness('./ResPop', state=gstate)
+
+        if n >= 3:
+            plotXYZPoint('./ResPop', state=gstate)
+
+    # if n >= 1:
+    #     plotParams('./ResParams.txt', state=gstate)
+
+    # if n >= 2:
+    #     plot2DRectFromFiles('./ResBounds', state=gstate)
+    #     plotXYPoint('./ResPop', state=gstate)
+
+    #     g = plot2DRectFromFiles('./ResBounds', state=gstate, plot=False)
+    #     plotXYPoint('./ResPop', g=g)
 
     wait(prompt='Press return to end the plot.\n')
 
@@ -223,10 +304,8 @@ def main(n):
 
 # when executed, just run main():
 if __name__ == '__main__':
-    from sys import argv, exit
+    logging.debug('### plotting started ###')
 
-    if len(argv) < 2:
-        print 'Usage: plot [dimension]'
-        exit()
+    main(int(options.dimension))
 
-    main(int(argv[1]))
+    logging.debug('### plotting ended ###')
