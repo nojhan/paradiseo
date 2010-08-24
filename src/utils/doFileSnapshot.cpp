@@ -62,7 +62,7 @@ doFileSnapshot::doFileSnapshot(std::string dirname,
 	}
     else if (!res && rmFiles)
 	{
-	    s = std::string("/bin/rm ") + _dirname+ "/" + _filename + "*";
+	    s = std::string("/bin/rm -f ") + _dirname+ "/" + _filename + "*";
 	}
     else
 	{
