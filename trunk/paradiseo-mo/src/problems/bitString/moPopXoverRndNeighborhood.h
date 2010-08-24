@@ -60,8 +60,9 @@ public:
   /**
    * Constructor
    * @param _crossover the crossover operator
+   * @param _maxNeighbor maximum neighbors to explore in the neighborhood
    */
-  moPopXoverRndNeighborhood(eoQuadOp<SUBEOT> & _crossover): moRndNeighborhood<Neighbor>(), crossover(_crossover) {}
+  moPopXoverRndNeighborhood(eoQuadOp<SUBEOT> & _crossover, unsigned int _maxNeighbor = 0): moRndNeighborhood<Neighbor>(), crossover(_crossover), maxNeighbor(_maxNeighbor) {}
 
   /**
    * Test if it exist a neighbor
@@ -79,6 +80,18 @@ public:
    * @param _neighbor the first neighbor
    */
   virtual void init(EOT & _solution, Neighbor & _neighbor) {
+    next(_solution, _neighbor);
+
+    nbNeighbor = 0;
+  }
+  
+  /**
+   * Give the next neighbor
+   * apply a ones the crossover operato between random solutions
+   * @param _solution the solution to explore (population of solutions)
+   * @param _neighbor the next neighbor which is "random"
+   */
+  virtual void next(EOT & _solution, Neighbor & _neighbor) {
     unsigned int popSize = _solution.size();
 
     // random solutions in the population
@@ -98,16 +111,9 @@ public:
 
     // apply the crossover
     crossover(_neighbor.solution1(), _neighbor.solution2());
-  }
-  
-  /**
-   * Give the next neighbor
-   * apply a ones the crossover operato between random solutions
-   * @param _solution the solution to explore (population of solutions)
-   * @param _neighbor the next neighbor which is "random"
-   */
-  virtual void next(EOT & _solution, Neighbor & _neighbor) {
-    init(_solution, _neighbor);
+
+    // increase the number of neighbor explored
+    nbNeighbor++;
   }
   
   /**
@@ -116,7 +122,10 @@ public:
    * @return true if there is again a neighbor to explore: population size larger or equals than 2
    */
   virtual bool cont(EOT & _solution) {
-    return _solution.size() > 1;
+    if (maxNeighbor != 0)
+      return (_solution.size() > 1) && (nbNeighbor < maxNeighbor);
+    else
+      return _solution.size() > 1;
   }
   
   /**
@@ -129,6 +138,8 @@ public:
   
 private:
   eoQuadOp<SUBEOT> & crossover;
+  unsigned int maxNeighbor;
+  unsigned int nbNeighbor;
 };
 
 #endif
