@@ -107,6 +107,14 @@ public:
     return b;
   }
 
+  /**
+   * get the targets
+   * @return the vector of targets which is a boolean vector
+   */
+  vector<vector<bool> > & getTargets() {
+    return targets;
+  }
+
 private:
   // number of blocks
   unsigned int b;
