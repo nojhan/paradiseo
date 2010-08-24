@@ -8,5 +8,5 @@ includedir=${prefix}/include/do
 Name: Distribution Object
 Description: Distribution Object
 Version: 1.0
-Libs: -L${libdir} -ldo
+Libs: -L${libdir} -ldo -ldoutils
 Cflags: -I${includedir}
