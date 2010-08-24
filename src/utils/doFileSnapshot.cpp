@@ -30,7 +30,7 @@
 #include <fstream>
 #include <stdexcept>
 
-#include <doFileSnapshot.h>
+#include <utils/doFileSnapshot.h>
 #include <utils/compatibility.h>
 #include <utils/eoParam.h>
 

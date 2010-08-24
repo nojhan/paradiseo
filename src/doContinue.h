@@ -9,10 +9,9 @@
 #define _doContinue_h
 
 #include <eoFunctor.h>
-#include <eoPop.h>
 #include <eoPersistent.h>
 
-//! eoContinue< EOT > classe fitted to Distribution Object library
+//! doContinue< EOT > classe fitted to Distribution Object library
 
 template < typename D >
 class doContinue : public eoUF< const D&, bool >, public eoPersistent
@@ -36,7 +35,7 @@ class doDummyContinue : public doContinue< D >
 {
     bool operator()(const D&){ return true; }
 
-    virtual std::string className() const { return "doNoContinue"; }
+    virtual std::string className() const { return "doDummyContinue"; }
 };
 
 #endif // !_doContinue_h

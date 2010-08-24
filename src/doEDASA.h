@@ -17,8 +17,6 @@
 #include "doEstimator.h"
 #include "doModifierMass.h"
 #include "doSampler.h"
-#include "doHyperVolume.h"
-#include "doStat.h"
 #include "doContinue.h"
 
 template < typename D >

@@ -41,14 +41,14 @@
 #include "doBounderRng.h"
 
 #include "doContinue.h"
-#include "doCheckPoint.h"
+#include "utils/doCheckPoint.h"
 
-#include "doStat.h"
-#include "doStatUniform.h"
-#include "doStatNormalMono.h"
-#include "doStatNormalMulti.h"
+#include "utils/doStat.h"
+#include "utils/doStatUniform.h"
+#include "utils/doStatNormalMono.h"
+#include "utils/doStatNormalMulti.h"
 
-#include "doFileSnapshot.h"
-#include "doPopStat.h"
+#include "utils/doFileSnapshot.h"
+#include "utils/doPopStat.h"
 
 #endif // !_do_
