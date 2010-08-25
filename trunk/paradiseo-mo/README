@@ -12,7 +12,7 @@ The basic installation procedure goes the following:
 
 To compile paradiseo-mo in the default directory,
 go to paradiseo-mo/build/ and run:
-    > cmake ../ -Dconfig=<path to the install.cmake file>
+    > cmake ../ -Dconfig=<absolute path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
@@ -20,7 +20,7 @@ go to paradiseo-mo/build/ and run:
     > make doc
 
 To compile paradiseo-mo anywhere else, simply run:
-    > cmake $(MO) -Dconfig=<path to the install.cmake file>
+    > cmake $(MO) -Dconfig=<absolute path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
