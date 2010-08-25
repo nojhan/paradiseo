@@ -62,7 +62,7 @@ public :
         unsigned int bit = _neighbor.index();
 
         // clauses which can be modified by the flipped bit
-        const vector<int> & modifiedClauses = variables[bit + 1] ; // remember that the variables start at index 1 and not 0
+        const std::vector<int> & modifiedClauses = variables[bit + 1] ; // remember that the variables start at index 1 and not 0
         unsigned int size = modifiedClauses.size();
 
         int nc;
@@ -108,11 +108,11 @@ protected:
     // list of clauses:
     //   each clause has the number of the variable (from 1 to nbVar)
     //   when the value, litteral = not(variable)
-    vector<int> * clauses;
+    std::vector<int> * clauses;
 
     // list of variables:
     //   for each variable, the list of clauses
-    vector<int> * variables;
+    std::vector<int> * variables;
 
     //full eval of the max SAT
     MaxSATeval<EOT> & fulleval;
