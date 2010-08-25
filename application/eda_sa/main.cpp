@@ -135,9 +135,11 @@ int main(int ac, char** av)
 
     // FIXME: should I set the default value of rho to pop size ?!?
 
-    unsigned int rho = parser.createParam((unsigned int)0, "rho", "Rho: metropolis sample size", 'p', section).value(); // p
+    // unsigned int rho = parser.createParam((unsigned int)0, "rho", "Rho: metropolis sample size", 'p', section).value(); // p
 
-    moGenSolContinue< EOT >* sa_continue = new moGenSolContinue< EOT >(rho);
+    unsigned int popSize = parser.getORcreateParam((unsigned int)20, "popSize", "Population Size", 'P', "Evolution Engine").value();
+
+    moGenSolContinue< EOT >* sa_continue = new moGenSolContinue< EOT >( popSize );
     state.storeFunctor(sa_continue);
 
     //-----------------------------------------------------------------------------
