@@ -133,8 +133,6 @@ int main(int ac, char** av)
     // Metropolis sample parameters
     //-----------------------------------------------------------------------------
 
-    // FIXME: should I set the default value of rho to pop size ?!?
-
     // unsigned int rho = parser.createParam((unsigned int)0, "rho", "Rho: metropolis sample size", 'p', section).value(); // p
 
     unsigned int popSize = parser.getORcreateParam((unsigned int)20, "popSize", "Population Size", 'P', "Evolution Engine").value();
