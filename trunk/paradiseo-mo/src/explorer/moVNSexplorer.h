@@ -31,22 +31,18 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moVNSexplorer_h
 
 #include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moVariableNeighborhoodSelection.h>
+#include <eoOp.h>
 
 /**
  * Explorer for Variiable Neighborhood Search
  */
-template< class EOT >
-class moVNSexplorer : public moNeighborhoodExplorer< moNeighborhood< moNeighbor<EOT, typename EOT::Fitness> > >
+template< class Neighbor>
+class moVNSexplorer : public moNeighborhoodExplorer< Neighbor >
 {
 public:
-    typedef typename EOT::Fitness Fitness ;
-    typedef moNeighbor<EOT, Fitness> Neighbor ;
-    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+	typedef typename Neighbor::EOT EOT;
 
     /**
      * Constructor
@@ -55,8 +51,11 @@ public:
      * @param _neighborComparator a neighbor comparator
      * @param _solNeighborComparator solution vs neighbor comparator
      */
-    moVNSexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
-    }
+    moVNSexplorer(
+    		moVariableNeighborhoodSelection<EOT> & _selection,
+			moAcceptanceCriterion<Neighbor>& _acceptCrit):
+    			moNeighborhoodExplorer<Neighbor>(), selection(_selection), shake(NULL), ls(NULL), acceptCrit(_acceptCrit), stop(false)
+    {}
 
     /**
      * Destructor
@@ -67,23 +66,37 @@ public:
     /**
      * initParam: NOTHING TO DO
      */
-    virtual void initParam(EOT & solution) {};
+    virtual void initParam(EOT & _solution) {
+    	_selection.init(_solution, *shake, *ls);
+    };
 
     /**
      * updateParam: NOTHING TO DO
      */
-    virtual void updateParam(EOT & solution) {};
+    virtual void updateParam(EOT & _solution) {
+    	if ((*this).moveApplied()) {
+    		_selection.init(_solution, *shake, *ls);
+    	}
+    	else if (_selection.cont(_solution, *shake, *ls)){
+    		_selection.next(_solution, *shake, *ls);
+    	}
+    	else
+    		stop=true;
+    };
 
     /**
      * terminate: NOTHING TO DO
      */
-    virtual void terminate(EOT & solution) {};
+    virtual void terminate(EOT & _solution) {};
 
     /**
      * Explore the neighborhood of a solution
      * @param _solution
      */
     virtual void operator()(EOT & _solution) {
+    	current=_solution;
+    	(*shake)(current);
+    	(*ls)(current);
     };
 
     /**
@@ -92,7 +105,7 @@ public:
      * @return true if an ameliorated neighbor was be found
      */
     virtual bool isContinue(EOT & _solution) {
-        return isAccept ;
+    	return !stop;
     };
 
     /**
@@ -100,10 +113,7 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-        //move the solution
-        (*best).move(_solution);
-        //update its fitness
-        _solution.fitness((*best).fitness());
+    	_solution=current;
     };
 
     /**
@@ -112,6 +122,7 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
+    	return acceptCrit(_solution, current);
     };
 
     /**
@@ -123,9 +134,13 @@ public:
     }
 
 private:
-    // comparator betwenn solution and neighbor or between neighbors
-    moNeighborComparator<Neighbor>& neighborComparator;
-    moSolNeighborComparator<Neighbor>& solNeighborComparator;
+	moVariableNeighborhoodSelection<EOT>& selection;
+	eoMonOp<EOT>* ls;
+	eoMonOp<EOT>* shake;
+	moAcceptanceCriterion<Neighbor>& acceptCrit;
+
+	bool stop;
+    EOT current;
 
 };
 
