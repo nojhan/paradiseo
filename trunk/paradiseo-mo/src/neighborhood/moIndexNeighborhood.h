@@ -55,6 +55,10 @@ public:
      */
     moIndexNeighborhood(unsigned int _neighborhoodSize):neighborhoodSize(_neighborhoodSize) {}
 
+    unsigned int size(){
+    	return neighborhoodSize;
+    }
+
 protected:
     // size of the neighborhood
     unsigned int neighborhoodSize;

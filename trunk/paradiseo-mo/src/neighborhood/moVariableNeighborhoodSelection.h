@@ -1,5 +1,5 @@
 /*
-<moBackwardVariableNeighborhood.h>
+<moVariableNeighborhoodSelection.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,58 +27,41 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moBackwardVariableNeighborhood_h
-#define _moBackwardVariableNeighborhood_h
+#ifndef _moVariableNeighborhoodSelection_h
+#define _moVariableNeighborhoodSelection_h
 
-#include <neighborhood/moVariableNeighborhood.h>
+#include <eoOp.h>
+#include <vector>
 
-/**
- * A variable Neighborhood Search (VNS) in the Backward manner
- */
 template< class EOT >
-class moBackwardVariableNeighborhood : public moVariableNeighborhood<EOT>
+class moVariableNeighborhoodSelection
 {
 public:
-    typedef moNeighbor<EOT> Neighbor;
-
-    using moVariableNeighborhood<EOT>::currentNH;
-    using moVariableNeighborhood<EOT>::neighborhoodVector;
-
-    /**
-     * Construction of at least one neighborhood
-     * @param _firstNH first neighborhood in the vector
-     */
-    moBackwardVariableNeighborhood(moNeighborhood<Neighbor>& _firstNH) : moVariableNeighborhood<EOT>(_firstNH) { }
 
     /**
      * Return the class id.
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-        return "moBackwardVariableNeighborhood";
+        return "moVariableNeighborhoodSelection";
     }
 
     /**
      * test if there is still some neighborhood to explore
      * @return true if there is some neighborhood to explore
      */
-    virtual bool contNeighborhood() {
-        return (currentNH > 0);
-    }
+    virtual bool cont(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>& _ls) = 0;
 
     /**
-     * put the current neighborhood on the last one
+     * put the current neighborhood on the first one
      */
-    virtual void initNeighborhood() {
-        currentNH = neighborhoodVector.size() - 1;
-    }
+    virtual void init(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>& _ls) = 0;
 
     /**
      * put the current neighborhood on the next one
      */
-    virtual void nextNeighborhood() {
-        currentNH--;
-    }
+    virtual void next(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>& _ls) = 0;
 
 };
+
 #endif
