@@ -52,6 +52,7 @@
 #include <algo/moSA.h>
 #include <algo/moSimpleHC.h>
 #include <algo/moTS.h>
+#include <algo/moVNS.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
@@ -113,6 +114,7 @@
 #include <explorer/moSAexplorer.h>
 #include <explorer/moSimpleHCexplorer.h>
 #include <explorer/moTSexplorer.h>
+#include <explorer/moVNSexplorer.h>
 
 #include <memory/moAspiration.h>
 #include <memory/moBestImprAspiration.h>
@@ -139,6 +141,7 @@
 #include <neighborhood/moRndNeighborhood.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moRndWithReplNeighborhood.h>
+#include <neighborhood/moVariableNeighborhoodSelection.h>
 
 #include <perturb/moLocalSearchInit.h>
 #include <perturb/moMonOpPerturb.h>
