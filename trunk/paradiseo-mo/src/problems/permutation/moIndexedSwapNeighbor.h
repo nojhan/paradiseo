@@ -63,6 +63,14 @@ public:
   }
   
   /**
+   * Return the class Name
+   * @return the class name as a std::string
+   */
+  virtual std::string className() const {
+      return "moIndexedSwapNeighbor";
+  }
+
+  /**
    * apply the swap to restore the solution (use by moFullEvalByModif)
    * @param _solution the solution to move back
    */
@@ -90,6 +98,8 @@ public:
     _first  = key - (n - 1) * n / 2;
     _second = N - 1  - (n - 1 - _first);
   }
+
+
     
 
 };
