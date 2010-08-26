@@ -59,12 +59,11 @@ SET (TEST_LIST
 		t-moMetropolisHastingExplorer
 		t-moRandomNeutralWalkExplorer
 		t-moTSexplorer
-		t-moForwardVariableNeighborhood
 		t-moSolComparator
 		t-moDummyEval
 		t-moDummyNeighbor
 		t-moDummyNeighborhood
-		t-moSimpleCoolingSchedule
+		#t-moSimpleCoolingSchedule
 		t-moAlwaysAcceptCrit
 		t-moBetterAcceptCrit
 		t-moCountMoveMemory
@@ -74,14 +73,14 @@ SET (TEST_LIST
 		t-moSAexplorer
 		t-moSA
 		t-moLocalSearch
-		t-moILSexplorer
+		#t-moILSexplorer
 		t-moSimpleHC
 		t-moFirstImprHC
 		t-moRandomBestHC
 		t-moNeighborVectorTabuList
 		t-moMonOpDiversification
 		t-moTS
-		t-moILS
+		#t-moILS
 		t-moDummyLS
 		t-moRandomSearch
 		t-moMetropolisHasting

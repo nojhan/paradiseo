@@ -146,6 +146,12 @@ IF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CM
 			${MO_BIN_DIR}/tutorial/Lesson7/hybridAlgo.param
 
 	)
+		EXECUTE_PROCESS(
+	   	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			${MO_SRC_DIR}/tutorial/Lesson9/VNS.param
+			${MO_BIN_DIR}/tutorial/Lesson9/VNS.param
+
+	)
 ENDIF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008" OR CMAKE_GENERATOR STREQUAL "Visual Studio 10")
 
 MACRO(ADD_COMMANDS_NEWMO)
@@ -305,8 +311,13 @@ MACRO(ADD_COMMANDS_NEWMO)
 			${MO_SRC_DIR}/tutorial/Lesson7/hybridAlgo.param
 			${MO_BIN_DIR}/tutorial/Lesson7
 	)
-
-
+	ADD_CUSTOM_COMMAND(
+	    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson9/VNS.param
+	    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			${MO_SRC_DIR}/tutorial/Lesson9/VNS.param
+			${MO_BIN_DIR}/tutorial/Lesson9
+	)
+	
 ENDMACRO(ADD_COMMANDS_NEWMO)
 
 MACRO(ADD_TARGET_NEWMO n)
@@ -384,6 +395,11 @@ MACRO(ADD_TARGET_NEWMO n)
 			${MO_BIN_DIR}/tutorial/Lesson7/hybridAlgo
 			${MO_BIN_DIR}/tutorial/Lesson7/hybridAlgo.param
 		)
+	ELSEIF(${n} STREQUAL "lesson9")
+		ADD_CUSTOM_TARGET(lesson9 DEPENDS
+			${MO_BIN_DIR}/tutorial/Lesson9/VNS
+			${MO_BIN_DIR}/tutorial/Lesson9/VNS.param
+		)
 	ENDIF(${n} STREQUAL "lesson1")
 
 ENDMACRO(ADD_TARGET_NEWMO)
@@ -396,6 +412,7 @@ ADD_SUBDIRECTORY(Lesson5)
 ADD_SUBDIRECTORY(Lesson6)
 ADD_SUBDIRECTORY(Lesson7)
 ADD_SUBDIRECTORY(Lesson8)
+ADD_SUBDIRECTORY(Lesson9)
 
 IF(NOT CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" AND  NOT CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008" OR CMAKE_GENERATOR STREQUAL "Visual Studio 10")
 	ADD_COMMANDS_NEWMO()

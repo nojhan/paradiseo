@@ -66,8 +66,8 @@ public:
     /**
      * initParam: NOTHING TO DO
      */
-    virtual void initParam(EOT & _solution) {
-    	_selection.init(_solution, *shake, *ls);
+    virtual void initParam(EOT& _solution) {
+    	selection.init(_solution, *shake, *ls);
     };
 
     /**
@@ -75,10 +75,10 @@ public:
      */
     virtual void updateParam(EOT & _solution) {
     	if ((*this).moveApplied()) {
-    		_selection.init(_solution, *shake, *ls);
+    		selection.init(_solution, *shake, *ls);
     	}
-    	else if (_selection.cont(_solution, *shake, *ls)){
-    		_selection.next(_solution, *shake, *ls);
+    	else if (selection.cont(_solution, *shake, *ls)){
+    		selection.next(_solution, *shake, *ls);
     	}
     	else
     		stop=true;
