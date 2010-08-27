@@ -64,8 +64,8 @@ public:
      */
     virtual void init(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>& _ls){
     	current=LSvector.size()-1;
-    	_ls=LSvector[current];
-    	_shake = shakeVector[current];
+    	_ls= *(LSvector[current]);
+    	_shake = *(shakeVector[current]);
     }
 
     /**
@@ -73,8 +73,8 @@ public:
      */
     virtual void next(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>& _ls){
     	current= (current + LSvector.size() -1) % LSvector.size();
-    	_ls=LSvector[current];
-    	_shake = shakeVector[current];
+    	_ls= *(LSvector[current]);
+    	_shake = *(shakeVector[current]);
     }
 
 private:

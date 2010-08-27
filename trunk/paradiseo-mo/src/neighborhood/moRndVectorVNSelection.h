@@ -69,11 +69,11 @@ public:
     	if(order.size()==0){
     		for(unsigned int i=0; i<LSvector.size(); i++)
     			order.push_back(i);
-    		std::random_shuffle(order.begin(), order.end(),gen);
     	}
+		std::random_shuffle(order.begin(), order.end(),gen);
     	current=0;
-    	_ls=LSvector[order[current]];
-    	_shake=shakeVector[order[current]];
+    	_ls=*(LSvector[order[current]]);
+    	_shake=*(shakeVector[order[current]]);
     }
 
     /**
@@ -81,8 +81,8 @@ public:
      */
     virtual void next(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>& _ls){
     	current= (current+1) % LSvector.size();
-    	_ls=LSvector[order[current]];
-    	_shake=shakeVector[order[current]];
+    	_ls=*(LSvector[order[current]]);
+    	_shake=*(shakeVector[order[current]]);
     }
 
 private:
