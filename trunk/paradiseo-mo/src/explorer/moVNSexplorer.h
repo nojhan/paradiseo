@@ -34,6 +34,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <eoOp.h>
 #include <acceptCrit/moAcceptanceCriterion.h>
+#include <algo/moDummyLS.h>
 
 /**
  * Explorer for Variiable Neighborhood Search
@@ -55,7 +56,7 @@ public:
     moVNSexplorer(
     		moVariableNeighborhoodSelection<EOT> & _selection,
 			moAcceptanceCriterion<Neighbor>& _acceptCrit):
-    			moNeighborhoodExplorer<Neighbor>(), selection(_selection), shake(NULL), ls(NULL), acceptCrit(_acceptCrit), stop(false)
+    			moNeighborhoodExplorer<Neighbor>(),dummyLS(dummyEval), selection(_selection), acceptCrit(_acceptCrit), ls(&dummyLS), shake(dummyLS), stop(false)
     {}
 
     /**
@@ -68,7 +69,7 @@ public:
      * initParam: NOTHING TO DO
      */
     virtual void initParam(EOT& _solution) {
-    	selection.init(_solution, *shake, *ls);
+    	selection.init(current, shake, ls);
     };
 
     /**
@@ -76,10 +77,10 @@ public:
      */
     virtual void updateParam(EOT & _solution) {
     	if ((*this).moveApplied()) {
-    		selection.init(_solution, *shake, *ls);
+    		selection.init(current, shake, ls);
     	}
-    	else if (selection.cont(_solution, *shake, *ls)){
-    		selection.next(_solution, *shake, *ls);
+    	else if (selection.cont(current, shake, ls)){
+    		selection.next(current, shake, ls);
     	}
     	else
     		stop=true;
@@ -96,8 +97,11 @@ public:
      */
     virtual void operator()(EOT & _solution) {
     	current=_solution;
-    	(*shake)(current);
+    	std::cout << "current avec shake: "<< current << std::endl;
+    	shake(current);
+    	std::cout << "current apres shake: "<< current << std::endl;
     	(*ls)(current);
+    	std::cout << "current apres ls: "<< ls->className() << " " << current << std::endl;
     };
 
     /**
@@ -135,13 +139,18 @@ public:
     }
 
 private:
+    moDummyLS<Neighbor> dummyLS;
 	moVariableNeighborhoodSelection<EOT>& selection;
-	eoMonOp<EOT>* ls;
-	eoMonOp<EOT>* shake;
 	moAcceptanceCriterion<Neighbor>& acceptCrit;
-
+	eoMonOp<EOT>* ls;
+	eoMonOp<EOT>& shake;
 	bool stop;
     EOT current;
+
+    class moDummyEval: public eoEvalFunc<EOT>{
+    public:
+    	void operator()(EOT& hop){}
+    }dummyEval;
 
 };
 

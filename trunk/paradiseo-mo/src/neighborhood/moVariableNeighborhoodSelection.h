@@ -50,17 +50,17 @@ public:
      * test if there is still some neighborhood to explore
      * @return true if there is some neighborhood to explore
      */
-    virtual bool cont(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>& _ls) = 0;
+    virtual bool cont(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>*& _ls) = 0;
 
     /**
      * put the current neighborhood on the first one
      */
-    virtual void init(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>& _ls) = 0;
+    virtual void init(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>*& _ls) = 0;
 
     /**
      * put the current neighborhood on the next one
      */
-    virtual void next(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>& _ls) = 0;
+    virtual void next(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>*& _ls) = 0;
 
 };
 

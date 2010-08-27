@@ -55,26 +55,34 @@ public:
      * test if there is still some neighborhood to explore
      * @return true if there is some neighborhood to explore
      */
-    virtual bool cont(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>& _ls){
+    virtual bool cont(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>*& _ls){
     	return (cycle || (current <= (LSvector.size()-2)));
+    	std::cout << "current LS: " << current << std::endl;
+    	std::cout << _solution << std::endl;
+
     }
 
     /**
      * put the current neighborhood on the first one
      */
-    virtual void init(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>& _ls){
+    virtual void init(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>*& _ls){
     	current=0;
-    	_ls = *(LSvector[current]);
+    	_ls = LSvector[current];
     	_shake = *(shakeVector[current]);
+    	std::cout << "current LS: " << _ls->className() << " " << current << std::endl;
+    	std::cout << _solution << std::endl;
+
     }
 
     /**
      * put the current neighborhood on the next one
      */
-    virtual void next(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>& _ls){
+    virtual void next(EOT& _solution, eoMonOp<EOT>& _shake, eoMonOp<EOT>*& _ls){
     	current = (current+1) % LSvector.size();
-    	_ls = *(LSvector[current]);
+    	_ls = LSvector[current];
     	_shake = *(shakeVector[current]);
+    	std::cout << "current LS: " << current << std::endl;
+    	std::cout << _solution << std::endl;
     }
 
 private:

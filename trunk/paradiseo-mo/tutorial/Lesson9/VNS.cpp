@@ -39,13 +39,16 @@ using namespace std;
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moOrderNeighborhood.h>
 #include <explorer/moVNSexplorer.h>
-#include <neighborhood/moBackwardVectorVNSelection.h>
+//#include <neighborhood/moBackwardVectorVNSelection.h>
 #include <neighborhood/moForwardVectorVNSelection.h>
-#include <neighborhood/moRndVectorVNSelection.h>
+//#include <neighborhood/moRndVectorVNSelection.h>
 
 //Algorithm and its components
 #include <coolingSchedule/moCoolingSchedule.h>
-#include <algo/moSA.h>
+#include <algo/moSimpleHC.h>
+#include <algo/moLocalSearch.h>
+
+#include <continuator/moTimeContinuator.h>
 
 //comparator
 #include <comparator/moSolNeighborComparator.h>
@@ -57,6 +60,11 @@ using namespace std;
 #include <utils/eoFileMonitor.h>
 #include <continuator/moCounterMonitorSaver.h>
 
+#include <eoSwapMutation.h>
+#include <eoShiftMutation.h>
+
+#include <acceptCrit/moBetterAcceptCrit.h>
+#include <acceptCrit/moAlwaysAcceptCrit.h>
 
 //-----------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
@@ -143,6 +151,7 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     moFullEvalByCopy<shiftNeighbor> shiftEval(fullEval);
+    moFullEvalByCopy<swapNeighbor> swapEval(fullEval);
 
     /* =========================================================
      *
@@ -153,40 +162,50 @@ void main_function(int argc, char **argv)
     shiftNeighborhood shiftNH((vecSize-1) * (vecSize-1));
     swapNeighborhood swapNH(100);
 
-
-    Queen sol;
-
-    init(sol);
-    shiftNeighbor n;
-
-
     /* =========================================================
      *
      * the local search algorithm
      *
      * ========================================================= */
 
-//    moSA<shiftNeighbor> localSearch1(shiftNH, fullEval, shiftEval);
-//
-//    /* =========================================================
-//     *
-//     * execute the local search from random solution
-//     *
-//     * ========================================================= */
-//
-//    Queen solution1, solution2;
-//
-//    init(solution1);
-//
-//    fullEval(solution1);
-//
-//    std::cout << "#########################################" << std::endl;
-//    std::cout << "initial solution1: " << solution1 << std::endl ;
-//
-//    localSearch1(solution1);
-//
-//    std::cout << "final solution1: " << solution1 << std::endl ;
-//    std::cout << "#########################################" << std::endl;
+    moSimpleHC<shiftNeighbor> ls1(shiftNH, fullEval, shiftEval);
+    moSimpleHC<swapNeighbor> ls2(swapNH, fullEval, swapEval);
+
+    eoSwapMutation<Queen> swapMut;
+    eoShiftMutation<Queen> shiftMut;
+
+    moForwardVectorVNSelection<Queen> selectNH(ls1, shiftMut, true);
+
+    selectNH.add(ls2, swapMut);
+
+    moAlwaysAcceptCrit<shiftNeighbor> acceptCrit;
+
+    moVNSexplorer<shiftNeighbor> explorer(selectNH, acceptCrit);
+
+    moTimeContinuator<shiftNeighbor> cont(5);
+
+    moLocalSearch<shiftNeighbor> vns(explorer, cont, fullEval);
+
+
+    /* =========================================================
+     *
+     * execute the local search from random solution
+     *
+     * ========================================================= */
+
+	Queen sol;
+
+	init(sol);
+
+	fullEval(sol);
+
+	std::cout << "#########################################" << std::endl;
+	std::cout << "initial sol: " << sol << std::endl ;
+
+	vns(sol);
+
+	std::cout << "final sol: " << sol << std::endl ;
+	std::cout << "#########################################" << std::endl;
 //
 //
 //    /* =========================================================
