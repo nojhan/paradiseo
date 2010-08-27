@@ -142,6 +142,10 @@
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moRndWithReplNeighborhood.h>
 #include <neighborhood/moVariableNeighborhoodSelection.h>
+#include <neighborhood/moVectorVNSelection.h>
+#include <neighborhood/moBackwardVectorVNSelection.h>
+#include <neighborhood/moForwardVectorVNSelection.h>
+#include <neighborhood/moRndVectorVNSelection.h>
 
 #include <perturb/moLocalSearchInit.h>
 #include <perturb/moMonOpPerturb.h>

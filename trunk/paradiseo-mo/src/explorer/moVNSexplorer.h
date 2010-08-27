@@ -33,6 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <explorer/moNeighborhoodExplorer.h>
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <eoOp.h>
+#include <acceptCrit/moAcceptanceCriterion.h>
 
 /**
  * Explorer for Variiable Neighborhood Search

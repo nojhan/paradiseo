@@ -38,6 +38,10 @@ using namespace std;
 #include <neighborhood/moIndexNeighbor.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moOrderNeighborhood.h>
+#include <explorer/moVNSexplorer.h>
+#include <neighborhood/moBackwardVectorVNSelection.h>
+#include <neighborhood/moForwardVectorVNSelection.h>
+#include <neighborhood/moRndVectorVNSelection.h>
 
 //Algorithm and its components
 #include <coolingSchedule/moCoolingSchedule.h>
@@ -149,33 +153,12 @@ void main_function(int argc, char **argv)
     shiftNeighborhood shiftNH((vecSize-1) * (vecSize-1));
     swapNeighborhood swapNH(100);
 
-    moForwardVariableNeighborhood< moIndexNeighbor<Queen> > varNH( dynamic_cast<moNeighborhood<moIndexNeighbor<Queen> > *>(&shiftNH));
-    varNH.add(dynamic_cast<moNeighborhood<moIndexNeighbor<Queen> > *>(&swapNH));
-
-    varNH.initNeighborhood();
 
     Queen sol;
 
     init(sol);
     shiftNeighbor n;
 
-    varNH.init(sol, n);
-
-	n.move(sol);
-
-    n.print();
-
-    varNH.next(sol, n);
-	n.move(sol);
-    n.print();
-
-    varNH.nextNeighborhood();
-
-    swapNeighbor n2;
-    varNH.init(sol, n2);
-    std::cout << "key: " << n2.index() << std::endl;
-    varNH.next(sol, n2);
-    std::cout << "key: " << n2.index() << std::endl;
 
     /* =========================================================
      *
