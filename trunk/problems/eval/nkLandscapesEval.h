@@ -365,6 +365,14 @@ protected:
   }
 
   /**
+   * To generate a contribution in the table f_i 
+   *
+   */
+  virtual double contribution() {
+    return rng.uniform();
+  }
+
+  /**
    * To generate instance with random (without replacement) links
    *
    */
@@ -380,7 +388,7 @@ protected:
       
       // table of contribution with random numbers from [0,1)
       for(int j = 0; j < (1<<(K+1)); j++) 
-	tables[i][j] = rng.uniform();
+	tables[i][j] = contribution();
     }
   }
  
@@ -397,7 +405,7 @@ protected:
       
       // table of contribution with random numbers from [0,1)
       for(int j = 0; j < (1<<(K+1)); j++) 
-	tables[i][j] = rng.uniform();
+	tables[i][j] = contribution();
     }
   }
  
