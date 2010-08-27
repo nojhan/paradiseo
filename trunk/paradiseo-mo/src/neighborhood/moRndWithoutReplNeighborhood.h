@@ -87,7 +87,6 @@ public:
         indexVector[i]=indexVector[maxIndex-1];
         indexVector[maxIndex-1]=tmp;
         maxIndex--;
-        std::cout << _neighbor.className() << ", key: " << _neighbor.index() << std::endl;
     }
 
     /**
