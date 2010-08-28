@@ -2,7 +2,7 @@
 <moVariableNeighborhoodSelection.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
+Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -50,17 +50,31 @@ public:
      * test if there is still some neighborhood to explore
      * @return true if there is some neighborhood to explore
      */
-    virtual bool cont(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>*& _ls) = 0;
+    virtual bool cont(EOT& _solution) = 0;
 
     /**
      * put the current neighborhood on the first one
      */
-    virtual void init(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>*& _ls) = 0;
+    virtual void init(EOT& _solution) = 0;
 
     /**
      * put the current neighborhood on the next one
      */
-    virtual void next(EOT& _solution, eoMonOp<EOT>& _skake, eoMonOp<EOT>*& _ls) = 0;
+    virtual void next(EOT& _solution) = 0;
+  
+  /**
+   * Get the current "shake" operator based on the current neighborhood
+   *
+   * @return current shake operator
+   */
+  virtual const eoMon<EOT> & getShake() = 0;
+
+  /**
+   * Get the current local search based on the current neighborhood
+   *
+   * @return current local search 
+   */
+  virtual const eoMon<EOT> & getLocalSearch() = 0;
 
 };
 
