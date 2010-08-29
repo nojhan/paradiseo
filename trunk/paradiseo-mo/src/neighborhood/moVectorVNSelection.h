@@ -62,7 +62,7 @@ public:
    *
    * @return current shake operator
    */
-  virtual const eoMon<EOT> & getShake() {
+  virtual eoMonOp<EOT> & getShake() {
     return *(shakeVector[current]);
   }
 
@@ -71,7 +71,9 @@ public:
    *
    * @return current local search 
    */
-  virtual const eoMon<EOT> & getLocalSearch() {
+  virtual eoMonOp<EOT> & getLocalSearch() {
+    std::cout << "getLS : " << current << " sur " << LSvector.size() << std::endl;
+    std::cout << "getLS : ls = " << LSvector[current]->className() << std::endl;
     return *(LSvector[current]);
   }
 

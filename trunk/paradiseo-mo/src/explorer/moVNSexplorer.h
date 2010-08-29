@@ -104,7 +104,8 @@ public:
     shake(current);
     std::cout << "current apres shake: "<< current << std::endl;
     ls(current);
-    std::cout << "current apres ls: "<< ls.className() << " " << current << std::endl;
+    std::cout << "current apres ls: "<< ls.className() ;
+    std::cout << " sol: " << current << std::endl;
   }
 
   /**

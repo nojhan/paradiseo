@@ -67,14 +67,14 @@ public:
    *
    * @return current shake operator
    */
-  virtual const eoMon<EOT> & getShake() = 0;
+  virtual eoMonOp<EOT> & getShake() = 0;
 
   /**
    * Get the current local search based on the current neighborhood
    *
    * @return current local search 
    */
-  virtual const eoMon<EOT> & getLocalSearch() = 0;
+  virtual eoMonOp<EOT> & getLocalSearch() = 0;
 
 };
 
