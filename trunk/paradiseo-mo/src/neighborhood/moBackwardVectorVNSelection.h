@@ -32,16 +32,28 @@
 
 #include <neighborhood/moVectorVNSelection.h>
 
+/**
+ *  This class is used for the Variable Neighborhood Search explorer inherits from moVectorVNSelection
+ *  The search heuristics are saved in vectors
+ *  They are given in backward order from the last ones to the first ones
+ *
+ */
 template< class EOT >
 class moBackwardVectorVNSelection: public moVectorVNSelection<EOT>{
 
   using moVectorVNSelection<EOT>::LSvector;
-  using moVectorVNSelection<EOT>::shakeVector;
   using moVectorVNSelection<EOT>::current;
   
 public:
   
-  moBackwardVectorVNSelection(eoMonOp<EOT>& _firstLS, eoMonOp<EOT>& _firstShake, bool _cycle):moVectorVNSelection<EOT>(_firstLS, _firstShake), cycle(_cycle){}
+  /**
+   * Default constructor with first search heuristics
+   *
+   * @param _firstLS first local search 
+   * @param _firstShake first heuristic which perturbs the solution
+   * @param _cycle when true, the first heuristics follows the last ones. Otherwise the search stop.
+   */
+  moBackwardVectorVNSelection(eoMonOp<EOT>& _firstLS, eoMonOp<EOT>& _firstShake, bool _cycle = true) : moVectorVNSelection<EOT>(_firstLS, _firstShake), cycle(_cycle){}
   
   /**
    * Return the class id.
@@ -52,34 +64,35 @@ public:
   }
 
   /**
-   * test if there is still some neighborhood to explore
-   * @return true if there is some neighborhood to explore
+   * test if there is still some heuristics 
+   *
+   * @param _solution the current solution
+   * @return true if there is some heuristics
    */
   virtual bool cont(EOT& _solution){
     return (cycle || (current > 0));
   }
 
   /**
-   * put the current neighborhood on the first one
+   * put the current heuristics on the first ones
+   *
+   * @param _solution the current solution
    */
   virtual void init(EOT& _solution){
     current = LSvector.size() - 1;
-    std::cout << "current LS: " << current << std::endl;
-    std::cout << _solution << std::endl;
-
   }
 
   /**
-   * put the current neighborhood on the next one
+   * put the current heuristics on the next ones
+   *
+   * @param _solution the current solution
    */
   virtual void next(EOT& _solution){
     current = (current + LSvector.size() -1) % LSvector.size();
-    std::cout << "current LS: " << current << std::endl;
-    std::cout << _solution << std::endl;
-
   }
 
 private:
+  // boolean to indicate the last heuristics follow the first ones
   bool cycle;
   
 };

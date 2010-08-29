@@ -33,17 +33,36 @@
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <eoOp.h>
 
+/**
+ *  This class is used for the Variable Neighborhood Search explorer inherits from moVariableNeighborhoodSelection
+ *  The search heuristics are saved in vectors
+ *  The way to croos the vector is not defined here
+ *
+ */
 template< class EOT >
 class moVectorVNSelection: public moVariableNeighborhoodSelection<EOT>{
 
 public:
 
+  /**
+   * Default constructor with first search heuristics
+   *
+   * @param _firstLS first local search 
+   * @param _firstShake first heuristic which perturbs the solution
+   */
   moVectorVNSelection(eoMonOp<EOT>& _firstLS, eoMonOp<EOT>& _firstShake){
     LSvector.push_back(&_firstLS);
     shakeVector.push_back(&_firstShake);
-    current=0;
+
+    current = 0;
   }
   
+  /**
+   * Add some search heuristics
+   *
+   * @param _otherLS the added local search 
+   * @param _otherShake the added heuristic which perturbs the solution
+   */
   void add(eoMonOp<EOT>& _otherLS, eoMonOp<EOT>& _otherShake){
     LSvector.push_back(&_otherLS);
     shakeVector.push_back(&_otherShake);
@@ -72,30 +91,15 @@ public:
    * @return current local search 
    */
   virtual eoMonOp<EOT> & getLocalSearch() {
-    std::cout << "getLS : " << current << " sur " << LSvector.size() << std::endl;
-    std::cout << "getLS : ls = " << LSvector[current]->className() << std::endl;
     return *(LSvector[current]);
   }
 
-  /**
-   * test if there is still some neighborhood to explore
-   * @return true if there is some neighborhood to explore
-   */
-  virtual bool cont(EOT& _solution) = 0;
-
-  /**
-   * put the current neighborhood on the first one
-   */
-  virtual void init(EOT& _solution) = 0;
-
-  /**
-   * put the current neighborhood on the next one
-   */
-  virtual void next(EOT& _solution) = 0;
-
 protected:
+  // vector of local searches
   std::vector<eoMonOp<EOT>* > LSvector;
+  // vector of "shake" heiristics which perturbs the current solution
   std::vector<eoMonOp<EOT>* > shakeVector;
+  // index of the current search heuristics which is applied
   unsigned int current;
 
 };

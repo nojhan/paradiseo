@@ -35,16 +35,29 @@
 
 #include <neighborhood/moVectorVNSelection.h>
 
+/**
+ *  This class is used for the Variable Neighborhood Search explorer inherits from moVectorVNSelection
+ *  The search heuristics are saved in vectors
+ *  They are given in random order (at each initialization the order is changed)
+ *
+ */
 template< class EOT >
-class moRndVectorVNSelection: public moVectorVNSelection<EOT>{
-
+class moRndVectorVNSelection: public moVectorVNSelection<EOT>
+{
   using moVectorVNSelection<EOT>::LSvector;
-  using moVectorVNSelection<EOT>::shakeVector;
+  //  using moVectorVNSelection<EOT>::shakeVector;
   using moVectorVNSelection<EOT>::current;
 
 public:
 
-  moRndVectorVNSelection(eoMonOp<EOT>& _firstLS, eoMonOp<EOT>& _firstShake, bool _cycle = true):moVectorVNSelection<EOT>(_firstLS, _firstShake), cycle(_cycle){}
+  /**
+   * Default constructor with first search heuristics
+   *
+   * @param _firstLS first local search 
+   * @param _firstShake first heuristic which perturbs the solution
+   * @param _cycle when true, the first heuristics follows the last ones. Otherwise the search stop.
+   */
+  moRndVectorVNSelection(eoMonOp<EOT>& _firstLS, eoMonOp<EOT>& _firstShake, bool _cycle = true) : moVectorVNSelection<EOT>(_firstLS, _firstShake), cycle(_cycle){}
 
   /**
    * Return the class id.
@@ -55,15 +68,19 @@ public:
   }
 
   /**
-   * test if there is still some neighborhood to explore
-   * @return true if there is some neighborhood to explore
+   * test if there is still some heuristics 
+   *
+   * @param _solution the current solution
+   * @return true if there is some heuristics
    */
   virtual bool cont(EOT& _solution){
     return ( cycle || (currentOrder <= (order.size() - 2)) );
   }
 
   /**
-   * put the current neighborhood on the first one
+   * put the current heuristics on the first ones
+   *
+   * @param _solution the current solution
    */
   virtual void init(EOT& _solution) {
     if(order.size() == 0)
@@ -77,7 +94,9 @@ public:
   }
 
   /**
-   * put the current neighborhood on the next one
+   * put the current heuristics on the next ones
+   *
+   * @param _solution the current solution
    */
   virtual void next(EOT& _solution){
     currentOrder = (currentOrder + 1) % order.size();
@@ -86,10 +105,13 @@ public:
   }
 
 private:
-
+  // boolean to indicate the first heuristics follow the last ones
   bool cycle;
+  // index in order vector
   unsigned int currentOrder;
+  // the index of heuristics in random order
   std::vector<unsigned int> order;
+  // random generator
   UF_random_generator<unsigned int> gen;
 
 };

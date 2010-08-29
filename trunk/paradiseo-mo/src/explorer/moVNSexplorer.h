@@ -34,7 +34,6 @@
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <eoOp.h>
 #include <acceptCrit/moAcceptanceCriterion.h>
-#include <algo/moDummyLS.h>
 
 /**
  * Explorer for the "Variable Neighborhood Search" metaheuristic
@@ -47,11 +46,9 @@ public:
   typedef typename Neighbor::EOT EOT;
 
   /**
-   * Constructor
-   * @param _neighborhood the neighborhood
-   * @param _eval the evaluation function
-   * @param _neighborComparator a neighbor comparator
-   * @param _solNeighborComparator solution vs neighbor comparator
+   * Default constructor
+   * @param _selection selection the "neighborhood" search heuristics during the search
+   * @param _acceptCrit acceptance criteria which compare and accept or not the two solutions
    */
   moVNSexplorer(moVariableNeighborhoodSelection<EOT> & _selection,
 		moAcceptanceCriterion<Neighbor>& _acceptCrit):
@@ -59,7 +56,7 @@ public:
   {}
 
   /**
-   * Destructor
+   * Empty destructor
    */
   ~moVNSexplorer() {
   }
@@ -92,7 +89,7 @@ public:
   virtual void terminate(EOT & _solution) {};
 
   /**
-   * Explore the neighborhood of a solution
+   * Explore the neighborhood of a solution by the "neighborhood" search heuristics
    * @param _solution the current solution
    */
   virtual void operator()(EOT & _solution) {
@@ -100,12 +97,8 @@ public:
     eoMonOp<EOT> & ls    = selection.getLocalSearch();
 
     current = _solution;
-    std::cout << "current avec shake: "<< current << std::endl;
     shake(current);
-    std::cout << "current apres shake: "<< current << std::endl;
     ls(current);
-    std::cout << "current apres ls: "<< ls.className() ;
-    std::cout << " sol: " << current << std::endl;
   }
 
   /**
@@ -118,7 +111,7 @@ public:
   };
 
   /**
-   * move the solution with the best neighbor
+   * move the solution with to current accepted solution
    * @param _solution the solution to move
    */
   virtual void move(EOT & _solution) {
@@ -128,7 +121,7 @@ public:
   /**
    * accept test if an amelirated neighbor was be found according to acceptance criteria
    * @param _solution the solution
-   * @return true if the best neighbor ameliorate the fitness
+   * @return true if the neighbor ameliorate the fitness
    */
   virtual bool accept(EOT & _solution) {
     return acceptCrit(_solution, current);
@@ -143,21 +136,11 @@ public:
   }
 
 private:  
-  //moDummyLS<Neighbor> dummyLS;
   moVariableNeighborhoodSelection<EOT>& selection;
   moAcceptanceCriterion<Neighbor>& acceptCrit;
-  //eoMonOp<EOT>* ls;
-  //eoMonOp<EOT>& shake;
   bool stop;
 
   EOT current;
-
-  /*
-    class moDummyEval: public eoEvalFunc<EOT>{
-    public:
-    void operator()(EOT& hop){}
-    }dummyEval;
-  */
 };
 
 
