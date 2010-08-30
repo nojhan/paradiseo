@@ -136,7 +136,7 @@ public:
     bool operator>( const eoDualFitness<BaseType, Compare>& other ) const  { return other < *this; }
 
     //! Less or equal: if the other is not lesser than me
-    bool operator<=( const eoDualFitness<BaseType, Compare>& other ) const { return !(other < *thisr); }
+    bool operator<=( const eoDualFitness<BaseType, Compare>& other ) const { return !(other < *this); }
 
     //! Greater or equal: if the other is not greater than me
     bool operator>=(const eoDualFitness<BaseType, Compare>& other ) const { return !(*this < other); }
