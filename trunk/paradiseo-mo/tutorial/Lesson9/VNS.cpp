@@ -39,14 +39,16 @@ using namespace std;
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moOrderNeighborhood.h>
 #include <explorer/moVNSexplorer.h>
-//#include <neighborhood/moBackwardVectorVNSelection.h>
+#include <neighborhood/moBackwardVectorVNSelection.h>
 #include <neighborhood/moForwardVectorVNSelection.h>
-//#include <neighborhood/moRndVectorVNSelection.h>
+#include <neighborhood/moRndVectorVNSelection.h>
 
 //Algorithm and its components
 #include <coolingSchedule/moCoolingSchedule.h>
 #include <algo/moSimpleHC.h>
 #include <algo/moLocalSearch.h>
+#include <algo/moVNS.h>
+#include <algo/moSimpleVNS.h>
 
 #include <continuator/moTimeContinuator.h>
 
@@ -160,7 +162,7 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     shiftNeighborhood shiftNH((vecSize-1) * (vecSize-1));
-    swapNeighborhood swapNH(100);
+    swapNeighborhood swapNH(vecSize * (vecSize-1) / 2);
 
     /* =========================================================
      *
@@ -174,18 +176,23 @@ void main_function(int argc, char **argv)
     eoSwapMutation<Queen> swapMut;
     eoShiftMutation<Queen> shiftMut;
 
-    moForwardVectorVNSelection<Queen> selectNH(ls1, shiftMut, true);
+    //    moForwardVectorVNSelection<Queen> selectNH(ls1, shiftMut, true);
+    //    moBackwardVectorVNSelection<Queen> selectNH(ls1, shiftMut, true);
+    moRndVectorVNSelection<Queen> selectNH(ls1, shiftMut, true);
 
     selectNH.add(ls2, swapMut);
 
     moAlwaysAcceptCrit<shiftNeighbor> acceptCrit;
 
-    moVNSexplorer<shiftNeighbor> explorer(selectNH, acceptCrit);
+    //    moVNSexplorer<shiftNeighbor> explorer(selectNH, acceptCrit);
 
-    moTimeContinuator<shiftNeighbor> cont(5);
+    moTimeContinuator<shiftNeighbor> cont(3);
 
-    moLocalSearch<shiftNeighbor> vns(explorer, cont, fullEval);
+    //    moLocalSearch<shiftNeighbor> vns(explorer, cont, fullEval);
+    moVNS<shiftNeighbor> vns(selectNH, acceptCrit, fullEval, cont);
 
+    moSimpleVNS<shiftNeighbor> svns(ls1, shiftMut, fullEval, cont);
+    svns.add(ls2, swapMut);
 
     /* =========================================================
      *
@@ -203,6 +210,18 @@ void main_function(int argc, char **argv)
 	std::cout << "initial sol: " << sol << std::endl ;
 
 	vns(sol);
+
+	std::cout << "final sol: " << sol << std::endl ;
+	std::cout << "#########################################" << std::endl;
+
+	init(sol);
+
+	fullEval(sol);
+
+	std::cout << "#########################################" << std::endl;
+	std::cout << "initial sol: " << sol << std::endl ;
+
+	svns(sol);
 
 	std::cout << "final sol: " << sol << std::endl ;
 	std::cout << "#########################################" << std::endl;
