@@ -45,7 +45,6 @@ template< class EOT >
 class moRndVectorVNSelection: public moVectorVNSelection<EOT>
 {
   using moVectorVNSelection<EOT>::LSvector;
-  //  using moVectorVNSelection<EOT>::shakeVector;
   using moVectorVNSelection<EOT>::current;
 
 public:

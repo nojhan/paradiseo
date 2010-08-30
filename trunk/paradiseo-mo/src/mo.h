@@ -53,6 +53,7 @@
 #include <algo/moSimpleHC.h>
 #include <algo/moTS.h>
 #include <algo/moVNS.h>
+#include <algo/moSimpleVNS.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
