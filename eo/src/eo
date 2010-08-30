@@ -38,6 +38,7 @@
 #include <eoPrintable.h>
 #include <eoPersistent.h>
 #include <eoScalarFitness.h>
+#include <eoDualFitness.h>
 #include <EO.h>
 
 #include <utils/rnd_generators.h>
