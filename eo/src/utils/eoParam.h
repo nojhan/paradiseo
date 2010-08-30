@@ -67,7 +67,7 @@ public:
     /**
      * Virtual destructor is needed.
      */
-    virtual ~eoParam () {};
+    virtual ~eoParam () {}
 
     /**
      * Pure virtual function to get the value out.
