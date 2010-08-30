@@ -115,7 +115,7 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
   }
   
   /** Empty Dtor */
-	virtual ~eoPop() {};
+	virtual ~eoPop() {}
 
 
   /// helper struct for getting a pointer
