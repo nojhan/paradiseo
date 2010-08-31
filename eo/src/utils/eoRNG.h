@@ -171,6 +171,17 @@ public :
             return m * double(rand()) / double(1.0 + rand_max());
         }
 
+    /** Random number from unifom distribution
+
+    @param min Define minimum for interval in the range [min, max)
+    @param max Define maximum for interval in the range [min, max)
+    @return random number in the range [min, max)
+    */
+    double uniform(double min, double max)
+        { // random number between [min, max]
+            return min + uniform(max - min);
+        }
+
     /** Random integer number from unifom distribution
 
     @param m Define interval for random number to [0, m)
