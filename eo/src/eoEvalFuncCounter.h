@@ -49,7 +49,7 @@ template<class EOT> class eoEvalFuncCounter : public eoEvalFunc<EOT>, public eoV
             }
         }
 
-    private :
+    protected :
         eoEvalFunc<EOT>& func;
 };
 
