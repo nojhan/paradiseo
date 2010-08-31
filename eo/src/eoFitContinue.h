@@ -26,12 +26,16 @@
 #define _eoFitContinue_h
 
 #include <eoContinue.h>
+#include <utils/eoLogger.h>
 
 /**
 Fitness continuation:
 
-  Continues until the maximum fitness level is reached.
+  Continues until the optimum fitness level is reached.
 */
+
+//! all types which derive from eoScalarFitness is able to compare well via the operator override ( <, >, <=, ...)
+
 template< class EOT>
 class eoFitContinue: public eoContinue<EOT> {
 public:
@@ -40,26 +44,27 @@ public:
     typedef typename EOT::Fitness FitnessType;
 
     /// Ctor
-    eoFitContinue( const FitnessType _maximum)
-        : eoContinue<EOT> (), maximum( _maximum ) {};
+    eoFitContinue( const FitnessType _optimum)
+        : eoContinue<EOT> (), optimum( _optimum ) {};
 
     /** Returns false when a fitness criterium is reached. Assumes pop is not sorted! */
     virtual bool operator() ( const eoPop<EOT>& _pop )
     {
-    FitnessType bestCurrentFitness = _pop.nth_element_fitness(0);
-    if (bestCurrentFitness >= maximum)
-      {
-	std::cout << "STOP in eoFitContinue: Best fitness has reached " <<
-	  bestCurrentFitness << "\n";
-	return false;
-      }
-    return true;
+	//FitnessType bestCurrentFitness = _pop.nth_element_fitness(0);
+	FitnessType bestCurrentFitness = _pop.best_element().fitness();
+	if (bestCurrentFitness >= optimum)
+	    {
+		eo::log << eo::logging << "STOP in eoFitContinue: Best fitness has reached " <<
+		    bestCurrentFitness << "\n";
+		return false;
+	    }
+	return true;
     }
 
-  virtual std::string className(void) const { return "eoFitContinue"; }
+    virtual std::string className(void) const { return "eoFitContinue"; }
+
 private:
-	FitnessType maximum;
+    FitnessType optimum;
 };
 
 #endif
-
