@@ -184,11 +184,11 @@ public:
 				current_solution = candidate_solution;
 			    }
 		    }
-		while ( _sa_continue( current_solution) );
+ 		while ( _sa_continue( current_solution) );
+
+		_replacor(pop, current_pop); // copy current_pop in pop
 
 		pop.sort();
-
-		_replacor(pop, current_pop);
 
 		if ( ! _cooling_schedule( temperature ) ){ eo::log << eo::debug << "_cooling_schedule" << std::endl; break; }
 
