@@ -40,12 +40,12 @@ public:
   virtual std::string className(void) const { return "eoContinue"; }
 
   void readFrom (std :: istream & __is) {
-    
+      (void)__is;
     /* It should be implemented by subclasses ! */
   }
   
   void printOn (std :: ostream & __os) const {
-    
+      (void)__os;
     /* It should be implemented by subclasses ! */
   }
 };

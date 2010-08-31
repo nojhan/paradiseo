@@ -47,7 +47,9 @@ class eoSelectOne : public eoUF<const eoPop<EOT>&, const EOT&>
     public :
       /// virtual function to setup some population stats (for instance eoProportional can benefit greatly from this)
       virtual void setup(const eoPop<EOT>& _pop)
-      {}
+      {
+	  (void)_pop;
+      }
 };
 
 

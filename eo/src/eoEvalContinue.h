@@ -43,6 +43,7 @@ public:
   /** Returns false when a certain number of evaluations has been done
    */
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
+      (void)_vEO;
     if (eval.value() >= repTotalEvaluations) 
       {
 	std::cout << "STOP in eoEvalContinue: Reached maximum number of evaluations [" << repTotalEvaluations << "]\n";
