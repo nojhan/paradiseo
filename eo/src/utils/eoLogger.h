@@ -20,65 +20,65 @@
 Contact: http://eodev.sourceforge.net
 
 Authors: 
-     Johann Dréo <johann.dreo@thalesgroup.com>
-     Caner Candan <caner.candan@thalesgroup.com>
+Johann Dréo <johann.dreo@thalesgroup.com>
+Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
 /** Here's an example explaning how to use eoLogger:
 
-   #include <iostream>
-   #include <utils/eoLogger.h>
-   #include <utils/eoParserLogger.h>
+    #include <iostream>
+    #include <utils/eoLogger.h>
+    #include <utils/eoParserLogger.h>
 
-   int	main(int ac, char** av)
-   {
-   // We are declaring first an overload of eoParser class using Logger
-   // component.
-   eoParserLogger	parser(ac, av);
+    int	main(int ac, char** av)
+    {
+    // We are declaring first an overload of eoParser class using Logger
+    // component.
+    eoParserLogger	parser(ac, av);
 
-   // This call is important to allow -v parameter to change user level.
-   make_verbose(parser);
+    // This call is important to allow -v parameter to change user level.
+    make_verbose(parser);
 
-   // At this time we are switching to warning message and messages
-   // which are going to follow it are going to be warnings message too.
-   // These messages can be displayed only if the user level (sets with
-   // eo::setlevel function) is set to eo::warnings.
-   eo::log << eo::warnings;
+    // At this time we are switching to warning message and messages
+    // which are going to follow it are going to be warnings message too.
+    // These messages can be displayed only if the user level (sets with
+    // eo::setlevel function) is set to eo::warnings.
+    eo::log << eo::warnings;
 
-   // With the following eo::file function we are defining that
-   // all future logs are going to this new file resource which is
-   // test.txt
-   eo::log << eo::file("test.txt") << "In FILE" << std::endl;
+    // With the following eo::file function we are defining that
+    // all future logs are going to this new file resource which is
+    // test.txt
+    eo::log << eo::file("test.txt") << "In FILE" << std::endl;
 
-   // Now we are changing again the resources destination to cout which
-   // is the standard output.
-   eo::log << std::cout << "In COUT" << std::endl;
+    // Now we are changing again the resources destination to cout which
+    // is the standard output.
+    eo::log << std::cout << "In COUT" << std::endl;
 
-   // Here are 2 differents examples of how to set the errors user level
-   // in using either a string or an identifier.
-   eo::log << eo::setlevel("errors");
-   eo::log << eo::setlevel(eo::errors);
+    // Here are 2 differents examples of how to set the errors user level
+    // in using either a string or an identifier.
+    eo::log << eo::setlevel("errors");
+    eo::log << eo::setlevel(eo::errors);
 
-   // Now we are writting a message, that will be displayed only if we are above the "quiet" level
-   eo::log << eo::quiet << "1) Must be in quiet mode to see that" << std::endl;
+    // Now we are writting a message, that will be displayed only if we are above the "quiet" level
+    eo::log << eo::quiet << "1) Must be in quiet mode to see that" << std::endl;
 
-   // And so on...
-   eo::log << eo::setlevel(eo::warnings) << eo::warnings << "2) Must be in warnings mode to see that" << std::endl;
+    // And so on...
+    eo::log << eo::setlevel(eo::warnings) << eo::warnings << "2) Must be in warnings mode to see that" << std::endl;
 
-   eo::log << eo::setlevel(eo::logging);
+    eo::log << eo::setlevel(eo::logging);
 
-   eo::log << eo::errors;
-   eo::log << "3) Must be in errors mode to see that";
-   eo::log << std::endl;
+    eo::log << eo::errors;
+    eo::log << "3) Must be in errors mode to see that";
+    eo::log << std::endl;
 
-   eo::log << eo::debug << 4 << ')'
-   << " Must be in debug mode to see that\n";
+    eo::log << eo::debug << 4 << ')'
+    << " Must be in debug mode to see that\n";
 
-   return 0;
-   }
+    return 0;
+    }
 
- */
+*/
 
 #ifndef eoLogger_h
 # define eoLogger_h
@@ -95,6 +95,8 @@ namespace	eo
 {
     /**
      * Levels contents all the available levels in eoLogger
+     *
+     * /!\ If you want to add a level dont forget to add it at the implementation of the class eoLogger in the ctor
      */
     enum Levels {quiet = 0,
 		 errors,
@@ -102,16 +104,16 @@ namespace	eo
 		 progress,
 		 logging,
 		 debug,
-         xdebug};
+		 xdebug};
 
     /**
      * file
-     * this structure combined with the friend operator<< below is an easy way to select a file like output.
+     * this structure combined with the friend operator<< below is an easy way to select a file as output.
      */
     struct	file
     {
 	file(const std::string f);
-	const std::string	_f;
+	const std::string _f;
     };
 
     /**
@@ -122,8 +124,8 @@ namespace	eo
     {
 	setlevel(const std::string v);
 	setlevel(const Levels lvl);
-	const std::string	_v;
-	const Levels	_lvl;
+	const std::string _v;
+	const Levels _lvl;
     };
 }
 

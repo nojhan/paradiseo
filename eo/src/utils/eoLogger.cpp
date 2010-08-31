@@ -50,12 +50,15 @@ eoLogger::eoLogger()
     _standard_io_streams[&std::clog] = 2;
     _standard_io_streams[&std::cerr] = 2;
 
+    // /!\ If you want to add a level dont forget to add it at the header file in the enumerator Levels
+
     addLevel("quiet", eo::quiet);
     addLevel("errors", eo::errors);
     addLevel("warnings", eo::warnings);
     addLevel("progress", eo::progress);
     addLevel("logging", eo::logging);
     addLevel("debug", eo::debug);
+    addLevel("xdebug", eo::debug);
 }
 
 eoLogger::~eoLogger()
