@@ -65,8 +65,9 @@ public:
  
   /** Returns false when Ctrl C has been typed in
          * reached */
-  virtual bool operator() ( const eoPop<EOT>& _vEO ) 
+  virtual bool operator() ( const eoPop<EOT>& _vEO )
   {
+      (void)_vEO;
     if (arret_demande)
       return false;
     return true;

@@ -27,6 +27,8 @@
 
 #include <eoContinue.h>
 #include <utils/eoParam.h>
+#include <utils/eoLogger.h>
+
 /** 
     Generational continuator: continues until a number of generations is reached
 */
@@ -52,13 +54,14 @@ public:
   /** Returns false when a certain number of generations is
 	 * reached */
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
+      (void)_vEO;
     thisGeneration++;
     value() = thisGeneration;
     //	  std::cout << " [" << thisGeneration << "] ";
     if (thisGeneration >= repTotalGenerations) 
       {
 	  if (verbose)
-	    std::cout << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
+	    eo::log << eo::logging << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
 	return false;
       }
     return true;
