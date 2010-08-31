@@ -114,7 +114,7 @@ public:
         return "moOrderNeighborhood";
     }
 
-private:
+protected:
     unsigned int currentIndex;
 
 };
