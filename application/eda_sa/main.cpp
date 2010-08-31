@@ -4,6 +4,8 @@
 #include <utils/eoLogger.h>
 #include <utils/eoParserLogger.h>
 
+#include <eoEvalFuncCounterBounder.h>
+
 #include <do/make_pop.h>
 #include <do/make_run.h>
 #include <do/make_continue.h>
@@ -14,11 +16,10 @@
 #include "Rosenbrock.h"
 #include "Sphere.h"
 
-typedef eoReal<eoMinimizingFitness> EOT;
 
-//typedef doUniform< EOT > Distrib;
-//typedef doNormalMono< EOT > Distrib;
+typedef eoReal<eoMinimizingFitness> EOT;
 typedef doNormalMulti< EOT > Distrib;
+
 
 int main(int ac, char** av)
 {
@@ -39,34 +40,27 @@ int main(int ac, char** av)
     // Instantiate all needed parameters for EDASA algorithm
     //-----------------------------------------------------------------------------
 
-    eoSelect< EOT >* selector = new eoDetSelect< EOT >(0.5);
+    double selection_rate = parser.createParam((double)0.5, "selection_rate", "Selection Rate", 'R', section).value(); // R
+
+    eoSelect< EOT >* selector = new eoDetSelect< EOT >( selection_rate );
     state.storeFunctor(selector);
 
-    doEstimator< Distrib >* estimator =
-	//new doEstimatorUniform< EOT >();
-	//new doEstimatorNormalMono< EOT >();
-	new doEstimatorNormalMulti< EOT >();
+    doEstimator< Distrib >* estimator =	new doEstimatorNormalMulti< EOT >();
     state.storeFunctor(estimator);
 
     eoSelectOne< EOT >* selectone = new eoDetTournamentSelect< EOT >( 2 );
     state.storeFunctor(selectone);
 
-    doModifierMass< Distrib >* modifier =
-	//new doUniformCenter< EOT >();
-	//new doNormalMonoCenter< EOT >();
-	new doNormalMultiCenter< EOT >();
+    doModifierMass< Distrib >* modifier = new doNormalMultiCenter< EOT >();
     state.storeFunctor(modifier);
 
-    eoEvalFunc< EOT >* plainEval =
-	new Rosenbrock< EOT >();
-    //new Sphere< EOT >();
+    eoEvalFunc< EOT >* plainEval = new Rosenbrock< EOT >();
     state.storeFunctor(plainEval);
 
     unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
-    eoEvalFuncCounter< EOT > eval(*plainEval, max_eval);
+    eoEvalFuncCounterBounder< EOT > eval(*plainEval, max_eval);
 
     eoRndGenerator< double >* gen = new eoUniformGenerator< double >(-5, 5);
-    //eoRndGenerator< double >* gen = new eoNormalGenerator< double >(0, 1);
     state.storeFunctor(gen);
 
 
@@ -106,8 +100,6 @@ int main(int ac, char** av)
     // This is used by doSampler.
     //-----------------------------------------------------------------------------
 
-
-    //doBounder< EOT >* bounder = new doBounderNo< EOT >();
     doBounder< EOT >* bounder = new doBounderRng< EOT >(EOT(pop[0].size(), -5),
 							EOT(pop[0].size(), 5),
 							*gen);
@@ -120,10 +112,7 @@ int main(int ac, char** av)
     // Prepare sampler class with a specific distribution
     //-----------------------------------------------------------------------------
 
-    doSampler< Distrib >* sampler =
-	//new doSamplerUniform< EOT >();
-	//new doSamplerNormalMono< EOT >( *bounder );
-	new doSamplerNormalMulti< EOT >( *bounder );
+    doSampler< Distrib >* sampler = new doSamplerNormalMulti< EOT >( *bounder );
     state.storeFunctor(sampler);
 
     //-----------------------------------------------------------------------------
@@ -132,8 +121,6 @@ int main(int ac, char** av)
     //-----------------------------------------------------------------------------
     // Metropolis sample parameters
     //-----------------------------------------------------------------------------
-
-    // unsigned int rho = parser.createParam((unsigned int)0, "rho", "Rho: metropolis sample size", 'p', section).value(); // p
 
     unsigned int popSize = parser.getORcreateParam((unsigned int)20, "popSize", "Population Size", 'P', "Evolution Engine").value();
 
@@ -170,7 +157,16 @@ int main(int ac, char** av)
     // general output
     //-----------------------------------------------------------------------------
 
-    eoCheckPoint< EOT >& monitoring_continue = do_make_checkpoint(parser, state, eval, eo_continue);
+    eoCheckPoint< EOT >& pop_continue = do_make_checkpoint(parser, state, eval, eo_continue);
+
+    doPopStat< EOT >* popStat = new doPopStat<EOT>;
+    state.storeFunctor(popStat);
+    pop_continue.add(*popStat);
+
+    doFileSnapshot* fileSnapshot = new doFileSnapshot("ResPop");
+    state.storeFunctor(fileSnapshot);
+    fileSnapshot->add(*popStat);
+    pop_continue.add(*fileSnapshot);
 
     //-----------------------------------------------------------------------------
 
@@ -179,17 +175,6 @@ int main(int ac, char** av)
     // population output
     //-----------------------------------------------------------------------------
 
-    eoCheckPoint< EOT >* pop_continue = new eoCheckPoint< EOT >( eo_continue );
-    state.storeFunctor(pop_continue);
-
-    doPopStat< EOT >* popStat = new doPopStat<EOT>;
-    state.storeFunctor(popStat);
-    pop_continue->add(*popStat);
-
-    doFileSnapshot* fileSnapshot = new doFileSnapshot("ResPop");
-    state.storeFunctor(fileSnapshot);
-    fileSnapshot->add(*popStat);
-    pop_continue->add(*fileSnapshot);
 
     //-----------------------------------------------------------------------------
 
@@ -244,7 +229,7 @@ int main(int ac, char** av)
 
     doAlgo< Distrib >* algo = new doEDASA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
-    	 monitoring_continue, *pop_continue, *distribution_continue,
+	 pop_continue, *distribution_continue,
 	 eval, *sa_continue, *cooling_schedule,
     	 initial_temperature, *replacor);
 
@@ -273,13 +258,13 @@ int main(int ac, char** av)
 	{
 	    do_run(*algo, pop);
 	}
-    catch (eoReachedThresholdException& e)
-	{
-	    eo::log << eo::warnings << e.what() << std::endl;
-	}
+    catch (eoEvalFuncCounterBounderException& e)
+    	{
+    	    eo::log << eo::warnings << "warning: " << e.what() << std::endl;
+    	}
     catch (std::exception& e)
 	{
-	    eo::log << eo::errors << "exception: " << e.what() << std::endl;
+	    eo::log << eo::errors << "error: " << e.what() << std::endl;
 	    exit(EXIT_FAILURE);
 	}
 
