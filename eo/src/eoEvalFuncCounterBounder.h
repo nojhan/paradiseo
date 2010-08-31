@@ -34,18 +34,18 @@ public :
 
     using eoEvalFuncCounter< EOT >::value;
 
-    virtual void operator()(EOT& _eo)
+    virtual void operator()(EOT& eo)
     {
-	if (_eo.invalid())
+	if (eo.invalid())
             {
                 value()++;
 
-		if (_threshold > 0 && value() >= threshold)
+		if (_threshold > 0 && value() >= _threshold)
 		    {
-			throw eoEvalFuncCounterBounderException(threshold);
+			throw eoEvalFuncCounterBounderException(_threshold);
 		    }
 
-                func(_eo);
+                func(eo);
             }
     }
 
