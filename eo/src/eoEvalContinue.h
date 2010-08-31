@@ -38,9 +38,7 @@ class eoEvalContinue: public eoContinue<EOT>
 public:
   /// Ctor 
   eoEvalContinue( eoEvalFuncCounter<EOT> & _eval, unsigned long _totalEval)
-	  : eval(_eval), repTotalEvaluations( _totalEval ) {
-    std::cout << "Ctor de eoEvalFuncCounter avec total = " << repTotalEvaluations << std::endl;
-};
+	  : eval(_eval), repTotalEvaluations( _totalEval ) {};
   
   /** Returns false when a certain number of evaluations has been done
    */
