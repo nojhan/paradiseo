@@ -34,13 +34,40 @@
             <li><a href="http://sourceforge.net/project/?group_id=9775">Project page</a></li>
             <li>see also <a href="http://paradiseo.gforge.inria.fr/">ParadisEO</a></li>
         </ul>
+        </div>
 
-        <p>Jump to section:</p>
-        <ul>
-            <li><a href="#Features">Features</a></li>
-            <li><a href="#Code">Code</a></li>
-            <li><a href="#Development">Development</a></li>
-        </ul>
+        <div class="shortcuts">
+        <ol>
+            <lh>Jump to section:</lh>
+            <li>
+                <ol>
+                    <lh><a href="#Features">Features</a></lh>
+                    <li><a href="#Component-based">Component-based</a></li>
+                    <li><a href="#Main-Features">Main Features</a></li>
+                    <li><a href="#Portability">Portability</a></li>
+                    <li><a href="#Presentations">Presentations</a></li>
+                </ol>
+            </li>
+            <li>
+                <ol>
+                    <lh><a href="#Code">Code</a></lh>
+                    <li><a href="#Download">Download</a></li>
+                    <li><a href="#Facts">Facts</a></li>
+                    <li><a href="#License">License</a></li>
+                    <li><a href="#Documentation">Documentation</a></li>
+                </ol>
+            </li>
+            <li>
+                <ol>
+                    <a href="#Development">Development</a></li>
+                    <li><a href="#Mailing-lists">Mailing-lists</a></li>
+                    <li><a href="#Get-involved">Get involved</a></li>
+                    <li><a href="#Related-software">Related software</a></li>
+                    <li><a href="#Authors">Authors</a></li>
+                    <li><a href="#Links">Links</a></li>
+                </ol>
+            </li>
+        </ol>
     </div><!-- class=shortcuts -->
 
         <ul class="badges">
@@ -119,11 +146,33 @@
     </p>
 
     <p>With the help of EO, you can easily design evolutionary algorithms that will find solutions to virtually all kind of hard optimization problems, from continuous to combinatorial ones.</p>
-    
-    
+
+    <p>If you want to help us to improve EO, the easiest way is to click on the following button:
+
+<form method="POST" action="http://openhatch.org/+do/project.views.wanna_help_do">
+    <input type="hidden" name="from_offsite" value="True" />
+    <input type="hidden" value="6519" name="project"/>
+    <input type="submit" value="I want to help" rel="tipsy-south" id="openhatch-wannahelp-button" original-title="Click to add yourself to the list of people who want to contribute. People of all levels are welcome!"/>
+</form>
+
+<style>
+    @import url('http://openhatch.org/static/css/tipsy.css');
+</style>
+
+<style type="text/css">
+#openhatch-wannahelp-button:hover, #openhatch-wannahelp-button:focus { background-image:url('http://openhatch.org/static/images/wannahelp-button-bg-hover.png'); color:#222; text-decoration:none; }
+#openhatch-wannahelp-button { background: #C8E29D url('http://openhatch.org/static/images/wannahelp-button-bg.png') repeat-x scroll center top; border:3px solid #fff;  cursor:pointer; cursor: hand; font-family: Helvetica, sans-serif; font-size:13pt; font-weight:normal; text-align:center; text-shadow:0 1px 0 #fff; white-space:normal; }
+#openhatch-wannahelp-button { -moz-border-radius: 8px; color: #444; float:left; padding:10px 20px; display:block; padding:2px 8px; }
+#openhatch-wannahelp-button:focus { outline-color:-moz-use-text-color; outline-style:none; outline-width:medium; }
+</style>
+
+<script type="text/javascript" src="http://openhatch.org/static/packed/selections_for_widget.js?1271800811"></script>
+<br />
+</p>
+
 <h1><a name="Features"></a>Features <a href="#Plan">⤒</a></h1>
 
-    <h2>Component-based framework</h2>
+    <h2><a name="Component-based"></a>Component-based framework</h2>
 
         <p>Designing an algorithm with EO consists in choosing what components you want to use for your specific needs, just as building a structure with Lego blocks.</p>
         <p>If you have a classical problem for which available code exists (for example if you have a black-box problem with real-valued variables), you will just choose components to form an algorithm and connect it to your <em>fitness function</em> (which computes the quality of a given solution).</p>
@@ -131,7 +180,7 @@
         <p><img src="Evolutionary_algorithm.png" title="A typical Evolutionary Algorithm, as seen from the EO point of vue − Johann Dréo − CC-BY-SA" /></p>
 
 
-    <h2>Main Features</h2>
+    <h2><a name="Main-Features"></a>Main Features</h2>
 
     <!-- <img src="http://upload.wikimedia.org/wikipedia/en/timeline/3f507249a36a4a38020e7fc0a5f448df.png" title="Metaheuristics that can be implemented with EO and ParadisEO, ordered by date of invention − Johann Dréo/Wikipédia − CC-BY-SA" style="float:right;" /> --> <!-- http://en.wikipedia.org/wiki/Metaheuristic -->
 
@@ -210,7 +259,7 @@
         <li><em>And more!</em></li>
     </ul>
 
-    <h2>Portability</h2>
+    <h2><a name="Portability"></a>Portability</h2>
         <p> EO should work on Windows and any Un*x-like operating system with a
         standard-conforming C++ development system. </p>
 
@@ -240,7 +289,7 @@
         with gcc-2.9x and several systems (IRIX, Solaris) with egcs. </p>
         
 
-    <h2>Presentations</h2>
+    <h2><a name="Presentations"></a>Presentations</h2>
  
         <p> A functional and "philosophical" overview of EO was presented at <a
         href="http://www.cmap.polytechnique.fr/%7Eea01/">EA'01 conference</a>.
@@ -304,7 +353,7 @@
 
 <h1><a name="Code"></a>Code <a href="#Plan">⤒</a></h1>
 
-    <h2>Download</h2>
+    <h2><a name="Download"></a>Download</h2>
 
         <p> The current stable release is <a
         href="http://sourceforge.net/project/showfiles.php?group_id=9775">EO 1.0</a>.
@@ -321,7 +370,7 @@
         href="http://sourceforge.net/project/showfiles.php?group_id=9775">download
         area</a>. </p>
         
-    <h2>Facts</h2>
+    <h2><a name="Facts"></a>Facts</h2>
 
         <p>Those statistics are automatically generated by <a href="https://www.ohloh.net/p/eodev">ohloh.net</a>, directly from the EO source code.</p>
 
@@ -338,7 +387,7 @@
 
 
 
-    <h2>License</h2>
+    <h2><a name="License"></a>License</h2>
 
         <p>EO is distributed under the
         <a href="http://www.gnu.org/copyleft/lesser.html">
@@ -347,7 +396,7 @@
         <p>Note that this license places copyleft restrictions on a program created with EO, but does not apply these restrictions to other software that would links with the program.</p>
 
 
-    <h2>Documentation</h2>
+    <h2><a name="Documentation"></a>Documentation</h2>
 
         <p>The tutorial demonstrates that writing an evolutionary algorithm
         evolving your own structures is now <em>easy</em>, using ready-to-use
@@ -380,7 +429,7 @@
 
 <h1><a name="Development"></a>Development <a href="#Plan">⤒</a></h1>
 
-    <h2>Mailing-lists</h2>
+    <h2><a name="Mailing-lists"></a>Mailing-lists</h2>
 
         <p>EO is an open development effort; that is why we have
         created mailing lists to discuss future developments, solve technical
@@ -389,7 +438,7 @@
         href="http://sourceforge.net/mail/?group_id=9775">EO mailing lists</a>.</p>
         
 
-    <h2>Get involved</h2>
+    <h2><a name="Get-involved"></a>Get involved</h2>
 
         <p>The following resources are available, thanks to sourceforge</p>
         <ul>
@@ -404,13 +453,12 @@
           <li> <a href="https://sourceforge.net/project/showfiles.php?group_id=9775">Releases</a></li>
           <li> <a href="http://sourceforge.net/mail/?group_id=9775">Mailing Lists</a></li>
           <li> <a href="http://sourceforge.net/forum/?group_id=9775">Message Forums</a></li>
-          <li> <a href="http://sourceforge.net/bugs/?group_id=9775">Bug Submission and Tracking</a></li>
-          <li> <a href="http://sourceforge.net/support/?group_id=9775">Technical Support</a></li>
-          <li> <a href="http://sourceforge.net/patch/?group_id=9775">Patch Submission</a></li>
-          <li> <a href="http://sourceforge.net/cvs/?group_id=9775">CVS repository</a></li>
+          <li> <a href="https://sourceforge.net/apps/trac/eodev/wiki/WikiStart">Bug Submission and Tracking</a></li>
+          <li> <a href="https://sourceforge.net/projects/eodev/support">Technical Support</a></li>
+          <li> <a href="https://sourceforge.net/scm/?type=git&group_id=9775">Code repository</a></li>
         </ul>
 
-    <h2>Related software</h2>
+    <h2><a name="Related-software"></a>Related software</h2>
 
         <p> <a href="http://paradiseo.gforge.inria.fr"
         >ParadisEO</a> provides EO extensions for
@@ -423,7 +471,7 @@
         </p>
 
 
-    <h2>Authors</h2>
+    <h2><a name="Authors"></a>Authors</h2>
     
         <p> EO was started by the <a href="http://geneura.ugr.es/">Geneura
         Team</a> at the University of Granada, headed by <a
@@ -445,7 +493,7 @@
         infrastructure maintenance. </p>
 
 
-    <h2>Links</h2>
+    <h2><a name="Links"></a>Links</h2>
 
         <ul>
           <li><a href="http://www.aip.de/~ast/EvolCompFAQ" >The Hitch-Hiker's Guide to Evolutionary Computation</a>, FAQ for <a href="news:comp.ai.genetic">comp.ai.genetic</a>.</li>

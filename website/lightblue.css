@@ -37,6 +37,7 @@ body {
 
 .shortcuts {
     text-align:left;
+    clear:both;
 }
 
 .shortcuts p {
