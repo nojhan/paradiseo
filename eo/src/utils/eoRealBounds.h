@@ -158,6 +158,8 @@ public:
 
   virtual double uniform(eoRng & _rng = eo::rng) const 
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in unbounded eoRealBounds");
   }
 
@@ -168,8 +170,10 @@ public:
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoRealBounds::readFrom");
   }
 
@@ -283,8 +287,10 @@ public :
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoRealInterval::readFrom");
   }
 
@@ -336,8 +342,10 @@ public :
   }
 
   // random generators
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in eoRealBelowBound");
   }
 
@@ -381,6 +389,8 @@ public :
    */
   virtual void readFrom(std::istream& _is) 
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoRealBelowBound::readFrom");
   }
 
@@ -431,8 +441,10 @@ public :
   }
 
   // random generators
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in eoRealAboveBound");
   }
 
@@ -474,8 +486,10 @@ public :
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoRealAboveBound::readFrom");
   }
 
@@ -615,7 +629,7 @@ public:
   /** random generator of uniform numbers in bounds
    * @std::exception if unbounded
    */
-  virtual double uniform(eoRng & _rng = eo::rng)  const {return repBound->uniform();}
+  virtual double uniform(eoRng & _rng = eo::rng)  const {(void)_rng; return repBound->uniform();}
 
   /** for memory managements - ugly */
   virtual eoRealBounds * dup() const  {return repBound->dup();}

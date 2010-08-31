@@ -190,7 +190,9 @@ public:
    *  An std::exception will be raised if one of the component is unbounded
    */
   virtual double uniform(unsigned _i, eoRng & _rng = eo::rng)
-  { 
+  {
+    (void)_rng;
+
     double r= (*this)[_i]->uniform();
     return r;
   }
@@ -403,12 +405,16 @@ public:
   // random generators
   virtual double uniform(unsigned, eoRng & _rng = eo::rng)
   {
+    (void)_rng;
+
     throw std::logic_error("No uniform distribution on eoRealVectorNoBounds");
   }
 
   // fills a std::vector with uniformly chosen variables in bounds
   void uniform(std::vector<double> &, eoRng & _rng = eo::rng)
   {
+    (void)_rng;
+
     throw std::logic_error("No uniform distribution on eoRealVectorNoBounds");
   }
 

@@ -46,7 +46,11 @@ public:
 
     eoDummyRealBoundModifier (){}
 
-    void operator() (eoRealBaseVectorBounds & _bnds,unsigned _i){}
+    void operator() (eoRealBaseVectorBounds & _bnds,unsigned _i)
+    {
+	(void)_bnds;
+	(void)_i;
+    }
 };
 
 

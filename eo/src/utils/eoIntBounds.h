@@ -176,12 +176,17 @@ public:
     throw std::logic_error("Trying to get range of unbounded eoIntBounds");
   }
 
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in unbounded eoIntBounds");
   }
-  virtual long int random(eoRng & _rng = eo::rng) const 
+
+  virtual long int random(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in unbounded eoIntBounds");
   }
 
@@ -192,8 +197,10 @@ public:
    * but reading should not be done here, because of bound problems
    * see eoIntVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoIntBounds::readFrom");
   }
 
@@ -312,8 +319,10 @@ public :
    * but reading should not be done here, because of bound problems
    * see eoIntVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoIntInterval::readFrom");
   }
 
@@ -364,12 +373,17 @@ public :
     throw std::logic_error("Trying to get range of eoIntBelowBound");
   }
 
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in eoIntBelowBound");
   }
-  virtual long int random(eoRng & _rng = eo::rng) const 
+
+  virtual long int random(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in eoIntBelowBound");
   }
 
@@ -411,8 +425,10 @@ public :
    * but reading should not be done here, because of bound problems
    * see eoIntVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoIntBelowBound::readFrom");
   }
 
@@ -462,12 +478,17 @@ public :
     throw std::logic_error("Trying to get range of eoIntAboveBound");
   }
 
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in eoIntAboveBound");
   }
-  virtual long int random(eoRng & _rng = eo::rng) const 
+
+  virtual long int random(eoRng & _rng = eo::rng) const
   {
+    (void)_rng;
+
     throw std::logic_error("Trying to generate uniform values in eoIntAboveBound");
   }
 
@@ -509,8 +530,10 @@ public :
    * but reading should not be done here, because of bound problems
    * see eoIntVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
+    (void)_is;
+
     throw std::runtime_error("Should not use eoIntAboveBound::readFrom");
   }
 
@@ -650,12 +673,12 @@ public:
   /** random generator of uniform doubles in bounds
    * @std::exception if unbounded
    */
-  virtual double uniform(eoRng & _rng = eo::rng)  const {return repBound->uniform();}
+  virtual double uniform(eoRng & _rng = eo::rng)  const {(void)_rng; return repBound->uniform();}
 
   /** random generator of uniform ints in bounds
    * @std::exception if unbounded
    */
-  virtual long int random(eoRng & _rng = eo::rng)  const {return repBound->random();}
+  virtual long int random(eoRng & _rng = eo::rng)  const {(void)_rng; return repBound->random();}
 
   /** for memory managements - ugly */
   virtual eoIntBounds * dup() const  {return repBound->dup();}

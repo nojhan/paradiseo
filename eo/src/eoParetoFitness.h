@@ -30,7 +30,7 @@
 #include <vector>
 #include <stdexcept>
 #include <iostream>
-
+#include <utils/eoLogger.h>
 
 /**
  * eoFitnessTraits: a traits class to specify 
@@ -45,7 +45,7 @@ class eoParetoFitnessTraits
 
   static unsigned nObjectives()          { return 2; }
   static double tol()               { return 1e-6; }
-  static bool maximizing(int which) { return true; } // by default: all are maximizing
+  static bool maximizing(int which) { (void)which; return true; } // by default: all are maximizing
 };
 
 /** 
@@ -62,10 +62,11 @@ public :
     // possible problems
     if ( nObj && (nObj != _n) )	   // was already set to a different value
       {
-	std::cout << "WARNING\n";
-	std::cout << "WARNING : you are changing the number of objectives\n";
-	std::cout << "WARNING : Make sure all existing objects are destroyed\n";
-	std::cout << "WARNING\n";
+	eo::log << eo::warnings;
+	eo::log << "WARNING\n";
+	eo::log << "WARNING : you are changing the number of objectives\n";
+	eo::log << "WARNING : Make sure all existing objects are destroyed\n";
+	eo::log << "WARNING\n";
       }
     nObj=_n; 
     bObj=_b;
