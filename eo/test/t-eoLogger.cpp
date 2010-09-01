@@ -14,8 +14,13 @@ int	main(int ac, char** av)
 {
     eoParserLogger	parser(ac, av);
 
-    make_help(parser);
+    if (parser.userNeedsHelp())
+	{
+	    parser.printHelp(std::cout);
+	    exit(1);
+	}
 
+    make_help(parser);
     make_verbose(parser);
 
     eo::log << eo::setlevel(eo::debug);
