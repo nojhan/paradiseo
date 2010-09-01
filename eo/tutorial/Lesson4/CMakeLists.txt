@@ -88,4 +88,12 @@ TARGET_LINK_LIBRARIES(RealEA es ga eo eoutils)
 TARGET_LINK_LIBRARIES(ESEA es ga eo eoutils)
 
 ######################################################################################
+### 6) Configure project installation paths
+######################################################################################
+
+INSTALL(TARGETS BitEA RUNTIME DESTINATION share/eo/examples/Lesson4 COMPONENT examples)
+INSTALL(TARGETS RealEA RUNTIME DESTINATION share/eo/examples/Lesson4 COMPONENT examples)
+INSTALL(TARGETS ESEA RUNTIME DESTINATION share/eo/examples/Lesson4 COMPONENT examples)
+
+######################################################################################
 

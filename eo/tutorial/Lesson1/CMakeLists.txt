@@ -54,4 +54,11 @@ TARGET_LINK_LIBRARIES(FirstRealGA ga eo eoutils)
 TARGET_LINK_LIBRARIES(exercise1.3 ga eo eoutils)
 
 ######################################################################################
+### 6) Configure project installation paths
+######################################################################################
 
+INSTALL(TARGETS FirstBitGA RUNTIME DESTINATION share/eo/examples/Lesson1 COMPONENT examples)
+INSTALL(TARGETS FirstRealGA RUNTIME DESTINATION share/eo/examples/Lesson1 COMPONENT examples)
+INSTALL(TARGETS exercise1.3 RUNTIME DESTINATION share/eo/examples/Lesson1 COMPONENT examples)
+
+######################################################################################

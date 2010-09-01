@@ -47,3 +47,10 @@ TARGET_LINK_LIBRARIES(OneMaxEA es ga eo eoutils)
 TARGET_LINK_LIBRARIES(OneMaxLibEA es ga eo eoutils)
 
 ######################################################################################
+### 6) Configure project installation paths
+######################################################################################
+
+INSTALL(TARGETS OneMaxEA RUNTIME DESTINATION share/eo/examples/Lesson5 COMPONENT examples)
+INSTALL(TARGETS OneMaxLibEA RUNTIME DESTINATION share/eo/examples/Lesson5 COMPONENT examples)
+
+######################################################################################
