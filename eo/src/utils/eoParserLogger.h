@@ -43,6 +43,7 @@ private:
     friend void	make_verbose(eoParserLogger&);
     eoValueParam<std::string>	_verbose;
     eoValueParam<bool>		_printVerboseLevels;
+    eoValueParam<std::string>	_output;
 };
 
 void	make_verbose(eoParserLogger&);

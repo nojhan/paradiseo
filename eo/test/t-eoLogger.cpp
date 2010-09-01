@@ -6,17 +6,23 @@
 #include <utils/eoLogger.h>
 #include <utils/eoParserLogger.h>
 
+#include <eo>
+
 //-----------------------------------------------------------------------------
 
 int	main(int ac, char** av)
 {
     eoParserLogger	parser(ac, av);
 
+    make_help(parser);
+
     make_verbose(parser);
 
     eo::log << eo::setlevel(eo::debug);
 
     eo::log << eo::warnings;
+
+    eo::log << "We are written on the default defined standard output" << std::endl;
 
     eo::log << eo::file("test.txt") << "In FILE" << std::endl;
     eo::log << std::cout << "In COUT" << std::endl;

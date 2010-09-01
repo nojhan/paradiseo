@@ -90,14 +90,16 @@ bool testDirRes(std::string _dirName, bool _erase=true)
   if (res)                    // no dir present
     {
       s = string("mkdir ")+ _dirName;
-      system(s.c_str());
+      int res = system(s.c_str());
+      (void)res;
       return true;
     }
   //  else
   if (_erase)			   // OK to erase
     {
       s = string("/bin/rm ")+ _dirName + "/*";
-      system(s.c_str());
+      int res = system(s.c_str());
+      (void)res;
       return true;
     }
   //else

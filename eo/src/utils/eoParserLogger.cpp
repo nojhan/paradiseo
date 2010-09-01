@@ -17,8 +17,8 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-	 Johann Dreo <johann.dreo@thalesgroup.com>
-	 Caner Candan <caner.candan@thalesgroup.com>
+Johann Dreo <johann.dreo@thalesgroup.com>
+Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
@@ -30,16 +30,44 @@ eoParserLogger::eoParserLogger(unsigned _argc, char** _argv,
 			       std::string _lFileParamName /*= "param-file"*/,
 			       char _shortHand /*= 'p'*/)
     : eoParser(_argc, _argv, _programDescription, _lFileParamName, _shortHand),
-      _verbose("quiet", "verbose", "Set the verbose level", 'v'),
-      _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l')
+    _verbose("quiet", "verbose", "Set the verbose level", 'v'),
+    _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
+    _output("", "output", "Redirect a standard output to a file", 'o')
 {
+    //------------------------------------------------------------------
+    // we are saying to eoParser to create the parameters created above.
+    //------------------------------------------------------------------
+
     processParam(_verbose);
     processParam(_printVerboseLevels);
+    processParam(_output);
 
-    if (!_printVerboseLevels.value())
-	return;
+    //------------------------------------------------------------------
 
-    eo::log.printLevels();
+
+    //------------------------------------------------------------------
+    // we're gonna redirect the log to the given filename if -o is used.
+    //------------------------------------------------------------------
+
+    if ( ! _output.value().empty() )
+	{
+	    eo::log << eo::file( _output.value() );
+	}
+
+    //------------------------------------------------------------------
+
+
+    //------------------------------------------------------------------
+    // // we're gonna print the list of levels if -l parameter is used.
+    //------------------------------------------------------------------
+
+    if ( _printVerboseLevels.value() )
+	{
+	    eo::log.printLevels();
+	}
+
+    //------------------------------------------------------------------
+
 }
 
 eoParserLogger::~eoParserLogger()
