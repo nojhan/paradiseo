@@ -1,2 +1,2 @@
-
-## Nothing to generate here
+FILE(GLOB HDRS *.h)
+INSTALL(FILES ${HDRS} DESTINATION include/eo/do COMPONENT headers)

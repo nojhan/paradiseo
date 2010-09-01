@@ -18,6 +18,10 @@ SET (EOMOO_SOURCES 	eoFrontSorter.cpp
 
 
 ADD_LIBRARY(eomoo STATIC ${EOMOO_SOURCES})
+INSTALL(TARGETS eomoo ARCHIVE DESTINATION lib COMPONENT libraries)
+
+FILE(GLOB HDRS *.h)
+INSTALL(FILES ${HDRS} DESTINATION include/eo/moo COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal
