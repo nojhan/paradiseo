@@ -38,23 +38,24 @@ public:
     /*!
       All the boxes used by a EDASA need to be given.
 
-      \param selector The EOT selector
-      \param estomator The EOT selector
+      \param selector Population Selector
+      \param estimator Distribution Estimator
       \param selectone SelectOne
-      \param modifier The D modifier
-      \param sampler The D sampler
-      \param evaluation The evaluation function.
-      \param continue The stopping criterion.
-      \param cooling_schedule The cooling schedule, describes how the temperature is modified.
+      \param modifier Distribution Modifier
+      \param sampler Distribution Sampler
+      \param pop_continue Population Continuator
+      \param distribution_continue Distribution Continuator
+      \param evaluation Evaluation function.
+      \param sa_continue Stopping criterion.
+      \param cooling_schedule Cooling schedule, describes how the temperature is modified.
       \param initial_temperature The initial temperature.
-      \param replacor The EOT replacor
+      \param replacor Population replacor
     */
     doEDASA (eoSelect< EOT > & selector,
 	     doEstimator< D > & estimator,
 	     eoSelectOne< EOT > & selectone,
 	     doModifierMass< D > & modifier,
 	     doSampler< D > & sampler,
-	     eoContinue< EOT > & monitoring_continue,
 	     eoContinue< EOT > & pop_continue,
 	     doContinue< D > & distribution_continue,
 	     eoEvalFunc < EOT > & evaluation,
@@ -68,7 +69,6 @@ public:
 	  _selectone(selectone),
 	  _modifier(modifier),
 	  _sampler(sampler),
-	  _monitoring_continue(monitoring_continue),
 	  _pop_continue(pop_continue),
 	  _distribution_continue(distribution_continue),
 	  _evaluation(evaluation),
@@ -91,7 +91,7 @@ public:
 
 	double temperature = _initial_temperature;
 
-	eoPop< EOT > current_pop = pop;
+	eoPop< EOT > current_pop;
 
 	eoPop< EOT > selected_pop;
 
@@ -111,18 +111,11 @@ public:
 
 	do
 	    {
-		if (pop != current_pop)
-		    {
-			_replacor(pop, current_pop);
-		    }
-
-		current_pop.clear();
-		selected_pop.clear();
-
-
 		//-------------------------------------------------------------
 		// (3) Selection of the best points in the population
 		//-------------------------------------------------------------
+
+		selected_pop.clear();
 
 		_selector(pop, selected_pop);
 
@@ -172,6 +165,8 @@ public:
 		// Building of the sampler in current_pop
 		//-------------------------------------------------------------
 
+		current_pop.clear();
+
 		do
 		    {
 			EOT candidate_solution = _sampler(distrib);
@@ -189,14 +184,20 @@ public:
 				current_solution = candidate_solution;
 			    }
 		    }
-		while ( _sa_continue( current_solution) );
+ 		while ( _sa_continue( current_solution) );
+
+		_replacor(pop, current_pop); // copy current_pop in pop
+
+		pop.sort();
+
+		if ( ! _cooling_schedule( temperature ) ){ eo::log << eo::debug << "_cooling_schedule" << std::endl; break; }
+
+		if ( ! _distribution_continue( distrib ) ){ eo::log << eo::debug << "_distribution_continue" << std::endl; break; }
+
+		if ( ! _pop_continue( pop ) ){ eo::log << eo::debug << "_pop_continue" << std::endl; break; }
 
 	    }
-	while ( _cooling_schedule( temperature ) &&
-		_distribution_continue( distrib ) &&
-		_pop_continue( current_pop ) &&
-		_monitoring_continue( selected_pop )
-		);
+	while ( 1 );
     }
 
 private:
@@ -215,9 +216,6 @@ private:
 
     //! A D sampler
     doSampler< D > & _sampler;
-
-    //! A EOT monitoring continuator
-    eoContinue < EOT > & _monitoring_continue;
 
     //! A EOT population continuator
     eoContinue < EOT > & _pop_continue;

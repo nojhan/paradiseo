@@ -10,6 +10,7 @@ LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 SET(RESOURCES
   eda_sa.param
   plot.py
+  plot_on_ggobi.py
   )
 
 FOREACH(file ${RESOURCES})

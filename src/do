@@ -52,3 +52,7 @@
 #include "utils/doPopStat.h"
 
 #endif // !_do_
+
+// Local Variables:
+// mode: C++
+// End:
