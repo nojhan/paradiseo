@@ -59,8 +59,8 @@ public:
 	     eoContinue< EOT > & pop_continue,
 	     doContinue< D > & distribution_continue,
 	     eoEvalFunc < EOT > & evaluation,
-	     moSolContinue < EOT > & sa_continue,
-	     moCoolingSchedule & cooling_schedule,
+	     moContinuator< moDummyNeighbor<EOT> > & sa_continue,
+	     moCoolingSchedule<EOT> & cooling_schedule,
 	     double initial_temperature,
 	     eoReplacement< EOT > & replacor
 	     )
@@ -227,10 +227,10 @@ private:
     eoEvalFunc < EOT > & _evaluation;
 
     //! Stopping criterion before temperature update
-    moSolContinue < EOT > & _sa_continue;
+    moContinuator< moDummyNeighbor<EOT> > & _sa_continue;
 
     //! The cooling schedule
-    moCoolingSchedule & _cooling_schedule;
+    moCoolingSchedule<EOT> & _cooling_schedule;
 
     //! Initial temperature
     double  _initial_temperature;
