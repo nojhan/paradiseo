@@ -75,7 +75,9 @@ public:
 	  _sa_continue(sa_continue),
 	  _cooling_schedule(cooling_schedule),
 	  _initial_temperature(initial_temperature),
-	  _replacor(replacor)
+	  _replacor(replacor),
+      _dummy_neighbor()
+
     {}
 
     //! function that launches the EDASA algorithm.
@@ -124,7 +126,7 @@ public:
 		//-------------------------------------------------------------
 
 
-		_sa_continue.init();
+		_sa_continue.init( _dummy_neighbor );
 
 
 		//-------------------------------------------------------------
@@ -256,6 +258,7 @@ private:
 
     //-------------------------------------------------------------
 
+    moDummyNeighbor<EOT> _dummy_neighbor;
 };
 
 #endif // !_doEDASA_h

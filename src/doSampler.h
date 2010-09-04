@@ -11,6 +11,7 @@
 #include <eoFunctor.h>
 
 #include "doBounder.h"
+#include "doBounderNo.h"
 
 template < typename D >
 class doSampler : public eoUF< D&, typename D::EOType >
@@ -20,6 +21,10 @@ public:
 
     doSampler(doBounder< EOType > & bounder)
 	: _bounder(bounder)
+    {}
+
+    doSampler()
+	: _bounder( _dummy_bounder )
     {}
 
     // virtual EOType operator()( D& ) = 0 (provided by eoUF< A1, R >)
@@ -60,6 +65,8 @@ public:
 private:
     //! Bounder functor
     doBounder< EOType > & _bounder;
+
+    doBounderNo<EOType> _dummy_bounder;
 };
 
 #endif // !_doSampler_h

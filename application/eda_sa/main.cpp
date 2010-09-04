@@ -124,7 +124,7 @@ int main(int ac, char** av)
 
     unsigned int popSize = parser.getORcreateParam((unsigned int)20, "popSize", "Population Size", 'P', "Evolution Engine").value();
 
-    moGenSolContinue< EOT >* sa_continue = new moGenSolContinue< EOT >( popSize );
+    moContinuator< moDummyNeighbor<EOT> >* sa_continue = new moIterContinuator< moDummyNeighbor<EOT> >( popSize );
     state.storeFunctor(sa_continue);
 
     //-----------------------------------------------------------------------------
@@ -134,10 +134,10 @@ int main(int ac, char** av)
     // SA parameters
     //-----------------------------------------------------------------------------
 
-    double threshold = parser.createParam((double)0.1, "threshold", "Threshold: temperature threshold stopping criteria", 't', section).value(); // t
-    double alpha = parser.createParam((double)0.1, "alpha", "Alpha: temperature dicrease rate", 'a', section).value(); // a
+    double threshold_temperature = parser.createParam((double)0.1, "threshold", "Minimal temperature at which stop", 't', section).value(); // t
+    double alpha = parser.createParam((double)0.1, "alpha", "Temperature decrease rate", 'a', section).value(); // a
 
-    moCoolingSchedule* cooling_schedule = new moGeometricCoolingSchedule(threshold, alpha);
+    moCoolingSchedule<EOT>* cooling_schedule = new moSimpleCoolingSchedule<EOT>(initial_temperature, alpha, 0, threshold_temperature);
     state.storeFunctor(cooling_schedule);
 
     //-----------------------------------------------------------------------------
