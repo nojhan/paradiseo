@@ -10,6 +10,7 @@
 #include <utils/eoStdoutMonitor.h>
 #include <utils/compatibility.h>
 #include <utils/eoParam.h>
+#include <eoLogger.h>
 
 using namespace std;
 
@@ -23,7 +24,7 @@ eoMonitor& eoStdoutMonitor::operator()(void)
     if (firsttime)
     {
       if (verbose)
-        cout << "First Generation" << endl;
+        eo::log << eo::progress << "First Generation" << endl;
       else
 	{
 	  for(iterator it = vec.begin(); it != vec.end(); ++it)
@@ -41,7 +42,7 @@ eoMonitor& eoStdoutMonitor::operator()(void)
 	{
 	  cout << (*it)->longName() << ": " << (*it)->getValue() << '\n';
 	}
-      cout << "\n****** End of Generation ******\n" << endl;
+      eo::log << eo::progress << "End of Generation\n" << endl;
       }
     else			// a one-liner
       {
