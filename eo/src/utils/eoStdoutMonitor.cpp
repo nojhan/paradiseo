@@ -40,9 +40,9 @@ eoMonitor& eoStdoutMonitor::operator()(void)
       {
       for(iterator it = vec.begin(); it != vec.end(); ++it)
 	{
-	  cout << (*it)->longName() << ": " << (*it)->getValue() << '\n';
+	  cout << (*it)->longName() << ": " << (*it)->getValue() << endl;
 	}
-      eo::log << eo::progress << "End of Generation\n" << endl;
+      eo::log << eo::progress << "End of Generation" << endl;
       }
     else			// a one-liner
       {
