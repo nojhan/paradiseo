@@ -18,10 +18,23 @@
  * This class uses the Uniform distribution parameters (bounds) to return
  * a random position used for population sampling.
  */
-template < typename EOT >
+template < typename EOT, class D=doUniform<EOT> >
 class doSamplerUniform : public doSampler< doUniform< EOT > >
 {
 public:
+
+    typedef D Distrib;
+    
+    doSamplerUniform(doBounder< EOT > & bounder)
+	: doSampler< doUniform<EOT> >(bounder)
+    {}
+
+    /*
+    doSamplerUniform()
+	: doSampler< doUniform<EOT> >()
+    {}
+    */
+
     EOT sample( doUniform< EOT >& distrib )
     {
 	unsigned int size = distrib.size();
