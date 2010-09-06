@@ -20,12 +20,14 @@ public:
     typedef typename D::EOType EOType;
 
     doSampler(doBounder< EOType > & bounder)
-	: _bounder(bounder)
+	: /*_dummy_bounder(),*/ _bounder(bounder)
     {}
 
+    /*
     doSampler()
-	: _bounder( _dummy_bounder )
+	: _dummy_bounder(), _bounder( _dummy_bounder )
     {}
+    */
 
     // virtual EOType operator()( D& ) = 0 (provided by eoUF< A1, R >)
 
@@ -63,10 +65,11 @@ public:
     }
 
 private:
+    //doBounderNo<EOType> _dummy_bounder;
+
     //! Bounder functor
     doBounder< EOType > & _bounder;
 
-    doBounderNo<EOType> _dummy_bounder;
 };
 
 #endif // !_doSampler_h
