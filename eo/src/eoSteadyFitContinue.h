@@ -26,6 +26,7 @@
 #define _eoSteadyFitContinue_h
 
 #include <eoContinue.h>
+#include <utils/eoLogger.h>
 
 /** 
     A continuator:  does a minimum number of generations, then
@@ -54,7 +55,7 @@ public:
    * reached withtout improvement */
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
     thisGeneration++;
-    //	  std::cout << " [" << thisGeneration << "] ";
+    
     Fitness bestCurrentFitness = _vEO.nth_element_fitness(0);
 
     if (steadyState) {	   // already after MinGenenerations
@@ -63,7 +64,7 @@ public:
 	lastImprovement = thisGeneration;
       } else {
 	if (thisGeneration - lastImprovement > repSteadyGenerations) {
-	  std::cout << "STOP in eoSteadyFitContinue: Done " << repSteadyGenerations 
+        eo::log << eo::progress << "STOP in eoSteadyFitContinue: Done " << repSteadyGenerations 
 	       << " generations without improvement\n";
 	  return false;
 	}
@@ -73,7 +74,7 @@ public:
 	steadyState = true;
 	bestSoFar = bestCurrentFitness;
 	lastImprovement = thisGeneration;
-	std::cout << "eoSteadyFitContinue: Done the minimum number of generations\n";
+    eo::log << eo::progress << "eoSteadyFitContinue: Done the minimum number of generations\n";
       }
     }
     return true;
