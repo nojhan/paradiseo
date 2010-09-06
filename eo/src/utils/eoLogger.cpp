@@ -58,7 +58,7 @@ eoLogger::eoLogger()
     addLevel("progress", eo::progress);
     addLevel("logging", eo::logging);
     addLevel("debug", eo::debug);
-    addLevel("xdebug", eo::debug);
+    addLevel("xdebug", eo::xdebug);
 }
 
 eoLogger::~eoLogger()
