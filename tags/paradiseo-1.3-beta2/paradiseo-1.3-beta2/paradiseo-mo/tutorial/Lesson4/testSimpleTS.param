@@ -1,0 +1,15 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276172081                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./testSimpleTS.status           # Status file
+
+######    Representation          ######
+# --vecSize=8                              # -V : Genotype size
+
+######    Search Parameters       ######
+# --sizeTabuList=7                         # -T : size of the tabu list
+# --timeLimit=1                            # -T : time limits
