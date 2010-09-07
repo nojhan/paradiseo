@@ -75,8 +75,7 @@ public:
 	  _sa_continue(sa_continue),
 	  _cooling_schedule(cooling_schedule),
 	  _initial_temperature(initial_temperature),
-	  _replacor(replacor),
-      _dummy_neighbor()
+	  _replacor(replacor)
 
     {}
 
@@ -126,9 +125,6 @@ public:
 		//-------------------------------------------------------------
 
 
-		_sa_continue.init( _dummy_neighbor );
-
-
 		//-------------------------------------------------------------
 		// (4) Estimation of the distribution parameters
 		//-------------------------------------------------------------
@@ -166,6 +162,8 @@ public:
 		//-------------------------------------------------------------
 		// Building of the sampler in current_pop
 		//-------------------------------------------------------------
+
+		_sa_continue.init( current_solution );
 
 		current_pop.clear();
 
@@ -239,26 +237,6 @@ private:
 
     //! A EOT replacor
     eoReplacement < EOT > & _replacor;
-
-    //-------------------------------------------------------------
-    // Temporary solution to store populations state at each
-    // iteration for plotting.
-    //-------------------------------------------------------------
-
-    // std::ofstream _ofs_params;
-    // std::ofstream _ofs_params_var;
-
-    //-------------------------------------------------------------
-
-    //-------------------------------------------------------------
-    // Temporary solution to store bounds values for each distribution.
-    //-------------------------------------------------------------
-
-    // std::string _bounds_results_destination;
-
-    //-------------------------------------------------------------
-
-    moDummyNeighbor<EOT> _dummy_neighbor;
 };
 
 #endif // !_doEDASA_h
