@@ -38,11 +38,12 @@ def logger(level_name, filename='plot.log'):
 
 def parser(parser=optparse.OptionParser()):
     parser.add_option('-v', '--verbose', choices=LEVELS.keys(), default='warning', help='set a verbose level')
-    parser.add_option('-f', '--file', help='give an input project filename', default='')
+    parser.add_option('-f', '--files', help='give some input sample files separated by comma (cf. gen1,gen2,...)', default='')
     parser.add_option('-o', '--output', help='give an output filename for logging', default='plot.log')
     parser.add_option('-d', '--dimension', help='give a dimension size', default=2)
     parser.add_option('-m', '--multiplot', action="store_true", help='plot all graphics in one window', dest="multiplot", default=True)
     parser.add_option('-p', '--plot', action="store_false", help='plot graphics separetly, one by window', dest="multiplot")
+    parser.add_option('-w', '--window', help='give the number of the window you want to display, 0 means you want to display all ones', default=0)
 
     options, args = parser.parse_args()
 
@@ -84,8 +85,14 @@ def draw3DRect(min=(0,0,0), max=(1,1,1), state=None, g=None):
 def getSortedFiles(path):
     assert path != None
 
-    filelist = os.listdir(path)
-    filelist.sort()
+    if options.files == '':
+
+        filelist = os.listdir(path)
+        filelist.sort()
+
+    else:
+
+        filelist = options.files.split(',')
 
     return filelist
 
@@ -240,8 +247,11 @@ def plot2DRectFromFiles(path, state=None, g=None, plot=True):
 
     return g
 
-def main(n):
+def main():
     gstate = []
+
+    n = int(options.dimension)
+    w = int(options.window)
 
     if options.multiplot:
         g = Gnuplot.Gnuplot()
@@ -275,18 +285,23 @@ def main(n):
             plotXYZPoint('./ResPop', state=gstate, g=g)
 
         g('unset multiplot')
+
     else:
-        if n >= 1:
+
+        if n >= 1 and w in [0, 1]:
             plotXPointYFitness('./ResPop', state=gstate)
 
-        if n >= 2:
+        if n >= 2 and w in [0, 2]:
             plotXPointYFitness('./ResPop', '4:1', state=gstate)
 
-        if n >= 2:
+        if n >= 2 and w in [0, 3]:
             plotXYPointZFitness('./ResPop', state=gstate)
 
-        if n >= 3:
+        if n >= 3 and w in [0, 4]:
             plotXYZPoint('./ResPop', state=gstate)
+
+        if n >= 2 and w in [0, 5]:
+            plotXYPoint('./ResPop', state=gstate)
 
     # if n >= 1:
     #     plotParams('./ResParams.txt', state=gstate)
@@ -306,6 +321,6 @@ def main(n):
 if __name__ == '__main__':
     logging.debug('### plotting started ###')
 
-    main(int(options.dimension))
+    main()
 
     logging.debug('### plotting ended ###')
