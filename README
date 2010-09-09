@@ -1,4 +1,4 @@
-This package contains the source code for BOPO problems.
+This package contains the source code for DO.
 
 # Step 1 - Configuration
 ------------------------
@@ -10,7 +10,7 @@ On Windows write your path with double antislash (ex: C:\\Users\\...)
 # Step 2 - Build process
 ------------------------
 ParadisEO is assumed to be compiled. To download ParadisEO, please visit http://paradiseo.gforge.inria.fr/.
-Go to the BOPO/build/ directory and lunch cmake:
+Go to the DO/build/ directory and lunch cmake:
 (Unix)       > cmake ..
 (Windows)    > cmake .. -G"Visual Studio 9 2008"
 
@@ -19,7 +19,7 @@ Note for windows users: if you don't use VisualStudio 9, enter the name of your 
 
 # Step 3 - Compilation
 ----------------------
-In the bopo/build/ directory:
+In the do/build/ directory:
 (Unix)       > make
 (Windows)    Open the VisualStudio solution and compile it, compile also the target install.
 You can refer to this tutorial if you don't know how to compile a solution: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
@@ -29,15 +29,15 @@ You can refer to this tutorial if you don't know how to compile a solution: http
 ---------------------
 A toy example is given to test the components. You can run these tests as following.
 To define problem-related components for your own problem, please refer to the tutorials available on the website : http://paradiseo.gforge.inria.fr/.
-In the bopo/build/ directory:
+In the do/build/ directory:
 (Unix)       > ctest
 Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
 
-In the directory "application", there are several directory such as p_eoco which instantiate NSGAII on BOPO problems.
+In the directory "application", there are several directory such as eda_sa which instantiate EDA-SA solver.
 
-(Unix) After compilation you can run the script "bopo/run.sh" and see results in "NSGAII.out". Parameters can be modified in the script.
+(Unix) After compilation you can run the binary "build/eda_sa" and see results. Parameters can be modified from command line.
 
-(Windows) Add argument "NSGAII.param" and execute the corresponding algorithms.
+(Windows) Add argument "eda_sa.param" and execute the corresponding algorithms.
 Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
 
 
@@ -46,7 +46,7 @@ Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/i
 The API-documentation is available in doc/html/index.html
 
 
-# Things to keep in mind when using BOPO
+# Things to keep in mind when using DO
 ----------------------------------------
 * By default, the EO random generator's seed is initialized by the number of seconds since the epoch (with time(0)). It is available in the status file dumped at each execution. Please, keep in mind that if you start two run at the same second without modifying the seed, you will get exactly the same results.
 
