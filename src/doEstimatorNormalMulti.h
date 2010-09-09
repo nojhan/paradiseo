@@ -9,7 +9,7 @@
 #define _doEstimatorNormalMulti_h
 
 #include "doEstimator.h"
-#include "doUniform.h"
+#include "doNormalMulti.h"
 
 template < typename EOT >
 class doEstimatorNormalMulti : public doEstimator< doNormalMulti< EOT > >

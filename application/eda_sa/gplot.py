@@ -39,6 +39,7 @@ def logger(level_name, filename='plot.log'):
 def parser(parser=optparse.OptionParser()):
     parser.add_option('-v', '--verbose', choices=LEVELS.keys(), default='warning', help='set a verbose level')
     parser.add_option('-f', '--files', help='give some input sample files separated by comma (cf. gen1,gen2,...)', default='')
+    parser.add_option('-r', '--respop', help='define the population results containing folder', default='./ResPop')
     parser.add_option('-o', '--output', help='give an output filename for logging', default='plot.log')
     parser.add_option('-d', '--dimension', help='give a dimension size', default=2)
     parser.add_option('-m', '--multiplot', action="store_true", help='plot all graphics in one window', dest="multiplot", default=True)
@@ -252,6 +253,7 @@ def main():
 
     n = int(options.dimension)
     w = int(options.windowid)
+    r = options.respop
 
     if options.multiplot:
         g = Gnuplot.Gnuplot()
@@ -270,56 +272,56 @@ def main():
         g('set origin 0.0, 0.5')
 
         if n >= 1:
-            plotXPointYFitness('./ResPop', state=gstate, g=g)
+            plotXPointYFitness(r, state=gstate, g=g)
 
         g('set size 0.5, 0.5')
         g('set origin 0.0, 0.0')
 
         if n >= 2:
-            plotXPointYFitness('./ResPop', '4:1', state=gstate, g=g)
+            plotXPointYFitness(r, '4:1', state=gstate, g=g)
 
         g('set size 0.5, 0.5')
         g('set origin 0.5, 0.5')
 
         if n >= 2:
-            plotXYPointZFitness('./ResPop', state=gstate, g=g)
+            plotXYPointZFitness(r, state=gstate, g=g)
 
         g('set size 0.5, 0.5')
         g('set origin 0.5, 0.0')
 
         if n >= 2:
-            plotXYPoint('./ResPop', state=gstate, g=g)
+            plotXYPoint(r, state=gstate, g=g)
         elif n >= 3:
-            plotXYZPoint('./ResPop', state=gstate, g=g)
+            plotXYZPoint(r, state=gstate, g=g)
 
         g('set nomultiplot')
 
     else:
 
         if n >= 1 and w in [0, 1]:
-            plotXPointYFitness('./ResPop', state=gstate)
+            plotXPointYFitness(r, state=gstate)
 
         if n >= 2 and w in [0, 2]:
-            plotXPointYFitness('./ResPop', '4:1', state=gstate)
+            plotXPointYFitness(r, '4:1', state=gstate)
 
         if n >= 2 and w in [0, 3]:
-            plotXYPointZFitness('./ResPop', state=gstate)
+            plotXYPointZFitness(r, state=gstate)
 
         if n >= 3 and w in [0, 4]:
-            plotXYZPoint('./ResPop', state=gstate)
+            plotXYZPoint(r, state=gstate)
 
         if n >= 2 and w in [0, 5]:
-            plotXYPoint('./ResPop', state=gstate)
+            plotXYPoint(r, state=gstate)
 
     # if n >= 1:
     #     plotParams('./ResParams.txt', state=gstate)
 
     # if n >= 2:
     #     plot2DRectFromFiles('./ResBounds', state=gstate)
-    #     plotXYPoint('./ResPop', state=gstate)
+    #     plotXYPoint(r, state=gstate)
 
     #     g = plot2DRectFromFiles('./ResBounds', state=gstate, plot=False)
-    #     plotXYPoint('./ResPop', g=g)
+    #     plotXYPoint(r, g=g)
 
     wait(prompt='Press return to end the plot.\n')
 

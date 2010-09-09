@@ -23,13 +23,24 @@
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
+FIND_PACKAGE(Boost 1.33.0)
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
+
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/application/eda_sa)
+
 SET(SOURCES
+  t-doEstimatorNormalMulti
   )
 
 FOREACH(current ${SOURCES})
   ADD_EXECUTABLE(${current} ${current}.cpp)
-  TARGET_LINK_LIBRARIES(${current} ${PROJECT_NAME} ${EO_LIBRARIES})
-  ADD_CURRENT(${current} ${current})
+  ADD_TEST(${current} ${current})
+  TARGET_LINK_LIBRARIES(${current} do doutils ${EO_LIBRARIES} ${MO_LIBRARIES} ${Boost_LIBRARIES})
+  INSTALL(TARGETS ${current} RUNTIME DESTINATION share/do/test COMPONENT test)
 ENDFOREACH()
 
 ######################################################################################
