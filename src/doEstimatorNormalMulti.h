@@ -22,13 +22,22 @@ public:
 
 	CovMatrix( const eoPop< EOT >& pop )
 	{
-	    unsigned int p_size = pop.size(); // population size
+	    //-------------------------------------------------------------
+	    // Some checks before starting to estimate covar
+	    //-------------------------------------------------------------
 
+	    unsigned int p_size = pop.size(); // population size
 	    assert(p_size > 0);
 
 	    unsigned int s_size = pop[0].size(); // solution size
-
 	    assert(s_size > 0);
+
+	    //-------------------------------------------------------------
+
+
+	    //-------------------------------------------------------------
+	    // Copy the population to an ublas matrix
+	    //-------------------------------------------------------------
 
 	    ublas::matrix< AtomType > sample( p_size, s_size );
 
@@ -39,6 +48,9 @@ public:
 			    sample(i, j) = pop[i][j];
 			}
 		}
+
+	    //-------------------------------------------------------------
+
 
 	    _varcovar.resize(s_size, s_size);
 
@@ -52,6 +64,8 @@ public:
 
 	    ublas::symmetric_matrix< AtomType, ublas::lower > var = ublas::prod( ublas::trans( sample ), sample );
 
+	    // Be sure that the symmetric matrix got the good size
+
 	    assert(var.size1() == s_size);
 	    assert(var.size2() == s_size);
 	    assert(var.size1() == _varcovar.size1());
@@ -59,6 +73,8 @@ public:
 
 	    //-------------------------------------------------------------
 
+
+	    // TODO: to remove the comment below
 
 	    // for (unsigned int i = 0; i < s_size; ++i)
 	    // 	{
@@ -72,7 +88,7 @@ public:
 
 	    _varcovar = var / p_size;
 
-	    _mean.resize(s_size);
+	    _mean.resize(s_size); // FIXME: check if it is really used because of the assignation below
 
 	    // unit vector
 	    ublas::scalar_vector< AtomType > u( p_size, 1 );
