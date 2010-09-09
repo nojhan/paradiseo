@@ -43,7 +43,7 @@ def parser(parser=optparse.OptionParser()):
     parser.add_option('-d', '--dimension', help='give a dimension size', default=2)
     parser.add_option('-m', '--multiplot', action="store_true", help='plot all graphics in one window', dest="multiplot", default=True)
     parser.add_option('-p', '--plot', action="store_false", help='plot graphics separetly, one by window', dest="multiplot")
-    parser.add_option('-w', '--window', help='give the number of the window you want to display, 0 means you want to display all ones', default=0)
+    parser.add_option('-w', '--windowid', help='give the window id you want to display, 0 means we display all ones', default=0)
 
     options, args = parser.parse_args()
 
@@ -251,10 +251,16 @@ def main():
     gstate = []
 
     n = int(options.dimension)
-    w = int(options.window)
+    w = int(options.windowid)
 
     if options.multiplot:
         g = Gnuplot.Gnuplot()
+
+        g('set parametric')
+        g('set nokey')
+        g('set noxtic')
+        g('set noytic')
+        g('set noztic')
 
         g('set size 1.0, 1.0')
         g('set origin 0.0, 0.0')
@@ -281,10 +287,12 @@ def main():
         g('set size 0.5, 0.5')
         g('set origin 0.5, 0.0')
 
-        if n >= 3:
+        if n >= 2:
+            plotXYPoint('./ResPop', state=gstate, g=g)
+        elif n >= 3:
             plotXYZPoint('./ResPop', state=gstate, g=g)
 
-        g('unset multiplot')
+        g('set nomultiplot')
 
     else:
 
