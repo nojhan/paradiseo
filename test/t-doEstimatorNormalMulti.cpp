@@ -35,6 +35,9 @@ int main(int ac, char** av)
     AtomType covar2_value = parser.createParam((AtomType)0.5, "covar2", "Covar value 2", '2', section).value();
     AtomType covar3_value = parser.createParam((AtomType)1, "covar3", "Covar value 3", '3', section).value();
 
+    std::ostringstream ss;
+    ss << p_size << "_" << mean_value << "_" << covar1_value << "_" << covar2_value << "_" << covar3_value << "_gen";
+    std::string gen_filename = ss.str();
 
     if (parser.userNeedsHelp())
 	{
@@ -103,11 +106,7 @@ int main(int ac, char** av)
 
     distrib_continue->add( *distrib_stat );
 
-    std::ostringstream ss;
-    ss << p_size << "_" << mean_value << "_" << covar1_value << "_"
-       << covar2_value << "_" << covar3_value << "_gen";
-
-    doFileSnapshot* distrib_file_snapshot = new doFileSnapshot("TestResDistrib", 1, ss.str());
+    doFileSnapshot* distrib_file_snapshot = new doFileSnapshot( "TestResDistrib", 1, gen_filename );
     state.storeFunctor(distrib_file_snapshot);
     distrib_file_snapshot->add(*distrib_stat);
     distrib_continue->add(*distrib_file_snapshot);
@@ -178,7 +177,7 @@ int main(int ac, char** av)
     state.storeFunctor(pop_stat);
     pop_continue->add(*pop_stat);
 
-    doFileSnapshot* pop_file_snapshot = new doFileSnapshot("TestResPop");
+    doFileSnapshot* pop_file_snapshot = new doFileSnapshot( "TestResPop", 1, gen_filename );
     state.storeFunctor(pop_file_snapshot);
     pop_file_snapshot->add(*pop_stat);
     pop_continue->add(*pop_file_snapshot);
