@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include <eo>
 #include <mo>
 
@@ -32,6 +34,7 @@ int main(int ac, char** av)
     AtomType covar1_value = parser.createParam((AtomType)1, "covar1", "Covar value 1", '1', section).value();
     AtomType covar2_value = parser.createParam((AtomType)0.5, "covar2", "Covar value 2", '2', section).value();
     AtomType covar3_value = parser.createParam((AtomType)1, "covar3", "Covar value 3", '3', section).value();
+
 
     if (parser.userNeedsHelp())
 	{
@@ -86,26 +89,37 @@ int main(int ac, char** av)
 
 
     //-----------------------------------------------------------------------------
-    // (3) distribution output
+    // (3a) distribution output preparation
     //-----------------------------------------------------------------------------
 
-    doDummyContinue< Distrib >* dummy_continue = new doDummyContinue< Distrib >();
-    state.storeFunctor(dummy_continue);
+    doDummyContinue< Distrib >* distrib_dummy_continue = new doDummyContinue< Distrib >();
+    state.storeFunctor(distrib_dummy_continue);
 
-    doCheckPoint< Distrib >* distribution_continue = new doCheckPoint< Distrib >( *dummy_continue );
-    state.storeFunctor(distribution_continue);
+    doCheckPoint< Distrib >* distrib_continue = new doCheckPoint< Distrib >( *distrib_dummy_continue );
+    state.storeFunctor(distrib_continue);
 
     doDistribStat< Distrib >* distrib_stat = new doStatNormalMulti< EOT >();
     state.storeFunctor(distrib_stat);
 
-    distribution_continue->add( *distrib_stat );
+    distrib_continue->add( *distrib_stat );
 
-    eoMonitor* stdout_monitor = new eoStdoutMonitor();
-    state.storeFunctor(stdout_monitor);
-    stdout_monitor->add(*distrib_stat);
-    distribution_continue->add( *stdout_monitor );
+    std::ostringstream ss;
+    ss << p_size << "_" << mean_value << "_" << covar1_value << "_"
+       << covar2_value << "_" << covar3_value << "_gen";
 
-    (*distribution_continue)( distrib );
+    doFileSnapshot* distrib_file_snapshot = new doFileSnapshot("TestResDistrib", 1, ss.str());
+    state.storeFunctor(distrib_file_snapshot);
+    distrib_file_snapshot->add(*distrib_stat);
+    distrib_continue->add(*distrib_file_snapshot);
+
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // (3b) distribution output
+    //-----------------------------------------------------------------------------
+
+    (*distrib_continue)( distrib );
 
     //-----------------------------------------------------------------------------
 
@@ -154,20 +168,20 @@ int main(int ac, char** av)
     // (5) population output
     //-----------------------------------------------------------------------------
 
-    eoContinue< EOT >* cont = new eoGenContinue< EOT >( 2 ); // never reached fitness
-    state.storeFunctor(cont);
+    eoContinue< EOT >* pop_cont = new eoGenContinue< EOT >( 2 ); // never reached fitness
+    state.storeFunctor(pop_cont);
 
-    eoCheckPoint< EOT >* pop_continue = new eoCheckPoint< EOT >( *cont );
+    eoCheckPoint< EOT >* pop_continue = new eoCheckPoint< EOT >( *pop_cont );
     state.storeFunctor(pop_continue);
 
-    doPopStat< EOT >* popStat = new doPopStat<EOT>;
-    state.storeFunctor(popStat);
-    pop_continue->add(*popStat);
+    doPopStat< EOT >* pop_stat = new doPopStat<EOT>;
+    state.storeFunctor(pop_stat);
+    pop_continue->add(*pop_stat);
 
-    doFileSnapshot* fileSnapshot = new doFileSnapshot("TestResPop");
-    state.storeFunctor(fileSnapshot);
-    fileSnapshot->add(*popStat);
-    pop_continue->add(*fileSnapshot);
+    doFileSnapshot* pop_file_snapshot = new doFileSnapshot("TestResPop");
+    state.storeFunctor(pop_file_snapshot);
+    pop_file_snapshot->add(*pop_stat);
+    pop_continue->add(*pop_file_snapshot);
 
     (*pop_continue)( pop );
 
@@ -190,7 +204,7 @@ int main(int ac, char** av)
     // (7) distribution output
     //-----------------------------------------------------------------------------
 
-    (*distribution_continue)( distrib );
+    (*distrib_continue)( distrib );
 
     //-----------------------------------------------------------------------------
 

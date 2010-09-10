@@ -44,7 +44,11 @@ def parser(parser=optparse.OptionParser()):
     parser.add_option('-d', '--dimension', help='give a dimension size', default=2)
     parser.add_option('-m', '--multiplot', action="store_true", help='plot all graphics in one window', dest="multiplot", default=True)
     parser.add_option('-p', '--plot', action="store_false", help='plot graphics separetly, one by window', dest="multiplot")
-    parser.add_option('-w', '--windowid', help='give the window id you want to display, 0 means we display all ones', default=0)
+    parser.add_option('-w', '--windowid', help='give the window id you want to display, 0 means we display all ones, this option should be combined with -p', default=0)
+    parser.add_option('-G', '--graphicsdirectory', help='give a directory name for graphics, this option should be combined with -u', default='plot')
+    parser.add_option('-g', '--graphicsprefixname', help='give a prefix name for graphics, this option should be combined with -u', default='plot')
+    parser.add_option('-t', '--terminal', action="store_true", help='display graphics on gnuplot windows', dest="terminal", default=True)
+    parser.add_option('-u', '--png', action="store_false", help='display graphics on png files', dest="terminal")
 
     options, args = parser.parse_args()
 
@@ -95,10 +99,26 @@ def getSortedFiles(path):
 
         filelist = options.files.split(',')
 
+    checkFileErrors(path, filelist)
+
     return filelist
 
+def checkFileErrors(path, filelist):
+    for filename in filelist:
+        for line in open('%s/%s' % (path, filename)):
+            if '-nan' in line:
+                logging.warning("checkFileErrors: %s/%s file contains bad value, it is going to be skipped" % (path, filename))
+                filelist.remove(filename)
+                break
+
 def plotXPointYFitness(path, fields='3:1', state=None, g=None):
-    if g == None: g = Gnuplot.Gnuplot()
+    if g == None:
+        g = Gnuplot.Gnuplot()
+
+        if not options.terminal:
+            g('set terminal png')
+            g('set output \'%s/%s_%s.png\'' % (options.graphicsdirectory, options.graphicsprefixname, 'plotXPointYFitness'))
+
     if state != None: state.append(g)
 
     g.title('Fitness observation')
@@ -114,12 +134,19 @@ def plotXPointYFitness(path, fields='3:1', state=None, g=None):
                                   )
                      )
 
-    g.plot(*files)
+    if len(files) > 0:
+        g.plot(*files)
 
     return g
 
 def plotXYPointZFitness(path, fields='4:3:1', state=None, g=None):
-    if g == None: g = Gnuplot.Gnuplot()
+    if g == None:
+        g = Gnuplot.Gnuplot()
+
+        if not options.terminal:
+            g('set terminal png')
+            g('set output \'%s/%s_%s.png\'' % (options.graphicsdirectory, options.graphicsprefixname, 'plotXYPointZFitness'))
+
     if state != None: state.append(g)
 
     g.title('Fitness observation in 3-D')
@@ -136,12 +163,19 @@ def plotXYPointZFitness(path, fields='4:3:1', state=None, g=None):
                                   )
                      )
 
-    g.splot(*files)
+    if len(files) > 0:
+        g.splot(*files)
 
     return g
 
 def plotXYPoint(path, fields='3:4', state=None, g=None):
-    if g == None: g = Gnuplot.Gnuplot()
+    if g == None:
+        g = Gnuplot.Gnuplot()
+
+        if not options.terminal:
+            g('set terminal png')
+            g('set output \'%s/%s_%s.png\'' % (options.graphicsdirectory, options.graphicsprefixname, 'plotXYPoint'))
+
     if state != None: state.append(g)
 
     g.title('Points observation in 2-D')
@@ -157,12 +191,19 @@ def plotXYPoint(path, fields='3:4', state=None, g=None):
                                   )
                      )
 
-    g.plot(*files)
+    if len(files) > 0:
+        g.plot(*files)
 
     return g
 
 def plotXYZPoint(path, fields='3:4:5', state=None, g=None):
-    if g == None: g = Gnuplot.Gnuplot()
+    if g == None:
+        g = Gnuplot.Gnuplot()
+
+        if not options.terminal:
+            g('set terminal png')
+            g('set output \'%s/%s_%s.png\'' % (options.graphicsdirectory, options.graphicsprefixname, 'plotXYZPoint'))
+
     if state != None: state.append(g)
 
     g.title('Points observation in 3-D')
@@ -179,12 +220,19 @@ def plotXYZPoint(path, fields='3:4:5', state=None, g=None):
                                   )
                      )
 
-    g.splot(*files)
+    if len(files) > 0:
+        g.splot(*files)
 
     return g
 
 def plotParams(path, field='1', state=None, g=None):
-    if g == None: g = Gnuplot.Gnuplot()
+    if g == None:
+        g = Gnuplot.Gnuplot()
+
+        if not options.terminal:
+            g('set terminal png')
+            g('set output \'%s/%s_%s.png\'' % (options.graphicsdirectory, options.graphicsprefixname, 'plotXYZPoint'))
+
     if state != None: state.append(g)
 
     g.title('Hyper-volume comparaison through all dimensions')
@@ -197,7 +245,13 @@ def plotParams(path, field='1', state=None, g=None):
     return g
 
 def plot2DRectFromFiles(path, state=None, g=None, plot=True):
-    if g == None: g = Gnuplot.Gnuplot()
+    if g == None:
+        g = Gnuplot.Gnuplot()
+
+        if not options.terminal:
+            g('set terminal png')
+            g('set output \'%s_%s.png\'' % (options.graphicsprefixname, 'plot2DRectFromFiles'))
+
     if state != None: state.append(g)
 
     g.title('Rectangle drawing observation')
@@ -255,8 +309,18 @@ def main():
     w = int(options.windowid)
     r = options.respop
 
+    if not options.terminal:
+        try:
+            os.mkdir(options.graphicsdirectory)
+        except OSError:
+            pass
+
     if options.multiplot:
         g = Gnuplot.Gnuplot()
+
+        if not options.terminal:
+            g('set terminal png')
+            g('set output \'%s/%s_%s.png\'' % (options.graphicsdirectory, options.graphicsprefixname, 'multiplot'))
 
         g('set parametric')
         g('set nokey')
@@ -323,9 +387,8 @@ def main():
     #     g = plot2DRectFromFiles('./ResBounds', state=gstate, plot=False)
     #     plotXYPoint(r, g=g)
 
-    wait(prompt='Press return to end the plot.\n')
-
-    pass
+    if options.terminal:
+        wait(prompt='Press return to end the plot.\n')
 
 # when executed, just run main():
 if __name__ == '__main__':
