@@ -1,4 +1,5 @@
 #include <sstream>
+#include <iomanip>
 
 #include <eo>
 #include <mo>
@@ -31,12 +32,14 @@ int main(int ac, char** av)
 
     AtomType mean_value = parser.createParam((AtomType)0, "mean", "Mean value", 'm', section).value(); // m
 
-    AtomType covar1_value = parser.createParam((AtomType)1, "covar1", "Covar value 1", '1', section).value();
+    AtomType covar1_value = parser.createParam((AtomType)1.0, "covar1", "Covar value 1", '1', section).value();
     AtomType covar2_value = parser.createParam((AtomType)0.5, "covar2", "Covar value 2", '2', section).value();
-    AtomType covar3_value = parser.createParam((AtomType)1, "covar3", "Covar value 3", '3', section).value();
+    AtomType covar3_value = parser.createParam((AtomType)1.0, "covar3", "Covar value 3", '3', section).value();
 
     std::ostringstream ss;
-    ss << p_size << "_" << mean_value << "_" << covar1_value << "_" << covar2_value << "_" << covar3_value << "_gen";
+    ss << p_size << "_" << fixed << setprecision(1)
+       << mean_value << "_" << covar1_value << "_" << covar2_value << "_"
+       << covar3_value << "_gen";
     std::string gen_filename = ss.str();
 
     if (parser.userNeedsHelp())
