@@ -161,8 +161,6 @@ int main(int ac, char** av)
 	    pop.push_back( candidate_solution );
 	}
 
-    // pop.sort();
-
     //-----------------------------------------------------------------------------
 
 
@@ -210,6 +208,30 @@ int main(int ac, char** av)
 
     //-----------------------------------------------------------------------------
 
+
+    //-----------------------------------------------------------------------------
+    // (8) euclidianne distance estimation
+    //-----------------------------------------------------------------------------
+
+    ublas::vector< AtomType > new_mean = distrib.mean();
+    ublas::symmetric_matrix< AtomType, ublas::lower > new_varcovar = distrib.varcovar();
+
+    AtomType distance = 0;
+
+    for ( unsigned int d = 0; d < s_size; ++d )
+	{
+	    distance += pow( mean[ d ] - new_mean[ d ], 2 );
+	}
+
+    distance = sqrt( distance );
+
+    eo::log << eo::logging
+	    << "mean: " << mean << std::endl
+	    << "new mean: " << new_mean << std::endl
+	    << "distance: " << distance << std::endl
+	;
+
+    //-----------------------------------------------------------------------------
 
     return 0;
 }
