@@ -82,7 +82,10 @@ int main(int ac, char** av)
     // (2) distribution initial parameters
     //-----------------------------------------------------------------------------
 
-    ublas::vector< AtomType > mean( s_size, mean_value );
+    ublas::vector< AtomType > mean( s_size );
+
+    for (unsigned int i = 0; i < s_size; ++i) { mean( i ) = mean_value; }
+
     ublas::symmetric_matrix< AtomType, ublas::lower > varcovar( s_size, s_size );
 
     varcovar( 0, 0 ) = covar1_value;
