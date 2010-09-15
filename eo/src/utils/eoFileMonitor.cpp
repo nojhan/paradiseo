@@ -44,11 +44,16 @@ void eoFileMonitor::printHeader()
 
 eoMonitor& eoFileMonitor::operator()(void)
 {
-    ofstream os(filename.c_str(), ios_base::app);
+    ofstream os(filename.c_str(), 
+        overwrite ? 
+            ios_base::out|ios_base::trunc // FIXME does not seems to work
+            :
+            ios_base::out|ios_base::app
+        );
 
     if (!os)
     {
-        string str = "eoFileMonitor: Could not append to " + filename;
+        string str = "eoFileMonitor: Could not write to " + filename;
         throw runtime_error(str);
     }
 

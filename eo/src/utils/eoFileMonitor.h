@@ -52,21 +52,23 @@ public :
      * @param _filename complete filename to write to
      * @param _delim delimiter string to use between each item of the registered vector (e.g. of eoStats)
      * @param _keep_existing if true, overwrite any existing file with the same name prior to any output
-     * @param _header print the header (with the descriptions of registered eoStats) at the beginning of the file
+     * @param _header print the header (with the descriptions of registered eoStats) at the beginning of the file (WARNING: true will discards header printing)
      */
     eoFileMonitor(
         std::string _filename, 
         std::string _delim = " ", 
         bool _keep_existing = false, 
-        bool _header=false
+        bool _header = false,
+        bool _overwrite = false
         )
         : filename(_filename), 
         delim(_delim), 
         keep(_keep_existing), 
         header(_header), 
-        firstcall(true) 
+        firstcall(true),
+        overwrite(_overwrite)
     {
-        if (!_keep) {
+        if (!_keep_existing) {
             std::ofstream os (filename.c_str ());
 
             if (!os) {
@@ -108,6 +110,9 @@ private :
     
     //! flag to avoid calling twice operator()(void)
     bool firstcall;
+
+    //! erase the entire file prior to writing in it (mode eos_base::
+    bool overwrite;
 };
 
 #endif
