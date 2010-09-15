@@ -25,7 +25,10 @@
 #ifndef _EOTIMECONTINUE_H
 #define _EOTIMECONTINUE_H
 
+#include <ctime>
+
 #include <eoContinue.h>
+#include <utils/eoLogger.h>
 
 /**
  * Termination condition until a running time is reached.
@@ -54,7 +57,7 @@ public:
         time_t elapsed = (time_t) difftime(time(NULL), start);
         if (elapsed >= max)
         {
-            std::cout << "STOP in eoTimeContinue: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
+            eo::log << eo::progress << "STOP in eoTimeContinue: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
             return false;
         }
         return true;
