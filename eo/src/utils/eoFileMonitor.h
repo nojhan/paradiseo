@@ -45,34 +45,69 @@ class eoFileMonitor : public eoMonitor
 {
 public :
 
-  eoFileMonitor(std::string _filename, std::string _delim = " ", bool _keep = false, bool _header=false)
-    : filename(_filename), delim(_delim), keep(_keep), header(_header), firstcall(true)
-  {
-    if (! _keep) {
-      std::ofstream os(filename.c_str());
-      if (!os){
-	std::string str = "eoFileMonitor: Could not open " + filename;
-	throw std::runtime_error(str);
-      }
+    /*! Constructor
+     *
+     * Try to create the file in writing mode, erasing it if asked.
+     *
+     * @param _filename complete filename to write to
+     * @param _delim delimiter string to use between each item of the registered vector (e.g. of eoStats)
+     * @param _keep_existing if true, overwrite any existing file with the same name prior to any output
+     * @param _header print the header (with the descriptions of registered eoStats) at the beginning of the file
+     */
+    eoFileMonitor(
+        std::string _filename, 
+        std::string _delim = " ", 
+        bool _keep_existing = false, 
+        bool _header=false
+        )
+        : filename(_filename), 
+        delim(_delim), 
+        keep(_keep_existing), 
+        header(_header), 
+        firstcall(true) 
+    {
+        if (!_keep) {
+            std::ofstream os (filename.c_str ());
+
+            if (!os) {
+                std::string str = "Error, eoFileMonitor could not open: " + filename;
+                throw std::runtime_error (str);
+            }
+        } // if ! keep
     }
-  }
 
-  virtual eoMonitor& operator()(void);
+    //! Called first, try to open the file in append mode and write the header if asked
+    virtual eoMonitor& operator()(void);
 
-  virtual eoMonitor& operator()(std::ostream& os);
+    /*! Main call, normally called at each generation. 
+    Write the content of the registered vector into the file, each item being separated by delim
+    */
+    virtual eoMonitor& operator()(std::ostream& os);
 
-  void printHeader(void);
-  virtual void printHeader(std::ostream& os);
+    //! Try to open the file, and then call printHeader(file)
+    void printHeader(void);
 
-  virtual std::string getFileName() { return filename;}
+    //! Print long names of the registered items, separated by delim.
+    virtual void printHeader(std::ostream& os);
+
+    virtual std::string getFileName() { return filename;}
 
 private :
-  std::string filename;
-  std::string delim;
-  bool keep;			   // should we append or create a new file
-  bool header;                     // printing header at begin of file?
-  bool firstcall;
 
+    //! complete filename to write to
+    std::string filename;
+
+    //! delimiter to use between each write
+    std::string delim;
+    
+    //! should we append or create a new file
+    bool keep;			   
+    
+    //! printing header at begin of file?
+    bool header;
+    
+    //! flag to avoid calling twice operator()(void)
+    bool firstcall;
 };
 
 #endif
