@@ -26,7 +26,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 #ifndef __eoEvalCounterThrowException_h__
 #define __eoEvalCounterThrowException_h__
 
-#include <eoEvalFunc.h>
+#include <eoEvalFuncCounter.h>
 #include <utils/eoParam.h>
 #include <eoExceptions.h>
 
