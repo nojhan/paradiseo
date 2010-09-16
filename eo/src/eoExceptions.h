@@ -44,7 +44,7 @@ public:
     virtual const char* what() const throw()
     {
         std::ostringstream ss;
-        ss << "STOP in eoMaxTimeException: the maximum number of seconds has been reached (" << _elapsed << ").";
+        ss << "STOP in eoMaxTimeException: the maximum number of wallclock seconds has been reached (" << _elapsed << ").";
         return ss.str().c_str();
     }
 
