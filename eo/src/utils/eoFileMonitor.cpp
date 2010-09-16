@@ -23,9 +23,10 @@ void eoFileMonitor::printHeader(std::ostream& os)
 
     for (; it != vec.end(); ++it)
     {
+        // use the longName of the eoParam for the header
         os << delim.c_str() << (*it)->longName();
     }
-    os << '\n';
+    os << std::endl;
 }
 
 void eoFileMonitor::printHeader()
@@ -35,7 +36,7 @@ void eoFileMonitor::printHeader()
 
     if (!os)
     {
-        string str = "eoFileMonitor: Could not open " + filename;
+        string str = "eoFileMonitor could not open: " + filename;
         throw runtime_error(str);
     }
     
@@ -46,20 +47,25 @@ eoMonitor& eoFileMonitor::operator()(void)
 {
     ofstream os(filename.c_str(), 
         overwrite ? 
-            ios_base::out|ios_base::trunc // FIXME does not seems to work
+            ios_base::out|ios_base::trunc // truncate
             :
-            ios_base::out|ios_base::app
+            ios_base::out|ios_base::app   // append
         );
 
     if (!os)
     {
-        string str = "eoFileMonitor: Could not write to " + filename;
+        string str = "eoFileMonitor could not write to: " + filename;
         throw runtime_error(str);
     }
 
-    if (firstcall && !keep && header ){
-      printHeader();
-      firstcall = false;
+    if (   
+            header      // we want to write headers
+        &&  firstcall   // we do not want to write headers twice
+        && !keep        // if we append to an existing file, headers are useless
+        && !overwriting // we do not want to write headers if the file is to be overwriten
+    ) {
+        printHeader();
+        firstcall = false;
     }
     
     return operator()(os);
@@ -77,7 +83,8 @@ eoMonitor& eoFileMonitor::operator()(std::ostream& os)
         os << delim.c_str() << (*it)->getValue();
     }
 
-    os << '\n';
+    os << std::endl;
+
     return *this;
 }
 
