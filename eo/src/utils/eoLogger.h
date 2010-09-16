@@ -143,8 +143,23 @@ public:
 
     virtual std::string	className() const;
 
+    //! Print the available levels on the standard output
+    void printLevels() const;
+
+    /*! Returns the selected levels, that is the one asked by the user
+     *
+     * Use this function if you want to be able to compare selected levels to a given one, like:
+     * if( eo::log.getLevelSelected() >= eo::progress ) {...}
+     */
+    eo::Levels getLevelSelected() const { return _selectedLevel; }
+    
+    /*! Returns the current level of the context
+     * the one given when you output message with the logger
+     */
+    eo::Levels getLevelContext() const { return _contextLevel; }
+
+protected:
     void	addLevel(std::string name, eo::Levels level);
-    void	printLevels() const;
 
 private:
     /**
@@ -161,7 +176,7 @@ private:
 	virtual int	overflow(int_type c);
     private:
 	const int&		_fd;
-	const eo::Levels&	_contexLevel;
+	const eo::Levels&	_contextLevel;
 	const eo::Levels&	_selectedLevel;
     };
 
@@ -197,7 +212,7 @@ private:
      * _selectedLevel is the member storing verbose level setted by the user thanks to operator()
      */
     eo::Levels	_selectedLevel;
-    eo::Levels	_contexLevel;
+    eo::Levels	_contextLevel;
 
     /**
      * _fd in storing the file descriptor at this place we can disable easily the buffer in
