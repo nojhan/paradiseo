@@ -62,7 +62,7 @@ eoMonitor& eoFileMonitor::operator()(void)
             header      // we want to write headers
         &&  firstcall   // we do not want to write headers twice
         && !keep        // if we append to an existing file, headers are useless
-        && !overwriting // we do not want to write headers if the file is to be overwriten
+        && !overwrite   // we do not want to write headers if the file is to be overwriten
     ) {
         printHeader();
         firstcall = false;
