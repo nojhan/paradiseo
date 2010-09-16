@@ -31,12 +31,17 @@ class eoEvalTimeThrowException : public eoEvalFuncCounter< EOT >
 public:
     eoEvalTimeThrowException( eoEvalFunc<EOT> & func, time_t max ) : _max(max), _start( std::time(NULL) ), eoEvalFuncCounter<EOT>( func, "Eval.") {}
 
-    virtual bool operator() (const eoPop < EOT > & _pop)
+    virtual void operator() ( EOT & eo )
     {
-        time_t elapsed = static_cast<time_t>( std::difftime( std::time(NULL) , _start ) );
+        if( eo.invalid() ) {
 
-        if( elapsed >= _max ) {
+            time_t elapsed = static_cast<time_t>( std::difftime( std::time(NULL) , _start ) );
+
+            if( elapsed >= _max ) {
                 throw eoMaxTimeException(elapsed);
+            } else {
+                func(eo);
+            }
         }
     }
 
