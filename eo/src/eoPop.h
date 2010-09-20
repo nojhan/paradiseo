@@ -181,9 +181,9 @@ public:
   }
 
   /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
+#if defined(__CUDACC__)
   eoPop<EOT>::iterator it_best_element()
   {
-#if defined(__CUDACC__)
 	eoPop<EOT>:: iterator it = std::max_element(begin(), end());
 #else
 	typename eoPop<EOT>::iterator it_best_element() {
@@ -207,20 +207,21 @@ public:
   const EOT & worse_element() const
   {
 #if defined(__CUDACC__)
-    eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
+      eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
 #else
-	typename eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
+	  typename eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
 #endif
     return (*it);
   }
 
   /** returns an iterator to the worse individual DOES NOT MOVE ANYBODY */
-	eoPop<EOT>::iterator it_worse_element()
-	{
 #if defined(__CUDACC__)
+  eoPop<EOT>::iterator it_worse_element()
+  {
       eoPop<EOT>::iterator it = std::min_element(begin(), end());
 #else
-	  typename eoPop<EOT>::iterator it_worse_element() {
+  typename eoPop<EOT>::iterator it_worse_element() 
+  {
 	  typename eoPop<EOT>::iterator it = std::min_element(begin(), end());
 #endif
     return it;
@@ -230,12 +231,13 @@ public:
   slightly faster algorithm than sort to find all individuals that are better
   than the nth individual. INDIVIDUALS ARE MOVED AROUND in the pop.
   */
-	eoPop<EOT>::iterator nth_element(int nth)
-	{
-#if defined(__CUDACC__)
-	  eoPop<EOT>::iterator it = begin() + nth;
+#if defined(__CUDACC__)  
+  eoPop<EOT>::iterator nth_element(int nth)
+  {
+      eoPop<EOT>::iterator it = begin() + nth;
 #else
-	  typename eoPop<EOT>::iterator nth_element(int nth) {
+  typename eoPop<EOT>::iterator nth_element(int nth) 
+  {
 	  typename eoPop<EOT>::iterator it = begin() + nth;
 #endif
       std::nth_element(begin(), it, end(), std::greater<EOT>());
