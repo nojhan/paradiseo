@@ -159,6 +159,18 @@ void main_function(int argc, char **argv)
     // Initial Solution of the random neutral walk
     Indi initialSol(vecSize, false);
 
+    //          nearly 2 blocks are complete
+    for (unsigned i = 0; i < blockSize - 1; i++) {
+        initialSol[i] = true;
+        initialSol[blockSize + i] = true;
+        initialSol[2 * blockSize + i] = true;
+    }
+    //          first block is complete
+    initialSol[blockSize - 1] = true;
+
+    //          evaluation of the initial solution
+    fullEval(initialSol);
+
     // Hamming distance
     eoHammingDistance<Indi> distance;
 
@@ -175,17 +187,6 @@ void main_function(int argc, char **argv)
      * execute the sampling
      *
      * ========================================================= */
-
-    // nearly 2 blocks are complete
-    for (unsigned i = 0; i < blockSize - 1; i++) {
-        initialSol[i] = true;
-        initialSol[blockSize + i] = true;
-        initialSol[2 * blockSize + i] = true;
-    }
-    // first block is complete
-    initialSol[blockSize - 1] = true;
-
-    fullEval(initialSol);
 
     std::cout << "Initial Solution: " << initialSol << std::endl;
 
