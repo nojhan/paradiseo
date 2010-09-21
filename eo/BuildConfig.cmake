@@ -2,7 +2,7 @@
 
 #SET(CMAKE_DEFAULT_BUILD_TYPE "Release" CACHE STRING "Variable that stores the default CMake build type" FORCE)
 
-SET(CMAKE_BUILD_TYPE Debug) # allows to enable assert calls and -g flag
+#SET(CMAKE_BUILD_TYPE Debug) # allows to enable assert calls and -g flag
 
 FIND_PROGRAM(MEMORYCHECK_COMMAND
   NAMES purify valgrind
@@ -34,7 +34,7 @@ ELSE(WIN32 AND NOT CYGWIN)
   IF(CMAKE_COMPILER_IS_GNUCXX)
       #    SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra -Wno-unused-parameter")
       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -Wall -Wextra -Wno-unused-parameter")
-    SET(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -O2")
+    SET(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -O3")
     SET(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} -O6")
   ENDIF(CMAKE_COMPILER_IS_GNUCXX)
 ENDIF(WIN32 AND NOT CYGWIN)
