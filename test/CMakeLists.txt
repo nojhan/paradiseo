@@ -34,6 +34,7 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/application/eda_sa)
 
 SET(SOURCES
   t-doEstimatorNormalMulti
+  t-mean-distance
   )
 
 FOREACH(current ${SOURCES})
