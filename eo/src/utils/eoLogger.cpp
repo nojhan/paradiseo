@@ -43,8 +43,8 @@ eoLogger	eo::log;
 
 eoLogger::eoLogger()
     : std::ostream(&_obuf),
-      _selectedLevel(eo::progress), _contexLevel(eo::quiet),
-      _fd(2), _obuf(_fd, _contexLevel, _selectedLevel)
+      _selectedLevel(eo::progress), _contextLevel(eo::quiet),
+      _fd(2), _obuf(_fd, _contextLevel, _selectedLevel)
 {
     _standard_io_streams[&std::cout] = 1;
     _standard_io_streams[&std::clog] = 2;
@@ -90,7 +90,7 @@ void	eoLogger::printLevels() const
 
 eoLogger&	operator<<(eoLogger& l, const eo::Levels lvl)
 {
-    l._contexLevel = lvl;
+    l._contextLevel = lvl;
     return l;
 }
 
@@ -118,12 +118,12 @@ eoLogger&	operator<<(eoLogger& l, std::ostream& os)
 eoLogger::outbuf::outbuf(const int& fd,
 			 const eo::Levels& contexlvl,
 			 const eo::Levels& selectedlvl)
-    : _fd(fd), _contexLevel(contexlvl), _selectedLevel(selectedlvl)
+    : _fd(fd), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
 {}
 
 int	eoLogger::outbuf::overflow(int_type c)
 {
-    if (_selectedLevel >= _contexLevel)
+    if (_selectedLevel >= _contextLevel)
       {
 	if (_fd >= 0 && c != EOF)
 	  {
