@@ -1,0 +1,7 @@
+--rho=0				# -p : <etropolis sample size
+--alpha=0			# -a : Temperature dicrease rate
+--threshold=0.1			# -t : Temperature threshold stopping criteria
+--sample-size=10		# -P : Sample size
+--dimension-size=10		# -d : Dimension size
+--temperature=100		# -T : Initial temperature
+#--verbose			# Enable verbose mode

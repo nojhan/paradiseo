@@ -1,4 +1,4 @@
-PROJECT(eda_sa)
+PROJECT(eda)
 
 FIND_PACKAGE(Boost 1.33.0)
 

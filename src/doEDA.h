@@ -5,8 +5,8 @@
              Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#ifndef _doEDASA_h
-#define _doEDASA_h
+#ifndef _doEDA_h
+#define _doEDA_h
 
 #include <eo>
 #include <mo>
@@ -20,7 +20,7 @@
 #include "doContinue.h"
 
 template < typename D >
-class doEDASA : public doAlgo< D >
+class doEDA : public doAlgo< D >
 {
 public:
     //! Alias for the type EOT
@@ -34,7 +34,7 @@ public:
 
 public:
 
-    //! doEDASA constructor
+    //! doEDA constructor
     /*!
       All the boxes used by a EDASA need to be given.
 
@@ -51,19 +51,19 @@ public:
       \param initial_temperature The initial temperature.
       \param replacor Population replacor
     */
-    doEDASA (eoSelect< EOT > & selector,
-	     doEstimator< D > & estimator,
-	     eoSelectOne< EOT > & selectone,
-	     doModifierMass< D > & modifier,
-	     doSampler< D > & sampler,
-	     eoContinue< EOT > & pop_continue,
-	     doContinue< D > & distribution_continue,
-	     eoEvalFunc < EOT > & evaluation,
-	     moContinuator< moDummyNeighbor<EOT> > & sa_continue,
-	     moCoolingSchedule<EOT> & cooling_schedule,
-	     double initial_temperature,
-	     eoReplacement< EOT > & replacor
-	     )
+    doEDA (eoSelect< EOT > & selector,
+	   doEstimator< D > & estimator,
+	   eoSelectOne< EOT > & selectone,
+	   doModifierMass< D > & modifier,
+	   doSampler< D > & sampler,
+	   eoContinue< EOT > & pop_continue,
+	   doContinue< D > & distribution_continue,
+	   eoEvalFunc < EOT > & evaluation,
+	   //moContinuator< moDummyNeighbor<EOT> > & sa_continue,
+	   //moCoolingSchedule<EOT> & cooling_schedule,
+	   //double initial_temperature,
+	   eoReplacement< EOT > & replacor
+	   )
 	: _selector(selector),
 	  _estimator(estimator),
 	  _selectone(selectone),
@@ -72,9 +72,9 @@ public:
 	  _pop_continue(pop_continue),
 	  _distribution_continue(distribution_continue),
 	  _evaluation(evaluation),
-	  _sa_continue(sa_continue),
-	  _cooling_schedule(cooling_schedule),
-	  _initial_temperature(initial_temperature),
+	  //_sa_continue(sa_continue),
+	  //_cooling_schedule(cooling_schedule),
+	  //_initial_temperature(initial_temperature),
 	  _replacor(replacor)
 
     {}
@@ -90,7 +90,7 @@ public:
     {
         assert(pop.size() > 0);
 
-	double temperature = _initial_temperature;
+	//double temperature = _initial_temperature;
 
 	eoPop< EOT > current_pop;
 
@@ -172,24 +172,26 @@ public:
 		// Building of the sampler in current_pop
 		//-------------------------------------------------------------
 
-		_sa_continue.init( current_solution );
+		//_sa_continue.init( current_solution );
 
 		current_pop.clear();
 
-		do
+		for ( unsigned int i = 0; i < pop.size(); ++i )
+		//do
 		    {
 			EOT candidate_solution = _sampler(distrib);
 			_evaluation( candidate_solution );
 
 			// TODO: verifier le critere d'acceptation
-			if ( candidate_solution.fitness() < current_solution.fitness() ||
-			     rng.uniform() < exp( ::fabs(candidate_solution.fitness() - current_solution.fitness()) / temperature ) )
+			if ( candidate_solution.fitness() < current_solution.fitness()
+			     // || rng.uniform() < exp( ::fabs(candidate_solution.fitness() - current_solution.fitness()) / temperature )
+			     )
 			    {
 				current_pop.push_back(candidate_solution);
 				current_solution = candidate_solution;
 			    }
 		    }
- 		while ( _sa_continue( current_solution ) );
+ 		//while ( _sa_continue( current_solution) );
 
 		//-------------------------------------------------------------
 
@@ -198,7 +200,7 @@ public:
 
 		pop.sort();
 
-		if ( ! _cooling_schedule( temperature ) ){ eo::log << eo::debug << "_cooling_schedule" << std::endl; break; }
+		//if ( ! _cooling_schedule( temperature ) ){ eo::log << eo::debug << "_cooling_schedule" << std::endl; break; }
 
 		if ( ! _distribution_continue( distrib ) ){ eo::log << eo::debug << "_distribution_continue" << std::endl; break; }
 
@@ -235,16 +237,16 @@ private:
     eoEvalFunc < EOT > & _evaluation;
 
     //! Stopping criterion before temperature update
-    moContinuator< moDummyNeighbor<EOT> > & _sa_continue;
+    //moContinuator< moDummyNeighbor<EOT> > & _sa_continue;
 
     //! The cooling schedule
-    moCoolingSchedule<EOT> & _cooling_schedule;
+    //moCoolingSchedule<EOT> & _cooling_schedule;
 
     //! Initial temperature
-    double  _initial_temperature;
+    //double  _initial_temperature;
 
     //! A EOT replacor
     eoReplacement < EOT > & _replacor;
 };
 
-#endif // !_doEDASA_h
+#endif // !_doEDA_h

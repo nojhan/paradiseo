@@ -31,13 +31,13 @@ int main(int ac, char** av)
     std::string	section("Algorithm parameters");
 
     // FIXME: default value to check
-    double initial_temperature = parser.createParam((double)10e5, "temperature", "Initial temperature", 'i', section).value(); // i
+    //double initial_temperature = parser.createParam((double)10e5, "temperature", "Initial temperature", 'i', section).value(); // i
 
     eoState state;
 
 
     //-----------------------------------------------------------------------------
-    // Instantiate all needed parameters for EDASA algorithm
+    // Instantiate all needed parameters for EDA algorithm
     //-----------------------------------------------------------------------------
 
     double selection_rate = parser.createParam((double)0.5, "selection_rate", "Selection Rate", 'R', section).value(); // R
@@ -122,10 +122,10 @@ int main(int ac, char** av)
     // Metropolis sample parameters
     //-----------------------------------------------------------------------------
 
-    unsigned int popSize = parser.getORcreateParam((unsigned int)20, "popSize", "Population Size", 'P', "Evolution Engine").value();
+    //unsigned int popSize = parser.getORcreateParam((unsigned int)20, "popSize", "Population Size", 'P', "Evolution Engine").value();
 
-    moContinuator< moDummyNeighbor<EOT> >* sa_continue = new moIterContinuator< moDummyNeighbor<EOT> >( popSize );
-    state.storeFunctor(sa_continue);
+    //moContinuator< moDummyNeighbor<EOT> >* sa_continue = new moIterContinuator< moDummyNeighbor<EOT> >( popSize );
+    //state.storeFunctor(sa_continue);
 
     //-----------------------------------------------------------------------------
 
@@ -134,11 +134,11 @@ int main(int ac, char** av)
     // SA parameters
     //-----------------------------------------------------------------------------
 
-    double threshold_temperature = parser.createParam((double)0.1, "threshold", "Minimal temperature at which stop", 't', section).value(); // t
-    double alpha = parser.createParam((double)0.1, "alpha", "Temperature decrease rate", 'a', section).value(); // a
+    //double threshold_temperature = parser.createParam((double)0.1, "threshold", "Minimal temperature at which stop", 't', section).value(); // t
+    //double alpha = parser.createParam((double)0.1, "alpha", "Temperature decrease rate", 'a', section).value(); // a
 
-    moCoolingSchedule<EOT>* cooling_schedule = new moSimpleCoolingSchedule<EOT>(initial_temperature, alpha, 0, threshold_temperature);
-    state.storeFunctor(cooling_schedule);
+    //moCoolingSchedule<EOT>* cooling_schedule = new moSimpleCoolingSchedule<EOT>(initial_temperature, alpha, 0, threshold_temperature);
+    //state.storeFunctor(cooling_schedule);
 
     //-----------------------------------------------------------------------------
 
@@ -163,7 +163,7 @@ int main(int ac, char** av)
     state.storeFunctor(popStat);
     pop_continue.add(*popStat);
 
-    doFileSnapshot* fileSnapshot = new doFileSnapshot("EDASA_ResPop");
+    doFileSnapshot* fileSnapshot = new doFileSnapshot("EDA_ResPop");
     state.storeFunctor(fileSnapshot);
     fileSnapshot->add(*popStat);
     pop_continue.add(*fileSnapshot);
@@ -191,7 +191,7 @@ int main(int ac, char** av)
     // stdout_monitor->add(*distrib_stat);
     // distribution_continue->add( *stdout_monitor );
 
-    eoFileMonitor* file_monitor = new eoFileMonitor("eda_sa_distribution_bounds.txt");
+    eoFileMonitor* file_monitor = new eoFileMonitor("eda_distribution_bounds.txt");
     state.storeFunctor(file_monitor);
     file_monitor->add(*distrib_stat);
     distribution_continue->add( *file_monitor );
@@ -216,14 +216,15 @@ int main(int ac, char** av)
 
 
     //-----------------------------------------------------------------------------
-    // EDASA algorithm configuration
+    // EDA algorithm configuration
     //-----------------------------------------------------------------------------
 
-    doAlgo< Distrib >* algo = new doEDASA< Distrib >
+    doAlgo< Distrib >* algo = new doEDA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
 	 pop_continue, *distribution_continue,
-	 eval, *sa_continue, *cooling_schedule,
-    	 initial_temperature, *replacor);
+	 eval,
+	 //*sa_continue, *cooling_schedule, initial_temperature,
+	 *replacor);
 
     //-----------------------------------------------------------------------------
 
