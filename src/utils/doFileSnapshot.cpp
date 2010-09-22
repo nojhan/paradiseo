@@ -39,10 +39,12 @@ doFileSnapshot::doFileSnapshot(std::string dirname,
 			       std::string filename /*= "gen"*/,
 			       std::string delim /*= " "*/,
 			       unsigned int counter /*= 0*/,
-			       bool rmFiles /*= true*/)
+			       bool rmFiles /*= true*/,
+			       bool saveFilenames /*= true*/)
     : _dirname(dirname), _frequency(frequency),
       _filename(filename), _delim(delim),
-      _counter(counter), _boolChanged(true)
+      _counter(counter), _saveFilenames(saveFilenames),
+      _descOfFiles( NULL ), _boolChanged(true)
 {
     std::string s = "test -d " + _dirname;
 
@@ -72,8 +74,15 @@ doFileSnapshot::doFileSnapshot(std::string dirname,
     int dummy;
     dummy = system(s.c_str());
     // all done
+
+    _descOfFiles = new std::ofstream( std::string(dirname + "/list_of_files.txt").c_str() );
+
 }
 
+doFileSnapshot::~doFileSnapshot()
+{
+    delete _descOfFiles;
+}
 
 void doFileSnapshot::setCurrentFileName()
 {
@@ -93,12 +102,18 @@ eoMonitor& doFileSnapshot::operator()(void)
     _counter++;
     _boolChanged = true;
     setCurrentFileName();
+
     std::ofstream os(_currentFileName.c_str());
 
     if (!os)
 	{
 	    std::string str = "doFileSnapshot: Could not open " + _currentFileName;
 	    throw std::runtime_error(str);
+	}
+
+    if ( _saveFilenames )
+	{
+	    *_descOfFiles << _currentFileName.c_str() << std::endl;
 	}
 
     return operator()(os);

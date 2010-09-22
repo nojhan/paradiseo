@@ -42,7 +42,10 @@ public:
 		   std::string filename = "gen",
 		   std::string delim = " ",
 		   unsigned int counter = 0,
-		   bool rmFiles = true);
+		   bool rmFiles = true,
+		   bool saveFilenames = true);
+
+    virtual ~doFileSnapshot();
 
     virtual bool hasChanged() {return _boolChanged;}
     virtual std::string getDirName() { return _dirname; }
@@ -63,6 +66,8 @@ private :
     std::string _delim;
     std::string _currentFileName;
     unsigned int _counter;
+    bool _saveFilenames;
+    std::ofstream* _descOfFiles;
     bool _boolChanged;
 };
 

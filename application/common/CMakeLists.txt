@@ -3,6 +3,7 @@ PROJECT(common)
 SET(RESOURCES
   gplot.py
   ggobi.py
+  boxplot_eda_n_edasa.py
   )
 
 FOREACH(file ${RESOURCES})

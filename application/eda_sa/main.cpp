@@ -159,15 +159,6 @@ int main(int ac, char** av)
 
     eoCheckPoint< EOT >& pop_continue = do_make_checkpoint(parser, state, eval, eo_continue);
 
-    doPopStat< EOT >* popStat = new doPopStat<EOT>;
-    state.storeFunctor(popStat);
-    pop_continue.add(*popStat);
-
-    doFileSnapshot* fileSnapshot = new doFileSnapshot("EDASA_ResPop");
-    state.storeFunctor(fileSnapshot);
-    fileSnapshot->add(*popStat);
-    pop_continue.add(*fileSnapshot);
-
     //-----------------------------------------------------------------------------
 
 
@@ -180,21 +171,6 @@ int main(int ac, char** av)
 
     doCheckPoint< Distrib >* distribution_continue = new doCheckPoint< Distrib >( *dummy_continue );
     state.storeFunctor(distribution_continue);
-
-    doDistribStat< Distrib >* distrib_stat = new doStatNormalMulti< EOT >();
-    state.storeFunctor(distrib_stat);
-
-    distribution_continue->add( *distrib_stat );
-
-    // eoMonitor* stdout_monitor = new eoStdoutMonitor();
-    // state.storeFunctor(stdout_monitor);
-    // stdout_monitor->add(*distrib_stat);
-    // distribution_continue->add( *stdout_monitor );
-
-    eoFileMonitor* file_monitor = new eoFileMonitor("eda_sa_distribution_bounds.txt");
-    state.storeFunctor(file_monitor);
-    file_monitor->add(*distrib_stat);
-    distribution_continue->add( *file_monitor );
 
     //-----------------------------------------------------------------------------
 
@@ -216,19 +192,8 @@ int main(int ac, char** av)
 
 
     //-----------------------------------------------------------------------------
-    // EDASA algorithm configuration
+    // Some stuff to display helper when we are using -h option
     //-----------------------------------------------------------------------------
-
-    doAlgo< Distrib >* algo = new doEDASA< Distrib >
-    	(*selector, *estimator, *selectone, *modifier, *sampler,
-	 pop_continue, *distribution_continue,
-	 eval, *sa_continue, *cooling_schedule,
-    	 initial_temperature, *replacor);
-
-    //-----------------------------------------------------------------------------
-
-
-    // state.storeFunctor(algo);
 
     if (parser.userNeedsHelp())
 	{
@@ -240,6 +205,62 @@ int main(int ac, char** av)
 
     make_verbose(parser);
     make_help(parser);
+
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // population output (after helper)
+    //
+    // FIXME: theses objects are instanciate there in order to avoid a folder
+    // removing as doFileSnapshot does within ctor.
+    //-----------------------------------------------------------------------------
+
+    doPopStat< EOT >* popStat = new doPopStat<EOT>;
+    state.storeFunctor(popStat);
+    pop_continue.add(*popStat);
+
+    doFileSnapshot* fileSnapshot = new doFileSnapshot("EDASA_ResPop");
+    state.storeFunctor(fileSnapshot);
+    fileSnapshot->add(*popStat);
+    pop_continue.add(*fileSnapshot);
+
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // distribution output (after helper)
+    //-----------------------------------------------------------------------------
+
+    doDistribStat< Distrib >* distrib_stat = new doStatNormalMulti< EOT >();
+    state.storeFunctor(distrib_stat);
+
+    distribution_continue->add( *distrib_stat );
+
+    // eoMonitor* stdout_monitor = new eoStdoutMonitor();
+    // state.storeFunctor(stdout_monitor);
+    // stdout_monitor->add(*distrib_stat);
+    // distribution_continue->add( *stdout_monitor );
+
+    eoFileMonitor* file_monitor = new eoFileMonitor("eda_sa_distribution_bounds.txt");
+    state.storeFunctor(file_monitor);
+    file_monitor->add(*distrib_stat);
+    distribution_continue->add( *file_monitor );
+
+    //-----------------------------------------------------------------------------
+
+
+    //-----------------------------------------------------------------------------
+    // EDASA algorithm configuration
+    //-----------------------------------------------------------------------------
+
+    doAlgo< Distrib >* algo = new doEDASA< Distrib >
+    	(*selector, *estimator, *selectone, *modifier, *sampler,
+	 pop_continue, *distribution_continue,
+	 eval, *sa_continue, *cooling_schedule,
+    	 initial_temperature, *replacor);
+
+    //-----------------------------------------------------------------------------
 
 
     //-----------------------------------------------------------------------------
