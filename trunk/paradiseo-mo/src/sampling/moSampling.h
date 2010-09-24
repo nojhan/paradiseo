@@ -30,7 +30,7 @@
 
   ParadisEO WebSite : http://paradiseo.gforge.inria.fr
   Contact: paradiseo-help@lists.gforge.inria.fr
-*/
+ */
 
 #ifndef moSampling_h
 #define moSampling_h
@@ -38,6 +38,8 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <sstream>
+#include <cstdlib>
 #include <eoFunctor.h>
 #include <utils/eoMonitor.h>
 #include <continuator/moStat.h>
@@ -58,150 +60,159 @@ template <class Neighbor>
 class moSampling : public eoF<void>
 {
 public:
-    typedef typename Neighbor::EOT EOT ;
+	typedef typename Neighbor::EOT EOT ;
 
-    /**
-     * Constructor
-     * @param _init initialisation method of the solution
-     * @param _localSearch  local search to sample the search space
-     * @param _stat statistic to compute during the search
-     * @param _monitoring the statistic is saved into the monitor if true
-     */
-    template <class ValueType>
-    moSampling(eoInit<EOT> & _init, moLocalSearch<Neighbor> & _localSearch, moStat<EOT,ValueType> & _stat, bool _monitoring = true) : init(_init), localSearch(&_localSearch), continuator(_localSearch.getContinuator())
-    {
-        checkpoint = new moCheckpoint<Neighbor>(*continuator);
-        add(_stat, _monitoring);
-    }
+	/**
+	 * Constructor
+	 * @param _init initialisation method of the solution
+	 * @param _localSearch  local search to sample the search space
+	 * @param _stat statistic to compute during the search
+	 * @param _monitoring the statistic is saved into the monitor if true
+	 */
+	template <class ValueType>
+	moSampling(eoInit<EOT> & _init, moLocalSearch<Neighbor> & _localSearch, moStat<EOT,ValueType> & _stat, bool _monitoring = true) : init(_init), localSearch(&_localSearch), continuator(_localSearch.getContinuator())
+	{
+		checkpoint = new moCheckpoint<Neighbor>(*continuator);
+		add(_stat, _monitoring);
+	}
 
-    /**
-     * default destructor
-     */
-    ~moSampling() {
-        // delete all monitors
-        for (unsigned i = 0; i < monitorVec.size(); i++)
-            delete monitorVec[i];
+	/**
+	 * default destructor
+	 */
+	~moSampling() {
+		// delete all monitors
+		for (unsigned i = 0; i < monitorVec.size(); i++)
+			delete monitorVec[i];
 
-        // delete the checkpoint
-        delete checkpoint ;
-    }
+		// delete the checkpoint
+		delete checkpoint ;
+	}
 
-    /**
-     * Add a statistic
-     * @param _stat another statistic to compute during the search
-     * @param _monitoring the statistic is saved into the monitor if true
-     */
-    template< class ValueType >
-    void add(moStat<EOT, ValueType> & _stat, bool _monitoring = true) {
-        checkpoint->add(_stat);
+	/**
+	 * Add a statistic
+	 * @param _stat another statistic to compute during the search
+	 * @param _monitoring the statistic is saved into the monitor if true
+	 */
+	template< class ValueType >
+	void add(moStat<EOT, ValueType> & _stat, bool _monitoring = true) {
+		checkpoint->add(_stat);
 
-        if (_monitoring) {
-            moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat);
-            monitorVec.push_back(monitor);
-            checkpoint->add(*monitor);
-        }
-    }
+		if (_monitoring) {
+			moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat);
+			monitorVec.push_back(monitor);
+			checkpoint->add(*monitor);
+		}
+	}
 
-    /**
-     * To sample the search and get the statistics which are stored in the moVectorMonitor vector
-     */
-    void operator()(void) {
-        // clear all statistic vectors
-        for (unsigned i = 0; i < monitorVec.size(); i++)
-            monitorVec[i]->clear();
+	/**
+	 * To sample the search and get the statistics which are stored in the moVectorMonitor vector
+	 */
+	void operator()(void) {
+		// clear all statistic vectors
+		for (unsigned i = 0; i < monitorVec.size(); i++)
+			monitorVec[i]->clear();
 
-        // change the checkpoint to compute the statistics
-        localSearch->setContinuator(*checkpoint);
+		// change the checkpoint to compute the statistics
+		localSearch->setContinuator(*checkpoint);
 
-        // the initial solution
-        EOT solution;
+		// the initial solution
+		EOT solution;
 
-        // initialisation of the solution
-        init(solution);
+		// initialisation of the solution
+		init(solution);
 
-        // compute the sampling
-        (*localSearch)(solution);
+		// compute the sampling
+		(*localSearch)(solution);
 
-        // set back to initial continuator
-        localSearch->setContinuator(*continuator);
-    }
+		// set back to initial continuator
+		localSearch->setContinuator(*continuator);
+	}
 
-    /**
-     * to export the vectors of values into one file
-     * @param _filename file name
-     * @param _delim delimiter between statistics
-     */
-    void fileExport(std::string _filename, std::string _delim = " ") {
-        // create file
-        std::ofstream os(_filename.c_str());
+	/**
+	 * to export the vectors of values into one file
+	 * @param _filename file name
+	 * @param _delim delimiter between statistics
+	 * @param _openFile to specify if it writes at the following of the file
+	 */
+	void fileExport(std::string _filename, std::string _delim = " ", bool _openFile=false) {
+		// create file
+		std::ofstream os;
 
-        if (!os) {
-            std::string str = "moSampling: Could not open " + _filename;
-            throw std::runtime_error(str);
-        }
+		if(! _openFile)
+			os.open(_filename.c_str());
 
-        // all vector have the same size
-        unsigned vecSize = monitorVec[0]->size();
+		else
+			os.open(_filename.c_str(),std::ios::app);
 
-        for (unsigned int i = 0; i < vecSize; i++) {
-            os << monitorVec[0]->getValue(i);
+		if (!os) {
+			std::string str = "moSampling: Could not open " + _filename;
+			throw std::runtime_error(str);
+		}
 
-            for (unsigned int j = 1; j < monitorVec.size(); j++) {
-                os << _delim.c_str() << monitorVec[j]->getValue(i);
-            }
+		// all vector have the same size
+		unsigned vecSize = monitorVec[0]->size();
 
-            os << std::endl ;
-        }
+		for (unsigned int i = 0; i < vecSize; i++) {
+			os << monitorVec[0]->getValue(i);
 
-    }
+			for (unsigned int j = 1; j < monitorVec.size(); j++) {
+				os << _delim.c_str() << monitorVec[j]->getValue(i);
+			}
 
-    /**
-     * to export one vector of values into a file
-     * @param _col number of vector to print into file
-     * @param _filename file name
-     */
-    void fileExport(unsigned int _col, std::string _filename) {
-        if (_col >= monitorVec.size()) {
-            std::string str = "moSampling: Could not export into file the vector. The index does not exists (too large)";
-            throw std::runtime_error(str);
-        }
+			os << std::endl ;
+		}
 
-        monitorVec[_col]->fileExport(_filename);
-    }
+	}
 
-    /**
-     * to get one vector of values
-     * @param _numStat number of statistics to get (in the order of creation)
-     * @return the vector of value (all values are converted in double)
-     */
-    const std::vector<double> & getValues(unsigned int _numStat) {
-        return monitorVec[_numStat]->getValues();
-    }
+	/**
+	 * to export one vector of values into a file
+	 * @param _col number of vector to print into file
+	 * @param _filename file name
+	 * @param _openFile to specify if it writes at the following of the file
+	 */
+	void fileExport(unsigned int _col, std::string _filename, bool _openFile=false) {
+		if (_col >= monitorVec.size()) {
+			std::string str = "moSampling: Could not export into file the vector. The index does not exists (too large)";
+			throw std::runtime_error(str);
+		}
 
-    /**
-     * to get one vector of solutions values
-     * @param _numStat number of statistics to get (in the order of creation)
-     * @return the vector of value (all values are converted in double)
-     */
-    const std::vector<EOT> & getSolutions(unsigned int _numStat) {
-        return monitorVec[_numStat]->getSolutions();
-    }
+		monitorVec[_col]->fileExport(_filename, _openFile);
+	}
 
-    /**
-     * @return name of the class
-     */
-    virtual std::string className(void) const {
-        return "moSampling";
-    }
+
+	/**
+	 * to get one vector of values
+	 * @param _numStat number of statistics to get (in the order of creation)
+	 * @return the vector of value (all values are converted in double)
+	 */
+	const std::vector<double> & getValues(unsigned int _numStat) {
+		return monitorVec[_numStat]->getValues();
+	}
+
+	/**
+	 * to get one vector of solutions values
+	 * @param _numStat number of statistics to get (in the order of creation)
+	 * @return the vector of value (all values are converted in double)
+	 */
+	const std::vector<EOT> & getSolutions(unsigned int _numStat) {
+		return monitorVec[_numStat]->getSolutions();
+	}
+
+	/**
+	 * @return name of the class
+	 */
+	virtual std::string className(void) const {
+		return "moSampling";
+	}
 
 protected:
-    eoInit<EOT> & init;
-    moLocalSearch<Neighbor> * localSearch;
+	eoInit<EOT> & init;
+	moLocalSearch<Neighbor> * localSearch;
 
-    moContinuator<Neighbor> * continuator;
-    moCheckpoint<Neighbor> * checkpoint;
+	moContinuator<Neighbor> * continuator;
+	moCheckpoint<Neighbor> * checkpoint;
 
-    std::vector< moVectorMonitor<EOT> *> monitorVec;
+	std::vector< moVectorMonitor<EOT> *> monitorVec;
 
 };
 
