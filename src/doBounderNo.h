@@ -14,8 +14,7 @@ template < typename EOT >
 class doBounderNo : public doBounder< EOT >
 {
 public:
-    void operator()( EOT& x )
-    {}
+    void operator()( EOT& ) {}
 };
 
 #endif // !_doBounderNo_h

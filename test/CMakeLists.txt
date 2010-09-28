@@ -35,6 +35,7 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/application/common)
 SET(SOURCES
   t-doEstimatorNormalMulti
   t-mean-distance
+  t-bounderno
   )
 
 FOREACH(current ${SOURCES})

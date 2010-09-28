@@ -14,7 +14,7 @@ template < typename EOT >
 class doBounder : public eoUF< EOT&, void >
 {
 public:
-    doBounder( EOT min = -5, EOT max = 5 )
+    doBounder( EOT min = EOT(1, 0), EOT max = EOT(1, 0) )
 	: _min(min), _max(max)
     {
 	assert(_min.size() > 0);
