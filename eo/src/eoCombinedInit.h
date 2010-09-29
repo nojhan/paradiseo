@@ -53,7 +53,7 @@ public:
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
-      printOn(std::cout);
+      printOn( eo::log << eo::logging );
   }
 
   /** outputs the operators and percentages */

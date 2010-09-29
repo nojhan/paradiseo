@@ -58,7 +58,7 @@ public:
   {
     if (tSize < 2)
       { 
-	std::cout << "Warning, Size for eoDetTournamentTruncateSplit adjusted to 2\n";
+          eo::log << eo::warnings << "Warning, Size for eoDetTournamentTruncateSplit adjusted to 2" << std::endl;
 	tSize = 2;
       }
   }

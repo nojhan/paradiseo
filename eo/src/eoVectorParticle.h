@@ -78,8 +78,7 @@ public:
         if (_v.size () != size ())	// safety check
         {
             if (size ())		// NOT an initial empty std::vector
-                std::
-                cout <<
+                eo::log << eo::warnings <<
                 "Warning: Changing position size in eoVectorParticle assignation"
                 << std::endl;
             resize (_v.size ());

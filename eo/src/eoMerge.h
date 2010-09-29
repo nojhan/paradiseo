@@ -70,7 +70,7 @@ public :
 	  throw std::logic_error("Negative number of offspring in eoElitism!");
 	combien = (unsigned int)_rate;
 	if (combien != _rate)
-	  std::cout << "Warning: Number of guys to merge in eoElitism was rounded";
+	  eo::log << eo::warnings << "Warning: Number of guys to merge in eoElitism was rounded" << std::endl;
       }
   }
   

@@ -90,7 +90,7 @@ typedef typename EOT::Fitness Fitness;
   {
     if (t_size < 2)
       { 
-	std::cout << "Warning: EP tournament size should be >= 2. Adjusted" << std::endl;
+          eo::log << eo::warnings << "Warning: EP tournament size should be >= 2. Adjusted" << std::endl;
 	t_size = 2;
       }
   }
@@ -193,7 +193,7 @@ public:
   {
     if (t_size < 2)
       { 
-	std::cout << "Warning, Size for eoDetTournamentTruncate adjusted to 2\n";
+          eo::log << eo::warnings << "Warning, Size for eoDetTournamentTruncate adjusted to 2" << std::endl;
 	t_size = 2;
       }
   }
@@ -241,12 +241,12 @@ public:
   {
     if (t_rate <= 0.5)
       { 
-	std::cout << "Warning, Rate for eoStochTournamentTruncate adjusted to 0.51\n";
+          eo::log << eo::warnings << "Warning, Rate for eoStochTournamentTruncate adjusted to 0.51" << std::endl;
 	t_rate = 0.51;
       }
     if (t_rate > 1)
       {
-	std::cout << "Warning, Rate for eoStochTournamentTruncate adjusted to 1\n";
+          eo::log << eo::warnings << "Warning, Rate for eoStochTournamentTruncate adjusted to 1" << std::endl;
 	t_rate = 1;
       }
   }

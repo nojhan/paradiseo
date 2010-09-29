@@ -33,6 +33,7 @@
 
 #include <eoFunctor.h>
 #include <eoPop.h>
+#include <utils/eoLogger.h>
 #include <utils/selectors.h>
 
 //-----------------------------------------------------------------------------
@@ -50,7 +51,7 @@ template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
   eoDetTournamentSelect(unsigned _tSize = 2 ):eoSelectOne<EOT>(), tSize(_tSize) {
     // consistency check
     if (tSize < 2) {
-      std::cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
+        eo::log << eo::warnings << "Tournament size should be >= 2, adjusted to 2" << std::endl;
       tSize = 2;
     }
   }

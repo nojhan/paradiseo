@@ -26,6 +26,7 @@ Old contact: todos@geneura.ugr.es, http://geneura.ugr.es
 #include <vector>
 #include <iterator>
 #include <EO.h>
+#include <utils/eoLogger.h>
 
 /** Base class for fixed length chromosomes
 
@@ -71,7 +72,7 @@ public:
             if (_v.size() != size())	   // safety check
             {
                 if (size())		   // NOT an initial empty std::vector
-                    std::cout << "Warning: Changing size in eoVector assignation"<<std::endl;
+                    eo::log << eo::warnings << "Warning: Changing size in eoVector assignation" << std::endl;
                 resize(_v.size());
             }
 

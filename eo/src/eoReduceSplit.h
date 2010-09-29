@@ -215,7 +215,7 @@ public:
   {
     if (t_size < 2)
       { 
-	std::cout << "Warning, Size for eoDetTournamentTruncateSplit adjusted to 2\n";
+          eo::log << eo::warnings << "Warning, Size for eoDetTournamentTruncateSplit adjusted to 2" << std::endl;
 	t_size = 2;
       }
   }
@@ -266,12 +266,12 @@ public:
   {
     if (t_rate <= 0.5)
       { 
-	std::cout << "Warning, Rate for eoStochTournamentTruncateSplit adjusted to 0.51\n";
+          eo::log << eo:warnings << "Warning, Rate for eoStochTournamentTruncateSplit adjusted to 0.51" << std::endl;
 	t_rate = 0.51;
       }
     if (t_rate > 1)
       {
-	std::cout << "Warning, Rate for eoStochTournamentTruncateSplit adjusted to 1\n";
+          eo::log << eo::warnings << "Warning, Rate for eoStochTournamentTruncateSplit adjusted to 1" << std::endl;
 	t_rate = 1;
       }
   }

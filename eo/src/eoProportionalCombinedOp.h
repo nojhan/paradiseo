@@ -29,6 +29,7 @@
 #include <eoFunctor.h>
 #include <eoOp.h>
 #include <utils/eoRNG.h>
+#include <utils/eoLogger.h>
 /**
 \defgroup PropCombinedOperators
 Combination of same-type Genetic Operators - Proportional choice
@@ -73,7 +74,7 @@ public:
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
-      printOn(std::cout);
+      printOn( eo::log << eo::logging );
   }
 
   // outputs the operators and percentages
@@ -129,9 +130,9 @@ virtual void add(eoBinOp<EOT> & _op, const double _rate, bool _verbose=false)
 	unsigned i;
 	for (i=0; i<ops.size(); i++)
 	  total += rates[i];
-	std::cout << "In " << className() << "\n" ;
+    eo::log << eo::logging << "In " << className() << std::endl ;
 	for (i=0; i<ops.size(); i++)
-	  std::cout << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
+	  eo::log << eo::logging << ops[i]->className() << " with rate " << 100*rates[i]/total << " %" << std::endl;
       }
   }
 
@@ -179,7 +180,7 @@ virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
-      printOn(std::cout);
+      printOn( eo::log << eo::logging );
   }
 
   // outputs the operators and percentages

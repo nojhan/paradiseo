@@ -57,7 +57,7 @@ public:
       (void)_vEO;
     thisGeneration++;
     value() = thisGeneration;
-    //	  std::cout << " [" << thisGeneration << "] ";
+    
     if (thisGeneration >= repTotalGenerations) 
       {
 	  if (verbose)

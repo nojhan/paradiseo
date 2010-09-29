@@ -46,7 +46,7 @@ public:
       (void)_vEO;
     if (eval.value() >= repTotalEvaluations) 
       {
-	std::cout << "STOP in eoEvalContinue: Reached maximum number of evaluations [" << repTotalEvaluations << "]\n";
+          eo::log << eo::progress << "STOP in eoEvalContinue: Reached maximum number of evaluations [" << repTotalEvaluations << "]" << std::endl;
 	return false;
       }
     return true;

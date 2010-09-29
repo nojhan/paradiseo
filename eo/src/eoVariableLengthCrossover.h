@@ -128,7 +128,7 @@ public :
 	      && (index<10000) );
     if (index >= 10000)
       {
-	std::cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
+          eo::log << eo::warnings << "Warning: impossible to generate individual of the right size in 10000 trials" << std::endl;
 	return false;
       }
   // here we know we have the right sizes: do the actual exchange
@@ -251,9 +251,10 @@ public :
     } while ( ( (tmp1.size()<Min) || (tmp2.size()<Min) ||
 	      (tmp1.size()>Max) || (tmp2.size()>Max) )
 	      && (index<10000) );
+    // FIXME bad hardcoded limit, should use an algorithm that guarantee a correct size in a finite number of tries
     if (index >= 10000)
       {
-	std::cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
+          eo::log << eo::warnings << "Warning: impossible to generate individual of the right size in 10000 trials" << std::endl;
 	return false;
       }
 
@@ -318,10 +319,10 @@ public :
       index++;
     } while ( ( (tmp1.size()<Min) || (tmp1.size()>Max) )
 	      && (index<10000) );
-    // this while condition is not optimal, as it may take some time
+    // this while condition is not optimal, as it may take some time, see the FIXME above
     if (index >= 10000)
       {
-	std::cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
+          eo::log << eo::warnings << "Warning: impossible to generate individual of the right size in 10000 trials" << std::endl;
 	return false;
       }
 
