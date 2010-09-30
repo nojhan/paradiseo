@@ -108,7 +108,7 @@ public:
     }
 
 
-private:
+protected:
     //tabu list
     std::vector< unsigned int > tabuList;
     //maximum size of the tabu list
