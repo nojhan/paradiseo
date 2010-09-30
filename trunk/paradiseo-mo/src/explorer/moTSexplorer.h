@@ -223,6 +223,13 @@ public:
     };
 
 
+  /**
+   * Give the current best found so far
+   * @return the best solution so far
+   */
+  const EOT& getBest() {
+    return bestSoFar;
+  };
 
 protected:
 
