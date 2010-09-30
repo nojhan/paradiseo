@@ -32,7 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <algo/moLocalSearch.h>
 #include <explorer/moRandomWalkExplorer.h>
-#include <continuator/moTrueContinuator.h>
+#include <continuator/moIterContinuator.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
@@ -59,8 +59,9 @@ public:
      * @param _nbStepMax number of step of the walk
      */
     moRandomWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax):
-            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-            explorer(_neighborhood, _eval, _nbStepMax)
+      moLocalSearch<Neighbor>(explorer, iterCont, _fullEval),
+      iterCont(_nbStepMax),
+      explorer(_neighborhood, _eval)
     {}
 
     /**
@@ -68,17 +69,17 @@ public:
      * @param _neighborhood the neighborhood
      * @param _fullEval the full evaluation function
      * @param _eval neighbor's evaluation function
-     * @param _nbStepMax number of step of the walk
-     * @param _cont an external continuator
+     * @param _cont a user-defined continuator
      */
-    moRandomWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax, moContinuator<Neighbor>& _cont):
+    moRandomWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont):
             moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-            explorer(_neighborhood, _eval, _nbStepMax)
+	    iterCont(0),
+            explorer(_neighborhood, _eval)
     {}
 
 private:
-    // always true continuator
-    moTrueContinuator<Neighbor> trueCont;
+    // the continuator to stop on a maximum number of step
+    moIterContinuator<Neighbor> iterCont;
     // the explorer of the random walk
     moRandomWalkExplorer<Neighbor> explorer;
 };

@@ -42,6 +42,11 @@
 
 /**
  * Explorer for a random walk
+ *
+ * Choose at each step a random neighbor's solution
+ * So the neighborhood have to be "random"
+ *
+ * The number of steps of the walk is not limited in the explorer
  */
 template< class Neighbor >
 class moRandomWalkExplorer : public moNeighborhoodExplorer<Neighbor>
@@ -55,15 +60,12 @@ public:
 
     /**
      * Constructor
-     * @param _neighborhood the neighborhood
+     * @param _neighborhood the neighborhood (which have to be random)
      * @param _eval the evaluation function
-     * @param _nbStep maximum number of step to do
      */
-    moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _nbStep) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), nbStep(_nbStep) {
+    moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval) {
         isAccept = false;
         current=new Neighbor();
-        // number of step done
-        step = 0;
         if (!neighborhood.isRandom()) {
             std::cout << "moRandomWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
@@ -81,7 +83,6 @@ public:
      * @param _solution unused solution
      */
     virtual void initParam(EOT & _solution) {
-        step     = 0;
         isAccept = true;
     };
 
@@ -90,7 +91,6 @@ public:
      * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {
-        step++;
     };
 
     /**
@@ -128,7 +128,7 @@ public:
      * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-        return (step < nbStep)  && isAccept ;
+        return isAccept ;
     };
 
     /**
@@ -154,12 +154,6 @@ public:
     };
 
 private:
-    // current number of step
-    unsigned int step;
-
-    // maximum number of steps to do
-    unsigned int nbStep;
-
     //Pointer on the best and the current neighbor
     Neighbor* current;
 
