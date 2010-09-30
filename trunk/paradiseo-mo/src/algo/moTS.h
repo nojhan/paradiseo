@@ -143,6 +143,10 @@ public:
     explorer(_neighborhood, _eval, _neighborComp, _solNeighborComp, _tabuList, _intensification, _diversification, _aspiration)
   {}
 
+  /*
+   * To get the explorer and then to be abble to get the best solution so far
+   * @return the TS explorer
+   */
   moTSexplorer<Neighbor>& getExplorer() {
     return explorer;
   }
