@@ -30,7 +30,7 @@ using namespace std;
 
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
-#include <continuator/moTrueContinuator.h>
+#include <continuator/moIterContinuator.h>
 #include <algo/moLocalSearch.h>
 #include <explorer/moRandomWalkExplorer.h>
 #include <continuator/moCheckpoint.h>
@@ -149,7 +149,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moRandomWalkExplorer<Neighbor> explorer(neighborhood, nhEval, nbStep);
+    moRandomWalkExplorer<Neighbor> explorer(neighborhood, nhEval);
 
 
     /* =========================================================
@@ -158,7 +158,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighbor> continuator;//always continue
+    moIterContinuator<Neighbor> continuator(nbStep);
 
     moCheckpoint<Neighbor> checkpoint(continuator);
 
