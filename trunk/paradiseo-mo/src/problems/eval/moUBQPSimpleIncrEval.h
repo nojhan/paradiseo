@@ -31,7 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moUBQPSimpleIncrEval_H
 
 #include <eval/moEval.h>
-#include <eval/UbqpEval.h>
+#include <eval/ubqpEval.h>
 
 /**
  * Incremental evaluation Function for the UBQPSimple problem
@@ -75,6 +75,24 @@ public:
     else
       _neighbor.fitness(_solution.fitness() - d);
 
+  }
+
+  /*
+   * to get the matrix Q
+   *
+   * @return matrix Q
+   */
+  int** getQ() {
+    return Q;
+  }
+
+  /*
+   * to get the number of variable (bit string length)
+   *
+   * @return bit string length
+   */
+  int getNbVar() {
+    return n;
   }
 
 private:
