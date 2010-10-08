@@ -1,5 +1,5 @@
 /*
-<ubqpval.h>
+<ubqpEval.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel
@@ -34,7 +34,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eoEvalFunc.h>
 
 /**
- * Full evaluation Function for unconstrainted binary quadratic programming problem
+ * Full evaluation Function 
+ * for unconstrainted binary quadratic programming problem
  */
 template< class EOT >
 class UbqpEval : public eoEvalFunc<EOT>
@@ -43,18 +44,24 @@ public:
 
   /**
    * Constructor
-   * instance is given in the ORLIB format: 
+   * instance is given in the ORLIB format (0) or matrix format (1): 
    * The format of these data files is:
    * number of test problem in the serie
    * for each test problem in turn:
-   *    number of variables (n), number of non-zero elements in the q(i,j) matrix
-   *       for each non-zero element in turn: 
-   *       i, j, q(i,j) {=q(j,i) as the matrix is symmetric}
-   *
+   *    - Format 0:
+   *         number of variables (n), number of non-zero elements in the q(i,j) matrix
+   *           for each non-zero element in turn: 
+   *           i, j, q(i,j) {=q(j,i) as the matrix is symmetric}
+   *    - Format 1:
+   *         number of variables (n)
+   *           for each line i
+   *               for each columm j
+   *                   q(i,j)
    * @param _fileName file name of the instance in ORLIB format
+   * @param format id of the file format (0 or 1)
    * @param _numInstance the number of the given instance to solve
    */
-  UbqpEval(std::string & _fileName, unsigned int _numInstance = 0) {
+  UbqpEval(std::string & _fileName, unsigned format = 0, unsigned int _numInstance = 0) {
     std::fstream file(_fileName.c_str(), std::ios::in);
 
     if (!file) {
@@ -65,17 +72,27 @@ public:
     unsigned int nbInstances;
     file >> nbInstances;
 
+    // number of non zero in the matrix
+    unsigned int nbNonZero = 0;
+
     unsigned int i, j;
     int v;
 
     for(unsigned k = 0; k < _numInstance; k++) {
-      file >> nbVar >> nbNonZero;
+      if (format == 0)
+	file >> nbVar >> nbNonZero ;
+      else
+	file >> nbVar ;
+
       for(unsigned kk = 0; kk < nbNonZero; kk++)
 	file >> i >> j >> v;
     }
 
     // the chosen instance
-    file >> nbVar >> nbNonZero;
+    if (format == 0)
+      file >> nbVar >> nbNonZero ;
+    else
+      file >> nbVar ;
 
     // creation of the matrix
     Q = new int*[nbVar];
@@ -87,9 +104,18 @@ public:
     }
 
     // read the matrix
-    for(unsigned int k = 0; k < nbNonZero; k++) {
-      file >> i >> j >> v;
-      Q[i][j] = v;
+    if (format == 0) {
+      for(unsigned int k = 0; k < nbNonZero; k++) {
+	file >> i >> j >> v;
+	Q[i][j] = v;
+      }
+    } else {
+      for(unsigned int i = 0; i < nbVar; i++) {
+	for(unsigned int j = 0; j < nbVar; j++) {
+	  file >> v;
+	  Q[i][j] = v;
+	}
+      }
     }
     
     file.close();
@@ -159,9 +185,6 @@ private:
   // number of variable
   unsigned int nbVar; 
 
-  // number of non zero in the matrix
-  unsigned int nbNonZero;
-  
   // matrix of flux:
   //   the matrix is put in lower triangular form: for i<j Q[i][j] = 0
   int ** Q;
