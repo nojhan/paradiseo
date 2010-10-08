@@ -177,6 +177,16 @@ public:
     return nbVar;
   }
 
+  void print() {
+    std::cout << nbVar << std::endl;
+    for(unsigned int i = 0; i < nbVar; i++) {
+      for(unsigned int j = 0; j < nbVar; j++) {
+	std::cout << Q[i][j] << " ";
+      }
+      std::cout << std::endl;
+    }
+  }
+
 private:
   /**
    * variables (used in incremental evaluation)
