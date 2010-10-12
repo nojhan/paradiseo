@@ -18,15 +18,14 @@
  * This class uses the Uniform distribution parameters (bounds) to return
  * a random position used for population sampling.
  */
-template < typename EOT, class D=doUniform<EOT> >
+template < typename EOT, class D=doUniform<EOT> > // FIXME: D template name is there really used ?!?
 class doSamplerUniform : public doSampler< doUniform< EOT > >
 {
 public:
-
     typedef D Distrib;
-    
+
     doSamplerUniform(doBounder< EOT > & bounder)
-	: doSampler< doUniform<EOT> >(bounder)
+	: doSampler< doUniform<EOT> >(bounder) // FIXME: Why D is not used here ?
     {}
 
     /*

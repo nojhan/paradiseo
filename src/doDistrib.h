@@ -8,8 +8,10 @@
 #ifndef _doDistrib_h
 #define _doDistrib_h
 
+#include <eoFunctor.h>
+
 template < typename EOT >
-class doDistrib
+class doDistrib : public eoFunctorBase
 {
 public:
     //! Alias for the type

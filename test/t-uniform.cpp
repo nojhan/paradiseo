@@ -7,7 +7,10 @@ typedef eoReal< eoMinimizingFitness > EOT;
 
 int main(void)
 {
-    doBounderNo< EOT > bounder;
+    eoState state;
+
+    doUniform< EOT >* distrib = new doUniform< EOT >( EOT(3, -1), EOT(3, 1) );
+    state.storeFunctor(distrib);
 
     return 0;
 }

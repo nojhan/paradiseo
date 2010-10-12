@@ -36,6 +36,8 @@ SET(SOURCES
   t-doEstimatorNormalMulti
   t-mean-distance
   t-bounderno
+  t-uniform
+  t-continue
   )
 
 FOREACH(current ${SOURCES})
