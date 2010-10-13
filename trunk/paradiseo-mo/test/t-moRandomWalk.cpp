@@ -53,7 +53,7 @@ int main() {
     moRandomWalk<bitNeighbor> test1(nh, fullEval, eval, 3);
 
     //test du 2eme constructeur
-    moRandomWalk<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
+    moRandomWalk<bitNeighbor> test2(nh, fullEval, eval, cont);
 
 
     std::cout << "[t-moRandomWalk] => OK" << std::endl;
