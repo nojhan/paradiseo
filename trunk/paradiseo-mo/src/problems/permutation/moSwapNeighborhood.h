@@ -57,7 +57,7 @@ public:
     virtual void init(EOT& _solution, Neighbor& _current) {
         indices.first=0;
         indices.second=1;
-        size=_solution.size();
+       // size=_solution.size();
         _current.setIndices(0,1);
     }
 
@@ -67,7 +67,7 @@ public:
      * @param _current the next neighbor
      */
     virtual void next(EOT& _solution, Neighbor& _current) {
-        if (indices.second==size-1) {
+        if (indices.second==_solution.size()-1) {
             indices.first++;
             indices.second=indices.first+1;
         }
@@ -82,7 +82,7 @@ public:
      * @return true if there is again a neighbor not explored
      */
     virtual bool cont(EOT& _solution) {
-        return !((indices.first == (size-2)) && (indices.second == (size-1)));
+        return !((indices.first == (_solution.size()-2)) && (indices.second == (_solution.size()-1)));
     }
 
     /**
@@ -95,7 +95,7 @@ public:
 
 private:
     std::pair<unsigned int, unsigned int> indices;
-    unsigned int size;
+   //unsigned int size;
 };
 
 #endif
