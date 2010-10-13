@@ -45,6 +45,8 @@ public:
   typedef typename Neighbor::EOT EOT ;
 
   /**
+   * Constructor 
+   *
    * @param _bestSol the best solution
    * @param _maxNoImprove number maximum of iterations
    * @param _solComparator a comparator between solutions
@@ -56,6 +58,8 @@ public:
 			     bool _verbose = true): bestSol(_bestSol), maxNoImprove(_maxNoImprove), solComparator(_solComparator), verbose(_verbose) {}
 
   /**
+   * Constructor where the comparator of solutions is the default comparator
+   *
    * @param _bestSol the best solution
    * @param _maxNoImprove number maximum of iterations
    * @param _verbose true/false : verbose mode on/off
@@ -65,11 +69,14 @@ public:
 			     bool _verbose = true): bestSol(_bestSol), maxNoImprove(_maxNoImprove), solComparator(defaultSolComp), verbose(_verbose) {}
 
   /**
+   * Count and test the number of non improvement of the best solution
+   * improvement: if the current solution is STRICTLY better than the current best solution  
+   *
    *@param _solution a solution
    *@return true if counter < maxNoImprove
    */
   virtual bool operator()(EOT & _solution) {
-    if (solComparator(_solution, bestSol))
+    if (solComparator(_solution, bestSol) || solComparator.equals(_solution, bestSol))
       cpt++;
 
     bool res = (cpt < maxNoImprove);

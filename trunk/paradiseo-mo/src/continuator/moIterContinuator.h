@@ -66,7 +66,7 @@ public:
      * @param _solution a solution
      */
     virtual void init(EOT & _solution) {
-        cpt = 0;
+      cpt = 0;
     }
 
     /**
