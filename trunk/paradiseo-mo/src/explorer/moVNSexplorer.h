@@ -47,6 +47,12 @@ public:
 
   /**
    * Default constructor
+   */
+
+  moVNSexplorer() {}
+
+  /**
+   * Constructor
    * @param _selection selection the "neighborhood" search heuristics during the search
    * @param _acceptCrit acceptance criteria which compare and accept or not the two solutions
    */
@@ -139,7 +145,6 @@ private:
   moVariableNeighborhoodSelection<EOT>& selection;
   moAcceptanceCriterion<Neighbor>& acceptCrit;
   bool stop;
-
   EOT current;
 };
 
