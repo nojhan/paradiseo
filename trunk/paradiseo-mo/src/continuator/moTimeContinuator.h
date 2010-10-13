@@ -48,7 +48,27 @@ public:
      * @param _verbose verbose mode true/false -> on/off
      */
     moTimeContinuator(time_t _max, bool _verbose=true): max(_max), verbose(_verbose) {
-        start = time(NULL);
+      external = false;
+      start = time(NULL);
+    }
+
+
+    /**
+     * Synchronize the whole time with an external starting time
+     * @param _externalStart external starting time
+     */
+    virtual void setStartingTime(time_t _externalStart) {
+      external = true;
+      start = _externalStart;
+    }
+
+
+    /**
+     * To get the starting time
+     * @return starting time
+     */
+    virtual time_t getStartingTime() {
+      return start;
     }
 
 
@@ -71,6 +91,7 @@ public:
      * @param _solution a solution
      */
     virtual void init(EOT & _solution) {
+      if (!external)
         start = time(NULL);
     }
 
@@ -86,12 +107,14 @@ public:
 
 private:
 
-    /** maximum running time */
-    time_t max;
-    /** starting time */
-    time_t start;
-    /** verbose mode */
-    bool verbose;
+  /** maximum running time */
+  time_t max;
+  /** starting time */
+  time_t start;
+  /** external start flag */
+  bool external;
+  /** verbose mode */
+  bool verbose;
 
 };
 
