@@ -79,13 +79,21 @@ public:
     int v;
 
     for(unsigned k = 0; k < _numInstance; k++) {
-      if (format == 0)
+      if (format == 0) {
 	file >> nbVar >> nbNonZero ;
-      else
+
+	for(unsigned kk = 0; kk < nbNonZero; kk++)
+	  file >> i >> j >> v;
+      } else {
 	file >> nbVar ;
 
-      for(unsigned kk = 0; kk < nbNonZero; kk++)
-	file >> i >> j >> v;
+	for(unsigned int i = 0; i < nbVar; i++) {
+	  for(unsigned int j = 0; j < nbVar; j++) {
+	    file >> v;
+	  }
+	}
+      }
+
     }
 
     // the chosen instance
@@ -126,6 +134,7 @@ public:
 	Q[i][j] = Q[i][j] + Q[j][i];
 	Q[j][i] = 0;
       }
+
   }
 
   /**
@@ -152,10 +161,10 @@ public:
 
     for(unsigned i = 0; i < nbVar; i++)
       if (_solution[i] == 1) 
-	for(j = 0; j < i; j++)
+	for(j = 0; j <= i; j++)
 	  if (_solution[j] == 1) 
 	    fit += Q[i][j];
-
+	  
     _solution.fitness(fit);
   }
 
