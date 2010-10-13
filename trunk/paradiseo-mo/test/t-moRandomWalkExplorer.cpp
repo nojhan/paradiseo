@@ -45,7 +45,7 @@ int main() {
 
     //test avec un neighbordhood ordonné
     //Du coup on verifie juste qu'on a bien une evolution de la solution et qu'on fait 3 pas avant d'arreter l'exploration
-    moRandomWalkExplorer<bitNeighbor> test(nh, eval, 3);
+    moRandomWalkExplorer<bitNeighbor> test(nh, eval);
 
     test.initParam(sol);
 
@@ -70,7 +70,7 @@ int main() {
     assert(sol.fitness()==3);
     assert(!sol[0]);
     test.updateParam(sol);
-    assert(!test.isContinue(sol));
+    assert(test.isContinue(sol));
 
     std::cout << "[t-moRandomWalkExplorer] => OK" << std::endl;
 
