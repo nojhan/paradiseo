@@ -48,7 +48,7 @@ using namespace std;
 #include <algo/moSimpleHC.h>
 #include <algo/moLocalSearch.h>
 #include <algo/moVNS.h>
-#include <algo/moSimpleVNS.h>
+//#include <algo/moSimpleVNS.h>
 
 #include <continuator/moTimeContinuator.h>
 
@@ -191,8 +191,8 @@ void main_function(int argc, char **argv)
     //    moLocalSearch<shiftNeighbor> vns(explorer, cont, fullEval);
     moVNS<shiftNeighbor> vns(selectNH, acceptCrit, fullEval, cont);
 
-    moSimpleVNS<shiftNeighbor> svns(ls1, shiftMut, fullEval, cont);
-    svns.add(ls2, swapMut);
+   /* moSimpleVNS<shiftNeighbor> svns(ls1, shiftMut, fullEval, cont);
+    svns.add(ls2, swapMut);*/
 
     /* =========================================================
      *
@@ -221,7 +221,7 @@ void main_function(int argc, char **argv)
 	std::cout << "#########################################" << std::endl;
 	std::cout << "initial sol: " << sol << std::endl ;
 
-	svns(sol);
+	//svns(sol);
 
 	std::cout << "final sol: " << sol << std::endl ;
 	std::cout << "#########################################" << std::endl;
