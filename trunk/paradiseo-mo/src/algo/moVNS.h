@@ -35,7 +35,7 @@
 #include <comparator/moSolComparator.h>
 #include <continuator/moContinuator.h>
 
-#include <explorer/moNeighborhoodExplorer.h>
+#include <explorer/moVNSexplorer.h>
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <acceptCrit/moAcceptanceCriterion.h>
 
