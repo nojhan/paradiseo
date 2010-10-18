@@ -44,10 +44,10 @@ public:
 	 * @param _solution the solution to move
 	 */
 	virtual void move(EOT& _solution) {
-		unsigned int tmp;
-		tmp = _solution[indices.first];
+		EOT tmp(1);
+		tmp[0] = _solution[indices.first];
 		_solution[indices.first] = _solution[indices.second];
-		_solution[indices.second] = tmp;
+		_solution[indices.second] = tmp[0];
 		_solution.invalidate();
 	}
 
