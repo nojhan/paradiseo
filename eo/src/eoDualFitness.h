@@ -143,6 +143,48 @@ public:
 
 public:
 
+    //! Add a given fitness to the current one
+    template <class F, class Cmp>
+    friend
+    eoDualFitness<F,Cmp> & operator+=( eoDualFitness<F,Cmp> & from, const eoDualFitness<F,Cmp> & that )
+    {
+        from._value += that._value;
+
+        // true only if the two are feasible, else false
+        from._is_feasible = from._is_feasible && that._is_feasible;
+
+        return from;
+    }
+
+    //! Substract a given fitness to the current one
+    template <class F, class Cmp>
+    friend
+    eoDualFitness<F,Cmp> & operator-=( eoDualFitness<F,Cmp> & from, const eoDualFitness<F,Cmp> & that )
+    {
+        from._value -= that._value;
+
+        // true only if the two are feasible, else false
+        from._is_feasible = from._is_feasible && that._is_feasible;
+
+        return from;
+    }
+
+    // Add this fitness's value to that other, and return a _new_ instance with the result.
+    template <class F, class Cmp>
+    eoDualFitness<F,Cmp> operator+(const eoDualFitness<F,Cmp> & that) 
+    {
+        eoDualFitness<F,Cmp> from( *this );
+        return from += that;
+    }
+
+    // Add this fitness's value to that other, and return a _new_ instance with the result.
+    template <class F, class Cmp>
+    eoDualFitness<F,Cmp> operator-(const eoDualFitness<F,Cmp> & that) 
+    {
+        eoDualFitness<F,Cmp> from( *this );
+        return from -= that;
+    }
+
     //! Print an eoDualFitness instance as a pair of numbers, separated by a space
     template <class F, class Cmp>
     friend
@@ -166,7 +208,6 @@ public:
         f = std::make_pair<F,bool>( value, feasible );
         return is;
     }
-
 };
 
 //! Compare dual fitnesses as if we were maximizing
