@@ -453,4 +453,31 @@ public :
     }
 };
 */
+
+//! A robust measure of dispersion (also called midspread or middle fifty) that is the difference between the third and the first quartile.
+template<class EOT>
+class eoInterquartileRangeStat : public eoStat< EOT, typename EOT::Fitness >
+{
+public:
+    using eoStat<EOT, typename EOT::Fitness>::value;
+
+    eoInterquartileRangeStat( typename EOT::Fitness start, std::string description = "IQR" ) : eoStat<EOT,typename EOT::Fitness>( start, description ) {}
+
+    virtual void operator()( const eoPop<EOT> & _pop ) 
+    {
+        eoPop<EOT> pop = _pop;
+
+        unsigned int quartile = pop.size()/4;
+        std::nth_element( pop.begin(), pop.begin()+quartile*1, pop.end() );
+        typename EOT::Fitness Q1 = pop[quartile].fitness();
+        
+        std::nth_element( pop.begin(), pop.begin()+quartile*3, pop.end() );
+        typename EOT::Fitness Q3 = pop[quartile*3].fitness();
+
+        value() = Q1 - Q3;
+    }
+  
+    virtual std::string className(void) const { return "eoInterquartileRangeStat"; }
+};
+
 #endif
