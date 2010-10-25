@@ -50,6 +50,11 @@ Authors:
  *
  * This class overrides operator<() to use the Compare template argument and handle feasibility.
  * Over operators are coded using this sole function.
+ *
+ * Standard arithmetic operators are provided to add or substract dual fitnesses.
+ * They behave as expected for the fitness value and gives priority to unfeasible fitness
+ * (i.e. when adding or substracting dual fitness, the only case when the result will be
+ *  a feasible fitness is when both are feasible, else the result is an unfeasibe fitness)
 */
 template <class BaseType, class Compare >
 class eoDualFitness
@@ -89,6 +94,11 @@ public:
         _value(dual.first),
         _is_feasible(dual.second)
     {}
+
+    inline bool is_feasible() const
+    {
+        return _is_feasible;
+    }
 
     //! Copy operator
     eoDualFitness& operator=(const eoDualFitness& other)
@@ -215,6 +225,12 @@ typedef eoDualFitness<double, std::less<double> >    eoMaximizingDualFitness;
 
 //! Compare dual fitnesses as if we were minimizing
 typedef eoDualFitness<double, std::greater<double> > eoMinimizingDualFitness;
+
+//! A predicate that returns the feasibility of a given dual fitness
+/** Use this in STL algorithm that use binary predicates (e.g. count_if, find_if, etc.)
+ */
+template< class EOT>
+bool eoIsFeasible ( const EOT & sol ) { return sol.fitness().is_feasible(); }
 
 #endif // _eoDualFitness_h_
 

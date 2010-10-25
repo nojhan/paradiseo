@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoStat.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
+// (c) 2010 Thales group
 /*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -18,9 +19,13 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mkeijzer@dhi.dk
+Contact: http://eodev.sourceforge.net
+
+    Authors:
+        todos@geneura.ugr.es, http://geneura.ugr.es
+        Marc.Schoenauer@polytechnique.fr
+        mkeijzer@dhi.dk
+        Johann Dréo <johann.dreo@thalesgroup.com>
  */
 //-----------------------------------------------------------------------------
 
