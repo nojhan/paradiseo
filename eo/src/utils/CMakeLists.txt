@@ -22,7 +22,7 @@ SET (EOUTILS_SOURCES 	eoData.cpp
 						eoRealBounds.cpp
 						eoRNG.cpp
 						eoState.cpp
-						eoStdoutMonitor.cpp
+                        eoOStreamMonitor.cpp
 						eoUpdater.cpp
 						make_help.cpp
 						pipecom.cpp

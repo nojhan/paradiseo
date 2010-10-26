@@ -4,6 +4,7 @@
 #include <utils/eoMonitor.h>
 #include <utils/eoFileMonitor.h>
 #include <utils/eoStdoutMonitor.h>
+#include <utils/eoOStreamMonitor.h>
 #ifndef _MSC_VER
 #include <utils/eoGnuplot1DMonitor.h>
 #include <utils/eoGnuplot1DSnapshot.h>
