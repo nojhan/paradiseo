@@ -166,6 +166,8 @@
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
+#include <problems/permutation/moKswapNeighbor.h>
+#include <problems/permutation/moKswapNeighborhood.h>
 
 #include <sampling/moAutocorrelationSampling.h>
 #include <sampling/moDensityOfStatesSampling.h>
