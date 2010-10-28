@@ -73,6 +73,14 @@ public:
 		neighborhoodSize = _neighborhoodSize;
 	}
 
+	/**
+	 * Return the class Name
+	 * @return the class name as a std::string
+	 */
+	virtual std::string className() const {
+		return "moIndexNeighborhood";
+	}
+
 protected:
 	// size of the neighborhood
 	unsigned int neighborhoodSize;
