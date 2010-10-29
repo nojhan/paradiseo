@@ -147,6 +147,10 @@
 #include <neighborhood/moBackwardVectorVNSelection.h>
 #include <neighborhood/moForwardVectorVNSelection.h>
 #include <neighborhood/moRndVectorVNSelection.h>
+#include <neighborhood/moIndexSwapNeighbor.h>
+#include <neighborhood/moKswapNeighbor.h>
+#include <neighborhood/moBitFlippingNeighbor.h>
+#include <neighborhood/moKswapNeighborhood.h>
 
 #include <perturb/moLocalSearchInit.h>
 #include <perturb/moMonOpPerturb.h>
@@ -166,8 +170,7 @@
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
-#include <problems/permutation/moKswapNeighbor.h>
-#include <problems/permutation/moKswapNeighborhood.h>
+
 
 #include <sampling/moAutocorrelationSampling.h>
 #include <sampling/moDensityOfStatesSampling.h>
