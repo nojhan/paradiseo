@@ -112,6 +112,9 @@ SET (TEST_LIST
 		t-moFitnessCloudSampling
 		t-moNeutralWalkSampling
 		t-moStatistics
+		t-moIndexSwapNeighbor
+		t-moKswapNeighbor
+		t-moBitFlippingNeighbor
 		)
 				
 FOREACH (test ${TEST_LIST})
