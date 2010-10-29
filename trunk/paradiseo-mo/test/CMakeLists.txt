@@ -115,6 +115,7 @@ SET (TEST_LIST
 		t-moIndexSwapNeighbor
 		t-moKswapNeighbor
 		t-moBitFlippingNeighbor
+		t-moKswapNeighborhood
 		)
 				
 FOREACH (test ${TEST_LIST})
