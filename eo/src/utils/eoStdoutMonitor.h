@@ -42,7 +42,11 @@ class eoStdoutMonitor : public eoOStreamMonitor
 {
 public :
     eoStdoutMonitor(bool _verbose=true, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) : 
-       eoOStreamMonitor( std::cout, _verbose, _delim, _width, _fill) {}
+       eoOStreamMonitor( std::cout, _verbose, _delim, _width, _fill) 
+    {
+       
+        eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoStdutMonitor constructor is deprecated and will be removed in the next release" << std::endl;
+    }
 
     virtual std::string className(void) const { return "eoStdoutMonitor"; }
 };

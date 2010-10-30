@@ -25,38 +25,33 @@ eoMonitor& eoOStreamMonitor::operator()(void)
 
     if (firsttime) {
 
-      if (verbose) {
         eo::log << eo::progress << "First Generation" << std::endl;
 
-      } else { // else verbose
-          for (iterator it = vec.begin (); it != vec.end (); ++it) {
-              out << (*it)->longName ();
-              out << delim << std::left << std::setfill(fill) << std::setw(width);
-	      }
-          out << std::endl;
-	  } // else verbose
+        for (iterator it = vec.begin (); it != vec.end (); ++it) {
+            out << (*it)->longName ();
+            out << delim << std::left << std::setfill(fill) << std::setw(width);
+        }
+        out << std::endl;
 
-      firsttime = false;
+        firsttime = false;
     } // if firstime
 
     // ok, now the real saving. write out
-    if (verbose) {
+    /* TODO old verbose formatting, do we still need it?
         for (iterator it = vec.begin (); it != vec.end (); ++it) {
             // name: value
             out << (*it)->longName () << ": " << (*it)->getValue () << std::endl;
         } // for it in vec
+    */
 
-        eo::log << eo::progress << "End of Generation" << std::endl;
+    for (iterator it = vec.begin (); it != vec.end (); ++it) {
+        // value only
+        out << (*it)->getValue ();
+        out << delim << std::left << std::setfill(fill) << std::setw(width);
+    } // for it in vec
 
-    } else { // else verbose
-        for (iterator it = vec.begin (); it != vec.end (); ++it) {
-            // value only
-            out << (*it)->getValue ();
-            out << delim << std::left << std::setfill(fill) << std::setw(width);
-        } // for it in vec
-
-        out << std::endl;
-    } // if verbose
+    out << std::endl;
+    eo::log << eo::progress << "End of Generation" << std::endl;
 
   return *this;
 }

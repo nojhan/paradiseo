@@ -44,15 +44,14 @@ public:
   }
 
   /** The usual method to add objects to the combination
-   * note the _verbose parameter, that allows to print what's
-   * inside the combination with scaled rates
    */
   void add(eoInit<EOT> & _init, double _rate, bool _verbose=false)
   {
+    eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoCombinedInit::add is deprecated and will be removed in the next release." << std::endl;
+
     initializers.push_back(&_init);
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
-    if (_verbose)
       printOn( eo::log << eo::logging );
   }
 

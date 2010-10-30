@@ -33,10 +33,6 @@
 //-----------------------------------------------------------------------------
 // some defines to make things easier to get at first sight
 
-// tuning the amount of output using a boolean argument:
-// true should always mean more output
-#define eo_verbose true
-#define eo_no_verbose false
 // to be used in selection / replacement procedures to indicate whether
 // the argument (rate, a double) shoudl be treated as a rate (number=rate*popSize)
 // or as an absolute integer (number=rate regardless of popsize).

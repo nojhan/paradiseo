@@ -42,14 +42,16 @@ public:
 	  : eoValueParam<unsigned>(0, "Generations", "Generations"),
 	    repTotalGenerations( _totalGens ), 
 	    thisGenerationPlaceHolder(0),
-	    thisGeneration(thisGenerationPlaceHolder), verbose(true) {};
+	    thisGeneration(thisGenerationPlaceHolder)
+    {};
   
   /// Ctor for enabling the save/load the no. of generations counted
   eoGenContinue( unsigned long _totalGens, unsigned long& _currentGen)
 	  : eoValueParam<unsigned>(0, "Generations", "Generations"),
 	    repTotalGenerations( _totalGens ), 
 	    thisGenerationPlaceHolder(0),
-	    thisGeneration(_currentGen), verbose(true){};
+	    thisGeneration(_currentGen)
+    {};
   
   /** Returns false when a certain number of generations is
 	 * reached */
@@ -60,7 +62,6 @@ public:
     
     if (thisGeneration >= repTotalGenerations) 
       {
-	  if (verbose)
 	    eo::log << eo::logging << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
 	return false;
       }
@@ -97,9 +98,6 @@ private:
   unsigned long repTotalGenerations;
   unsigned long thisGenerationPlaceHolder;
   unsigned long& thisGeneration;
-  
-public:
-  bool verbose; // allows to turn off annoying message to cout
 };
 
 #endif
