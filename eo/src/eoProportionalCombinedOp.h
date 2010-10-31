@@ -173,7 +173,7 @@ public:
 
   virtual std::string className() const { return "eoPropCombinedQuadOp"; }
 
-  virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
+  virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose)
   {
     eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoPropCombinedQuadOp::add is deprecated and will be removed in the next release." << std::endl;
     add(_op,_rate);

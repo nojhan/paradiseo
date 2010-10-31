@@ -43,7 +43,7 @@ public:
     rates.push_back(_rate);
   }
 
-  void add(eoInit<EOT> & _init, double _rate, bool _verbose=false)
+  void add(eoInit<EOT> & _init, double _rate, bool _verbose)
   {
       eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoCombinedInit::add is deprecated and will be removed in the next release." << std::endl;
       add( _init, _rate );
