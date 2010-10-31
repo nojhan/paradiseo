@@ -48,6 +48,10 @@ public :
         eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoOStreamMonitor constructor is deprecated and will be removed in the next release" << std::endl;
     }
 
+    eoOStreamMonitor( std::ostream & _out, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) : 
+        out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true) 
+    {}
+
     eoMonitor& operator()(void);
 
     virtual std::string className(void) const { return "eoOStreamMonitor"; }

@@ -43,12 +43,16 @@ public:
     rates.push_back(_rate);
   }
 
-  /** The usual method to add objects to the combination
-   */
   void add(eoInit<EOT> & _init, double _rate, bool _verbose=false)
   {
-    eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoCombinedInit::add is deprecated and will be removed in the next release." << std::endl;
-
+      eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoCombinedInit::add is deprecated and will be removed in the next release." << std::endl;
+      add( _init, _rate );
+  }
+  
+  /** The usual method to add objects to the combination
+   */
+  void add(eoInit<EOT> & _init, double _rate)
+  {
     initializers.push_back(&_init);
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!

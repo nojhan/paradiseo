@@ -171,13 +171,17 @@ public:
     rates.push_back(_rate);
   }
 
-virtual std::string className() const { return "eoPropCombinedQuadOp"; }
+  virtual std::string className() const { return "eoPropCombinedQuadOp"; }
 
-  // addition of a true operator
-virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
+  virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
   {
     eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoPropCombinedQuadOp::add is deprecated and will be removed in the next release." << std::endl;
+    add(_op,_rate);
+  }
 
+  // addition of a true operator
+  virtual void add(eoQuadOp<EOT> & _op, const double _rate)
+  {
     ops.push_back(&_op);
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
