@@ -56,7 +56,6 @@ SET (TEST_LIST
   t-eoSecondsElapsedContinue
   t-eoRNG
   t-eoEasyPSO
-  t-eoNSGA
   t-eoInt
   t-eoInitPermutation
   t-eoSwapMutation
@@ -67,7 +66,6 @@ SET (TEST_LIST
   t-eoOrderXover
   t-eoExtendedVelocity
   # t-eoFrontSorter
-  # t-eoEpsMOEA
   t-eoLogger
   )
 
@@ -84,7 +82,7 @@ IF(ENABLE_MINIMAL_CMAKE_TESTING)
     SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
     ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES})
     ADD_TEST(${mintest} ${mintest})
-    TARGET_LINK_LIBRARIES(${mintest} ga es cma eoutils eo eomoo)
+    TARGET_LINK_LIBRARIES(${mintest} ga es cma eoutils eo)
   ENDFOREACH (mintest)
 
 ELSEIF(ENABLE_CMAKE_TESTING)
@@ -92,7 +90,7 @@ ELSEIF(ENABLE_CMAKE_TESTING)
   FOREACH (test ${TEST_LIST})
     ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})
     ADD_TEST(${test} ${test})
-    TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo eomoo)
+    TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo)
     INSTALL(TARGETS ${test} RUNTIME DESTINATION share/eo/test COMPONENT test)
   ENDFOREACH (test)
 

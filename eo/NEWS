@@ -17,6 +17,7 @@
   - interquartile range stat
   - uniform(min,max) random function
   - compatibility macros for compiling paradiseo with CUDACC
+  - removed old multi-objective classes, deprecated by the Paradiseo-MOEO project
   - new website, switch from CVS to GIT, and a cool logo!
 
 * release 1.0.1 (23. Jan. 2006)
