@@ -53,16 +53,20 @@
 template<class EOT>
 class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
 {
+public:
+     
+    using std::vector<EOT>::size;
+    using std::vector<EOT>::resize;
+    using std::vector<EOT>::operator[];
+    using std::vector<EOT>::begin;
+    using std::vector<EOT>::end;
+     
+    typedef typename EOT::Fitness Fitness;
+#if defined(__CUDACC__)
+    typedef typename std::vector<EOT>::iterator iterator;
+    typedef typename std::vector<EOT>::const_iterator const_iterator;
+#endif
 
- public:
-     
-     using std::vector<EOT>::size;
-     using std::vector<EOT>::resize;
-     using std::vector<EOT>::operator[];
-     using std::vector<EOT>::begin;
-     using std::vector<EOT>::end;
-     
-     typedef typename EOT::Fitness Fitness;
 	/** Default ctor. Creates empty pop
 	*/
 	eoPop()	  : std::vector<EOT>(), eoObject(), eoPersistent() {};
@@ -177,30 +181,49 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
   }
 
   /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
-  typename eoPop<EOT>::iterator it_best_element() 
+#if defined(__CUDACC__)
+  eoPop<EOT>::iterator it_best_element()
   {
-    typename eoPop<EOT>::iterator it = std::max_element(begin(), end());
+	eoPop<EOT>:: iterator it = std::max_element(begin(), end());
+#else
+	typename eoPop<EOT>::iterator it_best_element() {
+	typename eoPop<EOT>::iterator it = std::max_element(begin(), end());
+#endif
     return it;
   }
 
   /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
   const EOT & best_element() const
   {
-    typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
+#if defined(__CUDACC__)
+    eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
+#else
+	typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
+#endif
     return (*it);
   }
 
   /** returns a const reference to the worse individual DOES NOT MOVE ANYBODY */
   const EOT & worse_element() const
   {
-    typename eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
+#if defined(__CUDACC__)
+      eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
+#else
+	  typename eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
+#endif
     return (*it);
   }
 
   /** returns an iterator to the worse individual DOES NOT MOVE ANYBODY */
-  typename eoPop<EOT>::iterator it_worse_element()
+#if defined(__CUDACC__)
+  eoPop<EOT>::iterator it_worse_element()
   {
-    typename eoPop<EOT>::iterator it = std::min_element(begin(), end());
+      eoPop<EOT>::iterator it = std::min_element(begin(), end());
+#else
+  typename eoPop<EOT>::iterator it_worse_element() 
+  {
+	  typename eoPop<EOT>::iterator it = std::min_element(begin(), end());
+#endif
     return it;
   }
 
@@ -208,9 +231,15 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
   slightly faster algorithm than sort to find all individuals that are better
   than the nth individual. INDIVIDUALS ARE MOVED AROUND in the pop.
   */
-  typename eoPop<EOT>::iterator nth_element(int nth)
+#if defined(__CUDACC__)  
+  eoPop<EOT>::iterator nth_element(int nth)
   {
-      typename eoPop<EOT>::iterator it = begin() + nth;
+      eoPop<EOT>::iterator it = begin() + nth;
+#else
+  typename eoPop<EOT>::iterator nth_element(int nth) 
+  {
+	  typename eoPop<EOT>::iterator it = begin() + nth;
+#endif
       std::nth_element(begin(), it, end(), std::greater<EOT>());
       return it;
   }
