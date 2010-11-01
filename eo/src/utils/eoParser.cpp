@@ -164,7 +164,7 @@ pair<bool, string> eoParser::getValue(eoParam& _param) const
         result.first = true;
         return result;
     }
-    // else (TODO: check environment, just long names)
+    //! @todo check environment, just long names
     return result;
 }
 
@@ -210,7 +210,7 @@ void eoParser::readFrom(istream& is)
                     string value;
 
                     if (equalLocation == str.end())
-		    { // TODO: it should be the next string
+		    { //! @todo it should be the next string
                         value = "";
 		    }
                     else

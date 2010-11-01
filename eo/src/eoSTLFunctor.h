@@ -113,6 +113,6 @@ class eoSTLBF : public std::binary_function<A1, A2, R>
     eoBF<A1, A2, R>& f;
 };
 
-// TODO: put automated wrappers here...
+//! @todo: put automated wrappers here...
 
 #endif

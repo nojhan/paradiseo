@@ -181,9 +181,9 @@ template <class T> class parse_tree
 class subtree
 {
 
-/*
+/**
     a bit nasty way to use a pool allocator (which would otherwise use slooow new and delete)
-    TODO: use the std::allocator interface
+    @todo use the std::allocator interface
 */
 
 #if (defined(__GNUC__) || defined(_MSC_VER)) && !(defined(_MT) || defined(MACOSX) || defined(__APPLE__)) // not multithreaded (or MACOSX - J. Eggermont)

@@ -101,7 +101,7 @@ public :
       }
 
     bool changed = false;
-    for ( unsigned i = 0; i < k; i++ ) // TODO: check that we don't do twice the same
+    for ( unsigned i = 0; i < k; i++ ) //! @todo check that we don't do twice the same
       {
 	unsigned where = eo::rng.random(_eo1.size());
 	bool changedHere = op( _eo1[where], _eo2[where] );

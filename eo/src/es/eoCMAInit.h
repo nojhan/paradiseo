@@ -32,7 +32,7 @@
 #include <eoVector.h>
 #include <es/CMAState.h>
 
-/// TODO, handle bounds
+/// @todo handle bounds
 template <class FitT>
 class eoCMAInit : public eoInit< eoVector<FitT, double> > {
     

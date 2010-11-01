@@ -43,7 +43,7 @@ Assumes that the parameters that are passed to the monitor
 A dir is created and one file per snapshot is created there -
 so you can later generate a movie!
 
-TODO: The counter is handled internally, but this should be changed
+@todo The counter is handled internally, but this should be changed
 so that you can pass e.g. an evalcounter (minor)
 
 I failed to templatize everything so that it can handle eoParam<std::vector<T> >

@@ -31,7 +31,7 @@
 
 #include <algorithm>
 
-/// TODO, handle bounds
+/// @todo handle bounds
 template <class FitT>
 class eoCMABreed : public eoBreed< eoVector<FitT, double> > {
     

@@ -251,7 +251,7 @@ public :
     } while ( ( (tmp1.size()<Min) || (tmp2.size()<Min) ||
 	      (tmp1.size()>Max) || (tmp2.size()>Max) )
 	      && (index<10000) );
-    // FIXME bad hardcoded limit, should use an algorithm that guarantee a correct size in a finite number of tries
+    //! @todo FIXME bad hardcoded limit, should use an algorithm that guarantee a correct size in a finite number of tries
     if (index >= 10000)
       {
           eo::log << eo::warnings << "Warning: impossible to generate individual of the right size in 10000 trials" << std::endl;

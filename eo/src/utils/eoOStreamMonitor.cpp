@@ -37,7 +37,8 @@ eoMonitor& eoOStreamMonitor::operator()(void)
     } // if firstime
 
     // ok, now the real saving. write out
-    /* TODO old verbose formatting, do we still need it?
+    //! @todo old verbose formatting, do we still need it?
+    /*
         for (iterator it = vec.begin (); it != vec.end (); ++it) {
             // name: value
             out << (*it)->longName () << ": " << (*it)->getValue () << std::endl;
