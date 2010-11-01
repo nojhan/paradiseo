@@ -40,8 +40,9 @@ using namespace gp_parse_tree;
 /** @defgroup ParseTree
 
 Various functions for tree-based Genetic Programming
-*/
 
+@ingroup Representations
+*/
 
 
 /** Implementation of parse-tree for genetic programming

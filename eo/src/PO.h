@@ -35,6 +35,8 @@
     defined. A best fitness also belongs to the particle.Fitness says how
     good is the particle for a current iteration whereas the best fitness can be saved for
     many iterations.
+
+    @ingroup Core
 */
 template < class F > class PO:public EO < F >
 {

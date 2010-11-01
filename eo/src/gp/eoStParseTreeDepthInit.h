@@ -51,6 +51,8 @@ using namespace gp_parse_tree;
   \li int type(int child) which returns the required type for child 0, 1 or 2
   
   Pruning strongly typed trees is not possible at the moment.
+
+  \ingroup Representations
 */
 
 /** eoStParseTreeDepthInit : the initializer class for strongly typed tree-based genetic programming

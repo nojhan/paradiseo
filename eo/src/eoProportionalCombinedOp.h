@@ -30,12 +30,25 @@
 #include <eoOp.h>
 #include <utils/eoRNG.h>
 #include <utils/eoLogger.h>
+
 /**
-\defgroup PropCombinedOperators
-Combination of same-type Genetic Operators - Proportional choice
+\defgroup Utilities Utilities
+
+Classes that may help you write elegant code.
+*/
+
+/**
+@defgroup Combination Operators combination
+
+Classes that permits to combine several operators in a single one.
+
+@ingroup Utilities
+@{
 */
 
 /** @name PropCombined Genetic operators
+
+Combination of same-type Genetic Operators.
 
 This files contains the classes eoPropCombinedXXXOp (XXX in {Mon, Bin, Quad})
 that allow to use more than a single operator of a specific class
@@ -214,3 +227,4 @@ std::vector<double> rates;
 // for General Ops, it's another story - see eoOpContainer
 #endif
 
+/** @} */

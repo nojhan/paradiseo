@@ -42,9 +42,11 @@
 
 #include "eoVector.h"
 
-/** @defgroup bitstring
+/** @defgroup bitstring Bit strings
 
 Various functions for a bitstring representation
+
+@ingroup Representations
 */
 
 /** Implementation of bitstring chromosome.

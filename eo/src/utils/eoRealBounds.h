@@ -31,7 +31,9 @@
 #include <utils/eoRNG.h>
 
 /**
-\defgroup EvolutionStrategies
+\defgroup EvolutionStrategies Continuous vector
+
+@ingroup Representations
 
 */
 

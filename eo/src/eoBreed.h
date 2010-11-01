@@ -41,6 +41,8 @@ eoBreed derived class rather than relying on a seperate select and
 transform function.
 
 @see eoSelect, eoTransform, eoSelectTransform
+
+@ingroup Combination
 */
 template<class EOT>
 class eoBreed : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
@@ -52,6 +54,8 @@ class eoBreed : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
 
 Special breeder that is just an application of an embedded select,
 followed by an embedded transform
+
+@ingroup Combination
 */
 template <class EOT>
 class eoSelectTransform : public eoBreed<EOT>

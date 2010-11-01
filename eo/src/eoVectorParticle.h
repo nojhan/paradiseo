@@ -29,7 +29,7 @@
 
 
 /**
- @addtogroup Core
+ @addtogroup Representations
  @{
 */
 

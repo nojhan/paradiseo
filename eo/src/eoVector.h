@@ -30,7 +30,13 @@ Old contact: todos@geneura.ugr.es, http://geneura.ugr.es
 
 
 /**
- @addtogroup Core
+ @defgroup Representations Representations
+
+ Solution to a given optimization problem are using a given representation, and are called individuals.
+
+ Some of the most classical representations are proposed, but you can create your own one, providing
+ that it inherits from the EO base class. It will be used as a template parameter in almost all operators.
+
  @{
 */
 

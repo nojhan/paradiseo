@@ -30,7 +30,7 @@
 #include <eoFunctor.h>
 #include <utils/eoRNG.h>
 /**
-@defgroup Operators Operators
+@defgroup Operators Evolutionary Operators
 
 in EO, an operator is any functors that modifies objects and inherits from an eoOp.
 
@@ -59,9 +59,12 @@ how to build them from a description in a file.
 Variators are operators that modify individuals.
 
 @defgroup Selectors Selection operators
+
 Selectors are operators that select a subset of a population.
 
+
 @defgroup Replacors Replacement operators
+
 Replacors are operators that replace a subset of a population by another set of individuals.
 */
 
