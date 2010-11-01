@@ -30,9 +30,13 @@
 //-----------------------------------------------------------------------------
 
 /**
- * Abstract class for particle best position initialization.
+ @addtogroup Initializators
+ @{
  */
 
+/**
+ * Abstract class for particle best position initialization.
+ */
 template < class POT > class eoParticleBestInit:public eoUF < POT &, void >
 {
 public:
@@ -74,4 +78,6 @@ public:
 };
 
 #endif /*_EOPARTICLEBESTINIT_H */
+
+/** @} */
 

@@ -31,15 +31,30 @@
 #include <eoObject.h>      // eoObject
 #include <eoPersistent.h>  // eoPersistent
 
-//-----------------------------------------------------------------------------
-/** EO is a base class for evolvable objects, that is, the subjects of
+/**
+    @defgroup Core Core components
+
+    This are the base classes from which useful objects inherits.
+
+    @{
+ */
+
+/** EO is the base class for objects with a fitness.
+ 
+    Those evolvable objects are the subjects of
     evolution. EOs have only got a fitness, which at the same time needs to be
     only an object with the operation less than (<) defined. Fitness says how
     good is the object; evolution or change of these objects is left to the
-    genetic operators. A fitness less than another means a worse fitness, in
+    genetic operators. 
+    
+    A fitness less than another means a worse fitness, in
     whatever the context; thus, fitness is always maximized; although it can
-    be minimized with a proper definition of the < operator. The fitness
-    object must have, besides an void ctor, a copy ctor.
+    be minimized with a proper definition of the < operator. 
+    
+    A fitness can be invalid if undefined, trying to read an invalid fitness will raise an error.
+    @ref Operators that effectively modify EO objects must invalidate them.
+
+    The fitness object must have, besides an void ctor, a copy ctor.
 */
 template<class F = double> class EO: public eoObject, public eoPersistent
 {
@@ -150,6 +165,8 @@ private:
   bool invalidFitness;  // true if the value of fitness is invalid
 };
 
-//-----------------------------------------------------------------------------
 
 #endif
+
+/** @} */
+

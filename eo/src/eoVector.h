@@ -28,6 +28,12 @@ Old contact: todos@geneura.ugr.es, http://geneura.ugr.es
 #include <EO.h>
 #include <utils/eoLogger.h>
 
+
+/**
+ @addtogroup Core
+ @{
+*/
+
 /** Base class for fixed length chromosomes
 
 It just derives from EO and std::vector and redirects the smaller than
@@ -35,6 +41,7 @@ operator to EO (fitness based comparison).
 
 GeneType must have the following methods: void ctor (needed for the
 std::vector<>), copy ctor,
+
 */
 template <class FitT, class GeneType>
 class eoVector : public EO<FitT>, public std::vector<GeneType>
@@ -143,6 +150,7 @@ bool operator>(const eoVector<FitT, GeneType>& _eo1, const eoVector<FitT, GeneTy
 
 #endif
 
+/** @} */
 
 // Local Variables:
 // coding: iso-8859-1

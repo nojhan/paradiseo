@@ -33,8 +33,13 @@
 #include <eoParticleBestInit.h>
 #include <eoTopology.h>
 
+/**
+ @addtogroup Initializators
+ @{
+ */
 
-/*
+
+/**
  * Abstract class for initialization of algorithm PSO
  */
 template <class POT> class eoInitializerBase : public eoFunctorBase
@@ -137,5 +142,5 @@ class eoDummy : public eoUF<POT&, void>
 };
 #endif
 
-
+/** @} */
 

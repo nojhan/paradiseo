@@ -28,23 +28,17 @@
 #ifndef EOPERSISTENT_H
 #define EOPERSISTENT_H
 
-/// @name variables Some definitions of variables used throughout the program
-//@{
-/// max length to store stuff read
-const unsigned MAXLINELENGTH=1024;
-//@}
-
-//-----------------------------------------------------------------------------
 
 #include <iostream>  // std::istream, std::ostream
 #include <string>    // para std::string
 
-//-----------------------------------------------------------------------------
 #include "eoPrintable.h"
 
-//-----------------------------------------------------------------------------
-// eoPersistent
-//-----------------------------------------------------------------------------
+/**
+ @addtogroup Core
+ @{
+*/
+
 /**
 An persistent object that knows how to write (through functions inherited from
 #eoPrintable#) and read itself
@@ -64,9 +58,9 @@ class eoPersistent: public eoPrintable
   
 };
 
-//-----------------------------------------------------------------------------
 ///Standard input for all objects in the EO hierarchy
 std::istream & operator >> ( std::istream& _is, eoPersistent& _o );
 
 #endif
 
+/** @} */

@@ -29,8 +29,9 @@
 
 /** 
     Combined INIT: a proportional recombination of eoInit objects
-*/
 
+    @ingroup Initializators
+*/
 template< class EOT>
 class eoCombinedInit: public eoInit<EOT> {
 public:

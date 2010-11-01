@@ -32,6 +32,11 @@
 #include <eoSTLFunctor.h>
 #include <utils/eoRndGenerators.h>
 
+/**
+ @addtogroup Initializators
+ @{
+ */
+
 /** Abstract class for velocities initilization of particle swarm optimization.*/
 template < class POT > class eoVelocityInit:public eoInit < POT >
 {
@@ -137,3 +142,6 @@ private:
 };
 
 #endif /*EOVELOCITYINIT_H */
+
+/** @} */
+

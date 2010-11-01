@@ -34,6 +34,14 @@
 #include <utils/eoRndGenerators.h>
 #include <utils/rnd_generators.h>  // for shuffle method
 
+
+/**
+    @defgroup Initializators Initialization operators
+    @ingroup Operators
+
+    Initializators are operators that creates initial individuals and populations.
+*/
+/** @{*/
 /**
 	Base (name) class for Initialization of chromosomes, used in a population
 	contructor. It is derived from eoMonOp, so it can be used
@@ -41,7 +49,6 @@
 
 	@see eoPop
 */
-
 template <class EOT>
 class eoInit : public eoUF<EOT&, void>
 {
@@ -202,3 +209,4 @@ class eoInitAdaptor : public eoMonOp<EOT>
 };
 
 #endif
+/** @}*/

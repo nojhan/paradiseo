@@ -34,6 +34,8 @@
 
 /**
  * Swap two components of a chromosome.
+ *
+ * @ingroup Variators
  */
 template<class Chrom> class eoSwapMutation: public eoMonOp<Chrom>
 {

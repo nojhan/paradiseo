@@ -30,14 +30,13 @@
 #include <eoFunctor.h>
 #include <utils/eoRNG.h>
 /**
-\defgroup Operators
-Genetic Operators are used for various purposes
-*/
+@defgroup Operators Operators
 
-/** @name Genetic operators
+in EO, an operator is any functors that modifies objects and inherits from an eoOp.
 
-What is a genetic algorithm without genetic operators?
-There is a genetic operator hierarchy, with eoOp as father and
+Typically, a mutation is an operator that modifies an individual, and an algorithm is an operator that modifies a population.
+
+In EO, there is a genetic operator hierarchy, with eoOp as father and
 eoMonOp (monary or unary operator), eoBinOp and eoQuadOp (binary operators)
 and eoGenOp (any number of inputs and outputs, see eoGenOp.h)
 as subclasses.
@@ -53,8 +52,18 @@ how to build them from a description in a file.
 @version 0.9
 @see eoGenOp.h eoOpFactory
 */
-
 //@{
+
+/**
+@defgroup Variators Variation operators
+Variators are operators that modify individuals.
+
+@defgroup Selectors Selection operators
+Selectors are operators that select a subset of a population.
+
+@defgroup Replacors Replacement operators
+Replacors are operators that replace a subset of a population by another set of individuals.
+*/
 
 /** Abstract data types for EO operators.
   Genetic operators act on chromosomes, changing them.

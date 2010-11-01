@@ -27,6 +27,12 @@
 
 #include <PO.h>
 
+
+/**
+ @addtogroup Core
+ @{
+*/
+
 /**
  * Main class for particle representation of particle swarm optimization. The positions, velocities and the best positions
  * associated to the  particle are stored as vectors. Inheriting from PO and std::vector,
@@ -146,3 +152,4 @@ public:
 };
 
 #endif /*_EOVECTORPARTICLE_H*/
+/** @} */

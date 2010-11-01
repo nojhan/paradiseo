@@ -33,16 +33,16 @@
 
 #include <utils/compatibility.h>
 
-//-----------------------------------------------------------------------------
-// eoObject
-//-----------------------------------------------------------------------------
-/**
+/*
 eoObject used to be the base class for the whole hierarchy, but this has 
 changed. eoObject is used to define a name (#className#) 
 that is used when loading or saving the state. 
 
 Previously, this object also defined a print and read
 interface, but it´s been moved to eoPrintable and eoPersistent.
+*/
+
+/** Defines a name (#className#), used when loading or saving a state.
 
 It is recommended that you only derive from eoObject in concrete classes.
 Some parts of EO do not implement this yet, but that will change in the future.
@@ -51,6 +51,7 @@ framework that is only needed when the classes have state that changes at runtim
 
   @see eoPersistent eoPrintable, eoState
 
+  @ingroup Core
  */
 class eoObject
 {
