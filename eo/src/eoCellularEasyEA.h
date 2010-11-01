@@ -33,8 +33,9 @@
 
 /**
    The abstract cellular easy algorithm. 
- */
 
+   @ingroup Algorithms
+ */
 template <class EOT> class eoCellularEasyEA : public eoAlgo <EOT> {
   
 public :

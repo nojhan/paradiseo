@@ -34,6 +34,8 @@
     is only one operator defined, which takes a population and does stuff to
     it. It needn't be a complete algorithm, can be also a step of an
     algorithm. Only used for mono-objective cases.
+
+    @ingroup Algorithms
 */
 template < class POT > class eoPSO:public eoAlgo < POT >{};
 

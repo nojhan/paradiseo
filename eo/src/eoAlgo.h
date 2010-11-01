@@ -29,11 +29,24 @@
 #include <eoFunctor.h>
 
 /**
-    This is a generic class for population-transforming algorithms. There
+  @defgroup Algorithms Algorithms
+
+  In EO, an algorithm is a functor that takes one or several solutions to an optimization 
+  problem as arguments, and iteratively modify them with the help of operators.
+
+  Generally, an EO object is built by assembling together @ref Operators in an algorithm instance,
+  and then calling the algorithm's operator() on an initial @ref Population. The algorithm will then
+  manipulate the solutions within the population to search for the problem's optimum.
+*/
+
+/**
+    This is the base class for population-transforming algorithms. There
     is only one operator defined, which takes a population and does stuff to
     it. It needn't be a complete algorithm, can be also a step of an
     algorithm. This class just gives a common interface to linear
     population-transforming algorithms.
+
+    @ingroup Algorithms
 */
 template< class EOT >
 class eoAlgo : public eoUF<eoPop<EOT>&, void>

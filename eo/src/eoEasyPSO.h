@@ -32,14 +32,18 @@
 #include <eoFlight.h>
 //-----------------------------------------------------------------------------
 
-/** An easy-to-use particle swarm algorithm; you can use any particle,
-*   any flight, any topology... The main steps are :
+/** An easy-to-use particle swarm algorithm. 
+* Use any particle, any flight, any topology... 
+*
+*   The main steps are :
 * 	  (The population  is expected to be already evaluated)
 * 	 - for each generation and each particle pi
 * 	 - evaluate the velocities
 * 	 	-- perform the fligth of pi
 *    	-- evaluate pi
 *    	-- update the neighborhoods
+*
+* @ingroup Algorithms
 */
 template < class POT > class eoEasyPSO:public eoPSO < POT >
 {

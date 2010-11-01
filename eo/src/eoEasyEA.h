@@ -29,7 +29,6 @@
 
 #include <apply.h>
 #include <eoAlgo.h>
-#include <eoPopAlgo.h>
 #include <eoPopEvalFunc.h>
 #include <eoContinue.h>
 #include <eoSelect.h>
@@ -59,6 +58,8 @@ Change (MS, July 3. 2001):
 
 Note: it looks ugly only because we wanted to authorize many different
   constructors. Please only look at the operator() and there shall be light
+
+  @ingroup Algorithms
 */
 template<class EOT> class eoEasyEA: public eoAlgo<EOT>
   {

@@ -34,13 +34,17 @@
 //-----------------------------------------------------------------------------
 
 /** An easy-to-use synchronous particle swarm algorithm; you can use any particle,
-*   any flight, any topology... The main steps are :
+*   any flight, any topology... 
+*
+*   The main steps are :
 * 	 - perform a first evaluation of the population
 * 	 - for each generation
 * 	 - evaluate ALL the velocities
 * 	 	-- perform the fligth of ALL the particles
 *    	-- evaluate ALL the particles
 *    	-- update the neighborhoods
+*
+*   @ingroup Algorithms
 */
 template < class POT > class eoSyncEasyPSO:public eoPSO < POT >
 {

@@ -43,8 +43,9 @@
  * course an evaluation function (eoEvalFunc) and a continuator
  * (eoContinue) which gives the stopping criterion. Performs full
  * generational replacement.
+ *
+ * @ingroup Algorithms
  */
-
 template <class EOT>
 class eoSGA : public eoAlgo<EOT>
 {

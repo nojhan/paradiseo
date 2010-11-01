@@ -34,13 +34,15 @@
 #include <eoDistribUpdater.h>
 #include <eoEvalFunc.h>
 
-/** eoSimpleEDA: a very simple Estimation of Distribution Algorithm
+/** A very simple Estimation of Distribution Algorithm
  *  
  *  The algorithm that evolves a probability distribution 
  *  on the spaces of populations with the loop
  *                 generate a population from the current distribution
  *                 evaluate that population
  *                 update the distribution
+ *
+ *  @ingroup Algorithms
 */
 
 template<class EOT> class eoSimpleEDA: public eoEDA<EOT>
