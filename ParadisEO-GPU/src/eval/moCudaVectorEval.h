@@ -71,7 +71,7 @@ public:
 	 * @param _incrEval the incremental evaluation
 	 */
 
-	moCudaVectorEval(unsigned _neighborhoodSize, IncrementEval & _incrEval) :
+	moCudaVectorEval(unsigned int _neighborhoodSize, IncrementEval & _incrEval) :
 			moCudaEval<Neighbor> (_neighborhoodSize), incrEval(_incrEval) {
 		}
 	/**
