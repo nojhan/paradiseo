@@ -28,11 +28,18 @@
 #pragma warning(disable:4786)
 #endif 
 
+#include <utils/eoLogger.h>
+
 #include <signal.h>
 #include <iostream>
 
+/**
+ * @addtogroup Continuators
+ * @{
+ */
+
 // --- Global variables - but don't know what else to do - MS ---
-bool     arret_demande = false;
+bool     ask_for_stop = false;
 bool     existCtrlCContinue = false;
 
 //
@@ -46,9 +53,10 @@ void signal_handler( int sig )
   #ifdef SIGQUIT
       signal( SIGINT, SIG_IGN );
       signal( SIGQUIT, SIG_IGN );
-      std::cerr << "Ctrl C entered ... closing down" << std::endl ;
-      arret_demande = true;
+      eo::log << eo::logging << "Ctrl C entered ... closing down" << std::endl ;
+      ask_for_stop = true;
   #endif
 #endif
 }
 
+/** @} */

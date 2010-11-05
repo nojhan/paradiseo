@@ -38,7 +38,7 @@
  * @{
  */
 
-extern bool arret_demande, existCtrlCContinue;
+extern bool ask_for_stop, existCtrlCContinue;
 
 extern void signal_handler( int sig );
 
@@ -73,7 +73,7 @@ public:
   virtual bool operator() ( const eoPop<EOT>& _vEO )
   {
       (void)_vEO;
-    if (arret_demande)
+    if (ask_for_stop)
       return false;
     return true;
   }
