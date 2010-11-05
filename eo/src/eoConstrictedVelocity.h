@@ -40,6 +40,8 @@
 *   C is fixed for all the particles and all the generations.
 *   Default C = 2 * k / abs(2 - P - sqrt (P*(P-4)))
 *   (ci and C given;P=c1*r1 + c2*r2 ; Ri chosen at random *   in [0;1])
+*
+*   @ingroup Variators
 */
 template < class POT > class eoConstrictedVelocity:public eoVelocity < POT >
 {

@@ -41,6 +41,8 @@ The class first call the evaluation function, then check the number of
 times it has been called. If the maximum number of evaluation has been
 reached, it throw an eoMaxEvalException. You can catch this exception
 from your main function, so as to stop everything properly.
+
+@ingroup Evaluation
 */
 template < typename EOT >
 class eoEvalCounterThrowException : public eoEvalFuncCounter< EOT >

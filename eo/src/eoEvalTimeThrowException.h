@@ -25,6 +25,13 @@ Johann Dréo <johann.dreo@thalesgroup.com>
 
 #include <eoExceptions.h>
 
+/** Check at each evaluation if a given tie contract has been reached.
+ *
+ * Throw an eoMaxTimeException if the given max time has been reached.
+ * Usefull if you want to end the search independently of generations.
+ *
+ * @ingroup Evaluation
+ */
 template< class EOT >
 class eoEvalTimeThrowException : public eoEvalFuncCounter< EOT >
 {

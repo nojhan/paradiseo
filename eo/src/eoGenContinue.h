@@ -31,6 +31,8 @@
 
 /** 
     Generational continuator: continues until a number of generations is reached
+
+    @ingroup Continuators
 */
 template< class EOT>
 class eoGenContinue: public eoContinue<EOT>, public eoValueParam<unsigned>

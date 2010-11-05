@@ -30,7 +30,11 @@ Authors:
 #include <iostream>
 #include <utility> // for std::pair
 
-//! A fitness class that permits to compare feasible and unfeasible individuals. It guaranties that a feasible individual will always be better than an unfeasible one.
+/** @addtogroup Evaluation
+ * @{
+ */
+
+//! A fitness class that permits to compare feasible and unfeasible individuals and guaranties that a feasible individual will always be better than an unfeasible one.
 /**
  * Use this class as fitness if you have some kind of individuals 
  * that must be always considered as better than others while having the same fitness type.
@@ -232,5 +236,6 @@ typedef eoDualFitness<double, std::greater<double> > eoMinimizingDualFitness;
 template< class EOT>
 bool eoIsFeasible ( const EOT & sol ) { return sol.fitness().is_feasible(); }
 
+/** @} */
 #endif // _eoDualFitness_h_
 

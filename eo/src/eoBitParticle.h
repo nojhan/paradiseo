@@ -31,6 +31,8 @@
 
 /** eoBitParticle: Implementation of a bit-coded particle (swarm optimization).
  *  Positions and best positions are 0 or 1 but the velocity is a vector of double.
+ *
+ *  @ingroup Bitstring
 */
 template < class FitT> class eoBitParticle: public eoVectorParticle<FitT,bool,double>
 

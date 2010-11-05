@@ -37,8 +37,8 @@
  *
  * It takes one distribution and updates it according to one population
  *
+ * @ingroup Core
 */
-
 template <class EOT>
 class eoDistribUpdater :  
   public eoBF<eoDistribution<EOT> &, eoPop<EOT> &, void>

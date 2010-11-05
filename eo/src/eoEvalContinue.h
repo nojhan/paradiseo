@@ -31,6 +31,8 @@
 
 /** 
  * Continues until a number of evaluations has been made
+ *
+ * @ingroup Continuators
 */
 template< class EOT>
 class eoEvalContinue: public eoContinue<EOT>

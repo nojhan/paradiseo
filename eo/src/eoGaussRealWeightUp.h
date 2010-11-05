@@ -34,6 +34,8 @@
 /**
  * Update an inertia weight by assigning it a Gaussian randomized value 
  * (used for the velocity in particle swarm optimization).
+ *
+ * @ingroup Variators
  */
 class eoGaussRealWeightUp:public eoWeightUpdater<double>
 {

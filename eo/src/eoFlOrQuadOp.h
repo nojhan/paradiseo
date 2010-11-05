@@ -29,6 +29,10 @@
 #include <eoFunctor.h>
 #include <eoOp.h>
 
+/** @addtogroup Variators
+ * @{
+ */
+
 /** Generic eoQuadOps on fixed length genotypes.
  *  Contains exchange crossovers (1pt and uniform)
  *      and crossovers that applies an Atom crossover 
@@ -209,5 +213,6 @@ public :
 
 };
 
+/** @} */
 
 #endif

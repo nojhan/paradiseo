@@ -35,6 +35,8 @@
 /** eoFitnessScalingSelect: select an individual proportional to the 
  *  linearly scaled fitness that is computed by the private
  *  eoLinearFitScaling object
+ *
+ *  @ingroup Selectors
 */
 template <class EOT> 
 class eoFitnessScalingSelect:  public eoRouletteWorthSelect<EOT, double> 

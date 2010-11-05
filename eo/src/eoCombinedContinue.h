@@ -36,8 +36,9 @@
              and allow to easily handle more than 2 continuators
 
 02/2003 Ramón Casero Cañas - added the removeLast() method 
-*/
 
+@ingroup Combination
+*/
 template< class EOT>
 class eoCombinedContinue: public eoContinue<EOT> {
 public:

@@ -33,6 +33,11 @@
 #include <signal.h>
 #include <eoContinue.h>
 
+/**
+ * @addtogroup Continuators
+ * @{
+ */
+
 extern bool arret_demande, existCtrlCContinue;
 
 extern void signal_handler( int sig );
@@ -78,5 +83,5 @@ public:
 
 
 #endif
+/** @} */
 
- // of MSVC comment-out

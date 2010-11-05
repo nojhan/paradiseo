@@ -35,6 +35,8 @@ class eoFunctorBase;
    eoFunctorStore is a class that stores functors that are allocated on the
    heap. This class can be used in factories to store allocated memory for
    dynamically created functors.
+
+   @ingroup Utilities
 */
 class eoFunctorStore
 {

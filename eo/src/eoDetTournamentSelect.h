@@ -36,12 +36,12 @@
 #include <utils/eoLogger.h>
 #include <utils/selectors.h>
 
-//-----------------------------------------------------------------------------
 /** eoDetTournamentSelect: a selection method that selects ONE individual by
  deterministic tournament 
- -MS- 24/10/99 */
-//-----------------------------------------------------------------------------
+ -MS- 24/10/99
 
+ @ingroup Selectors
+ */
 template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
 {
  public:

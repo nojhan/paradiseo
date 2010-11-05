@@ -34,6 +34,8 @@
 /** Abstract class for binary flight of particle swarms. Positions are updated but are expected to be binary.
  *  A function must be used to decide, according to continuous velocities, of the
  *  new positions (0,1 ... ?)
+ *
+ * @ingroup Core
  */
 template < class POT > class eoBinaryFlight:public eoFlight < POT >{};
 

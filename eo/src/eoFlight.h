@@ -32,8 +32,9 @@
 
 /** Abstract class for particle swarm optimization flight.
 * All the flights must derivated from eoFlight.
+*
+* @ingroup Variators
 */
-
 template < class POT > class eoFlight:public eoUF < POT &, void >
 {
 public:

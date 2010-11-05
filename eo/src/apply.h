@@ -31,6 +31,8 @@
 
 /**
   Applies a unary function to a std::vector of things.
+
+  @ingroup Utilities
 */
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)

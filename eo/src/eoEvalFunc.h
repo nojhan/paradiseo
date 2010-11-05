@@ -27,17 +27,23 @@
 
 #include <eoFunctor.h>
 
+/** @defgroup Evaluation Evaluation
+ * @ingroup Operators
+ */
+
 /** Evaluate: takes one EO and sets its "fitness" property
- * returning this fitness also. That is why EOT is passed by
- * non-const reference: it must be altered within evaluate.\\
+ returning this fitness also. That is why EOT is passed by
+ non-const reference: it must be altered within evaluate.\\
 
  The requirements on the types with which this class is to be
  instantiated with are null, or else, they depend on the particular
  class it's going to be applied to; EO does not impose any requirement 
  on it. If you subclass this abstract class, and use it to evaluate an 
  EO, the requirements on this EO will depend on the evaluator.
- */
 
+ @ingroup Evaluation
+ @ingroup Core
+ */
 template<class EOT> class eoEvalFunc : public eoUF<EOT&, void>
 {
     public :

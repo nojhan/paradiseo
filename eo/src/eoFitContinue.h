@@ -29,13 +29,12 @@
 #include <utils/eoLogger.h>
 
 /**
-Fitness continuation:
+Continues until the optimum fitness level is reached.
 
-  Continues until the optimum fitness level is reached.
+All types which derive from eoScalarFitness is able to compare well via the operator override ( <, >, <=, ...)
+
+ @ingroup Continuators
 */
-
-//! all types which derive from eoScalarFitness is able to compare well via the operator override ( <, >, <=, ...)
-
 template< class EOT>
 class eoFitContinue: public eoContinue<EOT> {
 public:

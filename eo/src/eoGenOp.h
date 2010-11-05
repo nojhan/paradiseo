@@ -38,6 +38,9 @@ thanks to the friend class eoPopulator
 
 @author Maarten Keijzer
 @version 0.0
+
+@ingroup Core
+@ingroup Variators
 */
 
 //@{

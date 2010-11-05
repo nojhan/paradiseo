@@ -35,6 +35,9 @@
  *               within the eoGenOp framework
  * eoMonCloneOp will probably be useful as the copy operator
  * eoBinCloneOp will certainly never been used - but let's be complete :-)
+ *
+ * @addtogroup Core
+ * @{
  */
 
 /**
@@ -76,4 +79,5 @@ virtual bool operator()(EOT& , EOT& ) {return false;}
 };
 
 #endif
+/** @} */
 

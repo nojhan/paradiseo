@@ -36,6 +36,8 @@
 	use this class instead of it.
 
     It is derived from eoValueParam so you can add it to a monitor.
+
+    @ingroup Utilities
 */
 template <class Procedure>
 class eoProcedureCounter : public Procedure, public eoValueParam<unsigned long>

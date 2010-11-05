@@ -39,6 +39,8 @@
 *   At step t: v(t+1)= w * v(t) + c1 * r1 * ( xbest(t)-x(t) ) + c2 * r2 * ( lbest(t) - x(t) )  + c3 * r3 * ( gbest(t) - x(t) )
 *   It includes both a "topology" best and a global best in the social knowledge. Each topology
 *   provides a method to retrieve the global best <=> the best of all the neighborhood the topology contains.
+*
+*   @ingroup Variators
 */
 template < class POT > class eoExtendedVelocity:public eoVelocity < POT >
 {

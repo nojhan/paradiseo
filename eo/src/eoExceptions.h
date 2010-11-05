@@ -35,6 +35,8 @@ class eoMaxException : public std::exception {};
 An error that signals that a maximum elapsed time has been reached.
 
 Thrown by @see eoEvalTimeThrowException
+
+@ingroup Evaluation
 */
 class eoMaxTimeException : public eoMaxException
 {
@@ -58,6 +60,8 @@ private:
 An error that signals that a maximum number of evaluations has been reached.
 
 Thrown by @see eoEvalEvalThrowException
+
+@ingroup Evaluation
 */
 class eoMaxEvalException : public eoMaxException
 {

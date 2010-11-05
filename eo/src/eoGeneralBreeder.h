@@ -41,6 +41,8 @@
 
 /**
   Base class for breeders using generalized operators.
+
+  @ingroup Combination
 */
 template<class EOT>
 class eoGeneralBreeder: public eoBreed<EOT>

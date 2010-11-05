@@ -29,6 +29,10 @@
 
 #include <functional>
 
+/** @ddtogroup Core
+ * @{
+ */
+
 /** Base class for functors to get a nice hierarchy diagram
 
     That's actually quite an understatement as it does quite a bit more than
@@ -173,5 +177,6 @@ eoFunctorBase::binary_function_tag functor_category(const eoBF<A1, A2, R>&)
     return eoFunctorBase::binary_function_tag();
 }
 
+/** @} */
 
 #endif

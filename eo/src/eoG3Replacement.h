@@ -44,8 +44,8 @@ eoG3Replacement is an eoReplacement:
 - select best N of this merged population
 - put them back into parent population
 
+@ingroup Replacors
 */
-
 template <class EOT>
 class eoG3Replacement : public eoReplacement<EOT>
 {

@@ -37,7 +37,10 @@ or whatever; but the instance class should be the parent class from which all th
 object that are going to be created descend. This class basically defines an interface,
 as usual. The base factory class for each hierarchy should be redefined every time a new
 object is added to the hierarchy, which is not too good, but in any case, some code would
-have to be modified*/
+have to be modified
+
+@ingroup Utilities
+*/
 template<class EOClass>
 class eoFactory: public eoObject {
 	

@@ -31,8 +31,9 @@
 #include <utils/eoParam.h>
 
 /** 
-Counts the number of evaluations actually performed, thus checks first
-if it has to evaluate.. etc.
+Counts the number of evaluations actually performed.
+
+@ingroup Evaluation
 */
 template<class EOT> class eoEvalFuncCounter : public eoEvalFunc<EOT>, public eoValueParam<unsigned long>
 {

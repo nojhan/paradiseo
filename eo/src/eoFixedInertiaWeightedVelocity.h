@@ -38,6 +38,8 @@
 *   At step t+1 : v(t+1)= w * v(t) + c1*r1 * (xbest(t)-x(t)) + c2*r2 * (gbest(t) - x(t))
 *   w is fixed for all the particles and all the generations.
 *  (ci and w given; Ri chosen at random *   in [0;1])
+*
+*  @ingroup Variators
 */
 template < class POT > class eoFixedInertiaWeightedVelocity:public eoVelocity < POT >
 {

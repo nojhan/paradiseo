@@ -4,6 +4,13 @@
 #include <eoEvalFunc.h>
 #include <utils/eoParam.h>
 
+/** @addtogroup Evaluation
+ * @{
+ */
+
+/** The exception raised by eoEvalFuncCounterBounder 
+ * when the maximum number of allowed evaluations is reached.
+ */
 class eoEvalFuncCounterBounderException : public std::exception
 {
 public:
@@ -20,9 +27,12 @@ private:
     unsigned long _threshold;
 };
 
-/**
-Counts the number of evaluations actually performed, thus checks first
-if it has to evaluate.. etc.
+/** Counts the number of evaluations actually performed and throw an eoEvalFuncCounterBounderException
+ * when the maximum number of allowed evaluations is reached.
+ *
+ * This eval counter permits to stop a search during a generation, without waiting for a continue to be
+ * checked at the end of the loop. Useful if you have 10 individuals and 10 generations, 
+ * but want to stop after 95 evaluations.
 */
 template < typename EOT >
 class eoEvalFuncCounterBounder : public eoEvalFuncCounter< EOT >
@@ -53,4 +63,5 @@ private :
     unsigned long _threshold;
 };
 
+/** @} */
 #endif

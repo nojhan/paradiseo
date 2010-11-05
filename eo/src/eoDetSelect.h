@@ -35,6 +35,8 @@
 //-----------------------------------------------------------------------------
 
 /** eoDetSelect selects many individuals determinisctically
+ *
+ * @ingroup Selectors
 */
 template<class EOT>
 class eoDetSelect : public eoSelect<EOT>

@@ -39,6 +39,8 @@
  *
  * The instances will probably be eoValueParam of some kind
  *    see eoPBILDistrib.h
+ *
+ *  @ingroup Core
 */
 
 template <class EOT>

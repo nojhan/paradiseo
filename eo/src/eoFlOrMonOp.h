@@ -30,6 +30,10 @@
 #include <eoOp.h>
 #include <eoInit.h>
 
+/** @addtogroup Variators
+ * @{
+ */
+
 /** Base classes for generic mutations on fixed length chromosomes.
  *  Contains 2 classes that both use an atomic mutation
  *      eoFlOrAllMutation applies the atom mutation to all components with given rate
@@ -114,5 +118,6 @@ private:
   eoMonOp<AtomType> & atomMutation; // the atom mutation
 };
 
+/** @} */
 
 #endif

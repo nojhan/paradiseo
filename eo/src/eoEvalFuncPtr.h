@@ -34,6 +34,8 @@
  * takes an existing function pointer and converts it into a evaluation
  * function class. That way, old style C or C++ functions can be adapted to EO
  * function classes.
+ *
+ * @ingroup Evaluation
  */
 #ifdef _MSC_VER
 template< class EOT, class FitT = EOT::Fitness, class FunctionArg = const EOT& >
