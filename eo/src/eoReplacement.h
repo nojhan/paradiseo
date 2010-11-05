@@ -37,12 +37,6 @@
 //-----------------------------------------------------------------------------
 
 /** 
-eoReplacement: the base class for all replacement functors.
-
-NOTE: 2 eoPop as arguments
-the resulting population should be in the first argument (replace
-parents by offspring)! The second argument can contain any rubbish 
-
 ---
 The eoMergeReduce, combination of eoMerge and eoReduce, can be found 
 in file eoMergeReduce.h
@@ -69,16 +63,22 @@ MS 12/12/2000
 
 */
 
+/** The base class for all replacement functors.
 
-//@{
+NOTE: two eoPop as arguments
+the resulting population should be in the first argument (replace
+parents by offspring)! The second argument can contain any rubbish 
 
-///
+ @ingroup Replacors
+ */
 template<class EOT>
 class eoReplacement : public eoBF<eoPop<EOT>&, eoPop<EOT>&, void>
 {};
 
 /**
 generational replacement == swap populations
+
+ @ingroup Replacors
 */
 template <class EOT>
 class eoGenerationalReplacement : public eoReplacement<EOT>
@@ -97,6 +97,8 @@ Copies in the new pop the best individual from the old pop,
 AFTER normal replacement, if the best of the new pop is worse than the best 
 of the old pop. Removes the worse individual from the new pop.
 This could be changed by adding a selector there...
+
+ @ingroup Replacors
 */
 template <class EOT>
 class eoWeakElitistReplacement : public eoReplacement<EOT>
@@ -122,7 +124,5 @@ public :
 private:
   eoReplacement<EOT> & replace;
 };
-
-//@}
 
 #endif

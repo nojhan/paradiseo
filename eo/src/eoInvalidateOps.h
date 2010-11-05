@@ -29,6 +29,8 @@
 
 #include <eoOp.h>
 
+/** @addtogroup Utilities
+
 /**
 One of the invalidator operators. Use this one as a 'hat' on an operator
 that is defined to work on a generic datatype. This functor will then check

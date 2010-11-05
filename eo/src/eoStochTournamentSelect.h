@@ -21,24 +21,21 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
  */
-//-----------------------------------------------------------------------------
 
 #ifndef eoStochTournamentSelect_h
 #define eoStochTournamentSelect_h
-
-//-----------------------------------------------------------------------------
 
 #include <functional>
 #include <numeric>           // accumulate
 #include <eoSelectOne.h>     // eoSelectOne
 #include <utils/selectors.h> // stochastic_tournament
 
-//-----------------------------------------------------------------------------
 /** eoStochTournamentSelect: a selection method that selects ONE individual by
  binary stochastic tournament 
- -MS- 24/10/99 */
-//-----------------------------------------------------------------------------
-
+ -MS- 24/10/99 
+ 
+ @ingroup Selectors
+ */
 template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
 {
  public:
@@ -66,8 +63,6 @@ template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
 private:
   double Trate;
 };
-
-//-----------------------------------------------------------------------------
 
 #endif
 

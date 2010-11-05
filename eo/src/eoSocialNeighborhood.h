@@ -33,6 +33,8 @@
  *  Derivated from eoNeighborhood. Just takes relationships into account.
  * The neighborhood is defined as a list of indices corresponding to particles.
  * Also contains ONE particle considered as the best of the neighborhood.
+ *
+ * @ingroup Selectors
  */
 template < class POT > class eoSocialNeighborhood : public eoNeighborhood<POT>
 {
@@ -121,14 +123,4 @@ protected:
 
 
 #endif /* EOSOCIALNEIGHBORHOOD_H_ */
-
-
-
-
-
-
-
-
-
-
 

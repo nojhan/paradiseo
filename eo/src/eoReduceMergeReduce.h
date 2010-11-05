@@ -43,8 +43,8 @@ eoReduceMergeReduce is an eoReplacement:
 - merges reduced populations
 - reduces resulting merged pop if necessary
 
+   @ingroup Replacors
 */
-
 template <class EOT>
 class eoReduceMergeReduce : public eoReplacement<EOT>
 {

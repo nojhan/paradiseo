@@ -35,6 +35,10 @@
 #include <signal.h>
 #include <eoContinue.h>
 
+/** @addtogroup Continuators
+ * @{
+ */
+
 extern bool existSIGContinue;
 extern bool call_func;
 
@@ -84,6 +88,7 @@ private:
   sighandler_t	_fct;
 };
 
+/** @} */
 
 #endif
 

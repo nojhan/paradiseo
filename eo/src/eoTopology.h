@@ -35,6 +35,9 @@
  * Defines the interface of a swarm topology. Can be static (usually the case for the social topologies)
  * or dynamic. It's the same interface for both social and physical topologies. ("social" topology means
  * social-neighborhood-based toplogy and so on ...)
+ *
+ * @ingroup Selectors
+ * @ingroup Core
  */
 template < class POT > class eoTopology:public eoPop < POT >
 {

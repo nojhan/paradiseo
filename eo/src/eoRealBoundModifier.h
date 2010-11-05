@@ -20,25 +20,33 @@
 
     Contact: thomas.legrand@lifl.fr
  */
-//-----------------------------------------------------------------------------
 
 #ifndef EOREALBOUNDMODIFIER_H
 #define EOREALBOUNDMODIFIER_H
 
-//-----------------------------------------------------------------------------
 #include <eoFunctor.h>
 #include <utils/eoRealVectorBounds.h>
-//-----------------------------------------------------------------------------
+
+/** @defgroup Bounds Bounds management
+ *
+ * Bounds are a set of utilities that permits to manage ranges of existence
+ * for variables. For example to restrain vectors or parameters to a given domain.
+ *
+ * @ingroup Utilities
+ */
 
 /**
  * Abstract class for eoRealVectorBounds modifier.
  * Used to modify the bounds included into the eoRealVectorBounds object.
+ *
+ * @ingroup Bounds
  */
 class eoRealBoundModifier: public eoBF < eoRealBaseVectorBounds &,unsigned,void > {};
 
 
 /**
  * An eoRealBoundModifier that modify nothing !
+ * @ingroup Bounds
  */
 class eoDummyRealBoundModifier: public eoRealBoundModifier
 {

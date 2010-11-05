@@ -32,6 +32,8 @@
 
 /**
  * Termination condition until a running time is reached.
+ *
+ * @ingroup Continuators
  */
 template < class EOT >
 class eoTimeContinue: public eoContinue<EOT>

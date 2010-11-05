@@ -44,6 +44,8 @@
  *
  *  Basic parallelization (synchronous standard evolution engine): 
  *    call the slaves and wait for the results
+ *
+ *    @ingroup Evaluation
  */
 template<class EOT>
 class eoPopEvalFunc : public eoBF<eoPop<EOT> & , eoPop<EOT> &, void> 
@@ -55,6 +57,8 @@ class eoPopEvalFunc : public eoBF<eoPop<EOT> & , eoPop<EOT> &, void>
 
 /** eoPopLoopEval: an instance of eoPopEvalFunc that simply applies 
  *     a private eoEvalFunc to all offspring
+ *
+ *    @ingroup Evaluation
  */
 template<class EOT>
 class eoPopLoopEval : public eoPopEvalFunc<EOT> {
@@ -79,6 +83,8 @@ private:
 /** eoPopLoopEval: an instance of eoPopEvalFunc that simply applies 
  *     a private eoEvalFunc to all offspring AND ALL PARENTS
  *     as the fitness is supposed here to vary 
+ *
+ *    @ingroup Evaluation
  */
 template<class EOT>
 class eoTimeVaryingLoopEval : public eoPopEvalFunc<EOT> {

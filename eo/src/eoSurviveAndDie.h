@@ -46,6 +46,10 @@ removes them from the first pop argument
           eoDeterministicSaDReplacement
 */
 
+/** @addtogroup Replacors
+ * @{
+ */
+
 /** eoSurviveAndDie
 A pure abstract class, to store the howmany's
 */
@@ -187,5 +191,7 @@ private :
 };
 
 
+/** @} */
 
 #endif
+

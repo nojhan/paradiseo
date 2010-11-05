@@ -20,6 +20,8 @@
  * p1 : [1|2,4,3|6,5] and p2 : [4|5,3,1|6,2] generate two children:
  * c1 = [2,4,3,6,5,1] 2,4,3 taken from p1 and 6,5,1 from p2
  * c2 = [5,3,1,6,2,4] 5,3,1 taken from p2 and 6,2,4 from p1
+ *
+ * @ingroup Variators
  */
 template<class Chrom> class eoOrderXover: public eoQuadOp<Chrom>
 {

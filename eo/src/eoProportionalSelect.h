@@ -33,15 +33,15 @@
 #include <utils/selectors.h>
 #include <eoSelectOne.h>
 #include <eoPop.h>
-//-----------------------------------------------------------------------------
+
 /** eoProportionalSelect: select an individual proportional to her stored fitness
     value 
     
     Changed the algorithm to make use of a cumulative array of fitness scores, 
     This changes the algorithm from O(n) per call to  O(log n) per call. (MK)
-*/
-//-----------------------------------------------------------------------------
 
+    @ingroup Selectors
+*/
 template <class EOT> class eoProportionalSelect: public eoSelectOne<EOT> 
 {
 public:

@@ -33,8 +33,11 @@
  *  Goldberg and Richardson's basic sharing
 */
 
-/** A helper class for Sharing - to  hold distances */
-  class dMatrix : public std::vector<double>
+/** A helper class for Sharing - to  hold distances 
+ *
+ * @ingroup Selectors
+ * */
+class dMatrix : public std::vector<double>
   {
   public:
     // Ctor : sets size
@@ -74,6 +77,7 @@
  *  Goldberg and Richardson's basic sharing
  *  see eoSharingSelect for how to use it
  * and test/t-eoSharing.cpp for a sample use of both
+ * @ingroup Selectors
 */
 template <class EOT>
 class eoSharing : public eoPerf2Worth<EOT>

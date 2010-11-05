@@ -40,6 +40,8 @@
 *   At step t: v(t+1)= w * v(t) + c1 * r1 * ( xbest(t)-x(t) ) + c2 * r2 * ( lbest(t) - x(t) )
 * 	lbest depends on the topology evolved, when using eoStarTopology, lbest corresponds to the
 *   global. Otherwise, lbest is a "local best", i.e the best in a neighborhood.
+*
+*   @ingroup Variators
 */
 template < class POT > class eoStandardVelocity:public eoVelocity < POT >
 {

@@ -38,15 +38,15 @@
 #include <eoPopulator.h>
 #include <utils/eoHowMany.h>
 
-/*****************************************************************************
- * eoOneToOneBreeder: transforms a population using 
+/** eoOneToOneBreeder: transforms a population using 
  *   - an operator that MODIFIES only one parent from the populator
  *     (though it can use any number aside) and thus generates ONE offspring)
  *   - a local replacement between the parent and its offspring
  *
  * Typically, Differential Evolution (Storn and Price 94) and Deb et al's 
  *   G3 can be built on this
- ****************************************************************************
+ *
+ *  @ingroup Combination
  */
 template<class EOT>
 class eoOneToOneBreeder: public eoBreed<EOT>

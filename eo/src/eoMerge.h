@@ -43,6 +43,9 @@
  * two populations into one (the second argument).
  * Note that the algorithms assume that the second argument denotes the 
  * next generation.
+ *
+ * @ingroup Core
+ * @ingroup Replacors
 */
 
 template<class Chrom> class eoMerge: public eoBF<const eoPop<Chrom>&, eoPop<Chrom>&, void>
@@ -51,6 +54,8 @@ template<class Chrom> class eoMerge: public eoBF<const eoPop<Chrom>&, eoPop<Chro
 /**
 Straightforward elitism class, specify the number of individuals to copy
 into new geneneration or the rate w.r.t. pop size
+ 
+@ingroup Replacors
 */
 template <class EOT> class eoElitism : public eoMerge<EOT>
 {
@@ -103,6 +108,7 @@ private :
 
 /**
 No elite
+@ingroup Replacors
 */
 template <class EOT> class eoNoElitism : public eoElitism<EOT>
 {
@@ -112,6 +118,7 @@ template <class EOT> class eoNoElitism : public eoElitism<EOT>
 
 /**
 Very elitist class, copies entire population into next gen
+@ingroup Replacors
 */
 template <class EOT> class eoPlus : public eoMerge<EOT>
 {

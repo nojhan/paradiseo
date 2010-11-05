@@ -37,6 +37,9 @@
 #include <utils/eoHowMany.h>
 //-----------------------------------------------------------------------------
 
+/** @addtogroup Replacors
+ * @{
+ */
 
 /** 
 eoReduceMerge: Replacement strategies that start by reducing the parents, 
@@ -116,4 +119,5 @@ class eoSSGAStochTournamentReplacement : public eoReduceMerge<EOT>
         eoPlus<EOT> plus;
 };
 
+/** @} */
 #endif

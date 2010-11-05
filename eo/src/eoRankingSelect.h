@@ -35,8 +35,9 @@
  *  is an eoRouletteWorthSelect, i.e. a selector using a std::vector of worthes
  *  rather than the raw fitness (see eoSelectFromWorth.h)
  *  uses an internal eoRanking object which is an eoPerf2Worth<EOT, double>
+ *
+ * @ingroup Selectors
 */
-
 template <class EOT> 
 class eoRankingSelect: public eoRouletteWorthSelect<EOT, double> 
 {

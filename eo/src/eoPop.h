@@ -48,8 +48,9 @@
  * and eoInit derived object. in the ctor. 
  * EOT must also have a copy ctor, since temporaries are created and then
  * passed to the eoInit object
+ *
+ * @ingroup Core
  */
-
 template<class EOT>
 class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
 {
@@ -333,9 +334,6 @@ public:
     for (unsigned i=0; i<size(); i++)
       this->operator[](i).invalidate();
   }
-
- protected:
-
 };
 
 #endif

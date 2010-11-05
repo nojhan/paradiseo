@@ -20,21 +20,20 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
  */
-//-----------------------------------------------------------------------------
 
 #ifndef _EOOPSELMASON_H
 #define _EOOPSELMASON_H
 
-//-----------------------------------------------------------------------------
-#include <eoProportionalOpSel.h>
 #include <eoOpFactory.h>	// for eoFactory and eoOpFactory
 
 #include <map>
 
-//-----------------------------------------------------------------------------
 
 /** EO Mason, or builder, for operator selectors. A builder must allocate memory
-to the objects it builds, and then deallocate it when it gets out of scope*/
+to the objects it builds, and then deallocate it when it gets out of scope
+
+@ingroup Utilities
+*/
 template<class eoClass>
 class eoOpSelMason: public eoFactory<eoOpSelector<eoClass> > {
 	

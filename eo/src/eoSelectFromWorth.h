@@ -46,6 +46,8 @@ techniques where it is a std::pair of doubles ...
 It has to have a < operator it you want to call an existing
 selector (see selector.h) - but of course you can write the whole
 thing ...
+
+@ingroup Selectors
 */
 template <class EOT, class WorthType = double>
 class eoSelectFromWorth : public eoSelectOne<EOT>
@@ -86,6 +88,8 @@ protected:
 
 /** An instance of eoSelectPerf2Worth that does selection from the Worthes
  *  using a ... determinisitic tournament, yes!
+
+@ingroup Selectors
  */
 template <class EOT, class WorthT = double>
 class eoDetTournamentWorthSelect : public eoSelectFromWorth<EOT, WorthT>
@@ -123,6 +127,8 @@ private:
 
 /** An instance of eoSelectPerf2Worth that does selection from the Worthes
  *  using a ... stochastic tournament, yes!
+
+@ingroup Selectors
  */
 template <class EOT, class WorthT = double>
 class eoStochTournamentWorthSelect : public eoSelectFromWorth<EOT, WorthT>
@@ -162,6 +168,8 @@ private:
 
 /** An instance of eoSelectPerf2Worth that does selection from the Worthes
  *  using a ... roulette wheel selection, yes!
+
+@ingroup Selectors
  */
 template <class EOT, class WorthT = double>
 class eoRouletteWorthSelect : public eoSelectFromWorth<EOT, WorthT>

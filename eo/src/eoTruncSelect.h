@@ -38,6 +38,8 @@
  * using eoSelectOne as it's mechanism. 
  * Therefore eoSelectMany needs an eoSelectOne in its ctor
  * It will use an eoHowMnay to determine the number of guys to keep,
+ *
+ * @ingroup Selectors
 */
 template<class EOT>
 class eoTruncSelect : public eoSelect<EOT>

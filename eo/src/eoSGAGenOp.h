@@ -33,14 +33,16 @@
 // class eoSGAGenOp
 ///////////////////////////////////////////////////////////////////////////////
 
-/** ***************************************************************************
+/** 
  * eoSGAGenOp (for Simple GA) mimicks the usual crossover with proba pCross + 
  * mutation with proba pMut inside an eoGeneralOp
  * It does it exactly as class eoSGATransform, i.e. only accepts 
  *    quadratic crossover and unary mutation
  * It was introduced for didactic reasons, but seems to be popular :-)
- *****************************************************************************/
-template<class EOT> 
+ *
+ * @ingroup Combination
+ */
+ template<class EOT> 
 class eoSGAGenOp : public eoGenOp<EOT>
 {
  public:

@@ -31,8 +31,10 @@
 //-----------------------------------------------------------------------------
 
 /** 
-eoTransform transforms a population by applying genetic operators on
-it.
+eoTransform transforms a population by applying genetic operators on it.
+
+@ingroup Combination
+@ingroup Core
 */
 template<class EOT>
 class eoTransform : public eoUF<eoPop<EOT>&, void>

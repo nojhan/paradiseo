@@ -39,6 +39,9 @@
   Hence they are in file eoFlOr MonOp.h file (FixedLengthOrdered mutations)
 */
 
+/* @addtogroup Variators
+ * @{
+ */
 
 /** Addition of a gene
     Is inserted at a random position - so can be applied to both
@@ -153,6 +156,6 @@ private:
     eoGeneDelChooser<EOT> & chooser;
 };
 
-
-
+/** @} */
 #endif
+

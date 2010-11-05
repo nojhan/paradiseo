@@ -37,6 +37,8 @@
 
     It will select floor(rate*pop.size()) individuals and pushes them to
     the back of the destination population.
+
+@ingroup Selectors
 */
 template<class EOT>
 class eoSelectPerc : public eoSelect<EOT>

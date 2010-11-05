@@ -29,6 +29,10 @@
 #include <functional>
 #include <iostream>
 
+/** @addtogroup Evaluation
+ * @{
+ */
+
 /**
  * eoScalarFitness<ScalarType, Compare = less<ScalarType> >:
  * Wraps a scalar fitness values such as a double or int, with the option of
@@ -107,4 +111,5 @@ std::istream& operator>>(std::istream& is, eoScalarFitness<F, Cmp>& f)
     return is;
 }
 
+/** @} */
 #endif

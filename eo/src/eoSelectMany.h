@@ -40,6 +40,8 @@
 
     It will use an eoHowMnay to determine the number of guys to select,
      and push them to the back of the destination population.
+
+@ingroup Selectors
 */
 template<class EOT>
 class eoSelectMany : public eoSelect<EOT>

@@ -45,6 +45,7 @@ Replacement strategies that combine en eoMerge and an eoReduce.
 /**
 eoMergeReduce: abstract replacement strategy that is just an application of 
 an embedded merge, followed by an embedded reduce
+@ingroup Replacors
 */
 template <class EOT>
 class eoMergeReduce : public eoReplacement<EOT>
@@ -68,6 +69,7 @@ class eoMergeReduce : public eoReplacement<EOT>
 
 /**
 ES type of replacement strategy: first add parents to population, then truncate
+@ingroup Replacors
 */
 template <class EOT>
 class eoPlusReplacement : public eoMergeReduce<EOT>
@@ -82,6 +84,7 @@ class eoPlusReplacement : public eoMergeReduce<EOT>
 
 /**
 ES type of replacement strategy: ignore parents, truncate offspring
+@ingroup Replacors
 */
 template <class EOT>
 class eoCommaReplacement : public eoMergeReduce<EOT>
@@ -97,6 +100,7 @@ class eoCommaReplacement : public eoMergeReduce<EOT>
 /**
 EP type of replacement strategy: first add parents to population, 
    then truncate using EP tournament
+@ingroup Replacors
 */
 template <class EOT>
 class eoEPReplacement : public eoMergeReduce<EOT>

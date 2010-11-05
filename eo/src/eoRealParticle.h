@@ -31,6 +31,8 @@
 
 /** eoRealParticle: Implementation of a real-coded particle for
  *  particle swarm optimization. Positions, velocities and best positions are real-coded.
+ *
+ *  @ingroup Real
 */
 template < class FitT> class eoRealParticle: public eoVectorParticle<FitT,double,double>
 

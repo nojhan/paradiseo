@@ -32,6 +32,8 @@ mak@dhi.dk
 
 /**
 * Especially designed for combinatorial problem such as the TSP.
+*
+* @ingroup Variators
 */
 template<class EOT> class eoTwoOptMutation: public eoMonOp<EOT>
 {

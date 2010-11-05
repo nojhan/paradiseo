@@ -29,6 +29,10 @@
 
 #include "eoFunctor.h"
 
+/** @addtogroup Utilities 
+ * @{
+ */
+
 /**
   Generic set of classes that wrap an eoF, eoUF or eoBF so that they have the
   copy semantics the STL functions usually require (i.e. they can be passed
@@ -115,4 +119,6 @@ class eoSTLBF : public std::binary_function<A1, A2, R>
 
 //! @todo: put automated wrappers here...
 
+/** @} */
 #endif
+

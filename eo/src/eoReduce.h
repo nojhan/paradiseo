@@ -40,12 +40,15 @@
    At the moment, limited to truncation - with 2 different methods,
    one that sorts the whole population, and one that repeatidely kills 
    the worst. Ideally, we should be able to choose at run-time!!!
-*/
 
+   @ingroup Replacors
+*/
 template<class EOT> class eoReduce: public eoBF<eoPop<EOT>&, unsigned, void>
 {};
 
-/** truncation method using sort */
+/** truncation method using sort 
+   @ingroup Replacors
+ */
 template <class EOT> class eoTruncate : public eoReduce<EOT>
 {
     void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
@@ -60,7 +63,9 @@ template <class EOT> class eoTruncate : public eoReduce<EOT>
     }
 };
 
-/** random truncation */
+/** random truncation 
+   @ingroup Replacors
+ * */
 template <class EOT> class eoRandomReduce : public eoReduce<EOT>
 {
     void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
@@ -79,6 +84,7 @@ template <class EOT> class eoRandomReduce : public eoReduce<EOT>
 /** 
 EP truncation method (some global stochastic tournament +  sort)
 Softer selective pressure than pure truncate
+   @ingroup Replacors
 */
 template <class EOT> class eoEPReduce : public eoReduce<EOT>
 {
@@ -162,6 +168,7 @@ private:
 
 /** a truncate class that does not sort, but repeatidely kills the worse.
 To be used in SSGA-like replacements (e.g. see eoSSGAWorseReplacement)
+   @ingroup Replacors
 */
 template <class EOT> 
 class eoLinearTruncate : public eoReduce<EOT>
@@ -183,6 +190,7 @@ class eoLinearTruncate : public eoReduce<EOT>
 
 /** a truncate class based on a repeated deterministic (reverse!) tournament
 To be used in SSGA-like replacements (e.g. see eoSSGADetTournamentReplacement)
+   @ingroup Replacors
 */
 template <class EOT> 
 class eoDetTournamentTruncate : public eoReduce<EOT>
@@ -231,6 +239,7 @@ private:
 
 /** a truncate class based on a repeated deterministic (reverse!) tournament
 To be used in SSGA-like replacements (e.g. see eoSSGAStochTournamentReplacement)
+   @ingroup Replacors
 */
 template <class EOT> 
 class eoStochTournamentTruncate : public eoReduce<EOT>

@@ -38,6 +38,9 @@
 /** @brief Base class to transform raw fitnesses into fitness for selection
 
 @see eoSelectFromWorth
+
+@ingroup Selectors
+@ingroup Utilities
 */
 template <class EOT, class WorthT = double>
 class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<std::vector<WorthT> >
@@ -106,6 +109,8 @@ public:
 
 /**
 Perf2Worth with fitness cache
+@ingroup Selectors
+@ingroup Utilities
 */
 template <class EOT, class WorthT = typename EOT::Fitness>
 class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
@@ -225,7 +230,10 @@ public:
 
 
 
-/** A dummy perf2worth, just in case you need it */
+/** A dummy perf2worth, just in case you need it
+@ingroup Selectors
+@ingroup Utilities
+*/
 template <class EOT>
 class eoNoPerf2Worth : public eoPerf2Worth<EOT, typename EOT::Fitness>
 {

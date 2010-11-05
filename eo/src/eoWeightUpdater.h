@@ -32,6 +32,8 @@
 /**
  * Abstract class for (inertia) weight updater (particle swarm optimization). 
  * Used inside classes extending eoVelocity.
+ *
+ * @ingroup Core
  */
 template < class WeightType > class eoWeightUpdater: public eoUF < WeightType &, void > {};
 

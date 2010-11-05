@@ -33,11 +33,13 @@
 // class eoSGAGenOp
 ///////////////////////////////////////////////////////////////////////////////
 
-/** ***************************************************************************
+/** 
  * eoPropGAGenOp (for Simple GA, but Proportional) 
  * choice between Crossover, mutation or cloining 
  * with respect to given relatve weights
- *****************************************************************************/
+ *
+ * @ingroup Combination
+ */
 template<class EOT> 
 class eoPropGAGenOp : public eoGenOp<EOT>
 {

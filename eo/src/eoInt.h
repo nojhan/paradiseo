@@ -33,6 +33,8 @@
 
 /** eoInt: implementation of simple integer-valued chromosome.
   * based on eoVector class
+  *
+  * @ingroup Representations
 */
 template <class FitT> class eoInt: public eoVector<FitT, int>
 {

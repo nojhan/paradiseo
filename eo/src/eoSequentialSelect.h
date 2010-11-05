@@ -48,6 +48,8 @@ worse, or in random order.
 
 It is the eoSelectOne equivalent of eoDetSelect - though eoDetSelect
 always returns individuals from best to worst
+
+@ingroup Selectors
 */
 template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
 {
@@ -93,6 +95,8 @@ for G3 evolution engine, see Deb, Anad and Joshi, CEC 2002
 As eoSequentialSelect, it is an eoSelectOne to be used within the
 eoEaseyEA algo, but conceptually it should be a global eoSelect, as it
 selects a bunch of guys in one go (done in the setup function now)
+
+@ingroup Selectors
 */
 template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
 {

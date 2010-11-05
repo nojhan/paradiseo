@@ -39,6 +39,8 @@
  * 			Pi=1
  * 	    else
  * 			Pi=0
+ *
+ * 	@ingroup Variators
  */
 template < class POT > class eoSigBinaryFlight:public eoBinaryFlight < POT >
 {

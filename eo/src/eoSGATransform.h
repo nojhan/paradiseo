@@ -41,6 +41,8 @@
  * It does it exactly as class eoSGA, i.e. only accepts 
  *    quadratic crossover and unary mutation
  * It is here mainly for tutorial reasons
+ *
+ * @ingroup Combination
 */
 template<class EOT> class eoSGATransform : public eoTransform<EOT>
 {
@@ -94,7 +96,9 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
  *    i.e. the operators probabilities can be passed as an eoValueParam, 
  *    and hence can be modified from outside
  * It is here mainly for tutorial reasons
- *****************************************************************************/
+ *
+ * @ingroup Combination
+*/
 template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
 {
  public:

@@ -22,12 +22,10 @@
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
  */
-//-----------------------------------------------------------------------------
 
 #ifndef eoRandomSelect_h
 #define eoRandomSelect_h
 
-//-----------------------------------------------------------------------------
 /** This file contains straightforward selectors:
  * eoRandomSelect          returns an individual uniformly selected
  * eoBestSelect            always return the best individual
@@ -37,10 +35,10 @@
 #include <utils/eoRNG.h>
 #include <eoSelectOne.h>
 
-//-----------------------------------------------------------------------------
-/** eoRandomSelect: a selection method that selects ONE individual randomly */
-//-----------------------------------------------------------------------------
-
+/** eoRandomSelect: a selection method that selects ONE individual randomly 
+ *
+ * @ingroup Selectors
+ */
 template <class EOT> class eoRandomSelect: public eoSelectOne<EOT>
 {
  public:
@@ -52,11 +50,11 @@ template <class EOT> class eoRandomSelect: public eoSelectOne<EOT>
   }
 };
 
-//-----------------------------------------------------------------------------
 /** eoBestSelect: a selection method that always return the best
- *                (mainly for testing purposes) */
-//-----------------------------------------------------------------------------
-
+ *                (mainly for testing purposes)
+ *
+ * @ingroup Selectors
+ */
 template <class EOT> class eoBestSelect: public eoSelectOne<EOT>
 {
  public:
@@ -68,13 +66,11 @@ template <class EOT> class eoBestSelect: public eoSelectOne<EOT>
   }
 };
 
-//-----------------------------------------------------------------------------
 /** eoNoSelect: returns all individual in order WITHOUT USING FITNESS!!!
  *       looping back to the beginning when exhasuted
  *
+ * @ingroup Selectors
  */
-//-----------------------------------------------------------------------------
-
 template <class EOT> class eoNoSelect: public eoSelectOne<EOT>
 {
  public:

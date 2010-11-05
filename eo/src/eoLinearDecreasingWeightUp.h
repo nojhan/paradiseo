@@ -37,6 +37,8 @@
  *  Nt is the total number of generations/event
  *  w(0) is the initial weight
  *  w(Nt) is the last inertia weight
+ *
+ *  @ingroup Variators
  */
 template <class WeightType, class StopCriteriaType> class eoLinearDecreasingWeightUp:public eoWeightUpdater<WeightType>
 {

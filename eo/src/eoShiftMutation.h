@@ -34,6 +34,8 @@
 
 /**
  * Shift two components of a chromosome.
+ *
+ * @ingroup Variators
  */
 template<class EOT> class eoShiftMutation: public eoMonOp<EOT>
 {

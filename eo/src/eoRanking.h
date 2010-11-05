@@ -33,6 +33,8 @@
  *  COmputes the ranked fitness: fitnesses range in [m,M]
  *  with m=2-pressure/popSize and M=pressure/popSize.
  *  in between, the progression depstd::ends on exponent (linear if 1).
+ *
+ *  @ingroup Selectors
  */
 template <class EOT>
 class eoRanking : public eoPerf2Worth<EOT> // false: do not cache fitness

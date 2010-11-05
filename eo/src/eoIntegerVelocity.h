@@ -40,6 +40,8 @@
 *   At step t: v(t+1)= c1 * v(t) + c2 * r2 * ( xbest(t)-x(t) ) + c3 * r3 * ( gbest(t) - x(t) )
 *   v(t) is an INT for any time step
 *   (ci given and Ri chosen at random in [0;1]).
+*
+*   @ingroup Variators
 */
 template < class POT > class eoIntegerVelocity:public eoVelocity < POT >
 {

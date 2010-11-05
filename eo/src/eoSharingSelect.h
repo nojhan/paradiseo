@@ -37,6 +37,7 @@
  * rather than the raw fitness (see eoSelectFromWorth.h)
  * It uses an internal eoSharing object which is 
  * an eoPerf2Worth<EOT, double>
+ * @ingroup Selectors
 */
 
 template <class EOT> 

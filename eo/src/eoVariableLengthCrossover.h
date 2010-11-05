@@ -36,6 +36,10 @@ Basically, they exchange genes - we need some matching information to apply
 atom crossover
 */
 
+/** @addtogroup Variators
+ * @{
+ */
+
 /** A helper class for choosing which genes to exchange */
 template <class Atom>
 class eoAtomExchange : public eoBF<unsigned, Atom &, bool>
@@ -344,6 +348,6 @@ private:
   double rate;
 };
 
-
-
+/** @} */
 #endif
+

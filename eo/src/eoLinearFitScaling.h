@@ -38,6 +38,8 @@
  *  truncate negative values to 0 -
  *
  * to be used within an eoSelectFromWorth object
+ *
+ * @ingroup Selectors
  */
 template <class EOT>
 class eoLinearFitScaling : public eoPerf2Worth<EOT> // false: do not cache fitness

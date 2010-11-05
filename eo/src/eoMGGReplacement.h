@@ -44,6 +44,7 @@ eoMGGReplacement is an eoReplacement:
 - select best N-1 of this merged population (detTournament only at the moment)
 - put them back into parent population
 
+@ingroup Replacors
 */
 
 template <class EOT>

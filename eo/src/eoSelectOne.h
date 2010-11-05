@@ -36,6 +36,8 @@
     of eoSelectOne.
 
       @see eoSelectMany, eoSelectRandom, eoDetTournament, eoStochTournament, eoProportional
+
+@ingroup Selectors
 */
 #if  defined(_MSC_VER) && (_MSC_VER < 1300)
 template<class EOT, class WorthT = EOT::Fitness>

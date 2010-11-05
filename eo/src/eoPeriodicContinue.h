@@ -1,7 +1,5 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-// "eoFreqContinue.h"
-
 // (c) OPAC Team, LIFL, Feb. 2006
 
 /* This library is free software; you can redistribute it and/or
@@ -27,16 +25,25 @@
 #include <eoContinue.h>
 #include <eoPop.h>
 
+/** A continue that becomes true periodically.
+ */
 template <class EOT> class eoPeriodicContinue: public eoContinue <EOT> {
 
 public:
   
   /** Constructor. The period is given in parameter. */  
-  eoPeriodicContinue (unsigned __period, unsigned __init_counter = 0);
+  eoPeriodicContinue (unsigned __period, unsigned __init_counter = 0) : 
+      period (__period), counter (__init_counter) 
+    {}
+
 
   /** It returns 'true' only if the current number of generations modulo
       the period doen't equal to zero. */  
-  bool operator () (const eoPop <EOT> & pop);
+  bool operator () (const eoPop <EOT> & pop)
+  {
+    return ((++ counter) % period) != 0 ;
+  }
+
     
 private:
 
@@ -45,19 +52,5 @@ private:
   unsigned counter;
 
 };
-
-template <class EOT> 
-eoPeriodicContinue <EOT> :: eoPeriodicContinue (unsigned __period, unsigned __init_counter
-						) : period (__period),
-						    counter (__init_counter) {
-
-}
-
-template <class EOT> 
-bool eoPeriodicContinue <EOT> :: operator () (const eoPop <EOT> & __pop) {
-    
-  return ((++ counter) % period) != 0 ;
-}
-
 #endif
 

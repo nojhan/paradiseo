@@ -37,6 +37,8 @@
  *          the differnet instances of eoOpContainer:
  *          an ***absolute*** probability in the sequential version, and
  *          a ***relative*** weight in the proportional version
+ *
+ *  @ingroup Combination
  */
 template <class EOT>
 class eoOpContainer : public eoGenOp<EOT>
@@ -83,6 +85,8 @@ class eoOpContainer : public eoGenOp<EOT>
  *  note the mark, rewind, unmark cycle
  *  here operators are repeatedly applied on the same individual(s)
  *  not all too elegant, but it sort of works...
+ *
+ *  @ingroup Combination
  */
 template <class EOT>
 class eoSequentialOp : public eoOpContainer<EOT>

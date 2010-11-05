@@ -34,7 +34,11 @@
 
 /** EO Factory.An instance of the factory class to create selectors, that is,
 eoSelect objects
-@see eoSelect*/
+
+@see eoSelect
+@ingroup Selectors
+@ingroup Utilities
+*/
 template< class EOT>
 class eoSelectFactory: public eoFactory<eoSelect< EOT> > {
 	

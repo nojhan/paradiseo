@@ -40,6 +40,7 @@
 
     It will perform selection only from the top guys in the population.
 
+    @ingroup Selectors
 */
 template<class EOT>
 class eoTruncatedSelectOne : public eoSelectOne<EOT>

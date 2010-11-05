@@ -31,6 +31,8 @@
 /** 
     A continuator:  does a minimum number of generations, then
     stops whenever a given number of generations takes place without improvement 
+
+    @ingroup Continuators
 */
 template< class EOT>
 class eoSteadyFitContinue: public eoContinue<EOT>

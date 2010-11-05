@@ -34,6 +34,8 @@
 /** Standard flight for particle swarm optimization. Derivated from abstract eoFlight,
  *   just adds the velocities to the current position of the particle
  *   and invalidates its fitness
+ *
+ *   @ingroup Variators
  */
 template < class POT > class eoStandardFlight:public eoFlight < POT >
 {

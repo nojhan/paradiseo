@@ -48,6 +48,8 @@
 
      However, the same result can be obtained by embedding an 
      eoTruncatedSelectOne into an eoSelectMany ...
+
+     @ingroup Selectors
 */
 template<class EOT>
 class eoTruncatedSelectMany : public eoSelect<EOT>

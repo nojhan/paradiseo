@@ -29,6 +29,7 @@
 #include <eoPrintable.h>
 #include <eoFunctor.h>
 #include <utils/eoRNG.h>
+
 /**
 @defgroup Operators Evolutionary Operators
 

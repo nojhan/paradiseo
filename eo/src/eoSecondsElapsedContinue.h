@@ -26,8 +26,11 @@
 #define _eoSecondsElapsedContinue_h
 
 #include <eoContinue.h>
+
 /** 
     Timed continuator: continues until a number of seconds is used
+
+    @ingroup Continuators
 */
 template< class EOT>
 class eoSecondsElapsedContinue: public eoContinue<EOT>

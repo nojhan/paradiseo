@@ -33,7 +33,11 @@
     It is an eoPop but also behaves like an eoPop::iterator
     as far as operator* and operator++ are concerned
 
-    See eoGenOp and eoOpContainer
+    @see eoGenOp
+    @see eoOpContainer
+
+    @ingroup Core
+    @ingroup Utilities
 */
 template <class EOT>
 class eoPopulator

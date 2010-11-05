@@ -39,6 +39,8 @@
  * The neighborhoods are built using a ring based on each particle's indice and
  * do not change for all the time steps. Only the best particle in each neighborhood is
  * potentially updated thanks to the "updateNeighborhood" method.
+ *
+ * @ingroup Selectors
  */
 template < class POT > class eoRingTopology:public eoTopology <POT>
 {

@@ -35,6 +35,10 @@
 #include <eoFunctor.h>  // eoReduce
 #include <utils/selectors.h>
 
+/** @addtogroup Replacors
+ * @{
+ */
+
 /**
  * eoReduceSplit: reduce the pop to the specified size
  *                  AND eventually returns the eliminated guys
@@ -320,4 +324,5 @@ private:
 
 //-----------------------------------------------------------------------------
 
+/** @} */
 #endif

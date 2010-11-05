@@ -37,6 +37,8 @@
 
     It will select a fixed number of individuals and pushes them to
     the back of the destination population.
+
+@ingroup Selectors
 */
 template<class EOT>
 class eoSelectNumber : public eoSelect<EOT>

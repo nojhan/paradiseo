@@ -29,6 +29,8 @@
 /**
  * Abstract class for neighborboods. Used for particle swarm optimization
  * topology strategies. Can be social or physical.
+ *
+ * @ingroup Selectors
  */
 template < class POT > class eoNeighborhood
 {

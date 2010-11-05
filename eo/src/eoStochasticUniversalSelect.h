@@ -34,13 +34,12 @@
 #include <utils/selectors.h>
 #include <eoPop.h>
 
-//-----------------------------------------------------------------------------
 /** eoStochasticUniversalSelect: select an individual proportional to her stored fitness
     value, but in contrast with eoStochasticUniversalSelect, get rid of most finite sampling effects
     by doing all selections in one go, using a single random number.
-*/
-//-----------------------------------------------------------------------------
 
+    @ingroup Selectors
+*/
 template <class EOT> class eoStochasticUniversalSelect: public eoSelectOne<EOT>
 {
 public:

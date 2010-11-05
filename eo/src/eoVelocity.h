@@ -35,6 +35,8 @@
 /**
  * Abstract class for velocities calculation (particle swarm optimization).
  * All the velocities must derivated from eoVelocity.
+ *
+ * @ingroup Variators
  */
 template < class POT > class eoVelocity:public eoBF < POT &,unsigned , void >
 {
