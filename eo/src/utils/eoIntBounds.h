@@ -31,14 +31,15 @@
 #include <utils/eoRNG.h>
 
 /**
-\defgroup EvolutionStrategies
+\defgroup Real
 
 */
 
 
 /**
 \class eoIntBounds eoIntBounds.h es/eoIntBounds.h
-\ingroup EvolutionStrategies
+\ingroup Real
+\ingroup Bounds
 
     Defines bound classes for real numbers.
 
@@ -149,6 +150,9 @@ public:
 };
 
 /** A default class for unbounded variables
+ *
+ * @ingroup Real
+ * @ingroup Bounds
  */
 class eoIntNoBounds : public eoIntBounds
 {
@@ -221,11 +225,18 @@ public:
 
 };
 
-// one object for all - see eoIntBounds.cpp
+/** one object for all - see eoIntBounds.cpp
+ *
+ * @ingroup Real
+ * @ingroup Bounds
+ */
 extern eoIntNoBounds eoDummyIntNoBounds;
 
 /**
  * fully bounded eoIntBound == interval
+ *
+ * @ingroup Real
+ * @ingroup Bounds
  */
 class eoIntInterval : public eoIntBounds
 {
@@ -349,6 +360,9 @@ private :
 
 /**
  * an eoIntBound bounded from below only
+ *
+ * @ingroup Real
+ * @ingroup Bounds
  */
 class eoIntBelowBound : public eoIntBounds
 {
@@ -453,6 +467,9 @@ private :
 
 /**
 An eoIntBound bounded from above only
+ *
+ * @ingroup Real
+ * @ingroup Bounds
 */
 class eoIntAboveBound : public eoIntBounds
 {
@@ -560,6 +577,9 @@ private :
 
 /** A class that encapsulate all possible eoIntBounds.
  *  Mandatory in order to read through the parser
+ *
+ * @ingroup Real
+ * @ingroup Bounds
  */
 class eoGeneralIntBounds : public eoIntBounds
 {

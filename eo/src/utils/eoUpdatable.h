@@ -32,6 +32,8 @@
 /**
     eoUpdatable is a generic class for adding updatation to an existing class
     Just says it has an update() method
+
+    @ingroup Utilities
 */
 class eoUpdatable
 {
@@ -47,6 +49,8 @@ public:
 
 /**
    A base class to actually update an eoUpdatable object
+
+    @ingroup Utilities
 */
 class eoDynUpdater : public eoUpdater
 {public :
@@ -63,6 +67,8 @@ private:
 
 /**
    An eoUpdater to update an eoUpdatable object every given time interval
+
+    @ingroup Utilities
 */
 class eoTimedDynUpdate : public eoDynUpdater
 {
@@ -89,6 +95,8 @@ private :
 
 /**
    An eoUpdater to update an eoUpdatable object every given tic
+
+    @ingroup Utilities
 */
 class eoCountedDynUpdate : public eoDynUpdater
 {

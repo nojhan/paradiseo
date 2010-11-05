@@ -3,6 +3,8 @@
 
 #include <vector>
 
+/** @ingroup Utilities
+ */
 class lower_triangular_matrix {
 
     unsigned n;
@@ -21,6 +23,8 @@ class lower_triangular_matrix {
     std::vector<double>::const_iterator operator[](unsigned i) const { return data.begin() + i*(i+1)/2; }
 };
 
+/** @ingroup Utilities
+ */
 class square_matrix {
     unsigned n;
     std::vector<double> data;

@@ -48,8 +48,9 @@ so that you can pass e.g. an evalcounter (minor)
 
 I failed to templatize everything so that it can handle eoParam<std::vector<T> >
 for any type T, simply calling their getValue method ...
-*/
 
+@ingroup Monitors
+*/
 class eoFileSnapshot : public eoMonitor
 {
 public :

@@ -36,6 +36,8 @@ Contact: http://eodev.sourceforge.net
 eoParameterLoader is an abstract class that can be used as a base for your own
 parameter loading and saving. The command line parser eoParser is derived from
 this class.
+
+@ingroup Parameters
 */
 class eoParameterLoader
 {
@@ -96,6 +98,8 @@ private :
     eoParser: command line parser and configuration file reader
     This class is persistent, so it can be stored and reloaded to restore
     parameter settings.
+
+    @ingroup Parameters
 */
 class eoParser : public eoParameterLoader, public eoObject, public eoPersistent
 {

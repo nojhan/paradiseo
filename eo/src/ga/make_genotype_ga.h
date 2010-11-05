@@ -55,8 +55,10 @@
  * WARNING: that last argument will generally be the result of calling 
  *          the default ctor of EOT, resulting in most cases in an EOT 
  *          that is ***not properly initialized***
+ *
+ * @ingroup bitstring
+ * @ingroup Builders
 */
-
 template <class EOT>
 eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 {

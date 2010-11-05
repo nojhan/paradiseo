@@ -34,12 +34,14 @@
 #include "utils/eoMonitor.h"
 #include "eoObject.h"
 
+
 /** Prints statistics to file
 
 Modified the default behavior, so that it erases existing files. Can
 be modified in the ctor.
 
 @version MS 25/11/00
+@ingroup Monitors
 */
 class eoFileMonitor : public eoMonitor
 {

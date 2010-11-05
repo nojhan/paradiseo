@@ -73,9 +73,9 @@
  *
  * This is why the template is the complete EOT even though only the fitness
  * is actually templatized here
+ *
+ * @ingroup Builders
 */
-
-
 template <class EOT>
 eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op, eoDistance<EOT> * _dist = NULL)
 {

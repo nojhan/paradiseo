@@ -31,7 +31,7 @@
 #include <utils/eoRNG.h>
 
 /**
-\defgroup EvolutionStrategies Continuous vector
+\defgroup Real Continuous vector
 
 @ingroup Representations
 
@@ -40,7 +40,7 @@
 
 /**
 \class eoRealBounds eoRealBounds.h es/eoRealBounds.h
-\ingroup EvolutionStrategies
+\ingroup Real
 
     Defines bound classes for real numbers.
 
@@ -73,6 +73,8 @@ eoRealAboveBound the   half-bounded interval (-infinity, max]
 
 THis file also contains the declaration of *the* global object that
 is the unbounded bound
+
+@ingroup Bounds
 */
 class eoRealBounds : public eoPersistent
 { 
@@ -131,6 +133,8 @@ public:
 };
 
 /** A default class for unbounded variables
+
+@ingroup Bounds
  */
 class eoRealNoBounds : public eoRealBounds
 {
@@ -196,11 +200,15 @@ public:
 
 };
 
-// one object for all - see eoRealBounds.cpp
+/** one object for all - see eoRealBounds.cpp
+@ingroup Bounds
+*/
 extern eoRealNoBounds eoDummyRealNoBounds;
 
 /**
  * fully bounded eoRealBound == interval
+
+@ingroup Bounds
  */
 class eoRealInterval : public eoRealBounds
 {
@@ -319,6 +327,8 @@ private :
 
 /**
  * an eoRealBound bounded from below only
+
+@ingroup Bounds
  */
 class eoRealBelowBound : public eoRealBounds
 {
@@ -518,6 +528,8 @@ private :
 
 /** A class that encapsulate all possible eoIntBounds.
  *  Mandatory in order to read through the parser
+
+@ingroup Bounds
  */
 class eoGeneralRealBounds : public eoRealBounds
 {

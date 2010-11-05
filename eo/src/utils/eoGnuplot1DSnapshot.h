@@ -47,6 +47,8 @@ This class plots through gnuplot the eoStat given as argument
 
 Assumes that the same file is re-written every so and so, and plots it
 from scratch everytime it's called
+
+@ingroup Monitors
  */
 class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 {

@@ -36,6 +36,8 @@
 /**
     Holds a collection of monitors and only fires them when a time limit
     has been reached
+
+    @ingroup Monitors
 */
 class eoTimedMonitor : public eoMonitor
 {

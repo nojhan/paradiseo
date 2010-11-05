@@ -1,7 +1,5 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-//-----------------------------------------------------------------------------
-// eoMonitor.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
 /* 
     This library is free software; you can redistribute it and/or
@@ -21,10 +19,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-CVS Info: $Date: 2010-03-18 12:44:45 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.13 2010-03-18 12:44:45 paradiseo Exp $ $Author: paradiseo $ 
-
  */
-//-----------------------------------------------------------------------------
 
 #ifndef _eoMonitor_h
 #define _eoMonitor_h
@@ -33,6 +28,20 @@ CVS Info: $Date: 2010-03-18 12:44:45 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 #include <vector>
 #include <iostream>
 #include <eoFunctor.h>
+
+/** @defgroup Monitors Monitoring
+ *
+ * Monitors take a set of value parameters (eoValueParam) objects and 
+ * output them on a given stream, file, pipe, etc.
+ *
+ * They can be called from within an eoCheckPoint, to print different values
+ * of parameters or of eoStat at each generation.
+ *
+ * @see eoCheckPoint
+ * @see eoStat
+ * @ingroup Utilities
+ */
+
 
 class eoParam;
 template <class EOT> class eoCheckPoint;
@@ -43,6 +52,8 @@ template <class EOT> class eoCheckPoint;
     Derived classes will then implement the operator()(void) which
     will stream or pipe the current values of the parameters to wherever you
     want it streamed or piped to.
+
+    @ingroup Monitors
 */
 class eoMonitor : public eoF<eoMonitor&>
 {

@@ -34,7 +34,10 @@ Authors:
 
 #include "eoStat.h"
 
-//! Ratio of the number of individuals with a feasible dual fitness in the population (@see eoDualFitness)
+/** Ratio of the number of individuals with a feasible dual fitness in the population (@see eoDualFitness)
+ *
+ * @ingroup Stats
+ */
 template<class EOT>
 class eoFeasibleRatioStat : public eoStat< EOT, double >
 {

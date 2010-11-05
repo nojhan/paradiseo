@@ -45,6 +45,10 @@
 #include <utils/eoState.h>
 
 
+/** @addtogroup Builders
+ * @{
+ */
+
 /*
  * This function builds the operators that will be applied to the eoReal
  *
@@ -291,4 +295,5 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   // that's it!
   return *op;
 }
+/** @} */
 #endif

@@ -45,7 +45,8 @@
 
 /** ES-style mutation in the large
 
-@ingroup EvolutionStrategies
+@ingroup Real
+@ingroup Variators
 
 Obviously, valid only for eoES*. It is currently valid for three types
 of ES chromosomes:

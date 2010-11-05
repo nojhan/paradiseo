@@ -25,8 +25,12 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
-/** Here's an example explaning how to use eoLogger:
+/** @defgroup Logging Logging
 
+ Global logger for EO.
+
+ Here's an example explaning how to use eoLogger:
+\code
     #include <iostream>
     #include <utils/eoLogger.h>
     #include <utils/eoParserLogger.h>
@@ -77,7 +81,9 @@ Caner Candan <caner.candan@thalesgroup.com>
 
     return 0;
     }
+\endcode
 
+@{
 */
 
 #ifndef eoLogger_h
@@ -248,5 +254,8 @@ namespace	eo
      */
     extern eoLogger	log;
 }
+
+
+/** @} */
 
 #endif // !eoLogger_h

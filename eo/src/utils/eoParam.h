@@ -35,6 +35,15 @@
 #include <vector>
 #include <eoScalarFitness.h>
 
+/** @defgroup Parameters Parameters management
+ *
+ * A parameter is basically an object that stores a value and that can read/print it from/on streams.
+ *
+ * It is mainly used for command-line options (see eoParser) and eoStat.
+ *
+ * @ingroup Utilities
+ * @{
+ */
 
 /**
    eoParam: Base class for monitoring and parsing parameters
@@ -126,8 +135,9 @@ private:
 
 /**
    eoValueParam<ValueType>: templatized derivation of eoParam. Can be used to contain
-   any scalar value type. It makes use of std::strstream to get and set values. This
-   should be changed to std::stringstream when that class is available in g++.
+   any scalar value type. It makes use of std::strstream to get and set values. 
+   
+   @todo This should be changed to std::stringstream when that class is available in g++.
 
    Note also that there is a template specialization for std::pair<double, double> and
    for std::vector<double>. These stream their contents delimited with whitespace.
@@ -458,4 +468,6 @@ public:
 std::ostream & operator<<(std::ostream & _os, const eoParamParamType & _rate);
 std::istream & operator>>(std::istream & _is,  eoParamParamType & _rate);
 
+/** @} */
 #endif
+

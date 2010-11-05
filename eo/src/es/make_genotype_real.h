@@ -35,6 +35,10 @@ Contact: http://eodev.sourceforge.net
 #include "utils/eoState.h"
 
 
+/** @addtogroup Builders
+ * @{
+ */
+
 /** Initialize genotype
 
 This fuction does the initialization of what's needed for a particular genotype
@@ -110,6 +114,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
     return *init;
 }
 
+/** @} */
 #endif // EO_make_genotype_h
 
 

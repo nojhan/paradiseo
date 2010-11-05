@@ -32,6 +32,8 @@
 
 /**
     The fitnesses of a whole population, as a std::vector
+
+    @ingroup Stats
 */
 template <class EOT, class FitT = typename EOT::Fitness>
 class eoScalarFitnessStat : public eoSortedStat<EOT, std::vector<double> >

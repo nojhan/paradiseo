@@ -37,7 +37,11 @@
 // eoString
 //-----------------------------------------------------------------------------
 
-/** Adaptor that turns an STL std::string into an EO */
+/** Adaptor that turns an STL std::string into an EO 
+ 
+  @ingroup Representations
+  @ingroup Utilities
+ */
 template <class fitnessT >
 class eoString: public EO<fitnessT>, public std::string
 {

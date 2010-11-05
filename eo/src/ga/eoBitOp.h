@@ -39,6 +39,8 @@
 /** eoBitFlip --> changes 1 bit
 \class eoBitBitFlip eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
+
+@ingroup Variators
 */
 
 template<class Chrom> class eoOneBitFlip: public eoMonOp<Chrom>

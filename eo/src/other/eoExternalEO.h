@@ -33,8 +33,9 @@
  * to be inserted in EO. This struct or class can be of any
  * form, the only thing this class does is attach a fitness
  * value to it and makes it the appropriate type (derives it from EO).
+ *
+ * @ingroup Utilities
 */
-
 template <class Fit, class External>
 class eoExternalEO : public EO<Fit>, virtual public External
 {
@@ -74,7 +75,9 @@ public :
 
 };
 
-/// To remove ambiguities between EO<F> and External, streaming operators are defined yet again
+/** To remove ambiguities between EO<F> and External, streaming operators are defined yet again
+ * @ingroup Utilities
+ */
 template <class F, class External>
 std::ostream& operator<<(std::ostream& os, const eoExternalEO<F, External>& eo)
 {
@@ -82,7 +85,9 @@ std::ostream& operator<<(std::ostream& os, const eoExternalEO<F, External>& eo)
     return os;
 }
 
-/// To remove ambiguities between EO<F> and External, streaming operators are defined yet again
+/** To remove ambiguities between EO<F> and External, streaming operators are defined yet again
+ * @ingroup Utilities
+ */
 template <class F, class External>
 std::istream& operator>>(std::istream& is, eoExternalEO<F, External>& eo)
 {

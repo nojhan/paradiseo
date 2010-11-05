@@ -49,7 +49,11 @@
 bool testDirRes(std::string _dirName, bool _erase);
 /////////////////// The checkpoint and other I/O //////////////
 
-/** Of course, Fitness needs to be an eoScalarFitnessAssembled!!! */
+/** Of course, Fitness needs to be an eoScalarFitnessAssembled!!! 
+ *
+ *
+ * @ingroup Builders
+ * */
 template <class EOT>
 eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _state, eoEvalFuncCounter<EOT>& _eval, eoContinue<EOT>& _continue)
 {

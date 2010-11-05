@@ -62,6 +62,14 @@
 // without self-adaptation
 #include <es/make_real.h>
 
+/** @addtogroup Builders
+ * @{
+ */
+
+/** @addtogroup Real
+ * @{
+ */
+
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////
 // the genotypes 
@@ -143,4 +151,6 @@ void run_ea(eoAlgo<eoEsFull<eoMinimizingFitness> >& _ga, eoPop<eoEsFull<eoMinimi
 // that one is not templatized, but is here for completeness
 void make_help(eoParser & _parser);
 
+/** @} */
+/** @} */
 #endif

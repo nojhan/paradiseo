@@ -28,6 +28,9 @@
 #include <eoOp.h>
 
 /** a simple boolean mutation - to be used in generic eoOp's
+ *
+  @ingroup bitstring
+  @ingroup Variators
  */
 class eoBoolFlip : public eoMonOp<bool> {
 public: 

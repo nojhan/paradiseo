@@ -36,6 +36,10 @@
 #include <vector>
 #include <string>
 
+/** @addtogroup Evaluation
+ * @{
+ */
+
 //! Defines properties of eoScalarFitnessAssembled.
 /*! Properties that are hold in this traits class:
     - std::vector<std::string> to hold descriptions of the different fitness terms
@@ -270,7 +274,6 @@ std::istream& operator>>(std::istream& is, eoScalarFitnessAssembled<F, Cmp, Fitn
   return is;
 }
 
+/** @} */
 #endif
-
-
 

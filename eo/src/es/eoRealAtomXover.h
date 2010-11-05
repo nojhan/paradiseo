@@ -37,6 +37,9 @@
 
 /** 
   Discrete crossover == exchange of values
+ *
+ * @ingroup Real
+ * @ingroup Variators
 */
 class eoDoubleExchange: public eoBinOp<double>
 {
@@ -67,6 +70,9 @@ public:
 
 /** 
   Intermediate crossover == linear combination
+ *
+ * @ingroup Real
+ * @ingroup Variators
 */
 class eoDoubleIntermediate: public eoBinOp<double>
 {

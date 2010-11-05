@@ -32,8 +32,12 @@
 #include <utils/eoFileSnapshot.h>
 
 /**
-    The FDC computation - stores the values into eoValueParam<EOT,double>
+    The Fitness Distance Correlation computation.
+    
+    Stores the values into eoValueParam<EOT,double>
 so they can be snapshot by some eoGnuplotSnapshot ...
+
+@ingroup Stats
 */
 template <class EOT>
 class eoFDCStat : public eoStat<EOT, double>
@@ -106,6 +110,8 @@ private:
  *  As I failed to have FDC stat as an eoStat, this is the trick
  *  to put the 2 eoParam<std::vector<double> > into a monitor
  *  This class does nothing else.
+
+@ingroup Stats
  */
 template <class EOT>
 class eoFDCFileSnapshot : public eoFileSnapshot	// is an eoMonitor

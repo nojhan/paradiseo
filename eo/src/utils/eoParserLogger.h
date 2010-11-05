@@ -29,6 +29,9 @@ Authors:
 
 /**
  * A parser that use the advanced logging system (@see eoLogger)
+ *
+ * @ingroup Parameters
+ * @ingroup Logging
  */
 class	eoParserLogger : public eoParser
 {

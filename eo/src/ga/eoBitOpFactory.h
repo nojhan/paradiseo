@@ -34,7 +34,10 @@
 /** EO Factory. An instance of the factory class to create operators that act
 on bitstring chromosomes. Only those chromosomes can instantiate the operators
 that are created here
-@see eoSelect*/
+@see eoSelect
+
+@ingroup Variators
+*/
 template< class EOT>
 class eoBitOpFactory: public eoFactory<EOT>  
 {

@@ -30,7 +30,7 @@ Contact: http://eodev.sourceforge.net
 
 /** Simple Evolution Strategy
 
-@ingroup EvolutionStrategies
+@ingroup Real
 
 One of the more simple evolution strategies, sporting just a single stdeviation
 for the entire chromosome. For more advanced versions see also eoEsStdev

@@ -28,10 +28,10 @@ Contact: http://eodev.sourceforge.net
 
 /** Evolutionary Strategy with a standard deviation per parameter
 
-@ingroup EvolutionStrategies
-
 Evolutionary strategie style representation, supporting co-evolving
 standard deviations.
+
+@ingroup Real
 */
 template <class Fit>
 class eoEsStdev : public eoVector<Fit, double>

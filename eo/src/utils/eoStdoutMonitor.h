@@ -37,6 +37,8 @@ Authors:
 
 /**
     Prints statistics to stdout
+
+    @ingroup Monitors
 */
 class eoStdoutMonitor : public eoOStreamMonitor
 {

@@ -32,7 +32,7 @@
 #include <utils/eoRealBounds.h>
 
 /**
-\defgroup EvolutionStrategies
+\defgroup Real
 
 */
 
@@ -54,6 +54,8 @@ eoRealBaseVectorBounds, base class that handles all useful functions
 eoRealVectorBounds which derives from the preceding *and* eoPersistent
   and also has a mechanism for memory handling of the pointers 
   it has to allocate
+
+@ingroup Bounds
 */
 class eoRealBaseVectorBounds : public std::vector<eoRealBounds *>
 { 
@@ -226,6 +228,8 @@ public:
 ////////////////////////////////////////////////////////////////////
 /** Now a derived class, for parser reading
  * It holds some of the bounds (and destroy them when dying)
+
+@ingroup Bounds
  */
 class eoRealVectorBounds : public eoRealBaseVectorBounds, public eoPersistent
 {
@@ -350,6 +354,8 @@ private:// WARNING: there is no reason for both std::vector below
 /** the dummy unbounded eoRealVectorBounds: usefull if you don't need bounds!
  * everything is inlined.
  * Warning: we do need this class, and not only a std::vector<eoRealNoBounds *>
+
+@ingroup Bounds
  */
 class eoRealVectorNoBounds: public eoRealVectorBounds
 { 
@@ -422,6 +428,8 @@ public:
 
 
 
-// one object for all - see eoRealBounds.cpp
+/** one object for all - see eoRealBounds.cpp
+@ingroup Bounds
+*/
 extern eoRealVectorNoBounds eoDummyVectorNoBounds;
 #endif

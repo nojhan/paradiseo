@@ -25,14 +25,18 @@ Old contact information: todos@geneura.ugr.es, http://geneura.ugr.es
 #ifndef EO_RANDOM_NUMBER_GENERATOR
 #define EO_RANDOM_NUMBER_GENERATOR
 
-// uint32_t is an unsigned integer type capable of holding 32 bits.
-//
-// In the applicatione here exactly 32 are used.
-// 64 bits might be better on an Alpha or other 64 bit systems with GCC at high
-// optimization levels so feel free to try your options and see what's best for
-// you.
+/** @addtogroup Random 
+ * @{
+ * */
 
 # if (defined _MSC_VER)
+/** uint32_t is an unsigned integer type capable of holding 32 bits.
+
+ In the applicatione here exactly 32 are used.
+ 64 bits might be better on an Alpha or other 64 bit systems with GCC at high
+ optimization levels so feel free to try your options and see what's best for
+ you.
+*/
 typedef unsigned long uint32_t;
 #else
 #if (! defined __sun)
@@ -444,6 +448,7 @@ namespace eo
 }
 using eo::rng;
 
+/** @} */
 
 
 

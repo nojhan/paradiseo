@@ -40,7 +40,8 @@ Contact: http://eodev.sourceforge.net
 
 /** Random Es-chromosome initializer (therefore derived from eoInit)
 
-@ingroup EvolutionStrategies
+@ingroup Real
+@ingroup Initializators
 
 
 This class can initialize four types of real-valued genotypes thanks

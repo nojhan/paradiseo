@@ -36,9 +36,12 @@
 // needs a selector - here random
 #include <eoRandomSelect.h>
 
-/** Gloabl crossover operator for ES genotypes.
+/** Global crossover operator for ES genotypes.
   *  Uses some Atom crossovers to handle both the object variables
   *  and the mutation strategy parameters
+  *
+  *  @ingroup Real
+  *  @ingroup Variators
   */
 template<class EOT>
 class eoEsGlobalXover: public eoGenOp<EOT>

@@ -41,7 +41,6 @@
  * here the same formula is applied, with some of the best individuals
  * and for some of the worst individuals (with different learning rates)
 */
-
 template <class EOT>
 class eoPBILAdditive :  public eoDistribUpdater<EOT>
 {

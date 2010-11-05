@@ -44,6 +44,11 @@
 #include "eoRealBounds.h"
 #include <stdexcept>
 
+
+/** @addtogroup Initializators
+ * @{
+ */
+
 using eo::rng;
 
 /**
@@ -58,6 +63,7 @@ using eo::rng;
    either in [0, _max) if only 1 value (_max) is given
                        (or none, as _max defaults to 1.0)
    or in [_min,_max) if 2 values are given (_min, _max)
+
 */
 template <class T = double> class eoUniformInit : public eoInit<T>
 {
@@ -152,4 +158,5 @@ template <class T = double> class eoNegExpInit : public eoInit<T>
   eoRng& negexp;
 };
 
+/** @} */
 #endif

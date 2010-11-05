@@ -39,6 +39,8 @@
 
 /** a helper function that decodes a parameter read by the parser into an
  * eoReduce<EOT> & (allocates the pointer and stores it into an eoState)
+ *
+ * @ingroup Builders
  */
 template <class EOT>
 eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
@@ -129,8 +131,9 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
  *  eoHowMany _surviveOffspring   number of offspring after offspring recuction
  *  eoParamParamType & _reduceOffspringType   how the offspring are reduced
  *  eoParamParamType & _reduceFinalType       how the final population is reduced to initial population size
+ *
+ * @ingroup Builders
  */
-
 template <class EOT>
 eoReplacement<EOT> & make_general_replacement(
     eoParser& _parser, eoState& _state, 

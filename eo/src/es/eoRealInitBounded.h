@@ -35,6 +35,9 @@
 
 /** Simple initialization for any EOT that derives from std::vector<double> 
  *    uniformly in some bounds 
+ *
+ * @ingroup Real
+ * @ingroup Variators
  */
 template <class EOT>
 class eoRealInitBounded : public eoInit<EOT>

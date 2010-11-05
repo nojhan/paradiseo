@@ -29,6 +29,11 @@ Contact: http://eodev.sourceforge.net
 #ifndef eoHowMany_h
 #define eoHowMany_h
 
+#include <sstream>
+
+#include <utils/eoLogger.h>
+
+
 /** A helper class, to determine a number of individuals from another one
  *  Typically, is used in selection / replacement procedures, e.g.
  *             the number of offspring from the number of parents, or
@@ -65,12 +70,9 @@ Contact: http://eodev.sourceforge.net
  *    eoG3Repalcement)
  *
  * It is an eoPersistent because we need to be able to use eoParamValue<eoHowMany>
+ *
+ * @ingroup Core
  */
-
-#include <sstream>
-
-#include <utils/eoLogger.h>
-
 class eoHowMany : public eoPersistent
 {
 public:

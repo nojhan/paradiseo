@@ -27,9 +27,14 @@
 #define _eoDistance_H
 
 #include <eoFunctor.h>
+
+/** @addtogroup Stats 
+ * @{
+ * */
+
 /** 
     This is a generic class for distance functors:
-    takes 2 things ane returns a double
+    takes 2 things and returns a double
 */
 template< class EOT >
 class eoDistance : public eoBF<const EOT &, const EOT &, double>
@@ -94,5 +99,6 @@ public:
 };
 
 
+/** @} */
 	
 #endif

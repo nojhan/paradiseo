@@ -50,6 +50,7 @@ class eoPersistent;
  derived classes are not saved or loaded. To govern the creation of functors,
  command-line parameters (which can be stored) are needed.
 
+ @ingroup Utilities
 */
 class eoState : public eoFunctorStore
 {

@@ -32,6 +32,21 @@
 #include <utils/eoMonitor.h>
 #include <utils/eoStat.h>
 
+/** @defgroup Checkpoints Checkpointing
+ *
+ * Checkpoints are supposed to be called perodically (for instance at each generation) and
+ * will call every functors you put in them.
+ *
+ * Use them with eoStats, eoUpdater and eoMonitor to get statistics at each generation.
+ *
+ * @see eoStats
+ * @see eoMonitor
+ * @see eoUpdater
+ *
+ * @ingroup Utilities
+ *
+ * @{
+ */
 
 /** eoCheckPoint is a container class.
     It contains std::vectors of (pointers to) 
@@ -161,4 +176,5 @@ std::string eoCheckPoint<EOT>::allClassNames() const
     return s;
 }
 
+/** @} */
 #endif

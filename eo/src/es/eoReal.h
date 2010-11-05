@@ -33,6 +33,8 @@
 
 /** eoReal: implementation of simple real-valued chromosome.
   * based on eoVector class
+ *
+ * @ingroup Real
 */
 template <class FitT> class eoReal: public eoVector<FitT, double>
 {

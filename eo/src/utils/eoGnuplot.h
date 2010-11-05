@@ -34,6 +34,8 @@ calls to plots what is already written by some eoMonitor into a file
 
 @author Marc Schoenauer
 @version 0.0 (2001)
+
+@ingroup Monitors
 */
 class eoGnuplot
 {

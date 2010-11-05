@@ -37,6 +37,8 @@ template <class EOT> class eoCheckPoint;
 /**
     eoUpdater is a generic procudere for updating whatever you want.
     Yet again an empty name
+
+    @ingroup Utilities
 */
 class eoUpdater : public eoF<void>
 {
@@ -50,6 +52,8 @@ public:
 
 /**
    an eoUpdater that simply increments a counter
+
+    @ingroup Utilities
 */
 template <class T>
 class eoIncrementor : public eoUpdater
@@ -71,6 +75,8 @@ private:
 
 /** an eoUpdater that is an eoValueParam (and thus OWNS its counter)
  *  Mandatory for generation counter in make_checkpoint
+
+    @ingroup Utilities
 */
 template <class T>
 class eoIncrementorParam : public eoUpdater, public eoValueParam<T>
@@ -105,6 +111,8 @@ private:
 
 /**
    an eoUpdater that saves a state every given time interval
+
+    @ingroup Utilities
 */
 class eoTimedStateSaver : public eoUpdater
 {
@@ -128,6 +136,8 @@ private :
 
 /**
    an eoUpdater that saves a state every given generations
+
+    @ingroup Utilities
 */
 class eoCountedStateSaver : public eoUpdater
 {

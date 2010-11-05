@@ -46,6 +46,8 @@ This is the plain version - see eoPopString for the Sorted version
 
 Note: this Stat should probably be used only within eoStdOutMonitor, and not
 inside an eoFileMonitor, as the eoState construct will work much better there.
+
+@ingroup Stats
 */
 template <class EOT>
 class eoPopStat : public eoStat<EOT, std::string>
@@ -91,6 +93,8 @@ This is the Sorted version - see eoPopString for the plain version
 
 Note: this Stat should probably be used only within eoStdOutMonitor, and not
 inside an eoFileMonitor, as the eoState construct will work much better there.
+
+@ingroup Stats
 */
 template <class EOT>
 class eoSortedPopStat : public eoSortedStat<EOT, std::string>

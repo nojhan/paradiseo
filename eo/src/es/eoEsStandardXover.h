@@ -41,6 +41,9 @@
  *  and the mutation strategy parameters
  *  It is an  eoBinOp and has to be wrapped into an eoGenOp before being used
  *  like the global version
+ *
+ *  @ingroup Real
+ *  @ingroup Variators
  */
 template<class EOT> 
 class eoEsStandardXover: public eoBinOp<EOT>

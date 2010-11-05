@@ -60,6 +60,10 @@
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////
 
+
+/** @addtogroup Builders
+ * @{
+ */
 // the genotypes 
 eoRealInitBounded<eoReal<double> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<double> _eo);
 eoRealInitBounded<eoReal<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo);
@@ -99,4 +103,5 @@ void run_ea(eoAlgo<eoReal<eoMinimizingFitness> >& _ga, eoPop<eoReal<eoMinimizing
 // Because of that, the source is in src/utils dir
 void make_help(eoParser & _parser);
 
+/** @} */
 #endif

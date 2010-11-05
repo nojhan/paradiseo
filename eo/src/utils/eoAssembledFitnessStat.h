@@ -36,6 +36,10 @@
 #include <utils/eoStat.h>
 #include <eoScalarFitnessAssembled.h>
 
+/** @addtogroup Stats
+ * @{
+ */
+
 /**
    Average fitness values of a population, where the fitness is
    of type eoScalarAssembledFitness. Specify in the constructor,
@@ -109,4 +113,5 @@ private:
     unsigned whichFitnessTerm;
 };
 
+/** @} */
 #endif

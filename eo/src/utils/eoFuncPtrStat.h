@@ -1,9 +1,16 @@
+
 #ifndef eoFuncPtrStat_h
 #define eoFuncPtrStat_h
 
 #include <eoFunctorStore.h>
 #include <utils/eoStat.h>
 
+/** Wrapper to turn any stand-alone function and into an eoStat.
+ *
+ * The function should take an eoPop as argument.
+ *
+ * @ingroup Stats
+ */
 template <class EOT, class T>
 class eoFuncPtrStat : public eoStat<EOT, T>
 {
@@ -25,6 +32,9 @@ private:
     func_t func;
 };
 
+/** 
+ * @ingroup Stats
+ */
 template <class EOT, class T>
 eoFuncPtrStat<EOT, T>& makeFuncPtrStat( T (*func)(const eoPop<EOT>&), eoFunctorStore& store, std::string description = "func") {
     return store.storeFunctor(

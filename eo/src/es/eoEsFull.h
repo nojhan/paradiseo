@@ -30,7 +30,7 @@
 #include <eoVector.h>
 
 /**
-\ingroup EvolutionStrategies
+\ingroup Real
 
   The most complex evolutionary strategy representation. Co-evolving mutation
 rates and correlated mutations.

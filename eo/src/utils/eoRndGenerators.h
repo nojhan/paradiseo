@@ -33,6 +33,12 @@
 #include <eoFunctor.h>
 #include <stdexcept>
 
+/** @defgroup Random Random number generation
+ *
+ * @ingroup Utilities
+ * @{
+ */
+
 using eo::rng;
 
 /**
@@ -146,4 +152,5 @@ template <class T = double> class eoNegExpGenerator : public eoRndGenerator<T>
   eoRng& negexp;
 };
 
+/** @} */
 #endif

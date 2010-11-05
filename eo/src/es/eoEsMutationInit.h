@@ -31,7 +31,8 @@
 
 /** Initialize Mutation operator
 
-@ingroup EvolutionStrategies
+@ingroup Real
+@ingroup Variators
 
 Proxy class that is used for initializing the mutation operator. It provides an
 interface between eoEsMutate and the abstract parameterLoader. It also provides

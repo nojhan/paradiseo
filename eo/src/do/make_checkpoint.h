@@ -69,6 +69,8 @@ bool testDirRes(std::string _dirName, bool _erase);
  *
  * CHANGE (March 2008): now receiving an eoValueParam instead of an eoEvalFuncCounter. This function is just interested
  * in the value of the parameter calculated on the evaluation function, not in the actual function itself!!
+ *
+ * @ingroup Builders
 */
 template <class EOT>
 eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValueParam<unsigned long>& _eval, eoContinue<EOT>& _continue)

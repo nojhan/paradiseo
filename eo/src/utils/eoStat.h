@@ -41,6 +41,22 @@ Contact: http://eodev.sourceforge.net
 #include <utils/eoMonitor.h>
 #include <utils/eoCheckPoint.h>
 
+/** @defgroup Stats Statistic computation
+ *
+ * Compute various statistics on a population.
+ *
+ * Objects of those classes are generally called by an eoCheckPoint 
+ * to compute statistics about the population at a given generation.
+ * As they inherit from eoValueParam, they can be printed drectly,
+ * for instance by an eoMonitor.
+ *
+ * @see eoCheckPoint
+ * @see eoMonitor
+ *
+ * @ingroup Utilities
+ * @{
+ */
+
 /**
   Base class for all statistics that need to be calculated
   over the (unsorted) population
@@ -485,4 +501,6 @@ public:
     virtual std::string className(void) const { return "eoInterquartileRangeStat"; }
 };
 
+/** @} */
 #endif
+

@@ -34,17 +34,25 @@
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
 
+/** @defgroup Builders Automatic builders
+ *
+ * Automatic builders are functions that automagically builds most commons instances for you.
+ *
+ * All the options you needs are set in the command-line parser.
+ * Those functions all start with the "do_make_" prefix.
+ *
+ * @ingroup Utilities
+ */
 
-///////////////////////////////// INIT POP ///////////////////////////////
 /**
  * Templatized version of parser-based construct of the population
  * + other initializations that are NOT representation-dependent.
  *
  * It must then be instantiated, and compiled on its own for a given EOType
  * (see e.g. ga.h and ga.pp in dir ga)
+ *
+ * @ingroup Builders
 */
-
-
 template <class EOT>
 eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _init)
 {

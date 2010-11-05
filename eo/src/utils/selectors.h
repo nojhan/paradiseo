@@ -43,7 +43,8 @@
 #include "eoRNG.h"
 #include <eoPop.h>
 /**
-\defgroup selectors
+@addtogroup Selectors
+@{
 */
 
 template <class EOT>
@@ -334,5 +335,6 @@ EOT& inverse_stochastic_tournament(eoPop<EOT>& _pop, double _t_rate, eoRng& _gen
     return *inverse_stochastic_tournament(_pop.begin(), _pop.end(), _t_rate, _gen);
 }
 
+/** @} */
 
 #endif

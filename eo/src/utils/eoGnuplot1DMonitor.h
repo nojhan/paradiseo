@@ -43,6 +43,8 @@ eoGnuplot1DMonitor plots stats through gnuplot
 
 Assumes that the same file is appened every so and so, and replots it
 everytime
+
+@ingroup Monitors
 */
 class eoGnuplot1DMonitor : public eoFileMonitor, public eoGnuplot
 {

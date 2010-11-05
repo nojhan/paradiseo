@@ -40,6 +40,8 @@
     External func();
 
   Where External is the user defined struct or class
+
+  @ingroup Utilities
 */
 template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
 class eoExternalInit : public eoInit<ExternalEO>
@@ -68,6 +70,8 @@ private :
     Fit func(External&);
 
   Where External is the user defined struct or class and Fit the fitness type
+
+@ingroup Utilities
 */
 template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
 class eoExternalEvalFunc : public eoEvalFunc<ExternalEO>
@@ -96,6 +100,8 @@ class eoExternalEvalFunc : public eoEvalFunc<ExternalEO>
 
   Where External is the user defined struct or class.
   The function should return true when it changed something, false otherwise
+
+  @ingroup Utilities
 */
 
 template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
@@ -123,6 +129,8 @@ class eoExternalMonOp : public eoMonOp<ExternalEO>
 
   Where External is the user defined struct or class
   The function should return true when it changed something, false otherwise
+
+  @ingroup Utilities
 */
 template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
 class eoExternalBinOp : public eoBinOp<ExternalEO>
@@ -149,6 +157,8 @@ class eoExternalBinOp : public eoBinOp<ExternalEO>
 
   Where External is the user defined struct or class
   The function should return true when it changed something, false otherwise
+
+  @ingroup Utilities
 */
 template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
 class eoExternalQuadOp : public eoQuadOp<ExternalEO>

@@ -32,6 +32,10 @@
 
 
 
+/**
+* @ingroup Real
+* @ingroup Variators
+*/
 template<class EOT> class eoSBXCrossover: public eoQuadOp<EOT>
 {
  public:

@@ -25,8 +25,6 @@ Authors:
 	 Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
-
-
 #ifndef _eoOStreamMonitor_h_
 #define _eoOStreamMonitor_h_
 
@@ -39,6 +37,8 @@ Authors:
 
 /**
     Prints statistics to stdout
+
+    @ingroup Monitors
 */
 class eoOStreamMonitor : public eoMonitor
 {

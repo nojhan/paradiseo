@@ -34,6 +34,10 @@
 #include "eoRNG.h"
 #include <stdexcept>
 
+/** @addtogroup Random
+ * @{
+ */
+
 /**
    The class uniform_generator can be used in the STL generate function
    to easily generate random floats and doubles
@@ -165,4 +169,5 @@ template <class T = double> class negexp_generator
   eoRng& negexp;
 };
 
+/** @} */
 #endif

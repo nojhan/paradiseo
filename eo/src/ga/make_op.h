@@ -63,6 +63,9 @@
  *        EOT myEO;
  *        _init(myEO);
  *        and myEO is then an ACTUAL object
+ *
+ * @ingroup bitstring
+ * @ingroup Builders
 */
 
 template <class EOT>

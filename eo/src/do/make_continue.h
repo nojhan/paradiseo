@@ -49,6 +49,9 @@ It can then be instantiated, and compiled on its own for a given EOType
 
 
 /////////////////// the stopping criterion ////////////////
+ /**
+ * @ingroup Builders
+ */
 template <class Indi>
 eoCombinedContinue<Indi> * make_combinedContinue(eoCombinedContinue<Indi> *_combined, eoContinue<Indi> *_cont)
 {
@@ -59,7 +62,10 @@ eoCombinedContinue<Indi> * make_combinedContinue(eoCombinedContinue<Indi> *_comb
   return _combined;
 }
 
-
+/**
+ *
+ * @ingroup Builders
+ */
 template <class Indi>
 eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi> & _eval)
 {
