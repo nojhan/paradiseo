@@ -600,7 +600,7 @@ RECURSIVE              = YES
 # excluded from the INPUT source files. This way you can easily exclude a
 # subdirectory from a directory tree whose root is specified with the INPUT tag.
 
-EXCLUDE                = @CMAKE_SOURCE_DIR@/src/obsolete
+EXCLUDE                = @CMAKE_SOURCE_DIR@/src/obsolete @CMAKE_SOURCE_DIR@/test @CMAKE_SOURCE_DIR@/tutorial @CMAKE_SOURCE_DIR@/contrib @CMAKE_SOURCE_DIR@/app  
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or
 # directories that are symbolic links (a Unix filesystem feature) are excluded
