@@ -26,6 +26,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 */
 
 /** @defgroup Logging Logging
+ * @ingroup Utilities
 
  Global logger for EO.
 

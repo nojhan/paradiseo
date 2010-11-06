@@ -31,12 +31,6 @@
 #include <utils/eoRNG.h>
 
 /**
-\defgroup Real
-
-*/
-
-
-/**
 \class eoIntBounds eoIntBounds.h es/eoIntBounds.h
 \ingroup Real
 \ingroup Bounds

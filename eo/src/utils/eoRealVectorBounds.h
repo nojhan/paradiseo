@@ -32,12 +32,6 @@
 #include <utils/eoRealBounds.h>
 
 /**
-\defgroup Real
-
-*/
-
-
-/**
 Vector type for bounds (see eoRealBounds.h for scalar types)
 ------------
 Class eoRealVectorBounds implements the std::vectorized version: 

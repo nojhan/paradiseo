@@ -31,7 +31,7 @@
 #include <utils/eoRNG.h>
 
 /**
-\defgroup Real Continuous vector
+\defgroup Real Vector of reals
 
 @ingroup Representations
 

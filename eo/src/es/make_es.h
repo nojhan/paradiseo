@@ -66,10 +66,6 @@
  * @{
  */
 
-/** @addtogroup Real
- * @{
- */
-
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////
 // the genotypes 

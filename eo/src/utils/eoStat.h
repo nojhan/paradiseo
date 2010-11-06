@@ -41,7 +41,7 @@ Contact: http://eodev.sourceforge.net
 #include <utils/eoMonitor.h>
 #include <utils/eoCheckPoint.h>
 
-/** @defgroup Stats Statistic computation
+/** @defgroup Stats Statistics computation
  *
  * Compute various statistics on a population.
  *
