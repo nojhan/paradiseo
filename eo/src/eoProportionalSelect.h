@@ -81,5 +81,7 @@ private :
   typedef std::vector<typename EOT::Fitness> FitVec;
   FitVec cumulative;
 };
+/** @example t-eoRoulette.cpp
+ */
 
 #endif

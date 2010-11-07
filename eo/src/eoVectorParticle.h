@@ -66,9 +66,9 @@ public:
 
     /** Default constructor.
     *  @param _size Length of the tree vectors (we expect the same size), default is 0
-    *  @param position
-    *  @param velocity
-    *  @param  bestPositions
+    *  @param _position
+    *  @param _velocity
+    *  @param _bestPositions
     */
     eoVectorParticle (unsigned _size = 0,PositionType _position = PositionType (), VelocityType _velocity = VelocityType (), PositionType _bestPositions = PositionType ()):PO < FitT > (),std::vector < PositionType > (_size, _position), bestPositions (_size, _bestPositions), velocities (_size,
                     _velocity)

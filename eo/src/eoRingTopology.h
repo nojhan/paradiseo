@@ -188,5 +188,7 @@ protected:
     unsigned neighborhoodSize; 
     bool isSetup;
 };
+/** @example t-eoRingTopology.cpp
+ */
 
 #endif /*EORINGTOPOLOGY_H_*/

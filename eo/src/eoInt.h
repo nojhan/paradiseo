@@ -54,6 +54,8 @@ template <class FitT> class eoInt: public eoVector<FitT, int>
     }
 
 };
+/** @example t-eoInt.cpp
+ */
 
 //-----------------------------------------------------------------------------
 

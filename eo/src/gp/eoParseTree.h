@@ -41,6 +41,9 @@ using namespace gp_parse_tree;
 
 Various functions for tree-based Genetic Programming
 
+Example:
+@include t-eoSymreg.cpp
+
 @ingroup Representations
 */
 
@@ -166,6 +169,8 @@ public:
 	*/
     }
 };
+/** @example t-eoSymreg.cpp
+ */
 
 // friend function to print eoParseTree
 template <class FType, class Node>

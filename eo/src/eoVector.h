@@ -66,8 +66,8 @@ public:
 
     /** default constructor
 
-    @param size Length of vector (default is 0)
-    @param value Initial value of all elements (default is default value of type GeneType)
+    @param _size Length of vector (default is 0)
+    @param _value Initial value of all elements (default is default value of type GeneType)
     */
     eoVector(unsigned _size = 0, GeneType _value = GeneType())
         : EO<FitT>(), std::vector<GeneType>(_size, _value)
@@ -129,6 +129,8 @@ public:
             }
         }
 };
+/** @example t-eoVector.cpp
+ */
 
 /** Less than
 

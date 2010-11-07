@@ -55,6 +55,8 @@
     @ref Operators that effectively modify EO objects must invalidate them.
 
     The fitness object must have, besides an void ctor, a copy ctor.
+
+    @example t-eo.cpp
 */
 template<class F = double> class EO: public eoObject, public eoPersistent
 {

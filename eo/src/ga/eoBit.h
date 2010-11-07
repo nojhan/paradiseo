@@ -44,7 +44,10 @@
 
 /** @defgroup bitstring Bit strings
 
-Various functions for a bitstring representation
+Various functions for a bitstring representation.
+
+Example of a complete test program that use various bitstrings operators:
+@include t-eobin.cpp
 
 @ingroup Representations
 */

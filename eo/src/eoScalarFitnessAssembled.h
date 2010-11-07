@@ -77,6 +77,8 @@ public:
 private:
   static std::vector<std::string> TermDescriptions;
 };
+/** @example t-eoFitnessAssembled.cpp
+ */
 
 //! Implements fitness as std::vector, storing all values that might occur during fitness assembly
 /*! Properties:
@@ -237,6 +239,10 @@ public:
   bool operator>=(const eoScalarFitnessAssembled<ScalarType, Compare, FitnessTraits>& y ) const { return !(*this < y); }
 
 };
+/** 
+ * @example t-eoFitnessAssembledEA.cpp
+*/
+
 
 /**
 Typedefs for fitness comparison, Maximizing Fitness compares with less,

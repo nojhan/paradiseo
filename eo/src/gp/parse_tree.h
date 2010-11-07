@@ -22,8 +22,9 @@
   class Node (your node in the tree) must have the following implemented:
 
   ******      Arity      ******
-
+    \code
 	int arity(void) const
+    \endcode
 
 	Note:	the default constructor of a Node should provide a
 			Node with arity 0!
@@ -36,7 +37,9 @@
 
 	   is the simplest evaluation, it will call
 
+    \code
 	   RetVal Node::operator()(RetVal, subtree<Node, RetVal>::const_iterator)
+    \endcode
 
        (Unfortunately the first RetVal argument is mandatory (although you
        might not need it. This is because MSVC does not support member template
@@ -50,7 +53,9 @@
 
        will call:
 
+    \code
        RetVal Node::operator()(RetVal, subtree<... , It values)
+    \endcode
 
        where It is whatever type you desire (most of the time
 	   this will be a std::vector containing the values of your
@@ -60,7 +65,9 @@
 
        will call:
 
+    \code
        RetVal Node::operator()(RetVal, subtree<... , It values, It2 moreValues)
+    \endcode
 
 	   although I do not see the immediate use of this, however...
 
@@ -68,7 +75,9 @@
 
 		that calls:
 
+    \code
        RetVal Node::operator()(subtree<... , It values, It2 args, It3 adfs)
+    \endcode
 
 		can be useful for implementing adfs.
 
@@ -77,8 +86,10 @@
 	arguments open so that different ways of evaluation remain
 	possible. Implement the simplest eval as:
 
+    \code
 	template <class It>
 		RetVal operator()(RetVal dummy, It begin) const
+    \endcode
 
   ******	Internal Structure    ******
 
@@ -144,7 +155,9 @@
 
   or from an std::istream:
 
-  copy(std::istream_iterator<T>(my_stream), std::istream_iterator<T>(), back_inserter(tree));
+\code
+    copy(std::istream_iterator<T>(my_stream), std::istream_iterator<T>(), back_inserter(tree));
+\endcode
 
   Note that the back_inserter must be used as there is no
   resize member in the parse_tree. back_inserter will use

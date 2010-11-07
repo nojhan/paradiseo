@@ -60,4 +60,3 @@ article in Lecture Notes In Computer Science, 2310, Selected Papers from the 5th
     - http://eodev.sourceforge.net/eo/doc/LeCreusot.pdf
     - http://eodev.sourceforge.net/eo/doc/EO_EA2001.pdf
 */
-

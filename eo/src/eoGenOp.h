@@ -81,6 +81,8 @@ class eoGenOp : public eoOp<EOT>, public eoUF<eoPopulator<EOT> &, void>
    */
     virtual void apply(eoPopulator<EOT>& _pop) = 0;
 };
+/** @example t-eoGenOp.cpp
+ */
 
 
 /** Wrapper for eoMonOp */

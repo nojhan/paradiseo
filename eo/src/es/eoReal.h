@@ -54,6 +54,8 @@ template <class FitT> class eoReal: public eoVector<FitT, double>
     }
 
 };
+/** @example t-eoReal.cpp
+ */
 
 //-----------------------------------------------------------------------------
 

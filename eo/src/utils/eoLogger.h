@@ -247,6 +247,8 @@ private:
      */
     std::map< std::ostream*, int >	_standard_io_streams;
 };
+/** @example t-eoLogger.cpp
+ */
 
 namespace	eo
 {

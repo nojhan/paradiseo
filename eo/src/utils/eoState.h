@@ -132,5 +132,7 @@ private :
     eoState& operator=(const eoState&);
 
 };
+/** @example t-eoStateAndParser.cpp
+ */
 
 #endif

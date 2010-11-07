@@ -307,5 +307,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc
   // that's it!
   return *algo;
 }
+/** @example t-eoGA.cpp
+ */
 
 #endif

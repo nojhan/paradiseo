@@ -407,6 +407,8 @@ private :
     }
 
 };
+/** @example t-eoSSGA.cpp
+ */
 
 template <class EOT>
 class eoDistanceStat : public eoStat<EOT, double>

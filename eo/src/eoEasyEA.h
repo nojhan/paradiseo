@@ -273,9 +273,11 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
     // Friend classes
     friend class eoIslandsEasyEA <EOT> ;
     friend class eoDistEvalEasyEA <EOT> ;
-  };
-
-//-----------------------------------------------------------------------------
+};
+/**
+@example t-eoEasyEA.cpp
+Example of a test program building an EA algorithm.
+*/
 
 #endif
 

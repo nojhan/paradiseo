@@ -183,6 +183,8 @@ class eoInitPermutation: public eoInit<EOT>
         unsigned startFrom;
         UF_random_generator<unsigned int> gen;
 };
+/** @example t-eoInitPermutation.cpp
+ */
 
 
 /**

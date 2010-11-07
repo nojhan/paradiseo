@@ -56,7 +56,7 @@ public :
 
   /** default ctor
 
-   * @param nMax      max number of atoms
+   * @param _nMax      max number of atoms
    * @param _atomInit an Atom initializer
    */
   eoVlAddMutation(unsigned _nMax, eoInit<AtomType> & _atomInit) :
@@ -118,15 +118,15 @@ public :
 
   /** ctor with an external gene chooser
 
-   * @param nMin      min number of atoms to leave in the individual
-   * @param _geneChooser an eoGeneCHooser to choose which one to delete
+   * @param _nMin      min number of atoms to leave in the individual
+   * @param _chooser   an eoGeneCHooser to choose which one to delete
    */
   eoVlDelMutation(unsigned _nMin, eoGeneDelChooser<EOT> & _chooser) :
     nMin(_nMin), uChooser(), chooser(_chooser) {}
 
   /** ctor with uniform gene chooser - the default
 
-   * @param nMin      min number of atoms to leave in the individual
+   * @param _nMin      min number of atoms to leave in the individual
    */
   eoVlDelMutation(unsigned _nMin) :
     nMin(_nMin), uChooser(), chooser(uChooser) {}

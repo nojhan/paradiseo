@@ -63,10 +63,16 @@ Variators are operators that modify individuals.
 
 Selectors are operators that select a subset of a population.
 
+Example:
+@include t-eoSelect.cpp
+
 
 @defgroup Replacors Replacement operators
 
 Replacors are operators that replace a subset of a population by another set of individuals.
+
+Here is an example with several replacement operators:
+@include t-eoReplacement.cpp
 */
 
 /** Abstract data types for EO operators.

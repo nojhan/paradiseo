@@ -33,6 +33,12 @@
 /**
 \defgroup Real Vector of reals
 
+Set of classes related to continuous black-box optimization problems.
+
+Here are several examples of test programs using eoReal, eoEsSimple, eoEsStdev or eoEsFull to build an Evoution Strategies algorithm:
+@include t-eoESAll.cpp
+@include t-eoESFull.cpp
+
 @ingroup Representations
 
 */

@@ -84,5 +84,7 @@ template<class Chrom> class eoOrderXover: public eoQuadOp<Chrom>
 	 }
 	 	
 };
+/** @example t-eoOrderXover.cpp
+ */
 
 #endif

@@ -53,5 +53,7 @@ public:
 private :
   eoSharing<EOT> sharing;	   // derived from eoPerf2Worth
 };
+/** @example t-eoSharing.cpp
+ */
 
 #endif

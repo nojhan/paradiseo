@@ -253,6 +253,8 @@ private:
 	}dummyInit;
 	
 };
+/** @example t-eoSyncEasyPSO.cpp
+ */
 
 
 #endif /*_EOSYNCEASYPSO_H*/

@@ -74,6 +74,8 @@ public :
   }
 
 };
+/** @example t-eoExternalEO.cpp
+ */
 
 /** To remove ambiguities between EO<F> and External, streaming operators are defined yet again
  * @ingroup Utilities

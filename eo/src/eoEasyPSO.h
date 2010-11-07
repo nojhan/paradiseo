@@ -188,6 +188,9 @@ protected:
 	}dummyInit;
 	
 };
-
+/**
+ * @example t-eoEasyPSO.cpp
+ * Example of a test program building a PSO algorithm.
+ */
 
 #endif /*_EOEASYPSO_H*/

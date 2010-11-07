@@ -83,6 +83,8 @@ template<class EOT> class eoShiftMutation: public eoMonOp<EOT>
     }
     
 };
+/** @example t-eoShiftMutation.cpp
+ */ 
 
 
 //-----------------------------------------------------------------------------

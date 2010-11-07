@@ -88,12 +88,16 @@ template <class T = double> class eoUniformGenerator : public eoRndGenerator<T>
   for ints and unsigneds
   */
   T operator()(void) { return minim+static_cast<T>(uniform.uniform(range)); }
+  /** @example t-eoUniform.cpp
+   */
 
 private :
   T minim;
   T range;
   eoRng& uniform;
 };
+/** @example t-eoRandom.cpp
+ */
 
 
 /// Specialization for bool, does an unbiased coin flip

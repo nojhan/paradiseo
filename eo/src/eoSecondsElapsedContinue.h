@@ -64,6 +64,8 @@ public:
   }
 
 };
+/** @example t-eoSecondsElapsedContinue.cpp
+ */
 
 #endif
 

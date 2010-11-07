@@ -438,6 +438,8 @@ private:
     */
     eoRng& operator=(const eoRng&);
 };
+/** @example t-eoRNG.cpp
+ */
 
 
 

@@ -35,7 +35,9 @@
 //-----------------------------------------------------------------------------
 
 
-/** Extended velocity performer for particle swarm optimization. Derivated from abstract eoVelocity,
+/** Extended velocity performer for particle swarm optimization. 
+ *
+ *  Derivated from abstract eoVelocity,
 *   At step t: v(t+1)= w * v(t) + c1 * r1 * ( xbest(t)-x(t) ) + c2 * r2 * ( lbest(t) - x(t) )  + c3 * r3 * ( gbest(t) - x(t) )
 *   It includes both a "topology" best and a global best in the social knowledge. Each topology
 *   provides a method to retrieve the global best <=> the best of all the neighborhood the topology contains.
@@ -60,7 +62,7 @@ public:
     * @param _c3 - Learning factor used for the global best 
     * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
     * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
-    * @param _boundsModifier - An eoRealBoundModifier used to modify the bounds (for real bounds only).
+    * @param _bndsModifier - An eoRealBoundModifier used to modify the bounds (for real bounds only).
     * @param _gen - The eo random generator, default=rng
     */
     eoExtendedVelocity (eoTopology < POT > & _topology,
@@ -204,7 +206,9 @@ protected:
     // If the bound modifier doesn't need to be used, use the dummy instance
     eoDummyRealBoundModifier dummyModifier;
 };
-
-
+/** @todo this example does not appear in the doc for an unknown reason
+ * @example t-eoExtendedVelocity.cpp
+ * Example of a test program using this class:
+*/
 #endif /*eoExtendedVelocity_H */
 

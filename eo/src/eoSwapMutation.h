@@ -75,6 +75,8 @@ template<class Chrom> class eoSwapMutation: public eoMonOp<Chrom>
    private:
    	unsigned int howManySwaps;
 };
+/** @example t-eoSwapMutation.cpp
+ */
 
 //-----------------------------------------------------------------------------
 #endif

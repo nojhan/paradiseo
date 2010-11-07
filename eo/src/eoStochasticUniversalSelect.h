@@ -104,5 +104,7 @@ private :
   typedef std::vector<unsigned> IndexVec;
   IndexVec indices;
 };
+/** @example t-eoRoulette.cpp
+ */
 
 #endif

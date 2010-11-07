@@ -79,6 +79,9 @@ class eoScalarFitness
     private :
         ScalarType value;
 };
+/** @example t-eofitness.cpp
+ *
+ */
 
 /**
 Typedefs for fitness comparison, Maximizing Fitness compares with less,

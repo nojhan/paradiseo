@@ -39,9 +39,12 @@
  *
  * Use them with eoStats, eoUpdater and eoMonitor to get statistics at each generation.
  *
- * @see eoStats
+ * @see eoStat
  * @see eoMonitor
  * @see eoUpdater
+ *
+ * Example of a test program using checkpointing:
+ * @include t-eoCheckpointing.cpp
  *
  * @ingroup Utilities
  *
