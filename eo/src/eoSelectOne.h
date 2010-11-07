@@ -53,7 +53,7 @@ class eoSelectOne : public eoUF<const eoPop<EOT>&, const EOT&>
 	  (void)_pop;
       }
 };
-/** @example t-eoSelectOne.cpp
+/** @example t-selectOne.cpp
  */
 
 

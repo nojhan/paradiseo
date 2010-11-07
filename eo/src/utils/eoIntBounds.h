@@ -120,21 +120,21 @@ public:
   }
 
   /** get minimum value 
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual long int minimum()  const = 0 ;
   /** get maximum value
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual long int maximum()  const = 0 ;
   /** get range
-   *  @std::exception if unbounded
+   *  std::exception if unbounded
    */  
   virtual long int range()  const = 0;
 
   /** random generator of uniform numbers in bounds
    * uses same naming convention than eo::rng
-   * @std::exception if unbounded
+   * std::exception if unbounded
    */
   virtual double uniform(eoRng & _rng = eo::rng)  const = 0;
   virtual long int random(eoRng & _rng = eo::rng)  const = 0;
@@ -672,25 +672,25 @@ public:
   virtual void truncate(double & _x)  const {return repBound->truncate(_x);}
 
   /** get minimum value 
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual long int minimum()  const {return repBound->minimum();}
   /** get maximum value
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual long int maximum() const {return repBound->maximum();}
   /** get range
-   *  @std::exception if unbounded
+   *  std::exception if unbounded
    */  
   virtual long int range()  const {return repBound->range();}
 
   /** random generator of uniform doubles in bounds
-   * @std::exception if unbounded
+   * std::exception if unbounded
    */
   virtual double uniform(eoRng & _rng = eo::rng)  const {(void)_rng; return repBound->uniform();}
 
   /** random generator of uniform ints in bounds
-   * @std::exception if unbounded
+   * std::exception if unbounded
    */
   virtual long int random(eoRng & _rng = eo::rng)  const {(void)_rng; return repBound->random();}
 

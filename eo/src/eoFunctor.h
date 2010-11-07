@@ -60,7 +60,7 @@ public :
     /// tag to identify a binary function in compile time function selection @see functor_category
     struct binary_function_tag {};
 };
-/** @example t-eoFunctop.cpp
+/** @example t-eoFunctor.cpp
  */
 
 /**

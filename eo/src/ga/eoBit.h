@@ -71,6 +71,7 @@ public:
   /**
    * (Default) Constructor.
    * @param size Size of the binary std::string.
+   * @param value Default value.
    */
   eoBit(unsigned size = 0, bool value = false):
     eoVector<FitT, bool>(size, value) {}

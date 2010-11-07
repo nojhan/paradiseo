@@ -109,6 +109,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
   /**
    * (Default) Constructor.
    * @param _rate Rate of mutation.
+   * @param _normalize use rate/chrom.size if true
    */
   eoBitMutation(const double& _rate = 0.01, bool _normalize=false):
     rate(_rate), normalize(_normalize) {}
@@ -289,7 +290,7 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
    * Uniform crossover for binary chromosomes.
    * @param chrom1 The first chromosome.
    * @param chrom2 The first chromosome.
-   *    @std::runtime_error if sizes don't match
+   *    std::runtime_error if sizes don't match
    */
   bool operator()(Chrom& chrom1, Chrom& chrom2)
     {

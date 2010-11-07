@@ -117,20 +117,20 @@ public:
   virtual void truncate(double &)  const = 0;
 
   /** get minimum value 
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual double minimum()  const = 0 ;
   /** get maximum value
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual double maximum()  const = 0 ;
   /** get range
-   *  @std::exception if unbounded
+   *  std::exception if unbounded
    */  
   virtual double range()  const = 0;
 
   /** random generator of uniform numbers in bounds
-   * @std::exception if unbounded
+   * std::exception if unbounded
    */
   virtual double uniform(eoRng & _rng = eo::rng)  const = 0;
 
@@ -634,20 +634,20 @@ public:
   virtual void truncate(double & _x)  const {return repBound->truncate(_x);}
 
   /** get minimum value 
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual double minimum()  const {return repBound->minimum();}
   /** get maximum value
-   *  @std::exception if does not exist
+   *  std::exception if does not exist
    */  
   virtual double maximum() const {return repBound->maximum();}
   /** get range
-   *  @std::exception if unbounded
+   *  std::exception if unbounded
    */  
   virtual double range()  const {return repBound->range();}
 
   /** random generator of uniform numbers in bounds
-   * @std::exception if unbounded
+   * std::exception if unbounded
    */
   virtual double uniform(eoRng & _rng = eo::rng)  const {(void)_rng; return repBound->uniform();}
 

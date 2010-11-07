@@ -35,7 +35,7 @@
   problem as arguments, and iteratively modify them with the help of operators.
 
   Generally, an EO object is built by assembling together @ref Operators in an algorithm instance,
-  and then calling the algorithm's operator() on an initial @ref Population. The algorithm will then
+  and then calling the algorithm's operator() on an initial population (an eoPop). The algorithm will then
   manipulate the solutions within the population to search for the problem's optimum.
 */
 

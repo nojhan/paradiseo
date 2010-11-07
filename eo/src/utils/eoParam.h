@@ -155,7 +155,7 @@ public :
      * @param _defaultValue       The default value
      * @param _longName           Long name of the argument
      * @param _description        Description of the parameter. What is useful for.
-     * @param _shortName          Short name of the argument (Optional)
+     * @param _shortHand          Short name of the argument (Optional)
      * @param _required           If it is a necessary parameter or not
      */
     eoValueParam(ValueType _defaultValue,
