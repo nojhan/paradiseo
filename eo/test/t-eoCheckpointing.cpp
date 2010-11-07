@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 
 // to avoid long name warnings
 #ifdef _MSC_VER
@@ -7,19 +6,12 @@
 
 #include <stdexcept>  // runtime_error
 
-//-----------------------------------------------------------------------------
-// tt.cpp:
-//
-//-----------------------------------------------------------------------------
-
-
 // general
 #include <utils/eoRNG.h>		// Random number generators
 #include <ga.h>
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
 #include <eoGenContinue.h>
-//-----------------------------------------------------------------------------
 
 // include package checkpointing
 #include <utils/checkpointing>
@@ -36,7 +28,6 @@ public :
     eoDummyPop(int s = 2) { resize(s); }
 };
 
-//-----------------------------------------------------------------------------
 
 int the_main(int argc, char **argv)
 { // ok, we have a command line parser and a state
