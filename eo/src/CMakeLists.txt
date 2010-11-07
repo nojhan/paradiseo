@@ -15,7 +15,6 @@ SET (EO_SOURCES     eoFunctorStore.cpp
 					eoPersistent.cpp 
 					eoPrintable.cpp 
 					eoCtrlCContinue.cpp 
-					eoParetoFitness.cpp 
 					eoScalarFitnessAssembled.cpp
 					eoSIGContinue.cpp)
 

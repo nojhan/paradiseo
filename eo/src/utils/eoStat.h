@@ -37,7 +37,6 @@ Contact: http://eodev.sourceforge.net
 #include <eoFunctor.h>
 #include <utils/eoParam.h>
 #include <eoPop.h>
-#include <eoParetoFitness.h>
 #include <utils/eoMonitor.h>
 #include <utils/eoCheckPoint.h>
 
@@ -131,7 +130,6 @@ public :
    Average fitness of a population. Fitness can be:
    - double
    - eoMinimizingFitness or eoMaximizingFitness
-   - eoParetoFitness:
      The average of each objective is evaluated.
 
    ( For eoScalarFitnessAssembled user eoAssembledFitnessStat classes.)
@@ -165,24 +163,6 @@ public :
   virtual std::string className(void) const { return "eoAverageStat"; }
 
 private :
-
-    // Specialization for pareto fitness
-    template <class T>
-    void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
-    {
-      value().clear();
-      value().resize(_pop[0].fitness().size(), 0.0);
-
-      for (unsigned o = 0; o < value().size(); ++o)
-      {
-        for (unsigned i = 0; i < _pop.size(); ++i)
-        {
-          value()[o] += _pop[i].fitness()[o];
-        }
-
-        value()[o] /= _pop.size();
-      }
-    }
 
     // Default behavior
     template <class T>
@@ -280,25 +260,6 @@ private :
       bool maxim;
     };
 
-    // Specialization for eoParetoFitness
-    template <class T>
-    void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
-    {
-      typedef typename EOT::Fitness::fitness_traits traits;
-
-      value().resize(traits::nObjectives());
-
-      // copy of pointers, what the heck
-      std::vector<const EOT*> tmp_pop = _pop;
-
-      for (unsigned o = 0; o < value().size(); ++o)
-      {
-        typename std::vector<const EOT*>::iterator nth = tmp_pop.begin() + whichElement;
-        std::nth_element(tmp_pop.begin(), nth, tmp_pop.end(), CmpFitness(o, traits::maximizing(o)));
-        value()[o] = (*nth)->fitness()[o];
-      }
-    }
-
     // for everything else
     template <class T>
     void doit(const std::vector<const EOT*>& _pop, T)
@@ -337,7 +298,6 @@ public :
    Best fitness of a population. Fitness can be:
    - double
    - eoMinimizingFitness or eoMaximizingFitness
-   - eoParetoFitness:
 
    ( For eoScalarFitnessAssembled look at eoAssembledFitnessStat )
 */
@@ -384,20 +344,6 @@ private :
       unsigned which;
       bool maxim;
     };
-
-    // Specialization for pareto fitness
-    template <class T>
-    void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
-    {
-      typedef typename EOT::Fitness::fitness_traits traits;
-      value().resize(traits::nObjectives());
-
-      for (unsigned o = 0; o < traits::nObjectives(); ++o)
-      {
-        typename eoPop<EOT>::const_iterator it = std::max_element(_pop.begin(), _pop.end(), CmpFitness(o, traits::maximizing(o)));
-        value()[o] = it->fitness()[o];
-      }
-    }
 
     // default
     template<class T>

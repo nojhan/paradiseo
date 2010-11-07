@@ -127,7 +127,6 @@
 #include <eoSGATransform.h>
 
 // Perf2Worth stuff - includes eoSelectFromWorth.h
-#include <eoParetoRanking.h>
 #include <eoNDSorting.h>
 
 
