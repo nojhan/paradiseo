@@ -1,5 +1,14 @@
 /** @mainpage Welcome to Evolving Objects
 
+@section shortcuts In one word
+
+The best place to learn about the features and approaches of %EO with the help of examples is to look at
+the <a href="../../tutorial/html/eoTutorial.html">tutorial</a>.
+
+Once you have understand the @ref design of %EO, you could search for advanced features by browsing the <a
+href="modules.html">modules</a> page.
+
+
 @section intro Introduction
 
  %EO is a template-based, ANSI-C++ evolutionary computation library which helps you to write your own stochastic optimization algorithms insanely fast.
@@ -15,11 +24,6 @@ If you have a classical problem for which available code exists (for example if 
 
 If your problem is a bit more exotic, you will have to code a class that represents how your individuals (a solution to your problem) are represented, and perhaps some variations operators, but most of the other operators (selection, replacement, stopping criteria, command-line interface, etc.) are already available in %EO.
 
-
-@section tutorial Tutorial
-
-The best place to learn about the features and approaches of %EO is to look at
-the <a href="../../tutorial/html/eoTutorial.html">tutorial</a>.
 
 
 @section design Overall Design
