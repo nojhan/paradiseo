@@ -78,11 +78,13 @@ public:
   virtual bool operator()(EOT & _solution) {
     if (solComparator(_solution, bestSol) || solComparator.equals(_solution, bestSol))
       cpt++;
+    else
+      cpt = 0;
 
     bool res = (cpt < maxNoImprove);
 
     if (!res && verbose)
-      std::cout << "STOP in moBestNoImproveContinuator: Reached maximum number of iterations [" << cpt << "/" << maxNoImprove << "]" << std::endl;
+      std::cout << "STOP in moBestNoImproveContinuator: Reached maximum number of iterations without improvement [" << cpt << "/" << maxNoImprove << "]" << std::endl;
 
     return res;
   }
