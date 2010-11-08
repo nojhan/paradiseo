@@ -3,6 +3,6 @@
 ######################################################################################
 
 ADD_SUBDIRECTORY(gprop)
-ADD_SUBDIRECTORY(gpsymreg)
+#ADD_SUBDIRECTORY(gpsymreg)
 ADD_SUBDIRECTORY(mastermind)
 ######################################################################################
