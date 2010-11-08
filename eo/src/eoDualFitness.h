@@ -104,14 +104,6 @@ public:
         return _is_feasible;
     }
 
-    //! Copy operator
-    eoDualFitness& operator=(const eoDualFitness& other)
-    {
-        _value = other._value;
-        _is_feasible = other._is_feasible;
-       return *this; 
-    }
-
     //! Copy operator from a std::pair
     eoDualFitness& operator=(const std::pair<BaseType,bool>& v)
     {
@@ -119,6 +111,18 @@ public:
         _is_feasible = v.second;
         return *this; 
     }
+ 
+    //! Copy operator from another eoDualFitness
+    template <class F, class Cmp>
+    eoDualFitness<F,Cmp> & operator=(const eoDualFitness<BaseType, Compare>& other )
+    {
+        if (this != &other) {
+            this->_value = other._value; 
+            this->_is_feasible = other._is_feasible;
+        }
+        return *this;
+    }
+
 
     //! Comparison that separate feasible individuals from unfeasible ones. Feasible are always better
     /*!
@@ -155,6 +159,7 @@ public:
     //! Greater or equal: if the other is not greater than me
     bool operator>=(const eoDualFitness<BaseType, Compare>& other ) const { return !(*this < other); }
 
+   
 public:
 
     //! Add a given fitness to the current one
