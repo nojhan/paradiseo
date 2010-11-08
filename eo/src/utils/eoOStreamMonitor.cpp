@@ -25,7 +25,7 @@ eoMonitor& eoOStreamMonitor::operator()(void)
 
     if (firsttime) {
 
-        eo::log << eo::progress << "First Generation" << std::endl;
+        eo::log << eo::debug << "First Generation" << std::endl;
 
         for (iterator it = vec.begin (); it != vec.end (); ++it) {
             out << (*it)->longName ();
@@ -52,7 +52,7 @@ eoMonitor& eoOStreamMonitor::operator()(void)
     } // for it in vec
 
     out << std::endl;
-    eo::log << eo::progress << "End of Generation" << std::endl;
+    eo::log << eo::debug << "End of Generation" << std::endl;
 
   return *this;
 }

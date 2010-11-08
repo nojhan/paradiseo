@@ -36,7 +36,9 @@ Authors:
 #include <eoObject.h>
 
 /**
-    Prints statistics to stdout
+    Prints statistics to a given ostream.
+
+    You can pass any instance of an ostream to the constructor, like, for example, std::clog.
 
     @ingroup Monitors
 */
