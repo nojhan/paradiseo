@@ -423,6 +423,7 @@ public :
 };
 */
 
+
 //! A robust measure of dispersion (also called midspread or middle fifty) that is the difference between the third and the first quartile.
 template<class EOT>
 class eoInterquartileRangeStat : public eoStat< EOT, typename EOT::Fitness >
@@ -447,6 +448,41 @@ public:
     }
   
     virtual std::string className(void) const { return "eoInterquartileRangeStat"; }
+};
+
+
+/** Compute the average size of indivudals over the population
+ *
+ * Obviously, will work only on representations that implement the (standard) "size()" method, 
+ * like any STL container.
+ */
+template<class EOT>
+class eoAverageSizeStat : public eoStat< EOT, double>
+{
+public:
+
+    using eoStat<EOT, double>::value;
+
+    eoAverageSizeStat( std::string description = "Av.Size" ) : 
+        eoStat<EOT,double>( 0.0, description ) {} // 0 by default
+
+    virtual void operator()( const eoPop<EOT> & pop ) 
+    {
+        size_t pop_size = pop.size();
+
+        std::vector<size_t> sizes;
+        sizes.reserve(pop_size);
+
+        for( unsigned int i=0, s = pop_size; i<s; ++i ) {
+            sizes.push_back( pop[i].size() );
+        }
+
+        size_t sum = std::accumulate( sizes.begin(), sizes.end(), 0 );
+
+        value() = static_cast<double>(sum) / static_cast<double>(pop_size);
+    }
+  
+    virtual std::string className(void) const { return "eoAverageSizeStat"; }
 };
 
 /** @} */

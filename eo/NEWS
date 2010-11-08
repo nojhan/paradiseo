@@ -15,6 +15,7 @@
   - dual fitness class to handle feasibility of individual with guarantee that feasible fitness will always be better than unfeasible one
   - feasible fitness ratio stat
   - interquartile range stat
+  - average size of individuals stat
   - uniform(min,max) random function
   - compatibility macros for compiling paradiseo with CUDACC
   - removed old multi-objective classes, deprecated by the Paradiseo-MOEO project
