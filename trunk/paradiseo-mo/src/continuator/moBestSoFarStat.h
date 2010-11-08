@@ -48,8 +48,9 @@ public :
 
     /**
      * Default Constructor
+     * @param _reInitSol when true the best so far is reinitialized
      */
-    moBestSoFarStat(): moStat<EOT, EOT>(EOT(), "best") {
+    moBestSoFarStat(bool _reInitSol = true): moStat<EOT, EOT>(EOT(), "best"), reInitSol(_reInitSol), firstTime(true) {
     }
 
     /**
@@ -57,7 +58,13 @@ public :
      * @param _sol the first solution
      */
     virtual void init(EOT & _sol) {
-        value() = _sol;
+    	if (reInitSol)
+    		value() = _sol;
+    	else if (firstTime)
+			{
+    			value() = _sol;
+    			firstTime = false;
+    		}
     }
 
     /**
@@ -66,7 +73,9 @@ public :
      */
     virtual void operator()(EOT & _sol) {
         if (value().fitness() < _sol.fitness())
+        {
             value() = _sol;
+        }
     }
 
     /**
@@ -75,6 +84,10 @@ public :
     virtual std::string className(void) const {
         return "moBestSoFarStat";
     }
+
+protected:
+    bool reInitSol;
+    bool firstTime;
 
 };
 
