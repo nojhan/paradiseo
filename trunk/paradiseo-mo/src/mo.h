@@ -71,6 +71,7 @@
 #include <continuator/moFitContinuator.h>
 #include <continuator/moFitnessStat.h>
 #include <continuator/moFullEvalContinuator.h>
+#include <continuator/moEvalsContinuator.h>
 #include <continuator/moIterContinuator.h>
 #include <continuator/moMaxNeighborStat.h>
 #include <continuator/moMinNeighborStat.h>

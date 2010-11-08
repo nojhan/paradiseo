@@ -188,6 +188,8 @@ public:
         else {
             isAccept=false;
         }
+
+	std::cout << (*best) ;
     };
 
 
