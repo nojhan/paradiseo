@@ -52,7 +52,7 @@ public :
     /** Constructor
 
     @param _parser Parser to read parameters from.
-    @param _section Parser section for \tau-parameters.
+    @param _section Parser section for \f$\tau\f$-parameters.
     */
     eoEsMutationInit(eoParser& _parser,
 		     std::string _section="ES mutation parameters" ) :
@@ -62,7 +62,7 @@ public :
     /** Virtual destructor */
     virtual ~eoEsMutationInit() {}
 
-    /** local \tau */
+    /** local tau */
     double TauLcl(void)
     {
         if (TauLclParam == 0)

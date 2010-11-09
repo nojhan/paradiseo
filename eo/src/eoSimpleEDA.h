@@ -49,8 +49,8 @@ template<class EOT> class eoSimpleEDA: public eoEDA<EOT>
 {
  public:
 
-  /** Ctor from an eoDistribUpdater
-   * ... plus an eoEval and eoContinue of course 
+  /** Ctor from an eoDistribUpdater,
+   *  plus an eoEval and eoContinue of course.
    */
   eoSimpleEDA(eoDistribUpdater<EOT>& _update,
 	   eoEvalFunc<EOT>& _eval,

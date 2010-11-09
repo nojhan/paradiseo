@@ -338,9 +338,9 @@ class eoHoistMutation: public eoMonOp< eoParseTree<FType, Node> >
 public:
 
   typedef eoParseTree<FType,Node> EoType;
+
   /**
    * Constructor
-   * @param none
    */
   eoHoistMutation()
     : eoMonOp<EoType>()

@@ -49,7 +49,7 @@ public:
 
     /**
     *
-    * @param eo The cromosome which is going to be changed.
+    * @param _eo The cromosome which is going to be changed.
     */
     bool operator()(EOT& _eo) {
         // generate two different indices

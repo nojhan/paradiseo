@@ -203,7 +203,7 @@ public:
 
   /**
    * Constructor
-   * @param _initializor The std::vector of Nodes given to the eoGpDepthInitializer
+   * @param _node The std::vector of Nodes given to the eoGpDepthInitializer
    */
   eoStPointMutation( std::vector<Node>& _node)
     : eoMonOp<EoType>()

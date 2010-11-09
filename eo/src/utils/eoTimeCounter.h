@@ -35,7 +35,7 @@
     An eoStat that simply gives the user time since first generation
     It has to be tempatized by EOT because it must be an eoStat
 
-    @group Stats
+    @ingroup Stats
 */
 class eoTimeCounter : public eoUpdater, public eoValueParam<double>
 {

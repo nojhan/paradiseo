@@ -50,11 +50,17 @@ class eoContinue : public eoUF<const eoPop<EOT>&, bool>, public eoPersistent
 public:
   virtual std::string className(void) const { return "eoContinue"; }
 
+  /** Read from a stream
+   * @param __is istream to read from
+   */
   void readFrom (std :: istream & __is) {
       (void)__is;
     /* It should be implemented by subclasses ! */
   }
   
+  /** Print on a stream
+   * @param __os ostream to print on
+   */
   void printOn (std :: ostream & __os) const {
       (void)__os;
     /* It should be implemented by subclasses ! */

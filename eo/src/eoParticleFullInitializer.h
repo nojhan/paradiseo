@@ -66,6 +66,7 @@ template <class POT> class eoParticleInitializer : public eoInitializerBase <POT
     //! @param _proc Evaluation function
     //! @param _initVelo Initialization of the velocity
     //! @param _initBest Initialization of the best
+    //! @param _topology Topology to use
     //! @param _pop Population
     eoParticleFullInitializer(
       eoUF<POT&, void>& _proc,
@@ -80,6 +81,7 @@ template <class POT> class eoParticleInitializer : public eoInitializerBase <POT
     //! @param _proc Evaluation function
     //! @param _initVelo Initialization of the velocity
     //! @param _initBest Initialization of the best
+    //! @param _topology Topology to use
     //! @param _pop Population
     eoParticleFullInitializer(
       eoPopEvalFunc <POT>& _proc,

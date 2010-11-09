@@ -61,7 +61,7 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     
     /**
      * Constructor
-     * @parm _max_depth The maximum depth of a tree
+     * @param _max_depth The maximum depth of a tree
      * @param _initializor A std::vector containing the possible nodes
      * @param _grow False results in a full tree, True result is a randomly grown tree
      * @param _ramped_half_and_half True results in Ramped Half and Half Initialization

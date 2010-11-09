@@ -192,11 +192,11 @@ public:
   /**
    * (Default) Constructor.
    *
-   * @param eval the evaluation function, needed to recompute the fitmess
+   * @param _eval the evaluation function, needed to recompute the fitmess
    * @param _sigmaInit the initial value for uniform mutation
    * @param _windowSize the size of the window for statistics
-   * @param _threshold the threshold (the 1/5 - 0.2)
    * @param _updateFactor multiplicative update factor for sigma
+   * @param _threshold the threshold (the 1/5 - 0.2)
    */
   eoOneFifthMutation(eoEvalFunc<EOT> & _eval, double & _sigmaInit,
 		     unsigned _windowSize = 10, double _updateFactor=0.83,

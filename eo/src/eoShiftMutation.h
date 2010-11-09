@@ -53,7 +53,7 @@ template<class EOT> class eoShiftMutation: public eoMonOp<EOT>
 
   /**
    * Shift two components of the given eoosome.
-   * @param eo The cromosome which is going to be changed.
+   * @param _eo The cromosome which is going to be changed.
    */
   bool operator()(EOT& _eo)
     {

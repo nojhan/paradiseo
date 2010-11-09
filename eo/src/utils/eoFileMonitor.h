@@ -55,6 +55,7 @@ public :
      * @param _delim delimiter string to use between each item of the registered vector (e.g. of eoStats)
      * @param _keep_existing if true, overwrite any existing file with the same name prior to any output
      * @param _header print the header (with the descriptions of registered eoStats) at the beginning of the file (WARNING: true will discards header printing)
+     * @param _overwrite if true, overwrite the existing file
      */
     eoFileMonitor(
         std::string _filename, 

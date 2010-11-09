@@ -60,7 +60,7 @@ public:
     * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
     * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
     * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
-    * @param _boundsModifier - An eoRealBoundModifier used to modify the bounds (for real bounds only).
+    * @param _bndsModifier - An eoRealBoundModifier used to modify the bounds (for real bounds only).
     * @param _gen - The eo random generator, default=rng
     */
     eoIntegerVelocity (eoTopology < POT > & _topology,
@@ -104,6 +104,7 @@ public:
 
 
     /** Constructor: Neither bounds nor bound updater required <-> free velocity
+     * @param _topology the topology to use
        * @param _c1 - The first learning factor quantify how much the particle trusts itself. Type must be POT::ParticleVelocityType 
        * @param _c2 - The second learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
        * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 

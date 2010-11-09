@@ -191,7 +191,7 @@ class eoInitPermutation: public eoInit<EOT>
     eoInitAdaptor changes the place in the hierarchy
     from eoInit to eoMonOp. This is mainly a type conversion,
     nothing else
-    .
+    
     @see eoInit, eoMonOp
 */
 template <class EOT>

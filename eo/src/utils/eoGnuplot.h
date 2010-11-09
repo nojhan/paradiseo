@@ -44,7 +44,7 @@ public:
     /** Open pipe to Gnuplot.
 
     @param _title Title for gnuplot window.
-    @param _extra Extra parameters to gnuplot (default <none>).
+    @param _extra Extra parameters to gnuplot (default to none: "").
     */
     eoGnuplot(std::string _title, std::string _extra = std::string(""));
 

@@ -43,6 +43,7 @@ template <class FitT> class eoReal: public eoVector<FitT, double>
   /**
    * (Default) Constructor.
    * @param size Size of the std::vector
+   * @param value fill the vector with this value
    */
   eoReal(unsigned size = 0, double value = 0.0):
     eoVector<FitT, double>(size, value) {}

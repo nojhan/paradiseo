@@ -122,8 +122,6 @@ public:
 
    /**
      * Print the structure of the topology on the standard output.
-     * @param
-     * @return
      */
     void printOn()
     {

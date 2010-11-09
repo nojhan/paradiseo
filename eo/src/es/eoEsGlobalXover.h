@@ -65,7 +65,7 @@ public:
    * modifies one parents in the populator
    *     using 2 new parents for each component!
    *
-   * @param _pop a POPULATOR (not a simple population)
+   * @param _plop a POPULATOR (not a simple population)
    */
   void apply(eoPopulator<EOT>& _plop)
   {

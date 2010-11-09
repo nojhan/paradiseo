@@ -38,7 +38,7 @@ some objects (for instance, a #eoFactory# or a random number generator.
 /**
 Base class for objects that can print themselves
 (#printOn#). Besides, this file defines the standard output for all the objects; 
-if the objects define printOn there's no need to define #operator <<#.
+if the objects define printOn there's no need to define "operator<<".
 
   @ingroup Core
  */

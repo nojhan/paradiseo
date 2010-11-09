@@ -107,7 +107,7 @@ public:
     Specify individual initial sigmas for each variable.
 
     @param _bounds bounds for uniform initialization
-    @param _sigma initial value for the stddev
+    @param _vecSigma initial value for the stddev
     */
     eoEsChromInit(eoRealVectorBounds& _bounds, const std::vector<double>& _vecSigma)
         : eoRealInitBounded<EOT>(_bounds), uniqueSigma(_vecSigma[0]), vecSigma(_vecSigma)

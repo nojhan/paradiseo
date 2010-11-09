@@ -43,6 +43,7 @@ template <class FitT> class eoInt: public eoVector<FitT, int>
   /**
    * (Default) Constructor.
    * @param size Size of the std::vector
+   * @param value fill the vector with this value
    */
   eoInt(unsigned size = 0, int value = 0):
     eoVector<FitT, int>(size, value) {}

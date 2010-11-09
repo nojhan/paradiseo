@@ -66,6 +66,7 @@ public:
     //! @param _proc Evaluation function
     //! @param _initVelo Initialization of the velocity
     //! @param _initBest Initialization of the best
+    //! @param _topology the topology to use
     //! @param _pop Population
     eoInitializer(
         eoUF<POT&, void>& _proc,
@@ -80,6 +81,7 @@ public:
     //! @param _proc Evaluation function
     //! @param _initVelo Initialization of the velocity
     //! @param _initBest Initialization of the best
+    //! @param _topology the topology to use
     //! @param _pop Population
     eoInitializer(
         eoPopEvalFunc <POT>& _proc,

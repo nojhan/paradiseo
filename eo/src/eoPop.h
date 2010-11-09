@@ -87,10 +87,10 @@ public:
 	  }
 	};
 
-	/** appstd::ends random guys at end of pop.
+	/** appends random guys at end of pop.
 	    Can be used to initialize it pop is empty 
     
-	@param _popSize total population size
+	@param _newPopSize total population size
 	@param _chromInit Initialization routine, produces EO's, needs to be an eoInit 
 	*/
     void append( unsigned _newPopSize, eoInit<EOT>& _chromInit )

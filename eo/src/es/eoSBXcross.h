@@ -54,7 +54,7 @@ template<class EOT> class eoSBXCrossover: public eoQuadOp<EOT>
   /**
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
-   * @param _alphaMin the amount of exploration OUTSIDE the parents 
+   * @param _eta the amount of exploration OUTSIDE the parents 
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive

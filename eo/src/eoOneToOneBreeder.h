@@ -55,7 +55,6 @@ class eoOneToOneBreeder: public eoBreed<EOT>
   /** Ctor:
    * @param _op       a general operator (must MODIFY only ONE parent)
    * @param _eval     an eoEvalFunc to evaluate the offspring 
-   * @param _select   a selectoOne, to be used for all selections [sequential]
    * @param _pReplace probability that the best of parent/offspring wins [1]
    * @param _howMany  eoHowMany offpsring to generate [100%]
    */

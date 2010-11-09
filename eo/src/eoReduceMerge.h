@@ -48,10 +48,11 @@ eoReduceMerge: Replacement strategies that start by reducing the parents,
 This is the way to do SSGA: the offspring gets inserted in the population
 even if it is worse than anybody else.
 
-@classes: eoReduceMerge, eoSSGAWorseReplacement, 
-    eoSSGADetTournamentReplacement, eoSSGAStochTournamentReplacement
+@see eoReduceMerge
+@see eoSSGAWorseReplacement
+@see eoSSGADetTournamentReplacement
+@see eoSSGAStochTournamentReplacement
 */
-
 template <class EOT>
 class eoReduceMerge : public eoReplacement<EOT>
 {

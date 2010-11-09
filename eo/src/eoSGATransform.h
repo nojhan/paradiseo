@@ -59,7 +59,7 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
 
   /**
    * Transforms a population.
-   * @param pop The population to be transformed.
+   * @param _pop The population to be transformed.
    */
   void operator()(eoPop<EOT>& _pop) 
   {
@@ -124,7 +124,7 @@ template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
 
   /**
    * Transforms a population.
-   * @param pop The population to be transformed.
+   * @param _pop The population to be transformed.
    */
   void operator()(eoPop<EOT>& _pop) 
   {

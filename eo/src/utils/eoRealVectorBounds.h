@@ -305,7 +305,7 @@ public:
 
   /**
    * Read object from a std::string
-   * @param _is A std::istream.
+   * @param _s A std::istream.
    */
   virtual void readFrom(std::string _s) ;
 

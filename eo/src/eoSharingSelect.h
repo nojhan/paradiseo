@@ -45,7 +45,8 @@ class eoSharingSelect: public eoRouletteWorthSelect<EOT, double>
 {
 public:
   /** Ctor:
-   *  @param _s the sigma_share
+   *  @param _sigma the sigma_share
+   *  @param _dist the distance object to use
    */
   eoSharingSelect(double _sigma, eoDistance<EOT> & _dist): 
     eoRouletteWorthSelect<EOT, double>(sharing), sharing(_sigma, _dist) {}

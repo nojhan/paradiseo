@@ -58,6 +58,8 @@ template<class Chrom> class eoOrderXover: public eoQuadOp<Chrom>
 	  * @param _chrom2 The second parent chromosome.
 	  * @param _child The result chromosome.
 	  * @param _direction The direction of the OrderXover (left: -1 or right: 1)
+      * @param _cut1 index of the first cut 
+      * @param _cut2 index of the second cut
 	  */
 	 void cross(Chrom& _chrom1, Chrom& _chrom2, Chrom& _child, char _direction, unsigned _cut1, unsigned _cut2){
 	 		

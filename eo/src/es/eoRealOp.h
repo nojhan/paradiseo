@@ -153,7 +153,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * it's there mostly for backward compatibility
    *
    * @param _epsilon the range for uniform nutation
-   * @param number of coordinate to modify
+   * @param _no number of coordinate to modify
    */
   eoDetUniformMutation(const double& _epsilon, const unsigned& _no = 1):
     homogeneous(true), bounds(eoDummyVectorNoBounds),
@@ -163,7 +163,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
    * @param _epsilon the range for uniform nutation (to be scaled if necessary)
-   * @param number of coordinate to modify
+   * @param _no number of coordinate to modify
    */
   eoDetUniformMutation(eoRealVectorBounds & _bounds,
 		       const double& _epsilon, const unsigned& _no = 1):
@@ -180,7 +180,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * Constructor with bounds and full std::vector of epsilon
    * @param _bounds an eoRealVectorBounds that contains the bounds
    * @param _epsilon the VECTOR of ranges for uniform mutation
-   * @param number of coordinate to modify
+   * @param _no number of coordinates to modify
    */
   eoDetUniformMutation(eoRealVectorBounds & _bounds,
 		       const std::vector<double>& _epsilon,
@@ -257,7 +257,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
    * (Default) Constructor.
    * The bounds are initialized with the global object that says: no bounds.
    *
-   * @param _alphaMin the amount of exploration OUTSIDE the parents
+   * @param _alpha the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
@@ -268,7 +268,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
   /**
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
-   * @param _alphaMin the amount of exploration OUTSIDE the parents
+   * @param _alpha the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
@@ -348,7 +348,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
    * (Default) Constructor.
    * The bounds are initialized with the global object that says: no bounds.
    *
-   * @param _alphaMin the amount of exploration OUTSIDE the parents
+   * @param _alpha the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
@@ -363,7 +363,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
   /**
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
-   * @param _alphaMin the amount of exploration OUTSIDE the parents
+   * @param _alpha the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
@@ -483,7 +483,7 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
    * Uniform crossover for real std::vectors
    * @param _eo1 The first parent
    * @param _eo2 The second parent
-   *    @std::runtime_error if sizes don't match
+   *    @exception std::runtime_error if sizes don't match
    */
   bool operator()(EOT& _eo1, EOT& _eo2)
     {

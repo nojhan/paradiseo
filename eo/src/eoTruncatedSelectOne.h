@@ -93,8 +93,8 @@ public:
   /**
      The implementation selects an individual from the fertile pop
 
-     @param _source the source population
-     @param _dest the selected guy
+     @param _pop the source population
+     @return the selected guy
   */
   const EOT& operator()(const eoPop<EOT>& _pop) 
   {

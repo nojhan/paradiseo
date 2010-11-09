@@ -59,7 +59,7 @@ public:
 	Stores all operators built in a database (#allocMap#), so that somebody 
 	can destroy them later. The Mason is in charge or destroying the operators,
 	since the built object can´t do it itself. The objects built must be destroyed
-	from outside, using the #destroy# method
+	from outside, using the "destroy" method
 	*/
 	virtual eoOpSelector<eoClass>* make(std::istream& _is) {
 

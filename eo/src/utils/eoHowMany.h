@@ -77,7 +77,7 @@ class eoHowMany : public eoPersistent
 {
 public:
   /** Original Ctor from direct rate + bool
-      @param rate    the rate, OR the integer to store, depending on 2nd arg.
+      @param _rate    the rate, OR the integer to store, depending on 2nd arg.
       @param _interpret_as_rate to tell whether the rate actually is a rate
   */
   eoHowMany(double  _rate = 0.0, bool _interpret_as_rate = true):

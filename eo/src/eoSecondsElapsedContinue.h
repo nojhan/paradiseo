@@ -53,11 +53,17 @@ public:
   
   virtual std::string className(void) const { return "eoSecondsElapsedContinue"; }
 
+  /** REad from a stream
+   * @param __is the ostream to read from
+   */
   void readFrom (std :: istream & __is) {
     
     __is >> start >> seconds; 
   }
   
+  /** Print on a stream
+   * @param __os the ostream to print on
+   */
   void printOn (std :: ostream & __os) const {
     
     __os << start << ' ' << seconds << std :: endl;    

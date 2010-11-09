@@ -69,8 +69,9 @@ class eoStParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     
     /**
      * Constructor
-     * @parm _max_depth The maximum depth of a tree
-     * @param _initializor A std::vector containing the possible nodes
+     * @param _max_depth The maximum depth of a tree
+     * @param _node A std::vector containing the possible nodes
+     * @param _return_type (JD_2010-11-09: don't know the use of this parameter, maybe to force implicit template instanciation?)
      * @param _grow False results in a full tree, True result is a randomly grown tree
      */
 	eoStParseTreeDepthInit(

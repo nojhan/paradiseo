@@ -48,7 +48,7 @@ public:
 
     /**
      * Build the topology made of _neighborhoodSize neighborhoods.
-     * @param _neighborhoods - The size of each neighborhood. 
+     * @param _neighborhoodSize - The size of each neighborhood. 
      */
     eoLinearTopology (unsigned _neighborhoodSize):neighborhoodSize (_neighborhoodSize),isSetup(false){}
 
