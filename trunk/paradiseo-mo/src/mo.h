@@ -62,6 +62,9 @@
 
 #include <continuator/moAverageFitnessNeighborStat.h>
 #include <continuator/moBestSoFarStat.h>
+#include <continuator/moBestFitnessStat.h>
+#include <continuator/moUnsignedStat.h>
+#include <continuator/moBooleanStat.h>
 #include <continuator/moCheckpoint.h>
 #include <continuator/moCombinedContinuator.h>
 #include <continuator/moContinuator.h>
@@ -166,7 +169,7 @@
 #include <problems/eval/moMaxSATincrEval.h>
 #include <problems/eval/moOneMaxIncrEval.h>
 #include <problems/eval/moRoyalRoadIncrEval.h>
-#include <problems/eval/moUBQPSimpleIncrEval.h>
+//#include <problems/eval/moUBQPSimpleIncrEval.h>
 #include <problems/eval/oneMaxFullEval.h>
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>
