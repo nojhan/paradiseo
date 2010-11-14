@@ -42,8 +42,9 @@ kills the ones that are to die,
 puts the ones that are to survive into the second argument
 removes them from the first pop argument
 
-@classes: eoSurviveAndDie, eoDeterministicSurviveAndDie,
-          eoDeterministicSaDReplacement
+@class eoSurviveAndDie
+@class eoDeterministicSurviveAndDie,
+@class eoDeterministicSaDReplacement
 */
 
 /** @addtogroup Replacors

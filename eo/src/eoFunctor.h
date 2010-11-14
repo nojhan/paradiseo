@@ -29,7 +29,7 @@
 
 #include <functional>
 
-/** @ddtogroup Core
+/** @addtogroup Core
  * @{
  */
 

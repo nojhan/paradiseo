@@ -57,9 +57,9 @@ MS 12/12/2000
 
   @see eoMerge, eoReduce, eoMergeReduce, eoReduceMerge 
 
-@classes eoReplacement,                    base (pure abstract) class
-         eoGenerationalReplacement,        as it says ...
-	 eoWeakElitistReplacement          a wrapper to add elitism
+@class eoReplacement,                    base (pure abstract) class
+@class eoGenerationalReplacement,        as it says ...
+@class eoWeakElitistReplacement          a wrapper to add elitism
 
 */
 
