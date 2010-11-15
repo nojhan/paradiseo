@@ -71,7 +71,10 @@ public:
   }
   
   /** Sets the number of generations to reach 
-	    and sets the current generation to 0 (the begin)*/
+	    and sets the current generation to 0 (the begin)
+        
+        @todo replace this by an "init" method 
+    */
   virtual void totalGenerations( unsigned long _tg ) { 
 	  repTotalGenerations = _tg; 
 	  thisGeneration = 0;
