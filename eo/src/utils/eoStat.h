@@ -454,7 +454,8 @@ public:
   
     virtual std::string className(void) const { return "eoInterquartileRangeStat"; }
 };
-
+/** @example t-eoIQRStat.cpp
+ */
 
 /** Compute the average size of indivudals over the population
  *

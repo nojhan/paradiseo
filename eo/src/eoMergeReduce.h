@@ -37,9 +37,9 @@
 /** 
 Replacement strategies that combine en eoMerge and an eoReduce.
 
-@classes: eoMergeReduce, the base (pure abstract) class
-          eoPlusReplacement the ES plus strategy
-	  eoCommaReplacement the ES comma strategy
+@class eoMergeReduce, the base (pure abstract) class
+@class eoPlusReplacement the ES plus strategy
+@class eoCommaReplacement the ES comma strategy
 */
 
 /**
