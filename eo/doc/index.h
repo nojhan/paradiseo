@@ -51,9 +51,9 @@ with a member like: operator()(eoPop<EOT>). Once called on a given population, i
 search for the optimum of a given problem.
 
 Generally, operators are instanciated once and then binded in an algorithm by reference.
-Thus, you can easily build you own algorithm by trying several combination of operators.
+Thus, you can easily build your own algorithm by trying several combination of operators.
 
-For an more detailled introduction to the design of %EO you can look at the 
+For a more detailled introduction to the design of %EO you can look at the 
 slides from a talk at EA 2001 or at the corresponding
 article in Lecture Notes In Computer Science, 2310, Selected Papers from the 5th European Conference on Artificial Evolution:
     - http://portal.acm.org/citation.cfm?id=727742

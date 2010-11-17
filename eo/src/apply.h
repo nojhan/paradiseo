@@ -37,8 +37,10 @@
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
+#pragma omp parallel for default(none) shared(_proc, _pop)
     for (unsigned i = 0; i < _pop.size(); ++i)
     {
+#pragma omp critical
         _proc(_pop[i]);
     }
 }
