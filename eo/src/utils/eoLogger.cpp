@@ -26,7 +26,12 @@ Authors:
 
 */
 
+#ifdef _INTERIX
+#include <io.h>
+#else // _INTERIX
 #include <unistd.h>
+#endif // ! _INTERIX
+
 #include <fcntl.h>
 #include <cstdlib>
 #include <cstdio> // used to define EOF
