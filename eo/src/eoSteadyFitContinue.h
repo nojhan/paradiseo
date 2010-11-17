@@ -83,7 +83,10 @@ public:
   }
 
   /** Sets the parameters (minimum nb of gen. + steady nb of gen.) 
-      and sets the current generation to 0 (the begin)*/
+      and sets the current generation to 0 (the begin)
+      
+      @todo replace thi by an init method ?
+      */
   virtual void totalGenerations( unsigned long _mg, unsigned long _sg ) { 
     repMinGenerations = _mg; 
     repSteadyGenerations = _sg;

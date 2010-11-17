@@ -29,6 +29,10 @@ Authors:
 #include <functional>
 #include <iostream>
 #include <utility> // for std::pair
+#include <string>
+
+#include <utils/eoStat.h>
+#include <utils/eoLogger.h>
 
 /** @addtogroup Evaluation
  * @{
@@ -63,7 +67,7 @@ Authors:
 template <class BaseType, class Compare >
 class eoDualFitness
 {
-private:
+protected:
     //! Scalar type of the fitness (generally a double)
     BaseType _value;
 
@@ -241,6 +245,68 @@ typedef eoDualFitness<double, std::greater<double> > eoMinimizingDualFitness;
 template< class EOT>
 bool eoIsFeasible ( const EOT & sol ) { return sol.fitness().is_feasible(); }
 
+
+/** Embed two eoStat and call the first one on the feasible individuals and
+ * the second one on the unfeasible ones, merge the two resulting value in
+ * a string, separated by a given marker.
+ */
+//template<class EOT, class T>
+template<class EOT, class EOSTAT>
+class eoDualStatSwitch : public eoStat< EOT, std::string >
+{
+public:
+    using eoStat<EOT,std::string>::value;
+
+//    eoDualStatSwitch( eoStat<EOT,T> & stat_feasible,  eoStat<EOT,T> & stat_unfeasible, std::string sep=" "  ) :
+    eoDualStatSwitch( EOSTAT & stat_feasible,  EOSTAT & stat_unfeasible, std::string sep=" "  ) :
+        _stat_feasible(stat_feasible), 
+        _stat_unfeasible(stat_unfeasible), 
+        _sep(sep),
+        eoStat<EOT,std::string>(
+                "?"+sep+"?", 
+                stat_feasible.longName()+sep+stat_unfeasible.longName() 
+            )
+    { }
+
+    virtual void operator()( const eoPop<EOT> & pop )
+    {
+        eoPop<EOT> pop_feasible;
+        pop_feasible.reserve(pop.size());
+        
+        eoPop<EOT> pop_unfeasible;
+        pop_unfeasible.reserve(pop.size());
+
+        for( typename eoPop<EOT>::const_iterator ieot=pop.begin(), iend=pop.end(); ieot!=iend; ++ieot ) {
+            /*
+            if( ieot->invalid() ) {
+                eo::log << eo::errors << "ERROR: trying to access to an invalid fitness" << std::endl;
+            }
+            */
+            if( ieot->fitness().is_feasible() ) {
+                pop_feasible.push_back( *ieot );
+            } else {
+                pop_unfeasible.push_back( *ieot );
+            }
+        }
+
+        _stat_feasible( pop_feasible );
+        _stat_unfeasible( pop_unfeasible );
+        
+        std::ostringstream out;
+        out << _stat_feasible.value() << _sep << _stat_unfeasible.value();
+
+        value() = out.str();
+    }
+
+protected:
+//    eoStat<EOT,T> & _stat_feasible;
+//    eoStat<EOT,T> & _stat_unfeasible;
+    EOSTAT & _stat_feasible;
+    EOSTAT & _stat_unfeasible;
+
+    std::string _sep;
+};
+    
 /** @} */
 #endif // _eoDualFitness_h_
 

@@ -25,8 +25,6 @@ LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
 ######################################################################################
 
 SET (TEST_LIST
-  t-eoParetoFitness
-  t-eoPareto
   t-eofitness
   t-eoRandom
   t-eobin
@@ -65,8 +63,8 @@ SET (TEST_LIST
   t-eoSyncEasyPSO
   t-eoOrderXover
   t-eoExtendedVelocity
-  # t-eoFrontSorter
   t-eoLogger
+  t-eoIQRStat
   )
 
 

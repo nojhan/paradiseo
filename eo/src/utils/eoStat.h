@@ -38,7 +38,7 @@ Contact: http://eodev.sourceforge.net
 #include <utils/eoParam.h>
 #include <eoPop.h>
 #include <utils/eoMonitor.h>
-#include <utils/eoCheckPoint.h>
+//#include <utils/eoCheckPoint.h>
 
 /** @defgroup Stats Statistics computation
  *
@@ -435,21 +435,27 @@ public:
 
     virtual void operator()( const eoPop<EOT> & _pop ) 
     {
-        eoPop<EOT> pop = _pop;
+        if( _pop.size() == 0 ) {
+            // how to implement value() = 0 ?
 
-        unsigned int quartile = pop.size()/4;
-        std::nth_element( pop.begin(), pop.begin()+quartile*1, pop.end() );
-        typename EOT::Fitness Q1 = pop[quartile].fitness();
-        
-        std::nth_element( pop.begin(), pop.begin()+quartile*3, pop.end() );
-        typename EOT::Fitness Q3 = pop[quartile*3].fitness();
+        } else {
+            eoPop<EOT> pop = _pop;
 
-        value() = Q1 - Q3;
+            unsigned int quartile = pop.size()/4;
+            std::nth_element( pop.begin(), pop.begin()+quartile*1, pop.end() );
+            typename EOT::Fitness Q1 = pop[quartile].fitness();
+            
+            std::nth_element( pop.begin(), pop.begin()+quartile*3, pop.end() );
+            typename EOT::Fitness Q3 = pop[quartile*3].fitness();
+
+            value() = Q1 - Q3;
+        }
     }
   
     virtual std::string className(void) const { return "eoInterquartileRangeStat"; }
 };
-
+/** @example t-eoIQRStat.cpp
+ */
 
 /** Compute the average size of indivudals over the population
  *

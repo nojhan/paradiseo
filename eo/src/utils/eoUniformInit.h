@@ -29,11 +29,10 @@
  * eoRndGenerators, we might as well have these directly written without
  * overhead
 
-@classes:  
-  eoUniformInit     uniform initialization for doubles, floats, ints, ...
-  eoBooleanInit     biased init for booleans
-  eoNormalInit      normal intialization for doubles and floats
-  eoNegExpInit      negative exponential distributions    "
+@class eoUniformInit     uniform initialization for doubles, floats, ints, ...
+@class eoBooleanInit     biased init for booleans
+@class eoNormalInit      normal intialization for doubles and floats
+@class eoNegExpInit      negative exponential distributions    "
 */
 
 #ifndef eoUniformInit_h
