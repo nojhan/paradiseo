@@ -23,8 +23,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _apply_h
-#define _apply_h
+#ifndef _omp_apply_h
+#define _omp_apply_h
 
 #include <eoFunctor.h>
 #include <vector>
@@ -32,13 +32,18 @@
 /**
   Applies a unary function to a std::vector of things.
 
+  This is a variant of apply<EOT> which is called in parallel
+  thanks to OpenMP.
+
   @ingroup Utilities
 */
 template <class EOT>
-void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
+void omp_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
+#pragma omp parallel for default(none) shared(_proc, _pop)
     for (unsigned i = 0; i < _pop.size(); ++i)
     {
+	//#pragma omp critical
         _proc(_pop[i]);
     }
 }
