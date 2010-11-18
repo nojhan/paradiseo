@@ -65,6 +65,7 @@ SET (TEST_LIST
   t-eoExtendedVelocity
   t-eoLogger
   t-eoIQRStat
+  t-eoParser
   )
 
 
