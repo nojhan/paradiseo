@@ -57,7 +57,7 @@ INCLUDE(ConfigureChecks.cmake)
 INCLUDE(Dart OPTIONNAL)
 
 # now create config headers
-configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+CONFIGURE_FILE(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 # Set a special flag if the environment is windows (should do the same in a config.g file)
 IF (WIN32)
@@ -113,7 +113,11 @@ ADD_SUBDIRECTORY(tutorial)
 ### 6) Install pkg-config config file for EO
 ######################################################################################
 
-INSTALL(FILES eo.pc DESTINATION lib/pkgconfig COMPONENT headers)
+SET(PCPREFIX "/usr")
+SET(PCFLAGS "-leoutils -leo -les -lga -lcma -lgcov")
+SET(PCINCLUDEDIR "eo")
+CONFIGURE_FILE(pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/eo.pc)
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/eo.pc DESTINATION lib/pkgconfig COMPONENT headers)
 
 ######################################################################################
 
