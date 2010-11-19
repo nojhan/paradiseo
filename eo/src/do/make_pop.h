@@ -57,17 +57,17 @@ template <class EOT>
 eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _init)
 {
   // random seed
-    eoValueParam<uint32_t>& seedParam = _parser.createParam(uint32_t(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32_t>& seedParam = _parser.getORcreateParam(uint32_t(0), "seed", "Random number seed", 'S');
     if (seedParam.value() == 0)
 	seedParam.value() = time(0);
-    eoValueParam<unsigned>& popSize = _parser.createParam(unsigned(20), "popSize", "Population Size", 'P', "Evolution Engine");
+    eoValueParam<unsigned>& popSize = _parser.getORcreateParam(unsigned(20), "popSize", "Population Size", 'P', "Evolution Engine");
 
   // Either load or initialize
   // create an empty pop and let the state handle the memory
   eoPop<EOT>& pop = _state.takeOwnership(eoPop<EOT>());
 
-  eoValueParam<std::string>& loadNameParam = _parser.createParam(std::string(""), "Load","A save file to restart from",'L', "Persistence" );
-  eoValueParam<bool> & recomputeFitnessParam = _parser.createParam(false, "recomputeFitness", "Recompute the fitness after re-loading the pop.?", 'r',  "Persistence" );
+  eoValueParam<std::string>& loadNameParam = _parser.getORcreateParam(std::string(""), "Load","A save file to restart from",'L', "Persistence" );
+  eoValueParam<bool> & recomputeFitnessParam = _parser.getORcreateParam(false, "recomputeFitness", "Recompute the fitness after re-loading the pop.?", 'r',  "Persistence" );
 
   if (loadNameParam.value() != "") // something to load
     {

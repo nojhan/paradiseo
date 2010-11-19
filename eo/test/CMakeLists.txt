@@ -66,6 +66,7 @@ SET (TEST_LIST
   t-eoLogger
   t-eoIQRStat
   t-eoDualFitness
+  t-eoParser
   )
 
 
