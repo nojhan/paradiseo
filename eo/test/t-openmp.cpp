@@ -28,6 +28,7 @@ int main(int ac, char** av)
 
     eoRealInitBounded<EOT>& init = make_genotype( parser, state, EOT() );
     eoPop< EOT >& pop = make_pop( parser, state, init );
+    eoPop< EOT >& pop2 = make_pop( parser, state, init );
     eoEvalFuncPtr< EOT, double, const std::vector< double >& > mainEval( real_value );
     eoEvalFuncCounter<EOT> eval( mainEval );
 
@@ -44,8 +45,6 @@ int main(int ac, char** av)
     apply< EOT >( eval, pop );
     //sleep(1);
     double ts2 = omp_get_wtime();
-
-    eoPop< EOT >& pop2 = make_pop( parser, state, init );
 
     double tp1 = omp_get_wtime();
     omp_apply< EOT >( eval, pop2 );
