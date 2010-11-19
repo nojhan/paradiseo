@@ -108,6 +108,11 @@ public:
         return _is_feasible;
     }
 
+    inline BaseType value() const
+    {
+        return _value;
+    }
+
     //! Copy operator from a std::pair
     eoDualFitness& operator=(const std::pair<BaseType,bool>& v)
     {
