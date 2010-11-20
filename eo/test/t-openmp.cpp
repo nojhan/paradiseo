@@ -30,9 +30,11 @@ int main(int ac, char** av)
     eoParserLogger parser(ac, av);
 
     unsigned int popMin = parser.getORcreateParam((unsigned int)1, "popMin", "Population Min", 'p', "Evolution Engine").value();
+    unsigned int popStep = parser.getORcreateParam((unsigned int)1, "popStep", "Population Step", 0, "Evolution Engine").value();
     unsigned int popMax = parser.getORcreateParam((unsigned int)100, "popMax", "Population Max", 'P', "Evolution Engine").value();
 
     unsigned int dimMin = parser.getORcreateParam((unsigned int)1, "dimMin", "Dimension Min", 'd', "Evolution Engine").value();
+    unsigned int dimStep = parser.getORcreateParam((unsigned int)1, "dimStep", "Dimension Step", 0, "Evolution Engine").value();
     unsigned int dimMax = parser.getORcreateParam((unsigned int)100, "dimMax", "Dimension Max", 'D', "Evolution Engine").value();
 
     unsigned int nRun = parser.getORcreateParam((unsigned int)100, "nRun", "Number of runs", 'r', "Evolution Engine").value();
@@ -64,9 +66,9 @@ int main(int ac, char** av)
     ss << resultsFileName << "-p" << popMin << "-P" << popMax << "-d" << dimMin << "-D" << dimMax << "-r" << nRun << "-t" << threshold << "-s" << seedParam;
     std::ofstream resultsFile( ss.str().c_str() );
 
-    for ( size_t p = popMin; p <= popMax; ++p )
+    for ( size_t p = popMin; p <= popMax; p += popStep )
 	{
-	    for ( size_t d = dimMin; d <= dimMax; ++d )
+	    for ( size_t d = dimMin; d <= dimMax; d += dimStep )
 	    	{
 		    eo::log << eo::logging << p << 'x' << d << std::endl;
 
