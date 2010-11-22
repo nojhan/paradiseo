@@ -133,7 +133,7 @@ int main(int ac, char** av)
 			    eo::log << "S_p = " << speedup << std::endl;
 			    eo::log << "E_p = " << efficiency << std::endl;
 
-			    double dynamicity = Tpd / Tp;
+			    double dynamicity = Tp / Tpd;
 
 			    if ( dynamicity > nbtask ) { continue; }
 
