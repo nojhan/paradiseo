@@ -39,9 +39,10 @@ int main(int ac, char** av)
 
     unsigned int nRun = parser.getORcreateParam((unsigned int)100, "nRun", "Number of runs", 'r', "Evolution Engine").value();
 
-    std::string resultsFileName = parser.getORcreateParam(std::string("results.txt"), "resultsFileName", "Results file name", 0, "Evolution Engine").value();
-
     double threshold = parser.getORcreateParam((double)3.0, "threshold", "Threshold of max speedup", 0, "Evolution Engine").value();
+
+    std::string speedupFileName = parser.getORcreateParam(std::string("speedup"), "speedupFileName", "Speedup file name", 0, "Results").value();
+    std::string efficiencyFileName = parser.getORcreateParam(std::string("efficiency"), "efficiencyFileName", "Efficiency file name", 0, "Results").value();
 
     uint32_t seedParam = parser.getORcreateParam((uint32_t)0, "seed", "Random number seed", 0).value();
     if (seedParam == 0) { seedParam = time(0); }
@@ -62,9 +63,18 @@ int main(int ac, char** av)
 
     eoUniformGenerator< double > gen(-5, 5);
 
-    std::ostringstream ss;
-    ss << resultsFileName << "-p" << popMin << "-P" << popMax << "-d" << dimMin << "-D" << dimMax << "-r" << nRun << "-t" << threshold << "-s" << seedParam;
-    std::ofstream resultsFile( ss.str().c_str() );
+    std::ostringstream params;
+    params << "-p" << popMin << "-P" << popMax << "-d" << dimMin << "-D" << dimMax << "-r" << nRun << "-t" << threshold << "-s" << seedParam;
+    std::ofstream speedupFile( std::string( speedupFileName + params.str() ).c_str() );
+    std::ofstream efficiencyFile( std::string( efficiencyFileName + params.str() ).c_str() );
+
+    size_t nbtask = 1;
+#pragma omp parallel
+    {
+	nbtask = omp_get_num_threads();
+    }
+
+    eo::log << eo::logging << "Nb task: " << nbtask << std::endl;
 
     for ( size_t p = popMin; p <= popMax; p += popStep )
 	{
@@ -99,15 +109,18 @@ int main(int ac, char** av)
 
 			    if ( ( Ts / Tp ) > threshold ) { continue; }
 
-			    resultsFile << Ts / Tp << ' ';
+			    speedupFile << Ts / Tp << ' ';
+			    efficiencyFile << Ts / ( nbtask * Tp );
 
 			    eo::log << eo::debug;
 			    eo::log << "Ts = " << Ts << std::endl;
 			    eo::log << "Tp = " << Tp << std::endl;
 			    eo::log << "S_p = " << Ts / Tp << std::endl;
+			    eo::log << "E_p = " << Ts / ( nbtask * Tp ) << std::endl;
 			} // end of runs
 
-		    resultsFile << std::endl;
+		    speedupFile << std::endl;
+		    efficiencyFile << std::endl;
 
 		} // end of dimension
 

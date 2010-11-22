@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
-from pylab import *
+import pylab
 import sys
 
-DEFAULT_RESULTS_NAME = 'results.txt'
-
 if __name__ == '__main__':
-    boxplot( [ [ float(value) for value in line.split() ] for line in open( DEFAULT_RESULTS_NAME if len(sys.argv) < 2 else sys.argv[1] ).readlines() ] )
-    #show()
-    savefig( sys.argv[1] + ".png" )
+    if len(sys.argv) < 3:
+        print 'Usage: boxplot.py [Results files, ...] [output file in .png]'
+        sys.exit()
+
+    for i in range(1, len(sys.argv) - 1):
+        pylab.boxplot( [ [ float(value) for value in line.split() ] for line in open( sys.argv[i] ).readlines() ] )
+
+    pylab.savefig( sys.argv[ len(sys.argv) - 1 ] )
