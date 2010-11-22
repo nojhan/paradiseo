@@ -41,6 +41,7 @@ int main(int ac, char** av)
 
     std::string speedupFileName = parser.getORcreateParam(std::string("speedup"), "speedupFileName", "Speedup file name", 0, "Results").value();
     std::string efficiencyFileName = parser.getORcreateParam(std::string("efficiency"), "efficiencyFileName", "Efficiency file name", 0, "Results").value();
+    std::string dynamicityFileName = parser.getORcreateParam(std::string("dynamicity"), "dynamicityFileName", "Dynamicity file name", 0, "Results").value();
 
     uint32_t seedParam = parser.getORcreateParam((uint32_t)0, "seed", "Random number seed", 0).value();
     if (seedParam == 0) { seedParam = time(0); }
@@ -65,6 +66,7 @@ int main(int ac, char** av)
     params << "-p" << popMin << "-P" << popMax << "-d" << dimMin << "-D" << dimMax << "-r" << nRun << "-s" << seedParam;
     std::ofstream speedupFile( std::string( speedupFileName + params.str() ).c_str() );
     std::ofstream efficiencyFile( std::string( efficiencyFileName + params.str() ).c_str() );
+    std::ofstream dynamicityFile( std::string( dynamicityFileName + params.str() ).c_str() );
 
     size_t nbtask = 1;
 #pragma omp parallel
@@ -86,6 +88,7 @@ int main(int ac, char** av)
 
 			    double Ts;
 			    double Tp;
+			    double Tpd;
 
 			    // sequential scope
 			    {
@@ -105,20 +108,39 @@ int main(int ac, char** av)
 				Tp = t2 - t1;
 			    }
 
-			    if ( ( Ts / Tp ) > nbtask ) { continue; }
+			    // parallel scope dynamic
+			    {
+				eoPop< EOT > pop( p, init );
+				double t1 = omp_get_wtime();
+				omp_dynamic_apply< EOT >(eval, pop);
+				double t2 = omp_get_wtime();
+				Tpd = t2 - t1;
+			    }
 
-			    speedupFile << Ts / Tp << ' ';
-			    efficiencyFile << Ts / ( nbtask * Tp ) << ' ';
+			    double speedup = Ts / Tp;
+
+			    if ( speedup > nbtask ) { continue; }
+
+			    double efficiency = speedup / nbtask;
+
+			    double dynamicity = Tp / Tpd;
+
+			    speedupFile << speedup << ' ';
+			    efficiencyFile << efficiency << ' ';
+			    dynamicityFile << dynamicity << ' ';
 
 			    eo::log << eo::debug;
 			    eo::log << "Ts = " << Ts << std::endl;
 			    eo::log << "Tp = " << Tp << std::endl;
-			    eo::log << "S_p = " << Ts / Tp << std::endl;
-			    eo::log << "E_p = " << Ts / ( nbtask * Tp ) << std::endl;
+			    eo::log << "Tpd = " << Tpd << std::endl;
+			    eo::log << "S_p = " << speedup << std::endl;
+			    eo::log << "E_p = " << efficiency << std::endl;
+			    eo::log << "D_p = " << dynamicity << std::endl;
 			} // end of runs
 
 		    speedupFile << std::endl;
 		    efficiencyFile << std::endl;
+		    dynamicityFile << std::endl;
 
 		} // end of dimension
 

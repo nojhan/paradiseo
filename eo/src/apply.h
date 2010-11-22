@@ -43,4 +43,35 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
     }
 }
 
+/**
+  This is a variant of apply<EOT> which is called in parallel
+  thanks to OpenMP.
+
+  @ingroup Utilities
+*/
+template <class EOT>
+void omp_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
+{
+#pragma omp parallel for default(none) shared(_proc, _pop)
+    for (unsigned i = 0; i < _pop.size(); ++i)
+    {
+        _proc(_pop[i]);
+    }
+}
+
+/**
+  And now we are using the dynamic scheduling.
+
+  @ingroup Utilities
+*/
+template <class EOT>
+void omp_dynamic_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
+{
+#pragma omp parallel for default(none) shared(_proc, _pop) schedule(dynamic)
+    for (unsigned i = 0; i < _pop.size(); ++i)
+    {
+        _proc(_pop[i]);
+    }
+}
+
 #endif
