@@ -13,7 +13,6 @@
 #include <es/make_real.h>
 
 #include <apply.h>
-#include <omp_apply.h>
 
 #include <omp.h>
 
