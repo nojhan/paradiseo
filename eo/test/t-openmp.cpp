@@ -124,19 +124,24 @@ int main(int ac, char** av)
 
 			    double efficiency = speedup / nbtask;
 
-			    double dynamicity = Tp / Tpd;
-
 			    speedupFile << speedup << ' ';
 			    efficiencyFile << efficiency << ' ';
-			    dynamicityFile << dynamicity << ' ';
 
 			    eo::log << eo::debug;
 			    eo::log << "Ts = " << Ts << std::endl;
 			    eo::log << "Tp = " << Tp << std::endl;
-			    eo::log << "Tpd = " << Tpd << std::endl;
 			    eo::log << "S_p = " << speedup << std::endl;
 			    eo::log << "E_p = " << efficiency << std::endl;
+
+			    double dynamicity = Tpd / Tp;
+
+			    if ( dynamicity > nbtask ) { continue; }
+
+			    eo::log << "Tpd = " << Tpd << std::endl;
 			    eo::log << "D_p = " << dynamicity << std::endl;
+
+			    dynamicityFile << dynamicity << ' ';
+
 			} // end of runs
 
 		    speedupFile << std::endl;
