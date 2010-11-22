@@ -39,8 +39,6 @@ int main(int ac, char** av)
 
     unsigned int nRun = parser.getORcreateParam((unsigned int)100, "nRun", "Number of runs", 'r', "Evolution Engine").value();
 
-    double threshold = parser.getORcreateParam((double)3.0, "threshold", "Threshold of max speedup", 0, "Evolution Engine").value();
-
     std::string speedupFileName = parser.getORcreateParam(std::string("speedup"), "speedupFileName", "Speedup file name", 0, "Results").value();
     std::string efficiencyFileName = parser.getORcreateParam(std::string("efficiency"), "efficiencyFileName", "Efficiency file name", 0, "Results").value();
 
@@ -64,7 +62,7 @@ int main(int ac, char** av)
     eoUniformGenerator< double > gen(-5, 5);
 
     std::ostringstream params;
-    params << "-p" << popMin << "-P" << popMax << "-d" << dimMin << "-D" << dimMax << "-r" << nRun << "-t" << threshold << "-s" << seedParam;
+    params << "-p" << popMin << "-P" << popMax << "-d" << dimMin << "-D" << dimMax << "-r" << nRun << "-s" << seedParam;
     std::ofstream speedupFile( std::string( speedupFileName + params.str() ).c_str() );
     std::ofstream efficiencyFile( std::string( efficiencyFileName + params.str() ).c_str() );
 
@@ -107,10 +105,10 @@ int main(int ac, char** av)
 				Tp = t2 - t1;
 			    }
 
-			    if ( ( Ts / Tp ) > threshold ) { continue; }
+			    if ( ( Ts / Tp ) > nbtask ) { continue; }
 
 			    speedupFile << Ts / Tp << ' ';
-			    efficiencyFile << Ts / ( nbtask * Tp );
+			    efficiencyFile << Ts / ( nbtask * Tp ) << ' ';
 
 			    eo::log << eo::debug;
 			    eo::log << "Ts = " << Ts << std::endl;
