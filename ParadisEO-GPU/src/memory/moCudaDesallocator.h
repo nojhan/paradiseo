@@ -57,7 +57,6 @@ public:
 	/**
 	 *Desallocate data on GPU global memory
 	 *@param _data the data to allocate on GPU global memory
-	 *@param _dataSize the size of data to allocate on GPU memory
 	 */
 
 	void operator()(T* & _data) {
