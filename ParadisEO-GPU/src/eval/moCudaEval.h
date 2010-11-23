@@ -63,7 +63,8 @@ public:
 		host_FitnessArray = new Fitness[neighborhoodSize];
 		cudaMalloc((void**) &device_FitnessArray, neighborhoodSize
 				* sizeof(Fitness));
-		kernel_Dim=neighborhoodSize/BLOCK_SIZE+((neighborhoodSize%BLOCK_SIZE==0)?0:1);
+		kernel_Dim = neighborhoodSize / BLOCK_SIZE + ((neighborhoodSize
+				% BLOCK_SIZE == 0) ? 0 : 1);
 	}
 
 	/**
@@ -87,15 +88,16 @@ public:
 
 		_neighbor.fitness(host_FitnessArray[_neighbor.index()]);
 		/*std::cout << _sol.fitness() << " -host_FitnessArray["
-				<< _neighbor.index() << "]= "
-				<< host_FitnessArray[_neighbor.index()] << std::endl;*/
+		 << _neighbor.index() << "]= "
+		 << host_FitnessArray[_neighbor.index()] << std::endl;*/
 
 	}
 
 	/**
 	 * Compute fitness for all solution neighbors in device
-	 * @param
-	 * _sol the solution which generate the neighborhood
+	 * @param _sol the solution which generate the neighborhood
+	 * @param _mapping the neighborhood mapping
+	 * @param _Kswap the number of swap
 	 */
 	virtual void neighborhoodEval(EOT & _sol, unsigned * _mapping,
 			unsigned _Kswap) {
