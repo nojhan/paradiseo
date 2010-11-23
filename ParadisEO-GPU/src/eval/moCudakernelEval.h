@@ -68,6 +68,8 @@ __global__ void kernelEval(IncrementEval _eval, EOT _solution, Fitness* _allFitn
  * @param _allFitness Array of Fitness type to save all neighbors fitness
  * @param _fitness the current solution fitness
  * @param _neighborhoodsize the size of the neighborhood
+ * @param _mapping the neighborhood mapping
+ * @param _Kswap the number of swap
  */
 
 template<class EOT, class Fitness, class Neighbor, class IncrementEval>
