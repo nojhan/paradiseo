@@ -1,5 +1,5 @@
 //Init the number of threads per block
-#define BLOCK_SIZE 128
+#define BLOCK_SIZE 512
 #include <iostream>  
 #include <stdlib.h> 
 using namespace std;
@@ -31,6 +31,34 @@ using namespace std;
 #include <algo/moSimpleHC.h>
 // The simple HC algorithm explorer
 #include <explorer/moSimpleHCexplorer.h>
+
+/**
+ * @return the factorial of an unsigned integer
+ * @param i an integer
+ */
+
+unsigned long int factorial1(unsigned int i) {
+	if (i == 0)
+		return 1;
+	else
+		return i * factorial1(i - 1);
+}
+
+/**
+ * @return the neighborhood Size from the solution size and number of swap
+ * @param _size the solution size
+ * @param _Kswap the number of swap
+ */
+
+unsigned long int sizeMapping1( unsigned int _size, unsigned int _Kswap) {
+
+	unsigned long int _sizeMapping = _size;
+	for (unsigned int i = _Kswap; i > 0; i--) {
+		_sizeMapping *= (_size - i);
+	}
+	_sizeMapping /= factorial1(_Kswap + 1);
+	return _sizeMapping;
+}
 
 // REPRESENTATION
 typedef moCudaBitVector<eoMaximizingFitness> solution;
@@ -117,7 +145,7 @@ void main_function(int argc, char **argv)
    * Evaluation of a solution neighbor's
    *
    * ========================================================= */
-  unsigned int sizeMap=sizeMapping(vecSize,KSwap);
+  unsigned long int sizeMap=sizeMapping1(vecSize,KSwap);
   std::cout<<"sizeMap : "<<sizeMap<<std::endl;
   OneMaxIncrEval<Neighbor> incr_eval;
   moCudaKswapEval<Neighbor,OneMaxIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
@@ -186,32 +214,7 @@ void main_function(int argc, char **argv)
   timer.deleteTimer();
   std::cout << "final:   " << sol.fitness() << std::endl;
 
-  /* =========================================================
-   *
-   * Execute the Simple Hill climbing from random sollution
-   *
-   * ========================================================= */
-  /*solution sol1(vecSize);
-  if(vecSize<64)
-    for(unsigned i=0;i<vecSize;i++) cout<<sol1[i]<<"  ";
-  cout<<endl;
-  cout<<endl;
-
-
-  eval(sol1);
-
-  std::cout << "initial: " << sol1.fitness()<< std::endl;
-  // Create timer for timing CUDA calculation
-  moCudaTimer timer1;
-  timer1.start();
-  simpleHC(sol1);
-  timer1.stop();
-  printf("CUDA execution time = %f ms\n",timer1.getTime());
-  timer1.deleteTimer();
-  std::cout << "final:   " << sol1.fitness() << std::endl;*/
-
-
-
+  
 }
 
 // A main that catches the exceptions
