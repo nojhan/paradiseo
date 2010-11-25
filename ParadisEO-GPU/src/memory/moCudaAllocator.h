@@ -63,9 +63,9 @@ public:
 	void operator()(T* & _data, unsigned _dataSize) {
 
 		//Allocate data in GPU memory
-		CUDA_SAFE_CALL(cudaMalloc((void**) &_data, _dataSize * sizeof(T)));
+		CUDA_SAFE_CALL(cudaMalloc((void**) & _data, _dataSize * sizeof(T)));
 
-		// Check if data allocation was successfuly done
+		// Check if data allocation was failed
 		CUT_CHECK_ERROR("Allocation of data on GPU global memory failed");
 
 	}
