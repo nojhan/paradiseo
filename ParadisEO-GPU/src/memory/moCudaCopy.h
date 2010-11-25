@@ -61,13 +61,24 @@ public:
 	 *@param _dataSize the size of data to copy 
 	 */
 
-	void operator()(T* & _data, T * _dataTocpy, unsigned _dataSize) {
-
-		//copy data from CPU memeory to GPU memory
+	void operator()(T* _data, T * _dataTocpy, unsigned _dataSize) {
+		//copy data from CPU memory to GPU global memory
 		CUDA_SAFE_CALL(cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
 				cudaMemcpyHostToDevice));
-		// Check if data was successfuly copied
+		// Check if the copy of data is failed
 		CUT_CHECK_ERROR("Copy of data from CPU to GPU global memory failed");
+
+	}
+
+	/**
+	 *Copy n bytes from the memory area pointed to by _dataTocpy to the memory area pointed to by offset bytes from the start of symbol _dev_data
+	 *@param _dev_data the data destination on device
+	 *@param _dataTocpy the source memory address
+	 */
+
+	void operator()(T* _dev_data, T * _dataTocpy) {
+
+		cudaMemcpyToSymbol(_dev_data, &_dataTocpy, sizeof(_dataTocpy));
 
 	}
 
@@ -79,28 +90,26 @@ public:
 	 *@param _HostToDevice the direction of copy(true if copy will be done from CPU memory to GPU memory)
 	 */
 
-	void operator()(T* & _data, T * _dataTocpy, unsigned _dataSize,
+	void operator()(T* _data, T * _dataTocpy, unsigned _dataSize,
 			bool _HostToDevice) {
 
 		if (_HostToDevice) {
 
-			//copy data from CPU memory to GPU memory
+			//copy data from CPU memory to GPU global memory
 			CUDA_SAFE_CALL(cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
 					cudaMemcpyHostToDevice));
-			// Check if data was successfuly copied
-			CUT_CHECK_ERROR("Copy of data from CPU to GPU global memory failed");
-		} else {
-			cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
-					cudaMemcpyDeviceToHost);
-			// Check if data was successfuly copied from GPU memory to CPU memory
-			CUT_CHECK_ERROR("Copy of data from GPU global memory to CPU failed");
-
 		}
+
+		else {
+			//copy data from GPU global memory to GPU memory
+			CUDA_SAFE_CALL(cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
+					cudaMemcpyDeviceToHost));
+		}
+
 	}
 
 	~moCudaCopy() {
 	}
 
 };
-
 #endif
