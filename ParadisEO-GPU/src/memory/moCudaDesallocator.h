@@ -39,7 +39,7 @@
 #include <cutil.h>
 
 /**
- *  class for allocation data on GPU global memory
+ *  class for Desallocation of data from GPU global memory
  */
 
 template<typename T>
@@ -59,13 +59,10 @@ public:
 	 *@param _data the data to allocate on GPU global memory
 	 */
 
-	void operator()(T* & _data) {
+	void operator()(T* _data) {
 
-		//Allocate data in GPU memory
+		//Desallocate data from GPU global memory
 		CUDA_SAFE_CALL(cudaFree(_data));
-
-		// Check if data allocation was successfuly done
-		CUT_CHECK_ERROR("Desallocation of data on GPU global memory failed");
 
 	}
 
