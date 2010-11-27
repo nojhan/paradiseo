@@ -38,6 +38,8 @@ int main(int ac, char** av)
 
     unsigned int nRun = parser.getORcreateParam((unsigned int)100, "nRun", "Number of runs", 'r', "Evolution Engine").value();
 
+    std::string fileNamesPrefix = parser.getORcreateParam(std::string("notitle"), "fileNamesPrefix", "Prefix of all results files name", 'H', "Results").value();
+
     std::string speedupFileName = parser.getORcreateParam(std::string("speedup"), "speedupFileName", "Speedup file name", 0, "Results").value();
     std::string efficiencyFileName = parser.getORcreateParam(std::string("efficiency"), "efficiencyFileName", "Efficiency file name", 0, "Results").value();
     std::string dynamicityFileName = parser.getORcreateParam(std::string("dynamicity"), "dynamicityFileName", "Dynamicity file name", 0, "Results").value();
@@ -65,9 +67,9 @@ int main(int ac, char** av)
     params << "-pS" << popStep << "-p" << popMin << "-P" << popMax
 	   << "-dS" << dimStep << "-d" << dimMin << "-D" << dimMax
 	   << "-r" << nRun << "-s" << seedParam;
-    std::ofstream speedupFile( std::string( speedupFileName + params.str() ).c_str() );
-    std::ofstream efficiencyFile( std::string( efficiencyFileName + params.str() ).c_str() );
-    std::ofstream dynamicityFile( std::string( dynamicityFileName + params.str() ).c_str() );
+    std::ofstream speedupFile( std::string( fileNamesPrefix + "_" + speedupFileName + params.str() ).c_str() );
+    std::ofstream efficiencyFile( std::string( fileNamesPrefix + "_" + efficiencyFileName + params.str() ).c_str() );
+    std::ofstream dynamicityFile( std::string( fileNamesPrefix + "_" + dynamicityFileName + params.str() ).c_str() );
 
     size_t nbtask = 1;
 #pragma omp parallel
