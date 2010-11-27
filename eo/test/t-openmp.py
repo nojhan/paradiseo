@@ -94,7 +94,7 @@ def main():
 
     logging.info('EA in time O(1) and O(n) - speedup measure Sp, Ep and Dp for P & D')
 
-    n = options.nProc
+    n = int(options.nProc)
     F = options.fixedBound
 
     logging.info('(1) measure for all combinaisons of P n D')
