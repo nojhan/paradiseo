@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import pylab
 import optparse, logging, sys, os
 from datetime import datetime
 
@@ -52,6 +51,9 @@ def logger(level_name, filename=LOG_DEFAULT_FILENAME):
     logging.getLogger('').addHandler(console)
 
 options = parser()
+
+if not options.onlyexecute:
+    import pylab
 
 def get_boxplot_data( filename ):
     try:
