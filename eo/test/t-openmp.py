@@ -23,12 +23,15 @@ def parser(parser=optparse.OptionParser()):
     parser.add_option('-o', '--output', help='give an output filename for logging', default=LOG_DEFAULT_FILENAME)
     # general parameters ends
 
-    parser.add_option('-r', '--nRun', default=100)
-    parser.add_option('-s', '--seed', default=1)
+    parser.add_option('-r', '--nRun', default=100, help='how many times you would compute each iteration ?')
+    parser.add_option('-s', '--seed', default=1, help='give here a seed value')
 
     topic = str(datetime.today())
     for char in [' ', ':', '-', '.']: topic = topic.replace(char, '_')
-    parser.add_option('-t', '--topic', default='openmp_measures_' + topic + '/')
+    parser.add_option('-t', '--topic', default='openmp_measures_' + topic + '/', help='give here a topic name used to create the folder')
+
+    parser.add_option('-E', '--onlyexecute', action='store_true', dest='onlyexecute', default=False, help='used this option if you only want to execute measures without generating images')
+    parser.add_option('-X', '--onlyprint', action='store_true', dest='onlyprint', default=False, help='used this option if you only want to generate images without executing measures, dont forget to set the good path in using --topic with a "/" at the end')
 
     options, args = parser.parse_args()
 
@@ -63,22 +66,25 @@ def do_measure( name, p, ps, P, d, ds, D, r=options.nRun, s=options.seed, v='log
     pwd = options.topic + name + '_'
     cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd)
     logging.debug( cmd )
-    os.system( cmd )
+    if not options.onlyprint:
+        os.system( cmd )
 
-    for cur in ['speedup', 'efficiency', 'dynamicity']:
-        filename = RESULT_FILE_FORMAT % (pwd, cur, p, ps, P, d, ds, D, r, s)
-        pylab.boxplot( get_boxplot_data( filename ) )
-        iters = ( non_zero( P - p ) / ps ) * ( non_zero( D - d ) / ds )
-        pylab.xlabel('%d iterations from %d,%d to %d,%d' % ( iters, p, d, P, D) )
-        pylab.ylabel('%s - %s' % (cur, name))
-        pylab.savefig( filename + '.pdf', format='pdf' )
-        pylab.savefig( filename + '.png', format='png' )
-        pylab.cla()
-        pylab.clf()
+    if not options.onlyexecute:
+        for cur in ['speedup', 'efficiency', 'dynamicity']:
+            filename = RESULT_FILE_FORMAT % (pwd, cur, p, ps, P, d, ds, D, r, s)
+            pylab.boxplot( get_boxplot_data( filename ) )
+            iters = ( non_zero( P - p ) / ps ) * ( non_zero( D - d ) / ds )
+            pylab.xlabel('%d iterations from %d,%d to %d,%d' % ( iters, p, d, P, D) )
+            pylab.ylabel('%s - %s' % (cur, name))
+            pylab.savefig( filename + '.pdf', format='pdf' )
+            pylab.savefig( filename + '.png', format='png' )
+            pylab.cla()
+            pylab.clf()
 
 def main():
-    logging.info('creates first the new topic repository %s', options.topic)
-    os.mkdir( options.topic )
+    if not options.onlyprint:
+        logging.info('creates first the new topic repository %s', options.topic)
+        os.mkdir( options.topic )
 
     logging.info('do all tests with r = %d and a common seed value = %d' % (options.nRun, options.seed))
 
