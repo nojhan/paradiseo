@@ -64,8 +64,8 @@ int main(int ac, char** av)
     eoUniformGenerator< double > gen(-5, 5);
 
     std::ostringstream params;
-    params << "-pS" << popStep << "-p" << popMin << "-P" << popMax
-	   << "-dS" << dimStep << "-d" << dimMin << "-D" << dimMax
+    params << "-p" << popMin << "-pS" << popStep << "-P" << popMax
+	   << "-d" << dimMin << "-dS" << dimStep << "-D" << dimMax
 	   << "-r" << nRun << "-s" << seedParam;
     std::ofstream speedupFile( std::string( fileNamesPrefix + speedupFileName + params.str() ).c_str() );
     std::ofstream efficiencyFile( std::string( fileNamesPrefix + efficiencyFileName + params.str() ).c_str() );
