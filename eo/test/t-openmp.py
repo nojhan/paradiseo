@@ -24,6 +24,8 @@ def parser(parser=optparse.OptionParser()):
 
     parser.add_option('-r', '--nRun', default=100, help='how many times you would compute each iteration ?')
     parser.add_option('-s', '--seed', default=1, help='give here a seed value')
+    parser.add_option('-n', '--nProc', default=1, help='give a number of processus, this value is multiplied by the measures bounds')
+    parser.add_option('-F', '--fixedBound', default=1000, help='give the fixed bound value common for all measures')
 
     topic = str(datetime.today())
     for char in [' ', ':', '-', '.']: topic = topic.replace(char, '_')
@@ -92,20 +94,23 @@ def main():
 
     logging.info('EA in time O(1) and O(n) - speedup measure Sp, Ep and Dp for P & D')
 
+    n = options.nProc
+    F = options.fixedBound
+
     logging.info('(1) measure for all combinaisons of P n D')
-    do_measure( '1', 1, 10, 101, 1, 10, 101 )
+    do_measure( '1', 1*n, 10*n, 101*n, 1*n, 10*n, 101*n )
 
-    logging.info('(2) measure for P \in [1, 100[ with D fixed to 1000')
-    do_measure( '2', 1, 1, 101, 1000, 1, 1000 )
+    logging.info('(2) measure for P \in [%d, %d[ with D fixed to %d' % (1*n, 101*n, F))
+    do_measure( '2', 1*n, 1*n, 101*n, F, 1, F )
 
-    logging.info('(3) measure for P \in [1, 1000[ with ps = 10 and D fixed to 1000')
-    do_measure( '3', 1, 10, 1001, 1000, 1, 1000 )
+    logging.info('(3) measure for P \in [%d, %d[ with ps = %d and D fixed to %d' % (1*n, 1001*n, 10*n, F))
+    do_measure( '3', 1*n, 10*n, 1001*n, F, 1, F )
 
-    logging.info('(4) measure for D \in [1, 100[ with P fixed to 1000')
-    do_measure( '4', 1000, 1, 1000, 1, 1, 101 )
+    logging.info('(4) measure for D \in [%d, %d[ with P fixed to %d' % (1*n, 101*n, F))
+    do_measure( '4', F, 1, F, 1*n, 1*n, 101*n )
 
-    logging.info('(5) measure for D \in [1, 1000[ with ds = 10 and P fixed to 1000')
-    do_measure( '5', 1000, 1, 1000, 1, 10, 1001 )
+    logging.info('(5) measure for D \in [%d, %d[ with ds = %d and P fixed to %d' % (1*n, 1001*n, 10*n, F))
+    do_measure( '5', F, 1, F, 1*n, 10*n, 1001*n )
 
 # when executed, just run main():
 if __name__ == '__main__':
