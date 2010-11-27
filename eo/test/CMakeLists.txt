@@ -96,6 +96,8 @@ ELSEIF(ENABLE_CMAKE_TESTING)
   SET(RESOURCES
     boxplot.py
     boxplot_to_png.py
+    boxplot_to_pdf.py
+    t-openmp.py
     )
 
   FOREACH(file ${RESOURCES})
