@@ -173,13 +173,19 @@ int main(int ac, char** av)
 				}
 			} // end of runs
 
-		    speedupFile << std::endl;
-		    efficiencyFile << std::endl;
-		    dynamicityFile << std::endl;
+		    if ( measureConstTime == 1 )
+			{
+			    speedupFile << std::endl;
+			    efficiencyFile << std::endl;
+			    dynamicityFile << std::endl;
+			}
 
-		    speedupFile_variable << std::endl;
-		    efficiencyFile_variable << std::endl;
-		    dynamicityFile_variable << std::endl;
+		    if ( measureVarTime == 1 )
+			{
+			    speedupFile_variable << std::endl;
+			    efficiencyFile_variable << std::endl;
+			    dynamicityFile_variable << std::endl;
+			}
 
 		} // end of dimension
 
