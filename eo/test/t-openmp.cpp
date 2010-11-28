@@ -24,10 +24,12 @@ typedef eoReal< eoMinimizingFitness > EOT;
 
 //-----------------------------------------------------------------------------
 
+inline uint32_t get_rdtsc() { __asm__ ("xor %eax, %eax; cpuid; rdtsc"); }
+
 double variable_time_function(const std::vector<double>&)
 {
-    ::srand( ::time( NULL ) );
-    ::usleep( 10 * ( rand() / RAND_MAX ) );
+    eoRng myrng( get_rdtsc() );
+    ::usleep( myrng.random( 10 ) );
     return 0.0;
 }
 

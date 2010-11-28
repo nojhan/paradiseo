@@ -67,27 +67,33 @@ def get_boxplot_data( filename ):
     except:
         raise ValueError('got an issue during the reading of file %s' % filename)
 
-def non_zero( value ): return value if value > 0 else 1
-
 def do_measure( name, p, ps, P, d, ds, D, r=options.nRun, s=options.seed, v='logging' ):
     pwd = options.topic + name + '_'
     cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd,
-                                int(options.measureConstTime), int(options.measureVarTime))
+                                int(options.measureConstTime),
+                                int(options.measureVarTime))
     logging.debug( cmd )
     if not options.onlyprint:
         os.system( cmd )
 
     if not options.onlyexecute:
-        for cur in ['speedup', 'efficiency', 'dynamicity']:
-            filename = RESULT_FILE_FORMAT % (pwd, cur, p, ps, P, d, ds, D, r, s)
-            pylab.boxplot( get_boxplot_data( filename ) )
-            iters = ( non_zero( P - p ) / ps ) * ( non_zero( D - d ) / ds )
-            pylab.xlabel('%d iterations from %d,%d to %d,%d' % ( iters, p, d, P, D) )
-            pylab.ylabel('%s - %s' % (cur, name))
-            pylab.savefig( filename + '.pdf', format='pdf' )
-            pylab.savefig( filename + '.png', format='png' )
-            pylab.cla()
-            pylab.clf()
+        def generate( filenames ):
+            for cur in filenames:
+                filename = RESULT_FILE_FORMAT % (pwd, cur, p, ps, P, d, ds, D, r, s)
+                pylab.boxplot( get_boxplot_data( filename ) )
+                nonzero = lambda x: x if x > 0 else 1
+                iters = ( nonzero( P - p ) / ps ) * ( nonzero( D - d ) / ds )
+                pylab.xlabel('%d iterations from %d,%d to %d,%d' % ( iters, p, d, P, D) )
+                pylab.ylabel('%s - %s' % (cur, name))
+                pylab.savefig( filename + '.pdf', format='pdf' )
+                pylab.savefig( filename + '.png', format='png' )
+                pylab.cla()
+                pylab.clf()
+
+        if int(options.measureConstTime) == 1:
+            generate( ['speedup', 'efficiency', 'dynamicity'] )
+        if int(options.measureVarTime) == 1:
+            generate( ['variable_speedup', 'variable_efficiency', 'variable_dynamicity'] )
 
 def main():
     if not options.onlyprint:
