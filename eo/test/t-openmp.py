@@ -11,7 +11,7 @@ LEVELS = {'debug': logging.DEBUG,
 
 LOG_DEFAULT_FILENAME='notitle.log'
 
-OPENMP_EXEC_FORMAT='./test/t-openmp -p=%d --popStep=%d -P=%d -d=%d --dimStep=%d -D=%d -r=%d --seed=%d -v=%s -H=%s'
+OPENMP_EXEC_FORMAT='./test/t-openmp -p=%d --popStep=%d -P=%d -d=%d --dimStep=%d -D=%d -r=%d --seed=%d -v=%s -H=%s -m=%d -M=%d'
 
 RESULT_FILE_FORMAT='%s%s_p%d_pS%d_P%d_d%d_dS%d_D%d_r%d_s%d'
 
@@ -33,6 +33,9 @@ def parser(parser=optparse.OptionParser()):
 
     parser.add_option('-E', '--onlyexecute', action='store_true', dest='onlyexecute', default=False, help='used this option if you only want to execute measures without generating images')
     parser.add_option('-X', '--onlyprint', action='store_true', dest='onlyprint', default=False, help='used this option if you only want to generate images without executing measures, dont forget to set the good path in using --topic with a "/" at the end')
+
+    parser.add_option('-m', '--measureConstTime', default=1, help='Toggle measure of constant time')
+    parser.add_option('-M', '--measureVarTime', default=1, help='Toggle measure of variable time')
 
     options, args = parser.parse_args()
 
@@ -68,7 +71,7 @@ def non_zero( value ): return value if value > 0 else 1
 
 def do_measure( name, p, ps, P, d, ds, D, r=options.nRun, s=options.seed, v='logging' ):
     pwd = options.topic + name + '_'
-    cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd)
+    cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd, options.measureConstTime, options.measureVarTime)
     logging.debug( cmd )
     if not options.onlyprint:
         os.system( cmd )
