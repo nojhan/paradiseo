@@ -24,6 +24,66 @@ typedef eoReal< eoMinimizingFitness > EOT;
 
 //-----------------------------------------------------------------------------
 
+double variable_time_function(const std::vector<double>&)
+{
+    ::srand( ::time( NULL ) );
+    ::usleep( 10 * ( rand() / RAND_MAX ) );
+    return 0.0;
+}
+
+double measure_apply( size_t p,
+		      void (*fct)(eoUF<EOT&, void>&, std::vector<EOT>&),
+		      eoInitFixedLength< EOT >& init,
+		      eoEvalFuncCounter< EOT >& eval )
+{
+    eoPop< EOT > pop( p, init );
+    double t1 = omp_get_wtime();
+    fct( eval, pop );
+    double t2 = omp_get_wtime();
+    return t2 - t1;
+}
+
+void measure( size_t p,
+	      eoInitFixedLength< EOT >& init,
+	      eoEvalFuncCounter< EOT >& eval,
+	      std::ofstream& speedupFile,
+	      std::ofstream& efficiencyFile,
+	      std::ofstream& dynamicityFile,
+	      size_t nbtask )
+{
+    // sequential scope
+    double Ts = measure_apply( p, apply< EOT >, init, eval );
+    // parallel scope
+    double Tp = measure_apply( p, omp_apply< EOT >, init, eval );
+    // parallel scope dynamic
+    double Tpd = measure_apply( p, omp_dynamic_apply< EOT >, init, eval );
+
+    double speedup = Ts / Tp;
+
+    if ( speedup > nbtask ) { return; }
+
+    double efficiency = speedup / nbtask;
+
+    speedupFile << speedup << ' ';
+    efficiencyFile << efficiency << ' ';
+
+    eo::log << eo::debug;
+    eo::log << "Ts = " << Ts << std::endl;
+    eo::log << "Tp = " << Tp << std::endl;
+    eo::log << "S_p = " << speedup << std::endl;
+    eo::log << "E_p = " << efficiency << std::endl;
+
+    double dynamicity = Tp / Tpd;
+
+    if ( dynamicity > nbtask ) { return; }
+
+    eo::log << "Tpd = " << Tpd << std::endl;
+    eo::log << "D_p = " << dynamicity << std::endl;
+
+    dynamicityFile << dynamicity << ' ';
+}
+
+
 int main(int ac, char** av)
 {
     eoParserLogger parser(ac, av);
@@ -47,6 +107,9 @@ int main(int ac, char** av)
     uint32_t seedParam = parser.getORcreateParam((uint32_t)0, "seed", "Random number seed", 0).value();
     if (seedParam == 0) { seedParam = time(0); }
 
+    unsigned int measureConstTime = parser.getORcreateParam((unsigned int)1, "measureConstTime", "Toggle measure of constant time", 'm', "Results").value();
+    unsigned int measureVarTime = parser.getORcreateParam((unsigned int)1, "measureVarTime", "Toggle measure of variable time", 'M', "Results").value();
+
     if (parser.userNeedsHelp())
 	{
 	    parser.printHelp(std::cout);
@@ -59,7 +122,10 @@ int main(int ac, char** av)
     rng.reseed( seedParam );
 
     eoEvalFuncPtr< EOT, double, const std::vector< double >& > mainEval( real_value );
-    eoEvalFuncCounter<EOT> eval( mainEval );
+    eoEvalFuncCounter< EOT > eval( mainEval );
+
+    eoEvalFuncPtr< EOT, double, const std::vector< double >& > mainEval_variable( variable_time_function );
+    eoEvalFuncCounter< EOT > eval_variable( mainEval_variable );
 
     eoUniformGenerator< double > gen(-5, 5);
 
@@ -67,9 +133,14 @@ int main(int ac, char** av)
     params << "_p" << popMin << "_pS" << popStep << "_P" << popMax
 	   << "_d" << dimMin << "_dS" << dimStep << "_D" << dimMax
 	   << "_r" << nRun << "_s" << seedParam;
+
     std::ofstream speedupFile( std::string( fileNamesPrefix + speedupFileName + params.str() ).c_str() );
     std::ofstream efficiencyFile( std::string( fileNamesPrefix + efficiencyFileName + params.str() ).c_str() );
     std::ofstream dynamicityFile( std::string( fileNamesPrefix + dynamicityFileName + params.str() ).c_str() );
+
+    std::ofstream speedupFile_variable( std::string( fileNamesPrefix + "variable_" + speedupFileName + params.str() ).c_str() );
+    std::ofstream efficiencyFile_variable( std::string( fileNamesPrefix + "variable_" + efficiencyFileName + params.str() ).c_str() );
+    std::ofstream dynamicityFile_variable( std::string( fileNamesPrefix + "variable_" + dynamicityFileName + params.str() ).c_str() );
 
     size_t nbtask = 1;
 #pragma omp parallel
@@ -89,66 +160,26 @@ int main(int ac, char** av)
 			{
 			    eoInitFixedLength< EOT > init( d, gen );
 
-			    double Ts;
-			    double Tp;
-			    double Tpd;
+			    // for constant time measure
+			    if ( measureConstTime == 1 )
+				{
+				    measure( p, init, eval, speedupFile, efficiencyFile, dynamicityFile, nbtask );
+				}
 
-			    // sequential scope
-			    {
-				eoPop< EOT > pop( p, init );
-				double t1 = omp_get_wtime();
-				apply< EOT >(eval, pop);
-				double t2 = omp_get_wtime();
-				Ts = t2 - t1;
-			    }
-
-			    // parallel scope
-			    {
-				eoPop< EOT > pop( p, init );
-				double t1 = omp_get_wtime();
-				omp_apply< EOT >(eval, pop);
-				double t2 = omp_get_wtime();
-				Tp = t2 - t1;
-			    }
-
-			    // parallel scope dynamic
-			    {
-				eoPop< EOT > pop( p, init );
-				double t1 = omp_get_wtime();
-				omp_dynamic_apply< EOT >(eval, pop);
-				double t2 = omp_get_wtime();
-				Tpd = t2 - t1;
-			    }
-
-			    double speedup = Ts / Tp;
-
-			    if ( speedup > nbtask ) { continue; }
-
-			    double efficiency = speedup / nbtask;
-
-			    speedupFile << speedup << ' ';
-			    efficiencyFile << efficiency << ' ';
-
-			    eo::log << eo::debug;
-			    eo::log << "Ts = " << Ts << std::endl;
-			    eo::log << "Tp = " << Tp << std::endl;
-			    eo::log << "S_p = " << speedup << std::endl;
-			    eo::log << "E_p = " << efficiency << std::endl;
-
-			    double dynamicity = Tp / Tpd;
-
-			    if ( dynamicity > nbtask ) { continue; }
-
-			    eo::log << "Tpd = " << Tpd << std::endl;
-			    eo::log << "D_p = " << dynamicity << std::endl;
-
-			    dynamicityFile << dynamicity << ' ';
-
+			    // for variable time measure
+			    if ( measureVarTime == 1 )
+				{
+				    measure( p, init, eval_variable, speedupFile_variable, efficiencyFile_variable, dynamicityFile_variable, nbtask );
+				}
 			} // end of runs
 
 		    speedupFile << std::endl;
 		    efficiencyFile << std::endl;
 		    dynamicityFile << std::endl;
+
+		    speedupFile_variable << std::endl;
+		    efficiencyFile_variable << std::endl;
+		    dynamicityFile_variable << std::endl;
 
 		} // end of dimension
 
