@@ -71,7 +71,8 @@ def non_zero( value ): return value if value > 0 else 1
 
 def do_measure( name, p, ps, P, d, ds, D, r=options.nRun, s=options.seed, v='logging' ):
     pwd = options.topic + name + '_'
-    cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd, options.measureConstTime, options.measureVarTime)
+    cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd,
+                                int(options.measureConstTime), int(options.measureVarTime))
     logging.debug( cmd )
     if not options.onlyprint:
         os.system( cmd )
