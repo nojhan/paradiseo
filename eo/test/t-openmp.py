@@ -11,8 +11,6 @@ LEVELS = {'debug': logging.DEBUG,
 
 LOG_DEFAULT_FILENAME='notitle.log'
 
-OPENMP_EXEC_FORMAT='./test/t-openmp -p=%d --popStep=%d -P=%d -d=%d --dimStep=%d -D=%d -r=%d --seed=%d -v=%s -H=%s -m=%d -M=%d'
-
 RESULT_FILE_FORMAT='%s%s_p%d_pS%d_P%d_d%d_dS%d_D%d_r%d_s%d'
 
 def parser(parser=optparse.OptionParser()):
@@ -22,20 +20,22 @@ def parser(parser=optparse.OptionParser()):
     parser.add_option('-o', '--output', help='give an output filename for logging', default=LOG_DEFAULT_FILENAME)
     # general parameters ends
 
-    parser.add_option('-r', '--nRun', default=100, help='how many times you would compute each iteration ?')
-    parser.add_option('-s', '--seed', default=1, help='give here a seed value')
-    parser.add_option('-n', '--nProc', default=1, help='give a number of processus, this value is multiplied by the measures bounds')
-    parser.add_option('-F', '--fixedBound', default=1000, help='give the fixed bound value common for all measures')
+    parser.add_option('-r', '--nRun', type='int', default=100, help='how many times you would compute each iteration ?')
+    parser.add_option('-s', '--seed', type='int', default=1, help='give here a seed value')
+    parser.add_option('-n', '--nProc', type='int', default=1, help='give a number of processus, this value is multiplied by the measures bounds')
+    parser.add_option('-F', '--fixedBound', type='int', default=1000, help='give the fixed bound value common for all measures')
 
     topic = str(datetime.today())
     for char in [' ', ':', '-', '.']: topic = topic.replace(char, '_')
     parser.add_option('-t', '--topic', default='openmp_measures_' + topic + '/', help='give here a topic name used to create the folder')
 
-    parser.add_option('-E', '--onlyexecute', action='store_true', dest='onlyexecute', default=False, help='used this option if you only want to execute measures without generating images')
-    parser.add_option('-X', '--onlyprint', action='store_true', dest='onlyprint', default=False, help='used this option if you only want to generate images without executing measures, dont forget to set the good path in using --topic with a "/" at the end')
+    parser.add_option('-E', '--onlyexecute', action='store_true', default=False, help='used this option if you only want to execute measures without generating images')
+    parser.add_option('-X', '--onlyprint', action='store_true', default=False, help='used this option if you only want to generate images without executing measures, dont forget to set the good path in using --topic with a "/" at the end')
 
-    parser.add_option('-m', '--measureConstTime', default=1, help='Toggle measure of constant time')
-    parser.add_option('-M', '--measureVarTime', default=1, help='Toggle measure of variable time')
+    parser.add_option('-C', '--onlyConstTime', action='store_true', default=False, help='only measures constant time problem')
+    parser.add_option('-V', '--onlyVarTime', action='store_true', default=False, help='only measures variable time problem')
+
+    parser.add_option('-m', '--measure', action='append', type='int', help='select all measure you want to produce, by default all are produced')
 
     options, args = parser.parse_args()
 
@@ -68,11 +68,13 @@ def get_boxplot_data( filename ):
         raise ValueError('got an issue during the reading of file %s' % filename)
 
 def do_measure( name, p, ps, P, d, ds, D, r=options.nRun, s=options.seed, v='logging' ):
+    OPENMP_EXEC_FORMAT='./test/t-openmp -p=%d --popStep=%d -P=%d -d=%d --dimStep=%d -D=%d -r=%d --seed=%d -v=%s -H=%s -C=%d -V=%d'
+
     pwd = options.topic + name + '_'
     cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd,
-                                int(options.measureConstTime),
-                                int(options.measureVarTime))
-    logging.debug( cmd )
+                                0 if options.onlyVarTime else 1,
+                                0 if options.onlyConstTime else 1)
+    logging.info( cmd )
     if not options.onlyprint:
         os.system( cmd )
 
@@ -90,9 +92,9 @@ def do_measure( name, p, ps, P, d, ds, D, r=options.nRun, s=options.seed, v='log
                 pylab.cla()
                 pylab.clf()
 
-        if int(options.measureConstTime) == 1:
+        if not options.onlyVarTime:
             generate( ['speedup', 'efficiency', 'dynamicity'] )
-        if int(options.measureVarTime) == 1:
+        if not options.onlyConstTime:
             generate( ['variable_speedup', 'variable_efficiency', 'variable_dynamicity'] )
 
 def main():
@@ -104,23 +106,28 @@ def main():
 
     logging.info('EA in time O(1) and O(n) - speedup measure Sp, Ep and Dp for P & D')
 
-    n = int(options.nProc)
+    n = options.nProc
     F = options.fixedBound
 
-    logging.info('(1) measure for all combinaisons of P n D')
-    do_measure( '1', 1*n, 10*n, 101*n, 1*n, 10*n, 101*n )
+    if options.measure is None or 1 in options.measure:
+        logging.info('(1) measure for all combinaisons of P n D')
+        do_measure( '1', 1*n, 10*n, 101*n, 1*n, 10*n, 101*n )
 
-    logging.info('(2) measure for P \in [%d, %d[ with D fixed to %d' % (1*n, 101*n, F))
-    do_measure( '2', 1*n, 1*n, 101*n, F, 1, F )
+    if options.measure is None or 2 in options.measure:
+        logging.info('(2) measure for P \in [%d, %d[ with D fixed to %d' % (1*n, 101*n, F))
+        do_measure( '2', 1*n, 1*n, 101*n, F, 1, F )
 
-    logging.info('(3) measure for P \in [%d, %d[ with ps = %d and D fixed to %d' % (1*n, 1001*n, 10*n, F))
-    do_measure( '3', 1*n, 10*n, 1001*n, F, 1, F )
+    if options.measure is None or 3 in options.measure:
+        logging.info('(3) measure for P \in [%d, %d[ with ps = %d and D fixed to %d' % (1*n, 1001*n, 10*n, F))
+        do_measure( '3', 1*n, 10*n, 1001*n, F, 1, F )
 
-    logging.info('(4) measure for D \in [%d, %d[ with P fixed to %d' % (1*n, 101*n, F))
-    do_measure( '4', F, 1, F, 1*n, 1*n, 101*n )
+    if options.measure is None or 4 in options.measure:
+        logging.info('(4) measure for D \in [%d, %d[ with P fixed to %d' % (1*n, 101*n, F))
+        do_measure( '4', F, 1, F, 1*n, 1*n, 101*n )
 
-    logging.info('(5) measure for D \in [%d, %d[ with ds = %d and P fixed to %d' % (1*n, 1001*n, 10*n, F))
-    do_measure( '5', F, 1, F, 1*n, 10*n, 1001*n )
+    if options.measure is None or 5 in options.measure:
+        logging.info('(5) measure for D \in [%d, %d[ with ds = %d and P fixed to %d' % (1*n, 1001*n, 10*n, F))
+        do_measure( '5', F, 1, F, 1*n, 10*n, 1001*n )
 
 # when executed, just run main():
 if __name__ == '__main__':

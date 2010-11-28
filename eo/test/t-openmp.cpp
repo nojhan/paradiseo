@@ -109,8 +109,8 @@ int main(int ac, char** av)
     uint32_t seedParam = parser.getORcreateParam((uint32_t)0, "seed", "Random number seed", 0).value();
     if (seedParam == 0) { seedParam = time(0); }
 
-    unsigned int measureConstTime = parser.getORcreateParam((unsigned int)1, "measureConstTime", "Toggle measure of constant time", 'm', "Results").value();
-    unsigned int measureVarTime = parser.getORcreateParam((unsigned int)1, "measureVarTime", "Toggle measure of variable time", 'M', "Results").value();
+    unsigned int measureConstTime = parser.getORcreateParam((unsigned int)1, "measureConstTime", "Toggle measure of constant time", 'C', "Results").value();
+    unsigned int measureVarTime = parser.getORcreateParam((unsigned int)1, "measureVarTime", "Toggle measure of variable time", 'V', "Results").value();
 
     if (parser.userNeedsHelp())
 	{
