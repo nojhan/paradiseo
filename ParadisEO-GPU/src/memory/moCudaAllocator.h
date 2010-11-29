@@ -65,7 +65,7 @@ public:
 		//Allocate data in GPU memory
 		CUDA_SAFE_CALL(cudaMalloc((void**) &_data, _dataSize * sizeof(T)));
 
-		// Check if data allocation was failed
+		// Check if data allocation is failed
 		CUT_CHECK_ERROR("Allocation of data on GPU global memory failed");
 
 	}
