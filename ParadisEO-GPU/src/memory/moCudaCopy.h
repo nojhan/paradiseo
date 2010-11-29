@@ -61,22 +61,26 @@ public:
 	 *@param _dataSize the size of data to copy 
 	 */
 
-	void operator()(T* _data, T * _dataTocpy, unsigned _dataSize) {
-		//copy data from CPU memory to GPU global memory
+	void operator()(T* & _data, T * & _dataTocpy, unsigned _dataSize) {
+
+		//copy data from CPU memory to GPU memory
 		CUDA_SAFE_CALL(cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
 				cudaMemcpyHostToDevice));
+
 		// Check if the copy of data is failed
 		CUT_CHECK_ERROR("Copy of data from CPU to GPU global memory failed");
 
 	}
 
 	/**
-	 *Copy n bytes from the memory area pointed to by _dataTocpy to the memory area pointed to by offset bytes from the start of symbol _dev_data
-	 *@param _dev_data the data destination on device
-	 *@param _dataTocpy the source memory address
+	 *Copy device data from GPU global memory to global variable declared in device
+	 *@param _dev_data the device global variable
+	 *@param _dataTocpy the data to copy GPU global memory to GPU global variable
 	 */
 
-	void operator()(T* _dev_data, T * _dataTocpy) {
+	void operator()(T* & _dev_data, T * & _dataTocpy) {
+
+		//Copy n bytes from the memory area pointed to by _dataTocpy to the memory area pointed to by offset bytes from the start of symbol _dev_data
 
 		cudaMemcpyToSymbol(_dev_data, &_dataTocpy, sizeof(_dataTocpy));
 
@@ -90,7 +94,7 @@ public:
 	 *@param _HostToDevice the direction of copy(true if copy will be done from CPU memory to GPU memory)
 	 */
 
-	void operator()(T* _data, T * _dataTocpy, unsigned _dataSize,
+	void operator()(T* & _data, T * & _dataTocpy, unsigned _dataSize,
 			bool _HostToDevice) {
 
 		if (_HostToDevice) {
