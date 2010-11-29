@@ -56,10 +56,10 @@ public:
 
 	/**
 	 *Desallocate data on GPU global memory
-	 *@param _data the data to allocate on GPU global memory
+	 *@param _data the data to desallocate from GPU global memory
 	 */
 
-	void operator()(T* _data) {
+	void operator()(T* & _data) {
 
 		//Desallocate data from GPU global memory
 		CUDA_SAFE_CALL(cudaFree(_data));
