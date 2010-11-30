@@ -88,8 +88,8 @@ public:
 
 		moKswapNeighborhood<Neighbor>::init(_solution, _current);
 		if (sendMapping) {
-			cudaMemcpy(device_Mapping, mapping, (Kswap + 1) * neighborhoodSize * sizeof(unsigned int),
-					cudaMemcpyHostToDevice);
+			cudaMemcpy(device_Mapping, mapping, (Kswap + 1) * neighborhoodSize
+					* sizeof(unsigned int), cudaMemcpyHostToDevice);
 			sendMapping = false;
 		}
 		//Compute all neighbors fitness at one time
