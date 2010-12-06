@@ -48,9 +48,16 @@ public:
 	 */
 
 	moIndexSwapNeighbor() :
-		moIndexNeighbor<EOT> (), Kswap(0) {
+		moIndexNeighbor<EOT> () {
+		Kswap = 0;
 		indices = new unsigned int[Kswap + 1];
 	}
+
+/*	moIndexSwapNeighbor(unsigned int _Kswap) :
+		moIndexNeighbor<EOT> () {
+		Kswap = _Kswap;
+		indices = new unsigned int[Kswap + 1];
+	}*/
 
 	/**
 	 * Default destructor
@@ -78,8 +85,9 @@ public:
 	moIndexSwapNeighbor(const moIndexSwapNeighbor& _n) :
 		moIndexNeighbor<EOT> (_n) {
 		this->Kswap = _n.Kswap;
-		this->indices=new unsigned int[_n.Kswap + 1];;
-		for (unsigned int i = 0; i <= _n.Kswap; i++)
+		this->indices = new unsigned int[Kswap + 1];
+		;
+		for (unsigned int i = 0; i <= Kswap; i++)
 			this->indices[i] = _n.indices[i];
 	}
 

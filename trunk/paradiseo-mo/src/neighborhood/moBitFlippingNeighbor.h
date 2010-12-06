@@ -51,7 +51,7 @@ public:
 	 */
 
 	moBitFlippingNeighbor() :
-		moIndexSwapNeighbor<EOT>(){
+		moIndexSwapNeighbor<EOT> () {
 	}
 
 	/**
@@ -60,7 +60,7 @@ public:
 	 */
 
 	moBitFlippingNeighbor(unsigned int _Kflip) :
-		moIndexSwapNeighbor<EOT>(_Kflip) {
+		moIndexSwapNeighbor<EOT> (_Kflip) {
 	}
 
 	/**

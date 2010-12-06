@@ -58,8 +58,8 @@ public:
 	 * @param _Kswap the number of swap to do
 	 */
 
-	moKswapNeighbor(unsigned int _Kswap) :
-		moIndexSwapNeighbor<EOT>(_Kswap) {
+	moKswapNeighbor() :
+		moIndexSwapNeighbor<EOT>(Kswap) {
 
 	}
 

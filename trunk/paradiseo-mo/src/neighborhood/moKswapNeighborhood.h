@@ -50,7 +50,7 @@ static unsigned int factorial(unsigned int i) {
  * @param _Kswap the number of swap
  */
 
-static unsigned int sizeMapping(unsigned int _size, unsigned int _Kswap) {
+static unsigned int sizeMapping(unsigned int _size,unsigned int _Kswap) {
 
 	int _sizeMapping = _size;
 	for (int i = _Kswap; i > 0; i--) {
@@ -81,8 +81,8 @@ public:
 	 * @param _Kswap the number of swap
 	 */
 
-	moKswapNeighborhood(unsigned int _size, unsigned int _Kswap) :
-		moOrderNeighborhood<Neighbor> (sizeMapping(_size, _Kswap)) {
+	moKswapNeighborhood(unsigned int _size,unsigned int _Kswap) :
+		moOrderNeighborhood<Neighbor> (sizeMapping(_size,_Kswap)) {
 
 		mutex = true;
 		size = _size;
@@ -111,7 +111,7 @@ public:
 
 		//Compute the mapping only for the first init
 		if (mutex) {
-			setMapping(size, Kswap);
+			setMapping();
 			mutex = false;
 		}
 
@@ -149,43 +149,42 @@ public:
 	/**
 	 * Set the mapping of K-indexes
 	 * @param _size the solution size
-	 * @param _Kswap the number of swap
 	 */
 
-	void setMapping(unsigned int _size, unsigned int _Kswap) {
+	void setMapping() {
 
-		if (!_Kswap) {
-			for (int i = 0; i < _size; i++)
+		if (!Kswap) {
+			for (int i = 0; i < size; i++)
 				mapping[i] = i;
 		} else {
 			unsigned int * _indices;
 
-			_indices = new unsigned int[_Kswap + 1];
+			_indices = new unsigned int[Kswap + 1];
 
-			for (int i = 0; i < _Kswap + 1; i++)
+			for (int i = 0; i < Kswap + 1; i++)
 				_indices[i] = i;
 
 			int id = 0;
 			bool change = false;
 			while (id < neighborhoodSize) {
 
-				while (_indices[_Kswap] < _size) {
+				while (_indices[Kswap] < size) {
 
-					for (int k = 0; k < _Kswap; k++) {
+					for (int k = 0; k < Kswap; k++) {
 						mapping[id + k * neighborhoodSize] = _indices[k];
 					}
 
-					mapping[id + _Kswap * neighborhoodSize]
-							= _indices[_Kswap]++;
+					mapping[id + Kswap * neighborhoodSize]
+							= _indices[Kswap]++;
 					id++;
 				}
 
-				_indices[_Kswap]--;
+				_indices[Kswap]--;
 
 				if (id < neighborhoodSize) {
-					for (int i = _Kswap - 1; i >= 0; i--)
+					for (int i = Kswap - 1; i >= 0; i--)
 						if (!change)
-							change = nextIndices(_indices, _size, _Kswap, i);
+							change = nextIndices(_indices, i);
 				}
 
 				change = false;
@@ -198,20 +197,18 @@ public:
 	/**
 	 * Compute the next  combination of mapping  indices
 	 * @param _indices the current combination of indices
-	 * @param _size the solution size
-	 * @param _Kswap the number of swap
 	 * @param _indice  compute next combination of indices  from this index
 	 */
-	bool nextIndices(unsigned int* _indices, int _size, int _Kswap, int _indice) {
+	bool nextIndices(unsigned int* _indices, int _indice) {
 
-		if (_indices[_indice + 1] == _size - _Kswap + _indice) {
+		if (_indices[_indice + 1] == size - Kswap + _indice) {
 
-			if (_indices[_indice] + 1 < _size - _Kswap + _indice) {
+			if (_indices[_indice] + 1 < size - Kswap + _indice) {
 
 				_indices[_indice]++;
 				int i = 1;
 
-				while (_indice + i <= _Kswap) {
+				while (_indice + i <= Kswap) {
 
 					_indices[_indice + i] = _indices[_indice + i - 1] + 1;
 					i++;
@@ -230,7 +227,7 @@ public:
 			_indices[_indice + 1]++;
 			int i = 2;
 
-			while (_indice + i <= _Kswap) {
+			while (_indice + i <= Kswap) {
 				_indices[_indice + i] = _indices[_indice + i - 1] + 1;
 				i++;
 			}
