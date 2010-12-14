@@ -198,6 +198,8 @@
 #include <eoLinearDecreasingWeightUp.h>
 #include <eoGaussRealWeightUp.h> 
 
+#include <utils/eoParserLogger.h>
+
 //-----------------------------------------------------------------------------
 
 #endif 
