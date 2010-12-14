@@ -114,7 +114,7 @@ public:
 	 */
 
 	void setIndice(unsigned int _i, unsigned int _val) {
-		if (_i <= Kswap && _i >= 0)
+		if (_i <= Kswap)
 			if (_val < size) {
 				indices[_i] = _val;
 			} else
@@ -139,7 +139,7 @@ public:
 	 */
 
 	void setIndices(unsigned int * _indices) {
-		for (int i = 0; i <= Kswap; i++)
+		for (unsigned int i = 0; i <= Kswap; i++)
 			setIndice(i, _indices[i]);
 	}
 
@@ -242,7 +242,7 @@ public:
 			_is >> size;
 			_is >> Kswap;
 			_is >> key;
-			for (int i = 0; i <= Kswap; i++)
+			for (unsigned int i = 0; i <= Kswap; i++)
 				_is >> indices[i];
 			fitness(repFit);
 		}
