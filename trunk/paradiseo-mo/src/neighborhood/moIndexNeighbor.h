@@ -64,7 +64,8 @@ public:
      * Assignment operator
      * @param _source the source neighbor
      */
-    virtual moIndexNeighbor<EOT, Fitness> & operator=(const moIndexNeighbor<EOT, Fitness> & _source) {
+
+    moIndexNeighbor<EOT, Fitness> & operator=(const moIndexNeighbor<EOT, Fitness> & _source) {
         moNeighbor<EOT, Fitness>::operator=(_source);
         this->key = _source.key ;
         return *this ;

@@ -110,7 +110,7 @@ public:
 	/**
 	 * Setter the position in the Neighborhood
 	 */
-	unsigned int setPosition(unsigned int _currentIndex) {
+	void setPosition(unsigned int _currentIndex) {
 		 currentIndex=_currentIndex;
 	}
 
