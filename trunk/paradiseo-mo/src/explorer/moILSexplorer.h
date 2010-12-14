@@ -127,6 +127,8 @@ public:
         //apply the local search on the copy
         ls(current);
 
+//        std::cout << "(solution)\t" << current << std::endl;
+
     };
 
     /**

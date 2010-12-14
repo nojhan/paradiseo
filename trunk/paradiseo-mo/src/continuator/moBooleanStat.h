@@ -49,7 +49,7 @@ public :
     /**
      * Default Constructor
      */
-    moBooleanStat(bool & _b): moStat<EOT, bool>(_b, "boolean"), b(_b) {
+    moBooleanStat(bool * _b): moStat<EOT, bool>(*_b, "boolean"), b(_b) {
     }
 
     /**
@@ -57,7 +57,7 @@ public :
      * @param _sol a solution
      */
     virtual void init(EOT & _sol) {
-        value() = b;
+        value() = *b;
     }
 
     /**
@@ -65,7 +65,7 @@ public :
      * @param _sol a solution
      */
     virtual void operator()(EOT & _sol) {
-        value() = b;
+        value() = *b;
     }
 
     /**
@@ -76,7 +76,7 @@ public :
     }
 
 private:
-	bool & b;
+	bool * b;
 };
 
 #endif

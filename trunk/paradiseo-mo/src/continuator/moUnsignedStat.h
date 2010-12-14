@@ -49,7 +49,7 @@ public :
     /**
      * Default Constructor
      */
-    moUnsignedStat(unsigned int & _b): moStat<EOT, unsigned int>(_b, "unsigned"), b(_b) {
+    moUnsignedStat(unsigned int * _b): moStat<EOT, unsigned int>(*_b, "unsigned"), b(_b) {
     }
 
     /**
@@ -57,7 +57,7 @@ public :
      * @param _sol a solution
      */
     virtual void init(EOT & _sol) {
-        value() = b;
+        value() = *b;
     }
 
     /**
@@ -65,7 +65,7 @@ public :
      * @param _sol a solution
      */
     virtual void operator()(EOT & _sol) {
-        value() = b;
+        value() = *b;
     }
 
     /**
@@ -76,7 +76,7 @@ public :
     }
 
 private:
-	unsigned int & b;
+	unsigned int * b;
 };
 
 #endif

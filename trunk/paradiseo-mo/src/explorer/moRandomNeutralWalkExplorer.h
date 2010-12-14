@@ -111,6 +111,7 @@ public:
      * @param _solution
      */
     virtual void operator()(EOT & _solution) {
+
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor

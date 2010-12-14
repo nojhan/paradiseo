@@ -57,8 +57,10 @@
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
+#include <comparator/moEqualNeighborComparator.h>
 #include <comparator/moSolComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <comparator/moEqualSolNeighborComparator.h>
 
 #include <continuator/moAverageFitnessNeighborStat.h>
 #include <continuator/moBestSoFarStat.h>

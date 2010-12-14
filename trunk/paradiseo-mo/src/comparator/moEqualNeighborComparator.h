@@ -1,5 +1,5 @@
 /*
-  <moSolNeighborComparator.h>
+  <moEqualNeighborComparator.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,43 +32,28 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSolNeighborComparator_h
-#define _moSolNeighborComparator_h
-
-#include <EO.h>
-#include <eoFunctor.h>
+#ifndef _moEqualNeighborComparator_h
+#define _moEqualNeighborComparator_h
 
 #include <neighborhood/moNeighbor.h>
-#include <comparator/moComparator.h>
-
+#include <comparator/moNeighborComparator.h>
 
 /**
- * Comparator of a solution and its neighbor
+ * Comparator of two neighbors : a neighbor is better if the fitness is higher or equal
  */
 template< class Neighbor >
-class moSolNeighborComparator : public moComparator<typename Neighbor::EOT, Neighbor>
+class moEqualNeighborComparator : public moNeighborComparator<Neighbor, Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT ;
 
     /**
      * Compare two neighbors
-     * @param _sol the solution
-     * @param _neighbor the neighbor
-     * @return true if the neighbor is better than sol
+     * @param _neighbor1 the first neighbor
+     * @param _neighbor2 the second neighbor
+     * @return true if the neighbor2 is better or equal than neighbor1
      */
-    virtual bool operator()(const EOT& _sol, const Neighbor& _neighbor) {
-        return (_sol.fitness() < _neighbor.fitness());
-    }
-
-    /**
-     * Test the equality between two neighbors
-     * @param _sol the solution
-     * @param _neighbor the neighbor
-     * @return true if the neighbor is equal to the solution
-     */
-    virtual bool equals(const EOT& _sol, const Neighbor& _neighbor) {
-        return (_sol.fitness() == _neighbor.fitness());
+    virtual bool operator()(const Neighbor& _neighbor1, const Neighbor& _neighbor2) {
+        return (_neighbor1.fitness() <= _neighbor2.fitness());
     }
 
     /**
@@ -76,7 +61,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-        return "moSolNeighborComparator";
+        return "moEqualNeighborComparator";
     }
 };
 

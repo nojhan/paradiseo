@@ -1,5 +1,5 @@
 /*
-  <moSolNeighborComparator.h>
+  <moEqualSolNeighborComparator.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,21 +32,21 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSolNeighborComparator_h
-#define _moSolNeighborComparator_h
+#ifndef _moEqualSolNeighborComparator_h
+#define _moEqualSolNeighborComparator_h
 
 #include <EO.h>
 #include <eoFunctor.h>
 
 #include <neighborhood/moNeighbor.h>
-#include <comparator/moComparator.h>
+#include <comparator/moSolNeighborComparator.h>
 
 
 /**
- * Comparator of a solution and its neighbor
+ * Comparator of a solution and its neighbor  : a neighbor is better if the fitness is higher or equal
  */
 template< class Neighbor >
-class moSolNeighborComparator : public moComparator<typename Neighbor::EOT, Neighbor>
+class moEqualSolNeighborComparator : public moSolNeighborComparator<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
@@ -55,28 +55,18 @@ public:
      * Compare two neighbors
      * @param _sol the solution
      * @param _neighbor the neighbor
-     * @return true if the neighbor is better than sol
+     * @return true if the neighbor is better or equal than sol
      */
     virtual bool operator()(const EOT& _sol, const Neighbor& _neighbor) {
-        return (_sol.fitness() < _neighbor.fitness());
+        return (_sol.fitness() <= _neighbor.fitness());
     }
 
-    /**
-     * Test the equality between two neighbors
-     * @param _sol the solution
-     * @param _neighbor the neighbor
-     * @return true if the neighbor is equal to the solution
-     */
-    virtual bool equals(const EOT& _sol, const Neighbor& _neighbor) {
-        return (_sol.fitness() == _neighbor.fitness());
-    }
-
-    /**
+      /**
      * Return the class Name
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-        return "moSolNeighborComparator";
+        return "moEqualSolNeighborComparator";
     }
 };
 
