@@ -154,23 +154,23 @@ public:
 	void setMapping() {
 
 		if (!Kswap) {
-			for (int i = 0; i < size; i++)
+			for (unsigned int i = 0; i < size; i++)
 				mapping[i] = i;
 		} else {
 			unsigned int * _indices;
 
 			_indices = new unsigned int[Kswap + 1];
 
-			for (int i = 0; i < Kswap + 1; i++)
+			for (unsigned int i = 0; i < Kswap + 1; i++)
 				_indices[i] = i;
 
-			int id = 0;
+			unsigned int id = 0;
 			bool change = false;
 			while (id < neighborhoodSize) {
 
 				while (_indices[Kswap] < size) {
 
-					for (int k = 0; k < Kswap; k++) {
+					for (unsigned int k = 0; k < Kswap; k++) {
 						mapping[id + k * neighborhoodSize] = _indices[k];
 					}
 
@@ -206,7 +206,7 @@ public:
 			if (_indices[_indice] + 1 < size - Kswap + _indice) {
 
 				_indices[_indice]++;
-				int i = 1;
+				unsigned int i = 1;
 
 				while (_indice + i <= Kswap) {
 
@@ -225,7 +225,7 @@ public:
 		} else {
 
 			_indices[_indice + 1]++;
-			int i = 2;
+			unsigned int i = 2;
 
 			while (_indice + i <= Kswap) {
 				_indices[_indice + i] = _indices[_indice + i - 1] + 1;
