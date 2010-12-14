@@ -42,7 +42,7 @@
  * Comparator of two neighbors : a neighbor is better if the fitness is higher or equal
  */
 template< class Neighbor >
-class moEqualNeighborComparator : public moNeighborComparator<Neighbor, Neighbor>
+class moEqualNeighborComparator : public moNeighborComparator<Neighbor>
 {
 public:
 
