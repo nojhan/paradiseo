@@ -76,7 +76,7 @@ public:
 	}
 
 	/**
-	 * Compute fitness for all solution neighbors in device
+	 * Compute fitness for all solution neighbors(vector of simple type) in device
 	 * @param _sol the solution which generate the neighborhood
 	 */
 
@@ -90,23 +90,82 @@ public:
 	 * @param _Kswap the number of swap
 	 */
 
-	void neighborhoodEval(EOT & _sol, unsigned * _mapping, unsigned _Kswap) {
+	void neighborhoodKswapEval(EOT & _sol, unsigned * _mapping, unsigned _Kswap) {
 
-		// the solution vector size
+		// the solution size
+		unsigned _size = _sol.size();
+
+		// Get Current solution fitness
+		Fitness fitness = _sol.fitness();
+		//Case of Permutation
+		if (_Kswap == 1) {
+			//Allocate the space for solution in the device global memory
+			cudaMalloc((void**) &device_solution.vect, _size * sizeof(T));
+			//Copy the solution vector from the host to device
+			cudaMemcpy(device_solution.vect, _sol.vect, _size * sizeof(T),
+					cudaMemcpyHostToDevice);
+
+			//Launch the Kernel to compute all  permutation neighbors fitness
+			kernelPermutation<EOT,Fitness,Neighbor,IncrementEval><<<kernel_Dim,BLOCK_SIZE >>>(incrEval,device_solution,device_FitnessArray,fitness,neighborhoodSize,_mapping,_size);
+			//Copy the result from device to host
+			cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
+					* sizeof(Fitness), cudaMemcpyDeviceToHost);
+		}
+		//Case Kswap
+		else if (_Kswap > 1) {
+			//NeighborhoodSize copy of solution
+			EOT device_setSolution;
+			//NeighborhoodSize element of EOT
+			EOT device_tmp;
+			//Vector of neighborhoodSize copy of solution
+			T * vect = new T[neighborhoodSize * _size];
+			for (int i = 0; i < neighborhoodSize; i++) {
+				for (int j = 0; j < _size; j++) {
+					vect[j + i * _size] = _sol.vect[j];
+				}
+			}
+			//Allocate the space for set of solution in the device global memory
+			cudaMalloc((void**) &device_setSolution.vect, neighborhoodSize
+					* _size * sizeof(T));
+
+			//Copy the set of solution from the host to device
+			cudaMemcpy(device_setSolution.vect, vect, neighborhoodSize * _size
+					* sizeof(T), cudaMemcpyHostToDevice);
+			//Allocate the space to save temporary EOT element to swap
+			cudaMalloc((void**) &device_tmp.vect, neighborhoodSize * sizeof(T));
+			//Launch the Kernel to compute all  Kswap neighbors fitness
+			kernelKswap<EOT,Fitness,Neighbor,IncrementEval><<<kernel_Dim,BLOCK_SIZE >>>(incrEval,device_setSolution,device_tmp,device_FitnessArray,fitness,neighborhoodSize,_mapping,_Kswap,_size);
+			//Copy the result from device to host
+			cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
+					* sizeof(Fitness), cudaMemcpyDeviceToHost);
+
+		}
+	}
+
+	/**
+	 * Compute fitness for all solution neighbors(K-flip of binary solution) in device
+	 * @param _sol the solution which generate the neighborhood
+	 * @param _mapping the array of indices mapping
+	 * @param _Kflip the number of flip to do
+	 */
+
+	void neighborhoodKflipEval(EOT & _sol, unsigned * _mapping, unsigned _Kflip) {
+
+		// the solution  size
 		unsigned _size = _sol.size();
 
 		// Get Current solution fitness
 		Fitness fitness = _sol.fitness();
 
-		//Allocate the space for solution in the  global memory of device
+		//Allocate the space for solution in the device global memory
 		cudaMalloc((void**) &device_solution.vect, _size * sizeof(T));
 
 		//Copy the solution vector from the host to device
 		cudaMemcpy(device_solution.vect, _sol.vect, _size * sizeof(T),
 				cudaMemcpyHostToDevice);
 
-		//Launch the Kernel to compute all neighbors fitness
-		kernelKswap<EOT,Fitness,Neighbor,IncrementEval><<<kernel_Dim,BLOCK_SIZE >>>(incrEval,device_solution,device_FitnessArray,fitness,neighborhoodSize,_mapping,_Kswap);
+		//Launch the Kernel to compute all flip neighbors fitness
+		kernelKflip<EOT,Fitness,Neighbor,IncrementEval><<<kernel_Dim,BLOCK_SIZE >>>(incrEval,device_solution,device_FitnessArray,fitness,neighborhoodSize,_mapping,_Kflip);
 		//Copy the result from device to host
 		cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
 				* sizeof(Fitness), cudaMemcpyDeviceToHost);
