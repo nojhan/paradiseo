@@ -67,24 +67,24 @@ public:
 	 * Incremental evaluation of the solution(function inline can be called from host or device)
 	 * @param _bitVector the solution to evaluate
 	 * @param _fitness the fitness of the current solution
-	 * @param _id the index of solution neighbor
+	 * @param _index the index of solution neighbor
 	 */
 
-	inline __host__ __device__ Fitness operator() (EOT & _bitVector,Fitness _fitness, unsigned _id) {
+inline __host__ __device__ Fitness operator() (EOT & _bitVector,Fitness _fitness, unsigned int * _index) {
 
-		Fitness tmp;
+	Fitness tmp;
 
-		if (_bitVector[_id] == 0)
+	if (_bitVector[_index[0]] == 0)
 
-		tmp= _fitness+1;
+	tmp= _fitness+1;
 
-		else
+	else
 
-		tmp= _fitness-1;
+	tmp= _fitness-1;
 
-		return tmp;
+	return tmp;
 
-	}
+}
 };
 
 #endif
