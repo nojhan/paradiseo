@@ -37,9 +37,9 @@
 
 // CUDA includes
 #include <cutil.h>
-#include <moCudaAllocator.h>
-#include <moCudaDesallocator.h>
-#include <moCudaCopy.h>
+#include <memory/moCudaAllocator.h>
+#include <memory/moCudaDesallocator.h>
+#include <memory/moCudaCopy.h>
 
 /**
  *  class of managment of data on GPU global memory (allocation,desallocation & copy)
