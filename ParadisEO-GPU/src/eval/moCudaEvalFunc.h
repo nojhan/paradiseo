@@ -36,7 +36,7 @@
 #define __moCudaEvalFunc_H
 
 /**
- * Abstract class for Incremental evaluation of neighbor
+ * Abstract class for CUDA evaluation of neighbor
  */
 
 template<class Neighbor>
@@ -49,6 +49,7 @@ public:
 	 */
 
 	typedef typename Neighbor::EOT EOT;
+	typedef typename EOT::ElemType T;
 	typedef typename EOT::Fitness Fitness;
 
 	/**
@@ -69,10 +70,11 @@ public:
 	 *Virtual functor to compute fitness of a solution neighbor
 	 *@param _solution the solution which generate the neighborhood
 	 *@param _fitness the current solution fitness
-	 *@param _id the index neighbor
+	 *@param _index the index neighbor
 	 */
 
-	virtual inline __host__ __device__ Fitness operator() (EOT & _solution,Fitness _fitness, unsigned _id)=0;
+	virtual inline __host__ __device__ Fitness operator() (EOT & _solution,Fitness _fitness, unsigned int * _index){};
+
 
 };
 #endif
