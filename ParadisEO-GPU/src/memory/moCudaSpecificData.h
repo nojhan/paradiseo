@@ -35,7 +35,11 @@
 #ifndef _moCudaSpecificData_H_
 #define _moCudaSpecificData_H_
 
-#include <moCudaObject.h>
+#include <memory/moCudaObject.h>
+
+/**
+ *  class of managment of specific data problem
+ */
 
 template<class T>
 class moCudaSpecificData {
@@ -80,3 +84,4 @@ public:
 	moCudaObject<T> cudaObject;
 
 };
+#endif
