@@ -41,6 +41,10 @@ class moCudaKswapNeighborhood: public moKswapNeighborhood<N> {
 
 public:
 
+	/**
+	 * Define a Neighbor and type of a solution corresponding
+	 */
+
 	typedef N Neighbor;
 	typedef typename Neighbor::EOT EOT;
 
@@ -55,7 +59,6 @@ public:
 	/**
 	 * Constructor
 	 * @param _size the size of solution
-	 * @param _size the solution size
 	 * @param _Kswap the number of swap
 	 * @param _eval show how to evaluate neighborhood of a solution at one time
 	 */
@@ -87,13 +90,14 @@ public:
 	virtual void init(EOT& _solution, Neighbor& _current) {
 
 		moKswapNeighborhood<Neighbor>::init(_solution, _current);
+		//Send Mapping for only the first time
 		if (sendMapping) {
 			cudaMemcpy(device_Mapping, mapping, (Kswap + 1) * neighborhoodSize
 					* sizeof(unsigned int), cudaMemcpyHostToDevice);
 			sendMapping = false;
 		}
 		//Compute all neighbors fitness at one time
-		eval.neighborhoodEval(_solution, device_Mapping, Kswap);
+		eval.neighborhoodKswapEval(_solution, device_Mapping, Kswap);
 	}
 
 	/**
