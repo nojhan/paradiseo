@@ -53,8 +53,7 @@ public:
 
 	/**
 	 * Constructor
-	 * @param
-	 * _neighborhoodSize the size of the neighborhood
+	 * @param _neighborhoodSize the size of the neighborhood
 	 */
 
 	moCudaEval(unsigned int _neighborhoodSize) {
@@ -87,27 +86,34 @@ public:
 	void operator()(EOT & _sol, Neighbor & _neighbor) {
 
 		_neighbor.fitness(host_FitnessArray[_neighbor.index()]);
-		/*std::cout << _sol.fitness() << " -host_FitnessArray["
-		 << _neighbor.index() << "]= "
-		 << host_FitnessArray[_neighbor.index()] << std::endl;*/
+
+	}
+
+	/**
+	 * Compute fitness for all  Kswap solution neighbors in device
+	 * @param _sol the solution which generate the neighborhood
+	 * @param _mapping the neighborhood mapping
+	 * @param _Kswap the number of swap
+	 */
+	virtual void neighborhoodKswapEval(EOT & _sol, unsigned * _mapping,
+			unsigned _Kswap) {
+
+	}
+
+	/**
+	 * Compute fitness for all Kflip solution neighbors in device
+	 * @param _sol the solution which generate the neighborhood
+	 * @param _mapping the neighborhood mapping
+	 * @param _Kflip the number of bit to flip
+	 */
+	virtual void neighborhoodKflipEval(EOT & _sol, unsigned * _mapping,
+			unsigned _Kflip) {
 
 	}
 
 	/**
 	 * Compute fitness for all solution neighbors in device
 	 * @param _sol the solution which generate the neighborhood
-	 * @param _mapping the neighborhood mapping
-	 * @param _Kswap the number of swap
-	 */
-	virtual void neighborhoodEval(EOT & _sol, unsigned * _mapping,
-			unsigned _Kswap) {
-
-	}
-
-	/**
-	 * Compute fitness for all solution neighbors in device
-	 * @param
-	 * _sol the solution which generate the neighborhood
 	 */
 
 	virtual void neighborhoodEval(EOT & _sol)=0;
