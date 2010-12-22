@@ -6,7 +6,16 @@ SOURCE  = "@CMAKE_SOURCE_DIR@"
 BINARY  = "@CMAKE_BINARY_DIR@"
 PREFIX  = "/usr"
 
+DATA = {
+    'dirs': [ "%s/share/%s" % (PREFIX, NAME) ],
+    'links': [ ("%s/src" % SOURCE, "%s/include/%s" % (PREFIX, NAME)),
+               ("%s/doc" % BINARY, "%s/share/%s/doc" % (PREFIX, NAME)),
+               ("%s/%s.pc" % (BINARY, NAME), "%s/lib/pkgconfig/%s.pc" % (PREFIX, NAME)),
+               ]
+    }
+
 LIBRARIES = ["libcma.a", "libeo.a", "libeoutils.a", "libes.a", "libga.a"]
+DATA['links'] += [ ("%s/lib/%s" % (BINARY, lib), "%s/lib/%s" % (PREFIX, lib)) for lib in LIBRARIES ]
 
 import os, sys
 
@@ -17,50 +26,27 @@ def isroot():
     return True
 
 def uninstall():
-    # remove libraries' symlink
-    for lib in LIBRARIES:
-        os.remove( "%s/lib/%s" % (PREFIX, lib) )
-
-    # remove headers' symlink
-    os.remove( "%s/include/%s" % (PREFIX,NAME) )
-
-    # remove doc's symlink
-    os.remove( "%s/share/%s/doc" % (PREFIX, NAME) )
-
-    # remove share directory
-    os.rmdir( "%s/share/%s" % (PREFIX, NAME) )
-
-    # remove pkgconfig's symlink
-    os.remove( "%s/lib/pkgconfig/%s.pc" % (PREFIX, NAME) )
-
+    for dummy, link in DATA['links']: os.remove(link)
+    for dirname in DATA['dirs']: os.rmdir(dirname)
     print 'All symlinks have been removed.'
 
 def install():
-    # create symlink for libraries
-    for lib in LIBRARIES:
-        os.symlink( "%s/lib/%s" % (BINARY, lib), "%s/lib/%s" % (PREFIX, lib) )
-
-    # create symlink for headers
-    os.symlink( "%s/src" % SOURCE, "%s/include/%s" % (PREFIX,NAME) )
-
-    # create share directory
-    os.mkdir( "%s/share/%s" % (PREFIX, NAME) )
-
-    # create symlink for doc
-    os.symlink( "%s/doc" % BINARY, "%s/share/%s/doc" % (PREFIX, NAME) )
-
-    # create symlink for pkgconfig
-    os.symlink( "%s/%s.pc" % (BINARY, NAME), "%s/lib/pkgconfig/%s.pc" % (PREFIX, NAME) )
-
+    for dirname in DATA['dirs']: os.mkdir(dirname)
+    for src, dst in DATA['links']: os.symlink(src, dst)
     print 'All symlinks have been installed.'
+
+def data():
+    from pprint import pprint
+    pprint(DATA, width=200)
 
 if __name__ == '__main__':
     if not isroot():
         sys.exit()
 
     if len(sys.argv) < 2:
-        print 'Usage: %s [install|uninstall]' % sys.argv[0]
+        print 'Usage: %s [install|uninstall|data]' % sys.argv[0]
         sys.exit()
 
     if sys.argv[1] == 'install': install()
     elif sys.argv[1] == 'uninstall': uninstall()
+    elif sys.argv[1] == 'data': data()
