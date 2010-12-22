@@ -62,7 +62,7 @@ public:
 	void operator()(T* & _data) {
 
 		//Desallocate data from GPU global memory
-		CUDA_SAFE_CALL(cudaFree(_data));
+		cudaFree(_data);
 
 	}
 
