@@ -34,13 +34,14 @@
 
 #ifndef _QAPData_H_
 #define _QAPData_H_
-#include <moCudaSpecificData.h>
 
-template<class T>
+#include <memory/moCudaSpecificData.h>
+
+template<class ElemType>
 class QAPData: public moCudaSpecificData<T> {
 
-	using moCudaSpecificData<T>::sizeData;
-	using moCudaSpecificData<T>::cudaObject;
+	using moCudaSpecificData<ElemType>::sizeData;
+	using moCudaSpecificData<ElemType>::cudaObject;
 
 public:
 
@@ -106,7 +107,6 @@ public:
 				b_h[i * sizeData + j] = _qapData.b_h[i * sizeData + j];
 
 			}
-
 		cudaObject.memCopy(a_d, a_h, sizeData * sizeData);
 		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
 		return (*this);
@@ -117,7 +117,6 @@ public:
 	 */
 
 	~QAPData() {
-
 		cudaObject.memFree(a_d);
 		cudaObject.memFree(b_d);
 		delete[] a_h;
@@ -139,8 +138,8 @@ public:
 		else
 			printf("Le Fichier est vide\n");
 
-		a_h = new T[sizeData * sizeData];
-		b_h = new T[sizeData * sizeData];
+		a_h = new ElemType[sizeData * sizeData];
+		b_h = new ElemType[sizeData * sizeData];
 
 		for (int i = 0; i < sizeData; i++)
 			for (int j = 0; j < sizeData; j++)
@@ -156,10 +155,10 @@ public:
 
 	}
 
-	T* a_h;
-	T* b_h;
-	T* a_d;
-	T* b_d;
+	ElemType* a_h;
+	ElemType* b_h;
+	ElemType* a_d;
+	ElemType* b_d;
 
 };
 #endif
