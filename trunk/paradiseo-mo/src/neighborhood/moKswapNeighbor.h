@@ -74,8 +74,6 @@ public:
 			tmp[0] = _solution[indices[i]];
 			_solution[indices[i]] = _solution[indices[i + 1]];
 			_solution[indices[i + 1]] = tmp[0];
-			printf("move %d %d %d \n",i,indices[i],indices[i + 1]);
-			std::cout << _solution[indices[i]]<< " " <<_solution[indices[i+1]] << std::endl;
 		}
 		_solution.invalidate();
 
