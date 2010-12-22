@@ -39,7 +39,7 @@ template< class EOT >
 class eoEvalUserTimeThrowException : public eoEvalFuncCounter< EOT >
 {
 public:
-    eoEvalUserTimeThrowException( eoEvalFunc<EOT> & func, long max ) : _max(max), eoEvalFuncCounter<EOT>( func, "CPU-user") {}
+    eoEvalUserTimeThrowException( eoEvalFunc<EOT> & func, const long max ) : _max(max), eoEvalFuncCounter<EOT>( func, "CPU-user") {}
 
     virtual void operator() ( EOT & eo )
     {
@@ -47,8 +47,9 @@ public:
 
             getrusage(RUSAGE_SELF,&_usage);
 
-            if( _usage.ru_utime.tv_sec >= _max ) {
-                throw eoMaxTimeException( _usage.ru_utime.tv_sec );
+            long current = _usage.ru_utime.tv_sec;
+            if( current >= _max ) {
+                throw eoMaxTimeException( current );
             } else {
                 func(eo);
             }
@@ -56,6 +57,6 @@ public:
     }
 
 protected:
-    long _max;
+    const long _max;
     struct rusage _usage;
 };
