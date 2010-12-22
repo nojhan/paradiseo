@@ -38,7 +38,7 @@
 #include <memory/moCudaSpecificData.h>
 
 template<class ElemType>
-class QAPData: public moCudaSpecificData<T> {
+class QAPData: public moCudaSpecificData<ElemType> {
 
 	using moCudaSpecificData<ElemType>::sizeData;
 	using moCudaSpecificData<ElemType>::cudaObject;
@@ -50,7 +50,7 @@ public:
 	 */
 
 	QAPData() :
-		moCudaSpecificData<T> () {
+		moCudaSpecificData<ElemType> () {
 	}
 
 	/**
