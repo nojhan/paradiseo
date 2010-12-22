@@ -93,7 +93,9 @@ public:
 			searchExplorer.updateParam(_solution);
 
 			b = (*cont)(_solution);
-		}while (b && searchExplorer.isContinue(_solution));
+
+		} while (b && searchExplorer.isContinue(_solution));
+
 		searchExplorer.terminate(_solution);
 
 		cont->lastCall(_solution);
