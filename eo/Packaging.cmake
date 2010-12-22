@@ -67,7 +67,7 @@ SET(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME} ${PROJECT_VERSION_MAJOR}.${
 ### 4) Set up debian packaging information
 ######################################################################################
 
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libstdc++6, libgcc1, libc6, libxml2, libmpich2-1.2")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libstdc++6, libgcc1, libc6, g++")
 
 SET(CPACK_DEBIAN_PACKAGE_SECTION "devel")
 SET(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
