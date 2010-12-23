@@ -93,6 +93,12 @@ private :
 };
 
 
+//multithreading
+namespace eo
+{
+    extern eoValueParam<bool> parallelizeLoopParam;
+}
+//multithreading ends
 
 /**
     eoParser: command line parser and configuration file reader
