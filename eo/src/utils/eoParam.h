@@ -169,32 +169,46 @@ public :
             eoParam::defValue(getValue());
         }
 
-    /** Parameter value
+    /** Get a reference on the parameter value
 
     @return parameter value
     */
-    ValueType& value()
-        { return repValue; }
+    ValueType& value() { return repValue; }
 
-    /** Parameter value
+    /** Get a const reference on the parameter value
 
     @overload
 
     @return parameter value
     */
-    const ValueType& value() const
-        { return repValue; }
+    const ValueType& value() const { return repValue; }
 
 
+    /** Change the parameter value
+     */
+    void value( ValueType val ) 
+    {
+        // convert to string
+        std::ostringstream os;
+        os << val;
+
+        // convert to ValueType
+        std::istringstream is( os.str() );
+        is >> repValue;
+    }
+
+
+    /** Get the string representation of the value
+     */
     std::string getValue(void) const
-        {
-            std::ostringstream os;
-            os << repValue;
-            return os.str();
-        }
+    {
+        std::ostringstream os;
+        os << repValue;
+        return os.str();
+    }
 
 
-    /** @brief Set value according to the speciied string
+    /** @brief Set the value according to the speciied string
 
     For scalar types the textual represenation is typically quite
     straigtforward.
@@ -208,10 +222,10 @@ public :
     @param _value Textual representation of the new value
     */
     void setValue(const std::string& _value)
-        {
-            std::istringstream is(_value);
-            is >> repValue;
-        }
+    {
+        std::istringstream is(_value);
+        is >> repValue;
+    }
 
 protected:
 
