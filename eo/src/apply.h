@@ -29,6 +29,7 @@
 #include <utils/eoParser.h>
 #include <eoFunctor.h>
 #include <vector>
+#include <omp.h>
 
 /**
   Applies a unary function to a std::vector of things.
@@ -38,11 +39,18 @@
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
+    double t1 = omp_get_wtime();
+
     size_t size = _pop.size();
+#pragma omp parallel for if(eo::parallelizeLoopParam.value()) //default(none) shared(_proc, _pop, size)
     for (size_t i = 0; i < size; ++i)
     {
         _proc(_pop[i]);
     }
+
+    double t2 = omp_get_wtime();
+
+    eo::log << eo::logging << "### apply called cost: " << t2 - t1 << std::endl;
 }
 
 /**
