@@ -93,13 +93,6 @@ private :
 };
 
 
-//multithreading
-namespace eo
-{
-    extern eoValueParam<bool> parallelizeLoopParam;
-}
-//multithreading ends
-
 /**
     eoParser: command line parser and configuration file reader
     This class is persistent, so it can be stored and reloaded to restore
