@@ -26,7 +26,7 @@
 #ifndef _apply_h
 #define _apply_h
 
-#include <utils/eoParser.h>
+#include <utils/eoParallel.h>
 #include <eoFunctor.h>
 #include <vector>
 #include <omp.h>
@@ -39,14 +39,22 @@
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
+    size_t size = _pop.size();
+
     double t1 = omp_get_wtime();
 
-    size_t size = _pop.size();
-#pragma omp parallel for if(eo::parallelizeLoopParam.value()) //default(none) shared(_proc, _pop, size)
-    for (size_t i = 0; i < size; ++i)
-    {
-        _proc(_pop[i]);
-    }
+    if (!eo::parallel.isDynamic())
+	{
+#pragma omp parallel for if(eo::parallel.isEnabled()) //default(none) shared(_proc, _pop, size)
+	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+	}
+    else
+	{
+#pragma omp parallel for schedule(dynamic) if(eo::parallel.isEnabled())
+	    //doesnot work with gcc 4.1.2
+	    //default(none) shared(_proc, _pop, size)
+	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+	}
 
     double t2 = omp_get_wtime();
 
@@ -63,7 +71,9 @@ template <class EOT>
 void omp_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
     size_t size = _pop.size();
-#pragma omp parallel for if(eo::parallelizeLoopParam.value()) //default(none) shared(_proc, _pop, size)
+#pragma omp parallel for if(eo::parallel.isEnabled())
+    //doesnot work with gcc 4.1.2
+    //default(none) shared(_proc, _pop, size)
     for (size_t i = 0; i < size; ++i)
     {
         _proc(_pop[i]);
@@ -79,7 +89,9 @@ template <class EOT>
 void omp_dynamic_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
     size_t size = _pop.size();
-#pragma omp parallel for if(eo::parallelizeLoopParam.value()) schedule(dynamic) //default(none) shared(_proc, _pop, size)
+#pragma omp parallel for if(eo::parallel.isEnabled()) schedule(dynamic)
+    //doesnot work with gcc 4.1.2
+    //default(none) shared(_proc, _pop, size)
     for (size_t i = 0; i < size; ++i)
     {
         _proc(_pop[i]);
