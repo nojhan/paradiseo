@@ -201,6 +201,8 @@
 
 #include <utils/eoParserLogger.h>
 
+#include <utils/eoParallel.h>
+
 //-----------------------------------------------------------------------------
 
 #endif 
