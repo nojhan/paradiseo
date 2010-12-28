@@ -58,7 +58,8 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
     double t2 = omp_get_wtime();
 
-    eo::log << eo::logging << "### apply called cost: " << t2 - t1 << std::endl;
+    eoLogger log;
+    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
 }
 
 /**
