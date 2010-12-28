@@ -47,9 +47,10 @@ public:
 
     virtual std::string	className() const;
 
-    inline bool isEnabled() { return _isEnabled.value(); }
-    inline bool isDynamic() { return _isDynamic.value(); }
-    inline std::string prefix() { return _prefix.value(); }
+    inline bool isEnabled() const { return _isEnabled.value(); }
+    inline bool isDynamic() const { return _isDynamic.value(); }
+
+    std::string prefix() const;
 
     friend void make_parallel(eoParser&);
 

@@ -38,41 +38,35 @@ std::string eoParallel::className() const
     return "eoParallel";
 }
 
-void eoParallel::_createParameters( eoParser& parser )
+std::string eoParallel::prefix() const
 {
-    std::string section("Parallelization");
-
-    parser.processParam( _isEnabled, section );
-    parser.processParam( _isDynamic, section );
-
-    std::string default_value( _prefix.defValue() );
+    std::string value( _prefix.value() );
 
     if ( _isEnabled.value() )
 	{
 	    if ( _isDynamic.value() )
 		{
-		    default_value += "_dynamic.out";
+		    value += "_dynamic.out";
 		}
 	    else
 		{
-		    default_value += "_parallel.out";
+		    value += "_parallel.out";
 		}
 	}
     else
 	{
-	    default_value += "_sequential.out";
+	    value += "_sequential.out";
 	}
 
-    _prefix.defValue( default_value );
+    return value;
+}
 
-    std::cout << "defvalue: " << _prefix.defValue() << std::endl;
-
+void eoParallel::_createParameters( eoParser& parser )
+{
+    std::string section("Parallelization");
+    parser.processParam( _isEnabled, section );
+    parser.processParam( _isDynamic, section );
     parser.processParam( _prefix, section );
-
-    std::cout << "value: " << parser.getParamWithLongName("parallelize-prefix")->getValue() << std::endl;
-
-    std::cout << "defvalue: " << _prefix.defValue() << std::endl;
-
 }
 
 void make_parallel(eoParser& parser)
