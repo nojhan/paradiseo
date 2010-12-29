@@ -55,6 +55,8 @@ public:
       rnd(tmp);
       _sol.push_back(tmp);
     }
+
+    _sol.invalidate();
   }
 
 private:

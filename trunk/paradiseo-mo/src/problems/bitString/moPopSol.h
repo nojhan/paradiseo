@@ -41,11 +41,20 @@ public:
   typedef typename EO<double>::Fitness Fitness;
   using EO<double>::invalidate;
   
+  moPopSol(): EO<double>() {
+  }
+
   virtual void printOn(std::ostream& _os) const
   {
-    _os << (*this).size() << " " << (*this).fitness() << '\n';
-    for(unsigned int i=0; i<(*this).size(); i++)
-      _os << (*this).operator[](i) << std::endl;
+    if (this->invalid()) {
+      _os << (*this).size() << " " << "INVALID" << '\n';
+      for(unsigned int i=0; i<(*this).size(); i++)
+	_os << (*this).operator[](i) << std::endl;
+    } else {
+      _os << (*this).size() << " " << (*this).fitness() << '\n';
+      for(unsigned int i=0; i<(*this).size(); i++)
+	_os << (*this).operator[](i) << std::endl;
+    }
   }
   
 };
