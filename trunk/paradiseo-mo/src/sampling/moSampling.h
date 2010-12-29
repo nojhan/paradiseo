@@ -74,6 +74,8 @@ public:
 	{
 		checkpoint = new moCheckpoint<Neighbor>(*continuator);
 		add(_stat, _monitoring);
+		// precision of the output by default
+		precisionOutput = std::cout.precision();
 	}
 
 	/**
@@ -129,6 +131,14 @@ public:
 	}
 
 	/**
+	 * to set the precision of the output file
+	 * @param _precision precision of the output (number of digit)
+	 */
+	void precision(unsigned int _precision) {
+	  precisionOutput = _precision;
+	}
+
+	/**
 	 * to export the vectors of values into one file
 	 * @param _filename file name
 	 * @param _delim delimiter between statistics
@@ -148,6 +158,11 @@ public:
 			std::string str = "moSampling: Could not open " + _filename;
 			throw std::runtime_error(str);
 		}
+
+		// set the precision of the output
+		os.precision(precisionOutput);
+		for (unsigned int j = 0; j < monitorVec.size(); j++) 
+		  monitorVec[j]->precision(precisionOutput);
 
 		// all vector have the same size
 		unsigned vecSize = monitorVec[0]->size();
@@ -176,6 +191,7 @@ public:
 			throw std::runtime_error(str);
 		}
 
+		monitorVec[_col]->precision(precisionOutput);
 		monitorVec[_col]->fileExport(_filename, _openFile);
 	}
 
@@ -213,6 +229,9 @@ protected:
 	moCheckpoint<Neighbor> * checkpoint;
 
 	std::vector< moVectorMonitor<EOT> *> monitorVec;
+
+  // precision of the output
+  unsigned int precisionOutput;
 
 };
 
