@@ -66,6 +66,7 @@
 #include <continuator/moBestSoFarStat.h>
 #include <continuator/moBestFitnessStat.h>
 #include <continuator/moUnsignedStat.h>
+#include <continuator/moValueStat.h>
 #include <continuator/moBooleanStat.h>
 #include <continuator/moCheckpoint.h>
 #include <continuator/moCombinedContinuator.h>

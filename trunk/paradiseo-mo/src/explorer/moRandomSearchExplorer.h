@@ -102,7 +102,8 @@ public:
         init(_solution);
 
         //eval the _solution moved with the neighbor and stock the result in the neighbor
-        fulleval(_solution);
+	if (_solution.invalid())
+	  fulleval(_solution);
     };
 
     /**
