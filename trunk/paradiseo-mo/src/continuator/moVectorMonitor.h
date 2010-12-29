@@ -54,21 +54,30 @@ public:
 	 * @param _param the parameter of type double to save in the vector
 	 */
 	moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL), eotParam(NULL)
-	{ }
+	{ 
+		// precision of the output by default
+		precisionOutput = std::cout.precision();
+	}
 
 	/**
 	 * Default Constructor
 	 * @param _param the parameter of type unsigned int to save in the vector
 	 */
 	moVectorMonitor(eoValueParam<unsigned int> & _param) : doubleParam(NULL), intParam(&_param), eotParam(NULL)
-	{ }
+	{ 
+		// precision of the output by default
+		precisionOutput = std::cout.precision();
+	}
 
 	/**
 	 * Default Constructor
 	 * @param _param the parameter of type EOT to save in the vector
 	 */
 	moVectorMonitor(eoValueParam<EOT> & _param) : doubleParam(NULL), intParam(NULL), eotParam(&_param)
-	{ }
+	{ 
+		// precision of the output by default
+		precisionOutput = std::cout.precision();
+	}
 
 	/**
 	 * Default Constructor
@@ -76,7 +85,10 @@ public:
 	 */
 	template <class ScalarType, class Compare>
 	moVectorMonitor(eoValueParam<eoScalarFitness<ScalarType, Compare> > & _param) : doubleParam( & (eoValueParam<double>&)_param), intParam(NULL), eotParam(NULL)
-	{ }
+	{ 
+		// precision of the output by default
+		precisionOutput = std::cout.precision();
+	}
 
 	/**
 	 * Default Constructor
@@ -139,6 +151,9 @@ public:
 	std::string getValue(unsigned int i) const {
 		std::ostringstream os;
 
+		// set the precision of the output
+		os.precision(precisionOutput);
+
 		if (eotParam == NULL)
 			os << (valueVec[i]) ;
 		else
@@ -164,6 +179,14 @@ public:
 			return valueVec.size();
 		else
 			return eotVec.size();
+	}
+
+	/**
+	 * to set the precision of the output file
+	 * @param _precision precision of the output (number of digit)
+	 */
+	void precision(unsigned int _precision) {
+	  precisionOutput = _precision;
 	}
 
 	/**
@@ -209,6 +232,10 @@ protected:
 
 	std::vector<double> valueVec;
 	std::vector<EOT> eotVec;
+
+  // precision of the output
+  unsigned int precisionOutput;
+
 };
 
 
