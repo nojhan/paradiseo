@@ -53,12 +53,6 @@ public:
 		indices = new unsigned int[Kswap + 1];
 	}
 
-/*	moIndexSwapNeighbor(unsigned int _Kswap) :
-		moIndexNeighbor<EOT> () {
-		Kswap = _Kswap;
-		indices = new unsigned int[Kswap + 1];
-	}*/
-
 	/**
 	 * Default destructor
 	 */
