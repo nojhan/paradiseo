@@ -19,7 +19,7 @@ using namespace std;
 //To compute execution time
 #include <performance/moCudaTimer.h>
 // One Max ordered neighborhood
-#include <neighborhood/moCudaKswapNeighborhood.h>
+#include <neighborhood/moCudaKflipNeighborhood.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
@@ -31,6 +31,7 @@ using namespace std;
 #include <algo/moSimpleHC.h>
 // The simple HC algorithm explorer
 #include <explorer/moSimpleHCexplorer.h>
+#include <time.h>
 
 /**
  * @return the factorial of an unsigned integer
@@ -63,7 +64,7 @@ unsigned long int sizeMapping1( unsigned int _size, unsigned int _Kswap) {
 // REPRESENTATION
 typedef moCudaBitVector<eoMaximizingFitness> solution;
 typedef moBitFlippingNeighbor<solution> Neighbor;
-typedef moCudaKswapNeighborhood<Neighbor> Neighborhood;
+typedef moCudaKflipNeighborhood<Neighbor> Neighborhood;
 
 void main_function(int argc, char **argv)
 {
@@ -119,7 +120,7 @@ void main_function(int argc, char **argv)
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(seed);
-
+  srand(time(NULL));
   
   /* =========================================================
    *
