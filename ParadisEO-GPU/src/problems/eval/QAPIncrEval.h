@@ -63,15 +63,10 @@ public:
 	~QAPIncrEval() {
 	}
 
-	/**
-	 * functor of  incremental evaluation of the solution(function inline can be called from host or device)
+	/*functor of  incremental evaluation of the solution(function inline can be called from host or device)
 	 * @param _sol the solution to evaluate
 	 * @param _fitness the fitness of the current solution
 	 * @param _index the set of information to compute fitness neighbor
-	 * @param _index[0] the first position of swap
-	 * @param _index[1] the second position of swap
-	 * @param _index[2] thesolution size
-	 * @param _index[3] the id of neighbor
 	 */
 
 inline __host__ __device__ Fitness operator() (EOT & _sol,Fitness _fitness, unsigned int *_index) {
@@ -81,7 +76,7 @@ inline __host__ __device__ Fitness operator() (EOT & _sol,Fitness _fitness, unsi
 	/* dev_a & dev_b are global device variable, data specific to QAP problem (flow & distance matices)
 	 * _index[0] the first position of swap
 	 * _index[1] the second position of swap
-	 * _index[2] thesolution size
+	 * _index[2] the solution size
 	 * _index[3] the id of neighbor
 	 */
 
@@ -90,8 +85,7 @@ inline __host__ __device__ Fitness operator() (EOT & _sol,Fitness _fitness, unsi
 
 }
 
-    /**
-	 * compute the new fitness of the solution after permutation of pair(i,j)(function inline called from host  device)
+    /* compute the new fitness of the solution after permutation of pair(i,j)(function inline called from host  device)
 	 * @param _a the flow matrix of size*size (specific data of QAP problem must be declared as global device variable)
 	 * @param _b the distance matrix of size*size (specific data of QAP problem must be declared as global device variable)
 	 * @param _sol the solution to evaluate
@@ -101,20 +95,20 @@ inline __host__ __device__ Fitness operator() (EOT & _sol,Fitness _fitness, unsi
 	 * @param _id the neighbor identifier
 	 */
 
-inline __host__ __device__  int compute_delta(int * _a,int * _b,EOT & _sol, int _i, int _j,int _size, int id){
+inline __host__ __device__  int compute_delta(int * _a,int * _b,EOT & _sol, int _i, int _j,int _size, int _id){
 
   int d;
   int k;
 
-  d = (_a[_i*_size+_i]-_a[_j*_size+_j])*(_b[_sol[_j+id*_size]*_size+_sol[_j+id*_size]]-_b[_sol[_i+id*_size]*_size+_sol[_i+id*_size]]) +
-    (_a[_i*_size+_j]-_a[_j*_size+_i])*(_b[_sol[_j+id*_size]*_size+_sol[_i+id*_size]]-_b[_sol[_i+id*_size]*_size+_sol[_j+id*_size]]);
+  d = (_a[_i*_size+_i]-_a[_j*_size+_j])*(_b[_sol[_j+_id*_size]*_size+_sol[_j+_id*_size]]-_b[_sol[_i+_id*_size]*_size+_sol[_i+_id*_size]]) +
+    (_a[_i*_size+_j]-_a[_j*_size+_i])*(_b[_sol[_j+_id*_size]*_size+_sol[_i+_id*_size]]-_b[_sol[_i+_id*_size]*_size+_sol[_j+_id*_size]]);
 
 
   for (k = 0; k < _size; k=k+1)
     if (k!=_i && k!=_j)
 
-      d = d + (_a[k*_size+_i]-_a[k*_size+_j])*(_b[_sol[k+id*_size]*_size+_sol[_j+id*_size]]-_b[_sol[k+id*_size]*_size+_sol[_i+id*_size]]) +
-      (_a[_i*_size+k]-_a[_j*_size+k])*(_b[_sol[_j+id*_size]*_size+_sol[k+id*_size]]-_b[_sol[_i+id*_size]*_size+_sol[k+id*_size]]);
+      d = d + (_a[k*_size+_i]-_a[k*_size+_j])*(_b[_sol[k+_id*_size]*_size+_sol[_j+_id*_size]]-_b[_sol[k+_id*_size]*_size+_sol[_i+_id*_size]]) +
+      (_a[_i*_size+k]-_a[_j*_size+k])*(_b[_sol[_j+_id*_size]*_size+_sol[k+_id*_size]]-_b[_sol[_i+_id*_size]*_size+_sol[k+_id*_size]]);
 
   return(d);
 }
