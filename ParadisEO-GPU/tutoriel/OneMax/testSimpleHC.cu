@@ -86,6 +86,7 @@ void main_function(int argc, char **argv)
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(seed);
+  srand(seed);
 
   
   /* =========================================================
