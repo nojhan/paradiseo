@@ -106,7 +106,7 @@ rng.reseed(seed);
 //solution sol(size);
 solution sol(vecSize);
 
-for(int i=0;i<vecSize;i++) cout<<sol[i]<<"  ";
+for(unsigned int i=0;i<vecSize;i++) cout<<sol[i]<<"  ";
 cout<<endl;
 
 /* =========================================================
