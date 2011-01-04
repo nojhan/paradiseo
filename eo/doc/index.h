@@ -43,17 +43,17 @@ massively use templates, so that you will not be limited by interfaces
 when using your own representation.
 
 Once you have a representation, you will build your own evolutionary algorithm
-by assembling @ref Operators in @ref Algorithms. 
+by assembling @ref Operators in @ref Algorithms.
 In %EO, most of the objects are functors, that is classes with an operator(), that you
-can call just as if they were classical functions. For example, an algorithm is a 
-functor, that manipulate a population of individuals, it will be implemented as a functor, 
+can call just as if they were classical functions. For example, an algorithm is a
+functor, that manipulate a population of individuals, it will be implemented as a functor,
 with a member like: operator()(eoPop<EOT>). Once called on a given population, it will
 search for the optimum of a given problem.
 
 Generally, operators are instanciated once and then binded in an algorithm by reference.
-Thus, you can easily build you own algorithm by trying several combination of operators.
+Thus, you can easily build your own algorithm by trying several combination of operators.
 
-For an more detailled introduction to the design of %EO you can look at the 
+For a more detailled introduction to the design of %EO you can look at the
 slides from a talk at EA 2001 or at the corresponding
 article in Lecture Notes In Computer Science, 2310, Selected Papers from the 5th European Conference on Artificial Evolution:
     - http://portal.acm.org/citation.cfm?id=727742
