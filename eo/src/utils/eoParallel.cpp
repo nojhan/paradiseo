@@ -30,7 +30,7 @@ Authors:
 eoParallel::eoParallel()
     : _isEnabled( false, "parallelize-loop", "Enable memory shared parallelization into evaluation's loops", '\0' ),
       _isDynamic( false, "parallelize-dynamic", "Enable dynamic memory shared parallelization", '\0' ),
-      _prefix( "results", "parallelize-prefix", "Enable dynamic memory shared parallelization", '\0' )
+      _prefix( "results", "parallelize-prefix", "Here's the prefix filename where the results are going to be stored", '\0' )
 {}
 
 std::string eoParallel::className() const
