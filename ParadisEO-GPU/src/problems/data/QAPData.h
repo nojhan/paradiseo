@@ -40,10 +40,10 @@
 template<class ElemType>
 class QAPData: public moCudaSpecificData<ElemType> {
 
+public:
+
 	using moCudaSpecificData<ElemType>::sizeData;
 	using moCudaSpecificData<ElemType>::cudaObject;
-
-public:
 
 	/**
 	 * Default Constructor
@@ -154,6 +154,8 @@ public:
 		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
 
 	}
+
+public:
 
 	ElemType* a_h;
 	ElemType* b_h;
