@@ -57,7 +57,6 @@ public:
     virtual void init(EOT& _solution, Neighbor& _current) {
         indices.first=0;
         indices.second=1;
-       // size=_solution.size();
         _current.setIndices(0,1);
     }
 
@@ -95,7 +94,7 @@ public:
 
 private:
     std::pair<unsigned int, unsigned int> indices;
-   //unsigned int size;
+
 };
 
 #endif
