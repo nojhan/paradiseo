@@ -145,6 +145,14 @@ public:
 
 	}
 
+	virtual void printOn(std::ostream& os) const {
+		EO<Fitness>::printOn(os);
+		os << ' ';
+		os << N << ' ';
+		for(int i=0;i<N;i++)
+		os<<vect[i];
+	}
+
 };
 
 #endif
