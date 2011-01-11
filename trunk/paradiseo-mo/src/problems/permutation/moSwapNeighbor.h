@@ -80,6 +80,17 @@ public:
 	}
 
 	/**
+	 * @param _neighbor a neighbor
+	 * @return if _neighbor and this one are equals
+	 */
+	virtual bool equals(moSwapNeighbor<EOT>& _neighbor) {
+		unsigned f, s;
+		_neighbor.getIndices(f, s);
+		return ((indices.first == f) && (indices.second == s) || (indices.first
+				== s) && (indices.second == f));
+	}
+
+	/**
 	 * Print the Neighbor
 	 */
 	void print() {
