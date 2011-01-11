@@ -37,7 +37,7 @@
  * @param _i an integer
  */
 
-static unsigned int factorial(unsigned int i) {
+static int factorial(int i) {
 	if (i == 0)
 		return 1;
 	else
@@ -50,7 +50,7 @@ static unsigned int factorial(unsigned int i) {
  * @param _Kswap the number of swap
  */
 
-static unsigned int sizeMapping(unsigned int _size,unsigned int _Kswap) {
+static int sizeMapping(int _size,unsigned int _Kswap) {
 
 	int _sizeMapping = _size;
 	for (int i = _Kswap; i > 0; i--) {
