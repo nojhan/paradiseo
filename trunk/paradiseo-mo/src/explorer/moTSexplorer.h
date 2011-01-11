@@ -189,7 +189,6 @@ public:
             isAccept=false;
         }
 
-	std::cout << (*best) ;
     };
 
 
