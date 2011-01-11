@@ -10,7 +10,8 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(
-  # include CUDA source directory
+
+  # include CUDA source directory
   ${CUDA_SRC_DIR}
   # include NVIDIA source directory
   ${NVIDIA_SRC_DIR}
@@ -40,13 +41,11 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 ### 3) Define your targets and link the librairies
 ######################################################################################	
 			
-CUDA_ADD_EXECUTABLE(CutestSimpleHC1 testSimpleHC.cu) 
-#CUDA_ADD_EXECUTABLE(CutestSimpleTS testSimpleTS.cu) 
+CUDA_ADD_EXECUTABLE(CutestSimpleHC_GPU testSimpleHC.cu) 
+CUDA_ADD_EXECUTABLE(CutestSimpleTS_GPU testSimpleTS.cu) 
 
-TARGET_LINK_LIBRARIES(CutestSimpleHC1 eoutils ga eo libcutil.a)
-#TARGET_LINK_LIBRARIES(CutestSimpleTS eoutils ga eo libcutil.a)
+TARGET_LINK_LIBRARIES(CutestSimpleHC_GPU eoutils ga eo libcutil.a)
+TARGET_LINK_LIBRARIES(CutestSimpleTS_GPU eoutils ga eo libcutil.a)
 
 
-######################################################################################
 
-ADD_SUBDIRECTORY(instances)
