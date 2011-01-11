@@ -1,5 +1,5 @@
 //Init the number of threads per block
-#define BLOCK_SIZE 128
+#define BLOCK_SIZE 64
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -200,8 +200,8 @@ int main(int argc, char **argv)
   timer.stop();
   printf("CUDA execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
-  simpleHC(sol);
-  std::cout << "final:   " << sol.fitness() << std::endl;
+ /* simpleHC(sol);
+  std::cout << "final:   " << sol.fitness() << std::endl;*/
 
  _data.cudaObject.free(dev_a);
  _data.cudaObject.free(dev_b);
