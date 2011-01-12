@@ -1,5 +1,5 @@
 //Init the number of threads per block
-#define BLOCK_SIZE 64
+#define BLOCK_SIZE 256
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -43,7 +43,7 @@ __device__ int * dev_b;
 #include <memory/moDummyIntensification.h>
 #include <memory/moDummyDiversification.h>
 #include <memory/moBestImprAspiration.h>
-#include <time.h>
+//#include <time.h>
 
 
 typedef moCudaIntVector<eoMinimizingFitness> solution;
@@ -86,6 +86,10 @@ int main(int argc, char **argv)
   parser.processParam( sizeTabuListParam, "Search Parameters" );
   unsigned sizeTabuList = sizeTabuListParam.value();
 
+  // duration tabu list
+  eoValueParam<unsigned int> durationParam(7, "duration", "duration of the tabu list", 'D');
+  parser.processParam( durationParam, "Search Parameters" );
+  unsigned duration = durationParam.value();
 
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -111,7 +115,7 @@ int main(int argc, char **argv)
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(seed);
-  srand(time(NULL));
+  //srand(time(NULL));
   
   /* =========================================================
    *
@@ -138,7 +142,7 @@ int main(int argc, char **argv)
    * ========================================================= */
   QAPEval<solution> eval(_data);
   unsigned long int sizeMap=sizeMapping(vecSize,KSwap);
-  std::cout<<"sizeMap : "<<sizeMap<<std::endl;
+//  std::cout<<"sizeMap : "<<sizeMap<<std::endl;
   QAPIncrEval<Neighbor> incr_eval;
   moCudaKswapEval<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
@@ -158,13 +162,14 @@ int main(int argc, char **argv)
    * ========================================================= */
 
   Neighborhood neighborhood(vecSize,KSwap,cueval);
+
  /* =========================================================
    *
    * continuator
    *
    * ========================================================= */
 
- moIterContinuator <Neighbor> continuator(nbIteration);
+   moIterContinuator <Neighbor> continuator(nbIteration);
 
  /* =========================================================
    *
@@ -174,7 +179,7 @@ int main(int argc, char **argv)
 
   //moNeighborVectorTabuList<shiftNeighbor> tl(sizeTabuList,0);
   sizeTabuList=(vecSize*(vecSize-1))/2;
-  unsigned duration=sizeTabuList/8;
+  duration=sizeTabuList/8;
   // tabu list
   moNeighborVectorTabuList<Neighbor> tl(sizeTabuList,duration);
 
@@ -204,6 +209,7 @@ int main(int argc, char **argv)
    * ========================================================= */
 
   moLocalSearch<Neighbor> localSearch1(explorer, continuator, eval);
+
   /* =========================================================
    *
    * Execute the local search from random sollution
@@ -213,12 +219,12 @@ int main(int argc, char **argv)
   //Can be eval here, else it will be done at the beginning of the localSearch
   eval(sol);
 
-  std::cout << "initial: " << sol.fitness()<< std::endl;
+  std::cout << "initial: " << sol<< std::endl;
   // Create timer for timing CUDA calculation
   moCudaTimer timer;
   timer.start();
   localSearch1(sol);
-  std::cout << "final:   " << sol.fitness() << std::endl;
+  std::cout << "final:   " << sol << std::endl;
   timer.stop();
   printf("CUDA execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
