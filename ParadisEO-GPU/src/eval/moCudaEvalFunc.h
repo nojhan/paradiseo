@@ -73,7 +73,7 @@ public:
 	 *@param _index the index neighbor
 	 */
 
-	virtual inline __host__ __device__ Fitness operator() (EOT & _solution,Fitness _fitness, unsigned int * _index){};
+	virtual inline __host__ __device__ Fitness operator() (EOT & _solution,Fitness _fitness, unsigned int * _index)=0;
 
 
 };
