@@ -65,7 +65,7 @@ SET (TEST_LIST
   t-eoExtendedVelocity
   t-eoLogger
   t-eoIQRStat
-  t-eoDualFitness
+  #t-eoDualFitness
   t-eoParser
   )
 
