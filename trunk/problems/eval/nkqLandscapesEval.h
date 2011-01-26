@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef __nkqLandscapesEval_H
 #define __nkqLandscapesEval_H
 
-#include <nkLandscapesEval.h>
+#include <eval/nkLandscapesEval.h>
 
 /*
  * Neutral version of NK landscapes: the 'quantised' NK
