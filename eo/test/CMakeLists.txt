@@ -67,6 +67,8 @@ SET (TEST_LIST
   t-eoIQRStat
   t-eoParallel
   t-openmp
+  #t-eoDualFitness
+  t-eoParser
   )
 
 
