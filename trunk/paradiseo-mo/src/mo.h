@@ -167,6 +167,8 @@
 #include <perturb/moSolInit.h>
 
 #include <problems/bitString/moBitNeighbor.h>
+#include <problems/bitString/moBitsNeighbor.h>
+#include <problems/bitString/moBitsNeighborhood.h>
 #include <problems/bitString/moPopBitNeighbor.h>
 #include <problems/bitString/moPopSol.h>
 #include <problems/eval/moMaxSATincrEval.h>
