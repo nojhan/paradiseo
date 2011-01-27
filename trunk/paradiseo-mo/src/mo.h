@@ -179,6 +179,8 @@
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
+#include <problems/permutation/moIndexedSwapNeighbor.h>
+
 
 
 #include <sampling/moAutocorrelationSampling.h>
