@@ -50,7 +50,7 @@ static int factorial(int i) {
  * @param _Kswap the number of swap
  */
 
-static int sizeMapping(int _size,unsigned int _Kswap) {
+static int sizeMapping(int _size, unsigned int _Kswap) {
 
 	int _sizeMapping = _size;
 	for (int i = _Kswap; i > 0; i--) {
@@ -81,8 +81,8 @@ public:
 	 * @param _Kswap the number of swap
 	 */
 
-	moKswapNeighborhood(unsigned int _size,unsigned int _Kswap) :
-		moOrderNeighborhood<Neighbor> (sizeMapping(_size,_Kswap)) {
+	moKswapNeighborhood(unsigned int _size, unsigned int _Kswap) :
+		moOrderNeighborhood<Neighbor> (sizeMapping(_size, _Kswap)) {
 
 		mutex = true;
 		size = _size;
@@ -174,8 +174,7 @@ public:
 						mapping[id + k * neighborhoodSize] = _indices[k];
 					}
 
-					mapping[id + Kswap * neighborhoodSize]
-							= _indices[Kswap]++;
+					mapping[id + Kswap * neighborhoodSize] = _indices[Kswap]++;
 					id++;
 				}
 
@@ -195,9 +194,9 @@ public:
 	}
 
 	/**
-	 * Compute the next  combination of mapping  indices
-	 * @param _indices the current combination of indices
-	 * @param _indice  compute next combination of indices  from this index
+	 * Compute the next  combination of mapping  indexes
+	 * @param _indices the current combination of indexes
+	 * @param _indice  compute next combination of indexes  from this index
 	 */
 	bool nextIndices(unsigned int* _indices, int _indice) {
 
