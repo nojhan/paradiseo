@@ -40,6 +40,10 @@
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
+#ifdef _OPENMP
+
+    omp_set_num_threads(eo::parallel.nthreads());
+
     size_t size = _pop.size();
 
     double t1 = omp_get_wtime();
@@ -60,7 +64,13 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
     double t2 = omp_get_wtime();
 
     eoLogger log;
-    log << eo::file(eo::parallel.prefix()) << t2 - t1 << std::endl;
+    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
+
+#else // _OPENMP
+
+    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+
+#endif // !_OPENMP
 }
 
 /**

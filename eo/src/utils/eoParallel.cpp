@@ -21,16 +21,17 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-     Caner Candan <caner.candan@thalesgroup.com>
+Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
 #include "eoParallel.h"
 
-eoParallel::eoParallel()
-    : _isEnabled( false, "parallelize-loop", "Enable memory shared parallelization into evaluation's loops", '\0' ),
-      _isDynamic( false, "parallelize-dynamic", "Enable dynamic memory shared parallelization", '\0' ),
-      _prefix( "results", "parallelize-prefix", "Here's the prefix filename where the results are going to be stored", '\0' )
+eoParallel::eoParallel() :
+    _isEnabled( false, "parallelize-loop", "Enable memory shared parallelization into evaluation's loops", '\0' ),
+    _isDynamic( false, "parallelize-dynamic", "Enable dynamic memory shared parallelization", '\0' ),
+    _prefix( "results", "parallelize-prefix", "Here's the prefix filename where the results are going to be stored", '\0' ),
+    _nthreads( 0, "parallelize-nthreads", "Define the number of threads you want to use, nthreads = 0 means you want to use all threads available", '\0' )
 {}
 
 std::string eoParallel::className() const
@@ -67,6 +68,7 @@ void eoParallel::_createParameters( eoParser& parser )
     parser.processParam( _isEnabled, section );
     parser.processParam( _isDynamic, section );
     parser.processParam( _prefix, section );
+    parser.processParam( _nthreads, section );
 }
 
 void make_parallel(eoParser& parser)

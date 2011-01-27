@@ -26,7 +26,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 /** @defgroup Parallel Parallel
  * @ingroup Utilities
-@{
+ @{
 */
 
 #ifndef eoParallel_h
@@ -52,6 +52,8 @@ public:
 
     std::string prefix() const;
 
+    inline unsigned int nthreads() const { return _nthreads.value(); }
+
     friend void make_parallel(eoParser&);
 
 private:
@@ -65,7 +67,7 @@ private:
 
 void make_parallel(eoParser&);
 
-namespace	eo
+namespace eo
 {
     /**
      * parallel is an external global variable defined in order to use where ever you want the parallel parameters
