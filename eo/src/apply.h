@@ -26,8 +26,11 @@
 #ifndef _apply_h
 #define _apply_h
 
+#include <utils/eoParallel.h>
+#include <utils/eoParser.h>
 #include <eoFunctor.h>
 #include <vector>
+#include <omp.h>
 
 /**
   Applies a unary function to a std::vector of things.
@@ -37,7 +40,71 @@
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
-    for (unsigned i = 0; i < _pop.size(); ++i)
+#ifdef _OPENMP
+
+    omp_set_num_threads(eo::parallel.nthreads());
+
+    size_t size = _pop.size();
+
+    double t1 = omp_get_wtime();
+
+    if (!eo::parallel.isDynamic())
+	{
+#pragma omp parallel for if(eo::parallel.isEnabled()) //default(none) shared(_proc, _pop, size)
+	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+	}
+    else
+	{
+#pragma omp parallel for schedule(dynamic) if(eo::parallel.isEnabled())
+	    //doesnot work with gcc 4.1.2
+	    //default(none) shared(_proc, _pop, size)
+	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+	}
+
+    double t2 = omp_get_wtime();
+
+    eoLogger log;
+    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
+
+#else // _OPENMP
+
+    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+
+#endif // !_OPENMP
+}
+
+/**
+  This is a variant of apply<EOT> which is called in parallel
+  thanks to OpenMP.
+
+  @ingroup Utilities
+*/
+template <class EOT>
+void omp_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
+{
+    size_t size = _pop.size();
+#pragma omp parallel for if(eo::parallel.isEnabled())
+    //doesnot work with gcc 4.1.2
+    //default(none) shared(_proc, _pop, size)
+    for (size_t i = 0; i < size; ++i)
+    {
+        _proc(_pop[i]);
+    }
+}
+
+/**
+  And now we are using the dynamic scheduling.
+
+  @ingroup Utilities
+*/
+template <class EOT>
+void omp_dynamic_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
+{
+    size_t size = _pop.size();
+#pragma omp parallel for if(eo::parallel.isEnabled()) schedule(dynamic)
+    //doesnot work with gcc 4.1.2
+    //default(none) shared(_proc, _pop, size)
+    for (size_t i = 0; i < size; ++i)
     {
         _proc(_pop[i]);
     }
