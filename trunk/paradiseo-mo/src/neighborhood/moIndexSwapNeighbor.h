@@ -216,7 +216,7 @@ public:
 
 	/**
 	 * Read object.\
-		     * Calls base class, just in case that one had something to do.
+	 * Calls base class, just in case that one had something to do.
 	 * The read and print methods should be compatible and have the same format.
 	 * In principle, format is "plain": they just print a number
 	 * @param _is a std::istream.
