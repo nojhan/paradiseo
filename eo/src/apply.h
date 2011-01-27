@@ -27,6 +27,7 @@
 #define _apply_h
 
 #include <utils/eoParallel.h>
+#include <utils/eoParser.h>
 #include <eoFunctor.h>
 #include <vector>
 #include <omp.h>

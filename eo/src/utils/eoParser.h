@@ -92,7 +92,6 @@ private :
     std::vector<eoParam*> ownedParams;
 };
 
-
 /**
     eoParser: command line parser and configuration file reader
     This class is persistent, so it can be stored and reloaded to restore

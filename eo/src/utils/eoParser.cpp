@@ -98,6 +98,10 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
     readFrom(stream);
     processParam(needHelp);
     processParam(stopOnUnknownParam);
+
+    //multithreading
+    processParam(eo::parallelizeLoopParam);
+    //multithreading ends
 }
 
 
