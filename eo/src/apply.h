@@ -40,8 +40,9 @@
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
-    double t1 = omp_get_wtime();
     size_t size = _pop.size();
+
+    double t1 = omp_get_wtime();
 
     if (!eo::parallel.isDynamic())
 	{
