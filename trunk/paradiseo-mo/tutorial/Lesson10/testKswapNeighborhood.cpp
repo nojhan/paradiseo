@@ -55,6 +55,7 @@ typedef moKswapNeighbor<Queen> kswapNeighbor; //k-swap Neighbor
 typedef moKswapNeighborhood<kswapNeighbor> kswapNeighborhood; // k- swap Neighborhood
 
 void main_function(int argc, char **argv) {
+
 	/* =========================================================
 	 *
 	 * Parameters
