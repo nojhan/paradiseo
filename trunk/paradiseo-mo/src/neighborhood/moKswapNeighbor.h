@@ -40,6 +40,7 @@
 template<class EOT, class Fitness = typename EOT::Fitness>
 class moKswapNeighbor: public moBackableNeighbor<EOT> ,
 		public moIndexSwapNeighbor<EOT> {
+
 public:
 	using moIndexSwapNeighbor<EOT>::indices;
 	using moIndexSwapNeighbor<EOT>::Kswap;
@@ -50,7 +51,7 @@ public:
 	 */
 
 	moKswapNeighbor() :
-		moIndexSwapNeighbor<EOT>() {
+		moIndexSwapNeighbor<EOT> () {
 	}
 
 	/**
@@ -59,7 +60,7 @@ public:
 	 */
 
 	moKswapNeighbor(unsigned int _Kswap) :
-		moIndexSwapNeighbor<EOT>(_Kswap) {
+		moIndexSwapNeighbor<EOT> (_Kswap) {
 
 	}
 
