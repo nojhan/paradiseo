@@ -75,6 +75,5 @@ public:
 
 	virtual inline __host__ __device__ Fitness operator() (EOT & _solution,Fitness _fitness, unsigned int * _index)=0;
 
-
 };
 #endif
