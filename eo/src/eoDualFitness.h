@@ -264,13 +264,13 @@ public:
 
 //    eoDualStatSwitch( eoStat<EOT,T> & stat_feasible,  eoStat<EOT,T> & stat_unfeasible, std::string sep=" "  ) :
     eoDualStatSwitch( EOSTAT & stat_feasible,  EOSTAT & stat_unfeasible, std::string sep=" "  ) :
-        _stat_feasible(stat_feasible), 
-        _stat_unfeasible(stat_unfeasible), 
-        _sep(sep),
         eoStat<EOT,std::string>(
                 "?"+sep+"?", 
                 stat_feasible.longName()+sep+stat_unfeasible.longName() 
-            )
+				),
+        _stat_feasible(stat_feasible), 
+        _stat_unfeasible(stat_unfeasible), 
+        _sep(sep)
     { }
 
     virtual void operator()( const eoPop<EOT> & pop )

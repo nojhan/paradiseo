@@ -39,7 +39,7 @@ template< class EOT >
 class eoEvalUserTimeThrowException : public eoEvalFuncCounter< EOT >
 {
 public:
-    eoEvalUserTimeThrowException( eoEvalFunc<EOT> & func, const long max ) : _max(max), eoEvalFuncCounter<EOT>( func, "CPU-user") {}
+    eoEvalUserTimeThrowException( eoEvalFunc<EOT> & func, const long max ) : eoEvalFuncCounter<EOT>( func, "CPU-user"), _max(max) {}
 
     virtual void operator() ( EOT & eo )
     {

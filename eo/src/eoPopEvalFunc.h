@@ -69,7 +69,8 @@ public:
   /** Do the job: simple loop over the offspring */
   void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
   {
-    apply<EOT>(eval, _offspring);
+      (void)_parents;
+      apply<EOT>(eval, _offspring);
   }
 
 private:
