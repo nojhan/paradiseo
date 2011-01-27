@@ -63,6 +63,7 @@ private:
     eoValueParam<bool> _isEnabled;
     eoValueParam<bool> _isDynamic;
     eoValueParam<std::string> _prefix;
+    eoValueParam<unsigned int> _nthreads;
 };
 
 void make_parallel(eoParser&);
