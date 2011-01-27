@@ -11,14 +11,14 @@
 #include <do/make_continue.h>
 #include <do/make_checkpoint.h>
 
-#include <do>
+#include <edo>
 
 #include "Rosenbrock.h"
 #include "Sphere.h"
 
 
 typedef eoReal<eoMinimizingFitness> EOT;
-typedef doNormalMulti< EOT > Distrib;
+typedef edoNormalMulti< EOT > Distrib;
 
 
 int main(int ac, char** av)
@@ -45,13 +45,13 @@ int main(int ac, char** av)
     eoSelect< EOT >* selector = new eoDetSelect< EOT >( selection_rate );
     state.storeFunctor(selector);
 
-    doEstimator< Distrib >* estimator =	new doEstimatorNormalMulti< EOT >();
+    edoEstimator< Distrib >* estimator =	new edoEstimatorNormalMulti< EOT >();
     state.storeFunctor(estimator);
 
     eoSelectOne< EOT >* selectone = new eoDetTournamentSelect< EOT >( 2 );
     state.storeFunctor(selectone);
 
-    doModifierMass< Distrib >* modifier = new doNormalMultiCenter< EOT >();
+    edoModifierMass< Distrib >* modifier = new edoNormalMultiCenter< EOT >();
     state.storeFunctor(modifier);
 
     eoEvalFunc< EOT >* plainEval = new Rosenbrock< EOT >();
@@ -100,7 +100,7 @@ int main(int ac, char** av)
     // This is used by doSampler.
     //-----------------------------------------------------------------------------
 
-    doBounder< EOT >* bounder = new doBounderRng< EOT >(EOT(pop[0].size(), -5),
+    edoBounder< EOT >* bounder = new edoBounderRng< EOT >(EOT(pop[0].size(), -5),
 							EOT(pop[0].size(), 5),
 							*gen);
     state.storeFunctor(bounder);
@@ -112,7 +112,7 @@ int main(int ac, char** av)
     // Prepare sampler class with a specific distribution
     //-----------------------------------------------------------------------------
 
-    doSampler< Distrib >* sampler = new doSamplerNormalMulti< EOT >( *bounder );
+    edoSampler< Distrib >* sampler = new edoSamplerNormalMulti< EOT >( *bounder );
     state.storeFunctor(sampler);
 
     //-----------------------------------------------------------------------------
@@ -166,10 +166,10 @@ int main(int ac, char** av)
     // distribution output
     //-----------------------------------------------------------------------------
 
-    doDummyContinue< Distrib >* dummy_continue = new doDummyContinue< Distrib >();
+    edoDummyContinue< Distrib >* dummy_continue = new edoDummyContinue< Distrib >();
     state.storeFunctor(dummy_continue);
 
-    doCheckPoint< Distrib >* distribution_continue = new doCheckPoint< Distrib >( *dummy_continue );
+    edoCheckPoint< Distrib >* distribution_continue = new edoCheckPoint< Distrib >( *dummy_continue );
     state.storeFunctor(distribution_continue);
 
     //-----------------------------------------------------------------------------
@@ -213,14 +213,14 @@ int main(int ac, char** av)
     // population output (after helper)
     //
     // FIXME: theses objects are instanciate there in order to avoid a folder
-    // removing as doFileSnapshot does within ctor.
+    // removing as edoFileSnapshot does within ctor.
     //-----------------------------------------------------------------------------
 
-    doPopStat< EOT >* popStat = new doPopStat<EOT>;
+    edoPopStat< EOT >* popStat = new edoPopStat<EOT>;
     state.storeFunctor(popStat);
     pop_continue.add(*popStat);
 
-    doFileSnapshot* fileSnapshot = new doFileSnapshot("EDASA_ResPop");
+    edoFileSnapshot* fileSnapshot = new edoFileSnapshot("EDASA_ResPop");
     state.storeFunctor(fileSnapshot);
     fileSnapshot->add(*popStat);
     pop_continue.add(*fileSnapshot);
@@ -232,7 +232,7 @@ int main(int ac, char** av)
     // distribution output (after helper)
     //-----------------------------------------------------------------------------
 
-    doDistribStat< Distrib >* distrib_stat = new doStatNormalMulti< EOT >();
+    edoDistribStat< Distrib >* distrib_stat = new edoStatNormalMulti< EOT >();
     state.storeFunctor(distrib_stat);
 
     distribution_continue->add( *distrib_stat );
@@ -254,7 +254,7 @@ int main(int ac, char** av)
     // EDASA algorithm configuration
     //-----------------------------------------------------------------------------
 
-    doAlgo< Distrib >* algo = new doEDASA< Distrib >
+    edoAlgo< Distrib >* algo = new edoEDASA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
 	 pop_continue, *distribution_continue,
 	 eval, *sa_continue, *cooling_schedule,

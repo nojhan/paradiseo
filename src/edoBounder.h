@@ -25,16 +25,30 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoBounder_h
+#define _edoBounder_h
 
-#include "Rosenbrock.h"
+#include <eoFunctor.h>
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoBounder : public eoUF< EOT&, void >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    edoBounder( EOT min = EOT(1, 0), EOT max = EOT(1, 0) )
+	: _min(min), _max(max)
+    {
+	assert(_min.size() > 0);
+	assert(_min.size() == _max.size());
+    }
 
-    return 0;
-}
+    // virtual void operator()( EOT& ) = 0 (provided by eoUF< A1, R >)
+
+    EOT& min(){return _min;}
+    EOT& max(){return _max;}
+
+private:
+    EOT _min;
+    EOT _max;
+};
+
+#endif // !_edoBounder_h

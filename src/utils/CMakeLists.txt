@@ -5,10 +5,10 @@
 FILE(GLOB SOURCES *.cpp)
 
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
-ADD_LIBRARY(doutils ${SOURCES})
-INSTALL(TARGETS doutils ARCHIVE DESTINATION lib COMPONENT libraries)
+ADD_LIBRARY(edoutils ${SOURCES})
+INSTALL(TARGETS edoutils ARCHIVE DESTINATION lib COMPONENT libraries)
 
 FILE(GLOB HDRS *.h utils)
-INSTALL(FILES ${HDRS} DESTINATION include/do/utils COMPONENT headers)
+INSTALL(FILES ${HDRS} DESTINATION include/edo/utils COMPONENT headers)
 
 ######################################################################################

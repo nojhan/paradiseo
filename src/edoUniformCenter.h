@@ -25,16 +25,31 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoUniformCenter_h
+#define _edoUniformCenter_h
 
-#include "Rosenbrock.h"
+#include "edoModifierMass.h"
+#include "edoUniform.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoUniformCenter : public edoModifierMass< edoUniform< EOT > >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    typedef typename EOT::AtomType AtomType;
 
-    return 0;
-}
+    void operator() ( edoUniform< EOT >& distrib, EOT& mass )
+    {
+	for (unsigned int i = 0, n = mass.size(); i < n; ++i)
+	    {
+		AtomType& min = distrib.min()[i];
+		AtomType& max = distrib.max()[i];
+
+		AtomType range = (max - min) / 2;
+
+		min = mass[i] - range;
+		max = mass[i] + range;
+	    }
+    }
+};
+
+#endif // !_edoUniformCenter_h

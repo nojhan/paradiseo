@@ -25,16 +25,19 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoDistrib_h
+#define _edoDistrib_h
 
-#include "Rosenbrock.h"
+#include <eoFunctor.h>
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoDistrib : public eoFunctorBase
 {
-    edoBounderNo< EOT > bounder;
+public:
+    //! Alias for the type
+    typedef EOT EOType;
 
-    return 0;
-}
+    virtual ~edoDistrib(){}
+};
+
+#endif // !_edoDistrib_h

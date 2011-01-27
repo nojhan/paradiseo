@@ -25,16 +25,19 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoEstimator_h
+#define _edoEstimator_h
 
-#include "Rosenbrock.h"
+#include <eoPop.h>
+#include <eoFunctor.h>
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename D >
+class edoEstimator : public eoUF< eoPop< typename D::EOType >&, D >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    typedef typename D::EOType EOType;
 
-    return 0;
-}
+    // virtual D operator() ( eoPop< EOT >& )=0 (provided by eoUF< A1, R >)
+};
+
+#endif // !_edoEstimator_h

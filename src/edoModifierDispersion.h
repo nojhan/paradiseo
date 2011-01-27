@@ -25,16 +25,19 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoModifierDispersion_h
+#define _edoModifierDispersion_h
 
-#include "Rosenbrock.h"
+#include <eoPop.h>
+#include <eoFunctor.h>
 
-typedef eoReal< eoMinimizingFitness > EOT;
+#include "edoModifier.h"
 
-int main(void)
+template < typename D >
+class edoModifierDispersion : public edoModifier< D >, public eoBF< D&, eoPop< typename D::EOType >&, void >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    // virtual void operator() ( D&, eoPop< D::EOType >& )=0 (provided by eoBF< A1, A2, R >)
+};
 
-    return 0;
-}
+#endif // !_edoModifierDispersion_h

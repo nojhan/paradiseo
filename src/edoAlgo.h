@@ -25,16 +25,20 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
 
-#include "Rosenbrock.h"
+#ifndef _edoAlgo_h
+#define _edoAlgo_h
 
-typedef eoReal< eoMinimizingFitness > EOT;
+#include <eoAlgo.h>
 
-int main(void)
+template < typename D >
+class edoAlgo : public eoAlgo< typename D::EOType >
 {
-    edoBounderNo< EOT > bounder;
+    //! Alias for the type
+    typedef typename D::EOType EOT;
 
-    return 0;
-}
+public:
+    virtual ~edoAlgo(){}
+};
+
+#endif // !_edoAlgo_h

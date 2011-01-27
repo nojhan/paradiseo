@@ -25,16 +25,31 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoStatUniform_h
+#define _edoStatUniform_h
 
-#include "Rosenbrock.h"
+#include "edoStat.h"
+#include "edoUniform.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoStatUniform : public edoDistribStat< edoUniform< EOT > >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    using edoDistribStat< edoUniform< EOT > >::value;
 
-    return 0;
-}
+    edoStatUniform( std::string desc = "" )
+	: edoDistribStat< edoUniform< EOT > >( desc )
+    {}
+
+    void operator()( const edoUniform< EOT >& distrib )
+    {
+	value() = "\n# ====== uniform distribution dump =====\n";
+
+	std::ostringstream os;
+	os << distrib.min() << " " << distrib.max() << std::endl;
+
+	value() += os.str();
+    }
+};
+
+#endif // !_edoStatUniform_h

@@ -25,16 +25,37 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _doContinue_h
+#define _doContinue_h
 
-#include "Rosenbrock.h"
+#include <eoFunctor.h>
+#include <eoPersistent.h>
 
-typedef eoReal< eoMinimizingFitness > EOT;
+//! edoContinue< EOT > classe fitted to Distribution Object library
 
-int main(void)
+template < typename D >
+class edoContinue : public eoUF< const D&, bool >, public eoPersistent
 {
-    edoBounderNo< EOT > bounder;
+public:
+    virtual std::string className(void) const { return "edoContinue"; }
 
-    return 0;
-}
+    void readFrom(std::istream&)
+    {
+	/* It should be implemented by subclasses ! */
+    }
+
+    void printOn(std::ostream&) const
+    {
+	/* It should be implemented by subclasses ! */
+    }
+};
+
+template < typename D >
+class edoDummyContinue : public edoContinue< D >
+{
+    bool operator()(const D&){ return true; }
+
+    virtual std::string className() const { return "edoDummyContinue"; }
+};
+
+#endif // !_edoContinue_h

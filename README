@@ -1,4 +1,4 @@
-This package contains the source code for DO.
+This package contains the source code for EDO.
 
 # Step 1 - Configuration
 ------------------------
@@ -19,7 +19,7 @@ Note for windows users: if you don't use VisualStudio 9, enter the name of your 
 
 # Step 3 - Compilation
 ----------------------
-In the do/build/ directory:
+In the edo/build/ directory:
 (Unix)       > make
 (Windows)    Open the VisualStudio solution and compile it, compile also the target install.
 You can refer to this tutorial if you don't know how to compile a solution: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
@@ -29,7 +29,7 @@ You can refer to this tutorial if you don't know how to compile a solution: http
 ---------------------
 A toy example is given to test the components. You can run these tests as following.
 To define problem-related components for your own problem, please refer to the tutorials available on the website : http://paradiseo.gforge.inria.fr/.
-In the do/build/ directory:
+In the edo/build/ directory:
 (Unix)       > ctest
 Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
 
@@ -46,7 +46,7 @@ Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/i
 The API-documentation is available in doc/html/index.html
 
 
-# Things to keep in mind when using DO
+# Things to keep in mind when using EDO
 ----------------------------------------
 * By default, the EO random generator's seed is initialized by the number of seconds since the epoch (with time(0)). It is available in the status file dumped at each execution. Please, keep in mind that if you start two run at the same second without modifying the seed, you will get exactly the same results.
 

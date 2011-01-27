@@ -1,3 +1,30 @@
+/*
+The Evolving Distribution Objects framework (EDO) is a template-based, 
+ANSI-C++ evolutionary computation library which helps you to write your 
+own estimation of distribution algorithms.
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+Copyright (C) 2010 Thales group
+*/
+/*
+Authors:
+    Johann Dréo <johann.dreo@thalesgroup.com>
+    Caner Candan <caner.candan@thalesgroup.com>
+*/
+
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -11,13 +38,16 @@
 #include <utils/eoLogger.h>
 #include <utils/eoParserLogger.h>
 
-#include <do>
+#include <edo>
+
+#include <boost/numeric/ublas/vector.hpp>
+#include <boost/numeric/ublas/symmetric_matrix.hpp>
 
 #include "Rosenbrock.h"
 #include "Sphere.h"
 
 typedef eoReal< eoMinimizingFitness > EOT;
-typedef doNormalMulti< EOT > Distrib;
+typedef edoNormalMulti< EOT > Distrib;
 typedef EOT::AtomType AtomType;
 
 int main(int ac, char** av)
@@ -121,10 +151,10 @@ int main(int ac, char** av)
 
 		    //-----------------------------------------------------------------------------
 		    // Prepare bounder class to set bounds of sampling.
-		    // This is used by doSampler.
+		    // This is used by edoSampler.
 		    //-----------------------------------------------------------------------------
 
-		    doBounder< EOT >* bounder = new doBounderRng< EOT >(EOT(pop[0].size(), -5),
+		    edoBounder< EOT >* bounder = new edoBounderRng< EOT >(EOT(pop[0].size(), -5),
 									EOT(pop[0].size(), 5),
 									*gen);
 		    state.storeFunctor(bounder);
@@ -136,7 +166,7 @@ int main(int ac, char** av)
 		    // Prepare sampler class with a specific distribution
 		    //-----------------------------------------------------------------------------
 
-		    doSampler< Distrib >* sampler = new doSamplerNormalMulti< EOT >( *bounder );
+		    edoSampler< Distrib >* sampler = new edoSamplerNormalMulti< EOT >( *bounder );
 		    state.storeFunctor(sampler);
 
 		    //-----------------------------------------------------------------------------
@@ -161,7 +191,7 @@ int main(int ac, char** av)
 		    // (6) estimation phase
 		    //-----------------------------------------------------------------------------
 
-		    doEstimator< Distrib >* estimator = new doEstimatorNormalMulti< EOT >();
+		    edoEstimator< Distrib >* estimator = new edoEstimatorNormalMulti< EOT >();
 		    state.storeFunctor(estimator);
 
 		    distrib = (*estimator)( pop );

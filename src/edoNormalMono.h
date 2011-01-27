@@ -25,16 +25,34 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoNormalMono_h
+#define _edoNormalMono_h
 
-#include "Rosenbrock.h"
+#include "edoDistrib.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoNormalMono : public edoDistrib< EOT >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    edoNormalMono( const EOT& mean, const EOT& variance )
+	: _mean(mean), _variance(variance)
+    {
+	assert(_mean.size() > 0);
+	assert(_mean.size() == _variance.size());
+    }
 
-    return 0;
-}
+    unsigned int size()
+    {
+	assert(_mean.size() == _variance.size());
+	return _mean.size();
+    }
+
+    EOT mean(){return _mean;}
+    EOT variance(){return _variance;}
+
+private:
+    EOT _mean;
+    EOT _variance;
+};
+
+#endif // !_edoNormalMono_h

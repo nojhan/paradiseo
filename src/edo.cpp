@@ -21,20 +21,8 @@ Copyright (C) 2010 Thales group
 */
 /*
 Authors:
-    Johann Dréo <johann.dreo@thalesgroup.com>
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#include "edo"
 
-#include "Rosenbrock.h"
-
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
-{
-    edoBounderNo< EOT > bounder;
-
-    return 0;
-}

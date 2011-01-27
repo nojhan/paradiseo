@@ -22,19 +22,34 @@ Copyright (C) 2010 Thales group
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoBounderUniform_h
+#define _edoBounderUniform_h
 
-#include "Rosenbrock.h"
+#include "edoBounder.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoBounderUniform : public edoBounder< EOT >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    edoBounderUniform( EOT min, EOT max )
+	: edoBounder< EOT >( min, max )
+    {}
 
-    return 0;
-}
+    void operator()( EOT& sol )
+    {
+        unsigned int size = sol.size();
+        assert(size > 0);
+
+        for (unsigned int d = 0; d < size; ++d) {
+
+            if ( sol[d] < this->min()[d] || sol[d] > this->max()[d]) {
+                // use EO's global "rng"
+                sol[d] = rng.uniform( this->min()[d], this->max()[d] );
+            }
+        } // for d in size
+    }
+};
+
+#endif // !_edoBounderUniform_h

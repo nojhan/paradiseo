@@ -25,16 +25,16 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoBounderNo_h
+#define _edoBounderNo_h
 
-#include "Rosenbrock.h"
+#include "edoBounder.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoBounderNo : public edoBounder< EOT >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    void operator()( EOT& ) {}
+};
 
-    return 0;
-}
+#endif // !_edoBounderNo_h

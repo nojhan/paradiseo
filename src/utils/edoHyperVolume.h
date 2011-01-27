@@ -25,16 +25,28 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoHyperVolume_h
+#define _edoHyperVolume_h
 
-#include "Rosenbrock.h"
-
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoHyperVolume
 {
-    edoBounderNo< EOT > bounder;
+public:
+    typedef typename EOT::AtomType AtomType;
 
-    return 0;
-}
+    edoHyperVolume() : _hv(1) {}
+
+    void update(AtomType v)
+    {
+	_hv *= ::sqrt( v );
+
+	assert( _hv <= std::numeric_limits< AtomType >::max() );
+    }
+
+    AtomType get_hypervolume() const { return _hv; }
+
+protected:
+    AtomType _hv;
+};
+
+#endif // !_edoHyperVolume_h

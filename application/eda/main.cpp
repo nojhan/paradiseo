@@ -1,3 +1,30 @@
+/*
+The Evolving Distribution Objects framework (EDO) is a template-based, 
+ANSI-C++ evolutionary computation library which helps you to write your 
+own estimation of distribution algorithms.
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+Copyright (C) 2010 Thales group
+*/
+/*
+Authors:
+    Johann Dréo <johann.dreo@thalesgroup.com>
+    Caner Candan <caner.candan@thalesgroup.com>
+*/
+
 #include <eo>
 #include <mo>
 
@@ -11,14 +38,14 @@
 #include <do/make_continue.h>
 #include <do/make_checkpoint.h>
 
-#include <do>
+#include <edo>
 
 #include "Rosenbrock.h"
 #include "Sphere.h"
 
 
 typedef eoReal<eoMinimizingFitness> EOT;
-typedef doNormalMulti< EOT > Distrib;
+typedef edoNormalMulti< EOT > Distrib;
 
 
 int main(int ac, char** av)
@@ -45,13 +72,13 @@ int main(int ac, char** av)
     eoSelect< EOT >* selector = new eoDetSelect< EOT >( selection_rate );
     state.storeFunctor(selector);
 
-    doEstimator< Distrib >* estimator =	new doEstimatorNormalMulti< EOT >();
+    edoEstimator< Distrib >* estimator =	new edoEstimatorNormalMulti< EOT >();
     state.storeFunctor(estimator);
 
     eoSelectOne< EOT >* selectone = new eoDetTournamentSelect< EOT >( 2 );
     state.storeFunctor(selectone);
 
-    doModifierMass< Distrib >* modifier = new doNormalMultiCenter< EOT >();
+    edoModifierMass< Distrib >* modifier = new edoNormalMultiCenter< EOT >();
     state.storeFunctor(modifier);
 
     eoEvalFunc< EOT >* plainEval = new Rosenbrock< EOT >();
@@ -100,7 +127,7 @@ int main(int ac, char** av)
     // This is used by doSampler.
     //-----------------------------------------------------------------------------
 
-    doBounder< EOT >* bounder = new doBounderRng< EOT >(EOT(pop[0].size(), -5),
+    edoBounder< EOT >* bounder = new edoBounderRng< EOT >(EOT(pop[0].size(), -5),
 							EOT(pop[0].size(), 5),
 							*gen);
     state.storeFunctor(bounder);
@@ -112,7 +139,7 @@ int main(int ac, char** av)
     // Prepare sampler class with a specific distribution
     //-----------------------------------------------------------------------------
 
-    doSampler< Distrib >* sampler = new doSamplerNormalMulti< EOT >( *bounder );
+    edoSampler< Distrib >* sampler = new edoSamplerNormalMulti< EOT >( *bounder );
     state.storeFunctor(sampler);
 
     //-----------------------------------------------------------------------------
@@ -166,10 +193,10 @@ int main(int ac, char** av)
     // distribution output
     //-----------------------------------------------------------------------------
 
-    doDummyContinue< Distrib >* dummy_continue = new doDummyContinue< Distrib >();
+    edoDummyContinue< Distrib >* dummy_continue = new edoDummyContinue< Distrib >();
     state.storeFunctor(dummy_continue);
 
-    doCheckPoint< Distrib >* distribution_continue = new doCheckPoint< Distrib >( *dummy_continue );
+    edoCheckPoint< Distrib >* distribution_continue = new edoCheckPoint< Distrib >( *dummy_continue );
     state.storeFunctor(distribution_continue);
 
     //-----------------------------------------------------------------------------
@@ -216,11 +243,11 @@ int main(int ac, char** av)
     // removing as doFileSnapshot does within ctor.
     //-----------------------------------------------------------------------------
 
-    doPopStat< EOT >* popStat = new doPopStat<EOT>;
+    edoPopStat< EOT >* popStat = new edoPopStat<EOT>;
     state.storeFunctor(popStat);
     pop_continue.add(*popStat);
 
-    doFileSnapshot* fileSnapshot = new doFileSnapshot("EDA_ResPop");
+    edoFileSnapshot* fileSnapshot = new edoFileSnapshot("EDA_ResPop");
     state.storeFunctor(fileSnapshot);
     fileSnapshot->add(*popStat);
     pop_continue.add(*fileSnapshot);
@@ -232,7 +259,7 @@ int main(int ac, char** av)
     // distribution output (after helper)
     //-----------------------------------------------------------------------------
 
-    doDistribStat< Distrib >* distrib_stat = new doStatNormalMulti< EOT >();
+    edoDistribStat< Distrib >* distrib_stat = new edoStatNormalMulti< EOT >();
     state.storeFunctor(distrib_stat);
 
     distribution_continue->add( *distrib_stat );
@@ -254,7 +281,7 @@ int main(int ac, char** av)
     // EDA algorithm configuration
     //-----------------------------------------------------------------------------
 
-    doAlgo< Distrib >* algo = new doEDA< Distrib >
+    edoAlgo< Distrib >* algo = new edoEDA< Distrib >
     	(*selector, *estimator, *selectone, *modifier, *sampler,
 	 pop_continue, *distribution_continue,
 	 eval,

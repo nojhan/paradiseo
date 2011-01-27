@@ -25,16 +25,21 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoModifierMass_h
+#define _edoModifierMass_h
 
-#include "Rosenbrock.h"
+#include <eoFunctor.h>
 
-typedef eoReal< eoMinimizingFitness > EOT;
+#include "edoModifier.h"
 
-int main(void)
+template < typename D >
+class edoModifierMass : public edoModifier< D >, public eoBF< D&, typename D::EOType&, void >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    //typedef typename D::EOType::AtomType AtomType; // does not work !!!
 
-    return 0;
-}
+    // virtual void operator() ( D&, D::EOType& )=0 (provided by eoBF< A1, A2, R >)
+};
+
+#endif // !_edoModifierMass_h
+

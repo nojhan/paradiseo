@@ -2,7 +2,7 @@
 
 PSIZE = 10000
 MEAN = 0
-CMD = "./test/t-doEstimatorNormalMulti -P=%s -m=%.1f -1=%.1f -2=%.1f -3=%.1f && ./gplot.py -r TestResPop -p -w 5 -u -g %s -G results_for_test_cov_parameters -f %s_gen1"
+CMD = "./test/t-edoEstimatorNormalMulti -P=%s -m=%.1f -1=%.1f -2=%.1f -3=%.1f && ./gplot.py -r TestResPop -p -w 5 -u -g %s -G results_for_test_cov_parameters -f %s_gen1"
 
 from os import system
 from numpy import arange

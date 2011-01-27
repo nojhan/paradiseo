@@ -25,16 +25,19 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoUniform_h
+#define _edoUniform_h
 
-#include "Rosenbrock.h"
+#include "edoDistrib.h"
+#include "edoVectorBounds.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoUniform : public edoDistrib< EOT >, public edoVectorBounds< EOT >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    edoUniform(EOT min, EOT max)
+	: edoVectorBounds< EOT >(min, max)
+    {}
+};
 
-    return 0;
-}
+#endif // !_edoUniform_h

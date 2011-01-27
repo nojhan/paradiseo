@@ -25,16 +25,39 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoBounderRng_h
+#define _edoBounderRng_h
 
-#include "Rosenbrock.h"
+#include "edoBounder.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoBounderRng : public edoBounder< EOT >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    edoBounderRng( EOT min, EOT max, eoRndGenerator< double > & rng )
+	: edoBounder< EOT >( min, max ), _rng(rng)
+    {}
 
-    return 0;
-}
+    void operator()( EOT& x )
+    {
+	unsigned int size = x.size();
+	assert(size > 0);
+
+	for (unsigned int d = 0; d < size; ++d) // browse all dimensions
+	    {
+
+		// FIXME: attention: les bornes RNG ont les memes bornes quelque soit les dimensions idealement on voudrait avoir des bornes differentes pour chaque dimensions.
+
+		if (x[d] < this->min()[d] || x[d] > this->max()[d])
+		    {
+			x[d] = _rng();
+		    }
+	    }
+    }
+
+private:
+    eoRndGenerator< double> & _rng;
+};
+
+#endif // !_edoBounderRng_h
+

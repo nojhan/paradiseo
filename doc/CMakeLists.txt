@@ -22,7 +22,7 @@ IF (DOXYGEN_FOUND)
 
   INSTALL(
     DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    DESTINATION share/do COMPONENT libraries
+    DESTINATION share/edo COMPONENT libraries
     PATTERN "CMakeFiles" EXCLUDE
     PATTERN "cmake_install.cmake" EXCLUDE
     PATTERN "Makefile" EXCLUDE

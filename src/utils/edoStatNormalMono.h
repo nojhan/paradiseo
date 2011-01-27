@@ -25,16 +25,31 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoStatNormalMono_h
+#define _edoStatNormalMono_h
 
-#include "Rosenbrock.h"
+#include "edoStat.h"
+#include "edoNormalMono.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoStatNormalMono : public edoDistribStat< edoNormalMono< EOT > >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    using edoDistribStat< edoNormalMono< EOT > >::value;
 
-    return 0;
-}
+    edoStatNormalMono( std::string desc = "" )
+	: edoDistribStat< edoNormalMono< EOT > >( desc )
+    {}
+
+    void operator()( const edoNormalMono< EOT >& distrib )
+    {
+	value() = "\n# ====== mono normal distribution dump =====\n";
+
+	std::ostringstream os;
+	os << distrib.mean() << " " << distrib.variance() << std::endl;
+
+	value() += os.str();
+    }
+};
+
+#endif // !_edoStatNormalMono_h

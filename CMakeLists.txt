@@ -5,7 +5,7 @@
 # Checks cmake version compatibility
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-PROJECT(DO)
+PROJECT(EDO)
 
 SET(PROJECT_VERSION_MAJOR 1)
 SET(PROJECT_VERSION_MINOR 0)
@@ -31,7 +31,7 @@ INCLUDE_DIRECTORIES(
   ${EO_INCLUDE_DIRS}
   ${MO_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
-  /Dev/ometah-0.3/common
+  #  /Dev/ometah-0.3/common
   )
 
 ######################################################################################
@@ -92,8 +92,8 @@ SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 
 LINK_DIRECTORIES(${LIBRARY_OUTPUT_PATH})
 
-ADD_LIBRARY(do STATIC ${SAMPLE_SRCS})
-INSTALL(TARGETS do ARCHIVE DESTINATION lib COMPONENT libraries)
+ADD_LIBRARY(edo STATIC ${SAMPLE_SRCS})
+INSTALL(TARGETS edo ARCHIVE DESTINATION lib COMPONENT libraries)
 
 ######################################################################################
 
@@ -102,7 +102,7 @@ INSTALL(TARGETS do ARCHIVE DESTINATION lib COMPONENT libraries)
 ### 8) Install pkg-config config file for EO
 ######################################################################################
 
-INSTALL(FILES do.pc DESTINATION lib/pkgconfig COMPONENT headers)
+INSTALL(FILES edo.pc DESTINATION lib/pkgconfig COMPONENT headers)
 
 ######################################################################################
 

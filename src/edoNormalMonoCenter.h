@@ -25,16 +25,23 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoNormalMonoCenter_h
+#define _edoNormalMonoCenter_h
 
-#include "Rosenbrock.h"
+#include "edoModifierMass.h"
+#include "edoNormalMono.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoNormalMonoCenter : public edoModifierMass< edoNormalMono< EOT > >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    typedef typename EOT::AtomType AtomType;
 
-    return 0;
-}
+    void operator() ( edoNormalMono< EOT >& distrib, EOT& mass )
+    {
+	distrib.mean() = mass;
+    }
+};
+
+#endif // !_edoNormalMonoCenter_h
+

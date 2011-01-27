@@ -33,7 +33,7 @@ LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/application/common)
 
 SET(SOURCES
-  t-doEstimatorNormalMulti
+  t-edoEstimatorNormalMulti
   t-mean-distance
   t-bounderno
   t-uniform
@@ -43,8 +43,8 @@ SET(SOURCES
 FOREACH(current ${SOURCES})
   ADD_EXECUTABLE(${current} ${current}.cpp)
   ADD_TEST(${current} ${current})
-  TARGET_LINK_LIBRARIES(${current} do doutils ${EO_LIBRARIES} ${MO_LIBRARIES} ${Boost_LIBRARIES})
-  INSTALL(TARGETS ${current} RUNTIME DESTINATION share/do/test COMPONENT test)
+  TARGET_LINK_LIBRARIES(${current} edo edoutils ${EO_LIBRARIES} ${MO_LIBRARIES} ${Boost_LIBRARIES})
+  INSTALL(TARGETS ${current} RUNTIME DESTINATION share/edo/test COMPONENT test)
 ENDFOREACH()
 
 ######################################################################################

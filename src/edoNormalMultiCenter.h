@@ -25,16 +25,24 @@ Authors:
     Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#include <eo>
-#include <edo>
+#ifndef _edoNormalMultiCenter_h
+#define _edoNormalMultiCenter_h
 
-#include "Rosenbrock.h"
+#include "edoModifierMass.h"
+#include "edoNormalMulti.h"
 
-typedef eoReal< eoMinimizingFitness > EOT;
-
-int main(void)
+template < typename EOT >
+class edoNormalMultiCenter : public edoModifierMass< edoNormalMulti< EOT > >
 {
-    edoBounderNo< EOT > bounder;
+public:
+    typedef typename EOT::AtomType AtomType;
 
-    return 0;
-}
+    void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
+    {
+	ublas::vector< AtomType > mean( distrib.size() );
+	std::copy( mass.begin(), mass.end(), mean.begin() );
+	distrib.mean() = mean;
+    }
+};
+
+#endif // !_edoNormalMultiCenter_h
