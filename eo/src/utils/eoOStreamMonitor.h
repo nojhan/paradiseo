@@ -48,6 +48,7 @@ public :
     eoOStreamMonitor( std::ostream & _out, bool _verbose=true, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) : 
         out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true) 
     {
+	(void)_verbose;
         eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoOStreamMonitor constructor is deprecated and will be removed in the next release" << std::endl;
     }
 
