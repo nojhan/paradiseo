@@ -38,7 +38,7 @@
 #include <eval/moCudakernelEval.h>
 
 /**
- * class for the cuda evaluation
+ * class for the parallel evaluation of neighborhood without mapping
  */
 
 template<class Neighbor, class IncrementEval>
