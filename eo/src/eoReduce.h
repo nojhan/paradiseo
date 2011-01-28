@@ -34,6 +34,7 @@
 #include <eoPop.h>     // eoPop
 #include <eoFunctor.h>  // eoReduce
 #include <utils/selectors.h>
+#include <utils/eoLogger.h>
 
 /**
  * eoReduce: .reduce the new generation to the specified size

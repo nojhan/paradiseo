@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-mkdir -p release
 cd release
-cmake ..
-make
+cpack -G RPM
 cd ..

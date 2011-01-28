@@ -33,6 +33,7 @@
 // EO includes
 #include <eoPop.h>     // eoPop
 #include <eoFunctor.h>  // eoMerge
+#include <utils/eoLogger.h>
 
 /**
  * eoMerge: Base class for elitist replacement algorithms. 
