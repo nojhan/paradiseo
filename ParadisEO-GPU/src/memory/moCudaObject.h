@@ -45,7 +45,6 @@
  *  class of managment of data on GPU global memory (allocation,desallocation & copy)
  */
 
-template<typename T>
 class moCudaObject {
 
 public:
@@ -56,7 +55,7 @@ public:
 	 *@param _dataTocpy the data to copy from CPU memory to _data on GPU memory
 	 *@param _dataSize the size of data to copy
 	 */
-
+	template<typename T>
 	void memCopy(T* & _data, T * & _dataTocpy, unsigned _dataSize) {
 		malloc(_data, _dataSize);
 		copy(_data, _dataTocpy, _dataSize);
@@ -67,7 +66,7 @@ public:
 	 *@param _dev_data the device global variable
 	 *@param _dataTocpy the data to copy GPU global memory to GPU global variable
 	 */
-
+	template<typename T>
 	void memCopyGlobalVariable(T* & _dev_data, T * & _dataTocpy) {
 		copy(_dev_data, _dataTocpy);
 	}
@@ -76,16 +75,16 @@ public:
 	 *Desallocate data on GPU global memory
 	 *@param _data the data to desallocate from GPU global memory
 	 */
-
+	template<typename T>
 	void memFree(T* & _data) {
 		free(_data);
 	}
 
 public:
 
-	moCudaAllocator<T> malloc;
-	moCudaCopy<T> copy;
-	moCudaDesallocator<T> free;
+	moCudaAllocator malloc;
+	moCudaCopy copy;
+	moCudaDesallocator free;
 
 };
 

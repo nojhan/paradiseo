@@ -42,7 +42,7 @@
  *  class for allocation data on GPU global memory
  */
 
-template<typename T>
+
 class moCudaAllocator {
 
 public:
@@ -59,7 +59,7 @@ public:
 	 *@param _data the data to allocate on GPU global memory
 	 *@param _dataSize the size of data to allocate on GPU memory
 	 */
-
+    template<typename T>
 	void operator()(T* & _data, unsigned _dataSize) {
 
 		//Allocate data in GPU memory

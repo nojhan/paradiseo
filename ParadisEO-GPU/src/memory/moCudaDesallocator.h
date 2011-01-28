@@ -42,7 +42,6 @@
  *  class for Desallocation of data from GPU global memory
  */
 
-template<typename T>
 class moCudaDesallocator {
 
 public:
@@ -58,7 +57,7 @@ public:
 	 *Desallocate data on GPU global memory
 	 *@param _data the data to desallocate from GPU global memory
 	 */
-
+	template<typename T>
 	void operator()(T* & _data) {
 
 		//Desallocate data from GPU global memory

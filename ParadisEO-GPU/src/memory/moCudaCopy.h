@@ -42,7 +42,6 @@
  *  class to copy data  from CPU memory to  GPU global memory and vice versa
  */
 
-template<typename T>
 class moCudaCopy {
 
 public:
@@ -60,7 +59,7 @@ public:
 	 *@param _dataTocpy the data to copy from CPU memory to GPU memory
 	 *@param _dataSize the size of data to copy 
 	 */
-
+	template<typename T>
 	void operator()(T* & _data, T * & _dataTocpy, unsigned _dataSize) {
 
 		//copy data from CPU memory to GPU memory
@@ -77,7 +76,7 @@ public:
 	 *@param _dev_data the device global variable
 	 *@param _dataTocpy the data to copy GPU global memory to GPU global variable
 	 */
-
+	template<typename T>
 	void operator()(T* & _dev_data, T * & _dataTocpy) {
 
 		//Copy n bytes from the memory area pointed to by _dataTocpy to the memory area pointed to by offset bytes from the start of symbol _dev_data
@@ -93,7 +92,7 @@ public:
 	 *@param _dataSize the size of data to copy 
 	 *@param _HostToDevice the direction of copy(true if copy will be done from CPU memory to GPU memory)
 	 */
-
+	template<typename T>
 	void operator()(T* & _data, T * & _dataTocpy, unsigned _dataSize,
 			bool _HostToDevice) {
 

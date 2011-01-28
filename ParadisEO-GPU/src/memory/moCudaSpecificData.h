@@ -41,7 +41,6 @@
  *  class of managment of specific data problem
  */
 
-template<class T>
 class moCudaSpecificData {
 
 public:
@@ -78,10 +77,10 @@ public:
 		sizeData = _size;
 	}
 
-public:
+ public:
 
 	unsigned int sizeData;
-	moCudaObject<T> cudaObject;
+	moCudaObject cudaObject;
 
 };
 #endif
