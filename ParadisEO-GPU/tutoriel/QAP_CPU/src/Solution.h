@@ -1,9 +1,9 @@
 #ifndef _SOLUTION_H_
 #define _SOLUTION_H_
 
-#include <eo> // PARADISEO
+#include <eo>
 
-class Solution:public EO <eoMinimizingFitness>{ // PARADISEO
+class Solution:public EO <eoMinimizingFitness>{ 
 
  public:
 

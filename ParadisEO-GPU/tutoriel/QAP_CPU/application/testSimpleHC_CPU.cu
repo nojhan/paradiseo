@@ -20,10 +20,9 @@ int n;
 //To compute execution time
 #include <performance/moCudaTimer.h>
 //QAP neighbor
-#include <problems/permutation/moIndexedSwapNeighbor.h>
+#include <problems/permutation/moSwapNeighbor.h>
 //QAP neighborhood 
-//#include <problems/permutation/moSwapNeighborhood.h>
-#include <neighborhood/moOrderNeighborhood.h>
+#include <problems/permutation/moSwapNeighborhood.h>
 //QAP data
 #include <Problem.h>
 // The Solution and neighbor comparator
@@ -34,25 +33,13 @@ int n;
 // Local search algorithm
 #include <algo/moLocalSearch.h>
 // The Tabou Search algorithm explorer
-//#include <explorer/moTSexplorer.h>
-//Algorithm and its components
-#include <algo/moTS.h>
-//Tabu list
-//#include <memory/moNeighborVectorTabuList.h>
-#include <memory/moIndexedVectorTabuList.h>
-//Memories
-#include <memory/moDummyIntensification.h>
-#include <memory/moDummyDiversification.h>
-#include <memory/moBestImprAspiration.h>
-//#include <time.h>
-
+#include <explorer/moSimpleHCexplorer.h>
 
 
 typedef eoInt<eoMinimizingFitness> solution;
-//typedef moSwapNeighbor<solution> Neighbor;
-typedef moIndexedSwapNeighbor<solution> Neighbor;
-//typedef moSwapNeighborhood<solution> Neighborhood;
-typedef moOrderNeighborhood<Neighbor> Neighborhood;
+typedef moSwapNeighbor<solution> Neighbor;
+typedef moSwapNeighborhood<solution> Neighborhood;
+
 
 int main(int argc, char **argv)
 {
@@ -79,17 +66,6 @@ int main(int argc, char **argv)
   parser.processParam( nbIterationParam, "TS Iteration number" );
   unsigned nbIteration = nbIterationParam.value();
 
-  // size tabu list
-  eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
-  parser.processParam( sizeTabuListParam, "Search Parameters" );
-  unsigned sizeTabuList = sizeTabuListParam.value();
-
- // duration tabu list
-  eoValueParam<unsigned int> durationParam(7, "duration", "duration of the tabu list", 'D');
-  parser.processParam( durationParam, "Search Parameters" );
-  unsigned duration = durationParam.value();
-
-
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
   eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
@@ -113,8 +89,9 @@ int main(int argc, char **argv)
 
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
-//  rng.reseed(seed);
-  srand(seed);
+
+  rng.reseed(seed);
+  //srand(seed);
   
   /* =========================================================
    *
@@ -133,14 +110,14 @@ int main(int argc, char **argv)
    solution sol(n);
    create<solution>(sol);
 
-  /*=========================================================
+ /* =========================================================
    *
    * Evaluation of a solution neighbor's
    *
    * ========================================================= */
 
-   QapEval<solution> eval;
-   QapIncrEval<Neighbor> incr_eval;
+  QapEval<solution> eval;
+  QapIncrEval<Neighbor> incr_eval;
 
   /* =========================================================
    *
@@ -148,8 +125,8 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-      moNeighborComparator<Neighbor> comparator;
-      moSolNeighborComparator<Neighbor> solComparator;
+  moNeighborComparator<Neighbor> comparator;
+  moSolNeighborComparator<Neighbor> solComparator;
 
   /* =========================================================
    *
@@ -157,7 +134,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
  
-      Neighborhood neighborhood(n*(n-1)/2);
+  Neighborhood neighborhood;
 
   /* =========================================================
    *
@@ -165,41 +142,28 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-     moIterContinuator <Neighbor> continuator(nbIteration);
-
-  /*=========================================================
-   *
-   * Tabu list
-   *
-   * ========================================================= */
-
-    sizeTabuList=(n*(n-1))/2;
-    duration=sizeTabuList/8;
-    // tabu list
-    moIndexedVectorTabuList<Neighbor> tl(sizeTabuList,duration);
+   moIterContinuator <Neighbor> continuator(nbIteration);
 
   /* =========================================================
    *
-   * Memories
+   * An explorer of solution neighborhood's
    *
    * ========================================================= */
 
-    moDummyIntensification<Neighbor> inten;
-    moDummyDiversification<Neighbor> div;
-    moBestImprAspiration<Neighbor> asp;
+  moSimpleHCexplorer<Neighbor> explorer(neighborhood, incr_eval, comparator, solComparator);
 
+  
   /* =========================================================
    *
-   * the Tabu search algorithm  
+   * the local search algorithm
    *
    * ========================================================= */
 
-    //General Constructor
-    moTS<Neighbor> tabuSearch(neighborhood, eval, incr_eval, comparator, solComparator, continuator, tl, inten, div, asp);  
+  moLocalSearch<Neighbor> localSearch(explorer, continuator, eval);
 
   /* =========================================================
    *
-   * Execute the Tabu search from random sollution
+   * Execute the local search from random sollution
    *
    * ========================================================= */
  
@@ -210,7 +174,7 @@ int main(int argc, char **argv)
  // Create timer for timing CUDA calculation
   moCudaTimer timer;
   timer.start();
-  tabuSearch(sol);
+  localSearch(sol);
   timer.stop();
   std::cout << "final:   " << sol << std::endl;
   printf("CUDA execution time = %f ms\n",timer.getTime());
@@ -222,3 +186,4 @@ int main(int argc, char **argv)
 
 return 0;
 }
+

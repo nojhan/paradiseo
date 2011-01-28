@@ -41,9 +41,11 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 ### 3) Define your targets and link the librairies
 ######################################################################################	
 			
-CUDA_ADD_EXECUTABLE(CutestSimpleTS_CPU testSimpleTS_CPU.cu) 
+CUDA_ADD_EXECUTABLE(CutestSimpleTS_CPU testSimpleTS_CPU.cu) 			
+#CUDA_ADD_EXECUTABLE(CutestSimpleHC_CPU testSimpleHC_CPU.cu)
 
 TARGET_LINK_LIBRARIES(CutestSimpleTS_CPU eoutils ga eo libcutil.a)
+#TARGET_LINK_LIBRARIES(CutestSimpleHC_CPU eoutils ga eo libcutil.a)
 
 
 
