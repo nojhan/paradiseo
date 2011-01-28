@@ -88,7 +88,7 @@ public:
 	}
 
 	/**
-	 * Compute fitness for all solution neighbors(vector of simple type) in device
+	 * Compute fitness for all solution neighbors in device without specific mapping
 	 * @param _sol the solution which generate the neighborhood
 	 */
 
@@ -96,7 +96,7 @@ public:
 	}
 
 	/**
-	 * Compute fitness for all solution neighbors in device
+	 * Compute fitness for all solution neighbors in device with K-swap mapping
 	 * @param _sol the solution which generate the neighborhood
 	 * @param _mapping the array of mapping indexes for K-swap neighborhood
 	 * @param _Kswap the number of swap
@@ -159,7 +159,6 @@ public:
 			//Copy the result from device to host
 			cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
 					* sizeof(Fitness), cudaMemcpyDeviceToHost);
-		}
 
 	}
 
@@ -207,6 +206,7 @@ protected:
 	T * vect;
 	bool mutex_kswap;
 	bool mutex;
+
 };
 
 #endif
