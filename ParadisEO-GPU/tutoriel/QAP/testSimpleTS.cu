@@ -11,6 +11,7 @@ __device__ int * dev_b;
 // The general include for eo
 #include <eo>
 #include <ga.h>
+#include <eval/moCudakernelEval.h>
 // Fitness function
 #include <problems/eval/QAPEval.h>
 // Cuda Fitness function
@@ -24,27 +25,22 @@ __device__ int * dev_b;
 #include <neighborhood/moKswapNeighbor.h>
 //To compute execution time
 #include <performance/moCudaTimer.h>
-// QAP ordered neighborhood
+//Kswap neighborhood
 #include <neighborhood/moCudaKswapNeighborhood.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 // The Iter continuator
 #include <continuator/moIterContinuator.h>
-// Local search algorithm
-#include <algo/moLocalSearch.h>
-// The Tabou Search algorithm explorer
-#include <explorer/moTSexplorer.h>
-//Algorithm and its components
+// The Tabou Search algorithm 
 #include <algo/moTS.h>
 //Tabu list
-#include <memory/moNeighborVectorTabuList.h>
+#include <memory/moIndexedVectorTabuList.h>
 //Memories
 #include <memory/moDummyIntensification.h>
 #include <memory/moDummyDiversification.h>
 #include <memory/moBestImprAspiration.h>
-//#include <time.h>
-
+#include <time.h>
 
 typedef moCudaIntVector<eoMinimizingFitness> solution;
 typedef moKswapNeighbor<solution> Neighbor;
@@ -54,97 +50,99 @@ typedef moCudaKswapNeighborhood<Neighbor> Neighborhood;
 int main(int argc, char **argv)
 {
 
- /* =========================================================
+  /* =========================================================
    *
    * Parameters
    *
    * ========================================================= */
 
     // First define a parser from the command-line arguments
-  eoParser parser(argc, argv);
+     eoParser parser(argc, argv);
 
-  // For each parameter, define Parameter, read it through the parser,
-  // and assign the value to the variable
+    // For each parameter, define Parameter, read it through the parser,
+    // and assign the value to the variable
 
-  // seed
-  eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
-  parser.processParam( seedParam );
-  unsigned seed = seedParam.value();
+    // seed
+    eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
+    parser.processParam( seedParam );
+    unsigned seed = seedParam.value();
 
- // Swap number
-  eoValueParam<unsigned int> KSwapParam(1, "KSwap", "swap number", 'N');
-  parser.processParam(KSwapParam, "KSwap" );
-  unsigned KSwap = KSwapParam.value();
+    // Swap number
+    eoValueParam<unsigned int> KSwapParam(1, "KSwap", "swap number", 'N');
+    parser.processParam(KSwapParam, "KSwap" );
+    unsigned KSwap = KSwapParam.value();
 
-  // Iteration number
-  eoValueParam<unsigned int> nbIterationParam(1, "nbIteration", "TS Iteration number", 'I');
-  parser.processParam( nbIterationParam, "TS Iteration number" );
-  unsigned nbIteration = nbIterationParam.value();
+    // Iteration number
+    eoValueParam<unsigned int> nbIterationParam(1, "nbIteration", "TS Iteration number", 'I');
+    parser.processParam( nbIterationParam, "TS Iteration number" );
+    unsigned nbIteration = nbIterationParam.value();
 
-  // size tabu list
-  eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
-  parser.processParam( sizeTabuListParam, "Search Parameters" );
-  unsigned sizeTabuList = sizeTabuListParam.value();
+    // size tabu list
+    eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
+    parser.processParam( sizeTabuListParam, "Search Parameters" );
+    unsigned sizeTabuList = sizeTabuListParam.value();
 
-  // duration tabu list
-  eoValueParam<unsigned int> durationParam(7, "duration", "duration of the tabu list", 'D');
-  parser.processParam( durationParam, "Search Parameters" );
-  unsigned duration = durationParam.value();
+    // duration tabu list
+    eoValueParam<unsigned int> durationParam(7, "duration", "duration of the tabu list", 'D');
+    parser.processParam( durationParam, "Search Parameters" );
+    unsigned duration = durationParam.value();
 
-  // the name of the "status" file where all actual parameter values will be saved
-  string str_status = parser.ProgramName() + ".status"; // default value
-  eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
-  parser.processParam( statusParam, "Persistence" );
+    // the name of the "status" file where all actual parameter values will be saved
+    string str_status = parser.ProgramName() + ".status"; // default value
+    eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
+     parser.processParam( statusParam, "Persistence" );
 
-  // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
-  // i.e. in case you need parameters somewhere else, postpone these
-  if (parser.userNeedsHelp()) {
+   // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
+   // i.e. in case you need parameters somewhere else, postpone these
+   if (parser.userNeedsHelp()) {
     parser.printHelp(cout);
     exit(1);
-  }
-  if (statusParam.value() != "") {
-    ofstream os(statusParam.value().c_str());
-    os << parser;// and you can use that file as parameter file
-  }
+    }
+    if (statusParam.value() != "") {
+       ofstream os(statusParam.value().c_str());
+       os << parser;// and you can use that file as parameter file
+    }
+
   /* =========================================================
    *
    * Random seed
    *
    * ========================================================= */
 
-  //reproducible random seed: if you don't change SEED above,
-  // you'll aways get the same result, NOT a random run
-  rng.reseed(seed);
-  //srand(time(NULL));
-  
+     //reproducible random seed: if you don't change SEED above,
+     // you'll aways get the same result, NOT a random run
+    // rng.reseed(seed);
+    srand(seed);
+
   /* =========================================================
    *
    * Initilisation of QAP data
    *
    * ========================================================= */
 
-   QAPData<int> _data(argv[1]);
-   unsigned vecSize=_data.sizeData;
+    QAPData<int> _data(argv[1]);
+    unsigned vecSize=_data.sizeData;
+
   /* =========================================================
    *
    * Initilisation of the solution
    *
    * ========================================================= */
  
-   solution sol(vecSize);
-  _data.cudaObject.memCopyGlobalVariable(dev_a,_data.a_d);
-  _data.cudaObject.memCopyGlobalVariable(dev_b,_data.b_d);
+    solution sol(vecSize);
+   _data.cudaObject.memCopyGlobalVariable(dev_a,_data.a_d);
+   _data.cudaObject.memCopyGlobalVariable(dev_b,_data.b_d);
   
- /* =========================================================
+  /*=========================================================
    *
    * Evaluation of a solution neighbor's
    *
    * ========================================================= */
-  QAPEval<solution> eval(_data);
-  unsigned long int sizeMap=sizeMapping(vecSize,KSwap);
-//  std::cout<<"sizeMap : "<<sizeMap<<std::endl;
-  QAPIncrEval<Neighbor> incr_eval;
-  moCudaKswapEval<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+
+    QAPEval<solution> eval(_data);
+    unsigned long int sizeMap=sizeMapping(vecSize,1);
+    QAPIncrEval<Neighbor> incr_eval;
+    moCudaKswapEval<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
@@ -152,8 +150,8 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  moNeighborComparator<Neighbor> comparator;
-  moSolNeighborComparator<Neighbor> solComparator;
+    moNeighborComparator<Neighbor> comparator;
+    moSolNeighborComparator<Neighbor> solComparator;
 
   /* =========================================================
    *
@@ -161,27 +159,26 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(vecSize,KSwap,cueval);
+     Neighborhood neighborhood(vecSize,1,cueval);
 
- /* =========================================================
+  /* =========================================================
    *
    * continuator
    *
    * ========================================================= */
 
-   moIterContinuator <Neighbor> continuator(nbIteration);
-
- /* =========================================================
+     moIterContinuator <Neighbor> continuator(nbIteration);
+  
+  /* =========================================================
    *
    * tabu list
    *
    * ========================================================= */
 
-  //moNeighborVectorTabuList<shiftNeighbor> tl(sizeTabuList,0);
-  sizeTabuList=(vecSize*(vecSize-1))/2;
-  duration=sizeTabuList/8;
-  // tabu list
-  moNeighborVectorTabuList<Neighbor> tl(sizeTabuList,duration);
+     sizeTabuList=(vecSize*(vecSize-1))/2;
+     duration=sizeTabuList/8;
+     // tabu list
+     moIndexedVectorTabuList<Neighbor> tl(sizeTabuList,duration);
 
   /* =========================================================
    *
@@ -189,27 +186,18 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  moDummyIntensification<Neighbor> inten;
-  moDummyDiversification<Neighbor> div;
-  moBestImprAspiration<Neighbor> asp;
-
+     moDummyIntensification<Neighbor> inten;
+     moDummyDiversification<Neighbor> div;
+     moBestImprAspiration<Neighbor> asp;
+   
   /* =========================================================
    *
-   * An explorer of solution neighborhood's
+   * The Tabu search algorithm
    *
    * ========================================================= */
 
-  moTSexplorer<Neighbor> explorer(neighborhood, cueval, comparator, solComparator, tl, inten, div, asp);
-
-  
-  /* =========================================================
-   *
-   * the local search algorithm
-   *
-   * ========================================================= */
-
-  moLocalSearch<Neighbor> localSearch1(explorer, continuator, eval);
-
+  moTS<Neighbor> tabuSearch(neighborhood, eval, cueval, comparator, solComparator, continuator, tl, inten, div, asp);  
+ 
   /* =========================================================
    *
    * Execute the local search from random sollution
@@ -221,9 +209,10 @@ int main(int argc, char **argv)
 
   std::cout << "initial: " << sol<< std::endl;
   // Create timer for timing CUDA calculation
+  cudaFuncSetCacheConfig(kernelPermutation<solution,eoMinimizingFitness, Neighbor , QAPIncrEval<Neighbor> >, cudaFuncCachePreferL1);
   moCudaTimer timer;
   timer.start();
-  localSearch1(sol);
+  tabuSearch(sol);
   std::cout << "final:   " << sol << std::endl;
   timer.stop();
   printf("CUDA execution time = %f ms\n",timer.getTime());
