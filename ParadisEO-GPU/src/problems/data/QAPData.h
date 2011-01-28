@@ -38,19 +38,19 @@
 #include <memory/moCudaSpecificData.h>
 
 template<class ElemType>
-class QAPData: public moCudaSpecificData<ElemType> {
+class QAPData: public moCudaSpecificData {
 
-public:
+ public:
 
-	using moCudaSpecificData<ElemType>::sizeData;
-	using moCudaSpecificData<ElemType>::cudaObject;
+	using moCudaSpecificData::sizeData;
+	using moCudaSpecificData::cudaObject;
 
 	/**
 	 * Default Constructor
 	 */
 
 	QAPData() :
-		moCudaSpecificData<ElemType> () {
+		moCudaSpecificData() {
 	}
 
 	/**
@@ -131,22 +131,24 @@ public:
 	void load(char* _fileName) {
 
 		FILE *f;
+		unsigned int i,j;
+                int r;
 
 		f = fopen(_fileName, "r");
 		if (f != NULL)
-			fscanf(f, "%d", &(*this).sizeData);
+		  r=fscanf(f, "%d", &(*this).sizeData);
 		else
 			printf("Le Fichier est vide\n");
 
 		a_h = new ElemType[sizeData * sizeData];
 		b_h = new ElemType[sizeData * sizeData];
 
-		for (int i = 0; i < sizeData; i++)
-			for (int j = 0; j < sizeData; j++)
-				fscanf(f, "%d", &a_h[i * sizeData + j]);
+		for (i = 0; i < sizeData; i++)
+			for (j = 0; j < sizeData; j++)
+				r=fscanf(f, "%d", &a_h[i * sizeData + j]);
 
-		for (int i = 0; i < sizeData; i++)
-			for (int j = 0; j < sizeData; j++)
+		for (i = 0; i < sizeData; i++)
+			for (j = 0; j < sizeData; j++)
 				fscanf(f, "%d", &b_h[i * sizeData + j]);
 
 		//Allocate and copy QAP data from CPU memory to GPU global memory
@@ -154,7 +156,7 @@ public:
 		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
 
 	}
-
+ public:
 public:
 
 	ElemType* a_h;
