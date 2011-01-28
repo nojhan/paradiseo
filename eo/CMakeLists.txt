@@ -106,7 +106,7 @@ ENDIF (ENABLE_CMAKE_TESTING)
 ### 5) Where must cmake go now ?
 ######################################################################################
 
-ADD_SUBDIRECTORY(app)
+#ADD_SUBDIRECTORY(app)
 ADD_SUBDIRECTORY(doc)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(test)
