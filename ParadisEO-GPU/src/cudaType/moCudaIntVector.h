@@ -47,10 +47,6 @@ class moCudaIntVector: public moCudaVector<int, Fitness> {
 
 public:
 
-	using moCudaVector<int, Fitness>::vect;
-	using moCudaVector<int, Fitness>::N;
-
-
 	/**
 	 * Default constructor.
 	 */
@@ -80,7 +76,7 @@ public:
 	 *@return a new vector.
 	 */
 
-	virtual moCudaIntVector& operator=(const moCudaIntVector & _vector) {
+	moCudaIntVector& operator=(const moCudaIntVector & _vector) {
 
 		N = _vector.N;
 		vect = new int[N];
@@ -109,6 +105,8 @@ public:
 		}
 	}
 
+	using moCudaVector<int, Fitness>::vect;
+	using moCudaVector<int, Fitness>::N;
 };
 
 #endif
