@@ -47,6 +47,9 @@ class moCudaIntVector: public moCudaVector<int, Fitness> {
 
 public:
 
+	using moCudaVector<int, Fitness>::vect;
+	using moCudaVector<int, Fitness>::N;
+
 	/**
 	 * Default constructor.
 	 */
@@ -105,8 +108,6 @@ public:
 		}
 	}
 
-	using moCudaVector<int, Fitness>::vect;
-	using moCudaVector<int, Fitness>::N;
 };
 
 #endif
