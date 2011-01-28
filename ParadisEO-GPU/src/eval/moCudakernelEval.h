@@ -39,9 +39,10 @@
 
 /**
  * The kernel function called from the host and executed in device to compute all neighbors fitness at one time
+ * with linear mapping
  * @param _eval how to evaluate each neighbor
- * @param _solution representation of solution( vector of int,float....)
- * @param _allFitness Array of Fitness to save all neighbors fitness
+ * @param _solution the representation of solution( vector of int,float....)
+ * @param _allFitness the array of Fitness to save all neighbors fitness
  * @param _fitness the current solution fitness
  * @param _neighborhoodsize the size of the neighborhood
  */
@@ -166,6 +167,7 @@ __global__ void kernelKswap(IncrementEval _eval,EOT _solution ,EOT _sol_tmp, Fit
      _allFitness[id]=tmp_fitness;
      }
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
