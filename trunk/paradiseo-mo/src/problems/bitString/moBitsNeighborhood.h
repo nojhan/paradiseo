@@ -37,6 +37,7 @@
 
 #include <neighborhood/moNeighborhood.h>
 #include <utils/eoRNG.h>
+#include <vector>
 
 /**
  * A neighborhood for bit string solutions

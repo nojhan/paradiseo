@@ -36,6 +36,7 @@
 #define _moBitsNeighbor_h
 
 #include <neighborhood/moNeighbor.h>
+#include <vector>
 
 /**
  * Neighbor to flip several bits
