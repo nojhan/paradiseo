@@ -25,6 +25,8 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
+#include <omp.h>
+
 #include "eoParallel.h"
 
 eoParallel::eoParallel() :
@@ -74,6 +76,16 @@ void eoParallel::_createParameters( eoParser& parser )
 void make_parallel(eoParser& parser)
 {
     eo::parallel._createParameters( parser );
+
+#ifdef _OPENMP
+    if ( eo::parallel.isEnabled() )
+	{
+	    if ( eo::parallel.nthreads() > 0 )
+		{
+		    omp_set_num_threads( eo::parallel.nthreads() );
+		}
+	}
+#endif // !_OPENMP
 }
 
 eoParallel eo::parallel;

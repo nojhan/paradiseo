@@ -44,8 +44,6 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
 #ifdef _OPENMP
 
-    omp_set_num_threads(eo::parallel.nthreads());
-
     double t1 = omp_get_wtime();
 
     if (!eo::parallel.isDynamic())
