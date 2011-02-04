@@ -97,7 +97,7 @@ public:
 
 		for (unsigned i = 0; i < N; i++) {
 
-			vect[i] = (bool) round((float) rand() / RAND_MAX);
+			vect[i] = (bool) round((float) rng.rand() / RAND_MAX);
 
 		}
 	}
