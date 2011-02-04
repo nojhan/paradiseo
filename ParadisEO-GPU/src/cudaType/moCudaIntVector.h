@@ -101,7 +101,7 @@ public:
 			vect[i] = i;
 		// we want a random permutation so we shuffle
 		for (unsigned i = 0; i < N; i++) {
-			random = rand() % (N - i) + i;
+			random = rng.rand() % (N - i) + i;
 			temp = vect[i];
 			vect[i] = vect[random];
 			vect[random] = temp;
