@@ -144,6 +144,18 @@ public:
 
 	}
 
+<<<<<<< .mine
+	virtual void printOn(std::ostream& os) const {
+		EO<Fitness>::printOn(os);
+		os << ' ';
+		os << N << ' ';
+		unsigned int i;
+		for( i=0;i<N;i++)
+		  os<< vect[i] << ' ';
+
+	}
+
+=======
 	virtual void printOn(std::ostream& os) const {
 		EO<Fitness>::printOn(os);
 		os << ' ';
@@ -154,6 +166,7 @@ public:
 
 	}
 
+>>>>>>> .r2101
 };
 
 #endif
