@@ -61,8 +61,11 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
     double t2 = omp_get_wtime();
 
-    eoLogger log;
-    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
+    if ( eo::parallel.enableResults() )
+	{
+	    eoLogger log;
+	    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
+	}
 
 #else // _OPENMP
 

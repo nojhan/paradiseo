@@ -54,6 +54,8 @@ public:
 
     inline unsigned int nthreads() const { return _nthreads.value(); }
 
+    inline bool enableResults() const { return _enableResults.value(); }
+
     friend void make_parallel(eoParser&);
 
 private:
@@ -64,6 +66,7 @@ private:
     eoValueParam<bool> _isDynamic;
     eoValueParam<std::string> _prefix;
     eoValueParam<unsigned int> _nthreads;
+    eoValueParam<bool> _enableResults;
 };
 
 void make_parallel(eoParser&);
