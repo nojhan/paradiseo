@@ -2,6 +2,8 @@
 // t-eoParallel.cpp
 //-----------------------------------------------------------------------------
 
+#include <omp.h>
+
 #include <eo>
 #include <es/make_real.h>
 //#include <apply.h>
@@ -39,6 +41,14 @@ int main(int ac, char** av)
     popEval( pop, pop );
 
     eo::log << eo::quiet << "DONE!" << std::endl;
+
+#pragma omp parallel
+    {
+	if ( 0 == omp_get_thread_num() )
+	    {
+		eo::log << "num of threads: " << omp_get_num_threads() << std::endl;
+	    }
+    }
 
     return 0;
 }

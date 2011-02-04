@@ -40,11 +40,9 @@
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
-#ifdef _OPENMP
-
-    omp_set_num_threads(eo::parallel.nthreads());
-
     size_t size = _pop.size();
+
+#ifdef _OPENMP
 
     double t1 = omp_get_wtime();
 
