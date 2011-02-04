@@ -33,15 +33,15 @@
 #include <neighborhood/moOrderNeighborhood.h>
 
 /**
- * @return the factorial of an unsigned integer
+ * @return the factorial of an integer
  * @param _i an integer
  */
 
-static int factorial(int i) {
-	if (i == 0)
+static int factorial(int _i) {
+	if (_i == 0)
 		return 1;
 	else
-		return i * factorial(i - 1);
+		return _i * factorial(_i - 1);
 }
 
 /**
@@ -50,8 +50,7 @@ static int factorial(int i) {
  * @param _Kswap the number of swap
  */
 
-static int sizeMapping(int _size, unsigned int _Kswap) {
-
+static int sizeMapping(int _size,unsigned int _Kswap) {
 	int _sizeMapping = _size;
 	for (int i = _Kswap; i > 0; i--) {
 		_sizeMapping *= (_size - i);
@@ -119,6 +118,7 @@ public:
 		_current.setKswap(Kswap);
 		_current.reSizeIndices(Kswap);
 		_current.setSize(_solution.size());
+
 		getMapping(currentIndex);
 		_current.setIndices(indices);
 	}
