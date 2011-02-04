@@ -200,7 +200,7 @@ protected:
    *
    */
   virtual double contribution() {
-    return ((double) rng.random(q)) / (double) q;
+    return ((double) rng.random(q)) / (double) (q-1);
   }
   
  
