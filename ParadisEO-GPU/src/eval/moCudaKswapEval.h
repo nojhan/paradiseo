@@ -76,6 +76,7 @@ public:
 		mutex = false;
 		mutex_kswap = false;
 	}
+
 	/**
 	 * Destructor
 	 */
@@ -159,6 +160,7 @@ public:
 					* sizeof(Fitness), cudaMemcpyDeviceToHost);
 
 		}
+	}
 
 		/**
 		 * Compute fitness for all solution neighbors(K-flip of binary solution) in device
