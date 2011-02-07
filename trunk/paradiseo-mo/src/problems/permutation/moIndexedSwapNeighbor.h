@@ -40,7 +40,6 @@ template <class EOT, class Fitness=typename EOT::Fitness>
 class moIndexedSwapNeighbor: public moBackableNeighbor<EOT, Fitness>, public moIndexNeighbor<EOT>
 {
 public:
-  //  using moIndexNeighbor<EOT>::EOT;
 
   using moBackableNeighbor<EOT>::fitness;
   using moIndexNeighbor<EOT>::key;
