@@ -74,16 +74,16 @@ public:
 	moCudaKswapEval(unsigned int _neighborhoodSize, IncrementEval & _incrEval) :
 		moCudaEval<Neighbor> (_neighborhoodSize), incrEval(_incrEval) {
 		mutex = false;
-		mutex_kswap=false;
+		mutex_kswap = false;
 	}
 	/**
 	 * Destructor
 	 */
 	~moCudaKswapEval() {
-		if(mutex_kswap){
-		cudaFree(&device_setSolution);
-		cudaFree(&device_tmp);
-		delete[] vect;
+		if (mutex_kswap) {
+			cudaFree(&device_setSolution);
+			cudaFree(&device_tmp);
+			delete[] vect;
 		}
 	}
 
@@ -131,7 +131,6 @@ public:
 		//Case Kswap
 		else if (_Kswap > 1) {
 			if (!mutex_kswap) {
-
 				vect = new T[neighborhoodSize * _size];
 				//Allocate the space for set of solution in the device global memory
 				cudaMalloc((void**) &device_setSolution.vect, neighborhoodSize
@@ -140,7 +139,6 @@ public:
 				cudaMalloc((void**) &device_tmp.vect, neighborhoodSize
 						* sizeof(T));
 				mutex_kswap = true;
-
 			}
 
 			for (int i = 0; i < neighborhoodSize; i++) {
@@ -160,52 +158,52 @@ public:
 			cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
 					* sizeof(Fitness), cudaMemcpyDeviceToHost);
 
-	}
-
-	/**
-	 * Compute fitness for all solution neighbors(K-flip of binary solution) in device
-	 * @param _sol the solution which generate the neighborhood
-	 * @param _mapping the array of mapping indexes for k-flip neighborhood
-	 * @param _Kflip the number of flip to do
-	 */
-
-	void neighborhoodKflipEval(EOT & _sol, unsigned * _mapping, unsigned _Kflip) {
-
-		// the solution  size
-		unsigned _size = _sol.size();
-
-		// Get Current solution fitness
-		Fitness fitness = _sol.fitness();
-
-		if (!mutex) {
-			//Allocate the space for solution in the device global memory
-			cudaMalloc((void**) &device_solution.vect, _size * sizeof(T));
-			mutex = true;
 		}
 
-		//Copy the solution vector from the host to device
-		cudaMemcpy(device_solution.vect, _sol.vect, _size * sizeof(T),
-				cudaMemcpyHostToDevice);
+		/**
+		 * Compute fitness for all solution neighbors(K-flip of binary solution) in device
+		 * @param _sol the solution which generate the neighborhood
+		 * @param _mapping the array of mapping indexes for k-flip neighborhood
+		 * @param _Kflip the number of flip to do
+		 */
 
-		//Launch the Kernel to compute all flip neighbors fitness
-		kernelKflip<EOT,Fitness,Neighbor,IncrementEval><<<kernel_Dim,BLOCK_SIZE >>>(incrEval,device_solution,device_FitnessArray,fitness,neighborhoodSize,_mapping,_Kflip);
+		void neighborhoodKflipEval(EOT & _sol, unsigned * _mapping,
+				unsigned _Kflip) {
 
-		//Copy the result from device to host
-		cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
-				* sizeof(Fitness), cudaMemcpyDeviceToHost);
-	}
+			// the solution  size
+			unsigned _size = _sol.size();
 
-protected:
+			// Get Current solution fitness
+			Fitness fitness = _sol.fitness();
+			if (!mutex) {
+				//Allocate the space for solution in the device global memory
+				cudaMalloc((void**) &device_solution.vect, _size * sizeof(T));
+				mutex = true;
+			}
 
-	IncrementEval & incrEval;
-	//NeighborhoodSize copy of solution
-	EOT device_setSolution;
-	//NeighborhoodSize element of EOT
-	EOT device_tmp;
-	//Vector of neighborhoodSize copy of solution
-	T * vect;
-	bool mutex_kswap;
-	bool mutex;
+			//Copy the solution vector from the host to device
+			cudaMemcpy(device_solution.vect, _sol.vect, _size * sizeof(T),
+					cudaMemcpyHostToDevice);
+
+			//Launch the Kernel to compute all flip neighbors fitness
+			kernelKflip<EOT,Fitness,Neighbor,IncrementEval><<<kernel_Dim,BLOCK_SIZE >>>(incrEval,device_solution,device_FitnessArray,fitness,neighborhoodSize,_mapping,_Kflip);
+
+			//Copy the result from device to host
+			cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
+					* sizeof(Fitness), cudaMemcpyDeviceToHost);
+		}
+
+	protected:
+
+		IncrementEval & incrEval;
+		//NeighborhoodSize copy of solution
+		EOT device_setSolution;
+		//NeighborhoodSize element of EOT
+		EOT device_tmp;
+		//Vector of neighborhoodSize copy of solution
+		T * vect;
+		bool mutex_kswap;
+		bool mutex;
 
 };
 
