@@ -48,8 +48,8 @@ class moCudaVector: public EO<Fitness> {
 public:
 
 	typedef ElemT ElemType;
-	using moCudaVector<int, Fitness>::vect;
-	using moCudaVector<int, Fitness>::N;
+	ElemType * vect;
+	unsigned N;
 
 	/**
 	 * Default constructor.
@@ -144,18 +144,6 @@ public:
 
 	}
 
-<<<<<<< .mine
-	virtual void printOn(std::ostream& os) const {
-		EO<Fitness>::printOn(os);
-		os << ' ';
-		os << N << ' ';
-		unsigned int i;
-		for( i=0;i<N;i++)
-		  os<< vect[i] << ' ';
-
-	}
-
-=======
 	virtual void printOn(std::ostream& os) const {
 		EO<Fitness>::printOn(os);
 		os << ' ';
@@ -166,7 +154,6 @@ public:
 
 	}
 
->>>>>>> .r2101
 };
 
 #endif
