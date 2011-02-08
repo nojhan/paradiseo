@@ -44,6 +44,7 @@ class eoParallel : public eoObject
 {
 public:
     eoParallel();
+    ~eoParallel();
 
     virtual std::string	className() const;
 
@@ -55,6 +56,7 @@ public:
     inline unsigned int nthreads() const { return _nthreads.value(); }
 
     inline bool enableResults() const { return _enableResults.value(); }
+    inline bool doMeasure() const { return _doMeasure.value(); }
 
     friend void make_parallel(eoParser&);
 
@@ -67,6 +69,8 @@ private:
     eoValueParam<std::string> _prefix;
     eoValueParam<unsigned int> _nthreads;
     eoValueParam<bool> _enableResults;
+    eoValueParam<bool> _doMeasure;
+    double _t_start;
 };
 
 void make_parallel(eoParser&);
