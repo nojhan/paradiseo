@@ -1,33 +1,62 @@
-void load(char* _fileName){
-    FILE *f;
-    int i,j;
-    //open the file in read mode
-    f=fopen(_fileName,"r" );
-    //Verify if the file was open successfely
-    if (f != NULL)
-      fscanf(f,"%d",&n);
-    else 
-      printf("Le Fichier est vide\n");
-   a=new int[n*n];
-   b=new int[n*n];
-    for (i=0;i<n;i++)
-      for(j=0;j<n;j++)
-	fscanf(f,"%d",&a[i*n+j]);      
-    for (i=0;i<n;i++)
-      for(j=0;j<n;j++)
-	fscanf(f,"%d",&b[i*n+j]);
-  }
+/*
+ <Problem.h>
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-template<class EOT>
-void create(EOT &_solution){
-    int random, temp;
-    for (int i=0; i< n; i++) 
-      _solution[i]=i;
-    // we want a random permutation so we shuffle
-    for (int i = 0; i < n; i++){
-      random = rand()%(n-i) + i;
-      temp = _solution[i];
-      _solution[i] = _solution[random];
-      _solution[random] = temp;
-    }
-  }  
+ Karima Boufaras, Thé Van LUONG
+
+ This software is governed by the CeCILL license under French law and
+ abiding by the rules of distribution of free software.  You can  use,
+ modify and/ or redistribute the software under the terms of the CeCILL
+ license as circulated by CEA, CNRS and INRIA at the following URL
+ "http://www.cecill.info".
+
+ As a counterpart to the access to the source code and  rights to copy,
+ modify and redistribute granted by the license, users are provided only
+ with a limited warranty  and the software's author,  the holder of the
+ economic rights,  and the successive licensors  have only  limited liability.
+
+ In this respect, the user's attention is drawn to the risks associated
+ with loading,  using,  modifying and/or developing or reproducing the
+ software by the user in light of its specific status of free software,
+ that may mean  that it is complicated to manipulate,  and  that  also
+ therefore means  that it is reserved for developers  and  experienced
+ professionals having in-depth computer knowledge. Users are therefore
+ encouraged to load and test the software's suitability as regards their
+ requirements in conditions enabling the security of their systems and/or
+ data to be ensured and,  more generally, to use and operate it in the
+ same conditions as regards security.
+ The fact that you are presently reading this means that you have had
+ knowledge of the CeCILL license and that you accept its terms.
+
+ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
+ Contact: paradiseo-help@lists.gforge.inria.fr
+ */
+
+#ifndef __Problem
+#define __Problem
+/**
+ * Function to load a QAP data from a specific file
+ * @param _fileName the name of file containing specific QAP data
+ */
+
+void load(char * _fileName) {
+
+	fstream file(_fileName, ios::in);
+	if (!file) {
+
+		string str = "QAPData: Could not open file [" + (string)_fileName + "].";
+		throw runtime_error(str);
+	}
+	unsigned i, j;
+	file >> n;
+	a = new unsigned[n * n];
+	b = new unsigned[n * n];
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+			file >> a[i * n + j];
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+			file >> b[i * n + j];
+}
+
+#endif
