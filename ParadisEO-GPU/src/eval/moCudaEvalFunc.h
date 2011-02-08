@@ -32,7 +32,6 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-
 #ifndef __moCudaEvalFunc_H
 #define __moCudaEvalFunc_H
 
@@ -50,6 +49,7 @@ public:
 	 */
 
 	typedef typename Neighbor::EOT EOT;
+	typedef typename EOT::ElemType T;
 	typedef typename EOT::Fitness Fitness;
 
 	/**
@@ -70,10 +70,14 @@ public:
 	 *Virtual functor to compute fitness of a solution neighbor
 	 *@param _solution the solution which generate the neighborhood
 	 *@param _fitness the current solution fitness
-	 *@param _index the set of index helping to compute the neighbor fitness
+	 *@param _index the index neighbor
 	 */
 
-	virtual inline __host__ __device__ Fitness operator() (EOT & _solution,Fitness _fitness, unsigned int * _index)=0;
+	virtual inline __host__ __device__ Fitness operator() (EOT & _solution,Fitness _fitness, unsigned int * _index){
+
+		return _fitness;
+
+	};
 
 
 };
