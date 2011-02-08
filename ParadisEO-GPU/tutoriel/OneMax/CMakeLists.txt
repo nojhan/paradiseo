@@ -10,7 +10,8 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(
-  # include CUDA source directory
+
+  # include CUDA source directory
   ${CUDA_SRC_DIR}
   # include NVIDIA source directory
   ${NVIDIA_SRC_DIR}
@@ -46,10 +47,10 @@ CUDA_ADD_EXECUTABLE(CutestSimpleHC testSimpleHC.cu)
 CUDA_ADD_EXECUTABLE(CutestSimpleTS testSimpleTS.cu) 
 CUDA_ADD_EXECUTABLE(CutestSimulatedAnnealing testSimulatedAnnealing.cu) 
 
-TARGET_LINK_LIBRARIES(CutestFirstImpr eoutils ga eo libcutil.a)
-TARGET_LINK_LIBRARIES(CutestNeutralHC eoutils ga eo libcutil.a)
-TARGET_LINK_LIBRARIES(CutestSimpleHC eoutils ga eo libcutil.a)
-TARGET_LINK_LIBRARIES(CutestSimpleTS eoutils ga eo libcutil.a)
-TARGET_LINK_LIBRARIES(CutestSimulatedAnnealing eoutils ga eo libcutil.a)
+TARGET_LINK_LIBRARIES(CutestFirstImpr eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(CutestNeutralHC eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(CutestSimpleHC eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(CutestSimpleTS eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(CutestSimulatedAnnealing eoutils ga eo ${cutil})
 
 ######################################################################################

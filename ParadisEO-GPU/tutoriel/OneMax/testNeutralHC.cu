@@ -1,5 +1,6 @@
 //Init the number of threads per block
-#define BLOCK_SIZE 128
+#define BLOCK_SIZE 256
+
 #include <iostream>  
 #include <stdlib.h> 
 using namespace std;
@@ -7,15 +8,13 @@ using namespace std;
 // The general include for eo
 #include <eo>
 #include <ga.h>
-// Fitness function
+// OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
-// Cuda Fitness function
+// OneMax increment eval function
 #include <eval/moCudaVectorEval.h>
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
 #include <cudaType/moCudaBitVector.h>
-//To compute execution time
-#include <performance/moCudaTimer.h>
 // One Max neighbor
 #include <neighborhood/moCudaBitNeighbor.h>
 // One Max ordered neighborhood
@@ -27,8 +26,12 @@ using namespace std;
 #include <continuator/moTrueContinuator.h>
 // Simple HC algorithm
 #include <algo/moNeutralHC.h>
+//To compute execution time
+#include <performance/moCudaTimer.h>
 
-
+//------------------------------------------------------------------------------------
+// Define types of the representation solution, different neighbors and neighborhoods
+//------------------------------------------------------------------------------------
 // REPRESENTATION
 typedef moCudaBitVector<eoMaximizingFitness> solution;
 typedef moCudaBitNeighbor <solution,eoMaximizingFitness> Neighbor;
@@ -98,10 +101,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
   solution sol(vecSize);
-  if(vecSize<64)
-    for(unsigned i=0;i<vecSize;i++) cout<<sol[i]<<"  ";
-  cout<<endl;
-
+  
   /* =========================================================
    *
    * Eval fitness function
@@ -155,14 +155,14 @@ void main_function(int argc, char **argv)
   
   eval(sol);
 
-  std::cout << "initial: " << sol.fitness()<< std::endl;
+  std::cout << "initial: " << sol<< std::endl;
   moCudaTimer timer;
   timer.start();
   neutralHC(sol);
   timer.stop();
+  std::cout << "final:   " << sol << std::endl;
   printf("CUDA execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
-  std::cout << "final:   " << sol.fitness() << std::endl;
 
 }
 

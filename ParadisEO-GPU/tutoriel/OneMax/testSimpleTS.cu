@@ -1,5 +1,5 @@
 //Init the number of threads per block
-#define BLOCK_SIZE 128
+#define BLOCK_SIZE 256
 
 #include <iostream>  
 #include <stdlib.h> 
@@ -8,9 +8,9 @@ using namespace std;
 // The general include for eo
 #include <eo>
 #include <ga.h>
-// Fitness function
+// OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
-// Cuda Fitness function
+// OneMax increment eval function
 #include <eval/moCudaVectorEval.h>
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
@@ -40,7 +40,9 @@ using namespace std;
 #include <memory/moBestImprAspiration.h>
 
 
-
+//------------------------------------------------------------------------------------
+// Define types of the representation solution, different neighbors and neighborhoods
+//------------------------------------------------------------------------------------
 // REPRESENTATION
 
 typedef moCudaBitVector<eoMaximizingFitness> solution;
@@ -66,6 +68,7 @@ void main_function(int argc, char **argv)
   eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
   parser.processParam( seedParam );
   unsigned seed = seedParam.value();
+
 
   // description of genotype
   eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
@@ -205,14 +208,14 @@ void main_function(int argc, char **argv)
   eval(sol1);
   std::cout << "Tabu Search 1:" << std::endl;
   std::cout << "---------------------" << std::endl;
-  std::cout << "initial: " << sol1.fitness()<< std::endl;
+  std::cout << "initial: " << sol1<< std::endl;
   moCudaTimer timer1;
   timer1.start();
   localSearch1(sol1);
   timer1.stop();
+  std::cout << "final:   " << sol1 << std::endl<<std::endl;
   printf("CUDA execution time = %f ms\n",timer1.getTime());
   timer1.deleteTimer();
-  std::cout << "final:   " << sol1.fitness() << std::endl<<std::endl;
   /* =========================================================
    *
    * Execute the TS Basic Constructor 
@@ -222,14 +225,15 @@ void main_function(int argc, char **argv)
   eval(sol2);
   std::cout << "Tabu Search 2:" << std::endl;
   std::cout << "---------------------" << std::endl;
-  std::cout << "initial: " << sol2.fitness()<< std::endl;
+  std::cout << "initial: " << sol2<< std::endl;
   moCudaTimer timer2;
   timer2.start();
   localSearch2(sol2);
   timer2.stop();
+  std::cout << "final:   " << sol2 << std::endl<< std::endl;
   printf("CUDA execution time = %f ms\n",timer2.getTime());
   timer2.deleteTimer();
-  std::cout << "final:   " << sol2.fitness() << std::endl<< std::endl;
+
   /* =========================================================
    *
    * Execute the TS Simple Constructor
@@ -239,14 +243,15 @@ void main_function(int argc, char **argv)
   eval(sol3);
   std::cout << "Tabu Search 3:" << std::endl;
   std::cout << "---------------------" << std::endl;
-  std::cout << "initial: " << sol3.fitness()<< std::endl;
+  std::cout << "initial: " << sol3<< std::endl;
   moCudaTimer timer3;
   timer3.start();
   localSearch3(sol3);
   timer3.stop();
+  std::cout << "final:   " << sol3<< std::endl<< std::endl;
   printf("CUDA execution time = %f ms\n",timer3.getTime());
   timer3.deleteTimer();
-  std::cout << "final:   " << sol3.fitness() << std::endl<< std::endl;
+
   /* =========================================================
    *
    * Execute the TS General Constructor
@@ -256,15 +261,14 @@ void main_function(int argc, char **argv)
   eval(sol4);
   std::cout << "Tabu Search 4:" << std::endl;
   std::cout << "---------------------" << std::endl;
-  std::cout << "initial: " << sol4.fitness()<< std::endl;
+  std::cout << "initial: " << sol4<< std::endl;
   moCudaTimer timer4;
   timer4.start();
   localSearch4(sol4);
   timer4.stop();
+  std::cout << "final:   " << sol4 << std::endl<< std::endl;
   printf("CUDA execution time = %f ms\n",timer4.getTime());
   timer4.deleteTimer();
-  std::cout << "final:   " << sol4.fitness() << std::endl<< std::endl;
-    
 }
 
 // A main that catches the exceptions

@@ -1,5 +1,5 @@
 //Init the number of threads per block
-#define BLOCK_SIZE 128
+#define BLOCK_SIZE 256
 
 #include <iostream>  
 #include <stdlib.h> 
@@ -8,15 +8,13 @@ using namespace std;
 // The general include for eo
 #include <eo>
 #include <ga.h>
-// Fitness function
+// OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
-// Cuda Fitness function
+// OneMax increment eval function
 #include <eval/moCudaVectorEval.h>
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
 #include <cudaType/moCudaBitVector.h>
-//To compute execution time
-#include <performance/moCudaTimer.h>
 // One Max neighbor
 #include <neighborhood/moCudaBitNeighbor.h>
 // One Max ordered neighborhood
@@ -32,7 +30,12 @@ using namespace std;
 #include <algo/moFirstImprHC.h>
 // The First Improvment algorithm explorer
 #include <explorer/moFirstImprHCexplorer.h>
+//To compute execution time
+#include <performance/moCudaTimer.h>
 
+//------------------------------------------------------------------------------------
+// Define types of the representation solution, different neighbors and neighborhoods
+//------------------------------------------------------------------------------------
 // REPRESENTATION
 typedef moCudaBitVector<eoMaximizingFitness> solution;
 typedef moCudaBitNeighbor <solution,eoMaximizingFitness> Neighbor;
@@ -85,10 +88,8 @@ void main_function(int argc, char **argv)
    * ========================================================= */
 
   //reproducible random seed: if you don't change SEED above,
-  // you'll aways get the same result, NOT a random run
+  // you'll always get the same result, NOT a random run
   rng.reseed(seed);
-  int seed1=time(0);
-  srand(seed1);
   
   /* =========================================================
    *
@@ -97,9 +98,6 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
   solution sol(vecSize);
-  if(vecSize<64)
-    for(unsigned i=0;i<vecSize;i++) cout<<sol[i]<<"  ";
-  cout<<endl;
 
   /* =========================================================
    *
@@ -172,14 +170,14 @@ void main_function(int argc, char **argv)
   //Can be eval here, else it will be done at the beginning of the localSearch
   eval(sol);
 
-  std::cout << "initial: " << sol.fitness()<< std::endl;
+  std::cout << "initial: " << sol<< std::endl;
   moCudaTimer timer;
   timer.start();
   localSearch(sol);
   timer.stop();
+  std::cout << "final:   " << sol << std::endl;
   printf("CUDA execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
-  std::cout << "final:   " << sol.fitness() << std::endl;
   
   /* =========================================================
    *
@@ -188,23 +186,17 @@ void main_function(int argc, char **argv)
    * ========================================================= */
  
   solution sol1(vecSize);
-  if(vecSize<64)
-    for(unsigned i=0;i<vecSize;i++) cout<<sol1[i]<<"  ";
-  cout<<endl;
-  cout<<endl;
-
   eval(sol1);
-
-  std::cout << "initial: " << sol1.fitness()<< std::endl;
+  std::cout<< std::endl;
+  std::cout << "initial: " << sol1<< std::endl;
 
   moCudaTimer timer1;
   timer1.start();
   firstImprHC(sol1);
   timer1.stop();
+  std::cout << "final:   " << sol1 << std::endl;
   printf("CUDA execution time = %f ms\n",timer1.getTime());
   timer1.deleteTimer();
-
-  std::cout << "final:   " << sol1.fitness() << std::endl;
 
 }
 
