@@ -40,7 +40,7 @@
 template<class ElemType>
 class QAPData: public moCudaSpecificData {
 
- public:
+public:
 
 	using moCudaSpecificData::sizeData;
 	using moCudaSpecificData::cudaObject;
@@ -130,33 +130,34 @@ class QAPData: public moCudaSpecificData {
 
 	void load(char* _fileName) {
 
-		FILE *f;
-		unsigned int i,j;
-                int r;
+		fstream file(_fileName, ios::in);
+		if (!file) {
 
-		f = fopen(_fileName, "r");
-		if (f != NULL)
-		  r=fscanf(f, "%d", &(*this).sizeData);
-		else
-			printf("Le Fichier est vide\n");
+			string str = "QAPData: Could not open file [" + (string) _fileName
+					+ "].";
+			throw runtime_error(str);
+		}
 
+		unsigned i, j;
+		file >> sizeData;
 		a_h = new ElemType[sizeData * sizeData];
 		b_h = new ElemType[sizeData * sizeData];
 
 		for (i = 0; i < sizeData; i++)
 			for (j = 0; j < sizeData; j++)
-				r=fscanf(f, "%d", &a_h[i * sizeData + j]);
-
+				file >> a_h[i * sizeData + j];
 		for (i = 0; i < sizeData; i++)
 			for (j = 0; j < sizeData; j++)
-				fscanf(f, "%d", &b_h[i * sizeData + j]);
+				file >> b_h[i * sizeData + j];
 
 		//Allocate and copy QAP data from CPU memory to GPU global memory
 		cudaObject.memCopy(a_d, a_h, sizeData * sizeData);
 		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
 
 	}
- public:
+public:
+public:
+
 public:
 
 	ElemType* a_h;
