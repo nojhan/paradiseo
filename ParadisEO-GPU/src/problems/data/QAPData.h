@@ -155,8 +155,6 @@ public:
 		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
 
 	}
-public:
-public:
 
 public:
 
