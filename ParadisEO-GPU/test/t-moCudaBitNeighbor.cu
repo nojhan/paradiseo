@@ -1,8 +1,8 @@
- /*
+/*
   <t-moCudaBitNeighbor.cu>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Thé Van LUONG, Karima Boufaras
+  Karima Boufaras,  Thé Van LUONG
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -30,42 +30,42 @@
 
   ParadisEO WebSite : http://paradiseo.gforge.inria.fr
   Contact: paradiseo-help@lists.gforge.inria.fr
-  */
+*/
 
- #include <cstdlib>
- #include <cassert>
- #include <iostream>
- #include <cudaType/moCudaBitVector.h>
- #include <neighborhood/moCudaBitNeighbor.h>
+#include <cstdlib>
+#include <cassert>
+#include <iostream>
+#include <cudaType/moCudaBitVector.h>
+#include <neighborhood/moCudaBitNeighbor.h>
 
- typedef moCudaBitVector<eoMaximizingFitness> Solution;
- typedef moCudaBitNeighbor<Solution,eoMaximizingFitness> Neighbor;
-
-
- int main() {
+typedef moCudaBitVector<eoMaximizingFitness> Solution;
+typedef moCudaBitNeighbor<Solution,eoMaximizingFitness> Neighbor;
 
 
-     std::cout << "[t-moCudaBitNeighbor] => START" << std::endl;
-     //test constructor
-     Neighbor test1, test2;
+int main() {
 
-     test1.fitness(3);
-     //test operateur d'affectation
-     test2=test1;
-     assert(test1.fitness()==test2.fitness());
 
-     //test operateur de copy
-     Neighbor test3(test1);
-     assert(test1.fitness()==test3.fitness());
+  std::cout << "[t-moCudaBitNeighbor] => START" << std::endl;
+  //test constructor
+  Neighbor test1, test2;
 
-     test1.printOn(std::cout);
-     test2.printOn(std::cout);
-     test3.printOn(std::cout);
+  test1.fitness(3);
+  //test operateur d'affectation
+  test2=test1;
+  assert(test1.fitness()==test2.fitness());
 
-     assert(test1.className()=="moCudaBitNeighbor");
+  //test operateur de copy
+  Neighbor test3(test1);
+  assert(test1.fitness()==test3.fitness());
 
-     std::cout << "[t-moCudaBitNeighbor] => OK" << std::endl;
+  test1.printOn(std::cout);
+  test2.printOn(std::cout);
+  test3.printOn(std::cout);
 
-     return EXIT_SUCCESS;
- }
+  assert(test1.className()=="moCudaBitNeighbor");
+
+  std::cout << "[t-moCudaBitNeighbor] => OK" << std::endl;
+
+  return EXIT_SUCCESS;
+}
 
