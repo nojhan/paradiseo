@@ -44,8 +44,8 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 CUDA_ADD_EXECUTABLE(CutestSimpleHC_GPU testSimpleHC.cu) 
 CUDA_ADD_EXECUTABLE(CutestSimpleTS_GPU testSimpleTS.cu) 
 
-TARGET_LINK_LIBRARIES(CutestSimpleHC_GPU eoutils ga eo libcutil.a)
-TARGET_LINK_LIBRARIES(CutestSimpleTS_GPU eoutils ga eo libcutil.a)
+TARGET_LINK_LIBRARIES(CutestSimpleHC_GPU eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(CutestSimpleTS_GPU eoutils ga eo ${cutil})
 
 
 
