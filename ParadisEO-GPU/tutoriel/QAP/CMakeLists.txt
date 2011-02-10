@@ -48,4 +48,3 @@ TARGET_LINK_LIBRARIES(CutestSimpleHC_GPU eoutils ga eo ${cutil})
 TARGET_LINK_LIBRARIES(CutestSimpleTS_GPU eoutils ga eo ${cutil})
 
 
-
