@@ -35,8 +35,7 @@
 #ifndef __PPPEval
 #define __PPPEval
 
-//#include <problems/data/PPPData.h>
-#include <PPPData.h>
+#include <problems/data/PPPData.h>
 
 template<class EOT, class ElemType = typename EOT::ElemType>
   class PPPEval: public eoEvalFunc<EOT> {
