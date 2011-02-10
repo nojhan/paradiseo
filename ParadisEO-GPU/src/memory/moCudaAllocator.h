@@ -52,7 +52,7 @@ class moCudaAllocator {
 
   moCudaAllocator() {
   }
-    template<typename T>
+
   /**
    *Allocate data on GPU global memory
    *@param _data the data to allocate on GPU global memory
