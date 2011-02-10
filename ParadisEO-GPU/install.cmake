@@ -13,6 +13,9 @@ SET(NVIDIA_DIR "/home/mia/NVIDIA_GPU_Computing_SDK" CACHE PATH "NVIDIA directory
 
 #  Here, just specify GPU_DIR : the directory where package Paradiseo GPU has been extrated
 SET(PARADISEO_GPU_DIR "/home/mia/workspace/ParadisEO-GPU" CACHE PATH "ParadisEO-GPU directory" FORCE)
+# Here, just specify the name of cutil library depending to the used NVIDIA_GPU_Computing_SDK
+# Find in NVIDIA_GPU_Computing_SDK/C/lib
+SET(cutil "libcutil_i386.a")
 #########################################################################################################
 # 2) ParadisEO-GPU install: ADVANCED Configuration
 #########################################################################################################
