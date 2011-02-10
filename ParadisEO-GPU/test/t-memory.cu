@@ -2,7 +2,7 @@
   <t-memory.cu>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Thé Van LUONG, Karima Boufaras
+  Karima Boufaras, Thé Van LUONG
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -67,7 +67,6 @@ int main() {
 
   //test copy from device to host
   cpy(cpy_data,d_data,5,0);
-  i=0;
   for(i=0;i<5;i++)
     assert(cpy_data[i]==i);
 
@@ -87,5 +86,4 @@ int main() {
 
   return EXIT_SUCCESS;
 }
-
  
