@@ -73,6 +73,7 @@ class QapIncrEval : public moEval<Neighbor>{
     unsigned i,j;
     _neighbor.getIndices(n,i,j);
     cost = _sol.fitness() +compute_delta(_sol,i,j);
+    _neighbor.fitness(cost);
   }
 
   /**
