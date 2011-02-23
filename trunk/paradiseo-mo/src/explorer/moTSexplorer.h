@@ -146,7 +146,7 @@ public:
             neighborhood.init(_solution, *current);
             //eval the current neighbor
             eval(_solution, *current);
-
+            
             //Find the first non-tabu element
             if ( (!tabuList.check(_solution, *current)) || aspiration(_solution, *current) ) {
                 // set best
