@@ -41,7 +41,7 @@ Authors:
 #include <edo>
 
 #include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublas/symmetric_matrix.hpp>
+#include <boost/numeric/ublas/symmetric.hpp>
 
 #include "Rosenbrock.h"
 #include "Sphere.h"
