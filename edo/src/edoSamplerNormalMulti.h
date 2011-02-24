@@ -53,7 +53,7 @@ public:
 
 	    assert( Vl == Vc );
 
-	    _L.resize(Vl, Vc);
+	    _L.resize(Vl);
 
 	    unsigned int i,j,k;
 
