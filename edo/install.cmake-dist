@@ -1,0 +1,20 @@
+# Variables to set
+
+#  directory we need to build project
+SET(EO_DIR "<<PATH_TO_EO>>" CACHE PATH "EO directory" FORCE)
+SET(MO_DIR "<<PATH_TO_MO>>" CACHE PATH "MO directory" FORCE)
+
+# automagically set parameters, do not edit
+
+SET(EO_INCLUDE_DIRS "${EO_DIR}/src" CACHE PATH "EO include directory" FORCE)
+SET(EO_LIBRARY_DIRS "${EO_DIR}/release/lib" CACHE PATH "EO library directory" FORCE)
+SET(EO_LIBRARIES "eoutils eo es ga cma gcov")
+
+SET(MO_INCLUDE_DIRS "${MO_DIR}/src" CACHE PATH "MO include directory" FORCE)
+SET(MO_LIBRARY_DIRS "${MO_DIR}/release/lib" CACHE PATH "MO library directory" FORCE)
+SET(MO_LIBRARIES "mo")
+
+# ... or rather use pkg-config (dont forget to comment the code above)
+
+#PKG_CHECK_MODULES(EO eo REQUIRED)
+#PKG_CHECK_MODULES(MO mo REQUIRED)
