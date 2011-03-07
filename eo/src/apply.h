@@ -44,7 +44,12 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
 #ifdef _OPENMP
 
-    double t1 = omp_get_wtime();
+    double t1 = 0;
+
+    if ( eo::parallel.enableResults() )
+	{
+	    t1 = omp_get_wtime();
+	}
 
     if (!eo::parallel.isDynamic())
 	{
@@ -59,10 +64,12 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
 	}
 
-    double t2 = omp_get_wtime();
-
-    eoLogger log;
-    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
+    if ( eo::parallel.enableResults() )
+	{
+	    double t2 = omp_get_wtime();
+	    eoLogger log;
+	    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
+	}
 
 #else // _OPENMP
 

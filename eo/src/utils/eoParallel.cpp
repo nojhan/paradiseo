@@ -28,13 +28,30 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include <omp.h>
 
 #include "eoParallel.h"
+#include "eoLogger.h"
 
 eoParallel::eoParallel() :
     _isEnabled( false, "parallelize-loop", "Enable memory shared parallelization into evaluation's loops", '\0' ),
     _isDynamic( false, "parallelize-dynamic", "Enable dynamic memory shared parallelization", '\0' ),
     _prefix( "results", "parallelize-prefix", "Here's the prefix filename where the results are going to be stored", '\0' ),
-    _nthreads( 0, "parallelize-nthreads", "Define the number of threads you want to use, nthreads = 0 means you want to use all threads available", '\0' )
-{}
+    _nthreads( 0, "parallelize-nthreads", "Define the number of threads you want to use, nthreads = 0 means you want to use all threads available", '\0' ),
+    _enableResults( false, "parallelize-enable-results", "Enable the generation of results", '\0' ),
+    _doMeasure( false, "parallelize-do-measure", "Do some measures during execution", '\0' ),
+    _t_start(0)
+{
+}
+
+eoParallel::~eoParallel()
+{
+#ifdef _OPENMP
+    if ( doMeasure() )
+	{
+	    double _t_end = omp_get_wtime();
+	    eoLogger log;
+	    log << eo::file("measure_" + prefix()) << _t_end - _t_start << std::endl;
+	}
+#endif // !_OPENMP
+}
 
 std::string eoParallel::className() const
 {
@@ -71,6 +88,8 @@ void eoParallel::_createParameters( eoParser& parser )
     parser.processParam( _isDynamic, section );
     parser.processParam( _prefix, section );
     parser.processParam( _nthreads, section );
+    parser.processParam( _enableResults, section );
+    parser.processParam( _doMeasure, section );
 }
 
 void make_parallel(eoParser& parser)
@@ -84,6 +103,11 @@ void make_parallel(eoParser& parser)
 		{
 		    omp_set_num_threads( eo::parallel.nthreads() );
 		}
+	}
+
+    if ( eo::parallel.doMeasure() )
+	{
+	    eo::parallel._t_start = omp_get_wtime();
 	}
 #endif // !_OPENMP
 }
