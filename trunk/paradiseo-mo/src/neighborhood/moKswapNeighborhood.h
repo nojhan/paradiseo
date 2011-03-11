@@ -109,16 +109,14 @@ public:
 	virtual void init(EOT& _solution, Neighbor& _current) {
 
 		//Compute the mapping only for the first init
-		if (mutex) {
+		if (mutex==true) {
 			setMapping();
 			mutex = false;
 		}
-
 		moOrderNeighborhood<Neighbor>::init(_solution, _current);
 		_current.setKswap(Kswap);
 		_current.reSizeIndices(Kswap);
 		_current.setSize(_solution.size());
-
 		getMapping(currentIndex);
 		_current.setIndices(indices);
 	}
@@ -129,11 +127,9 @@ public:
 	 * @param _current the next neighbor
 	 */
 	virtual void next(EOT& _solution, Neighbor& _current) {
-
 		moOrderNeighborhood<Neighbor>::next(_solution, _current);
 		getMapping(currentIndex);
 		_current.setIndices(indices);
-
 	}
 
 	/**
@@ -142,8 +138,9 @@ public:
 	 */
 
 	virtual void getMapping(unsigned int _currentIndex) {
-		for (unsigned int i = 0; i <= Kswap; i++)
+		for (unsigned int i = 0; i <= Kswap; i++){
 			indices[i] = mapping[_currentIndex + i * neighborhoodSize];
+		}
 	}
 
 	/**
