@@ -58,7 +58,7 @@ public:
 	 */
 
 	~moIndexSwapNeighbor() {
-		delete[] (indices);
+		//delete[] (indices);
 	}
 
 	/**
@@ -93,7 +93,6 @@ public:
 	virtual moIndexSwapNeighbor<EOT> & operator=(
 			const moIndexSwapNeighbor<EOT> & _source) {
 		moIndexNeighbor<EOT, Fitness>::operator=(_source);
-		this->key = _source.key;
 		this->Kswap = _source.Kswap;
 		this->reSizeIndices(Kswap);
 		for (unsigned int i = 0; i <= Kswap; i++)
@@ -133,16 +132,9 @@ public:
 	 */
 
 	void setIndices(unsigned int * _indices) {
-		for (unsigned int i = 0; i <= Kswap; i++)
+		for (unsigned int i = 0; i <= Kswap; i++){
 			setIndice(i, _indices[i]);
-	}
-
-	/**
-	 * Get the set of k-swap indexes
-	 */
-
-	unsigned int * getIndices() {
-		return indices;
+		}
 	}
 
 	/**
@@ -185,7 +177,7 @@ public:
 	 */
 
 	void reSizeIndices(unsigned int _Kswap) {
-		delete[] (indices);
+		delete [] (indices);
 		indices = new unsigned int[_Kswap + 1];
 	}
 
