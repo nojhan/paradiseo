@@ -67,7 +67,9 @@ eoLogger::eoLogger()
 }
 
 eoLogger::~eoLogger()
-{}
+{
+    if (_fd > 2) { ::close(_fd); }
+}
 
 std::string	eoLogger::className() const
 {
