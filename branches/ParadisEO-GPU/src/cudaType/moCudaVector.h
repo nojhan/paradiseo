@@ -70,7 +70,6 @@ public:
 
 		vect = new ElemType[_size];
 
-		//create();
 	}
 
 	/**
