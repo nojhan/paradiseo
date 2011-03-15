@@ -48,8 +48,6 @@ class moCudaVector: public EO<Fitness> {
 public:
 
 	typedef ElemT ElemType;
-	ElemType * vect;
-	unsigned N;
 
 	/**
 	 * Default constructor.
@@ -165,6 +163,12 @@ public:
 			os << vect[i] << ' ';
 
 	}
+
+protected:
+
+	ElemType * vect;
+	unsigned N;
+
 
 };
 
