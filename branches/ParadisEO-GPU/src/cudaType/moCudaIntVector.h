@@ -85,15 +85,15 @@ public:
 	void create() {
 
 		unsigned random;
-		int temp;
+		int tmp;
 		for (unsigned i = 0; i < N; i++)
 			vect[i] = i;
 		// we want a random permutation so we shuffle
 		for (unsigned i = 0; i < N; i++) {
 			random = rng.rand() % (N - i) + i;
-			temp = vect[i];
+			tmp = vect[i];
 			vect[i] = vect[random];
-			vect[random] = temp;
+			vect[random] = tmp;
 		}
 	}
 
