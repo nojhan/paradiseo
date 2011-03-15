@@ -51,8 +51,6 @@ public:
 
     // virtual EOType operator()( D& ) = 0 (provided by eoUF< A1, R >)
 
-    virtual EOType sample( D& ) = 0;
-
     EOType operator()( D& distrib )
     {
 	unsigned int size = distrib.size();
@@ -83,6 +81,10 @@ public:
 
 	return solution;
     }
+
+protected:
+
+    virtual EOType sample( D& ) = 0;
 
 private:
     //edoBounderNo<EOType> _dummy_bounder;
