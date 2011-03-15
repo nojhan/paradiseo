@@ -75,9 +75,8 @@ public:
 	 *@param _b Value to assign to vector.
 	 */
 
-	moCudaBitVector(unsigned _size, bool _b) {
-
-		moCudaVector<bool, Fitness>:: moCudaVector(_size);
+	moCudaBitVector(unsigned _size, bool _b) :
+		moCudaVector<bool, Fitness> (_size) {
 
 		for (unsigned i = 0; i < _size; i++)
 			vect[i] = _b;
