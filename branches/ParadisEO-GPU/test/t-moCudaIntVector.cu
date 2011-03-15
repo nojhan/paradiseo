@@ -2,7 +2,7 @@
   <t-moCudaIntVector.cu>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
- Karima Boufaras, Thé Van LUONG
+  Karima Boufaras, Thé Van LUONG
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -46,22 +46,41 @@ int main() {
 
   std::cout << "[t-moCudaIntVector] => START" << std::endl;
 
-  //verif constructor
+  //test Default constructor
   Solution sol;
+  assert(sol.size()==0);
+  
+  //test constructor
   Solution sol1(5);
   Solution sol2(3);
 
-  assert(sol.size()==1); 
   assert(sol1.size()==5); 
   assert(sol2.size()==3); 
 
-  //verif discret vector
+  //test discret vector (create) & getter
   for(int i=0;i<5;i++)
     assert((sol1[i]>=0)||(sol1[i]<5));
   
-  //verif discret vector
+  //test size setter
+  sol1.setSize(4);
+  assert(sol1.size()==4); 
+ 
+  //test solution setter  
+  sol1[4]=0;
+  assert(sol1[4]==0);
+  
+  //test discret vector
   for(int i=0;i<3;i++)
     assert((sol2[i]>=0)||(sol2[i]<3));
+  sol2.fitness(200);
+    
+  //test assignement operator
+  sol1=sol2;
+  assert(sol1.size()==3);
+  assert(sol1.fitness()==200); 
+  for(int i=0;i<3;i++)
+    assert(sol1[i]==sol2[i]);
+
     
   std::cout << "[t-moCudaIntVector] => OK" << std::endl;
 
