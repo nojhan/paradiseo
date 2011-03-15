@@ -48,14 +48,16 @@ int main() {
   std::cout << "[t-moCudaBitVector] => START" << std::endl;
 
   EvalOneMax<Solution> eval;
-  //verif default constructor
+  
+  //test default constructor
   Solution sol;
-  assert(sol.size()==1); 
-  //verif constructor of random vector
+  assert(sol.size()==0);
+   
+  //test constructor of random vector
   Solution sol1(5);
   assert(sol1.size()==5);
    
-  //verif bool
+  //test random vector of  bool
   for(int i=0;i<5;i++)
     assert((sol1[i]==0)||(sol1[i]==1));
 
@@ -63,7 +65,7 @@ int main() {
   eval(sol1);
   eoMaximizingFitness sum=0;
   for(int i=0;i<5;i++)
-    sum=sol1[i]+sum;
+    sum=sum+sol1[i];
   assert(sol1.fitness()==sum);
 
   //verif constructor of constant vector
@@ -74,13 +76,13 @@ int main() {
   eval(sol2);
   assert(sol2.fitness()==4);
 
-  //verif accessor
+  //test accessor
   sol2[3]=0; 
   assert(sol2[3]==0);
   eval(sol2);
   assert(sol2.fitness()==3);
 
-  //verif operator =
+  //test assignement operator
   sol2=sol1;
   assert(sol1.size()==sol2.size());
   assert(sol1.fitness()==sol2.fitness());
