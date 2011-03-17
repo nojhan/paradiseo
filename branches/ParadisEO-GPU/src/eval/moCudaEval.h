@@ -39,97 +39,100 @@
 /**
  * Abstract class for evaluation on GPU
  */
+
 template<class Neighbor>
 class moCudaEval: public moEval<Neighbor> {
 
- public:
+public:
 
-  /**
-   * Define type of a solution corresponding to Neighbor
-   */
-  typedef typename Neighbor::EOT EOT;
+	/**
+	 * Define type of a solution corresponding to Neighbor
+	 */
+	typedef typename Neighbor::EOT EOT;
 
-  typedef typename EOT::Fitness Fitness;
+	typedef typename EOT::Fitness Fitness;
 
-  /**
-   * Constructor
-   * @param _neighborhoodSize the size of the neighborhood
-   */
+	/**
+	 * Constructor
+	 * @param _neighborhoodSize the size of the neighborhood
+	 */
 
-  moCudaEval(unsigned int _neighborhoodSize) {
+	moCudaEval(unsigned int _neighborhoodSize) {
 
-    neighborhoodSize = _neighborhoodSize;
-    host_FitnessArray = new Fitness[neighborhoodSize];
-    cudaMalloc((void**) &device_FitnessArray, neighborhoodSize
-	       * sizeof(Fitness));
-    kernel_Dim = neighborhoodSize / BLOCK_SIZE + ((neighborhoodSize
-						   % BLOCK_SIZE == 0) ? 0 : 1);
-  }
+		neighborhoodSize = _neighborhoodSize;
+		host_FitnessArray = new Fitness[neighborhoodSize];
+		cudaMalloc((void**) &device_FitnessArray, neighborhoodSize
+				* sizeof(Fitness));
+		kernel_Dim = neighborhoodSize / BLOCK_SIZE + ((neighborhoodSize
+				% BLOCK_SIZE == 0) ? 0 : 1);
+	}
 
-  /**
-   * Destructor
-   */
+	/**
+	 * Destructor
+	 */
 
-  ~moCudaEval() {
+	~moCudaEval() {
 
-    delete[] host_FitnessArray;
-    cudaFree(device_FitnessArray);
-    cudaFree(&device_solution);
-  }
+		delete[] host_FitnessArray;
+		cudaFree(device_FitnessArray);
+		cudaFree(&device_solution);
 
-  /**
-   * Set fitness of a solution neighbors
-   *@param _sol the solution which generate the neighborhood
-   *@param _neighbor the current neighbor
-   */
+	}
 
-  void operator()(EOT & _sol, Neighbor & _neighbor) {
+	/**
+	 * Set fitness of a solution neighbors
+	 *@param _sol the solution which generate the neighborhood
+	 *@param _neighbor the current neighbor
+	 */
 
-    _neighbor.fitness(host_FitnessArray[_neighbor.index()]);
+	void operator()(EOT & _sol, Neighbor & _neighbor) {
 
-  }
+		_neighbor.fitness(host_FitnessArray[_neighbor.index()]);
 
-  /**
-   * Compute fitness for all  Kswap solution neighbors in device
-   * @param _sol the solution which generate the neighborhood
-   * @param _mapping the neighborhood mapping
-   * @param _Kswap the number of swap
-   */
-  virtual void neighborhoodKswapEval(EOT & _sol, unsigned * _mapping,
-				     unsigned _Kswap) {
+	}
 
-  }
+	/**
+	 * Compute fitness for all  Kswap solution neighbors in device
+	 * @param _sol the solution which generate the neighborhood
+	 * @param _mapping the neighborhood mapping
+	 * @param _Kswap the number of swap
+	 */
 
-  /**
-   * Compute fitness for all Kflip solution neighbors in device
-   * @param _sol the solution which generate the neighborhood
-   * @param _mapping the neighborhood mapping
-   * @param _Kflip the number of bit to flip
-   */
-  virtual void neighborhoodKflipEval(EOT & _sol, unsigned * _mapping,
-				     unsigned _Kflip) {
+	virtual void neighborhoodKswapEval(EOT & _sol, unsigned * _mapping,
+			unsigned _Kswap) {
 
-  }
+	}
 
-  /**
-   * Compute fitness for all solution neighbors in device
-   * @param _sol the solution which generate the neighborhood
-   */
+	/**
+	 * Compute fitness for all Kflip solution neighbors in device
+	 * @param _sol the solution which generate the neighborhood
+	 * @param _mapping the neighborhood mapping
+	 * @param _Kflip the number of bit to flip
+	 */
+	virtual void neighborhoodKflipEval(EOT & _sol, unsigned * _mapping,
+			unsigned _Kflip) {
 
-  virtual void neighborhoodEval(EOT & _sol)=0;
+	}
 
- protected:
+	/**
+	 * Compute fitness for all solution neighbors in device
+	 * @param _sol the solution which generate the neighborhood
+	 */
 
-  //the host array to save all neighbors fitness
-  Fitness * host_FitnessArray;
-  //the device array to save neighbors fitness computed in device
-  Fitness * device_FitnessArray;
-  //the device solution
-  EOT device_solution;
-  //the size of neighborhood
-  unsigned int neighborhoodSize;
-  //Cuda kernel dimension
-  int kernel_Dim;
+	virtual void neighborhoodEval(EOT & _sol)=0;
+
+protected:
+
+	//the host array to save all neighbors fitness
+	Fitness * host_FitnessArray;
+	//the device array to save neighbors fitness computed in device
+	Fitness * device_FitnessArray;
+	//the device solution
+	EOT device_solution;
+	//the size of neighborhood
+	unsigned int neighborhoodSize;
+	//Cuda kernel dimension
+	int kernel_Dim;
 
 };
 
