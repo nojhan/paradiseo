@@ -109,7 +109,7 @@ int PipeComSend( PCom *to, const char *line )
     int	nb = 0;
     if( ! Check(to ) )
 	return nb;
-    nb = fprintf( to->fWrit, line );
+    nb = fprintf( to->fWrit, line, 0 );
     fflush( to->fWrit );
     return nb;
 }
