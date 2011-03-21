@@ -140,6 +140,18 @@ class MOEO : public EO < MOEOObjectiveVector >
 
 
     /**
+     * Sets one dimension of the objective vector 
+     * @param _dim dimension of the objective vector to set
+     * @param _value the new value of the corresponding objective
+     */
+  void objectiveVector(unsigned int _dim, typename ObjectiveVector::Type _value)
+    {
+      objectiveVectorValue[_dim] = _value;
+      invalidObjectiveVectorValue = false;
+    }
+
+
+    /**
      * Sets the objective vector of the current solution
      * @param _objectiveVectorValue the new objective vector
      */
