@@ -152,6 +152,16 @@ class MOEO : public EO < MOEOObjectiveVector >
 
 
     /**
+     * Gets one dimension of the objective vector 
+     * @param _dim dimension of the objective vector to set
+     */
+  typename ObjectiveVector::Type objectiveVector(unsigned int _dim)
+    {
+      return objectiveVectorValue[_dim];
+    }
+
+
+    /**
      * Sets the objective vector of the current solution
      * @param _objectiveVectorValue the new objective vector
      */
