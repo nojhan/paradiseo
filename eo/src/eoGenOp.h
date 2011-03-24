@@ -66,17 +66,17 @@ class eoGenOp : public eoOp<EOT>, public eoUF<eoPopulator<EOT> &, void>
   /** Max production is used to reserve space for all elements that are used by the operator,
       not setting it properly can result in a crash
   */
-  virtual unsigned max_production(void) = 0;
+    virtual unsigned max_production(void) = 0;
 
-  virtual std::string className() const = 0;
+    virtual std::string className() const = 0;
+
     void operator()(eoPopulator<EOT>& _pop)
     {
-    _pop.reserve(max_production());
-      apply(_pop);
+	_pop.reserve( max_production() );
+	apply(_pop);
     }
 
-
-  protected :
+    //protected :
   /** the function that will do the work
    */
     virtual void apply(eoPopulator<EOT>& _pop) = 0;
