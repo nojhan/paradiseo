@@ -134,6 +134,16 @@ public:
     }
   }
 
+  /**
+   * Write object. Called printOn since it prints the object _on_ a stream.
+   * @param _os A std::ostream.
+   */
+  virtual void printOn(std::ostream& _os) const {
+    _os << this->fitness() << " " << nBits ;
+    for(unsigned int i = 0; i < nBits; i++)
+      _os << " "  << bits[i] ;
+  }
+
 };
 
 #endif
