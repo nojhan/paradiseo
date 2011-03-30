@@ -210,6 +210,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
     /// Apply a few generation of evolution to the population.
     virtual void operator()(eoPop<EOT>& _pop)
     {
+      _pop.reserve(offspring.capacity());
+
       eoPop<EOT> empty_pop;
 
       popEval(empty_pop, _pop); // A first eval of pop.
