@@ -325,11 +325,11 @@ class MOEO : public EO < MOEOObjectiveVector >
       {
         if ( invalidObjectiveVector() )
           {
-            _os << "INVALID\t";
+            _os << "INVALID ";
           }
         else
           {
-            _os << objectiveVectorValue << '\t';
+            _os << objectiveVectorValue << ' ';
           }
       }
 
