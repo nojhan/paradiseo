@@ -62,11 +62,9 @@ public:
 	 *@param _size The neighborhood size.
 	 */
 
-	moCudaVector(unsigned _size) {
+	moCudaVector(unsigned _size): N (_size){
 
-		N = _size;
-
-		vect = new ElemType[_size];
+		vect = new ElemType[N];
 
 	}
 
@@ -154,15 +152,7 @@ public:
 	 * Print the solution
 	 */
 
-	virtual void printOn(std::ostream& os) const {
-		EO<Fitness>::printOn(os);
-		os << ' ';
-		os << N << ' ';
-		unsigned int i;
-		for (i = 0; i < N; i++)
-			os << vect[i] << ' ';
-
-	}
+	virtual void printOn(std::ostream& os) const=0;
 
 protected:
 
