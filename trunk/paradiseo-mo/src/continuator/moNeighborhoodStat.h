@@ -233,7 +233,7 @@ public :
         return "moNeighborhoodStat";
     }
 
-private:
+protected:
 
     //the neighborhood
     Neighborhood& neighborhood ;
