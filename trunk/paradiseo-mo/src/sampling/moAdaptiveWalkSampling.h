@@ -41,7 +41,7 @@
 #include <continuator/moCheckpoint.h>
 #include <perturb/moLocalSearchInit.h>
 #include <algo/moRandomSearch.h>
-#include <algo/moSimpleHC.h>
+#include <algo/moFirstImprHC.h>
 #include <continuator/moSolutionStat.h>
 #include <continuator/moMinusOneCounterStat.h>
 #include <continuator/moStatFromStat.h>
