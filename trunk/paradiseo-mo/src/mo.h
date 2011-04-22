@@ -188,6 +188,7 @@
 #include <sampling/moFDCsampling.h>
 #include <sampling/moFitnessCloudSampling.h>
 #include <sampling/moHillClimberSampling.h>
+#include <sampling/moAdaptiveWalkSampling.h>
 #include <sampling/moMHBestFitnessCloudSampling.h>
 #include <sampling/moMHRndFitnessCloudSampling.h>
 #include <sampling/moNeutralDegreeSampling.h>

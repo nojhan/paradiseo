@@ -1,5 +1,5 @@
 /*
-  <moHillClimberSampling.h>
+  <moAdaptiveWalkSampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,8 +32,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moHillClimberSampling_h
-#define moHillClimberSampling_h
+#ifndef moAdaptiveWalkSampling_h
+#define moAdaptiveWalkSampling_h
 
 #include <eoInit.h>
 #include <eval/moEval.h>
@@ -49,13 +49,13 @@
 
 /**
  * To compute the length and final solution of an adaptive walk:
- *   Perform a simple Hill-climber based on the neighborhood (gradiant walk, the whole neighborhood is visited),
+ *   Perform a first improvement Hill-climber based on the neighborhood (adaptive walk),
  *   The lengths of HC are collected and the final solution which are local optima
  *   The adaptive walk is repeated several times
  *
  */
 template <class Neighbor>
-class moHillClimberSampling : public moSampling<Neighbor>
+class moAdaptiveWalkSampling : public moSampling<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
@@ -70,7 +70,7 @@ public:
      * @param _eval an incremental evaluation of neighbors
      * @param _nbAdaptWalk Number of adaptive walks
      */
-    moHillClimberSampling(eoInit<EOT> & _init,
+    moAdaptiveWalkSampling(eoInit<EOT> & _init,
                           moNeighborhood<Neighbor> & _neighborhood,
                           eoEvalFunc<EOT>& _fullEval,
                           moEval<Neighbor>& _eval,
@@ -78,7 +78,7 @@ public:
             moSampling<Neighbor>(initHC, * new moRandomSearch<Neighbor>(initHC, _fullEval, _nbAdaptWalk), copyStat),
             copyStat(lengthStat),
             checkpoint(trueCont),
-            hc(_neighborhood, _fullEval, _eval, checkpoint),
+	    hc(_neighborhood, _fullEval, _eval, checkpoint),
             initHC(_init, hc)
     {
         // to count the number of step in the HC
@@ -91,7 +91,7 @@ public:
     /**
      * Destructor
      */
-    ~moHillClimberSampling() {
+    ~moAdaptiveWalkSampling() {
         // delete the pointer on the local search which has been constructed in the constructor
         delete localSearch;
     }
@@ -102,7 +102,7 @@ protected:
     moTrueContinuator<Neighbor> trueCont;
     moStatFromStat<EOT, unsigned int> copyStat;
     moCheckpoint<Neighbor> checkpoint;
-    moSimpleHC<Neighbor> hc;
+    moFirstImprHC<Neighbor> hc;
     moLocalSearchInit<Neighbor> initHC;
 };
 
