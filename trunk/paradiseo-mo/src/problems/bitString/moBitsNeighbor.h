@@ -48,7 +48,7 @@ class moBitsNeighbor : virtual public moNeighbor<EOT, Fitness>, public moBackabl
 public:
 
   // position of bits which are flipped
-  vector<unsigned int> bits;
+  std::vector<unsigned int> bits;
 
   // number of bits to flip
   unsigned int nBits;
