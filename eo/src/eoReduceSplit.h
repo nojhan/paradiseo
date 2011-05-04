@@ -270,7 +270,7 @@ public:
   {
     if (t_rate <= 0.5)
       { 
-          eo::log << eo:warnings << "Warning, Rate for eoStochTournamentTruncateSplit adjusted to 0.51" << std::endl;
+          eo::log << eo::warnings << "Warning, Rate for eoStochTournamentTruncateSplit adjusted to 0.51" << std::endl;
 	t_rate = 0.51;
       }
     if (t_rate > 1)
