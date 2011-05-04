@@ -100,6 +100,8 @@ public:
 
 
     void apply(eoPopulator<EOT>& _pop) {
+	_pop.reserve( this->max_production() );
+
         position_type pos = _pop.tellp();
         for (size_t i = 0; i < rates.size(); ++i) {
             _pop.seekp(pos);
@@ -108,7 +110,11 @@ public:
                     //            try
                     //            {
                     // apply it to all the guys in the todo std::list
-                    (*ops[i])(_pop);
+
+                    //(*ops[i])(_pop);
+
+                    ops[i]->apply(_pop);
+
                     //            }
                     // check for out of individuals and do nothing with that...
                     //            catch(eoPopulator<EOT>::OutOfIndividuals&)

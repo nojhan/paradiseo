@@ -44,6 +44,12 @@ ENABLE_LANGUAGE(C)
 ### 2) Include required modules / configuration files
 #####################################################################################
 
+FIND_PACKAGE(OpenMP REQUIRED)
+IF(OPENMP_FOUND)
+  SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+ENDIF()
+
 INCLUDE(CMakeBackwardCompatibilityCXX)
 
 INCLUDE(FindDoxygen)
@@ -103,7 +109,7 @@ ENDIF (ENABLE_CMAKE_TESTING)
 ### 5) Where must cmake go now ?
 ######################################################################################
 
-ADD_SUBDIRECTORY(app)
+#ADD_SUBDIRECTORY(app)
 ADD_SUBDIRECTORY(doc)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(test)

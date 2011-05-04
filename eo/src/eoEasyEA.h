@@ -81,6 +81,25 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
         replace(_replace)
     {}
 
+    /** Ctor taking a breed and merge, an overload of ctor to define an offspring size */
+    eoEasyEA(
+      eoContinue<EOT>& _continuator,
+      eoEvalFunc<EOT>& _eval,
+      eoBreed<EOT>& _breed,
+      eoReplacement<EOT>& _replace,
+      unsigned _offspringSize
+    ) : continuator(_continuator),
+        eval (_eval),
+        loopEval(_eval),
+        popEval(loopEval),
+        selectTransform(dummySelect, dummyTransform),
+        breed(_breed),
+        mergeReduce(dummyMerge, dummyReduce),
+        replace(_replace)
+    {
+	offspring.reserve(_offspringSize); // This line avoids an incremental resize of offsprings.
+    }
+
     /*
     eoEasyEA(eoContinue <EOT> & _continuator,
       eoPopEvalFunc <EOT> & _pop_eval,
@@ -191,7 +210,9 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
     /// Apply a few generation of evolution to the population.
     virtual void operator()(eoPop<EOT>& _pop)
     {
-      eoPop<EOT> offspring, empty_pop;
+      _pop.reserve(offspring.capacity());
+
+      eoPop<EOT> empty_pop;
 
       popEval(empty_pop, _pop); // A first eval of pop.
 
@@ -269,6 +290,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 
     eoMergeReduce<EOT>        mergeReduce;
     eoReplacement<EOT>&       replace;
+
+    eoPop<EOT>		      offspring;
 
     // Friend classes
     friend class eoIslandsEasyEA <EOT> ;
