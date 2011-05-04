@@ -16,12 +16,18 @@
 # ----------------------------------------------------------------------------
 
 # change this to your local boost-path 
-SET(BOOST_PATH "C:/development/libs/os/boost/boost_1_33_1")
-
+# SET(BOOST_PATH "C:/development/libs/os/boost/boost_1_33_1")
 
 # ----------------------------------------------------------------------------
 
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
 PROJECT(PyEO)
+
+FIND_PACKAGE(Boost 1.42 COMPONENTS program_options python)
+
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
 # python
 IF(APPLE)
@@ -38,10 +44,10 @@ IF(APPLE)
 	INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 
 	# boost
-	SET(BOOST_INC ${BOOST_PATH})
-	INCLUDE_DIRECTORIES(${BOOST_INC})
-	SET(BOOST_LIBRARY ${BOOST_PATH}/libs/python/build/bin-stage/)
-	SET(BOOSTPYTHON_LIBRARY ${BOOST_LIBRARY}/boost_python)
+	# SET(BOOST_INC ${BOOST_PATH})
+	# INCLUDE_DIRECTORIES(${BOOST_INC})
+	# SET(BOOST_LIBRARY ${BOOST_PATH}/libs/python/build/bin-stage/)
+	# SET(BOOSTPYTHON_LIBRARY ${BOOST_LIBRARY}/boost_python)
 	
 	# osx internal
 	find_library(APPLE_CARBON Carbon) 
@@ -54,10 +60,10 @@ ELSE(APPLE)
 	INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 	
 	# boost
-	SET(BOOST_INC ${BOOST_PATH})
-	INCLUDE_DIRECTORIES(${BOOST_INC})
-	SET(BOOST_LIBRARY ${BOOST_PATH}/libs/python/build/bin-stage/)
-	SET(BOOSTPYTHON_LIBRARY ${BOOST_LIBRARY}/boost_python)
+	# SET(BOOST_INC ${BOOST_PATH})
+	# INCLUDE_DIRECTORIES(${BOOST_INC})
+	# SET(BOOST_LIBRARY ${BOOST_PATH}/libs/python/build/bin-stage/)
+	# SET(BOOSTPYTHON_LIBRARY ${BOOST_LIBRARY}/boost_python)
 	
 ENDIF(APPLE)
 
@@ -84,8 +90,11 @@ ENDIF(WIN32 AND NOT CYGWIN)
 
 # add the libs
 if(APPLE)
-	target_link_libraries(PyEO ${APPLE_CARBON} ${PYTHON_LIBRARY}  ${BOOSTPYTHON_LIBRARY} )
+	target_link_libraries(PyEO ${APPLE_CARBON} ${PYTHON_LIBRARY}  ${Boost_LIBRARIES}
+	  #${BOOSTPYTHON_LIBRARY}
+	  )
 else(APPLE)
-	target_link_libraries(PyEO ${PYTHON_LIBRARY}  ${BOOSTPYTHON_LIBRARY} )
+	target_link_libraries(PyEO ${PYTHON_LIBRARY}  ${Boost_LIBRARIES}
+	  #${BOOSTPYTHON_LIBRARY}
+	  )
 endif(APPLE)
-

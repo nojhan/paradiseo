@@ -21,9 +21,9 @@
 #ifndef PICKLE_H
 #define PICKLE_h
 
-#ifndef WIN32
-#include <config.h>
-#endif
+// #ifndef WIN32
+// #include <config.h>
+// #endif
 
 #include <boost/python.hpp>
 #include <sstream>
