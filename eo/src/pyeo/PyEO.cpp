@@ -23,7 +23,6 @@
 #include "PyEO.h"
 #include <eoPop.h>
 
-
 using namespace std;
 //using namespace boost::python;
 
@@ -35,28 +34,28 @@ bool PyFitness::dominates(const PyFitness& oth) const
     bool dom = false;
 
     for (unsigned i = 0; i < nObjectives(); ++i)
-    {
-      int objective = objective_info[i];
-
-      if (objective == 0) // ignore
-	  continue;
-
-      bool maxim = objective > 0;
-
-      double aval = maxim? (*this)[i] : -(*this)[i];
-      double bval = maxim? oth[i] : -oth[i];
-
-      if (fabs(aval - bval) > tol())
-      {
-        if (aval < bval)
         {
-          return false; // cannot dominate
+            int objective = objective_info[i];
+
+            if (objective == 0) // ignore
+                continue;
+
+            bool maxim = objective > 0;
+
+            double aval = maxim? (*this)[i] : -(*this)[i];
+            double bval = maxim? oth[i] : -oth[i];
+
+            if (fabs(aval - bval) > tol())
+                {
+                    if (aval < bval)
+                        {
+                            return false; // cannot dominate
+                        }
+                    // else aval < bval
+                    dom = true; // for the moment: goto next objective
+                }
+            //else they're equal in this objective, goto next
         }
-        // else aval < bval
-        dom = true; // for the moment: goto next objective
-      }
-      //else they're equal in this objective, goto next
-    }
 
     return dom;
 }
@@ -76,22 +75,22 @@ struct pyPop_pickle_suite : boost::python::pickle_suite
 {
     static boost::python::tuple getstate(const eoPop<PyEO>& _pop)
     {
-	boost::python::list entries;
-	for (unsigned i = 0; i != _pop.size(); ++i)
-	    entries.append( PyEO_pickle_suite::getstate(_pop[i]) );
+        boost::python::list entries;
+        for (unsigned i = 0; i != _pop.size(); ++i)
+            entries.append( PyEO_pickle_suite::getstate(_pop[i]) );
 
-	return boost::python::make_tuple(boost::python::object(_pop.size()), entries);
+        return boost::python::make_tuple(boost::python::object(_pop.size()), entries);
     }
 
     static void setstate( eoPop<PyEO>& _pop, boost::python::tuple pickled)
     {
-	int sz = boost::python::extract<int>(pickled[0]);
-	boost::python::list entries = boost::python::list(pickled[1]);
-	_pop.resize(sz);
-	for (unsigned i = 0; i != _pop.size(); ++i)
-	{
-	    PyEO_pickle_suite::setstate(_pop[i], boost::python::tuple(entries[i]) );
-	}
+        int sz = boost::python::extract<int>(pickled[0]);
+        boost::python::list entries = boost::python::list(pickled[1]);
+        _pop.resize(sz);
+        for (unsigned i = 0; i != _pop.size(); ++i)
+            {
+                PyEO_pickle_suite::setstate(_pop[i], boost::python::tuple(entries[i]) );
+            }
     }
 };
 
@@ -109,21 +108,21 @@ void pop_shuffle(eoPop<PyEO>& pop) { pop.shuffle(); }
 
 void translate_index_error(index_error const& e)
 {
-        PyErr_SetString(PyExc_IndexError, e.what.c_str());
+    PyErr_SetString(PyExc_IndexError, e.what.c_str());
 }
 
 PyEO& pop_getitem(eoPop<PyEO>& pop, boost::python::object key)
 {
     boost::python::extract<int> x(key);
     if (!x.check())
-	throw index_error("Slicing not allowed");
+        throw index_error("Slicing not allowed");
 
     int i = x();
 
     if (static_cast<unsigned>(i) >= pop.size())
-    {
-	throw index_error("Index out of bounds");
-    }
+        {
+            throw index_error("Index out of bounds");
+        }
     return pop[i];
 }
 
@@ -131,14 +130,14 @@ void pop_setitem(eoPop<PyEO>& pop, boost::python::object key, PyEO& value)
 {
     boost::python::extract<int> x(key);
     if (!x.check())
-	throw index_error("Slicing not allowed");
+        throw index_error("Slicing not allowed");
 
     int i = x();
 
     if (static_cast<unsigned>(i) >= pop.size())
-    {
-	throw index_error("Index out of bounds");
-    }
+        {
+            throw index_error("Index out of bounds");
+        }
 
     pop[i] = value;
 }
@@ -163,35 +162,35 @@ extern void perf2worth();
 extern void monitors();
 extern void statistics();
 
-BOOST_PYTHON_MODULE(PyEO)
+BOOST_PYTHON_MODULE(libPyEO)
 {
     using namespace boost::python;
 
     boost::python::register_exception_translator<index_error>(&translate_index_error);
 
     boost::python::class_<PyEO>("EO")
-	.add_property("fitness", &PyEO::getFitness, &PyEO::setFitness)
-	.add_property("genome", &PyEO::getGenome, &PyEO::setGenome)
-	.def_pickle(PyEO_pickle_suite())
-	.def("invalidate", &PyEO::invalidate)
-	.def("invalid", &PyEO::invalid)
-	.def("__str__", &PyEO::to_string)
-	;
+        .add_property("fitness", &PyEO::getFitness, &PyEO::setFitness)
+        .add_property("genome", &PyEO::getGenome, &PyEO::setGenome)
+        .def_pickle(PyEO_pickle_suite())
+        .def("invalidate", &PyEO::invalidate)
+        .def("invalid", &PyEO::invalid)
+        .def("__str__", &PyEO::to_string)
+        ;
 
     boost::python::class_<eoPop<PyEO> >("eoPop", init<>() )
-	.def( init< unsigned, eoInit<PyEO>& >()[with_custodian_and_ward<1,3>()] )
-	.def("append", &eoPop<PyEO>::append, "docstring?")
-	.def("__str__", to_string<eoPop<PyEO> >)
-	.def("__len__", pop_size)
-	.def("sort",    pop_sort )
-	.def("shuffle", pop_shuffle)
-	.def("__getitem__", pop_getitem, return_internal_reference<>() )
-	.def("__setitem__", pop_setitem)
-	.def("best", &eoPop<PyEO>::best_element, return_internal_reference<>() )
-	.def("push_back", pop_push_back)
-	.def("resize",    pop_resize)
-	.def_pickle(pyPop_pickle_suite())
-	;
+        .def( init< unsigned, eoInit<PyEO>& >()[with_custodian_and_ward<1,3>()] )
+        .def("append", &eoPop<PyEO>::append, "docstring?")
+        .def("__str__", to_string<eoPop<PyEO> >)
+        .def("__len__", pop_size)
+        .def("sort",    pop_sort )
+        .def("shuffle", pop_shuffle)
+        .def("__getitem__", pop_getitem, return_internal_reference<>() )
+        .def("__setitem__", pop_setitem)
+        .def("best", &eoPop<PyEO>::best_element, return_internal_reference<>() )
+        .def("push_back", pop_push_back)
+        .def("resize",    pop_resize)
+        .def_pickle(pyPop_pickle_suite())
+        ;
 
 
     // Other definitions in different compilation units,
@@ -215,17 +214,18 @@ BOOST_PYTHON_MODULE(PyEO)
     // The traits class
     class_<PyFitness>("PyFitness");
 
-	def("nObjectives", &PyFitness::nObjectives);
-	def("tol", &PyFitness::tol);
-	def("maximizing", &PyFitness::maximizing);
-	def("setObjectivesSize", &PyFitness::setObjectivesSize);
-	def("setObjectivesValue", &PyFitness::setObjectivesValue);
-	def("dominates", dominates);
+    def("nObjectives", &PyFitness::nObjectives);
+    def("tol", &PyFitness::tol);
+    def("maximizing", &PyFitness::maximizing);
+    def("setObjectivesSize", &PyFitness::setObjectivesSize);
+    def("setObjectivesValue", &PyFitness::setObjectivesValue);
+    def("dominates", dominates);
 }
 
 
 // to avoid having to build with libeo.a
-ostream & operator << ( ostream& _os, const eoPrintable& _o ) {
-            _o.printOn(_os);
-	            return _os;
+ostream & operator << ( ostream& _os, const eoPrintable& _o )
+{
+    _o.printOn(_os);
+    return _os;
 };
