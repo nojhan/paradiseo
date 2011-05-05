@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
+	     Marc.Schoenauer@polytechnique.fr
 CVS Info: $Date: 2001-06-21 12:03:17 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/test/RoyalRoad.h,v 1.3 2001-06-21 12:03:17 jmerelo Exp $ $Author: jmerelo $
 */
 
@@ -51,7 +51,7 @@ class RoyalRoad: public eoEvalFunc<EOT> {
 	  _eo.fitness( fitness );
 	}
   };
-	
+
   private:
 	unsigned div;
 

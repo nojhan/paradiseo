@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoDrawable.h
 // (c) GeNeura Team, 1999
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -33,8 +33,8 @@ using namespace std;
 // eoDrawable
 //-----------------------------------------------------------------------------
 
-/** eoDrawable is a template class that adds a drawing interface to an object.\\
-Requisites for template instantiation are that the object must admit a default ctor 
+/** eoDrawable is a template class that adds a drawing interface to an object.
+Requisites for template instantiation are that the object must admit a default ctor
 and a copy ctor. The Object must be an eoObject, thus, it must have its methods: className,
 eoDrawables can be drawn on any two-dimensional surface; it can be added to any
 object with above characteristics.
@@ -52,13 +52,13 @@ class eoDrawable
 
   /// Virtual dtor. They are needed in virtual class hierarchies
   virtual ~eoDrawable() {};
-  
+
 
   /**Draws the object. It must be redefined in any subclass, it´s impossible
   to have a general drawing method
   @param _x, _y coorinates */
   virtual void draw( unsigned _x, unsigned _y) = 0;
-  	
+
 };
 
-#endif EODRAWABLE_H
+#endif //! EODRAWABLE_H

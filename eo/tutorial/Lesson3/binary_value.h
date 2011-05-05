@@ -4,7 +4,7 @@
 
 /** Just a simple function that takes binary value of a chromosome and sets
     the fitnes.
-    @param _chrom A binary chromosome 
+    @param _chrom A binary chromosome
 */
 // INIT
 double binary_value(const std::vector<bool>& _chrom)
@@ -14,4 +14,3 @@ double binary_value(const std::vector<bool>& _chrom)
     sum += _chrom[i];
   return sum;
 }
-

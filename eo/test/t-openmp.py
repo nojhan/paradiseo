@@ -27,10 +27,10 @@ import optparse, logging, sys, os
 from datetime import datetime
 
 LEVELS = {'debug': logging.DEBUG,
-          'info': logging.INFO,
-          'warning': logging.WARNING,
-          'error': logging.ERROR,
-          'critical': logging.CRITICAL}
+	  'info': logging.INFO,
+	  'warning': logging.WARNING,
+	  'error': logging.ERROR,
+	  'critical': logging.CRITICAL}
 
 LOG_DEFAULT_FILENAME='notitle.log'
 
@@ -68,10 +68,10 @@ def parser(parser=optparse.OptionParser()):
 
 def logger(level_name, filename=LOG_DEFAULT_FILENAME):
     logging.basicConfig(
-        level=logging.DEBUG,
-        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-        filename=filename, filemode='a'
-        )
+	level=logging.DEBUG,
+	format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+	filename=filename, filemode='a'
+	)
 
     console = logging.StreamHandler()
     console.setLevel(LEVELS.get(level_name, logging.NOTSET))
@@ -85,45 +85,45 @@ if not options.onlyexecute:
 
 def get_boxplot_data( filename ):
     try:
-        f = open( filename )
-        return [ [ float(value) for value in line.split() ] for line in f.readlines() ]
+	f = open( filename )
+	return [ [ float(value) for value in line.split() ] for line in f.readlines() ]
     except:
-        raise ValueError('got an issue during the reading of file %s' % filename)
+	raise ValueError('got an issue during the reading of file %s' % filename)
 
 def do_measure( name, p, ps, P, d, ds, D, r=options.nRun, s=options.seed, v='logging' ):
     OPENMP_EXEC_FORMAT='./test/t-openmp -p=%d --popStep=%d -P=%d -d=%d --dimStep=%d -D=%d -r=%d --seed=%d -v=%s -H=%s -C=%d -V=%d'
 
     pwd = options.topic + name + '_'
     cmd = OPENMP_EXEC_FORMAT % (p, ps, P, d, ds, D, r, s, v, pwd,
-                                0 if options.onlyVarTime else 1,
-                                0 if options.onlyConstTime else 1)
+				0 if options.onlyVarTime else 1,
+				0 if options.onlyConstTime else 1)
     logging.info( cmd )
     if not options.onlyprint:
-        os.system( cmd )
+	os.system( cmd )
 
     if not options.onlyexecute:
-        def generate( filenames ):
-            for cur in filenames:
-                filename = RESULT_FILE_FORMAT % (pwd, cur, p, ps, P, d, ds, D, r, s)
-                pylab.boxplot( get_boxplot_data( filename ) )
-                nonzero = lambda x: x if x > 0 else 1
-                iters = ( nonzero( P - p ) / ps ) * ( nonzero( D - d ) / ds )
-                pylab.xlabel('%d iterations from %d,%d to %d,%d' % ( iters, p, d, P, D) )
-                pylab.ylabel('%s - %s' % (cur, name))
-                pylab.savefig( filename + '.pdf', format='pdf' )
-                pylab.savefig( filename + '.png', format='png' )
-                pylab.cla()
-                pylab.clf()
+	def generate( filenames ):
+	    for cur in filenames:
+		filename = RESULT_FILE_FORMAT % (pwd, cur, p, ps, P, d, ds, D, r, s)
+		pylab.boxplot( get_boxplot_data( filename ) )
+		nonzero = lambda x: x if x > 0 else 1
+		iters = ( nonzero( P - p ) / ps ) * ( nonzero( D - d ) / ds )
+		pylab.xlabel('%d iterations from %d,%d to %d,%d' % ( iters, p, d, P, D) )
+		pylab.ylabel('%s - %s' % (cur, name))
+		pylab.savefig( filename + '.pdf', format='pdf' )
+		pylab.savefig( filename + '.png', format='png' )
+		pylab.cla()
+		pylab.clf()
 
-        if not options.onlyVarTime:
-            generate( ['speedup', 'efficiency', 'dynamicity'] )
-        if not options.onlyConstTime:
-            generate( ['variable_speedup', 'variable_efficiency', 'variable_dynamicity'] )
+	if not options.onlyVarTime:
+	    generate( ['speedup', 'efficiency', 'dynamicity'] )
+	if not options.onlyConstTime:
+	    generate( ['variable_speedup', 'variable_efficiency', 'variable_dynamicity'] )
 
 def main():
     if not options.onlyprint:
-        logging.info('creates first the new topic repository %s', options.topic)
-        os.mkdir( options.topic )
+	logging.info('creates first the new topic repository %s', options.topic)
+	os.mkdir( options.topic )
 
     logging.info('do all tests with r = %d and a common seed value = %d' % (options.nRun, options.seed))
 
@@ -133,24 +133,24 @@ def main():
     F = options.fixedBound
 
     if options.measure is None or 1 in options.measure:
-        logging.info('(1) measure for all combinaisons of P n D')
-        do_measure( '1', 1*n, 10*n, 101*n, 1*n, 10*n, 101*n )
+	logging.info('(1) measure for all combinaisons of P n D')
+	do_measure( '1', 1*n, 10*n, 101*n, 1*n, 10*n, 101*n )
 
     if options.measure is None or 2 in options.measure:
-        logging.info('(2) measure for P \in [%d, %d[ with D fixed to %d' % (1*n, 101*n, F))
-        do_measure( '2', 1*n, 1*n, 101*n, F, 1, F )
+	logging.info('(2) measure for P \in [%d, %d[ with D fixed to %d' % (1*n, 101*n, F))
+	do_measure( '2', 1*n, 1*n, 101*n, F, 1, F )
 
     if options.measure is None or 3 in options.measure:
-        logging.info('(3) measure for P \in [%d, %d[ with ps = %d and D fixed to %d' % (1*n, 1001*n, 10*n, F))
-        do_measure( '3', 1*n, 10*n, 1001*n, F, 1, F )
+	logging.info('(3) measure for P \in [%d, %d[ with ps = %d and D fixed to %d' % (1*n, 1001*n, 10*n, F))
+	do_measure( '3', 1*n, 10*n, 1001*n, F, 1, F )
 
     if options.measure is None or 4 in options.measure:
-        logging.info('(4) measure for D \in [%d, %d[ with P fixed to %d' % (1*n, 101*n, F))
-        do_measure( '4', F, 1, F, 1*n, 1*n, 101*n )
+	logging.info('(4) measure for D \in [%d, %d[ with P fixed to %d' % (1*n, 101*n, F))
+	do_measure( '4', F, 1, F, 1*n, 1*n, 101*n )
 
     if options.measure is None or 5 in options.measure:
-        logging.info('(5) measure for D \in [%d, %d[ with ds = %d and P fixed to %d' % (1*n, 1001*n, 10*n, F))
-        do_measure( '5', F, 1, F, 1*n, 10*n, 1001*n )
+	logging.info('(5) measure for D \in [%d, %d[ with ds = %d and P fixed to %d' % (1*n, 1001*n, 10*n, F))
+	do_measure( '5', F, 1, F, 1*n, 10*n, 1001*n )
 
 # when executed, just run main():
 if __name__ == '__main__':

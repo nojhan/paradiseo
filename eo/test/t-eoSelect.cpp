@@ -121,8 +121,8 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
 
     if (parser.userNeedsHelp())
       {
-        parser.printHelp(std::cout);
-        exit(0);
+	parser.printHelp(std::cout);
+	exit(0);
       }
 
     // hard-coded directory name ...
@@ -155,7 +155,7 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
 
   // random seed
     eoValueParam<uint32_t>& seedParam = parser.createParam(uint32_t(0), "seed",
-                                                           "Random number seed", 'S');
+							   "Random number seed", 'S');
     if (seedParam.value() == 0)
 	seedParam.value() = time(0);
     rng.reseed(seedParam.value());
@@ -212,11 +212,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        the_main(argc, argv);
+	the_main(argc, argv);
     }
     catch(std::exception& e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
-        return 1;
+	std::cout << "Exception: " << e.what() << std::endl;
+	return 1;
     }
 }

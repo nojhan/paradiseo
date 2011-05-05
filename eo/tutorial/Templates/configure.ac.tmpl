@@ -21,11 +21,11 @@ AC_CHECK_HEADERS([eo], [], [AC_ERROR(Evolving Objects headers are required)])
 dnl Checks for libraries.
 AC_LANG(C++)
 AC_CHECK_LIB([eoutils], [main], [],
-             AC_MSG_ERROR([Evolving Objects utility library is required.]))
+	     AC_MSG_ERROR([Evolving Objects utility library is required.]))
 AC_CHECK_LIB([eo], [main], [],
-             AC_MSG_ERROR([Evolving Objects library is required.]))
+	     AC_MSG_ERROR([Evolving Objects library is required.]))
 AC_CHECK_LIB([es], [main], [],
-             AC_MSG_ERROR([EO Evolutionary strategies library is required.]))
+	     AC_MSG_ERROR([EO Evolutionary strategies library is required.]))
 
 dnl Checks for library functions.
 

@@ -7,8 +7,8 @@ The above line is useful in Emacs-like editors
 Template for simple binary crossover operators
 ==============================================
 
-Binary crossover operators modify the first genotype only, 
-based on the second 
+Binary crossover operators modify the first genotype only,
+based on the second
 */
 
 #ifndef eoMyStructBinCrossover_H
@@ -16,14 +16,14 @@ based on the second
 
 #include <eoOp.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
  * THere is NO ASSUMPTION on the class GenoypeT.
  * In particular, it does not need to derive from EO
  */
-template<class GenotypeT> 
+template<class GenotypeT>
 class eoMyStructBinCrossover: public eoBinOp<GenotypeT>
 {
 public:
@@ -31,8 +31,8 @@ public:
    * Ctor - no requirement
    */
 // START eventually add or modify the anyVariable argument
-  eoMyStructBinCrossover() 
-  //  eoMyStructBinCrossover( varType  _anyVariable) : anyVariable(_anyVariable) 
+  eoMyStructBinCrossover()
+  //  eoMyStructBinCrossover( varType  _anyVariable) : anyVariable(_anyVariable)
 // END eventually add or modify the anyVariable argument
   {
     // START Code of Ctor of an eoMyStructEvalFunc object
@@ -47,7 +47,7 @@ public:
    * @param _genotype1 The first genotype
    * @param _genotype2 The second genotype - const
    */
-  bool operator()(GenotypeT & _genotype1, const GenotypeT & _genotype2) 
+  bool operator()(GenotypeT & _genotype1, const GenotypeT & _genotype2)
   {
     // START code for crossover of _genotype1 and _genotype2 objects
 

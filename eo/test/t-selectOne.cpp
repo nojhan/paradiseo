@@ -3,8 +3,8 @@
 //-----------------------------------------------------------------------------
 // t-selectOne.cpp
 //   This program test the breeder object
-// (c) GeNeura Team, 1998 
-/* 
+// (c) GeNeura Team, 1998
+/*
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -20,7 +20,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-            
+
 */
 //-----------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ main()
   unsigned i;
 
   eoBinRandom<Chrom> random;
-  eoPop<Chrom> pop; 
+  eoPop<Chrom> pop;
 
   // Create the population
   for (i = 0; i < POP_SIZE; ++i) {
@@ -61,7 +61,7 @@ main()
     BinaryValue()(chrom);
     pop.push_back(chrom);
   }
-  
+
   // print population
   std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)

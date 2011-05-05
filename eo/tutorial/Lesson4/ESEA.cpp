@@ -20,14 +20,14 @@ using namespace std;
 
 #include "real_value.h"		// the sphere fitness
 
-// Now the main 
-/////////////// 
+// Now the main
+///////////////
 typedef eoMinimizingFitness  FitT;
 
 template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state);
-  
-int main_function(int argc, char *argv[]) 
+
+int main_function(int argc, char *argv[])
 {
   // Create the command-line parser
   eoParser parser(argc, argv);  // for user-parameter reading
@@ -55,33 +55,33 @@ int main_function(int argc, char *argv[])
       cout << "Using eoEsStdev" << endl;
       runAlgorithm(eoEsStdev<FitT>(), parser, state);
     }
-    else 
+    else
     {
       cout << "Using eoEsFull" << endl;
       runAlgorithm(eoEsFull<FitT>(), parser, state);
     }
 
-	return 0;  
+	return 0;
 }
 
 // A main that catches the exceptions
- 
+
 int main(int argc, char **argv)
 {
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+	cout << "Exception: " << e.what() << '\n';
     }
- 
+
     return 1;
 }
 
 /** The templatized main (sort of)
- *  quite similar to the main of other genotypes 
+ *  quite similar to the main of other genotypes
  *  (e.g. t-eoReal and t-eoGA in test dir)
  */
 template <class EOT>
@@ -92,9 +92,9 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state)
   ///// FIRST, problem or representation dependent stuff
   //////////////////////////////////////////////////////
 
-  // The evaluation fn - encapsulated into an eval counter for output 
-  eoEvalFuncPtr<EOT, double, const std::vector<double>&> 
-               mainEval( real_value );
+  // The evaluation fn - encapsulated into an eval counter for output
+  eoEvalFuncPtr<EOT, double, const std::vector<double>&>
+	       mainEval( real_value );
   eoEvalFuncCounter<EOT> eval(mainEval);
 
   // the genotype - through a genotype initializer

@@ -98,14 +98,14 @@ int main(int argc, char* argv[])
 
   // now create the snapshot monitor
   eoValueParam<bool>& plotDistribParam = parser.getORcreateParam(false, "plotDistrib",
-                                                                 "Plot Distribution", '\0',
-                                                                 "Output - Graphical");
+								 "Plot Distribution", '\0',
+								 "Output - Graphical");
     if (plotDistribParam.value())
       {
 #ifdef HAVE_GNUPLOT
 	unsigned frequency=1;		// frequency of plots updates
 	eoGnuplot1DSnapshot *distribSnapshot = new eoGnuplot1DSnapshot(ptDirNameParam->value(),
-                                                                       frequency, "distrib");
+								       frequency, "distrib");
 	state.storeFunctor(distribSnapshot);
 	// add the distribution (it is an eoValueParam<vector<double> >)
 	distribSnapshot->add(distrib);
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
   // the algorithm: EDA
     // don't know where else to put the population size!
   unsigned popSize = parser.getORcreateParam(unsigned(100), "popSize",
-                                             "Population Size", 'P', "Algorithm").value();
+					     "Population Size", 'P', "Algorithm").value();
   eoSimpleEDA<Indi> eda(update, eval, popSize, checkpoint);
 
   ///// End of construction of the algorith

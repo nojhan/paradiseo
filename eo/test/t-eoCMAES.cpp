@@ -1,4 +1,3 @@
-
 #include <iostream>
 
 #include <eoScalarFitness.h>
@@ -123,6 +122,3 @@ int main(int argc, char* argv[]) {
     cout << "Fitness achieved = " << pop[0].fitness() << endl;
     cout << "Function evaluations = " << evals.value() << endl;
 }
-
-
-

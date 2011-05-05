@@ -5,7 +5,7 @@ However, see there first for the creation of new projects.
 ========================================================================
 
 This directory contains sample files that should make it easy to
-create an EO algorithm to evolve any type of structure 
+create an EO algorithm to evolve any type of structure
 (EO comes with two examples, bitstrings and vector of real variables,
 so you'll need this as soon as you want to evolve something else).
 
@@ -13,7 +13,7 @@ At the moment, only algorithms involving a scalar fitness (double)
 are implemented (see test dir for Pareto optimization of multiple-
 objective fitness - or be patient :-)
 
-This file will help you to build the same algorithm than the ones 
+This file will help you to build the same algorithm than the ones
 in the Lesson4 of the tutorial, but with YOUR genotype instead of
 bitstrings or vector<double>. More details in Lesson5 of the tutorial.
 
@@ -30,7 +30,7 @@ mutation and the computation of its fitness.
 The helper script * create.sh * will create for you the files you need
 from the samples in tutorial/Templates dir, and all you'll have to do
 is to include the actual code where indicated in those files (between
-keywords START and END). 
+keywords START and END).
 
 First, let's choose a name: let's call the new EO class eoAppli.
 All newly created classes will be named eoAppliXXX (in the file
@@ -41,24 +41,24 @@ eoAppliXXX)
 2- create the directory for your application (let's assume you call it
 APPLICATION): type in
 
-            mkdir APPLICATION
+	    mkdir APPLICATION
 
-3- go to the Templates dir 
+3- go to the Templates dir
 
-            cd Templates
+	    cd Templates
 
-and run the helper script create.sh with the following arguments 
+and run the helper script create.sh with the following arguments
 
-            ./create.sh Appli ../APPLICATION
+	    ./create.sh Appli ../APPLICATION
 
-4- cd to the APPLICATION dir (cd ../APPLICATION). 
+4- cd to the APPLICATION dir (cd ../APPLICATION).
 You should see there the following files:
    AppliEA.cpp            the main file, includes all other, to be compiled
    Makefile               with default target eoAppliEA
    eoAppli.h              class eoAppli<FitT>, FitT = template fitness
    eoAppliEvalFunc.h      class for the computation of fotness
    eoAppliInit.h          class for genotype initlialization
-   eoAppliMutation.h      class for mutation 
+   eoAppliMutation.h      class for mutation
    eoAppliQuadCrossover.h class for (quadratic) crossover
    make_genotype_Appli.h  helper function that create the initializer
    make_op_Appli.h        helper function that creates the variatin operators
@@ -78,11 +78,11 @@ HINT: look for keywords START and END and modify code in between.
 6- Compile eoAppliEA.cpp. If your APPLICATION dir is in the tutorial
 dir, you don't need to modify Makefile. Just type in
 
-               % make
+	       % make
 
 7- Run the resulting program:
 
-               % eoAppliEA
+	       % eoAppliEA
 
 The default output is one line per generation with the generation
 number, the number of evaluations performed, the best and average
@@ -93,7 +93,7 @@ The algorithm stops by default after 100 generations.
 e.g. eoAppliEA.param, edit eoAppliEA.param (uncomment the lines you
 want to become active), and run
 
-               % eoAppliEA @eoAppliEA.param
+	       % eoAppliEA @eoAppliEA.param
 
 (see the Lesson 5 of the tutorial for more details now).
 
@@ -121,19 +121,19 @@ To add another operator, you have to create another class by mimicking
 what has been done for the first operator.
 For instance, let's suppose you want to create another mutation.
 
-* duplicate the code for eoAppliMutation class 
+* duplicate the code for eoAppliMutation class
 * in the second version, change the class name (eoAppliMutation) into
 another name (let's say eoAppliBetterMutation) - you must change the
 name in the class declaration, in the constructor and in the
 className() method.
 * in the new eoAppliBetterMutation class, change the code for the
 operator() - and eventually the code for the constructor.
-* in the make_op_Appli.h file, in the mutation section, uncomment the 
-lines 
+* in the make_op_Appli.h file, in the mutation section, uncomment the
+lines
       mut = new eoAppliSecondMutation<Indi>(varType  _anyVariable);
       _state.storeFunctor(mut);
-      double mut2Rate = _parser.createParam(1.0, "mut2Rate", "Relative rate for mutation 2", '2', "Variation Operators").value(); 
-       propMutation.add(*mut, mut2Rate); 
+      double mut2Rate = _parser.createParam(1.0, "mut2Rate", "Relative rate for mutation 2", '2', "Variation Operators").value();
+       propMutation.add(*mut, mut2Rate);
 
 and change the name of the class from eoAppliSecondMutation to your
 name eoAppliBetterMutation (you can also change the keyword from

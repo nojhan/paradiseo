@@ -12,7 +12,7 @@ endif
 
 if ($#argv < 1) then
     echo "Usage: $0 ApplicationName [TargetDirName]"
-    echo "    This will create ../TargetDirName if necessary (default dir name = ApplicationName)," 
+    echo "    This will create ../TargetDirName if necessary (default dir name = ApplicationName),"
     echo "    and will also put all the files there that are strictly necessary to compile and run"
     echo "    your application."
     exit
@@ -94,7 +94,7 @@ echo "Start building the new project"
 #cd $TargetDir
 #aclocal  || exit
 #autoheader  || exit
-#automake --add-missing --copy  --gnu  || exit 
+#automake --add-missing --copy  --gnu  || exit
 
 # !!!!! uncompatible option: --force-missing  for the latest version of automake
 

@@ -14,12 +14,12 @@ Template for EO objects initialization in EO
 // include the base definition of eoInit
 #include <eoInit.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
  * There is NO ASSUMPTION on the class GenoypeT.
- * In particular, it does not need to derive from EO (e.g. to initialize 
+ * In particular, it does not need to derive from EO (e.g. to initialize
  *    atoms of an eoVector you will need an eoInit<AtomType>)
  */
 template <class GenotypeT>
@@ -28,7 +28,7 @@ public:
 	/// Ctor - no requirement
 // START eventually add or modify the anyVariable argument
 //  eoOneMaxInit()
-    eoOneMaxInit( unsigned  _vecSize) : vecSize(_vecSize) 
+    eoOneMaxInit( unsigned  _vecSize) : vecSize(_vecSize)
 // END eventually add or modify the anyVariable argument
   {
     // START Code of Ctor of an eoOneMaxInit object
@@ -60,4 +60,3 @@ private:
 };
 
 #endif
-

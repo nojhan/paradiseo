@@ -32,9 +32,9 @@ bool check_permutation(const Chrom & _chrom)
 						 std::cout << " Error: Wrong permutation !" << std::endl;
 						 std::string s;
 						 s.append( " Wrong permutation in t-eoInitPermutation");
-	    				 throw std::runtime_error( s );	
+	    				 throw std::runtime_error( s );
 				}
-	return true;				
+	return true;
 }
 
 int main()
@@ -44,13 +44,13 @@ int main()
 
    // a chromosome randomizer
   eoInitPermutation <Chrom> random(CHROM_SIZE);
-  
-   // the population: 
+
+   // the population:
   eoPop<Chrom> pop;
-	
+
    // Evaluation
   eoEvalFuncPtr<Chrom> eval(  real_value );
- 
+
   for (i = 0; i < POP_SIZE; ++i)
     {
       Chrom chrom(CHROM_SIZE);
@@ -61,7 +61,7 @@ int main()
       check_permutation(chrom);
       pop.push_back(chrom);
     }
-    
+
   return 0;
 }
 

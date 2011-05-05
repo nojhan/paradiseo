@@ -34,7 +34,7 @@ int main_function(int argc, char *argv[])
 
   // Define Parameters and load them
   eoValueParam<uint32_t>& seed        = parser.createParam(static_cast<uint32_t>(time(0)),
-                                                           "seed", "Random number seed");
+							   "seed", "Random number seed");
   eoValueParam<string>& load_name   = parser.createParam(string(), "Load","Load a state file",'L');
   eoValueParam<string>& save_name   = parser.createParam(string(), "Save","Saves a state file",'S');
   eoValueParam<bool>&   stdevs      = parser.createParam(false, "Stdev", "Use adaptive mutation rates", 's');
@@ -62,23 +62,23 @@ int main_function(int argc, char *argv[])
     // Run the appropriate algorithm
     if (stdevs.value() == false && corr.value() == false)
     {
-        runAlgorithm(eoEsSimple<FitT>() ,parser, state, bounds, load_name);
+	runAlgorithm(eoEsSimple<FitT>() ,parser, state, bounds, load_name);
     }
     else if (corr.value() == true)
     {
-        runAlgorithm(eoEsFull<FitT>(),parser, state, bounds, load_name);
+	runAlgorithm(eoEsFull<FitT>(),parser, state, bounds, load_name);
     }
     else
     {
-        runAlgorithm(eoEsStdev<FitT>(), parser, state, bounds, load_name);
+	runAlgorithm(eoEsStdev<FitT>(), parser, state, bounds, load_name);
     }
 
     // and save
     if (!save_name.value().empty())
     {
-        string file_name = save_name.value();
-        save_name.value() = ""; // so that it does not appear in the parser section of the state file
-        state.save(file_name);
+	string file_name = save_name.value();
+	save_name.value() = ""; // so that it does not appear in the parser section of the state file
+	state.save(file_name);
     }
 
 	return 0;
@@ -98,11 +98,11 @@ int main(int argc, char **argv)
 
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(std::exception& e)
     {
-        std::cout << "Exception: " << e.what() << '\n';
+	std::cout << "Exception: " << e.what() << '\n';
     }
 
     return 1;
@@ -120,7 +120,7 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
 
     if (lambda_rate.value() < 1.0f)
     {
-        throw logic_error("lambda_rate must be larger than 1 in a comma strategy");
+	throw logic_error("lambda_rate must be larger than 1 in a comma strategy");
     }
 
     // Initialization
@@ -137,8 +137,8 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
     }
     else
     {
-        // evaluate initial population
-        apply<EOT>(eval, pop);
+	// evaluate initial population
+	apply<EOT>(eval, pop);
     }
 
     // Ok, time to set up the algorithm

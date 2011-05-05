@@ -24,21 +24,21 @@ int main()
     double sigma(5.);
     double sum(0.);
     for(size_t i=0; i<num; ++i)
-        sum += abs(rng.normal(sigma));
+	sum += abs(rng.normal(sigma));
     sum /= double(num);
     if(sum > sigma / 0.68) {
-        cerr << "Normal distribution seems out of bounds; "
-             << "rerun to make sure it wasn't a statistical outlier" << endl;
-        return -1;
+	cerr << "Normal distribution seems out of bounds; "
+	     << "rerun to make sure it wasn't a statistical outlier" << endl;
+	return -1;
     }
     sum = 0.;
     for(size_t i=0; i<num; ++i)
-        sum += abs(rng.normal(mean, sigma) - mean);
+	sum += abs(rng.normal(mean, sigma) - mean);
     sum /= double(num);
     if(sum > sigma / 0.68) {
-        cerr << "Normal distribution seems out of bounds; "
-             << "rerun to make sure it wasn't a statistical outlier" << endl;
-        return -1;
+	cerr << "Normal distribution seems out of bounds; "
+	     << "rerun to make sure it wasn't a statistical outlier" << endl;
+	return -1;
     }
   return 0;
 }

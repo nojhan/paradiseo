@@ -18,8 +18,8 @@ LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
 SET (MASTERMIND_SOURCES mastermind.cpp)
 
 # no matter what is the OS, hopefully
-ADD_EXECUTABLE(mastermind ${MASTERMIND_SOURCES}) 
-                             
+ADD_EXECUTABLE(mastermind ${MASTERMIND_SOURCES})
+
 ADD_DEPENDENCIES(mastermind eo eoutils)
 
 ######################################################################################
@@ -36,4 +36,3 @@ SET_TARGET_PROPERTIES(mastermind PROPERTIES VERSION "${MASTERMIND_VERSION}")
 TARGET_LINK_LIBRARIES(mastermind eo eoutils)
 
 ######################################################################################
-

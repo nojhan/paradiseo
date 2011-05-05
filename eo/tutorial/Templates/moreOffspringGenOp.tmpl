@@ -8,7 +8,7 @@ Template for general operators
 ===============================
 i.e. that takes any number of parents and generates any number of offspring
 
-Here, a GenOp that creates more (or same number of) offspring 
+Here, a GenOp that creates more (or same number of) offspring
 than there are parents
 */
 
@@ -17,21 +17,21 @@ than there are parents
 
 #include <eoGenOp.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
- * ATTENTION, class EOT *must* derive from EO, as method invalidate() 
+ * ATTENTION, class EOT *must* derive from EO, as method invalidate()
  * must be called if the genotypes of the indis is modified
  */
-template<class EOT> 
+template<class EOT>
 class eoMoreOffspringGenOp: public eoGenOp<EOT>
 {
 public:
   /**
    * (Default) Constructor.
    */
-  eoMoreOffspringGenOp(paramType _anyParameter) : 
+  eoMoreOffspringGenOp(paramType _anyParameter) :
     anyParameter(_anyParameter) {}
 
   /// The class name. Used to display statistics
@@ -52,16 +52,16 @@ public:
       ++_plop;          // advance once for each selected parents
       ...
       EOT& parentN = *_plop; // select the last parent
-                 // don't advance after the last one: _plop always
-                 // points to the last that has already been treated
+		 // don't advance after the last one: _plop always
+		 // points to the last that has already been treated
 
       // apply operator to the parents (modifying them AND generating
-      // new individuals ofs1, ofs2, ..., ofsN 
+      // new individuals ofs1, ofs2, ..., ofsN
       ++_plop;          // advance before each insertion
       _plop.insert(ofs1);
       ...
       ++_plop;          // advance before each insertion
-      _plop.insert(ofsN); 
+      _plop.insert(ofsN);
 
       // oh right, and invalidate fitnesses of modified parents
       parent1.invalidate();

@@ -33,10 +33,10 @@ public:
     eoOneMaxQuadCrossover()
     //  eoOneMaxQuadCrossover( varType  _anyVariable) : anyVariable(_anyVariable)
     // END eventually add or modify the anyVariable argument
-        {
-            // START Code of Ctor of an eoOneMaxEvalFunc object
-            // END   Code of Ctor of an eoOneMaxEvalFunc object
-        }
+	{
+	    // START Code of Ctor of an eoOneMaxEvalFunc object
+	    // END   Code of Ctor of an eoOneMaxEvalFunc object
+	}
 
     /// The class name. Used to display statistics
     string className() const { return "eoOneMaxQuadCrossover"; }
@@ -47,19 +47,19 @@ public:
      * @param _genotype2 The second parent
      */
     bool operator()(GenotypeT& _genotype1, GenotypeT & _genotype2)
-        {
-            bool oneAtLeastIsModified(true);
-            // START code for crossover of _genotype1 and _genotype2 objects
+	{
+	    bool oneAtLeastIsModified(true);
+	    // START code for crossover of _genotype1 and _genotype2 objects
 
-            /** Requirement
-             * if (at least one genotype has been modified) // no way to distinguish
-             *     oneAtLeastIsModified = true;
-             * else
-             *     oneAtLeastIsModified = false;
-             */
-            return oneAtLeastIsModified;
-            // END code for crossover of _genotype1 and _genotype2 objects
-        }
+	    /** Requirement
+	     * if (at least one genotype has been modified) // no way to distinguish
+	     *     oneAtLeastIsModified = true;
+	     * else
+	     *     oneAtLeastIsModified = false;
+	     */
+	    return oneAtLeastIsModified;
+	    // END code for crossover of _genotype1 and _genotype2 objects
+	}
 
 private:
 // START Private data of an eoOneMaxQuadCrossover object

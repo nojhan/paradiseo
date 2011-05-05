@@ -52,7 +52,7 @@ void main_function(int argc, char **argv)
   const float P_MUT = 0.5;	// mutation probability
 
   const double EPSILON = 0.01;	// range for real uniform mutation
-  double SIGMA = 0.3;       	// std dev. for normal mutation
+  double SIGMA = 0.3;	    	// std dev. for normal mutation
   // some parameters for chosing among different operators
   const double hypercubeRate = 0.5;     // relative weight for hypercube Xover
   const double segmentRate = 0.5;  // relative weight for segment Xover
@@ -181,11 +181,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+	cout << "Exception: " << e.what() << '\n';
     }
 
     return 1;

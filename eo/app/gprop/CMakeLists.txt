@@ -18,15 +18,14 @@ LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
 SET (GPROP_SOURCES gprop.cpp)
 
 # especially for Visual Studio
-IF(NOT WIN32 OR CYGWIN)  
-  	ADD_EXECUTABLE(gprop ${GPROP_SOURCES})                             
+IF(NOT WIN32 OR CYGWIN)
+  	ADD_EXECUTABLE(gprop ${GPROP_SOURCES})
     ADD_DEPENDENCIES(gprop eo eoutils)
-    
-    TARGET_LINK_LIBRARIES(gprop eo eoutils) 
-    
+
+    TARGET_LINK_LIBRARIES(gprop eo eoutils)
+
     SET(GPROP_VERSION ${GLOBAL_VERSION})
   SET_TARGET_PROPERTIES(gprop PROPERTIES VERSION "${GPROP_VERSION}")
 ENDIF(NOT WIN32 OR CYGWIN)
 
 ######################################################################################
-

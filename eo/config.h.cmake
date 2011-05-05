@@ -71,5 +71,3 @@
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 #cmakedefine size_t
-
-

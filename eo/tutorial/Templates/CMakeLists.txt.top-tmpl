@@ -1,7 +1,5 @@
-
-
 ######################################################################################
-### 1) Main project config 
+### 1) Main project config
 ######################################################################################
 
 # set the project name
@@ -19,16 +17,16 @@ ENABLE_LANGUAGE(CXX)
 
 IF(NOT EO_SOURCE_DIR)
      	SET(	EO_SOURCE_DIR
-		EO_SRC_DIR CACHE STRING 
-          	"EO source directory" 
-           	FORCE)
+		EO_SRC_DIR CACHE STRING
+		"EO source directory"
+		FORCE)
 ENDIF(NOT EO_SOURCE_DIR)
 
 IF(NOT EO_BINARY_DIR)
-    	 SET(	EO_BINARY_DIR 
-         	EO_BIN_DIR CACHE STRING 
-          	"EO binary directory" 
-           	FORCE)
+    	 SET(	EO_BINARY_DIR
+		EO_BIN_DIR CACHE STRING
+		"EO binary directory"
+		FORCE)
 ENDIF(NOT EO_BINARY_DIR)
 ######################################################################################
 

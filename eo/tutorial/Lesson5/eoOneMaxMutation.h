@@ -32,10 +32,10 @@ public:
     eoOneMaxMutation()
     //  eoOneMaxMutation( varType  _anyVariable) : anyVariable(_anyVariable)
     // END eventually add or modify the anyVariable argument
-        {
-            // START Code of Ctor of an eoOneMaxEvalFunc object
-            // END   Code of Ctor of an eoOneMaxEvalFunc object
-        }
+	{
+	    // START Code of Ctor of an eoOneMaxEvalFunc object
+	    // END   Code of Ctor of an eoOneMaxEvalFunc object
+	}
 
     /// The class name. Used to display statistics
     string className() const { return "eoOneMaxMutation"; }
@@ -45,19 +45,19 @@ public:
      * @param _genotype The parent genotype (will be modified)
      */
     bool operator()(GenotypeT & _genotype)
-        {
-            bool isModified(true);
-            // START code for mutation of the _genotype object
+	{
+	    bool isModified(true);
+	    // START code for mutation of the _genotype object
 
-            /** Requirement
-             * if (_genotype has been modified)
-             *     isModified = true;
-             * else
-             *     isModified = false;
-             */
-            return isModified;
-            // END code for mutation of the _genotype object
-        }
+	    /** Requirement
+	     * if (_genotype has been modified)
+	     *     isModified = true;
+	     * else
+	     *     isModified = false;
+	     */
+	    return isModified;
+	    // END code for mutation of the _genotype object
+	}
 
 private:
 // START Private data of an eoOneMaxMutation object

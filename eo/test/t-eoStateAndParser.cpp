@@ -89,22 +89,22 @@ int the_main(int argc, char **argv)
 
     if (parser.userNeedsHelp())
     {
-        parser.printHelp(std::cout);
-        return 0;
+	parser.printHelp(std::cout);
+	return 0;
     }
 
     // Either load or initialize
     if (load_name.value() != "")
     {
-        state.load(load_name.value()); // load the rest
+	state.load(load_name.value()); // load the rest
     }
     else
     {
-        // else
+	// else
 
-        // initialize rng and population
+	// initialize rng and population
 
-        rng.reseed(seed.value());
+	rng.reseed(seed.value());
     }
 
     // run the algorithm
@@ -112,13 +112,13 @@ int the_main(int argc, char **argv)
     // Save when needed
     if (save_name.value() != "")
     {
-        std::string file_name = save_name.value();
-        save_name.value() = ""; // so that it does not appear in the parser section of the state file
-        state.save(file_name);
+	std::string file_name = save_name.value();
+	save_name.value() = ""; // so that it does not appear in the parser section of the state file
+	state.save(file_name);
     }
 
     for (int i = 0; i < 100; ++i)
-        rng.rand();
+	rng.rand();
 
     std::cout << "a random number is " << rng.random(1024) << std::endl;;
 
@@ -129,11 +129,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        the_main(argc, argv);
+	the_main(argc, argv);
     }
     catch(std::exception& e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+	std::cout << "Exception: " << e.what() << std::endl;
     }
 
 }

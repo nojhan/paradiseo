@@ -47,13 +47,13 @@ int main()
 
    // a chromosome randomizer
   eoInitPermutation <Chrom> random(CHROM_SIZE);
-  
-   // the population: 
+
+   // the population:
   eoPop<Chrom> pop;
-	
+
   // Evaluation
   eoEvalFuncPtr<Chrom> eval(  real_value );
- 
+
   for (i = 0; i < POP_SIZE; ++i)
     {
       Chrom chrom(CHROM_SIZE);
@@ -61,10 +61,10 @@ int main()
       eval(chrom);
       pop.push_back(chrom);
     }
-       
+
   // a shift mutation
   eoShiftMutation <Chrom> shift;
-  
+
   for (i = 0; i < POP_SIZE; ++i)
     {
       std::cout << " Initial chromosome n°" << i << " : " << pop[i] << "..." <<  std::endl;
@@ -72,7 +72,7 @@ int main()
       std::cout << " ... becomes : " << pop[i] << " after shift mutation" << std::endl;
       check_permutation(pop[i]);
     }
-   
+
   return 0;
 }
 

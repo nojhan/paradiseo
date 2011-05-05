@@ -51,8 +51,8 @@ int main(int argc, char** argv)
     }
   catch (exception& e)
     {
-        cerr << argv[0] << ": " << e.what() << endl;
-        exit(EXIT_FAILURE);
+	cerr << argv[0] << ": " << e.what() << endl;
+	exit(EXIT_FAILURE);
     }
 
   return 0;

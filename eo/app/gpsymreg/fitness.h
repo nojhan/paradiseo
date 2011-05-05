@@ -14,7 +14,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             jeggermo@liacs.nl
+	     jeggermo@liacs.nl
 */
 
 #ifndef _FITNESS_FUNCTION_H
@@ -225,4 +225,3 @@ class RegFitness: public eoEvalFunc< eoParseTree<FitnessType, Node> >
 };
 
 #endif
-

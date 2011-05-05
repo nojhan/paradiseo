@@ -9,9 +9,9 @@ PREFIX  = "/usr"
 DATA = {
     'dirs': [ "%s/share/%s" % (PREFIX, NAME) ],
     'links': [ ("%s/src" % SOURCE, "%s/include/%s" % (PREFIX, NAME)),
-               ("%s/doc" % BINARY, "%s/share/%s/doc" % (PREFIX, NAME)),
-               ("%s/%s.pc" % (BINARY, NAME), "%s/lib/pkgconfig/%s.pc" % (PREFIX, NAME)),
-               ]
+	       ("%s/doc" % BINARY, "%s/share/%s/doc" % (PREFIX, NAME)),
+	       ("%s/%s.pc" % (BINARY, NAME), "%s/lib/pkgconfig/%s.pc" % (PREFIX, NAME)),
+	       ]
     }
 
 LIBRARIES = ["libcma.a", "libeo.a", "libeoutils.a", "libes.a", "libga.a"]
@@ -21,8 +21,8 @@ import os, sys
 
 def isroot():
     if os.getuid() != 0:
-        print '[WARNING] you have to be root'
-        return False
+	print '[WARNING] you have to be root'
+	return False
     return True
 
 def uninstall():
@@ -41,11 +41,11 @@ def data():
 
 if __name__ == '__main__':
     if not isroot():
-        sys.exit()
+	sys.exit()
 
     if len(sys.argv) < 2:
-        print 'Usage: %s [install|uninstall|data]' % sys.argv[0]
-        sys.exit()
+	print 'Usage: %s [install|uninstall|data]' % sys.argv[0]
+	sys.exit()
 
     if sys.argv[1] == 'install': install()
     elif sys.argv[1] == 'uninstall': uninstall()

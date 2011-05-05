@@ -23,57 +23,57 @@ public :
 	// arity function, need this function!
 	int arity() const { return op == X? 0 : 2; }
 
-        void randomize() {}
+	void randomize() {}
 
 	// evaluation function, single case, using first argument to give value of variable
 	template <class Children>
 	void operator()(double& result, Children args, double var) const
 	{
-            double r1(0.), r2(0.);
-            if (arity() == 2)
-            {
-                args[0].apply(r1, var);
-                args[1].apply(r2, var);
-            }
-            switch (op)
-            {
-            case Plus : result = r1 + r2; break;
-            case Min  : result = r1 - r2; break;
-            case Mult : result = r1 * r2; break;
-            case PDiv : {
-                if (r2 == 0.0)
-                    // protection a la Koza, realistic implementations
-                    // should maybe throw an exception
-                    result = 1.0;
-                else
-                    result = r1 / r2;
-                break;
-            }
-            case X    : result = var; break;
-            }
+	    double r1(0.), r2(0.);
+	    if (arity() == 2)
+	    {
+		args[0].apply(r1, var);
+		args[1].apply(r2, var);
+	    }
+	    switch (op)
+	    {
+	    case Plus : result = r1 + r2; break;
+	    case Min  : result = r1 - r2; break;
+	    case Mult : result = r1 * r2; break;
+	    case PDiv : {
+		if (r2 == 0.0)
+		    // protection a la Koza, realistic implementations
+		    // should maybe throw an exception
+		    result = 1.0;
+		else
+		    result = r1 / r2;
+		break;
+	    }
+	    case X    : result = var; break;
+	    }
 	}
 
     /// 'Pretty' print to ostream function
     template <class Children>
-        void operator()(string& result, Children args) const
+	void operator()(string& result, Children args) const
     {
-        static const string lb = "(";
-        static const string rb = ")";
-        char opStr[4] = "   ";
-        opStr[1] = op;
+	static const string lb = "(";
+	static const string rb = ")";
+	char opStr[4] = "   ";
+	opStr[1] = op;
 
 	    if (arity() == 0)
 		{
-            result = "x";
-            return;
-        }
-        // else
-        string r1;
-        args[0].apply(r1);
-        result = lb + r1;
-        result += opStr;
-        args[1].apply(r1);
-        result += r1 + rb;
+	    result = "x";
+	    return;
+	}
+	// else
+	string r1;
+	args[0].apply(r1);
+	result = lb + r1;
+	result += opStr;
+	args[1].apply(r1);
+	result += r1 + rb;
     }
 
     Operator getOp() const { return op; }
@@ -99,7 +99,7 @@ static SymregNode init_sequence[5] = {SymregNode::X, SymregNode::Plus, SymregNod
 // template <>
 // bool lt_arity(const SymregNode &node1, const SymregNode &node2)
 // {
-//      	return (node1.arity() < node2.arity());
+//		return (node1.arity() < node2.arity());
 // }
 // #endif
 
@@ -166,16 +166,16 @@ public :
 		vector<double> outputs;
 		outputs.resize(inputs.size());
 
-        double fitness = 0.0;
+	double fitness = 0.0;
 
 	for (unsigned i = 0; i < inputs.size(); ++i)
-        {
+	{
 		    _eo.apply(outputs[i], inputs[i]);
-	        fitness += (outputs[i] - target[i]) * (outputs[i] - target[i]);
-        }
+		fitness += (outputs[i] - target[i]) * (outputs[i] - target[i]);
+	}
 
-        fitness /= (double) target.size();
-        fitness = sqrt(fitness);
+	fitness /= (double) target.size();
+	fitness = sqrt(fitness);
 
 		if (fitness > 1e+20)
 			fitness = 1e+20;
@@ -197,11 +197,11 @@ void print_best(eoPop<EOT>& pop)
 
     for (unsigned i = 1; i < pop.size(); ++i)
     {
-        if (best < pop[i].fitness())
-        {
-            best = pop[i].fitness();
-            index = i;
-        }
+	if (best < pop[i].fitness())
+	{
+	    best = pop[i].fitness();
+	    index = i;
+	}
     }
 
     std::cout << "\t";

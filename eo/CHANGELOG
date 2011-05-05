@@ -1274,11 +1274,11 @@ Date:   Thu Feb 22 08:27:32 2007 +0000
 
     * mutation.tmpl, quadCrossover.tmpl, stat.tmpl: Initialize formerly
     uninitialized variables.
-    
+
     * README.tmpl: Hint to regular Templates/README for details.
-    
+
     * README: Add documentation for adding new source-files.
-    
+
     * Makefile.am.src-tmpl (noinst_HEADERS): Add
     (MyStruct_SOURCES): Move header files from here to the new
     noinst_HEADERS variable.
@@ -1315,7 +1315,7 @@ Date:   Sun Jan 14 18:56:31 2007 +0000
     for automake finding the scripts of eo itself if we run it in a embedded
     subdirectory.
     (COPYING, INSTALL): create.
-    
+
     * README: State more explicitly what a "complete installation" means.
     Give build-instructions for moved directories.
 
@@ -1359,9 +1359,9 @@ Author: kuepper <kuepper>
 Date:   Mon Dec 18 11:17:55 2006 +0000
 
     * TODO.html, README.html: Remove these old files.
-    
+
     * AUTHORS, COPYING, ForRelease, NEWS, ToDo: Update for release.
-    
+
     * eo.cfg (PROJECT_NUMBER): Bump version to 1.0
 
 Author: kuepper <kuepper>
@@ -1373,7 +1373,7 @@ Author: kuepper <kuepper>
 Date:   Sun Dec 17 22:59:53 2006 +0000
 
     * README: Better links to Templates/
-    
+
     * configure.in: Bump version to 1.0-beta2.
 
 Author: kuepper <kuepper>
@@ -1402,11 +1402,11 @@ Date:   Sat Dec 16 21:55:03 2006 +0000
 
     * EO.tpl, MyStructEA.cpp, MyStructSEA.cpp, make_MyStruct.cpp: Use
     correct names for includes.
-    
+
     * README.manual: This is a copy of the old README.
-    
+
     * README: Describe the new way and setup of creating a new EO project.
-    
+
     * createEOproject.sh, Makefile.am.src-tmpl, Makefile.am.top-tmpl:
     * configure.ac.tmpl: New files to create a standalone EO project from
     templates.
@@ -1435,7 +1435,7 @@ Author: kuepper <kuepper>
 Date:   Mon Dec 4 22:27:41 2006 +0000
 
     * Makefile.am: Add t-eoRNG
-    
+
     * t-eoRNG.cpp: Start test for random number generator.
 
 Author: kuepper <kuepper>
@@ -1472,11 +1472,11 @@ Author: kuepper <kuepper>
 Date:   Sun Dec 3 10:41:54 2006 +0000
 
     * mainpage.html: update, add link to Niko Hansen's comparison
-    
+
     * README: Add more specific note about tutorial.
-    
+
     * configure.in: Bump version to 1.0-beta1
-    
+
     * tutorial/Makefile.am: Add all necessary files, including html and
     Templates to distribution.
 
@@ -1517,13 +1517,13 @@ Author: kuepper <kuepper>
 Date:   Sat Dec 2 10:18:57 2006 +0000
 
     * eoTimedMonitor.h (eoTimedMonitor::seconds): Make unsigned.
-    
+
     * eoRNG.cpp, eoRNG.h (K, M, N): Declare static and initialize in cpp.
-    
+
     * t-eoGenOp.cpp (init): Do not add std::ends to end of string, as this
     results in escape-codes (^@) to be printed at runtime and is not
     necessary anyway.
-    
+
     * test/t-eoSymreg.cpp (SymregNode::operator()): Initialize r1 and r2 to
     avoid compiler warnings.
 
@@ -1531,7 +1531,7 @@ Author: kuepper <kuepper>
 Date:   Sat Dec 2 09:39:13 2006 +0000
 
     * eoRNG.h: Cleanup docs and document /all/ members.
-    
+
     * eoRNG.cpp, eoRNG.h (K, M, N): Declare static and initialize in cpp.
 
 Author: kuepper <kuepper>
@@ -1548,9 +1548,9 @@ Author: kuepper <kuepper>
 Date:   Fri Dec 1 20:08:51 2006 +0000
 
     * Makefile.am: Update for release-distribution.
-    
+
     * Makefile.am: Add missing CMA header for distribution.
-    
+
     * Makefile.am: Add missing header for distribution.
 
 Author: kuepper <kuepper>
@@ -1603,7 +1603,7 @@ Author: kuepper <kuepper>
 Date:   Thu Nov 16 12:52:46 2006 +0000
 
     * configure.in (AC_DEBUG): add test
-    
+
     * acinclude.m4 (AC_DEBUG): Define debug-feature and set DEBUG, NODEBUG,
     or NDEBUG according to its value.
 
@@ -1613,10 +1613,10 @@ Date:   Thu Nov 16 12:35:46 2006 +0000
     * make_genotype_real.h (eoEsChromInit): Rewrite vecSigmaInit-handling:
     If sigmaInit is relative (%), do not read vecSigmaInit. Otherwise
     always use vecSigmaInit with default all values of sigmaInit.
-    
+
     * eoParser.h (eoParser::getORcreateParam): Make this a real if-then-else
     clause around ptParam (found or not).
-    
+
     * eoParam.h (eoValueParam::setValue): Document.
     (eoValueParam<std::vector<double> >::setValue): Allow delimiters ',' and
     ';'. A plain ' ' does not work, as it is not correctly read by
@@ -1973,9 +1973,9 @@ Date:   Sun Oct 2 21:42:08 2005 +0000
     - add a user-option for gnuplot-support
     - separate gnuplot-code into declaration and implementation,
       so we can define at EO-build-time whether to use it or not.
-    
+
     Adopt code and Makefiles to above changes.
-    
+
     Some minor fixes.
 
 Author: kuepper <kuepper>
@@ -2311,7 +2311,7 @@ Date:   Thu Dec 23 15:29:07 2004 +0000
 
     Adjust code to perform to C++ standard according to gcc-3.4
     interpretation... (Have not compiled/checked/changed paradisEO.)
-    
+
     That is, the current code compiles with gcc-3.4 and the checks
     (besides t-MGE1bit) all pass.
 
@@ -2362,7 +2362,7 @@ Date:   Fri Nov 5 08:57:34 2004 +0000
     easily read as a parameter)
     - eoIntBound and all other integer-equivalent of the classes in eoRealBound.h
     Note that there is no equivalent to eoRealVectorBounds for vector of integers
-    
+
     In file eo, I have added the 2 includes of eoRealBounds.h and eoIntBounds.h
     The first one was already there by chance, through eoUniformInit.h
 
@@ -2569,13 +2569,13 @@ Author: kuepper <kuepper>
 Date:   Fri Sep 17 16:53:31 2004 +0000
 
     Updated build-prcess to be completely under automake control.
-    
+
     For the tutorial the old Makefiles are saved as Makefile.simple in all
     the respective directories.
-    
+
     Use generated config.h instead of command-line passing of preprocessor
     flags.
-    
+
     Updated support files from current automake.
 
 Author: kuepper <kuepper>
@@ -3300,7 +3300,7 @@ Date:   Sun Jan 5 16:31:50 2003 +0000
 
     Added pyeo. Some changes needed to be made for include files and the like
     in some files (and some bugs were fixed as well [Marc: eoOneToOneBreeder was a mess])
-    
+
     eoFunctor.h now contains static functor_category members, this shouldn't hurt anyone.
 
 Author: maartenkeijzer <maartenkeijzer>
@@ -3398,7 +3398,7 @@ Date:   Wed Sep 18 12:40:46 2002 +0000
 
     A new readFrom & printOn function for EO.h
     Now it CAN handle VALID/INVALID fitnesses.
-    
+
     The problems are over at last
 
 Author: cahon <cahon>
@@ -3592,7 +3592,7 @@ Date:   Mon Jun 17 04:13:45 2002 +0000
 
     Adding the truncation selectors.
     2 versions: eoTruncatedSelectOne is an eoSelectOne, and
-                eoTruncatedSelectMany works like an eoSelectMany (but is NOT)
+		eoTruncatedSelectMany works like an eoSelectMany (but is NOT)
 
 Author: jeggermo <jeggermo>
 Date:   Mon Jun 10 14:10:35 2002 +0000
@@ -3609,7 +3609,7 @@ Date:   Mon May 13 11:31:32 2002 +0000
 
     EO::printOn has been changed so that the printOn function will
     always print a valid fitness value even if the fitness is invalid
-    
+
     Jeroen
 
 Author: jeggermo <jeggermo>
@@ -3827,7 +3827,7 @@ Date:   Mon Apr 15 12:56:35 2002 +0000
 
     eoParseTree printOn and readFrom functions changed for
     compatibility with paradisEO
-    
+
     The fitness is now printed in the same way as in eoBit
 
 Author: evomarc <evomarc>
@@ -4138,9 +4138,9 @@ Date:   Mon Feb 4 14:28:00 2002 +0000
 
     the gpsymreg code has been slightly altered to allow compilation using the
     Intel C++ Compiler for Linux.
-    
+
     Other compilers should not be affected.
-    
+
     A slightly different makefile is needed
 
 Author: jeggermo <jeggermo>
@@ -4317,7 +4317,7 @@ Date:   Tue Dec 4 21:15:16 2001 +0000
     some template classes and functions which did not need
     to be templates have been changed to normal classes and functions
     with hard coded typed
-    
+
     This might help with M$VC++ 6.0 compatibility
 
 Author: jeggermo <jeggermo>
@@ -4537,8 +4537,8 @@ Date:   Sat Nov 10 09:02:17 2001 +0000
 
     Small modifications here and there to be MSVC++ compatible
     Mainly, time.h -> ctime
-            definition of loop index out of loops when multiply used
-            no typename in declaration using template typename
+	    definition of loop index out of loops when multiply used
+	    no typename in declaration using template typename
 
 Author: evomarc <evomarc>
 Date:   Sat Nov 10 06:59:02 2001 +0000
@@ -4628,15 +4628,15 @@ Date:   Sat Nov 3 22:10:11 2001 +0000
 
     the name of the eoGpDepthInitializer class (initializer for
     parse_tree's has been changed to
-    
+
     eoParseTreeDepthInit but backward compatibility is maintained by
     using a #define statement:
-    
+
     #define eoGpDepthInitializer eoParseTreeDepthInit
-    
+
     The initializer for strongly typed GP has been changed to
     eoStParseTreeDepthInit
-    
+
     the gpsymreg application has been changed to use the new name
 
 Author: jeggermo <jeggermo>
@@ -4839,7 +4839,7 @@ Author: jeggermo <jeggermo>
 Date:   Tue Jul 17 08:58:52 2001 +0000
 
     small documentation change for eoParseTree.h.
-    
+
     added a depth initializer for strongly typed genetic programming
     added subtree xover for strongly typed genetic programming
     added branch mutation for strongly typed genetic programming
@@ -4862,7 +4862,7 @@ Date:   Wed Jul 4 04:44:30 2001 +0000
     Adding eoPopEvalFunc, that handles evaluation globally: it receives
     two populations, parents and offspring, and does whatever necessary.
     The subclass eoPopLoopEval does the simple loop on the offspring.
-    
+
     eoEasyEA was subsequently modified to handle an eoPopEval passed in Ctor,
     but also to encapsulate an eoEvalFunc into an eoPopLoopEval tranparently.
 
@@ -4874,7 +4874,7 @@ Date:   Tue Jul 3 12:56:44 2001 +0000
     Modified eoEaseyEA accordingly - you can either pass an eoEvalFunc, as
     before (it is then encapsulated into an eoPopLoopEval that does the good
     old loop on the offspring - or directly pass a full eoPopEvalFunc
-    
+
     Small modification also in make_op_es -> keyword "none" is now recognized
     for one of the crossover of either object variables or stdev's
 
@@ -4883,9 +4883,9 @@ Date:   Mon Jul 2 13:31:04 2001 +0000
 
     Changed the directory structure for gp
     now: eoParseTree <-- the eoParseTree class
-         eoParseTreeDepthInit <-- the eoParseTree depth initializer (eoGpDepthInitializer)
-         eoParseTreeOp <-- the operators (xover and mutation)
-    
+	 eoParseTreeDepthInit <-- the eoParseTree depth initializer (eoGpDepthInitializer)
+	 eoParseTreeOp <-- the operators (xover and mutation)
+
     base documentation written for:
     * eoParseTree
     * eoGpDepthInitializer
@@ -4895,9 +4895,9 @@ Date:   Mon Jul 2 13:31:04 2001 +0000
     * eoExpansionMutation
     * eoCollapseSubtreeMutation
     * eoHoistMutation
-    
+
     I also created a group ParseTree which contains all classes related to eoParseTree
-    
+
     eoGpMutate.h has been removed (merged with eoParseTree operators into eoParseTreeOp
 
 Author: jeggermo <jeggermo>
@@ -4978,16 +4978,16 @@ Author: jeggermo <jeggermo>
 Date:   Thu Jun 28 14:03:59 2001 +0000
 
     new Mutation operators for eoParseTree in src/gp/eoGpMutate.h
-    
+
     a symbolic regression example program added to the app-dir
-    
+
     configure.in and Makefile(s).am changed
 
 Author: jeggermo <jeggermo>
 Date:   Thu Jun 28 13:55:14 2001 +0000
 
     Additional mutation operators for eoParseTree
-    
+
     * Point Mutation
     * Expansion Mutation
     * Collapse Subtree Mutation
@@ -5195,7 +5195,7 @@ Date:   Wed May 2 10:42:32 2001 +0000
     src/es/eoEsGlobalXover.h and src/es/eoEsLocalXover.h for crossover
     src/es/make_XXX_es.h for user-input
     test/t-eoEsAll.cpp to test
-    
+
     However, an old bug appeared: className was not const in eoGenOp (and derived classes)
     so I had to change that throughtout the hierarchy
 
@@ -5212,7 +5212,7 @@ Date:   Mon Apr 30 13:24:42 2001 +0000
     Changed the interface of make_genotype - now templatized by the EOT
     and not the fitness - this is mandatory for ES genoptypes as it allows to
     choose the type of gentype at run-time (from existing types, of course!)
-    
+
     Also moved make_help.cpp into utils dir (otherwise you'd had to maintain
     a copy into each representation dir!).
 
@@ -5224,7 +5224,7 @@ Date:   Mon Apr 30 13:01:07 2001 +0000
     Changed the interface of make_genotype - now templatized by the EOT
     and not the fitness - this is mandatory for ES genoptypes as it allows to
     choose the type of gentype at run-time (from existing types, of course!)
-    
+
     Also moved make_help.cpp into utils dir (otherwise you'd had to maintain
     a copy into each representation dir!).
 
@@ -5427,7 +5427,7 @@ Date:   Wed Apr 4 03:47:33 2001 +0000
 
     Added the signal handling - see eoCtrlCContinue.h
     I've disabled it in case of MSC as I don't know if this works there ...
-    
+
     Also added a couple of "virtual" in the ga dir
 
 Author: evomarc <evomarc>
@@ -5455,7 +5455,7 @@ Date:   Wed Mar 28 09:00:54 2001 +0000
     FDCStat and FileSnapshot: better error messageing
     Scalar fitness: is now a vector of doubles
     exercise3.1 added gnuplot again
-    
+
     Don't know about eoCombinedContinue
 
 Author: evomarc <evomarc>
@@ -5646,7 +5646,7 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Mon Mar 12 16:00:58 2001 +0000
 
     EO: added overloaded printing of fitness (for vectors and pairs)
-    
+
     Various bugs and ommissions in eoPerf2Worth and eoSelectFromWorth
 
 Author: maartenkeijzer <maartenkeijzer>
@@ -5658,12 +5658,12 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Sat Mar 10 14:02:23 2001 +0000
 
     Changed the populator to be a) more efficient and b) more useable
-    
+
     It is no longer derived from eoPop, it now gets a destination population.
     This saves a lot of copying. The semantics has changed a little as well. It is
     now an _infinite_ iterator. operator++ will *not* dispense new individuals, but
     will merely stay at the end. To get a new indy, use operator*() as before.
-    
+
     eoEasyEA now checks the checkpoint *after* making a generation and clears the offspring
     eoGeneralBreeder is changed to reflect the changes in eoPopulator
     eoSequentialSelect now uses setup() rather than init()
@@ -5717,7 +5717,7 @@ Date:   Mon Feb 19 12:23:13 2001 +0000
     To be able to use the primitive std::generate function, added a
     set of wrappers in eoSTLFunctor.h that have the copy semantics most
     STL functions expect (namely pass-by-value rather then pass-by-reference).
-    
+
     Updated test/Makefile.am to also test t-eoRandom
 
 Author: evomarc <evomarc>
@@ -5736,14 +5736,14 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Sat Feb 17 10:51:31 2001 +0000
 
     eoVector is back (eoFixedLength and eoVariableLength are gone)
-    
+
     Also: introducing eoRndGenerators.h for eoRndGenerator derived classes:
-    
+
       eoNormalGenerator
       eoUniformGenerator
       eoBooleanGenerator
       eoNegExpGenerator
-    
+
     Note the suffix that are added to aid in determining what these classes do
 
 Author: evomarc <evomarc>
@@ -5829,13 +5829,13 @@ Date:   Wed Feb 14 14:09:16 2001 +0000
 Author: maartenkeijzer <maartenkeijzer>
 Date:   Wed Feb 14 10:35:26 2001 +0000
 
-    
+
     Changed the signature of eoMon, eoBin and eoQuadOp to return a bool,
     without invalidating fitness. Added a set of invalidators to take over
     that job (see for instance eoSGA and eoSGATransform how this can transparantly used)
-    
+
     Derived eoState from eoFunctorStore (for convenience, from a design perspective this may sound wrong)
-    
+
     Added a wrap_op function that does the wrapping for you (see eoOpContainer how this made this functor
     exceedingly less hairy). Checked all the tests removed the eoGeneric*Op family (not needed anymore)
     and of course changed all the operators to reflect the change (and found a few that didn't
@@ -5865,24 +5865,24 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Tue Feb 13 12:38:19 2001 +0000
 
     fixed a bug: the parser now correctly parses parameters of the form
-    
+
     -Pvalue
-    
+
     This will now produce 'value'. The buggy parser would parse 'alue' here. I am truly and deeply
     ashamed to have created such an off-by-one error.
-    
+
     Marc assumed this was wanted behaviour (so that it should read: -P=value)
     I must admit that this is a logical conclusion, though it was merely a side-effect
     of the error. To not force Marc to rewrite the tutorial and his way of working with
     EO, I decided to make a feature out of the bug, so that now the parser will parse:
-    
+
     -Pvalue
     -P=value
-    
+
     and of course the true and blue:
-    
+
     -Parameter=value
-    
+
     I will now go and check if I sent out some crappy papers caused by this bug (as I've been using eo!)
 
 Author: maartenkeijzer <maartenkeijzer>
@@ -5894,14 +5894,14 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Mon Feb 12 13:58:51 2001 +0000
 
     Ok, updated the Makefile.am again to use the
-    
+
     make check
-    
+
     Command I picked up in the automake documentation (RTFM, you know)
-    
+
     Tagged a lot of header functions in the GnuPlot files with 'inline',
     so they can be used from more than one sourcefile.
-    
+
     Ok, now the interesting news. Started a new library libga (not to be confused
     with Matthew's GaLib). Here I suggest we put a fairly complete and configurable
     genetic algorithm. Just to see how far we can stretch ourselves and also to have
@@ -5920,7 +5920,7 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Sun Feb 11 16:25:03 2001 +0000
 
     Removed small bug in reading outside a buffer in eoParser::readFrom
-    
+
     This caused the parser to crash when a simple flag of the form program -f
     was given.
 
@@ -6014,8 +6014,8 @@ Date:   Fri Feb 9 05:09:26 2001 +0000
     I also changed
       - the eoQuadratic into eoQuad (as dicussed with Maarten)
       - the eoBin into eoBit, with more appropriate names for the "binary"
-        operators (that can be unary!) as no one protested when I posted on
-        eodev list
+	operators (that can be unary!) as no one protested when I posted on
+	eodev list
 
 Author: evomarc <evomarc>
 Date:   Wed Feb 7 05:15:18 2001 +0000
@@ -6039,7 +6039,7 @@ Date:   Wed Feb 7 05:04:24 2001 +0000
     Added selection methods
     eoBestSelect            always return the best individual
     eoSequentialSelect      a selectOne version of eoDetSelect (uses an index to
-                            return next offspring from sorted pop)
+			    return next offspring from sorted pop)
 
 Author: evomarc <evomarc>
 Date:   Thu Feb 1 05:27:36 2001 +0000
@@ -6061,7 +6061,7 @@ Date:   Wed Jan 31 18:38:39 2001 +0000
     every generation) which is different from the continuous monitoring (same file/plot is
     angemented every generation).
     This lead to a number of modifications in many files in utils dir
-    
+
     But now we can watch on-line
     - fitness spreadout
     - FDC plots
@@ -6078,7 +6078,7 @@ Date:   Mon Jan 29 10:25:44 2001 +0000
     Added the truncate and the hasNoBoundAtAll methods in eoRealBounds.
     The former simply set values to the boundary values in case they are out
     The latter allows to short-cut all bound-checks when no need
-    
+
     SOme day I will put this in utils, and have a eoRealBounds.cpp in the
     pre-compiled library
 
@@ -6129,12 +6129,12 @@ Date:   Sat Jan 27 07:43:58 2001 +0000
        eo   everything that is general to any representation
        es.h everything about real representation (in es dir)
        ga.h everything related to bitstring representation (in ga dir)
-    
+
     To be continued by gp.h, and ...
-    
+
     This has lead to some slight modifications in test file eobin and all tutorial
     examples files...
-    
+
     I've also added in utils eoDistance, generic functor to compute distances,
     including also the generic Euclidian distance
 
@@ -6145,9 +6145,9 @@ Date:   Sat Jan 27 07:41:46 2001 +0000
        eo   everything that is general to any representation
        es.h everything about real representation (in es dir)
        ga.h everything related to bitstring representation (in ga dir)
-    
+
     To be continued by gp.h, and ...
-    
+
     This has lead to some slight modifications in test file eobin and all tutorial
     examples files...
 
@@ -6405,7 +6405,7 @@ Date:   Tue Jan 2 07:03:57 2001 +0000
       permanent parameters (eoParser only holds references), and egcs did not allow
       to create them by reference, i.e. in the line
       eoValueParam<xxx> & blablaParam(...);
-    
+
     So now everything is done in the main_function, and 3 lines are needed to create
     and read every paramter (sigh ...)
 
@@ -6483,16 +6483,16 @@ Date:   Tue Dec 19 18:41:19 2000 +0000
     THe big eoReplacement update:
     The interface for eoReplacement is now eoPop<EOT>&, eoPop<EOT>&
     (i.e. no const) and the result must be in the first argument in the end.
-    
+
     Hence it is possible to do SSGA and all intermediate replacmeent procedures
-    
+
     The classes derived from eoMergeReduce.h are now in a separate file
     The SSGA-like replcaement procedures are in eoReduceMerge.h
     A more general replacement can be found in eoSurviveAndDie.h
     (it could be made a littel more general - still open for upgrades).
-    
+
     Also some accessors have been added to the eoPop (best and worse individuals)
-    
+
     And include file eo has been updated
 
 Author: evomarc <evomarc>
@@ -6630,16 +6630,16 @@ Author: evomarc <evomarc>
 Date:   Mon Dec 4 06:58:43 2000 +0000
 
     Added the lastCall construct: if the stopping condition becomes true in eoCheckPoint,
-          a method called lastCall is called for everything contained in that checkpoint
-          (stats, updaters and monitors). This can be extremely useful
-          - for stateSavers (see below)
-          - for monitoring things like rates of success of operators, where what you
-            are interested in is the final result only.
+	  a method called lastCall is called for everything contained in that checkpoint
+	  (stats, updaters and monitors). This can be extremely useful
+	  - for stateSavers (see below)
+	  - for monitoring things like rates of success of operators, where what you
+	    are interested in is the final result only.
     Added of course a virtual method lastCall that does nothing by default in classes
-          eoBaseStat, eoBaseSortedStat, eoUpdater and eoMonitor
+	  eoBaseStat, eoBaseSortedStat, eoUpdater and eoMonitor
     Added a boolean to control the save of the state in method eoCountedStateSaver::lastCall
-          so you can ask that the state is saved at final population, whatever happens.
-          I also added the corresponding constructor to take this into account.
+	  so you can ask that the state is saved at final population, whatever happens.
+	  I also added the corresponding constructor to take this into account.
 
 Author: evomarc <evomarc>
 Date:   Mon Dec 4 05:55:59 2000 +0000
@@ -6822,8 +6822,8 @@ Author: evomarc <evomarc>
 Date:   Tue Nov 28 06:46:37 2000 +0000
 
     Modified the contructor: the default value for the delimiter is now " "
-         and I added a boolean argument to indicate whether or not we want to
-             overwrite an existing file with same name (default is overwrite).
+	 and I added a boolean argument to indicate whether or not we want to
+	     overwrite an existing file with same name (default is overwrite).
     Added the getFileName accessor.
 
 Author: evomarc <evomarc>
@@ -7085,7 +7085,7 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Fri Oct 6 10:41:38 2000 +0000
 
     Added an eoSortedStatBase for more efficient statistic calculations
-    
+
     updated a few makefiles to include the html and latex docs with the
     distribution.
 
@@ -7844,12 +7844,12 @@ Author: mac <mac>
 Date:   Mon Mar 6 16:05:47 2000 +0000
 
     Fixed bug in eoGOpSelector (missing break!)
-    
+
     eoOp.h: binOp's second arg is const once more
-    
+
     all dsp and dsw files were touched by msvc, but did add some stuff (which
     will be added to eo later)
-    
+
     Hope this all works
 
 Author: mac <mac>
@@ -7879,7 +7879,7 @@ Author: marc <marc>
 Date:   Tue Feb 29 05:14:40 2000 +0000
 
     wherease the command "cvs ci" is OK.
-    
+
     Here we go:
     - added the virtual destructors of all classes,
      to suppress g++ annoying warnings when using -Wall option
@@ -7930,7 +7930,7 @@ Date:   Sat Feb 19 16:30:42 2000 +0000
 
     Moved the static eoRNG rng to an extern eoRNG
     This external object is now defined in eoPersistent.cpp
-    
+
     This should change...
 
 Author: mac <mac>

@@ -14,12 +14,12 @@
 
 	* test/t-eoSymreg.cpp (SymregNode::operator()): Initialize r1 and r2 to
 	avoid compiler warnings.
-	
-	
+
+
 2006-07-02  Thomas Legrand  <thomas.legrand@inria.fr>
 
 	* test/t-eoEasyPSO.cpp: added PSO test
-	
+
 	* test/Makefile.am: added PSO test
 
 
@@ -28,7 +28,7 @@
 	* test/t-eoSyncEasyPSO.cpp: added synchronous PSO test
 	* test/t-eoEasyPSO.cpp: customized PSO test (initialization)
 	* test/Makefile.am: added synchronous PSO test
-	
+
 	* Local Variables:
 	* coding: iso-8859-1
 	* mode: flyspell

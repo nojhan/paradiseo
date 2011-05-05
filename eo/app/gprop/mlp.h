@@ -45,7 +45,7 @@ namespace std {
   istream& operator>>(istream& is, mlp::vector& v)
   {
     for (mlp::vector::iterator vi = v.begin() ; vi != v.end() ; vi++) {
-        is >> *vi;
+	is >> *vi;
     }
     return is;
   }
@@ -133,15 +133,15 @@ namespace mlp
     #ifdef HAVE_LIBYAML_CPP
     YAML_SERIALIZABLE_AUTO(neuron)
     void emit_yaml(YAML::Emitter&out) const {
-            out << YAML::BeginMap;
-            out << YAML::Key << "Class" << YAML::Value << "mlp::neuron";
-            YAML_EMIT_MEMBER(out,bias);
-            YAML_EMIT_MEMBER(out,weight);
-            out << YAML::EndMap;
+	    out << YAML::BeginMap;
+	    out << YAML::Key << "Class" << YAML::Value << "mlp::neuron";
+	    YAML_EMIT_MEMBER(out,bias);
+	    YAML_EMIT_MEMBER(out,weight);
+	    out << YAML::EndMap;
     }
     void load_yaml(const YAML::Node& node) {
-        YAML_LOAD_MEMBER(node, bias);
-        YAML_LOAD_MEMBER(node, weight);
+	YAML_LOAD_MEMBER(node, bias);
+	YAML_LOAD_MEMBER(node, weight);
     }
     #endif
  };
@@ -213,17 +213,17 @@ namespace mlp {
     }
     #ifdef HAVE_LIBYAML_CPP
     friend ostream& operator<<(YAML::Emitter& e, const layer &l) {
-        e << ((std::vector<neuron>)l);
+	e << ((std::vector<neuron>)l);
     }
 
     friend void operator>>(const YAML::Node& n, layer &l) {
-        // These temporary variable shenanegins are necessary because 
-        // the compiler gets very confused about which template operator>> 
-        // function to use.
-        // The following does not work:  n >> l;
-        // So we use a temporary variable thusly:
-        std::vector<mlp::neuron> *obviously_a_vector = &l;
-        n >> *obviously_a_vector;
+	// These temporary variable shenanegins are necessary because
+	// the compiler gets very confused about which template operator>>
+	// function to use.
+	// The following does not work:  n >> l;
+	// So we use a temporary variable thusly:
+	std::vector<mlp::neuron> *obviously_a_vector = &l;
+	n >> *obviously_a_vector;
     }
     #endif
 
@@ -243,7 +243,7 @@ namespace std {
   istream& operator>>(istream& is, mlp::layer& l)
   {
     for (mlp::layer::iterator li = l.begin() ; li != l.end() ; li++) {
-        is >> *li;
+	is >> *li;
     }
     return is;
   }
@@ -277,15 +277,15 @@ namespace mlp {
     #ifdef HAVE_LIBYAML_CPP
     YAML_SERIALIZABLE_AUTO(net)
     void emit_members(YAML::Emitter&out) const {
-        const std::vector<layer>* me_as_layer_vector = this;
-        out << YAML::Key << "layers" << YAML::Value << *me_as_layer_vector;
+	const std::vector<layer>* me_as_layer_vector = this;
+	out << YAML::Key << "layers" << YAML::Value << *me_as_layer_vector;
     }
 
     void load_members(const YAML::Node& node) {
-        std::vector<layer>* me_as_layer_vector = this;
-        node["layers"] >> *me_as_layer_vector;
+	std::vector<layer>* me_as_layer_vector = this;
+	node["layers"] >> *me_as_layer_vector;
     }
-    #endif // HAVE_LIBYAML_CPP  
+    #endif // HAVE_LIBYAML_CPP
 
       /** Virtual destructor */
       virtual ~net() {};
@@ -303,14 +303,14 @@ namespace mlp {
 	   is >> layer_size;
 	   layer_sizes.push_back(layer_size);
 	}
-        unsigned check_outputs;
+	unsigned check_outputs;
 	is >> check_outputs;
 	assert (check_outputs ==  num_outputs);
 	init (num_inputs,num_outputs,layer_sizes);
-        // skip forward to pass up opening '<' char
-        char c=' ';
-        while (c!='<' && !is.eof()) { is >> c;}
-        for (iterator l =begin() ; l != end(); l++) {
+	// skip forward to pass up opening '<' char
+	char c=' ';
+	while (c!='<' && !is.eof()) { is >> c;}
+	for (iterator l =begin() ; l != end(); l++) {
 	    is >> *l;
 	}
 	do { is >> c; } while (c == ' ' && !is.eof());
@@ -351,15 +351,15 @@ namespace mlp {
     }
 
     void save(ostream &os) const {
-        // Save the number of inputs, number of outputs, and number of hidden layers
+	// Save the number of inputs, number of outputs, and number of hidden layers
 	os << num_inputs() << "\n" << num_outputs() << "\n" << num_hidden_layers() << "\n";
-        for(const_iterator l = begin(); l != end(); ++l)
+	for(const_iterator l = begin(); l != end(); ++l)
 	   os << l->size() << " ";
-        os << "\n";
-        os << "< ";
-        for(const_iterator l = begin(); l != end(); ++l)
+	os << "\n";
+	os << "< ";
+	for(const_iterator l = begin(); l != end(); ++l)
 	   os << *l << " ";
-        os << ">\n";
+	os << ">\n";
     }
 
 
@@ -454,7 +454,7 @@ namespace mlp {
 
     void load(istream &is) {
 	unsigned input_size, output_size;
-        is >> input_size >> output_size;
+	is >> input_size >> output_size;
 	sample samp(input_size, output_size);;
 	while (is >> samp) { push_back(samp); }
     }

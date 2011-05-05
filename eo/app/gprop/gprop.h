@@ -207,12 +207,12 @@ int correct(const mlp::net& net, const mlp::set& set)
       unsigned partial = 0;
 
       for (unsigned i = 0; i < s->output.size(); ++i)
-        if ((s->output[i] < 0.5 && net(s->input)[i] < 0.5) ||
-            (s->output[i] > 0.5 && net(s->input)[i] > 0.5))
-          ++partial;
+	if ((s->output[i] < 0.5 && net(s->input)[i] < 0.5) ||
+	    (s->output[i] > 0.5 && net(s->input)[i] > 0.5))
+	  ++partial;
 
       if (partial == s->output.size())
-        ++sum;
+	++sum;
     }
 
   return sum;

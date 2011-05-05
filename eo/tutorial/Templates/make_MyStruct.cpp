@@ -126,4 +126,3 @@ void run_ea(eoAlgo<eoMyStruct<eoMinimizingFitness> >& _ga, eoPop<eoMyStruct<eoMi
 {
   do_run(_ga, _pop);
 }
-

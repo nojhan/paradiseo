@@ -19,8 +19,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mak@dhi.dk
+	     Marc.Schoenauer@polytechnique.fr
+	     mak@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ public:
 
   eoInitVirus(unsigned _combien, eoRndGenerator<bool>& _generator )
 	: combien(_combien), generator(_generator) {}
-  
+
   virtual void operator()( eoVirus<FitT>& chrom)
   {
 	chrom.resize(combien);
@@ -54,7 +54,7 @@ public:
 	}
 	chrom.invalidate();
   }
-  
+
 private :
   unsigned combien;
   /// generic wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics
@@ -68,7 +68,7 @@ public:
 
   eoInitVirus1bit(unsigned _combien, eoRndGenerator<bool>& _generator )
 	: combien(_combien), generator(_generator) {}
-  
+
   virtual void operator()( eoVirus<FitT>& chrom)
   {
 	chrom.resize(combien);
@@ -77,7 +77,7 @@ public:
 	chrom.virusBitSet(0, true );
 	chrom.invalidate();
   }
-  
+
 private :
   unsigned combien;
   /// generic wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics

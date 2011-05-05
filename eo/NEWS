@@ -7,11 +7,11 @@
   - GCC 4.3 compatibility
   - new versatile log system with several nested verbose levels
   - classes using intern verbose parameters marked as deprecated, please update your code accordingly if you use one of the following files:
-        eo/src/eoCombinedInit.h
-        eo/src/eoGenContinue.h
-        eo/src/eoProportionalCombinedOp.h
-        eo/src/utils/eoData.h
-        eo/src/utils/eoStdoutMonitor.h
+	eo/src/eoCombinedInit.h
+	eo/src/eoGenContinue.h
+	eo/src/eoProportionalCombinedOp.h
+	eo/src/utils/eoData.h
+	eo/src/utils/eoStdoutMonitor.h
   - an evaluator that throw an exception if a maximum eval numbers has been reached, independently of the number of generations
   - new monitor that can write on any ostream
   - new continuator that can catch POSIX system user signals
@@ -33,10 +33,9 @@
   - Add Microsoft Visual C++ project support files (for Visual Studio 2003 and 2005)
   - Upgrade Teamplates/ script to create a complete standalone EO project (using autotools)
   - Remove support for pre-standard C++ compiler (i.e. gcc-2.x), which allows to
-    clean up the code considerably. 
+    clean up the code considerably.
     Assume availability of sstream and limits.
 
 * release 0.9.3z.1 (1. Oct. 2005)
   - Support gcc-3.4 and gcc.4.x.
   - Provide full automake/autoconf/configure support.
-

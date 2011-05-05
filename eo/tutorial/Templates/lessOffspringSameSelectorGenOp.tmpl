@@ -18,21 +18,21 @@ First version, get parents from populator using the imbedded select() method
 
 #include <eoGenOp.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
- * ATTENTION, class EOT *must* derive from EO, as method invalidate() 
+ * ATTENTION, class EOT *must* derive from EO, as method invalidate()
  * must be called if the genotypes of the indis is modified
  */
-template<class EOT> 
+template<class EOT>
 class eoLessOffspringSameSelectorGenOp: public eoGenOp<EOT>
 {
 public:
   /**
    * (Default) Constructor.
    */
-  eoLessOffspringSameSelectorGenOp(paramType _anyParameter) : 
+  eoLessOffspringSameSelectorGenOp(paramType _anyParameter) :
     anyParameter(_anyParameter) {}
 
   /// The class name. Used to display statistics
@@ -42,7 +42,7 @@ public:
   unsigned max_production(void) { return NbLeftParents; }
 
   /**
-   * eoLesOffspringSameSelectorGenOp operator - 
+   * eoLesOffspringSameSelectorGenOp operator -
    *        gets extra parents from the populator
    *
    * @param _pop a POPULATOR (not a simple population)

@@ -1,4 +1,3 @@
-
 ######                 General    ######
 # --help=0                                 # -h : Prints this message
 # --stopOnUnknownParam=1                   # Stop if unkown param entered
@@ -12,7 +11,7 @@
 --weakElitism=0                          # -w : Old best parent replaces new worst offspring *if necessary*
 
 ######    Genotype Initialization    ######
-# --vecSize=10                             # -n : The number of variables 
+# --vecSize=10                             # -n : The number of variables
 # --initBounds=10[-1,1]                    # -B : Bounds for initialization (MUST be bounded)
 --sigmaInit=0.3%                          # -s : Initial value for Sigmas (with a '%' -> scaled by the range of each variable)
 

@@ -14,11 +14,11 @@ Template for continuator in EO, i.e. stopping conditions for EO algorithms
 // include the base definition of eoContinue
 #include <eoContinue.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
- * ATTENTION, class EOT *must* derive from EO, as operator() will 
+ * ATTENTION, class EOT *must* derive from EO, as operator() will
  * be called with an eoPop<EOT>
  */
 template< class EOT>
@@ -29,7 +29,7 @@ public:
    */
 // START eventually add or modify the anyVariable argument
   eoMyStructContinue()
-  //  eoMyStructBinCrossover( varType  _anyVariable) : anyVariable(_anyVariable) 
+  //  eoMyStructBinCrossover( varType  _anyVariable) : anyVariable(_anyVariable)
 // END eventually add or modify the anyVariable argument
   {
     // START Code of Ctor of an eoMyStructEvalFunc object
@@ -41,7 +41,7 @@ public:
    *
    * @param _pop an eoPop
    */
-  virtual bool operator() ( const eoPop<EOT>& _pop ) 
+  virtual bool operator() ( const eoPop<EOT>& _pop )
     {
       bool stopCondition ; // to store the stopping condition
     // START Code of computation of stopping condition
@@ -62,4 +62,3 @@ private:
 };
 
 #endif
-
