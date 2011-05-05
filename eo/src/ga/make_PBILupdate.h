@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_PBILupdate.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -47,7 +47,7 @@
 template <class EOT>
 eoDistribUpdater<EOT> &  do_make_PBILupdate(eoParser & _parser, eoState& _state, EOT)
 {
-  // ast the moment, a single update rule is available 
+  // ast the moment, a single update rule is available
   // but at some point we'll have to choose among different rules
 
     std::string UType = _parser.createParam(std::string("PBIL"), "updateRule", "Type of update rule (only PBIL additive at the moment)", 'U', "Algorithm").value();
@@ -59,7 +59,7 @@ eoDistribUpdater<EOT> &  do_make_PBILupdate(eoParser & _parser, eoState& _state,
     double tolerance = _parser.createParam(0.0, "tolerance", "Keeping away from 0 and 1", 't', "Algorithm").value();
 
     // a pointer to choose among several possible types
-  eoDistribUpdater<EOT> * ptUpdate; 
+  eoDistribUpdater<EOT> * ptUpdate;
 
   if (UType == std::string("PBIL"))
     {
@@ -72,7 +72,7 @@ eoDistribUpdater<EOT> &  do_make_PBILupdate(eoParser & _parser, eoState& _state,
     throw std::runtime_error("Only PBIL additive update rule available at the moment");
 
   // done: don't forget to store the allocated pointers
-  _state.storeFunctor(ptUpdate); 
+  _state.storeFunctor(ptUpdate);
   return *ptUpdate;
 }
 

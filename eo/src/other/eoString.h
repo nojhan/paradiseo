@@ -37,8 +37,8 @@
 // eoString
 //-----------------------------------------------------------------------------
 
-/** Adaptor that turns an STL std::string into an EO 
- 
+/** Adaptor that turns an STL std::string into an EO
+
   @ingroup Representations
   @ingroup Utilities
  */
@@ -82,4 +82,3 @@ public:
 };
 
 #endif
-

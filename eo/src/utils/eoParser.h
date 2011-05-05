@@ -119,7 +119,7 @@ public:
    * @param _shortHand              Single charachter shorthand for specifying the configuration file
    */
   eoParser ( unsigned _argc, char **_argv , std::string _programDescription = "",
-	   std::string _lFileParamName = "param-file", char _shortHand = 'p');
+           std::string _lFileParamName = "param-file", char _shortHand = 'p');
 
   /**
     Processes the parameter and puts it in the appropriate section for readability

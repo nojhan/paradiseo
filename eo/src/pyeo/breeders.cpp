@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -27,9 +27,19 @@
 
 using namespace boost::python;
 
-#define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoBreed<PyEO > > >(#x, \
-	init<i1, i2 >()[with_custodian_and_ward<1,2,with_custodian_and_ward<1,3> >()])\
-	.def("__call__", &eoBreed<PyEO>::operator())
+#define DEF3(x, i1, i2)				\
+    class_<x<PyEO>, bases<eoBreed<PyEO > > >	\
+    (#x,					\
+     init<i1, i2 >()				\
+     [						\
+      with_custodian_and_ward<1,2,		\
+      with_custodian_and_ward<1,3		\
+      >						\
+      >						\
+     ()						\
+     ]						\
+     )						\
+    .def("__call__", &eoBreed<PyEO>::operator())
 
 void breeders()
 {
@@ -38,14 +48,12 @@ void breeders()
     DEF3(eoSelectTransform, eoSelect<PyEO>&, eoTransform<PyEO>&);
 
     DEF3(eoGeneralBreeder, eoSelectOne<PyEO>&, eoGenOp<PyEO>&)
-	.def( init<eoSelectOne<PyEO>&, eoGenOp<PyEO>&, double>()[WC2])
-	.def( init<eoSelectOne<PyEO>&, eoGenOp<PyEO>&, double, bool>()[WC2] )
-	.def( init<eoSelectOne<PyEO>&, eoGenOp<PyEO>&, eoHowMany>() );
+        .def( init<eoSelectOne<PyEO>&, eoGenOp<PyEO>&, double>()[WC2])
+        .def( init<eoSelectOne<PyEO>&, eoGenOp<PyEO>&, double, bool>()[WC2] )
+        .def( init<eoSelectOne<PyEO>&, eoGenOp<PyEO>&, eoHowMany>() );
 
 
     DEF3(eoOneToOneBreeder, eoGenOp<PyEO>&, eoEvalFunc<PyEO>&)
-	.def( init<eoGenOp<PyEO>&, eoEvalFunc<PyEO>&, double>()[WC2] )
-	.def( init<eoGenOp<PyEO>&, eoEvalFunc<PyEO>&, double, eoHowMany>()[WC2] );
-
+        .def( init<eoGenOp<PyEO>&, eoEvalFunc<PyEO>&, double>()[WC2] )
+        .def( init<eoGenOp<PyEO>&, eoEvalFunc<PyEO>&, double, eoHowMany>()[WC2] );
 }
-

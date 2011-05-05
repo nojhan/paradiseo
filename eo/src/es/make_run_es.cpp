@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_run_es.cpp
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 /** This file contains ***INSTANCIATED DEFINITIONS*** of run funs
  * of the library for evolution of  ***ES genotypes***  inside EO.
@@ -35,7 +35,7 @@
  * Compiling this file allows one to generate part of the library (i.e. object
  * files that you just need to link with your own main and fitness code).
  *
- * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
+ * The corresponding ***INSTANCIATED DECLARATIONS*** are contained
  *       in src/es/es.h
  * while the TEMPLATIZED code is define in make_run.h in the src/do dir
  */
@@ -43,9 +43,9 @@
 // The templatized code
 #include <do/make_run.h>
 // the instanciating EOType(s)
-#include <es/eoEsSimple.h>	   // one Sigma per individual
-#include <es/eoEsStdev.h>	   // one sigmal per object variable
-#include <es/eoEsFull.h>	   // full correlation matrix per indi
+#include <es/eoEsSimple.h>         // one Sigma per individual
+#include <es/eoEsStdev.h>          // one sigmal per object variable
+#include <es/eoEsFull.h>           // full correlation matrix per indi
 // the instanciating fitnesses
 #include <eoScalarFitness.h>
 
@@ -84,4 +84,3 @@ void run_ea(eoAlgo<eoEsFull<eoMinimizingFitness> >& _ga, eoPop<eoEsFull<eoMinimi
 {
   do_run(_ga, _pop);
 }
-

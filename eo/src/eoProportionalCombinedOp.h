@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 // eoCombinedOp.h
 // (c) GeNeura Team, 1998, Marc Schoenauer, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -105,7 +105,7 @@ public:
   virtual bool operator()(EOT & _indi)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op
-    return (*ops[what])(_indi);		   // apply it
+    return (*ops[what])(_indi);            // apply it
   }
 protected:
 std::vector<eoMonOp<EOT>*> ops;
@@ -139,20 +139,20 @@ virtual void add(eoBinOp<EOT> & _op, const double _rate, bool _verbose=false)
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
       {
-	double total = 0;
-	unsigned i;
-	for (i=0; i<ops.size(); i++)
-	  total += rates[i];
+        double total = 0;
+        unsigned i;
+        for (i=0; i<ops.size(); i++)
+          total += rates[i];
     eo::log << eo::logging << "In " << className() << std::endl ;
-	for (i=0; i<ops.size(); i++)
-	  eo::log << eo::logging << ops[i]->className() << " with rate " << 100*rates[i]/total << " %" << std::endl;
+        for (i=0; i<ops.size(); i++)
+          eo::log << eo::logging << ops[i]->className() << " with rate " << 100*rates[i]/total << " %" << std::endl;
       }
   }
 
   virtual void operator()(EOT & _indi1, const EOT & _indi2)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op index
-    return (*ops[what])(_indi1, _indi2);		   // apply it
+    return (*ops[what])(_indi1, _indi2);                   // apply it
   }
 private:
 std::vector<eoBinOp<EOT>*> ops;
@@ -216,7 +216,7 @@ public:
   virtual bool operator()(EOT & _indi1, EOT & _indi2)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op index
-    return (*ops[what])(_indi1, _indi2);		   // apply it
+    return (*ops[what])(_indi1, _indi2);                   // apply it
   }
 private:
 std::vector<eoQuadOp<EOT>*> ops;

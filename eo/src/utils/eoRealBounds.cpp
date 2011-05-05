@@ -78,7 +78,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
   if (ownedBounds.size()>0)
     for (unsigned i = 0; i < ownedBounds.size(); ++i)
       {
-	delete ownedBounds[i];
+        delete ownedBounds[i];
       }
   ownedBounds.resize(0);
   factor.resize(0);
@@ -89,29 +89,29 @@ void eoRealVectorBounds::readFrom(std::string _value)
   while (_value.size()>0)
     {
       if (!remove_leading(_value, delim)) // only delimiters were left
-	break;
+        break;
       // look for opening char
       size_t posDeb = _value.find_first_of("[(");
       if (posDeb >= _value.size())	// nothing left to read (though probably a syntax error there)
-	{
-	  break;
-	}
+        {
+          break;
+        }
       // ending char
       std::string closeChar = (_value[posDeb] == '(' ? std::string(")") : std::string("]") );
 
       size_t posFin = _value.find_first_of(std::string(closeChar));
       if (posFin >= _value.size())
-	throw std::runtime_error("Syntax error when reading bounds");
+        throw std::runtime_error("Syntax error when reading bounds");
 
   // y a-t-il un nbre devant
       unsigned count = 1;
       if (posDeb > 0)			// something before opening
-	{
-	  std::string sCount = _value.substr(0, posDeb);
-	  count = read_int(sCount);
-	  if (count <= 0)
-	    throw std::runtime_error("Syntax error when reading bounds");
-	}
+        {
+          std::string sCount = _value.substr(0, posDeb);
+          count = read_int(sCount);
+          if (count <= 0)
+            throw std::runtime_error("Syntax error when reading bounds");
+        }
 
       // the bounds
       std::string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
@@ -121,7 +121,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
       remove_leading(sBounds, delim);
       size_t posDelim = sBounds.find_first_of(delim);
       if (posDelim >= sBounds.size())
-	throw std::runtime_error("Syntax error when reading bounds");
+        throw std::runtime_error("Syntax error when reading bounds");
 
       bool minBounded=false, maxBounded=false;
       double minBound=0, maxBound=0;
@@ -129,38 +129,38 @@ void eoRealVectorBounds::readFrom(std::string _value)
       // min bound
       std::string sMinBounds = sBounds.substr(0,posDelim);
       if (sMinBounds != std::string("-inf"))
-	{
-	  minBounded = true;
-	  minBound = read_double(sMinBounds);
-	}
+        {
+          minBounded = true;
+          minBound = read_double(sMinBounds);
+        }
 
       // max bound
       size_t posEndDelim = sBounds.find_first_not_of(delim,posDelim);
 
       std::string sMaxBounds = sBounds.substr(posEndDelim);
       if (sMaxBounds != std::string("+inf"))
-	{
-	  maxBounded = true;
-	  maxBound = read_double(sMaxBounds);
-	}
+        {
+          maxBounded = true;
+          maxBound = read_double(sMaxBounds);
+        }
 
       // now create the eoRealBounds objects
       eoRealBounds *ptBounds;
       if (minBounded && maxBounded)
-	ptBounds = new eoRealInterval(minBound, maxBound);
+        ptBounds = new eoRealInterval(minBound, maxBound);
       else if (!minBounded && !maxBounded)	// no bound at all
-	ptBounds = new eoRealNoBounds;
+        ptBounds = new eoRealNoBounds;
       else if (!minBounded && maxBounded)
-	ptBounds = new eoRealAboveBound(maxBound);
+        ptBounds = new eoRealAboveBound(maxBound);
       else if (minBounded && !maxBounded)
-	ptBounds = new eoRealBelowBound(minBound);
+        ptBounds = new eoRealBelowBound(minBound);
       // store it for memory management
       ownedBounds.push_back(ptBounds);
       // push the count
       factor.push_back(count);
       // and add count of it to the actual bounds
       for (unsigned i=0; i<count; i++)
-	push_back(ptBounds);
+        push_back(ptBounds);
     }
   // now adjust the size to the initial value
   adjust_size(oldSize);
@@ -175,7 +175,7 @@ void eoRealVectorBounds::adjust_size(unsigned _dim)
       unsigned missing = _dim-size();
       eoRealBounds * ptBounds = back();
       for (unsigned i=0; i<missing; i++)
-	push_back(ptBounds);
+        push_back(ptBounds);
       // update last factor (warning: can be > 1 already!)
       factor[factor.size()-1] += missing;
     }
@@ -221,12 +221,12 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
       std::string sMinBounds = sBounds.substr(0,posDelim);
 
       if ( (sMinBounds != std::string("-inf")) &&
-	   (sMinBounds != std::string("-infinity"))
-	   )
-	{
-	  minBounded = true;
-	  minBound = read_double(sMinBounds);
-	}
+           (sMinBounds != std::string("-infinity"))
+           )
+        {
+          minBounded = true;
+          minBound = read_double(sMinBounds);
+        }
 
       // max bound
       size_t posEndDelim = sBounds.find_first_not_of(delim,posDelim);
@@ -234,26 +234,26 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
       std::string sMaxBounds = sBounds.substr(posEndDelim);
 
       if ( (sMaxBounds != std::string("+inf")) &&
-	   (sMaxBounds != std::string("+infinity"))
-	   )
-	{
-	  maxBounded = true;
-	  maxBound = read_double(sMaxBounds);
-	}
+           (sMaxBounds != std::string("+infinity"))
+           )
+        {
+          maxBounded = true;
+          maxBound = read_double(sMaxBounds);
+        }
 
       // now create the embedded eoRealBounds object
       eoRealBounds * locBound;
       if (minBounded && maxBounded)
-	{
-	  if (maxBound <= minBound)
-	    throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
-	  locBound = new eoRealInterval(minBound, maxBound);
-	}
+        {
+          if (maxBound <= minBound)
+            throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
+          locBound = new eoRealInterval(minBound, maxBound);
+        }
       else if (!minBounded && !maxBounded)	// no bound at all
-	locBound = new eoRealNoBounds;
+        locBound = new eoRealNoBounds;
       else if (!minBounded && maxBounded)
-	locBound = new eoRealAboveBound(maxBound);
+        locBound = new eoRealAboveBound(maxBound);
       else if (minBounded && !maxBounded)
-	locBound = new eoRealBelowBound(minBound);
+        locBound = new eoRealBelowBound(minBound);
       return locBound;
 }

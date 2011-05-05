@@ -1,18 +1,16 @@
 from maxone import *
 import unittest
-	
+
 class TestBreeders(unittest.TestCase):
-    
     def runtest(self, breed):
-	
 	pop = eoPop(50, Init(20))
 	evaluate = EvalFunc()
-	print 'HERE'	
+	print 'HERE'
 	for indy in pop: evaluate(indy)
 	newpop = eoPop();
 
 	breed(pop,newpop)
-	
+
 	print pop.best()
 	for indy in newpop: evaluate(indy)
 	print newpop.best()
@@ -27,7 +25,6 @@ class TestBreeders(unittest.TestCase):
 
 def suite():
     return unittest.makeSuite(TestSGA,'test')
-
 
 if __name__=='__main__':
     unittest.main()

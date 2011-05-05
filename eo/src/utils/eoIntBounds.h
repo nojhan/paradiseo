@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoIntBounds.h
 // (c) Marc Schoenauer 2001, Maarten Keijzer 2000, GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 #ifndef _eoIntBounds_h
 #define _eoIntBounds_h
 
-#include <stdexcept>		   // std::exceptions!
+#include <stdexcept>               // std::exceptions!
 #include <utils/eoRNG.h>
 
 /**
@@ -42,24 +42,24 @@ Scalar type:
 Basic class is eoIntBounds, a pure virtual.
 
 The following pure virtual methods are to be used in mutations:
-- void foldsInBounds(long int &) that folds any value that falls out of 
+- void foldsInBounds(long int &) that folds any value that falls out of
   the bounds back into the bounds, by bouncing on the limit (if any)
-- bool isInBounds(long int) that simply says whether or not the argument 
+- bool isInBounds(long int) that simply says whether or not the argument
   is in the bounds
 - void truncate(long int &) that set the argument to the bound value it
 it exceeds it
 
-So mutation can choose 
-- iterate trying until they fall in bounds, 
+So mutation can choose
+- iterate trying until they fall in bounds,
 - only try once and "restd::pair" by using the foldsInBounds method
 - only try once and restd::pair using the truncate method (will create a
   huge bias toward the bound if the soluiton is not far from the bounds)
 
-There is also a uniform() method that generates a uniform value 
+There is also a uniform() method that generates a uniform value
 (if possible, i.e. if bounded) in the interval.
 
-Derived class are 
-eoIntInterval that holds a minimum and maximum value, 
+Derived class are
+eoIntInterval that holds a minimum and maximum value,
 eoIntNoBounds the "unbounded bounds" (-infinity, +infinity)
 eoIntBelowBound the half-bounded interval [min, +infinity)
 eoIntAboveBound the   half-bounded interval (-infinity, max]
@@ -68,7 +68,7 @@ THis file also contains the declaration of *the* global object that
 is the unbounded bound
 */
 class eoIntBounds : public eoPersistent
-{ 
+{
 public:
   virtual ~eoIntBounds(){}
 
@@ -97,7 +97,7 @@ public:
    */
   virtual void foldsInBounds(double &)  const = 0;
 
-  /** foldsInBounds for ints: 
+  /** foldsInBounds for ints:
    * call the method for double and convert back */
   virtual void foldsInBounds(long int & i)  const
   {
@@ -112,24 +112,24 @@ public:
 
   /** truncate for ints: call the method for double and convert back
    */
-  virtual void truncate(long int & i)  const 
+  virtual void truncate(long int & i)  const
   {
     double r = double(i);
     truncate(r);
     i = (long int)(r);
   }
 
-  /** get minimum value 
+  /** get minimum value
    *  std::exception if does not exist
-   */  
+   */
   virtual long int minimum()  const = 0 ;
   /** get maximum value
    *  std::exception if does not exist
-   */  
+   */
   virtual long int maximum()  const = 0 ;
   /** get range
    *  std::exception if unbounded
-   */  
+   */
   virtual long int range()  const = 0;
 
   /** random generator of uniform numbers in bounds
@@ -165,11 +165,11 @@ public:
   {
     throw std::logic_error("Trying to get minimum of unbounded eoIntBounds");
   }
-  virtual long int maximum() const 
+  virtual long int maximum() const
   {
     throw std::logic_error("Trying to get maximum of unbounded eoIntBounds");
   }
-  virtual long int range() const 
+  virtual long int range() const
   {
     throw std::logic_error("Trying to get range of unbounded eoIntBounds");
   }
@@ -212,7 +212,7 @@ public:
   }
 
   /** for memory managements - ugly */
-  virtual eoIntBounds * dup() const 
+  virtual eoIntBounds * dup() const
   {
     return new eoIntNoBounds(*this);
   }
@@ -236,18 +236,18 @@ class eoIntInterval : public eoIntBounds
 {
 public :
   virtual ~eoIntInterval(){}
-  
-  /** 
+
+  /**
       Simple bounds = minimum and maximum (allowed)
   */
-  eoIntInterval(long int _min=0, long int _max=1) : 
-    repMinimum(_min), repMaximum(_max), repRange(_max-_min) 
+  eoIntInterval(long int _min=0, long int _max=1) :
+    repMinimum(_min), repMaximum(_max), repRange(_max-_min)
   {
     if (repRange<=0)
       throw std::logic_error("Void range in eoIntBounds");
   }
 
-  // accessors  
+  // accessors
   virtual long int minimum() const { return repMinimum; }
   virtual long int maximum() const { return repMaximum; }
   virtual long int range()  const { return repRange; }
@@ -258,18 +258,18 @@ public :
   virtual bool isMinBounded(void)  const {return true;}
   virtual bool isMaxBounded(void)  const {return true;}
 
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
     return repMinimum + _rng.uniform(repRange);
-  }  
+  }
 
-  virtual long int random(eoRng & _rng = eo::rng) const 
+  virtual long int random(eoRng & _rng = eo::rng) const
   {
     return repMinimum + _rng.random(repRange);
-  }  
+  }
 
   // says if a given double is within the bounds
-  virtual bool isInBounds(double _r) const 
+  virtual bool isInBounds(double _r) const
   {
     if (_r < repMinimum)
       return false;
@@ -279,36 +279,36 @@ public :
   }
 
   // folds a value into bounds
-  virtual void foldsInBounds(double &  _r) const 
+  virtual void foldsInBounds(double &  _r) const
   {
     long iloc;
     double dlargloc = 2 * range() ;
 
     if (fabs(_r) > 1.0E9)		// iloc too large!
       {
-	_r = uniform();
-	return;
+        _r = uniform();
+        return;
       }
 
     if ( (_r > maximum()) )
       {
-	iloc = (long) ( (_r-minimum()) / dlargloc ) ;
-	_r -= dlargloc * iloc ;
-	if ( _r > maximum() )
-	  _r = 2*maximum() - _r ;
+        iloc = (long) ( (_r-minimum()) / dlargloc ) ;
+        _r -= dlargloc * iloc ;
+        if ( _r > maximum() )
+          _r = 2*maximum() - _r ;
       }
-    
-    if (_r < minimum()) 
+
+    if (_r < minimum())
       {
-	iloc = (long) ( (maximum()-_r) / dlargloc ) ;
-	_r += dlargloc * iloc ;
-	if (_r < minimum())
-	  _r = 2*minimum() - _r ;
+        iloc = (long) ( (maximum()-_r) / dlargloc ) ;
+        _r += dlargloc * iloc ;
+        if (_r < minimum())
+          _r = 2*minimum() - _r ;
       }
-  }    
+  }
 
   // truncates to the bounds
-  virtual void truncate(double & _r) const 
+  virtual void truncate(double & _r) const
   {
     if (_r < repMinimum)
       _r = repMinimum;
@@ -341,7 +341,7 @@ public :
   }
 
   /** for memory managements - ugly */
-  virtual eoIntBounds * dup() const 
+  virtual eoIntBounds * dup() const
   {
     return new eoIntInterval(*this);
   }
@@ -349,7 +349,7 @@ public :
 private :
   long int repMinimum;
   long int repMaximum;
-  long int repRange;			   // to minimize operations ???
+  long int repRange;                       // to minimize operations ???
 };
 
 /**
@@ -361,22 +361,22 @@ private :
 class eoIntBelowBound : public eoIntBounds
 {
 public :
-  virtual ~eoIntBelowBound(){}  
-  /** 
+  virtual ~eoIntBelowBound(){}
+  /**
       Simple bounds = minimum
   */
-  eoIntBelowBound(long int _min=0) : 
+  eoIntBelowBound(long int _min=0) :
     repMinimum(_min)
   {}
 
-  // accessors  
+  // accessors
   virtual long int minimum() const { return repMinimum; }
 
-  virtual long int maximum() const 
+  virtual long int maximum() const
   {
     throw std::logic_error("Trying to get maximum of eoIntBelowBound");
   }
-  virtual long int range() const 
+  virtual long int range() const
   {
     throw std::logic_error("Trying to get range of eoIntBelowBound");
   }
@@ -402,7 +402,7 @@ public :
   virtual bool isMaxBounded(void) const  {return false;}
 
   // says if a given double is within the bounds
-  virtual bool isInBounds(double _r) const 
+  virtual bool isInBounds(double _r) const
   {
     if (_r < repMinimum)
       return false;
@@ -410,16 +410,16 @@ public :
   }
 
   // folds a value into bounds
-  virtual void foldsInBounds(double &  _r) const 
+  virtual void foldsInBounds(double &  _r) const
   {
     // easy as a pie: symmetry w.r.t. minimum
-    if (_r < repMinimum)	   // nothing to do otherwise
+    if (_r < repMinimum)           // nothing to do otherwise
       _r = 2*repMinimum - _r;
     return ;
-  }    
+  }
 
   // truncates to the bounds
-  virtual void truncate(double & _r) const 
+  virtual void truncate(double & _r) const
   {
     if (_r < repMinimum)
       _r = repMinimum;
@@ -450,7 +450,7 @@ public :
   }
 
   /** for memory managements - ugly */
-  virtual eoIntBounds * dup() const 
+  virtual eoIntBounds * dup() const
   {
     return new eoIntBelowBound(*this);
   }
@@ -469,22 +469,22 @@ class eoIntAboveBound : public eoIntBounds
 {
 public :
   virtual ~eoIntAboveBound(){}
-  
-  /** 
+
+  /**
       Simple bounds = minimum
   */
-  eoIntAboveBound(long int _max=0) : 
+  eoIntAboveBound(long int _max=0) :
     repMaximum(_max)
   {}
 
-  // accessors  
+  // accessors
   virtual long int maximum() const  { return repMaximum; }
 
-  virtual long int minimum() const 
+  virtual long int minimum() const
   {
     throw std::logic_error("Trying to get minimum of eoIntAboveBound");
   }
-  virtual long int range() const 
+  virtual long int range() const
   {
     throw std::logic_error("Trying to get range of eoIntAboveBound");
   }
@@ -510,7 +510,7 @@ public :
   virtual bool isMaxBounded(void)  const {return true;}
 
   // says if a given double is within the bounds
-  virtual bool isInBounds(double _r) const 
+  virtual bool isInBounds(double _r) const
   {
     if (_r > repMaximum)
       return false;
@@ -518,16 +518,16 @@ public :
   }
 
   // folds a value into bounds
-  virtual void foldsInBounds(double &  _r) const 
+  virtual void foldsInBounds(double &  _r) const
   {
     // easy as a pie: symmetry w.r.t. maximum
-    if (_r > repMaximum)	   // nothing to do otherwise
+    if (_r > repMaximum)           // nothing to do otherwise
       _r = 2*repMaximum - _r;
     return ;
-  }    
+  }
 
   // truncates to the bounds
-  virtual void truncate(double & _r) const 
+  virtual void truncate(double & _r) const
   {
     if (_r > repMaximum)
       _r = repMaximum;
@@ -558,7 +558,7 @@ public :
   }
 
   /** for memory managements - ugly */
-  virtual eoIntBounds * dup() const 
+  virtual eoIntBounds * dup() const
   {
     return new eoIntAboveBound(*this);
   }
@@ -598,13 +598,13 @@ public:
     if (maxBounded) maximum = bb.maximum();
 
       if (minBounded && maxBounded)
-	repBound = new eoIntInterval(minimum, maximum);
+        repBound = new eoIntInterval(minimum, maximum);
       else if (!minBounded && !maxBounded)	// no bound at all
-	repBound = new eoIntNoBounds;
+        repBound = new eoIntNoBounds;
       else if (!minBounded && maxBounded)
-	repBound = new eoIntAboveBound(maximum);
+        repBound = new eoIntAboveBound(maximum);
       else if (minBounded && !maxBounded)
-	repBound = new eoIntBelowBound(minimum);
+        repBound = new eoIntBelowBound(minimum);
   }
 
   eoGeneralIntBounds& operator=(const eoGeneralIntBounds& _b)
@@ -624,13 +624,13 @@ public:
       delete repBound;
     // now reallocate
       if (minBounded && maxBounded)
-	repBound = new eoIntInterval(minimum, maximum);
+        repBound = new eoIntInterval(minimum, maximum);
       else if (!minBounded && !maxBounded)	// no bound at all
-	repBound = new eoIntNoBounds;
+        repBound = new eoIntNoBounds;
       else if (!minBounded && maxBounded)
-	repBound = new eoIntAboveBound(maximum);
+        repBound = new eoIntAboveBound(maximum);
       else if (minBounded && !maxBounded)
-	repBound = new eoIntBelowBound(minimum);
+        repBound = new eoIntBelowBound(minimum);
       return (*this);
   }
 
@@ -671,17 +671,17 @@ public:
    */
   virtual void truncate(double & _x)  const {return repBound->truncate(_x);}
 
-  /** get minimum value 
+  /** get minimum value
    *  std::exception if does not exist
-   */  
+   */
   virtual long int minimum()  const {return repBound->minimum();}
   /** get maximum value
    *  std::exception if does not exist
-   */  
+   */
   virtual long int maximum() const {return repBound->maximum();}
   /** get range
    *  std::exception if unbounded
-   */  
+   */
   virtual long int range()  const {return repBound->range();}
 
   /** random generator of uniform doubles in bounds
@@ -698,9 +698,9 @@ public:
   virtual eoIntBounds * dup() const  {return repBound->dup();}
 
   /** for efficiency, it's better to use the embedded boud directly */
-  const eoIntBounds & theBounds()  const { return *repBound;} 
+  const eoIntBounds & theBounds()  const { return *repBound;}
 
-  /** don't forget the printOn method - 
+  /** don't forget the printOn method -
    * again that of the embedded bound
    */
   virtual void printOn(std::ostream& _os) const
@@ -709,7 +709,7 @@ public:
   }
 
   /** no readFrom ??? Have to check that later */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
     std::string s;
     _is >> s;

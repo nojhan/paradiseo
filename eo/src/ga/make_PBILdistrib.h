@@ -26,7 +26,7 @@
 #ifndef _make_PBILdistrib_h
 #define _make_PBILdistrib_h
 
-#include <ctime>		   // for time(0) for random seeding
+#include <ctime>                   // for time(0) for random seeding
 #include <ga/eoPBILOrg.h>
 #include <utils/eoRNG.h>
 #include <utils/eoParser.h>
@@ -51,21 +51,21 @@ eoPBILDistrib<EOT> &  do_make_PBILdistrib(eoParser & _parser, eoState& _state, E
   // First the random seed
     eoValueParam<uint32_t>& seedParam = _parser.createParam(uint32_t(0), "seed", "Random number seed", 'S');
     if (seedParam.value() == 0)
-	seedParam.value() = time(0);
+        seedParam.value() = time(0);
 
     // chromosome size:
     unsigned theSize;
     // but it might have been already read in the definition fo the performance
     eoParam* ptParam = _parser.getParamWithLongName(std::string("chromSize"));
 
-    if (!ptParam)			   // not already defined: read it here
+    if (!ptParam)                          // not already defined: read it here
       {
-	theSize = _parser.createParam(unsigned(10), "chromSize", "The length of the bitstrings", 'n',"Problem").value();
+        theSize = _parser.createParam(unsigned(10), "chromSize", "The length of the bitstrings", 'n',"Problem").value();
       }
-    else				   // it was read before, get its value
+    else                                   // it was read before, get its value
       {
-	eoValueParam<unsigned>* ptChromSize = dynamic_cast<eoValueParam<unsigned>*>(ptParam);
-	theSize = ptChromSize->value();
+        eoValueParam<unsigned>* ptChromSize = dynamic_cast<eoValueParam<unsigned>*>(ptParam);
+        theSize = ptChromSize->value();
       }
 
     eoPBILDistrib<EOT> * ptDistrib = new eoPBILDistrib<EOT>(theSize);

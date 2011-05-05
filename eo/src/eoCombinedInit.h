@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoCombinedInit.h
 // (c) Maarten Keijzer, GeNeura Team, Marc Schoenauer 2004
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 
 #include <eoInit.h>
 
-/** 
+/**
     Combined INIT: a proportional recombination of eoInit objects
 
     @ingroup Initializators
@@ -49,7 +49,7 @@ public:
       eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoCombinedInit::add is deprecated and will be removed in the next release." << std::endl;
       add( _init, _rate );
   }
-  
+
   /** The usual method to add objects to the combination
    */
   void add(eoInit<EOT> & _init, double _rate)
@@ -78,7 +78,7 @@ public:
   virtual void operator() ( EOT & _eo )
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op
-    (*initializers[what])(_eo);		   // apply it
+    (*initializers[what])(_eo);            // apply it
     return;
   }
 
@@ -90,4 +90,3 @@ std::vector<double> rates;
 };
 
 #endif
-

@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-/* 
-   
+/*
+
 (c) Thales group, 2010
 
     This library is free software; you can redistribute it and/or
@@ -20,7 +20,7 @@
 
 Contact: http://eodev.sourceforge.net
 
-Authors: 
+Authors:
      Johann Dréo <johann.dreo@thalesgroup.com>
      Caner Candan <caner.candan@thalesgroup.com>
 
@@ -87,10 +87,10 @@ void	eoLogger::printLevels() const
     std::cout << "Available verbose levels:" << std::endl;
 
     for (std::vector<std::string>::const_iterator it = _sortedLevels.begin(), end = _sortedLevels.end();
-	 it != end; ++it)
-	{
-	    std::cout << "\t" << *it << std::endl;
-	}
+         it != end; ++it)
+        {
+            std::cout << "\t" << *it << std::endl;
+        }
 
     ::exit(0);
 }
@@ -116,15 +116,15 @@ eoLogger&	operator<<(eoLogger& l, eo::setlevel v)
 eoLogger&	operator<<(eoLogger& l, std::ostream& os)
 {
     if (l._standard_io_streams.find(&os) != l._standard_io_streams.end())
-	{
-	    l._fd = l._standard_io_streams[&os];
-	}
+        {
+            l._fd = l._standard_io_streams[&os];
+        }
     return l;
 }
 
 eoLogger::outbuf::outbuf(const int& fd,
-			 const eo::Levels& contexlvl,
-			 const eo::Levels& selectedlvl)
+                         const eo::Levels& contexlvl,
+                         const eo::Levels& selectedlvl)
     : _fd(fd), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
 {}
 
@@ -132,11 +132,11 @@ int	eoLogger::outbuf::overflow(int_type c)
 {
     if (_selectedLevel >= _contextLevel)
       {
-	if (_fd >= 0 && c != EOF)
-	  {
-	      ssize_t	num;
-	      num = ::write(_fd, &c, 1);
-	  }
+        if (_fd >= 0 && c != EOF)
+          {
+              ssize_t	num;
+              num = ::write(_fd, &c, 1);
+          }
       }
     return c;
 }
@@ -144,14 +144,14 @@ int	eoLogger::outbuf::overflow(int_type c)
 namespace	eo
 {
     file::file(const std::string f)
-	: _f(f)
+        : _f(f)
     {}
 
     setlevel::setlevel(const std::string v)
-	: _v(v), _lvl((Levels)-1)
+        : _v(v), _lvl((Levels)-1)
     {}
 
     setlevel::setlevel(const Levels lvl)
-	: _v(std::string("")), _lvl(lvl)
+        : _v(std::string("")), _lvl(lvl)
     {}
 }

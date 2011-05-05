@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // es.h
 // (c) GeNeura Team 1998 - Maarten Keijzer 2000 - Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -20,21 +20,21 @@
 
     Contact: Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-	     todos@geneura.ugr.es, http://geneura.ugr.es
+             todos@geneura.ugr.es, http://geneura.ugr.es
  */
 //-----------------------------------------------------------------------------
 
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 #ifndef _es_h
 #define _es_h
 
 // contains the include specific to real representations, i.e. in src/es dir
 //-----------------------------------------------------------------------------
- 
+
 // the genotypes - from plain std::vector<double> to full correlated mutation
 #include <es/eoReal.h>
 #include <es/eoEsSimple.h>

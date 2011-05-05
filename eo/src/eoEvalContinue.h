@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEvalContinue.h
 // (c) GeNeura Team, 1999, Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -29,7 +29,7 @@
 #include <eoContinue.h>
 #include <eoEvalFuncCounter.h>
 
-/** 
+/**
  * Continues until a number of evaluations has been made
  *
  * @ingroup Continuators
@@ -38,28 +38,28 @@ template< class EOT>
 class eoEvalContinue: public eoContinue<EOT>
 {
 public:
-  /// Ctor 
+  /// Ctor
   eoEvalContinue( eoEvalFuncCounter<EOT> & _eval, unsigned long _totalEval)
-	  : eval(_eval), repTotalEvaluations( _totalEval ) {};
-  
+          : eval(_eval), repTotalEvaluations( _totalEval ) {};
+
   /** Returns false when a certain number of evaluations has been done
    */
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
       (void)_vEO;
-    if (eval.value() >= repTotalEvaluations) 
+    if (eval.value() >= repTotalEvaluations)
       {
           eo::log << eo::progress << "STOP in eoEvalContinue: Reached maximum number of evaluations [" << repTotalEvaluations << "]" << std::endl;
-	return false;
+        return false;
       }
     return true;
   }
-  
+
   /** Returns the number of generations to reach*/
-  virtual unsigned long totalEvaluations( ) 
-  {  
-    return repTotalEvaluations; 
+  virtual unsigned long totalEvaluations( )
+  {
+    return repTotalEvaluations;
   };
-  
+
   virtual std::string className(void) const { return "eoEvalContinue"; }
 private:
   eoEvalFuncCounter<EOT> & eval;

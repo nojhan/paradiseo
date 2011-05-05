@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoSelectNumber.h 
+   eoSelectNumber.h
    (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -32,7 +32,7 @@
 #include <math.h>
 //-----------------------------------------------------------------------------
 
-/** eoSelectNumber selects many individuals using eoSelectOne as it's 
+/** eoSelectNumber selects many individuals using eoSelectOne as it's
     mechanism. Therefore eoSelectNumber needs an eoSelectOne in its ctor
 
     It will select a fixed number of individuals and pushes them to
@@ -45,7 +45,7 @@ class eoSelectNumber : public eoSelect<EOT>
 {
  public:
      /// init
-     eoSelectNumber(eoSelectOne<EOT>& _select, unsigned _nb_to_select = 1) 
+     eoSelectNumber(eoSelectOne<EOT>& _select, unsigned _nb_to_select = 1)
          : select(_select), nb_to_select(_nb_to_select) {}
 
      /**
@@ -57,15 +57,15 @@ class eoSelectNumber : public eoSelect<EOT>
   virtual void operator()(const eoPop<EOT>& _source, eoPop<EOT>& _dest)
   {
     size_t target = static_cast<size_t>(nb_to_select);
-    
+
     _dest.resize(target);
-    
+
     select.setup(_source);
-    
+
     for (size_t i = 0; i < _dest.size(); ++i)
       _dest[i] = select(_source);
   }
-  
+
 private :
   eoSelectOne<EOT>& select;
   unsigned nb_to_select;

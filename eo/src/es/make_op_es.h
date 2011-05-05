@@ -154,10 +154,10 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   if (crossTypeParam.value() == std::string("global"))
     ptCross = new eoEsGlobalXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross);
   else if (crossTypeParam.value() == std::string("standard"))
-    {	   // using a standard eoBinOp, but wrap it into an eoGenOp
+    {      // using a standard eoBinOp, but wrap it into an eoGenOp
       eoBinOp<EOT> & crossTmp = _state.storeFunctor(
-	     new eoEsStandardXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross)
-	     );
+             new eoEsStandardXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross)
+             );
       ptCross = new eoBinGenOp<EOT>(crossTmp);
     }
   else throw std::runtime_error("Invalide Object variable crossover type");

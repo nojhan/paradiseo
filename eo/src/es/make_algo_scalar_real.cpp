@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_algo_scalar_real.cpp
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 /** This file contains ***INSTANCIATED DEFINITIONS*** of select/replace fns
  * of the library for evolution of ***eoReal*** inside EO.
@@ -35,7 +35,7 @@
  * Compiling this file allows one to generate part of the library (i.e. object
  * files that you just need to link with your own main and fitness code).
  *
- * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
+ * The corresponding ***INSTANCIATED DECLARATIONS*** are contained
  *       in src/es/real.h
  * while the TEMPLATIZED code is define in make_algo_scalar.h in the src/do dir
  */
@@ -58,4 +58,3 @@ eoAlgo<eoReal<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoSta
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op, _dist);
 }
-

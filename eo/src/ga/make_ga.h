@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // ga.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -24,14 +24,14 @@
  */
 //-----------------------------------------------------------------------------
 
-/** This file contains all ***INSTANCIATED*** declarations of all components 
+/** This file contains all ***INSTANCIATED*** declarations of all components
  * of the library for ***BISTRING*** evolution inside EO.
  * It should be included in the file that calls any of the corresponding fns
  *
  * The corresponding ***INSTANCIATED*** definitions are contained in ga.cpp
  * while the TEMPLATIZED code is define in the different makeXXX.h files
  *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
+ * Unlike most EO .h files, it does not (and should not) contain any code,
  * just declarations
  */
 
@@ -56,7 +56,7 @@
  * @{
  */
 
-// the genotypes 
+// the genotypes
 eoInit<eoBit<double> > & make_genotype(eoParser& _parser, eoState& _state, eoBit<double> _eo);
   eoInit<eoBit<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoBit<eoMinimizingFitness> _eo);
 

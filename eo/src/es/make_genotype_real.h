@@ -84,7 +84,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
     eoValueParam<std::string>& sigmaParam
         = _parser.getORcreateParam(std::string("0.3"), "sigmaInit",
                                    "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)",
-				   's', "Genotype Initialization");
+                                   's', "Genotype Initialization");
     // check for %
     bool to_scale = false;
     size_t pos =  sigmaParam.value().find('%');

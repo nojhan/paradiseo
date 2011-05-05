@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoDistance.h
 // (c) GeNeura Team, 1998, Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -28,11 +28,11 @@
 
 #include <eoFunctor.h>
 
-/** @addtogroup Stats 
+/** @addtogroup Stats
  * @{
  * */
 
-/** 
+/**
     This is a generic class for distance functors:
     takes 2 things and returns a double
 */
@@ -41,8 +41,8 @@ class eoDistance : public eoBF<const EOT &, const EOT &, double>
 {};
 
 
-/** 
-    This is a generic class for Euclidain distance (L2 norm) computation: 
+/**
+    This is a generic class for Euclidain distance (L2 norm) computation:
     assumes the 2 things are std::vectors of something that is double-castable
 */
 template< class EOT >
@@ -54,16 +54,16 @@ public:
      double sum=0.0;
     for (unsigned i=0; i<_v1.size(); i++)
       {
-	double r = static_cast<double> (_v1[i]) - static_cast<double> (_v2[i]);
-	sum += r*r;
+        double r = static_cast<double> (_v1[i]) - static_cast<double> (_v2[i]);
+        sum += r*r;
       }
     return sqrt(sum);
   }
 };
 
-/** 
-    This is a generic class for L1 distance computation: 
-    assumes the 2 things are std::vectors of something 
+/**
+    This is a generic class for L1 distance computation:
+    assumes the 2 things are std::vectors of something
     that is double-castable
     For bitstrings, this is the Hamming distance
 */
@@ -76,15 +76,15 @@ public:
      double sum=0.0;
     for (unsigned i=0; i<_v1.size(); i++)
       {
-	double r = static_cast<double> (_v1[i]) - static_cast<double> (_v2[i]);
-	sum += fabs(r);
+        double r = static_cast<double> (_v1[i]) - static_cast<double> (_v2[i]);
+        sum += fabs(r);
       }
     return sum;
   }
 };
 
-/* this distance measures the difference in fitness 
- * I am not sure it can be of any use, though ... 
+/* this distance measures the difference in fitness
+ * I am not sure it can be of any use, though ...
  * except for some testing
  */
 template< class EOT >
@@ -100,5 +100,5 @@ public:
 
 
 /** @} */
-	
+
 #endif

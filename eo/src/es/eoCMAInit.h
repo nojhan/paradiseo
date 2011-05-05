@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; fill-column: 80; -*-
 
 //-----------------------------------------------------------------------------
-// eoCMAInit 
+// eoCMAInit
 // (c) Maarten Keijzer 2005
 /*
     This library is free software; you can redistribute it and/or
@@ -35,18 +35,18 @@
 /// @todo handle bounds
 template <class FitT>
 class eoCMAInit : public eoInit< eoVector<FitT, double> > {
-    
+
     const eo::CMAState& state;
 
     typedef eoVector<FitT, double> EOT;
-    
+
     public:
     eoCMAInit(const eo::CMAState& state_) : state(state_) {}
 
-    
+
     void operator()(EOT& v) {
-	state.sample(static_cast<std::vector<double>& >(v));
-	v.invalidate();
+        state.sample(static_cast<std::vector<double>& >(v));
+        v.invalidate();
     }
 };
 

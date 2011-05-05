@@ -51,25 +51,25 @@ public:
     eoTimedMonitor(unsigned seconds_) : last_tick(0), seconds(seconds_) {}
 
     eoMonitor& operator()(void) {
-	bool monitor = false;
-	if (last_tick == 0) {
-	    monitor = true;
-	    last_tick = clock();
-	}
+        bool monitor = false;
+        if (last_tick == 0) {
+            monitor = true;
+            last_tick = clock();
+        }
 
-	clock_t tick = clock();
+        clock_t tick = clock();
 
-	if ( (unsigned)(tick-last_tick) >= seconds * CLOCKS_PER_SEC) {
-	    monitor = true;
-	}
+        if ( (unsigned)(tick-last_tick) >= seconds * CLOCKS_PER_SEC) {
+            monitor = true;
+        }
 
-	if (monitor) {
-	    for (unsigned i = 0; i < monitors.size(); ++i) {
-		(*monitors[i])();
-	    }
-	    last_tick = clock();
-	}
-	return *this;
+        if (monitor) {
+            for (unsigned i = 0; i < monitors.size(); ++i) {
+                (*monitors[i])();
+            }
+            last_tick = clock();
+        }
+        return *this;
     }
 
     void add(eoMonitor& mon) { monitors.push_back(&mon); }

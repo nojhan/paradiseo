@@ -45,4 +45,3 @@
 #define eo_is_an_integer false
 
 #endif
-

@@ -99,7 +99,7 @@ public:
         {
             _eo.stdev *= exp(TauLcl * rng.normal());
             if (_eo.stdev < stdev_eps)
-	        _eo.stdev = stdev_eps;
+                _eo.stdev = stdev_eps;
             // now apply to all
             for (unsigned i = 0; i < _eo.size(); ++i)
             {
@@ -218,7 +218,7 @@ public:
         unsigned size = bounds.size();
         TauLcl = _init.TauLcl();
         TauLcl /= sqrt(2*(double) size);
-	std::cout << "Init<eoEsSimple>: tau local " << TauLcl << std::endl;
+        std::cout << "Init<eoEsSimple>: tau local " << TauLcl << std::endl;
     }
 
 

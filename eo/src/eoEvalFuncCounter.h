@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEvalFuncCounter.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -30,7 +30,7 @@
 #include <eoEvalFunc.h>
 #include <utils/eoParam.h>
 
-/** 
+/**
 Counts the number of evaluations actually performed.
 
 @ingroup Evaluation
@@ -38,7 +38,7 @@ Counts the number of evaluations actually performed.
 template<class EOT> class eoEvalFuncCounter : public eoEvalFunc<EOT>, public eoValueParam<unsigned long>
 {
     public :
-        eoEvalFuncCounter(eoEvalFunc<EOT>& _func, std::string _name = "Eval. ") 
+        eoEvalFuncCounter(eoEvalFunc<EOT>& _func, std::string _name = "Eval. ")
             : eoValueParam<unsigned long>(0, _name), func(_func) {}
 
         virtual void operator()(EOT& _eo)

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoProportionalSelect.h
 // (c) GeNeura Team, 1998 - EEAAX 1999, Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -35,18 +35,18 @@
 #include <eoPop.h>
 
 /** eoProportionalSelect: select an individual proportional to her stored fitness
-    value 
-    
-    Changed the algorithm to make use of a cumulative array of fitness scores, 
+    value
+
+    Changed the algorithm to make use of a cumulative array of fitness scores,
     This changes the algorithm from O(n) per call to  O(log n) per call. (MK)
 
     @ingroup Selectors
 */
-template <class EOT> class eoProportionalSelect: public eoSelectOne<EOT> 
+template <class EOT> class eoProportionalSelect: public eoSelectOne<EOT>
 {
 public:
   /// Sanity check
-  eoProportionalSelect(const eoPop<EOT>& pop = eoPop<EOT>()) 
+  eoProportionalSelect(const eoPop<EOT>& pop = eoPop<EOT>())
   {
     if (minimizing_fitness<EOT>())
       throw std::logic_error("eoProportionalSelect: minimizing fitness");
@@ -55,23 +55,23 @@ public:
   void setup(const eoPop<EOT>& _pop)
   {
       if (_pop.size() == 0) return;
-      
+
       cumulative.resize(_pop.size());
       cumulative[0] = _pop[0].fitness();
 
-      for (unsigned i = 1; i < _pop.size(); ++i) 
+      for (unsigned i = 1; i < _pop.size(); ++i)
       {
-	  cumulative[i] = _pop[i].fitness() + cumulative[i-1];
+          cumulative[i] = _pop[i].fitness() + cumulative[i-1];
       }
   }
-    
-  /** do the selection,  
+
+  /** do the selection,
    */
-  const EOT& operator()(const eoPop<EOT>& _pop) 
+  const EOT& operator()(const eoPop<EOT>& _pop)
   {
       if (cumulative.size() == 0) setup(_pop);
-      
-      double fortune = rng.uniform() * cumulative.back(); 
+
+      double fortune = rng.uniform() * cumulative.back();
       typename FitVec::iterator result = std::upper_bound(cumulative.begin(), cumulative.end(), fortune);
       return _pop[result - cumulative.begin()];
   }

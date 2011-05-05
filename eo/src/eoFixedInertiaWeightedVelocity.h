@@ -54,9 +54,9 @@ public:
     /** Full constructor: Bounds and bound modifier required
     * @param _topology - The topology to get the global/local/other best
     * @param _weight - The weight with type VelocityType
-    * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-    * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
-    * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
+    * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+    * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
+    * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities.
     * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
     * @param _bndsModifier - An eoRealBoundModifier used to modify the bounds (for real bounds only).
     * @param _gen - The eo random generator, default=rng
@@ -80,9 +80,9 @@ public:
     /** Constructor: No bound updater required <-> fixed bounds
        * @param _topology - The topology to get the global/local/other best
        * @param _weight - The weight with type VelocityType
-       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
-       * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
+       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
+       * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities.
        * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
        * @param _gen - The eo random generator, default=rng
        */
@@ -104,8 +104,8 @@ public:
     /** Constructor: Neither bounds nor bound updater required <-> free velocity
        * @param _topology - The topology to get the global/local/other best
        * @param _weight - The weight with type VelocityType
-       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
+       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
        * @param _gen - The eo random generator, default=rng
        */
     eoFixedInertiaWeightedVelocity (eoTopology < POT > & _topology,
@@ -124,7 +124,7 @@ public:
 
     /**
      *  Evaluate the new velocities of the given particle. Need an indice to identify the particle
-     * into the topology. Steps are : 
+     * into the topology. Steps are :
      *  - evaluate r1 and r2, the customed learning factors
      *  - adjust the size of the bounds (even if dummy)
      *  - modify the bounds with the bounds modifier (use the dummy modifier if there's no modifier provided)
@@ -175,10 +175,10 @@ public:
 
 protected:
     eoTopology < POT > & topology;
-    const VelocityType & c1;  	// learning factor 1
-    const VelocityType  & c2; 	 // learning factor 2
+    const VelocityType & c1;    // learning factor 1
+    const VelocityType  & c2;    // learning factor 2
     const VelocityType & weight;   // the fixed weight
-    eoRng & gen; 	// the random generator
+    eoRng & gen;        // the random generator
 
     eoRealVectorBounds & bounds; // REAL bounds even if the velocity could be of another type.
     eoRealBoundModifier & bndsModifier;
@@ -189,4 +189,3 @@ protected:
 
 
 #endif /*EOFIXEDINERTIAWEIGHTEDVELOCITY_H */
-

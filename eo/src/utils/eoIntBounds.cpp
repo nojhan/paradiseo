@@ -60,12 +60,12 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
       std::string sMinBounds = sBounds.substr(0,posDelim);
 
       if ( (sMinBounds != std::string("-inf")) &&
-	   (sMinBounds != std::string("-infinity"))
-	   )
-	{
-	  minBounded = true;
-	  minBound = read_int(sMinBounds);
-	}
+           (sMinBounds != std::string("-infinity"))
+           )
+        {
+          minBounded = true;
+          minBound = read_int(sMinBounds);
+        }
 
       // max bound
       size_t posEndDelim = sBounds.find_first_not_of(delim,posDelim);
@@ -73,26 +73,26 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
       std::string sMaxBounds = sBounds.substr(posEndDelim);
 
       if ( (sMaxBounds != std::string("+inf")) &&
-	   (sMaxBounds != std::string("+infinity"))
-	   )
-	{
-	  maxBounded = true;
-	  maxBound = read_int(sMaxBounds);
-	}
+           (sMaxBounds != std::string("+infinity"))
+           )
+        {
+          maxBounded = true;
+          maxBound = read_int(sMaxBounds);
+        }
 
       // now create the embedded eoIntBounds object
       eoIntBounds * locBound;
       if (minBounded && maxBounded)
-	{
-	  if (maxBound <= minBound)
-	    throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
-	  locBound = new eoIntInterval(minBound, maxBound);
-	}
+        {
+          if (maxBound <= minBound)
+            throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
+          locBound = new eoIntInterval(minBound, maxBound);
+        }
       else if (!minBounded && !maxBounded)	// no bound at all
-	locBound = new eoIntNoBounds;
+        locBound = new eoIntNoBounds;
       else if (!minBounded && maxBounded)
-	locBound = new eoIntAboveBound(maxBound);
+        locBound = new eoIntAboveBound(maxBound);
       else if (minBounded && !maxBounded)
-	locBound = new eoIntBelowBound(minBound);
+        locBound = new eoIntBelowBound(minBound);
       return locBound;
 }

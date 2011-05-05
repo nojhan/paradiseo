@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -40,28 +40,34 @@ void add_checkpoint();
 void continuators()
 {
     /* Counters, wrappers etc */
-    
-    class_<eoEvalFuncCounter<PyEO>, bases<eoEvalFunc<PyEO> > >("eoEvalFuncCounter",
-	    init< eoEvalFunc<PyEO>&, std::string>())
-	.def("__call__", &eoEvalFuncCounter<PyEO>::operator())
-	;
+
+    class_<eoEvalFuncCounter<PyEO>, bases<eoEvalFunc<PyEO> > >
+        ("eoEvalFuncCounter",
+         init< eoEvalFunc<PyEO>&, std::string>()
+         )
+        .def("__call__", &eoEvalFuncCounter<PyEO>::operator())
+        ;
     /* Continuators */
-    def_abstract_functor<eoContinue<PyEO> >("eoContinue"); 
-	
-    class_<eoGenContinue<PyEO>, bases<eoContinue<PyEO> >, boost::noncopyable >("eoGenContinue", init<unsigned long>() )
-	.def("__call__", &eoGenContinue<PyEO>::operator())
-	;
-  
-    class_<eoCombinedContinue<PyEO>, bases<eoContinue<PyEO> > >("eoCombinedContinue", init<eoContinue<PyEO>&>()[WC1])
-	.def( init<eoContinue<PyEO>&, eoContinue<PyEO>& >()[WC2] )
-	.def("add", &eoCombinedContinue<PyEO>::add, WC1)
-	.def("__call__", &eoCombinedContinue<PyEO>::operator())
-	;
-   
-    class_<eoEvalContinue<PyEO>, bases<eoContinue<PyEO> > >("eoEvalContinue", 
-	    init<eoEvalFuncCounter<PyEO>&, unsigned long>()[WC1])
-	.def("__call__", &eoEvalContinue<PyEO>::operator())
-	;
+    def_abstract_functor<eoContinue<PyEO> >("eoContinue");
+
+    class_<eoGenContinue<PyEO>, bases<eoContinue<PyEO> >, boost::noncopyable >
+        ("eoGenContinue", init<unsigned long>() )
+        .def("__call__", &eoGenContinue<PyEO>::operator())
+        ;
+
+    class_<eoCombinedContinue<PyEO>, bases<eoContinue<PyEO> > >
+        ("eoCombinedContinue", init<eoContinue<PyEO>&>()[WC1])
+        .def( init<eoContinue<PyEO>&, eoContinue<PyEO>& >()[WC2] )
+        .def("add", &eoCombinedContinue<PyEO>::add, WC1)
+        .def("__call__", &eoCombinedContinue<PyEO>::operator())
+        ;
+
+    class_<eoEvalContinue<PyEO>, bases<eoContinue<PyEO> > >
+        ("eoEvalContinue",
+         init<eoEvalFuncCounter<PyEO>&, unsigned long>()[WC1]
+         )
+        .def("__call__", &eoEvalContinue<PyEO>::operator())
+        ;
 
     DEF2(eoFitContinue, object); // object is the fitness type
 
@@ -77,14 +83,14 @@ void addSortedStat(eoCheckPoint<PyEO>& c, eoSortedStatBase<PyEO>& s) { c.add(s);
 
 void add_checkpoint()
 {
-    class_<eoCheckPoint<PyEO>, bases< eoContinue<PyEO> > >("eoCheckPoint",
-	    
-	    init<eoContinue<PyEO>&> ()[with_custodian_and_ward<1,2>()]
-	    ) 
-	.def("add", addContinue, with_custodian_and_ward<1,2>() )
-	.def("add", addMonitor, with_custodian_and_ward<1,2>() )
-	.def("add", addStat, with_custodian_and_ward<1,2>())
-	.def("add", addSortedStat, with_custodian_and_ward<1,2>()) 
-	.def("__call__", &eoCheckPoint<PyEO>::operator())
-	;
+    class_<eoCheckPoint<PyEO>, bases< eoContinue<PyEO> > >
+        ("eoCheckPoint",
+         init<eoContinue<PyEO>&> ()[with_custodian_and_ward<1,2>()]
+         )
+        .def("add", addContinue, with_custodian_and_ward<1,2>() )
+        .def("add", addMonitor, with_custodian_and_ward<1,2>() )
+        .def("add", addStat, with_custodian_and_ward<1,2>())
+        .def("add", addSortedStat, with_custodian_and_ward<1,2>())
+        .def("__call__", &eoCheckPoint<PyEO>::operator())
+        ;
 }

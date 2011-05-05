@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEvalFunc.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -37,8 +37,8 @@
 
  The requirements on the types with which this class is to be
  instantiated with are null, or else, they depend on the particular
- class it's going to be applied to; EO does not impose any requirement 
- on it. If you subclass this abstract class, and use it to evaluate an 
+ class it's going to be applied to; EO does not impose any requirement
+ on it. If you subclass this abstract class, and use it to evaluate an
  EO, the requirements on this EO will depend on the evaluator.
 
  @ingroup Evaluation
@@ -49,7 +49,7 @@ template<class EOT> class eoEvalFunc : public eoUF<EOT&, void>
     public :
         typedef EOT EOType;
 
-	typedef typename EOT::Fitness EOFitT;
+        typedef typename EOT::Fitness EOFitT;
 };
 
 #endif

@@ -57,7 +57,7 @@ class eoInvalidateMonOp : public eoMonOp<EOT>
         return true;
       }
 
-      return false; 
+      return false;
     }
 
   private:

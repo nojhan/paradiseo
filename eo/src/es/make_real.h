@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // real.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -24,20 +24,20 @@
  */
 //-----------------------------------------------------------------------------
 
-/** This file contains all ***INSTANCIATED*** declarations of all components 
+/** This file contains all ***INSTANCIATED*** declarations of all components
  * of the library for ***std::vector<RealValues>*** evolution inside EO.
  * It should be included in the file that calls any of the corresponding fns
  *
- * The corresponding ***INSTANCIATED*** definitions are contained in 
- * the different .cpp files in the src/es dir, 
+ * The corresponding ***INSTANCIATED*** definitions are contained in
+ * the different .cpp files in the src/es dir,
  * while the TEMPLATIZED code is define in the different make_XXX.h files
- * either in hte src/do dir for representation independant functions, 
+ * either in hte src/do dir for representation independant functions,
  * or in the src/es dir for representation dependent stuff.
  *
- * See also es.h for the similar declarations of ES-like genotypes 
+ * See also es.h for the similar declarations of ES-like genotypes
  *   i.e. ***with*** mutation parameters attached to individuals
  *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
+ * Unlike most EO .h files, it does not (and should not) contain any code,
  * just declarations
  */
 
@@ -64,7 +64,7 @@
 /** @addtogroup Builders
  * @{
  */
-// the genotypes 
+// the genotypes
 eoRealInitBounded<eoReal<double> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<double> _eo);
 eoRealInitBounded<eoReal<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo);
 

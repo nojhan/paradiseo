@@ -59,7 +59,7 @@ public:
       cumulative[0] = _pop[0].fitness();
       for (unsigned i = 1; i < _pop.size(); ++i)
       {
-	  cumulative[i] = _pop[i].fitness() + cumulative[i-1];
+          cumulative[i] = _pop[i].fitness() + cumulative[i-1];
       }
 
       indices.reserve(_pop.size());
@@ -72,19 +72,19 @@ public:
 
       while (indices.size() < _pop.size()) {
 
-	  while (cumulative[i] < fortune) {i++;} // linear search is good enough as we average one step each time
+          while (cumulative[i] < fortune) {i++;} // linear search is good enough as we average one step each time
 
-	  indices.push_back(i);
-	  fortune += step;
-	  if (fortune >= cumulative.back()) { // start at the beginning
-	      fortune -= cumulative.back();
-	      i = 0;
-	  }
+          indices.push_back(i);
+          fortune += step;
+          if (fortune >= cumulative.back()) { // start at the beginning
+              fortune -= cumulative.back();
+              i = 0;
+          }
       }
       // shuffle
       for (int i = indices.size() - 1; i > 0; --i) {
-	  int j = rng.random(i+1);
-	  std::swap(indices[i], indices[j]);
+          int j = rng.random(i+1);
+          std::swap(indices[i], indices[j]);
       }
   }
 

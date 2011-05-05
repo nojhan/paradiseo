@@ -97,23 +97,23 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
       std::vector<double> v;
       std::vector<std::string>::iterator it;
       for (it=ppBounds.second.begin(); it<ppBounds.second.end(); it++)
-	{
-	  istrstream is(it->c_str());
-	  double r;
-	  is >> r;
-	  v.push_back(r);
-	}
+        {
+          istrstream is(it->c_str());
+          double r;
+          is >> r;
+          v.push_back(r);
+        }
       // now create the eoRealVectorBounds object
       if (v.size() == 2) // a min and a max for all variables
-	ptBounds = new eoRealVectorBounds(vecSize, v[0], v[1]);
-      else				   // no time now
-	throw std::runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
+        ptBounds = new eoRealVectorBounds(vecSize, v[0], v[1]);
+      else                                 // no time now
+        throw std::runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
       // we need to give ownership of this pointer to somebody
       /////////// end of temporary code
     }
-  else			   // no param for bounds was given
+  else                     // no param for bounds was given
     ptBounds = new eoRealVectorNoBounds(vecSize); // DON'T USE eoDummyVectorNoBounds
-				   // as it does not have any dimension
+                                   // as it does not have any dimension
 
   // this is a temporary version(!),
   // while Maarten codes the full tree-structured general operator input
@@ -185,7 +185,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
       _state.storeFunctor(ptQuad);
       ptCombinedQuadOp = new eoPropCombinedQuadOp<EOT>(*ptQuad, segmentRateParam.value());
 
-	// arithmetic crossover
+        // arithmetic crossover
       ptQuad = new eoArithmeticCrossover<EOT>(*ptBounds);
       _state.storeFunctor(ptQuad);
       ptCombinedQuadOp->add(*ptQuad, arithmeticRateParam.value());
@@ -258,7 +258,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
       // create the CombinedMonOp
       ptCombinedMonOp = new eoPropCombinedMonOp<EOT>(*ptMon, uniformMutRateParam.value());
 
-	// mutate exactly 1 component (uniformly) per individual
+        // mutate exactly 1 component (uniformly) per individual
       ptMon = new eoDetUniformMutation<EOT>(*ptBounds, epsilonParam.value());
       _state.storeFunctor(ptMon);
       ptCombinedMonOp->add(*ptMon, detMutRateParam.value());
@@ -289,7 +289,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   // now the sequential
   eoSequentialOp<EOT> *op = new eoSequentialOp<EOT>;
   _state.storeFunctor(op);
-  op->add(*cross, 1.0);	 // always crossover (but clone with prob 1-pCross
+  op->add(*cross, 1.0);  // always crossover (but clone with prob 1-pCross
   op->add(*ptCombinedMonOp, pMutParam.value());
 
   // that's it!

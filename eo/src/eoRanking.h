@@ -55,10 +55,10 @@ public:
     {
       typename eoPop<EOT>::const_iterator it;
       for (it=_pop.begin(); it<_pop.end(); it++)
-	{
-	  if (_eo == &(*it))
-	    return it-_pop.begin();
-	}
+        {
+          if (_eo == &(*it))
+            return it-_pop.begin();
+        }
       throw std::runtime_error("Not found in eoLinearRanking");
     }
 
@@ -74,33 +74,33 @@ public:
       unsigned int pSizeMinusOne = pSize-1;
 
       if (pSize <= 1)
-	throw std::runtime_error("Cannot do ranking with population of size <= 1");
+        throw std::runtime_error("Cannot do ranking with population of size <= 1");
 
       // value() refers to the std::vector of worthes (we're in an eoParamvalue)
       value().resize(pSize);
 
       double beta = (2-pressure)/pSize;
-      if (exponent == 1.0)	   // no need for exponetial then
-	{
-	  double alpha = (2*pressure-2)/(pSize*pSizeMinusOne);
-	  for (unsigned i=0; i<pSize; i++)
-	    {
-	      int which = lookfor(rank[i], _pop);
-	      value()[which] = alpha*(pSize-i)+beta; // worst -> 1/[P(P-1)/2]
-	    }
-	}
-      else				   // exponent != 1
-	{
-	  double gamma = (2*pressure-2)/pSize;
-	  for (unsigned i=0; i<pSize; i++)
-	    {
-	      int which = lookfor(rank[i], _pop);
-	      // value in in [0,1]
-	      double tmp = ((double)(pSize-i))/pSize;
-	      // to the exponent, and back to [m,M]
-	      value()[which] = gamma*pow(tmp, exponent)+beta;
-	    }
-	}
+      if (exponent == 1.0)         // no need for exponetial then
+        {
+          double alpha = (2*pressure-2)/(pSize*pSizeMinusOne);
+          for (unsigned i=0; i<pSize; i++)
+            {
+              int which = lookfor(rank[i], _pop);
+              value()[which] = alpha*(pSize-i)+beta; // worst -> 1/[P(P-1)/2]
+            }
+        }
+      else                                 // exponent != 1
+        {
+          double gamma = (2*pressure-2)/pSize;
+          for (unsigned i=0; i<pSize; i++)
+            {
+              int which = lookfor(rank[i], _pop);
+              // value in in [0,1]
+              double tmp = ((double)(pSize-i))/pSize;
+              // to the exponent, and back to [m,M]
+              value()[which] = gamma*pow(tmp, exponent)+beta;
+            }
+        }
     }
  private:
   double pressure;	// selective pressure

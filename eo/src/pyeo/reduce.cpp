@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@ using namespace boost::python;
 // unfortunately have to define it specially
 class eoReduceWrapper : public eoReduce<PyEO>
 {
-    public:
+public:
     PyObject* self;
     eoReduceWrapper(PyObject* s) : self(s) {}
     void operator()(eoPop<PyEO>& pop, unsigned i)
@@ -38,7 +38,6 @@ class eoReduceWrapper : public eoReduce<PyEO>
 
 void reduce()
 {
-    
     // ref trick in def_abstract_functor does not work for unsigned int :-(
     class_<eoReduce<PyEO>, eoReduceWrapper, boost::noncopyable>("eoReduce", init<>())
 	.def("__call__", &eoReduceWrapper::operator());
@@ -62,4 +61,3 @@ void reduce()
 	.def("__call__", &eoReduce<PyEO>::operator())
 	;
 }
-

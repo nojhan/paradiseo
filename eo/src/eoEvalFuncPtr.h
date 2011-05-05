@@ -6,7 +6,7 @@
       evaluation object
 
     (c) GeNeura Team, 2000
- 
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -52,17 +52,16 @@ struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
   */
   eoEvalFuncPtr( FitT (* _eval)( FunctionArg ) )
     : eoEvalFunc<EOT>(), evalFunc( _eval ) {};
-  
-  /// Effectively applies the evaluation function to an EO 
-  virtual void operator() ( EOT & _eo ) 
+
+  /// Effectively applies the evaluation function to an EO
+  virtual void operator() ( EOT & _eo )
   {
     if (_eo.invalid())
         _eo.fitness((*evalFunc)( _eo ));
   };
-    
+
   private:
     FitT (* evalFunc )( FunctionArg );
 };
 
 #endif
-

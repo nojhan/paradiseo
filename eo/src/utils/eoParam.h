@@ -135,8 +135,8 @@ private:
 
 /**
    eoValueParam<ValueType>: templatized derivation of eoParam. Can be used to contain
-   any scalar value type. It makes use of std::strstream to get and set values. 
-   
+   any scalar value type. It makes use of std::strstream to get and set values.
+
    @todo This should be changed to std::stringstream when that class is available in g++.
 
    Note also that there is a template specialization for std::pair<double, double> and
@@ -186,7 +186,7 @@ public :
 
     /** Change the parameter value
      */
-    void value( ValueType val ) 
+    void value( ValueType val )
     {
         // convert to string
         std::ostringstream os;
@@ -431,7 +431,7 @@ public:
 
             // Here, we do have args
             _os << "(";
-            if (narg == 1)	   // 1 arg only
+            if (narg == 1)         // 1 arg only
             {
                 _os << second[0] << ")" ;
                 return _os;
@@ -453,9 +453,9 @@ public:
 
     void readFrom(std::string &  _value)
         {
-            second.resize(0);		   // just in case
+            second.resize(0);              // just in case
             size_t pos = _value.find('(');
-            if (pos >= _value.size())	   // no arguments
+            if (pos >= _value.size())      // no arguments
             {
                 first = _value;
                 return;
@@ -484,4 +484,3 @@ std::istream & operator>>(std::istream & _is,  eoParamParamType & _rate);
 
 /** @} */
 #endif
-

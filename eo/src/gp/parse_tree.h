@@ -23,22 +23,22 @@
 
   ******      Arity      ******
     \code
-	int arity(void) const
+        int arity(void) const
     \endcode
 
-	Note:	the default constructor of a Node should provide a
-			Node with arity 0!
+        Note:	the default constructor of a Node should provide a
+                        Node with arity 0!
 
   ******    Evaluation   ******
 
   A parse_tree is evaluated through one of it's apply() members:
 
-	1) parse_tree::apply(RetVal)
+        1) parse_tree::apply(RetVal)
 
-	   is the simplest evaluation, it will call
+           is the simplest evaluation, it will call
 
     \code
-	   RetVal Node::operator()(RetVal, subtree<Node, RetVal>::const_iterator)
+           RetVal Node::operator()(RetVal, subtree<Node, RetVal>::const_iterator)
     \endcode
 
        (Unfortunately the first RetVal argument is mandatory (although you
@@ -49,7 +49,7 @@
        error. That is why you have to call tree.apply(double()) instead.)
 
 
-	2) parse_tree::apply(RetVal v, It values)
+        2) parse_tree::apply(RetVal v, It values)
 
        will call:
 
@@ -58,10 +58,10 @@
     \endcode
 
        where It is whatever type you desire (most of the time
-	   this will be a std::vector containing the values of your
-	   variables);
+           this will be a std::vector containing the values of your
+           variables);
 
-	3) parse_tree::apply(RetVal, It values, It2 moreValues)
+        3) parse_tree::apply(RetVal, It values, It2 moreValues)
 
        will call:
 
@@ -69,26 +69,26 @@
        RetVal Node::operator()(RetVal, subtree<... , It values, It2 moreValues)
     \endcode
 
-	   although I do not see the immediate use of this, however...
+           although I do not see the immediate use of this, however...
 
-	4) parse_tree::apply(RetVal, It values, It2 args, It3 adfs)
+        4) parse_tree::apply(RetVal, It values, It2 args, It3 adfs)
 
-		that calls:
+                that calls:
 
     \code
        RetVal Node::operator()(subtree<... , It values, It2 args, It3 adfs)
     \endcode
 
-		can be useful for implementing adfs.
+                can be useful for implementing adfs.
 
 
-	In general it is a good idea to leave the specifics of the
-	arguments open so that different ways of evaluation remain
-	possible. Implement the simplest eval as:
+        In general it is a good idea to leave the specifics of the
+        arguments open so that different ways of evaluation remain
+        possible. Implement the simplest eval as:
 
     \code
-	template <class It>
-		RetVal operator()(RetVal dummy, It begin) const
+        template <class It>
+                RetVal operator()(RetVal dummy, It begin) const
     \endcode
 
   ******	Internal Structure    ******
@@ -99,10 +99,10 @@
 
   The nodes are stored in a tree like :
 
-			node4
-			/  \
-		 node3 node2
-		        / \
+                        node4
+                        /  \
+                 node3 node2
+                        / \
             node1 node0
 
   where nodes 2 and 4 have arity 2 and nodes 0,1 and 3 arity 0 (terminals)
@@ -129,9 +129,9 @@
 
   will not crash and result in a tree structured as:
 
-		node4
-		/  \
-	 node3 node0
+                node4
+                /  \
+         node3 node0
 
   Note that the rank numbers no longer specify their place in the tree:
 
@@ -212,10 +212,10 @@ public :
     typedef subtree* iterator;
     typedef const subtree* const_iterator;
 
-	/* Constructors, assignments */
+        /* Constructors, assignments */
 
     subtree(void) : content(node_allocator.allocate()), args(0), parent(0), _cumulative_size(0), _depth(0), _size(1)
-			{}
+                        {}
     subtree(const subtree& s)
         : content(node_allocator.allocate()),
           args(0),
@@ -228,7 +228,7 @@ public :
     }
 
     subtree(const T& t) : content(node_allocator.allocate()), args(0), parent(0), _cumulative_size(0), _depth(0), _size(1)
-			{ copy(t); }
+                        { copy(t); }
 
     template <class It>
         subtree(It b, It e) : content(node_allocator.allocate()), args(0), parent(0), _cumulative_size(0), _depth(0), _size(1)
@@ -239,57 +239,57 @@ public :
     virtual ~subtree(void)    { tree_allocator.deallocate(args, arity()); node_allocator.deallocate(content); }
 
     subtree& operator=(const subtree& s)
-	{
-	    if (s.get_root() == get_root())
+        {
+            if (s.get_root() == get_root())
         { // from the same tree, maybe a child. Don't take any chances
             subtree anotherS = s;
             return copy(anotherS);
         }
 
-		copy(s);
+                copy(s);
         updateAfterInsert();
         return *this;
-	}
+        }
 
     subtree& operator=(const T& t)       { copy(t); updateAfterInsert(); return *this; }
 
-	/* Access to the nodes */
+        /* Access to the nodes */
 
     T&       operator*(void)             { return *content; }
     const T& operator*(void) const       { return *content; }
     T*       operator->(void)            { return content; }
     const T* operator->(void) const      { return content; }
 
-	/* Equality, inequality check, Node needs to implement operator== */
+        /* Equality, inequality check, Node needs to implement operator== */
 
-	bool operator==(const subtree& other) const
-	{
-		if (! (*content == *other.content))
-			return false;
+        bool operator==(const subtree& other) const
+        {
+                if (! (*content == *other.content))
+                        return false;
 
-		for (int i = 0; i < arity(); i++)
-		{
-			if (!(args[i] == other.args[i]))
-				return false;
-		}
+                for (int i = 0; i < arity(); i++)
+                {
+                        if (!(args[i] == other.args[i]))
+                                return false;
+                }
 
-		return true;
-	}
+                return true;
+        }
 
-	bool operator !=(const subtree& other) const
-	{
-		return !operator==(other);
-	}
+        bool operator !=(const subtree& other) const
+        {
+                return !operator==(other);
+        }
 
-	/* Arity */
+        /* Arity */
     int arity(void) const                { return content->arity(); }
 
-	/* Evaluation with an increasing amount of user defined arguments */
-	template <class RetVal>
-	void apply(RetVal& v) const				 { (*content)(v, begin()); }
+        /* Evaluation with an increasing amount of user defined arguments */
+        template <class RetVal>
+        void apply(RetVal& v) const                              { (*content)(v, begin()); }
 
-	template <class RetVal, class It>
-	void apply(RetVal& v, It values) const
+        template <class RetVal, class It>
+        void apply(RetVal& v, It values) const
     {
         (*content)(v, begin(), values);
     }
@@ -302,12 +302,12 @@ public :
 
 
 /*	template <class RetVal, class It, class It2>
-	void apply(RetVal& v, It values, It2 moreValues) const
-		{ (*content)(v, begin(), values, moreValues); }
+        void apply(RetVal& v, It values, It2 moreValues) const
+                { (*content)(v, begin(), values, moreValues); }
 
-	template <class RetVal, class It, class It2, class It3>
-	void apply(RetVal& v, It values, It2 moreValues, It3 evenMoreValues) const
-		{ (*content)(v, begin(), values, moreValues, evenMoreValues); }
+        template <class RetVal, class It, class It2, class It3>
+        void apply(RetVal& v, It values, It2 moreValues, It3 evenMoreValues) const
+                { (*content)(v, begin(), values, moreValues, evenMoreValues); }
 */
 
     template <class Pred>
@@ -338,7 +338,7 @@ public :
         }
     }
 
-	/* Iterators */
+        /* Iterators */
 
     iterator begin(void)              { return args; }
     const_iterator begin(void) const  { return args; }
@@ -346,10 +346,10 @@ public :
     iterator end(void)                { return args + arity(); }
     const_iterator end(void) const    { return args + arity(); }
 
-	subtree& operator[](int i)		  { return *(begin() + i); }
-	const subtree& operator[](int i) const { return *(begin() + i); }
+        subtree& operator[](int i)                { return *(begin() + i); }
+        const subtree& operator[](int i) const { return *(begin() + i); }
 
-	/* Some statistics */
+        /* Some statistics */
 
     size_t size(void) const { return _size; }
 
@@ -370,11 +370,11 @@ public :
     subtree*       get_parent(void)        { return parent; }
     const subtree* get_parent(void) const  { return parent; }
 
-	void clear(void)
-	{ tree_allocator.deallocate(args, arity()); args = 0; *content = T(); parent = 0; _cumulative_size = 0; _depth = 0; _size = 0; }
+        void clear(void)
+        { tree_allocator.deallocate(args, arity()); args = 0; *content = T(); parent = 0; _cumulative_size = 0; _depth = 0; _size = 0; }
 
-	void swap(subtree& y)
-	{
+        void swap(subtree& y)
+        {
         do_the_swap(content, y.content);
         do_the_swap(args, y.args);
 
@@ -386,12 +386,12 @@ public :
         do_the_swap(_cumulative_size, y._cumulative_size);
         do_the_swap(_depth, y._depth);
         do_the_swap(_size, y._size);
-		updateAfterInsert();
-	}
+                updateAfterInsert();
+        }
 
 protected :
 
-	virtual void updateAfterInsert(void)
+        virtual void updateAfterInsert(void)
     {
         _depth = 0;
         _size = 1;
@@ -419,7 +419,7 @@ private :
         // else
 
         for (int i = arity() - 1; i >= 0; --i)
-		{
+                {
             if (which < args[i]._cumulative_size)
                 return args[i].imp_select_cumulative(which);
             which -= args[i]._cumulative_size;
@@ -434,7 +434,7 @@ private :
             return *this;
 
         for (int i = arity() - 1; i >= 0; --i)
-		{
+                {
             unsigned c_size = args[i].size();
             if (which < c_size)
                 return args[i].imp_get_node(which);
@@ -454,34 +454,34 @@ private :
     }
     subtree& copy(const subtree& s)
     {
-		int old_arity = arity();
+                int old_arity = arity();
 
-		int new_arity = s.arity();
+                int new_arity = s.arity();
 
-		if (new_arity != old_arity)
-		{
-			tree_allocator.deallocate(args, old_arity);
+                if (new_arity != old_arity)
+                {
+                        tree_allocator.deallocate(args, old_arity);
 
             args = tree_allocator.allocate(new_arity);
-		}
+                }
 
-		switch(new_arity)
-		{
-		case 3 : args[2].copy(s.args[2]); args[2].parent = this; // no break!
-		case 2 : args[1].copy(s.args[1]); args[1].parent = this;
-		case 1 : args[0].copy(s.args[0]); args[0].parent = this;
-		case 0 : break;
-		default :
-			{
-				for (int i = 0; i < new_arity; ++i)
-				{
-					args[i].copy(s.args[i]);
+                switch(new_arity)
+                {
+                case 3 : args[2].copy(s.args[2]); args[2].parent = this; // no break!
+                case 2 : args[1].copy(s.args[1]); args[1].parent = this;
+                case 1 : args[0].copy(s.args[0]); args[0].parent = this;
+                case 0 : break;
+                default :
+                        {
+                                for (int i = 0; i < new_arity; ++i)
+                                {
+                                        args[i].copy(s.args[i]);
                     args[i].parent = this;
-				}
-			}
-		}
+                                }
+                        }
+                }
 
-		*content = *s.content;
+                *content = *s.content;
         _size = s._size;
         _depth = s._depth;
         _cumulative_size = s._cumulative_size;
@@ -493,66 +493,66 @@ private :
     {
         int oldArity = arity();
 
-		if (content != &t)
+                if (content != &t)
             *content = t;
-		else
-			oldArity = -1;
+                else
+                        oldArity = -1;
 
-		int ar = arity();
+                int ar = arity();
 
-		if (ar != oldArity)
-		{
+                if (ar != oldArity)
+                {
             if (oldArity != -1)
-			    tree_allocator.deallocate(args, oldArity);
+                            tree_allocator.deallocate(args, oldArity);
 
             args = tree_allocator.allocate(ar);
 
             //if (ar > 0)
-			//	args = new subtree [ar];
-			//else
-			//	args = 0;
-		}
+                        //	args = new subtree [ar];
+                        //else
+                        //	args = 0;
+                }
 
         adopt();
         updateAfterInsert();
-		return *this;
+                return *this;
     }
 
-	void disown(void)
-	{
-		switch(arity())
-		{
-		case 3 : args[2].parent = 0; // no break!
-		case 2 : args[1].parent = 0;
-		case 1 : args[0].parent = 0; break;
-		case 0 : break;
-		default :
-			{
-				for (iterator it = begin(); it != end(); ++it)
-				{
-					it->parent = 0;
-				}
-			}
-		}
+        void disown(void)
+        {
+                switch(arity())
+                {
+                case 3 : args[2].parent = 0; // no break!
+                case 2 : args[1].parent = 0;
+                case 1 : args[0].parent = 0; break;
+                case 0 : break;
+                default :
+                        {
+                                for (iterator it = begin(); it != end(); ++it)
+                                {
+                                        it->parent = 0;
+                                }
+                        }
+                }
 
-	}
+        }
 
     void adopt(void)
     {
-		switch(arity())
-		{
-		case 3 : args[2].parent = this; // no break!
-		case 2 : args[1].parent = this;
-		case 1 : args[0].parent = this; break;
-		case 0 : break;
-		default :
-			{
-				for (iterator it = begin(); it != end(); ++it)
-				{
-					it->parent = this;
-				}
-			}
-		}
+                switch(arity())
+                {
+                case 3 : args[2].parent = this; // no break!
+                case 2 : args[1].parent = this;
+                case 1 : args[0].parent = this; break;
+                case 0 : break;
+                default :
+                        {
+                                for (iterator it = begin(); it != end(); ++it)
+                                {
+                                        it->parent = this;
+                                }
+                        }
+                }
     }
 
     template <class It>
@@ -581,7 +581,7 @@ private :
     subtree*			args;
     subtree*			parent;
 
-	size_t _cumulative_size;
+        size_t _cumulative_size;
     size_t _depth;
     size_t _size;
 };
@@ -590,7 +590,7 @@ private :
 
     typedef T value_type;
 
-	/* Constructors and Assignments */
+        /* Constructors and Assignments */
 
     parse_tree(void) : _root(), pushed() {}
     parse_tree(const parse_tree& org) : _root(org._root), pushed(org.pushed) { }
@@ -602,33 +602,33 @@ private :
     virtual ~parse_tree(void) {}
 
     parse_tree& operator=(const parse_tree& org) { return copy(org); }
-	parse_tree& operator=(const subtree& sub)
-		{ return copy(sub); }
+        parse_tree& operator=(const subtree& sub)
+                { return copy(sub); }
 
 
-	/* Equality and inequality */
+        /* Equality and inequality */
 
-	bool operator==(const parse_tree& other) const
-	{ return _root == other._root; }
+        bool operator==(const parse_tree& other) const
+        { return _root == other._root; }
 
-	bool operator !=(const parse_tree& other) const
-	{ return !operator==(other); }
+        bool operator !=(const parse_tree& other) const
+        { return !operator==(other); }
 
-	/* Simple tree statistics */
+        /* Simple tree statistics */
 
     size_t size(void) const  { return _root.size(); }
-	size_t depth(void) const { return _root.depth(); }
+        size_t depth(void) const { return _root.depth(); }
     void clear(void)        { _root.clear(); pushed.resize(0); }
 
-	/* Evaluation (application), with an increasing number of user defined arguments */
+        /* Evaluation (application), with an increasing number of user defined arguments */
 
-	template <class RetVal>
-	void apply(RetVal& v) const
-		{ _root.apply(v); }
+        template <class RetVal>
+        void apply(RetVal& v) const
+                { _root.apply(v); }
 
-	template <class RetVal, class It>
-		void apply(RetVal& v, It varValues) const
-		{ _root.apply(v, varValues); }
+        template <class RetVal, class It>
+                void apply(RetVal& v, It varValues) const
+                { _root.apply(v, varValues); }
 
     template <class RetVal, class It>
         void apply_mem_func(RetVal& v, It misc, void (T::* f)(RetVal&, typename subtree::iterator, It))
@@ -636,13 +636,13 @@ private :
         _root.apply_mem_func(v, misc, f);
     }
 
-	//template <class RetVal, class It, class It2>
-	//	void apply(RetVal& v, It varValues, It2 moreValues) const
-	//	{ _root.apply(v, varValues, moreValues); }
+        //template <class RetVal, class It, class It2>
+        //	void apply(RetVal& v, It varValues, It2 moreValues) const
+        //	{ _root.apply(v, varValues, moreValues); }
 
-	//template <class RetVal, class It, class It2, class It3>
-	//	void apply(RetVal& v, It varValues, It2 moreValues, It3 evenMoreValues) const
-	//	{ _root.apply(v, varValues, moreValues, evenMoreValues); }
+        //template <class RetVal, class It, class It2, class It3>
+        //	void apply(RetVal& v, It varValues, It2 moreValues, It3 evenMoreValues) const
+        //	{ _root.apply(v, varValues, moreValues, evenMoreValues); }
 
     template <class Pred>
     void find_nodes(std::vector<subtree*>& result, Pred& p)
@@ -656,14 +656,14 @@ private :
         _root.find_nodes(p);
     }
 
-	/* Customized Swap */
-	void swap(parse_tree<T>& other)
-	{
-		do_the_swap(pushed, other.pushed);
-		_root.swap(other._root);
-	}
+        /* Customized Swap */
+        void swap(parse_tree<T>& other)
+        {
+                do_the_swap(pushed, other.pushed);
+                _root.swap(other._root);
+        }
 
-	/* Definitions of the iterators */
+        /* Definitions of the iterators */
 
     class base_iterator
     {
@@ -680,19 +680,19 @@ private :
         bool operator!=(const base_iterator& org) const
         { return !operator==(org); }
 
-		base_iterator operator+(size_t n) const
-		{
-			base_iterator tmp = *this;
+                base_iterator operator+(size_t n) const
+                {
+                        base_iterator tmp = *this;
 
-			for(;n != 0; --n)
-			{
-				++tmp;
-			}
+                        for(;n != 0; --n)
+                        {
+                                ++tmp;
+                        }
 
-			return tmp;
-		}
+                        return tmp;
+                }
 
-		base_iterator& operator++(void)
+                base_iterator& operator++(void)
         {
             subtree* parent = node->get_parent();
 
@@ -702,7 +702,7 @@ private :
                 return *this;
             }
             // else
-	    typename subtree::iterator it;
+            typename subtree::iterator it;
             for (it = parent->begin(); it != parent->end(); ++it)
             {
                 if (node == &(*it))
@@ -801,7 +801,7 @@ private :
                 return *this;
             }
             // else
-	    typename subtree::const_iterator it;
+            typename subtree::const_iterator it;
 
             for (it = parent->begin(); it != parent->end(); ++it)
             {
@@ -856,35 +856,35 @@ private :
 
         using base_const_iterator::node;
 
-		typedef std::forward_iterator_tag iterator_category;
-		typedef const T value_type;
-		typedef size_t distance_type;
-		typedef size_t difference_type;
-		typedef const T* pointer;
-		typedef const T& reference;
+                typedef std::forward_iterator_tag iterator_category;
+                typedef const T value_type;
+                typedef size_t distance_type;
+                typedef size_t difference_type;
+                typedef const T* pointer;
+                typedef const T& reference;
 
         embedded_const_iterator() : base_const_iterator() {}
         embedded_const_iterator(const subtree* n): base_const_iterator(n)  {}
         embedded_const_iterator& operator=(const embedded_const_iterator& org)
         { base_const_iterator::operator=(org); return *this; }
 
-		embedded_const_iterator operator+(size_t n) const
-		{
-			embedded_const_iterator tmp = *this;
+                embedded_const_iterator operator+(size_t n) const
+                {
+                        embedded_const_iterator tmp = *this;
 
-			for(;n != 0; --n)
-			{
-				++tmp;
-			}
+                        for(;n != 0; --n)
+                        {
+                                ++tmp;
+                        }
 
-			return tmp;
-		}
+                        return tmp;
+                }
 
         const T&  operator*(void)  const { return **node; }
         const T*  operator->(void) const { return node->operator->(); }
     };
 
-	/* Iterator access */
+        /* Iterator access */
 
     iterator begin(void)            { return iterator(&operator[](0)); }
     const_iterator begin(void) const { return const_iterator(&operator[](0)); }
@@ -899,32 +899,32 @@ private :
     bool empty(void) const { return size() == 0; }
     bool valid(void) const { return pushed.empty(); }
 
-	/* push_back */
+        /* push_back */
 
-	void push_back(const parse_tree<T>& tree)
-	{
-		if (!empty())
-			pushed.push_back(_root);
+        void push_back(const parse_tree<T>& tree)
+        {
+                if (!empty())
+                        pushed.push_back(_root);
 
-		_root = tree.back();
-	}
+                _root = tree.back();
+        }
 
     void push_back(const T& t)
     {
         if (!empty())
             pushed.push_back(_root);
 
-		_root = t;
+                _root = t;
 
         for (typename subtree::iterator it = _root.begin(); it != _root.end(); it++)
         {
-			*it = pushed.back();
+                        *it = pushed.back();
             pushed.pop_back();
         }
 
     }
 
-	/* Access to subtrees */
+        /* Access to subtrees */
 
     subtree& back(void)              { return _root; }
     const subtree& back(void) const  { return _root; }
@@ -954,7 +954,7 @@ private :
         return *this;
     }
 
-	parse_tree& copy(const subtree& sub)
+        parse_tree& copy(const subtree& sub)
     { _root = sub; pushed.resize(0); return *this; }
 
     subtree _root;
@@ -970,25 +970,25 @@ namespace std
 template <class T> inline
 std::forward_iterator_tag iterator_category(typename gp_parse_tree::parse_tree<T>::embedded_iterator)
 {
-	return std::forward_iterator_tag();
+        return std::forward_iterator_tag();
 }
 
 template <class T> inline
 ptrdiff_t*  distance_type(typename gp_parse_tree::parse_tree<T>::embedded_iterator)
 {
-	return 0;
+        return 0;
 }
 
 template <class T> inline
 std::forward_iterator_tag iterator_category(typename gp_parse_tree::parse_tree<T>::iterator)
 {
-	return std::forward_iterator_tag();
+        return std::forward_iterator_tag();
 }
 
 template <class T> inline
 ptrdiff_t*  distance_type(typename gp_parse_tree::parse_tree<T>::iterator)
 {
-	return 0;
+        return 0;
 }
 
 /* Put customized swaps also in std...

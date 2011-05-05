@@ -45,11 +45,11 @@ eoParallel::~eoParallel()
 {
 #ifdef _OPENMP
     if ( doMeasure() )
-	{
-	    double _t_end = omp_get_wtime();
-	    eoLogger log;
-	    log << eo::file("measure_" + prefix()) << _t_end - _t_start << std::endl;
-	}
+        {
+            double _t_end = omp_get_wtime();
+            eoLogger log;
+            log << eo::file("measure_" + prefix()) << _t_end - _t_start << std::endl;
+        }
 #endif // !_OPENMP
 }
 
@@ -63,20 +63,20 @@ std::string eoParallel::prefix() const
     std::string value( _prefix.value() );
 
     if ( _isEnabled.value() )
-	{
-	    if ( _isDynamic.value() )
-		{
-		    value += "_dynamic.out";
-		}
-	    else
-		{
-		    value += "_parallel.out";
-		}
-	}
+        {
+            if ( _isDynamic.value() )
+                {
+                    value += "_dynamic.out";
+                }
+            else
+                {
+                    value += "_parallel.out";
+                }
+        }
     else
-	{
-	    value += "_sequential.out";
-	}
+        {
+            value += "_sequential.out";
+        }
 
     return value;
 }
@@ -98,17 +98,17 @@ void make_parallel(eoParser& parser)
 
 #ifdef _OPENMP
     if ( eo::parallel.isEnabled() )
-	{
-	    if ( eo::parallel.nthreads() > 0 )
-		{
-		    omp_set_num_threads( eo::parallel.nthreads() );
-		}
-	}
+        {
+            if ( eo::parallel.nthreads() > 0 )
+                {
+                    omp_set_num_threads( eo::parallel.nthreads() );
+                }
+        }
 
     if ( eo::parallel.doMeasure() )
-	{
-	    eo::parallel._t_start = omp_get_wtime();
-	}
+        {
+            eo::parallel._t_start = omp_get_wtime();
+        }
 #endif // !_OPENMP
 }
 

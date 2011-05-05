@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoReduceMerge.h 
+   eoReduceMerge.h
    (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -41,8 +41,8 @@
  * @{
  */
 
-/** 
-eoReduceMerge: Replacement strategies that start by reducing the parents, 
+/**
+eoReduceMerge: Replacement strategies that start by reducing the parents,
                then merge with the offspring
 
 This is the way to do SSGA: the offspring gets inserted in the population
@@ -63,10 +63,10 @@ class eoReduceMerge : public eoReplacement<EOT>
 
         void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
         {
-	  if (_parents.size() < _offspring.size())
-	    throw std::logic_error("eoReduceMerge: More offspring than parents!\n");
-	  reduce(_parents, _parents.size() - _offspring.size()); 
-	  merge(_offspring, _parents);
+          if (_parents.size() < _offspring.size())
+            throw std::logic_error("eoReduceMerge: More offspring than parents!\n");
+          reduce(_parents, _parents.size() - _offspring.size());
+          merge(_offspring, _parents);
         }
 
     private :
@@ -74,10 +74,10 @@ class eoReduceMerge : public eoReplacement<EOT>
         eoMerge<EOT>& merge;
 };
 
-/** 
+/**
 SSGA replace worst. Is an eoReduceMerge.
 */
-template <class EOT> 
+template <class EOT>
 class eoSSGAWorseReplacement : public eoReduceMerge<EOT>
 {
     public :
@@ -88,15 +88,15 @@ class eoSSGAWorseReplacement : public eoReduceMerge<EOT>
         eoPlus<EOT> plus;
 };
 
-/** 
+/**
 SSGA deterministic tournament replacement. Is an eoReduceMerge.
 */
-template <class EOT> 
+template <class EOT>
 class eoSSGADetTournamentReplacement : public eoReduceMerge<EOT>
 {
     public :
-        eoSSGADetTournamentReplacement(unsigned _t_size) : 
-	  eoReduceMerge<EOT>(truncate, plus), truncate(_t_size) {}
+        eoSSGADetTournamentReplacement(unsigned _t_size) :
+          eoReduceMerge<EOT>(truncate, plus), truncate(_t_size) {}
 
     private :
         eoDetTournamentTruncate<EOT> truncate;
@@ -104,16 +104,16 @@ class eoSSGADetTournamentReplacement : public eoReduceMerge<EOT>
 };
 
 /** SSGA stochastic tournament replacement. Is an eoReduceMerge.
-It much cleaner to insert directly the offspring in the parent population, 
-but it is NOT equivalent in case of more than 1 offspring as already 
-replaced could be removed , which is not possible in the eoReduceMerge 
+It much cleaner to insert directly the offspring in the parent population,
+but it is NOT equivalent in case of more than 1 offspring as already
+replaced could be removed , which is not possible in the eoReduceMerge
 So what the heck ! */
-template <class EOT> 
+template <class EOT>
 class eoSSGAStochTournamentReplacement : public eoReduceMerge<EOT>
 {
     public :
-        eoSSGAStochTournamentReplacement(double _t_rate) : 
-	  eoReduceMerge<EOT>(truncate, plus), truncate(_t_rate) {}
+        eoSSGAStochTournamentReplacement(double _t_rate) :
+          eoReduceMerge<EOT>(truncate, plus), truncate(_t_rate) {}
 
     private :
         eoStochTournamentTruncate<EOT> truncate;

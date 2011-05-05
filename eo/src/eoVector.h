@@ -82,9 +82,9 @@ public:
     //  with the copy Ctor
     void value(const std::vector<GeneType>& _v)
         {
-            if (_v.size() != size())	   // safety check
+            if (_v.size() != size())       // safety check
             {
-                if (size())		   // NOT an initial empty std::vector
+                if (size())                // NOT an initial empty std::vector
                     eo::log << eo::warnings << "Warning: Changing size in eoVector assignation" << std::endl;
                 resize(_v.size());
             }

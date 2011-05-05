@@ -1,12 +1,12 @@
 /*
  * C++ification of Nikolaus Hansen's original C-source code for the
- * CMA-ES. 
+ * CMA-ES.
  *
  * Copyright (C) 1996, 2003, Nikolaus Hansen
- *	     (C) 2005, Maarten Keijzer
+ *           (C) 2005, Maarten Keijzer
  *
- * License: LGPL 
- * 
+ * License: LGPL
+ *
  */
 
 #ifndef CMAPARAMS_H__
@@ -18,25 +18,25 @@ class eoParser;
 namespace eo {
 
 class CMAParams {
-   
+
     public:
-    
+
     CMAParams() { /* Call this and all values need to be set by hand */ }
     CMAParams(eoParser& parser, unsigned dimensionality = 0); // 0 dimensionality -> user needs to set it
- 
+
     void defaults(unsigned n_, unsigned maxgen_); /* apply all defaults using n and maxgen */
-    
+
     unsigned n;
     unsigned maxgen;
-   
+
     unsigned lambda;          /* -> mu */
     unsigned mu;              /* -> weights, lambda */
-    
+
     std::valarray<double> weights;     /* <- mu, -> mueff -> mucov -> ccov */
     double mueff;	/* <- weights */
-    
+
     double mucov;
-    
+
     double damp;         /* <- ccumsig, maxeval, lambda */
     double ccumsig;      /* -> damp, <- N */
     double ccumcov;
@@ -49,4 +49,3 @@ class CMAParams {
 } // namespace eo
 
 #endif
-

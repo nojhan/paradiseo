@@ -32,7 +32,7 @@
 
 
 /**
- * Update an inertia weight by assigning it a Gaussian randomized value 
+ * Update an inertia weight by assigning it a Gaussian randomized value
  * (used for the velocity in particle swarm optimization).
  *
  * @ingroup Variators

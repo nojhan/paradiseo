@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoFactory.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -43,32 +43,32 @@ have to be modified
 */
 template<class EOClass>
 class eoFactory: public eoObject {
-	
+
 public:
-	
-	/// @name ctors and dtors
-	//{@
-	/// constructor
-	eoFactory( ) {}
-	
-	/// destructor
-	virtual ~eoFactory() {}
-	//@}
 
-	/** Another factory methods: creates an object from an std::istream, reading from
-	it whatever is needed to create the object. Usually, the format for the std::istream will be\\
-	objectType parameter1 parameter2 ... parametern\\
-	*/
-	virtual EOClass* make(std::istream& _is) = 0;
+        /// @name ctors and dtors
+        //{@
+        /// constructor
+        eoFactory( ) {}
 
-	///@name eoObject methods
-	//@{
-	/** Return the class id */
-	virtual std::string className() const { return "eoFactory"; }
+        /// destructor
+        virtual ~eoFactory() {}
+        //@}
 
-	/** Read and print are left without implementation */
-	//@}
-	
+        /** Another factory methods: creates an object from an std::istream, reading from
+        it whatever is needed to create the object. Usually, the format for the std::istream will be\\
+        objectType parameter1 parameter2 ... parametern\\
+        */
+        virtual EOClass* make(std::istream& _is) = 0;
+
+        ///@name eoObject methods
+        //@{
+        /** Return the class id */
+        virtual std::string className() const { return "eoFactory"; }
+
+        /** Read and print are left without implementation */
+        //@}
+
 };
 
 

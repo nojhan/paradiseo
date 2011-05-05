@@ -33,36 +33,36 @@
 // class eoSGAGenOp
 ///////////////////////////////////////////////////////////////////////////////
 
-/** 
- * eoPropGAGenOp (for Simple GA, but Proportional) 
- * choice between Crossover, mutation or cloining 
+/**
+ * eoPropGAGenOp (for Simple GA, but Proportional)
+ * choice between Crossover, mutation or cloining
  * with respect to given relatve weights
  *
  * @ingroup Combination
  */
-template<class EOT> 
+template<class EOT>
 class eoPropGAGenOp : public eoGenOp<EOT>
 {
  public:
-    
-  /** Ctor from 
+
+  /** Ctor from
    *   * weight of clone
    *   * crossover (with weight)
    *   * mutation (with weight)
    */
-  eoPropGAGenOp(double _wClone, eoQuadOp<EOT>& _cross, double _wCross, 
-		 eoMonOp<EOT>& _mut, double _wMut)
+  eoPropGAGenOp(double _wClone, eoQuadOp<EOT>& _cross, double _wCross,
+                 eoMonOp<EOT>& _mut, double _wMut)
     : wClone(_wClone),
       cross(_cross),
       wCross(_wCross),
-      mut(_mut), 
-      wMut(_wMut) 
+      mut(_mut),
+      wMut(_wMut)
   {
     propOp.add(cross, wCross); // the crossover - with weight wCross
     propOp.add(mut, wMut); // mutation with weight wMut
     propOp.add(monClone, wClone);
   }
-  
+
   /** do the job: delegate to op */
   virtual void apply(eoPopulator<EOT>& _pop)
   {

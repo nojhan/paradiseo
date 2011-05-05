@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // ga.h
 // (c) GeNeura Team 1998 - 2000, Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -24,7 +24,7 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 #ifndef _ga_h
 #define _ga_h

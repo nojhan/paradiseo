@@ -124,14 +124,14 @@ public:
     {
         velocities.resize (_size);
     }
-    
+
     /// to avoid conflicts between EA and PSO
     bool operator<(const eoVectorParticle<FitT, PositionType, VelocityType >& _eo) const
         {
-        	if (_eo.best() > this->best())
-    			return true;
-    		else
-    			return false;
+                if (_eo.best() > this->best())
+                        return true;
+                else
+                        return false;
         }
 
     /**
@@ -139,10 +139,10 @@ public:
     */
     virtual void printOn(std::ostream& os) const
     {
-	PO<FitT>::printOn(os);
-	os << ' ';
-	os << size() << ' ';
-	std::copy(bestPositions.begin(), bestPositions.end(), std::ostream_iterator<AtomType>(os, " "));
+        PO<FitT>::printOn(os);
+        os << ' ';
+        os << size() << ' ';
+        std::copy(bestPositions.begin(), bestPositions.end(), std::ostream_iterator<AtomType>(os, " "));
      }
 
     /* public attributes */

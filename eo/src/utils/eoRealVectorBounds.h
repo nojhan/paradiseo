@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoRealVectorBounds.h
 // (c) Marc Schoenauer 2001, Maarten Keijzer 2000, GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,93 +27,93 @@
 #ifndef _eoRealVectorBounds_h
 #define _eoRealVectorBounds_h
 
-#include <stdexcept>		   // std::exceptions!
+#include <stdexcept>               // std::exceptions!
 #include <utils/eoRNG.h>
 #include <utils/eoRealBounds.h>
 
 /**
 Vector type for bounds (see eoRealBounds.h for scalar types)
 ------------
-Class eoRealVectorBounds implements the std::vectorized version: 
+Class eoRealVectorBounds implements the std::vectorized version:
 it is basically a std::vector of eoRealBounds * and forwards all request
 to the elements of the std::vector.
 
-This file also contains the global variables and eoDummyVectorNoBounds 
+This file also contains the global variables and eoDummyVectorNoBounds
 that are used as defaults in ctors (i.e. when no
 bounds are given, it is assumed unbounded values)
 
-THe 2 main classes defined here are 
+THe 2 main classes defined here are
 
 eoRealBaseVectorBounds, base class that handles all useful functions
 eoRealVectorBounds which derives from the preceding *and* eoPersistent
-  and also has a mechanism for memory handling of the pointers 
+  and also has a mechanism for memory handling of the pointers
   it has to allocate
 
 @ingroup Bounds
 */
 class eoRealBaseVectorBounds : public std::vector<eoRealBounds *>
-{ 
+{
 public:
   // virtual desctructor (to avoid warning?)
   virtual ~eoRealBaseVectorBounds(){}
 
-  /** Default Ctor. 
+  /** Default Ctor.
    */
   eoRealBaseVectorBounds() : std::vector<eoRealBounds *>(0) {}
 
   /** Ctor: same bounds for everybody, given as an eoRealBounds
   */
-  eoRealBaseVectorBounds(unsigned _dim, eoRealBounds & _bounds) : 
+  eoRealBaseVectorBounds(unsigned _dim, eoRealBounds & _bounds) :
     std::vector<eoRealBounds *>(_dim, &_bounds)
   {}
-  
+
   /** Ctor, particular case of dim-2
    */
-  eoRealBaseVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) : 
+  eoRealBaseVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) :
     std::vector<eoRealBounds *>(0)
   {
-	push_back( &_xbounds);
-	push_back( &_ybounds);
+        push_back( &_xbounds);
+        push_back( &_ybounds);
   }
-  
+
   /** test: is i_th component bounded
    */
-  virtual bool isBounded(unsigned _i) 
-  { 
+  virtual bool isBounded(unsigned _i)
+  {
     return (*this)[_i]->isBounded();
   }
- 
+
   /** test: bounded iff all are bounded
    */
-  virtual bool isBounded(void) 
+  virtual bool isBounded(void)
   {
     for (unsigned i=0; i<size(); i++)
       if (! (*this)[i]->isBounded())
-	return false;
+        return false;
     return true;
   }
 
   /** Self-test: true iff i_th component has no bounds at all
    */
-  virtual bool hasNoBoundAtAll(unsigned _i) 
-  { 
+  virtual bool hasNoBoundAtAll(unsigned _i)
+  {
     return (*this)[_i]->hasNoBoundAtAll();
   }
- 
+
   /** Self-test: true iff all components have no bound at all
    */
-  virtual bool hasNoBoundAtAll(void) 
+  virtual bool hasNoBoundAtAll(void)
   {
     for (unsigned i=0; i<size(); i++)
       if (! (*this)[i]->hasNoBoundAtAll())
-	return false;
+        return false;
     return true;
   }
 
-  virtual bool isMinBounded(unsigned _i) 
+  virtual bool isMinBounded(unsigned _i)
   { return (*this)[_i]->isMinBounded();} ;
 
-  virtual bool isMaxBounded(unsigned _i) 
+  virtual bool isMaxBounded(unsigned _i)
   { return (*this)[_i]->isMaxBounded();} ;
 
   /** Folds a real value back into the bounds - i_th component
@@ -130,7 +130,7 @@ public:
    for (unsigned i=0; i<size(); i++)
      {
        (*this)[i]->foldsInBounds(_v[i]);
-     }    
+     }
   }
 
   /** Truncates a real value to the bounds - i_th component
@@ -147,7 +147,7 @@ public:
    for (unsigned i=0; i<size(); i++)
      {
        (*this)[i]->truncate(_v[i]);
-     }    
+     }
   }
 
   /** test: is i_th component within the bounds?
@@ -161,7 +161,7 @@ public:
   {
     for (unsigned i=0; i<size(); i++)
       if (! isInBounds(i, _v[i]))
-	return false;
+        return false;
     return true;
   }
 
@@ -174,7 +174,7 @@ public:
   /** Computes the average range
    *  An std::exception will be raised if one of the component is unbounded
    */
-  virtual double averageRange() 
+  virtual double averageRange()
   {
     double r=0.0;
     for (unsigned i=0; i<size(); i++)
@@ -203,7 +203,7 @@ public:
       {
       _v[i] = uniform(i, _rng);
       }
-  }  
+  }
 
   /**
    * Write object. It's called printOn since it prints the object on a stream.
@@ -213,8 +213,8 @@ public:
   {
     for (unsigned i=0; i<size(); i++)
       {
-	operator[](i)->printOn(_os);
-	_os << ";";
+        operator[](i)->printOn(_os);
+        _os << ";";
       }
   }
 };
@@ -234,19 +234,19 @@ public:
 
   /** Ctor: same bounds for everybody, given as an eoRealBounds
   */
-  eoRealVectorBounds(unsigned _dim, eoRealBounds & _bounds) : 
+  eoRealVectorBounds(unsigned _dim, eoRealBounds & _bounds) :
     eoRealBaseVectorBounds(_dim, _bounds), factor(1,_dim), ownedBounds(0)
   {}
-  
+
   /** Ctor, particular case of dim-2
    */
-  eoRealVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) : 
+  eoRealVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) :
     eoRealBaseVectorBounds(_xbounds, _ybounds), factor(2,1), ownedBounds(0)
   {}
-  
+
   /** Simple bounds = minimum and maximum (allowed)
   */
-  eoRealVectorBounds(unsigned _dim, double _min, double _max) : 
+  eoRealVectorBounds(unsigned _dim, double _min, double _max) :
     eoRealBaseVectorBounds(), factor(1, _dim), ownedBounds(0)
   {
     if (_max-_min<=0)
@@ -261,7 +261,7 @@ public:
 
   /** Ctor: different bounds for different variables, std::vectors of double
    */
-  eoRealVectorBounds(std::vector<double> _min, std::vector<double> _max) : 
+  eoRealVectorBounds(std::vector<double> _min, std::vector<double> _max) :
     factor(_min.size(), 1), ownedBounds(0)
   {
     if (_max.size() != _min.size())
@@ -270,9 +270,9 @@ public:
     eoRealBounds *ptBounds;
     for (unsigned i=0; i<_min.size(); i++)
       {
-	ptBounds = new eoRealInterval(_min[i], _max[i]);
-	ownedBounds.push_back(ptBounds);
-	push_back(ptBounds);
+        ptBounds = new eoRealInterval(_min[i], _max[i]);
+        ownedBounds.push_back(ptBounds);
+        push_back(ptBounds);
       }
   }
 
@@ -320,26 +320,26 @@ public:
     unsigned int index=factor[0];
     if (factor.size()>1)
       for (unsigned i=1; i<factor.size(); i++)
-	{
-	  _os << ";";
-	  if (factor[i] > 1)
-	    _os << factor[i];
-	  operator[](index)->printOn(_os);
-	  index += factor[i];
-	}
+        {
+          _os << ";";
+          if (factor[i] > 1)
+            _os << factor[i];
+          operator[](index)->printOn(_os);
+          index += factor[i];
+        }
   }
 
   /** Eventually increases the size by duplicating last bound */
   void adjust_size(unsigned _dim);
 
-  /** need to rewrite copy ctor and assignement operator 
+  /** need to rewrite copy ctor and assignement operator
    *  because of ownedBounds */
   eoRealVectorBounds(const eoRealVectorBounds &);
 
-private:// WARNING: there is no reason for both std::vector below 
+private:// WARNING: there is no reason for both std::vector below
         //to be synchronized in any manner
-  std::vector<unsigned int> factor;	   // std::list of nb of "grouped" bounds
-  std::vector<eoRealBounds *> ownedBounds; 
+  std::vector<unsigned int> factor;        // std::list of nb of "grouped" bounds
+  std::vector<eoRealBounds *> ownedBounds;
 // keep this one private
   eoRealVectorBounds& operator=(const eoRealVectorBounds&);
   };
@@ -352,19 +352,19 @@ private:// WARNING: there is no reason for both std::vector below
 @ingroup Bounds
  */
 class eoRealVectorNoBounds: public eoRealVectorBounds
-{ 
+{
 public:
   // virtual desctructor (to avoid warning?)
   virtual ~eoRealVectorNoBounds(){}
 
-  /** 
+  /**
    * Ctor: nothing to do, but beware of dimension: call base class ctor
    */
-  eoRealVectorNoBounds(unsigned _dim) : 
+  eoRealVectorNoBounds(unsigned _dim) :
     eoRealVectorBounds( (_dim?_dim:1), eoDummyRealNoBounds)
   {}
 
-  
+
   virtual bool isBounded(unsigned)  {return false;}
   virtual bool isBounded(void)   {return false;}
 
@@ -383,7 +383,7 @@ public:
   virtual bool isInBounds(unsigned, double) {return true;}
   virtual bool isInBounds(std::vector<double>) {return true;}
 
-  // accessors  
+  // accessors
   virtual double minimum(unsigned)
   {
     throw std::logic_error("Trying to get minimum of eoRealVectorNoBounds");
@@ -397,7 +397,7 @@ public:
     throw std::logic_error("Trying to get range of eoRealVectorNoBounds");
   }
 
-  virtual double averageRange() 
+  virtual double averageRange()
   {
     throw std::logic_error("Trying to get average range of eoRealVectorNoBounds");
   }

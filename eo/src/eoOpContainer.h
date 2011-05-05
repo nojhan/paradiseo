@@ -100,7 +100,7 @@ public:
 
 
     void apply(eoPopulator<EOT>& _pop) {
-	_pop.reserve( this->max_production() );
+        _pop.reserve( this->max_production() );
 
         position_type pos = _pop.tellp();
         for (size_t i = 0; i < rates.size(); ++i) {
@@ -118,10 +118,10 @@ public:
                     //            }
                     // check for out of individuals and do nothing with that...
                     //            catch(eoPopulator<EOT>::OutOfIndividuals&)
-                    //	      {
+                    //        {
                     //		std::cout << "Warning: not enough individuals to handle\n";
                     //		return ;
-                    //	      }
+                    //        }
                 }
 
                 if (!_pop.exhausted())
@@ -156,7 +156,7 @@ public:
       try
       {
         (*ops[i])(_pop);
-	++_pop;
+        ++_pop;
       }
       catch( typename eoPopulator<EOT>::OutOfIndividuals&)
       {}
@@ -166,4 +166,3 @@ public:
 
 
 #endif
-

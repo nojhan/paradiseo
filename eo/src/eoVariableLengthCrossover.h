@@ -66,7 +66,7 @@ public:
   {
     mask.resize(_size1 + _size2);
     for (unsigned i=0; i<_size1+_size2; i++)
-	mask[i]=eo::rng.flip(rate);
+        mask[i]=eo::rng.flip(rate);
   }
 
   /** the operator() simply returns the mask booleans in turn */
@@ -98,12 +98,12 @@ public :
 
   /** default ctor: requires bounds on number of genes + a rate */
   eoVlAtomExchangeQuadOp(unsigned _Min, unsigned _Max,
-			 eoAtomExchange<AtomType>& _atomExchange):
+                         eoAtomExchange<AtomType>& _atomExchange):
     Min(_Min), Max(_Max), atomExchange(_atomExchange) {}
 
   bool operator()(EOT & _eo1, EOT & _eo2)
   {
-    EOT tmp1, tmp2;		   // empty individuals
+    EOT tmp1, tmp2;                // empty individuals
     unsigned index=0;
     // main loop: until sizes are OK, do only simulated exchange
     unsigned i, i1, i2;
@@ -113,47 +113,47 @@ public :
       // simulate crossover
       i1=i2=0;
       for (i=0; i<_eo1.size(); i++)
-	{
-	  if (atomExchange(i, _eo1[i]))
-	    i1++;
-	  else
-	    i2++;
-	}
+        {
+          if (atomExchange(i, _eo1[i]))
+            i1++;
+          else
+            i2++;
+        }
       for (i=0; i<_eo2.size(); i++)
-	{
-	  if (atomExchange(i, _eo2[i]))
-	    i2++;
-	  else
-	    i1++;
-	}
+        {
+          if (atomExchange(i, _eo2[i]))
+            i2++;
+          else
+            i1++;
+        }
       index++;
     } while ( ( (i1<Min) || (i2<Min) ||
-		(i1>Max) || (i2>Max) )
-	      && (index<10000) );
+                (i1>Max) || (i2>Max) )
+              && (index<10000) );
     if (index >= 10000)
       {
           eo::log << eo::warnings << "Warning: impossible to generate individual of the right size in 10000 trials" << std::endl;
-	return false;
+        return false;
       }
   // here we know we have the right sizes: do the actual exchange
       for (i=0; i<_eo1.size(); i++)
-	{
-	  if (atomExchange(i, _eo1[i]))
-	    tmp1.push_back(_eo1[i]);
-	  else
-	    tmp2.push_back(_eo1[i]);
-	}
+        {
+          if (atomExchange(i, _eo1[i]))
+            tmp1.push_back(_eo1[i]);
+          else
+            tmp2.push_back(_eo1[i]);
+        }
       for (i=0; i<_eo2.size(); i++)
-	{
-	  if (atomExchange(i, _eo2[i]))
-	    tmp2.push_back(_eo2[i]);
-	  else
-	    tmp1.push_back(_eo2[i]);
-	}
+        {
+          if (atomExchange(i, _eo2[i]))
+            tmp2.push_back(_eo2[i]);
+          else
+            tmp1.push_back(_eo2[i]);
+        }
       // and put everything back in place
     _eo1.swap(tmp1);
     _eo2.swap(tmp2);
-    return true;	 // should we test that? Yes, but no time now
+    return true;         // should we test that? Yes, but no time now
   }
 
   /** the inherited className */
@@ -190,11 +190,11 @@ public :
     bool changed = false;
     for ( unsigned i = 0; i < minsize; i ++ ) {
       if ( rng.flip( rate ) ) {
-	bool changedHere = op( _eo1[i], _eo2[i] );
-	changed |= changedHere;
+        bool changedHere = op( _eo1[i], _eo2[i] );
+        changed |= changedHere;
       }
     }
-    return changed;	 // should we test that? Yes, but no time now
+    return changed;      // should we test that? Yes, but no time now
   }
 
   virtual std::string className() const
@@ -237,34 +237,34 @@ public :
     unsigned index=0;
     do {
       for (i=0; i<_eo1.size(); i++)
-	{
-	  if (eo::rng.flip(rate))
-	    tmp1.push_back(_eo1[i]);
-	  else
-	    tmp2.push_back(_eo1[i]);
-	  // here we should look for _eo1[i] inside _eo2 and erase it if found!
-	}
+        {
+          if (eo::rng.flip(rate))
+            tmp1.push_back(_eo1[i]);
+          else
+            tmp2.push_back(_eo1[i]);
+          // here we should look for _eo1[i] inside _eo2 and erase it if found!
+        }
       for (i=0; i<_eo2.size(); i++)
-	{
-	  if (eo::rng.flip(rate))
-	    tmp1.push_back(_eo2[i]);
-	  else
-	    tmp2.push_back(_eo2[i]);
-	}
+        {
+          if (eo::rng.flip(rate))
+            tmp1.push_back(_eo2[i]);
+          else
+            tmp2.push_back(_eo2[i]);
+        }
       index++;
     } while ( ( (tmp1.size()<Min) || (tmp2.size()<Min) ||
-	      (tmp1.size()>Max) || (tmp2.size()>Max) )
-	      && (index<10000) );
+              (tmp1.size()>Max) || (tmp2.size()>Max) )
+              && (index<10000) );
     //! @todo FIXME bad hardcoded limit, should use an algorithm that guarantee a correct size in a finite number of tries
     if (index >= 10000)
       {
           eo::log << eo::warnings << "Warning: impossible to generate individual of the right size in 10000 trials" << std::endl;
-	return false;
+        return false;
       }
 
     _eo1.swap(tmp1);
     _eo2.swap(tmp2);
-    return true;		   // should we test that?
+    return true;                   // should we test that?
   }
 private:
   unsigned Min, Max;
@@ -300,47 +300,47 @@ public :
     unsigned index=0;
     do {
       for (i=0; i<_eo1.size(); i++)
-	{
-	  if (eo::rng.flip(rate))
-	    {
-	      tmp1.push_back(_eo1[i]);
-	      tmpIsTwo = false;
-	    }
-	  else
-	    tmpIsOne=false;
-	// we should look for _eo1[i] inside _eo2 and erase it there if found!
-	}
+        {
+          if (eo::rng.flip(rate))
+            {
+              tmp1.push_back(_eo1[i]);
+              tmpIsTwo = false;
+            }
+          else
+            tmpIsOne=false;
+        // we should look for _eo1[i] inside _eo2 and erase it there if found!
+        }
       for (i=0; i<_eo2.size(); i++)
-	{
-	  if (! eo::rng.flip(rate))
-	    {
-	      tmp1.push_back(_eo2[i]);
-	      tmpIsOne = false;
-	    }
-	  else
-	    tmpIsTwo = false;
-	}
+        {
+          if (! eo::rng.flip(rate))
+            {
+              tmp1.push_back(_eo2[i]);
+              tmpIsOne = false;
+            }
+          else
+            tmpIsTwo = false;
+        }
       index++;
     } while ( ( (tmp1.size()<Min) || (tmp1.size()>Max) )
-	      && (index<10000) );
+              && (index<10000) );
     // this while condition is not optimal, as it may take some time, see the FIXME above
     if (index >= 10000)
       {
           eo::log << eo::warnings << "Warning: impossible to generate individual of the right size in 10000 trials" << std::endl;
-	return false;
+        return false;
       }
 
     _eo1.swap(tmp1);
     if (tmpIsTwo)
       {
-	//	_eo1.fitness(_eo2.fitness());     NO FITNESS EXISTS HERE!
-	return false;
+        //	_eo1.fitness(_eo2.fitness());     NO FITNESS EXISTS HERE!
+        return false;
       }
-    if (tmpIsOne)		   // already has the right fitness
-      {				   // WRONG: NO FITNESS EXISTS HERE!
-	return false;
+    if (tmpIsOne)                  // already has the right fitness
+      {                            // WRONG: NO FITNESS EXISTS HERE!
+        return false;
       }
-    return true;		   // there were some modifications...
+    return true;                   // there were some modifications...
   }
 
 private:
@@ -350,4 +350,3 @@ private:
 
 /** @} */
 #endif
-

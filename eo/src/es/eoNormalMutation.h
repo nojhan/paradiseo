@@ -69,13 +69,13 @@ template<class EOT> class eoNormalVecMutation: public eoMonOp<EOT>
    * for each component, the sigma is scaled to the range of the bound, if bounded
    */
   eoNormalVecMutation(eoRealVectorBounds & _bounds,
-		    double _sigma, const double& _p_change = 1.0):
+                    double _sigma, const double& _p_change = 1.0):
     sigma(_bounds.size(), _sigma), bounds(_bounds), p_change(_p_change)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
       if (bounds.isBounded(i))
-	  sigma[i] *= _sigma*bounds.range(i);
+          sigma[i] *= _sigma*bounds.range(i);
   }
 
   /** The class name */
@@ -89,14 +89,14 @@ template<class EOT> class eoNormalVecMutation: public eoMonOp<EOT>
     {
       bool hasChanged=false;
       for (unsigned lieu=0; lieu<_eo.size(); lieu++)
-	{
-	  if (rng.flip(p_change))
-	    {
-	      _eo[lieu] += sigma[lieu]*rng.normal();
-	      bounds.foldsInBounds(lieu, _eo[lieu]);
-	      hasChanged = true;
-	    }
-	}
+        {
+          if (rng.flip(p_change))
+            {
+              _eo[lieu] += sigma[lieu]*rng.normal();
+              bounds.foldsInBounds(lieu, _eo[lieu]);
+              hasChanged = true;
+            }
+        }
       return hasChanged;
     }
 
@@ -138,7 +138,7 @@ public:
    * @param _p_change the probability to change a given coordinate
    */
   eoNormalMutation(eoRealVectorBounds & _bounds,
-		    double _sigma, const double& _p_change = 1.0):
+                    double _sigma, const double& _p_change = 1.0):
     sigma(_sigma), bounds(_bounds), p_change(_p_change) {}
 
   /** The class name */
@@ -152,14 +152,14 @@ public:
     {
       bool hasChanged=false;
       for (unsigned lieu=0; lieu<_eo.size(); lieu++)
-	{
-	  if (rng.flip(p_change))
-	    {
-	      _eo[lieu] += sigma*rng.normal();
-	      bounds.foldsInBounds(lieu, _eo[lieu]);
-	      hasChanged = true;
-	    }
-	}
+        {
+          if (rng.flip(p_change))
+            {
+              _eo[lieu] += sigma*rng.normal();
+              bounds.foldsInBounds(lieu, _eo[lieu]);
+              hasChanged = true;
+            }
+        }
       return hasChanged;
     }
 
@@ -199,8 +199,8 @@ public:
    * @param _threshold the threshold (the 1/5 - 0.2)
    */
   eoOneFifthMutation(eoEvalFunc<EOT> & _eval, double & _sigmaInit,
-		     unsigned _windowSize = 10, double _updateFactor=0.83,
-		     double _threshold=0.2):
+                     unsigned _windowSize = 10, double _updateFactor=0.83,
+                     double _threshold=0.2):
     eoNormalMutation<EOT>(_sigmaInit), eval(_eval),
     threshold(_threshold), updateFactor(_updateFactor),
     nbMut(_windowSize, 0), nbSuccess(_windowSize, 0), genIndex(0)
@@ -221,21 +221,21 @@ public:
    */
   bool operator()(EOT & _eo)
     {
-      if (_eo.invalid())	   // due to some crossover???
-	eval(_eo);
+      if (_eo.invalid())           // due to some crossover???
+        eval(_eo);
       Fitness oldFitness = _eo.fitness(); // save old fitness
 
       // call standard operator - then count the successes
       if (eoNormalMutation<EOT>::operator()(_eo)) // _eo has been modified
-	{
-	  _eo.invalidate();	   // don't forget!!!
-	  nbMut[genIndex]++;
-	  eval(_eo);		   // compute fitness of offspring
+        {
+          _eo.invalidate();        // don't forget!!!
+          nbMut[genIndex]++;
+          eval(_eo);               // compute fitness of offspring
 
-	  if (_eo.fitness() > oldFitness)
-	    nbSuccess[genIndex]++;	    // update counter
-	}
-      return false;		   // because eval has reset the validity flag
+          if (_eo.fitness() > oldFitness)
+            nbSuccess[genIndex]++;          // update counter
+        }
+      return false;                // because eval has reset the validity flag
     }
 
   /** the method that will be called every generation
@@ -248,18 +248,18 @@ public:
     // compute the average stats over the time window
     for ( unsigned i=0; i<nbMut.size(); i++)
       {
-	totalMut += nbMut[i];
-	totalSuccess += nbSuccess[i];
+        totalMut += nbMut[i];
+        totalSuccess += nbSuccess[i];
       }
 
     // update sigma accordingly
     double prop = double(totalSuccess) / totalMut;
     if (prop > threshold) {
-      Sigma() /= updateFactor;	   // increase sigma
+      Sigma() /= updateFactor;     // increase sigma
     }
     else
       {
-	Sigma() *= updateFactor;	   // decrease sigma
+        Sigma() *= updateFactor;           // decrease sigma
       }
     genIndex = (genIndex+1) % nbMut.size() ;
     nbMut[genIndex] = nbSuccess[genIndex] = 0;
@@ -268,15 +268,14 @@ public:
 
 private:
   eoEvalFunc<EOT> & eval;
-  double threshold;		   // 1/5 !
-  double updateFactor ;		   // the multiplicative factor
-  std::vector<unsigned> nbMut;	   // total number of mutations per gen
-  std::vector<unsigned> nbSuccess;	   // number of successful mutations per gen
-  unsigned genIndex ;		   // current index in std::vectors (circular)
+  double threshold;                // 1/5 !
+  double updateFactor ;            // the multiplicative factor
+  std::vector<unsigned> nbMut;     // total number of mutations per gen
+  std::vector<unsigned> nbSuccess;         // number of successful mutations per gen
+  unsigned genIndex ;              // current index in std::vectors (circular)
 };
 
 
 //-----------------------------------------------------------------------------
 //@}
 #endif
-

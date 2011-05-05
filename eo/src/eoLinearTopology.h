@@ -48,7 +48,7 @@ public:
 
     /**
      * Build the topology made of _neighborhoodSize neighborhoods.
-     * @param _neighborhoodSize - The size of each neighborhood. 
+     * @param _neighborhoodSize - The size of each neighborhood.
      */
     eoLinearTopology (unsigned _neighborhoodSize):neighborhoodSize (_neighborhoodSize),isSetup(false){}
 
@@ -119,7 +119,7 @@ public:
      */
     unsigned retrieveNeighborhoodByIndice(unsigned _indice)
     {
-    	unsigned i=0;
+        unsigned i=0;
         for (i=0;i< neighborhoods.size();i++)
         {
             if (neighborhoods[i].contains(_indice))
@@ -131,7 +131,7 @@ public:
     }
 
    /**
-    * Update the neighborhood: update the particle's best fitness and the best particle 
+    * Update the neighborhood: update the particle's best fitness and the best particle
     * of the corresponding neighborhood.
     */
     void updateNeighborhood(POT & _po,unsigned _indice)
@@ -139,9 +139,9 @@ public:
         // update the best fitness of the particle
         if (_po.fitness() > _po.best())
         {
-	  _po.best(_po.fitness());
-	  for(unsigned i=0;i<_po.size();i++)
-	    _po.bestPositions[i]=_po[i];
+          _po.best(_po.fitness());
+          for(unsigned i=0;i<_po.size();i++)
+            _po.bestPositions[i]=_po[i];
         }
 
         // update the best in its neighborhood
@@ -166,27 +166,27 @@ public:
 
 
     /*
-	 * Return the global best of the topology
-	 */	 
-	virtual POT & globalBest()
+         * Return the global best of the topology
+         */
+        virtual POT & globalBest()
     {
-    	POT gBest,tmp;
-    	unsigned indGlobalBest=0;    	
-    	if(neighborhoods.size()==1)
-    		return neighborhoods[0].best();
-    		
-    	gBest=neighborhoods[0].best();
-    	for(unsigned i=1;i<neighborhoods.size();i++)
-    	{
-    		tmp=neighborhoods[i].best();
-    		if(gBest.best() < tmp.best())
-    		{
-    			gBest=tmp;
-    			indGlobalBest=i;
-    		}
-    			
-    	}
-    	return neighborhoods[indGlobalBest].best();
+        POT gBest,tmp;
+        unsigned indGlobalBest=0;
+        if(neighborhoods.size()==1)
+                return neighborhoods[0].best();
+
+        gBest=neighborhoods[0].best();
+        for(unsigned i=1;i<neighborhoods.size();i++)
+        {
+                tmp=neighborhoods[i].best();
+                if(gBest.best() < tmp.best())
+                {
+                        gBest=tmp;
+                        indGlobalBest=i;
+                }
+
+        }
+        return neighborhoods[indGlobalBest].best();
     }
 
     /**
@@ -207,19 +207,11 @@ public:
 
 
 protected:
-	std::vector<eoSocialNeighborhood<POT> >  neighborhoods;
+        std::vector<eoSocialNeighborhood<POT> >  neighborhoods;
     unsigned neighborhoodSize; // the size of each neighborhood
-    
+
     bool isSetup;
 
 };
 
 #endif /*EOLINEARTOPOLOGY_H_ */
-
-
-
-
-
-
-
-

@@ -20,7 +20,7 @@ void eoTimedStateSaver::operator()(void)
     if (now >= last_time + interval)
     {
         last_time = now;
-	ostringstream os;
+        ostringstream os;
         os << prefix << (now - first_time) << '.' << extension;
         state.save(os.str());
     }
@@ -28,7 +28,7 @@ void eoTimedStateSaver::operator()(void)
 
 void eoCountedStateSaver::doItNow(void)
 {
-	ostringstream os;
+        ostringstream os;
         os << prefix << counter << '.' << extension;
         state.save(os.str());
 }
@@ -44,5 +44,3 @@ void eoCountedStateSaver::lastCall(void)
     if (saveOnLastCall)
       doItNow();
 }
-
-

@@ -1,4 +1,3 @@
-
 #ifndef eoFuncPtrStat_h
 #define eoFuncPtrStat_h
 
@@ -21,9 +20,9 @@ public :
     eoFuncPtrStat(func_t f, std::string _description = "func_ptr")
         : eoStat<EOT, T>(T(), _description), func(f)
         {}
-   
+
     using eoStat<EOT, T>::value;
-     
+
     void operator()(const eoPop<EOT>& pop) {
         value() = func(pop);
     }
@@ -32,7 +31,7 @@ private:
     func_t func;
 };
 
-/** 
+/**
  * @ingroup Stats
  */
 template <class EOT, class T>
@@ -43,4 +42,3 @@ eoFuncPtrStat<EOT, T>& makeFuncPtrStat( T (*func)(const eoPop<EOT>&), eoFunctorS
 }
 
 #endif
-

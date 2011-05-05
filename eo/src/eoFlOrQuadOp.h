@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoFlOrQuadOp.h
 // (c) Marc Schoenauer - Maarten Keijzer 2000-2003
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -35,7 +35,7 @@
 
 /** Generic eoQuadOps on fixed length genotypes.
  *  Contains exchange crossovers (1pt and uniform)
- *      and crossovers that applies an Atom crossover 
+ *      and crossovers that applies an Atom crossover
  *          to all components with given rate, or
  *          to a fixed prescribed nb of components
 */
@@ -63,8 +63,8 @@ public :
     bool changed = false;
     for ( unsigned i = 0; i < _eo1.size(); i++ ) {
       if ( rng.flip( rate ) ) {
-	bool changedHere = op( _eo1[i], _eo2[i] );
-	changed |= changedHere;
+        bool changedHere = op( _eo1[i], _eo2[i] );
+        changed |= changedHere;
       }
     }
     return changed;
@@ -100,16 +100,16 @@ public :
   {
     if (_eo1.size() != _eo2.size())
       {
-	string s = "Operand size don't match in " + className();
-	throw runtime_error(s);
+        string s = "Operand size don't match in " + className();
+        throw runtime_error(s);
       }
 
     bool changed = false;
     for ( unsigned i = 0; i < k; i++ ) //! @todo check that we don't do twice the same
       {
-	unsigned where = eo::rng.random(_eo1.size());
-	bool changedHere = op( _eo1[where], _eo2[where] );
-	changed |= changedHere;
+        unsigned where = eo::rng.random(_eo1.size());
+        bool changedHere = op( _eo1[where], _eo2[where] );
+        changed |= changedHere;
       }
     return changed;
   }
@@ -145,19 +145,19 @@ public :
     Atom tmp;
     if (_eo1.size() != _eo2.size())
       {
-	string s = "Operand size don't match in " + className();
-	throw runtime_error(s);
+        string s = "Operand size don't match in " + className();
+        throw runtime_error(s);
   }
     bool hasChanged = false;
     for (unsigned i=0; i<_eo1.size(); i++)
       {
-	if ( (_eo1[i]!=_eo2[i]) && (eo::rng.filp(rate)) )
-	{
-	  tmp = _eo1[i];
-	  _eo1[i] = _eo2[i];
-	  _eo2[i] = tmp;
-	  hasChanged = true;
-	}
+        if ( (_eo1[i]!=_eo2[i]) && (eo::rng.filp(rate)) )
+        {
+          tmp = _eo1[i];
+          _eo1[i] = _eo2[i];
+          _eo2[i] = tmp;
+          hasChanged = true;
+        }
       }
     return hasChanged;
   }
@@ -190,20 +190,20 @@ public :
     Atom tmp;
     if (_eo1.size() != _eo2.size())
       {
-	string s = "Operand size don't match in " + className();
-	throw runtime_error(s);
+        string s = "Operand size don't match in " + className();
+        throw runtime_error(s);
   }
     bool hasChanged = false;
     unsigned where = eo::rng.random(_eo1.size()-1);
     for (unsigned i=where+1; i<_eo1.size(); i++)
       {
-	if ( (_eo1[i]!=_eo2[i]) )
-	{
-	  tmp = _eo1[i];
-	  _eo1[i] = _eo2[i];
-	  _eo2[i] = tmp;
-	  hasChanged = true;
-	}
+        if ( (_eo1[i]!=_eo2[i]) )
+        {
+          tmp = _eo1[i];
+          _eo1[i] = _eo2[i];
+          _eo2[i] = tmp;
+          hasChanged = true;
+        }
       }
     return hasChanged;
   }

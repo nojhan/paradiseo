@@ -32,16 +32,16 @@
 #include <eoFlight.h>
 //-----------------------------------------------------------------------------
 
-/** An easy-to-use particle swarm algorithm. 
-* Use any particle, any flight, any topology... 
+/** An easy-to-use particle swarm algorithm.
+* Use any particle, any flight, any topology...
 *
 *   The main steps are :
-* 	  (The population  is expected to be already evaluated)
-* 	 - for each generation and each particle pi
-* 	 - evaluate the velocities
-* 	 	-- perform the fligth of pi
-*    	-- evaluate pi
-*    	-- update the neighborhoods
+*         (The population  is expected to be already evaluated)
+*        - for each generation and each particle pi
+*        - evaluate the velocities
+*               -- perform the fligth of pi
+*       -- evaluate pi
+*       -- update the neighborhoods
 *
 * @ingroup Algorithms
 */
@@ -54,7 +54,7 @@ public:
     * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
     * @param _eval - An eoEvalFunc: the evaluation performer
     * @param _velocity - An eoVelocity that defines how to compute the velocities
-    * @param _flight - An eoFlight that defines how to make the particle flying: that means how 
+    * @param _flight - An eoFlight that defines how to make the particle flying: that means how
     * to modify the positions according to the velocities
     */
     eoEasyPSO (
@@ -90,11 +90,11 @@ public:
     {}
 
 
-	/* Constructor without eoInitializerBase. Assume the initialization is done before running the algorithm
+        /* Constructor without eoInitializerBase. Assume the initialization is done before running the algorithm
     * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
     * @param _eval - An eoEvalFunc: the evaluation performer
     * @param _velocity - An eoVelocity that defines how to compute the velocities
-    * @param _flight - An eoFlight that defines how to make the particle flying: that means how 
+    * @param _flight - An eoFlight that defines how to make the particle flying: that means how
     * to modify the positions according to the velocities
     */
     eoEasyPSO (
@@ -125,7 +125,7 @@ public:
             velocity (_velocity),
             flight (dummyFlight)
     {}
-    
+
     /// Apply a few iteration of flight to the population (=swarm).
     virtual void operator  () (eoPop < POT > &_pop)
     {
@@ -171,22 +171,22 @@ protected:
     eoVelocity < POT > &velocity;
     eoFlight < POT > &flight;
 
-	 // if the flight does not need to be used, use the dummy flight instance
-	class eoDummyFlight:public eoFlight < POT >
-	{
-	 public:
-    	eoDummyFlight () {}
-    	void operator  () (POT & _po) {}
-	}dummyFlight;
-	
-	// if the initializer does not need to be used, use the dummy one instead
-	class eoDummyInitializer:public eoInitializerBase < POT >
-	{
-	 public:
-    	eoDummyInitializer () {}
-    	void operator  () (POT & _po) {}
-	}dummyInit;
-	
+         // if the flight does not need to be used, use the dummy flight instance
+        class eoDummyFlight:public eoFlight < POT >
+        {
+         public:
+        eoDummyFlight () {}
+        void operator  () (POT & _po) {}
+        }dummyFlight;
+
+        // if the initializer does not need to be used, use the dummy one instead
+        class eoDummyInitializer:public eoInitializerBase < POT >
+        {
+         public:
+        eoDummyInitializer () {}
+        void operator  () (POT & _po) {}
+        }dummyInit;
+
 };
 /**
  * @example t-eoEasyPSO.cpp

@@ -49,7 +49,7 @@ public:
 
 
     /** Constructor without bounds.
-     * 
+     *
      */
     eoStandardFlight ():bnds (*(new eoRealVectorNoBounds(0))){}
 

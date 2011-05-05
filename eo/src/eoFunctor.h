@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoFunctor.h
 // (c) Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -20,7 +20,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              mak@dhi.dk
-    CVS Info: $Date: 2004-12-01 09:22:48 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoFunctor.h,v 1.7 2004-12-01 09:22:48 evomarc Exp $ $Author: evomarc $ 
+    CVS Info: $Date: 2004-12-01 09:22:48 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoFunctor.h,v 1.7 2004-12-01 09:22:48 evomarc Exp $ $Author: evomarc $
  */
 //-----------------------------------------------------------------------------
 
@@ -87,12 +87,12 @@ public :
     /// tag to identify a procedure in compile time function selection @see functor_category
     static eoFunctorBase::procedure_tag functor_category()
     {
-	return eoFunctorBase::procedure_tag();
+        return eoFunctorBase::procedure_tag();
     }
 };
 
 /**
-    Overloaded function that can help in the compile time detection 
+    Overloaded function that can help in the compile time detection
     of the type of functor we are dealing with
 
     @see eoCounter, make_counter
@@ -103,8 +103,8 @@ eoFunctorBase::procedure_tag functor_category(const eoF<R>&)
     return eoFunctorBase::procedure_tag();
 }
 
-/** 
-    Basic Unary Functor. Derive from this class when defining 
+/**
+    Basic Unary Functor. Derive from this class when defining
     any unary function. First template argument is the first_argument_type,
     second result_type.
     Argument and result types can be any type including void for
@@ -124,12 +124,12 @@ public :
     /// tag to identify a procedure in compile time function selection @see functor_category
     static eoFunctorBase::unary_function_tag functor_category()
     {
-	return eoFunctorBase::unary_function_tag();
+        return eoFunctorBase::unary_function_tag();
     }
 };
 
 /**
-    Overloaded function that can help in the compile time detection 
+    Overloaded function that can help in the compile time detection
     of the type of functor we are dealing with
     @see eoCounter, make_counter
 */
@@ -140,8 +140,8 @@ eoFunctorBase::unary_function_tag functor_category(const eoUF<A1, R>&)
 }
 
 
-/** 
-    Basic Binary Functor. Derive from this class when defining 
+/**
+    Basic Binary Functor. Derive from this class when defining
     any binary function. First template argument is result_type, second
     is first_argument_type, third is second_argument_type.
     Argument and result types can be any type including void for
@@ -153,7 +153,7 @@ class eoBF : public eoFunctorBase, public std::binary_function<A1, A2, R>
 public :
         /// virtual dtor here so there is no need to define it in derived classes
     virtual ~eoBF() {}
-    
+
     //typedef R result_type;
     //typedef A1 first_argument_type;
     //typedef A2 second_argument_type;
@@ -164,12 +164,12 @@ public :
     /// tag to identify a procedure in compile time function selection @see functor_category
     static eoFunctorBase::binary_function_tag functor_category()
     {
-	return eoFunctorBase::binary_function_tag();
+        return eoFunctorBase::binary_function_tag();
     }
 };
 
 /**
-    Overloaded function that can help in the compile time detection 
+    Overloaded function that can help in the compile time detection
     of the type of functor we are dealing with
     @see eoCounter, make_counter
 */

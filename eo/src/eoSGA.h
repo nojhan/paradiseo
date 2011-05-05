@@ -58,7 +58,7 @@ public :
         eoQuadOp<EOT>& _cross, float _crate,
         eoMonOp<EOT>& _mutate, float _mrate,
         eoEvalFunc<EOT>& _eval,
-	eoContinue<EOT>& _cont)
+        eoContinue<EOT>& _cont)
     : cont(_cont),
           mutate(_mutate),
           mutationRate(_mrate),
@@ -73,34 +73,34 @@ public :
 
     do
       {
-	select(_pop, offspring);
+        select(_pop, offspring);
 
-	unsigned i;
+        unsigned i;
 
-	for (i=0; i<_pop.size()/2; i++)
-	  {
-	    if ( rng.flip(crossoverRate) )
-	    {
-		    // this crossover generates 2 offspring from two parents
-		    if (cross(offspring[2*i], offspring[2*i+1]))
+        for (i=0; i<_pop.size()/2; i++)
+          {
+            if ( rng.flip(crossoverRate) )
+            {
+                    // this crossover generates 2 offspring from two parents
+                    if (cross(offspring[2*i], offspring[2*i+1]))
         {
           offspring[2*i].invalidate();
           offspring[2*i+1].invalidate();
         }
       }
-	  }
+          }
 
-	for (i=0; i < offspring.size(); i++)
-	  {
-	    if (rng.flip(mutationRate) )
-	    {
-		     if (mutate(offspring[i]))
+        for (i=0; i < offspring.size(); i++)
+          {
+            if (rng.flip(mutationRate) )
+            {
+                     if (mutate(offspring[i]))
           offspring[i].invalidate();
-	    }
-	  }
+            }
+          }
 
-	_pop.swap(offspring);
-	apply<EOT>(eval, _pop);
+        _pop.swap(offspring);
+        apply<EOT>(eval, _pop);
 
       } while (cont(_pop));
   }

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_pop_ga.cpp
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 /** This file contains all ***INSTANCIATED DEFINITIONS*** of population init
  * of the library for ***BISTRING*** evolution inside EO.
@@ -35,7 +35,7 @@
  * Compiling this file allows one to generate part of the library (i.e. object
  * files that you just need to link with your own main and fitness code).
  *
- * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
+ * The corresponding ***INSTANCIATED DECLARATIONS*** are contained
  *       in ga/make_ga.h
  * while the TEMPLATIZED code is define in make_pop.h in the src/do dir
  *
@@ -59,5 +59,3 @@ eoPop<eoBit<eoMinimizingFitness> >&  make_pop(eoParser& _parser, eoState& _state
 {
   return do_make_pop(_parser, _state, _init);
 }
-
-

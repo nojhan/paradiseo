@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoBoolFlip.h
 // (c) Marc Schoenauer, 2003
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -33,7 +33,7 @@
   @ingroup Variators
  */
 class eoBoolFlip : public eoMonOp<bool> {
-public: 
+public:
   /** simply flips the boolean argument */
   bool operator()(bool & _b)
   {

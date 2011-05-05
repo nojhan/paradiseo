@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -31,22 +31,22 @@ using namespace boost::python;
 
 class GenOpWrapper : public eoGenOp<PyEO>
 {
-    public:
+public:
 
     PyObject* self;
     GenOpWrapper(PyObject* p) : self(p) {}
     unsigned max_production(void)
     {
-	return call_method<unsigned>(self,"max_production");
+        return call_method<unsigned>(self,"max_production");
     }
     std::string className() const
     {
-	return "GenOpDerivative"; // never saw the use of className anyway
+        return "GenOpDerivative"; // never saw the use of className anyway
     }
-    
+
     void apply(eoPopulator<PyEO>& populator )
     {
-	boost::python::call_method<void>(self,"apply", boost::ref( populator ) );
+        boost::python::call_method<void>(self,"apply", boost::ref( populator ) );
     }
 };
 
@@ -54,15 +54,15 @@ class PopulatorWrapper : public eoPopulator<PyEO>
 {
 public:
     PyObject* self;
-    PopulatorWrapper(PyObject* p, const eoPop<PyEO>& src, eoPop<PyEO>& dest) 
-	: eoPopulator<PyEO>(src, dest), self(p) 
-	{
-	    //throw std::runtime_error("abstract base class");
-	}
-    
+    PopulatorWrapper(PyObject* p, const eoPop<PyEO>& src, eoPop<PyEO>& dest)
+        : eoPopulator<PyEO>(src, dest), self(p)
+    {
+        //throw std::runtime_error("abstract base class");
+    }
+
     const PyEO& select()
     {
-	return call_method<const PyEO&>(self,"select");
+        return call_method<const PyEO&>(self,"select");
     }
 };
 
@@ -94,62 +94,62 @@ public:
 void geneticOps()
 {
     class_<eoPopulator<PyEO>, PopulatorWrapper, boost::noncopyable>
-	("eoPopulator", init<const eoPop<PyEO>&, eoPop<PyEO>&>() )
-	.def("select", &PopulatorWrapper::select,  return_internal_reference<>() )
-	.def("get", &eoPopulator<PyEO>::operator*, return_internal_reference<>() )
-	.def("next", &eoPopulator<PyEO>::operator++, return_internal_reference<>() )
-	.def("insert", &eoPopulator<PyEO>::insert)
-	.def("reserve", &eoPopulator<PyEO>::reserve)
-	.def("source", &eoPopulator<PyEO>::source, return_internal_reference<>() )
-	.def("offspring", &eoPopulator<PyEO>::offspring, return_internal_reference<>() )
-	.def("tellp", &eoPopulator<PyEO>::tellp)
-	.def("seekp", &eoPopulator<PyEO>::seekp)
-	.def("exhausted", &eoPopulator<PyEO>::exhausted)
-	;
+        ("eoPopulator", init<const eoPop<PyEO>&, eoPop<PyEO>&>() )
+        .def("select", &PopulatorWrapper::select,  return_internal_reference<>() )
+        .def("get", &eoPopulator<PyEO>::operator*, return_internal_reference<>() )
+        .def("next", &eoPopulator<PyEO>::operator++, return_internal_reference<>() )
+        .def("insert", &eoPopulator<PyEO>::insert)
+        .def("reserve", &eoPopulator<PyEO>::reserve)
+        .def("source", &eoPopulator<PyEO>::source, return_internal_reference<>() )
+        .def("offspring", &eoPopulator<PyEO>::offspring, return_internal_reference<>() )
+        .def("tellp", &eoPopulator<PyEO>::tellp)
+        .def("seekp", &eoPopulator<PyEO>::seekp)
+        .def("exhausted", &eoPopulator<PyEO>::exhausted)
+        ;
 
     class_<eoSeqPopulator<PyEO>, bases<eoPopulator<PyEO> > >
-	("eoSeqPopulator", init<const eoPop<PyEO>&, eoPop<PyEO>&>() )
-	.def("select", &eoSeqPopulator<PyEO>::select, return_internal_reference<>() )
-	;
-    
+        ("eoSeqPopulator", init<const eoPop<PyEO>&, eoPop<PyEO>&>() )
+        .def("select", &eoSeqPopulator<PyEO>::select, return_internal_reference<>() )
+        ;
+
     class_<eoSelectivePopulator<PyEO>, bases<eoPopulator<PyEO> > >
-	("eoSelectivePopulator", init<const eoPop<PyEO>&, eoPop<PyEO>&, eoSelectOne<PyEO>& >() )
-	.def("select", &eoSeqPopulator<PyEO>::select, return_internal_reference<>() )
-	;
+        ("eoSelectivePopulator", init<const eoPop<PyEO>&, eoPop<PyEO>&, eoSelectOne<PyEO>& >() )
+        .def("select", &eoSeqPopulator<PyEO>::select, return_internal_reference<>() )
+        ;
     enum_<eoOp<PyEO>::OpType>("OpType")
-	.value("unary", eoOp<PyEO>::unary)
-	.value("binary", eoOp<PyEO>::binary)
-	.value("quadratic", eoOp<PyEO>::quadratic)
-	.value("general", eoOp<PyEO>::general)
-	;
-   
+        .value("unary", eoOp<PyEO>::unary)
+        .value("binary", eoOp<PyEO>::binary)
+        .value("quadratic", eoOp<PyEO>::quadratic)
+        .value("general", eoOp<PyEO>::general)
+        ;
+
     class_<eoOp<PyEO> >("eoOp", init<eoOp<PyEO>::OpType>())
-	.def("getType", &eoOp<PyEO>::getType);
-    
+        .def("getType", &eoOp<PyEO>::getType);
+
     class_<eoMonOp<PyEO>, MonOpWrapper, bases<eoOp<PyEO> >, boost::noncopyable>("eoMonOp", init<>())
-	.def("__call__", &MonOpWrapper::operator(), "an example docstring");
+        .def("__call__", &MonOpWrapper::operator(), "an example docstring");
     class_<eoBinOp<PyEO>, BinOpWrapper, bases<eoOp<PyEO> >, boost::noncopyable>("eoBinOp", init<>())
-	.def("__call__", &BinOpWrapper::operator());
+        .def("__call__", &BinOpWrapper::operator());
     class_<eoQuadOp<PyEO>, QuadOpWrapper, bases<eoOp<PyEO> >, boost::noncopyable>("eoQuadOp", init<>())
-	.def("__call__", &QuadOpWrapper::operator());
-    
+        .def("__call__", &QuadOpWrapper::operator());
+
     class_<eoGenOp<PyEO>, GenOpWrapper, bases<eoOp<PyEO> >, boost::noncopyable>("eoGenOp", init<>())
-	.def("max_production", &GenOpWrapper::max_production)
-	.def("className", &GenOpWrapper::className)
-	.def("apply", &GenOpWrapper::apply)
-	.def("__call__", &eoGenOp<PyEO>::operator())
-	;
-    
+        .def("max_production", &GenOpWrapper::max_production)
+        .def("className", &GenOpWrapper::className)
+        .def("apply", &GenOpWrapper::apply)
+        .def("__call__", &eoGenOp<PyEO>::operator())
+        ;
+
     class_<eoSequentialOp<PyEO>, bases<eoGenOp<PyEO> >, boost::noncopyable>("eoSequentialOp", init<>())
-	.def("add", &eoSequentialOp<PyEO>::add, WC1)
-	.def("apply", &eoSequentialOp<PyEO>::apply)
-	;
-   
+        .def("add", &eoSequentialOp<PyEO>::add, WC1)
+        .def("apply", &eoSequentialOp<PyEO>::apply)
+        ;
+
     class_<eoProportionalOp<PyEO>, bases<eoGenOp<PyEO> >, boost::noncopyable>("eoProportionalOp", init<>())
-	.def("add", &eoProportionalOp<PyEO>::add, WC1)
-	.def("apply", &eoProportionalOp<PyEO>::apply)
-	;
-    
+        .def("add", &eoProportionalOp<PyEO>::add, WC1)
+        .def("apply", &eoProportionalOp<PyEO>::apply)
+        ;
+
     /* Cloning */
     class_<eoMonCloneOp<PyEO>, bases<eoMonOp<PyEO> > >("eoMonCloneOp").def("__call__", &eoMonCloneOp<PyEO>::operator());
     class_<eoBinCloneOp<PyEO>, bases<eoBinOp<PyEO> > >("eoBinCloneOp").def("__call__", &eoBinCloneOp<PyEO>::operator());

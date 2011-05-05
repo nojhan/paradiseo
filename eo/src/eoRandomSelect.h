@@ -35,7 +35,7 @@
 #include <utils/eoRNG.h>
 #include <eoSelectOne.h>
 
-/** eoRandomSelect: a selection method that selects ONE individual randomly 
+/** eoRandomSelect: a selection method that selects ONE individual randomly
  *
  * @ingroup Selectors
  */
@@ -91,4 +91,3 @@ private:
 };
 
 #endif
-

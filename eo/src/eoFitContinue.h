@@ -49,15 +49,15 @@ public:
     /** Returns false when a fitness criterium is reached. Assumes pop is not sorted! */
     virtual bool operator() ( const eoPop<EOT>& _pop )
     {
-	//FitnessType bestCurrentFitness = _pop.nth_element_fitness(0);
-	FitnessType bestCurrentFitness = _pop.best_element().fitness();
-	if (bestCurrentFitness >= optimum)
-	    {
-		eo::log << eo::logging << "STOP in eoFitContinue: Best fitness has reached " <<
-		    bestCurrentFitness << "\n";
-		return false;
-	    }
-	return true;
+        //FitnessType bestCurrentFitness = _pop.nth_element_fitness(0);
+        FitnessType bestCurrentFitness = _pop.best_element().fitness();
+        if (bestCurrentFitness >= optimum)
+            {
+                eo::log << eo::logging << "STOP in eoFitContinue: Best fitness has reached " <<
+                    bestCurrentFitness << "\n";
+                return false;
+            }
+        return true;
     }
 
     virtual std::string className(void) const { return "eoFitContinue"; }

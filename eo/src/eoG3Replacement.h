@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoG3Replacement.h 
+   eoG3Replacement.h
    (c) Maarten Keijzer, Marc Schoenauer, 2002
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -52,34 +52,34 @@ class eoG3Replacement : public eoReplacement<EOT>
 public:
   eoG3Replacement(eoHowMany _howManyEliminatedParents = eoHowMany(2, false)) :
     // split truncates the parents and returns eliminated parents
-    split(_howManyEliminatedParents, true), 
+    split(_howManyEliminatedParents, true),
     // reduce truncates the offpsring and does not return eliminated guys
-    reduce(-_howManyEliminatedParents, false) 
+    reduce(-_howManyEliminatedParents, false)
   {}
-    
+
     void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
     {
       eoPop<EOT> temp;
       split(_parents, temp);
       unsigned toKeep = temp.size(); // how many to keep from merged populations
       // merge temp into offspring
-      plus(temp, _offspring);	   // add temp to _offspring (a little inconsistent!)
-      
+      plus(temp, _offspring);      // add temp to _offspring (a little inconsistent!)
+
       // reduce merged
-      reduce(_offspring, temp);	   // temp dummy arg. will not be modified
+      reduce(_offspring, temp);    // temp dummy arg. will not be modified
       // minimla check:
       if (_offspring.size() != toKeep)
-	{
-	  std::cerr << "Les tailles " << _offspring.size() << " " << toKeep << std::endl;
-	throw std::runtime_error("eoG3Replacement: wrong number of remaining offspring");
-	}
+        {
+          std::cerr << "Les tailles " << _offspring.size() << " " << toKeep << std::endl;
+        throw std::runtime_error("eoG3Replacement: wrong number of remaining offspring");
+        }
       // and put back into _parents
-      plus(_offspring, _parents);      
+      plus(_offspring, _parents);
     }
 
 private:
-  eoLinearTruncateSplit<EOT> split; // few parents to truncate -> linear 
-  eoTruncateSplit<EOT> reduce;	   // supposedly many offspring to truncate
+  eoLinearTruncateSplit<EOT> split; // few parents to truncate -> linear
+  eoTruncateSplit<EOT> reduce;     // supposedly many offspring to truncate
   eoPlus<EOT> plus;
 };
 

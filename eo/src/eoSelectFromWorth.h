@@ -194,7 +194,7 @@ public:
     eoSelectFromWorth<EOT, WorthT>::setup(_pop);
     total = 0.0;
     for (worthIterator it = perf2Worth.value().begin();
-	 it<perf2Worth.value().end(); ++it)
+         it<perf2Worth.value().end(); ++it)
       total += (*it);
   }
 
@@ -205,8 +205,8 @@ public:
   virtual const EOT& operator()(const eoPop<EOT>& _pop) {
  //     cout << "On affiche les worths\n";
  //     for (unsigned i=0;
- // 	 i<perf2Worth.value().size();
- // 	 i++)
+ //      i<perf2Worth.value().size();
+ //      i++)
  //       cout << perf2Worth.value().operator[](i) << "\n";
  //     cout << endl;
       worthIterator it = roulette_wheel(perf2Worth.value().begin(),
@@ -229,4 +229,3 @@ private:
 };
 
 #endif
-

@@ -79,13 +79,13 @@ public :
 
     void operator()(void)
       {
-	time_t now = time(0);
+        time_t now = time(0);
 
-	if (now >= last_time + interval)
-	  {
-	    last_time = now;
-	    eoDynUpdater::operator() ();
-	  }
+        if (now >= last_time + interval)
+          {
+            last_time = now;
+            eoDynUpdater::operator() ();
+          }
       }
 private :
     const time_t interval;
@@ -106,10 +106,10 @@ public :
 
     void operator()(void)
       {
-	if (++counter % interval == 0)
-	  {
-	    eoDynUpdater::operator() ();
-	  }
+        if (++counter % interval == 0)
+          {
+            eoDynUpdater::operator() ();
+          }
       }
 private :
     const unsigned interval;

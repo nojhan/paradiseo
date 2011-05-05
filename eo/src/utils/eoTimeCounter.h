@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoTimeCounter.h
 // (c) Marc Schoenauer, Maarten Keijzer, and GeNeura Team, 2002
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -40,30 +40,30 @@
 class eoTimeCounter : public eoUpdater, public eoValueParam<double>
 {
 public:
-  eoTimeCounter() : eoValueParam<double>(0.0, "Time") // : firstTime(true)  
+  eoTimeCounter() : eoValueParam<double>(0.0, "Time") // : firstTime(true)
   {
     start = time(NULL);
   }
-  
-  /** simply stores the time spent in process in its value() */    
+
+  /** simply stores the time spent in process in its value() */
   virtual void operator()()
   {
     // ask for system time
     utime = clock();
-    
+
     //     if (firstTime)	/* first generation */
     //       {
-    // 	firstTime=false;
-    // 	firstUtime = tmsStruct.tms_utime;
+    //  firstTime=false;
+    //  firstUtime = tmsStruct.tms_utime;
     //       }
     // store elapsed user time
     //     value(tmsStruct.tms_utime - firstUtime);
     // value()=double(utime)/CLOCKS_PER_SEC;
     double seconds_elapsed = time(NULL) - start;
-    
+
     value() = (seconds_elapsed > 2140) ? seconds_elapsed : double(utime)/CLOCKS_PER_SEC;
   }
-  
+
 private:
 //   bool firstTime;
 //   clock_t firstUtime;

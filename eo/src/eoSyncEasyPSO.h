@@ -34,15 +34,15 @@
 //-----------------------------------------------------------------------------
 
 /** An easy-to-use synchronous particle swarm algorithm; you can use any particle,
-*   any flight, any topology... 
+*   any flight, any topology...
 *
 *   The main steps are :
-* 	 - perform a first evaluation of the population
-* 	 - for each generation
-* 	 - evaluate ALL the velocities
-* 	 	-- perform the fligth of ALL the particles
-*    	-- evaluate ALL the particles
-*    	-- update the neighborhoods
+*        - perform a first evaluation of the population
+*        - for each generation
+*        - evaluate ALL the velocities
+*               -- perform the fligth of ALL the particles
+*       -- evaluate ALL the particles
+*       -- update the neighborhoods
 *
 *   @ingroup Algorithms
 */
@@ -55,7 +55,7 @@ public:
     * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
     * @param _eval - An eoEvalFunc: the evaluation performer
     * @param _velocity - An eoVelocity that defines how to compute the velocities
-    * @param _flight - An eoFlight that defines how to make the particle flying: that means how 
+    * @param _flight - An eoFlight that defines how to make the particle flying: that means how
     * to modify the positions according to the velocities
     */
     eoSyncEasyPSO (
@@ -117,11 +117,11 @@ public:
     {}
 
 
-	 /** Another constructor without initializer
+         /** Another constructor without initializer
     * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
     * @param _eval - An eoEvalFunc: the evaluation performer
     * @param _velocity - An eoVelocity that defines how to compute the velocities
-    * @param _flight - An eoFlight that defines how to make the particle flying: that means how 
+    * @param _flight - An eoFlight that defines how to make the particle flying: that means how
     * to modify the positions according to the velocities
     */
     eoSyncEasyPSO (
@@ -176,7 +176,7 @@ public:
             velocity (_velocity),
             flight (_flight)
     {}
-    
+
     /// Apply a few iteration of flight to the population (=swarm).
     virtual void operator  () (eoPop < POT > &_pop)
     {
@@ -185,7 +185,7 @@ public:
         {
             // initializes the topology, velocity, best particle(s)
             init();
-            
+
             // just to use a loop eval
             eoPop<POT> empty_pop;
 
@@ -229,29 +229,29 @@ private:
     eoFlight < POT > &flight;
 
     // if the eval does not need to be used, use the dummy eval instance
-	class eoDummyEval : public eoEvalFunc<POT>
-	    {
-	    public:
-	        void operator()(POT &)
-	        {}
-	    }
-	    dummyEval;
+        class eoDummyEval : public eoEvalFunc<POT>
+            {
+            public:
+                void operator()(POT &)
+                {}
+            }
+            dummyEval;
 
-	 class eoDummyFlight:public eoFlight < POT >
-	{
-		public:
-    	eoDummyFlight () {}
-    	void operator  () (POT & _po) {}
-	}dummyFlight;
-	
-	// if the initializer does not need to be used, use the dummy one instead
-	class eoDummyInitializer:public eoInitializerBase < POT >
-	{
-	 public:
-    	eoDummyInitializer () {}
-    	void operator  () (POT & _po) {}
-	}dummyInit;
-	
+         class eoDummyFlight:public eoFlight < POT >
+        {
+                public:
+        eoDummyFlight () {}
+        void operator  () (POT & _po) {}
+        }dummyFlight;
+
+        // if the initializer does not need to be used, use the dummy one instead
+        class eoDummyInitializer:public eoInitializerBase < POT >
+        {
+         public:
+        eoDummyInitializer () {}
+        void operator  () (POT & _po) {}
+        }dummyInit;
+
 };
 /** @example t-eoSyncEasyPSO.cpp
  */

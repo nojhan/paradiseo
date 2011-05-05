@@ -25,10 +25,10 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include "eoParserLogger.h"
 
 eoParserLogger::eoParserLogger(unsigned _argc, char** _argv,
-			       std::string _programDescription /*= ""*/
-			       ,
-			       std::string _lFileParamName /*= "param-file"*/,
-			       char _shortHand /*= 'p'*/)
+                               std::string _programDescription /*= ""*/
+                               ,
+                               std::string _lFileParamName /*= "param-file"*/,
+                               char _shortHand /*= 'p'*/)
     : eoParser(_argc, _argv, _programDescription, _lFileParamName, _shortHand),
     _verbose("quiet", "verbose", "Set the verbose level", 'v'),
     _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
@@ -50,9 +50,9 @@ eoParserLogger::eoParserLogger(unsigned _argc, char** _argv,
     //------------------------------------------------------------------
 
     if ( ! _output.value().empty() )
-	{
-	    eo::log << eo::file( _output.value() );
-	}
+        {
+            eo::log << eo::file( _output.value() );
+        }
 
     //------------------------------------------------------------------
 
@@ -62,9 +62,9 @@ eoParserLogger::eoParserLogger(unsigned _argc, char** _argv,
     //------------------------------------------------------------------
 
     if ( _printVerboseLevels.value() )
-	{
-	    eo::log.printLevels();
-	}
+        {
+            eo::log.printLevels();
+        }
 
     //------------------------------------------------------------------
 

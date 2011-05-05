@@ -67,8 +67,8 @@ public:
 
     void operator  () (POT & _po1)
     {
-       	//Set the bestPositions
-          	_po1.bestPositions = _po1 ;
+        //Set the bestPositions
+                _po1.bestPositions = _po1 ;
 
 
         // set the fitness
@@ -80,4 +80,3 @@ public:
 #endif /*_EOPARTICLEBESTINIT_H */
 
 /** @} */
-

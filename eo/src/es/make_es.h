@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // es.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -24,20 +24,20 @@
  */
 //-----------------------------------------------------------------------------
 
-/** This file contains all ***INSTANCIATED*** declarations of all components 
+/** This file contains all ***INSTANCIATED*** declarations of all components
  * of the library for ***ES-like gnptype*** evolution inside EO.
  * It should be included in the file that calls any of the corresponding fns
  *
- * The corresponding ***INSTANCIATED*** definitions are contained in 
- * the different .cpp files in the src/es dir, 
+ * The corresponding ***INSTANCIATED*** definitions are contained in
+ * the different .cpp files in the src/es dir,
  * while the TEMPLATIZED code is define in the different make_XXX.h files
- * either in hte src/do dir for representation independant functions, 
+ * either in hte src/do dir for representation independant functions,
  * or in the src/es dir for representation dependent stuff.
  *
- * See also real.h for the similar declarations of eoReal genotypes 
+ * See also real.h for the similar declarations of eoReal genotypes
  *   i.e. ***without*** mutation parameters attached to individuals
  *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
+ * Unlike most EO .h files, it does not (and should not) contain any code,
  * just declarations
  */
 
@@ -54,9 +54,9 @@
 #include <eoPop.h>
 #include <utils/eoDistance.h>
 
-#include <es/eoEsSimple.h>	   // one Sigma per individual
-#include <es/eoEsStdev.h>	   // one sigmal per object variable
-#include <es/eoEsFull.h>	   // full correlation matrix per indi
+#include <es/eoEsSimple.h>         // one Sigma per individual
+#include <es/eoEsStdev.h>          // one sigmal per object variable
+#include <es/eoEsFull.h>           // full correlation matrix per indi
 
 // include all similar declaration for eoReal - i.e. real-valued genotyes
 // without self-adaptation
@@ -68,7 +68,7 @@
 
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////
-// the genotypes 
+// the genotypes
 eoRealInitBounded<eoEsSimple<double> > & make_genotype(eoParser& _parser, eoState& _state, eoEsSimple<double> _eo);
 eoRealInitBounded<eoEsSimple<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoEsSimple<eoMinimizingFitness> _eo);
 

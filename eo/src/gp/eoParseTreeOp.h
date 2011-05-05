@@ -1,5 +1,5 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
- 
+
 //-----------------------------------------------------------------------------
 // eoParseTreeOp.h : crossover and mutation operator for  the eoParseTree class
 // (c) Maarten Keijzer 2000  for eoSubtreeXOver, eoBranchMutation
@@ -10,18 +10,18 @@
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
     version 2 of the License, or (at your option) any later version.
- 
+
     This library is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
- 
+
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
+
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    	     mak@dhi.dk 
+             mak@dhi.dk
              jeggermo@liacs.nl
  */
 //-----------------------------------------------------------------------------
@@ -34,8 +34,8 @@
 
 #include <gp/eoParseTree.h>
 
-/** eoSubtreeXOver --> subtree xover 
-\class eoSubtreeXOver eoParseTreeOp.h gp/eoParseTreeOp.h 
+/** eoSubtreeXOver --> subtree xover
+\class eoSubtreeXOver eoParseTreeOp.h gp/eoParseTreeOp.h
 \ingroup ParseTree
 */
 template<class FType, class Node>
@@ -63,23 +63,23 @@ public:
    */
   bool operator()(EoType & _eo1, EoType & _eo2 )
   {
-	  int i = rng.random(_eo1.size());
-	  int j = rng.random(_eo2.size());
+          int i = rng.random(_eo1.size());
+          int j = rng.random(_eo2.size());
 
-	  typename parse_tree<Node>::subtree tmp = _eo1[i];
-	  _eo1[i] = _eo2[j]; // insert subtree
-	  _eo2[j] = tmp;
+          typename parse_tree<Node>::subtree tmp = _eo1[i];
+          _eo1[i] = _eo2[j]; // insert subtree
+          _eo2[j] = tmp;
 
-	  _eo1.pruneTree(max_length);
-	  _eo2.pruneTree(max_length);
-	  
+          _eo1.pruneTree(max_length);
+          _eo2.pruneTree(max_length);
+
     return true;
   }
  private:
   unsigned max_length;
 };
 
-/** eoBranchMutation --> replace a subtree with a randomly created subtree 
+/** eoBranchMutation --> replace a subtree with a randomly created subtree
 \class eoBranchMutation eoParseTreeOp.h gp/eoParseTreeOp.h
 \ingroup ParseTree
  */
@@ -97,29 +97,29 @@ public:
   eoBranchMutation(eoInit<EoType>& _init, unsigned _max_length)
     : eoMonOp<EoType>(), max_length(_max_length), initializer(_init)
   {};
-  
+
   /// the class name
   virtual std::string className() const { return "eoBranchMutation"; };
 
   /// Dtor
   virtual ~eoBranchMutation() {};
-  
+
   /**
    * Mutate an individual
    * @param _eo1 The individual that is to be changed
    */
   bool operator()(EoType& _eo1 )
   {
-	  int i = rng.random(_eo1.size());
+          int i = rng.random(_eo1.size());
 
       EoType eo2;
       initializer(eo2);
 
-	  int j = rng.random(eo2.size());
+          int j = rng.random(eo2.size());
 
-	  _eo1[i] = eo2[j]; // insert subtree
+          _eo1[i] = eo2[j]; // insert subtree
 
-	  _eo1.pruneTree(max_length);
+          _eo1.pruneTree(max_length);
 
     return true;
   }
@@ -130,7 +130,7 @@ private :
   eoInit<EoType>& initializer;
 };
 
-// Additional Mutation operators from 
+// Additional Mutation operators from
 // TITLE:"Genetic Programming~An Introduction"
 // AUTHORS: Banzhaf, Nordin, Keller, Francone
 // ISBN: 3-920993-58-6
@@ -138,8 +138,8 @@ private :
 //
 // For the eoParseTree class
 
-/** eoPointMutation --> replace a Node with a Node of the same arity 
-\class eoPointMutation eoParseTreeOp.h gp/eoParseTreeOp.h	
+/** eoPointMutation --> replace a Node with a Node of the same arity
+\class eoPointMutation eoParseTreeOp.h gp/eoParseTreeOp.h
 \ingroup ParseTree
 */
 
@@ -157,7 +157,7 @@ public:
   eoPointMutation( std::vector<Node>& _initializor)
     : eoMonOp<EoType>(), initializor(_initializor)
   {};
-  
+
   /// the class name
   virtual std::string className() const { return "eoPointMutation"; };
 
@@ -170,32 +170,32 @@ public:
    */
   bool operator()(EoType& _eo1 )
   {
-  	// select a random node i that is to be mutated
-	int i = rng.random(_eo1.size());
-	// request the arity of the node that is to be replaced
-	int arity = _eo1[i].arity();
-	
-	int j=0;
-	
-	do
-	{
-		j = rng.random(initializor.size());
-		
-	}while ((initializor[j].arity() != arity));
-	
-	_eo1[i] = initializor[j];
-	
-      	
-	
-    	return true;
+        // select a random node i that is to be mutated
+        int i = rng.random(_eo1.size());
+        // request the arity of the node that is to be replaced
+        int arity = _eo1[i].arity();
+
+        int j=0;
+
+        do
+        {
+                j = rng.random(initializor.size());
+
+        }while ((initializor[j].arity() != arity));
+
+        _eo1[i] = initializor[j];
+
+
+
+        return true;
   }
 
 private :
-	std::vector<Node>& initializor;
+        std::vector<Node>& initializor;
 
 };
 
-/** eoExpansionMutation --> replace a terminal with a randomly created subtree 
+/** eoExpansionMutation --> replace a terminal with a randomly created subtree
 \class eoExpansionMutation eoParseTreeOp.h gp/eoParseTreeOp.h
 \ingroup ParseTree
  */
@@ -206,7 +206,7 @@ class eoExpansionMutation: public eoMonOp< eoParseTree<FType, Node> >
 public:
 
   typedef eoParseTree<FType, Node> EoType;
-  
+
   /**
    * Constructor
    * @param _init An instantiation of eoGpDepthInitializer
@@ -215,7 +215,7 @@ public:
   eoExpansionMutation(eoInit<EoType>& _init, unsigned _max_length)
     : eoMonOp<EoType>(), max_length(_max_length), initializer(_init)
   {};
-  
+
   /// The class name
   virtual std::string className() const { return "eoExpansionMutation"; };
 
@@ -227,33 +227,33 @@ public:
    */
   bool operator()(EoType& _eo1 )
   {
-	  int i = rng.random(_eo1.size());
-	  // look for a terminal
+          int i = rng.random(_eo1.size());
+          // look for a terminal
           while (_eo1[i].arity() != 0)
-	  {
-	  	i= rng.random(_eo1.size());
-	  };
-	  
-	  // create a new tree to
-      	  EoType eo2;
-	  // make sure we get a tree with more than just a terminal
-	  do
-	  {
-      	  	initializer(eo2);
-	  }while(eo2.size() == 1);	
-	  
-	  int j = rng.random(eo2.size());
-	  // make sure we select a subtree (and not a terminal)
-	  while((eo2[j].arity() == 0))
-	  {
-	  	j = rng.random(eo2.size());
-	  };
-	  
+          {
+                i= rng.random(_eo1.size());
+          };
 
-	  _eo1[i] = eo2[j]; // insert subtree
+          // create a new tree to
+          EoType eo2;
+          // make sure we get a tree with more than just a terminal
+          do
+          {
+                initializer(eo2);
+          }while(eo2.size() == 1);
 
-	  _eo1.pruneTree(max_length);
-	  
+          int j = rng.random(eo2.size());
+          // make sure we select a subtree (and not a terminal)
+          while((eo2[j].arity() == 0))
+          {
+                j = rng.random(eo2.size());
+          };
+
+
+          _eo1[i] = eo2[j]; // insert subtree
+
+          _eo1.pruneTree(max_length);
+
     return true;
   }
 
@@ -294,29 +294,29 @@ public:
    */
   bool operator()(EoType& _eo1 )
   {
-	  int i = rng.random(_eo1.size());
-	  // look for a subtree
+          int i = rng.random(_eo1.size());
+          // look for a subtree
           while ((_eo1[i].arity() == 0) && (_eo1.size() > 1))
-	  {
-	  	i= rng.random(_eo1.size());
-	  };
-	
-	  // create a new tree to
-      	  EoType eo2;
-      	  initializer(eo2);
-	  
-	  int j = rng.random(eo2.size());
-	  // make sure we select a subtree (and not a terminal)
-	  while(eo2[j].arity() != 0)
-	  {
-	  	j = rng.random(eo2.size());
-	  };
+          {
+                i= rng.random(_eo1.size());
+          };
 
-	  _eo1[i] = eo2[j]; // insert subtree
-	  
-	  // we don't have to prune because the subtree is always smaller
-	  _eo1.pruneTree(max_length);
-	
+          // create a new tree to
+          EoType eo2;
+          initializer(eo2);
+
+          int j = rng.random(eo2.size());
+          // make sure we select a subtree (and not a terminal)
+          while(eo2[j].arity() != 0)
+          {
+                j = rng.random(eo2.size());
+          };
+
+          _eo1[i] = eo2[j]; // insert subtree
+
+          // we don't have to prune because the subtree is always smaller
+          _eo1.pruneTree(max_length);
+
     return true;
   }
 
@@ -327,11 +327,11 @@ private :
 };
 
 
-/** eoHoistMutation -->  replace the individual with one of its subtree's 
+/** eoHoistMutation -->  replace the individual with one of its subtree's
 \class eoHoistMutation eoParseTreeOp.h gp/eoParseTreeOp.h
 \ingroup ParseTree
  */
- 
+
 template<class FType, class Node>
 class eoHoistMutation: public eoMonOp< eoParseTree<FType, Node> >
 {
@@ -345,7 +345,7 @@ public:
   eoHoistMutation()
     : eoMonOp<EoType>()
   {};
-  
+
   /// The class name
   virtual std::string className() const { return "eoHoistMutation"; };
 
@@ -357,17 +357,17 @@ public:
    */
   bool operator()(EoType& _eo1 )
   {
-	
-	  
-	  // select a hoist point
-	  int i = rng.random(_eo1.size());
-      	  // and create a new tree
-	  EoType eo2(_eo1[i]);
-	  
-	  // we don't have to prune because the new tree is always smaller
-	  //_eo1.pruneTree(max_length);
-	  
-	  _eo1 = eo2;
+
+
+          // select a hoist point
+          int i = rng.random(_eo1.size());
+          // and create a new tree
+          EoType eo2(_eo1[i]);
+
+          // we don't have to prune because the new tree is always smaller
+          //_eo1.pruneTree(max_length);
+
+          _eo1 = eo2;
 
     return true;
   }

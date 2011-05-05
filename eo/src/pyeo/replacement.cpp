@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -31,8 +31,9 @@ using namespace boost::python;
 
 #define DEF(x) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x).def("__call__", &eoReplacement<PyEO>::operator())
 #define DEF2(x, i1) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x, init<i1>() ).def("__call__", &eoReplacement<PyEO>::operator())
-#define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x, \
-	init<i1, i2 >() [WC2])\
+#define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoReplacement<PyEO > > >	\
+    (#x,								\
+     init<i1, i2 >() [WC2])						\
     .def("__call__", &eoReplacement<PyEO>::operator())
 
 void replacement()
@@ -40,12 +41,12 @@ void replacement()
     def_abstract_functor<eoReplacement<PyEO> >("eoReplacement");
 
     // eoReplacement.h
-    DEF(eoGenerationalReplacement); 
-    
-    class_<eoWeakElitistReplacement<PyEO>, bases<eoReplacement<PyEO> > > 
+    DEF(eoGenerationalReplacement);
+
+    class_<eoWeakElitistReplacement<PyEO>, bases<eoReplacement<PyEO> > >
 	("eoWeakElitistReplacement",
 	 init< eoReplacement<PyEO>& >()[WC1]);
-    
+
     // eoMergeReduce.h
     DEF3(eoMergeReduce, eoMerge<PyEO>&, eoReduce<PyEO>& );
     DEF(eoPlusReplacement);
@@ -60,13 +61,12 @@ void replacement()
 
     // eoReduceMergeReduce.h
     //class_<eoReduceMergeReduce<PyEO>, bases<eoReplacement<PyEO> > >("eoReplacement",
-//	    init<eoHowMany, bool, eoHowMany, eoReduce<PyEO>&, 
-//		 eoHowMany, eoReduce<PyEO>&, eoReduce<PyEO>&>())
-//	.def("__call__", &eoReplacement<PyEO>::operator());
-	    
+    //	    init<eoHowMany, bool, eoHowMany, eoReduce<PyEO>&,
+    //		 eoHowMany, eoReduce<PyEO>&, eoReduce<PyEO>&>())
+    //	.def("__call__", &eoReplacement<PyEO>::operator());
+
     //eoMGGReplacement
     DEF(eoMGGReplacement)
 	.def( init<eoHowMany>() )
 	.def( init<eoHowMany, unsigned>() );
 }
-

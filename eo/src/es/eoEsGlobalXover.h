@@ -75,12 +75,12 @@ public:
     // first, the object variables
     for (unsigned i=0; i<parent.size(); i++)
       {
-	// get extra parents - use private selector
-	// _plop.source() is the eoPop<EOT> used by _plop to get parents
-	const EOT& realParent1 = sel(_plop.source());
-	const EOT& realParent2 = sel(_plop.source());
-	parent[i] = realParent1[i];
-	crossObj(parent[i], realParent2[i]); // apply eoBinOp
+        // get extra parents - use private selector
+        // _plop.source() is the eoPop<EOT> used by _plop to get parents
+        const EOT& realParent1 = sel(_plop.source());
+        const EOT& realParent2 = sel(_plop.source());
+        parent[i] = realParent1[i];
+        crossObj(parent[i], realParent2[i]); // apply eoBinOp
       }
     // then the self-adaptation parameters
     cross_self_adapt(parent, _plop.source());
@@ -110,10 +110,10 @@ private:
   {
     for (unsigned i=0; i<_parent.size(); i++)
       {
-	const EOT& realParent1 = sel(_pop);
-	const EOT& realParent2 = sel(_pop);
-	_parent.stdevs[i] = realParent1.stdevs[i];
-	crossMut(_parent.stdevs[i], realParent2.stdevs[i]); // apply eoBinOp
+        const EOT& realParent1 = sel(_pop);
+        const EOT& realParent2 = sel(_pop);
+        _parent.stdevs[i] = realParent1.stdevs[i];
+        crossMut(_parent.stdevs[i], realParent2.stdevs[i]); // apply eoBinOp
       }
   }
 
@@ -127,18 +127,18 @@ private:
     // the StDev
     for (i=0; i<_parent.size(); i++)
       {
-	const EOT& realParent1 = sel(_pop);
-	const EOT& realParent2 = sel(_pop);
-	_parent.stdevs[i] = realParent1.stdevs[i];
-	crossMut(_parent.stdevs[i], realParent2.stdevs[i]); // apply eoBinOp
+        const EOT& realParent1 = sel(_pop);
+        const EOT& realParent2 = sel(_pop);
+        _parent.stdevs[i] = realParent1.stdevs[i];
+        crossMut(_parent.stdevs[i], realParent2.stdevs[i]); // apply eoBinOp
       }
     // the roataion angles
     for (i=0; i<_parent.correlations.size(); i++)
       {
-	const EOT& realParent1 = sel(_pop);
-	const EOT& realParent2 = sel(_pop);
-	_parent.correlations[i] = realParent1.correlations[i];
-	crossMut(_parent.correlations[i], realParent2.correlations[i]); // apply eoBinOp
+        const EOT& realParent1 = sel(_pop);
+        const EOT& realParent2 = sel(_pop);
+        _parent.correlations[i] = realParent1.correlations[i];
+        crossMut(_parent.correlations[i], realParent2.correlations[i]); // apply eoBinOp
       }
 
   }

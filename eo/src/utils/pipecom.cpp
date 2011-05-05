@@ -29,14 +29,14 @@
 int Check( PCom *com )
 {
     if( ! com ) {
-	fprintf( stderr, "PipeCom: Null pointer.\n" );
-	fflush( stderr );
-	return 0;
+        fprintf( stderr, "PipeCom: Null pointer.\n" );
+        fflush( stderr );
+        return 0;
     }
     if( kill( com->pid, 0 ) != 0 ) {
-	fprintf( stderr, "PipeCom: process doesn't exists.\n" );
-	fflush( stderr );
-	return 0;
+        fprintf( stderr, "PipeCom: process doesn't exists.\n" );
+        fflush( stderr );
+        return 0;
     }
     return 1;
 }
@@ -59,46 +59,46 @@ PCom * PipeComOpenArgv( char *prog, char *argv[] )
     PCom	* ret = NULL;
 
     if( pipe( toFils ) < 0 ) {
-	perror( "PipeComOpen: Creating pipes" );
-	return ret;
+        perror( "PipeComOpen: Creating pipes" );
+        return ret;
     }
     if( pipe( toPere ) < 0 ) {
-	perror( "PipeComOpen: Creating pipes" );
-	return ret;
+        perror( "PipeComOpen: Creating pipes" );
+        return ret;
     }
 
     switch( (sonPid = vfork()) ) {
     case -1:
-	perror("PipeComOpen: fork failed" );
-	return ret;
-	break;
+        perror("PipeComOpen: fork failed" );
+        return ret;
+        break;
 
     case 0:
-	/* --- Here's the son --- */
-	/* --- replace old stdin --- */
-	if( dup2( toFils[0], fileno(stdin) ) < 0 ) {
-	    perror( "PipeComOpen(son): could not connect" );
-	    exit( -1 );
-	    /* --- AVOIR: kill my father --- */
-	}
-	if( dup2( toPere[1], fileno(stdout) ) < 0 ) {
-	    perror( "PipeComOpen(son): could not connect" );
-	    exit( -1 );
-	}
-	if( execvp( prog, argv ) < 0 ) {
-	    perror( prog );
-	    perror( "PipeComOpen: can't exec" );
-	    exit(1);
-	}
-	break;
+        /* --- Here's the son --- */
+        /* --- replace old stdin --- */
+        if( dup2( toFils[0], fileno(stdin) ) < 0 ) {
+            perror( "PipeComOpen(son): could not connect" );
+            exit( -1 );
+            /* --- AVOIR: kill my father --- */
+        }
+        if( dup2( toPere[1], fileno(stdout) ) < 0 ) {
+            perror( "PipeComOpen(son): could not connect" );
+            exit( -1 );
+        }
+        if( execvp( prog, argv ) < 0 ) {
+            perror( prog );
+            perror( "PipeComOpen: can't exec" );
+            exit(1);
+        }
+        break;
     default:
-	ret = (PCom *) malloc( sizeof(PCom) );
-	if( ! ret )
-	    return NULL;
+        ret = (PCom *) malloc( sizeof(PCom) );
+        if( ! ret )
+            return NULL;
 
-	ret->fWrit = (FILE *)fdopen( toFils[1], "w" );
-	ret->fRead = (FILE *)fdopen( toPere[0], "r" );
-	ret->pid = sonPid;
+        ret->fWrit = (FILE *)fdopen( toFils[1], "w" );
+        ret->fRead = (FILE *)fdopen( toPere[0], "r" );
+        ret->pid = sonPid;
     }
     return ret;
 }
@@ -108,7 +108,7 @@ int PipeComSend( PCom *to, const char *line )
 {
     int	nb = 0;
     if( ! Check(to ) )
-	return nb;
+        return nb;
     nb = fprintf( to->fWrit, line, 0 );
     fflush( to->fWrit );
     return nb;
@@ -119,7 +119,7 @@ int PipeComSendn( PCom *to, const char *data, int n )
 {
     int	nb = 0;
     if( ! Check(to) )
-	return nb;
+        return nb;
 
     nb = fwrite( data, 1, n, to->fWrit );
     fflush( to->fWrit );
@@ -130,14 +130,14 @@ int PipeComSendn( PCom *to, const char *data, int n )
 int PipeComReceive( PCom *from, char *data, int max )
 {
     if( ! Check(from) )
-	return 0;
+        return 0;
     if( ! data ) {
       fprintf( stderr, "PipeComReceive: Invalid data pointer\n" );
       fflush( stderr );
       return 0;
     }
     if( fgets( data, max, from->fRead ) )
-	return strlen(data);
+        return strlen(data);
     return 0;
 }
 
@@ -146,7 +146,7 @@ int PipeComReceive( PCom *from, char *data, int max )
 int PipeComClose( PCom *to )
 {
     if( ! Check(to) )
-	return 0;
+        return 0;
     fclose( to->fRead );
     fclose( to->fWrit );
     free( to );
@@ -159,8 +159,8 @@ int PipeComWaitFor( PCom *from, char *what )
 {
     char	buffer[256];
     do {
-	if( ! PipeComReceive( from, buffer, 256 ) )
-	    return 0;
+        if( ! PipeComReceive( from, buffer, 256 ) )
+            return 0;
     } while( strcmp( buffer, what ) );
     return 1;
 }

@@ -1,6 +1,6 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-/* 
+/*
 (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
 (c) Thales group, 2010
     This library is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ Authors:
      todos@geneura.ugr.es
      Marc.Schoenauer@polytechnique.fr
      mkeijzer@dhi.dk
-	 Johann Dréo <johann.dreo@thalesgroup.com>
+         Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
 #ifndef _eoStdoutMonitor_h
@@ -43,18 +43,17 @@ Authors:
 class eoStdoutMonitor : public eoOStreamMonitor
 {
 public :
-    eoStdoutMonitor(bool _verbose, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) : 
-       eoOStreamMonitor( std::cout, _verbose, _delim, _width, _fill) 
-    { 
+    eoStdoutMonitor(bool _verbose, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
+       eoOStreamMonitor( std::cout, _verbose, _delim, _width, _fill)
+    {
         eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoStdutMonitor constructor is deprecated and will be removed in the next release" << std::endl;
     }
 
-    eoStdoutMonitor(std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) : 
-       eoOStreamMonitor( std::cout, _delim, _width, _fill) 
+    eoStdoutMonitor(std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
+       eoOStreamMonitor( std::cout, _delim, _width, _fill)
     {}
 
     virtual std::string className(void) const { return "eoStdoutMonitor"; }
 };
 
 #endif
-

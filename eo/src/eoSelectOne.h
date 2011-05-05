@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoSelectOne.h 
+   eoSelectOne.h
    (c) Maarten Keijzer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -50,7 +50,7 @@ class eoSelectOne : public eoUF<const eoPop<EOT>&, const EOT&>
       /// virtual function to setup some population stats (for instance eoProportional can benefit greatly from this)
       virtual void setup(const eoPop<EOT>& _pop)
       {
-	  (void)_pop;
+          (void)_pop;
       }
 };
 /** @example t-selectOne.cpp

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoSimpleEDA.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -35,8 +35,8 @@
 #include <eoEvalFunc.h>
 
 /** A very simple Estimation of Distribution Algorithm
- *  
- *  The algorithm that evolves a probability distribution 
+ *
+ *  The algorithm that evolves a probability distribution
  *  on the spaces of populations with the loop
  *                 generate a population from the current distribution
  *                 evaluate that population
@@ -53,19 +53,19 @@ template<class EOT> class eoSimpleEDA: public eoEDA<EOT>
    *  plus an eoEval and eoContinue of course.
    */
   eoSimpleEDA(eoDistribUpdater<EOT>& _update,
-	   eoEvalFunc<EOT>& _eval,
-	   unsigned _popSize, 
-	   eoContinue<EOT>& _continuator
-	   ) : 
+           eoEvalFunc<EOT>& _eval,
+           unsigned _popSize,
+           eoContinue<EOT>& _continuator
+           ) :
     update(_update),
     eval(_eval),
     popSize(_popSize),
     continuator(_continuator)
   {}
 
-  /** The algorithm: 
-   *    generate pop from distrib, 
-   *    evaluate pop, 
+  /** The algorithm:
+   *    generate pop from distrib,
+   *    evaluate pop,
    *    update distrib
    */
   virtual void operator()(eoDistribution<EOT>& _distrib)
@@ -75,18 +75,18 @@ template<class EOT> class eoSimpleEDA: public eoEDA<EOT>
     {
       try
       {
-	apply<EOT>(_distrib, pop); // re-init. of _pop from distrib
+        apply<EOT>(_distrib, pop); // re-init. of _pop from distrib
 
-	apply<EOT>(eval, pop);     // eval of current population
+        apply<EOT>(eval, pop);     // eval of current population
 
-	update(_distrib, pop);     // updates distrib from _pop
-	
+        update(_distrib, pop);     // updates distrib from _pop
+
       }
       catch (std::exception& e)
       {
-	    std::string s = e.what();
-	    s.append( " in eoSimpleEDA");
-	    throw std::runtime_error( s );
+            std::string s = e.what();
+            s.append( " in eoSimpleEDA");
+            throw std::runtime_error( s );
       }
     } while ( continuator( pop ) );
   }
@@ -95,7 +95,7 @@ template<class EOT> class eoSimpleEDA: public eoEDA<EOT>
   eoDistribUpdater<EOT> & update;
 
   eoEvalFunc<EOT>&          eval;
-  
+
   unsigned                  popSize;
 
   eoContinue<EOT>&          continuator;
@@ -104,4 +104,3 @@ template<class EOT> class eoSimpleEDA: public eoEDA<EOT>
 //-----------------------------------------------------------------------------
 
 #endif
-

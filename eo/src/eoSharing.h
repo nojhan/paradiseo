@@ -33,7 +33,7 @@
  *  Goldberg and Richardson's basic sharing
 */
 
-/** A helper class for Sharing - to  hold distances 
+/** A helper class for Sharing - to  hold distances
  *
  * @ingroup Selectors
  * */
@@ -60,16 +60,16 @@ class dMatrix : public std::vector<double>
     {
       unsigned index=0;
       for (unsigned i=0; i<rSize; i++)
-	{
-	  for (unsigned j=0; j<rSize; j++)
-	    _os << this->operator[](index++) << " " ;
-	  _os << std::endl;
-	}
+        {
+          for (unsigned j=0; j<rSize; j++)
+            _os << this->operator[](index++) << " " ;
+          _os << std::endl;
+        }
       _os << std::endl;
     }
 
     private:
-      unsigned rSize;		   // row size (== number of columns!)
+      unsigned rSize;              // row size (== number of columns!)
   };
 
 
@@ -89,8 +89,8 @@ public:
 
   /* Ctor requires a distance - cannot have a default distance! */
   eoSharing(double _nicheSize, eoDistance<EOT> & _dist) : eoPerf2Worth<EOT>("Sharing"),
-					     nicheSize(_nicheSize),
-					     dist(_dist)
+                                             nicheSize(_nicheSize),
+                                             dist(_dist)
   {}
 
   /** Computes shared fitnesses
@@ -98,33 +98,33 @@ public:
     void operator()(const eoPop<EOT>& _pop)
     {
       unsigned i, j,
-	pSize=_pop.size();
+        pSize=_pop.size();
       if (pSize <= 1)
-	throw std::runtime_error("Apptempt to do sharing with population of size 1");
+        throw std::runtime_error("Apptempt to do sharing with population of size 1");
       value().resize(pSize);
-      std::vector<double> sim(pSize);	   // to hold the similarities
+      std::vector<double> sim(pSize);      // to hold the similarities
       dMatrix distMatrix(pSize); // to hold the distances
 
       // compute the similarities (wrong name for distMatrix, I know)
       distMatrix(0,0)=1;
       for (i=1; i<pSize; i++)
-	{
-	  distMatrix(i,i)=1;
-	  for (j=0; j<i; j++)
-	    {
-	      double d =  dist(_pop[i], _pop[j]);
-	      distMatrix(i,j) =
-		distMatrix(j,i) = ( d>nicheSize ? 0 : 1-(d/nicheSize) );
-	    }
-	}
+        {
+          distMatrix(i,i)=1;
+          for (j=0; j<i; j++)
+            {
+              double d =  dist(_pop[i], _pop[j]);
+              distMatrix(i,j) =
+                distMatrix(j,i) = ( d>nicheSize ? 0 : 1-(d/nicheSize) );
+            }
+        }
 
       for (i=0; i<pSize; i++)
-	{
-	  double sum=0.0;
-	  for (j=0; j<pSize; j++)
-	    sum += distMatrix(i,j);
-	  sim[i] = sum;
-	}
+        {
+          double sum=0.0;
+          for (j=0; j<pSize; j++)
+            sum += distMatrix(i,j);
+          sim[i] = sum;
+        }
 
       // now set the worthes values
       for (i = 0; i < _pop.size(); ++i)
@@ -133,7 +133,7 @@ public:
     // private data of class eoSharing
 private:
   double nicheSize;
-  eoDistance<EOT> & dist;	     // specific distance
+  eoDistance<EOT> & dist;            // specific distance
 };
 
 

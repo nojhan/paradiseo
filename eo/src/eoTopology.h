@@ -70,9 +70,9 @@ public:
     virtual POT & best (unsigned ) = 0;
 
 
-  	/*
-	 * Return the global best of the topology
-	 */
+        /*
+         * Return the global best of the topology
+         */
     virtual POT & globalBest() = 0;
 
 
@@ -84,11 +84,3 @@ public:
 
 
 #endif /*EOTOPOLOGY_H_ */
-
-
-
-
-
-
-
-

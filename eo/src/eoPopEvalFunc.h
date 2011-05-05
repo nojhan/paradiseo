@@ -5,7 +5,7 @@
     Abstract class for global evaluation of the population
 
     (c) GeNeura Team, 2000
- 
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -30,32 +30,32 @@
 #include <eoEvalFunc.h>
 #include <apply.h>
 
-/** eoPopEvalFunc: This abstract class is for GLOBAL evaluators 
+/** eoPopEvalFunc: This abstract class is for GLOBAL evaluators
  *    of a population after variation.
  *    It takes 2 populations (typically the parents and the offspring)
  *    and is suppposed to evaluate them alltogether
  *
- *  Basic use: apply an embedded eoEvalFunc to the offspring 
+ *  Basic use: apply an embedded eoEvalFunc to the offspring
  *
- *  Time-varying fitness: apply the embedded eoEvalFunc to both 
+ *  Time-varying fitness: apply the embedded eoEvalFunc to both
  *     offspring and parents
  *
  *  Advanced uses: Co-evolution or "parisian" approach, or ...
  *
- *  Basic parallelization (synchronous standard evolution engine): 
+ *  Basic parallelization (synchronous standard evolution engine):
  *    call the slaves and wait for the results
  *
  *    @ingroup Evaluation
  */
 template<class EOT>
-class eoPopEvalFunc : public eoBF<eoPop<EOT> & , eoPop<EOT> &, void> 
+class eoPopEvalFunc : public eoBF<eoPop<EOT> & , eoPop<EOT> &, void>
 {};
 
 /////////////////////////////////////////////////////////////
 //           eoPopLoopEval
 /////////////////////////////////////////////////////////////
 
-/** eoPopLoopEval: an instance of eoPopEvalFunc that simply applies 
+/** eoPopLoopEval: an instance of eoPopEvalFunc that simply applies
  *     a private eoEvalFunc to all offspring
  *
  *    @ingroup Evaluation
@@ -81,9 +81,9 @@ private:
 //           eoTimeVaryingLoopEval
 /////////////////////////////////////////////////////////////
 
-/** eoPopLoopEval: an instance of eoPopEvalFunc that simply applies 
+/** eoPopLoopEval: an instance of eoPopEvalFunc that simply applies
  *     a private eoEvalFunc to all offspring AND ALL PARENTS
- *     as the fitness is supposed here to vary 
+ *     as the fitness is supposed here to vary
  *
  *    @ingroup Evaluation
  */
@@ -105,4 +105,3 @@ private:
 };
 
 #endif
-

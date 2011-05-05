@@ -74,19 +74,19 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
     unsigned i;
     for (i = 1; i < _argc; ++i)
     {
-	if(_argv[i][0] == '@')
+        if(_argv[i][0] == '@')
         { // read response file
-	    char *pts = _argv[i]+1; // yes a char*, sorry :-)
-	    ifstream ifs (pts);
-	    ifs.peek(); // check if it exists
-	    if (!ifs)
+            char *pts = _argv[i]+1; // yes a char*, sorry :-)
+            ifstream ifs (pts);
+            ifs.peek(); // check if it exists
+            if (!ifs)
             {
-		string msg = string("Could not open response file: ") + pts;
-		throw runtime_error(msg);
+                string msg = string("Could not open response file: ") + pts;
+                throw runtime_error(msg);
             }
-	    // read  - will be overwritten by command-line
-	    readFrom(ifs);
-	    break; // stop reading command line args for '@'
+            // read  - will be overwritten by command-line
+            readFrom(ifs);
+            break; // stop reading command line args for '@'
         }
     }
     // now read arguments on command-line
@@ -188,59 +188,59 @@ void eoParser::readFrom(istream& is)
             processing = (str.find(string("Parser"))<str.size());
 
         if (processing)		// right \section (or no \section at all)
-	{
+        {
             if (str[0] == '#')
-	    { // skip the rest of the line
+            { // skip the rest of the line
                 string tempStr;
                 getline(is, tempStr);
-	    }
+            }
             if (str[0] == '-')
-	    {
+            {
                 if (str.size() < 2)
-		{
+                {
                     eoWarning("Missing parameter");
                     needHelp.value() = true;
                     return;
-		}
+                }
 
                 if (str[1] == '-') // two consecutive dashes
-		{
+                {
                     string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
                     string value;
 
                     if (equalLocation == str.end())
-		    { //! @todo it should be the next string
+                    { //! @todo it should be the next string
                         value = "";
-		    }
+                    }
                     else
-		    {
+                    {
                         value = string(equalLocation + 1, str.end());
-		    }
+                    }
 
                     string name(str.begin() + 2, equalLocation);
                     longNameMap[name] = value;
-		}
+                }
                 else // it should be a char
-		{
+                {
                     string value = "1"; // flags do not need a special
 
                     if (str.size() >= 2)
-		    {
+                    {
                         if (str[2] == '=')
-			{
+                        {
                             if (str.size() >= 3)
                                 value = string(str.begin() + 3, str.end());
-			}
+                        }
                         else
-			{
+                        {
                             value = string(str.begin() + 2, str.end());
-			}
-		    }
+                        }
+                    }
 
                     shortNameMap[str[1]] = value;
-		}
-	    }
-	}
+                }
+            }
+        }
     }
 
     updateParameters();
@@ -268,8 +268,8 @@ void eoParser::printOn(ostream& os) const
 
         eoParam* param = p->second;
 
-	if (!isItThere(*param))  // comment out the ones not set by the user
-	  os << "# ";
+        if (!isItThere(*param))  // comment out the ones not set by the user
+          os << "# ";
 
         string str = "--" + param->longName() + "=" + param->getValue();
 
@@ -329,12 +329,12 @@ void eoParser::printHelp(ostream& os)
         }
 
         if (p->second->shortName())
-	        os << "-" << p->second->shortName() << ", ";
+                os << "-" << p->second->shortName() << ", ";
 
         os << "--" <<p->second->longName() <<":\t"
-	     << p->second->description() ;
+             << p->second->description() ;
 
-	  os << "\n" << setw(20) << ( (p->second->required())?"Required":"Optional" );
+          os << "\n" << setw(20) << ( (p->second->required())?"Required":"Optional" );
       os <<". By default: "<<p->second->defValue() << '\n';
     } // for p
 
@@ -377,7 +377,7 @@ bool eoParser::userNeedsHelp(void)
 
       // search for unknown short names
       for (ShortNameMapType::const_iterator sIt = shortNameMap.begin(); sIt != shortNameMap.end(); ++sIt)
-	    {
+            {
           char entry = sIt->first;
 
           MultiMapType::const_iterator it;
@@ -403,7 +403,7 @@ bool eoParser::userNeedsHelp(void)
             string msg = "Use -h or --help to get help about available parameters";
             messages.push_back( msg );
         }
-        
+
     } // if stopOnUnknownParam
 
   return needHelp.value() || !messages.empty();
@@ -421,4 +421,3 @@ istream & operator>>(istream & _is,  eoParamParamType & _rate)
   _rate.readFrom(_is);
   return _is;
 }
-

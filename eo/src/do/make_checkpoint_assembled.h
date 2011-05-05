@@ -49,7 +49,7 @@
 bool testDirRes(std::string _dirName, bool _erase);
 /////////////////// The checkpoint and other I/O //////////////
 
-/** Of course, Fitness needs to be an eoScalarFitnessAssembled!!! 
+/** Of course, Fitness needs to be an eoScalarFitnessAssembled!!!
  *
  *
  * @ingroup Builders
@@ -153,7 +153,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
     _state.storeFunctor(fitStat);
     checkpoint->add(*fitStat);
 #ifdef HAVE_GNUPLOT
-	// a gnuplot-based monitor for snapshots: needs a dir name
+        // a gnuplot-based monitor for snapshots: needs a dir name
      eoGnuplot1DSnapshot *fitSnapshot = new eoGnuplot1DSnapshot(dirName);
      _state.storeFunctor(fitSnapshot);
     // add any stat that is a vector<double> to it

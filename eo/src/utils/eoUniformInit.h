@@ -24,8 +24,8 @@
  */
 
 //-----------------------------------------------------------------------------
-/** Copied from the eoRndGenerators to have objects deriving from eoInit 
- * As the whole initialization mechanism in EO is based on eoInit rather than 
+/** Copied from the eoRndGenerators to have objects deriving from eoInit
+ * As the whole initialization mechanism in EO is based on eoInit rather than
  * eoRndGenerators, we might as well have these directly written without
  * overhead
 
@@ -69,14 +69,14 @@ template <class T = double> class eoUniformInit : public eoInit<T>
   public :
   /** Ctor with only a max bound */
   eoUniformInit(T _max = T(1.0), eoRng& _rng = rng) :
-    minim(T(0.0)), range(_max), uniform(_rng) 
+    minim(T(0.0)), range(_max), uniform(_rng)
   {}
-  
+
   /** Ctor with an eoRealBound */
   eoUniformInit(eoRealBounds & _bound, eoRng& _rng = rng) :
     minim(_bound.minimum()), range(_bound.range()), uniform(_rng)
   {}
-  
+
   /** Ctor with explicit min and max */
   eoUniformInit(T _min, T _max, eoRng& _rng = rng) :
     minim(_min), range(_max-_min), uniform(_rng)
@@ -84,14 +84,14 @@ template <class T = double> class eoUniformInit : public eoInit<T>
     if (_min>_max)
       throw std::logic_error("Min is greater than Max in uniform_generator");
   }
-  
+
   /**
      Generates the number, uses a static_cast to get the right behaviour
      for ints and unsigneds
   */
-  void operator()(T & _t) 
-  { 
-    _t = minim+static_cast<T>(uniform.uniform(range)); 
+  void operator()(T & _t)
+  {
+    _t = minim+static_cast<T>(uniform.uniform(range));
   }
 
 private :

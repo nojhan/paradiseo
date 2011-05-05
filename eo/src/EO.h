@@ -40,17 +40,17 @@
  */
 
 /** EO is the base class for objects with a fitness.
- 
+
     Those evolvable objects are the subjects of
     evolution. EOs have only got a fitness, which at the same time needs to be
     only an object with the operation less than (<) defined. Fitness says how
     good is the object; evolution or change of these objects is left to the
-    genetic operators. 
-    
+    genetic operators.
+
     A fitness less than another means a worse fitness, in
     whatever the context; thus, fitness is always maximized; although it can
-    be minimized with a proper definition of the < operator. 
-    
+    be minimized with a proper definition of the < operator.
+
     A fitness can be invalid if undefined, trying to read an invalid fitness will raise an error.
     @ref Operators that effectively modify EO objects must invalidate them.
 
@@ -123,23 +123,23 @@ public:
    * @throw runtime_std::exception If a valid object can't be read.
    */
   virtual void readFrom(std::istream& _is) {
-     
+
         // the new version of the reafFrom function.
-        // It can distinguish between valid and invalid fitness values. 
+        // It can distinguish between valid and invalid fitness values.
         std::string fitness_str;
         int pos = _is.tellg();
-	_is >> fitness_str;
+        _is >> fitness_str;
 
-	if (fitness_str == "INVALID")
-	{
-		invalidFitness = true;
-	}
-	else
-	{
-		invalidFitness = false;
-		_is.seekg(pos); // rewind
-		_is >> repFitness;
-	}
+        if (fitness_str == "INVALID")
+        {
+                invalidFitness = true;
+        }
+        else
+        {
+                invalidFitness = false;
+                _is.seekg(pos); // rewind
+                _is >> repFitness;
+        }
   }
 
   /**
@@ -151,13 +151,13 @@ public:
 
     // the latest version of the code. Very similar to the old code
     if (invalid()) {
-  	_os << "INVALID ";
+        _os << "INVALID ";
     }
     else
     {
- 	_os << repFitness << ' ';
+        _os << repFitness << ' ';
     }
-	      
+
   }
 
   //@}
@@ -171,4 +171,3 @@ private:
 #endif
 
 /** @} */
-

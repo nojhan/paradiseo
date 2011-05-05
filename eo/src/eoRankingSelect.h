@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoRankingSelect.h
 // (c) GeNeura Team, 1998, Maarten Keijzer 2000, Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -38,19 +38,19 @@
  *
  * @ingroup Selectors
 */
-template <class EOT> 
-class eoRankingSelect: public eoRouletteWorthSelect<EOT, double> 
+template <class EOT>
+class eoRankingSelect: public eoRouletteWorthSelect<EOT, double>
 {
 public:
   /** Ctor:
    *  @param _p the selective pressure, should be in [1,2] (2 is the default)
    *  @param _e exponent (1 == linear)
    */
-  eoRankingSelect(double _p = 2.0, double _e=1.0): 
+  eoRankingSelect(double _p = 2.0, double _e=1.0):
     eoRouletteWorthSelect<EOT, double>(ranking), ranking(_p, _e) {}
 
 private :
-  eoRanking<EOT> ranking;	   // derived from eoPerf2Worth
+  eoRanking<EOT> ranking;          // derived from eoPerf2Worth
 };
 
 #endif

@@ -49,8 +49,8 @@ public:
    *  using the default values is equivalent to using eoPBILOrg
    */
   eoPBILAdditive(double _LRBest, unsigned _nbBest = 1,
-		double _tolerance=0.0,
-		double _LRWorst = 0.0, unsigned _nbWorst = 0 ) :
+                double _tolerance=0.0,
+                double _LRWorst = 0.0, unsigned _nbWorst = 0 ) :
     maxBound(1.0-_tolerance), minBound(_tolerance),
     LR(0.0), nbBest(_nbBest), nbWorst(_nbWorst)
   {
@@ -59,18 +59,18 @@ public:
 
     if (_nbBest)
       {
-	lrb = _LRBest/_nbBest;
-	LR += _LRBest;
+        lrb = _LRBest/_nbBest;
+        LR += _LRBest;
       }
     else
-      lrb=0.0;			   // just in case
+      lrb=0.0;                     // just in case
     if (_nbWorst)
       {
-	lrw = _LRWorst/_nbWorst;
-	LR += _LRWorst;
+        lrw = _LRWorst/_nbWorst;
+        LR += _LRWorst;
       }
     else
-      lrw=0.0;			   // just in case
+      lrw=0.0;                     // just in case
   }
 
   /** Update the distribution from the current population */
@@ -82,29 +82,29 @@ public:
 
     unsigned i, popSize=_pop.size();
     std::vector<const EOT*> result;
-    _pop.sort(result);	  // is it necessary to sort the whole population?
-			 // but I'm soooooooo lazy !!!
+    _pop.sort(result);    // is it necessary to sort the whole population?
+                         // but I'm soooooooo lazy !!!
 
     for (unsigned g=0; g<distrib.size(); g++)
       {
-	p[g] *= (1-LR);		   // relaxation
-	if (nbBest)		   // update from some of the best
-	  for (i=0; i<nbBest; i++)
-	    {
-	      const EOT & best = (*result[i]);
-	      if ( best[g] )	   // if 1, increase proba
-		p[g] +=  lrb;
-	    }
-	if (nbWorst)
-	  for (i=popSize-1; i>=popSize-nbWorst; i--)
-	    {
-	      const EOT & best = (*result[i]);
-	      if ( !best[g] )	   // if 0, increase proba
-		p[g] +=  lrw;
-	    }
-	// stay in [0,1] (possibly strictly due to tolerance)
-	p[g] = std::min(maxBound, p[g]);
-	p[g] = std::max(minBound, p[g]);
+        p[g] *= (1-LR);            // relaxation
+        if (nbBest)                // update from some of the best
+          for (i=0; i<nbBest; i++)
+            {
+              const EOT & best = (*result[i]);
+              if ( best[g] )       // if 1, increase proba
+                p[g] +=  lrb;
+            }
+        if (nbWorst)
+          for (i=popSize-1; i>=popSize-nbWorst; i--)
+            {
+              const EOT & best = (*result[i]);
+              if ( !best[g] )      // if 0, increase proba
+                p[g] +=  lrw;
+            }
+        // stay in [0,1] (possibly strictly due to tolerance)
+        p[g] = std::min(maxBound, p[g]);
+        p[g] = std::max(minBound, p[g]);
       }
   }
 
