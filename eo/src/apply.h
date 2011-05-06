@@ -28,6 +28,7 @@
 
 #include <utils/eoParallel.h>
 #include <utils/eoParser.h>
+#include <utils/eoLogger.h>
 #include <eoFunctor.h>
 #include <vector>
 #include <omp.h>
