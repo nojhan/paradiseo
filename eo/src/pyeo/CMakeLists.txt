@@ -27,23 +27,23 @@ INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
-# python
 IF(APPLE)
   # osx internal
   FIND_LIBRARY(APPLE_CARBON Carbon)
 ENDIF(APPLE)
 
-
 # includes
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-INCLUDE_DIRECTORIES(../)
+#INCLUDE_DIRECTORIES(../)
 
 # source
 FILE(GLOB SOURCES *.cpp)
 
+# EO dependencies
 SET(EO_SOURCES
-  ../eoFunctorStore.cpp
-  ../utils/eoLogger.cpp
+  ${EO_SOURCE_DIR}/src/eoFunctorStore.cpp
+  ${EO_SOURCE_DIR}/src/utils/eoLogger.cpp
+  ${EO_SOURCE_DIR}/src/utils/eoParallel.cpp
   )
 
 # shared library

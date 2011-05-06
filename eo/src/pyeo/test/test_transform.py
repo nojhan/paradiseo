@@ -1,7 +1,7 @@
 """Test script for the eoSGATranform class"""
 
 from copy import deepcopy
-from PyEO import *
+from libPyEO import *
 from maxone import *
 
 pop = eoPop()
