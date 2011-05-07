@@ -58,13 +58,13 @@ template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
       not very elegant, maybe ...
   */
   eoSequentialSelect(bool _ordered = true)
-  	: ordered(_ordered), current(std::numeric_limits<unsigned>::max()) {}
+        : ordered(_ordered), current(std::numeric_limits<unsigned>::max()) {}
 
   void setup(const eoPop<EOT>& _pop)
   {
     eoPters.resize(_pop.size());
     if (ordered)    // probably we could have a marker to avoid re-sorting
-	    _pop.sort(eoPters);
+            _pop.sort(eoPters);
     else
       _pop.shuffle(eoPters);
     current=0;
@@ -118,10 +118,10 @@ template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
       throw std::runtime_error("Trying eoEliteSequentialSelect with only one individual!");
     for (unsigned i=1; i<_pop.size(); i++)
       if (*eoPters[i]>*best)
-	{
-	  ibest = i;
-	  best = eoPters[ibest];
-	}
+        {
+          ibest = i;
+          best = eoPters[ibest];
+        }
     // and put it upfront
     const EOT *ptmp = eoPters[0];
     eoPters[0]=best;

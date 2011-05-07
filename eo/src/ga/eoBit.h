@@ -106,11 +106,11 @@ public:
       std::string bits;
       is >> bits;
       if (is)
-	{
-	  resize(bits.size());
-	  std::transform(bits.begin(), bits.end(), begin(),
+        {
+          resize(bits.size());
+          std::transform(bits.begin(), bits.end(), begin(),
                          std::bind2nd(std::equal_to<char>(), '1'));
-	}
+        }
     }
 };
 

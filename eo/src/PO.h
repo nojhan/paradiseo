@@ -1,5 +1,5 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
- 
+
 //-----------------------------------------------------------------------------
 // PO.h
 // (c) OPAC 2007
@@ -43,11 +43,11 @@ template < class F > class PO:public EO < F >
 
 public:
 
-	#if defined(__CUDACC__)
-		typedef typename EO < F >::Fitness Fitness;
-	#else
-		typedef typename PO<F>::Fitness Fitness;
-	#endif
+        #if defined(__CUDACC__)
+                typedef typename EO < F >::Fitness Fitness;
+        #else
+                typedef typename PO<F>::Fitness Fitness;
+        #endif
 
     /** Default constructor.
         Fitness must have a ctor which takes 0 as a value. Best fitness mush also have the same constructor.

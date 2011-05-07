@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -53,9 +53,8 @@ void selectors()
     DEF3(eoTruncSelect, eoSelectOne<PyEO>&, eoHowMany);
 
     class_<eoTruncatedSelectMany<PyEO>, bases<eoSelect<PyEO> > >("eoTruncatedSelectMany",
-	    init<eoSelectOne<PyEO>&, double, double>()[WC1])
+								 init<eoSelectOne<PyEO>&, double, double>()[WC1])
 	.def(init<eoSelectOne<PyEO>&, double, double, bool> ()[WC1])
 	.def(init<eoSelectOne<PyEO>&, double, double, bool, bool> ()[WC1])
 	.def(init<eoSelectOne<PyEO>&, eoHowMany, eoHowMany> ()[WC1]);
-	
 }

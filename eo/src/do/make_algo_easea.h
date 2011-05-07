@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_algo_easea.h
 // (c) Marc Schoenauer and Pierre Collet, 2002
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -81,18 +81,18 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   eoParamParamType & ppSelect = selectionParam.value(); // std::pair<std::string,std::vector<std::string> >
 
   eoSelectOne<EOT>* select ;
-  if (ppSelect.first == std::string("DetTour")) 
+  if (ppSelect.first == std::string("DetTour"))
   {
     unsigned detSize;
 
     if (!ppSelect.second.size())   // no parameter added
       {
-	std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
-	detSize = 2;
-	// put back 2 in parameter for consistency (and status file)
-	ppSelect.second.push_back(std::string("2"));
+        std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
+        detSize = 2;
+        // put back 2 in parameter for consistency (and status file)
+        ppSelect.second.push_back(std::string("2"));
       }
-    else	  // parameter passed by user as DetTour(T)
+    else          // parameter passed by user as DetTour(T)
       detSize = atoi(ppSelect.second[0].c_str());
     select = new eoDetTournamentSelect<EOT>(detSize);
   }
@@ -100,57 +100,57 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
     {
       double p;
       if (!ppSelect.second.size())   // no parameter added
-	{
-	  std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
-	  p = 1;
-	  // put back p in parameter for consistency (and status file)
-	  ppSelect.second.push_back(std::string("1"));
-	}
-      else	  // parameter passed by user as DetTour(T)
-	p = atof(ppSelect.second[0].c_str());
-      
+        {
+          std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
+          p = 1;
+          // put back p in parameter for consistency (and status file)
+          ppSelect.second.push_back(std::string("1"));
+        }
+      else        // parameter passed by user as DetTour(T)
+        p = atof(ppSelect.second[0].c_str());
+
       select = new eoStochTournamentSelect<EOT>(p);
     }
   else if (ppSelect.first == std::string("Ranking"))
     {
       double p,e;
       if (ppSelect.second.size()==2)   // 2 parameters: pressure and exponent
-	{
-	  p = atof(ppSelect.second[0].c_str());
-	  e = atof(ppSelect.second[1].c_str());
-	}
-      else if (ppSelect.second.size()==1)   // 1 parameter: pressure 
-	{
-	  std::cerr << "WARNING, no exponent to Ranking, using 1" << std::endl;
-	  e = 1;
-	  ppSelect.second.push_back(std::string("1"));
-	  p = atof(ppSelect.second[0].c_str());
-	}
+        {
+          p = atof(ppSelect.second[0].c_str());
+          e = atof(ppSelect.second[1].c_str());
+        }
+      else if (ppSelect.second.size()==1)   // 1 parameter: pressure
+        {
+          std::cerr << "WARNING, no exponent to Ranking, using 1" << std::endl;
+          e = 1;
+          ppSelect.second.push_back(std::string("1"));
+          p = atof(ppSelect.second[0].c_str());
+        }
       else // no parameters ... or garbage
-	{
-	  std::cerr << "WARNING, no parameter to Ranking, using (2,1)" << std::endl;
-	  p=2;
-	  e=1;
-	  // put back in parameter for consistency (and status file)
-	  ppSelect.second.resize(2); // just in case
-	  ppSelect.second[0] = (std::string("2"));
-	  ppSelect.second[1] = (std::string("1"));
-	}
+        {
+          std::cerr << "WARNING, no parameter to Ranking, using (2,1)" << std::endl;
+          p=2;
+          e=1;
+          // put back in parameter for consistency (and status file)
+          ppSelect.second.resize(2); // just in case
+          ppSelect.second[0] = (std::string("2"));
+          ppSelect.second[1] = (std::string("1"));
+        }
       // check for authorized values
       // pressure in (0,1]
       if ( (p<=1) || (p>2) )
-	{
-	  std::cerr << "WARNING, selective pressure must be in (1,2] in Ranking, using 2\n";
-	  p=2;
-	  ppSelect.second[0] = (std::string("2"));
-	}
+        {
+          std::cerr << "WARNING, selective pressure must be in (1,2] in Ranking, using 2\n";
+          p=2;
+          ppSelect.second[0] = (std::string("2"));
+        }
       // exponent >0
       if (e<=0)
-	{
-	  std::cerr << "WARNING, exponent must be positive in Ranking, using 1\n";
-	  e=1;
-	  ppSelect.second[1] = (std::string("1"));
-	}
+        {
+          std::cerr << "WARNING, exponent must be positive in Ranking, using 1\n";
+          e=1;
+          ppSelect.second[1] = (std::string("1"));
+        }
       // now we're OK
       eoPerf2Worth<EOT> & p2w = _state.storeFunctor( new eoRanking<EOT>(p,e) );
       select = new eoRouletteWorthSelect<EOT>(p2w);
@@ -159,13 +159,13 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
     {
       bool b;
       if (ppSelect.second.size() == 0)   // no argument -> default = ordered
-	{
-	  b=true;
-	  // put back in parameter for consistency (and status file)
-	  ppSelect.second.push_back(std::string("ordered"));
-	}
+        {
+          b=true;
+          // put back in parameter for consistency (and status file)
+          ppSelect.second.push_back(std::string("ordered"));
+        }
       else
-	b = !(ppSelect.second[0] == std::string("unordered"));
+        b = !(ppSelect.second[0] == std::string("unordered"));
       select = new eoSequentialSelect<EOT>(b);
     }
   else if (ppSelect.first == std::string("EliteSequential")) // Best first, one after the other in random order afterwards
@@ -188,7 +188,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
 
   _state.storeFunctor(select);
 
-  // the number of offspring 
+  // the number of offspring
     eoValueParam<eoHowMany>& offspringRateParam =  _parser.createParam(eoHowMany(1.0), "nbOffspring", "Nb of offspring (percentage or absolute)", 'O', "Evolution Engine");
 
   /////////////////////////////////////////////////////
@@ -196,7 +196,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   /////////////////////////////////////////////////////
 
   /** Replacement type - high level: predefined replacements
-   * ESComma : 
+   * ESComma :
    *          elite = 0
    *          surviveParents=0 (no reduce)
    *          surviveOffspring=100% (no reduce)
@@ -208,8 +208,8 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
    * GGA : generational GA - idem ESComma except for
    *          offspringRate = 100%
    *          all reducers are unused
-   * 
-   * SSGA(T/t) : Steady-State GA  
+   *
+   * SSGA(T/t) : Steady-State GA
    *               surviveParents = 1.0 - offspringRate
    *               reduceFinal = DetTour(T>1) ou StochTour(0.5<t<1)
    *
@@ -246,28 +246,28 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
     // the tournament size
     if (!replacementParam.second.size())   // no parameter added
       {
-	std::cerr << "WARNING, no parameter passed to MGG replacement, using 2" << std::endl;
-	tSize = 2;
-	// put back 2 in parameter for consistency (and status file)
-	replacementParam.second.push_back(std::string("2"));
+        std::cerr << "WARNING, no parameter passed to MGG replacement, using 2" << std::endl;
+        tSize = 2;
+        // put back 2 in parameter for consistency (and status file)
+        replacementParam.second.push_back(std::string("2"));
       }
     else
       {
-	t = atof(replacementParam.second[0].c_str());
-	if (t>=2)
-	  {			   // build the appropriate deafult value
-	    tSize = unsigned(t);
-	  }
-	else
-	  {
-	    throw std::runtime_error("Sorry, only deterministic tournament available at the moment");
-	  }
+        t = atof(replacementParam.second[0].c_str());
+        if (t>=2)
+          {                        // build the appropriate deafult value
+            tSize = unsigned(t);
+          }
+        else
+          {
+            throw std::runtime_error("Sorry, only deterministic tournament available at the moment");
+          }
       }
-    ptReplace = new eoMGGReplacement<EOT>(-surviveParents, tSize);    
+    ptReplace = new eoMGGReplacement<EOT>(-surviveParents, tSize);
     _state.storeFunctor(ptReplace);
     }
   else {   // until the end of what was the only loop/switch
-    
+
   // the default deafult values
   eoHowMany elite (0.0);
   bool strongElitism (false);
@@ -283,12 +283,12 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   // ---------- General
   if (replacementParam.first == std::string("General"))
   {
-    ;				   // defaults OK
+    ;                              // defaults OK
   }
   // ---------- ESComma
   else if (replacementParam.first == std::string("ESComma"))
   {
-    ;				   // OK too
+    ;                              // OK too
   }
   // ---------- ESPlus
   else if (replacementParam.first == std::string("ESPlus"))
@@ -298,16 +298,16 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   // ---------- Generational
   else if (replacementParam.first == std::string("Generational"))
   {
-    ;			     // OK too (we should check nb of offspring)
+    ;                        // OK too (we should check nb of offspring)
   }
   // ---------- EP
   else if (replacementParam.first == std::string("EP"))
   {
     if (!replacementParam.second.size())   // no parameter added
       {
-	std::cerr << "WARNING, no parameter passed to EP replacement, using 6" << std::endl;
-	// put back 6 in parameter for consistency (and status file)
-	replacementParam.second.push_back(std::string("6"));
+        std::cerr << "WARNING, no parameter passed to EP replacement, using 6" << std::endl;
+        // put back 6 in parameter for consistency (and status file)
+        replacementParam.second.push_back(std::string("6"));
       }
     // by coincidence, the syntax for the EP reducer is the same than here:
     reduceFinalType = replacementParam;
@@ -318,28 +318,28 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   {
     if (!replacementParam.second.size())   // no parameter added
       {
-	std::cerr << "WARNING, no parameter passed to SSGA replacement, using 2" << std::endl;
-	// put back 2 in parameter for consistency (and status file)
-	replacementParam.second.push_back(std::string("2"));
-	reduceParentType = eoParamParamType(std::string("DetTour(2)"));
+        std::cerr << "WARNING, no parameter passed to SSGA replacement, using 2" << std::endl;
+        // put back 2 in parameter for consistency (and status file)
+        replacementParam.second.push_back(std::string("2"));
+        reduceParentType = eoParamParamType(std::string("DetTour(2)"));
       }
     else
       {
-	t = atof(replacementParam.second[0].c_str());
-	if (t>=2)
-	  {			   // build the appropriate deafult value
-	    reduceParentType = eoParamParamType(std::string("DetTour(") + replacementParam.second[0].c_str() + ")");
-	  }
-	else   // check for [0.5,1] will be made in make_general_replacement
-	  {			   // build the appropriate deafult value
-	    reduceParentType = eoParamParamType(std::string("StochTour(") + replacementParam.second[0].c_str() + ")");
-	  }
+        t = atof(replacementParam.second[0].c_str());
+        if (t>=2)
+          {                        // build the appropriate deafult value
+            reduceParentType = eoParamParamType(std::string("DetTour(") + replacementParam.second[0].c_str() + ")");
+          }
+        else   // check for [0.5,1] will be made in make_general_replacement
+          {                        // build the appropriate deafult value
+            reduceParentType = eoParamParamType(std::string("StochTour(") + replacementParam.second[0].c_str() + ")");
+          }
       }
-    // 
+    //
     surviveParents = eoHowMany(-1);
     surviveOffspring = eoHowMany(1);
   }
-  else		       // no replacement recognized
+  else                 // no replacement recognized
     {
       throw std::runtime_error("Invalid replacement type " + replacementParam.first);
     }
@@ -353,7 +353,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   ///////////////////////////////
   // the general breeder
   ///////////////////////////////
-  eoGeneralBreeder<EOT> *breed = 
+  eoGeneralBreeder<EOT> *breed =
     new eoGeneralBreeder<EOT>(*select, _op, offspringRateParam.value());
   _state.storeFunctor(breed);
 
@@ -381,7 +381,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
 template <class EOT>
 eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
 {
-	 do_make_algo_scalar( _parser, _state, *(new eoPopLoopEval<EOT>(_eval)), _continue, _op); 
+         do_make_algo_scalar( _parser, _state, *(new eoPopLoopEval<EOT>(_eval)), _continue, _op);
 }
 
 

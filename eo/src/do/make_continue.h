@@ -55,7 +55,7 @@ It can then be instantiated, and compiled on its own for a given EOType
 template <class Indi>
 eoCombinedContinue<Indi> * make_combinedContinue(eoCombinedContinue<Indi> *_combined, eoContinue<Indi> *_cont)
 {
-  if (_combined)		   // already exists
+  if (_combined)                   // already exists
     _combined->add(*_cont);
   else
     _combined = new eoCombinedContinue<Indi>(*_cont);
@@ -81,10 +81,10 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
 
     if (maxGenParam.value()) // positive: -> define and store
       {
-	eoGenContinue<Indi> *genCont = new eoGenContinue<Indi>(maxGenParam.value());
-	_state.storeFunctor(genCont);
-	// and "add" to combined
-	continuator = make_combinedContinue<Indi>(continuator, genCont);
+        eoGenContinue<Indi> *genCont = new eoGenContinue<Indi>(maxGenParam.value());
+        _state.storeFunctor(genCont);
+        // and "add" to combined
+        continuator = make_combinedContinue<Indi>(continuator, genCont);
       }
 
   // the steadyGen continue - only if user imput
@@ -92,12 +92,12 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
   eoValueParam<unsigned>& minGenParam = _parser.createParam(unsigned(0), "minGen", "Minimum number of generations",'g', "Stopping criterion");
     if (_parser.isItThere(steadyGenParam))
       {
-	eoSteadyFitContinue<Indi> *steadyCont = new eoSteadyFitContinue<Indi>
-	  (minGenParam.value(), steadyGenParam.value());
-	// store
-	_state.storeFunctor(steadyCont);
-	// add to combinedContinue
-	continuator = make_combinedContinue<Indi>(continuator, steadyCont);
+        eoSteadyFitContinue<Indi> *steadyCont = new eoSteadyFitContinue<Indi>
+          (minGenParam.value(), steadyGenParam.value());
+        // store
+        _state.storeFunctor(steadyCont);
+        // add to combinedContinue
+        continuator = make_combinedContinue<Indi>(continuator, steadyCont);
       }
 
   // Same thing with Eval - but here default value is 0
@@ -108,10 +108,10 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
 
     if (maxEvalParam.value()) // positive: -> define and store
       {
-	eoEvalContinue<Indi> *evalCont = new eoEvalContinue<Indi>(_eval, maxEvalParam.value());
-	_state.storeFunctor(evalCont);
-	// and "add" to combined
-	continuator = make_combinedContinue<Indi>(continuator, evalCont);
+        eoEvalContinue<Indi> *evalCont = new eoEvalContinue<Indi>(_eval, maxEvalParam.value());
+        _state.storeFunctor(evalCont);
+        // and "add" to combined
+        continuator = make_combinedContinue<Indi>(continuator, evalCont);
       }
     /*
   // the steadyEval continue - only if user imput
@@ -119,12 +119,12 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
   eoValueParam<unsigned>& minGenParam = _parser.createParam(unsigned(0), "minGen", "Minimum number of generations",'g', "Stopping criterion");
     if (_parser.isItThere(steadyGenParam))
       {
-	eoSteadyGenContinue<Indi> *steadyCont = new eoSteadyFitContinue<Indi>
-	  (minGenParam.value(), steadyGenParam.value());
-	// store
-	_state.storeFunctor(steadyCont);
-	// add to combinedContinue
-	continuator = make_combinedContinue<Indi>(continuator, steadyCont);
+        eoSteadyGenContinue<Indi> *steadyCont = new eoSteadyFitContinue<Indi>
+          (minGenParam.value(), steadyGenParam.value());
+        // store
+        _state.storeFunctor(steadyCont);
+        // add to combinedContinue
+        continuator = make_combinedContinue<Indi>(continuator, steadyCont);
       }
     */
     // the target fitness
@@ -132,12 +132,12 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
     eoValueParam<double>& targetFitnessParam = _parser.createParam(double(0.0), "targetFitness", "Stop when fitness reaches",'T', "Stopping criterion");
     if (_parser.isItThere(targetFitnessParam))
       {
-	fitCont = new eoFitContinue<Indi>
-	  (targetFitnessParam.value());
-	// store
-	_state.storeFunctor(fitCont);
-	// add to combinedContinue
-	continuator = make_combinedContinue<Indi>(continuator, fitCont);
+        fitCont = new eoFitContinue<Indi>
+          (targetFitnessParam.value());
+        // store
+        _state.storeFunctor(fitCont);
+        // add to combinedContinue
+        continuator = make_combinedContinue<Indi>(continuator, fitCont);
       }
 
 #ifndef _MSC_VER
@@ -146,11 +146,11 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
     eoValueParam<bool>& ctrlCParam = _parser.createParam(false, "CtrlC", "Terminate current generation upon Ctrl C",'C', "Stopping criterion");
     if (ctrlCParam.value())
       {
-	ctrlCCont = new eoCtrlCContinue<Indi>;
-	// store
-	_state.storeFunctor(ctrlCCont);
-	// add to combinedContinue
-	continuator = make_combinedContinue<Indi>(continuator, ctrlCCont);
+        ctrlCCont = new eoCtrlCContinue<Indi>;
+        // store
+        _state.storeFunctor(ctrlCCont);
+        // add to combinedContinue
+        continuator = make_combinedContinue<Indi>(continuator, ctrlCCont);
       }
 #endif
 

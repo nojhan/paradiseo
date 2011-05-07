@@ -44,7 +44,7 @@ Contact: http://eodev.sourceforge.net
  *
  * Compute various statistics on a population.
  *
- * Objects of those classes are generally called by an eoCheckPoint 
+ * Objects of those classes are generally called by an eoCheckPoint
  * to compute statistics about the population at a given generation.
  * As they inherit from eoValueParam, they can be printed drectly,
  * for instance by an eoMonitor.
@@ -433,7 +433,7 @@ public:
 
     eoInterquartileRangeStat( typename EOT::Fitness start, std::string description = "IQR" ) : eoStat<EOT,typename EOT::Fitness>( start, description ) {}
 
-    virtual void operator()( const eoPop<EOT> & _pop ) 
+    virtual void operator()( const eoPop<EOT> & _pop )
     {
         if( _pop.size() == 0 ) {
             // how to implement value() = 0 ?
@@ -444,14 +444,14 @@ public:
             unsigned int quartile = pop.size()/4;
             std::nth_element( pop.begin(), pop.begin()+quartile*1, pop.end() );
             typename EOT::Fitness Q1 = pop[quartile].fitness();
-            
+
             std::nth_element( pop.begin(), pop.begin()+quartile*3, pop.end() );
             typename EOT::Fitness Q3 = pop[quartile*3].fitness();
 
             value() = Q1 - Q3;
         }
     }
-  
+
     virtual std::string className(void) const { return "eoInterquartileRangeStat"; }
 };
 /** @example t-eoIQRStat.cpp
@@ -459,7 +459,7 @@ public:
 
 /** Compute the average size of indivudals over the population
  *
- * Obviously, will work only on representations that implement the (standard) "size()" method, 
+ * Obviously, will work only on representations that implement the (standard) "size()" method,
  * like any STL container.
  */
 template<class EOT>
@@ -469,10 +469,10 @@ public:
 
     using eoStat<EOT, double>::value;
 
-    eoAverageSizeStat( std::string description = "Av.Size" ) : 
+    eoAverageSizeStat( std::string description = "Av.Size" ) :
         eoStat<EOT,double>( 0.0, description ) {} // 0 by default
 
-    virtual void operator()( const eoPop<EOT> & pop ) 
+    virtual void operator()( const eoPop<EOT> & pop )
     {
         size_t pop_size = pop.size();
 
@@ -487,10 +487,9 @@ public:
 
         value() = static_cast<double>(sum) / static_cast<double>(pop_size);
     }
-  
+
     virtual std::string className(void) const { return "eoAverageSizeStat"; }
 };
 
 /** @} */
 #endif
-

@@ -160,14 +160,14 @@ template<class T> std::ostream& operator<<(std::ostream& os, const std::vector<T
     {
       std::copy(v.begin(), v.end() - 1, std::ostream_iterator<T>(os, " "));
       os << v.back();
-    } 
+    }
   return os << '>';
 }
 
 template<class T> std::istream& operator>>(std::istream& is, std::vector<T>& v)
 {
   v.clear();
-  
+
   char c;
   is >> c;
   if (!is || c != '<')
@@ -186,7 +186,7 @@ template<class T> std::istream& operator>>(std::istream& is, std::vector<T>& v)
 	  }
       } while (is && c != '>');
     }
-  
+
   return is;
 }
 
@@ -194,11 +194,11 @@ template<class T> std::istream& operator>>(std::istream& is, std::vector<T>& v)
 // euclidean_distance
 //-----------------------------------------------------------------------------
 
-template<class T> T euclidean_distance(const std::vector<T>& v1, 
+template<class T> T euclidean_distance(const std::vector<T>& v1,
 				       const std::vector<T>& v2)
 {
   T sum = 0, tmp;
-  
+
   for (unsigned i = 0; i < v1.size(); ++i)
     {
       tmp = v1[i] - v2[i];
@@ -211,4 +211,3 @@ template<class T> T euclidean_distance(const std::vector<T>& v1,
 //-----------------------------------------------------------------------------
 
 #endif
-

@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -31,11 +31,10 @@ using namespace boost::python;
 void mergers()
 {
     def_abstract_functor<eoMerge<PyEO> >("eoMerge");
-    
+
     DEF2(eoElitism, double)
-	.def( init<double, bool>() );
+        .def( init<double, bool>() );
     DEF(eoNoElitism);
     DEF(eoPlus);
 
 }
-

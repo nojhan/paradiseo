@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_op_OneMax.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -19,8 +19,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mkeijzer@dhi.dk
+	     Marc.Schoenauer@polytechnique.fr
+	     mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
@@ -35,14 +35,14 @@
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
 #include <eoProportionalCombinedOp.h>
 
-/** definition of mutation: 
+/** definition of mutation:
  * class eoOneMaxMonop MUST derive from eoMonOp<eoOneMax>
  */
 #include "eoOneMaxMutation.h"
 
-/** definition of crossover (either as eoBinOp (2->1) or eoQuadOp (2->2): 
+/** definition of crossover (either as eoBinOp (2->1) or eoQuadOp (2->2):
  * class eoOneMaxBinCrossover MUST derive from eoBinOp<eoOneMax>
- * OR 
+ * OR
  * class eoOneMaxQuadCrossover MUST derive from eoQuadOp<eoOneMax>
  */
 // #include "eoOneMaxBinOp.h"
@@ -61,9 +61,9 @@
  * This function builds the operators that will be applied to the eoOneMax
  *
  * It uses a parser (to get user parameters), a state (to store the memory)
- *    the last parameter is an eoInit: if some operator needs some info 
+ *    the last parameter is an eoInit: if some operator needs some info
  *    about the genotypes, the init has it all (e.g. bounds, ...)
- *    Simply do 
+ *    Simply do
  *        EOT myEO;
  *        _init(myEO);
  *    and myEO is then an ACTUAL object
@@ -85,7 +85,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     // Variation operators
     ////////////////////////////
     // read crossover and mutations, combine each in a proportional Op
-    // and create the eoGenOp that calls crossover at rate pCross 
+    // and create the eoGenOp that calls crossover at rate pCross
     // then mutation with rate pMut
 
     // the crossovers
@@ -94,10 +94,10 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     // here we can have eoQuadOp (2->2) only - no time for the eoBinOp case
 
     // you can have more than one - combined in a proportional way
-    
+
     // first, define the crossover objects and read their rates from the parser
-    
-    // A first crossover   
+
+    // A first crossover
     eoQuadOp<Indi> *cross = new eoOneMaxQuadCrossover<Indi> /* (varType  _anyVariable) */;
     // store in the state
     _state.storeFunctor(cross);
@@ -106,21 +106,21 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     double cross1Rate = _parser.createParam(1.0, "cross1Rate", "Relative rate for crossover 1", '1', "Variation Operators").value();
 
   // and create the combined operator with this one
-  eoPropCombinedQuadOp<Indi> *propXover = 
+  eoPropCombinedQuadOp<Indi> *propXover =
     new eoPropCombinedQuadOp<Indi>(*cross, cross1Rate);
   // and of course stor it in the state
     _state.storeFunctor(propXover);
 
 
-    // Optional: A second(and third, and ...)  crossover   
+    // Optional: A second(and third, and ...)  crossover
     //   of course you must create the corresponding classes
     // and all ***MUST*** derive from eoQuadOp<Indi>
 
   /* Uncomment if necessary - and replicate as many time as you need
-      cross = new eoOneMaxSecondCrossover<Indi>(varType  _anyVariable); 
+      cross = new eoOneMaxSecondCrossover<Indi>(varType  _anyVariable);
       _state.storeFunctor(cross);
-      double cross2Rate = _parser.createParam(1.0, "cross2Rate", "Relative rate for crossover 2", '2', "Variation Operators").value(); 
-      propXover.add(*cross, cross2Rate); 
+      double cross2Rate = _parser.createParam(1.0, "cross2Rate", "Relative rate for crossover 2", '2', "Variation Operators").value();
+      propXover.add(*cross, cross2Rate);
   */
   // if you want some gentle output, the last one shoudl be like
   //  propXover.add(*cross, crossXXXRate, true);
@@ -130,12 +130,12 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   ////////////////
   // you can have more than one - combined in a proportional way
 
-  // for each mutation, 
+  // for each mutation,
   // - define the mutator object
   // - read its rate from the parser
   // - add it to the proportional combination
 
-  // a first mutation  
+  // a first mutation
   eoMonOp<Indi> *mut = new eoOneMaxMutation<Indi>/* (varType  _anyVariable) */;
   _state.storeFunctor(mut);
   // its relative rate in the combination
@@ -151,8 +151,8 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   /* Uncomment if necessary - and replicate as many time as you need
       mut = new eoOneMaxSecondMutation<Indi>(varType  _anyVariable);
       _state.storeFunctor(mut);
-      double mut2Rate = _parser.createParam(1.0, "mut2Rate", "Relative rate for mutation 2", '2', "Variation Operators").value(); 
-       propMutation.add(*mut, mut2Rate); 
+      double mut2Rate = _parser.createParam(1.0, "mut2Rate", "Relative rate for mutation 2", '2', "Variation Operators").value();
+       propMutation.add(*mut, mut2Rate);
   */
   // if you want some gentle output, the last one shoudl be like
   //  propMutation.add(*mut, mutXXXRate, true);
@@ -170,7 +170,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   // to simulate SGA (crossover with proba pCross + mutation with proba pMut
   // we must construct
   //     a sequential combination of
-  //          with proba 1, a proportional combination of 
+  //          with proba 1, a proportional combination of
   //                        a QuadCopy and our crossover
   //          with proba pMut, our mutation
 

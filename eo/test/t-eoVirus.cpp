@@ -67,11 +67,10 @@ int main()
 
   // Chrom Transmision
   std::cout << "Chrom transmission--------" << std::endl;
-  VirusTransmission<float> vt; 
+  VirusTransmission<float> vt;
   vt( chrom2, chrom );
   std::cout << chrom2 << std::endl;
 
   return 0;
 
 }
-

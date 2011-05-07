@@ -8,7 +8,7 @@
  * @{
  */
 
-/** The exception raised by eoEvalFuncCounterBounder 
+/** The exception raised by eoEvalFuncCounterBounder
  * when the maximum number of allowed evaluations is reached.
  */
 class eoEvalFuncCounterBounderException : public std::exception
@@ -18,9 +18,9 @@ public:
 
     const char* what() const throw()
     {
-	std::ostringstream ss;
-	ss << "STOP in eoEvalFuncCounterBounderException: the maximum number of evaluation has been reached (" << _threshold << ").";
-	return ss.str().c_str();
+        std::ostringstream ss;
+        ss << "STOP in eoEvalFuncCounterBounderException: the maximum number of evaluation has been reached (" << _threshold << ").";
+        return ss.str().c_str();
     }
 
 private:
@@ -31,7 +31,7 @@ private:
  * when the maximum number of allowed evaluations is reached.
  *
  * This eval counter permits to stop a search during a generation, without waiting for a continue to be
- * checked at the end of the loop. Useful if you have 10 individuals and 10 generations, 
+ * checked at the end of the loop. Useful if you have 10 individuals and 10 generations,
  * but want to stop after 95 evaluations.
 */
 template < typename EOT >
@@ -39,21 +39,21 @@ class eoEvalFuncCounterBounder : public eoEvalFuncCounter< EOT >
 {
 public :
     eoEvalFuncCounterBounder(eoEvalFunc<EOT>& func, unsigned long threshold, std::string name = "Eval. ")
-	: eoEvalFuncCounter< EOT >( func, name ), _threshold( threshold )
+        : eoEvalFuncCounter< EOT >( func, name ), _threshold( threshold )
     {}
 
     using eoEvalFuncCounter< EOT >::value;
 
     virtual void operator()(EOT& eo)
     {
-	if (eo.invalid())
+        if (eo.invalid())
             {
                 value()++;
 
-		if (_threshold > 0 && value() >= _threshold)
-		    {
-			throw eoEvalFuncCounterBounderException(_threshold);
-		    }
+                if (_threshold > 0 && value() >= _threshold)
+                    {
+                        throw eoEvalFuncCounterBounderException(_threshold);
+                    }
 
                 func(eo);
             }

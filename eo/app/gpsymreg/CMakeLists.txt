@@ -18,8 +18,8 @@ LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
 SET (GPSYMREG_SOURCES main.cpp)
 
 # no matter what is the OS, hopefully
-ADD_EXECUTABLE(gpsymreg ${GPSYMREG_SOURCES}) 
-                             
+ADD_EXECUTABLE(gpsymreg ${GPSYMREG_SOURCES})
+
 ADD_DEPENDENCIES(gpsymreg eo eoutils)
 
 ######################################################################################
@@ -36,4 +36,3 @@ SET_TARGET_PROPERTIES(gpsymreg PROPERTIES VERSION "${GPSYMREG_VERSION}")
 TARGET_LINK_LIBRARIES(gpsymreg eo eoutils)
 
 ######################################################################################
-

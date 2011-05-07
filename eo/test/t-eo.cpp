@@ -8,8 +8,7 @@ int main()
 
   // EO objects can be printed with stream operators
   std::cout << "chrom1 = " << chrom1 << std::endl
-            << "chrom2 = " << chrom2 << std::endl;
- 
+	    << "chrom2 = " << chrom2 << std::endl;
+
   return 0;
 }
-

@@ -53,7 +53,7 @@ the original population, is an instantiation of the next population and
 has often a selection function embedded in it to select new individuals.
 
 Note that the actual work is performed in the apply function.
-AND that the apply function is responsible for invalidating 
+AND that the apply function is responsible for invalidating
 the object if necessary
  */
 template <class EOT>
@@ -66,17 +66,17 @@ class eoGenOp : public eoOp<EOT>, public eoUF<eoPopulator<EOT> &, void>
   /** Max production is used to reserve space for all elements that are used by the operator,
       not setting it properly can result in a crash
   */
-  virtual unsigned max_production(void) = 0;
+    virtual unsigned max_production(void) = 0;
 
-  virtual std::string className() const = 0;
+    virtual std::string className() const = 0;
+
     void operator()(eoPopulator<EOT>& _pop)
     {
-    _pop.reserve(max_production());
-      apply(_pop);
+        _pop.reserve( max_production() );
+        apply(_pop);
     }
 
-
-  protected :
+    //protected :
   /** the function that will do the work
    */
     virtual void apply(eoPopulator<EOT>& _pop) = 0;
@@ -114,10 +114,10 @@ class eoBinGenOp : public eoGenOp<EOT>
    public:
     eoBinGenOp(eoBinOp<EOT>& _op) : op(_op) {}
 
-    unsigned max_production(void) { return 1; } 
+    unsigned max_production(void) { return 1; }
 
   /** do the work: get 2 individuals from the population, modifies
-      only one (it's a eoBinOp) 
+      only one (it's a eoBinOp)
       */
     void apply(eoPopulator<EOT>& _pop)
     {
@@ -169,9 +169,9 @@ class eoQuadGenOp : public eoGenOp<EOT>
     void apply(eoPopulator<EOT>& _pop)
     {
       EOT& a = *_pop;
-      EOT& b = *++_pop;	
-      
-      
+      EOT& b = *++_pop;
+
+
       if(op(a, b))
       {
         a.invalidate();

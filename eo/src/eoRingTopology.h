@@ -3,10 +3,10 @@
 //-----------------------------------------------------------------------------
 // eoRingTopology.h
 // (c) INRIA Futurs DOLPHIN 2007
-/* 
+/*
     Clive Canape
-	Thomas Legrand
-	
+        Thomas Legrand
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -48,7 +48,7 @@ template < class POT > class eoRingTopology:public eoTopology <POT>
 public:
 
     /**
-     * The only Ctor. 
+     * The only Ctor.
      * @param _neighborhoodSize - The size of each neighborhood.
      */
     eoRingTopology (unsigned _neighborhoodSize):neighborhoodSize (_neighborhoodSize),isSetup(false){}
@@ -68,16 +68,16 @@ public:
             int k = neighborhoodSize/2;
             for (unsigned i=0;i < _pop.size();i++)
             {
-            	eoSocialNeighborhood<POT> currentNghd;
-            	currentNghd.best(_pop[i]);
-            	for (unsigned j=0; j < neighborhoodSize; j++)
-            	{
-               		currentNghd.put((_pop.size()+i-k+j)%_pop.size());
-            		if(_pop[(_pop.size()+i-k+j)%_pop.size()].fitness() > currentNghd.best().fitness())
+                eoSocialNeighborhood<POT> currentNghd;
+                currentNghd.best(_pop[i]);
+                for (unsigned j=0; j < neighborhoodSize; j++)
+                {
+                        currentNghd.put((_pop.size()+i-k+j)%_pop.size());
+                        if(_pop[(_pop.size()+i-k+j)%_pop.size()].fitness() > currentNghd.best().fitness())
                         currentNghd.best(_pop[(_pop.size()+i-k+j)%_pop.size()]);
                 }
-            	neighborhoods.push_back(currentNghd);
-            }	
+                neighborhoods.push_back(currentNghd);
+            }
             isSetup=true;
         }
         else
@@ -90,7 +90,7 @@ public:
                */
         }
     }
-    
+
     /**
      * Retrieves the neighboorhood of a particle.
      * @return _indice - The particle indice (in the population)
@@ -109,20 +109,20 @@ public:
      */
     void updateNeighborhood(POT & _po,unsigned _indice)
     {
-    	//this->printOn();exit(0);
+        //this->printOn();exit(0);
         // update the best fitness of the particle
         if (_po.fitness() > _po.best())
         {
             _po.best(_po.fitness());
             for(unsigned i=0;i<_po.size();i++)
-	    		_po.bestPositions[i]=_po[i];	
+                        _po.bestPositions[i]=_po[i];
         }
         // update the global best if the given particle is "better"
         for (unsigned i=-neighborhoodSize+1; i < neighborhoodSize; i++)
-            	{
-            		unsigned indi = (_po.size()+_indice+i)%_po.size();
-            		if (_po.fitness() > neighborhoods[indi].best().fitness())
-            			neighborhoods[indi].best(_po);
+                {
+                        unsigned indi = (_po.size()+_indice+i)%_po.size();
+                        if (_po.fitness() > neighborhoods[indi].best().fitness())
+                                neighborhoods[indi].best(_po);
                 }
      }
 
@@ -132,9 +132,9 @@ public:
      * @param _indice - The indice of a particle in the population
      * @return POT & - The best particle in the neighborhood of the particle whose indice is _indice
      */
-    POT & best (unsigned  _indice) 
+    POT & best (unsigned  _indice)
     {
-    	unsigned theGoodNhbd= retrieveNeighborhoodByIndice(_indice);
+        unsigned theGoodNhbd= retrieveNeighborhoodByIndice(_indice);
 
         return (neighborhoods[theGoodNhbd].best());
     }
@@ -155,35 +155,35 @@ public:
             std::cout << "}" << std::endl;
         }
     }
-    
+
     /*
-	 * Return the global best of the topology
-	 */	 
-	virtual POT & globalBest()
+         * Return the global best of the topology
+         */
+        virtual POT & globalBest()
     {
-    	POT gBest,tmp;
-    	unsigned indGlobalBest=0;    	
-    	if(neighborhoods.size()==1)
-    		return neighborhoods[0].best();
-    		
-    	gBest=neighborhoods[0].best();
-    	for(unsigned i=1;i<neighborhoods.size();i++)
-    	{
-    		tmp=neighborhoods[i].best();
-    		if(gBest.best() < tmp.best())
-    		{
-    			gBest=tmp;
-    			indGlobalBest=i;
-    		}
-    			
-    	}
-    	return neighborhoods[indGlobalBest].best();
+        POT gBest,tmp;
+        unsigned indGlobalBest=0;
+        if(neighborhoods.size()==1)
+                return neighborhoods[0].best();
+
+        gBest=neighborhoods[0].best();
+        for(unsigned i=1;i<neighborhoods.size();i++)
+        {
+                tmp=neighborhoods[i].best();
+                if(gBest.best() < tmp.best())
+                {
+                        gBest=tmp;
+                        indGlobalBest=i;
+                }
+
+        }
+        return neighborhoods[indGlobalBest].best();
     }
 
 
 protected:
     std::vector<eoSocialNeighborhood<POT> >  neighborhoods;
-    unsigned neighborhoodSize; 
+    unsigned neighborhoodSize;
     bool isSetup;
 };
 /** @example t-eoRingTopology.cpp

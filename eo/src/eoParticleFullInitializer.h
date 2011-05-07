@@ -54,9 +54,9 @@ template <class POT> class eoInitializerBase : public eoFunctorBase
   };
 
 /**
-	Base (name) class for Initialization of algorithm PSO
+        Base (name) class for Initialization of algorithm PSO
 
-	@see eoInitializerBase eoUF apply
+        @see eoInitializerBase eoUF apply
 */
 template <class POT> class eoParticleInitializer : public eoInitializerBase <POT>
   {
@@ -99,34 +99,34 @@ template <class POT> class eoParticleInitializer : public eoInitializerBase <POT
       {
         return "eoInitializer";
       }
-    
-    
-      
+
+
+
     virtual void operator  () ()
     {
-		eoPop<POT> empty_pop;
-		
-		// evaluates using either the "sequential" evaluator ...
-		apply(proc, pop);
-		
-		// ... or the parallel one
-    	procPara(empty_pop, pop);
-    	
-    	// no matter what is the eval operator, initializes the velocities and the particle's best
+                eoPop<POT> empty_pop;
+
+                // evaluates using either the "sequential" evaluator ...
+                apply(proc, pop);
+
+                // ... or the parallel one
+        procPara(empty_pop, pop);
+
+        // no matter what is the eval operator, initializes the velocities and the particle's best
         apply < POT > (initVelo, pop);
         apply < POT > (initBest, pop);
-        
+
         // finally setup the topology. We have now all we need to do so.
-    	topology.setup(pop);
+        topology.setup(pop);
     }
 
   private :
 
     /*
-    	@param proc First evaluation
-    	@param initVelo Initialization of the velocity
-    	@param initBest Initialization of the best
-    	
+        @param proc First evaluation
+        @param initVelo Initialization of the velocity
+        @param initBest Initialization of the best
+
     */
     eoPop < POT > & pop;
     eoUF<POT&, void>& proc;
@@ -146,11 +146,10 @@ template <class POT> class eoParticleInitializer : public eoInitializerBase <POT
       public:
         void operator()(POT &)
         {}
-        
+
     }
-    dummy;    
+    dummy;
   };
 #endif /*_eoParticleFullInitializer_H*/
 
 /** @} */
-

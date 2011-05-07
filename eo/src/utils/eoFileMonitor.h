@@ -58,16 +58,16 @@ public :
      * @param _overwrite if true, overwrite the existing file
      */
     eoFileMonitor(
-        std::string _filename, 
-        std::string _delim = " ", 
-        bool _keep_existing = false, 
+        std::string _filename,
+        std::string _delim = " ",
+        bool _keep_existing = false,
         bool _header = false,
         bool _overwrite = false
         )
-        : filename(_filename), 
-        delim(_delim), 
-        keep(_keep_existing), 
-        header(_header), 
+        : filename(_filename),
+        delim(_delim),
+        keep(_keep_existing),
+        header(_header),
         firstcall(true),
         overwrite(_overwrite)
     {
@@ -84,7 +84,7 @@ public :
     //! Called first, try to open the file in append mode and write the header if asked
     virtual eoMonitor& operator()(void);
 
-    /*! Main call, normally called at each generation. 
+    /*! Main call, normally called at each generation.
     Write the content of the registered vector into the file, each item being separated by delim
     */
     virtual eoMonitor& operator()(std::ostream& os);
@@ -104,13 +104,13 @@ private :
 
     //! delimiter to use between each write
     std::string delim;
-    
+
     //! should we append or create a new file
-    bool keep;			   
-    
+    bool keep;
+
     //! printing header at begin of file?
     bool header;
-    
+
     //! flag to avoid calling twice operator()(void)
     bool firstcall;
 

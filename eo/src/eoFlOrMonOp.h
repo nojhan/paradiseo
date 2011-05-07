@@ -39,7 +39,7 @@
  *      eoFlOrAllMutation applies the atom mutation to all components with given rate
  *      eoFlOrKMutation applies the atom mutation to a fixed nb of components
  *
- * Remark: the standard bit-flip mutation is an eoFlOrAllMutation 
+ * Remark: the standard bit-flip mutation is an eoFlOrAllMutation
  *                      with atom mutation == bitflipping
  */
 
@@ -62,21 +62,21 @@ public :
     bool modified=false;
     for (unsigned i=0; i<_eo.size(); i++)
       if (eo::rng.flip(rate))
-	if (atomMutation(_eo[i]))
-	  modified = true;
+        if (atomMutation(_eo[i]))
+          modified = true;
 
     return modified;
   }
 
   /** inherited className() */
-  virtual std::string className() const 
-  { 
+  virtual std::string className() const
+  {
     return "eoFlOrAllMutation(" + atomMutation.className() + ")";
   }
 
 private:
   eoMonOp<AtomType> & atomMutation; // the atom mutation
-  double rate;			   // the mutation rate PER ATOM
+  double rate;                     // the mutation rate PER ATOM
 };
 
 /** Applies an atomic mutation to a fixed
@@ -100,21 +100,21 @@ public :
     bool modified=false;
     for (unsigned k=0; k<nb; k++)
       {
-	unsigned i = rng.random(_eo.size()); // we don't test for duplicates...
-	if (atomMutation(_eo[i]))
-	  modified = true;
+        unsigned i = rng.random(_eo.size()); // we don't test for duplicates...
+        if (atomMutation(_eo[i]))
+          modified = true;
       }
     return modified;
   }
 
   /** inherited className() */
   virtual std::string className() const
-  { 
+  {
     return "eoFlOrKMutation(" + atomMutation.className() + ")";
   }
 
 private:
-  unsigned nb;			   // the number of atoms to mutate
+  unsigned nb;                     // the number of atoms to mutate
   eoMonOp<AtomType> & atomMutation; // the atom mutation
 };
 

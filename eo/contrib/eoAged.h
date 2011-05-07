@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 // eoAge.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -38,7 +38,7 @@ using namespace std;
 //-----------------------------------------------------------------------------
 
 /** eoAge is a template class that adds an age to an object.\\
-Requisites for template instantiation are that the object must admit a default ctor 
+Requisites for template instantiation are that the object must admit a default ctor
 and a copy ctor. The Object must be an eoObject, thus, it must have its methods: className,
 printOn, readFrom.
 @see eoObject
@@ -55,7 +55,7 @@ class eoAged: public Object
 
   /// Virtual dtor. They are needed in virtual class hierarchies
   virtual ~eoAged() {};
-  
+
 
   ///returns the age of the object
   unsigned long Age() const {return age;}
@@ -67,7 +67,7 @@ class eoAged: public Object
 	readFrom and printOn are directly inherited from eo1d
 	*/
 //@{
-  /** Return the class id. This should be redefined in each class; but 
+  /** Return the class id. This should be redefined in each class; but
   it's got code as an example of implementation. Only "leaf" classes
   can be non-virtual.
   */
@@ -83,7 +83,7 @@ class eoAged: public Object
 	  _is >> age;
   }
 
-  
+
   /**
    * Write object. It's called printOn since it prints the object _on_ a stream.
    * @param _os A ostream.
@@ -93,7 +93,7 @@ class eoAged: public Object
 	  _os << age;
   }
 //@}
-  
+
  private:
 
 	 /** Default Constructor. \\
@@ -106,4 +106,3 @@ class eoAged: public Object
 };
 
 #endif EOAGE_H
-

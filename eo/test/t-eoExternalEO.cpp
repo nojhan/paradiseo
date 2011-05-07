@@ -4,7 +4,7 @@
 #endif
 
 #include <iostream>
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // runtime_error
 
 #include <eoEvalFuncPtr.h>
 #include <other/external_eo>
@@ -61,9 +61,9 @@ bool UserDefMutate(UserDefStruct& a)
     a = RandomStruct(); // just for testing
 
     if (rng.flip(0.1f))
-        a.d = UserDefStruct::test;
+	a.d = UserDefStruct::test;
     else
-        a.d = UserDefStruct::another;
+	a.d = UserDefStruct::another;
     return true;
 }
 
@@ -72,13 +72,13 @@ bool UserDefBinCrossover(UserDefStruct& a, const UserDefStruct& b)
     std::cout << "UserDefBinCrossover\n";
 
     if (rng.flip(0.5))
-        a.a = b.a;
+	a.a = b.a;
     if (rng.flip(0.5))
-        a.b = b.b;
+	a.b = b.b;
     if (rng.flip(0.5))
-        a.c = b.c;
+	a.c = b.c;
     if (rng.flip(0.5))
-        a.d = b.d;
+	a.d = b.d;
     return true;
 }
 
@@ -86,13 +86,13 @@ bool UserDefQuadCrossover(UserDefStruct& a, UserDefStruct& b)
 {
     std::cout << "UserDefQuadCrossover\n";
     if (rng.flip(0.5))
-        swap(a.a, b.a);
+	swap(a.a, b.a);
     if (rng.flip(0.5))
-        swap(a.b, b.b);
+	swap(a.b, b.b);
     if (rng.flip(0.5))
-        swap(a.c, b.c);
+	swap(a.c, b.c);
     if (rng.flip(0.5))
-        swap(a.d, b.d);
+	swap(a.d, b.d);
 
     return true;
 }

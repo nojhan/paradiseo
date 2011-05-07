@@ -85,7 +85,7 @@ public:
       }
     }
 private:
-  unsigned int objective;		   // The objective we're storing
+  unsigned int objective;                  // The objective we're storing
 
 };
 #endif

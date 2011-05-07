@@ -18,13 +18,13 @@ USAGE:
 Before including this header you must define one or more of define the following macros:
 
 BOOST_LIB_NAME:           Required: A string containing the basename of the library,
-                          for example boost_regex.
+			  for example boost_regex.
 BOOST_LIB_TOOLSET:        Optional: the base name of the toolset.
 BOOST_DYN_LINK:           Optional: when set link to dll rather than static library.
 BOOST_LIB_DIAGNOSTIC:     Optional: when set the header will print out the name
-                          of the library selected (useful for debugging).
+			  of the library selected (useful for debugging).
 BOOST_AUTO_LINK_NOMANGLE: Specifies that we should link to BOOST_LIB_NAME.lib,
-                          rather than a mangled-name version.
+			  rather than a mangled-name version.
 
 These macros will be undef'ed at the end of the header, further this header
 has no include guards - so be sure to include it only once from your library!
@@ -56,13 +56,13 @@ BOOST_LIB_TOOLSET:    The compiler toolset name (vc6, vc7, bcb5 etc).
 BOOST_LIB_THREAD_OPT: "-mt" for multithread builds, otherwise nothing.
 
 BOOST_LIB_RT_OPT:     A suffix that indicates the runtime library used,
-                      contains one or more of the following letters after
-                      a hiphen:
+		      contains one or more of the following letters after
+		      a hiphen:
 
-                      s      static runtime (dynamic if not present).
-                      d      debug build (release if not present).
-                      g      debug/diagnostic runtime (release if not present).
-                      p      STLPort Build.
+		      s      static runtime (dynamic if not present).
+		      d      debug build (release if not present).
+		      g      debug/diagnostic runtime (release if not present).
+		      p      STLPort Build.
 
 BOOST_LIB_VERSION:    The Boost version, in the form x_y, for Boost version x.y.
 
@@ -342,13 +342,3 @@ BOOST_LIB_VERSION:    The Boost version, in the form x_y, for Boost version x.y.
 #if defined(BOOST_AUTO_LINK_NOMANGLE)
 #  undef BOOST_AUTO_LINK_NOMANGLE
 #endif
-
-
-
-
-
-
-
-
-
-

@@ -21,14 +21,13 @@
 #ifndef PICKLE_H
 #define PICKLE_h
 
-#ifndef WIN32
-#include <config.h>
-#endif
+// #ifndef WIN32
+// #include <config.h>
+// #endif
 
 #include <boost/python.hpp>
 #include <sstream>
 /** Implements pickle support for eoPersistent derivatives */
-
 
 template <class T>
 struct T_pickle_suite : boost::python::pickle_suite
@@ -36,25 +35,25 @@ struct T_pickle_suite : boost::python::pickle_suite
     static
     std::string print_to_string(const T& t)
     {
-	std::ostringstream os;
-	t.printOn(os);
-	os << std::ends;
-	return os.str();
+        std::ostringstream os;
+        t.printOn(os);
+        os << std::ends;
+        return os.str();
     }
 
     static
     boost::python::tuple getstate(const T& t)
     {
-	std::string s = print_to_string(t);
-	return boost::python::make_tuple( boost::python::str(s));
+        std::string s = print_to_string(t);
+        return boost::python::make_tuple( boost::python::str(s));
     }
 
     static
     void setstate(T& t, boost::python::tuple pickled)
     {
-	std::string s = boost::python::extract<std::string>(pickled[0]);
-	std::istringstream is(s);
-	t.readFrom(is);
+        std::string s = boost::python::extract<std::string>(pickled[0]);
+        std::istringstream is(s);
+        t.readFrom(is);
     }
 };
 
@@ -65,7 +64,7 @@ template <class Persistent, class X1, class X2, class X3>
 boost::python::class_<Persistent, X1, X2, X3>& pickle(boost::python::class_<Persistent, X1, X2, X3>& c)
 {
     return c.def_pickle(T_pickle_suite<Persistent>())
-	.def("__str__", T_pickle_suite<Persistent>::print_to_string);
+        .def("__str__", T_pickle_suite<Persistent>::print_to_string);
 }
 
 #endif

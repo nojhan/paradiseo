@@ -65,6 +65,8 @@ SET (TEST_LIST
   t-eoExtendedVelocity
   t-eoLogger
   t-eoIQRStat
+  t-eoParallel
+  t-openmp
   #t-eoDualFitness
   t-eoParser
   )
@@ -93,6 +95,21 @@ ELSEIF(ENABLE_CMAKE_TESTING)
     TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo)
     INSTALL(TARGETS ${test} RUNTIME DESTINATION share/eo/test COMPONENT test)
   ENDFOREACH (test)
+
+  SET(RESOURCES
+    boxplot.py
+    boxplot_to_png.py
+    boxplot_to_pdf.py
+    t-openmp.py
+    )
+
+  FOREACH(file ${RESOURCES})
+    EXECUTE_PROCESS(
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      ${CMAKE_CURRENT_SOURCE_DIR}/${file}
+      ${CMAKE_CURRENT_BINARY_DIR}/${file}
+      )
+  ENDFOREACH(file)
 
 ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
 

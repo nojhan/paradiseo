@@ -14,11 +14,11 @@ Mandatory:
 However, if you are using dynamic memory, there are 2 places
 to allocate it: the default constructor (if possible?), or, more in
 the EO spirit, the eoInit object, that you will need to write anyway
-(template file init.tmpl). 
+(template file init.tmpl).
 
 But remember that a COPY CONSTRUCTOR will be used in many places in EO,
 so make sure that the default copy constructor works, or, even better,
-do write your own if in doubt. 
+do write your own if in doubt.
 And of course write the corresponding destructor!
 
 */
@@ -26,7 +26,7 @@ And of course write the corresponding destructor!
 #ifndef _eoMyStruct_h
 #define _eoMyStruct_h
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
 
@@ -35,7 +35,7 @@ And of course write the corresponding destructor!
  * like eoVector for instance, if you handle a vector of something....
 
  * If you create a structure from scratch,
- * the only thing you need to provide are 
+ * the only thing you need to provide are
  *        a default constructor
  *        IO routines printOn and readFrom
  *
@@ -46,11 +46,11 @@ template< class FitT>
 class eoMyStruct: public EO<FitT> {
 public:
   /** Ctor: you MUST provide a default ctor.
-   * though such individuals will generally be processed 
+   * though such individuals will generally be processed
    * by some eoInit object
    */
-  eoMyStruct() 
-  { 
+  eoMyStruct()
+  {
     // START Code of default Ctor of an eoMyStruct object
     // END   Code of default Ctor of an eoMyStruct object
   }
@@ -60,11 +60,11 @@ public:
    * If this is the case, uncomment and fill the following
    */
   /*
-  eoMyStruct(const eoMyStruct &) 
-  {  
+  eoMyStruct(const eoMyStruct &)
+  {
     // START Code of copy Ctor of an eoMyStruct object
     // END   Code of copy Ctor of an eoMyStruct object
-  } 
+  }
   */
 
 
@@ -82,7 +82,7 @@ public:
       // First write the fitness
       EO<FitT>::printOn(os);
       os << ' ';
-    // START Code of default output 
+    // START Code of default output
 
 	/** HINTS
 	 * in EO we systematically write the sizes of things before the things
@@ -92,7 +92,7 @@ public:
     // END   Code of default output
     }
 
-  /** reading... 
+  /** reading...
    * of course, your readFrom must be able to read what printOn writes!!!
    */
     void readFrom(istream& is)
@@ -115,4 +115,3 @@ private:			   // put all data here
 };
 
 #endif
-

@@ -5,9 +5,9 @@
 
 using namespace boost::python;
 
-class StatBaseWrapper : public eoStatBase<PyEO> 
+class StatBaseWrapper : public eoStatBase<PyEO>
 {
-    public:
+public:
     PyObject* self;
     StatBaseWrapper(PyObject* p) : self(p) {}
 
@@ -17,9 +17,9 @@ class StatBaseWrapper : public eoStatBase<PyEO>
     }
 };
 
-class SortedStatBaseWrapper : public eoSortedStatBase<PyEO> 
+class SortedStatBaseWrapper : public eoSortedStatBase<PyEO>
 {
-    public:
+public:
     PyObject* self;
     SortedStatBaseWrapper(PyObject* p) : self(p) {}
 
@@ -31,13 +31,13 @@ class SortedStatBaseWrapper : public eoSortedStatBase<PyEO>
 
 typedef std::vector<const PyEO*> eoPopView;
 
-const PyEO& popview_getitem(const std::vector<const PyEO*>& pop, int it) 
-{ 
+const PyEO& popview_getitem(const std::vector<const PyEO*>& pop, int it)
+{
     unsigned item = unsigned(it);
     if (item > pop.size())
 	throw index_error("too much");
-	    
-    return *pop[item]; 
+
+    return *pop[item];
 }
 
 void statistics()
@@ -52,7 +52,7 @@ void statistics()
 	.def("__getitem__", popview_getitem, return_internal_reference<>() )
 	.def("__len__", &eoPopView::size)
 	;
-    
+
     class_<eoSortedStatBase<PyEO>, SortedStatBaseWrapper, boost::noncopyable>
 	("eoSortedStatBase", init<>())
 	.def("lastCall", &eoSortedStatBase<PyEO>::lastCall)

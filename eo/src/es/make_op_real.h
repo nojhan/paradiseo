@@ -168,12 +168,12 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
       _state.storeFunctor(ptQuad);
       ptCombinedQuadOp = new eoPropCombinedQuadOp<EOT>(*ptQuad, segmentRateParam.value());
 
-	// hypercube crossover
+        // hypercube crossover
       ptQuad = new eoHypercubeCrossover<EOT>(boundsParam.value(), alphaParam.value());
       _state.storeFunctor(ptQuad);
       ptCombinedQuadOp->add(*ptQuad, hypercubeRateParam.value());
 
-	// uniform crossover
+        // uniform crossover
       ptQuad = new eoRealUXover<EOT>();
       _state.storeFunctor(ptQuad);
       ptCombinedQuadOp->add(*ptQuad, uxoverRateParam.value());
@@ -249,7 +249,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
       // create the CombinedMonOp
       ptCombinedMonOp = new eoPropCombinedMonOp<EOT>(*ptMon, uniformMutRateParam.value());
 
-	// mutate exactly 1 component (uniformly) per individual
+        // mutate exactly 1 component (uniformly) per individual
       ptMon = new eoDetUniformMutation<EOT>(boundsParam.value(), epsilonParam.value());
       _state.storeFunctor(ptMon);
       ptCombinedMonOp->add(*ptMon, detMutRateParam.value());
@@ -279,7 +279,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
 
   // now the sequential
   eoSequentialOp<EOT> & op =  _state.storeFunctor(new eoSequentialOp<EOT>);
-  op.add(*cross, 1.0);	 // always crossover (but clone with prob 1-pCross
+  op.add(*cross, 1.0);   // always crossover (but clone with prob 1-pCross
   op.add(*ptCombinedMonOp, pMutParam.value());
 
   // that's it!

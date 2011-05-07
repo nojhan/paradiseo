@@ -16,12 +16,12 @@ main()
 
 // a chromosome randomizer
   eoBinRandom<Chrom> random;
-// the populations: 
-  eoPop<Chrom> pop; 
+// the populations:
+  eoPop<Chrom> pop;
 
    // Evaluation
   eoEvalFuncPtr<Chrom> eval(  binary_value );
- 
+
   for (i = 0; i < POP_SIZE; ++i)
     {
       Chrom chrom(CHROM_SIZE);
@@ -29,12 +29,12 @@ main()
       eval(chrom);
       pop.push_back(chrom);
     }
-  
+
   std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
     std::cout << "\t" << pop[i] << " " << pop[i].fitness() << std::endl;
 
-  
+
   // selection
   eoLottery<Chrom> lottery;
 
@@ -45,7 +45,7 @@ main()
   eoBreeder<Chrom> breeder( propSel );
   propSel.addOp(bitflip, 0.25);
   propSel.addOp(xover, 0.75);
-  
+
   // replacement
   eoInclusion<Chrom> inclusion;
 
@@ -65,11 +65,10 @@ main()
 	std::cout << "exception: " << e.what() << std::endl;;
 	exit(EXIT_FAILURE);
     }
-  
+
   std::cout << "pop" << std::endl;
   for (i = 0; i < pop.size(); ++i)
     std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
-  
+
   return 0;
 }
-

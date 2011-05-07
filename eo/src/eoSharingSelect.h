@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoSharingSelect.h
 // (c) GeNeura Team, 1998, Maarten Keijzer 2000, Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -31,28 +31,28 @@
 #include <eoSelectFromWorth.h>
 #include <eoSharing.h>
 
-/** eoSharingSelect: select an individual by roulette wheel 
- * on its SHARED fitness. It is an eoRouletteWorthSelect, 
+/** eoSharingSelect: select an individual by roulette wheel
+ * on its SHARED fitness. It is an eoRouletteWorthSelect,
  * i.e. a selector using a std::vector of worthes
  * rather than the raw fitness (see eoSelectFromWorth.h)
- * It uses an internal eoSharing object which is 
+ * It uses an internal eoSharing object which is
  * an eoPerf2Worth<EOT, double>
  * @ingroup Selectors
 */
 
-template <class EOT> 
-class eoSharingSelect: public eoRouletteWorthSelect<EOT, double> 
+template <class EOT>
+class eoSharingSelect: public eoRouletteWorthSelect<EOT, double>
 {
 public:
   /** Ctor:
    *  @param _sigma the sigma_share
    *  @param _dist the distance object to use
    */
-  eoSharingSelect(double _sigma, eoDistance<EOT> & _dist): 
+  eoSharingSelect(double _sigma, eoDistance<EOT> & _dist):
     eoRouletteWorthSelect<EOT, double>(sharing), sharing(_sigma, _dist) {}
 
 private :
-  eoSharing<EOT> sharing;	   // derived from eoPerf2Worth
+  eoSharing<EOT> sharing;          // derived from eoPerf2Worth
 };
 /** @example t-eoSharing.cpp
  */

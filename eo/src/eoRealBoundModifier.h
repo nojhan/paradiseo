@@ -56,8 +56,8 @@ public:
 
     void operator() (eoRealBaseVectorBounds & _bnds,unsigned _i)
     {
-	(void)_bnds;
-	(void)_i;
+        (void)_bnds;
+        (void)_i;
     }
 };
 
@@ -70,26 +70,26 @@ public:
  * - t, the current iteration, is given with an eoValueParam<unsigned>
  * - Nt is the stopping criteria <=> the total number of iterations
  * - alpha a coefficient
- * 
+ *
  */
 class eoExpDecayingBoundModifier: public eoRealBoundModifier
 {
 public:
-	
-	/**
-	 * Constructor
-	 * @param _stopCriteria - The total number of iterations
-	 * @param _alpha 
-	 * @param _genCounter - An eoValueParam<unsigned> that gives the current iteration
-	 */
+
+        /**
+         * Constructor
+         * @param _stopCriteria - The total number of iterations
+         * @param _alpha
+         * @param _genCounter - An eoValueParam<unsigned> that gives the current iteration
+         */
     eoExpDecayingBoundModifier (unsigned _stopCriteria,
                                 double _alpha,
                                 eoValueParam<unsigned> & _genCounter):
-            					stopCriteria(_stopCriteria),
-           						alpha(_alpha),
-            					genCounter(_genCounter){}
-            
-            
+                                                stopCriteria(_stopCriteria),
+                                                        alpha(_alpha),
+                                                genCounter(_genCounter){}
+
+
     void operator() (eoRealBaseVectorBounds & _bnds,unsigned _i)
     {
         double newMaxBound=(1-pow((double)genCounter.value()/stopCriteria,alpha))*_bnds.maximum(_i);

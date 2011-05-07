@@ -24,7 +24,7 @@
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 // Include the corresponding file
-#include <ga.h>	         // bitstring representation & operators
+#include <ga.h>		 // bitstring representation & operators
 // define your genotype and fitness types
 typedef eoBit<eoMinimizingFitness> Indi;
 
@@ -126,8 +126,8 @@ void main_function(int argc, char **argv)
    // i.e. in case you need parameters somewhere else, postpone these
     if (parser.userNeedsHelp())
       {
-        parser.printHelp(cout);
-        exit(1);
+	parser.printHelp(cout);
+	exit(1);
       }
     if (statusParam.value() != "")
       {
@@ -393,11 +393,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+	cout << "Exception: " << e.what() << '\n';
     }
 
     return 1;

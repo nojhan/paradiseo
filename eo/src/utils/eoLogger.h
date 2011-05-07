@@ -1,6 +1,6 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-/* 
+/*
 (c) Thales group, 2010
 
     This library is free software; you can redistribute it and/or
@@ -19,7 +19,7 @@
 
 Contact: http://eodev.sourceforge.net
 
-Authors: 
+Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 Caner Candan <caner.candan@thalesgroup.com>
 
@@ -106,12 +106,12 @@ namespace	eo
      * /!\ If you want to add a level dont forget to add it at the implementation of the class eoLogger in the ctor
      */
     enum Levels {quiet = 0,
-		 errors,
-		 warnings,
-		 progress,
-		 logging,
-		 debug,
-		 xdebug};
+                 errors,
+                 warnings,
+                 progress,
+                 logging,
+                 debug,
+                 xdebug};
 
     /**
      * file
@@ -119,8 +119,8 @@ namespace	eo
      */
     struct	file
     {
-	file(const std::string f);
-	const std::string _f;
+        file(const std::string f);
+        const std::string _f;
     };
 
     /**
@@ -129,10 +129,10 @@ namespace	eo
      */
     struct	setlevel
     {
-	setlevel(const std::string v);
-	setlevel(const Levels lvl);
-	const std::string _v;
-	const Levels _lvl;
+        setlevel(const std::string v);
+        setlevel(const Levels lvl);
+        const std::string _v;
+        const Levels _lvl;
     };
 }
 
@@ -142,7 +142,7 @@ namespace	eo
  * Use of a global variable eo::log to easily use the logger like std::cout
  */
 class	eoLogger : public eoObject,
-		   public std::ostream
+                   public std::ostream
 {
 public:
     eoLogger();
@@ -159,7 +159,7 @@ public:
      * if( eo::log.getLevelSelected() >= eo::progress ) {...}
      */
     eo::Levels getLevelSelected() const { return _selectedLevel; }
-    
+
     /*! Returns the current level of the context
      * the one given when you output message with the logger
      */
@@ -176,15 +176,15 @@ private:
     class	outbuf : public std::streambuf
     {
     public:
-	outbuf(const int& fd,
-	       const eo::Levels& contexlvl,
-	       const eo::Levels& selectedlvl);
+        outbuf(const int& fd,
+               const eo::Levels& contexlvl,
+               const eo::Levels& selectedlvl);
     protected:
-	virtual int	overflow(int_type c);
+        virtual int	overflow(int_type c);
     private:
-	const int&		_fd;
-	const eo::Levels&	_contextLevel;
-	const eo::Levels&	_selectedLevel;
+        const int&		_fd;
+        const eo::Levels&	_contextLevel;
+        const eo::Levels&	_selectedLevel;
     };
 
 private:

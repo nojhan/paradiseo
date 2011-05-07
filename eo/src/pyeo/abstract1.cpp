@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -34,13 +34,19 @@ void abstract1()
     /* Abstract Classes: overrideble from python */
     def_abstract_functor<eoEvalFunc<PyEO> >("eoEvalFunc");
     def_abstract_functor<eoInit< PyEO > >("eoInit");
-  
+
     def_abstract_functor<eoTransform<PyEO> >("eoTransform");
-    
-    class_<eoSGATransform<PyEO>, bases<eoTransform<PyEO> > >("eoSGATransform",
-	    init< eoQuadOp<PyEO>&, double,
-		  eoMonOp<PyEO>&, double>())
-	.def("__call__", &eoSGATransform<PyEO>::operator());
-    
+
+    class_<eoSGATransform<PyEO>, bases<eoTransform<PyEO> > >
+        ("eoSGATransform",
+         init<
+         eoQuadOp<PyEO>&,
+         double,
+         eoMonOp<PyEO>&,
+         double
+         >()
+         )
+        .def("__call__", &eoSGATransform<PyEO>::operator());
+
     def_abstract_functor<eoPopEvalFunc<PyEO> >("eoPopEvalFunc");
-}  
+}

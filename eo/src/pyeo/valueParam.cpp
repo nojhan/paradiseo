@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -33,13 +33,12 @@ public:
     PyObject* self;
     ParamWrapper(PyObject* p) : self(p) {}
     ParamWrapper(PyObject* p,
-	std::string a,
-	std::string b,
-	std::string c,
-	char d,
-	bool e) : eoParam(a,b,c,d,e), self(p) {}
+		 std::string a,
+		 std::string b,
+		 std::string c,
+		 char d,
+		 bool e) : eoParam(a,b,c,d,e), self(p) {}
 
-    
     std::string getValue() const
     {
 	return call_method<std::string>(self, "getValueAsString");
@@ -49,7 +48,6 @@ public:
     {
 	call_method<void>(self, "setValueAsString", s);
     }
-	
 };
 
 template <typename T>
@@ -63,7 +61,7 @@ struct ValueParam_pickle_suite : boost::python::pickle_suite
 	str def(_param.defValue());
 	str l(_param.longName());
 	object s(_param.shortName());
-	object r(_param.required());	
+	object r(_param.required());
 	return make_tuple(v,d,def,l,s,r);
     }
     static
@@ -90,31 +88,31 @@ void setv(eoValueParam<T>& v, U val) { v.value() = val; }
 
 template <>
 numeric::array getv< std::vector<double>, numeric::array >
-    (const eoValueParam< std::vector<double> >& param)
+(const eoValueParam< std::vector<double> >& param)
 {
     const std::vector<double>& v = param.value();
     list result;
 
     for (unsigned i =0; i < v.size(); ++i)
 	result.append(v[i]);
-    
+
     return numeric::array(result);
 }
 
 template <>
 void setv< std::vector<double>, numeric::array >
-    (eoValueParam< std::vector<double> >& param, numeric::array val)
+(eoValueParam< std::vector<double> >& param, numeric::array val)
 {
     std::vector<double>& v = param.value();
     v.resize( boost::python::len(val) );
     for (unsigned i = 0; i < v.size(); ++i)
-    {
-	extract<double> x(val[i]);
-	if (!x.check())
-	    throw std::runtime_error("double expected");
-	
-	v[i] = x();
-    }
+	{
+	    extract<double> x(val[i]);
+	    if (!x.check())
+		throw std::runtime_error("double expected");
+
+	    v[i] = x();
+	}
 }
 
 template <>
@@ -126,7 +124,7 @@ tuple getv<std::pair<double, double>, tuple >
 
 template <>
 void setv< std::pair<double, double>, tuple >
-    (eoValueParam< std::pair<double,double> >& p, tuple val)
+(eoValueParam< std::pair<double,double> >& p, tuple val)
 {
     extract<double> first(val[0]);
     extract<double> second(val[1]);
@@ -145,7 +143,7 @@ void define_valueParam(std::string prefix)
 {
     std::string name = "eoValueParam";
     name += prefix;
-    
+
     class_<eoValueParam<T>, bases<eoParam> >(name.c_str(), init<>())
 	.def(init<T, std::string, std::string, char, bool>())
 	.def(init<T, std::string, std::string, char>())
@@ -173,7 +171,7 @@ void valueParam()
 	.def("shortName", &eoParam::shortName)
 	.def("required", &eoParam::required)
 	;
-    
+
     define_valueParam<int, int>("Int");
     define_valueParam<double, double>("Float");
     define_valueParam<std::vector<double>, numeric::array >("Vec");
@@ -191,4 +189,3 @@ void valueParam()
 	.add_property("object", &ValueParam::getObj, &ValueParam::setObj)
 	;
 }
-

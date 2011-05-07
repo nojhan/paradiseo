@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoCheckPoint.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -52,12 +52,12 @@
  */
 
 /** eoCheckPoint is a container class.
-    It contains std::vectors of (pointers to) 
+    It contains std::vectors of (pointers to)
              eoContinue    (modif. MS July 16. 2002)
              eoStats, eoUpdater and eoMonitor
-    it is an eoContinue, so its operator() will be called every generation - 
+    it is an eoContinue, so its operator() will be called every generation -
              and will return the contained-combined-eoContinue result
-    but before that it will call in turn every single 
+    but before that it will call in turn every single
              {statistics, updaters, monitors} that it has been given,
     and after that, if stopping, all lastCall methods of the above.
 */
@@ -66,7 +66,7 @@ class eoCheckPoint : public eoContinue<EOT>
 {
 public :
 
-    eoCheckPoint(eoContinue<EOT>& _cont) 
+    eoCheckPoint(eoContinue<EOT>& _cont)
   {
     continuators.push_back(&_cont);
   }
@@ -118,31 +118,31 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
 
     bool bContinue = true;
     for (i = 0; i < continuators.size(); ++i)
-      if ( !(*continuators[i])(_pop) ) 
-	bContinue = false;
+      if ( !(*continuators[i])(_pop) )
+        bContinue = false;
 
-    if (! bContinue)	   // we're going to stop: lastCall, gentlemen
+    if (! bContinue)       // we're going to stop: lastCall, gentlemen
       {
-	if (!sorted.empty())
-	  {
-	    for (i = 0; i < sorted.size(); ++i)
-	      {
-		sorted[i]->lastCall(sorted_pop);
-	      }
-	  }
-	for (i = 0; i < stats.size(); ++i)
-	  stats[i]->lastCall(_pop);
+        if (!sorted.empty())
+          {
+            for (i = 0; i < sorted.size(); ++i)
+              {
+                sorted[i]->lastCall(sorted_pop);
+              }
+          }
+        for (i = 0; i < stats.size(); ++i)
+          stats[i]->lastCall(_pop);
 
-	for (i = 0; i < updaters.size(); ++i)
-	  updaters[i]->lastCall();
+        for (i = 0; i < updaters.size(); ++i)
+          updaters[i]->lastCall();
 
-	for (i = 0; i < monitors.size(); ++i)
-	  monitors[i]->lastCall();
+        for (i = 0; i < monitors.size(); ++i)
+          monitors[i]->lastCall();
       }
     return bContinue;
 }
 
-/** returns a string with all className() 
+/** returns a string with all className()
  *  of data separated with "\n" (for debugging)
  */
 template <class EOT>

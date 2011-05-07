@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoFitnessScalingSelect.h
 // (c) GeNeura Team, 1998, Maarten Keijzer 2000, Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -32,25 +32,24 @@
 #include <eoSelectFromWorth.h>
 #include <eoLinearFitScaling.h>
 
-/** eoFitnessScalingSelect: select an individual proportional to the 
+/** eoFitnessScalingSelect: select an individual proportional to the
  *  linearly scaled fitness that is computed by the private
  *  eoLinearFitScaling object
  *
  *  @ingroup Selectors
 */
-template <class EOT> 
-class eoFitnessScalingSelect:  public eoRouletteWorthSelect<EOT, double> 
+template <class EOT>
+class eoFitnessScalingSelect:  public eoRouletteWorthSelect<EOT, double>
 {
 public:
   /** Ctor:
    *  @param _p the selective pressure, should be in [1,2] (2 is the default)
    */
-  eoFitnessScalingSelect(double _p = 2.0): 
+  eoFitnessScalingSelect(double _p = 2.0):
     eoRouletteWorthSelect<EOT, double>(scaling), scaling(_p) {}
 
 private :
-  eoLinearFitScaling<EOT> scaling;	   // derived from eoPerf2Worth
+  eoLinearFitScaling<EOT> scaling;         // derived from eoPerf2Worth
 };
 
-#endif 
-
+#endif

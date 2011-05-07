@@ -182,11 +182,11 @@ int main(int argc, char **argv)
 
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+	cout << "Exception: " << e.what() << '\n';
     }
 
     return 1;

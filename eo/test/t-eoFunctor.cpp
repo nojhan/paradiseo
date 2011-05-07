@@ -1,4 +1,3 @@
-
 #include <eoInit.h>
 #include <eoCounter.h>
 
@@ -13,7 +12,7 @@ class Tester : public eoInit<int>
 public :
     void operator()(int& i)
     {
-        i=1;
+	i=1;
     }
 };
 

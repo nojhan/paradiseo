@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_op.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -57,9 +57,9 @@
  * This is why the template is the complete EOT even though only the fitness
  * is actually templatized here: the following only applies to bitstrings
  *
- * Note : the last parameter is an eoInit: if some operator needs some info 
+ * Note : the last parameter is an eoInit: if some operator needs some info
  *        about the gneotypes, the init has it all (e.g. bounds, ...)
- *        Simply do 
+ *        Simply do
  *        EOT myEO;
  *        _init(myEO);
  *        and myEO is then an ACTUAL object
@@ -78,12 +78,12 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     eoValueParam<std::string>& operatorParam =  _parser.createParam(std::string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
 
     if (operatorParam.value() != std::string("SGA"))
-	throw std::runtime_error("Only SGA-like operator available right now\n");
+        throw std::runtime_error("Only SGA-like operator available right now\n");
 
-    // now we read Pcross and Pmut, 
+    // now we read Pcross and Pmut,
     // the relative weights for all crossovers -> proportional choice
     // the relative weights for all mutations -> proportional choice
-    // and create the eoGenOp that is exactly 
+    // and create the eoGenOp that is exactly
     // crossover with pcross + mutation with pmut
 
     eoValueParam<double>& pCrossParam = _parser.createParam(0.6, "pCross", "Probability of Crossover", 'C', "Variation Operators" );
@@ -118,10 +118,10 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     bool bCross = true;
     if (onePointRateParam.value()+twoPointsRateParam.value()+uRateParam.value()==0)
       {
-	std::cerr << "Warning: no crossover" << std::endl;
-	bCross = false;
+        std::cerr << "Warning: no crossover" << std::endl;
+        bCross = false;
       }
-    
+
     // Create the CombinedQuadOp
     eoPropCombinedQuadOp<EOT> *ptCombinedQuadOp = NULL;
     eoQuadOp<EOT> *ptQuad = NULL;
@@ -129,12 +129,12 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     ptQuad = new eo1PtBitXover<EOT>;
     _state.storeFunctor(ptQuad);
     ptCombinedQuadOp = new eoPropCombinedQuadOp<EOT>(*ptQuad, onePointRateParam.value());
-    
+
     // uniform crossover for bitstring
     ptQuad = new eoUBitXover<EOT>;
     _state.storeFunctor(ptQuad);
     ptCombinedQuadOp->add(*ptQuad, uRateParam.value());
-    
+
     // 2-points xover
     ptQuad = new eoNPtsBitXover<EOT>;
     _state.storeFunctor(ptQuad);
@@ -155,7 +155,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     // minimum check
     if ( (bitFlipRateParam.value() < 0) )
       throw std::runtime_error("Invalid bitFlipRate");
-      
+
     eoValueParam<double> & oneBitRateParam = _parser.createParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'd', "Variation Operators" );
     // minimum check
     if ( (oneBitRateParam.value() < 0) )
@@ -165,10 +165,10 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     bool bMut = true;
     if (bitFlipRateParam.value()+oneBitRateParam.value()==0)
       {
-	std::cerr << "Warning: no mutation" << std::endl;
-	bMut = false;
+        std::cerr << "Warning: no mutation" << std::endl;
+        bMut = false;
       }
-    
+
     // Create the CombinedMonOp
     eoPropCombinedMonOp<EOT> *ptCombinedMonOp = NULL;
     eoMonOp<EOT> *ptMon = NULL;
@@ -180,7 +180,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
   ptCombinedMonOp = new eoPropCombinedMonOp<EOT>(*ptMon, bitFlipRateParam.value());
 
   // mutate exactly 1 bit per individual
-  ptMon = new eoDetBitFlip<EOT>; 
+  ptMon = new eoDetBitFlip<EOT>;
   _state.storeFunctor(ptMon);
   ptCombinedMonOp->add(*ptMon, oneBitRateParam.value());
 
@@ -190,7 +190,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
   // to simulate SGA (crossover with proba pCross + mutation with proba pMut
   // we must construct
   //     a sequential combination of
-  //          with proba 1, a proportional combination of 
+  //          with proba 1, a proportional combination of
   //                        a QuadCopy and our crossover
   //          with proba pMut, our mutation
 
@@ -205,7 +205,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
   // now the sequential
   eoSequentialOp<EOT> *op = new eoSequentialOp<EOT>;
   _state.storeFunctor(op);
-  op->add(*cross, 1.0);	 // always crossover (but clone with prob 1-pCross
+  op->add(*cross, 1.0);  // always crossover (but clone with prob 1-pCross
   op->add(*ptCombinedMonOp, pMutParam.value());
 
   // that's it!

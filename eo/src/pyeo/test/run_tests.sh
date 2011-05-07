@@ -5,5 +5,3 @@ do
     python $i > /dev/null
 
 done
-
-

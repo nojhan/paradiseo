@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoRealBounds.h
 // (c) Marc Schoenauer 2001, Maarten Keijzer 2000, GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 #ifndef _eoRealBounds_h
 #define _eoRealBounds_h
 
-#include <stdexcept>		   // std::exceptions!
+#include <stdexcept>               // std::exceptions!
 #include <utils/eoRNG.h>
 
 /**
@@ -55,24 +55,24 @@ Scalar type:
 Basic class is eoRealBounds, a pure virtual.
 
 The following pure virtual methods are to be used in mutations:
-- void foldsInBounds(double &) that folds any value that falls out of 
+- void foldsInBounds(double &) that folds any value that falls out of
   the bounds back into the bounds, by bouncing on the limit (if any)
-- bool isInBounds(double) that simply says whether or not the argument 
+- bool isInBounds(double) that simply says whether or not the argument
   is in the bounds
 - void truncate(double &) that set the argument to the bound value it
 it exceeds it
 
-So mutation can choose 
-- iterate trying until they fall in bounds, 
+So mutation can choose
+- iterate trying until they fall in bounds,
 - only try once and "restd::pair" by using the foldsInBounds method
 - only try once and restd::pair using the truncate method (will create a
   huge bias toward the bound if the soluiton is not far from the bounds)
 
-There is also a uniform() method that generates a uniform value 
+There is also a uniform() method that generates a uniform value
 (if possible, i.e. if bounded) in the interval.
 
-Derived class are 
-eoRealInterval that holds a minimum and maximum value, 
+Derived class are
+eoRealInterval that holds a minimum and maximum value,
 eoRealNoBounds the "unbounded bounds" (-infinity, +infinity)
 eoRealBelowBound the half-bounded interval [min, +infinity)
 eoRealAboveBound the   half-bounded interval (-infinity, max]
@@ -83,7 +83,7 @@ is the unbounded bound
 @ingroup Bounds
 */
 class eoRealBounds : public eoPersistent
-{ 
+{
 public:
   virtual ~eoRealBounds(){}
 
@@ -116,17 +116,17 @@ public:
    */
   virtual void truncate(double &)  const = 0;
 
-  /** get minimum value 
+  /** get minimum value
    *  std::exception if does not exist
-   */  
+   */
   virtual double minimum()  const = 0 ;
   /** get maximum value
    *  std::exception if does not exist
-   */  
+   */
   virtual double maximum()  const = 0 ;
   /** get range
    *  std::exception if unbounded
-   */  
+   */
   virtual double range()  const = 0;
 
   /** random generator of uniform numbers in bounds
@@ -159,16 +159,16 @@ public:
   {
     throw std::logic_error("Trying to get minimum of unbounded eoRealBounds");
   }
-  virtual double maximum() const 
+  virtual double maximum() const
   {
     throw std::logic_error("Trying to get maximum of unbounded eoRealBounds");
   }
-  virtual double range() const 
+  virtual double range() const
   {
     throw std::logic_error("Trying to get range of unbounded eoRealBounds");
   }
 
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
@@ -199,7 +199,7 @@ public:
   }
 
   /** for memory managements - ugly */
-  virtual eoRealBounds * dup() const 
+  virtual eoRealBounds * dup() const
   {
     return new eoRealNoBounds(*this);
   }
@@ -220,18 +220,18 @@ class eoRealInterval : public eoRealBounds
 {
 public :
   virtual ~eoRealInterval(){}
-  
-  /** 
+
+  /**
       Simple bounds = minimum and maximum (allowed)
   */
-  eoRealInterval(double _min=0, double _max=1) : 
-    repMinimum(_min), repMaximum(_max), repRange(_max-_min) 
+  eoRealInterval(double _min=0, double _max=1) :
+    repMinimum(_min), repMaximum(_max), repRange(_max-_min)
   {
     if (repRange<=0)
       throw std::logic_error("Void range in eoRealBounds");
   }
 
-  // accessors  
+  // accessors
   virtual double minimum() const { return repMinimum; }
   virtual double maximum() const { return repMaximum; }
   virtual double range()  const { return repRange; }
@@ -242,13 +242,13 @@ public :
   virtual bool isMinBounded(void)  const {return true;}
   virtual bool isMaxBounded(void)  const {return true;}
 
-  virtual double uniform(eoRng & _rng = eo::rng) const 
+  virtual double uniform(eoRng & _rng = eo::rng) const
   {
     return repMinimum + _rng.uniform(repRange);
-  }  
+  }
 
   // says if a given double is within the bounds
-  virtual bool isInBounds(double _r) const 
+  virtual bool isInBounds(double _r) const
   {
     if (_r < repMinimum)
       return false;
@@ -258,36 +258,36 @@ public :
   }
 
   // folds a value into bounds
-  virtual void foldsInBounds(double &  _r) const 
+  virtual void foldsInBounds(double &  _r) const
   {
     long iloc;
     double dlargloc = 2 * range() ;
 
     if (fabs(_r) > 1.0E9)		// iloc too large!
       {
-	_r = uniform();
-	return;
+        _r = uniform();
+        return;
       }
 
     if ( (_r > maximum()) )
       {
-	iloc = (long) ( (_r-minimum()) / dlargloc ) ;
-	_r -= dlargloc * iloc ;
-	if ( _r > maximum() )
-	  _r = 2*maximum() - _r ;
+        iloc = (long) ( (_r-minimum()) / dlargloc ) ;
+        _r -= dlargloc * iloc ;
+        if ( _r > maximum() )
+          _r = 2*maximum() - _r ;
       }
-    
-    if (_r < minimum()) 
+
+    if (_r < minimum())
       {
-	iloc = (long) ( (maximum()-_r) / dlargloc ) ;
-	_r += dlargloc * iloc ;
-	if (_r < minimum())
-	  _r = 2*minimum() - _r ;
+        iloc = (long) ( (maximum()-_r) / dlargloc ) ;
+        _r += dlargloc * iloc ;
+        if (_r < minimum())
+          _r = 2*minimum() - _r ;
       }
-  }    
+  }
 
   // truncates to the bounds
-  virtual void truncate(double & _r) const 
+  virtual void truncate(double & _r) const
   {
     if (_r < repMinimum)
       _r = repMinimum;
@@ -320,7 +320,7 @@ public :
   }
 
   /** for memory managements - ugly */
-  virtual eoRealBounds * dup() const 
+  virtual eoRealBounds * dup() const
   {
     return new eoRealInterval(*this);
   }
@@ -328,7 +328,7 @@ public :
 private :
   double repMinimum;
   double repMaximum;
-  double repRange;			   // to minimize operations ???
+  double repRange;                         // to minimize operations ???
 };
 
 /**
@@ -339,22 +339,22 @@ private :
 class eoRealBelowBound : public eoRealBounds
 {
 public :
-  virtual ~eoRealBelowBound(){}  
-  /** 
+  virtual ~eoRealBelowBound(){}
+  /**
       Simple bounds = minimum
   */
-  eoRealBelowBound(double _min=0) : 
+  eoRealBelowBound(double _min=0) :
     repMinimum(_min)
   {}
 
-  // accessors  
+  // accessors
   virtual double minimum() const { return repMinimum; }
 
-  virtual double maximum() const 
+  virtual double maximum() const
   {
     throw std::logic_error("Trying to get maximum of eoRealBelowBound");
   }
-  virtual double range() const 
+  virtual double range() const
   {
     throw std::logic_error("Trying to get range of eoRealBelowBound");
   }
@@ -374,7 +374,7 @@ public :
   virtual bool isMaxBounded(void) const  {return false;}
 
   // says if a given double is within the bounds
-  virtual bool isInBounds(double _r) const 
+  virtual bool isInBounds(double _r) const
   {
     if (_r < repMinimum)
       return false;
@@ -382,16 +382,16 @@ public :
   }
 
   // folds a value into bounds
-  virtual void foldsInBounds(double &  _r) const 
+  virtual void foldsInBounds(double &  _r) const
   {
     // easy as a pie: symmetry w.r.t. minimum
-    if (_r < repMinimum)	   // nothing to do otherwise
+    if (_r < repMinimum)           // nothing to do otherwise
       _r = 2*repMinimum - _r;
     return ;
-  }    
+  }
 
   // truncates to the bounds
-  virtual void truncate(double & _r) const 
+  virtual void truncate(double & _r) const
   {
     if (_r < repMinimum)
       _r = repMinimum;
@@ -405,7 +405,7 @@ public :
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
     (void)_is;
 
@@ -422,7 +422,7 @@ public :
   }
 
   /** for memory managements - ugly */
-  virtual eoRealBounds * dup() const 
+  virtual eoRealBounds * dup() const
   {
     return new eoRealBelowBound(*this);
   }
@@ -438,22 +438,22 @@ class eoRealAboveBound : public eoRealBounds
 {
 public :
   virtual ~eoRealAboveBound(){}
-  
-  /** 
+
+  /**
       Simple bounds = minimum
   */
-  eoRealAboveBound(double _max=0) : 
+  eoRealAboveBound(double _max=0) :
     repMaximum(_max)
   {}
 
-  // accessors  
+  // accessors
   virtual double maximum() const  { return repMaximum; }
 
-  virtual double minimum() const 
+  virtual double minimum() const
   {
     throw std::logic_error("Trying to get minimum of eoRealAboveBound");
   }
-  virtual double range() const 
+  virtual double range() const
   {
     throw std::logic_error("Trying to get range of eoRealAboveBound");
   }
@@ -473,7 +473,7 @@ public :
   virtual bool isMaxBounded(void)  const {return true;}
 
   // says if a given double is within the bounds
-  virtual bool isInBounds(double _r) const 
+  virtual bool isInBounds(double _r) const
   {
     if (_r > repMaximum)
       return false;
@@ -481,16 +481,16 @@ public :
   }
 
   // folds a value into bounds
-  virtual void foldsInBounds(double &  _r) const 
+  virtual void foldsInBounds(double &  _r) const
   {
     // easy as a pie: symmetry w.r.t. maximum
-    if (_r > repMaximum)	   // nothing to do otherwise
+    if (_r > repMaximum)           // nothing to do otherwise
       _r = 2*repMaximum - _r;
     return ;
-  }    
+  }
 
   // truncates to the bounds
-  virtual void truncate(double & _r) const 
+  virtual void truncate(double & _r) const
   {
     if (_r > repMaximum)
       _r = repMaximum;
@@ -521,7 +521,7 @@ public :
   }
 
   /** for memory managements - ugly */
-  virtual eoRealBounds * dup() const 
+  virtual eoRealBounds * dup() const
   {
     return new eoRealAboveBound(*this);
   }
@@ -560,13 +560,13 @@ public:
     if (maxBounded) maximum = bb.maximum();
 
       if (minBounded && maxBounded)
-	repBound = new eoRealInterval(minimum, maximum);
+        repBound = new eoRealInterval(minimum, maximum);
       else if (!minBounded && !maxBounded)	// no bound at all
-	repBound = new eoRealNoBounds;
+        repBound = new eoRealNoBounds;
       else if (!minBounded && maxBounded)
-	repBound = new eoRealAboveBound(maximum);
+        repBound = new eoRealAboveBound(maximum);
       else if (minBounded && !maxBounded)
-	repBound = new eoRealBelowBound(minimum);
+        repBound = new eoRealBelowBound(minimum);
   }
 
   eoGeneralRealBounds& operator=(const eoGeneralRealBounds& _b)
@@ -586,13 +586,13 @@ public:
       delete repBound;
     // now reallocate
       if (minBounded && maxBounded)
-	repBound = new eoRealInterval(minimum, maximum);
+        repBound = new eoRealInterval(minimum, maximum);
       else if (!minBounded && !maxBounded)	// no bound at all
-	repBound = new eoRealNoBounds;
+        repBound = new eoRealNoBounds;
       else if (!minBounded && maxBounded)
-	repBound = new eoRealAboveBound(maximum);
+        repBound = new eoRealAboveBound(maximum);
       else if (minBounded && !maxBounded)
-	repBound = new eoRealBelowBound(minimum);
+        repBound = new eoRealBelowBound(minimum);
       return (*this);
   }
 
@@ -633,17 +633,17 @@ public:
    */
   virtual void truncate(double & _x)  const {return repBound->truncate(_x);}
 
-  /** get minimum value 
+  /** get minimum value
    *  std::exception if does not exist
-   */  
+   */
   virtual double minimum()  const {return repBound->minimum();}
   /** get maximum value
    *  std::exception if does not exist
-   */  
+   */
   virtual double maximum() const {return repBound->maximum();}
   /** get range
    *  std::exception if unbounded
-   */  
+   */
   virtual double range()  const {return repBound->range();}
 
   /** random generator of uniform numbers in bounds
@@ -655,9 +655,9 @@ public:
   virtual eoRealBounds * dup() const  {return repBound->dup();}
 
   /** for efficiency, it's better to use the embedded boud directly */
-  const eoRealBounds & theBounds()  const { return *repBound;} 
+  const eoRealBounds & theBounds()  const { return *repBound;}
 
-  /** don't forget the printOn method - 
+  /** don't forget the printOn method -
    * again that of the embedded bound
    */
   virtual void printOn(std::ostream& _os) const
@@ -666,7 +666,7 @@ public:
   }
 
   /** no readFrom ??? Have to check that later */
-  virtual void readFrom(std::istream& _is) 
+  virtual void readFrom(std::istream& _is)
   {
     std::string s;
     _is >> s;

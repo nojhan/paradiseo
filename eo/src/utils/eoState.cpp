@@ -123,24 +123,24 @@ void eoState::load(std::istream& is)
 
                 while (getline(is, str))
                 {
-		  if (is.eof())
-		    throw runtime_error("No section in load file");
-		  if (is_section(str, name))
-		    break;
+                  if (is.eof())
+                    throw runtime_error("No section in load file");
+                  if (is_section(str, name))
+                    break;
 
                     removeComment(str, getCommentString());
                     fullstring += str + "\n";
                 }
-		istringstream the_stream(fullstring);
+                istringstream the_stream(fullstring);
                 object->readFrom(the_stream);
             }
         }
-	else // if (is_section(str, name)) - what if file empty
-	  {
-	    getline(is, str);	// try next line!
-	    //	    if (is.eof())
-	    //	      throw runtime_error("No section in load file");
-	  }
+        else // if (is_section(str, name)) - what if file empty
+          {
+            getline(is, str);	// try next line!
+            //      if (is.eof())
+            //        throw runtime_error("No section in load file");
+          }
     }
 
 }
@@ -172,7 +172,7 @@ string eoState::createObjectName(eoObject* obj)
 {
     if (obj == 0)
     {
-	ostringstream os;
+        ostringstream os;
         os << objectMap.size();
         return os.str();
     }
@@ -184,7 +184,7 @@ string eoState::createObjectName(eoObject* obj)
     unsigned count = 1;
     while (it != objectMap.end())
     {
-	ostringstream os;
+        ostringstream os;
         os << obj->className().c_str() << count++;
         name = os.str();
         it = objectMap.find(name);
@@ -192,4 +192,3 @@ string eoState::createObjectName(eoObject* obj)
 
     return name;
 }
-

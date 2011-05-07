@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoTruncatedSelectMany.h 
+   eoTruncatedSelectMany.h
    (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2002
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -35,7 +35,7 @@
 #include <math.h>
 //-----------------------------------------------------------------------------
 
-/** eoTruncatedSelectMany selects many individuals using eoSelectOne as it's 
+/** eoTruncatedSelectMany selects many individuals using eoSelectOne as it's
     mechanism. Therefore eoSelectMany needs an eoSelectOne in its ctor
 
     It will use an eoHowMnay to determine the number of guys to select,
@@ -43,10 +43,10 @@
 
      And it will only perform selection from the top guys in the population.
 
-     It is NOT a special case of eoSelectMany because it needs to SORT 
+     It is NOT a special case of eoSelectMany because it needs to SORT
      the population to discard the worst guys before doing the selection
 
-     However, the same result can be obtained by embedding an 
+     However, the same result can be obtained by embedding an
      eoTruncatedSelectOne into an eoSelectMany ...
 
      @ingroup Selectors
@@ -56,19 +56,19 @@ class eoTruncatedSelectMany : public eoSelect<EOT>
 {
  public:
      /// Ctor
-     eoTruncatedSelectMany(eoSelectOne<EOT>& _select, 
-		  double  _rateGenitors, double  _rateFertile, 
-		  bool _interpret_as_rateG = true, 
-		  bool _interpret_as_rateF = true)
-         : select(_select), 
-	   howManyGenitors(_rateGenitors, _interpret_as_rateG),
-	   howManyFertile(_rateFertile, _interpret_as_rateF) {}
+     eoTruncatedSelectMany(eoSelectOne<EOT>& _select,
+                  double  _rateGenitors, double  _rateFertile,
+                  bool _interpret_as_rateG = true,
+                  bool _interpret_as_rateF = true)
+         : select(_select),
+           howManyGenitors(_rateGenitors, _interpret_as_rateG),
+           howManyFertile(_rateFertile, _interpret_as_rateF) {}
 
      // Ctor with eoHowManys
-     eoTruncatedSelectMany(eoSelectOne<EOT>& _select, 
-		  eoHowMany _howManyGenitors, eoHowMany _howManyFertile) 
+     eoTruncatedSelectMany(eoSelectOne<EOT>& _select,
+                  eoHowMany _howManyGenitors, eoHowMany _howManyFertile)
          : select(_select), howManyGenitors(_howManyGenitors),
-	   howManyFertile(_howManyFertile) {}
+           howManyFertile(_howManyFertile) {}
 
      /**
      The implementation repeatidly selects an individual
@@ -87,33 +87,33 @@ class eoTruncatedSelectMany : public eoSelect<EOT>
     //revert to standard selection (see eoSelectMany) if no truncation
     if (nbFertile == _source.size())
       {
-	select.setup(_source);
-	
-	for (size_t i = 0; i < _dest.size(); ++i)
-	  _dest[i] = select(_source);
+        select.setup(_source);
+
+        for (size_t i = 0; i < _dest.size(); ++i)
+          _dest[i] = select(_source);
       }
     else
       {
     // at the moment, brute force (rush rush, no good)
     // what we would need otherwise is a std::vector<EOT &> class
     // and selectors that act on such a thing
-	eoPop<EOT> tmpPop = _source; // hum hum, could be a pain in the ass
+        eoPop<EOT> tmpPop = _source; // hum hum, could be a pain in the ass
 
-	tmpPop.sort();		   // maybe we could only do partial sort?
-	tmpPop.resize(nbFertile);  // only the best guys here now
-	tmpPop.shuffle();	   // as some selectors are order-sensitive
+        tmpPop.sort();             // maybe we could only do partial sort?
+        tmpPop.resize(nbFertile);  // only the best guys here now
+        tmpPop.shuffle();          // as some selectors are order-sensitive
 
-	select.setup(tmpPop);
-	
-	for (size_t i = 0; i < _dest.size(); ++i)
-	  _dest[i] = select(tmpPop);
+        select.setup(tmpPop);
+
+        for (size_t i = 0; i < _dest.size(); ++i)
+          _dest[i] = select(tmpPop);
       }
   }
-  
+
 private :
-  eoSelectOne<EOT>& select;	   // selector for one guy
-  eoHowMany howManyGenitors;	   // number of guys to select
-  eoHowMany howManyFertile;	   // number of fertile guys
+  eoSelectOne<EOT>& select;        // selector for one guy
+  eoHowMany howManyGenitors;       // number of guys to select
+  eoHowMany howManyFertile;        // number of fertile guys
 };
 
 #endif

@@ -95,7 +95,7 @@ bool testDirRes(std::string _dirName, bool _erase=true)
       return true;
     }
   //  else
-  if (_erase)			   // OK to erase
+  if (_erase)                      // OK to erase
     {
       s = string("/bin/rm ")+ _dirName + "/*";
       int res = system(s.c_str());

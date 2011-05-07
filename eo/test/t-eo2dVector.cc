@@ -37,14 +37,14 @@ main()
     C c1( 5,6,1 );
     cout << "Default constructor with values: " << endl
 	 << c1 << endl;
-    
+
   }
   {
     eoUniform<T> aleat( 1,10 );
     C c1( 5,6, aleat );
     cout << "Random constructor: " << endl
 	 << c1 << endl;
-    
+
   }
   {
     C c1( 3,4,1 ), c2( c1 );
@@ -111,12 +111,12 @@ main()
     cout << "Number of Columns: " << endl
 	 << c1.numOfCols() << endl;
   }
-  
+
   {
     cout << "Class Name: " << endl
 	 << c1.className() << endl;
   }
-  
+
 
   cout << "-----------------------------------------------------" << endl
        << "Catching exceptions: " << endl

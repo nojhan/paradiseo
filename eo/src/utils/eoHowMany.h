@@ -123,7 +123,7 @@ public:
     if (count == 0)
       {
         unsigned int res = static_cast<unsigned int>( std::ceil( rate * _size ) );
-        
+
         if( res == 0 ) {
             eo::log << eo::warnings << "Call to a eoHowMany instance returns 0 (rate=" << rate << ", size=" << _size << ")" << std::endl;
         }

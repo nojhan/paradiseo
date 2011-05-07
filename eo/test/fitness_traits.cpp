@@ -101,7 +101,7 @@ struct fitness_traits< pair<Performance, Worth> >
 
 /* end fitness_traits.h */
 
-/* EO.h 
+/* EO.h
 
 The Fitness template argument is there for backward compatibility reasons
 
@@ -236,7 +236,7 @@ public :
     {
       if (!fitness_traits::needs_mapping)
       {
-        throw runtime_error("eoPop: no scaling needed, yet a scaling function is defined");
+	throw runtime_error("eoPop: no scaling needed, yet a scaling function is defined");
       }
 
       (*p2w)(*this);
@@ -429,5 +429,3 @@ int main()
     std::cout << e.what() << std::endl;
   }
 }
-
-

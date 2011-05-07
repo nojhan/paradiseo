@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEDA.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -30,8 +30,8 @@
 
 #include <eoDistribution.h>
 
-/** The abstract class for estimation of disribution algorithms. 
- * This design evolve a probability distribution 
+/** The abstract class for estimation of disribution algorithms.
+ * This design evolve a probability distribution
  *  on the spaces of populations rather than a population
  *
  * It IS NOT an eoAlgo, as it evolves a distribution, not a population.
@@ -44,4 +44,3 @@ template<class EOT> class eoEDA: public eoUF<eoDistribution<EOT>&, void>
 };
 
 #endif
-

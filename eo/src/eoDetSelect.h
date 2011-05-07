@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoDetSelect.h 
+   eoDetSelect.h
    (c) Marc Schoenauer, Maarten Keijzer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -48,7 +48,7 @@ class eoDetSelect : public eoSelect<EOT>
 
      /**
      @param _source the source population
-     @param _dest  the resulting population (size of this population is 
+     @param _dest  the resulting population (size of this population is
          given by the HowMany data
          It empties the destination and adds the selection into it)
      */
@@ -58,32 +58,32 @@ class eoDetSelect : public eoSelect<EOT>
     size_t target = howMany(pSize);
 
     if ( target == 0 )
-	{
-	    eo::log << eo::warnings << "Call to a eoHowMany instance returns 0 (target=" << target << ") it will be replaced by 1 to continue." << std::endl;
-	    target = 1;
-	}
+        {
+            eo::log << eo::warnings << "Call to a eoHowMany instance returns 0 (target=" << target << ") it will be replaced by 1 to continue." << std::endl;
+            target = 1;
+        }
 
     _dest.resize(target);
 
     unsigned remain = target % pSize;
     unsigned entireCopy = target / pSize;
     typename eoPop<EOT>::iterator it = _dest.begin();
-    
+
     if (target >= pSize)
       {
-	for (unsigned i=0; i<entireCopy; i++)
-	  {
-	      std::copy(_source.begin(), _source.end(), it);
-	    it += pSize;
-	  }
+        for (unsigned i=0; i<entireCopy; i++)
+          {
+              std::copy(_source.begin(), _source.end(), it);
+            it += pSize;
+          }
       }
     // the last ones
-    if (remain) 
+    if (remain)
       {
-	  std::copy(_source.begin(), _source.begin()+remain, it);
+          std::copy(_source.begin(), _source.begin()+remain, it);
       }
   }
-  
+
 private :
   eoHowMany howMany;
 };

@@ -33,40 +33,40 @@
 // class eoSGAGenOp
 ///////////////////////////////////////////////////////////////////////////////
 
-/** 
- * eoSGAGenOp (for Simple GA) mimicks the usual crossover with proba pCross + 
+/**
+ * eoSGAGenOp (for Simple GA) mimicks the usual crossover with proba pCross +
  * mutation with proba pMut inside an eoGeneralOp
- * It does it exactly as class eoSGATransform, i.e. only accepts 
+ * It does it exactly as class eoSGATransform, i.e. only accepts
  *    quadratic crossover and unary mutation
  * It was introduced for didactic reasons, but seems to be popular :-)
  *
  * @ingroup Combination
  */
- template<class EOT> 
+ template<class EOT>
 class eoSGAGenOp : public eoGenOp<EOT>
 {
  public:
-    
+
   /** Ctor from crossover (with proba) and mutation (with proba)
    * Builds the sequential op that first applies a proportional choice
    * between the crossover and nothing (cloning), then the mutation
    */
-  eoSGAGenOp(eoQuadOp<EOT>& _cross, double _pCross, 
-		 eoMonOp<EOT>& _mut, double _pMut)
+  eoSGAGenOp(eoQuadOp<EOT>& _cross, double _pCross,
+                 eoMonOp<EOT>& _mut, double _pMut)
     : cross(_cross),
       pCross(_pCross),
-      mut(_mut), 
-      pMut(_pMut) 
+      mut(_mut),
+      pMut(_pMut)
   {
     // the crossover - with probability pCross
     propOp.add(cross, pCross); // crossover, with proba pcross
     propOp.add(quadClone, 1-pCross); // nothing, with proba 1-pcross
-    
+
     // now the sequential
-    op.add(propOp, 1.0);	 // always do combined crossover
+    op.add(propOp, 1.0);         // always do combined crossover
     op.add(mut, pMut);     // then mutation, with proba pmut
   }
-  
+
   /** do the job: delegate to op */
   virtual void apply(eoPopulator<EOT>& _pop)
   {

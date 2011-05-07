@@ -1,5 +1,14 @@
+############################################################################
+##########
+### 1) If you want to set your own variables in install.cmake and avoid the cmd line
 ######################################################################################
-### 1) Set the application properties
+
+INCLUDE(install.cmake OPTIONAL)
+
+######################################################################################
+
+######################################################################################
+### 2) Project properties
 ######################################################################################
 
 # Checks cmake version compatibility
@@ -16,14 +25,11 @@ SET(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 
 
 ######################################################################################
-### 2) Include useful features
+### 3) Include useful features
 ######################################################################################
 
 INCLUDE(FindDoxygen)
 INCLUDE(FindPkgConfig)
-
-PKG_CHECK_MODULES(EO eo REQUIRED)
-PKG_CHECK_MODULES(MO mo REQUIRED)
 
 FIND_PACKAGE(Boost 1.33.0)
 
@@ -34,11 +40,16 @@ INCLUDE_DIRECTORIES(
   #  /Dev/ometah-0.3/common
   )
 
+LINK_DIRECTORIES(
+  ${EO_LIBRARY_DIRS}
+  ${MO_LIBRARY_DIRS}
+  )
+
 ######################################################################################
 
 
 ######################################################################################
-### 3) Include header files path
+### 4) Include header files path
 ######################################################################################
 
 INCLUDE_DIRECTORIES(
@@ -49,7 +60,7 @@ INCLUDE_DIRECTORIES(
 
 
 ######################################################################################
-### 4) Set compiler definitions
+### 5) Set compiler definitions
 ######################################################################################
 
 IF(UNIX)
@@ -63,7 +74,7 @@ ENDIF()
 
 
 ######################################################################################
-### 5) Prepare some variables for CMAKE usage
+### 6) Prepare some variables for CMAKE usage
 ######################################################################################
 
 SET(SAMPLE_SRCS)
@@ -72,7 +83,7 @@ SET(SAMPLE_SRCS)
 
 
 ######################################################################################
-### 6) Now where we go ?
+### 7) Now where we go ?
 ######################################################################################
 
 ADD_SUBDIRECTORY(src)
@@ -85,7 +96,7 @@ ADD_SUBDIRECTORY(doc)
 
 
 ######################################################################################
-### 7) Create executable, link libraries and prepare target
+### 8) Create executable, link libraries and prepare target
 ######################################################################################
 
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
@@ -99,7 +110,7 @@ INSTALL(TARGETS edo ARCHIVE DESTINATION lib COMPONENT libraries)
 
 
 ######################################################################################
-### 8) Install pkg-config config file for EO
+### 9) Install pkg-config config file for EO
 ######################################################################################
 
 INSTALL(FILES edo.pc DESTINATION lib/pkgconfig COMPONENT headers)
@@ -108,7 +119,7 @@ INSTALL(FILES edo.pc DESTINATION lib/pkgconfig COMPONENT headers)
 
 
 ######################################################################################
-### 9) Include packaging
+### 10) Include packaging
 ######################################################################################
 
 INCLUDE(Packaging.cmake)

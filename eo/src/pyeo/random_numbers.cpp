@@ -61,52 +61,52 @@ struct RNG_pickle_suite : boost::python::pickle_suite
     static
     boost::python::tuple getstate(const eoRng& _rng)
     {
-	return boost::python::make_tuple(str(rng_to_string(_rng)));
+        return boost::python::make_tuple(str(rng_to_string(_rng)));
     }
     static
     void setstate(eoRng& _rng, boost::python::tuple pickled)
     {
-	std::string state = extract<std::string>(pickled[0]);
-	rng_from_string(_rng, state);
+        std::string state = extract<std::string>(pickled[0]);
+        rng_from_string(_rng, state);
     }
 };
 
 int spin(eoRng& _rng, numeric::array values, double total)
 {
-   if (total == 0.0)
-   {
-	unsigned sz = len(values);
-	for (unsigned i = 0; i < sz; ++i)
-	{
-	    total += extract<double>(values[i]); //extract?
-	}
-   }
+    if (total == 0.0)
+        {
+            unsigned sz = len(values);
+            for (unsigned i = 0; i < sz; ++i)
+                {
+                    total += extract<double>(values[i]); //extract?
+                }
+        }
 
-   double chance = _rng.uniform() * total;
+    double chance = _rng.uniform() * total;
 
-   int i = 0;
-   while (chance >= 0.0)
-       chance -= extract<double>(values[i++]);
+    int i = 0;
+    while (chance >= 0.0)
+        chance -= extract<double>(values[i++]);
 
-   return --i;
+    return --i;
 }
 
 void random_numbers()
 {
     class_<eoRng, boost::noncopyable>("eoRng", init<uint32_t>())
-	.def("flip", &eoRng::flip)
-	.def("random", &eoRng::random)
-	.def("rand", &eoRng::rand)
-	.def("rand_max", &eoRng::rand_max)
-	.def("reseed", &eoRng::reseed)
-	.def("uniform", &eoRng::uniform)
-	.def("normal", normal)
-	.def("negexp", &eoRng::negexp)
-	.def("to_string", rng_to_string)
-	.def("from_string", rng_from_string)
-	.def("roulette_wheel", spin)
-	.def_pickle(RNG_pickle_suite())
-	;
+        .def("flip", &eoRng::flip)
+        .def("random", &eoRng::random)
+        .def("rand", &eoRng::rand)
+        .def("rand_max", &eoRng::rand_max)
+        .def("reseed", &eoRng::reseed)
+        // .def("uniform", &eoRng::uniform)
+        .def("normal", normal)
+        .def("negexp", &eoRng::negexp)
+        .def("to_string", rng_to_string)
+        .def("from_string", rng_from_string)
+        .def("roulette_wheel", spin)
+        .def_pickle(RNG_pickle_suite())
+        ;
 
     def("rng", get_rng, return_value_policy<reference_existing_object>());
 }

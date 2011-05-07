@@ -1,4 +1,4 @@
-/* 
+/*
 (c) Thales group, 2010
 
     This library is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 Contact: http://eodev.sourceforge.net
 
-Authors: 
+Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 */
 

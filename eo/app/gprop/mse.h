@@ -28,7 +28,7 @@ namespace mse
   //---------------------------------------------------------------------------
   // error
   //---------------------------------------------------------------------------
-  
+
   real error(const mlp::net& net, const set& ts)
   {
     real error_ = 0.0;
@@ -36,7 +36,7 @@ namespace mse
     for (set::const_iterator s = ts.begin(); s != ts.end(); ++s)
       {
 	vector out = net(s->input);
-	
+
 	for (unsigned i = 0; i < out.size(); ++i)
 	  {
 	    real diff = s->output[i] - out[i];
@@ -49,26 +49,26 @@ namespace mse
   //-------------------------------------------------------------------------
   // mse
   //-------------------------------------------------------------------------
-  
+
   class net: public qp::net
   {
   public:
     net(mlp::net& n): qp::net(n) {}
-    
+
     real error(const set& ts)
     {
       real error_ = 0;
-      
+
       for (set::const_iterator s = ts.begin(); s != ts.end(); ++s)
 	{
 	  forward(s->input);
 	  error_ += backward(s->input, s->output);
 	}
       error_ /= ts.size();
-	
+
       return error_;
     }
-      
+
   private:
     real backward(const vector& input, const vector& output)
     {
@@ -89,22 +89,22 @@ namespace mse
 	  else                                                    // multilayer
 	    for (unsigned k = 0; k < n.dxo.size(); ++k)
 	      n.dxo[k] += n.delta * (*backward_layer)[k].out;
-	  
+
 	  error_ += diff * diff;
 	}
-      
+
       // hidden layers
       while (++current_layer != rend())
 	{
 	  reverse_iterator forward_layer  = current_layer - 1;
 	  reverse_iterator backward_layer = current_layer + 1;
-	  
+
 	  for (unsigned j = 0; j < current_layer->size(); ++j)
 	    {
-	      
+
 	      neuron& n = (*current_layer)[j];
 	      real sum = 0;
-	      
+
 	      for (unsigned k = 0; k < forward_layer->size(); ++k)
 		{
 		  neuron& nf = (*forward_layer)[k];
@@ -113,8 +113,8 @@ namespace mse
 
 	      n.delta = n.out * (1.0 - n.out) * sum;
 	      n.ndelta += n.delta;
-	      
-	      
+
+
 	      if (backward_layer == rend())              // first hidden layer
 		n.dxo += n.delta * input;
 	      else                                     // rest of hidden layers
@@ -122,19 +122,19 @@ namespace mse
 		  n.dxo[k] += n.delta * (*backward_layer)[k].out;
 	    }
 	}
-    
+
       return error_;
     }
   };
 
   //---------------------------------------------------------------------------
-  
+
 } // namespace mse
 
 //-----------------------------------------------------------------------------
 
 #endif // mse_h
 
-// Local Variables: 
-// mode:C++ 
+// Local Variables:
+// mode:C++
 // End:

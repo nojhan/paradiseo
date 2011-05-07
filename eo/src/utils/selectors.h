@@ -146,14 +146,14 @@ It roulette_wheel(It _begin, It _end, double total, eoRng& _gen = rng)
 
     double roulette = _gen.uniform(total);
 
-    if (roulette == 0.0)	   // covers the case where total==0.0
+    if (roulette == 0.0)           // covers the case where total==0.0
       return _begin + _gen.random(_end - _begin); // uniform choice
 
     It i = _begin;
 
     while (roulette > 0.0)
     {
-	    roulette -= static_cast<double>(*(i++));
+            roulette -= static_cast<double>(*(i++));
     }
 
     return --i;
@@ -164,14 +164,14 @@ const EOT& roulette_wheel(const eoPop<EOT>& _pop, double total, eoRng& _gen = rn
 {
     double roulette = _gen.uniform(total);
 
-    if (roulette == 0.0)	   // covers the case where total==0.0
+    if (roulette == 0.0)           // covers the case where total==0.0
       return _pop[_gen.random(_pop.size())]; // uniform choice
 
     typename eoPop<EOT>::const_iterator i = _pop.begin();
 
     while (roulette > 0.0)
     {
-	    roulette -= static_cast<double>((i++)->fitness());
+            roulette -= static_cast<double>((i++)->fitness());
     }
 
     return *--i;
@@ -182,14 +182,14 @@ EOT& roulette_wheel(eoPop<EOT>& _pop, double total, eoRng& _gen = rng)
 {
     float roulette = _gen.uniform(total);
 
-    if (roulette == 0.0)	   // covers the case where total==0.0
+    if (roulette == 0.0)           // covers the case where total==0.0
       return _pop[_gen.random(_pop.size())]; // uniform choice
 
     typename eoPop<EOT>::iterator i = _pop.begin();
 
     while (roulette > 0.0)
     {
-	    roulette -= static_cast<double>((i++)->fitness());
+            roulette -= static_cast<double>((i++)->fitness());
     }
 
     return *--i;
@@ -205,7 +205,7 @@ It deterministic_tournament(It _begin, It _end, unsigned _t_size, eoRng& _gen = 
         It competitor = _begin + _gen.random(_end - _begin);
 
         if (*best < *competitor)
-	{
+        {
             best = competitor;
         }
     }

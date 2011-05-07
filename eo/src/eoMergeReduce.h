@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoMergeReduce.h 
+   eoMergeReduce.h
    (c) Maarten Keijzer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -34,7 +34,7 @@
 #include <eoReplacement.h>
 #include <utils/eoHowMany.h>
 //-----------------------------------------------------------------------------
-/** 
+/**
 Replacement strategies that combine en eoMerge and an eoReduce.
 
 @class eoMergeReduce, the base (pure abstract) class
@@ -43,7 +43,7 @@ Replacement strategies that combine en eoMerge and an eoReduce.
 */
 
 /**
-eoMergeReduce: abstract replacement strategy that is just an application of 
+eoMergeReduce: abstract replacement strategy that is just an application of
 an embedded merge, followed by an embedded reduce
 @ingroup Replacors
 */
@@ -59,7 +59,7 @@ class eoMergeReduce : public eoReplacement<EOT>
         {
             merge(_parents, _offspring); // parents untouched, result in offspring
             reduce(_offspring, _parents.size());
-	    _parents.swap(_offspring);
+            _parents.swap(_offspring);
         }
 
     private :
@@ -98,7 +98,7 @@ class eoCommaReplacement : public eoMergeReduce<EOT>
 };
 
 /**
-EP type of replacement strategy: first add parents to population, 
+EP type of replacement strategy: first add parents to population,
    then truncate using EP tournament
 @ingroup Replacors
 */

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_checkpoint_ga.cpp
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 /** This file contains all ***INSTANCIATED DEFINITIONS*** of operators
  * of the library for ***BISTRING*** evolution inside EO.
@@ -35,11 +35,11 @@
  * Compiling this file allows one to generate part of the library (i.e. object
  * files that you just need to link with your own main and fitness code).
  *
- * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
+ * The corresponding ***INSTANCIATED DECLARATIONS*** are contained
  *       in make_checkpoint_ga.h
  * while the TEMPLATIZED code is define in make_checkpoint.h in the do dir
  *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
+ * Unlike most EO .h files, it does not (and should not) contain any code,
  * just declarations
  */
 
@@ -48,7 +48,7 @@
 // the instanciating EOType
 #include <ga/eoBit.h>
 
-/// The following function merely call the templatized do_* functions 
+/// The following function merely call the templatized do_* functions
 
 // checkpoint
 /////////////
@@ -56,9 +56,7 @@ eoCheckPoint<eoBit<double> >& make_checkpoint(eoParser& _parser, eoState& _state
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
-eoCheckPoint<eoBit<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoBit<eoMinimizingFitness> >& _eval, eoContinue<eoBit<eoMinimizingFitness> >& _continue) 
+eoCheckPoint<eoBit<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoBit<eoMinimizingFitness> >& _eval, eoContinue<eoBit<eoMinimizingFitness> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
-
-

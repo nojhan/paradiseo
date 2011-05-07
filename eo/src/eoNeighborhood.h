@@ -47,22 +47,11 @@ public:
     virtual POT & best()=0;
 
     virtual void best(POT _particle)=0;
-    
+
     /// Virtual dtor
-  	virtual ~eoNeighborhood() {};
+        virtual ~eoNeighborhood() {};
 
 };
 
 
 #endif /* EONEIGHBORHOOD_H_ */
-
-
-
-
-
-
-
-
-
-
-

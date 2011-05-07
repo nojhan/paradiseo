@@ -61,35 +61,35 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 
     void calculate_worths(const eoPop<EOT>& _pop)
     {
-	// resize the worths beforehand
-	value().resize(_pop.size());
+        // resize the worths beforehand
+        value().resize(_pop.size());
 
-	typedef typename EOT::Fitness::fitness_traits traits;
+        typedef typename EOT::Fitness::fitness_traits traits;
 
-	switch (traits::nObjectives())
-	{
-	    case 1:
-		{
-		    one_objective(_pop);
-		    return;
-		}
-	    case 2:
-		{
-		    two_objectives(_pop);
-		    return;
-		}
-	    default :
-		{
-		    m_objectives(_pop);
-		}
-	}
+        switch (traits::nObjectives())
+        {
+            case 1:
+                {
+                    one_objective(_pop);
+                    return;
+                }
+            case 2:
+                {
+                    two_objectives(_pop);
+                    return;
+                }
+            default :
+                {
+                    m_objectives(_pop);
+                }
+        }
     }
 
 private :
 
     /** used in fast nondominated sorting
-	DummyEO is just a storage place for fitnesses and
-	to store the original index
+        DummyEO is just a storage place for fitnesses and
+        to store the original index
     */
     class DummyEO : public EO<typename EOT::Fitness>
     {
@@ -98,8 +98,8 @@ private :
 
     void one_objective(const eoPop<EOT>& _pop)
     {
-	unsigned i;
-	std::vector<DummyEO> tmp_pop;
+        unsigned i;
+        std::vector<DummyEO> tmp_pop;
         tmp_pop.resize(_pop.size());
 
         // copy pop to dummy population (only need the fitnesses)
@@ -109,14 +109,14 @@ private :
           tmp_pop[i].index = i;
         }
 
-	std::sort(tmp_pop.begin(), tmp_pop.end(), std::greater<DummyEO>());
+        std::sort(tmp_pop.begin(), tmp_pop.end(), std::greater<DummyEO>());
 
         for (i = 0; i < _pop.size(); ++i)
         {
           value()[tmp_pop[i].index] = _pop.size() - i; // set rank
         }
 
-	// no point in calculcating niche penalty, as every distinct fitness value has a distinct rank
+        // no point in calculcating niche penalty, as every distinct fitness value has a distinct rank
     }
 
     /**
@@ -139,134 +139,134 @@ private :
 
     void two_objectives(const eoPop<EOT>& _pop)
     {
-		unsigned i;
-	typedef typename EOT::Fitness::fitness_traits traits;
-	assert(traits::nObjectives() == 2);
+                unsigned i;
+        typedef typename EOT::Fitness::fitness_traits traits;
+        assert(traits::nObjectives() == 2);
 
-	std::vector<unsigned> sort1(_pop.size()); // index into population sorted on first objective
+        std::vector<unsigned> sort1(_pop.size()); // index into population sorted on first objective
 
-	for (i = 0; i < _pop.size(); ++i)
-	{
-	    sort1[i] = i;
-	}
+        for (i = 0; i < _pop.size(); ++i)
+        {
+            sort1[i] = i;
+        }
 
-	std::sort(sort1.begin(), sort1.end(), Sorter(_pop));
+        std::sort(sort1.begin(), sort1.end(), Sorter(_pop));
 
-	// Ok, now the meat of the algorithm
+        // Ok, now the meat of the algorithm
 
-	unsigned last_front = 0;
+        unsigned last_front = 0;
 
-	double max1 = -1e+20;
-	for (i = 0; i < _pop.size(); ++i)
-	{
-	    max1 = std::max(max1, _pop[i].fitness()[1]);
-	}
+        double max1 = -1e+20;
+        for (i = 0; i < _pop.size(); ++i)
+        {
+            max1 = std::max(max1, _pop[i].fitness()[1]);
+        }
 
-	max1 = max1 + 1.0; // add a bit to it so that it is a real upperbound
+        max1 = max1 + 1.0; // add a bit to it so that it is a real upperbound
 
-	unsigned prev_front = 0;
-	std::vector<double> d;
-	d.resize(_pop.size(), max1); // initialize with the value max1 everywhere
+        unsigned prev_front = 0;
+        std::vector<double> d;
+        d.resize(_pop.size(), max1); // initialize with the value max1 everywhere
 
-	std::vector<std::vector<unsigned> > fronts(_pop.size()); // to store indices into the front
+        std::vector<std::vector<unsigned> > fronts(_pop.size()); // to store indices into the front
 
-	for (i = 0; i < _pop.size(); ++i)
-	{
-	    unsigned index = sort1[i];
+        for (i = 0; i < _pop.size(); ++i)
+        {
+            unsigned index = sort1[i];
 
-	    // check for clones and delete them
-	    if (i > 0)
-	    {
-		unsigned prev = sort1[i-1];
-		if ( _pop[index].fitness() == _pop[prev].fitness())
-		{ // it's a clone, give it the worst rank!
+            // check for clones and delete them
+            if (i > 0)
+            {
+                unsigned prev = sort1[i-1];
+                if ( _pop[index].fitness() == _pop[prev].fitness())
+                { // it's a clone, give it the worst rank!
 
-		    if (nasty_declone_flag_that_only_is_implemented_for_two_objectives)
-			//declone
-			fronts.back().push_back(index);
-		    else // assign it the rank of the previous
-		    	fronts[prev_front].push_back(index);
-		    continue;
-		}
-	    }
+                    if (nasty_declone_flag_that_only_is_implemented_for_two_objectives)
+                        //declone
+                        fronts.back().push_back(index);
+                    else // assign it the rank of the previous
+                        fronts[prev_front].push_back(index);
+                    continue;
+                }
+            }
 
-	    double value2 = _pop[index].fitness()[1];
+            double value2 = _pop[index].fitness()[1];
 
-	    if (traits::maximizing(1))
-		value2 = max1 - value2;
+            if (traits::maximizing(1))
+                value2 = max1 - value2;
 
-	    // perform binary search using std::upper_bound, a log n operation for each member
-	    std::vector<double>::iterator it =
-		std::upper_bound(d.begin(), d.begin() + last_front, value2);
+            // perform binary search using std::upper_bound, a log n operation for each member
+            std::vector<double>::iterator it =
+                std::upper_bound(d.begin(), d.begin() + last_front, value2);
 
-	    unsigned front = unsigned(it - d.begin());
-	    if (front == last_front) ++last_front;
+            unsigned front = unsigned(it - d.begin());
+            if (front == last_front) ++last_front;
 
-	    assert(it != d.end());
+            assert(it != d.end());
 
-	    *it = value2; //update d
-	    fronts[front].push_back(index); // add it to the front
+            *it = value2; //update d
+            fronts[front].push_back(index); // add it to the front
 
-	    prev_front = front;
-	}
+            prev_front = front;
+        }
 
-	// ok, and finally the niche penalty
+        // ok, and finally the niche penalty
 
-	for (i = 0; i < fronts.size(); ++i)
-	{
-	    if (fronts[i].size() == 0) continue;
+        for (i = 0; i < fronts.size(); ++i)
+        {
+            if (fronts[i].size() == 0) continue;
 
-	    // Now we have the indices to the current front in current_front, do the niching
-	    std::vector<double> niche_count = niche_penalty(fronts[i], _pop);
+            // Now we have the indices to the current front in current_front, do the niching
+            std::vector<double> niche_count = niche_penalty(fronts[i], _pop);
 
-	    // Check whether the derived class was nice
-	    if (niche_count.size() != fronts[i].size())
-	    {
-	      throw std::logic_error("eoNDSorting: niche and front should have the same size");
-	    }
+            // Check whether the derived class was nice
+            if (niche_count.size() != fronts[i].size())
+            {
+              throw std::logic_error("eoNDSorting: niche and front should have the same size");
+            }
 
-	    double max_niche = *std::max_element(niche_count.begin(), niche_count.end());
+            double max_niche = *std::max_element(niche_count.begin(), niche_count.end());
 
-	    for (unsigned j = 0; j < fronts[i].size(); ++j)
-	    {
-	      value()[fronts[i][j]] = i + niche_count[j] / (max_niche + 1.); // divide by max_niche + 1 to ensure that this front does not overlap with the next
-	    }
+            for (unsigned j = 0; j < fronts[i].size(); ++j)
+            {
+              value()[fronts[i][j]] = i + niche_count[j] / (max_niche + 1.); // divide by max_niche + 1 to ensure that this front does not overlap with the next
+            }
 
-	}
+        }
 
-	// invert ranks to obtain a 'bigger is better' score
-	rank_to_worth();
+        // invert ranks to obtain a 'bigger is better' score
+        rank_to_worth();
     }
 
     class Sorter
     {
-	public:
-	    Sorter(const eoPop<EOT>& _pop) : pop(_pop) {}
+        public:
+            Sorter(const eoPop<EOT>& _pop) : pop(_pop) {}
 
-	    bool operator()(unsigned i, unsigned j) const
-	    {
-		typedef typename EOT::Fitness::fitness_traits traits;
+            bool operator()(unsigned i, unsigned j) const
+            {
+                typedef typename EOT::Fitness::fitness_traits traits;
 
-		double diff = pop[i].fitness()[0] - pop[j].fitness()[0];
+                double diff = pop[i].fitness()[0] - pop[j].fitness()[0];
 
-		if (fabs(diff) < traits::tol())
-		{
-		    diff = pop[i].fitness()[1] - pop[j].fitness()[1];
+                if (fabs(diff) < traits::tol())
+                {
+                    diff = pop[i].fitness()[1] - pop[j].fitness()[1];
 
-		    if (fabs(diff) < traits::tol())
-			return false;
+                    if (fabs(diff) < traits::tol())
+                        return false;
 
-		    if (traits::maximizing(1))
-			return diff > 0.;
-		    return diff < 0.;
-		}
+                    if (traits::maximizing(1))
+                        return diff > 0.;
+                    return diff < 0.;
+                }
 
-		if (traits::maximizing(0))
-		    return diff > 0.;
-		return diff < 0.;
-	    }
+                if (traits::maximizing(0))
+                    return diff > 0.;
+                return diff < 0.;
+            }
 
-	    const eoPop<EOT>& pop;
+            const eoPop<EOT>& pop;
     };
 
     void m_objectives(const eoPop<EOT>& _pop)
@@ -485,7 +485,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
       for (i = 0; i < nc.size(); ++i)
       {
-        niche_count[i] += (max_dist + 1 - nc[i]); 
+        niche_count[i] += (max_dist + 1 - nc[i]);
       }
     }
 

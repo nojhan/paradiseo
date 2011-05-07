@@ -43,24 +43,24 @@
 */
 /** @{*/
 /**
-	Base (name) class for Initialization of chromosomes, used in a population
-	contructor. It is derived from eoMonOp, so it can be used
+        Base (name) class for Initialization of chromosomes, used in a population
+        contructor. It is derived from eoMonOp, so it can be used
     inside the algorithm as well.
 
-	@see eoPop
+        @see eoPop
 */
 template <class EOT>
 class eoInit : public eoUF<EOT&, void>
 {
 public:
 
-  /** className: Mandatory because of eoCombinedInit. 
+  /** className: Mandatory because of eoCombinedInit.
      SHould be pure virtual, but then we should go over the whole
    * code to write the method for all derived classes ... MS 16/7/04 */
   virtual std::string className(void) const { return "eoInit"; }
 };
 
-/** turning an eoInit into a generator 
+/** turning an eoInit into a generator
  * probably we should only use genrators - and suppress eoInit ???
  * MS - July 2001
  */
@@ -115,13 +115,13 @@ template <class EOT>
 class eoInitVariableLength: public eoInit<EOT>
 {
 public:
-typedef typename EOT::AtomType AtomType; 
+typedef typename EOT::AtomType AtomType;
 
 //   /** Ctor from a generator */
 //   eoInitVariableLength(unsigned _minSize, unsigned _maxSize, eoF<typename EOT::AtomType> & _generator = Gen())
-//     : offset(_minSize), extent(_maxSize - _minSize), 
-// 			 repGenerator( eoInitGenerator<typename EOT::AtomType>(*(new eoInit<EOT>)) ), 
-// 			 generator(_generator)
+//     : offset(_minSize), extent(_maxSize - _minSize),
+//                       repGenerator( eoInitGenerator<typename EOT::AtomType>(*(new eoInit<EOT>)) ),
+//                       generator(_generator)
 //   {
 //     if (_minSize >= _maxSize)
 //       throw std::logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
@@ -170,11 +170,11 @@ class eoInitPermutation: public eoInit<EOT>
 
         virtual void operator()(EOT& chrom)
         {
-            chrom.resize(chromSize);            
+            chrom.resize(chromSize);
             for(unsigned idx=0;idx <chrom.size();idx++)
-            		chrom[idx]=idx+startFrom;  
-            		
-            std::random_shuffle(chrom.begin(), chrom.end(),gen);            
+                        chrom[idx]=idx+startFrom;
+
+            std::random_shuffle(chrom.begin(), chrom.end(),gen);
             chrom.invalidate();
         }
 
@@ -191,7 +191,7 @@ class eoInitPermutation: public eoInit<EOT>
     eoInitAdaptor changes the place in the hierarchy
     from eoInit to eoMonOp. This is mainly a type conversion,
     nothing else
-    
+
     @see eoInit, eoMonOp
 */
 template <class EOT>

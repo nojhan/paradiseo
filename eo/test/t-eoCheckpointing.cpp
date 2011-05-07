@@ -1,4 +1,3 @@
-
 // to avoid long name warnings
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
@@ -113,38 +112,38 @@ int the_main(int argc, char **argv)
 
     if (parser.userNeedsHelp())
     {
-        parser.printHelp(std::cout);
-        return 0;
+	parser.printHelp(std::cout);
+	return 0;
     }
 
     // Either load or initialize
     if (load_name.value() != "")
     {
-        state.load(load_name.value()); // load the rest
+	state.load(load_name.value()); // load the rest
     }
     else
     {
-        // else
+	// else
 
-        // initialize rng and population
+	// initialize rng and population
 
-        rng.reseed(seed.value());
+	rng.reseed(seed.value());
 
-        pop.resize(2);
+	pop.resize(2);
 
-        pop[0].fitness(1);
-        pop[1].fitness(2);
+	pop[0].fitness(1);
+	pop[1].fitness(2);
     }
 
     while(checkpoint(pop))
     {
-        pop[0].fitness(pop[0].fitness() + 1);
+	pop[0].fitness(pop[0].fitness() + 1);
 
-        time_t now = time(0);
+	time_t now = time(0);
 
-        while (time(0) == now) {} // wait a second to test timed saver
+	while (time(0) == now) {} // wait a second to test timed saver
 
-        std::cout << "gen " << generationCounter.value() << std::endl;
+	std::cout << "gen " << generationCounter.value() << std::endl;
     }
 
     // run the algorithm
@@ -152,9 +151,9 @@ int the_main(int argc, char **argv)
     // Save when needed
     if (save_name.value() != "")
     {
-        std::string file_name = save_name.value();
-        save_name.value() = ""; // so that it does not appear in the parser section of the state file
-        state.save(file_name);
+	std::string file_name = save_name.value();
+	save_name.value() = ""; // so that it does not appear in the parser section of the state file
+	state.save(file_name);
     }
 
     return 1;
@@ -164,11 +163,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        the_main(argc, argv);
+	the_main(argc, argv);
     }
     catch(std::exception& e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+	std::cout << "Exception: " << e.what() << std::endl;
     }
 
 }

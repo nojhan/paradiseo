@@ -33,7 +33,7 @@
 
 /**
     The Fitness Distance Correlation computation.
-    
+
     Stores the values into eoValueParam<EOT,double>
 so they can be snapshot by some eoGnuplotSnapshot ...
 
@@ -53,7 +53,7 @@ public:
   /** Ctor with the optimum
    */
   eoFDCStat(eoDistance<EOT> & _dist, EOT & _theBest,
-	    std::string _description = "FDC") :
+            std::string _description = "FDC") :
     eoStat<EOT,double>(0, _description), dist(_dist),
     theBest(_theBest), boolOpt(true) {}
 
@@ -63,30 +63,30 @@ public:
     virtual void operator()(const eoPop<EOT>& _pop)
     {
       unsigned i;
-      if (!boolOpt)		   // take the local best
-	theBest = _pop.best_element();
+      if (!boolOpt)                // take the local best
+        theBest = _pop.best_element();
       unsigned int pSize = _pop.size();
       distToBest.value().resize(pSize);
       fitnesses.value().resize(pSize);
       double sumFit = 0.0, sumDist = 0.0;
       for (i=0; i<pSize; i++)
-	{
-	  sumDist += (distToBest.value()[i] = dist(_pop[i], theBest));
-	  sumFit += (fitnesses.value()[i] = _pop[i].fitness());
-	}
+        {
+          sumDist += (distToBest.value()[i] = dist(_pop[i], theBest));
+          sumFit += (fitnesses.value()[i] = _pop[i].fitness());
+        }
       // now the FDC coefficient
       double avgDist = sumDist/pSize;
       double avgFit = sumFit/pSize;
       sumDist = sumFit = 0.0;
       double num = 0.0;
       for (i=0; i<pSize; i++)
-	{
-	  double devDist = distToBest.value()[i] - avgDist ;
-	  double devFit = fitnesses.value()[i] - avgFit ;
-	  sumDist += devDist*devDist;
-	  sumFit += devFit * devFit;
-	  num += devDist * devFit ;
-	}
+        {
+          double devDist = distToBest.value()[i] - avgDist ;
+          double devFit = fitnesses.value()[i] - avgFit ;
+          sumDist += devDist*devDist;
+          sumFit += devFit * devFit;
+          num += devDist * devFit ;
+        }
       value() = num/(sqrt(sumDist)*sqrt(sumFit));
     }
 
@@ -101,7 +101,7 @@ public:
 private:
   eoDistance<EOT> & dist;
   EOT theBest;
-  bool boolOpt;			   // whether the best is known or not
+  bool boolOpt;                    // whether the best is known or not
   eoValueParam<std::vector<double> > distToBest;
   eoValueParam<std::vector<double> > fitnesses;
 };
@@ -119,12 +119,12 @@ class eoFDCFileSnapshot : public eoFileSnapshot	// is an eoMonitor
 public:
   /** Ctor: in addition to the parameters of the ctor of an eoFileSnapshot
             we need here an eoFDCStat. The 2 std::vectors (distances to optimum
-	    and fitnesses) are added to the monitor so they can be processed
+            and fitnesses) are added to the monitor so they can be processed
             later to a file - and eventually by gnuplot
   */
   eoFDCFileSnapshot(eoFDCStat<EOT> & _FDCstat,
-		    std::string _dirname = "tmpFDC", unsigned _frequency = 1,
-		    std::string _filename = "FDC", std::string _delim = " "):
+                    std::string _dirname = "tmpFDC", unsigned _frequency = 1,
+                    std::string _filename = "FDC", std::string _delim = " "):
     eoFileSnapshot(_dirname, _frequency, _filename, _delim),
     FDCstat(_FDCstat)
   {
@@ -142,4 +142,3 @@ private:
 };
 
 #endif
-

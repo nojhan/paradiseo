@@ -19,7 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    	     mak@dhi.dk
+             mak@dhi.dk
 
  */
 //-----------------------------------------------------------------------------
@@ -117,7 +117,7 @@ public:
      */
     void printOn(std::ostream& os) const
     {
-	EO<FType>::printOn(os);
+        EO<FType>::printOn(os);
         os << ' ';
 
         os << size() << ' ';
@@ -133,13 +133,13 @@ public:
     {
 
 
-    	EO<FType>::readFrom(is);
+        EO<FType>::readFrom(is);
 
         unsigned sz;
         is >> sz;
 
 
-	std::vector<Node> v(sz);
+        std::vector<Node> v(sz);
 
         unsigned i;
 
@@ -149,24 +149,24 @@ public:
             is >> node;
             v[i] = node;
         }
-	parse_tree<Node> tmp(v.begin(), v.end());
-	swap(tmp);
+        parse_tree<Node> tmp(v.begin(), v.end());
+        swap(tmp);
 
-	/*
-	 * old code which caused problems for paradisEO
-	 *
-	 * this can be removed once it has proved itself
-	EO<FType>::readFrom(is);
+        /*
+         * old code which caused problems for paradisEO
+         *
+         * this can be removed once it has proved itself
+        EO<FType>::readFrom(is);
 
-	// even older code
-	FType fit;
+        // even older code
+        FType fit;
         is >> fit;
 
         fitness(fit);
 
 
         std::copy(std::istream_iterator<Node>(is), std::istream_iterator<Node>(), back_inserter(*this));
-	*/
+        */
     }
 };
 /** @example t-eoSymreg.cpp

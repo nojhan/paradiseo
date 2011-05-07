@@ -1,4 +1,4 @@
-/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*- 
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
 // eoRealAtomXover.h : helper classes for std::vector<real> crossover
@@ -8,16 +8,16 @@
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
     version 2 of the License, or (at your option) any later version.
- 
+
     This library is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
- 
+
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
+
     Contact: marc.schoenauer@polytechnique.fr http://eeaax.cmap.polytchnique.fr/
  */
 //-----------------------------------------------------------------------------
@@ -35,7 +35,7 @@
 
 #include <eoOp.h>
 
-/** 
+/**
   Discrete crossover == exchange of values
  *
  * @ingroup Real
@@ -55,20 +55,20 @@ public:
   /**
      Exchanges or not the values
    */
-  bool operator()(double& r1, const double& r2) 
+  bool operator()(double& r1, const double& r2)
   {
     if (eo::rng.flip())
-      if (r1 != r2)	   // if r1 == r2 you must return false
-	{
-	  r1 = r2;
-	  return true;
-	}
+      if (r1 != r2)        // if r1 == r2 you must return false
+        {
+          r1 = r2;
+          return true;
+        }
     return false;
   }
-  
+
 };
 
-/** 
+/**
   Intermediate crossover == linear combination
  *
  * @ingroup Real
@@ -88,13 +88,13 @@ public:
   /**
      Linear combination of both parents
    */
-  bool operator()(double& r1, const double& r2) 
+  bool operator()(double& r1, const double& r2)
   {
     double alpha = eo::rng.uniform();
     r1 = alpha * r2 + (1-alpha) * r1;
     return true;
   }
-  
+
 };
 
 #endif

@@ -29,7 +29,7 @@
 
 #include "eoFunctor.h"
 
-/** @addtogroup Utilities 
+/** @addtogroup Utilities
  * @{
  */
 
@@ -121,4 +121,3 @@ class eoSTLBF : public std::binary_function<A1, A2, R>
 
 /** @} */
 #endif
-

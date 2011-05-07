@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoStochTournamentSelect.h
 // (c) GeNeura Team, 1998 - EEAAX 1999
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -31,9 +31,9 @@
 #include <utils/selectors.h> // stochastic_tournament
 
 /** eoStochTournamentSelect: a selection method that selects ONE individual by
- binary stochastic tournament 
- -MS- 24/10/99 
- 
+ binary stochastic tournament
+ -MS- 24/10/99
+
  @ingroup Selectors
  */
 template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
@@ -41,7 +41,7 @@ template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
  public:
 
   ///
-  eoStochTournamentSelect(double _Trate = 1.0 ) : eoSelectOne<EOT>(), Trate(_Trate) 
+  eoStochTournamentSelect(double _Trate = 1.0 ) : eoSelectOne<EOT>(), Trate(_Trate)
   {
     // consistency checks
     if (Trate < 0.5) {
@@ -53,16 +53,15 @@ template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
       Trate = 1;
     }
   }
-  
+
   /** Perform the stochastic tournament  */
-  virtual const EOT& operator()(const eoPop<EOT>& pop) 
+  virtual const EOT& operator()(const eoPop<EOT>& pop)
   {
       return stochastic_tournament(pop, Trate);
   }
-  
+
 private:
   double Trate;
 };
 
 #endif
-

@@ -59,8 +59,8 @@ class eoSurviveAndDie : public eoBF<eoPop<EOT> &, eoPop<EOT> &, void>
 {
 public:
     eoSurviveAndDie(double _survive, double _die, bool _interpret_as_rate = true):
-	howmanySurvive(_survive, _interpret_as_rate),
-	howmanyDie(_die, _interpret_as_rate)
+        howmanySurvive(_survive, _interpret_as_rate),
+        howmanyDie(_die, _interpret_as_rate)
     {}
 
 protected:
@@ -90,33 +90,33 @@ public:
 
     void operator()(eoPop<EOT> & _pop, eoPop<EOT> & _luckyGuys)
     {
-	unsigned pSize = _pop.size();
-	unsigned nbSurvive = howmanySurvive(pSize);
-	// first, save the best into _luckyGuys
-	if (nbSurvive)
-	    {
-		_pop.nth_element(nbSurvive);
-		// copy best
-		_luckyGuys.resize(nbSurvive);
-		std::copy(_pop.begin(), _pop.begin()+nbSurvive, _luckyGuys.begin());
-		// erase them from pop
-		_pop.erase(_pop.begin(), _pop.begin()+nbSurvive);
-	    }
-	unsigned nbRemaining = _pop.size();
+        unsigned pSize = _pop.size();
+        unsigned nbSurvive = howmanySurvive(pSize);
+        // first, save the best into _luckyGuys
+        if (nbSurvive)
+            {
+                _pop.nth_element(nbSurvive);
+                // copy best
+                _luckyGuys.resize(nbSurvive);
+                std::copy(_pop.begin(), _pop.begin()+nbSurvive, _luckyGuys.begin());
+                // erase them from pop
+                _pop.erase(_pop.begin(), _pop.begin()+nbSurvive);
+            }
+        unsigned nbRemaining = _pop.size();
 
-	// carefull, we can have a rate of 1 if we want to kill all remaining
-	unsigned nbDie = std::min(howmanyDie(pSize), pSize-nbSurvive);
-	if (nbDie > nbRemaining)
-	    throw std::logic_error("eoDeterministicSurviveAndDie: Too many to kill!\n");
+        // carefull, we can have a rate of 1 if we want to kill all remaining
+        unsigned nbDie = std::min(howmanyDie(pSize), pSize-nbSurvive);
+        if (nbDie > nbRemaining)
+            throw std::logic_error("eoDeterministicSurviveAndDie: Too many to kill!\n");
 
-	if (!nbDie)
-	  {
-	    return;
-	  }
-	// else
-	// kill the worse nbDie
-	_pop.nth_element(nbRemaining-nbDie);
-	_pop.resize(nbRemaining-nbDie);
+        if (!nbDie)
+          {
+            return;
+          }
+        // else
+        // kill the worse nbDie
+        _pop.nth_element(nbRemaining-nbDie);
+        _pop.resize(nbRemaining-nbDie);
     }
 
 };
@@ -139,45 +139,45 @@ class eoDeterministicSaDReplacement : public eoReplacement<EOT>
 public:
   /**  Constructor with reduce */
   eoDeterministicSaDReplacement(eoReduce<EOT>& _reduceGlobal,
-		 double _surviveParents, double _dieParents=0,
-		 double _surviveOffspring=0, double _dieOffspring=0,
-		 bool _interpret_as_rate = true ) :
-	reduceGlobal(_reduceGlobal),
-	sAdParents(_surviveParents, _dieParents, _interpret_as_rate),
-	sAdOffspring(_surviveOffspring, _dieOffspring, _interpret_as_rate)
+                 double _surviveParents, double _dieParents=0,
+                 double _surviveOffspring=0, double _dieOffspring=0,
+                 bool _interpret_as_rate = true ) :
+        reduceGlobal(_reduceGlobal),
+        sAdParents(_surviveParents, _dieParents, _interpret_as_rate),
+        sAdOffspring(_surviveOffspring, _dieOffspring, _interpret_as_rate)
     {}
 
   /**  Constructor with default truncate used as reduce */
     eoDeterministicSaDReplacement(
-		 double _surviveParents, double _dieParents=0,
-		 double _surviveOffspring=0, double _dieOffspring=0,
-		 bool _interpret_as_rate = true ) :
-	reduceGlobal(truncate),
-	sAdParents(_surviveParents, _dieParents, _interpret_as_rate),
-	sAdOffspring(_surviveOffspring, _dieOffspring, _interpret_as_rate)
+                 double _surviveParents, double _dieParents=0,
+                 double _surviveOffspring=0, double _dieOffspring=0,
+                 bool _interpret_as_rate = true ) :
+        reduceGlobal(truncate),
+        sAdParents(_surviveParents, _dieParents, _interpret_as_rate),
+        sAdOffspring(_surviveOffspring, _dieOffspring, _interpret_as_rate)
     {}
 
     void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
     {
-	unsigned pSize = _parents.size(); // target number of individuals
+        unsigned pSize = _parents.size(); // target number of individuals
 
-	eoPop<EOT> luckyParents;       // to hold the absolute survivors
-	sAdParents(_parents, luckyParents);
+        eoPop<EOT> luckyParents;       // to hold the absolute survivors
+        sAdParents(_parents, luckyParents);
 
-	eoPop<EOT> luckyOffspring;       // to hold the absolute survivors
-	sAdOffspring(_offspring, luckyOffspring);
+        eoPop<EOT> luckyOffspring;       // to hold the absolute survivors
+        sAdOffspring(_offspring, luckyOffspring);
 
-	unsigned survivorSize = luckyOffspring.size() + luckyParents.size();
-	if (survivorSize > pSize)
-	    throw std::logic_error("eoGeneralReplacement: More survivors than parents!\n");
+        unsigned survivorSize = luckyOffspring.size() + luckyParents.size();
+        if (survivorSize > pSize)
+            throw std::logic_error("eoGeneralReplacement: More survivors than parents!\n");
 
-	plus(_parents, _offspring); // all that remain in _offspring
+        plus(_parents, _offspring); // all that remain in _offspring
 
-	reduceGlobal(_offspring, pSize - survivorSize);
-	plus(luckyParents, _offspring);
-	plus(luckyOffspring, _offspring);
+        reduceGlobal(_offspring, pSize - survivorSize);
+        plus(luckyParents, _offspring);
+        plus(luckyOffspring, _offspring);
 
-	_parents.swap(_offspring);
+        _parents.swap(_offspring);
 
     }
 
@@ -195,4 +195,3 @@ private :
 /** @} */
 
 #endif
-

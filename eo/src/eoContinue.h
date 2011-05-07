@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoContinue.h
 // (c) Maarten Keijzer, Geneura Team, 1999, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -31,7 +31,7 @@
 
 /** @defgroup Continuators Stopping criteria
  *
- * A stopping criterion is called a "continue". This is a functor that is called at each generation end 
+ * A stopping criterion is called a "continue". This is a functor that is called at each generation end
  * and that return true if one should stop the search.
  *
  *  @ingroup Utilities
@@ -39,13 +39,13 @@
 
 /** Termination condition for the genetic algorithm
  * Takes the population as input, returns true for continue,
- * false for termination 
+ * false for termination
  *
  * @ingroup Continuators
  * @ingroup Core
  */
 template< class EOT>
-class eoContinue : public eoUF<const eoPop<EOT>&, bool>, public eoPersistent 
+class eoContinue : public eoUF<const eoPop<EOT>&, bool>, public eoPersistent
 {
 public:
   virtual std::string className(void) const { return "eoContinue"; }
@@ -57,7 +57,7 @@ public:
       (void)__is;
     /* It should be implemented by subclasses ! */
   }
-  
+
   /** Print on a stream
    * @param __os ostream to print on
    */
@@ -68,4 +68,3 @@ public:
 };
 
 #endif
-

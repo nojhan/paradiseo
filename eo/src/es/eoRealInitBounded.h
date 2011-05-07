@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoRealInitBounded.h
 // (c) EEAAX 2000 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -33,8 +33,8 @@
 #include <es/eoReal.h>
 #include <utils/eoRealVectorBounds.h>
 
-/** Simple initialization for any EOT that derives from std::vector<double> 
- *    uniformly in some bounds 
+/** Simple initialization for any EOT that derives from std::vector<double>
+ *    uniformly in some bounds
  *
  * @ingroup Real
  * @ingroup Variators
@@ -44,7 +44,7 @@ class eoRealInitBounded : public eoInit<EOT>
 {
  public:
   /** Ctor - from eoRealVectorBounds */
-  eoRealInitBounded(eoRealVectorBounds & _bounds):bounds(_bounds) 
+  eoRealInitBounded(eoRealVectorBounds & _bounds):bounds(_bounds)
   {
         if (!bounds.isBounded())
       throw std::runtime_error("Needs bounded bounds to initialize a std::vector<double>");
@@ -54,7 +54,7 @@ class eoRealInitBounded : public eoInit<EOT>
   virtual void operator()(EOT & _eo)
     {
       bounds.uniform(_eo);  // resizes, and fills uniformly in bounds
-      _eo.invalidate();		   // was MISSING!!!!
+      _eo.invalidate();            // was MISSING!!!!
     }
 
   /** accessor to the bounds */
@@ -67,5 +67,4 @@ class eoRealInitBounded : public eoInit<EOT>
 
 //-----------------------------------------------------------------------------
 //@}
-#endif 
-
+#endif

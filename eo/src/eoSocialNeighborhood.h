@@ -52,7 +52,7 @@ public:
     }
 
     /**
-     * Return true if the neighborhood contains the indice (= that means "contains the 
+     * Return true if the neighborhood contains the indice (= that means "contains the
      * particle whose indice is _oneIndice")
      * @param _oneIndice - The indice of the particle in its population.
      */
@@ -123,4 +123,3 @@ protected:
 
 
 #endif /* EOSOCIALNEIGHBORHOOD_H_ */
-

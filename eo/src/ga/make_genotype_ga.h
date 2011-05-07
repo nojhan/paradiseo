@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_genotype.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -36,24 +36,24 @@
 
 /////////////////// the bitstring ////////////////
 /*
- * This fuction does the initialization of what's needed for a particular 
+ * This fuction does the initialization of what's needed for a particular
  * genotype (here, bitstrings).
- * It could be here tempatied only on the fitness, as it can be used to evolve 
+ * It could be here tempatied only on the fitness, as it can be used to evolve
  * bitstrings with any fitness.
- * However, for consistency reasons, it was finally chosen, as in 
- * the rest of EO, to templatize by the full EOT, as this eventually 
+ * However, for consistency reasons, it was finally chosen, as in
+ * the rest of EO, to templatize by the full EOT, as this eventually
  * allows to choose the type of genotype at run time (see in es dir)
  *
  * It is instanciated in ga/ga.cpp - and incorporated in the ga/libga.a
  *
- * It returns an eoInit<eoBit<FitT> > tha can later be used to initialize 
+ * It returns an eoInit<eoBit<FitT> > tha can later be used to initialize
  * the population (see make_pop.h).
  *
  * It uses a parser (to get user parameters) and a state (to store the memory)
  * the last argument is to disambiguate the call upon different instanciations.
  *
- * WARNING: that last argument will generally be the result of calling 
- *          the default ctor of EOT, resulting in most cases in an EOT 
+ * WARNING: that last argument will generally be the result of calling
+ *          the default ctor of EOT, resulting in most cases in an EOT
  *          that is ***not properly initialized***
  *
  * @ingroup bitstring

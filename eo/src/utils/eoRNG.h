@@ -25,7 +25,7 @@ Old contact information: todos@geneura.ugr.es, http://geneura.ugr.es
 #ifndef EO_RANDOM_NUMBER_GENERATOR
 #define EO_RANDOM_NUMBER_GENERATOR
 
-/** @addtogroup Random 
+/** @addtogroup Random
  * @{
  * */
 

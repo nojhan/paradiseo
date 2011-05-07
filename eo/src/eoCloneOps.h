@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 // eoCloneOps.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    CVS Info: $Date: 2003-02-27 19:26:09 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoCloneOps.h,v 1.2 2003-02-27 19:26:09 okoenig Exp $ $Author: okoenig $ 
+    CVS Info: $Date: 2003-02-27 19:26:09 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoCloneOps.h,v 1.2 2003-02-27 19:26:09 okoenig Exp $ $Author: okoenig $
  */
 //-----------------------------------------------------------------------------
 
@@ -29,9 +29,9 @@
 
 /**
  * The different null-variation operators (i.e. they do nothing)
- * 
- * eoQuadCloneOp at least is useful to emulate the standard 
- *               crossover(pCross) + mutation(pMut) 
+ *
+ * eoQuadCloneOp at least is useful to emulate the standard
+ *               crossover(pCross) + mutation(pMut)
  *               within the eoGenOp framework
  * eoMonCloneOp will probably be useful as the copy operator
  * eoBinCloneOp will certainly never been used - but let's be complete :-)
@@ -80,4 +80,3 @@ virtual bool operator()(EOT& , EOT& ) {return false;}
 
 #endif
 /** @} */
-

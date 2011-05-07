@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoCombinedContinue.h
 // (c) Maarten Keijzer, GeNeura Team, 1999, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 
 #include <eoContinue.h>
 
-/** 
+/**
     Combined continuators - logical AND:
   Continues until one of the embedded continuators says halt!
 
@@ -35,7 +35,7 @@
              to be consistent with other Combined constructs
              and allow to easily handle more than 2 continuators
 
-02/2003 Ramón Casero Cañas - added the removeLast() method 
+02/2003 Ramón Casero Cañas - added the removeLast() method
 
 @ingroup Combination
 */
@@ -90,4 +90,3 @@ private:
 };
 
 #endif
-

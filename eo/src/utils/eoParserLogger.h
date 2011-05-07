@@ -17,8 +17,8 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-	 Johann Dréo <johann.dreo@thalesgroup.com>
-	 Caner Candan <caner.candan@thalesgroup.com>
+         Johann Dréo <johann.dreo@thalesgroup.com>
+         Caner Candan <caner.candan@thalesgroup.com>
 */
 
 #ifndef EO_PARSER_LOGGER_H
@@ -37,9 +37,9 @@ class	eoParserLogger : public eoParser
 {
 public:
     eoParserLogger(unsigned _argc, char** _argv,
-		   std::string _programDescription = "",
-		   std::string _lFileParamName = "param-file",
-		   char _shortHand = 'p');
+                   std::string _programDescription = "",
+                   std::string _lFileParamName = "param-file",
+                   char _shortHand = 'p');
     ~eoParserLogger();
 
 private:

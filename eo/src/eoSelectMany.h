@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoSelectMany.h 
+   eoSelectMany.h
    (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -35,7 +35,7 @@
 #include <math.h>
 //-----------------------------------------------------------------------------
 
-/** eoSelectMany selects many individuals using eoSelectOne as it's 
+/** eoSelectMany selects many individuals using eoSelectOne as it's
     mechanism. Therefore eoSelectMany needs an eoSelectOne in its ctor
 
     It will use an eoHowMnay to determine the number of guys to select,
@@ -48,12 +48,12 @@ class eoSelectMany : public eoSelect<EOT>
 {
  public:
      /// init
-     eoSelectMany(eoSelectOne<EOT>& _select, 
-		    double  _rate, bool _interpret_as_rate = true) 
+     eoSelectMany(eoSelectOne<EOT>& _select,
+                    double  _rate, bool _interpret_as_rate = true)
          : select(_select), howMany(_rate, _interpret_as_rate) {}
 
      // Ctor with eoHowMany
-     eoSelectMany(eoSelectOne<EOT>& _select, eoHowMany _howMany) 
+     eoSelectMany(eoSelectOne<EOT>& _select, eoHowMany _howMany)
          : select(_select), howMany(_howMany) {}
 
      /**
@@ -65,15 +65,15 @@ class eoSelectMany : public eoSelect<EOT>
   virtual void operator()(const eoPop<EOT>& _source, eoPop<EOT>& _dest)
   {
     unsigned target = howMany(_source.size());
-    
+
     _dest.resize(target);
-    
+
     select.setup(_source);
-    
+
     for (size_t i = 0; i < _dest.size(); ++i)
       _dest[i] = select(_source);
   }
-  
+
 private :
   eoSelectOne<EOT>& select;
   eoHowMany howMany;

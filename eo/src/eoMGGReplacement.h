@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoMGGReplacement.h 
+   eoMGGReplacement.h
    (c) Maarten Keijzer, Marc Schoenauer, 2002
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -52,18 +52,18 @@ class eoMGGReplacement : public eoReplacement<EOT>
 {
 public:
   eoMGGReplacement(eoHowMany _howManyEliminatedParents = eoHowMany(2, false),
-		   unsigned _tSize=2) :
+                   unsigned _tSize=2) :
     // split truncates the parents and returns eliminated parents
-    split(_howManyEliminatedParents, true), 
+    split(_howManyEliminatedParents, true),
     tSize(_tSize)
   {
     if (tSize < 2)
-      { 
+      {
           eo::log << eo::warnings << "Warning, Size for eoDetTournamentTruncateSplit adjusted to 2" << std::endl;
-	tSize = 2;
+        tSize = 2;
       }
   }
-    
+
     void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
     {
       eoPop<EOT> temp;
@@ -71,7 +71,7 @@ public:
       unsigned toKeep = temp.size(); // how many to keep from merged populations
       // minimal check
       if (toKeep < 2)
-	throw std::runtime_error("Not enough parents killed in eoMGGReplacement");
+        throw std::runtime_error("Not enough parents killed in eoMGGReplacement");
 
       // select best offspring
       typename eoPop<EOT>::iterator it = _offspring.it_best_element();
@@ -82,21 +82,21 @@ public:
 
       // merge temp into offspring
       plus(temp, _offspring);
-      
+
       // repeatedly add selected offspring to parents
       for (unsigned i=0; i<toKeep-1; i++)
-	{
-	  // select
-	  it = deterministic_tournament(_offspring.begin(), _offspring.end(), tSize);
-	  // add to parents
-	  _parents.push_back(*it);
-	  // remove from offspring
-	  _offspring.erase(it);
-	}
+        {
+          // select
+          it = deterministic_tournament(_offspring.begin(), _offspring.end(), tSize);
+          // add to parents
+          _parents.push_back(*it);
+          // remove from offspring
+          _offspring.erase(it);
+        }
     }
 
 private:
-  eoLinearTruncateSplit<EOT> split; // few parents to truncate -> linear 
+  eoLinearTruncateSplit<EOT> split; // few parents to truncate -> linear
   eoPlus<EOT> plus;
   unsigned int tSize;
 };

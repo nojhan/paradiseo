@@ -19,7 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: thomas.legrand@lifl.fr
-    		 clive.canape@inria.fr
+                 clive.canape@inria.fr
  */
 //-----------------------------------------------------------------------------
 
@@ -33,14 +33,14 @@
 
 
 /**
- * 	Binary flight for particle swarm optimization based on the sigmoid function. Velocities are expected to be "double"
+ *      Binary flight for particle swarm optimization based on the sigmoid function. Velocities are expected to be "double"
  *  Consider Pi to be the i-th position of a particle and Vi to be the i-th velocity of the same particle :
- * 		if rand[0;1] < sig(Vi) (Vi <=> double)
- * 			Pi=1
- * 	    else
- * 			Pi=0
+ *              if rand[0;1] < sig(Vi) (Vi <=> double)
+ *                      Pi=1
+ *          else
+ *                      Pi=0
  *
- * 	@ingroup Variators
+ *      @ingroup Variators
  */
 template < class POT > class eoSigBinaryFlight:public eoBinaryFlight < POT >
 {
@@ -65,7 +65,7 @@ public:
 
     /**
      * Apply the sigmoid binary flight to a particle.
-     * 
+     *
      */
     void operator  () (POT & _po)
     {
@@ -85,8 +85,8 @@ public:
     }
 
 private :
-	unsigned slope; 
-   
+        unsigned slope;
+
 };
 
 

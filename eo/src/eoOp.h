@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 // eoOp.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    CVS Info: $Date: 2004-08-10 17:19:46 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoOp.h,v 1.29 2004-08-10 17:19:46 jmerelo Exp $ $Author: jmerelo $ 
+    CVS Info: $Date: 2004-08-10 17:19:46 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoOp.h,v 1.29 2004-08-10 17:19:46 jmerelo Exp $ $Author: jmerelo $
  */
 //-----------------------------------------------------------------------------
 
@@ -171,13 +171,13 @@ public:
    */
   bool operator()(EOT & _eo1, const EOT & _eo2)
   {
-    EOT eoTmp = _eo2;		   // a copy that can be modified
+    EOT eoTmp = _eo2;              // a copy that can be modified
     // if the embedded eoQuadOp is not symmetrical,
     // the result might be biased - hence the flip ...
     if (eo::rng.flip(0.5))
-      return quadOp(_eo1, eoTmp);	   // both are modified - that's all
+      return quadOp(_eo1, eoTmp);          // both are modified - that's all
     else
-      return quadOp(eoTmp, _eo1);	   // both are modified - that's all
+      return quadOp(eoTmp, _eo1);          // both are modified - that's all
   }
 
 private:

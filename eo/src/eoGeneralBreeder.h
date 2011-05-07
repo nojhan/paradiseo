@@ -1,9 +1,9 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoGeneralBreeder.h 
+// eoGeneralBreeder.h
 // (c) Maarten Keijzer and Marc Schoenauer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -58,7 +58,7 @@ class eoGeneralBreeder: public eoBreed<EOT>
   eoGeneralBreeder(
           eoSelectOne<EOT>& _select,
           eoGenOp<EOT>& _op,
-	        double  _rate=1.0,
+                double  _rate=1.0,
           bool _interpret_as_rate = true) :
       select( _select ), op(_op),  howMany(_rate, _interpret_as_rate) {}
 
@@ -71,7 +71,7 @@ class eoGeneralBreeder: public eoBreed<EOT>
   eoGeneralBreeder(
           eoSelectOne<EOT>& _select,
           eoGenOp<EOT>& _op,
-	  eoHowMany _howMany ) :
+          eoHowMany _howMany ) :
       select( _select ), op(_op),  howMany(_howMany) {}
 
   /** The breeder: simply calls the genOp on a selective populator!
@@ -87,10 +87,10 @@ class eoGeneralBreeder: public eoBreed<EOT>
       eoSelectivePopulator<EOT> it(_parents, _offspring, select);
 
       while (_offspring.size() < target)
-	    {
-	      op(it);
-	      ++it;
-	    }
+            {
+              op(it);
+              ++it;
+            }
 
       _offspring.resize(target);   // you might have generated a few more
     }
@@ -105,4 +105,3 @@ class eoGeneralBreeder: public eoBreed<EOT>
 };
 
 #endif
-

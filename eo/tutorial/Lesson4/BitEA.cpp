@@ -10,7 +10,7 @@
 using namespace std;
 
 int main(int argc, char* argv[])
-{     
+{
 
   try
   {
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
   //////////////////////////////////////////////////////
 
 // EVAL
-  // The evaluation fn - encapsulated into an eval counter for output 
+  // The evaluation fn - encapsulated into an eval counter for output
   eoEvalFuncPtr<EOT, double> mainEval( binary_value<EOT> );
   eoEvalFuncCounter<EOT> eval(mainEval);
 
@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
   eoInit<EOT>& init = make_genotype(parser, state, EOT());
 
   // if you want to do sharing, you'll need a distance.
-  // here Hamming distance 
+  // here Hamming distance
   eoHammingDistance<EOT> dist;
 
 // OPERATORS
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
   // evaluate intial population AFTER help and status in case it takes time
   apply<EOT>(eval, pop);
 // STOP
-  // print it out (sort witout modifying) 
+  // print it out (sort witout modifying)
   cout << "Initial Population\n";
   pop.sortedPrintOn(cout);
   cout << endl;
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 // GENERATION
   run_ea(ga, pop); // run the ga
 // STOP
-  // print it out (sort witout modifying) 
+  // print it out (sort witout modifying)
   cout << "Final Population\n";
   pop.sortedPrintOn(cout);
   cout << endl;

@@ -78,10 +78,10 @@ void main_function(int argc, char **argv)
     {
       Indi v;           // void individual, to be filled
       for (unsigned ivar=0; ivar<VEC_SIZE; ivar++)
-        {
-          bool r = rng.flip(); // new value, random in {0,1}
-          v.push_back(r);      // append that random value to v
-        }
+	{
+	  bool r = rng.flip(); // new value, random in {0,1}
+	  v.push_back(r);      // append that random value to v
+	}
       eval(v);                 // evaluate it
       pop.push_back(v);        // and put it in the population
     }
@@ -138,7 +138,7 @@ void main_function(int argc, char **argv)
 
 
   eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE,
-                  eval, continuator);
+		  eval, continuator);
 
   // Apply algo to pop - that's it!
   gga(pop);
@@ -156,11 +156,11 @@ int main(int argc, char **argv)
 
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+	cout << "Exception: " << e.what() << '\n';
     }
 
     return 1;

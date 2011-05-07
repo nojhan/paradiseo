@@ -20,7 +20,7 @@
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 // Include the corresponding file
-#include <ga.h>	         // bitstring representation & operators
+#include <ga.h>		 // bitstring representation & operators
 // define your individuals
 typedef eoBit<double> Indi;	// A bitstring with fitness double
 
@@ -186,11 +186,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+	cout << "Exception: " << e.what() << '\n';
     }
 
     return 1;

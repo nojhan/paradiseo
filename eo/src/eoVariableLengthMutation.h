@@ -66,7 +66,7 @@ public :
   bool operator()(EOT & _eo)
   {
     if (_eo.size() >= nMax)
-      return false;		   // unmodifed
+      return false;                // unmodifed
     AtomType atom;
     atomInit(atom);
     unsigned pos = rng.random(_eo.size()+1);
@@ -100,7 +100,7 @@ public:
     eoUniformGeneChooser(){}
     unsigned operator()(EOT & _eo)
     {
-	return eo::rng.random(_eo.size());
+        return eo::rng.random(_eo.size());
     }
   virtual std::string className() const { return "eoUniformGeneChooser"; }
 };
@@ -137,7 +137,7 @@ public :
   bool operator()(EOT & _eo)
   {
     if (_eo.size() <= nMin)
-      return false;		   // unmodifed
+      return false;                // unmodifed
     unsigned pos = chooser(_eo);
     _eo.erase(_eo.begin()+pos);
     return true;
@@ -158,4 +158,3 @@ private:
 
 /** @} */
 #endif
-

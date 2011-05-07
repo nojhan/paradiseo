@@ -11,7 +11,7 @@ Template for creating a new representation in EO
 #ifndef _eoOneMax_h
 #define _eoOneMax_h
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
 
@@ -20,7 +20,7 @@ Template for creating a new representation in EO
  * like eoVector for instance, if you handle a vector of something....
 
  * If you create a structure from scratch,
- * the only thing you need to provide are 
+ * the only thing you need to provide are
  *        a default constructor
  *        IO routines printOn and readFrom
  *
@@ -31,11 +31,11 @@ template< class FitT>
 class eoOneMax: public EO<FitT> {
 public:
   /** Ctor: you MUST provide a default ctor.
-   * though such individuals will generally be processed 
+   * though such individuals will generally be processed
    * by some eoInit object
    */
-  eoOneMax() 
-  { 
+  eoOneMax()
+  {
     // START Code of default Ctor of an eoOneMax object
     // END   Code of default Ctor of an eoOneMax object
   }
@@ -54,7 +54,7 @@ public:
       // First write the fitness
       EO<FitT>::printOn(_os);
       _os << ' ';
-    // START Code of default output 
+    // START Code of default output
 
 	/** HINTS
 	 * in EO we systematically write the sizes of things before the things
@@ -66,7 +66,7 @@ public:
     // END   Code of default output
     }
 
-  /** reading... 
+  /** reading...
    * of course, your readFrom must be able to read what printOn writes!!!
    */
   void readFrom(istream& _is)
@@ -87,7 +87,7 @@ public:
 	bool bTmp;
 	_is >> bTmp;
 	b[i] = bTmp;
-      }			
+      }
     // END   Code of input
   }
 
@@ -108,4 +108,3 @@ private:			   // put all data here
 };
 
 #endif
-

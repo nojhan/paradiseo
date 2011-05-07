@@ -64,7 +64,7 @@ public:
         init (p);
         return (p);
     }
-    
+
 private:
     eoVelocityInit < POT > &init;
 };
@@ -144,4 +144,3 @@ private:
 #endif /*EOVELOCITYINIT_H */
 
 /** @} */
-

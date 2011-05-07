@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_general_replacement.h
 // (c) Marc Schoenauer and Pierre Collet, 2002
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -49,8 +49,8 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
   eoReduce<EOT> * ptReduce;
 
   // ---------- Deterministic
-  if ( (_ppReduce.first == std::string("Deterministic")) || 
-       (_ppReduce.first == std::string("Sequential")) 
+  if ( (_ppReduce.first == std::string("Deterministic")) ||
+       (_ppReduce.first == std::string("Sequential"))
        )
   {
     ptReduce = new eoTruncate<EOT>;
@@ -65,7 +65,7 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
       // put back 6 in parameter for consistency (and status file)
       _ppReduce.second.push_back(std::string("6"));
     }
-    else	  // parameter passed by user as EP(T)
+    else          // parameter passed by user as EP(T)
       detSize = atoi(_ppReduce.second[0].c_str());
     ptReduce = new eoEPReduce<EOT>(detSize);
   }
@@ -74,12 +74,12 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
   {
     if (!_ppReduce.second.size())   // no parameter added
       {
-	std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
-	detSize = 2;
-	// put back 2 in parameter for consistency (and status file)
-	_ppReduce.second.push_back(std::string("2"));
+        std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
+        detSize = 2;
+        // put back 2 in parameter for consistency (and status file)
+        _ppReduce.second.push_back(std::string("2"));
       }
-    else	  // parameter passed by user as DetTour(T)
+    else          // parameter passed by user as DetTour(T)
       detSize = atoi(_ppReduce.second[0].c_str());
     ptReduce = new eoDetTournamentTruncate<EOT>(detSize);
   }
@@ -87,24 +87,24 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
     {
       double p;
       if (!_ppReduce.second.size())   // no parameter added
-	{
-	  std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
-	  p = 1;
-	  // put back p in parameter for consistency (and status file)
-	  _ppReduce.second.push_back(std::string("1"));
-	}
-      else	  // parameter passed by user as DetTour(T)
-	{
-	  p = atof(_ppReduce.second[0].c_str());
-	  if ( (p<=0.5) || (p>1) )
-	    throw std::runtime_error("Stochastic tournament size should be in [0.5,1]");
-	}
-      
+        {
+          std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
+          p = 1;
+          // put back p in parameter for consistency (and status file)
+          _ppReduce.second.push_back(std::string("1"));
+        }
+      else        // parameter passed by user as DetTour(T)
+        {
+          p = atof(_ppReduce.second[0].c_str());
+          if ( (p<=0.5) || (p>1) )
+            throw std::runtime_error("Stochastic tournament size should be in [0.5,1]");
+        }
+
       ptReduce = new eoStochTournamentTruncate<EOT>(p);
     }
-  else if ( (_ppReduce.first == std::string("Uniform")) || 
-	    (_ppReduce.first == std::string("Random"))
-	    )
+  else if ( (_ppReduce.first == std::string("Uniform")) ||
+            (_ppReduce.first == std::string("Random"))
+            )
     {
       ptReduce = new eoRandomReduce<EOT>;
     }
@@ -117,10 +117,10 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
   return (*ptReduce);
 }
 
-/** Helper function that creates a replacement from the class 
- * eoReduceMergeReduce using 6 parameters 
+/** Helper function that creates a replacement from the class
+ * eoReduceMergeReduce using 6 parameters
  *      (after the usual eoState and eoParser)
- * 
+ *
  *  eoHowMany _elite              the number of elite parents (0 = no elitism)
  *       see below
  *  bool _strongElitism           if elite > 0, std::string elitism or weak elitism
@@ -136,15 +136,15 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
  */
 template <class EOT>
 eoReplacement<EOT> & make_general_replacement(
-    eoParser& _parser, eoState& _state, 
-    eoHowMany _elite = eoHowMany(0), 
+    eoParser& _parser, eoState& _state,
+    eoHowMany _elite = eoHowMany(0),
     bool _strongElitism = false,
     eoHowMany _surviveParents = eoHowMany(0.0),
     eoParamParamType & _reduceParentType = eoParamParamType("Deterministic"),
     eoHowMany _surviveOffspring = eoHowMany(1.0),
     eoParamParamType & _reduceOffspringType = eoParamParamType("Deterministic"),
     eoParamParamType & _reduceFinalType  = eoParamParamType("Deterministic")
-	)
+        )
 {
   /////////////////////////////////////////////////////
   // the replacement
@@ -157,14 +157,14 @@ eoReplacement<EOT> & make_general_replacement(
 
   // reduce the parents
     eoHowMany surviveParents =  _parser.createParam(_surviveParents, "surviveParents", "Nb of surviving parents (percentage or absolute)", '\0', "Evolution Engine / Replacement").value();
-  
+
   eoParamParamType & reduceParentType = _parser.createParam(_reduceParentType, "reduceParents", "Parents reducer: Deterministic, EP(T), DetTour(T), StochTour(t), Uniform", '\0', "Evolution Engine / Replacement").value();
 
   eoReduce<EOT> & reduceParent = decode_reduce<EOT>(reduceParentType, _state);
 
   // reduce the offspring
     eoHowMany surviveOffspring =  _parser.createParam(_surviveOffspring, "surviveOffspring", "Nb of surviving offspring (percentage or absolute)", '\0', "Evolution Engine / Replacement").value();
-  
+
   eoParamParamType & reduceOffspringType = _parser.createParam(_reduceOffspringType, "reduceOffspring", "Offspring reducer: Deterministic, EP(T), DetTour(T), StochTour(t), Uniform", '\0', "Evolution Engine / Replacement").value();
 
   eoReduce<EOT> & reduceOffspring = decode_reduce<EOT>(reduceOffspringType, _state);

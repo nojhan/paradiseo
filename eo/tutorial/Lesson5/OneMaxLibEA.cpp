@@ -8,11 +8,11 @@ Template for creating a new representation in EO
 ================================================
 
 This is the template main file for compiling after creating a
-library. 
+library.
 See make_OneMax.cpp file.
 */
 
-// Miscilaneous include and declaration 
+// Miscilaneous include and declaration
 #include <iostream>
 using namespace std;
 
@@ -24,17 +24,17 @@ using namespace std;
 // include here whatever specific files for your representation
 // Basically, this should include at least the following
 
-/** definition of representation: 
+/** definition of representation:
  * class eoOneMax MUST derive from EO<FitT> for some fitness
  */
 #include "eoOneMax.h"
 
-/** definition of initilizqtion: 
+/** definition of initilizqtion:
  * class eoOneMaxInit MUST derive from eoInit<eoOneMax>
  */
 #include "eoOneMaxInit.h"
 
-/** definition of evaluation: 
+/** definition of evaluation:
  * class eoOneMaxEvalFunc MUST derive from eoEvalFunc<eoOneMax>
  * and should test for validity before doing any computation
  * see tutorial/Templates/evalFunc.tmpl
@@ -46,12 +46,12 @@ using namespace std;
 //
 // START fitness type: double or eoMaximizingFitness if you are maximizing
 //                     eoMinimizingFitness if you are minimizing
-typedef eoMinimizingFitness MyFitT ;	// type of fitness 
+typedef eoMinimizingFitness MyFitT ;	// type of fitness
 // END fitness type
 //
 
 // Then define your EO objects using that fitness type
-typedef eoOneMax<MyFitT> Indi;      // ***MUST*** derive from EO 
+typedef eoOneMax<MyFitT> Indi;      // ***MUST*** derive from EO
 
 // create an initializer - done here and NOT in make_OneMax.cpp
 // because it is NOT representation independent
@@ -59,7 +59,7 @@ typedef eoOneMax<MyFitT> Indi;      // ***MUST*** derive from EO
 eoInit<Indi> & make_genotype(eoParser& _parser, eoState&_state, Indi _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
-} 
+}
 
 // same thing for the variation operaotrs
 #include "make_op_OneMax.h"
@@ -70,7 +70,7 @@ eoGenOp<Indi>&  make_op(eoParser& _parser, eoState& _state, eoInit<Indi>& _init)
 
 // The representation independent routines are simply declared here
 
-// how to initialize the population 
+// how to initialize the population
 // it IS representation independent if an eoInit is given
 eoPop<Indi >&  make_pop(eoParser& _parser, eoState& _state, eoInit<Indi> & _init);
 
@@ -83,7 +83,7 @@ eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFu
 // evolution engine (selection and replacement)
 eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<Indi>& _eval, eoContinue<Indi>& _continue, eoGenOp<Indi>& _op);
 
-// simple call to the algo. stays there for consistency reasons 
+// simple call to the algo. stays there for consistency reasons
 // no template for that one
 void run_ea(eoAlgo<Indi>& _ga, eoPop<Indi>& _pop);
 
@@ -115,7 +115,7 @@ int main(int argc, char* argv[])
   eoGenOp<Indi>& op = make_op(parser, state, init);
 
 
-  //// Now the representation-independent things 
+  //// Now the representation-independent things
   //
   // YOU SHOULD NOT NEED TO MODIFY ANYTHING BEYOND THIS POINT
   // unless you want to add specific statistics to the checkpoint

@@ -17,7 +17,7 @@ and src/es (for real vectors).
 
 */
 
-// Miscilaneous include and declaration 
+// Miscilaneous include and declaration
 #include <iostream>
 using namespace std;
 
@@ -29,7 +29,7 @@ using namespace std;
 // include here whatever specific files for your representation
 // Basically, this should include at least the following
 
-/** definition of representation: 
+/** definition of representation:
  * class eoOneMax MUST derive from EO<FitT> for some fitness
  */
 #include "eoOneMax.h"
@@ -43,12 +43,12 @@ using namespace std;
 // eoInit<eoOneMax<double>> & make_genotype(eoParser& _parser, eoState&_state, eoOneMax<double> _eo)
 // {
 //   return do_make_genotype(_parser, _state, _eo);
-// } 
+// }
 
 // eoInit<eoOneMax<eoMinimizingFitness>> & make_genotype(eoParser& _parser, eoState&_state, eoOneMax<eoMinimizingFitness> _eo)
 // {
 //   return do_make_genotype(_parser, _state, _eo);
-// } 
+// }
 
 // same thing for the variation operaotrs
 //---------------------------------------
@@ -65,7 +65,7 @@ using namespace std;
 
 // The following modules use ***representation independent*** routines
 
-// how to initialize the population 
+// how to initialize the population
 // it IS representation independent if an eoInit is given
 #include <do/make_pop.h>
 eoPop<eoOneMax<double> >&  make_pop(eoParser& _parser, eoState& _state, eoInit<eoOneMax<double> > & _init)
@@ -92,12 +92,12 @@ eoContinue<eoOneMax<eoMinimizingFitness> >& make_continue(eoParser& _parser, eoS
 
 // outputs (stats, population dumps, ...)
 #include <do/make_checkpoint.h>
-eoCheckPoint<eoOneMax<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoOneMax<double> >& _eval, eoContinue<eoOneMax<double> >& _continue) 
+eoCheckPoint<eoOneMax<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoOneMax<double> >& _eval, eoContinue<eoOneMax<double> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
 
-eoCheckPoint<eoOneMax<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoOneMax<eoMinimizingFitness> >& _eval, eoContinue<eoOneMax<eoMinimizingFitness> >& _continue) 
+eoCheckPoint<eoOneMax<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoOneMax<eoMinimizingFitness> >& _eval, eoContinue<eoOneMax<eoMinimizingFitness> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
@@ -114,7 +114,7 @@ eoAlgo<eoOneMax<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoS
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
-// simple call to the algo. stays there for consistency reasons 
+// simple call to the algo. stays there for consistency reasons
 // no template for that one
 #include <do/make_run.h>
 void run_ea(eoAlgo<eoOneMax<double> >& _ga, eoPop<eoOneMax<double> >& _pop)
@@ -126,4 +126,3 @@ void run_ea(eoAlgo<eoOneMax<eoMinimizingFitness> >& _ga, eoPop<eoOneMax<eoMinimi
 {
   do_run(_ga, _pop);
 }
-

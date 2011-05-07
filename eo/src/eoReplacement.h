@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoReplacement.h 
+   eoReplacement.h
    (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -36,9 +36,9 @@
 #include <utils/eoHowMany.h>
 //-----------------------------------------------------------------------------
 
-/** 
+/**
 ---
-The eoMergeReduce, combination of eoMerge and eoReduce, can be found 
+The eoMergeReduce, combination of eoMerge and eoReduce, can be found
 in file eoMergeReduce.h
 
 The eoReduceMergeReduce that reduces the parents and the offspring,
@@ -47,15 +47,15 @@ population, can be found in eoReduceMergeReduce.h
 
 LOG
 ---
-Removed the const before first argument: though it makes too many classes 
-with the same interface, it allows to minimize the number of actual copies 
+Removed the const before first argument: though it makes too many classes
+with the same interface, it allows to minimize the number of actual copies
 by choosing the right destination
 I also removed the enforced "swap" in the eoEasyAlgo and hence the generational
-replacement gets a class of its own that only does the swap (instead of the 
+replacement gets a class of its own that only does the swap (instead of the
 eoNoReplacement that did nothing, relying on the algo to swap popualtions).
 MS 12/12/2000
 
-  @see eoMerge, eoReduce, eoMergeReduce, eoReduceMerge 
+  @see eoMerge, eoReduce, eoMergeReduce, eoReduceMerge
 
 @class eoReplacement,                    base (pure abstract) class
 @class eoGenerationalReplacement,        as it says ...
@@ -67,7 +67,7 @@ MS 12/12/2000
 
 NOTE: two eoPop as arguments
 the resulting population should be in the first argument (replace
-parents by offspring)! The second argument can contain any rubbish 
+parents by offspring)! The second argument can contain any rubbish
 
  @ingroup Replacors
  */
@@ -91,10 +91,10 @@ class eoGenerationalReplacement : public eoReplacement<EOT>
   }
 };
 
-/** 
-eoWeakElitistReplacement: a wrapper for other replacement procedures. 
-Copies in the new pop the best individual from the old pop, 
-AFTER normal replacement, if the best of the new pop is worse than the best 
+/**
+eoWeakElitistReplacement: a wrapper for other replacement procedures.
+Copies in the new pop the best individual from the old pop,
+AFTER normal replacement, if the best of the new pop is worse than the best
 of the old pop. Removes the worse individual from the new pop.
 This could be changed by adding a selector there...
 
@@ -114,11 +114,11 @@ public :
   void operator()(eoPop<EOT>& _pop, eoPop<EOT>& _offspring)
   {
     const EOT oldChamp = _pop.best_element();
-    replace(_pop, _offspring);	   // "normal" replacement, parents are the new
+    replace(_pop, _offspring);     // "normal" replacement, parents are the new
     if (_pop.best_element() < oldChamp) // need to do something
       {
-	typename eoPop<EOT>::iterator itPoorGuy = _pop.it_worse_element();
-	(*itPoorGuy) = oldChamp;
+        typename eoPop<EOT>::iterator itPoorGuy = _pop.it_worse_element();
+        (*itPoorGuy) = oldChamp;
       }
   }
 private:

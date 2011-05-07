@@ -55,16 +55,16 @@ public:
 
     /** Full constructor: Bounds and bound modifier required
     * @param _topology - The topology to get the global/local/other best
-    * @param _c1 - The first learning factor quantify how much the particle trusts itself. Type must be POT::ParticleVelocityType 
-    * @param _c2 - The second learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-    * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
-    * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
+    * @param _c1 - The first learning factor quantify how much the particle trusts itself. Type must be POT::ParticleVelocityType
+    * @param _c2 - The second learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+    * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
+    * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities.
     * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
     * @param _bndsModifier - An eoRealBoundModifier used to modify the bounds (for real bounds only).
     * @param _gen - The eo random generator, default=rng
     */
     eoIntegerVelocity (eoTopology < POT > & _topology,
-    					const VelocityType & _c1,
+                                        const VelocityType & _c1,
                         const VelocityType & _c2,
                         const VelocityType & _c3,
                         eoRealVectorBounds & _bounds,
@@ -81,10 +81,10 @@ public:
 
     /** Constructor: No bound updater required <-> fixed bounds
        * @param _topology - The topology to get the global/local/other best
-       * @param _c1 - The first learning factor quantify how much the particle trusts itself. Type must be POT::ParticleVelocityType 
-	   * @param _c2 - The second learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-	   * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
-       * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
+       * @param _c1 - The first learning factor quantify how much the particle trusts itself. Type must be POT::ParticleVelocityType
+           * @param _c2 - The second learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+           * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
+       * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities.
        * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
        * @param _gen - The eo random generator, default=rng
        */
@@ -105,9 +105,9 @@ public:
 
     /** Constructor: Neither bounds nor bound updater required <-> free velocity
      * @param _topology the topology to use
-       * @param _c1 - The first learning factor quantify how much the particle trusts itself. Type must be POT::ParticleVelocityType 
-       * @param _c2 - The second learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-       * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
+       * @param _c1 - The first learning factor quantify how much the particle trusts itself. Type must be POT::ParticleVelocityType
+       * @param _c2 - The second learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+       * @param _c3 - The third learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
        * @param _gen - The eo random generator, default=rng
        */
     eoIntegerVelocity (eoTopology < POT > & _topology,
@@ -116,7 +116,7 @@ public:
                         const VelocityType & _c3,
                         eoRng & _gen = rng):
             topology(_topology),
-           	c1 (_c1),
+                c1 (_c1),
             c2 (_c2),
             c3 (_c3),
             bounds(*(new eoRealVectorNoBounds(0))),
@@ -167,30 +167,29 @@ public:
     {
         topology.updateNeighborhood(_po,_indice);
     }
-    
+
     //! eoTopology<POT> getTopology
     //! @return topology
 
-	eoTopology<POT> & getTopology ()
-	{
-		return topology;
-	}
+        eoTopology<POT> & getTopology ()
+        {
+                return topology;
+        }
 
 protected:
     eoTopology < POT > & topology;
-    const VelocityType & c1;  // social/cognitive coefficient 
-    const VelocityType & c2;  // social/cognitive coefficient 
-    const VelocityType & c3;  // social/cognitive coefficient 
-  
-    eoRealVectorBounds bounds; // REAL bounds even if the velocity could be of another type.
-	eoRealBoundModifier & bndsModifier;
+    const VelocityType & c1;  // social/cognitive coefficient
+    const VelocityType & c2;  // social/cognitive coefficient
+    const VelocityType & c3;  // social/cognitive coefficient
 
-	eoRng & gen; // the random generator
-	
+    eoRealVectorBounds bounds; // REAL bounds even if the velocity could be of another type.
+        eoRealBoundModifier & bndsModifier;
+
+        eoRng & gen; // the random generator
+
     // If the bound modifier doesn't need to be used, use the dummy instance
     eoDummyRealBoundModifier dummyModifier;
 };
 
 
 #endif /*EOINTEGERVELOCITY_H */
-

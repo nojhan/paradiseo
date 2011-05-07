@@ -16,4 +16,3 @@ namespace eo
     // global random number generator object
     eoRng rng(static_cast<uint32_t>(time(0)));
 }
-

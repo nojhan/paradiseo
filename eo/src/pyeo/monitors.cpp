@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -26,47 +26,46 @@ using namespace boost::python;
 
 class MonitorWrapper : public eoMonitor
 {
-    public:
-	PyObject* self;
-	list objects;
-	
-	MonitorWrapper(PyObject* p) :self(p) {}
+public:
+    PyObject* self;
+    list objects;
 
-	eoMonitor& operator()()
-	{
-	    call_method<void>(self, "__call__");
-	    return *this;
-	}
+    MonitorWrapper(PyObject* p) :self(p) {}
 
-	std::string getString(int i)
-	{
-	    if (static_cast<unsigned>(i) >= vec.size())
-	    {
-		throw index_error("Index out of bounds");
-	    }
-	    
-	    return vec[i]->getValue();
-	}
+    eoMonitor& operator()()
+    {
+        call_method<void>(self, "__call__");
+        return *this;
+    }
 
-	unsigned size() { return vec.size(); }
+    std::string getString(int i)
+    {
+        if (static_cast<unsigned>(i) >= vec.size())
+            {
+                throw index_error("Index out of bounds");
+            }
+
+        return vec[i]->getValue();
+    }
+
+    unsigned size() { return vec.size(); }
 };
 
 void monitors()
 {
-    /** 
-     * Change of interface: I encountered some difficulties with 
+    /**
+     * Change of interface: I encountered some difficulties with
      * transferring eoParams from and to Python, so now we can
      * only get at the strings contained in the eoParams.
      * sorry
      */
-    
-    class_<eoMonitor, MonitorWrapper, boost::noncopyable>("eoMonitor", init<>())
-	.def("lastCall", &eoMonitor::lastCall)
-	.def("add", &eoMonitor::add)
-	.def("__call__", &MonitorWrapper::operator(), return_internal_reference<1>() )
-	.def("__getitem__", &MonitorWrapper::getString, 
-		"Returns the string value of the indexed Parameter")	
-	.def("__len__", &MonitorWrapper::size)
-	;
-}
 
+    class_<eoMonitor, MonitorWrapper, boost::noncopyable>("eoMonitor", init<>())
+        .def("lastCall", &eoMonitor::lastCall)
+        .def("add", &eoMonitor::add)
+        .def("__call__", &MonitorWrapper::operator(), return_internal_reference<1>() )
+        .def("__getitem__", &MonitorWrapper::getString,
+             "Returns the string value of the indexed Parameter")
+        .def("__len__", &MonitorWrapper::size)
+        ;
+}

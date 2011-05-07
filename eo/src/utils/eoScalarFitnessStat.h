@@ -52,10 +52,10 @@ public:
     {
       value().resize(_popPters.size());
       for (unsigned i=0; i<_popPters.size(); i++)
-	{
-	  value()[i] = _popPters[i]->fitness();
-	  range.truncate(value()[i]);
-	}
+        {
+          value()[i] = _popPters[i]->fitness();
+          range.truncate(value()[i]);
+        }
     }
 
 private :

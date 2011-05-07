@@ -370,8 +370,8 @@ public:
     void printOn(ostream& os) const
     {
       // First write the fitness
-        EO<FitT>::printOn(os);
-        os << ' ';
+	EO<FitT>::printOn(os);
+	os << ' ';
     // START Code of default output
 
   /** HINTS

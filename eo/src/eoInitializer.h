@@ -54,9 +54,9 @@ public :
 };
 
 /**
-	Base (name) class for Initialization of algorithm PSO
+        Base (name) class for Initialization of algorithm PSO
 
-	@see eoInitializerBase eoUF apply
+        @see eoInitializerBase eoUF apply
 */
 template <class POT> class eoInitializer : public eoInitializerBase <POT>
 {
@@ -115,9 +115,9 @@ public:
 private :
 
     /*
-    	@param proc First evaluation
-    	@param initVelo Initialization of the velocity
-    	@param initBest Initialization of the best
+        @param proc First evaluation
+        @param initVelo Initialization of the velocity
+        @param initBest Initialization of the best
     */
     eoUF<POT&, void>& proc;
     eoVelocityInit < POT > & initVelo;
@@ -145,4 +145,3 @@ class eoDummy : public eoUF<POT&, void>
 #endif
 
 /** @} */
-

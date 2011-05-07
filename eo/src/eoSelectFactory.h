@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 // EOFactory.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -41,52 +41,52 @@ eoSelect objects
 */
 template< class EOT>
 class eoSelectFactory: public eoFactory<eoSelect< EOT> > {
-	
+
 public:
-	
-	/// @name ctors and dtors
-	//{@
-	/// constructor
-	eoSelectFactory( ) {}
-	
-	/// destructor
-	virtual ~eoSelectFactory() {}
-	//@}
 
-	/** Another factory methods: creates an object from an std::istream, reading from
-	it whatever is needed to create the object. Usually, the format for the std::istream will be\\
-	objectType parameter1 parameter2 ... parametern\\
-	*/
-	virtual eoSelect<EOT>* make(std::istream& _is) {
-		eoSelect<EOT> * selectPtr;
-		std::string objectTypeStr;
-		_is >> objectTypeStr;
-		// All selectors have a rate, the proportion of the original population
-		float rate;
-		_is >> rate;
-		if  ( objectTypeStr == "eoTournament") {
-			// another parameter is necessary
-			unsigned tSize;
-			_is >> tSize;
-			selectPtr = new eoTournament<EOT>( rate, tSize );
-		} else 	{
-			if ( objectTypeStr == "eoRandomSelect" ) {
-				selectPtr = new eoRandomSelect<EOT>( rate );
-			} else {
-						throw std::runtime_error( "Incorrect selector type" );
-			}
-		}
-		return selectPtr;
-	}
+        /// @name ctors and dtors
+        //{@
+        /// constructor
+        eoSelectFactory( ) {}
 
-	///@name eoObject methods
-	//@{
-	void printOn( std::ostream& _os ) const {};
-	void readFrom( std::istream& _is ){};
+        /// destructor
+        virtual ~eoSelectFactory() {}
+        //@}
 
-	/** className is inherited */
-	//@}
-	
+        /** Another factory methods: creates an object from an std::istream, reading from
+        it whatever is needed to create the object. Usually, the format for the std::istream will be\\
+        objectType parameter1 parameter2 ... parametern\\
+        */
+        virtual eoSelect<EOT>* make(std::istream& _is) {
+                eoSelect<EOT> * selectPtr;
+                std::string objectTypeStr;
+                _is >> objectTypeStr;
+                // All selectors have a rate, the proportion of the original population
+                float rate;
+                _is >> rate;
+                if  ( objectTypeStr == "eoTournament") {
+                        // another parameter is necessary
+                        unsigned tSize;
+                        _is >> tSize;
+                        selectPtr = new eoTournament<EOT>( rate, tSize );
+                } else  {
+                        if ( objectTypeStr == "eoRandomSelect" ) {
+                                selectPtr = new eoRandomSelect<EOT>( rate );
+                        } else {
+                                                throw std::runtime_error( "Incorrect selector type" );
+                        }
+                }
+                return selectPtr;
+        }
+
+        ///@name eoObject methods
+        //@{
+        void printOn( std::ostream& _os ) const {};
+        void readFrom( std::istream& _is ){};
+
+        /** className is inherited */
+        //@}
+
 };
 
 

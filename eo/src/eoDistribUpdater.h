@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoDistribUpdater.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -32,7 +32,7 @@
 #include <eoPop.h>
 
 /**
- * Base class for Distribution Evolution Algorithms within EO: 
+ * Base class for Distribution Evolution Algorithms within EO:
  *    the update rule of distribution
  *
  * It takes one distribution and updates it according to one population
@@ -40,7 +40,7 @@
  * @ingroup Core
 */
 template <class EOT>
-class eoDistribUpdater :  
+class eoDistribUpdater :
   public eoBF<eoDistribution<EOT> &, eoPop<EOT> &, void>
 {
 public:

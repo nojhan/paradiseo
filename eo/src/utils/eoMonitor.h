@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -31,7 +31,7 @@
 
 /** @defgroup Monitors Monitoring
  *
- * Monitors take a set of value parameters (eoValueParam) objects and 
+ * Monitors take a set of value parameters (eoValueParam) objects and
  * output them on a given stream, file, pipe, etc.
  *
  * They can be called from within an eoCheckPoint, to print different values

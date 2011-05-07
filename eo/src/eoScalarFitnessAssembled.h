@@ -110,8 +110,8 @@ public:
   {}
 
   eoScalarFitnessAssembled( size_type _n,
-			    const ScalarType& _val,
-			    const std::string& _descr="Unnamed variable" )
+                            const ScalarType& _val,
+                            const std::string& _descr="Unnamed variable" )
     : baseVector(_n, _val),
       feasible(true), failed(false), msg("")
   {
@@ -225,10 +225,10 @@ public:
 
   //! Comparison with ScalarTypes. Explicit definition needed to compile with VS 8.0
   bool operator<(ScalarType x) const{
-  	eoScalarFitnessAssembled ScalarFitness(x);
-  	return this->operator<(ScalarFitness);
+        eoScalarFitnessAssembled ScalarFitness(x);
+        return this->operator<(ScalarFitness);
   }
-  
+
   // implementation of the other operators
   bool operator>( const eoScalarFitnessAssembled<ScalarType, Compare, FitnessTraits>& y ) const  { return y < *this; }
 
@@ -239,7 +239,7 @@ public:
   bool operator>=(const eoScalarFitnessAssembled<ScalarType, Compare, FitnessTraits>& y ) const { return !(*this < y); }
 
 };
-/** 
+/**
  * @example t-eoFitnessAssembledEA.cpp
 */
 
@@ -282,4 +282,3 @@ std::istream& operator>>(std::istream& is, eoScalarFitnessAssembled<F, Cmp, Fitn
 
 /** @} */
 #endif
-

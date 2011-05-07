@@ -87,10 +87,10 @@ template<class Chrom> class eoDetBitFlip: public eoMonOp<Chrom>
     {
       // does not check for duplicate: if someone volunteers ....
       for (unsigned k=0; k<num_bit; k++)
-	{
-	  unsigned i = eo::rng.random(chrom.size());
-	  chrom[i] = (chrom[i]) ? false : true;
-	}
+        {
+          unsigned i = eo::rng.random(chrom.size());
+          chrom[i] = (chrom[i]) ? false : true;
+        }
       return true;
     }
  private:
@@ -126,9 +126,9 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
       double actualRate = (normalize ? rate/chrom.size() : rate);
       bool changed_something = false;
       for (unsigned i = 0; i < chrom.size(); i++)
-	    if (eo::rng.flip(actualRate))
+            if (eo::rng.flip(actualRate))
         {
-	        chrom[i] = !chrom[i];
+                chrom[i] = !chrom[i];
             changed_something = true;
         }
 
@@ -137,7 +137,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
 
  private:
   double rate;
-  bool normalize;		   // divide rate by chromSize
+  bool normalize;                  // divide rate by chromSize
 };
 
 
@@ -187,16 +187,16 @@ template<class Chrom> class eoBitNext: public eoMonOp<Chrom>
   bool operator()(Chrom& chrom)
     {
       for (int i = chrom.size() - 1; i >= 0; i--)
-	if (chrom[i])
-	  {
-	    chrom[i] = 0;
-	    continue;
-	  }
-	else
-	  {
-	    chrom[i] = 1;
-	    break;
-	  }
+        if (chrom[i])
+          {
+            chrom[i] = 0;
+            continue;
+          }
+        else
+          {
+            chrom[i] = 1;
+            break;
+          }
 
     return true;
     }
@@ -221,16 +221,16 @@ template<class Chrom> class eoBitPrev: public eoMonOp<Chrom>
   bool operator()(Chrom& chrom)
     {
       for (int i = chrom.size() - 1; i >= 0; i--)
-	if (chrom[i])
-	  {
-	    chrom[i] = 0;
-	    break;
-	  }
-	else
-	  {
-	    chrom[i] = 1;
-	    continue;
-	  }
+        if (chrom[i])
+          {
+            chrom[i] = 0;
+            break;
+          }
+        else
+          {
+            chrom[i] = 1;
+            continue;
+          }
 
     return true;
     }
@@ -281,7 +281,7 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
   eoUBitXover(const float& _preference = 0.5): preference(_preference)
     {
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
-	std::runtime_error("UxOver --> invalid preference");
+        std::runtime_error("UxOver --> invalid preference");
     }
   /// The class name.
   virtual std::string className() const { return "eoUBitXover"; }
@@ -295,18 +295,18 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
   bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
       if ( chrom1.size() != chrom2.size())
-	    std::runtime_error("UxOver --> chromosomes sizes don't match" );
+            std::runtime_error("UxOver --> chromosomes sizes don't match" );
       bool changed = false;
       for (unsigned int i=0; i<chrom1.size(); i++)
-	{
-	  if (chrom1[i] != chrom2[i] && eo::rng.flip(preference))
-	    {
-	      bool tmp = chrom1[i];
-	      chrom1[i]=chrom2[i];
-	      chrom2[i] = tmp;
-	      changed = true;
-	    }
-	}
+        {
+          if (chrom1[i] != chrom2[i] && eo::rng.flip(preference))
+            {
+              bool tmp = chrom1[i];
+              chrom1[i]=chrom2[i];
+              chrom2[i] = tmp;
+              changed = true;
+            }
+        }
     return changed;
   }
     private:
@@ -390,9 +390,9 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
     gene_size(_gene_size), num_points(_num_points)
     {
       if (gene_size < 1)
-	std::runtime_error("GxOver --> invalid gene size");
+        std::runtime_error("GxOver --> invalid gene size");
       if (num_points < 1)
-	std::runtime_error("GxOver --> invalid number of points");
+        std::runtime_error("GxOver --> invalid number of points");
     }
 
   /// The class name
@@ -412,22 +412,22 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
 
       // selects genes to swap
       do {
-	unsigned bit = eo::rng.random(max_genes);
-	if (points[bit])
-	  continue;
-	else
-	  {
-	    points[bit] = true;
-	    cut_genes--;
-	  }
+        unsigned bit = eo::rng.random(max_genes);
+        if (points[bit])
+          continue;
+        else
+          {
+            points[bit] = true;
+            cut_genes--;
+          }
       } while (cut_genes);
 
       // swaps genes
       for (unsigned i = 0; i < points.size(); i++)
-	if (points[i])
-	  std::swap_ranges(chrom1.begin() + i * gene_size,
-		      chrom1.begin() + i * gene_size + gene_size,
-		      chrom2.begin() + i * gene_size);
+        if (points[i])
+          std::swap_ranges(chrom1.begin() + i * gene_size,
+                      chrom1.begin() + i * gene_size + gene_size,
+                      chrom2.begin() + i * gene_size);
 
     return true;
   }
@@ -442,4 +442,3 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
 //-----------------------------------------------------------------------------
 //@}
 #endif
-

@@ -59,7 +59,7 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
   // random seed
     eoValueParam<uint32_t>& seedParam = _parser.getORcreateParam(uint32_t(0), "seed", "Random number seed", 'S');
     if (seedParam.value() == 0)
-	seedParam.value() = time(0);
+        seedParam.value() = time(0);
     eoValueParam<unsigned>& popSize = _parser.getORcreateParam(unsigned(20), "popSize", "Population Size", 'P', "Evolution Engine");
 
   // Either load or initialize
@@ -82,17 +82,17 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
       // the fitness is read in the file:
       // do only evaluate the pop if the fitness has changed
       if (recomputeFitnessParam.value())
-	{
-	  for (unsigned i=0; i<pop.size(); i++)
-	    pop[i].invalidate();
-	}
+        {
+          for (unsigned i=0; i<pop.size(); i++)
+            pop[i].invalidate();
+        }
       if (pop.size() < popSize.value())
-	std::cerr << "WARNING, only " << pop.size() << " individuals read in file " << loadNameParam.value() << "\nThe remaining " << popSize.value() - pop.size() << " will be randomly drawn" << std::endl;
+        std::cerr << "WARNING, only " << pop.size() << " individuals read in file " << loadNameParam.value() << "\nThe remaining " << popSize.value() - pop.size() << " will be randomly drawn" << std::endl;
       if (pop.size() > popSize.value())
-	{
-	  std::cerr << "WARNING, Load file contained too many individuals. Only the best will be retained" << std::endl;
-	  pop.resize(popSize.value());
-	}
+        {
+          std::cerr << "WARNING, Load file contained too many individuals. Only the best will be retained" << std::endl;
+          pop.resize(popSize.value());
+        }
     }
   else				// nothing loaded from a file
     {

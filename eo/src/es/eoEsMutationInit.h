@@ -55,7 +55,7 @@ public :
     @param _section Parser section for \f$\tau\f$-parameters.
     */
     eoEsMutationInit(eoParser& _parser,
-		     std::string _section="ES mutation parameters" ) :
+                     std::string _section="ES mutation parameters" ) :
         parser(_parser), repSection(_section),
         TauLclParam(0), TauGlbParam(0), TauBetaParam(0) {}
 

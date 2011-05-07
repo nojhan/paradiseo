@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
   ///// FIRST, problem or representation dependent stuff
   //////////////////////////////////////////////////////
 
-  // The evaluation fn - encapsulated into an eval counter for output 
+  // The evaluation fn - encapsulated into an eval counter for output
   eoEvalFuncPtr<EOT, double> mainEval( binary_value<EOT> );
   eoEvalFuncCounter<EOT> eval(mainEval);
 

@@ -71,11 +71,10 @@ public:
         }
 
     }
-    
-   
+
+
    virtual eoTopology<POT> & getTopology () = 0;
 
 };
 
 #endif /*EOVELOCITY_H_H */
-

@@ -56,9 +56,9 @@ public:
     * @param _topology - The topology to get the global/local/other best
     * @param _coeff - The constriction coefficient
     * @param _weightUpdater - An eoWeightUpdater used to update the inertia weight
-    * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-    * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
-    * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
+    * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+    * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
+    * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities.
     * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
     * @param _bndsModifier - An eoRealBoundModifier used to modify the bounds (for real bounds only).
     * @param _gen - The eo random generator, default=rng
@@ -85,9 +85,9 @@ public:
        * @param _topology - The topology to get the global/local/other best
        * @param _coeff - The constriction coefficient
        * @param _weightUpdater - An eoWeightUpdater used to update the inertia weight
-       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
-       * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities. 
+       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
+       * @param _bounds - An eoRealBaseVectorBounds: real bounds for real velocities.
        * If the velocities are not real, they won't be bounded by default. Should have a eoBounds ?
        * @param _gen - The eo random generator, default=rng
        */
@@ -112,8 +112,8 @@ public:
        * @param _topology - The topology to get the global/local/other best*
        * @param _coeff - The constriction coefficient
        * @param _weightUpdater - An eoWeightUpdater used to update the inertia weight
-       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType 
-       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType 
+       * @param _c1 - The first learning factor used for the particle's best. Type must be POT::ParticleVelocityType
+       * @param _c2 - The second learning factor used for the local/global best(s). Type must be POT::ParticleVelocityType
        * @param _gen - The eo random generator, default=rng
        */
     eoConstrictedVariableWeightVelocity (eoTopology < POT > & _topology,
@@ -134,7 +134,7 @@ public:
 
     /**
      *  Evaluate the new velocities of the given particle. Need an indice to identify the particle
-     * into the topology. Steps are : 
+     * into the topology. Steps are :
      *  - evaluate r1 and r2, the customed learning factors
      *  - adjust the size of the bounds (even if dummy)
      *  - update the weight with the weightUpdater (use the dummy updater if there's no updater provided)
@@ -189,22 +189,21 @@ public:
 
 protected:
     eoTopology < POT > & topology;
-    
+
     const VelocityType & coeff;   // the fixed constriction coefficient
-    eoWeightUpdater<VelocityType> & weightUpdater; 	// the updater used to make the weight evoluate
- 
-    const VelocityType & c1;  	// learning factor 1
-    const VelocityType  & c2; 	 // learning factor 2
-   
+    eoWeightUpdater<VelocityType> & weightUpdater;      // the updater used to make the weight evoluate
+
+    const VelocityType & c1;    // learning factor 1
+    const VelocityType  & c2;    // learning factor 2
+
     eoRealVectorBounds & bounds; // REAL bounds even if the velocity could be of another type.
     eoRealBoundModifier & bndsModifier;
-    
+
     VelocityType weight;
-    eoRng & gen; 	// the random generator
- 
+    eoRng & gen;        // the random generator
+
     // If the bound modifier doesn't need to be used, use the dummy instance
     eoDummyRealBoundModifier dummyModifier;
 };
 
 #endif /*EOCONSTRICTEDVARIABLEWEIGHTVELOCITY_H*/
-

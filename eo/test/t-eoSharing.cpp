@@ -230,11 +230,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        the_main(argc, argv);
+	the_main(argc, argv);
     }
     catch(std::exception& e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
-        return 1;
+	std::cout << "Exception: " << e.what() << std::endl;
+	return 1;
     }
 }

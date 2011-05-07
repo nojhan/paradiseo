@@ -19,10 +19,10 @@ When running bash, use this:
 
 You can freely move the created project around. However, whenever you
 change the location of the source- or build-directories, you need to
-run 
+run
   touch configure.ac && autoreconf
-in the source-directory and 
-  make 
+in the source-directory and
+  make
 in the build-directory (which might or might not be the same for you).
 
 

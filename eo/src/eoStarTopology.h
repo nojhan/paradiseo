@@ -91,9 +91,9 @@ public:
         // update the best fitness of the particle
         if (_po.fitness() > _po.best())
         {
-	  _po.best(_po.fitness());
-	  for(unsigned i=0;i<_po.size();i++)
-	    _po.bestPositions[i]=_po[i];
+          _po.best(_po.fitness());
+          for(unsigned i=0;i<_po.size();i++)
+            _po.bestPositions[i]=_po[i];
         }
         // update the global best if the given particle is "better"
         if (_po.fitness() > neighborhood.best().fitness())
@@ -109,14 +109,14 @@ public:
      * @return POT & - The best particle in the neighborhood of the particle whose indice is _indice
      */
     POT & best (unsigned  _indice) {return (neighborhood.best());}
-    
+
     /*
-	 * Return the global best of the topology
-	 */
-	 
-	 virtual POT & globalBest(const eoPop<POT>& _pop)
+         * Return the global best of the topology
+         */
+
+         virtual POT & globalBest(const eoPop<POT>& _pop)
     {
-    	return neighborhood.best();
+        return neighborhood.best();
     }
 
 
@@ -139,11 +139,3 @@ protected:
 };
 
 #endif /*EOSTARTOPOLOGY_H_ */
-
-
-
-
-
-
-
-

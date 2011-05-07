@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoTransform.h 
+   eoTransform.h
    (c) Maarten Keijzer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -30,7 +30,7 @@
 #include <eoPop.h>
 //-----------------------------------------------------------------------------
 
-/** 
+/**
 eoTransform transforms a population by applying genetic operators on it.
 
 @ingroup Combination

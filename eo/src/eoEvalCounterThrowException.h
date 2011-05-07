@@ -1,4 +1,4 @@
-/* 
+/*
 (c) Thales group, 2010
 
     This library is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 Contact: http://eodev.sourceforge.net
 
-Authors: 
+Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 Caner Candan <caner.candan@thalesgroup.com>
 
@@ -49,7 +49,7 @@ class eoEvalCounterThrowException : public eoEvalFuncCounter< EOT >
 {
 public :
     eoEvalCounterThrowException( eoEvalFunc<EOT>& func, unsigned long max_evals, std::string name = "Eval. ")
-	: eoEvalFuncCounter< EOT >( func, name ), _threshold( max_evals )
+        : eoEvalFuncCounter< EOT >( func, name ), _threshold( max_evals )
     {}
 
     using eoEvalFuncCounter< EOT >::value;
@@ -60,8 +60,8 @@ public :
         // bypass already evaluated individuals
         if (eo.invalid()) {
 
-            // increment the value of the self parameter 
-            // (eoEvalFuncCounter inherits from @see eoValueParam) 
+            // increment the value of the self parameter
+            // (eoEvalFuncCounter inherits from @see eoValueParam)
             value()++;
 
             // if we have reached the maximum
@@ -84,4 +84,3 @@ private :
 };
 
 #endif // __eoEvalCounterThrowException_h__
-

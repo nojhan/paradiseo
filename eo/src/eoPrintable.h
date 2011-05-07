@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoPrintable.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -37,7 +37,7 @@ some objects (for instance, a #eoFactory# or a random number generator.
 
 /**
 Base class for objects that can print themselves
-(#printOn#). Besides, this file defines the standard output for all the objects; 
+(#printOn#). Besides, this file defines the standard output for all the objects;
 if the objects define printOn there's no need to define "operator<<".
 
   @ingroup Core
@@ -47,7 +47,7 @@ class eoPrintable
  public:
   /// Virtual dtor. They are needed in virtual class hierarchies.
   virtual ~eoPrintable() {}
-  
+
   /**
    * Write object. It's called printOn since it prints the object on a stream.
    * @param _os A std::ostream.
@@ -60,4 +60,3 @@ class eoPrintable
 std::ostream & operator << ( std::ostream& _os, const eoPrintable& _o );
 
 #endif
-

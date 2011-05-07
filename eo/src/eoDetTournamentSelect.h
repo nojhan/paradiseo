@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoDetTournament.h
 // (c) GeNeura Team, 1998 - EEAAX 1999
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -28,7 +28,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <functional>  // 
+#include <functional>  //
 #include <numeric>     // accumulate
 
 #include <eoFunctor.h>
@@ -37,7 +37,7 @@
 #include <utils/selectors.h>
 
 /** eoDetTournamentSelect: a selection method that selects ONE individual by
- deterministic tournament 
+ deterministic tournament
  -MS- 24/10/99
 
  @ingroup Selectors
@@ -45,7 +45,7 @@
 template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
 {
  public:
-  /* (Default) Constructor - 
+  /* (Default) Constructor -
      @param _tSize tournament size
   */
   eoDetTournamentSelect(unsigned _tSize = 2 ):eoSelectOne<EOT>(), tSize(_tSize) {
@@ -55,15 +55,15 @@ template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
       tSize = 2;
     }
   }
-  
-  /* Perform deterministic tournament calling the appropriate fn 
+
+  /* Perform deterministic tournament calling the appropriate fn
      see selectors.h
   */
-  virtual const EOT& operator()(const eoPop<EOT>& _pop) 
+  virtual const EOT& operator()(const eoPop<EOT>& _pop)
   {
       return deterministic_tournament(_pop, tSize);
   }
-  
+
  private:
   unsigned tSize;
 };
@@ -71,4 +71,3 @@ template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
 //-----------------------------------------------------------------------------
 
 #endif
-

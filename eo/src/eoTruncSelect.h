@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoTruncSelect.h 
+   eoTruncSelect.h
    (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2002
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -35,7 +35,7 @@
 //-----------------------------------------------------------------------------
 
 /** eoTruncSelect selects individuals after truncating the population
- * using eoSelectOne as it's mechanism. 
+ * using eoSelectOne as it's mechanism.
  * Therefore eoSelectMany needs an eoSelectOne in its ctor
  * It will use an eoHowMnay to determine the number of guys to keep,
  *
@@ -46,9 +46,9 @@ class eoTruncSelect : public eoSelect<EOT>
 {
  public:
   /** Ctor: from an eoSelect (and an eoMany to tell how many are kept for selectino */
-  eoTruncSelect(eoSelectOne<EOT>& _select, eoHowMany _howMany) 
+  eoTruncSelect(eoSelectOne<EOT>& _select, eoHowMany _howMany)
     : select(_select), howMany(_howMany) {}
-  
+
      /**
      The implementation repeatidly selects an individual
 
@@ -58,15 +58,15 @@ class eoTruncSelect : public eoSelect<EOT>
   virtual void operator()(const eoPop<EOT>& _source, eoPop<EOT>& _dest)
   {
     unsigned target = howMany(_source.size());
-    
+
     _dest.resize(target);
-    
+
     select.setup(_source);
-    
+
     for (size_t i = 0; i < _dest.size(); ++i)
       _dest[i] = select(_source);
   }
-  
+
 private :
   eoSelectOne<EOT>& select;
   eoHowMany howMany;

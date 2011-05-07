@@ -4,7 +4,7 @@
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; version 2 
+    License as published by the Free Software Foundation; version 2
     of the License.
 
     This library is distributed in the hope that it will be useful,
@@ -40,7 +40,7 @@ Authors:
 
 //! A fitness class that permits to compare feasible and unfeasible individuals and guaranties that a feasible individual will always be better than an unfeasible one.
 /**
- * Use this class as fitness if you have some kind of individuals 
+ * Use this class as fitness if you have some kind of individuals
  * that must be always considered as better than others while having the same fitness type.
  *
  * Wraps a scalar fitness _values such as a double or int, with the option of
@@ -52,7 +52,7 @@ Authors:
  *
  * When changing the fitness, you can use:
  *     individual.fitness( std::make_pair<BaseType,bool>( fitness, feasibility ) );
- * 
+ *
  * Be aware that, when printing or reading an eDualFitness instance on a iostream,
  * friend IO classes use a space separator.
  *
@@ -80,19 +80,19 @@ public:
     /*!
      * Unfeasible by default
      */
-    eoDualFitness() : 
-        _value(), 
-        _is_feasible(false) 
+    eoDualFitness() :
+        _value(),
+        _is_feasible(false)
     {}
 
     //! Copy constructor
     eoDualFitness(const eoDualFitness& other) :
         _value(other._value),
-        _is_feasible(other._is_feasible) 
+        _is_feasible(other._is_feasible)
     {}
 
     //! Constructor from explicit value/feasibility
-    eoDualFitness(const BaseType& v, const bool& is_feasible) : 
+    eoDualFitness(const BaseType& v, const bool& is_feasible) :
         _value(v),
         _is_feasible(is_feasible)
     {}
@@ -118,15 +118,15 @@ public:
     {
         _value = v.first;
         _is_feasible = v.second;
-        return *this; 
+        return *this;
     }
- 
+
     //! Copy operator from another eoDualFitness
     template <class F, class Cmp>
     eoDualFitness<F,Cmp> & operator=(const eoDualFitness<BaseType, Compare>& other )
     {
         if (this != &other) {
-            this->_value = other._value; 
+            this->_value = other._value;
             this->_is_feasible = other._is_feasible;
         }
         return *this;
@@ -135,12 +135,12 @@ public:
 
     //! Comparison that separate feasible individuals from unfeasible ones. Feasible are always better
     /*!
-     * Use less as a default comparison operator 
+     * Use less as a default comparison operator
      * (see the "Compare" template of the class to change this behaviour,
      * @see eoMinimizingDualFitness for an example).
      */
     bool operator<(const eoDualFitness& other) const
-    { 
+    {
         // am I better (less, by default) than the other ?
 
         // if I'm feasible and the other is not
@@ -152,7 +152,7 @@ public:
             // yes, a feasible fitness is always better than an unfeasible one
             return true;
 
-        } else { 
+        } else {
             // the two fitness are of the same type
             // lets rely on the comparator
             return Compare()(_value, other._value);
@@ -168,7 +168,7 @@ public:
     //! Greater or equal: if the other is not greater than me
     bool operator>=(const eoDualFitness<BaseType, Compare>& other ) const { return !(*this < other); }
 
-   
+
 public:
 
     //! Add a given fitness to the current one
@@ -199,7 +199,7 @@ public:
 
     // Add this fitness's value to that other, and return a _new_ instance with the result.
     template <class F, class Cmp>
-    eoDualFitness<F,Cmp> operator+(const eoDualFitness<F,Cmp> & that) 
+    eoDualFitness<F,Cmp> operator+(const eoDualFitness<F,Cmp> & that)
     {
         eoDualFitness<F,Cmp> from( *this );
         return from += that;
@@ -207,7 +207,7 @@ public:
 
     // Add this fitness's value to that other, and return a _new_ instance with the result.
     template <class F, class Cmp>
-    eoDualFitness<F,Cmp> operator-(const eoDualFitness<F,Cmp> & that) 
+    eoDualFitness<F,Cmp> operator-(const eoDualFitness<F,Cmp> & that)
     {
         eoDualFitness<F,Cmp> from( *this );
         return from -= that;
@@ -224,7 +224,7 @@ public:
 
     //! Read an eoDualFitness instance as a pair of numbers, separated by a space
     template <class F, class Cmp>
-    friend 
+    friend
     std::istream& operator>>(std::istream& is, eoDualFitness<F, Cmp>& f)
     {
         F value;
@@ -265,11 +265,11 @@ public:
 //    eoDualStatSwitch( eoStat<EOT,T> & stat_feasible,  eoStat<EOT,T> & stat_unfeasible, std::string sep=" "  ) :
     eoDualStatSwitch( EOSTAT & stat_feasible,  EOSTAT & stat_unfeasible, std::string sep=" "  ) :
         eoStat<EOT,std::string>(
-                "?"+sep+"?", 
-                stat_feasible.longName()+sep+stat_unfeasible.longName() 
-				),
-        _stat_feasible(stat_feasible), 
-        _stat_unfeasible(stat_unfeasible), 
+                "?"+sep+"?",
+                stat_feasible.longName()+sep+stat_unfeasible.longName()
+                                ),
+        _stat_feasible(stat_feasible),
+        _stat_unfeasible(stat_unfeasible),
         _sep(sep)
     { }
 
@@ -277,7 +277,7 @@ public:
     {
         eoPop<EOT> pop_feasible;
         pop_feasible.reserve(pop.size());
-        
+
         eoPop<EOT> pop_unfeasible;
         pop_unfeasible.reserve(pop.size());
 
@@ -296,7 +296,7 @@ public:
 
         _stat_feasible( pop_feasible );
         _stat_unfeasible( pop_unfeasible );
-        
+
         std::ostringstream out;
         out << _stat_feasible.value() << _sep << _stat_unfeasible.value();
 
@@ -311,7 +311,6 @@ protected:
 
     std::string _sep;
 };
-    
+
 /** @} */
 #endif // _eoDualFitness_h_
-

@@ -66,14 +66,14 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _p_change the one probability to change all coordinates
    */
   eoUniformMutation(eoRealVectorBounds & _bounds,
-		    const double& _epsilon, const double& _p_change = 1.0):
+                    const double& _epsilon, const double& _p_change = 1.0):
     homogeneous(false), bounds(_bounds), epsilon(_bounds.size(), _epsilon),
     p_change(_bounds.size(), _p_change)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
       if (bounds.isBounded(i))
-	  epsilon[i] *= _epsilon*bounds.range(i);
+          epsilon[i] *= _epsilon*bounds.range(i);
   }
 
   /**
@@ -83,8 +83,8 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _p_change the VECTOR of probabilities for each coordinates
    */
   eoUniformMutation(eoRealVectorBounds & _bounds,
-		    const std::vector<double>& _epsilon,
-		    const std::vector<double>& _p_change):
+                    const std::vector<double>& _epsilon,
+                    const std::vector<double>& _p_change):
     homogeneous(false), bounds(_bounds), epsilon(_epsilon),
     p_change(_p_change) {}
 
@@ -98,43 +98,43 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
   bool operator()(EOT& _eo)
     {
       bool hasChanged=false;
-      if (homogeneous)		   // implies no bounds object
-	for (unsigned lieu=0; lieu<_eo.size(); lieu++)
-	  {
-	    if (rng.flip(p_change[0]))
-	      {
-		_eo[lieu] += 2*epsilon[0]*rng.uniform()-epsilon[0];
-		hasChanged = true;
-	      }
-	  }
+      if (homogeneous)             // implies no bounds object
+        for (unsigned lieu=0; lieu<_eo.size(); lieu++)
+          {
+            if (rng.flip(p_change[0]))
+              {
+                _eo[lieu] += 2*epsilon[0]*rng.uniform()-epsilon[0];
+                hasChanged = true;
+              }
+          }
       else
-	{
-	  // sanity check ?
-	  if (_eo.size() != bounds.size())
-	    throw std::runtime_error("Invalid size of indi in eoUniformMutation");
+        {
+          // sanity check ?
+          if (_eo.size() != bounds.size())
+            throw std::runtime_error("Invalid size of indi in eoUniformMutation");
 
-	  for (unsigned lieu=0; lieu<_eo.size(); lieu++)
-	    if (rng.flip(p_change[lieu]))
-	      {
-		// check the bounds
-		double emin = _eo[lieu]-epsilon[lieu];
-		double emax = _eo[lieu]+epsilon[lieu];
-		if (bounds.isMinBounded(lieu))
-		  emin = std::max(bounds.minimum(lieu), emin);
-		if (bounds.isMaxBounded(lieu))
-		  emax = std::min(bounds.maximum(lieu), emax);
-		_eo[lieu] = emin + (emax-emin)*rng.uniform();
-		hasChanged = true;
-	      }
-	}
+          for (unsigned lieu=0; lieu<_eo.size(); lieu++)
+            if (rng.flip(p_change[lieu]))
+              {
+                // check the bounds
+                double emin = _eo[lieu]-epsilon[lieu];
+                double emax = _eo[lieu]+epsilon[lieu];
+                if (bounds.isMinBounded(lieu))
+                  emin = std::max(bounds.minimum(lieu), emin);
+                if (bounds.isMaxBounded(lieu))
+                  emax = std::min(bounds.maximum(lieu), emax);
+                _eo[lieu] = emin + (emax-emin)*rng.uniform();
+                hasChanged = true;
+              }
+        }
       return hasChanged;
     }
 
 private:
   bool homogeneous;   // == no bounds passed in the ctor
   eoRealVectorBounds & bounds;
-  std::vector<double> epsilon;	   // the ranges for mutation
-  std::vector<double> p_change;	   // the proba that each variable is modified
+  std::vector<double> epsilon;     // the ranges for mutation
+  std::vector<double> p_change;    // the proba that each variable is modified
 };
 
 /** eoDetUniformMutation --> changes exactly k values of the std::vector
@@ -166,14 +166,14 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param _no number of coordinate to modify
    */
   eoDetUniformMutation(eoRealVectorBounds & _bounds,
-		       const double& _epsilon, const unsigned& _no = 1):
+                       const double& _epsilon, const unsigned& _no = 1):
     homogeneous(false), bounds(_bounds),
     epsilon(_bounds.size(), _epsilon), no(_no)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
       if (bounds.isBounded(i))
-	  epsilon[i] *= _epsilon*bounds.range(i);
+          epsilon[i] *= _epsilon*bounds.range(i);
   }
 
   /**
@@ -183,14 +183,14 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param _no number of coordinates to modify
    */
   eoDetUniformMutation(eoRealVectorBounds & _bounds,
-		       const std::vector<double>& _epsilon,
-		       const unsigned& _no = 1):
+                       const std::vector<double>& _epsilon,
+                       const unsigned& _no = 1):
     homogeneous(false), bounds(_bounds), epsilon(_epsilon), no(_no)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
       if (bounds.isBounded(i))
-	  epsilon[i] *= _epsilon[i]*bounds.range(i);
+          epsilon[i] *= _epsilon[i]*bounds.range(i);
   }
 
   /// The class name.
@@ -203,39 +203,39 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
   bool operator()(EOT& _eo)
     {
       if (homogeneous)
-	for (unsigned i=0; i<no; i++)
-	  {
-	    unsigned lieu = rng.random(_eo.size());
-	    // actually, we should test that we don't re-modify same variable!
-	    _eo[lieu] = 2*epsilon[0]*rng.uniform()-epsilon[0];
-	  }
+        for (unsigned i=0; i<no; i++)
+          {
+            unsigned lieu = rng.random(_eo.size());
+            // actually, we should test that we don't re-modify same variable!
+            _eo[lieu] = 2*epsilon[0]*rng.uniform()-epsilon[0];
+          }
       else
-	{
-	  // sanity check ?
-	  if (_eo.size() != bounds.size())
-	    throw std::runtime_error("Invalid size of indi in eoDetUniformMutation");
-	  for (unsigned i=0; i<no; i++)
-	    {
-	      unsigned lieu = rng.random(_eo.size());
-	      // actually, we should test that we don't re-modify same variable!
+        {
+          // sanity check ?
+          if (_eo.size() != bounds.size())
+            throw std::runtime_error("Invalid size of indi in eoDetUniformMutation");
+          for (unsigned i=0; i<no; i++)
+            {
+              unsigned lieu = rng.random(_eo.size());
+              // actually, we should test that we don't re-modify same variable!
 
-	      // check the bounds
-	      double emin = _eo[lieu]-epsilon[lieu];
-	      double emax = _eo[lieu]+epsilon[lieu];
-	      if (bounds.isMinBounded(lieu))
-		emin = std::max(bounds.minimum(lieu), emin);
-	      if (bounds.isMaxBounded(lieu))
-		emax = std::min(bounds.maximum(lieu), emax);
-	      _eo[lieu] = emin + (emax-emin)*rng.uniform();
-	    }
-	}
+              // check the bounds
+              double emin = _eo[lieu]-epsilon[lieu];
+              double emax = _eo[lieu]+epsilon[lieu];
+              if (bounds.isMinBounded(lieu))
+                emin = std::max(bounds.minimum(lieu), emin);
+              if (bounds.isMaxBounded(lieu))
+                emax = std::min(bounds.maximum(lieu), emax);
+              _eo[lieu] = emin + (emax-emin)*rng.uniform();
+            }
+        }
       return true;
     }
 
 private:
   bool homogeneous;   //  == no bounds passed in the ctor
   eoRealVectorBounds & bounds;
-  std::vector<double> epsilon;	   // the ranges of mutation
+  std::vector<double> epsilon;     // the ranges of mutation
   unsigned no;
 };
 
@@ -274,7 +274,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
    *               Must be positive
    */
   eoSegmentCrossover(eoRealVectorBounds & _bounds,
-		     const double& _alpha = 0.0) :
+                     const double& _alpha = 0.0) :
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha) {}
 
   /// The class name.
@@ -291,47 +291,47 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
       double r1, r2, fact;
       double alphaMin = -alpha;
       double alphaMax = 1+alpha;
-      if (alpha == 0.0)		   // no check to perform
-	fact = -alpha + rng.uniform(range); // in [-alpha,1+alpha)
-      else			   // look for the bounds for fact
-	{
-	  for (i=0; i<_eo1.size(); i++)
-	    {
-	      r1=_eo1[i];
-	      r2=_eo2[i];
-	      if (r1 != r2) {	   // otherwise you'll get NAN's
-		double rmin = std::min(r1, r2);
-		double rmax = std::max(r1, r2);
-		double length = rmax - rmin;
-		if (bounds.isMinBounded(i))
-		  {
-		    alphaMin = std::max(alphaMin, (bounds.minimum(i)-rmin)/length);
-		    alphaMax = std::min(alphaMax, (rmax-bounds.minimum(i))/length);
-		  }
-		if (bounds.isMaxBounded(i))
-		  {
-		    alphaMax = std::min(alphaMax, (bounds.maximum(i)-rmin)/length);
-		    alphaMin = std::max(alphaMin, (rmax-bounds.maximum(i))/length);
-		  }
-	      }
-	    }
-	  fact = alphaMin + (alphaMax-alphaMin)*rng.uniform();
-	}
+      if (alpha == 0.0)            // no check to perform
+        fact = -alpha + rng.uniform(range); // in [-alpha,1+alpha)
+      else                         // look for the bounds for fact
+        {
+          for (i=0; i<_eo1.size(); i++)
+            {
+              r1=_eo1[i];
+              r2=_eo2[i];
+              if (r1 != r2) {      // otherwise you'll get NAN's
+                double rmin = std::min(r1, r2);
+                double rmax = std::max(r1, r2);
+                double length = rmax - rmin;
+                if (bounds.isMinBounded(i))
+                  {
+                    alphaMin = std::max(alphaMin, (bounds.minimum(i)-rmin)/length);
+                    alphaMax = std::min(alphaMax, (rmax-bounds.minimum(i))/length);
+                  }
+                if (bounds.isMaxBounded(i))
+                  {
+                    alphaMax = std::min(alphaMax, (bounds.maximum(i)-rmin)/length);
+                    alphaMin = std::max(alphaMin, (rmax-bounds.maximum(i))/length);
+                  }
+              }
+            }
+          fact = alphaMin + (alphaMax-alphaMin)*rng.uniform();
+        }
 
       for (i=0; i<_eo1.size(); i++)
-	{
-	  r1=_eo1[i];
-	  r2=_eo2[i];
-	  _eo1[i] = fact * r1 + (1-fact) * r2;
-	  _eo2[i] = (1-fact) * r1 + fact * r2;
-	}
-      return true;	   // shoudl test if fact was 0 or 1 :-)))
+        {
+          r1=_eo1[i];
+          r2=_eo2[i];
+          _eo1[i] = fact * r1 + (1-fact) * r2;
+          _eo2[i] = (1-fact) * r1 + fact * r2;
+        }
+      return true;         // shoudl test if fact was 0 or 1 :-)))
     }
 
 protected:
   eoRealVectorBounds & bounds;
   double alpha;
-  double range;			   // == 1+2*alpha
+  double range;                    // == 1+2*alpha
 };
 
 /** eoHypercubeCrossover --> uniform choice in hypercube
@@ -369,7 +369,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
    *               Must be positive
    */
   eoHypercubeCrossover(eoRealVectorBounds & _bounds,
-			const double& _alpha = 0.0):
+                        const double& _alpha = 0.0):
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha)
   {
     if (_alpha < 0)
@@ -389,62 +389,62 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
       bool hasChanged = false;
       unsigned i;
       double r1, r2, fact;
-      if (alpha == 0.0)		   // no check to perform
-	  for (i=0; i<_eo1.size(); i++)
-	    {
-	      r1=_eo1[i];
-	      r2=_eo2[i];
-	      if (r1 != r2) {	   // otherwise do nothing
-		fact = rng.uniform(range);	 // in [0,1)
-		_eo1[i] = fact * r1 + (1-fact) * r2;
-		_eo2[i] = (1-fact) * r1 + fact * r2;
-		hasChanged = true; // forget (im)possible alpha=0
-	      }
-	    }
-      else	   // check the bounds
-	// do not try to get a bound on the linear factor, but rather
-	// on the object variables themselves
-	for (i=0; i<_eo1.size(); i++)
-	  {
-	    r1=_eo1[i];
-	    r2=_eo2[i];
-	    if (r1 != r2) {	   // otherwise do nothing
-	      double rmin = std::min(r1, r2);
-	      double rmax = std::max(r1, r2);
+      if (alpha == 0.0)            // no check to perform
+          for (i=0; i<_eo1.size(); i++)
+            {
+              r1=_eo1[i];
+              r2=_eo2[i];
+              if (r1 != r2) {      // otherwise do nothing
+                fact = rng.uniform(range);       // in [0,1)
+                _eo1[i] = fact * r1 + (1-fact) * r2;
+                _eo2[i] = (1-fact) * r1 + fact * r2;
+                hasChanged = true; // forget (im)possible alpha=0
+              }
+            }
+      else         // check the bounds
+        // do not try to get a bound on the linear factor, but rather
+        // on the object variables themselves
+        for (i=0; i<_eo1.size(); i++)
+          {
+            r1=_eo1[i];
+            r2=_eo2[i];
+            if (r1 != r2) {        // otherwise do nothing
+              double rmin = std::min(r1, r2);
+              double rmax = std::max(r1, r2);
 
-	      // compute min and max for object variables
-	      double objMin = -alpha * rmax + (1+alpha) * rmin;
-	      double objMax = -alpha * rmin + (1+alpha) * rmax;
+              // compute min and max for object variables
+              double objMin = -alpha * rmax + (1+alpha) * rmin;
+              double objMax = -alpha * rmin + (1+alpha) * rmax;
 
-	      // first find the limits on the alpha's
-	      if (bounds.isMinBounded(i))
-		{
-		  objMin = std::max(objMin, bounds.minimum(i));
-		}
-	      if (bounds.isMaxBounded(i))
-		{
-		  objMax = std::min(objMax, bounds.maximum(i));
-		}
-	      // then draw variables
-	      double median = (objMin+objMax)/2.0; // uniform within bounds
-	      // double median = (rmin+rmax)/2.0;  // Bounce on bounds
-	      double valMin = objMin + (median-objMin)*rng.uniform();
-	      double valMax = median + (objMax-median)*rng.uniform();
-	      // don't always put large value in _eo1 - or what?
-	      if (rng.flip(0.5))
-		{
-		  _eo1[i] = valMin;
-		  _eo2[i] = valMax;
-		}
-	      else
-		{
-		  _eo1[i] = valMax;
-		  _eo2[i] = valMin;
-		}
-	      // seomthing has changed
-	      hasChanged = true; // forget (im)possible alpha=0
-	    }
-	  }
+              // first find the limits on the alpha's
+              if (bounds.isMinBounded(i))
+                {
+                  objMin = std::max(objMin, bounds.minimum(i));
+                }
+              if (bounds.isMaxBounded(i))
+                {
+                  objMax = std::min(objMax, bounds.maximum(i));
+                }
+              // then draw variables
+              double median = (objMin+objMax)/2.0; // uniform within bounds
+              // double median = (rmin+rmax)/2.0;  // Bounce on bounds
+              double valMin = objMin + (median-objMin)*rng.uniform();
+              double valMax = median + (objMax-median)*rng.uniform();
+              // don't always put large value in _eo1 - or what?
+              if (rng.flip(0.5))
+                {
+                  _eo1[i] = valMin;
+                  _eo2[i] = valMax;
+                }
+              else
+                {
+                  _eo1[i] = valMax;
+                  _eo2[i] = valMin;
+                }
+              // seomthing has changed
+              hasChanged = true; // forget (im)possible alpha=0
+            }
+          }
 
     return hasChanged;
    }
@@ -452,7 +452,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
 protected:
   eoRealVectorBounds & bounds;
   double alpha;
-  double range;			   // == 1+2*alphaMin
+  double range;                    // == 1+2*alphaMin
 };
 
 
@@ -473,7 +473,7 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
   eoRealUXover(const float& _preference = 0.5): preference(_preference)
     {
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
-	std::runtime_error("UxOver --> invalid preference");
+        std::runtime_error("UxOver --> invalid preference");
     }
 
   /// The class name.
@@ -488,19 +488,19 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
   bool operator()(EOT& _eo1, EOT& _eo2)
     {
       if ( _eo1.size() != _eo2.size())
-	    std::runtime_error("UxOver --> chromosomes sizes don't match" );
+            std::runtime_error("UxOver --> chromosomes sizes don't match" );
       bool changed = false;
       for (unsigned int i=0; i<_eo1.size(); i++)
-	{
-	  if (rng.flip(preference))
-	    if (_eo1[i] != _eo2[i])
-	      {
-		double tmp = _eo1[i];
-	      _eo1[i]=_eo2[i];
-	      _eo2[i] = tmp;
-	      changed = true;
-	    }
-	}
+        {
+          if (rng.flip(preference))
+            if (_eo1[i] != _eo2[i])
+              {
+                double tmp = _eo1[i];
+              _eo1[i]=_eo2[i];
+              _eo2[i] = tmp;
+              changed = true;
+            }
+        }
       return changed;
     }
     private:

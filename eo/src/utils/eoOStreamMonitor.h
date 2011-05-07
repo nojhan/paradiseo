@@ -1,4 +1,3 @@
-
 /*
 
 (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
@@ -22,7 +21,7 @@ Authors:
      todos@geneura.ugr.es
      Marc.Schoenauer@polytechnique.fr
      mkeijzer@dhi.dk
-	 Johann Dréo <johann.dreo@thalesgroup.com>
+         Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
 #ifndef _eoOStreamMonitor_h_
@@ -45,15 +44,15 @@ Authors:
 class eoOStreamMonitor : public eoMonitor
 {
 public :
-    eoOStreamMonitor( std::ostream & _out, bool _verbose=true, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) : 
-        out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true) 
+    eoOStreamMonitor( std::ostream & _out, bool _verbose=true, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
+        out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true)
     {
-	(void)_verbose;
+        (void)_verbose;
         eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoOStreamMonitor constructor is deprecated and will be removed in the next release" << std::endl;
     }
 
-    eoOStreamMonitor( std::ostream & _out, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) : 
-        out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true) 
+    eoOStreamMonitor( std::ostream & _out, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
+        out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true)
     {}
 
     eoMonitor& operator()(void);
@@ -69,4 +68,3 @@ private :
 };
 
 #endif // _eoOStreamMonitor_h_
-

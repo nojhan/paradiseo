@@ -1,13 +1,13 @@
 /**
 
  *	Pool allocator for the subtree and parse tree classes (homebrew and not compliant to ANSI allocator requirements)
- *  (c) copyright Maarten Keijzer 1999, 2000 
+ *  (c) copyright Maarten Keijzer 1999, 2000
 
- * Permission to copy, use,  modify, sell and distribute this software is granted provided 
+ * Permission to copy, use,  modify, sell and distribute this software is granted provided
  * this copyright notice appears in all copies. This software is provided "as is" without
  * express or implied warranty, and with no claim as to its suitability for
  * any purpose.
- 
+
  * Permission to modify the code and to distribute modified code is granted,
  * provided the above notices are retained, and a notice that the code was
  * modified is included with the above copyright notice.
@@ -21,7 +21,7 @@
 class MemPool
 {
 public :
-    
+
     MemPool(unsigned int sz) : esize(sz<sizeof(Link)? sizeof(Link) : sz) {}
     ~MemPool()
     {
@@ -33,7 +33,7 @@ public :
             delete p;
         }
     }
-    
+
     void* allocate()
     {
         if (head == 0) grow();
@@ -62,10 +62,10 @@ private :
         char* last  = &start[(nelem-1)*esize];
         for (char* p = start; p < last; p += esize)
         {
-            reinterpret_cast<Link*>(p)->next = 
+            reinterpret_cast<Link*>(p)->next =
                 reinterpret_cast<Link*>(p + esize);
         }
-        
+
         reinterpret_cast<Link*>(last)->next = 0;
         head = reinterpret_cast<Link*>(start);
     }
@@ -91,15 +91,15 @@ template<class T>
 class Node_alloc
 {
 public :
-    
-    T* allocate(void) 
+
+    T* allocate(void)
     {
         T* t = static_cast<T*>(mem.allocate());
         t = new  (t) T;
         return t;
     }
-    
-    T* construct(const T& org) 
+
+    T* construct(const T& org)
     {
         T* t = static_cast<T*>(mem.allocate());
         t = new  (t) T(org);
@@ -117,7 +117,7 @@ private :
 };
 
 
-template <class T> 
+template <class T>
 class Standard_alloc
 {
 public :
@@ -130,7 +130,7 @@ public :
 
         return new T [arity];
     }
-    
+
     T* construct(size_t arity, T* org)
     {
         if (arity == 0)
@@ -154,7 +154,7 @@ public :
 
 };
 
-template <class T> 
+template <class T>
 class Standard_Node_alloc
 {
 public :
@@ -270,19 +270,19 @@ public :
         switch(arity)
         {
         case 0: return;
-        case 3 : 
+        case 3 :
             {
                 t[2].~T(); t[1].~T(); t[0].~T();
                 mem3.deallocate(static_cast<void*>(t));
                 return;
             }
-        case 2 : 
+        case 2 :
             {
                 t[1].~T(); t[0].~T();
                 mem2.deallocate(static_cast<void*>(t));
                 return;
             }
-        case 1 : 
+        case 1 :
             {
                 t[0].~T();
                 mem1.deallocate(static_cast<void*>(t));
@@ -295,7 +295,7 @@ public :
             }
         }
     }
-    
+
 
 private :
     static MemPool mem1;

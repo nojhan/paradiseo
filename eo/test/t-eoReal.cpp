@@ -20,9 +20,9 @@ int main(int argc, char* argv[])
   ///// FIRST, problem or representation dependent stuff
   //////////////////////////////////////////////////////
 
-  // The evaluation fn - encapsulated into an eval counter for output 
-  eoEvalFuncPtr<EOT, double, const std::vector<double>&> 
-               mainEval( real_value );
+  // The evaluation fn - encapsulated into an eval counter for output
+  eoEvalFuncPtr<EOT, double, const std::vector<double>&>
+	       mainEval( real_value );
   eoEvalFuncCounter<EOT> eval(mainEval);
 
   // the genotype - through a genotype initializer

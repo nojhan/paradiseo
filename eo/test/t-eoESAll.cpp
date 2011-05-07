@@ -37,34 +37,34 @@ int main_function(int argc, char *argv[])
     eoParser parser(argc, argv);  // for user-parameter reading
     eoState state;    // keeps all things allocated
     eoValueParam<bool>& simpleParam = parser.getORcreateParam(true, "Isotropic",
-                                                              "Isotropic self-adaptive mutation",
-                                                              'i', "ES mutation");
+							      "Isotropic self-adaptive mutation",
+							      'i', "ES mutation");
     eoValueParam<bool>& stdevsParam = parser.getORcreateParam(false, "Stdev",
-                                                              "One self-adaptive stDev per variable",
-                                                              's', "ES mutation");
+							      "One self-adaptive stDev per variable",
+							      's', "ES mutation");
     eoValueParam<bool>& corrParam = parser.getORcreateParam(false, "Correl",
-                                                            "Use correlated mutations",
-                                                            'c', "ES mutation");
+							    "Use correlated mutations",
+							    'c', "ES mutation");
     // Run the appropriate algorithm
     if (simpleParam.value() == false)
     {
-        std::cout << "Using eoReal" << std::endl;
-        runAlgorithm(eoReal<FitT>(), parser, state);
+	std::cout << "Using eoReal" << std::endl;
+	runAlgorithm(eoReal<FitT>(), parser, state);
     }
     else if (stdevsParam.value() == false)
     {
-        std::cout << "Using eoEsSimple" << std::endl;
-        runAlgorithm(eoEsSimple<FitT>(), parser, state);
+	std::cout << "Using eoEsSimple" << std::endl;
+	runAlgorithm(eoEsSimple<FitT>(), parser, state);
     }
     else if (corrParam.value() == false)
     {
-        std::cout << "Using eoEsStdev" << std::endl;
-        runAlgorithm(eoEsStdev<FitT>(), parser, state);
+	std::cout << "Using eoEsStdev" << std::endl;
+	runAlgorithm(eoEsStdev<FitT>(), parser, state);
     }
     else
     {
-        std::cout << "Using eoEsFull" << std::endl;
-        runAlgorithm(eoEsFull<FitT>(), parser, state);
+	std::cout << "Using eoEsFull" << std::endl;
+	runAlgorithm(eoEsFull<FitT>(), parser, state);
     }
     return 0;
 }
@@ -83,11 +83,11 @@ int main(int argc, char **argv)
 #endif
     try
     {
-        main_function(argc, argv);
+	main_function(argc, argv);
     }
     catch(std::exception& e)
     {
-        std::cout << "Exception: " << e.what() << '\n';
+	std::cout << "Exception: " << e.what() << '\n';
     }
 }
 

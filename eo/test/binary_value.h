@@ -4,7 +4,7 @@
 
 /** Just the simple function that takes binary value of a chromosome and sets
     the fitnes.
-    @param _chrom A binary chromosome 
+    @param _chrom A binary chromosome
 */
 
 template <class Chrom> double binary_value(const Chrom& _chrom)

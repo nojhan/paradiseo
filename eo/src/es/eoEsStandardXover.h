@@ -1,4 +1,4 @@
-/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*- 
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
 // eoEsLocalXover.h : ES global crossover
@@ -8,16 +8,16 @@
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
     version 2 of the License, or (at your option) any later version.
- 
+
     This library is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
- 
+
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
+
     Contact: marc.schoenauer@polytechnique.fr http://eeaax.cmap.polytchnique.fr/
  */
 //-----------------------------------------------------------------------------
@@ -45,7 +45,7 @@
  *  @ingroup Real
  *  @ingroup Variators
  */
-template<class EOT> 
+template<class EOT>
 class eoEsStandardXover: public eoBinOp<EOT>
 {
 public:
@@ -70,13 +70,13 @@ public:
     // first, the object variables
     for (unsigned i=0; i<_eo1.size(); i++)
       {
-	bLoc |= crossObj(_eo1[i], _eo2[i]); // apply eoBinOp
+        bLoc |= crossObj(_eo1[i], _eo2[i]); // apply eoBinOp
       }
     // then the self-adaptation parameters
     bLoc |= cross_self_adapt(_eo1, _eo2);
     return bLoc;
   }
-  
+
 private:
 
   // the method to cross slef-adaptation parameters: need to specialize
@@ -91,7 +91,7 @@ private:
     bool bLoc=false;
     for (unsigned i=0; i<_parent1.size(); i++)
       {
-	bLoc |= crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
+        bLoc |= crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
       }
     return bLoc;
   }
@@ -103,12 +103,12 @@ private:
     // the StDev
     for (i=0; i<_parent1.size(); i++)
       {
-	bLoc |= crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
+        bLoc |= crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
       }
     // the roataion angles
     for (i=0; i<_parent1.correlations.size(); i++)
       {
-	bLoc |= crossMut(_parent1.correlations[i], _parent2.correlations[i]); // apply eoBinOp
+        bLoc |= crossMut(_parent1.correlations[i], _parent2.correlations[i]); // apply eoBinOp
       }
     return bLoc;
 

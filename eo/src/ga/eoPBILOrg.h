@@ -58,15 +58,15 @@ public:
 
     for (unsigned g=0; g<distrib.size(); g++)
       {
-	//	double & r = value()[g];
-	p[g] *= (1-LR);
-	if ( best[g] )
-	  p[g] +=  LR;
-	// else nothing
+        //	double & r = value()[g];
+        p[g] *= (1-LR);
+        if ( best[g] )
+          p[g] +=  LR;
+        // else nothing
 
-	// stay away from 0 and 1
-	p[g] = std::min(maxBound, p[g]);
-	p[g] = std::max(minBound, p[g]);
+        // stay away from 0 and 1
+        p[g] = std::min(maxBound, p[g]);
+        p[g] = std::max(minBound, p[g]);
       }
   }
 

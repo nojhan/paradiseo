@@ -10,7 +10,7 @@ i.e. that takes any number of parents and generates any number of offspring
 
 a GenOp that creates less offspring than there are parents
 
-Second version, get parents  using an external eoSelectOne 
+Second version, get parents  using an external eoSelectOne
 */
 
 #ifndef eoLessOffspringExternalSelectorGenOp_H
@@ -18,21 +18,21 @@ Second version, get parents  using an external eoSelectOne
 
 #include <eoGenOp.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
- * ATTENTION, class EOT *must* derive from EO, as method invalidate() 
+ * ATTENTION, class EOT *must* derive from EO, as method invalidate()
  * must be called if the genotypes of the indis is modified
  */
-template<class EOT> 
+template<class EOT>
 class eoLessOffspringExternalSelectorGenOp: public eoGenOp<EOT>
 {
 public:
   /**
    * (Default) Constructor.
    */
-  eoLessOffspringExternalSelectorGenOp(eoSelectOne<EOT> & _sel, paramType _anyParameter) : 
+  eoLessOffspringExternalSelectorGenOp(eoSelectOne<EOT> & _sel, paramType _anyParameter) :
     sel(_sel), anyParameter(_anyParameter) {}
 
   /// The class name. Used to display statistics
@@ -58,11 +58,11 @@ public:
       // get extra parents - use private selector
       // _plop.source() is the eoPop<EOT> used by _plop to get parents
       // WARNING: you are not allowed to modify them (mandatory "const")
-      const EOT& parentN+1 = sel(_plop.source());  
-      ... 
-      const EOT& parentN+K = sel(_plop.source());  
+      const EOT& parentN+1 = sel(_plop.source());
+      ...
+      const EOT& parentN+K = sel(_plop.source());
 
-      // modify (in place) the "true" parents 
+      // modify (in place) the "true" parents
       // (i.e. parent1, ..., parentsN)
       ...
 

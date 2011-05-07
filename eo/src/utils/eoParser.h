@@ -92,8 +92,6 @@ private :
     std::vector<eoParam*> ownedParams;
 };
 
-
-
 /**
     eoParser: command line parser and configuration file reader
     This class is persistent, so it can be stored and reloaded to restore
@@ -121,7 +119,7 @@ public:
    * @param _shortHand              Single charachter shorthand for specifying the configuration file
    */
   eoParser ( unsigned _argc, char **_argv , std::string _programDescription = "",
-	   std::string _lFileParamName = "param-file", char _shortHand = 'p');
+           std::string _lFileParamName = "param-file", char _shortHand = 'p');
 
   /**
     Processes the parameter and puts it in the appropriate section for readability

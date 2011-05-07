@@ -38,7 +38,7 @@
 #include <eoTransform.h>
 
 /** eoSGATransform: transforms a population using genetic operators.
- * It does it exactly as class eoSGA, i.e. only accepts 
+ * It does it exactly as class eoSGA, i.e. only accepts
  *    quadratic crossover and unary mutation
  * It is here mainly for tutorial reasons
  *
@@ -47,13 +47,13 @@
 template<class EOT> class eoSGATransform : public eoTransform<EOT>
 {
  public:
-    
+
   /// Default constructor.
-  eoSGATransform(eoQuadOp<EOT>& _cross, double _cProba, 
-		 eoMonOp<EOT>& _mutate, double _mProba)
+  eoSGATransform(eoQuadOp<EOT>& _cross, double _cProba,
+                 eoMonOp<EOT>& _mutate, double _mProba)
     : cross(_cross),
       crossoverProba(_cProba),
-      mutate(_mutate), 
+      mutate(_mutate),
       mutationProba(_mProba) {}
 
 
@@ -61,29 +61,29 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
    * Transforms a population.
    * @param _pop The population to be transformed.
    */
-  void operator()(eoPop<EOT>& _pop) 
+  void operator()(eoPop<EOT>& _pop)
   {
     unsigned i;
-	        
-    for (i=0; i<_pop.size()/2; i++) 
+
+    for (i=0; i<_pop.size()/2; i++)
       {
-	if ( rng.flip(crossoverProba) ) 
-	  {
-	    // this crossover generates 2 offspring from two parents
-	    cross(_pop[2*i], _pop[2*i+1]);
-	  }
+        if ( rng.flip(crossoverProba) )
+          {
+            // this crossover generates 2 offspring from two parents
+            cross(_pop[2*i], _pop[2*i+1]);
+          }
       }
 
-    for (i=0; i < _pop.size(); i++) 
+    for (i=0; i < _pop.size(); i++)
       {
-	if (rng.flip(mutationProba) ) 
-	  {
-	    mutate(_pop[i]);
-	  }
-	          
+        if (rng.flip(mutationProba) )
+          {
+            mutate(_pop[i]);
+          }
+
       }
   };
-    
+
  private:
   eoInvalidateQuadOp<EOT> cross;
   double crossoverProba;
@@ -93,7 +93,7 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
 
 /** eoDynSGATransform: transforms a population using genetic operators.
  * It is the Dynamic version of the above eoSGATransform
- *    i.e. the operators probabilities can be passed as an eoValueParam, 
+ *    i.e. the operators probabilities can be passed as an eoValueParam,
  *    and hence can be modified from outside
  * It is here mainly for tutorial reasons
  *
@@ -102,23 +102,23 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
 template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
 {
  public:
-    
+
   /// Default constructor - receives values
-  eoDynSGATransform(eoQuadOp<EOT>& _cross, double _cProba, 
-		 eoMonOp<EOT>& _mutate, double _mProba)
+  eoDynSGATransform(eoQuadOp<EOT>& _cross, double _cProba,
+                 eoMonOp<EOT>& _mutate, double _mProba)
     : cross(_cross),
       crossoverProbaHolder(_cProba), crossoverProba(crossoverProbaHolder),
-      mutate(_mutate), 
+      mutate(_mutate),
       mutationProbaHolder(_mProba), mutationProba(mutationProbaHolder) {}
 
   /// This constructor receives pointers
   //  these will usually be some eoValueParam<double>.value()
   //  hence the ...Holder data will bever be used in this case
-  eoDynSGATransform(eoQuadOp<EOT>& _cross, double* _cProbaRef, 
-		 eoMonOp<EOT>& _mutate, double* _mProbaRef)
+  eoDynSGATransform(eoQuadOp<EOT>& _cross, double* _cProbaRef,
+                 eoMonOp<EOT>& _mutate, double* _mProbaRef)
     : cross(_cross),
       crossoverProbaHolder(0), crossoverProba(*_cProbaRef),
-      mutate(_mutate), 
+      mutate(_mutate),
       mutationProbaHolder(0), mutationProba(*_mProbaRef) {}
 
 
@@ -126,34 +126,34 @@ template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
    * Transforms a population.
    * @param _pop The population to be transformed.
    */
-  void operator()(eoPop<EOT>& _pop) 
+  void operator()(eoPop<EOT>& _pop)
   {
     unsigned i;
-	        
-    for (i=0; i<_pop.size()/2; i++) 
+
+    for (i=0; i<_pop.size()/2; i++)
       {
-	if ( rng.flip(crossoverProba) ) 
-	  {
-	    // this crossover generates 2 offspring from two parents
-	    cross(_pop[2*i], _pop[2*i+1]);
-	  }
+        if ( rng.flip(crossoverProba) )
+          {
+            // this crossover generates 2 offspring from two parents
+            cross(_pop[2*i], _pop[2*i+1]);
+          }
       }
 
-    for (i=0; i < _pop.size(); i++) 
+    for (i=0; i < _pop.size(); i++)
       {
-	if (rng.flip(mutationProba) ) 
-	  {
-	    mutate(_pop[i]);
-	  }
-	          
+        if (rng.flip(mutationProba) )
+          {
+            mutate(_pop[i]);
+          }
+
       }
   };
   // accessors - mainly for EASEA
-  double & PCrossHandle() { return crossoverProba;}    
+  double & PCrossHandle() { return crossoverProba;}
   double & PMutHandle() { return mutationProba;}
 
 private:
-  // difference with eoSGATransform: the operator probabilities 
+  // difference with eoSGATransform: the operator probabilities
   // they can be passed by reference or by value.
   // hence we need here to use a reference, and to eventually store a value
   eoInvalidateQuadOp<EOT> cross;

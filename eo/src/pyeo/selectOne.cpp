@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -33,10 +33,10 @@ using namespace boost::python;
 
 class eoSelectOneWrapper : public eoSelectOne<PyEO>
 {
-    public:
+public:
     PyObject* self;
     eoSelectOneWrapper(PyObject* p) : self(p) {}
-    const PyEO& operator()(const eoPop<PyEO>& pop) 
+    const PyEO& operator()(const eoPop<PyEO>& pop)
     {
 	return boost::python::call_method< const PyEO& >(self, "__call__", boost::ref(pop));
     }
@@ -57,7 +57,7 @@ void add_select(std::string name, Init init)
 	.def("__call__", &Select::operator(), return_internal_reference<>() )
 	;
 }
-    
+
 template <class Select, class Init1, class Init2>
 void add_select(std::string name, Init1 init1, Init2 init2)
 {
@@ -70,38 +70,39 @@ void add_select(std::string name, Init1 init1, Init2 init2)
 void selectOne()
 {
     /* Concrete classes */
-   
+
     pickle(class_<eoHowMany>("eoHowMany", init<>())
-	.def( init<double>() )
-	.def( init<double, bool>() )
-	.def( init<int>() )
-	.def("__call__", &eoHowMany::operator())
-	.def("__neg__", &eoHowMany::operator-)
-	  ); 
-    
+	   .def( init<double>() )
+	   .def( init<double, bool>() )
+	   .def( init<int>() )
+	   .def("__call__", &eoHowMany::operator())
+	   .def("__neg__", &eoHowMany::operator-)
+	   );
+
     class_<eoSelectOne<PyEO>, eoSelectOneWrapper, boost::noncopyable>("eoSelectOne", init<>())
 	.def("__call__", &eoSelectOneWrapper::operator(), return_internal_reference<>() )
 	.def("setup", &eoSelectOne<PyEO>::setup);
-    
+
     /* SelectOne derived classes */
-    
+
     add_select<eoDetTournamentSelect<PyEO> >("eoDetTournamentSelect", init<>(), init<unsigned>() );
     add_select<eoStochTournamentSelect<PyEO> >("eoStochTournamentSelect", init<>(), init<double>() );
-    add_select<eoTruncatedSelectOne<PyEO>  >("eoTruncatedSelectOne", 
-	    init<eoSelectOne<PyEO>&, double>()[WC1], init<eoSelectOne<PyEO>&, eoHowMany >()[WC1] );
-    
+    add_select<eoTruncatedSelectOne<PyEO> >("eoTruncatedSelectOne",
+					    init<eoSelectOne<PyEO>&, double>()[WC1],
+					    init<eoSelectOne<PyEO>&, eoHowMany >()[WC1]
+					    );
+
     // eoProportionalSelect is not feasible to implement at this point as fitness is not recognizable as a float
     // use eoDetTournament instead: with a t-size of 2 it is equivalent to eoProportional with linear scaling
     //add_select<eoProportionalSelect<PyEO> >("eoProportionalSelect", init<eoPop<PyEO>&>() );
-    
+
     add_select<eoRandomSelect<PyEO> >("eoRandomSelect");
     add_select<eoBestSelect<PyEO> >("eoBestSelect");
     add_select<eoNoSelect<PyEO> >("eoNoSelect");
-    
+
     add_select<eoSequentialSelect<PyEO> >("eoSequentialSelect", init<>(), init<bool>());
     add_select<eoEliteSequentialSelect<PyEO> >("eoEliteSequentialSelect");
     /*
      * eoSelectFromWorth.h:class eoSelectFromWorth : public eoSelectOne<EOT>
-    
-    */
+     */
 }

@@ -5,7 +5,7 @@ CXXFLAGS = #-g #-DNDEBUG
 CPPFLAGS = -Wall -O2
 LDFLAGS = -L/usr/lib/python2.2/config/
 COMPILE = $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c
-LINK = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) 
+LINK = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS)
 INC=-I/usr/include/python2.2 -I/usr/include/stlport -I.. -ftemplate-depth-50
 
 OBJECTS=eoFunctorStore.o PyEO.o abstract1.o algos.o \
@@ -25,7 +25,5 @@ PyEO.so: $(OBJECTS)
 eoFunctorStore.o: ../eoFunctorStore.h ../eoFunctorStore.cpp
 	$(COMPILE) -o eoFunctorStore.o ../eoFunctorStore.cpp $(INC)
 
-%.o:%.cpp PyEO.h def_abstract_functor.h 
+%.o:%.cpp PyEO.h def_abstract_functor.h
 	$(COMPILE) $< $(INC)
-
-

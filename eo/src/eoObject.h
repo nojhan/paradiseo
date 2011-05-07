@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoObject.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -34,9 +34,9 @@
 #include <utils/compatibility.h>
 
 /*
-eoObject used to be the base class for the whole hierarchy, but this has 
-changed. eoObject is used to define a name (#className#) 
-that is used when loading or saving the state. 
+eoObject used to be the base class for the whole hierarchy, but this has
+changed. eoObject is used to define a name (#className#)
+that is used when loading or saving the state.
 
 Previously, this object also defined a print and read
 interface, but it´s been moved to eoPrintable and eoPersistent.
@@ -58,19 +58,18 @@ class eoObject
  public:
   /// Virtual dtor. They are needed in virtual class hierarchies.
   virtual ~eoObject() {}
-  
-  /** Return the class id. This should be redefined in each class. 
+
+  /** Return the class id. This should be redefined in each class.
   Only "leaf" classes can be non-virtual.
 
-  Maarten: removed the default implementation as this proved to 
-  be too error-prone: I found several classes that had a typo in 
+  Maarten: removed the default implementation as this proved to
+  be too error-prone: I found several classes that had a typo in
   className (like classname), which would print eoObject instead of
-  their own. Having it pure will force the implementor to provide a 
+  their own. Having it pure will force the implementor to provide a
   name.
   */
-  virtual std::string className() const = 0; 
+  virtual std::string className() const = 0;
 
 };
 
 #endif
-
