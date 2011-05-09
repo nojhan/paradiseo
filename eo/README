@@ -10,7 +10,7 @@ The latest news about EO can be found on the sourceforge repository at
     http://eodev.sourceforge.net/
 
 In case of any problem, please e-mail us at
-    eodev-help@lists.sourceforge.net, eodev@egroups.com
+    eodev-main@lists.sourceforge.net
 
 To get started, take a look at the tutorial, starting with
     ./tutorial/html/eoTutorial.html
@@ -18,7 +18,7 @@ To get started, take a look at the tutorial, starting with
 The easiest way to start programming a new genome with all EO
 evolution engines handy is to create a new standalone EO project from
 the tutorial/Templates/ directory. Read Lesson 5 of the tutorial for
-an introduction;)
+an introduction ;)
 
 
 ==================================================================
@@ -26,27 +26,15 @@ an introduction;)
 ==================================================================
 The basic installation procedure goes the following:
 
-Go to your build-directory and run
-    $(SRCDIR)/configure
-    make
-    make check
-    make install
-where $(SRCDIR) is the top-level source directory of EO, i.e. where
-the sources where unpacked.
+Go to the "eo/" and run one of the "build_*" script. 
 
-Run "$(SRCDIR)/configure --help" for possible options. You can specify
-to not build example applications, the tutorial, or to build the
-ParadisEO tutorial. You may also change the installation directory
-that way.
+Using the "build_gcc_linux_release" script is generally what you want. The
+binaries are then located in the "release/" directory.
 
 Now you should probably go to the tutorial and start learning about EO
 features and programming.
 
-
-In case of problems, you can read the INSTALL file - but remember this
-is a standard installation file from GNU and that it contains nothing
-specific about EO.
-
+In case of problems or if you want advanced options, you can read the INSTALL file.
 
 ===================================================================
 		       DIRECTORY STRUCTURE
@@ -99,12 +87,3 @@ structure:
    |
    +-- win                    WINDOWS dir: project files for MS/VC5+
 
-
-
-===================================================================
-	      NOTES
-===================================================================
-If you extracted a fresh snapshot from the cvs-repository, remember
-to run
-    ./autogen.sh
-in the source-directory before building the libraries.
