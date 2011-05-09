@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-mkdir debug
+mkdir -p debug
 cd debug
 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_CMAKE_TESTING=1 ..
 make
