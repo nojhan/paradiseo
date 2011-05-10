@@ -1,3 +1,1026 @@
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue May 10 15:33:42 2011 +0200
+
+    * NEWS
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue May 10 11:45:37 2011 +0200
+
+    - old eclipse files
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue May 10 11:44:53 2011 +0200
+
+    * ConfigureChecks.cmake: issue fixed
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue May 10 10:34:35 2011 +0200
+
+    - removed useless .cvsignore files since we are using git now
+
+Author: nojhan <nojhan@gmail.com>
+Date:   Tue May 10 00:31:18 2011 +0200
+
+    updated build instructions
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon May 9 17:21:18 2011 +0200
+
+    + build_gcc_linux_pyeo
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon May 9 17:21:16 2011 +0200
+
+    * build_gcc_linux_unittest
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon May 9 17:20:33 2011 +0200
+
+    + build_gcc_linux_stl_parallel
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri May 6 16:01:28 2011 +0200
+
+    * pyeo
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri May 6 11:14:39 2011 +0200
+
+    * apply: needed eoLogger header file inclusion
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu May 5 17:15:10 2011 +0200
+
+    * whitespace cleanup
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu May 5 16:54:00 2011 +0200
+
+    * indentations + whitespace cleanup
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu May 5 16:53:31 2011 +0200
+
+    * pyeo/PyEO.cpp: renamed module name
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu May 5 16:53:02 2011 +0200
+
+    * pyeo/CMakeLists.txt: auto find cpp files
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu May 5 11:47:30 2011 +0200
+
+    * pyeo cmake config file
+
+Merge: 7dcc7b6 f984839
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed May 4 17:57:54 2011 +0200
+
+    Merge branch 'openmp'
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Mar 15 18:05:45 2011 +0100
+
+    * edoSampler: sampler method protected
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Mar 15 16:39:46 2011 +0100
+
+    * eoLogger: forgot to close opened file
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed May 4 17:29:45 2011 +0200
+
+    * pyeo: updated pyeo in order to make it works
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed May 4 17:28:46 2011 +0200
+
+    * eoReduceSplit.h: bad syntax in using eo::log
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Mar 30 15:52:23 2011 +0200
+
+    * eoOpContainer: call to eoGenOp::apply instead of operator() to avoid calling reserve
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Mar 30 15:50:19 2011 +0200
+
+    * eoEasyEA: pop reserve at each call to algo
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Mar 24 12:52:27 2011 +0100
+
+    * switched eoGenOp::apply method from protected to public in order to be visible from eoSequentialOp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Mar 23 17:34:35 2011 +0100
+
+    * eoEasyEA: moved offspring into attributes space in order to avoid memory reallocation when we restart
+
+Merge: 007aae6 bc30b2c
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Mar 18 11:20:09 2011 +0100
+
+    Merge branch 'master' into openmp
+
+Merge: aa23cec 8f6e4b2
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Mar 18 11:10:59 2011 +0100
+
+    Merge branch 'master' of ssh://localhost:9001/gitroot/eodev/eodev
+
+Merge: e7b6b17 16c2e9d
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Mar 18 11:10:14 2011 +0100
+
+    Merge branch 'openmp' of ssh://localhost:9001/gitroot/eodev/eodev into openmp
+
+Merge: 9597010 8f6e4b2
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Mar 14 17:30:46 2011 +0100
+
+    Merge branch 'master' into openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Mar 14 17:29:20 2011 +0100
+
+    * pipecom: added an argument to printf generating a warning
+
+Merge: cbc44d4 9e95eef
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Mar 8 00:20:37 2011 +0100
+
+    Merge branch 'openmp' of ssh://eodev.git.sourceforge.net/gitroot/eodev/eodev into openmp
+
+Merge: 2044d92 90863fd
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Mar 8 00:19:46 2011 +0100
+
+    Merge branch 'master' into openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Mar 8 00:08:18 2011 +0100
+
+    * disabled app/gprop temporary because of the incompatibility with gcc version higher than 4.5.1
+
+Merge: 9e95eef aa23cec
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Feb 24 14:29:29 2011 +0100
+
+    Merge branch 'master' into openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Feb 24 11:10:47 2011 +0100
+
+    + added install.cmake to configure dependancies paths
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Feb 24 11:09:51 2011 +0100
+
+    * fixed issues on the code to be compatible with last version of boost
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Feb 24 10:32:13 2011 +0100
+
+    * application/common/cmakelists.txt: fixed issues with copy of files
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Feb 8 10:59:00 2011 +0100
+
+    * eoParallel: added the both parameters enable_results and do_measure
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Feb 4 16:29:27 2011 +0100
+
+    * t-openmpy.*: added a header
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Feb 4 16:28:24 2011 +0100
+
+    * eoParallel: added the parameter enableResults
+
+Merge: a733983 2044d92
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Feb 4 14:10:10 2011 +0100
+
+    Merge branch 'openmp' of ssh://localhost:9001/gitroot/eodev/eodev into openmp
+
+Merge: 77a92ff 61faa63
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Feb 4 14:09:12 2011 +0100
+
+    Merge branch 'master' into openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Feb 2 23:50:58 2011 +0100
+
+    * eoParallel: added the call to omp_set_num_threads to define the number of threads with parameters
+
+Merge: 54e2a8b 61faa63
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Jan 28 15:27:24 2011 +0100
+
+    Merge branch 'master' into openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Jan 28 14:38:50 2011 +0100
+
+    * apply.h: size variable missing without openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Jan 28 11:11:20 2011 +0100
+
+    * a little update in building script files
+
+Merge: 4c561f9 36fe44b
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Jan 28 10:43:23 2011 +0100
+
+    Merge branch 'master' of ssh://eodev.git.sourceforge.net/gitroot/eodev/eodev
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 17:50:11 2011 +0100
+
+    * removed some warnings
+
+Merge: db4eda2 9635901
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 14:41:42 2011 +0100
+
+    Merge branch 'openmp' of ssh://localhost:9001/gitroot/eodev/eodev into openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 14:41:17 2011 +0100
+
+    * eoParallel: added a missing attribute
+
+Merge: 4c561f9 32a183e
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 13:53:42 2011 +0100
+
+    Merge branch 'openmp' of ssh://eodev.git.sourceforge.net/gitroot/eodev/eodev into openmp
+    
+    Conflicts:
+    	eo/test/CMakeLists.txt
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Jan 27 11:59:14 2011 +0100
+
+    a very simple script to create snapshot of the current head
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Jan 27 11:58:21 2011 +0100
+
+    move edo stuff, that was in the wriong place after the merge, in the edo directory
+
+Merge: e6ee096 d618ab0
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Jan 27 11:36:55 2011 +0100
+
+    Merge branch 'edo'
+
+Merge: 12f4f24 8c4b160
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Jan 27 11:32:21 2011 +0100
+
+    Merge branch 'master' of ssh://eodev/gitroot/eodev/eodev
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Jan 27 11:23:23 2011 +0100
+
+    rename everything from 'do' to 'edo'
+
+Merge: 6e2041d 5fe07ab
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:49:41 2011 +0100
+
+    Merge branch 'master' into symlink
+
+Merge: 3d06d4a 5fe07ab
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:45:07 2011 +0100
+
+    Merge branch 'master' into openmp
+    
+    Conflicts:
+    	eo/src/eo
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:43:13 2011 +0100
+
+    + eoParallel: nthreads option * apply.h: mangled the openmp code with pre-processing conditions
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:39:15 2011 +0100
+
+    fixed an issue in eoParallel class
+    
+    Conflicts:
+    
+    	eo/src/utils/eoParallel.cpp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Dec 28 16:42:53 2010 +0100
+
+    * updated eoParallel class in order to define the result filename according to the parallelization mode
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:35:49 2011 +0100
+
+    - removed old parallelization parameters from the old-style from eoParser class
+    
+    Conflicts:
+    
+    	eo/src/utils/eoParser.h
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:31:28 2011 +0100
+
+    * changed apply.h to use new parallelization s parameters
+    
+    Conflicts:
+    
+    	eo/src/apply.h
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:30:40 2011 +0100
+
+    added measure into apply function
+    
+    Conflicts:
+    
+    	eo/src/apply.h
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:29:09 2011 +0100
+
+    + now you are able to enable or not parallelization with the option --parallelize-loops=1|0
+    
+    Conflicts:
+    
+    	eo/src/apply.h
+    	eo/src/utils/eoParser.cpp
+    	eo/src/utils/eoParser.h
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 27 10:25:22 2011 +0100
+
+    add the parser/logger to the general header
+    
+    Conflicts:
+    
+    	eo/src/eo
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Jan 26 18:10:34 2011 +0100
+
+    - removed t-eoDualFitness from test/CMakeLists.txt because it fails
+    
+    Conflicts:
+    
+    	eo/test/CMakeLists.txt
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Dec 23 12:22:29 2010 +0100
+
+    + add the value() method in eoParam used by dae
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Dec 22 13:40:49 2010 +0100
+
+    * package dependancies changed
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Jan 26 18:09:37 2011 +0100
+
+    * doc: solved some mistakes
+    
+    Conflicts:
+    
+    	eo/doc/index.h
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 6 09:16:01 2011 +0100
+
+    * a little update tu be compatible with gnuplot
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Jan 5 16:07:08 2011 +0100
+
+    * --parallelize-prefix parameter description
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Dec 28 22:54:10 2010 +0100
+
+    fixed an issue in eoParallel class
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Dec 28 16:43:44 2010 +0100
+
+    + added a test file for eoParallel class
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Dec 28 16:42:53 2010 +0100
+
+    * updated eoParallel class in order to define the result filename according to the parallelization mode
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Dec 28 16:41:14 2010 +0100
+
+    * apply.h: now results stored to a filename defined with parallelization parameters
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Dec 26 19:19:20 2010 +0100
+
+    * added eoParallel header inclusion to eo
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Dec 26 19:13:43 2010 +0100
+
+    - removed old parallelization parameters from the old-style from eoParser class
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Dec 26 19:12:20 2010 +0100
+
+    * updated cmakelists.txt to compile new eoParallel class
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Dec 26 19:11:00 2010 +0100
+
+    + created new eoParallel class with a global variable eo::parallel in order to store all parameters tied to parallelization and to access from anywhere
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Dec 26 19:09:08 2010 +0100
+
+    * changed apply.h to use new parallelization s parameters
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Dec 23 23:03:02 2010 +0100
+
+    added measure into apply function
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Dec 23 18:09:25 2010 +0100
+
+    + now you are able to enable or not parallelization with the option --parallelize-loops=1|0
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Dec 16 15:51:28 2010 +0100
+
+    set the version to 1.1.1-edge
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Dec 16 15:50:26 2010 +0100
+
+    evaluator that throw an exception if a maximum CPU user time has been reached, for POSIX systems
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Dec 14 15:27:26 2010 +0100
+
+    add the parser/logger to the general header
+
+Merge: df57a10 5fe07ab
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Wed Jan 26 16:31:55 2011 +0100
+
+    Merge branch 'master' of ssh://eodev/gitroot/eodev/eodev
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jan 20 19:07:41 2011 +0100
+
+    - removed t-eoDualFitness from test/CMakeLists.txt because it fails
+
+Merge: 9e93f52 1e177e1
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Jan 4 10:42:20 2011 +0100
+
+    Merge branch 'master' of ssh://eodev/gitroot/eodev/eodev
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Dec 23 14:31:34 2010 +0100
+
+    fixed a mistake in cflags setting about openmp flags
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Dec 23 12:22:29 2010 +0100
+
+    + add the value() method in eoParam used by dae
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Wed Dec 22 18:29:30 2010 +0100
+
+    const parameter + intermediate reused variable
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Wed Dec 22 18:25:44 2010 +0100
+
+    missing include of the eoLogger header
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Dec 22 18:23:45 2010 +0100
+
+    * now symlink script more generic
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Dec 22 17:25:40 2010 +0100
+
+    changed cmakelists.txt to generate install symlink script
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Dec 22 17:24:34 2010 +0100
+
+    added install_symlink script
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Dec 22 13:40:49 2010 +0100
+
+    * package dependancies changed
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Dec 22 10:25:13 2010 +0100
+
+    * doc: solved some mistakes
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Dec 17 11:25:58 2010 +0100
+
+    Add a value(ValueType) method for ValueParam, to directly change the value using the templatized type. Use two intermediate streamstring conversions.
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Dec 17 10:39:42 2010 +0100
+
+    eoMaxTimeException is not used only for wallclock time, set a more general message
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Dec 16 15:51:28 2010 +0100
+
+    set the version to 1.1.1-edge
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Thu Dec 16 15:50:26 2010 +0100
+
+    evaluator that throw an exception if a maximum CPU user time has been reached, for POSIX systems
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Dec 14 15:27:26 2010 +0100
+
+    add the parser/logger to the general header
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 14:21:26 2010 +0100
+
+    now we can select which measures we want
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 13:36:25 2010 +0100
+
+    using rdtsc for rng seed with mersenne twister
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 03:41:09 2010 +0100
+
+    update
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 03:35:21 2010 +0100
+
+    added variable time measure
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 03:32:53 2010 +0100
+
+    added variable time measure
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 03:24:02 2010 +0100
+
+    added variable time measure
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 00:19:46 2010 +0100
+
+    added n processus and fixed bound parameters
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sun Nov 28 00:12:08 2010 +0100
+
+    added n processus and fixed bound parameters
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 27 23:26:16 2010 +0100
+
+    onlyexec and onlyprint parameters added on openmp script
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 27 23:22:54 2010 +0100
+
+    onlyexec and onlyprint parameters added on openmp script
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 27 23:07:11 2010 +0100
+
+    t-openmp.py released
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 27 21:27:41 2010 +0100
+
+    changed output results name
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 27 21:24:07 2010 +0100
+
+    added t-openmp.py
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 27 16:19:51 2010 +0100
+
+    added prefix parameter on t-openmp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 19:16:09 2010 +0100
+
+    updated Dp = Tp / TDp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 18:20:38 2010 +0100
+
+    remode two - on results filename
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 18:08:58 2010 +0100
+
+    updated to D_p = T_Dp / T_p and avoid all D_p higher than the number of tasks used
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 17:43:52 2010 +0100
+
+    popStep and dimStep replaced by pS and dS on the results filename
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 17:37:44 2010 +0100
+
+    added popStep and dimStep value on the result filename
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 17:35:06 2010 +0100
+
+    created two boxplot script files one to generate image the other to display with matplotlab
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 17:33:11 2010 +0100
+
+    removed omp_apply.h and added to apply.h, added dynamicity computation
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 14:47:55 2010 +0100
+
+    remove threshold parameter and move from static schedule to dynamic
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Nov 22 14:07:47 2010 +0100
+
+    added efficienty computation
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 20 01:57:30 2010 +0100
+
+    added stepping parameters
+
+Merge: dab81d1 6625cd2
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 20 01:08:22 2010 +0100
+
+    uptodate
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Nov 20 01:01:45 2010 +0100
+
+    openmp testing up-to-date
+
+Author: nojhan <johann@dreo.fr>
+Date:   Fri Nov 19 21:08:18 2010 +0100
+
+    test binary for dual fitness
+
+Merge: e8a083f 651ba9f
+Author: nojhan <johann@dreo.fr>
+Date:   Fri Nov 19 21:07:05 2010 +0100
+
+    Merge branch 'master' of ssh://eodev.git.sourceforge.net/gitroot/eodev/eodev
+    
+    Conflicts:
+    	eo/test/CMakeLists.txt
+
+Author: nojhan <johann@dreo.fr>
+Date:   Fri Nov 19 21:03:07 2010 +0100
+
+    add t-eoDualFitness to CMake
+
+Author: nojhan <johann@dreo.fr>
+Date:   Fri Nov 19 21:02:35 2010 +0100
+
+    added a method to get the value of a dual fitness
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Nov 19 11:54:45 2010 +0100
+
+    new pkg-config file
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Nov 19 11:50:51 2010 +0100
+
+    changed pkg-config file creation process
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Nov 19 11:48:42 2010 +0100
+
+    openmp test updated
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Nov 18 10:49:24 2010 +0100
+
+    added some new scripts to specialize building and a build script for visual studio 2008
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Nov 18 10:47:29 2010 +0100
+
+    forgot to add t-eoParser in test/CMakeLists.txt
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Nov 17 17:27:55 2010 +0100
+
+    added a apply.h variant for parallel execution
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Nov 17 14:43:18 2010 +0100
+
+    functor operator applying to population in parallel
+
+Merge: 979a186 8ecef39
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Nov 17 11:54:07 2010 +0100
+
+    Merge branch 'master' of ssh://eodev.git.sourceforge.net/gitroot/eodev/eodev
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Nov 17 11:47:49 2010 +0100
+
+    unit test for eoParser added
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Nov 17 11:41:43 2010 +0100
+
+    fixed unistd.h portability issue
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 15 09:30:37 2010 +0100
+
+    eoDualStatSwitch, a wrapper for computing stats on feasible and unfeasible individuals, separately
+
+Merge: fb8a8d7 04f12b7
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 15 09:14:00 2010 +0100
+
+    Merge branch 'master' of ssh://eodev/gitroot/eodev/eodev
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 15 09:13:39 2010 +0100
+
+    verify that pop is not empty before attempting to compute the IQR
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 15 09:12:10 2010 +0100
+
+    @todo: add an init method for continuators?
+
+Author: nojhan <johann@dreo.fr>
+Date:   Sun Nov 14 15:24:35 2010 +0100
+
+    supress some doxygen warnings about \classes
+
+Author: nojhan <johann@dreo.fr>
+Date:   Sun Nov 14 15:11:46 2010 +0100
+
+    eoInterquartileRangeStat example link to t-eoIQRStat
+
+Author: nojhan <johann@dreo.fr>
+Date:   Sun Nov 14 15:07:50 2010 +0100
+
+    a test binary for eoInterquartileRangeStat
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Nov 10 11:18:57 2010 +0100
+
+    there was a warning from compiler related to a comment syntax in eoInvalidateOps.h
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Nov 9 11:44:28 2010 +0100
+
+    fix most of the doxygen warnings
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 8 22:58:37 2010 +0100
+
+    default log output to debug for the ostream monitor ; better documentation
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 8 18:29:25 2010 +0100
+
+    new eoAerageSizeStat class
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 8 18:27:58 2010 +0100
+
+    check for self assignement in copy operator of eoDualFitness
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 8 18:27:19 2010 +0100
+
+    deactivate gpsymreg that uses the now unsuported multi-objective feature
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Nov 7 23:43:58 2010 +0100
+
+    fix some doxygen warnings
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Nov 7 23:16:45 2010 +0100
+
+    remove multi-objective stuff, deprecated by ParadisEO-PEO
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Nov 7 23:12:28 2010 +0100
+
+    add tests interfaces as examples in the doc ; remove unused test binaries ; some code formating
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Nov 7 23:09:35 2010 +0100
+
+    remove unused test binaries, some code formating
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Nov 7 11:19:33 2010 +0100
+
+    in the doc's main page: brief section first with a link to the modules list
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sat Nov 6 17:31:39 2010 +0100
+
+    do not documentify: test, tutorial, contrib and app, that are not part of the framework by itself
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sat Nov 6 17:24:00 2010 +0100
+
+    removing obsolete win directory, we now se CMake that can generate VC++ project files by itself
+
+Author: nojhan <johann@dreo.fr>
+Date:   Sat Nov 6 09:19:17 2010 +0100
+
+    small fixes in the doc
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Nov 5 22:46:15 2010 +0100
+
+    and finally... still more grouping in documentation.
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Nov 5 15:59:35 2010 +0100
+
+    grouping classes in documentation
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Nov 5 14:28:28 2010 +0100
+
+    name of variables in english ; use the eo::log instead of cerr ; doc grouping
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Nov 5 11:26:04 2010 +0100
+
+    grouping classes in documentation
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Nov 2 17:23:27 2010 +0100
+
+    readable size for the evolutionry algorithm diagram
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Nov 2 16:57:13 2010 +0100
+
+    evolutionary algorithm diagram with lego blocks, fancier
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 23:08:58 2010 +0100
+
+    more doc groups, cleaner modules hierarchy
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 22:09:40 2010 +0100
+
+    replace TODO comments by @ŧodo doxygen command
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 22:08:37 2010 +0100
+
+    more explanations in doc main page, remove HTML markup, remove deprecated link pages
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 18:20:56 2010 +0100
+
+    Create more doxygen groups for base classes, clean some doc
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 18:19:37 2010 +0100
+
+    delete the obsolete directory (still versionned in the repository if necessary)
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 15:34:27 2010 +0100
+
+    grouping algorithms in a module of the doc
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 13:37:24 2010 +0100
+
+    added Johann and Caner as authors on the web page
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Nov 1 13:32:37 2010 +0100
+
+    more shortcut links on the webpage, toward the chat and the trac
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Oct 31 23:01:16 2010 +0100
+
+    fix #10: removed MOO binaries
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Oct 31 22:57:05 2010 +0100
+
+    fix #10: removed the moo/ directory and eoMO* classes, deprecated by the Paradiseo-MOEO project
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Oct 31 21:57:06 2010 +0100
+
+    indicate cudacc branch in the changelog
+
+Merge: fc21827 66b4dfd
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Oct 31 21:50:15 2010 +0100
+
+    Merge branch 'cudacc'
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Oct 31 21:36:53 2010 +0100
+
+    remove default values for verbose parameters, so as to make deprecated wrappers unused by default
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Oct 31 21:19:34 2010 +0100
+
+    alternate function prototypes without verbose parameter
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sun Oct 31 07:47:12 2010 +0100
+
+    changelog summary for the next 1.1 release
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sat Oct 30 23:30:40 2010 +0200
+
+    fix #13: remove the use of the verbose members, replaced by the eo::log system ; functions prototypes keep their verbose parameters, but display a warning until next version
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Oct 26 13:48:47 2010 +0200
+
+    file not at the right place
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Oct 26 13:37:15 2010 +0200
+
+    replace the changelog with the (cleaned) git log, more up-to-date
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Oct 26 13:35:08 2010 +0200
+
+    renamed in CHANGELOG
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Oct 26 13:34:19 2010 +0200
+
+    warning: not up-to-date
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Oct 26 13:32:55 2010 +0200
+
+    added Johann and Caner as authors
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Tue Oct 26 13:32:43 2010 +0200
+
+    replace the changelog with the (cleaned) git log, more up-to-date
+
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Tue Oct 26 10:51:48 2010 +0200
 
@@ -18,10 +1041,30 @@ Date:   Fri Oct 22 10:07:09 2010 +0200
 
     Arithmetic operators (note: priority to unfeasibility)
 
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Oct 12 10:09:56 2010 +0200
+
+    I have fixed some bugs and added some tests for doDistrib classes
+
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Wed Sep 29 22:52:30 2010 +0200
 
     using eo::log instead of std::cout
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Sep 28 10:38:38 2010 +0200
+
+    there was an issue on doBounderNo class tied to the default values of the ctor of mother class doBounder: fixed
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Sep 22 19:25:37 2010 +0200
+
+    * eda n eda_sa: bug fixed, while we were using -h the result folder was removed
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Sep 22 14:38:15 2010 +0200
+
+    + eda algo: same algo than eda-sa without sa, + plotting scripts and problem functions moved to application/common
 
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Tue Sep 21 17:53:48 2010 +0200
@@ -32,6 +1075,21 @@ Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Tue Sep 21 17:52:59 2010 +0200
 
     typo variable name
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Sep 21 15:12:19 2010 +0200
+
+    + boxplot.py: script to generate graphic with boxplot to illustrate distances between theorical and visual means for each population value
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Sep 21 15:08:38 2010 +0200
+
+    + t-mean-distance: program to generate distance value between the theorical and visual means
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Sep 20 13:35:51 2010 +0200
+
+    typofix declaration types in macro
 
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Mon Sep 20 11:32:55 2010 +0200
@@ -94,10 +1152,114 @@ Date:   Wed Sep 15 22:28:29 2010 +0200
 
     doc comments
 
+Merge: 26ac5ca 86b7538
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Sep 14 14:18:14 2010 +0200
+
+    Merge branch 'master' of 188.165.44.48:do
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Sep 14 13:19:43 2010 +0200
+
+    bugfixed from ublas::vector assignement ctor for old version of boost
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Sep 13 06:17:44 2010 +0200
+
+    - screenshots
+
+Merge: 0f4e43c 6a613bc
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Sat Sep 11 00:21:02 2010 +0200
+
+    Merge branch 'mo-1.3' of candan.fr:do into mo-1.3
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Sep 10 23:21:31 2010 +0200
+
+    t-doEstimatorNormalMulti: display means and distance
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Sep 10 17:04:02 2010 +0200
+
+    * bugfixed on test_cov_parameters
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Sep 10 15:52:54 2010 +0200
+
+    replaced generated prefix name in result folder
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Sep 10 15:48:16 2010 +0200
+
+    + test_cov_parameters.py: script to execute the estimator testor (t-EstimatorNormalMulti) in using all combinaison parameters values for 2-D cov-matrix
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Sep 10 01:09:16 2010 +0200
+
+    + test/t-doEstimatorNormalMulti
+
 Author: nojhan <johann@dreo.fr>
 Date:   Thu Sep 9 22:37:50 2010 +0200
 
     update related softwares: + EASEA, GUIDE
+
+Merge: 15ae721 86b0828
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Sep 9 13:55:59 2010 +0200
+
+    Merge branch 'mo-1.3' of git:do into mo-1.3
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Sep 9 13:55:18 2010 +0200
+
+    * added some comments
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Sep 9 11:53:14 2010 +0200
+
+    + new screenshot with parameters -P=10000 -d=10
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Sep 9 11:24:35 2010 +0200
+
+    * some updates on gplot.py to have a better display + screenshots from gnuplot
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Sep 9 08:03:01 2010 +0200
+
+    * README
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Sep 9 07:59:50 2010 +0200
+
+    buxfixed on CMakeLists.txt regarding copying failures
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Sep 9 07:58:05 2010 +0200
+
+    renamed scripts filenames
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Sep 9 07:56:15 2010 +0200
+
+    * added some features in plot.py plotting script
+
+Merge: 2e43f47 56680e8
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Wed Sep 8 12:15:08 2010 +0200
+
+    Merge branch 'mo-1.3' of git:do into mo-1.3
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Wed Sep 8 12:14:15 2010 +0200
+
+    bounder on uniform distribution that can handle different bounds on several dimensions
+
+Author: Caner CANDAN <candan@trtp0634.fr.trt.thales>
+Date:   Tue Sep 7 15:36:16 2010 +0200
+
+    * fixed bad using of method moNeighbor< EOT >::init( EOT& )
 
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Mon Sep 6 12:05:13 2010 +0200
@@ -108,6 +1270,16 @@ Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Mon Sep 6 11:20:00 2010 +0200
 
     use eo::log instead of cout
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Sep 6 10:43:34 2010 +0200
+
+    no more dummy bounder
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Mon Sep 6 10:43:07 2010 +0200
+
+    constructors for passing the bounder to super class
 
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Mon Sep 6 00:04:37 2010 +0200
@@ -123,6 +1295,21 @@ Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Sun Sep 5 23:42:58 2010 +0200
 
     use eo::log instead of cout
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Sat Sep 4 23:07:37 2010 +0200
+
+    some MO types replacement
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Sep 3 18:32:27 2010 +0200
+
+    switch to new MO 1.3 classes and interface
+
+Author: Johann Dreo <johann.dreo@thalesgroup.com>
+Date:   Fri Sep 3 15:55:28 2010 +0200
+
+    Patch from Karima.Boufaras@inria.fr: compilation wth CUDACC
 
 Author: nojhan <johann@dreo.fr>
 Date:   Fri Sep 3 09:19:23 2010 +0200
@@ -155,10 +1342,26 @@ Date:   Wed Sep 1 12:01:42 2010 +0200
 
     eo::log: added the parameter -o in order to define a log file + removed some warning messages at compile time
 
+Merge: 25bb766 13b9b62
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Wed Sep 1 10:33:42 2010 +0200
+
+    Merge branch 'master' of ssh://localhost:8007/do
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Aug 31 19:29:05 2010 +0200
+
+    added temporary population sorting
+
 Author: Caner Candan <candan@trtp0634.fr.trt.thales>
 Date:   Tue Aug 31 19:26:51 2010 +0200
 
     * added some useful comments in eoLogger class
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Aug 31 17:16:48 2010 +0200
+
+    * main.cpp: removed useless comments * src/do: added some lines to make detectable language file * doEDASA.h: added some comments
 
 Author: Caner Candan <candan@trtp0634.fr.trt.thales>
 Date:   Tue Aug 31 16:39:21 2010 +0200
@@ -266,10 +1469,71 @@ Date:   Mon Aug 30 22:42:42 2010 +0200
 
     no ; at the end of the line
 
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Aug 30 16:20:55 2010 +0200
+
+    fixed a bug with using of replacor, it didnt reduce the fitness
+
 Author: nojhan <johann@dreo.fr>
 Date:   Sat Aug 28 12:30:37 2010 +0200
 
     openhatch button, supposed to facilitate the involvement of new contributors
+
+Merge: 74b23dd 799a8f0
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Aug 26 19:54:05 2010 +0200
+
+    Merge branch 'master' of candan.fr:do
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Thu Aug 26 19:31:30 2010 +0200
+
+    ...
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 25 19:15:32 2010 +0200
+
+    * removed rho parameter and replaced it by popsize
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Aug 24 18:40:49 2010 +0200
+
+    + script to plot on ggobi
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Aug 24 11:23:55 2010 +0200
+
+    * LICENSE
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Aug 24 11:22:06 2010 +0200
+
+    * fixed remove command issue
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Aug 24 11:19:31 2010 +0200
+
+    * pkg-config updated + cmake file
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Aug 24 10:26:36 2010 +0200
+
+    + lib utils
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Aug 23 18:03:44 2010 +0200
+
+    + multiplot with gnuplot
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Aug 23 16:14:02 2010 +0200
+
+    a C header include missed
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Aug 23 15:56:58 2010 +0200
+
+    + plot populations by generation - removed dump from doEDASA
 
 Author: nojhan <johann.dreo@thalesgroup.com>
 Date:   Thu Aug 19 22:04:01 2010 +0200
@@ -286,6 +1550,31 @@ Date:   Thu Aug 19 20:38:19 2010 +0200
 
     bugfix #2054922: using base_const_iterator::node;
 
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 18 19:13:38 2010 +0200
+
+    added a FIXME
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 18 18:39:58 2010 +0200
+
+    * cma-sa name has been replace by eda-sa in the project
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 18 18:24:16 2010 +0200
+
+    - useless comments and files removed
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 18 18:23:01 2010 +0200
+
+    - useless comments and files removed
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 18 18:22:28 2010 +0200
+
+    - useless comments and files removed
+
 Author: Caner CANDAN <candan@trtp0634.fr.trt.thales>
 Date:   Wed Aug 18 17:30:11 2010 +0200
 
@@ -301,11 +1590,21 @@ Date:   Wed Aug 18 17:06:16 2010 +0200
 
     + cpack configuration in order to generate packaging files, to make it easier use the script package_deb and package_rpm
 
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 18 13:37:17 2010 +0200
+
+    - some useless comments + authors in files header
+
 Merge: 0a37f66 6ec3fc5
 Author: Caner CANDAN <candan@trtp0634.fr.trt.thales>
 Date:   Wed Aug 18 12:16:13 2010 +0200
 
     Merge branch 'master' of ssh://localhost:9001/gitroot/eodev/eodev
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Aug 17 17:44:53 2010 +0200
+
+    bug fixed
 
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Tue Aug 17 15:11:18 2010 +0200
@@ -332,16 +1631,75 @@ Date:   Tue Aug 17 14:56:33 2010 +0200
 
     use eo::log ; warning when returns 0
 
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Aug 16 15:38:39 2010 +0200
+
+    issue to fix
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Aug 16 11:45:43 2010 +0200
+
+    added L(i,i) = sqrt( abs(V(i,i) - sum) ) but the issue still exists
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Aug 16 11:30:06 2010 +0200
+
+    * added the eo features Continue/CheckOut/Stat to DO in order to dump distribution parameters and to have compatibility with eoMonitor/eoUpdater classes
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Aug 16 07:52:30 2010 +0200
+
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Aug 6 10:24:45 2010 +0200
+
+    added doNormalMono
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Aug 6 10:19:50 2010 +0200
+
+    replace doNormal by doNormalMulti
+
+Merge: f66efcb 36ec42d
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Aug 6 09:50:58 2010 +0200
+
+    merge
+
 Merge: 9f4c073 68a03aa
 Author: Caner CANDAN <candan@trtp0634.fr.trt.thales>
 Date:   Wed Aug 4 14:10:57 2010 +0200
 
     Merge branch 'yaml_load_and_save' of ssh://localhost:9001/gitroot/eodev/eodev
 
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 4 14:05:42 2010 +0200
+
+    * changed some comments sentences
+
 Author: Caner CANDAN <candan@trtp0634.fr.trt.thales>
 Date:   Wed Aug 4 13:47:51 2010 +0200
 
     + feature eoSIGContinue: Continuator can catch user signals + feature eoLogger: flexible logging system for eo
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Wed Aug 4 13:05:28 2010 +0200
+
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Aug 3 18:54:41 2010 +0200
+
+    * cholesky
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Aug 3 10:35:25 2010 +0200
+
+    - doDistribParams
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Tue Aug 3 10:26:15 2010 +0200
+
+    + some useful files added
 
 Author: Johann Dreo <johann.dreo@thalesgroup.com>
 Date:   Mon Aug 2 17:07:32 2010 +0200
@@ -392,6 +1750,86 @@ Author: nojhan <johann.dreo@thalesgroup.com>
 Date:   Thu Jul 29 14:28:05 2010 +0200
 
     no more CVSROOT
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Thu Jul 29 11:22:10 2010 +0200
+
+    * doc installable
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Jul 23 13:34:42 2010 +0200
+
+    + added some useful files
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Jul 23 13:24:09 2010 +0200
+
+    + TODO + doStats.cpp
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Fri Jul 23 13:18:30 2010 +0200
+
+    * some cleaner updates
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Jul 13 13:20:07 2010 +0200
+
+    * doStats * doEstimatorNormal: replaced use of Variance by CoMatrix
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Jul 6 15:43:15 2010 +0200
+
+    ...
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Jul 6 11:25:02 2010 +0200
+
+    + do.pc
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Jul 6 10:15:47 2010 +0200
+
+    * fixed some packaging issues
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Jul 6 01:31:44 2010 +0200
+
+    cpack works
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Tue Jul 6 01:27:14 2010 +0200
+
+    config cmake
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Jul 5 20:39:41 2010 +0200
+
+    + test
+
+Author: Caner Candan <caner.candan@thalesgroup.com>
+Date:   Mon Jul 5 20:31:30 2010 +0200
+
+    ...
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Jul 5 19:42:34 2010 +0200
+
+    + packaging + cmake files
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Jul 5 19:06:34 2010 +0200
+
+    + cma_sa application
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Jul 5 19:04:35 2010 +0200
+
+    + do files
+
+Author: Caner Candan <candan@trtp0634.fr.trt.thales>
+Date:   Mon Jul 5 18:54:55 2010 +0200
+
+    ...
 
 Author: paradiseo <paradiseo>
 Date:   Tue Jun 22 09:31:58 2010 +0000
@@ -1274,11 +2712,11 @@ Date:   Thu Feb 22 08:27:32 2007 +0000
 
     * mutation.tmpl, quadCrossover.tmpl, stat.tmpl: Initialize formerly
     uninitialized variables.
-
+    
     * README.tmpl: Hint to regular Templates/README for details.
-
+    
     * README: Add documentation for adding new source-files.
-
+    
     * Makefile.am.src-tmpl (noinst_HEADERS): Add
     (MyStruct_SOURCES): Move header files from here to the new
     noinst_HEADERS variable.
@@ -1315,7 +2753,7 @@ Date:   Sun Jan 14 18:56:31 2007 +0000
     for automake finding the scripts of eo itself if we run it in a embedded
     subdirectory.
     (COPYING, INSTALL): create.
-
+    
     * README: State more explicitly what a "complete installation" means.
     Give build-instructions for moved directories.
 
@@ -1359,9 +2797,9 @@ Author: kuepper <kuepper>
 Date:   Mon Dec 18 11:17:55 2006 +0000
 
     * TODO.html, README.html: Remove these old files.
-
+    
     * AUTHORS, COPYING, ForRelease, NEWS, ToDo: Update for release.
-
+    
     * eo.cfg (PROJECT_NUMBER): Bump version to 1.0
 
 Author: kuepper <kuepper>
@@ -1373,7 +2811,7 @@ Author: kuepper <kuepper>
 Date:   Sun Dec 17 22:59:53 2006 +0000
 
     * README: Better links to Templates/
-
+    
     * configure.in: Bump version to 1.0-beta2.
 
 Author: kuepper <kuepper>
@@ -1402,11 +2840,11 @@ Date:   Sat Dec 16 21:55:03 2006 +0000
 
     * EO.tpl, MyStructEA.cpp, MyStructSEA.cpp, make_MyStruct.cpp: Use
     correct names for includes.
-
+    
     * README.manual: This is a copy of the old README.
-
+    
     * README: Describe the new way and setup of creating a new EO project.
-
+    
     * createEOproject.sh, Makefile.am.src-tmpl, Makefile.am.top-tmpl:
     * configure.ac.tmpl: New files to create a standalone EO project from
     templates.
@@ -1435,7 +2873,7 @@ Author: kuepper <kuepper>
 Date:   Mon Dec 4 22:27:41 2006 +0000
 
     * Makefile.am: Add t-eoRNG
-
+    
     * t-eoRNG.cpp: Start test for random number generator.
 
 Author: kuepper <kuepper>
@@ -1472,11 +2910,11 @@ Author: kuepper <kuepper>
 Date:   Sun Dec 3 10:41:54 2006 +0000
 
     * mainpage.html: update, add link to Niko Hansen's comparison
-
+    
     * README: Add more specific note about tutorial.
-
+    
     * configure.in: Bump version to 1.0-beta1
-
+    
     * tutorial/Makefile.am: Add all necessary files, including html and
     Templates to distribution.
 
@@ -1517,13 +2955,13 @@ Author: kuepper <kuepper>
 Date:   Sat Dec 2 10:18:57 2006 +0000
 
     * eoTimedMonitor.h (eoTimedMonitor::seconds): Make unsigned.
-
+    
     * eoRNG.cpp, eoRNG.h (K, M, N): Declare static and initialize in cpp.
-
+    
     * t-eoGenOp.cpp (init): Do not add std::ends to end of string, as this
     results in escape-codes (^@) to be printed at runtime and is not
     necessary anyway.
-
+    
     * test/t-eoSymreg.cpp (SymregNode::operator()): Initialize r1 and r2 to
     avoid compiler warnings.
 
@@ -1531,7 +2969,7 @@ Author: kuepper <kuepper>
 Date:   Sat Dec 2 09:39:13 2006 +0000
 
     * eoRNG.h: Cleanup docs and document /all/ members.
-
+    
     * eoRNG.cpp, eoRNG.h (K, M, N): Declare static and initialize in cpp.
 
 Author: kuepper <kuepper>
@@ -1548,9 +2986,9 @@ Author: kuepper <kuepper>
 Date:   Fri Dec 1 20:08:51 2006 +0000
 
     * Makefile.am: Update for release-distribution.
-
+    
     * Makefile.am: Add missing CMA header for distribution.
-
+    
     * Makefile.am: Add missing header for distribution.
 
 Author: kuepper <kuepper>
@@ -1603,7 +3041,7 @@ Author: kuepper <kuepper>
 Date:   Thu Nov 16 12:52:46 2006 +0000
 
     * configure.in (AC_DEBUG): add test
-
+    
     * acinclude.m4 (AC_DEBUG): Define debug-feature and set DEBUG, NODEBUG,
     or NDEBUG according to its value.
 
@@ -1613,10 +3051,10 @@ Date:   Thu Nov 16 12:35:46 2006 +0000
     * make_genotype_real.h (eoEsChromInit): Rewrite vecSigmaInit-handling:
     If sigmaInit is relative (%), do not read vecSigmaInit. Otherwise
     always use vecSigmaInit with default all values of sigmaInit.
-
+    
     * eoParser.h (eoParser::getORcreateParam): Make this a real if-then-else
     clause around ptParam (found or not).
-
+    
     * eoParam.h (eoValueParam::setValue): Document.
     (eoValueParam<std::vector<double> >::setValue): Allow delimiters ',' and
     ';'. A plain ' ' does not work, as it is not correctly read by
@@ -1973,9 +3411,9 @@ Date:   Sun Oct 2 21:42:08 2005 +0000
     - add a user-option for gnuplot-support
     - separate gnuplot-code into declaration and implementation,
       so we can define at EO-build-time whether to use it or not.
-
+    
     Adopt code and Makefiles to above changes.
-
+    
     Some minor fixes.
 
 Author: kuepper <kuepper>
@@ -2311,7 +3749,7 @@ Date:   Thu Dec 23 15:29:07 2004 +0000
 
     Adjust code to perform to C++ standard according to gcc-3.4
     interpretation... (Have not compiled/checked/changed paradisEO.)
-
+    
     That is, the current code compiles with gcc-3.4 and the checks
     (besides t-MGE1bit) all pass.
 
@@ -2362,7 +3800,7 @@ Date:   Fri Nov 5 08:57:34 2004 +0000
     easily read as a parameter)
     - eoIntBound and all other integer-equivalent of the classes in eoRealBound.h
     Note that there is no equivalent to eoRealVectorBounds for vector of integers
-
+    
     In file eo, I have added the 2 includes of eoRealBounds.h and eoIntBounds.h
     The first one was already there by chance, through eoUniformInit.h
 
@@ -2569,13 +4007,13 @@ Author: kuepper <kuepper>
 Date:   Fri Sep 17 16:53:31 2004 +0000
 
     Updated build-prcess to be completely under automake control.
-
+    
     For the tutorial the old Makefiles are saved as Makefile.simple in all
     the respective directories.
-
+    
     Use generated config.h instead of command-line passing of preprocessor
     flags.
-
+    
     Updated support files from current automake.
 
 Author: kuepper <kuepper>
@@ -3300,7 +4738,7 @@ Date:   Sun Jan 5 16:31:50 2003 +0000
 
     Added pyeo. Some changes needed to be made for include files and the like
     in some files (and some bugs were fixed as well [Marc: eoOneToOneBreeder was a mess])
-
+    
     eoFunctor.h now contains static functor_category members, this shouldn't hurt anyone.
 
 Author: maartenkeijzer <maartenkeijzer>
@@ -3398,7 +4836,7 @@ Date:   Wed Sep 18 12:40:46 2002 +0000
 
     A new readFrom & printOn function for EO.h
     Now it CAN handle VALID/INVALID fitnesses.
-
+    
     The problems are over at last
 
 Author: cahon <cahon>
@@ -3592,7 +5030,7 @@ Date:   Mon Jun 17 04:13:45 2002 +0000
 
     Adding the truncation selectors.
     2 versions: eoTruncatedSelectOne is an eoSelectOne, and
-		eoTruncatedSelectMany works like an eoSelectMany (but is NOT)
+                eoTruncatedSelectMany works like an eoSelectMany (but is NOT)
 
 Author: jeggermo <jeggermo>
 Date:   Mon Jun 10 14:10:35 2002 +0000
@@ -3609,7 +5047,7 @@ Date:   Mon May 13 11:31:32 2002 +0000
 
     EO::printOn has been changed so that the printOn function will
     always print a valid fitness value even if the fitness is invalid
-
+    
     Jeroen
 
 Author: jeggermo <jeggermo>
@@ -3827,7 +5265,7 @@ Date:   Mon Apr 15 12:56:35 2002 +0000
 
     eoParseTree printOn and readFrom functions changed for
     compatibility with paradisEO
-
+    
     The fitness is now printed in the same way as in eoBit
 
 Author: evomarc <evomarc>
@@ -4138,9 +5576,9 @@ Date:   Mon Feb 4 14:28:00 2002 +0000
 
     the gpsymreg code has been slightly altered to allow compilation using the
     Intel C++ Compiler for Linux.
-
+    
     Other compilers should not be affected.
-
+    
     A slightly different makefile is needed
 
 Author: jeggermo <jeggermo>
@@ -4317,7 +5755,7 @@ Date:   Tue Dec 4 21:15:16 2001 +0000
     some template classes and functions which did not need
     to be templates have been changed to normal classes and functions
     with hard coded typed
-
+    
     This might help with M$VC++ 6.0 compatibility
 
 Author: jeggermo <jeggermo>
@@ -4537,8 +5975,8 @@ Date:   Sat Nov 10 09:02:17 2001 +0000
 
     Small modifications here and there to be MSVC++ compatible
     Mainly, time.h -> ctime
-	    definition of loop index out of loops when multiply used
-	    no typename in declaration using template typename
+            definition of loop index out of loops when multiply used
+            no typename in declaration using template typename
 
 Author: evomarc <evomarc>
 Date:   Sat Nov 10 06:59:02 2001 +0000
@@ -4628,15 +6066,15 @@ Date:   Sat Nov 3 22:10:11 2001 +0000
 
     the name of the eoGpDepthInitializer class (initializer for
     parse_tree's has been changed to
-
+    
     eoParseTreeDepthInit but backward compatibility is maintained by
     using a #define statement:
-
+    
     #define eoGpDepthInitializer eoParseTreeDepthInit
-
+    
     The initializer for strongly typed GP has been changed to
     eoStParseTreeDepthInit
-
+    
     the gpsymreg application has been changed to use the new name
 
 Author: jeggermo <jeggermo>
@@ -4839,7 +6277,7 @@ Author: jeggermo <jeggermo>
 Date:   Tue Jul 17 08:58:52 2001 +0000
 
     small documentation change for eoParseTree.h.
-
+    
     added a depth initializer for strongly typed genetic programming
     added subtree xover for strongly typed genetic programming
     added branch mutation for strongly typed genetic programming
@@ -4862,7 +6300,7 @@ Date:   Wed Jul 4 04:44:30 2001 +0000
     Adding eoPopEvalFunc, that handles evaluation globally: it receives
     two populations, parents and offspring, and does whatever necessary.
     The subclass eoPopLoopEval does the simple loop on the offspring.
-
+    
     eoEasyEA was subsequently modified to handle an eoPopEval passed in Ctor,
     but also to encapsulate an eoEvalFunc into an eoPopLoopEval tranparently.
 
@@ -4874,7 +6312,7 @@ Date:   Tue Jul 3 12:56:44 2001 +0000
     Modified eoEaseyEA accordingly - you can either pass an eoEvalFunc, as
     before (it is then encapsulated into an eoPopLoopEval that does the good
     old loop on the offspring - or directly pass a full eoPopEvalFunc
-
+    
     Small modification also in make_op_es -> keyword "none" is now recognized
     for one of the crossover of either object variables or stdev's
 
@@ -4883,9 +6321,9 @@ Date:   Mon Jul 2 13:31:04 2001 +0000
 
     Changed the directory structure for gp
     now: eoParseTree <-- the eoParseTree class
-	 eoParseTreeDepthInit <-- the eoParseTree depth initializer (eoGpDepthInitializer)
-	 eoParseTreeOp <-- the operators (xover and mutation)
-
+         eoParseTreeDepthInit <-- the eoParseTree depth initializer (eoGpDepthInitializer)
+         eoParseTreeOp <-- the operators (xover and mutation)
+    
     base documentation written for:
     * eoParseTree
     * eoGpDepthInitializer
@@ -4895,9 +6333,9 @@ Date:   Mon Jul 2 13:31:04 2001 +0000
     * eoExpansionMutation
     * eoCollapseSubtreeMutation
     * eoHoistMutation
-
+    
     I also created a group ParseTree which contains all classes related to eoParseTree
-
+    
     eoGpMutate.h has been removed (merged with eoParseTree operators into eoParseTreeOp
 
 Author: jeggermo <jeggermo>
@@ -4978,16 +6416,16 @@ Author: jeggermo <jeggermo>
 Date:   Thu Jun 28 14:03:59 2001 +0000
 
     new Mutation operators for eoParseTree in src/gp/eoGpMutate.h
-
+    
     a symbolic regression example program added to the app-dir
-
+    
     configure.in and Makefile(s).am changed
 
 Author: jeggermo <jeggermo>
 Date:   Thu Jun 28 13:55:14 2001 +0000
 
     Additional mutation operators for eoParseTree
-
+    
     * Point Mutation
     * Expansion Mutation
     * Collapse Subtree Mutation
@@ -5195,7 +6633,7 @@ Date:   Wed May 2 10:42:32 2001 +0000
     src/es/eoEsGlobalXover.h and src/es/eoEsLocalXover.h for crossover
     src/es/make_XXX_es.h for user-input
     test/t-eoEsAll.cpp to test
-
+    
     However, an old bug appeared: className was not const in eoGenOp (and derived classes)
     so I had to change that throughtout the hierarchy
 
@@ -5212,7 +6650,7 @@ Date:   Mon Apr 30 13:24:42 2001 +0000
     Changed the interface of make_genotype - now templatized by the EOT
     and not the fitness - this is mandatory for ES genoptypes as it allows to
     choose the type of gentype at run-time (from existing types, of course!)
-
+    
     Also moved make_help.cpp into utils dir (otherwise you'd had to maintain
     a copy into each representation dir!).
 
@@ -5224,7 +6662,7 @@ Date:   Mon Apr 30 13:01:07 2001 +0000
     Changed the interface of make_genotype - now templatized by the EOT
     and not the fitness - this is mandatory for ES genoptypes as it allows to
     choose the type of gentype at run-time (from existing types, of course!)
-
+    
     Also moved make_help.cpp into utils dir (otherwise you'd had to maintain
     a copy into each representation dir!).
 
@@ -5427,7 +6865,7 @@ Date:   Wed Apr 4 03:47:33 2001 +0000
 
     Added the signal handling - see eoCtrlCContinue.h
     I've disabled it in case of MSC as I don't know if this works there ...
-
+    
     Also added a couple of "virtual" in the ga dir
 
 Author: evomarc <evomarc>
@@ -5455,7 +6893,7 @@ Date:   Wed Mar 28 09:00:54 2001 +0000
     FDCStat and FileSnapshot: better error messageing
     Scalar fitness: is now a vector of doubles
     exercise3.1 added gnuplot again
-
+    
     Don't know about eoCombinedContinue
 
 Author: evomarc <evomarc>
@@ -5646,7 +7084,7 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Mon Mar 12 16:00:58 2001 +0000
 
     EO: added overloaded printing of fitness (for vectors and pairs)
-
+    
     Various bugs and ommissions in eoPerf2Worth and eoSelectFromWorth
 
 Author: maartenkeijzer <maartenkeijzer>
@@ -5658,12 +7096,12 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Sat Mar 10 14:02:23 2001 +0000
 
     Changed the populator to be a) more efficient and b) more useable
-
+    
     It is no longer derived from eoPop, it now gets a destination population.
     This saves a lot of copying. The semantics has changed a little as well. It is
     now an _infinite_ iterator. operator++ will *not* dispense new individuals, but
     will merely stay at the end. To get a new indy, use operator*() as before.
-
+    
     eoEasyEA now checks the checkpoint *after* making a generation and clears the offspring
     eoGeneralBreeder is changed to reflect the changes in eoPopulator
     eoSequentialSelect now uses setup() rather than init()
@@ -5717,7 +7155,7 @@ Date:   Mon Feb 19 12:23:13 2001 +0000
     To be able to use the primitive std::generate function, added a
     set of wrappers in eoSTLFunctor.h that have the copy semantics most
     STL functions expect (namely pass-by-value rather then pass-by-reference).
-
+    
     Updated test/Makefile.am to also test t-eoRandom
 
 Author: evomarc <evomarc>
@@ -5736,14 +7174,14 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Sat Feb 17 10:51:31 2001 +0000
 
     eoVector is back (eoFixedLength and eoVariableLength are gone)
-
+    
     Also: introducing eoRndGenerators.h for eoRndGenerator derived classes:
-
+    
       eoNormalGenerator
       eoUniformGenerator
       eoBooleanGenerator
       eoNegExpGenerator
-
+    
     Note the suffix that are added to aid in determining what these classes do
 
 Author: evomarc <evomarc>
@@ -5829,13 +7267,13 @@ Date:   Wed Feb 14 14:09:16 2001 +0000
 Author: maartenkeijzer <maartenkeijzer>
 Date:   Wed Feb 14 10:35:26 2001 +0000
 
-
+    
     Changed the signature of eoMon, eoBin and eoQuadOp to return a bool,
     without invalidating fitness. Added a set of invalidators to take over
     that job (see for instance eoSGA and eoSGATransform how this can transparantly used)
-
+    
     Derived eoState from eoFunctorStore (for convenience, from a design perspective this may sound wrong)
-
+    
     Added a wrap_op function that does the wrapping for you (see eoOpContainer how this made this functor
     exceedingly less hairy). Checked all the tests removed the eoGeneric*Op family (not needed anymore)
     and of course changed all the operators to reflect the change (and found a few that didn't
@@ -5865,24 +7303,24 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Tue Feb 13 12:38:19 2001 +0000
 
     fixed a bug: the parser now correctly parses parameters of the form
-
+    
     -Pvalue
-
+    
     This will now produce 'value'. The buggy parser would parse 'alue' here. I am truly and deeply
     ashamed to have created such an off-by-one error.
-
+    
     Marc assumed this was wanted behaviour (so that it should read: -P=value)
     I must admit that this is a logical conclusion, though it was merely a side-effect
     of the error. To not force Marc to rewrite the tutorial and his way of working with
     EO, I decided to make a feature out of the bug, so that now the parser will parse:
-
+    
     -Pvalue
     -P=value
-
+    
     and of course the true and blue:
-
+    
     -Parameter=value
-
+    
     I will now go and check if I sent out some crappy papers caused by this bug (as I've been using eo!)
 
 Author: maartenkeijzer <maartenkeijzer>
@@ -5894,14 +7332,14 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Mon Feb 12 13:58:51 2001 +0000
 
     Ok, updated the Makefile.am again to use the
-
+    
     make check
-
+    
     Command I picked up in the automake documentation (RTFM, you know)
-
+    
     Tagged a lot of header functions in the GnuPlot files with 'inline',
     so they can be used from more than one sourcefile.
-
+    
     Ok, now the interesting news. Started a new library libga (not to be confused
     with Matthew's GaLib). Here I suggest we put a fairly complete and configurable
     genetic algorithm. Just to see how far we can stretch ourselves and also to have
@@ -5920,7 +7358,7 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Sun Feb 11 16:25:03 2001 +0000
 
     Removed small bug in reading outside a buffer in eoParser::readFrom
-
+    
     This caused the parser to crash when a simple flag of the form program -f
     was given.
 
@@ -6014,8 +7452,8 @@ Date:   Fri Feb 9 05:09:26 2001 +0000
     I also changed
       - the eoQuadratic into eoQuad (as dicussed with Maarten)
       - the eoBin into eoBit, with more appropriate names for the "binary"
-	operators (that can be unary!) as no one protested when I posted on
-	eodev list
+        operators (that can be unary!) as no one protested when I posted on
+        eodev list
 
 Author: evomarc <evomarc>
 Date:   Wed Feb 7 05:15:18 2001 +0000
@@ -6039,7 +7477,7 @@ Date:   Wed Feb 7 05:04:24 2001 +0000
     Added selection methods
     eoBestSelect            always return the best individual
     eoSequentialSelect      a selectOne version of eoDetSelect (uses an index to
-			    return next offspring from sorted pop)
+                            return next offspring from sorted pop)
 
 Author: evomarc <evomarc>
 Date:   Thu Feb 1 05:27:36 2001 +0000
@@ -6061,7 +7499,7 @@ Date:   Wed Jan 31 18:38:39 2001 +0000
     every generation) which is different from the continuous monitoring (same file/plot is
     angemented every generation).
     This lead to a number of modifications in many files in utils dir
-
+    
     But now we can watch on-line
     - fitness spreadout
     - FDC plots
@@ -6078,7 +7516,7 @@ Date:   Mon Jan 29 10:25:44 2001 +0000
     Added the truncate and the hasNoBoundAtAll methods in eoRealBounds.
     The former simply set values to the boundary values in case they are out
     The latter allows to short-cut all bound-checks when no need
-
+    
     SOme day I will put this in utils, and have a eoRealBounds.cpp in the
     pre-compiled library
 
@@ -6129,12 +7567,12 @@ Date:   Sat Jan 27 07:43:58 2001 +0000
        eo   everything that is general to any representation
        es.h everything about real representation (in es dir)
        ga.h everything related to bitstring representation (in ga dir)
-
+    
     To be continued by gp.h, and ...
-
+    
     This has lead to some slight modifications in test file eobin and all tutorial
     examples files...
-
+    
     I've also added in utils eoDistance, generic functor to compute distances,
     including also the generic Euclidian distance
 
@@ -6145,9 +7583,9 @@ Date:   Sat Jan 27 07:41:46 2001 +0000
        eo   everything that is general to any representation
        es.h everything about real representation (in es dir)
        ga.h everything related to bitstring representation (in ga dir)
-
+    
     To be continued by gp.h, and ...
-
+    
     This has lead to some slight modifications in test file eobin and all tutorial
     examples files...
 
@@ -6405,7 +7843,7 @@ Date:   Tue Jan 2 07:03:57 2001 +0000
       permanent parameters (eoParser only holds references), and egcs did not allow
       to create them by reference, i.e. in the line
       eoValueParam<xxx> & blablaParam(...);
-
+    
     So now everything is done in the main_function, and 3 lines are needed to create
     and read every paramter (sigh ...)
 
@@ -6483,16 +7921,16 @@ Date:   Tue Dec 19 18:41:19 2000 +0000
     THe big eoReplacement update:
     The interface for eoReplacement is now eoPop<EOT>&, eoPop<EOT>&
     (i.e. no const) and the result must be in the first argument in the end.
-
+    
     Hence it is possible to do SSGA and all intermediate replacmeent procedures
-
+    
     The classes derived from eoMergeReduce.h are now in a separate file
     The SSGA-like replcaement procedures are in eoReduceMerge.h
     A more general replacement can be found in eoSurviveAndDie.h
     (it could be made a littel more general - still open for upgrades).
-
+    
     Also some accessors have been added to the eoPop (best and worse individuals)
-
+    
     And include file eo has been updated
 
 Author: evomarc <evomarc>
@@ -6630,16 +8068,16 @@ Author: evomarc <evomarc>
 Date:   Mon Dec 4 06:58:43 2000 +0000
 
     Added the lastCall construct: if the stopping condition becomes true in eoCheckPoint,
-	  a method called lastCall is called for everything contained in that checkpoint
-	  (stats, updaters and monitors). This can be extremely useful
-	  - for stateSavers (see below)
-	  - for monitoring things like rates of success of operators, where what you
-	    are interested in is the final result only.
+          a method called lastCall is called for everything contained in that checkpoint
+          (stats, updaters and monitors). This can be extremely useful
+          - for stateSavers (see below)
+          - for monitoring things like rates of success of operators, where what you
+            are interested in is the final result only.
     Added of course a virtual method lastCall that does nothing by default in classes
-	  eoBaseStat, eoBaseSortedStat, eoUpdater and eoMonitor
+          eoBaseStat, eoBaseSortedStat, eoUpdater and eoMonitor
     Added a boolean to control the save of the state in method eoCountedStateSaver::lastCall
-	  so you can ask that the state is saved at final population, whatever happens.
-	  I also added the corresponding constructor to take this into account.
+          so you can ask that the state is saved at final population, whatever happens.
+          I also added the corresponding constructor to take this into account.
 
 Author: evomarc <evomarc>
 Date:   Mon Dec 4 05:55:59 2000 +0000
@@ -6822,8 +8260,8 @@ Author: evomarc <evomarc>
 Date:   Tue Nov 28 06:46:37 2000 +0000
 
     Modified the contructor: the default value for the delimiter is now " "
-	 and I added a boolean argument to indicate whether or not we want to
-	     overwrite an existing file with same name (default is overwrite).
+         and I added a boolean argument to indicate whether or not we want to
+             overwrite an existing file with same name (default is overwrite).
     Added the getFileName accessor.
 
 Author: evomarc <evomarc>
@@ -7085,7 +8523,7 @@ Author: maartenkeijzer <maartenkeijzer>
 Date:   Fri Oct 6 10:41:38 2000 +0000
 
     Added an eoSortedStatBase for more efficient statistic calculations
-
+    
     updated a few makefiles to include the html and latex docs with the
     distribution.
 
@@ -7844,12 +9282,12 @@ Author: mac <mac>
 Date:   Mon Mar 6 16:05:47 2000 +0000
 
     Fixed bug in eoGOpSelector (missing break!)
-
+    
     eoOp.h: binOp's second arg is const once more
-
+    
     all dsp and dsw files were touched by msvc, but did add some stuff (which
     will be added to eo later)
-
+    
     Hope this all works
 
 Author: mac <mac>
@@ -7879,7 +9317,7 @@ Author: marc <marc>
 Date:   Tue Feb 29 05:14:40 2000 +0000
 
     wherease the command "cvs ci" is OK.
-
+    
     Here we go:
     - added the virtual destructors of all classes,
      to suppress g++ annoying warnings when using -Wall option
@@ -7930,7 +9368,7 @@ Date:   Sat Feb 19 16:30:42 2000 +0000
 
     Moved the static eoRNG rng to an extern eoRNG
     This external object is now defined in eoPersistent.cpp
-
+    
     This should change...
 
 Author: mac <mac>
