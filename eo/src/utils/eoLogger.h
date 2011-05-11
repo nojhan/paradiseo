@@ -34,13 +34,13 @@ Caner Candan <caner.candan@thalesgroup.com>
 \code
     #include <iostream>
     #include <utils/eoLogger.h>
-    #include <utils/eoParserLogger.h>
+    #include <utils/eoParser.h>
 
     int	main(int ac, char** av)
     {
     // We are declaring first an overload of eoParser class using Logger
     // component.
-    eoParserLogger parser(ac, av);
+    eoParser parser(ac, av);
 
     // This call is important to allow -v parameter to change user level.
     make_verbose(parser);
@@ -88,15 +88,15 @@ Caner Candan <caner.candan@thalesgroup.com>
 */
 
 #ifndef eoLogger_h
-# define eoLogger_h
+#define eoLogger_h
 
-# include <map>
-# include <vector>
-# include <string>
-# include <iosfwd>
+#include <map>
+#include <vector>
+#include <string>
+#include <iosfwd>
 
-# include "eoObject.h"
-
+#include "eoObject.h"
+#include "eoParser.h"
 
 namespace eo
 {
@@ -169,6 +169,9 @@ protected:
     void addLevel(std::string name, eo::Levels level);
 
 private:
+    void _createParameters( eoParser& );
+
+private:
     /**
      * outbuf
      * this class inherits from std::streambuf which is used by eoLogger to write the buffer in an output stream
@@ -213,6 +216,12 @@ public:
     friend eoLogger& operator<<(eoLogger&, std::ostream&);
 
 private:
+    friend void	make_verbose(eoParser&);
+
+    eoValueParam<std::string> _verbose;
+    eoValueParam<bool> _printVerboseLevels;
+    eoValueParam<std::string> _output;
+
     /**
      * _selectedLevel is the member storing verbose level setted by the user thanks to operator()
      */
