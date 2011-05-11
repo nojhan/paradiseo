@@ -32,9 +32,6 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include <sstream>
 #include <climits>
 
-#include <utils/eoLogger.h>
-#include <utils/eoParserLogger.h>
-
 #include <eo>
 #include <es/make_real.h>
 
@@ -114,7 +111,7 @@ void measure( size_t p,
 
 int main(int ac, char** av)
 {
-    eoParserLogger parser(ac, av);
+    eoParser parser(ac, av);
 
     unsigned int popMin = parser.getORcreateParam((unsigned int)1, "popMin", "Population Min", 'p', "Evolution Engine").value();
     unsigned int popStep = parser.getORcreateParam((unsigned int)1, "popStep", "Population Step", 0, "Evolution Engine").value();
