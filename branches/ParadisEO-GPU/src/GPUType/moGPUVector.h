@@ -95,10 +95,11 @@ public:
 
 	virtual moGPUVector& operator=(const moGPUVector & _vector) {
 
-		if (N >= 1)
+		if (!(N == _vector.N) && (N >= 1)) {
 			delete[] vect;
-		N = _vector.N;
-		vect = new ElemType[N];
+			N = _vector.N;
+			vect = new ElemType[N];
+		}
 		for (unsigned i = 0; i < N; i++)
 			vect[i] = _vector.vect[i];
 		if (!(_vector.invalid()))
@@ -155,8 +156,10 @@ public:
 
 	}
 
+
 	/**
-	 * Print the solution
+	 * Write object. Called printOn since it prints the object _on_ a stream.
+	 * @param _os A std::ostream.
 	 */
 
 	virtual void printOn(std::ostream& os) const=0;
