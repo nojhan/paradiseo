@@ -32,14 +32,11 @@ Caner Candan <caner.candan@thalesgroup.com>
 
  Here's an example explaning how to use eoLogger:
 \code
-    #include <iostream>
-    #include <utils/eoLogger.h>
-    #include <utils/eoParser.h>
+    #include <eo>
 
     int	main(int ac, char** av)
     {
-    // We are declaring first an overload of eoParser class using Logger
-    // component.
+    // We are declaring the usual eoParser class
     eoParser parser(ac, av);
 
     // This call is important to allow -v parameter to change user level.
@@ -216,7 +213,7 @@ public:
     friend eoLogger& operator<<(eoLogger&, std::ostream&);
 
 private:
-    friend void	make_verbose(eoParser&);
+    friend void make_verbose(eoParser&);
 
     eoValueParam<std::string> _verbose;
     eoValueParam<bool> _printVerboseLevels;
@@ -256,6 +253,8 @@ private:
 };
 /** @example t-eoLogger.cpp
  */
+
+void make_verbose(eoParser&);
 
 namespace eo
 {

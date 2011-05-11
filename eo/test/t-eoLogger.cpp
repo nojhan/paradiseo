@@ -2,17 +2,13 @@
 // t-eoLogger.cpp
 //-----------------------------------------------------------------------------
 
-#include <iostream>
-#include <utils/eoLogger.h>
-#include <utils/eoParserLogger.h>
-
 #include <eo>
 
 //-----------------------------------------------------------------------------
 
-int	main(int ac, char** av)
+int main(int ac, char** av)
 {
-    eoParserLogger	parser(ac, av);
+    eoParser parser(ac, av);
 
     if (parser.userNeedsHelp())
 	{
