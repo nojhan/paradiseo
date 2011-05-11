@@ -1,3 +1,5 @@
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
 /*
 
 (c) Thales group, 2010
@@ -17,7 +19,7 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-         Johann DrÃ©o <johann.dreo@thalesgroup.com>
+         Johann Dréo <johann.dreo@thalesgroup.com>
          Caner Candan <caner.candan@thalesgroup.com>
 */
 
