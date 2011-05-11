@@ -32,10 +32,11 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef _moGPUIntVector_H_
-#define _moGPUIntVector_H_
+#ifndef __moGPUIntVector_H_
+#define __moGPUIntVector_H_
 
 #include <GPUType/moGPUVector.h>
+#include <stdlib.h>
 
 /**
  * Implementation of integer vector representation on GPU.
@@ -61,52 +62,46 @@ public:
 
 	/**
 	 *Constructor.
-	 *@param _size The size of the vector to create.
+	 *@param _neighborhoodSize The neighborhood size.
 	 */
 
-	moGPUIntVector(unsigned _size):
-		moGPUVector<int, Fitness> (_size) {
+	moGPUIntVector(unsigned _neighborhoodSize) :
+		moGPUVector<int, Fitness> (_neighborhoodSize) {
 		create();
 	}
 
 	/**
 	 *Assignment operator
-	 *@param _vector The vector passed to the function determine the new content.
+	 *@param _vector The vector passed to the function to fix the new content.
 	 *@return a new vector.
 	 */
 
 	moGPUIntVector& operator=(const moGPUIntVector & _vector) {
-		moGPUVector<int, Fitness> :: operator=(_vector);
+		moGPUVector<int, Fitness>::operator=(_vector);
 	}
 
 	/**
 	 *Initializer of random integer vector.
 	 */
-	void create() {
+	virtual void create() {
 
-		unsigned random;
-		int tmp;
 		for (unsigned i = 0; i < N; i++)
-			vect[i] = i;
-		// we want a random permutation so we shuffle
-		for (unsigned i = 0; i < N; i++) {
-			random = rng.rand() % (N - i) + i;
-			tmp = vect[i];
-			vect[i] = vect[random];
-			vect[random] = tmp;
-		}
+			vect[i] = (int) rng.rand() / RAND_MAX;
 	}
 
+	/**
+	 * Write object. Called printOn since it prints the object _on_ a stream.
+	 * @param _os A std::ostream.
+	 */
 	void printOn(std::ostream& os) const {
-			EO<Fitness>::printOn(os);
-			os << ' ';
-			os << N << ' ';
-			unsigned int i;
-			for (i = 0; i < N; i++);
-				os << vect[i] << ' ';
+		EO<Fitness>::printOn(os);
+		os << ' ';
+		os << N << ' ';
+		unsigned int i;
+		for (i = 0; i < N; i++)
+			os << vect[i] << ' ';
 
-		}
-
+	}
 
 };
 
