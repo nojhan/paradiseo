@@ -26,11 +26,11 @@ Authors:
 
 */
 
-#ifdef _INTERIX
+#ifdef _WIN32
 #include <io.h>
-#else // _INTERIX
+#else // _WIN32
 #include <unistd.h>
-#endif // ! _INTERIX
+#endif // ! _WIN32
 
 #include <fcntl.h>
 #include <cstdlib>
