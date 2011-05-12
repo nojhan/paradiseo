@@ -132,7 +132,6 @@ public:
         return *this;
     }
 
-
     //! Comparison that separate feasible individuals from unfeasible ones. Feasible are always better
     /*!
      * Use less as a default comparison operator
@@ -160,14 +159,16 @@ public:
     }
 
     //! Greater: if the other is lesser than me
-    bool operator>( const eoDualFitness<BaseType, Compare>& other ) const  { return other < *this; }
+    bool operator>( const eoDualFitness& other ) const  { return other < *this; }
 
     //! Less or equal: if the other is not lesser than me
-    bool operator<=( const eoDualFitness<BaseType, Compare>& other ) const { return !(other < *this); }
+    bool operator<=( const eoDualFitness& other ) const { return !(other < *this); }
 
     //! Greater or equal: if the other is not greater than me
-    bool operator>=(const eoDualFitness<BaseType, Compare>& other ) const { return !(*this < other); }
+    bool operator>=(const eoDualFitness& other ) const { return !(*this < other); }
 
+    //! Equal: if the other is equal to me
+    bool operator==(const eoDualFitness& other) const { return ( _is_feasible == other._is_feasible ) && ( _value == other._value ); }
 
 public:
 
