@@ -78,6 +78,7 @@ public:
 
 	moGPUIntVector& operator=(const moGPUIntVector & _vector) {
 		moGPUVector<int, Fitness>::operator=(_vector);
+		return (*this);
 	}
 
 	/**
@@ -86,7 +87,32 @@ public:
 	virtual void create() {
 
 		for (unsigned i = 0; i < N; i++)
-			vect[i] = (int) rng.rand() / RAND_MAX;
+			vect[i] = ((int) (rng.rand())) % N + 1;
+
+	}
+
+	/**
+	 *Function inline to set the size of vector, called from host.
+	 *@param _size the vector size
+	 */
+
+	virtual inline __host__ void setSize(unsigned _size) {
+
+		if(_size<N) {
+			moGPUIntVector<Fitness> tmp_vect(_size);
+			for (unsigned i = 0; i < tmp_vect.N; i++)
+			tmp_vect.vect[i]= vect[i];
+			(tmp_vect).invalidate();
+			(*this)=tmp_vect;
+		}
+		else if(_size>N) {
+			moGPUIntVector<Fitness> tmp_vect(_size);
+			for (unsigned i = 0; i <N; i++)
+			tmp_vect.vect[i]= vect[i];
+			(tmp_vect).invalidate();
+			(*this)=tmp_vect;
+		}
+
 	}
 
 	/**
