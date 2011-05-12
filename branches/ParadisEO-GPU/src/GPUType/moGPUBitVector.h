@@ -105,21 +105,20 @@ public:
 	 *@param _size the vector size
 	 */
 
-	virtual inline __host__ void setSize(unsigned _size) {
+	void setSize(unsigned _size) {
 
-		if(_size<N) {
+		if (_size < N) {
 			moGPUBitVector<Fitness> tmp_vect(_size);
 			for (unsigned i = 0; i < tmp_vect.N; i++)
-			tmp_vect.vect[i]= vect[i];
+				tmp_vect.vect[i] = vect[i];
 			(tmp_vect).invalidate();
-			(*this)=tmp_vect;
-		}
-		else if(_size>N) {
+			(*this) = tmp_vect;
+		} else if (_size > N) {
 			moGPUBitVector<Fitness> tmp_vect(_size);
-			for (unsigned i = 0; i <N; i++)
-			tmp_vect.vect[i]= vect[i];
+			for (unsigned i = 0; i < N; i++)
+				tmp_vect.vect[i] = vect[i];
 			(tmp_vect).invalidate();
-			(*this)=tmp_vect;
+			(*this) = tmp_vect;
 		}
 
 	}
