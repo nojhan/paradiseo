@@ -73,30 +73,30 @@ template<class ElemT, class Fitness>
 	}
 
     /**
-     *Copy Constructor
-     *@param _vector The vector passed to the function to determine the new content.
-     */
+	 *Copy Constructor
+	 *@param _vector The vector passed to the function to determine the new content.
+	 */
 
-    moGPUVector(const moGPUVector & _vector) {
+	moGPUVector(const moGPUVector & _vector) {
 
-      N = _vector.N;
-      vect = new ElemType[N];
-      for (unsigned i = 0; i < N; i++)
-	vect[i] = _vector.vect[i];
-      if (!(_vector.invalid()))
-	fitness(_vector.fitness());
-      else
-	(*this).invalidate();
-    }
+		N = _vector.N;
+		vect = new ElemType[N];
+		for (unsigned i = 0; i < N; i++)
+			vect[i] = _vector.vect[i];
+		if (!(_vector.invalid()))
+			fitness(_vector.fitness());
+		else
+			(*this).invalidate();
+	}
 
-    /**
-     * Destructor.
-     */
+	/**
+	 * Destructor.
+	 */
 
-    ~moGPUVector() {
-      if (N >= 1)
-	delete[] vect;
-    }
+	~moGPUVector() {
+		if (N >= 1)
+			delete[] vect;
+	}
 
     /**
      *How to fill the solution vector.
@@ -104,28 +104,28 @@ template<class ElemT, class Fitness>
 
     virtual void create() =0;
 
-    /**
-     *Assignment operator
-     *@param _vector The vector passed to the function to determine the new content.
-     *@return a new vector.
-     */
+	/**
+	 *Assignment operator
+	 *@param _vector The vector passed to the function to determine the new content.
+	 *@return a new vector.
+	 */
 
-    moGPUVector& operator=(const moGPUVector & _vector) {
+	moGPUVector& operator=(const moGPUVector & _vector) {
 
-      if (!(N == _vector.N)) {
-	delete[] vect;
-	N = _vector.N;
-	vect = new ElemType[N];
-      }
-      for (unsigned i = 0; i < N; i++)
-	vect[i] = _vector.vect[i];
-      if (!(_vector.invalid()))
-	fitness(_vector.fitness());
-      else
-	(*this).invalidate();
-      return (*this);
+		if (!(N == _vector.N)) {
+			delete[] vect;
+			N = _vector.N;
+			vect = new ElemType[N];
+		}
+		for (unsigned i = 0; i < N; i++)
+			vect[i] = _vector.vect[i];
+		if (!(_vector.invalid()))
+			fitness(_vector.fitness());
+		else
+			(*this).invalidate();
+		return (*this);
 
-    }
+	}
 
     /**
      *An accessor read only on the i'th element of the vector (function inline can be called from host or device).
@@ -134,9 +134,9 @@ template<class ElemT, class Fitness>
      */
 
     inline __host__ __device__ const ElemType & operator[](unsigned _i) const {
-      if(_i<N)
-	return vect[_i];
-    }
+
+	    return vect[_i];
+	}
 
     /**
      *An accessor read-write on the i'th element of the vector(function inline can be called from host or device).
@@ -145,8 +145,8 @@ template<class ElemT, class Fitness>
      */
 
     inline __host__ __device__ ElemType & operator[](unsigned _i) {
-      if(_i<N)
-	return vect[_i];
+
+        return vect[_i];
     }
 
     /**
@@ -156,7 +156,7 @@ template<class ElemT, class Fitness>
 
     inline __host__ __device__ unsigned size() {
 
-      return N;
+        return N;
 
     }
 
@@ -165,7 +165,7 @@ template<class ElemT, class Fitness>
      *@param _size the vector size
      */
 
-    virtual inline __host__ void setSize(unsigned _size)=0;
+     virtual void setSize(unsigned _size)=0;
 
     /**
      * Write object. Called printOn since it prints the object _on_ a stream.
