@@ -70,15 +70,6 @@ public:
 		create();
 	}
 
-	/**
-	 *Assignment operator
-	 *@param _vector The vector passed to the function to fix the new content.
-	 *@return a new vector.
-	 */
-
-	moGPURealVector& operator=(const moGPURealVector & _vector) {
-		moGPUVector<float, Fitness>::operator=(_vector);
-	}
 
 	/**
 	 *Initializer of random real vector.
@@ -86,6 +77,31 @@ public:
 	void create() {
 		for (unsigned i = 0; i < N; i++)
 			vect[i] = (float) rng.rand() / RAND_MAX;
+	}
+
+	/**
+	 *Function inline to set the size of vector, called from host.
+	 *@param _size the vector size
+	 */
+
+	virtual inline __host__ void setSize(unsigned _size) {
+
+		if(_size<N) {
+					moGPURealVector<Fitness> tmp_vect(_size);
+					for (unsigned i = 0; i < tmp_vect.N; i++)
+					tmp_vect.vect[i]= vect[i];
+					(tmp_vect).invalidate();
+					(*this)=tmp_vect;
+				}
+				else if(_size>N) {
+					moGPURealVector<Fitness> tmp_vect(_size);
+					for (unsigned i = 0; i <N; i++)
+					tmp_vect.vect[i]= vect[i];
+					(tmp_vect).invalidate();
+					(*this)=tmp_vect;
+				}
+
+
 	}
 
 	/**
