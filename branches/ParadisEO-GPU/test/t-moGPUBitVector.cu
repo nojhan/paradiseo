@@ -51,7 +51,6 @@ int main() {
   
   //test default constructor
   Solution _sol;
- 
    
   //test constructor 
   Solution sol1(5);
@@ -77,7 +76,6 @@ int main() {
     
   //test size getter
   assert(_sol.size()==0);
-  assert(sol.size()==5);
   assert(sol1.size()==5);
   
   //test size setter
@@ -89,7 +87,7 @@ int main() {
     assert((sol1[i]==0)||(sol1[i]==1));
 
 
-  //verif constructor of constant vector
+  //test constructor of constant vector
   Solution sol2(4,1);
   assert(sol2.size()==4);
   for(int i=0;i<4;i++)
