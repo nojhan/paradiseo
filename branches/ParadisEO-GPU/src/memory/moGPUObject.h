@@ -36,7 +36,7 @@
 #define __moGPUObject_H_
 
 #include <memory/moGPUAllocator.h>
-#include <memory/moGPUDesallocator.h>
+#include <memory/moGPUDisallocator.h>
 #include <memory/moGPUCopy.h>
 
 /**
@@ -89,7 +89,7 @@ public:
 
 	moGPUAllocator malloc;
 	moGPUCopy copy;
-	moGPUDesallocator free;
+	moGPUDisallocator free;
 
 };
 
