@@ -35,9 +35,6 @@
 #ifndef __moGPUDesallocator_H_
 #define __moGPUDesallocator_H_
 
-// CUDA includes
-#include <cutil.h>
-
 /**
  *  class for Desallocation of data from GPU global memory
  */
