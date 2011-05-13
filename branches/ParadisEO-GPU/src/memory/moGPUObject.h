@@ -35,8 +35,6 @@
 #ifndef __moGPUObject_H_
 #define __moGPUObject_H_
 
-// CUDA includes
-#include <cutil.h>
 #include <memory/moGPUAllocator.h>
 #include <memory/moGPUDesallocator.h>
 #include <memory/moGPUCopy.h>
@@ -48,6 +46,13 @@
 class moGPUObject {
 
 public:
+
+	/*
+	 * Constructor
+	 */
+	moGPUObject() {
+
+	}
 
 	/**
 	 *Allocate & Copy data from CPU memory to GPU global memory (default copy)
