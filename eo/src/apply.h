@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoApply.h
 // (c) Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -19,7 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             mak@dhi.dk
+	     mak@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ void omp_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
     //default(none) shared(_proc, _pop, size)
     for (size_t i = 0; i < size; ++i)
     {
-        _proc(_pop[i]);
+	_proc(_pop[i]);
     }
 }
 
@@ -112,7 +112,7 @@ void omp_dynamic_apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
     //default(none) shared(_proc, _pop, size)
     for (size_t i = 0; i < size; ++i)
     {
-        _proc(_pop[i]);
+	_proc(_pop[i]);
     }
 }
 

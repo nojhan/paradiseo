@@ -26,30 +26,31 @@ Authors:
 
 */
 
-#ifdef _INTERIX
+#ifdef _WIN32
 #include <io.h>
-#else // _INTERIX
+#else // _WIN32
 #include <unistd.h>
-#endif // ! _INTERIX
+#endif // ! _WIN32
 
 #include <fcntl.h>
 #include <cstdlib>
 #include <cstdio> // used to define EOF
 
 #include <iostream>
-#include <sstream>
-#include <exception>
-#include <stdexcept>
-#include <locale>
 
 #include "eoLogger.h"
 
-eoLogger	eo::log;
+eoLogger::eoLogger() :
+    std::ostream(&_obuf),
 
-eoLogger::eoLogger()
-    : std::ostream(&_obuf),
-      _selectedLevel(eo::progress), _contextLevel(eo::quiet),
-      _fd(2), _obuf(_fd, _contextLevel, _selectedLevel)
+    _verbose("quiet", "verbose", "Set the verbose level", 'v'),
+    _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
+    _output("", "output", "Redirect a standard output to a file", 'o'),
+
+    _selectedLevel(eo::progress),
+    _contextLevel(eo::quiet),
+    _fd(2),
+    _obuf(_fd, _contextLevel, _selectedLevel)
 {
     _standard_io_streams[&std::cout] = 1;
     _standard_io_streams[&std::clog] = 2;
@@ -71,18 +72,56 @@ eoLogger::~eoLogger()
     if (_fd > 2) { ::close(_fd); }
 }
 
-std::string	eoLogger::className() const
+void eoLogger::_createParameters( eoParser& parser )
+{
+    //------------------------------------------------------------------
+    // we are saying to eoParser to create the parameters created above.
+    //------------------------------------------------------------------
+
+    std::string section("Logger");
+    parser.processParam(_verbose, section);
+    parser.processParam(_printVerboseLevels, section);
+    parser.processParam(_output, section);
+
+    //------------------------------------------------------------------
+
+
+    //------------------------------------------------------------------
+    // we're gonna redirect the log to the given filename if -o is used.
+    //------------------------------------------------------------------
+
+    if ( ! _output.value().empty() )
+        {
+            eo::log << eo::file( _output.value() );
+        }
+
+    //------------------------------------------------------------------
+
+
+    //------------------------------------------------------------------
+    // // we're gonna print the list of levels if -l parameter is used.
+    //------------------------------------------------------------------
+
+    if ( _printVerboseLevels.value() )
+        {
+            eo::log.printLevels();
+        }
+
+    //------------------------------------------------------------------
+}
+
+std::string eoLogger::className() const
 {
     return ("eoLogger");
 }
 
-void	eoLogger::addLevel(std::string name, eo::Levels level)
+void eoLogger::addLevel(std::string name, eo::Levels level)
 {
     _levels[name] = level;
     _sortedLevels.push_back(name);
 }
 
-void	eoLogger::printLevels() const
+void eoLogger::printLevels() const
 {
     std::cout << "Available verbose levels:" << std::endl;
 
@@ -95,25 +134,25 @@ void	eoLogger::printLevels() const
     ::exit(0);
 }
 
-eoLogger&	operator<<(eoLogger& l, const eo::Levels lvl)
+eoLogger& operator<<(eoLogger& l, const eo::Levels lvl)
 {
     l._contextLevel = lvl;
     return l;
 }
 
-eoLogger&	operator<<(eoLogger& l, eo::file f)
+eoLogger& operator<<(eoLogger& l, eo::file f)
 {
     l._fd = ::open(f._f.c_str(), O_WRONLY | O_APPEND | O_CREAT, 0644);
     return l;
 }
 
-eoLogger&	operator<<(eoLogger& l, eo::setlevel v)
+eoLogger& operator<<(eoLogger& l, eo::setlevel v)
 {
     l._selectedLevel = (v._lvl < 0 ? l._levels[v._v] : v._lvl);
     return l;
 }
 
-eoLogger&	operator<<(eoLogger& l, std::ostream& os)
+eoLogger& operator<<(eoLogger& l, std::ostream& os)
 {
     if (l._standard_io_streams.find(&os) != l._standard_io_streams.end())
         {
@@ -128,20 +167,20 @@ eoLogger::outbuf::outbuf(const int& fd,
     : _fd(fd), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
 {}
 
-int	eoLogger::outbuf::overflow(int_type c)
+int eoLogger::outbuf::overflow(int_type c)
 {
     if (_selectedLevel >= _contextLevel)
       {
         if (_fd >= 0 && c != EOF)
           {
-              ssize_t	num;
+              size_t num;
               num = ::write(_fd, &c, 1);
           }
       }
     return c;
 }
 
-namespace	eo
+namespace eo
 {
     file::file(const std::string f)
         : _f(f)
@@ -155,3 +194,13 @@ namespace	eo
         : _v(std::string("")), _lvl(lvl)
     {}
 }
+
+//! make_verbose gets level of verbose and sets it in eoLogger
+void make_verbose(eoParser& parser)
+{
+    eo::log._createParameters( parser );
+
+    eo::log << eo::setlevel(eo::log._verbose.value());
+}
+
+eoLogger eo::log;

@@ -12,24 +12,24 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 SET(EOUTILS_LIB_OUTPUT_PATH ${EO_BINARY_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${EOUTILS_LIB_OUTPUT_PATH})
 
-SET (EOUTILS_SOURCES 	eoData.cpp
-						eoFileMonitor.cpp
-						eoGnuplot.cpp
-						eoGnuplot1DMonitor.cpp
-						eoGnuplot1DSnapshot.cpp
-						eoIntBounds.cpp
-						eoParser.cpp
-						eoRealBounds.cpp
-						eoRNG.cpp
-						eoState.cpp
-                        eoOStreamMonitor.cpp
-						eoUpdater.cpp
-						make_help.cpp
-						pipecom.cpp
-						eoLogger.cpp
-						eoParserLogger.cpp
-						eoParallel.cpp)
-
+SET(EOUTILS_SOURCES
+  eoData.cpp
+  eoFileMonitor.cpp
+  eoGnuplot.cpp
+  eoGnuplot1DMonitor.cpp
+  eoGnuplot1DSnapshot.cpp
+  eoIntBounds.cpp
+  eoParser.cpp
+  eoRealBounds.cpp
+  eoRNG.cpp
+  eoState.cpp
+  eoOStreamMonitor.cpp
+  eoUpdater.cpp
+  make_help.cpp
+  pipecom.cpp
+  eoLogger.cpp
+  eoParallel.cpp
+  )
 
 ADD_LIBRARY(eoutils STATIC ${EOUTILS_SOURCES})
 INSTALL(TARGETS eoutils ARCHIVE DESTINATION lib COMPONENT libraries)

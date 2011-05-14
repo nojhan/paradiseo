@@ -43,6 +43,9 @@ ADD_SUBDIRECTORY(ga)
 ADD_SUBDIRECTORY(gp)
 ADD_SUBDIRECTORY(other)
 ADD_SUBDIRECTORY(utils)
-ADD_SUBDIRECTORY(pyeo)
+
+IF(ENABLE_PYEO)
+  ADD_SUBDIRECTORY(pyeo)
+ENDIF(ENABLE_PYEO)
 
 ######################################################################################

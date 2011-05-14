@@ -1,7 +1,16 @@
-* current
-  - evaluators that throw an exception if a maximum time has en reached (wallclock and CPU user time for POSIX systems), independently of the number of generations
+* release 1.2  (10. May. 2011)
+  - fixed the incremental allocation issue in the variation operator which were
+    taking too much time for big population sizes
+  - new class eoParallel enabling parallelization in EO using OpenMP. At this
+    time, it only concerns the evaluation operator, for advanced details go to
+    the file test/t-eoParallel.cpp. The default parallelization mode is off, to
+    switch it on, see the parameters prefixed by --parallelize-* 
+  - pyeo compatible with the last version of Boost and Python libraries
+  - script installing EO manually in using symbolic links
+  - evaluators that throw an exception if a maximum time has been reached 
+    (wallclock and CPU user time for POSIX systems), independently of the number of generations
 
-* release 1.1
+* release 1.1 (8. Nov. 2010)
   - provide cmake build system, remove the old autotools one
   - package generation system
   - GCC 4.3 compatibility

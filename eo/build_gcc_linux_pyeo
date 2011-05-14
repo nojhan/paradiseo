@@ -2,6 +2,6 @@
 
 mkdir -p release
 cd release
-cmake -DENABLE_EO_TUTORIAL=1 ..
+cmake -DENABLE_PYEO=1 ..
 make
 cd ..

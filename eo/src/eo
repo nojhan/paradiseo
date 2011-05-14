@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // eo
 // (c) GeNeura Team 1998 - 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -23,7 +23,7 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 #ifndef _eo_
 #define _eo_
@@ -62,7 +62,7 @@
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
 #include <eoProportionalCombinedOp.h>
 // didactic (mimics SGA-like variation into an eoGenOp)
-// calls crossover and mutation sequentially, 
+// calls crossover and mutation sequentially,
 // with their respective mutation rates
 #include <eoSGAGenOp.h>
 // its dual: crossover, mutation (and copy) - proportional choice
@@ -100,7 +100,7 @@
 #include <eoRankingSelect.h>
 #include <eoStochTournamentSelect.h>
 #include <eoSharingSelect.h>
-// Embedding truncation selection 
+// Embedding truncation selection
 #include <eoTruncatedSelectOne.h>
 
 // the batch selection - from an eoSelectOne
@@ -165,45 +165,44 @@
 // velocities
 #include <eoVelocity.h>
 #include <eoStandardVelocity.h>
-#include <eoExtendedVelocity.h>  
-#include <eoIntegerVelocity.h> 
+#include <eoExtendedVelocity.h>
+#include <eoIntegerVelocity.h>
 #include <eoConstrictedVelocity.h>
 #include <eoFixedInertiaWeightedVelocity.h>
 #include <eoVariableInertiaWeightedVelocity.h>
-#include <eoConstrictedVariableWeightVelocity.h> 
+#include <eoConstrictedVariableWeightVelocity.h>
 
 // flights
 #include <eoFlight.h>
-#include <eoStandardFlight.h>      
+#include <eoStandardFlight.h>
 #include <eoVelocityInit.h>
-#include <eoBinaryFlight.h> 
-#include <eoSigBinaryFlight.h>   
+#include <eoBinaryFlight.h>
+#include <eoSigBinaryFlight.h>
 
 // topologies
 #include <eoTopology.h>
 #include <eoStarTopology.h>
 #include <eoLinearTopology.h>
 #include <eoRingTopology.h>
-#include <eoNeighborhood.h>  
-#include <eoSocialNeighborhood.h> 
-  
-// PS algorithms    
-#include <eoPSO.h>               
-#include <eoEasyPSO.h>                               
-#include <eoSyncEasyPSO.h> 
+#include <eoNeighborhood.h>
+#include <eoSocialNeighborhood.h>
+
+// PS algorithms
+#include <eoPSO.h>
+#include <eoEasyPSO.h>
+#include <eoSyncEasyPSO.h>
 
 // utils
 #include <eoRealBoundModifier.h>
 #include <eoRandomRealWeightUp.h>
 #include <eoWeightUpdater.h>
 #include <eoLinearDecreasingWeightUp.h>
-#include <eoGaussRealWeightUp.h> 
+#include <eoGaussRealWeightUp.h>
 
-#include <utils/eoParserLogger.h>
-
+#include <utils/eoLogger.h>
 #include <utils/eoParallel.h>
 
-#endif 
+#endif
 
 // Local Variables:
 // mode: C++
