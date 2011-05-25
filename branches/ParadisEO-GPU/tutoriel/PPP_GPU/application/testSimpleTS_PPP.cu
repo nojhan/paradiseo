@@ -32,12 +32,7 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-//Init the number of threads per block
-#define BLOCK_SIZE 256
-#define Nd 101
-#define Md 117
-#define ca 30
-#define cb 1
+#include "moGPUConfig.h"
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -51,8 +46,8 @@ __device__ int * dev_h;
 #include <ga.h>
 // Fitness function
 #include <problems/eval/PPPEval.h>
-// Cuda Fitness function
-#include <eval/moCudaKswapEval.h>
+// GPU Fitness function
+#include <eval/moGPUMappingEvalByModif.h>
 #include <problems/eval/PPPIncrEval.h>
 //Specific data to PPP problem
 #include <problems/data/PPPData.h>
@@ -61,9 +56,11 @@ __device__ int * dev_h;
 // PPP neighbor
 #include <problems/neighborhood/PPPNeighbor.h>
 //To compute execution time
-#include <performance/moCudaTimer.h>
-//Kswap neighborhood
-#include <neighborhood/moCudaKflipNeighborhood.h>
+#include <performance/moGPUTimer.h>
+//Utils to compute size Mapping of x-change position
+#include <neighborhood/moNeighborhoodSizeUtils.h>
+//x-Change neighborhood
+#include <neighborhood/moGPUXChangeNeighborhoodByModif.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
@@ -80,7 +77,7 @@ __device__ int * dev_h;
 
 typedef PPPSolution<eoMinimizingFitness> solution;
 typedef PPPNeighbor<solution> Neighbor;
-typedef moCudaKflipNeighborhood<Neighbor> Neighborhood;
+typedef moGPUXChangeNeighborhoodByModif<Neighbor> Neighborhood;
 
 
 int main(int argc, char **argv)
@@ -103,10 +100,11 @@ int main(int argc, char **argv)
     parser.processParam( seedParam );
     unsigned seed = seedParam.value();
 
-    // Swap number
-    eoValueParam<unsigned int> KSwapParam(0, "KSwap", "swap number", 'N');
-    parser.processParam(KSwapParam, "KSwap" );
-    unsigned KSwap = KSwapParam.value();
+   
+    //Number of position to change 
+    eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
+    parser.processParam( nbPosParam, "Exchange" );
+    unsigned nbPos = nbPosParam.value();
 
     // Iteration number
     eoValueParam<unsigned int> nbIterationParam(1, "nbIteration", "TS Iteration number", 'I');
@@ -149,8 +147,8 @@ int main(int argc, char **argv)
 
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
-  rng.reseed(seed);
-
+//   rng.reseed(seed);
+srand(0);
   /* =========================================================
    *
    * Initilisation of QAP data
@@ -158,6 +156,7 @@ int main(int argc, char **argv)
    * ========================================================= */
 
   PPPData<int> _data;
+_data.load();
 
   /* =========================================================
    *
@@ -166,8 +165,8 @@ int main(int argc, char **argv)
    * ========================================================= */
  
    solution sol(Nd);
-  _data.cudaObject.memCopyGlobalVariable(dev_a,_data.a_d);
-  _data.cudaObject.memCopyGlobalVariable(dev_h,_data.H_d);
+  _data.GPUObject.memCopyGlobalVariable(dev_a,_data.a_d);
+  _data.GPUObject.memCopyGlobalVariable(dev_h,_data.H_d);
   
   /*=========================================================
    *
@@ -176,9 +175,9 @@ int main(int argc, char **argv)
    * ========================================================= */
 
     PPPEval<solution> eval(_data);
-    unsigned long int sizeMap=sizeMapping(Nd,KSwap);
+    unsigned long int sizeMap=sizeMapping(Nd,NB_POS);
     PPPIncrEval<Neighbor> incr_eval;
-    moCudaKswapEval<Neighbor,PPPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+    moGPUMappingEvalByModif<Neighbor,PPPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
@@ -195,7 +194,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-     Neighborhood neighborhood(Nd,KSwap,cueval);
+     Neighborhood neighborhood(sizeMap,NB_POS,cueval);
 
   /* =========================================================
    *
@@ -211,7 +210,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-     sizeTabuList=(Nd*(Nd-1))/2;
+     sizeTabuList=sizeMap;
      duration=sizeTabuList/8;
      // tabu list
      moIndexedVectorTabuList<Neighbor> tl(sizeTabuList,duration);
@@ -245,8 +244,8 @@ int main(int argc, char **argv)
 
   std::cout << "initial: " << sol<< std::endl;
   // Create timer for timing CUDA calculation
-  cudaFuncSetCacheConfig(kernelPermutation<solution,eoMinimizingFitness, Neighbor , PPPIncrEval<Neighbor> >, cudaFuncCachePreferL1);
-  moCudaTimer timer;
+  /*cudaFuncSetCacheConfig(moGPUMappingKernelEvalByModif<int,eoMinimizingFitness,PPPIncrEval<Neighbor> >,  cudaFuncCachePreferL1);*/
+  moGPUTimer timer;
   timer.start();
   tabuSearch(sol);
   std::cout << "final:   " << sol << std::endl;
@@ -255,8 +254,8 @@ int main(int argc, char **argv)
   timer.deleteTimer();
  
 
-  _data.cudaObject.free(dev_a);
-  _data.cudaObject.free(dev_h);
+  _data.GPUObject.free(dev_a);
+  _data.GPUObject.free(dev_h);
 
   return 0;
 }
