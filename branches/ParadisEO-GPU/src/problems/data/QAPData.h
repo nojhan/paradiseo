@@ -35,22 +35,22 @@
 #ifndef _QAPData_H_
 #define _QAPData_H_
 
-#include <memory/moCudaSpecificData.h>
+#include <memory/moGPUSpecificData.h>
 
 template<class ElemType>
-class QAPData: public moCudaSpecificData {
+class QAPData: public moGPUSpecificData {
 
 public:
 
-	using moCudaSpecificData::sizeData;
-	using moCudaSpecificData::cudaObject;
+	using moGPUSpecificData::sizeData;
+	using moGPUSpecificData::GPUObject;
 
 	/**
 	 * Default Constructor
 	 */
 
 	QAPData() :
-		moCudaSpecificData() {
+		moGPUSpecificData() {
 	}
 
 	/**
@@ -83,8 +83,8 @@ public:
 
 			}
 
-		cudaObject.memCopy(a_d, a_h, sizeData * sizeData);
-		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
+		GPUObject.memCopy(a_d, a_h, sizeData * sizeData);
+		GPUObject.memCopy(b_d, b_h, sizeData * sizeData);
 
 	}
 
@@ -107,8 +107,8 @@ public:
 				b_h[i * sizeData + j] = _qapData.b_h[i * sizeData + j];
 
 			}
-		cudaObject.memCopy(a_d, a_h, sizeData * sizeData);
-		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
+		GPUObject.memCopy(a_d, a_h, sizeData * sizeData);
+		GPUObject.memCopy(b_d, b_h, sizeData * sizeData);
 		return (*this);
 	}
 
@@ -117,8 +117,8 @@ public:
 	 */
 
 	~QAPData() {
-		cudaObject.memFree(a_d);
-		cudaObject.memFree(b_d);
+		GPUObject.memFree(a_d);
+		GPUObject.memFree(b_d);
 		delete[] a_h;
 		delete[] b_h;
 	}
@@ -151,8 +151,8 @@ public:
 				file >> b_h[i * sizeData + j];
 
 		//Allocate and copy QAP data from CPU memory to GPU global memory
-		cudaObject.memCopy(a_d, a_h, sizeData * sizeData);
-		cudaObject.memCopy(b_d, b_h, sizeData * sizeData);
+		GPUObject.memCopy(a_d, a_h, sizeData * sizeData);
+		GPUObject.memCopy(b_d, b_h, sizeData * sizeData);
 
 	}
 

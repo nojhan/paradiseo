@@ -35,23 +35,23 @@
 #ifndef _PPPData_H_
 #define _PPPData_H_
 
-#include <memory/moCudaSpecificData.h>
+#include <memory/moGPUSpecificData.h>
 
 template<class ElemType>
-class PPPData: public moCudaSpecificData {
+class PPPData: public moGPUSpecificData {
 
 public:
 
-	using moCudaSpecificData::cudaObject;
+	using moGPUSpecificData::GPUObject;
 
 	/**
 	 * Default Constructor
 	 */
 
 	PPPData() :
-		moCudaSpecificData() {
+		moGPUSpecificData() {
 
-		(*this).load();
+		//(*this).load();
 	}
 
 	/**
@@ -62,18 +62,18 @@ public:
 	PPPData(const PPPData & _pppData) {
 
 		a_h = new int[Md * Nd];
-		H_h = new int[Nd + 1];
+		H_h = new int[Nd];
 
 		for (int i = 0; i < Md; i++)
 			for (int j = 0; j < Nd; j++) {
 				a_h[i * Nd + j] = _pppData.a_h[i * Nd + j];
 			}
-		for (int k = 0; k <= Nd; k++) {
+		for (int k = 0; k < Nd; k++) {
 			H_h[k] = _pppData.H_h[k];
 		}
 
-		cudaObject.memCopy(a_d, a_h, Nd * Md);
-		cudaObject.memCopy(H_d, H_h, Nd + 1);
+		GPUObject.memCopy(a_d, a_h, Nd * Md);
+		GPUObject.memCopy(H_d, H_h, Nd);
 
 	}
 
@@ -86,17 +86,17 @@ public:
 	PPPData & operator=(const PPPData & _pppData) {
 
 		a_h = new int[Md * Nd];
-		H_h = new int[Nd + 1];
+		H_h = new int[Nd];
 		for (int i = 0; i < Md; i++)
 			for (int j = 0; j < Nd; j++) {
 				a_h[i * Nd + j] = _pppData.a_h[i * Nd + j];
 			}
-		for (int k = 0; k <= Nd; k++) {
+		for (int k = 0; k < Nd; k++) {
 			H_h[k] = _pppData.H_h[k];
 		}
 
-		cudaObject.memCopy(a_d, a_h, Nd * Md);
-		cudaObject.memCopy(H_d, H_h, Nd + 1);
+		GPUObject.memCopy(a_d, a_h, Nd * Md);
+		GPUObject.memCopy(H_d, H_h, Nd);
 
 		return (*this);
 	}
@@ -106,8 +106,8 @@ public:
 	 */
 
 	~PPPData() {
-		cudaObject.memFree(a_d);
-		cudaObject.memFree(H_d);
+		GPUObject.memFree(a_d);
+		GPUObject.memFree(H_d);
 		delete[] a_h;
 		delete[] H_h;
 	}
@@ -124,22 +124,20 @@ public:
 		int *v = new int[Nd];
 		int *s = new int[Md];
 		a_h = new int[Md * Nd];
-		H_h = new int[Nd + 1];
+		H_h = new int[Nd];
+		for (int i = 0; i < Nd; i++)
+					H_h[i] = 0;
 		for (int i = 0; i < Md; i++) {
 			for (int j = 0; j < Nd; j++) {
-				if (rng.rand() % 2)
-					a_h[i * Nd + j] = 1;
-				else
-					a_h[i * Nd + j] = -1;
+				a_h[i * Nd + j] =pow(-1,rand());
 			}
 		}
-
+		cout <<"v: "<<endl;
 		for (int i = 0; i < Nd; i++) {
-			if (rng.rand() % 2)
-				v[i] = 1;
-			else
-				v[i] = -1;
+			v[i]=pow(-1,rand());
+			printf("%d ", v[i]);
 		}
+		cout << endl;
 
 		for (int i = 0; i < Md; i++) {
 			s[i] = 0;
@@ -150,21 +148,24 @@ public:
 					a_h[i * Nd + k] = -a_h[i * Nd + k];
 				s[i] = -s[i];
 			}
+			if(s[i]>0)
+				H_h[s[i]-1]++;
 		}
+		for (int i = 0; i < Nd; i++)
+		printf("%d ", H_h[i]);
+		cout<<endl;
 
-		for (int i = 0; i <= Nd; i++)
-			H_h[i] = 0;
-		for (int i = 0; i < Md; i++)
-			H_h[s[i]]++;
+
 
 		//Allocate and copy QAP data from CPU memory to GPU global memory
-		cudaObject.memCopy(a_d, a_h, Nd * Md);
-		cudaObject.memCopy(H_d, H_h, Nd + 1);
+		GPUObject.memCopy(a_d, a_h, Nd * Md);
+		GPUObject.memCopy(H_d, H_h, Nd);
 
 		delete[] v;
 		delete[] s;
 
 	}
+
 
 public:
 
