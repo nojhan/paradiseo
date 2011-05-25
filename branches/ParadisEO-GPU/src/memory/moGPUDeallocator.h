@@ -1,5 +1,5 @@
 /*
- <moGPUObject.h>
+ <moGPUDeallocator.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Boufaras Karima, Thé Van Luong
@@ -32,64 +32,42 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __moGPUObject_H_
-#define __moGPUObject_H_
-
-#include <memory/moGPUAllocator.h>
-#include <memory/moGPUDeallocator.h>
-#include <memory/moGPUCopy.h>
+#ifndef __moGPUDeallocator_H_
+#define __moGPUDeallocator_H_
 
 /**
- *  class of data managment on GPU global memory (allocation,desallocation & copy)
+ *  class for Disallocation of data from GPU global memory
  */
 
-class moGPUObject {
+class moGPUDeallocator {
 
 public:
 
-	/*
+	/**
 	 * Constructor
 	 */
-	moGPUObject() {
+
+	moGPUDeallocator() {
+	}
+
+	/**
+	 *Deallocate data on GPU global memory
+	 *@param _data the data to deallocate from GPU global memory
+	 */
+	template<typename T>
+	void operator()(T* & _data) {
+
+		//Deallocate data from GPU global memory
+		cudaFree(_data);
 
 	}
 
 	/**
-	 *Allocate & Copy data from CPU memory to GPU global memory (default copy)
-	 *@param _data the data to allocate on GPU
-	 *@param _dataTocpy the data to copy from CPU memory to _data on GPU memory
-	 *@param _dataSize the size of data to copy
+	 * Destructor
 	 */
-	template<typename T>
-	void memCopy(T* & _data, T * & _dataTocpy, unsigned _dataSize) {
-		malloc(_data, _dataSize);
-		copy(_data, _dataTocpy, _dataSize);
+
+	~moGPUDeallocator() {
 	}
-
-	/**
-	 *Copy device data from GPU global memory to global variable declared in device
-	 *@param _dev_data the device global variable
-	 *@param _dataTocpy the data to copy GPU global memory to GPU global variable
-	 */
-	template<typename T>
-	void memCopyGlobalVariable(T* & _dev_data, T * & _dataTocpy) {
-		copy(_dev_data, _dataTocpy);
-	}
-
-	/**
-	 *Desallocate data on GPU global memory
-	 *@param _data the data to desallocate from GPU global memory
-	 */
-	template<typename T>
-	void memFree(T* & _data) {
-		free(_data);
-	}
-
-public:
-
-	moGPUAllocator malloc;
-	moGPUCopy copy;
-	moGPUDeallocator free;
 
 };
 
