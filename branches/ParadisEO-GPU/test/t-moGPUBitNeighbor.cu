@@ -1,8 +1,8 @@
 /*
-  <t-moGPUMemory.cu>
+  <t-moGPUBitNeighbor.cu>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Karima Boufaras, Thé Van LUONG
+  Karima Boufaras,  Thé Van LUONG
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -31,64 +31,66 @@
   ParadisEO WebSite : http://paradiseo.gforge.inria.fr
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
-
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <memory/moGPUAllocator.h>
-#include <memory/moGPUDeallocator.h>
-#include <memory/moGPUCopy.h>
+#include <neighborhood/moGPUBitNeighbor.h>
+
+typedef moGPUBitVector<eoMaximizingFitness> Solution;
+typedef moGPUBitNeighbor<eoMaximizingFitness> Neighbor;
 
 
 int main() {
 
 
-  std::cout << "[t-moGPUMemory] => START" << std::endl;
+  std::cout << "[t-moGPUBitNeighbor] => START" << std::endl;
+    
+    //init sol
+    Solution sol(3);
+    sol[0]=1;
+    sol[1]=0;
+    sol[2]=1;
 
-  int * h_data;
-  int * cpy_data;
-  int * d_data;
-  moGPUAllocator alloc;
-  moGPUDeallocator disalloc;
-  moGPUCopy cpy;
-  int i=0;
+    //test default Constructor
+    Neighbor test1;
+    assert(test1.index()==0);
 
-  //data allocation
-  h_data= new int[5];
-  cpy_data= new int[5];
+    //test index setter 
+    test1.index(6);
+    //test index getter
+    assert(test1.index()==6);
+    
+    //test fitness setter 
+    test1.fitness(2);
+    //test fitness getter
+    assert(test1.fitness()==2);
+    
+    //test Cpy constructor
+    Neighbor test2(test1);
+    assert(test2.index()==6);
+    assert(test2.fitness()==2);
 
-  //test GPU data allocation
-  alloc(d_data,5);
+    //test assignement operator
+    test1.fitness(8);
+    test1.index(2);
+    test2=test1;
+    assert(test2.fitness()==8);
+    assert(test2.index()==2);
 
-  for(i=0;i<5;i++)
-    h_data[i]=i;
-   
-  //test default way of copy from host to device
-  cpy(d_data,h_data,5);
+    //test move
+    test2.move(sol);
+    assert(!sol[2]);
 
-  //test copy from device to host
-  cpy(cpy_data,d_data,5,0);
-  for(i=0;i<5;i++)
-    assert(cpy_data[i]==i);
+    //test moveBack
+    test2.moveBack(sol);
+    assert(sol[2]);
 
-  for(i=0;i<5;i++)
-    h_data[i]=i*2;
+    test1.printOn(std::cout);
+    test2.printOn(std::cout);
 
-  //test copy from host to device
-  cpy(d_data,h_data,5,1);
+    assert(test1.className()=="moGPUBitNeighbor");
 
-  //test copy from device to host
-  cpy(cpy_data,d_data,5,0);
-  for(i=0;i<5;i++)
-    assert(cpy_data[i]==i*2);
-  
-  //test GPU memory deallocation
-  dealloc(d_data);
-
-  delete[] h_data;
-  delete[] cpy_data;
-  std::cout << "[t-moGPUMemory] => OK" << std::endl;
+  std::cout << "[t-moCudaBitNeighbor] => OK" << std::endl;
 
   return EXIT_SUCCESS;
 }
- 
