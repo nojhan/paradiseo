@@ -40,14 +40,19 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST
-	   t-memory
-           t-moCudaBitVector
-           t-moCudaIntVector
-	   t-moCudaBitNeighbor
-           t-OneMaxIncrEval
-           t-EvalOneMax
-         # t-moCudaKswapNeighborhood
+SET (TEST_LIST	  
+       t-moGPUBitVector
+       t-moGPUIntVector
+       t-moGPURealVector 
+       t-moGPUPermutationVector
+       t-moGPUMemory
+       t-moGPUObject
+	   t-moGPUBitNeighbor
+	   t-moGPUXBitFlippingNeighbor
+	   t-moGPUXSwapNeighbor
+	   #t-moCudaKswapNeighborhood
+       #t-OneMaxIncrEval
+       #t-EvalOneMax
 		)
 				
 FOREACH (test ${TEST_LIST})
