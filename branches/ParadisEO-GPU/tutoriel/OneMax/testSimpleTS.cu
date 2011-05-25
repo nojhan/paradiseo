@@ -32,29 +32,26 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-//Init the number of threads per block
-#define BLOCK_SIZE 256
-
 #include <iostream>  
 #include <stdlib.h> 
 using namespace std;
 
+//Include GPU Config File
+#include "moGPUConfig.h"
 // The general include for eo
 #include <eo>
 #include <ga.h>
 // OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
 // OneMax increment eval function
-#include <eval/moCudaVectorEval.h>
+#include <eval/moGPUEvalByModif.h>
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
-#include <cudaType/moCudaBitVector.h>
-//To compute execution time
-#include <performance/moCudaTimer.h>
+#include <GPUType/moGPUBitVector.h>
 // One Max neighbor
-#include <neighborhood/moCudaBitNeighbor.h>
+#include <neighborhood/moGPUBitNeighbor.h>
 // One Max ordered neighborhood
-#include <neighborhood/moCudaOrderNeighborhood.h>
+#include <neighborhood/moGPUOrderNeighborhoodByModif.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
@@ -72,16 +69,17 @@ using namespace std;
 #include <memory/moDummyIntensification.h>
 #include <memory/moDummyDiversification.h>
 #include <memory/moBestImprAspiration.h>
+//To compute execution time
+#include <performance/moGPUTimer.h>
 
 
 //------------------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
 //------------------------------------------------------------------------------------
 // REPRESENTATION
-
-typedef moCudaBitVector<eoMaximizingFitness> solution;
-typedef moCudaBitNeighbor <solution,eoMaximizingFitness> Neighbor;
-typedef moCudaOrderNeighborhood<Neighbor> Neighborhood;
+typedef moGPUBitVector<eoMaximizingFitness> solution;
+typedef moGPUBitNeighbor <eoMaximizingFitness> Neighbor;
+typedef moGPUOrderNeighborhoodByModif<Neighbor> Neighborhood;
 
 
 void main_function(int argc, char **argv)
@@ -108,6 +106,11 @@ void main_function(int argc, char **argv)
   eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
+
+  //Number of position to change 
+  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
+  parser.processParam( nbPosParam, "Exchange" );
+  unsigned nbPos = nbPosParam.value();
 
   // size tabu list
   eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
@@ -159,7 +162,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
   OneMaxIncrEval<Neighbor> incr_eval;
-  moCudaVectorEval<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
+  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
 
   /* =========================================================
    *
@@ -243,12 +246,12 @@ void main_function(int argc, char **argv)
   std::cout << "Tabu Search 1:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol1<< std::endl;
-  moCudaTimer timer1;
+  moGPUTimer timer1;
   timer1.start();
   localSearch1(sol1);
   timer1.stop();
   std::cout << "final:   " << sol1 << std::endl<<std::endl;
-  printf("CUDA execution time = %f ms\n",timer1.getTime());
+  printf("Execution time = %f ms\n",timer1.getTime());
   timer1.deleteTimer();
   /* =========================================================
    *
@@ -260,12 +263,12 @@ void main_function(int argc, char **argv)
   std::cout << "Tabu Search 2:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol2<< std::endl;
-  moCudaTimer timer2;
+  moGPUTimer timer2;
   timer2.start();
   localSearch2(sol2);
   timer2.stop();
   std::cout << "final:   " << sol2 << std::endl<< std::endl;
-  printf("CUDA execution time = %f ms\n",timer2.getTime());
+  printf("Execution time = %f ms\n",timer2.getTime());
   timer2.deleteTimer();
 
   /* =========================================================
@@ -278,12 +281,12 @@ void main_function(int argc, char **argv)
   std::cout << "Tabu Search 3:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol3<< std::endl;
-  moCudaTimer timer3;
+  moGPUTimer timer3;
   timer3.start();
   localSearch3(sol3);
   timer3.stop();
   std::cout << "final:   " << sol3<< std::endl<< std::endl;
-  printf("CUDA execution time = %f ms\n",timer3.getTime());
+  printf("Execution time = %f ms\n",timer3.getTime());
   timer3.deleteTimer();
 
   /* =========================================================
@@ -296,12 +299,12 @@ void main_function(int argc, char **argv)
   std::cout << "Tabu Search 4:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol4<< std::endl;
-  moCudaTimer timer4;
+  moGPUTimer timer4;
   timer4.start();
   localSearch4(sol4);
   timer4.stop();
   std::cout << "final:   " << sol4 << std::endl<< std::endl;
-  printf("CUDA execution time = %f ms\n",timer4.getTime());
+  printf("Execution time = %f ms\n",timer4.getTime());
   timer4.deleteTimer();
 }
 

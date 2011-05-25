@@ -32,27 +32,26 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-//Init the number of threads per block
-#define BLOCK_SIZE 256
-
 #include <iostream>  
 #include <stdlib.h> 
 using namespace std;
 
+//Include GPU Config File
+#include "moGPUConfig.h"
 // The general include for eo
 #include <eo>
 #include <ga.h>
 // OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
 // OneMax increment eval function
-#include <eval/moCudaVectorEval.h>
+#include <eval/moGPUEvalByModif.h>
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
-#include <cudaType/moCudaBitVector.h>
+#include <GPUType/moGPUBitVector.h>
 // One Max neighbor
-#include <neighborhood/moCudaBitNeighbor.h>
+#include <neighborhood/moGPUBitNeighbor.h>
 // One Max ordered neighborhood
-#include <neighborhood/moCudaOrderNeighborhood.h>
+#include <neighborhood/moGPUOrderNeighborhoodByModif.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
@@ -65,15 +64,15 @@ using namespace std;
 // The First Improvment algorithm explorer
 #include <explorer/moFirstImprHCexplorer.h>
 //To compute execution time
-#include <performance/moCudaTimer.h>
+#include <performance/moGPUTimer.h>
 
 //------------------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
 //------------------------------------------------------------------------------------
 // REPRESENTATION
-typedef moCudaBitVector<eoMaximizingFitness> solution;
-typedef moCudaBitNeighbor <solution,eoMaximizingFitness> Neighbor;
-typedef moCudaOrderNeighborhood<Neighbor> Neighborhood;
+typedef moGPUBitVector<eoMaximizingFitness> solution;
+typedef moGPUBitNeighbor <eoMaximizingFitness> Neighbor;
+typedef moGPUOrderNeighborhoodByModif<Neighbor> Neighborhood;
 
 void main_function(int argc, char **argv)
 {
@@ -83,7 +82,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // First define a parser from the command-line arguments
+   // First define a parser from the command-line arguments
   eoParser parser(argc, argv);
 
   // For each parameter, define Parameter, read it through the parser,
@@ -95,9 +94,14 @@ void main_function(int argc, char **argv)
   unsigned seed = seedParam.value();
 
   // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
+  eoValueParam<unsigned int> vecSizeParam(1, "vecSize", "Genotype size", 'V');
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
+
+  //Number of position to change 
+  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
+  parser.processParam( nbPosParam, "Exchange" );
+  unsigned nbPos = nbPosParam.value();
 
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -148,7 +152,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
 
   OneMaxIncrEval<Neighbor> incr_eval;
-  moCudaVectorEval<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
+  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
   
   /* =========================================================
    *
@@ -205,7 +209,7 @@ void main_function(int argc, char **argv)
   eval(sol);
 
   std::cout << "initial: " << sol<< std::endl;
-  moCudaTimer timer;
+  moGPUTimer timer;
   timer.start();
   localSearch(sol);
   timer.stop();
@@ -224,12 +228,12 @@ void main_function(int argc, char **argv)
   std::cout<< std::endl;
   std::cout << "initial: " << sol1<< std::endl;
 
-  moCudaTimer timer1;
+  moGPUTimer timer1;
   timer1.start();
   firstImprHC(sol1);
   timer1.stop();
   std::cout << "final:   " << sol1 << std::endl;
-  printf("CUDA execution time = %f ms\n",timer1.getTime());
+  printf("Execution time = %f ms\n",timer1.getTime());
   timer1.deleteTimer();
 
 }

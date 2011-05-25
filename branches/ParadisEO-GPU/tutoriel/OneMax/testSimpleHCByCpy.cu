@@ -1,5 +1,5 @@
 /*
-  <testSimulatedAnnealing.cu>
+  <testSimpleHC.cu>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Karima Boufaras, Thé Van LUONG
@@ -32,7 +32,7 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-//Init the number of threads per block
+
 #include <iostream>  
 #include <stdlib.h> 
 using namespace std;
@@ -45,41 +45,39 @@ using namespace std;
 // OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
 // OneMax increment eval function
-#include <eval/moGPUEvalByModif.h>
+#include <eval/moGPUEvalByCpy.h>
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
 #include <GPUType/moGPUBitVector.h>
 // One Max neighbor
 #include <neighborhood/moGPUBitNeighbor.h>
 // One Max ordered neighborhood
-#include <neighborhood/moGPURndWithReplNeighborhoodByModif.h>
+#include <neighborhood/moGPUOrderNeighborhoodByCpy.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+// The continuator
+#include <continuator/moTrueContinuator.h>
+// Local search algorithm
+#include <algo/moLocalSearch.h>
+// Simple HC algorithm
+#include <algo/moSimpleHC.h>
+// The simple HC algorithm explorer
+#include <explorer/moSimpleHCexplorer.h>
 //To compute execution time
 #include <performance/moGPUTimer.h>
-//Algorithm and its components
-#include <coolingSchedule/moCoolingSchedule.h>
-#include <algo/moSA.h>
-// The simulated annealing algorithm explorer
-#include <explorer/moSAexplorer.h>
-//continuators
-#include <continuator/moTrueContinuator.h>
-#include <continuator/moCheckpoint.h>
-#include <continuator/moFitnessStat.h>
-#include <utils/eoFileMonitor.h>
-#include <continuator/moCounterMonitorSaver.h>
 
 //------------------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
 //------------------------------------------------------------------------------------
 // REPRESENTATION
 typedef moGPUBitVector<eoMaximizingFitness> solution;
-typedef moGPUBitNeighbor <eoMaximizingFitness> Neighbor;
-typedef moGPURndWithReplNeighborhoodByModif<Neighbor> Neighborhood;
+typedef moGPUBitNeighbor<eoMaximizingFitness> Neighbor;
+typedef moGPUOrderNeighborhoodByCpy<Neighbor> Neighborhood;
 
 void main_function(int argc, char **argv)
 {
+
   /* =========================================================
    *
    * Parameters
@@ -92,12 +90,13 @@ void main_function(int argc, char **argv)
   // For each parameter, define Parameter, read it through the parser,
   // and assign the value to the variable
 
+  // seed
   eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
   parser.processParam( seedParam );
   unsigned seed = seedParam.value();
 
   // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
+  eoValueParam<unsigned int> vecSizeParam(1, "vecSize", "Genotype size", 'V');
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
 
@@ -129,15 +128,17 @@ void main_function(int argc, char **argv)
    * ========================================================= */
 
   //reproducible random seed: if you don't change SEED above,
-  // you'll always get the same result, NOT a random run
+  // you'll aways get the same result, NOT a random run
   rng.reseed(seed);
+  srand(seed);
 
+  
   /* =========================================================
    *
    * Initilisation of the solution
    *
    * ========================================================= */
-
+  
   solution sol(vecSize);
 
   /* =========================================================
@@ -147,15 +148,24 @@ void main_function(int argc, char **argv)
    * ========================================================= */
 
   EvalOneMax<solution> eval;
-
+  
   /* =========================================================
    *
    * Evaluation of a solution neighbor's
    *
    * ========================================================= */
-
+  
   OneMaxIncrEval<Neighbor> incr_eval;
-  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
+  moGPUEvalByCpy<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
+  
+  /* =========================================================
+   *
+   * Comparator of solutions and neighbors
+   *
+   * ========================================================= */
+
+  moNeighborComparator<Neighbor> comparator;
+  moSolNeighborComparator<Neighbor> solComparator;
 
   /* =========================================================
    *
@@ -167,53 +177,78 @@ void main_function(int argc, char **argv)
 
   /* =========================================================
    *
-   * the cooling schedule of the process
+   * An explorer of solution neighborhood's
    *
    * ========================================================= */
 
-
-  // initial temp, factor of decrease, number of steps without decrease, final temp.
-  moSimpleCoolingSchedule<solution> coolingSchedule(500, 0.9, 1000, 0.01);
+  moSimpleHCexplorer<Neighbor> explorer(neighborhood, cueval,
+					comparator, solComparator);
 
   /* =========================================================
    *
-   * the local search algorithm
+   * The local search algorithm
    *
    * ========================================================= */
+  //True continuator <=> Always continue
 
-  moSA<Neighbor> SA(neighborhood, eval, cueval,coolingSchedule);
+  moTrueContinuator<Neighbor> continuator;
+
+  moLocalSearch<Neighbor> localSearch(explorer,continuator, eval);
 
   /* =========================================================
    *
-   * execute the local search from random solution
+   * The simple Hill Climbing algorithm
    *
    * ========================================================= */
 
-  //init(solution);
+  moSimpleHC<Neighbor> simpleHC(neighborhood,eval,cueval);
+
+  /* =========================================================
+   *
+   * Execute the local search from random sollution
+   *
+   * ========================================================= */
+ 
+  //Can be eval here, else it will be done at the beginning of the localSearch
   eval(sol);
 
-  std::cout << "#########################################" << std::endl;
-  std::cout << "initial : " << sol << std::endl;
+  std::cout << "initial: " << sol<< std::endl;
+  // Create timer for timing CUDA calculation
+  moGPUTimer timer;
+  timer.start();
+  localSearch(sol);
+  timer.stop();
+  printf("CUDA execution time = %f ms\n",timer.getTime());
+  timer.deleteTimer();
+  std::cout << "final:   " << sol << std::endl;
+
+  /* =========================================================
+   *
+   * Execute the Simple Hill climbing from random sollution
+   *
+   * ========================================================= */
+  cout<<endl;
+  solution sol1(vecSize);
+  eval(sol1);
+  std::cout << "initial: " << sol1<< std::endl;
+  // Create timer for timing CUDA calculation
   moGPUTimer timer1;
   timer1.start();
-  SA(sol);
-  timer1.stop(); 
-  std::cout << "final : " << sol << std::endl;
-  std::cout << "#########################################" << std::endl;
+  simpleHC(sol1);
+  timer1.stop();
+  std::cout << "final:   " << sol1 << std::endl;
   printf("Execution time = %f ms\n",timer1.getTime());
   timer1.deleteTimer();
- 
-
 }
 
-// A main that catc hes the exceptions
+// A main that catches the exceptions
 
 int main(int argc, char **argv)
 {
-  try {
+  try{
     main_function(argc, argv);
   }
-  catch (exception& e) {
+  catch(exception& e){
     cout << "Exception: " << e.what() << '\n';
   }
   return 1;

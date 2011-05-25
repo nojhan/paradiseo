@@ -40,17 +40,19 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 ######################################################################################
 ### 3) Define your targets and link the librairies
 ######################################################################################	
-			
-CUDA_ADD_EXECUTABLE(CutestFirstImpr testFirstImpr.cu) 
-CUDA_ADD_EXECUTABLE(CutestNeutralHC testNeutralHC.cu) 
-CUDA_ADD_EXECUTABLE(CutestSimpleHC testSimpleHC.cu) 
-CUDA_ADD_EXECUTABLE(CutestSimpleTS testSimpleTS.cu) 
-CUDA_ADD_EXECUTABLE(CutestSimulatedAnnealing testSimulatedAnnealing.cu) 
 
-TARGET_LINK_LIBRARIES(CutestFirstImpr eoutils ga eo ${cutil})
-TARGET_LINK_LIBRARIES(CutestNeutralHC eoutils ga eo ${cutil})
-TARGET_LINK_LIBRARIES(CutestSimpleHC eoutils ga eo ${cutil})
-TARGET_LINK_LIBRARIES(CutestSimpleTS eoutils ga eo ${cutil})
-TARGET_LINK_LIBRARIES(CutestSimulatedAnnealing eoutils ga eo ${cutil})
+CUDA_ADD_EXECUTABLE(GPUtestFirstImpr testFirstImpr.cu) 
+CUDA_ADD_EXECUTABLE(GPUtestNeutralHC testNeutralHC.cu) 
+CUDA_ADD_EXECUTABLE(GPUtestSimpleHC testSimpleHC.cu) 
+CUDA_ADD_EXECUTABLE(GPUtestSimpleHCByCpy testSimpleHCByCpy.cu) 
+CUDA_ADD_EXECUTABLE(GPUtestSimpleTS testSimpleTS.cu) 
+CUDA_ADD_EXECUTABLE(GPUtestSimulatedAnnealing testSimulatedAnnealing.cu) 
+
+TARGET_LINK_LIBRARIES(GPUtestFirstImpr eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(GPUtestNeutralHC eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(GPUtestSimpleHC eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(GPUtestSimpleHCByCpy eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(GPUtestSimpleTS eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(GPUtestSimulatedAnnealing eoutils ga eo ${cutil})
 
 ######################################################################################
