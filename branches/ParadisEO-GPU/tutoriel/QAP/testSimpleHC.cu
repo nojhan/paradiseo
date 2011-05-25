@@ -32,12 +32,14 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-//Init the number of threads per block
-#define BLOCK_SIZE 256
+
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 using namespace std;
+
+//Include GPU Config File
+#include "moGPUConfig.h"
 
 __device__ int * dev_a;
 __device__ int * dev_b;
@@ -48,18 +50,20 @@ __device__ int * dev_b;
 // Fitness function
 #include <problems/eval/QAPEval.h>
 // Cuda Fitness function
-#include <eval/moCudaKswapEval.h>
+#include <eval/moGPUMappingEvalByCpy.h>
 #include <problems/eval/QAPIncrEval.h>
 //Specific data to QAP problem
 #include <problems/data/QAPData.h>
 // QAP solution
-#include <cudaType/moCudaIntVector.h>
-// One Max neighbor
-#include <neighborhood/moKswapNeighbor.h>
+#include <GPUType/moGPUPermutationVector.h>
+// Swap neighbor
+#include <neighborhood/moGPUXSwapNeighbor.h>
 //To compute execution time
-#include <performance/moCudaTimer.h>
-// One Max ordered neighborhood
-#include <neighborhood/moCudaKswapNeighborhood.h>
+#include <performance/moGPUTimer.h>
+//Utils to compute size Mapping of x-change position
+#include <neighborhood/moNeighborhoodSizeUtils.h>
+// Use an ordered neighborhood without mapping, with local copy of solution
+#include <neighborhood/moGPUXChangeNeighborhoodByCpy.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
@@ -71,12 +75,11 @@ __device__ int * dev_b;
 #include <algo/moSimpleHC.h>
 // The simple HC algorithm explorer
 #include <explorer/moSimpleHCexplorer.h>
-#include <time.h>
 
 
-typedef moCudaIntVector<eoMinimizingFitness> solution;
-typedef moKswapNeighbor<solution> Neighbor;
-typedef moCudaKswapNeighborhood<Neighbor> Neighborhood;
+typedef moGPUPermutationVector<eoMinimizingFitness> solution;
+typedef moGPUXSwapNeighbor<eoMinimizingFitness> Neighbor;
+typedef moGPUXChangeNeighborhoodByCpy<Neighbor> Neighborhood;
 
 
 int main(int argc, char **argv)
@@ -103,14 +106,14 @@ int main(int argc, char **argv)
   unsigned seed = seedParam.value();
 
   // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(6, "vecSize", "Genotype size", 'V');
+  eoValueParam<unsigned int> vecSizeParam(20, "vecSize", "Genotype size", 'V');
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
 
-  // Swap number
-  eoValueParam<unsigned int> KSwapParam(1, "KSwap", "swap number", 'N');
-  parser.processParam(KSwapParam, "KSwap" );
-  unsigned KSwap = KSwapParam.value();
+  //Number of position to change 
+  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
+  parser.processParam( nbPosParam, "Exchange" );
+  unsigned nbPos = nbPosParam.value();
 
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -136,7 +139,6 @@ int main(int argc, char **argv)
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(seed);
-  srand(time(NULL));
   
   /* =========================================================
    *
@@ -148,13 +150,13 @@ int main(int argc, char **argv)
   vecSize=_data.sizeData;
   /* =========================================================
    *
-   * Initilisation of the solution
+   * Initilisation of the solution and specific data
    *
    * ========================================================= */
  
   solution sol(vecSize);
-  _data.cudaObject.memCopyGlobalVariable(dev_a,_data.a_d);
-  _data.cudaObject.memCopyGlobalVariable(dev_b,_data.b_d);
+  _data.GPUObject.memCopyGlobalVariable(dev_a,_data.a_d);
+  _data.GPUObject.memCopyGlobalVariable(dev_b,_data.b_d);
   
   /* =========================================================
    *
@@ -162,9 +164,9 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
   QAPEval<solution> eval(_data);
-  unsigned long int sizeMap=sizeMapping(vecSize,KSwap);
+  unsigned long int sizeMap=sizeMapping(vecSize,NB_POS);
   QAPIncrEval<Neighbor> incr_eval;
-  moCudaKswapEval<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+  moGPUMappingEvalByCpy<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
@@ -181,7 +183,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(vecSize,KSwap,cueval);
+  Neighborhood neighborhood(sizeMap,NB_POS,cueval);
 
   /* =========================================================
    *
@@ -222,16 +224,16 @@ int main(int argc, char **argv)
 
   std::cout << "initial: " << sol<< std::endl;
   // Create timer for timing CUDA calculation
-  moCudaTimer timer;
+  moGPUTimer timer;
   timer.start();
   localSearch(sol);
   std::cout << "final:   " << sol << std::endl;
   timer.stop();
-  printf("CUDA execution time = %f ms\n",timer.getTime());
+  printf("Execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
 
-  _data.cudaObject.free(dev_a);
-  _data.cudaObject.free(dev_b);
+  _data.GPUObject.free(dev_a);
+  _data.GPUObject.free(dev_b);
 
   return 0;
 }
