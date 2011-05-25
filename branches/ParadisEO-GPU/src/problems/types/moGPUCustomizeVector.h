@@ -1,5 +1,5 @@
 /*
- <PPPSolution.h>
+ <moGPUCustomizeVector.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Karima Boufaras, Thé Van LUONG
@@ -32,44 +32,44 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __PPPSolution_H_
-#define __PPPSolution_H_
+#ifndef _moGPUCustomizeVector_H_
+#define _moGPUCustomizeVector_H_
 
 #include <GPUType/moGPUVector.h>
 
 /**
- * Implementation of PPP vector representation on GPU.
+ * An Example of a customized vector representation on GPU.
  */
 
-template<class Fitness>
+template<class ElemT, class Fitness>
 
-class PPPSolution: public moGPUVector<int, Fitness> {
+class moGPUCustomizeVector: public moGPUVector<ElemT, Fitness> {
 
 public:
+	/**
+	 * Define vector type of vector corresponding to Solution
+	 */
+	typedef ElemT ElemType;
 
-	using moGPUVector<int, Fitness>::vect;
-	using moGPUVector<int, Fitness>::N;
+	using moGPUVector<ElemType, Fitness>::vect;
+	using moGPUVector<ElemType, Fitness>::N;
+
 
 	/**
 	 * Default constructor.
 	 */
 
-	PPPSolution() :
-		moGPUVector<int, Fitness> () {
-
+	moGPUCustomizeVector() :
+		moGPUVector<ElemType, Fitness> () {
 	}
 
 	/**
 	 *Constructor.
-	 *@param _size The neighborhood size.
+	 *@param _size The size of the vector to create.
 	 */
 
-	PPPSolution(unsigned _size) {
-
-		N = _size;
-
-		vect = new int[_size];
-
+	moGPUCustomizeVector(unsigned _size) :
+		moGPUVector<ElemType, Fitness> (_size) {
 		create();
 	}
 
@@ -79,53 +79,54 @@ public:
 	 *@return a new vector.
 	 */
 
-	PPPSolution& operator=(const PPPSolution & _vector) {
+	moGPUCustomizeVector<ElemT, Fitness> & operator=(const moGPUCustomizeVector<ElemT, Fitness> & _vector) {
 
-		N = _vector.N;
-		vect = new int[N];
-		for (unsigned i = 0; i < N; i++)
-			vect[i] = _vector.vect[i];
-		fitness(_vector.fitness());
+		vect[0] = _vector[0];
+		if (!(_vector.invalid()))
+			fitness(_vector.fitness());
+		else
+			(*this).invalidate();
 		return (*this);
-
 	}
 
 	/**
-	 *Initializer of random PPP vector.
+	 *How to fill the vector.
 	 */
-	void create() {
 
-		for (int i = 0; i < N; i++) {
-			if ((rng.rand() % 2) == 0)
-				vect[i] = -1;
-			else
-				vect[i] = 1;
+	virtual void create() {
+
+		for (int i = 0; i < vect[0].size(); i++) {
+			vect[0].tab1[i] = (int) (rng.rand() % (vect[0].size() - i) + i);
+			vect[0].tab2[i] = (float) (rng.rand() % (vect[0].size() - i) + i);
 		}
 	}
 
-	/**
-	 *Function inline to set the size of vector, called from host and device.
-	 *@param _size the vector size
-	 */
-
-	virtual void setSize(unsigned _size){
-		N=_size;
-	}
 	/**
 	 * Print the solution
 	 */
 
 	virtual void printOn(std::ostream& os) const {
+
 		EO<Fitness>::printOn(os);
 		os << ' ';
-		os << N << ' ';
+		os << vect[0].size() << ' ';
 		unsigned int i;
-		for (i = 0; i < N; i++)
-			os << vect[i] << ' ';
+		for (i = 0; i < vect[0].size(); i++) {
+			os << vect[0].tab1[i] << ' ';
+		}
+		os << endl << "                ";
+		for (i = 0; i < vect[0].size(); i++) {
+			os << vect[0].tab2[i] << ' ';
+		}
 
 	}
+
+	inline __host__ __device__ unsigned size() {
+
+			return N;
+
+		}
 
 };
 
 #endif
-

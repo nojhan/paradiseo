@@ -1,5 +1,5 @@
 /*
- <PPPSolution.h>
+ <moGPUCustomizeType.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Karima Boufaras, Thé Van LUONG
@@ -32,100 +32,84 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __PPPSolution_H_
-#define __PPPSolution_H_
-
-#include <GPUType/moGPUVector.h>
+#ifndef _moGPUCustomizeType_H_
+#define _moGPUCustomizeType_H_
 
 /**
- * Implementation of PPP vector representation on GPU.
+ * Implementation of an Example of customized type
  */
 
-template<class Fitness>
+template<class T1, class T2>
+typedef struct sol2Type {
 
-class PPPSolution: public moGPUVector<int, Fitness> {
+	T1 tab1[SIZE];
+	T2 tab2[SIZE];
 
-public:
+inline __host__ __device__ sol2Type& operator=(const sol2Type _vector) {
+	for (unsigned i = 0; i < SIZE; i++) {
 
-	using moGPUVector<int, Fitness>::vect;
-	using moGPUVector<int, Fitness>::N;
-
-	/**
-	 * Default constructor.
-	 */
-
-	PPPSolution() :
-		moGPUVector<int, Fitness> () {
-
+		tab1[i] = _vector.tab1[i];
+		tab2[i] = _vector.tab2[i];
 	}
+	return (*this);
+}
 
-	/**
-	 *Constructor.
-	 *@param _size The neighborhood size.
-	 */
+inline __host__ __device__ unsigned size() {
 
-	PPPSolution(unsigned _size) {
+	return SIZE;
 
-		N = _size;
+}
+}Type2;
 
-		vect = new int[_size];
+template<class T1, class T2,class T3>
+typedef struct sol3Type {
 
-		create();
+	T1 tab1[SIZE];
+	T2 tab2[SIZE];
+	T3 tab3[SIZE];
+
+inline __host__ __device__ sol3Type& operator=(const sol3Type _vector) {
+
+	for (unsigned i = 0; i < SIZE; i++) {
+
+		tab1[i] = _vector.tab1[i];
+		tab2[i] = _vector.tab2[i];
+		tab3[i] = _vector.tab3[i];
 	}
+	return (*this);
+}
 
-	/**
-	 *Assignment operator
-	 *@param _vector The vector passed to the function determine the new content.
-	 *@return a new vector.
-	 */
+inline __host__ __device__ unsigned size() {
 
-	PPPSolution& operator=(const PPPSolution & _vector) {
+	return SIZE;
 
-		N = _vector.N;
-		vect = new int[N];
-		for (unsigned i = 0; i < N; i++)
-			vect[i] = _vector.vect[i];
-		fitness(_vector.fitness());
-		return (*this);
+}
+}Type3;
 
+template<class T1, class T2,class T3,class T4>
+typedef struct sol4Type {
+
+	T1 tab1[SIZE];
+	T2 tab2[SIZE];
+	T3 tab3[SIZE];
+	T4 tab4[SIZE];
+
+inline __host__ __device__ sol4Type& operator=(const sol4Type _vector) {
+
+	for (unsigned i = 0; i < SIZE; i++) {
+		tab1[i] = _vector.tab1[i];
+		tab2[i] = _vector.tab2[i];
+		tab3[i] = _vector.tab3[i];
+		tab4[i] = _vector.tab4[i];
 	}
+	return (*this);
+}
 
-	/**
-	 *Initializer of random PPP vector.
-	 */
-	void create() {
+inline __host__ __device__ unsigned size() {
 
-		for (int i = 0; i < N; i++) {
-			if ((rng.rand() % 2) == 0)
-				vect[i] = -1;
-			else
-				vect[i] = 1;
-		}
-	}
+	return SIZE;
 
-	/**
-	 *Function inline to set the size of vector, called from host and device.
-	 *@param _size the vector size
-	 */
-
-	virtual void setSize(unsigned _size){
-		N=_size;
-	}
-	/**
-	 * Print the solution
-	 */
-
-	virtual void printOn(std::ostream& os) const {
-		EO<Fitness>::printOn(os);
-		os << ' ';
-		os << N << ' ';
-		unsigned int i;
-		for (i = 0; i < N; i++)
-			os << vect[i] << ' ';
-
-	}
-
-};
+}
+}Type4;
 
 #endif
-
