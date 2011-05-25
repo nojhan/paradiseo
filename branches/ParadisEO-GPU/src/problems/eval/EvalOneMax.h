@@ -32,8 +32,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef __EvalOneMax
-#define __EvalOneMax
+#ifndef __EvalOneMax_H
+#define __EvalOneMax_H
 
 /**
  * Full Evaluation of the solution
