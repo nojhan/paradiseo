@@ -187,7 +187,7 @@ void main_function(int argc, char **argv)
     eoHammingDistance<Indi> distance; // Hamming distance
     Indi bestSolution(vecSize, true); // global optimum
 
-    moDistanceStat<Indi, unsigned> distStat(distance, bestSolution); // statistic
+    moDistanceStat<Indi, double> distStat(distance, bestSolution); // statistic
 
     // "statistic" of the solution
     moSolutionStat<Indi> solStat;
