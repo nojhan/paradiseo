@@ -172,8 +172,8 @@ void main_function(int argc, char **argv)
     checkpoint.add(distStat);
     //	checkpoint.add(solStat);
 
-    eoValueParam<unsigned int> genCounter(-1,"Gen");
-    eoIncrementor<unsigned int> increm(genCounter.value());
+    eoValueParam<int> genCounter(-1,"Gen");
+    eoIncrementor<int> increm(genCounter.value());
     checkpoint.add(increm);
 
     eoFileMonitor outputfile("out.dat", " ");
