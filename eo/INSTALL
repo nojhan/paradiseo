@@ -74,7 +74,7 @@ Or go through the following steps:
     2. call CPack specifying the desired package system:
         cpack -G DEB
     3. install the package:
-        sudo apt-get install EO-1.1.1-Linux.deb
+        sudo dpkg -i EO-1.1.1-Linux.deb
 
 
 Basic installation
