@@ -60,7 +60,7 @@ public:
 	 * getter to get the value of neighborhoodSize
 	 * @return the neighborhoodSize
 	 */
-	unsigned int getNeighborhoodSize() {
+	unsigned int getNeighborhoodSize() const {
 		return neighborhoodSize;
 	}
 
