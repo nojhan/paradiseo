@@ -347,10 +347,10 @@ void eoParser::printHelp(ostream& os)
         if (p->second->shortName())
                 os << "-" << p->second->shortName() << ", ";
 
-        os << "--" <<p->second->longName() <<":\t"
+        os << "--" <<p->second->longName() <<" :\t"
              << p->second->description() ;
 
-          os << " (" << ( (p->second->required())?"Required":"Optional" );
+          os << " (" << ( (p->second->required())?"required":"optional" );
       os <<", default: "<< p->second->defValue() << ')' << std::endl;
     } // for p
 
