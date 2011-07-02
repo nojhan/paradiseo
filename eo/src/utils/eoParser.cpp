@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iomanip>
+#include <cctype>
 
 #include <utils/compatibility.h>
 
@@ -49,7 +50,22 @@ std::ostream& printSectionHeader(std::ostream& os, std::string section)
     if (section == "")
         section = "General";
 
-    os << '\n' << setw(10) << "######    " << setw(20) << section << setw(10) << "    ######\n";
+    // convert each character to upper case
+    std::transform( section.begin(), section.end(), section.begin(), ::toupper);
+
+    // the formating with setfill would not permits to add this extra space as
+    // one more call to stream operator, thus it is inserted here
+    section += ' ';
+
+    // pretty print so as to print the section, followed by as many # as
+    // necessary to fill the line until 80 characters
+    os << std::endl 
+        << "### " 
+        << std::left
+        << std::setfill('#') 
+        << std::setw(80) // TODO do not hard code the width of the line
+        << section
+        << std::endl;
     return os;
 }
 
@@ -331,11 +347,11 @@ void eoParser::printHelp(ostream& os)
         if (p->second->shortName())
                 os << "-" << p->second->shortName() << ", ";
 
-        os << "--" <<p->second->longName() <<":\t"
+        os << "--" <<p->second->longName() <<" :\t"
              << p->second->description() ;
 
-          os << "\n" << setw(20) << ( (p->second->required())?"Required":"Optional" );
-      os <<". By default: "<<p->second->defValue() << '\n';
+          os << " (" << ( (p->second->required())?"required":"optional" );
+      os <<", default: "<< p->second->defValue() << ')' << std::endl;
     } // for p
 
     os << "\n@param_file \t defines a file where the parameters are stored\n";
