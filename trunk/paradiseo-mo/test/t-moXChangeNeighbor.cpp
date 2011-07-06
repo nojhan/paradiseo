@@ -1,5 +1,5 @@
 /*
- <t-moXChangeNeighbor.h>
+ <t-moXChangeNeighbor.cpp>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Boufaras Karima, Thé Van Luong
