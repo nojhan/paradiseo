@@ -44,22 +44,23 @@
  * Container of the neighbor informations
  */
 template< class EOType, class Fitness=typename EOType::Fitness>
-class moNeighbor : public eoObject, public eoPersistent
+class moNeighbor : public EO<Fitness>
 {
 public:
     typedef EOType EOT;
+    using EO<Fitness>::fitness;
 
     /**
      * Default Constructor
      */
-    moNeighbor() {}
+    moNeighbor():EO<Fitness>() {}
 
     /**
      * Copy Constructor
      * @param _neighbor to copy
      */
     moNeighbor(const moNeighbor<EOT, Fitness>& _neighbor) {
-        repFitness = _neighbor.fitness();
+        fitness(_neighbor.fitness());
     }
 
     /**
@@ -68,7 +69,7 @@ public:
      * @return a neighbor equal to the other
      */
     virtual moNeighbor<EOT, Fitness>& operator=(const moNeighbor<EOT, Fitness>& _neighbor) {
-        repFitness = _neighbor.fitness();
+        fitness(_neighbor.fitness());
         return (*this);
     }
 
@@ -77,31 +78,6 @@ public:
      * @param _solution the related solution
      */
     virtual void move(EOT & _solution) = 0 ;
-
-    /**
-     * Get the fitness
-     * @return fitness of the neighbor
-     */
-    const Fitness fitness() const {
-        return repFitness;
-    }
-
-
-    /**
-     * Get fitness as reference, useful when fitness is set in a multi-stage way, e.g., MOFitness gets performance information, is subsequently ranked
-     * @return fitness as reference of the neighbor
-     */
-    Fitness& fitnessReference() {
-        return repFitness;
-    }
-
-    /**
-     * Set fitness. At the same time, validates it.
-     * @param _fitness new fitness value.
-     */
-    void fitness(const Fitness& _fitness) {
-        repFitness = _fitness;
-    }
 
     /**
      * Test equality between two neighbors
@@ -119,29 +95,6 @@ public:
     virtual std::string className() const {
         return "moNeighbor";
     }
-
-    /**
-     * Read object.
-     * Calls base class, just in case that one had something to do.
-     * The read and print methods should be compatible and have the same format.
-     * In principle, format is "plain": they just print a number
-     * @param _is a std::istream.
-     */
-    virtual void readFrom(std::istream& _is) {
-        _is >> repFitness;
-    }
-
-    /**
-     * Write object. Called printOn since it prints the object _on_ a stream.
-     * @param _os A std::ostream.
-     */
-    virtual void printOn(std::ostream& _os) const {
-        _os << repFitness << std::endl;
-    }
-
-protected:
-    // minimal information on the neighbor : fitness
-    Fitness repFitness ;
 
 };
 
