@@ -74,13 +74,6 @@ public:
 
       neighborsVec.push_back(bits);
 
-      /*
-      std::cout << "first --" << std::endl;
-      for(unsigned i = 0; i < d; i++)
-	std::cout << bits[i] ;
-      std::cout << std::endl;
-      */
-
       // the others ones
       last = false;
 
@@ -108,12 +101,6 @@ public:
 	  }
 	}
 
-	/*
-	std::cout << "fin de while" << std::endl; 
-	for(unsigned i = 0; i < d; i++)
-	  std::cout << bits[i] << " ";
-	std::cout << std::endl;
-	*/
       }
     }
 
