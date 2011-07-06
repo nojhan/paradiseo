@@ -65,7 +65,7 @@ public:
      * @param _solution the solution to move back
      */
     virtual void moveBack(EOT & _solution) {
-        _solution[key] = !_solution[key];
+        move(_solution);
     }
 
     /**
