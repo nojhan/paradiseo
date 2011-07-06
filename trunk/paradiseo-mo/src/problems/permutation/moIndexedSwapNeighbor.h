@@ -74,15 +74,8 @@ public:
    * @param _solution the solution to move back
    */
   virtual void moveBack(EOT& _solution) {
-    unsigned int tmp;
-    unsigned i, j;
-    this->getIndices(_solution.size(), i, j);
 
-    tmp          = _solution[i];
-    _solution[i] = _solution[j];
-    _solution[j] = tmp;
-
-    _solution.invalidate();
+	  move(_solution);
   }
   
   /**
