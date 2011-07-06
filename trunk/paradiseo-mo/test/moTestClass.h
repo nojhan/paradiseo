@@ -85,7 +85,7 @@ public:
 
     virtual bool hasNeighbor(EOT & _solution) {
         bool res;
-        if (i%3==0)
+        if (i%3==0 || i==1)
             res=false;
         else
             res=true;
