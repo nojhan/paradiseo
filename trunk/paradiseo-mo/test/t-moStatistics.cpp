@@ -58,7 +58,8 @@ int main() {
     assert(min==2);
     assert(max==5);
     assert(avg==3.5);
-    assert(std==sqrt(1.25));
+    assert(std*std==1.25);
+
 
     sampling.resize(0);
     test.basic(sampling, min, max, avg, std);
