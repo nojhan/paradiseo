@@ -199,7 +199,7 @@ public:
 
 	void print() {
 		std::cout << "[";
-		for (int i = 0; i < xChange; i++)
+		for (unsigned int i = 0; i < xChange; i++)
 			std::cout<< indices[i]<< " ";
 		std::cout << "] -> " << (*this).fitness() << std::endl;
 	}
