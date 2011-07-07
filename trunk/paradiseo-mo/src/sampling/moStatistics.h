@@ -91,7 +91,7 @@ public:
 
             avg /= n;
 
-            std = std / n - avg * avg ;
+            std = (std / n) - avg * avg ;
             if (std > 0)
                 std = sqrt(std);
         }
