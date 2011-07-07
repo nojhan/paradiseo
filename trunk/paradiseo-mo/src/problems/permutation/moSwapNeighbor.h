@@ -86,8 +86,7 @@ public:
 	virtual bool equals(moSwapNeighbor<EOT,Fitness>& _neighbor) {
 		unsigned f, s;
 		_neighbor.getIndices(f, s);
-		return ((indices.first == f) && (indices.second == s) || (indices.first
-				== s) && (indices.second == f));
+		return (((indices.first == f) && (indices.second == s)) || ((indices.first == s) && (indices.second == f)));
 	}
 
 	/**
