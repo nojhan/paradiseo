@@ -42,7 +42,7 @@
 /**
  * Neighbor related to a vector of Bit
  */
-emplate< class Fitness >
+template< class Fitness >
 class moBitNeighbor : public moBackableNeighbor<eoBit<Fitness> >, public moIndexNeighbor<eoBit<Fitness> >
 {
 public:
