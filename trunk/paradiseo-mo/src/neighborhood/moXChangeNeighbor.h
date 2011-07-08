@@ -39,7 +39,7 @@
  */
 
 template<class EOT, class Fitness = typename EOT::Fitness>
-class moXChangeNeighbor: public moIndexNeighbor<EOT> {
+class moXChangeNeighbor: virtual public moIndexNeighbor<EOT> {
 
 public:
 
