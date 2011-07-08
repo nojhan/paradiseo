@@ -75,14 +75,6 @@ public:
 	}
 
 	/**
-	 * Move a solution
-	 * @param _solution the related solution
-	 */
-	virtual void move(EOT & _solution) {
-
-	}
-
-	/**
 	 * Return the class Name
 	 * @return the class name as a std::string
 	 */
