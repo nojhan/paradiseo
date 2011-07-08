@@ -37,8 +37,9 @@ using namespace std;
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
 
-#include <neighborhood/moKswapNeighbor.h>
-#include <neighborhood/moKswapNeighborhood.h>
+#include <neighborhood/moXSwapNeighbor.h>
+#include <neighborhood/moXChangeNeighborhood.h>
+#include <neighborhood/moNeighborhoodSizeUtils.h>
 
 #include <neighborhood/moRndWithReplNeighborhood.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
@@ -51,8 +52,8 @@ typedef eoInt<unsigned int> Queen; //Permutation (Queen's problem representation
 typedef moSwapNeighbor<Queen> swapNeighbor; //swap Neighbor
 typedef moSwapNeighborhood<Queen> swapNeighborhood; //classical swap Neighborhood
 
-typedef moKswapNeighbor<Queen> kswapNeighbor; //k-swap Neighbor
-typedef moKswapNeighborhood<kswapNeighbor> kswapNeighborhood; // k- swap Neighborhood
+typedef moXSwapNeighbor<Queen> xSwapNeighbor; //X-Swap Neighbor
+typedef moXChangeNeighborhood<xSwapNeighbor> xSwapNeighborhood; // x-Swap Neighborhood
 
 void main_function(int argc, char **argv) {
 
@@ -79,9 +80,9 @@ void main_function(int argc, char **argv) {
 	unsigned vecSize = vecSizeParam.value();
 
 	// Swap number
-	eoValueParam<unsigned int> KswapParam(1, "Kswap", "swap number", 'N');
-	parser.processParam(KswapParam, "Kswap");
-	unsigned Kswap = KswapParam.value();
+	eoValueParam<unsigned int> xSwapParam(1, "xSwap", "swap number", 'X');
+	parser.processParam(xSwapParam, "xSwap");
+	unsigned xSwap = xSwapParam.value();
 
 	// the name of the "status" file where all actual parameter values will be saved
 	string str_status = parser.ProgramName() + ".status"; // default value
@@ -134,7 +135,7 @@ void main_function(int argc, char **argv) {
 
 	moFullEvalByModif<swapNeighbor> swapEval(fullEval);
 
-	moFullEvalByModif<kswapNeighbor> kswapEval(fullEval);
+	moFullEvalByModif<xSwapNeighbor> xSwapEval(fullEval);
 
 	/* =========================================================
 	 *
@@ -143,10 +144,10 @@ void main_function(int argc, char **argv) {
 	 * ========================================================= */
 
 	swapNeighborhood swapNH;
-	kswapNeighborhood kswapNH(vecSize, Kswap);
+	xSwapNeighborhood xSwapNH(sizeMapping(vecSize,xSwap), xSwap);
 
 	swapNeighbor n1;
-	kswapNeighbor nk(Kswap);
+	xSwapNeighbor nk(xSwap);
 
 	/* =========================================================
 	 *
@@ -191,13 +192,13 @@ void main_function(int argc, char **argv) {
 	std::cout << "K-SWAP NEIGHBORHOOD" << std::endl;
 	std::cout << "-----------------" << std::endl;
 	std::cout << "Neighbors List: (Neighbor -> fitness)" << std::endl;
-
-	kswapNH.init(solution, nk);
-	kswapEval(solution, nk);
+	std::cout << solution << std::endl << std::endl;
+	xSwapNH.init(solution, nk);
+	xSwapEval(solution, nk);
 	nk.print();
-	while (kswapNH.cont(solution)) {
-		kswapNH.next(solution, nk);
-		kswapEval(solution, nk);
+	while (xSwapNH.cont(solution)) {
+		xSwapNH.next(solution, nk);
+		xSwapEval(solution, nk);
 		nk.print();
 	}
 
