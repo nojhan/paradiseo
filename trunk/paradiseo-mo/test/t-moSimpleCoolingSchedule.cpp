@@ -48,35 +48,38 @@ int main() {
     assert(temperature==100);
 
     //temperature must not changed 2*
-    test.update(temperature);
+    test.update(temperature,0);
     assert(temperature==100);
     assert(test(temperature));
-    test.update(temperature);
+    test.update(temperature,0);
     assert(temperature==100);
     assert(test(temperature));
 
     //then temperature must be /10
-    test.update(temperature);
+    test.update(temperature,0);
     assert(temperature==10);
     assert(test(temperature));
-    test.update(temperature);
+    test.update(temperature,0);
     assert(temperature==10);
     assert(test(temperature));
-    test.update(temperature);
+    test.update(temperature,0);
     assert(temperature==10);
     assert(test(temperature));
 
-    test.update(temperature);
+    test.update(temperature,0);
+    assert(temperature == 1);
+    std::cout<< "\n";
+    assert(test(temperature));
+    test.update(temperature,0);
+    std::cout<< "\n";
     assert(temperature==1);
     assert(test(temperature));
-    test.update(temperature);
-    assert(temperature==1);
-    assert(test(temperature));
-    test.update(temperature);
+    test.update(temperature,0);
+    std::cout<< "\n";
     assert(temperature==1);
     assert(test(temperature));
 
-    test.update(temperature);
+    test.update(temperature,0);
     assert(temperature==0.1);
     assert(!test(temperature));
 
