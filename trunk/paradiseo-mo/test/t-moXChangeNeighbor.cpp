@@ -30,12 +30,12 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <neighborhood/moXChangeNeighbor.h>
 #include <eo>
 #include <eoInt.h>
+#include <moTestClass.h>
 
-typedef eoInt<eoMaximizingFitness> Solution;
-typedef moXChangeNeighbor<Solution> Neighbor;
+typedef eoInt<eoMaximizingFitness> Sol;
+typedef XChangeNeighborDummy<Sol> Neighbor;
 
 int main() {
 
@@ -63,12 +63,12 @@ int main() {
 	assert(neighbor1.index() == 0);
 	assert(neighbor1.getXChange() == 5);
 	for (unsigned int i = 0; i < neighbor1.getXChange(); i++)
-		assert(neighbor1.getIndice(i) ==i);
+		assert(neighbor1.getIndice(i) == i);
 
 	//test assignement operator
 
-	for (unsigned int i = 0; i <neighbor1.getXChange(); i++)
-			neighbor1.setIndice(i, 0);
+	for (unsigned int i = 0; i < neighbor1.getXChange(); i++)
+		neighbor1.setIndice(i, 0);
 
 	Neighbor neighbor2(2);
 
