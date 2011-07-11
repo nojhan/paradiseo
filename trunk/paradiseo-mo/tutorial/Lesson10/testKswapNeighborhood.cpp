@@ -80,7 +80,7 @@ void main_function(int argc, char **argv) {
 	unsigned vecSize = vecSizeParam.value();
 
 	// Swap number
-	eoValueParam<unsigned int> xSwapParam(1, "xSwap", "swap number", 'X');
+	eoValueParam<unsigned int> xSwapParam(2, "xSwap", "swap number", 'X');
 	parser.processParam(xSwapParam, "xSwap");
 	unsigned xSwap = xSwapParam.value();
 
