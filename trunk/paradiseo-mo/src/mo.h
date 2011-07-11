@@ -1,5 +1,5 @@
 /*
-  <newmo.h>
+  <mo.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -58,9 +58,9 @@
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moEqualNeighborComparator.h>
+#include <comparator/moEqualSolNeighborComparator.h>
 #include <comparator/moSolComparator.h>
 #include <comparator/moSolNeighborComparator.h>
-#include <comparator/moEqualSolNeighborComparator.h>
 
 #include <continuator/moAverageFitnessNeighborStat.h>
 #include <continuator/moBestSoFarStat.h>
@@ -101,6 +101,7 @@
 #include <continuator/moVectorMonitor.h>
 
 #include <coolingSchedule/moCoolingSchedule.h>
+#include <coolingSchedule/moDynSpanCoolingSchedule.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 
 #include <eval/moDummyEval.h>
@@ -131,33 +132,37 @@
 #include <memory/moDummyDiversification.h>
 #include <memory/moDummyIntensification.h>
 #include <memory/moDummyMemory.h>
+#include <memory/moIndexedVectorTabuList.h>
 #include <memory/moIntensification.h>
 #include <memory/moMemory.h>
 #include <memory/moMonOpDiversification.h>
 #include <memory/moNeighborVectorTabuList.h>
+#include <memory/moRndIndexedVectorTabuList.h>
 #include <memory/moSolVectorTabuList.h>
 #include <memory/moTabuList.h>
 
 #include <neighborhood/moBackableNeighbor.h>
+#include <neighborhood/moBackwardVectorVNSelection.h>
 #include <neighborhood/moDummyNeighbor.h>
 #include <neighborhood/moDummyNeighborhood.h>
+#include <neighborhood/moForwardVectorVNSelection.h>
 #include <neighborhood/moIndexNeighbor.h>
 #include <neighborhood/moIndexNeighborhood.h>
+#include <neighborhood/moMappingNeighborhood.h>
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
+#include <neighborhood/moNeighborhoodSizeUtils.h>
 #include <neighborhood/moOrderNeighborhood.h>
 #include <neighborhood/moRndNeighborhood.h>
+#include <neighborhood/moRndVectorVNSelection.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moRndWithReplNeighborhood.h>
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <neighborhood/moVectorVNSelection.h>
-#include <neighborhood/moBackwardVectorVNSelection.h>
-#include <neighborhood/moForwardVectorVNSelection.h>
-#include <neighborhood/moRndVectorVNSelection.h>
-#include <neighborhood/moIndexSwapNeighbor.h>
-#include <neighborhood/moKswapNeighbor.h>
-#include <neighborhood/moBitFlippingNeighbor.h>
-#include <neighborhood/moKswapNeighborhood.h>
+#include <neighborhood/moXBitFlippingNeighbor.h>
+#include <neighborhood/moXChangeNeighbor.h>
+#include <neighborhood/moXChangeNeighborhood.h>
+#include <neighborhood/moXSwapNeighbor.h>
 
 #include <perturb/moLocalSearchInit.h>
 #include <perturb/moMonOpPerturb.h>
@@ -169,20 +174,33 @@
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/bitString/moBitsNeighbor.h>
 #include <problems/bitString/moBitsNeighborhood.h>
+#include <problems/bitString/moBitsWithoutReplNeighborhood.h>
 #include <problems/bitString/moPopBitNeighbor.h>
+#include <problems/bitString/moPopBitsNeighbor.h>
+#include <problems/bitString/moPopBitsRndNeighborhood.h>
 #include <problems/bitString/moPopSol.h>
+#include <problems/bitString/moPopSolInit.h>
+#include <problems/bitString/moPopSolNonDomInit.h>
+#include <problems/bitString/moPopXoverNeighbor.h>
+#include <problems/bitString/moPopXoverRndNeighborhood.h>
 #include <problems/eval/moMaxSATincrEval.h>
 #include <problems/eval/moOneMaxIncrEval.h>
+#include <problems/eval/moPopBitEval.h>
+#include <problems/eval/moPopBitsEval.h>
+#include <problems/eval/moPopXoverEval.h>
+#include <problems/eval/moQAPIncrEval.h>
 #include <problems/eval/moRoyalRoadIncrEval.h>
-//#include <problems/eval/moUBQPSimpleIncrEval.h>
+#include <problems/eval/moUBQPSimpleIncrEval.h>
 #include <problems/eval/oneMaxFullEval.h>
+#include <problems/permutation/moIndexedSwapNeighbor.h>
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
-#include <problems/permutation/moIndexedSwapNeighbor.h>
+#include <problems/permutation/moTwoOptExNeighbor.h>
+#include <problems/permutation/moTwoOptExNeighborhood.h>
 
 
-
+#include <sampling/moAdaptiveWalkSampling.h>
 #include <sampling/moAutocorrelationSampling.h>
 #include <sampling/moDensityOfStatesSampling.h>
 #include <sampling/moFDCsampling.h>
