@@ -31,7 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moQAPIncrEval_H
 
 #include <eval/moEval.h>
-#include <eval/QAPeval.h>
+#include <eval/qapEval.h>
 
 /**
  * Incremental evaluation Function for the QAP problem
