@@ -31,6 +31,8 @@
 #define _moRndIndexedVectorTabuList_h
 
 #include <memory/moIndexedVectorTabuList.h>
+#include <utils/eoRndGenerators.h>
+
 
 /**
  * Tabu List of indexed neighbors save in a vector
