@@ -54,7 +54,8 @@ static int factorial(int _i) {
  */
 
 static int sizeMapping(int _n, unsigned int _xChange) {
-	int _sizeMapping = _n;
+	int _sizeMapping;
+	_sizeMapping = _n;
 	for (int i = _xChange-1; i > 0; i--) {
 		_sizeMapping *= (_n - i);
 	}
