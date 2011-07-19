@@ -134,8 +134,6 @@ private:
     // maximum number of successive spans with no move
     unsigned int nbSpanMax;
 
-    // number of steps with the same temperature
-    unsigned int step;
 };
 
 
