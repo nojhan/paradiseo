@@ -31,7 +31,8 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib)
 
 
 
-SET (TEST_LIST
+SET (TEST_LIST  
+        t-moAdaptiveWalkSampling
 		t-moNeighbor
 		t-moBitNeighbor
 		t-moOrderNeighborhood
@@ -97,7 +98,6 @@ SET (TEST_LIST
 		t-moLocalSearchInit
 		t-moSolInit
 		t-moEvalCounter
-		t-moNeighborFitnessStat
 		t-moNeighborBestStat
 		t-moCounterStat
 		t-moMinusOneCounterStat
@@ -112,10 +112,14 @@ SET (TEST_LIST
 		t-moFitnessCloudSampling
 		t-moNeutralWalkSampling
 		t-moStatistics
+		t-moNeighborhoodSizeUtils
 		t-moXChangeNeighbor
 		t-moXSwapNeighbor
 		t-moXBitFlippingNeighbor
 		t-moXChangeNeighborhood
+		t-moIndexedVectorTabuList
+		t-moRndIndexedVectorTabuList
+		t-moDynSpanCoolingSchedule
 		)
 				
 FOREACH (test ${TEST_LIST})
