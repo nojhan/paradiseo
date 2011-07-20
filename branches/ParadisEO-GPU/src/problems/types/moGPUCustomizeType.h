@@ -40,7 +40,7 @@
  */
 
 template<class T1, class T2>
-typedef struct sol2Type {
+struct sol2Type {
 
 	T1 tab1[SIZE];
 	T2 tab2[SIZE];
@@ -59,10 +59,11 @@ inline __host__ __device__ unsigned size() {
 	return SIZE;
 
 }
-}Type2;
+};
+
 
 template<class T1, class T2,class T3>
-typedef struct sol3Type {
+struct sol3Type {
 
 	T1 tab1[SIZE];
 	T2 tab2[SIZE];
@@ -84,10 +85,10 @@ inline __host__ __device__ unsigned size() {
 	return SIZE;
 
 }
-}Type3;
+};
 
 template<class T1, class T2,class T3,class T4>
-typedef struct sol4Type {
+struct sol4Type {
 
 	T1 tab1[SIZE];
 	T2 tab2[SIZE];
@@ -110,6 +111,6 @@ inline __host__ __device__ unsigned size() {
 	return SIZE;
 
 }
-}Type4;
+};
 
 #endif
