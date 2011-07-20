@@ -38,7 +38,7 @@
 #include <eval/moGPUEvalFunc.h>
 
 /**
- * Incremental Evaluation of QAP
+ * Parallel Incremental Evaluation of QAP
  */
 
 template<class Neighbor>
@@ -66,7 +66,7 @@ public:
 
 	/**
 	 * Incremental evaluation of the QAP solution,function inline can be called from host or device
-	 * @param _bitVector the solution to evaluate
+	 * @param _sol the solution to evaluate
 	 * @param _fitness the fitness of the current solution
 	 * @param _index an array that contains a set of indexes corresponding to the current thread identifier neighbor the last element of this array contains neighborhood size
 	 */
@@ -74,21 +74,20 @@ public:
 inline __host__ __device__ Fitness operator() (T * _sol,Fitness _fitness, unsigned int *_index) {
 
 	Fitness tmp=_fitness;
-	//int id = blockIdx.x * blockDim.x + threadIdx.x;
+
 	T tmp_sol[1];
 	/**
 	 * dev_a & dev_b are global device variable, data specific to QAP problem (flow & distance matices)
 	 * _index[i] the first position of swap
 	 * _index[i+1] the second position of swap
 	 */
-/*	for(unsigned i=0;i<NB_POS;i++) {
-	//tmp=_fitness+compute_delta(dev_a,dev_b,_sol,_index[i],_index[i+1],id);
-		tmp=tmp+compute_delta(dev_a,dev_b,_sol,_index[i],_index[i+1],_index[NB_POS+1]);
+	for(unsigned i=0;i<NB_POS-1;i++) {
+		tmp=tmp+compute_delta(dev_a,dev_b,_sol,_index[i],_index[i+1]);
 		tmp_sol[0]=_sol[_index[i]];
 		_sol[_index[i]]=_sol[_index[i+1]];
 		_sol[_index[i+1]]=tmp_sol[0];
-	}*/
-	return dev_b[_index[NB_POS+1]];
+	}
+	return tmp;
 
 }
 
@@ -102,21 +101,21 @@ inline __host__ __device__ Fitness operator() (T * _sol,Fitness _fitness, unsign
  * @param _id the neighbor identifier
  */
 
-inline __host__ __device__ int compute_delta(int * _a,int * _b,T * _sol, int _i, int _j,int _id) {
+inline __host__ __device__ int compute_delta(int * a,int * b,T * _sol, int i, int j) {
+
 
 	int d;
 	int k;
+	int n=SIZE;
 
-	d = (_a[_i*SIZE+_i]-_a[_j*SIZE+_j])*(_b[_sol[_j+_id*SIZE]*SIZE+_sol[_j+_id*SIZE]]-_b[_sol[_i+_id*SIZE]*SIZE+_sol[_i+_id*SIZE]]) +
-	(_a[_i*SIZE+_j]-_a[_j*SIZE+_i])*(_b[_sol[_j+_id*SIZE]*SIZE+_sol[_i+_id*SIZE]]-_b[_sol[_i+_id*SIZE]*SIZE+_sol[_j+_id*SIZE]]);
+	    d = (a[i*n+i]-a[j*n+j])*(b[_sol[j]*n+_sol[j]]-b[_sol[i]*n+_sol[i]]) +
+	      (a[i*n+j]-a[j*n+i])*(b[_sol[j]*n+_sol[i]]-b[_sol[i]*n+_sol[j]]);
+	    for (k = 0; k < n; k = k + 1)
+	      if (k!=i && k!=j)
+		d = d + (a[k*n+i]-a[k*n+j])*(b[_sol[k]*n+_sol[j]]-b[_sol[k]*n+_sol[i]]) +
+		  (a[i*n+k]-a[j*n+k])*(b[_sol[j]*n+_sol[k]]-b[_sol[i]*n+_sol[k]]);
+	    return(d);
 
-	for (k = 0; k < SIZE; k=k+1)
-	if (k!=_i && k!=_j)
-
-	d = d + (_a[k*SIZE+_i]-_a[k*SIZE+_j])*(_b[_sol[k+_id*SIZE]*SIZE+_sol[_j+_id*SIZE]]-_b[_sol[k+_id*SIZE]*SIZE+_sol[_i+_id*SIZE]]) +
-	(_a[_i*SIZE+k]-_a[_j*SIZE+k])*(_b[_sol[_j+_id*SIZE]*SIZE+_sol[k+_id*SIZE]]-_b[_sol[_i+_id*SIZE]*SIZE+_sol[k+_id*SIZE]]);
-
-	return(d);
 }
 
 };
