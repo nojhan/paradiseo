@@ -142,12 +142,20 @@ class eoLogger : public eoObject,
 		 public std::ostream
 {
 public:
+    //! default ctor
     eoLogger();
+
+    //! overidded ctor in order to instanciate a logger with a file define in parameter
+    eoLogger(eo::file file);
+
+    //! dtor
     ~eoLogger();
 
+    //! common function for all eo objects
     virtual std::string className() const;
 
     //! Print the available levels on the standard output
+    //! enablable with the option -l
     void printLevels() const;
 
     /*! Returns the selected levels, that is the one asked by the user
@@ -163,10 +171,15 @@ public:
     inline eo::Levels getLevelContext() const { return _contextLevel; }
 
 protected:
+    //! in order to add a level of verbosity
     void addLevel(std::string name, eo::Levels level);
 
 private:
+    //! used by the function make_verbose in order to add options to specify the verbose level
     void _createParameters( eoParser& );
+
+    //! used by the set of ctors to initiate some useful variables
+    void _init();
 
 private:
     /**
@@ -195,21 +208,26 @@ public:
     /**
      * operator<< used there to set a verbose mode.
      */
+    //! in order to use stream style to define the context verbose level where the following logs will be saved
     friend eoLogger& operator<<(eoLogger&, const eo::Levels);
 
     /**
      * operator<< used there to set a filename through the class file.
      */
+    //! in order to use stream style to define a file to dump instead the standart output
     friend eoLogger& operator<<(eoLogger&, eo::file);
 
     /**
      * operator<< used there to set a verbose level through the class setlevel.
      */
+    //! in order to use stream style to define manually the verbose level instead using options
     friend eoLogger& operator<<(eoLogger&, eo::setlevel);
 
     /**
      * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to a standard output.
      */
+    //! in order to use stream style to go back to a standart output defined by STL
+    //! and to get retro-compatibility
     friend eoLogger& operator<<(eoLogger&, std::ostream&);
 
 private:
@@ -254,6 +272,7 @@ private:
 /** @example t-eoLogger.cpp
  */
 
+//! make_verbose gets level of verbose and sets it in eoLogger
 void make_verbose(eoParser&);
 
 namespace eo
