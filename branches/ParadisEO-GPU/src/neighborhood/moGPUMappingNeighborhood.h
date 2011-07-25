@@ -86,7 +86,7 @@ public:
 
 		moMappingNeighborhood<Neighbor>::init(_solution, _current);
 		if (!sendMapping) {
-			cudaMemcpy(device_Mapping, mapping, _xChange * neighborhoodSize
+			cudaMemcpy(device_Mapping, mapping,xChange * neighborhoodSize
 					* sizeof(unsigned int), cudaMemcpyHostToDevice);
 			sendMapping = true;
 		}
