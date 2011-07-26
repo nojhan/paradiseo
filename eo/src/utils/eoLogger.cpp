@@ -21,8 +21,8 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-     Johann Dréo <johann.dreo@thalesgroup.com>
-     Caner Candan <caner.candan@thalesgroup.com>
+Johann Dréo <johann.dreo@thalesgroup.com>
+Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
@@ -40,17 +40,7 @@ Authors:
 
 #include "eoLogger.h"
 
-eoLogger::eoLogger() :
-    std::ostream(&_obuf),
-
-    _verbose("quiet", "verbose", "Set the verbose level", 'v'),
-    _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
-    _output("", "output", "Redirect a standard output to a file", 'o'),
-
-    _selectedLevel(eo::progress),
-    _contextLevel(eo::quiet),
-    _fd(2),
-    _obuf(_fd, _contextLevel, _selectedLevel)
+void eoLogger::_init()
 {
     _standard_io_streams[&std::cout] = 1;
     _standard_io_streams[&std::clog] = 2;
@@ -65,6 +55,37 @@ eoLogger::eoLogger() :
     addLevel("logging", eo::logging);
     addLevel("debug", eo::debug);
     addLevel("xdebug", eo::xdebug);
+}
+
+eoLogger::eoLogger() :
+    std::ostream(&_obuf),
+
+    _verbose("quiet", "verbose", "Set the verbose level", 'v'),
+    _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
+    _output("", "output", "Redirect a standard output to a file", 'o'),
+
+    _selectedLevel(eo::progress),
+    _contextLevel(eo::quiet),
+    _fd(2),
+    _obuf(_fd, _contextLevel, _selectedLevel)
+{
+    _init();
+}
+
+eoLogger::eoLogger(eo::file file) :
+    std::ostream(&_obuf),
+
+    _verbose("quiet", "verbose", "Set the verbose level", 'v'),
+    _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
+    _output("", "output", "Redirect a standard output to a file", 'o'),
+
+    _selectedLevel(eo::progress),
+    _contextLevel(eo::quiet),
+    _fd(2),
+    _obuf(_fd, _contextLevel, _selectedLevel)
+{
+    _init();
+    *this << file;
 }
 
 eoLogger::~eoLogger()
@@ -99,7 +120,7 @@ void eoLogger::_createParameters( eoParser& parser )
 
 
     //------------------------------------------------------------------
-    // // we're gonna print the list of levels if -l parameter is used.
+    // we're gonna print the list of levels if -l parameter is used.
     //------------------------------------------------------------------
 
     if ( _printVerboseLevels.value() )
@@ -195,7 +216,6 @@ namespace eo
     {}
 }
 
-//! make_verbose gets level of verbose and sets it in eoLogger
 void make_verbose(eoParser& parser)
 {
     eo::log._createParameters( parser );
