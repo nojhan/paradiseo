@@ -43,14 +43,15 @@ using namespace std;
 #include <ga.h>
 // OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
-// OneMax increment eval function
+//Parallel evaluation of neighborhood on GPU
 #include <eval/moGPUEvalByModif.h>
+// OneMax increment evaluation function
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
 #include <GPUType/moGPUBitVector.h>
-// One Max neighbor
+// Bit neighbor
 #include <neighborhood/moGPUBitNeighbor.h>
-// One Max ordered neighborhood
+// Ordered neighborhood
 #include <neighborhood/moGPUOrderNeighborhoodByModif.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
@@ -76,7 +77,7 @@ using namespace std;
 //------------------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
 //------------------------------------------------------------------------------------
-// REPRESENTATION
+
 typedef moGPUBitVector<eoMaximizingFitness> solution;
 typedef moGPUBitNeighbor <eoMaximizingFitness> Neighbor;
 typedef moGPUOrderNeighborhoodByModif<Neighbor> Neighborhood;
@@ -100,17 +101,6 @@ void main_function(int argc, char **argv)
   eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
   parser.processParam( seedParam );
   unsigned seed = seedParam.value();
-
-
-  // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
-  parser.processParam( vecSizeParam, "Representation" );
-  unsigned vecSize = vecSizeParam.value();
-
-  //Number of position to change 
-  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
-  parser.processParam( nbPosParam, "Exchange" );
-  unsigned nbPos = nbPosParam.value();
 
   // size tabu list
   eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
@@ -162,7 +152,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
   OneMaxIncrEval<Neighbor> incr_eval;
-  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
+  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > gpuEval(SIZE,incr_eval);
 
   /* =========================================================
    *
@@ -179,7 +169,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(vecSize,cueval);
+  Neighborhood neighborhood(SIZE,gpuEval);
     
   /* =========================================================
    *
@@ -195,8 +185,6 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  //moNeighborVectorTabuList<shiftNeighbor> tl(sizeTabuList,0);
-  // tabu list
   moNeighborVectorTabuList<Neighbor> tl(sizeTabuList,0);
 
   /* =========================================================
@@ -215,7 +203,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moTSexplorer<Neighbor> explorer(neighborhood, cueval, comparator, solComparator, tl, inten, div, asp);
+  moTSexplorer<Neighbor> explorer(neighborhood, gpuEval, comparator, solComparator, tl, inten, div, asp);
 
   
   /* =========================================================
@@ -227,47 +215,50 @@ void main_function(int argc, char **argv)
   moLocalSearch<Neighbor> localSearch1(explorer, continuator, eval);
 
   //Basic Constructor
-  moTS<Neighbor> localSearch2(neighborhood,eval, cueval,  2, 7);
+  moTS<Neighbor> localSearch2(neighborhood,eval, gpuEval,  2, 7);
 
   //Simple Constructor
-  moTS<Neighbor> localSearch3(neighborhood, eval, cueval, 5, tl);
+  moTS<Neighbor> localSearch3(neighborhood, eval, gpuEval, 5, tl);
 
   //General Constructor
-  moTS<Neighbor> localSearch4(neighborhood, eval, cueval, comparator, solComparator, continuator, tl, inten, div, asp);
+  moTS<Neighbor> localSearch4(neighborhood, eval, gpuEval, comparator, solComparator, continuator, tl, inten, div, asp);
 
   /* =========================================================
    *
    * Execute the local search(TS) from random sollution
    *
    * ========================================================= */
+
   //Initilisation of the solution
-  solution sol1(vecSize);
+  solution sol1(SIZE);
   eval(sol1);
-  std::cout << "Tabu Search 1:" << std::endl;
+  std::cout << "\nTabu Search 1:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol1<< std::endl;
   moGPUTimer timer1;
   timer1.start();
   localSearch1(sol1);
   timer1.stop();
-  std::cout << "final:   " << sol1 << std::endl<<std::endl;
+  std::cout << "final:   " << sol1 <<std::endl;
   printf("Execution time = %f ms\n",timer1.getTime());
   timer1.deleteTimer();
+
   /* =========================================================
    *
    * Execute the TS Basic Constructor 
    *
    * ========================================================= */
-  solution sol2(vecSize);
+
+  solution sol2(SIZE);
   eval(sol2);
-  std::cout << "Tabu Search 2:" << std::endl;
+  std::cout << "\nTabu Search 2:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol2<< std::endl;
   moGPUTimer timer2;
   timer2.start();
   localSearch2(sol2);
   timer2.stop();
-  std::cout << "final:   " << sol2 << std::endl<< std::endl;
+  std::cout << "final:   " << sol2 << std::endl;
   printf("Execution time = %f ms\n",timer2.getTime());
   timer2.deleteTimer();
 
@@ -276,16 +267,17 @@ void main_function(int argc, char **argv)
    * Execute the TS Simple Constructor
    *
    * ========================================================= */
-  solution sol3(vecSize);
+
+  solution sol3(SIZE);
   eval(sol3);
-  std::cout << "Tabu Search 3:" << std::endl;
+  std::cout << "\nTabu Search 3:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol3<< std::endl;
   moGPUTimer timer3;
   timer3.start();
   localSearch3(sol3);
   timer3.stop();
-  std::cout << "final:   " << sol3<< std::endl<< std::endl;
+  std::cout << "final:   " << sol3<< std::endl;
   printf("Execution time = %f ms\n",timer3.getTime());
   timer3.deleteTimer();
 
@@ -294,18 +286,20 @@ void main_function(int argc, char **argv)
    * Execute the TS General Constructor
    *
    * ========================================================= */
-  solution sol4(vecSize);
+
+  solution sol4(SIZE);
   eval(sol4);
-  std::cout << "Tabu Search 4:" << std::endl;
+  std::cout << "\nTabu Search 4:" << std::endl;
   std::cout << "---------------------" << std::endl;
   std::cout << "initial: " << sol4<< std::endl;
   moGPUTimer timer4;
   timer4.start();
   localSearch4(sol4);
   timer4.stop();
-  std::cout << "final:   " << sol4 << std::endl<< std::endl;
+  std::cout << "final:   " << sol4 << std::endl;
   printf("Execution time = %f ms\n",timer4.getTime());
   timer4.deleteTimer();
+
 }
 
 // A main that catches the exceptions
