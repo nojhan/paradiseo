@@ -43,21 +43,22 @@ using namespace std;
 #include <ga.h>
 // OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
-// OneMax increment eval function
+//Parallel evaluation of neighborhood on GPU
 #include <eval/moGPUEvalByModif.h>
+// OneMax increment evaluation function
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
 #include <GPUType/moGPUBitVector.h>
-// One Max neighbor
+// Bit neighbor
 #include <neighborhood/moGPUBitNeighbor.h>
-// One Max ordered neighborhood
+// Ordered neighborhood
 #include <neighborhood/moGPUOrderNeighborhoodByModif.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 // The continuator
 #include <continuator/moTrueContinuator.h>
-// Simple HC algorithm
+// Neutral HC algorithm
 #include <algo/moNeutralHC.h>
 //To compute execution time
 #include <performance/moGPUTimer.h>
@@ -65,7 +66,7 @@ using namespace std;
 //------------------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
 //------------------------------------------------------------------------------------
-// REPRESENTATION
+
 typedef moGPUBitVector<eoMaximizingFitness> solution;
 typedef moGPUBitNeighbor <eoMaximizingFitness> Neighbor;
 typedef moGPUOrderNeighborhoodByModif<Neighbor> Neighborhood;
@@ -89,16 +90,6 @@ void main_function(int argc, char **argv)
   eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
   parser.processParam( seedParam );
   unsigned seed = seedParam.value();
-
-  // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(1, "vecSize", "Genotype size", 'V');
-  parser.processParam( vecSizeParam, "Representation" );
-  unsigned vecSize = vecSizeParam.value();
-
-  //Number of position to change 
-  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
-  parser.processParam( nbPosParam, "Exchange" );
-  unsigned nbPos = nbPosParam.value();
 
  //nbStep maximum step to do
   eoValueParam<unsigned int> nbStepParam(10, "nbStep", "maximum number of step", 'n');
@@ -138,7 +129,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
   
-  solution sol(vecSize);
+  solution sol(SIZE);
   
   /* =========================================================
    *
@@ -155,7 +146,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
   OneMaxIncrEval<Neighbor> incr_eval;
-  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
+  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > gpuEval(SIZE,incr_eval);
   
   /* =========================================================
    *
@@ -172,22 +163,22 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(vecSize,cueval);
+  Neighborhood neighborhood(SIZE,gpuEval);
 
   /* =========================================================
    *
-   * The simple Hill Climbing algorithm
+   * The neutral Hill Climbing algorithm
    *
    * ========================================================= */
   //True continuator <=> Always continue
 
   moTrueContinuator<Neighbor> continuator;
 
-  moNeutralHC<Neighbor> neutralHC(neighborhood,eval,cueval,nbStep,continuator);
+  moNeutralHC<Neighbor> neutralHC(neighborhood,eval,gpuEval,nbStep,continuator);
 
   /* =========================================================
    *
-   * Execute the neutralHill climbing from random sollution
+   * Execute the neutral Hill climbing from random sollution
    *
    * ========================================================= */
   
