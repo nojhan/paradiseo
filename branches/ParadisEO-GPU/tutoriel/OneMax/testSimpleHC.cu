@@ -44,14 +44,15 @@ using namespace std;
 #include <ga.h>
 // OneMax full eval function
 #include <problems/eval/EvalOneMax.h>
-// OneMax increment eval function
+//Parallel evaluation of neighborhood on GPU
 #include <eval/moGPUEvalByModif.h>
+// OneMax increment evaluation function
 #include <problems/eval/OneMaxIncrEval.h>
 // One Max solution
 #include <GPUType/moGPUBitVector.h>
-// One Max neighbor
+// Bit neighbor
 #include <neighborhood/moGPUBitNeighbor.h>
-// One Max ordered neighborhood
+// Ordered neighborhood
 #include <neighborhood/moGPUOrderNeighborhoodByModif.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
@@ -70,7 +71,7 @@ using namespace std;
 //------------------------------------------------------------------------------------
 // Define types of the representation solution, different neighbors and neighborhoods
 //------------------------------------------------------------------------------------
-// REPRESENTATION
+
 typedef moGPUBitVector<eoMaximizingFitness> solution;
 typedef moGPUBitNeighbor <eoMaximizingFitness> Neighbor;
 typedef moGPUOrderNeighborhoodByModif<Neighbor> Neighborhood;
@@ -94,16 +95,6 @@ void main_function(int argc, char **argv)
   eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
   parser.processParam( seedParam );
   unsigned seed = seedParam.value();
-
-  // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(1, "vecSize", "Genotype size", 'V');
-  parser.processParam( vecSizeParam, "Representation" );
-  unsigned vecSize = vecSizeParam.value();
-
-  //Number of position to change 
-  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
-  parser.processParam( nbPosParam, "Exchange" );
-  unsigned nbPos = nbPosParam.value();
 
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -139,7 +130,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
   
-  solution sol(vecSize);
+  solution sol(SIZE);
 
   /* =========================================================
    *
@@ -156,7 +147,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
   OneMaxIncrEval<Neighbor> incr_eval;
-  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(vecSize,incr_eval);
+  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(SIZE,incr_eval);
   
   /* =========================================================
    *
@@ -173,7 +164,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(vecSize,cueval);
+  Neighborhood neighborhood(SIZE,cueval);
 
   /* =========================================================
    *
@@ -228,7 +219,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
   cout<<endl;
-  solution sol1(vecSize);
+  solution sol1(SIZE);
   eval(sol1);
   std::cout << "initial: " << sol1<< std::endl;
   // Create timer for timing CUDA calculation
