@@ -40,7 +40,7 @@
 #define NB_POS 1
 #endif
 #ifndef SIZE
-#define SIZE 1
+#define SIZE 60
 #endif
 #endif
 
