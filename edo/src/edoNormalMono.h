@@ -30,6 +30,8 @@ Authors:
 
 #include "edoDistrib.h"
 
+//! edoNormalMono< EOT >
+
 template < typename EOT >
 class edoNormalMono : public edoDistrib< EOT >
 {

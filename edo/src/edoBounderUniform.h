@@ -29,6 +29,8 @@ Authors:
 
 #include "edoBounder.h"
 
+//! edoBounderUniform< EOT >
+
 template < typename EOT >
 class edoBounderUniform : public edoBounder< EOT >
 {

@@ -33,6 +33,8 @@ Authors:
 
 // TODO: calcule de la moyenne + covariance dans une classe derivee
 
+//! edoEstimatorUniform
+
 template < typename EOT >
 class edoEstimatorUniform : public edoEstimator< edoUniform< EOT > >
 {

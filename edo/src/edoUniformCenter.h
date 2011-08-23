@@ -31,6 +31,8 @@ Authors:
 #include "edoModifierMass.h"
 #include "edoUniform.h"
 
+//! edoUniformCenter< EOT >
+
 template < typename EOT >
 class edoUniformCenter : public edoModifierMass< edoUniform< EOT > >
 {

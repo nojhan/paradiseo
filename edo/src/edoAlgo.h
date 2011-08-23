@@ -31,6 +31,8 @@ Authors:
 
 #include <eoAlgo.h>
 
+//! edoAlgo< D >
+
 template < typename D >
 class edoAlgo : public eoAlgo< typename D::EOType >
 {

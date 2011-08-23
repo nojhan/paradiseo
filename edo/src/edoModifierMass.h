@@ -32,6 +32,8 @@ Authors:
 
 #include "edoModifier.h"
 
+//! edoModifierMass< D >
+
 template < typename D >
 class edoModifierMass : public edoModifier< D >, public eoBF< D&, typename D::EOType&, void >
 {

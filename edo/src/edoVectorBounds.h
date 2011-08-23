@@ -28,6 +28,8 @@ Authors:
 #ifndef _edoVectorBounds_h
 #define _edoVectorBounds_h
 
+//! edoVectorBounds< EOT >
+
 template < typename EOT >
 class edoVectorBounds
 {

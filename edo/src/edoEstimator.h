@@ -31,6 +31,8 @@ Authors:
 #include <eoPop.h>
 #include <eoFunctor.h>
 
+//! edoEstimator< D >
+
 template < typename D >
 class edoEstimator : public eoUF< eoPop< typename D::EOType >&, D >
 {

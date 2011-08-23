@@ -38,6 +38,8 @@ Authors:
 
 #include "utils/eoMonitor.h"
 
+//! edoFileSnapshot
+
 class edoFileSnapshot : public eoMonitor
 {
 public:

@@ -30,6 +30,8 @@ Authors:
 
 #include <eoFunctor.h>
 
+//! edoBounder< EOT >
+
 template < typename EOT >
 class edoBounder : public eoUF< EOT&, void >
 {

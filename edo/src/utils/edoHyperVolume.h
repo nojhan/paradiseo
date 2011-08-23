@@ -28,6 +28,8 @@ Authors:
 #ifndef _edoHyperVolume_h
 #define _edoHyperVolume_h
 
+//! edoHyperVolume
+
 template < typename EOT >
 class edoHyperVolume
 {
