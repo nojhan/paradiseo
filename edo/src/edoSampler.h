@@ -33,6 +33,8 @@ Authors:
 #include "edoBounder.h"
 #include "edoBounderNo.h"
 
+//! edoSampler< D >
+
 template < typename D >
 class edoSampler : public eoUF< D&, typename D::EOType >
 {

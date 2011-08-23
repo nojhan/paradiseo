@@ -31,6 +31,8 @@ Authors:
 #include "edoStat.h"
 #include "edoUniform.h"
 
+//! edoStatUniform< EOT >
+
 template < typename EOT >
 class edoStatUniform : public edoDistribStat< edoUniform< EOT > >
 {

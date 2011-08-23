@@ -15,6 +15,8 @@
 
 namespace ublas = boost::numeric::ublas;
 
+//! edoNormalMulti< EOT >
+
 template < typename EOT >
 class edoNormalMulti : public edoDistrib< EOT >
 {

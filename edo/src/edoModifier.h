@@ -28,6 +28,8 @@ Authors:
 #ifndef _edoModifier_h
 #define _edoModifier_h
 
+//! edoModifier< D >
+
 template < typename D >
 class edoModifier
 {

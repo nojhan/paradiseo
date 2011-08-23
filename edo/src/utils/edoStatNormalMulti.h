@@ -33,6 +33,8 @@ Authors:
 #include "edoStat.h"
 #include "edoNormalMulti.h"
 
+//! edoStatNormalMulti< EOT >
+
 template < typename EOT >
 class edoStatNormalMulti : public edoDistribStat< edoNormalMulti< EOT > >
 {

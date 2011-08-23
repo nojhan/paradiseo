@@ -1,14 +1,14 @@
-/***************************************************************************
-*                                                                          *
-* contented3 - An open source xhtml/css website template by Contented      *
-* Designs.  You're free to modify it and use it for any purpose without    *
-* cost or obligation. We'd prefer that you leave the link to our website   *
-* in the footer but it's not required.                                     *
-*                                                                          *
-* If you have comments or questions, please contact us at                  *
-* http://www.ContentedDesigns.com. Thanks!                                 *
-*                                                                          *
-***************************************************************************/
+/****************************************************************************
+ *                                                                          *
+ * contented3 - An open source xhtml/css website template by Contented      *
+ * Designs.  You're free to modify it and use it for any purpose without    *
+ * cost or obligation. We'd prefer that you leave the link to our website   *
+ * in the footer but it's not required.                                     *
+ *                                                                          *
+ * If you have comments or questions, please contact us at                  *
+ * http://www.ContentedDesigns.com. Thanks!                                 *
+ *                                                                          *
+ ***************************************************************************/
 
 * {
     padding:0px;
@@ -111,18 +111,18 @@ table {
 }
 
 a {
-        color: #3366CC;
-        /*background-color: #FFFFFF;*/
-        font-weight: normal;
-        text-decoration: none;
+    color: #3366CC;
+    /*background-color: #FFFFFF;*/
+    font-weight: normal;
+    text-decoration: none;
     outline:none;
 }
 
 a:hover {
-        color: #0033CC;
-        /*background-color: #FFFFFF;*/
-        font-weight: normal;
-        text-decoration: underline;
+    color: #0033CC;
+    /*background-color: #FFFFFF;*/
+    font-weight: normal;
+    text-decoration: underline;
 }
 
 
@@ -133,12 +133,12 @@ a:hover {
 }
 
 #title {
-        color:#3366CC;
-        /*background-color:#FFFFFF;*/
-        font-size:3em;
-        font-weight:bold;
-        margin:0px 0px 10px 0px;
-        float:left;
+    color:#3366CC;
+    /*background-color:#FFFFFF;*/
+    font-size:3em;
+    font-weight:bold;
+    margin:0px 0px 10px 0px;
+    float:left;
 }
 
 #slogan {
@@ -170,7 +170,7 @@ ul#menu {
     margin: 0;
     padding: 0;
     list-style: none;
-    /*width:650px;*/
+/*width:650px;*/
 }
 
 ul#menu li {
@@ -201,7 +201,7 @@ ul#menu a.selected:visited { background: #3366CC; color: #FFFFFF; }
     padding:1em;
     margin:1em;
     /*width:650px;
-    float:left;*/
+      float:left;*/
     clear:left;
 }
 
@@ -217,16 +217,16 @@ ul#menu a.selected:visited { background: #3366CC; color: #FFFFFF; }
 }
 
 #foot a {
-        color:#3366CC;
-        background-color:#FFFFFF;
-        text-decoration: none;
+    color:#3366CC;
+    background-color:#FFFFFF;
+    text-decoration: none;
 }
 
 #foot a:hover {
-        color:#0033CC;
-        background-color:#FFFFFF;
-        font-weight: normal;
-        text-decoration: underline;
+    color:#0033CC;
+    background-color:#FFFFFF;
+    font-weight: normal;
+    text-decoration: underline;
 }
 
 #copyright {
@@ -248,10 +248,10 @@ ul#menu a.selected:visited { background: #3366CC; color: #FFFFFF; }
     font-weight:bold;
 }
 
- .table_form_label {
+.table_form_label {
     text-align:right;
     padding-right:1em;
- }
+}
 
 .table_form_submit {
     text-align:center;
