@@ -30,17 +30,20 @@ Authors:
 
 #include <eoFunctor.h>
 
-//! edoBounder< EOT >
-
+/** The interface of a set of classes that modifies a solution so as to respect
+ * a given set of bounds (typically an hypercube).
+ *
+ * @ingroup Bounders
+ */
 template < typename EOT >
 class edoBounder : public eoUF< EOT&, void >
 {
 public:
     edoBounder( EOT min = EOT(1, 0), EOT max = EOT(1, 0) )
-	: _min(min), _max(max)
+        : _min(min), _max(max)
     {
-	assert(_min.size() > 0);
-	assert(_min.size() == _max.size());
+        assert(_min.size() > 0);
+        assert(_min.size() == _max.size());
     }
 
     // virtual void operator()( EOT& ) = 0 (provided by eoUF< A1, R >)

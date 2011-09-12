@@ -30,8 +30,10 @@ Authors:
 
 #include "edoBounder.h"
 
-//! edoBounderBound< EOT >
-
+/** A bounder that correct an incorrect variable by setting it to the min/max
+ *
+ * @ingroup Bounders
+ */
 template < typename EOT >
 class edoBounderBound : public edoBounder< EOT >
 {

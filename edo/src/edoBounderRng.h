@@ -30,8 +30,11 @@ Authors:
 
 #include "edoBounder.h"
 
-//! edoBounderRng< EOT >
-
+/** A bounder that randomly draw new values for variables going out bounds, 
+ * using an eoRng to do so.
+ *
+ * @ingroup Bounders
+ */
 template < typename EOT >
 class edoBounderRng : public edoBounder< EOT >
 {

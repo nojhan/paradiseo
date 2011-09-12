@@ -29,8 +29,11 @@ Authors:
 
 #include "edoBounder.h"
 
-//! edoBounderUniform< EOT >
-
+/** A bounder that randomly draw new values for variables going out bounds,
+ * in a given uniform distribution.
+ *
+ * @ingroup Bounders
+ */
 template < typename EOT >
 class edoBounderUniform : public edoBounder< EOT >
 {

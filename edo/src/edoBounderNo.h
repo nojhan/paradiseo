@@ -30,8 +30,10 @@ Authors:
 
 #include "edoBounder.h"
 
-//! edoBounderNo< EOT >
-
+/** A bounder that does nothing.
+ *
+ * @ingroup Bounders
+ */
 template < typename EOT >
 class edoBounderNo : public edoBounder< EOT >
 {
