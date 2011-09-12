@@ -23,7 +23,7 @@ typedef edoNormalMulti< EOT > Distrib;
 
 int main(int ac, char** av)
 {
-    eoParserLogger	parser(ac, av);
+    eoParser parser(ac, av);
 
     // Letters used by the following declarations:
     // a d i p t
