@@ -31,7 +31,7 @@ Authors:
 #include <eoFunctor.h>
 #include <eoPersistent.h>
 
-//! edoContinue< EOT > classe fitted to Distribution Object library
+//! edoContinue< D > class fitted to Distribution Object library
 
 template < typename D >
 class edoContinue : public eoUF< const D&, bool >, public eoPersistent

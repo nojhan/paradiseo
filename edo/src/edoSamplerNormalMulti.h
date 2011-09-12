@@ -32,6 +32,8 @@ Authors:
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/symmetric.hpp>
 
+//! edoSamplerNormalMulti< EOT >
+
 template< class EOT >
 class edoSamplerNormalMulti : public edoSampler< edoNormalMulti< EOT > >
 {

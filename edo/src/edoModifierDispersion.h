@@ -33,6 +33,8 @@ Authors:
 
 #include "edoModifier.h"
 
+//! edoModifierDispersion< D >
+
 template < typename D >
 class edoModifierDispersion : public edoModifier< D >, public eoBF< D&, eoPop< typename D::EOType >&, void >
 {

@@ -1,9 +1,6 @@
 #include <eo>
 #include <mo>
 
-#include <utils/eoLogger.h>
-#include <utils/eoParserLogger.h>
-
 #include <eoEvalFuncCounterBounder.h>
 
 #include <do/make_pop.h>

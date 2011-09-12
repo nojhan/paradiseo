@@ -30,6 +30,8 @@ Authors:
 
 #include "edoBounder.h"
 
+//! edoBounderBound< EOT >
+
 template < typename EOT >
 class edoBounderBound : public edoBounder< EOT >
 {

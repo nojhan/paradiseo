@@ -30,6 +30,8 @@ Authors:
 
 #include <eoFunctor.h>
 
+//! edoStatBase< D >
+
 template < typename D >
 class edoStatBase : public eoUF< const D&, void >
 {

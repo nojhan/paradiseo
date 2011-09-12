@@ -30,6 +30,8 @@ Authors:
 
 #include <eoFunctor.h>
 
+//! edoDistrib< EOT >
+
 template < typename EOT >
 class edoDistrib : public eoFunctorBase
 {

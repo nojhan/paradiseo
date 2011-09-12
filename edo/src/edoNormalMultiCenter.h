@@ -31,6 +31,8 @@ Authors:
 #include "edoModifierMass.h"
 #include "edoNormalMulti.h"
 
+//! edoNormalMultiCenter< EOT >
+
 template < typename EOT >
 class edoNormalMultiCenter : public edoModifierMass< edoNormalMulti< EOT > >
 {

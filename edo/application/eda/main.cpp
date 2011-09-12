@@ -28,9 +28,6 @@ Authors:
 #include <eo>
 #include <mo>
 
-#include <utils/eoLogger.h>
-#include <utils/eoParserLogger.h>
-
 #include <eoEvalFuncCounterBounder.h>
 
 #include <do/make_pop.h>
@@ -50,7 +47,7 @@ typedef edoNormalMulti< EOT > Distrib;
 
 int main(int ac, char** av)
 {
-    eoParserLogger	parser(ac, av);
+    eoParser parser(ac, av);
 
     // Letters used by the following declarations:
     // a d i p t

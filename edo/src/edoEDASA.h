@@ -39,6 +39,8 @@ Authors:
 #include "edoSampler.h"
 #include "edoContinue.h"
 
+//! edoEDASA< D >
+
 template < typename D >
 class edoEDASA : public edoAlgo< D >
 {
