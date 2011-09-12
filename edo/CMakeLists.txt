@@ -77,6 +77,7 @@ ENDIF()
 ### 6) Prepare some variables for CMAKE usage
 ######################################################################################
 
+# Empty source files, because we want to build a library
 SET(SAMPLE_SRCS)
 
 ######################################################################################
