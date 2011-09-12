@@ -39,21 +39,21 @@ class edoBounderUniform : public edoBounder< EOT >
 {
 public:
     edoBounderUniform( EOT min, EOT max )
-	: edoBounder< EOT >( min, max )
+        : edoBounder< EOT >( min, max )
     {}
 
     void operator()( EOT& sol )
     {
-	unsigned int size = sol.size();
-	assert(size > 0);
+        unsigned int size = sol.size();
+        assert(size > 0);
 
-	for (unsigned int d = 0; d < size; ++d) {
+        for (unsigned int d = 0; d < size; ++d) {
 
-	    if ( sol[d] < this->min()[d] || sol[d] > this->max()[d]) {
-		// use EO's global "rng"
-		sol[d] = rng.uniform( this->min()[d], this->max()[d] );
-	    }
-	} // for d in size
+            if ( sol[d] < this->min()[d] || sol[d] > this->max()[d]) {
+                // use EO's global "rng"
+                sol[d] = rng.uniform( this->min()[d], this->max()[d] );
+            }
+        } // for d in size
     }
 };
 
