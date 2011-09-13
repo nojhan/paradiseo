@@ -1,3 +1,4 @@
+
 ######################################################################################
 ### 0) If you want to set your variables in eo-conf.cmake and avoid the cmd line
 ######################################################################################
@@ -14,6 +15,9 @@ INCLUDE(eo-conf.cmake OPTIONAL)
 # set the project name and other variables
 PROJECT(EO)
 
+# CMake > 2.8 is needed, because of the FindOpenMP feature
+cmake_minimum_required(VERSION 2.8)
+
 #SET(PROJECT_VERSION_MAJOR 1)
 #SET(PROJECT_VERSION_MINOR 1)
 #SET(PROJECT_VERSION_PATCH 1)
@@ -25,9 +29,6 @@ SET(PACKAGE_BUGREPORT "eodev-help@sourceforge.net" CACHE STRING "Package bug rep
 SET(PACKAGE_NAME "Evolving Objects" CACHE STRING "Package name" FORCE)
 SET(PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}"CACHE STRING "Package string full name" FORCE)
 SET(PACKAGE_TARNAME "eo" CACHE STRING "Package tar name" FORCE)
-
-# check cmake version compatibility
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 # regular expression checking
 INCLUDE_REGULAR_EXPRESSION("^.*$" "^$")
