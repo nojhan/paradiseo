@@ -58,179 +58,80 @@ public:
 
     //! edoEDA constructor
     /*!
-      All the boxes used by a EDASA need to be given.
+      Takes algo operators, all are mandatory
 
-      \param selector Population Selector
-      \param estimator Distribution Estimator
-      \param selectone SelectOne
-      \param modifier Distribution Modifier
-      \param sampler Distribution Sampler
-      \param pop_continue Population Continuator
-      \param distribution_continue Distribution Continuator
-      \param evaluation Evaluation function.
-      \param sa_continue Stopping criterion.
-      \param cooling_schedule Cooling schedule, describes how the temperature is modified.
-      \param initial_temperature The initial temperature.
-      \param replacor Population replacor
+      \param selector Selection of the best candidate solutions in the population
+      \param estimator Estimation of the distribution parameters
+      \param sampler Generate feasible solutions using the distribution
+      \param pop_continuator Stopping criterion based on the population features
+      \param distribution_continuator Stopping criterion based on the distribution features
+      \param evaluation Evaluate a population
+      \param replacor Replace old solutions by new ones
     */
-    edoEDA (eoSelect< EOT > & selector,
-	   edoEstimator< D > & estimator,
-	   eoSelectOne< EOT > & selectone,
-	   edoModifierMass< D > & modifier,
-	   edoSampler< D > & sampler,
-	   eoContinue< EOT > & pop_continue,
-	   edoContinue< D > & distribution_continue,
-	   eoEvalFunc < EOT > & evaluation,
-	   //moContinuator< moDummyNeighbor<EOT> > & sa_continue,
-	   //moCoolingSchedule<EOT> & cooling_schedule,
-	   //double initial_temperature,
-	   eoReplacement< EOT > & replacor
-	   )
-	: _selector(selector),
-	  _estimator(estimator),
-	  _selectone(selectone),
-	  _modifier(modifier),
-	  _sampler(sampler),
-	  _pop_continue(pop_continue),
-	  _distribution_continue(distribution_continue),
-	  _evaluation(evaluation),
-	  //_sa_continue(sa_continue),
-	  //_cooling_schedule(cooling_schedule),
-	  //_initial_temperature(initial_temperature),
-	  _replacor(replacor)
-
+    edoEDA (
+       eoSelect< EOT > & selector,
+       edoEstimator< D > & estimator,
+       edoSampler< D > & sampler,
+       eoContinue< EOT > & pop_continuator,
+       edoContinue< D > & distribution_continuator,
+       eoPopEvalFunc < EOT > & evaluator,
+       eoReplacement< EOT > & replacor
+       )
+    : _selector(selector),
+      _estimator(estimator),
+      _sampler(sampler),
+      _pop_continuator(pop_continuator),
+      _distribution_continuator(distribution_continuator),
+      _evaluator(evaluator),
+      _replacor(replacor)
     {}
 
-    //! function that launches the EDASA algorithm.
-    /*!
-      As a moTS or a moHC, the EDASA can be used for HYBRIDATION in an evolutionary algorithm.
-
-      \param pop A population to improve.
-      \return TRUE.
+    /** A basic EDA algorithm that iterates over:
+     * selection, estimation, sampling, bounding, evaluation, replacement
+     *
+     * \param pop the population of candidate solutions
+     * \return void
     */
     void operator ()(eoPop< EOT > & pop)
     {
-	assert(pop.size() > 0);
+        assert(pop.size() > 0);
 
-	//double temperature = _initial_temperature;
+        eoPop< EOT > current_pop;
+        eoPop< EOT > selected_pop;
 
-	eoPop< EOT > current_pop;
+        // FIXME one must instanciate a first distrib here because there is no empty constructor, see if it is possible to instanciate Distributions without parameters
+        D distrib = _estimator(pop);
 
-	eoPop< EOT > selected_pop;
+        // Evaluating a first time the candidate solutions
+        // The first pop is not supposed to be evaluated (@see eoPopLoopEval).
+        _evaluator( current_pop, pop );
 
+        do {
+            // (1) Selection of the best points in the population
+            //selected_pop.clear(); // FIXME is it necessary to clear?
+            _selector(pop, selected_pop);
+            assert( selected_pop.size() > 0 );
+            // TODO: utiliser selected_pop ou pop ???
 
-	//-------------------------------------------------------------
-	// Estimating a first time the distribution parameter thanks
-	// to population.
-	//-------------------------------------------------------------
+            // (2) Estimation of the distribution parameters
+            distrib = _estimator(selected_pop);
 
-	D distrib = _estimator(pop);
+            // (3) sampling
+            // The sampler produces feasible solutions (@see edoSampler that
+            // encapsulate an edoBounder)
+            current_pop.clear();
+            for( unsigned int i = 0; i < pop.size(); ++i ) {
+                current_pop.push_back( _sampler(distrib) );
+            }
 
-	double size = distrib.size();
-	assert(size > 0);
+            // (4) Evaluate new solutions
+            _evaluator( pop, current_pop );
 
-	//-------------------------------------------------------------
+            // (5) Replace old solutions by new ones
+            _replacor(pop, current_pop); // e.g. copy current_pop in pop
 
-
-	do
-	    {
-		//-------------------------------------------------------------
-		// (3) Selection of the best points in the population
-		//-------------------------------------------------------------
-
-		selected_pop.clear();
-
-		_selector(pop, selected_pop);
-
-		assert( selected_pop.size() > 0 );
-
-		//-------------------------------------------------------------
-
-
-		//-------------------------------------------------------------
-		// (4) Estimation of the distribution parameters
-		//-------------------------------------------------------------
-
-		distrib = _estimator(selected_pop);
-
-		//-------------------------------------------------------------
-
-
-		// TODO: utiliser selected_pop ou pop ???
-
-		assert(selected_pop.size() > 0);
-
-
-		//-------------------------------------------------------------
-		// Init of a variable contening a point with the bestest fitnesses
-		//-------------------------------------------------------------
-
-		EOT current_solution = _selectone(selected_pop);
-
-		//-------------------------------------------------------------
-
-
-		//-------------------------------------------------------------
-		// Fit the current solution with the distribution parameters (bounds)
-		//-------------------------------------------------------------
-
-		// FIXME: si besoin de modifier la dispersion de la distribution
-		// _modifier_dispersion(distribution, selected_pop);
-		_modifier(distrib, current_solution);
-
-		//-------------------------------------------------------------
-
-
-		//-------------------------------------------------------------
-		// Evaluating a first time the current solution
-		//-------------------------------------------------------------
-
-		_evaluation( current_solution );
-
-		//-------------------------------------------------------------
-
-
-		//-------------------------------------------------------------
-		// Building of the sampler in current_pop
-		//-------------------------------------------------------------
-
-		//_sa_continue.init( current_solution );
-
-		current_pop.clear();
-
-		for ( unsigned int i = 0; i < pop.size(); ++i )
-		//do
-		    {
-			EOT candidate_solution = _sampler(distrib);
-			_evaluation( candidate_solution );
-
-			// TODO: verifier le critere d'acceptation
-			if ( candidate_solution.fitness() < current_solution.fitness()
-			     // || rng.uniform() < exp( ::fabs(candidate_solution.fitness() - current_solution.fitness()) / temperature )
-			     )
-			    {
-				current_pop.push_back(candidate_solution);
-				current_solution = candidate_solution;
-			    }
-		    }
- 		//while ( _sa_continue( current_solution) );
-
-		//-------------------------------------------------------------
-
-
-		_replacor(pop, current_pop); // copy current_pop in pop
-
-		pop.sort();
-
-		//if ( ! _cooling_schedule( temperature ) ){ eo::log << eo::debug << "_cooling_schedule" << std::endl; break; }
-
-		if ( ! _distribution_continue( distrib ) ){ eo::log << eo::debug << "_distribution_continue" << std::endl; break; }
-
-		if ( ! _pop_continue( pop ) ){ eo::log << eo::debug << "_pop_continue" << std::endl; break; }
-
-	    }
-	while ( 1 );
-    }
+        } while( _distribution_continuator( distrib ) && _pop_continuator( pop ) );
+    } // operator()
 
 private:
 
@@ -240,32 +141,17 @@ private:
     //! A EOT estimator. It is going to estimate distribution parameters.
     edoEstimator< D > & _estimator;
 
-    //! SelectOne
-    eoSelectOne< EOT > & _selectone;
-
-    //! A D modifier
-    edoModifierMass< D > & _modifier;
-
     //! A D sampler
     edoSampler< D > & _sampler;
 
     //! A EOT population continuator
-    eoContinue < EOT > & _pop_continue;
+    eoContinue < EOT > & _pop_continuator;
 
     //! A D continuator
-    edoContinue < D > & _distribution_continue;
+    edoContinue < D > & _distribution_continuator;
 
     //! A full evaluation function.
-    eoEvalFunc < EOT > & _evaluation;
-
-    //! Stopping criterion before temperature update
-    //moContinuator< moDummyNeighbor<EOT> > & _sa_continue;
-
-    //! The cooling schedule
-    //moCoolingSchedule<EOT> & _cooling_schedule;
-
-    //! Initial temperature
-    //double  _initial_temperature;
+    eoPopEvalFunc < EOT > & _evaluator;
 
     //! A EOT replacor
     eoReplacement < EOT > & _replacor;

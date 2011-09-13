@@ -31,13 +31,18 @@ Authors:
 
 #include <eoAlgo.h>
 
-//! edoAlgo< D >
-
+/** An EDO algorithm difffers from a canonical EO algorithm because it is
+ * templatized on a Distribution rather than just an EOT.
+ *
+ * Derivating from an eoAlgo, it should define an operator()( EOT sol )
+ */
 template < typename D >
 class edoAlgo : public eoAlgo< typename D::EOType >
 {
     //! Alias for the type
     typedef typename D::EOType EOT;
+
+    // virtual R operator()(A1) = 0; (defined in eoUF)
 
 public:
     virtual ~edoAlgo(){}
