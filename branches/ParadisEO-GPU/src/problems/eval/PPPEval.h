@@ -44,7 +44,7 @@ public:
 
 	/**
 	 * Constructor
-	 * @param _qapData the specific data problem useful to evalute solution(flow & distance matrices of QAP problem)
+	 * @param _pppData the specific data problem useful to evalute solution( vector of 1 & _1 for PPP)
 	 */
 
 	PPPEval(PPPData<ElemType> & _pppData) {
