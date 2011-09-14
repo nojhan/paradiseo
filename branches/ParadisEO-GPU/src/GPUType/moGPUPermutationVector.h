@@ -61,11 +61,11 @@ public:
 
 	/**
 	 *Constructor.
-	 *@param _neighborhoodSize The neighborhood size.
+	 *@param _size The solution size.
 	 */
 
-	moGPUPermutationVector(unsigned _neighborhoodSize) :
-		moGPUIntVector<Fitness> (_neighborhoodSize) {
+	moGPUPermutationVector(unsigned _size) :
+		moGPUIntVector<Fitness> (_size) {
 		create();
 	}
 	/**
@@ -86,28 +86,6 @@ public:
 		}
 	}
 
-	/**
-	 *Function inline to set the size of vector, called from host.
-	 *@param _size the vector size
-	 */
-
-	void setSize(unsigned _size) {
-
-		if (_size < N) {
-			moGPUPermutationVector<Fitness> tmp_vect(_size);
-			for (unsigned i = 0; i < tmp_vect.N; i++)
-				tmp_vect.vect[i] = vect[i];
-			(tmp_vect).invalidate();
-			(*this) = tmp_vect;
-		} else if (_size > N) {
-			moGPUPermutationVector<Fitness> tmp_vect(_size);
-			for (unsigned i = 0; i < N; i++)
-				tmp_vect.vect[i] = vect[i];
-			(tmp_vect).invalidate();
-			(*this) = tmp_vect;
-		}
-
-	}
 
 };
 
