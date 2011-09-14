@@ -116,6 +116,11 @@ public:
 			cout << "It's evaluation by copy set cpySolution to true" << endl;
 	}
 
+	/**
+	 * Compute the best combination of number of block by grid and number of thread  within block
+	 * @param _sol the solution that generate the neighborhood to evaluate parallely
+	 */
+
 	virtual void calibration(EOT & _sol, unsigned int * _mapping) {
 
 		unsigned size = _sol.size();
