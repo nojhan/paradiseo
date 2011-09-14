@@ -121,8 +121,6 @@ void main_function(int argc, char **argv)
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(seed);
-  srand(seed);
-
   
   /* =========================================================
    *
@@ -209,9 +207,10 @@ void main_function(int argc, char **argv)
   timer.start();
   localSearch(sol);
   timer.stop();
+  std::cout << "final:   " << sol << std::endl;
   printf("Execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
-  std::cout << "final:   " << sol << std::endl;
+ 
 
   /* =========================================================
    *
