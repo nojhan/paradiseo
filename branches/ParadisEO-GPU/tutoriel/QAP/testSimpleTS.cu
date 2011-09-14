@@ -32,12 +32,13 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-//Init the number of threads per block
-#define BLOCK_SIZE 256
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 using namespace std;
+
+//Include GPU Config File
+#include "moGPUConfig.h"
 
 __device__ int * dev_a;
 __device__ int * dev_b;
@@ -45,22 +46,23 @@ __device__ int * dev_b;
 // The general include for eo
 #include <eo>
 #include <ga.h>
-#include <eval/moCudakernelEval.h>
 // Fitness function
 #include <problems/eval/QAPEval.h>
 // Cuda Fitness function
-#include <eval/moCudaKswapEval.h>
+#include <eval/moGPUMappingEvalByCpy.h>
 #include <problems/eval/QAPIncrEval.h>
 //Specific data to QAP problem
 #include <problems/data/QAPData.h>
 // QAP solution
-#include <cudaType/moCudaIntVector.h>
-// QAP neighbor
-#include <neighborhood/moKswapNeighbor.h>
+#include <GPUType/moGPUPermutationVector.h>
+// Swap neighbor
+#include <neighborhood/moGPUXSwapNeighbor.h>
 //To compute execution time
-#include <performance/moCudaTimer.h>
-//Kswap neighborhood
-#include <neighborhood/moCudaKswapNeighborhood.h>
+#include <performance/moGPUTimer.h>
+//Utils to compute size Mapping of x-change position
+#include <neighborhood/moNeighborhoodSizeUtils.h>
+// Use an ordered neighborhood without mapping, with local copy of solution
+#include <neighborhood/moGPUXChangeNeighborhoodByCpy.h>
 // The Solution and neighbor comparator
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
@@ -74,11 +76,11 @@ __device__ int * dev_b;
 #include <memory/moDummyIntensification.h>
 #include <memory/moDummyDiversification.h>
 #include <memory/moBestImprAspiration.h>
-#include <time.h>
 
-typedef moCudaIntVector<eoMinimizingFitness> solution;
-typedef moKswapNeighbor<solution> Neighbor;
-typedef moCudaKswapNeighborhood<Neighbor> Neighborhood;
+
+typedef moGPUPermutationVector<eoMinimizingFitness> solution;
+typedef moGPUXSwapNeighbor<eoMinimizingFitness> Neighbor;
+typedef moGPUXChangeNeighborhoodByCpy<Neighbor> Neighborhood;
 
 
 int main(int argc, char **argv)
@@ -101,20 +103,10 @@ int main(int argc, char **argv)
     parser.processParam( seedParam );
     unsigned seed = seedParam.value();
 
-    // Swap number
-    eoValueParam<unsigned int> KSwapParam(1, "KSwap", "swap number", 'N');
-    parser.processParam(KSwapParam, "KSwap" );
-    unsigned KSwap = KSwapParam.value();
-
     // Iteration number
     eoValueParam<unsigned int> nbIterationParam(1, "nbIteration", "TS Iteration number", 'I');
     parser.processParam( nbIterationParam, "TS Iteration number" );
     unsigned nbIteration = nbIterationParam.value();
-
-    // size tabu list
-    eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
-    parser.processParam( sizeTabuListParam, "Search Parameters" );
-    unsigned sizeTabuList = sizeTabuListParam.value();
 
     // duration tabu list
     eoValueParam<unsigned int> durationParam(7, "duration", "duration of the tabu list", 'D');
@@ -156,7 +148,6 @@ int main(int argc, char **argv)
    * ========================================================= */
 
   QAPData<int> _data(argv[1]);
-  unsigned vecSize=_data.sizeData;
 
   /* =========================================================
    *
@@ -164,20 +155,20 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
  
-   solution sol(vecSize);
-  _data.cudaObject.memCopyGlobalVariable(dev_a,_data.a_d);
-  _data.cudaObject.memCopyGlobalVariable(dev_b,_data.b_d);
-  
+   solution sol(_data.sizeData);
+  _data.GPUObject.memCopyGlobalVariable(dev_a,_data.a_d);
+  _data.GPUObject.memCopyGlobalVariable(dev_b,_data.b_d);
+
   /*=========================================================
    *
    * Evaluation of a solution neighbor's
    *
    * ========================================================= */
 
-    QAPEval<solution> eval(_data);
-    unsigned long int sizeMap=sizeMapping(vecSize,1);
-    QAPIncrEval<Neighbor> incr_eval;
-    moCudaKswapEval<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+   QAPEval<solution> eval(_data);
+   unsigned long int sizeMap=sizeMapping(_data.sizeData,NB_POS);
+   QAPIncrEval<Neighbor> incr_eval;
+   moGPUMappingEvalByCpy<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
@@ -194,7 +185,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-     Neighborhood neighborhood(vecSize,1,cueval);
+   Neighborhood neighborhood(sizeMap,NB_POS,cueval);
 
   /* =========================================================
    *
@@ -202,7 +193,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-     moIterContinuator <Neighbor> continuator(nbIteration);
+   moIterContinuator <Neighbor> continuator(nbIteration);
   
   /* =========================================================
    *
@@ -210,10 +201,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-     sizeTabuList=(vecSize*(vecSize-1))/2;
-     duration=sizeTabuList/8;
-     // tabu list
-     moIndexedVectorTabuList<Neighbor> tl(sizeTabuList,duration);
+   moIndexedVectorTabuList<Neighbor> tl(sizeMap,(sizeMap/8));
 
   /* =========================================================
    *
@@ -243,19 +231,17 @@ int main(int argc, char **argv)
   eval(sol);
 
   std::cout << "initial: " << sol<< std::endl;
-  // Create timer for timing CUDA calculation
-  cudaFuncSetCacheConfig(kernelPermutation<solution,eoMinimizingFitness, Neighbor , QAPIncrEval<Neighbor> >, cudaFuncCachePreferL1);
-  moCudaTimer timer;
+  moGPUTimer timer;
   timer.start();
   tabuSearch(sol);
   std::cout << "final:   " << sol << std::endl;
   timer.stop();
-  printf("CUDA execution time = %f ms\n",timer.getTime());
+  printf("Execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
  
 
-  _data.cudaObject.free(dev_a);
-  _data.cudaObject.free(dev_b);
+  _data.GPUObject.free(dev_a);
+  _data.GPUObject.free(dev_b);
 
   return 0;
 }
