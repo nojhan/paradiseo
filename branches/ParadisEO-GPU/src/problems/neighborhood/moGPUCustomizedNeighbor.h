@@ -1,5 +1,5 @@
 /*
- <moCudaBitNeighbor.h>
+ <moGPUCustomizedNeighbor.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Jerémie Humeau, Boufaras Karima, Thé Van LUONG
@@ -32,40 +32,41 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef _moCudaTypeNeighbor_h
-#define _moCudaTypeNeighbor_h
+#ifndef _moGPUCustomizedNeighbor_h
+#define _moGPUCustomizedNeighbor_h
 
 #include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moIndexSwapNeighbor.h>
+#include <neighborhood/moXChangeNeighbor.h>
+#include <problems/types/moGPUSolType2Vector.h>
 
 /**
- * Neighbor related to a solution vector of EOT (type)
+ * Neighbor related to a solution vector composed by two vectors
  */
 
-template<class EOT, class Fitness = typename EOT::Fitness>
-class moCudaTypeNeighbor: public moBackableNeighbor<EOT> ,
-		public moIndexSwapNeighbor<EOT> {
+template<class Fitness>
+class moGPUCustomizedNeighbor: public moBackableNeighbor< moGPUSolType2Vector<Fitness> > ,
+public moXChangeNeighbor< moGPUSolType2Vector<Fitness> > {
+
 public:
 
-	using moIndexSwapNeighbor<EOT>::indices;
-	using moIndexSwapNeighbor<EOT>::Kswap;
-	using moIndexSwapNeighbor<EOT>::size;
-
+	using moXChangeNeighbor< moGPUSolType2Vector<Fitness> >::indices;
+	using moXChangeNeighbor< moGPUSolType2Vector<Fitness> >::xChange;
+	using moXChangeNeighbor< moGPUSolType2Vector<Fitness> >::key;
 	/**
 	 *Default Constructor
 	 */
 
-	moCudaTypeNeighbor() :
-		moIndexSwapNeighbor<EOT> () {
+	moGPUCustomizedNeighbor() :
+		moXChangeNeighbor< moGPUSolType2Vector<Fitness> > () {
 	}
 
 	/**
 	 * Constructor
-	 * @param _Kpos the number of bit to flip
+	 * @param _xSwap the number of bit to swap
 	 */
 
-	moCudaTypeNeighbor(unsigned int _Kpos) :
-		moIndexSwapNeighbor<EOT> (_Kpos) {
+	moGPUCustomizedNeighbor(unsigned int _xSwap) :
+		moXChangeNeighbor< moGPUSolType2Vector<Fitness> > (_xSwap) {
 	}
 
 	/**
@@ -73,20 +74,22 @@ public:
 	 * @param _solution the solution to move
 	 */
 
-	virtual void move(EOT & _solution) {
-		int tmp;
-		tmp = _solution[0].tab1[indices[0]];
-		_solution[0].tab1[indices[0]] = _solution[0].tab1[indices[1]];
-		_solution[0].tab1[indices[1]] = tmp;
+	virtual void move(moGPUSolType2Vector<Fitness> & _solution) {
+		std::cout<<"_solution"<<std::endl;
+		float tmp;
+		tmp = _solution[0].tab2[indices[0]];
+		_solution[0].tab2[indices[0]] = _solution[0].tab2[indices[1]];
+		_solution[0].tab2[indices[1]] = tmp;
+		std::cout<<_solution<<std::endl;
 		_solution.invalidate();
 	}
 
 	/**
-	 * apply the poveBack to restore the solution (use by moFullEvalByModif)
+	 * apply the moveBack to restore the solution (use by moFullEvalByModif)
 	 * @param _solution the solution to move back
 	 */
 
-	virtual void moveBack(EOT& _solution) {
+	virtual void moveBack(moGPUSolType2Vector<Fitness> & _solution) {
 		move(_solution);
 	}
 
@@ -95,7 +98,7 @@ public:
 	 * @return the class name as a std::string
 	 */
 	virtual std::string className() const {
-		return "moCudaTypeNeighbor";
+		return "moGPUCustomizedNeighbor";
 	}
 
 };
