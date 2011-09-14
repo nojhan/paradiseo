@@ -105,11 +105,6 @@ int main(int argc, char **argv)
   parser.processParam( seedParam );
   unsigned seed = seedParam.value();
 
-  //Number of position to change 
-  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
-  parser.processParam( nbPosParam, "Exchange" );
-  unsigned nbPos = nbPosParam.value();
-
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
   eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
