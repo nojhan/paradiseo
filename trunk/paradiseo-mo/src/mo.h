@@ -171,33 +171,33 @@
 #include <perturb/moRestartPerturb.h>
 #include <perturb/moSolInit.h>
 
-#include <problems/bitString/moBitNeighbor.h>
-#include <problems/bitString/moBitsNeighbor.h>
-#include <problems/bitString/moBitsNeighborhood.h>
-#include <problems/bitString/moBitsWithoutReplNeighborhood.h>
-#include <problems/bitString/moPopBitNeighbor.h>
-#include <problems/bitString/moPopBitsNeighbor.h>
-#include <problems/bitString/moPopBitsRndNeighborhood.h>
-#include <problems/bitString/moPopSol.h>
-#include <problems/bitString/moPopSolInit.h>
-#include <problems/bitString/moPopSolNonDomInit.h>
-#include <problems/bitString/moPopXoverNeighbor.h>
-#include <problems/bitString/moPopXoverRndNeighborhood.h>
-#include <problems/eval/moMaxSATincrEval.h>
-#include <problems/eval/moOneMaxIncrEval.h>
-#include <problems/eval/moPopBitEval.h>
-#include <problems/eval/moPopBitsEval.h>
-#include <problems/eval/moPopXoverEval.h>
-#include <problems/eval/moQAPIncrEval.h>
-#include <problems/eval/moRoyalRoadIncrEval.h>
-#include <problems/eval/moUBQPSimpleIncrEval.h>
-#include <problems/eval/oneMaxFullEval.h>
-#include <problems/permutation/moIndexedSwapNeighbor.h>
-#include <problems/permutation/moShiftNeighbor.h>
-#include <problems/permutation/moSwapNeighbor.h>
-#include <problems/permutation/moSwapNeighborhood.h>
-#include <problems/permutation/moTwoOptExNeighbor.h>
-#include <problems/permutation/moTwoOptExNeighborhood.h>
+// #include <problems/bitString/moBitNeighbor.h>
+// #include <problems/bitString/moBitsNeighbor.h>
+// #include <problems/bitString/moBitsNeighborhood.h>
+// #include <problems/bitString/moBitsWithoutReplNeighborhood.h>
+// #include <problems/bitString/moPopBitNeighbor.h>
+// #include <problems/bitString/moPopBitsNeighbor.h>
+// #include <problems/bitString/moPopBitsRndNeighborhood.h>
+// #include <problems/bitString/moPopSol.h>
+// #include <problems/bitString/moPopSolInit.h>
+// #include <problems/bitString/moPopSolNonDomInit.h>
+// #include <problems/bitString/moPopXoverNeighbor.h>
+// #include <problems/bitString/moPopXoverRndNeighborhood.h>
+// #include <problems/eval/moMaxSATincrEval.h>
+// #include <problems/eval/moOneMaxIncrEval.h>
+// #include <problems/eval/moPopBitEval.h>
+// #include <problems/eval/moPopBitsEval.h>
+// #include <problems/eval/moPopXoverEval.h>
+// #include <problems/eval/moQAPIncrEval.h>
+// #include <problems/eval/moRoyalRoadIncrEval.h>
+// #include <problems/eval/moUBQPSimpleIncrEval.h>
+// #include <problems/eval/oneMaxFullEval.h>
+// #include <problems/permutation/moIndexedSwapNeighbor.h>
+// #include <problems/permutation/moShiftNeighbor.h>
+// #include <problems/permutation/moSwapNeighbor.h>
+// #include <problems/permutation/moSwapNeighborhood.h>
+// #include <problems/permutation/moTwoOptExNeighbor.h>
+// #include <problems/permutation/moTwoOptExNeighborhood.h>
 
 
 #include <sampling/moAdaptiveWalkSampling.h>
