@@ -66,7 +66,7 @@ public:
 
 	/**
 	 * Incremental evaluation of the PPP solution,function inline can be called from host or device
-	 * @param _bitVector the solution to evaluate
+	 * @param _solthe solution to evaluate
 	 * @param _fitness the fitness of the current solution
 	 * @param _index an array that contains a set of indexes corresponding to the current thread identifier neighbor the last element of this array contains neighborhood size
 	 */
@@ -75,6 +75,7 @@ public:
 
 		int H[Nd];
 		int S[Md];
+		int tmp=0;
 		int tmp_1=0;
 		int tmp_2=0;
 
@@ -89,10 +90,10 @@ public:
 				H[j]=0;
 			for (unsigned i=0; i<Md; i++) {
 				for(unsigned k=0;k<NB_POS;k++)
-				S[i]=S[i]-2*dev_a[i*Nd+_index[k]]*_sol[_index[k]];
-			    tmp_1=tmp_1+abs(S[i])-S[i];
-				if(S[i]>0)
-				H[S[i]-1]=H[S[i]-1]+1;
+				tmp=S[i]-2*dev_a[i*Nd+_index[k]]*_sol[_index[k]];
+			    tmp_1=tmp_1+abs(tmp)-tmp;
+				if(tmp>0)
+				H[tmp-1]=H[tmp-1]+1;
 			}
 
 		for (unsigned j=0; j<Nd; j++)
