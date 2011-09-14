@@ -127,12 +127,12 @@ public:
 	 * Write object. Called printOn since it prints the object _on_ a stream.
 	 * @param _os A std::ostream.
 	 */
-	void printOn(std::ostream& os) const {
-		EO<Fitness>::printOn(os);
-		os << ' ';
-		os << N << ' ';
+	void printOn(std::ostream& _os) const {
+		EO<Fitness>::printOn(_os);
+		_os << ' ';
+		_os << N << ' ';
 		for (unsigned int i = 0; i < N; i++)
-			os << (*this)[i] << ' ';
+			_os << (*this)[i] << ' ';
 
 	}
 
