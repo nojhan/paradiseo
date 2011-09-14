@@ -172,7 +172,7 @@ public:
 	 * @param _os A std::ostream.
 	 */
 
-	virtual void printOn(std::ostream& os) const=0;
+	virtual void printOn(std::ostream& _os) const=0;
 
 protected:
 
