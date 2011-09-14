@@ -41,7 +41,7 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 ### 3) Define your targets and link the librairies
 ######################################################################################	
 			
-CUDA_ADD_EXECUTABLE(GPUtestKswapHCByModif testKswapHCByCpy.cu)
+CUDA_ADD_EXECUTABLE(GPUtestKswapHCByModif testKswapHCByModif.cu)
 CUDA_ADD_EXECUTABLE(GPUtestKswapHCByCpy testKswapHCByCpy.cu)  
 
 TARGET_LINK_LIBRARIES(GPUtestKswapHCByModif eoutils ga eo ${cutil})

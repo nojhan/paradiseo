@@ -91,14 +91,14 @@ void main_function(int argc, char **argv)
   unsigned seed = seedParam.value();
 
   // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(100, "vecSize", "Genotype size", 'V');
+  /*eoValueParam<unsigned int> vecSizeParam(100, "vecSize", "Genotype size", 'V');
   parser.processParam( vecSizeParam, "Representation" );
-  unsigned vecSize = vecSizeParam.value();
+  unsigned vecSize = vecSizeParam.value();*/
 
   //Number of position to change 
-  eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
+ /* eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
   parser.processParam( nbPosParam, "Exchange" );
-  unsigned nbPos = nbPosParam.value();
+  unsigned nbPos = nbPosParam.value();*/
 
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -131,7 +131,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
   
-  solution sol(vecSize); 
+  solution sol(SIZE); 
 
   /* =========================================================
    *
@@ -147,7 +147,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  unsigned long int sizeMap=sizeMapping(vecSize,NB_POS);
+  unsigned long int sizeMap=sizeMapping(SIZE,NB_POS);
   OneMaxIncrEval<Neighbor> incr_eval;
   moGPUMappingEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
