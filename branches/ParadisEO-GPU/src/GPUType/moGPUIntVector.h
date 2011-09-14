@@ -71,17 +71,6 @@ public:
 	}
 
 	/**
-	 *Assignment operator
-	 *@param _vector The vector passed to the function to fix the new content.
-	 *@return a new vector.
-	 */
-
-	moGPUIntVector& operator=(const moGPUIntVector & _vector) {
-		moGPUVector<int, Fitness>::operator=(_vector);
-		return (*this);
-	}
-
-	/**
 	 *Initializer of random integer vector.
 	 */
 	virtual void create() {
@@ -98,20 +87,19 @@ public:
 
 	virtual inline __host__ void setSize(unsigned _size) {
 
+		if(N==_size)
+			return;
+		moGPUIntVector<Fitness> tmp_vect(_size);
 		if(_size<N) {
-			moGPUIntVector<Fitness> tmp_vect(_size);
 			for (unsigned i = 0; i < tmp_vect.N; i++)
 			tmp_vect.vect[i]= vect[i];
-			(tmp_vect).invalidate();
-			(*this)=tmp_vect;
 		}
 		else if(_size>N) {
-			moGPUIntVector<Fitness> tmp_vect(_size);
 			for (unsigned i = 0; i <N; i++)
 			tmp_vect.vect[i]= vect[i];
-			(tmp_vect).invalidate();
-			(*this)=tmp_vect;
 		}
+		(tmp_vect).invalidate();
+		(*this)=tmp_vect;
 
 	}
 
