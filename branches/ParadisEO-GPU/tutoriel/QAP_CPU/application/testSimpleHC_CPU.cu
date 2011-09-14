@@ -68,7 +68,7 @@ unsigned n;
 // The Tabou Search algorithm explorer
 #include <explorer/moSimpleHCexplorer.h>
 //To compute execution time
-#include <performance/moCudaTimer.h>
+#include <performance/moGPUTimer.h>
 
 
 typedef eoInt<eoMinimizingFitness> solution;
@@ -201,7 +201,7 @@ int main(int argc, char **argv)
 
   std::cout << "initial: " << sol<< std::endl;
   // Create timer for timing CUDA calculation
-  moCudaTimer timer;
+  moGPUTimer timer;
   timer.start();
   localSearch(sol);
   timer.stop();
