@@ -100,12 +100,6 @@ int main(int argc, char **argv)
     parser.processParam( seedParam );
     unsigned seed = seedParam.value();
 
-   
-    //Number of position to change 
-    eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
-    parser.processParam( nbPosParam, "Exchange" );
-    unsigned nbPos = nbPosParam.value();
-
     // Iteration number
     eoValueParam<unsigned int> nbIterationParam(1, "nbIteration", "TS Iteration number", 'I');
     parser.processParam( nbIterationParam, "TS Iteration number" );
@@ -145,10 +139,10 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  //reproducible random seed: if you don't change SEED above,
+   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
-//   rng.reseed(seed);
-srand(0);
+    rng.reseed(seed);
+
   /* =========================================================
    *
    * Initilisation of QAP data
@@ -156,7 +150,7 @@ srand(0);
    * ========================================================= */
 
   PPPData<int> _data;
-_data.load();
+  _data.load();
 
   /* =========================================================
    *
@@ -243,14 +237,12 @@ _data.load();
   eval(sol);
 
   std::cout << "initial: " << sol<< std::endl;
-  // Create timer for timing CUDA calculation
-  /*cudaFuncSetCacheConfig(moGPUMappingKernelEvalByModif<int,eoMinimizingFitness,PPPIncrEval<Neighbor> >,  cudaFuncCachePreferL1);*/
   moGPUTimer timer;
   timer.start();
   tabuSearch(sol);
   std::cout << "final:   " << sol << std::endl;
   timer.stop();
-  printf("CUDA execution time = %f ms\n",timer.getTime());
+  printf("Execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
  
 
