@@ -32,7 +32,7 @@ Authors:
 /** A bounder that randomly draw new values for variables going out bounds,
  * in a given uniform distribution.
  *
- * @ingroup Bounders
+ * @ingroup Repairers
  */
 template < typename EOT >
 class edoBounderUniform : public edoBounder< EOT >

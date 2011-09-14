@@ -28,15 +28,15 @@ Authors:
 #ifndef _edoBounder_h
 #define _edoBounder_h
 
-#include <eoFunctor.h>
+#include <edoRepairer.h>
 
 /** The interface of a set of classes that modifies a solution so as to respect
  * a given set of bounds (typically an hypercube).
  *
- * @ingroup Bounders
+ * @ingroup Repairers
  */
 template < typename EOT >
-class edoBounder : public eoUF< EOT&, void >
+class edoBounder : public edoRepairer< EOT >
 {
 public:
     edoBounder( EOT min = EOT(1, 0), EOT max = EOT(1, 0) )

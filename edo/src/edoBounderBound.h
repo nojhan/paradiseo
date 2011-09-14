@@ -32,7 +32,7 @@ Authors:
 
 /** A bounder that correct an incorrect variable by setting it to the min/max
  *
- * @ingroup Bounders
+ * @ingroup Repairers
  */
 template < typename EOT >
 class edoBounderBound : public edoBounder< EOT >
