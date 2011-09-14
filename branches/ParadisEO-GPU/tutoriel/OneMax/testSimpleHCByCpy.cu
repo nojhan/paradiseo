@@ -209,9 +209,9 @@ void main_function(int argc, char **argv)
   //Run the local search with Simple Hill climbing explorer
   localSearch(sol);
   timer.stop();
-  printf("GPU execution time = %f ms\n",timer.getTime());
-  timer.deleteTimer();
   std::cout << "final:   " << sol << std::endl;
+  printf("Execution time = %f ms\n",timer.getTime());
+  timer.deleteTimer();
 
   /* =========================================================
    *
@@ -228,7 +228,7 @@ void main_function(int argc, char **argv)
   simpleHC(sol1);
   timer1.stop();
   std::cout << "final:   " << sol1 << std::endl;
-  printf("GPU execution time = %f ms\n",timer1.getTime());
+  printf("Execution time = %f ms\n",timer1.getTime());
   timer1.deleteTimer();
 }
 
