@@ -76,7 +76,7 @@ inline __host__ __device__ Fitness operator() (T * _sol,Fitness _fitness, unsign
 	Fitness tmp=_fitness;
 
 	T tmp_sol[1];
-	/**
+	/*
 	 * dev_a & dev_b are global device variable, data specific to QAP problem (flow & distance matices)
 	 * _index[i] the first position of swap
 	 * _index[i+1] the second position of swap
@@ -93,12 +93,11 @@ inline __host__ __device__ Fitness operator() (T * _sol,Fitness _fitness, unsign
 
 /**
  *  compute the new fitness of the solution after permutation of pair(i,j)(function inline called from host  device)
- * @param _a the flow matrix of size*size (specific data of QAP problem must be declared as global device variable)
- * @param _b the distance matrix of size*size (specific data of QAP problem must be declared as global device variable)
+ * @param a the flow matrix of size*size (specific data of QAP problem must be declared as global device variable)
+ * @param b the distance matrix of size*size (specific data of QAP problem must be declared as global device variable)
  * @param _sol the solution to evaluate
- * @param _i the first position of swap
- * @param _j the second position of swap
- * @param _id the neighbor identifier
+ * @param i the first position of swap
+ * @param j the second position of swap
  */
 
 inline __host__ __device__ int compute_delta(int * a,int * b,T * _sol, int i, int j) {
