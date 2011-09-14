@@ -54,7 +54,7 @@ public:
 	using moGPUXChangeNeighborhood<Neighbor>::device_Mapping;
 
 	/**
-	 * @Constructor
+	 * Constructor
 	 * @param _neighborhoodSize the neighborhood size
 	 * @param _xChange the number of x-change positions
 	 * @param _eval show how to evaluate neighborhood of a solution at one time
