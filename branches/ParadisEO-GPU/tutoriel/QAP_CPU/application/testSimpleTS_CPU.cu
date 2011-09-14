@@ -74,7 +74,7 @@ unsigned n;
 #include <memory/moDummyDiversification.h>
 #include <memory/moBestImprAspiration.h>
 //To compute execution time
-#include <performance/moCudaTimer.h>
+#include <performance/moGPUTimer.h>
 
 typedef eoInt<eoMinimizingFitness> solution;
 typedef moIndexedSwapNeighbor<solution> Neighbor;
@@ -235,7 +235,7 @@ int main(int argc, char **argv)
 
   std::cout << "initial: " << sol<< std::endl;
  // Create timer for timing CUDA calculation
-  moCudaTimer timer;
+  moGPUTimer timer;
   timer.start();
   tabuSearch(sol);
   timer.stop();
