@@ -209,7 +209,7 @@ void main_function(int argc, char **argv)
   timer.start();
   localSearch(sol);
   timer.stop();
-  printf("CUDA execution time = %f ms\n",timer.getTime());
+  printf("Execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
   std::cout << "final:   " << sol << std::endl;
 
