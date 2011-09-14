@@ -205,7 +205,7 @@ void main_function(int argc, char **argv)
   localSearch(sol);
   timer.stop();
   std::cout << "final:   " << sol << std::endl;
-  printf("GPU execution time = %f ms\n",timer.getTime());
+  printf("Execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
   
   /* =========================================================
