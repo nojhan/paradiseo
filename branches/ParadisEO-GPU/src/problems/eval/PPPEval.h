@@ -66,22 +66,21 @@ public:
 	void operator()(EOT & _sol) {
 
 		int *H;
-		int *S;
+		int tmp;
 		int tmp_1 = 0;
 		int tmp_2 = 0;
 
 		H = new int[Nd];
-		S = new int[Md];
 
 		for (int i = 0; i < Md; i++) {
-			S[i] = 0;
+			tmp = 0;
 			for (int j = 0; j < Nd; j++) {
-				S[i] += pppData.a_h[i * Nd + j] * _sol[j];
+				tmp += pppData.a_h[i * Nd + j] * _sol[j];
 			}
 
-			tmp_1 += abs(S[i]) - S[i];
-			if (S[i] > 0)
-				H[S[i]-1]++;
+			tmp_1 += abs(tmp) - tmp;
+			if (tmp > 0)
+				H[tmp-1]++;
 		}
 
 		for (int j = 0; j < Nd; j++) {
@@ -91,7 +90,7 @@ public:
 		_sol.fitness(ca * tmp_1 + cb * tmp_2);
 
 		delete[] H;
-		delete[] S;
+
 	}
 
 protected:
