@@ -105,11 +105,6 @@ int main(int argc, char **argv)
   parser.processParam( seedParam );
   unsigned seed = seedParam.value();
 
-  // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(20, "vecSize", "Genotype size", 'V');
-  parser.processParam( vecSizeParam, "Representation" );
-  unsigned vecSize = vecSizeParam.value();
-
   //Number of position to change 
   eoValueParam<unsigned int> nbPosParam(1, "nbPos", "X Change", 'N');
   parser.processParam( nbPosParam, "Exchange" );
@@ -147,14 +142,14 @@ int main(int argc, char **argv)
    * ========================================================= */
 
   QAPData<int> _data(argv[1]);
-  vecSize=_data.sizeData;
+
   /* =========================================================
    *
    * Initilisation of the solution and specific data
    *
    * ========================================================= */
  
-  solution sol(vecSize);
+  solution sol(_data.sizeData);
   _data.GPUObject.memCopyGlobalVariable(dev_a,_data.a_d);
   _data.GPUObject.memCopyGlobalVariable(dev_b,_data.b_d);
   
@@ -164,7 +159,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
   QAPEval<solution> eval(_data);
-  unsigned long int sizeMap=sizeMapping(vecSize,NB_POS);
+  unsigned long int sizeMap=sizeMapping(_data.sizeData,NB_POS);
   QAPIncrEval<Neighbor> incr_eval;
   moGPUMappingEvalByCpy<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
@@ -221,7 +216,6 @@ int main(int argc, char **argv)
  
   //Can be eval here, else it will be done at the beginning of the localSearch
   eval(sol);
-
   std::cout << "initial: " << sol<< std::endl;
   // Create timer for timing CUDA calculation
   moGPUTimer timer;
@@ -231,7 +225,7 @@ int main(int argc, char **argv)
   timer.stop();
   printf("Execution time = %f ms\n",timer.getTime());
   timer.deleteTimer();
-
+  
   _data.GPUObject.free(dev_a);
   _data.GPUObject.free(dev_b);
 
