@@ -111,11 +111,6 @@ public:
 			moGPUMappingKernelEvalByCpy<T,Fitness,Eval><<<NEW_kernel_Dim,NEW_BLOCK_SIZE >>>(eval,device_solution.vect,device_FitnessArray,fitness,_mapping,neighborhoodSize);
 			cudaMemcpy(host_FitnessArray, device_FitnessArray, neighborhoodSize
 					* sizeof(Fitness), cudaMemcpyDeviceToHost);
-			for(int i=0;i<neighborhoodSize;i++)
-				cout<<host_FitnessArray[i]<<" ";
-			cout<<endl;
-			cout<<endl;
-			cout<<endl;
 
 		} else
 			cout << "It's evaluation by copy set cpySolution to true" << endl;
