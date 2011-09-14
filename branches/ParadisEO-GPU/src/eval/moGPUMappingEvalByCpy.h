@@ -91,6 +91,7 @@ public:
 	 * @param _cpySolution Launch kernel with local copy option of solution in each thread if it's set to true
 	 * @param _withCalibration an automatic kernel configuration, fix nbr of thread by block and nbr of grid by kernel
 	 */
+
 	void neighborhoodEval(EOT & _sol, unsigned int * _mapping,
 			bool _cpySolution, bool _withCalibration) {
 		if (_cpySolution) {
@@ -119,6 +120,7 @@ public:
 	/**
 	 * Compute the best combination of number of block by grid and number of thread  within block
 	 * @param _sol the solution that generate the neighborhood to evaluate parallely
+	 * @param _mapping the array of mapping indexes that associate a neighbor identifier to X-position
 	 */
 
 	virtual void calibration(EOT & _sol, unsigned int * _mapping) {
