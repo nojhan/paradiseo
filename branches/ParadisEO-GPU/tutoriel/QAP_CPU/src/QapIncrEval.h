@@ -79,8 +79,8 @@ class QapIncrEval : public moEval<Neighbor>{
   /**
    * Specific to the QAP incremental evaluation (part of algorithmic)
    * @param _sol the solution to evaluate
-   * @param _i the first position of swap
-   * @param _j the second position of swap
+   * @param i the first position of swap
+   * @param j the second position of swap
    */
  
   unsigned int compute_delta(EOT & _sol,unsigned i,unsigned j)
