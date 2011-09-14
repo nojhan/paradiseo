@@ -49,7 +49,7 @@ int main() {
   int * cpy_data;
   int * d_data;
   moGPUAllocator alloc;
-  moGPUDeallocator disalloc;
+  moGPUDeallocator dealloc;
   moGPUCopy cpy;
   int i=0;
 
