@@ -37,7 +37,7 @@
 
 #define BLOCK_SIZE 8
 #ifndef NB_POS
-#define NB_POS 3
+#define NB_POS 2
 #endif
 #ifndef SIZE
 #define SIZE 73
