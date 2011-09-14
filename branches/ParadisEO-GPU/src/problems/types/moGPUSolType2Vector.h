@@ -36,7 +36,7 @@
 #define _moGPUSolType2Vector_H_
 
 #include <GPUType/moGPUVector.h>
-#include <problems/types/moGPUSolType.h>
+#include <problems/types/moGPUCustomizeType.h>
 
 /**
  * An Example of a customized vector representation on GPU.
@@ -50,7 +50,6 @@ public:
 	/**
 	 * Define vector type of vector corresponding to Solution
 	 */
-	//typedef ElemT ElemType;
 
 	using moGPUVector<ElemType, Fitness>::vect;
 	using moGPUVector<ElemType, Fitness>::N;
