@@ -50,7 +50,7 @@ Authors:
 
 template < typename EOT >
 class edoRepairerDispatcher 
-    : public eoUF< EOT&, void >, 
+    : public edoRepairer<EOT>, 
              std::vector< 
                   std::pair< std::set< unsigned int >, edoRepairer< EOT >* > 
              >
