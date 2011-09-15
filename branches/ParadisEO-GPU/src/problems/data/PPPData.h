@@ -132,12 +132,9 @@ public:
 				a_h[i * Nd + j] =pow(-1,rand());
 			}
 		}
-		cout <<"v: "<<endl;
 		for (int i = 0; i < Nd; i++) {
 			v[i]=pow(-1,rand());
-			printf("%d ", v[i]);
 		}
-		cout << endl;
 
 		for (int i = 0; i < Md; i++) {
 			s[i] = 0;
@@ -151,11 +148,6 @@ public:
 			if(s[i]>0)
 				H_h[s[i]-1]++;
 		}
-		for (int i = 0; i < Nd; i++)
-		printf("%d ", H_h[i]);
-		cout<<endl;
-
-
 
 		//Allocate and copy QAP data from CPU memory to GPU global memory
 		GPUObject.memCopy(a_d, a_h, Nd * Md);
