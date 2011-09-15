@@ -60,31 +60,60 @@ public:
     /*!
       Takes algo operators, all are mandatory
 
+      \param evaluation Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
+      \param replacor Replace old solutions by new ones
       \param pop_continuator Stopping criterion based on the population features
       \param distribution_continuator Stopping criterion based on the distribution features
-      \param evaluation Evaluate a population
-      \param replacor Replace old solutions by new ones
     */
     edoEDA (
-       eoSelect< EOT > & selector,
-       edoEstimator< D > & estimator,
-       edoSampler< D > & sampler,
-       eoContinue< EOT > & pop_continuator,
-       edoContinue< D > & distribution_continuator,
-       eoPopEvalFunc < EOT > & evaluator,
-       eoReplacement< EOT > & replacor
-       )
-    : _selector(selector),
-      _estimator(estimator),
-      _sampler(sampler),
-      _pop_continuator(pop_continuator),
-      _distribution_continuator(distribution_continuator),
-      _evaluator(evaluator),
-      _replacor(replacor)
+        eoPopEvalFunc < EOT > & evaluator,
+        eoSelect< EOT > & selector,
+        edoEstimator< D > & estimator,
+        edoSampler< D > & sampler,
+        eoReplacement< EOT > & replacor,
+        eoContinue< EOT > & pop_continuator,
+        edoContinue< D > & distribution_continuator
+    ) :
+        _evaluator(evaluator),
+        _selector(selector),
+        _estimator(estimator),
+        _sampler(sampler),
+        _replacor(replacor),
+        _pop_continuator(pop_continuator),
+        _distribution_continuator(distribution_continuator)
     {}
+
+    //! edoEDA constructor without an edoContinue
+    /*!
+      Takes algo operators, all are mandatory
+
+      \param evaluation Evaluate a population
+      \param selector Selection of the best candidate solutions in the population
+      \param estimator Estimation of the distribution parameters
+      \param sampler Generate feasible solutions using the distribution
+      \param replacor Replace old solutions by new ones
+      \param pop_continuator Stopping criterion based on the population features
+    */
+    edoEDA (
+        eoPopEvalFunc < EOT > & evaluator,
+        eoSelect< EOT > & selector,
+        edoEstimator< D > & estimator,
+        edoSampler< D > & sampler,
+        eoReplacement< EOT > & replacor,
+        eoContinue< EOT > & pop_continuator
+    ) :
+        _evaluator(evaluator),
+        _selector(selector),
+        _estimator(estimator),
+        _sampler(sampler),
+        _replacor(replacor),
+        _pop_continuator(pop_continuator),
+        _distribution_continuator( edoDummyContinue<D>() )
+    {}
+
 
     /** A basic EDA algorithm that iterates over:
      * selection, estimation, sampling, bounding, evaluation, replacement
@@ -135,6 +164,9 @@ public:
 
 private:
 
+    //! A full evaluation function.
+    eoPopEvalFunc < EOT > & _evaluator;
+
     //! A EOT selector
     eoSelect < EOT > & _selector;
 
@@ -144,17 +176,14 @@ private:
     //! A D sampler
     edoSampler< D > & _sampler;
 
+    //! A EOT replacor
+    eoReplacement < EOT > & _replacor;
+
     //! A EOT population continuator
     eoContinue < EOT > & _pop_continuator;
 
     //! A D continuator
     edoContinue < D > & _distribution_continuator;
-
-    //! A full evaluation function.
-    eoPopEvalFunc < EOT > & _evaluator;
-
-    //! A EOT replacor
-    eoReplacement < EOT > & _replacor;
 };
 
 #endif // !_edoEDA_h
