@@ -41,11 +41,11 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 ### 3) Define your targets and link the librairies
 ######################################################################################	
 			
-#CUDA_ADD_EXECUTABLE(CutestSimpleHC_PPP testSimpleHC_PPP.cu) 
-CUDA_ADD_EXECUTABLE(CutestSimpleTS_PPP testSimpleTS_PPP.cu) 
+#CUDA_ADD_EXECUTABLE(GPUtestSimpleHC_PPP testSimpleHC_PPP.cu) 
+CUDA_ADD_EXECUTABLE(GPUtestSimpleTS_PPP testSimpleTS_PPP.cu) 
 
-#TARGET_LINK_LIBRARIES(CutestSimpleHC_PPP eoutils ga eo ${cutil})
-TARGET_LINK_LIBRARIES(CutestSimpleTS_PPP eoutils ga eo ${cutil})
+#TARGET_LINK_LIBRARIES(GPUtestSimpleHC_PPP eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(GPUtestSimpleTS_PPP eoutils ga eo ${cutil})
 
 
 
