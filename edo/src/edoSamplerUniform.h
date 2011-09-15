@@ -38,13 +38,13 @@ Authors:
  * This class uses the Uniform distribution parameters (bounds) to return
  * a random position used for population sampling.
  */
-template < typename EOT, class D=edoUniform<EOT> > // FIXME: D template name is there really used ?!?
-class edoSamplerUniform : public edoSampler< edoUniform< EOT > >
+template < typename EOT, class D = edoUniform<EOT> >
+class edoSamplerUniform : public edoSampler< D >
 {
 public:
     typedef D Distrib;
 
-    edoSamplerUniform( edoRepairer<EOT> & repairer ) : edoSampler( repairer) {}
+    edoSamplerUniform( edoRepairer<EOT> & repairer ) : edoSampler< D >( repairer) {}
 
     EOT sample( edoUniform< EOT >& distrib )
     {

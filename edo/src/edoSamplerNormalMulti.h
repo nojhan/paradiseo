@@ -34,13 +34,13 @@ Authors:
 
 //! edoSamplerNormalMulti< EOT >
 
-template< class EOT >
-class edoSamplerNormalMulti : public edoSampler< edoNormalMulti< EOT > >
+template< class EOT, typename D = edoNormalMulti< EOT > >
+class edoSamplerNormalMulti : public edoSampler< D >
 {
 public:
     typedef typename EOT::AtomType AtomType;
 
-    edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) : edoSampler( repairer) {}
+    edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) : edoSampler< D >( repairer) {}
 
     class Cholesky
     {

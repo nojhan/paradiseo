@@ -39,13 +39,13 @@ Authors:
  * This class uses the NormalMono distribution parameters (bounds) to return
  * a random position used for population sampling.
  */
-template < typename EOT >
-class edoSamplerNormalMono : public edoSampler< edoNormalMono< EOT > >
+template < typename EOT, typename D = edoNormalMono< EOT > >
+class edoSamplerNormalMono : public edoSampler< D >
 {
 public:
     typedef typename EOT::AtomType AtomType;
 
-    edoSamplerNormalMono( edoRepairer<EOT> & repairer ) : edoSampler( repairer) {}
+    edoSamplerNormalMono( edoRepairer<EOT> & repairer ) : edoSampler< D >( repairer) {}
 
     EOT sample( edoNormalMono< EOT >& distrib )
     {
