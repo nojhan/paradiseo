@@ -55,7 +55,7 @@ public:
 	using moOrderNeighborhood<Neighbor>::currentIndex;
 
 	/**
-	 * @Constructor
+	 * Constructor
 	 * @param _neighborhoodSize the neighborhood size
 	 * @param _xChange the number of positions to exchange
 	 */
