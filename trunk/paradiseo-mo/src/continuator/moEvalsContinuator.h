@@ -54,7 +54,7 @@ public:
     /**
      * Constructor
      * @param _fullEval full evaluation function to count
-     * @param _NeighborEval neighbor evaluation function to count
+     * @param _neighborEval neighbor evaluation function to count
      * @param _maxEvals number maximum of evaluations (full and incremental evaluations)
      * @param _restartCounter if true the counter of number of evaluations restarts to "zero" at initialization, if false, the number is cumulative
      */
