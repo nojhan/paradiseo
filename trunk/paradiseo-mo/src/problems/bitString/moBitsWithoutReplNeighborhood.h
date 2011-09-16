@@ -67,6 +67,7 @@ public:
    * Constructor
    * @param _length bit string length
    * @param _nBits maximum number of bits to flip (radius of the neighborhood)
+   * @param _sampleSize  number of neighbor to sample in the neighborhood
    */
   moBitsWithoutReplNeighborhood(unsigned _length, unsigned _nBits, unsigned _sampleSize): moBitsNeighborhood<Neighbor>(_length, _nBits), sampleSize(_sampleSize) {
     if (sampleSize > neighborhoodSize || sampleSize == 0)
