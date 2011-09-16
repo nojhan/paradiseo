@@ -60,7 +60,7 @@ public:
 
   /**
    * Copy Constructor
-   * @param _n the neighbor to copy
+   * @param _source the neighbor to copy
    */
   moBitsNeighbor(const moBitsNeighbor& _source) : moNeighbor<EOT, Fitness>(_source) {
     bits.resize(_source.bits.size());
