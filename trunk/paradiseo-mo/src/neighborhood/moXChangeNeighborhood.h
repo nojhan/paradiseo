@@ -55,7 +55,7 @@ public:
 	using moMappingNeighborhood<Neighbor>::mutex;
 
 	/**
-	 * @Constructor
+	 * Constructor
 	 * @param _neighborhoodSize the neighborhood size
 	 * @param _xChange the number of x-change positions
 	 */
