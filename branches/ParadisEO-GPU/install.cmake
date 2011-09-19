@@ -15,7 +15,7 @@ SET(NVIDIA_DIR "Set NVIDIA directory" CACHE PATH "NVIDIA directory" FORCE)
 SET(PARADISEO_GPU_DIR "Set ParadisEO-GPU directory" CACHE PATH "ParadisEO-GPU directory" FORCE)
 
 # Here, just specify the name of cutil library depending to the used NVIDIA_GPU_Computing_SDK
-# Find in NVIDIA_GPU_Computing_SDK/C/lib
+# Find in ./NVIDIA_GPU_Computing_SDK/C/lib
 SET(cutil "Set cutil library name")
 
 #########################################################################################################
