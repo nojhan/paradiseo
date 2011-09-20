@@ -161,7 +161,7 @@ public:
 	}
 
 	/**
-	 *Function inline to set the size of vector, called from host and device.
+	 * method to set the size of vector
 	 *@param _size the vector size
 	 */
 
