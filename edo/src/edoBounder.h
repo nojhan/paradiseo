@@ -39,7 +39,11 @@ template < typename EOT >
 class edoBounder : public edoRepairer< EOT >
 {
 public:
-    edoBounder( EOT min = EOT(1, 0), EOT max = EOT(1, 0) )
+    edoBounder()
+    {}
+
+
+    edoBounder( EOT min/* = EOT(1, 0)*/, EOT max/* = EOT(1, 1)*/ )
         : _min(min), _max(max)
     {
         assert(_min.size() > 0);
