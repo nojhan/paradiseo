@@ -75,35 +75,40 @@ public:
     //! Add more indexes set and their corresponding repairer operator address to the list
     void add( std::set<unsigned int> idx, edoRepairer<EOT>* op )
     {
+        assert( idx.size() > 0 );
+        assert( op != NULL );
+
         this->push_back( std::make_pair(idx, op) );
     }
 
     //! Repair a solution by calling several repair operator on subset of indexes
     virtual void operator()( EOT& sol )
     {
-        // i is an iterator that points on a pair
-        for( typename edoRepairerDispatcher<EOT>::iterator i = this->begin(); i != this->end(); ++i ) {
+        // ipair is an iterator that points on a pair
+        for( typename edoRepairerDispatcher<EOT>::iterator ipair = this->begin(); ipair != this->end(); ++ipair ) {
             // a partial copy of the sol
             EOT partsol;
 
             // j is an iterator that points on an uint
-            for( std::set< unsigned int >::iterator j = i->first.begin(); j != i->first.end(); ++j ) {
+            for( std::set< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
                 partsol.push_back( sol.at(*j) );
             } // for j
 
+            assert( partsol.size() > 0 );
+
             // apply the repairer on the partial copy
             // the repairer is a functor, thus second is callable
-            (*(i->second))( partsol );
+            (*(ipair->second))( partsol );
 
             { // copy back the repaired partial solution to sol
                 // browse partsol with uint k, and the idx set with an iterator (std::set is an associative tab)
                 unsigned int k=0;
-                for( std::set< unsigned int >::iterator j = i->first.begin(); j != i->first.end(); ++j ) {
+                for( std::set< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
                     sol[ *j ] = partsol[ k ];
                     k++;
                 } // for j
             } // context for k
-        } // for i
+        } // for ipair
     }
 };
 

@@ -40,13 +40,17 @@ class edoBounderUniform : public edoBounder< EOT >
 public:
     edoBounderUniform( EOT min, EOT max )
         : edoBounder< EOT >( min, max )
-    {}
+    {
+    }
 
     void operator()( EOT& sol )
     {
-        unsigned int size = sol.size();
-        assert(size > 0);
+        assert( this->min().size() > 0 );
+        assert( this->max().size() > 0 );
 
+        assert( sol.size() > 0);
+
+        unsigned int size = sol.size();
         for (unsigned int d = 0; d < size; ++d) {
 
             if ( sol[d] < this->min()[d] || sol[d] > this->max()[d]) {
