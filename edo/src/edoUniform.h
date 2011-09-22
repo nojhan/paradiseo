@@ -38,7 +38,7 @@ class edoUniform : public edoDistrib< EOT >, public edoVectorBounds< EOT >
 {
 public:
     edoUniform(EOT min, EOT max)
-	: edoVectorBounds< EOT >(min, max)
+        : edoVectorBounds< EOT >(min, max)
     {}
 };
 
