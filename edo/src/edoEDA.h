@@ -83,6 +83,7 @@ public:
         _sampler(sampler),
         _replacor(replacor),
         _pop_continuator(pop_continuator),
+        _dummy_continue(),
         _distribution_continuator(distribution_continuator)
     {}
 
@@ -111,7 +112,8 @@ public:
         _sampler(sampler),
         _replacor(replacor),
         _pop_continuator(pop_continuator),
-        _distribution_continuator( edoDummyContinue<D>() )
+        _dummy_continue(),
+        _distribution_continuator( _dummy_continue )
     {}
 
 
@@ -182,8 +184,12 @@ private:
     //! A EOT population continuator
     eoContinue < EOT > & _pop_continuator;
 
+    //! A D continuator that always return true
+    edoDummyContinue<D> _dummy_continue;
+
     //! A D continuator
     edoContinue < D > & _distribution_continuator;
+
 };
 
 #endif // !_edoEDA_h
