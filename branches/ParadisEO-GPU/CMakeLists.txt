@@ -125,7 +125,7 @@ EXECUTE_PROCESS(
 
 ADD_SUBDIRECTORY(doc)
 ADD_SUBDIRECTORY(test)
-ADD_SUBDIRECTORY(tutoriel)
+ADD_SUBDIRECTORY(tutorial)
 
 ######################################################################################
 
