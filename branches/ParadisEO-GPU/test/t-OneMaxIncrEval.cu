@@ -36,7 +36,7 @@
 #include <cassert>
 #include <iostream>
 #include <neighborhood/moGPUBitNeighbor.h>
-#include <cudaType/moGPUBitVector.h>
+#include <GPUType/moGPUBitVector.h>
 #include <problems/eval/EvalOneMax.h>
 #include <problems/eval/OneMaxIncrEval.h>
 
