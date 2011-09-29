@@ -101,20 +101,9 @@ int main(int argc, char **argv)
   unsigned seed = seedParam.value();
 
   // Iteration number
-  eoValueParam<unsigned int> nbIterationParam(1, "nbIteration", "TS Iteration number", 'I');
+  eoValueParam<unsigned int> nbIterationParam(100, "nbIteration", "TS Iteration number", 'I');
   parser.processParam( nbIterationParam, "TS Iteration number" );
   unsigned nbIteration = nbIterationParam.value();
-
-  // size tabu list
-  eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
-  parser.processParam( sizeTabuListParam, "Search Parameters" );
-  unsigned sizeTabuList = sizeTabuListParam.value();
-
- // duration tabu list
-  eoValueParam<unsigned int> durationParam(7, "duration", "duration of the tabu list", 'D');
-  parser.processParam( durationParam, "Search Parameters" );
-  unsigned duration = durationParam.value();
-
 
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -200,8 +189,8 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-    sizeTabuList=(n*(n-1))/2;
-    duration=sizeTabuList/8;
+    unsigned sizeTabuList=(n*(n-1))/2;
+    unsigned duration=sizeTabuList/8;
     // tabu list
     moIndexedVectorTabuList<Neighbor> tl(sizeTabuList,duration);
 
@@ -240,8 +229,7 @@ int main(int argc, char **argv)
   tabuSearch(sol);
   timer.stop();
   std::cout << "final:   " << sol << std::endl;
-  printf("CUDA execution time = %f ms\n",timer.getTime());
-  timer.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer.getTime());
  
   delete[] a;
   delete[] b;    
