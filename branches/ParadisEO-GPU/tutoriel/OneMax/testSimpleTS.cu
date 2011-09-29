@@ -240,8 +240,7 @@ void main_function(int argc, char **argv)
   localSearch1(sol1);
   timer1.stop();
   std::cout << "final:   " << sol1 <<std::endl;
-  printf("Execution time = %f ms\n",timer1.getTime());
-  timer1.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer1.getTime());
 
   /* =========================================================
    *
@@ -259,8 +258,7 @@ void main_function(int argc, char **argv)
   localSearch2(sol2);
   timer2.stop();
   std::cout << "final:   " << sol2 << std::endl;
-  printf("Execution time = %f ms\n",timer2.getTime());
-  timer2.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer2.getTime());
 
   /* =========================================================
    *
@@ -278,8 +276,7 @@ void main_function(int argc, char **argv)
   localSearch3(sol3);
   timer3.stop();
   std::cout << "final:   " << sol3<< std::endl;
-  printf("Execution time = %f ms\n",timer3.getTime());
-  timer3.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer3.getTime());
 
   /* =========================================================
    *
@@ -297,8 +294,7 @@ void main_function(int argc, char **argv)
   localSearch4(sol4);
   timer4.stop();
   std::cout << "final:   " << sol4 << std::endl;
-  printf("Execution time = %f ms\n",timer4.getTime());
-  timer4.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer4.getTime());
 
 }
 
