@@ -183,14 +183,12 @@ void main_function(int argc, char **argv)
   //init(solution);
   eval(sol);
   std::cout << "initial : " << sol << std::endl;
-  moGPUTimer timer1;
-  timer1.start();
+  moGPUTimer timer;
+  timer.start();
   SA(sol);
-  timer1.stop(); 
+  timer.stop(); 
   std::cout << "final : " << sol << std::endl;
-  printf("Execution time = %f ms\n",timer1.getTime());
-  timer1.deleteTimer();
- 
+  printf("Execution time = %.2lf s\n",timer.getTime()); 
 
 }
 
