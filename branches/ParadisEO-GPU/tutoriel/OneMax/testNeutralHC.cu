@@ -190,8 +190,7 @@ void main_function(int argc, char **argv)
   neutralHC(sol);
   timer.stop();
   std::cout << "final:   " << sol << std::endl;
-  printf("Execution time = %f ms\n",timer.getTime());
-  timer.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer.getTime());
 
 }
 
