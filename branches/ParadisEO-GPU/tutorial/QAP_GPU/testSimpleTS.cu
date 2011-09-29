@@ -236,8 +236,7 @@ int main(int argc, char **argv)
   tabuSearch(sol);
   std::cout << "final:   " << sol << std::endl;
   timer.stop();
-  printf("Execution time = %f ms\n",timer.getTime());
-  timer.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer.getTime());
  
 
   _data.GPUObject.free(dev_a);
