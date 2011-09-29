@@ -35,9 +35,6 @@
 #ifndef __moGPUCopy_H_
 #define __moGPUCopy_H_
 
-// CUDA includes
-#include <cutil.h>
-
 /**
  *  class to copy data  from CPU memory to  GPU global memory and vice versa
  */
@@ -63,11 +60,9 @@ public:
 	void operator()(T* & _data, T * & _dataTocpy, unsigned _dataSize) {
 
 		//copy data from CPU memory to GPU memory
-		CUDA_SAFE_CALL(cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
-				cudaMemcpyHostToDevice));
+		cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
+				cudaMemcpyHostToDevice);
 
-		// Check if the copy of data is failed
-		CUT_CHECK_ERROR("Copy of data from CPU to GPU global memory failed");
 	}
 
 	/**
@@ -98,14 +93,14 @@ public:
 		if (_HostToDevice) {
 
 			//copy data from CPU memory to GPU global memory
-			CUDA_SAFE_CALL(cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
-					cudaMemcpyHostToDevice));
+			cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
+					cudaMemcpyHostToDevice);
 		}
 
 		else {
 			//copy data from GPU global memory to GPU memory
-			CUDA_SAFE_CALL(cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
-					cudaMemcpyDeviceToHost));
+			cudaMemcpy(_data, _dataTocpy, _dataSize * sizeof(T),
+					cudaMemcpyDeviceToHost);
 		}
 
 	}
