@@ -3,20 +3,17 @@
 #########################################################################################################
 
 #  Here, just specify PARADISEO_DIR : the directory where ParadisEO has been installed
-SET(PARADISEO_DIR "Set ParadisEO directory" CACHE PATH "ParadisEO directory" FORCE)
+SET(PARADISEO_DIR "/home/mia/workspace/trunk" CACHE PATH "ParadisEO directory" FORCE)
 
 #  Here, just specify CUDA_DIR : the directory where CUDA has been installed
-SET(CUDA_DIR "Set CUDA directory" CACHE PATH "CUDA directory" FORCE)
+SET(CUDA_DIR "/usr/local/cuda" CACHE PATH "CUDA directory" FORCE)
 
 #  Here, just specify GPU_DIR : the directory where package Paradiseo GPU has been extrated
-SET(PARADISEO_GPU_DIR "Set ParadisEO-GPU directory" CACHE PATH "ParadisEO-GPU directory" FORCE)
+SET(PARADISEO_GPU_DIR "/home/mia/workspace/ParadisEO-GPU1.0" CACHE PATH "ParadisEO-GPU directory" FORCE)
 
 #########################################################################################################
 # 2) ParadisEO-GPU install: ADVANCED Configuration
 #########################################################################################################
-
-SET(NVIDIA_SRC_DIR "${NVIDIA_DIR}/C/common/inc" CACHE PATH "NVIDIA source directory" FORCE)
-SET(NVIDIA_LIB_DIR "${NVIDIA_DIR}/C/lib" CACHE PATH "NVIDIA library directory" FORCE)
 
 SET(CUDA_SRC_DIR "${CUDA_DIR}/include" CACHE PATH "CUDA source directory" FORCE)
 SET(CUDA_LIB_DIR "${CUDA_DIR}/lib" CACHE PATH "CUDA library directory" FORCE)
