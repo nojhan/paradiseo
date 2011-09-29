@@ -8,7 +8,7 @@ SET(PARADISEO_DIR "/home/mia/workspace/trunk" CACHE PATH "ParadisEO directory" F
 #  Here, just specify CUDA_DIR : the directory where CUDA has been installed
 SET(CUDA_DIR "/usr/local/cuda" CACHE PATH "CUDA directory" FORCE)
 
-#  Here, just specify GPU_DIR : the directory where package Paradiseo GPU has been extrated
+#  Here, just specify GPU_DIR : the directory where package Paradiseo GPU has been extracted
 SET(PARADISEO_GPU_DIR "/home/mia/workspace/ParadisEO-GPU1.0" CACHE PATH "ParadisEO-GPU directory" FORCE)
 
 #########################################################################################################
