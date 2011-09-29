@@ -8,15 +8,8 @@ SET(PARADISEO_DIR "Set ParadisEO directory" CACHE PATH "ParadisEO directory" FOR
 #  Here, just specify CUDA_DIR : the directory where CUDA has been installed
 SET(CUDA_DIR "Set CUDA directory" CACHE PATH "CUDA directory" FORCE)
 
-#  Here, just specify NVIDIA_DIR : the directory where NVIDIA header has been installed
-SET(NVIDIA_DIR "Set NVIDIA directory" CACHE PATH "NVIDIA directory" FORCE)
-
 #  Here, just specify GPU_DIR : the directory where package Paradiseo GPU has been extrated
 SET(PARADISEO_GPU_DIR "Set ParadisEO-GPU directory" CACHE PATH "ParadisEO-GPU directory" FORCE)
-
-# Here, just specify the name of cutil library depending to the used NVIDIA_GPU_Computing_SDK
-# Find in ./NVIDIA_GPU_Computing_SDK/C/lib
-SET(cutil "Set cutil library name")
 
 #########################################################################################################
 # 2) ParadisEO-GPU install: ADVANCED Configuration
