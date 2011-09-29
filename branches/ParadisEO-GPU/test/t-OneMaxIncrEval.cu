@@ -35,14 +35,14 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <neighborhood/moCudaBitNeighbor.h>
-#include <cudaType/moCudaBitVector.h>
+#include <neighborhood/moGPUBitNeighbor.h>
+#include <cudaType/moGPUBitVector.h>
 #include <problems/eval/EvalOneMax.h>
 #include <problems/eval/OneMaxIncrEval.h>
 
 
-typedef moCudaBitVector<eoMaximizingFitness> Solution;
-typedef moCudaBitNeighbor <Solution,eoMaximizingFitness> Neighbor;
+typedef moGPUBitVector<eoMaximizingFitness> Solution;
+typedef moGPUBitNeighbor <Solution,eoMaximizingFitness> Neighbor;
 
 int main() {
 
