@@ -35,9 +35,6 @@
 #ifndef __moGPUAllocator_H_
 #define __moGPUAllocator_H_
 
-// CUDA includes
-#include <cutil.h>
-
 /**
  *  class for allocation data on GPU global memory
  */
@@ -62,10 +59,7 @@ public:
 	void operator()(T* & _data, unsigned _dataSize) {
 
 		//Allocate data in GPU memory
-		CUDA_SAFE_CALL(cudaMalloc((void**) &_data, _dataSize * sizeof(T)));
-
-		// Check if data allocation is failed
-		CUT_CHECK_ERROR("Allocation of data on GPU global memory failed");
+		cudaMalloc((void**) &_data, _dataSize * sizeof(T));
 
 	}
 
