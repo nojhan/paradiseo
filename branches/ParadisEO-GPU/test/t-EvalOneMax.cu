@@ -35,7 +35,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <cudaType/moGPUBitVector.h>
+#include <GPUType/moGPUBitVector.h>
 #include <problems/eval/EvalOneMax.h>
 
 typedef moGPUBitVector<eoMaximizingFitness> Solution;
