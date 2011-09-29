@@ -146,7 +146,6 @@ public:
 				moGPUMappingKernelEvalByCpy<T,Fitness,Eval><<<tmp_kernel_Dim,NB_THREAD[i]>>>(eval,device_solution.vect,device_FitnessArray,fitness,_mapping,neighborhoodSize);
 				timer.stop();
 				mean_time[i] += (timer.getTime());
-				timer.deleteTimer();
 			}
 			if (best_time >= (mean_time[i] / 5)) {
 				best_time = mean_time[i] / 5;
@@ -167,7 +166,6 @@ public:
 			moGPUMappingKernelEvalByCpy<T,Fitness,Eval><<<tmp_kernel_Dim,BLOCK_SIZE>>>(eval,device_solution.vect,device_FitnessArray,fitness,_mapping,neighborhoodSize);
 			timer.stop();
 			mean_time[6] += (timer.getTime());
-			timer.deleteTimer();
 		}
 		if (best_time >= (mean_time[6] / 5))
 		best_time = mean_time[6] / 5;
@@ -182,7 +180,6 @@ public:
 				moGPUMappingKernelEvalByCpy<T,Fitness,Eval><<<tmp_kernel_Dim,NB_THREAD[i]>>>(eval,device_solution.vect,device_FitnessArray,fitness,_mapping,neighborhoodSize);
 				timer.stop();
 				mean_time[i] += (timer.getTime());
-				timer.deleteTimer();
 			}
 			if (best_time >= (mean_time[i] / 5)) {
 				best_time = mean_time[i] / 5;
