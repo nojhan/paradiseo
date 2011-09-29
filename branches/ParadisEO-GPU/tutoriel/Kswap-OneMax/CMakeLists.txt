@@ -13,8 +13,6 @@ INCLUDE_DIRECTORIES(
 
   # include CUDA source directory
   ${CUDA_SRC_DIR}
-  # include NVIDIA source directory
-  ${NVIDIA_SRC_DIR}
   # include EO source directory
   ${PARADISEO_EO_SRC_DIR}/src
   # include MO source directory
@@ -33,7 +31,7 @@ INCLUDE_DIRECTORIES(
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} )	
+LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_LIB_DIR} )	
 
 ######################################################################################
 
@@ -44,8 +42,8 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} 
 CUDA_ADD_EXECUTABLE(GPUtestKswapHCByModif testKswapHCByModif.cu)
 CUDA_ADD_EXECUTABLE(GPUtestKswapHCByCpy testKswapHCByCpy.cu)  
 
-TARGET_LINK_LIBRARIES(GPUtestKswapHCByModif eoutils ga eo ${cutil})
-TARGET_LINK_LIBRARIES(GPUtestKswapHCByCpy eoutils ga eo ${cutil})
+TARGET_LINK_LIBRARIES(GPUtestKswapHCByModif eoutils ga eo)
+TARGET_LINK_LIBRARIES(GPUtestKswapHCByCpy eoutils ga eo)
 
 
 
