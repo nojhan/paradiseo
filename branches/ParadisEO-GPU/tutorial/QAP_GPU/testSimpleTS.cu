@@ -104,14 +104,9 @@ int main(int argc, char **argv)
     unsigned seed = seedParam.value();
 
     // Iteration number
-    eoValueParam<unsigned int> nbIterationParam(1, "nbIteration", "TS Iteration number", 'I');
+    eoValueParam<unsigned int> nbIterationParam(100, "nbIteration", "TS Iteration number", 'I');
     parser.processParam( nbIterationParam, "TS Iteration number" );
     unsigned nbIteration = nbIterationParam.value();
-
-    // duration tabu list
-    eoValueParam<unsigned int> durationParam(7, "duration", "duration of the tabu list", 'D');
-    parser.processParam( durationParam, "Search Parameters" );
-    unsigned duration = durationParam.value();
 
     // the name of the "status" file where all actual parameter values will be saved
     string str_status = parser.ProgramName() + ".status"; // default value
