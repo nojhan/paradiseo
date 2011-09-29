@@ -208,8 +208,7 @@ void main_function(int argc, char **argv)
   localSearch(sol);
   timer.stop();
   std::cout << "final:   " << sol << std::endl;
-  printf("Execution time = %f ms\n",timer.getTime());
-  timer.deleteTimer();
+  printf("Execution time = %0.2lf s\n",timer.getTime());
  
 
   /* =========================================================
@@ -227,8 +226,7 @@ void main_function(int argc, char **argv)
   simpleHC(sol1);
   timer1.stop();
   std::cout << "final:   " << sol1 << std::endl;
-  printf("Execution time = %f ms\n",timer1.getTime());
-  timer1.deleteTimer();
+  printf("Execution time = %0.2lf s\n",timer1.getTime());
 }
 
 // A main that catches the exceptions
