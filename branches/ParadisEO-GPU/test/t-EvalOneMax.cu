@@ -35,10 +35,10 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <cudaType/moCudaBitVector.h>
+#include <cudaType/moGPUBitVector.h>
 #include <problems/eval/EvalOneMax.h>
 
-typedef moCudaBitVector<eoMaximizingFitness> Solution;
+typedef moGPUBitVector<eoMaximizingFitness> Solution;
 
 int main() {
   
