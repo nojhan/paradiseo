@@ -204,7 +204,6 @@ void main_function(int argc, char **argv)
   timer.stop();
   std::cout << "final:   " << sol<< std::endl;
   printf("Execution time = %f ms\n",timer.getTime());
-  timer.deleteTimer();
 }
 
 // A main that catches the exceptions
