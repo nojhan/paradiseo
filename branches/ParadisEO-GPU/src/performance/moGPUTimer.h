@@ -35,8 +35,7 @@
 #ifndef __moGPUTimer_H_
 #define __moGPUTimer_H_
 
-// CUDA Utility Tools 
-#include <cutil.h>
+#include <sys/time.h>
 
 /**
  * To compute execution time
@@ -46,7 +45,9 @@ class moGPUTimer {
 
 public:
 
-	unsigned int timer;
+	timeval tim;
+	double t1;
+	double t2;
 
 	/**
 	 * Constructor
@@ -54,9 +55,8 @@ public:
 
 	moGPUTimer() {
 
-		timer = 0;
-		//Create timer
-		cutCreateTimer(&timer);
+		t1 = 0;
+		t2 = 0;
 	}
 
 	/**
@@ -74,7 +74,8 @@ public:
 	void start() {
 
 		// Start timer
-		cutStartTimer(timer);
+		gettimeofday(&tim, NULL);
+		t1 = tim.tv_sec + (tim.tv_usec / 1000000.0);
 	}
 
 	/**
@@ -84,30 +85,21 @@ public:
 	void stop() {
 
 		// Stop timer
-		cutStopTimer(timer);
+		gettimeofday(&tim, NULL);
+		t2 = tim.tv_sec + (tim.tv_usec / 1000000.0);
 
 	}
 
 	/**
-	 * to get timer value in ms
-	 * @return execution time in ms
+	 * to get timer value in s
+	 * @return execution time in s
 	 */
 
 	double getTime() {
 
 		// get time
-		return cutGetTimerValue(timer);
+				return (t2 - t1);
 
-	}
-
-	/**
-	 * to delete timer
-	 */
-
-	void deleteTimer() {
-
-		//Delete timer
-		cutDeleteTimer(timer);
 
 	}
 
