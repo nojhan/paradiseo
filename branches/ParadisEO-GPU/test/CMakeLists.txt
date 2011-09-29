@@ -1,10 +1,3 @@
-###############################################################################
-##
-## CMakeLists file for OneMax Example/test
-##
-###############################################################################
-
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -13,8 +6,6 @@ INCLUDE_DIRECTORIES(
 
   # include CUDA source directory
   ${CUDA_SRC_DIR}
-  # include NVIDIA source directory
-  ${NVIDIA_SRC_DIR}
   # include EO source directory
   ${PARADISEO_EO_SRC_DIR}/src
   # include MO source directory
@@ -31,7 +22,7 @@ INCLUDE_DIRECTORIES(
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib  ${NVIDIA_LIB_DIR} ${CUDA_LIB_DIR} )	
+LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_LIB_DIR} )	
 
 
 ######################################################################################
@@ -70,7 +61,7 @@ IF(ENABLE_CMAKE_TESTING)
 	
 	# Link the librairies
 	FOREACH (test ${TEST_LIST})
-	 	TARGET_LINK_LIBRARIES(${test} ga es eoutils eo ${cutil})
+	 	TARGET_LINK_LIBRARIES(${test} ga es eoutils eo)
 	ENDFOREACH (test)
 	
 ENDIF(ENABLE_CMAKE_TESTING)
