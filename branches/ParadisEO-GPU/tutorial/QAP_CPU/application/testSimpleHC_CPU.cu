@@ -206,8 +206,7 @@ int main(int argc, char **argv)
   localSearch(sol);
   timer.stop();
   std::cout << "final:   " << sol << std::endl;
-  printf("CUDA execution time = %f ms\n",timer.getTime());
-  timer.deleteTimer();
+  printf("Execution time = %.2lf s\n",timer.getTime());
  
   delete[] a;
   delete[] b;    
