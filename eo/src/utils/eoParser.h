@@ -156,6 +156,10 @@ public:
     virtual bool isItThere(eoParam& _param) const
         { return getValue(_param).first; }
 
+
+    std::string get( const std::string & name) const;
+
+
     /**
      * get a handle on a param from its longName
      *

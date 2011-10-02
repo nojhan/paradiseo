@@ -112,6 +112,12 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
 }
 
 
+std::string eoParser::get( const std::string & name) const
+{
+    return getParamWithLongName( name )->getValue();
+}
+
+
 eoParam * eoParser::getParamWithLongName(const std::string& _name) const
 {
     typedef std::multimap<std::string, eoParam*> MultiMapType;
