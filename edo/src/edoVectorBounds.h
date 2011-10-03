@@ -35,10 +35,10 @@ class edoVectorBounds
 {
 public:
     edoVectorBounds(EOT min, EOT max)
-	: _min(min), _max(max)
+        : _min(min), _max(max)
     {
-	assert(_min.size() > 0);
-	assert(_min.size() == _max.size());
+        assert(_min.size() > 0);
+        assert(_min.size() == _max.size());
     }
 
     EOT min(){return _min;}
@@ -46,8 +46,8 @@ public:
 
     unsigned int size()
     {
-	assert(_min.size() == _max.size());
-	return _min.size();
+        assert(_min.size() == _max.size());
+        return _min.size();
     }
 
 private:

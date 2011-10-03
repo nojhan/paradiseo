@@ -29,28 +29,35 @@ Authors:
 
 #include "edoBounder.h"
 
-//! edoBounderUniform< EOT >
-
+/** A bounder that randomly draw new values for variables going out bounds,
+ * in a given uniform distribution.
+ *
+ * @ingroup Repairers
+ */
 template < typename EOT >
 class edoBounderUniform : public edoBounder< EOT >
 {
 public:
     edoBounderUniform( EOT min, EOT max )
-	: edoBounder< EOT >( min, max )
-    {}
+        : edoBounder< EOT >( min, max )
+    {
+    }
 
     void operator()( EOT& sol )
     {
-	unsigned int size = sol.size();
-	assert(size > 0);
+        assert( this->min().size() > 0 );
+        assert( this->max().size() > 0 );
 
-	for (unsigned int d = 0; d < size; ++d) {
+        assert( sol.size() > 0);
 
-	    if ( sol[d] < this->min()[d] || sol[d] > this->max()[d]) {
-		// use EO's global "rng"
-		sol[d] = rng.uniform( this->min()[d], this->max()[d] );
-	    }
-	} // for d in size
+        unsigned int size = sol.size();
+        for (unsigned int d = 0; d < size; ++d) {
+
+            if ( sol[d] < this->min()[d] || sol[d] > this->max()[d]) {
+                // use EO's global "rng"
+                sol[d] = rng.uniform( this->min()[d], this->max()[d] );
+            }
+        } // for d in size
     }
 };
 

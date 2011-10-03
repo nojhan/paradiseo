@@ -17,29 +17,31 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-Copyright (C) 2010 Thales group
+Copyright (C) 2011 Thales group
 */
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
+    Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
-#ifndef _edoUniform_h
-#define _edoUniform_h
+#ifndef _edoRepairer_h
+#define _edoRepairer_h
 
-#include "edoDistrib.h"
-#include "edoVectorBounds.h"
+#include <eoFunctor.h>
 
-//! edoUniform< EOT >
-
+/** The interface of a set of classes that modifies an unfeasible candidate 
+ * solution so as to respect a given set of constraints and thus make a feasible
+ * solution.
+ *
+ * @ingroup Repairers
+ */
 template < typename EOT >
-class edoUniform : public edoDistrib< EOT >, public edoVectorBounds< EOT >
+class edoRepairer : public eoUF< EOT&, void >
 {
 public:
-    edoUniform(EOT min, EOT max)
-        : edoVectorBounds< EOT >(min, max)
-    {}
+    // virtual void operator()( EOT& ) = 0 (provided by eoUF< A1, R >)
+    virtual void operator()( EOT& ) {}
 };
 
-#endif // !_edoUniform_h
+#endif // !_edoRepairer_h

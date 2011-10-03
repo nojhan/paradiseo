@@ -30,31 +30,34 @@ Authors:
 
 #include "edoBounder.h"
 
-//! edoBounderRng< EOT >
-
+/** A bounder that randomly draw new values for variables going out bounds, 
+ * using an eoRng to do so.
+ *
+ * @ingroup Repairers
+ */
 template < typename EOT >
 class edoBounderRng : public edoBounder< EOT >
 {
 public:
     edoBounderRng( EOT min, EOT max, eoRndGenerator< double > & rng )
-	: edoBounder< EOT >( min, max ), _rng(rng)
+    : edoBounder< EOT >( min, max ), _rng(rng)
     {}
 
     void operator()( EOT& x )
     {
-	unsigned int size = x.size();
-	assert(size > 0);
+    unsigned int size = x.size();
+    assert(size > 0);
 
-	for (unsigned int d = 0; d < size; ++d) // browse all dimensions
-	    {
+    for (unsigned int d = 0; d < size; ++d) // browse all dimensions
+        {
 
-		// FIXME: attention: les bornes RNG ont les memes bornes quelque soit les dimensions idealement on voudrait avoir des bornes differentes pour chaque dimensions.
+        // FIXME: attention: les bornes RNG ont les memes bornes quelque soit les dimensions idealement on voudrait avoir des bornes differentes pour chaque dimensions.
 
-		if (x[d] < this->min()[d] || x[d] > this->max()[d])
-		    {
-			x[d] = _rng();
-		    }
-	    }
+        if (x[d] < this->min()[d] || x[d] > this->max()[d])
+            {
+            x[d] = _rng();
+            }
+        }
     }
 
 private:

@@ -17,29 +17,52 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-Copyright (C) 2010 Thales group
+Copyright (C) 2011 Thales group
 */
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
+    Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
-#ifndef _edoUniform_h
-#define _edoUniform_h
+#ifndef _edoRepairerRound_h
+#define _edoRepairerRound_h
 
-#include "edoDistrib.h"
-#include "edoVectorBounds.h"
+#include <cmath>
 
-//! edoUniform< EOT >
+#include "edoRepairer.h"
 
+/**
+ *
+ * @ingroup Repairers
+ */
 template < typename EOT >
-class edoUniform : public edoDistrib< EOT >, public edoVectorBounds< EOT >
+class edoRepairerFloor : public edoRepairer<EOT>
 {
 public:
-    edoUniform(EOT min, EOT max)
-        : edoVectorBounds< EOT >(min, max)
-    {}
+    virtual void operator()( EOT& sol )
+    {
+        for( unsigned int i=0; i < sol.size(); ++i ) {
+            sol[i] = floor( sol[i] );
+        }
+    }
 };
 
-#endif // !_edoUniform_h
+/**
+ *
+ * @ingroup Repairers
+ */
+template < typename EOT >
+class edoRepairerCeil : public edoRepairer<EOT>
+{
+public:
+    virtual void operator()( EOT& sol )
+    {
+        for( unsigned int i=0; i < sol.size(); ++i ) {
+            sol[i] = ceil( sol[i] );
+        }
+    }
+};
+
+
+#endif // !_edoRepairerRound_h

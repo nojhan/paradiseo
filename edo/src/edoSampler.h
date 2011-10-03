@@ -30,7 +30,7 @@ Authors:
 
 #include <eoFunctor.h>
 
-#include "edoBounder.h"
+#include "edoRepairer.h"
 #include "edoBounderNo.h"
 
 //! edoSampler< D >
@@ -41,47 +41,34 @@ class edoSampler : public eoUF< D&, typename D::EOType >
 public:
     typedef typename D::EOType EOType;
 
-    edoSampler(edoBounder< EOType > & bounder)
-	: /*_dummy_bounder(),*/ _bounder(bounder)
+    edoSampler(edoRepairer< EOType > & repairer)
+        : _dummy_repairer(), _repairer(repairer)
     {}
 
-    /*
+    
     edoSampler()
-	: _dummy_bounder(), _bounder( _dummy_bounder )
+        : _dummy_repairer(), _repairer( _dummy_repairer )
     {}
-    */
+    
 
     // virtual EOType operator()( D& ) = 0 (provided by eoUF< A1, R >)
 
     EOType operator()( D& distrib )
     {
-	unsigned int size = distrib.size();
-	assert(size > 0);
+        unsigned int size = distrib.size();
+        assert(size > 0);
 
+        // Point we want to sample to get higher a set of points
+        // (coordinates in n dimension)
+        // x = {x1, x2, ..., xn}
+        // the sample method is implemented in the derivated class
+        EOType solution(sample(distrib));
 
-	//-------------------------------------------------------------
-	// Point we want to sample to get higher a set of points
-	// (coordinates in n dimension)
-	// x = {x1, x2, ..., xn}
-	// the sample method is implemented in the derivated class
-	//-------------------------------------------------------------
+        // Now we are bounding the distribution thanks to min and max
+        // parameters.
+        _repairer(solution);
 
-	EOType solution(sample(distrib));
-
-	//-------------------------------------------------------------
-
-
-	//-------------------------------------------------------------
-	// Now we are bounding the distribution thanks to min and max
-	// parameters.
-	//-------------------------------------------------------------
-
-	_bounder(solution);
-
-	//-------------------------------------------------------------
-
-
-	return solution;
+        return solution;
     }
 
 protected:
@@ -89,10 +76,10 @@ protected:
     virtual EOType sample( D& ) = 0;
 
 private:
-    //edoBounderNo<EOType> _dummy_bounder;
+    edoBounderNo<EOType> _dummy_repairer;
 
-    //! Bounder functor
-    edoBounder< EOType > & _bounder;
+    //! repairer functor
+    edoRepairer< EOType > & _repairer;
 
 };
 

@@ -42,7 +42,6 @@ INCLUDE_DIRECTORIES(
 
 LINK_DIRECTORIES(
   ${EO_LIBRARY_DIRS}
-  ${MO_LIBRARY_DIRS}
   )
 
 ######################################################################################
@@ -77,6 +76,7 @@ ENDIF()
 ### 6) Prepare some variables for CMAKE usage
 ######################################################################################
 
+# Empty source files, because we want to build a library
 SET(SAMPLE_SRCS)
 
 ######################################################################################

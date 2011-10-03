@@ -30,34 +30,36 @@ Authors:
 
 #include "edoBounder.h"
 
-//! edoBounderBound< EOT >
-
+/** A bounder that correct an incorrect variable by setting it to the min/max
+ *
+ * @ingroup Repairers
+ */
 template < typename EOT >
 class edoBounderBound : public edoBounder< EOT >
 {
 public:
     edoBounderBound( EOT min, EOT max )
-	: edoBounder< EOT >( min, max )
+    : edoBounder< EOT >( min, max )
     {}
 
     void operator()( EOT& x )
     {
-	unsigned int size = x.size();
-	assert(size > 0);
+    unsigned int size = x.size();
+    assert(size > 0);
 
-	for (unsigned int d = 0; d < size; ++d) // browse all dimensions
-	    {
-		if (x[d] < this->min()[d])
-		    {
-			x[d] = this->min()[d];
-			continue;
-		    }
+    for (unsigned int d = 0; d < size; ++d) // browse all dimensions
+        {
+        if (x[d] < this->min()[d])
+            {
+            x[d] = this->min()[d];
+            continue;
+            }
 
-		if (x[d] > this->max()[d])
-		    {
-			x[d] = this->max()[d];
-		    }
-	    }
+        if (x[d] > this->max()[d])
+            {
+            x[d] = this->max()[d];
+            }
+        }
     }
 };
 

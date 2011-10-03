@@ -22,24 +22,41 @@ Copyright (C) 2010 Thales group
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
+    Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
-#ifndef _edoUniform_h
-#define _edoUniform_h
+#include <eo>
+#include <edo>
+#include <es.h>
 
-#include "edoDistrib.h"
-#include "edoVectorBounds.h"
+typedef eoReal< eoMinimizingFitness > EOT;
 
-//! edoUniform< EOT >
-
-template < typename EOT >
-class edoUniform : public edoDistrib< EOT >, public edoVectorBounds< EOT >
+int main(void)
 {
-public:
-    edoUniform(EOT min, EOT max)
-        : edoVectorBounds< EOT >(min, max)
-    {}
-};
+    EOT sol;
+    sol.push_back(1.1);
+    sol.push_back(1.1);
+    sol.push_back(3.9);
+    sol.push_back(3.9);
+    // we expect {1,2,3,4}
 
-#endif // !_edoUniform_h
+    edoRepairer<EOT>* rep1 = new edoRepairerFloor<EOT>();
+    edoRepairer<EOT>* rep2 = new edoRepairerCeil<EOT>();
+
+    std::set<unsigned int> indexes1;
+    indexes1.insert(0);
+    indexes1.insert(2);
+
+    std::set<unsigned int> indexes2;
+    indexes2.insert(1);
+    indexes2.insert(3);
+
+    edoRepairerDispatcher<EOT> repare( indexes1, rep1 );
+    repare.add( indexes2, rep2 );
+
+    repare(sol);
+
+    std::cout << sol << std::endl;
+
+    return 0;
+}
