@@ -97,6 +97,11 @@ private :
     This class is persistent, so it can be stored and reloaded to restore
     parameter settings.
 
+    Parameters can be read from argv, strings or streams, and must be specified
+    using the following convention: --name=value or -n=value
+
+    You should not use space as a separator between the parameter and its value.
+
     @ingroup Parameters
 */
 class eoParser : public eoParameterLoader, public eoObject, public eoPersistent
