@@ -32,7 +32,7 @@ Authors:
 
 /** A bounder that does nothing.
  *
- * @ingroup Bounders
+ * @ingroup Repairers
  */
 template < typename EOT >
 class edoBounderNo : public edoBounder< EOT >

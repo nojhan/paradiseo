@@ -38,58 +38,34 @@ Authors:
  * This class uses the Uniform distribution parameters (bounds) to return
  * a random position used for population sampling.
  */
-template < typename EOT, class D=edoUniform<EOT> > // FIXME: D template name is there really used ?!?
-class edoSamplerUniform : public edoSampler< edoUniform< EOT > >
+template < typename EOT, class D = edoUniform<EOT> >
+class edoSamplerUniform : public edoSampler< D >
 {
 public:
     typedef D Distrib;
 
-    edoSamplerUniform(edoBounder< EOT > & bounder)
-	: edoSampler< edoUniform<EOT> >(bounder) // FIXME: Why D is not used here ?
-    {}
-
-    /*
-    edoSamplerUniform()
-	: edoSampler< edoUniform<EOT> >()
-    {}
-    */
+    edoSamplerUniform( edoRepairer<EOT> & repairer ) : edoSampler< D >( repairer) {}
 
     EOT sample( edoUniform< EOT >& distrib )
     {
-	unsigned int size = distrib.size();
-	assert(size > 0);
+        unsigned int size = distrib.size();
+        assert(size > 0);
 
+        // Point we want to sample to get higher a set of points
+        // (coordinates in n dimension)
+        // x = {x1, x2, ..., xn}
+        EOT solution;
 
-	//-------------------------------------------------------------
-	// Point we want to sample to get higher a set of points
-	// (coordinates in n dimension)
-	// x = {x1, x2, ..., xn}
-	//-------------------------------------------------------------
+        // Sampling all dimensions
+        for (unsigned int i = 0; i < size; ++i)
+            {
+            double min = distrib.min()[i];
+            double max = distrib.max()[i];
+            double random = rng.uniform(min, max);
+            solution.push_back(random);
+            }
 
-	EOT solution;
-
-	//-------------------------------------------------------------
-
-
-	//-------------------------------------------------------------
-	// Sampling all dimensions
-	//-------------------------------------------------------------
-
-	for (unsigned int i = 0; i < size; ++i)
-	    {
-		double min = distrib.min()[i];
-		double max = distrib.max()[i];
-		double random = rng.uniform(min, max);
-
-		assert(min <= random && random <= max);
-
-		solution.push_back(random);
-	    }
-
-	//-------------------------------------------------------------
-
-
-	return solution;
+        return solution;
     }
 };
 

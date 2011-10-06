@@ -39,52 +39,37 @@ Authors:
  * This class uses the NormalMono distribution parameters (bounds) to return
  * a random position used for population sampling.
  */
-template < typename EOT >
-class edoSamplerNormalMono : public edoSampler< edoNormalMono< EOT > >
+template < typename EOT, typename D = edoNormalMono< EOT > >
+class edoSamplerNormalMono : public edoSampler< D >
 {
 public:
     typedef typename EOT::AtomType AtomType;
 
-    edoSamplerNormalMono( edoBounder< EOT > & bounder )
-	: edoSampler< edoNormalMono< EOT > >( bounder )
-    {}
+    edoSamplerNormalMono( edoRepairer<EOT> & repairer ) : edoSampler< D >( repairer) {}
 
     EOT sample( edoNormalMono< EOT >& distrib )
     {
-	unsigned int size = distrib.size();
-	assert(size > 0);
+        unsigned int size = distrib.size();
+        assert(size > 0);
 
+        // Point we want to sample to get higher a set of points
+        // (coordinates in n dimension)
+        // x = {x1, x2, ..., xn}
+        EOT solution;
+        
+        // Sampling all dimensions
+        for (unsigned int i = 0; i < size; ++i)
+            {
+            AtomType mean = distrib.mean()[i];
+            AtomType variance = distrib.variance()[i];
+            AtomType random = rng.normal(mean, variance);
 
-	//-------------------------------------------------------------
-	// Point we want to sample to get higher a set of points
-	// (coordinates in n dimension)
-	// x = {x1, x2, ..., xn}
-	//-------------------------------------------------------------
+            assert(variance >= 0);
 
-	EOT solution;
+            solution.push_back(random);
+            }
 
-	//-------------------------------------------------------------
-
-
-	//-------------------------------------------------------------
-	// Sampling all dimensions
-	//-------------------------------------------------------------
-
-	for (unsigned int i = 0; i < size; ++i)
-	    {
-		AtomType mean = distrib.mean()[i];
-		AtomType variance = distrib.variance()[i];
-		AtomType random = rng.normal(mean, variance);
-
-		assert(variance >= 0);
-
-		solution.push_back(random);
-	    }
-
-	//-------------------------------------------------------------
-
-
-	return solution;
+        return solution;
     }
 };
 

@@ -33,7 +33,7 @@ Authors:
 /** A bounder that randomly draw new values for variables going out bounds, 
  * using an eoRng to do so.
  *
- * @ingroup Bounders
+ * @ingroup Repairers
  */
 template < typename EOT >
 class edoBounderRng : public edoBounder< EOT >

@@ -38,6 +38,7 @@ SET(SOURCES
   t-bounderno
   t-uniform
   t-continue
+  t-dispatcher-round
   )
 
 FOREACH(current ${SOURCES})

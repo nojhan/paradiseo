@@ -42,7 +42,6 @@ INCLUDE_DIRECTORIES(
 
 LINK_DIRECTORIES(
   ${EO_LIBRARY_DIRS}
-  ${MO_LIBRARY_DIRS}
   )
 
 ######################################################################################

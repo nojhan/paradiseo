@@ -56,10 +56,14 @@ Authors:
 
 #include "edoVectorBounds.h"
 
+#include "edoRepairer.h"
+#include "edoRepairerDispatcher.h"
+#include "edoRepairerRound.h"
 #include "edoBounder.h"
 #include "edoBounderNo.h"
 #include "edoBounderBound.h"
 #include "edoBounderRng.h"
+#include "edoBounderUniform.h"
 
 #include "edoContinue.h"
 #include "utils/edoCheckPoint.h"
