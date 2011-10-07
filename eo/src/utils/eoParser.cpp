@@ -35,15 +35,10 @@
 #include <cctype>
 
 #include <utils/compatibility.h>
-
 #include <utils/eoParser.h>
+#include <utils/eoLogger.h>
 
 using namespace std;
-
-void eoWarning(std::string str)
-{
-    cout << str << '\n';
-}
 
 std::ostream& printSectionHeader(std::ostream& os, std::string section)
 {
@@ -117,6 +112,11 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
 }
 
 
+std::string eoParser::get( const std::string & name) const
+{
+    return getParamWithLongName( name )->getValue();
+}
+
 
 eoParam * eoParser::getParamWithLongName(const std::string& _name) const
 {
@@ -128,7 +128,6 @@ eoParam * eoParser::getParamWithLongName(const std::string& _name) const
             return p->second;
     return 0;
 }
-
 
 
 void eoParser::processParam(eoParam& param, std::string section)
@@ -214,7 +213,7 @@ void eoParser::readFrom(istream& is)
             {
                 if (str.size() < 2)
                 {
-                    eoWarning("Missing parameter");
+                    eo::log << eo::warnings << "Missing parameter" << std::endl;
                     needHelp.value() = true;
                     return;
                 }
