@@ -58,12 +58,15 @@ public:
 
         // Sampling all dimensions
         for (unsigned int i = 0; i < size; ++i)
-            {
+        {
             double min = distrib.min()[i];
             double max = distrib.max()[i];
             double random = rng.uniform(min, max);
+
+            assert( min < random && random < max);
+
             solution.push_back(random);
-            }
+        }
 
         return solution;
     }
