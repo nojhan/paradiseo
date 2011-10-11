@@ -4,7 +4,9 @@
 * (C) OPAC Team, LIFL, 2002-2008
 *
 * Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape
-*
+* Mostepha-Redouane Khouadjia, Johann Dréo
+* (C) TAO Project Team of INRIA Saclay, Thales group, 2010 
+
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
 * modify and/ or redistribute the software under the terms of the CeCILL
@@ -46,12 +48,15 @@
 #include "core/peo_debug.h"
 #include "peoAggEvalFunc.h"
 #include "peoNoAggEvalFunc.h"
+#include "core/packUnpackeoScalarFitness.h"
+
 
 //! @class peoPopEval
 //! @brief Parallel evaluation functor wrapper
 //! @see Service eoPopEvalFunc
 //! @version 1.2
 //! @date 2006
+
 template< class EOT > class peoPopEval : public Service, public eoPopEvalFunc<EOT>
   {
 
@@ -218,11 +223,13 @@ template< class EOT > void peoPopEval< EOT > :: packResult()
 
 template< class EOT > void peoPopEval< EOT > :: unpackResult()
 {
-  typename EOT :: Fitness fit;
+  typename EOT :: Fitness fit, __fit;
   /* Built in types : int, short, long int, long long int,
    * 		unsigned int, unsigend short, unsigned long int, unsigned long long int,
    * 		float, double, long double		
    */
+   unpack(__fit);  fit = __fit;
+  /* 
   char types [11] = {'i','s','l','x','j','t','m','y', 'f', 'd','e'};
   const char* type = typeid(fit).name();
   int length = strlen(type);
@@ -268,7 +275,7 @@ template< class EOT > void peoPopEval< EOT > :: unpackResult()
 	}
   }
   
-  
+  */
   /* Unpacking the @ of the associated individual */
   unpack( ad_sol );
 
