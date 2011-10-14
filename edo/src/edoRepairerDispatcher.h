@@ -29,7 +29,6 @@ Authors:
 #define _edoRepairerDispatcher_h
 
 #include <vector>
-#include <set>
 #include <utility>
 
 #include "edoRepairer.h"
@@ -52,28 +51,28 @@ template < typename EOT >
 class edoRepairerDispatcher 
     : public edoRepairer<EOT>, 
              std::vector< 
-                  std::pair< std::set< unsigned int >, edoRepairer< EOT >* > 
+                  std::pair< std::vector< unsigned int >, edoRepairer< EOT >* > 
              >
 {
 public:
     //! Empty constructor
     edoRepairerDispatcher() : 
         std::vector< 
-            std::pair< std::set< unsigned int >, edoRepairer< EOT >* > 
+            std::pair< std::vector< unsigned int >, edoRepairer< EOT >* > 
         >()
     {}
 
     //! Constructor with a single index set and repairer operator
-    edoRepairerDispatcher( std::set<unsigned int> idx, edoRepairer<EOT>* op ) :
+    edoRepairerDispatcher( std::vector<unsigned int> idx, edoRepairer<EOT>* op ) :
         std::vector< 
-            std::pair< std::set< unsigned int >, edoRepairer< EOT >* > 
+            std::pair< std::vector< unsigned int >, edoRepairer< EOT >* > 
         >() 
     {
         this->add( idx, op );
     }
 
     //! Add more indexes set and their corresponding repairer operator address to the list
-    void add( std::set<unsigned int> idx, edoRepairer<EOT>* op )
+    void add( std::vector<unsigned int> idx, edoRepairer<EOT>* op )
     {
         assert( idx.size() > 0 );
         assert( op != NULL );
@@ -90,7 +89,7 @@ public:
             EOT partsol;
 
             // j is an iterator that points on an uint
-            for( std::set< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
+            for( std::vector< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
                 partsol.push_back( sol.at(*j) );
             } // for j
 
@@ -101,9 +100,9 @@ public:
             (*(ipair->second))( partsol );
 
             { // copy back the repaired partial solution to sol
-                // browse partsol with uint k, and the idx set with an iterator (std::set is an associative tab)
+                // browse partsol with uint k, and the idx set with an iterator (std::vector is an associative tab)
                 unsigned int k=0;
-                for( std::set< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
+                for( std::vector< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
                     sol[ *j ] = partsol[ k ];
                     k++;
                 } // for j
