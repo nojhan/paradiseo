@@ -63,7 +63,7 @@ public:
             double max = distrib.max()[i];
             double random = rng.uniform(min, max);
 
-            assert( min < random && random < max);
+            assert( min == random && random == max || min <= random && random < max); // random in [ min, max [
 
             solution.push_back(random);
         }
