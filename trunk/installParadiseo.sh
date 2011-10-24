@@ -19,6 +19,7 @@ HOME_PATH=$HOME
 libxml2=" "
 binxml2=" "
 mpich2=" "
+CUDA=" "
 bash_path='$PATH'
 library_path='$LD_LIBRARY_PATH'
 
@@ -55,6 +56,7 @@ IS_MPICH_INSTALLED=1
 IS_LIBXML2_INSTALLED=1
 USE_EXISTING_MPICH=-1
 USE_EXISTING_LIBXML2=-1
+IS_CUDA_INSTALLED=1
 
 # install steps
 S_INTRODUCTION=1000
@@ -64,34 +66,36 @@ S_UNPACK_MPICH=1003
 S_INSTALL_EO=1004
 S_INSTALL_MO=1005
 S_INSTALL_MOEO=1006
-S_INSTALL_LIBXML=1007
-S_INSTALL_MPICH=1008
-S_INSTALL_PEO=1009
-S_REMOVE_TEMP_LIBXML=1010
-S_REMOVE_TEMP_MPICH=1011
-S_CONFIGURE_ENV=1012
-S_CONFIGURE_MPD=1013
-S_PEO_CHECK=1014
-S_REMOVE_INSTALL=1015
-S_END=1016
-S_END_WITHOUT_INFO=1017
-S_CHECK_AUTOTOOLS=1018
-S_CLEANING_INSTALL=1019
+S_INSTALL_CUDA=1007
+S_INSTALL_GPU=1008
+S_INSTALL_LIBXML=1009
+S_INSTALL_MPICH=1010
+S_INSTALL_PEO=1011
+S_REMOVE_TEMP_LIBXML=1012
+S_REMOVE_TEMP_MPICH=1013
+S_CONFIGURE_ENV=1014
+S_CONFIGURE_MPD=1015
+S_PEO_CHECK=1016
+S_REMOVE_INSTALL=1017
+S_END=1018
+S_END_WITHOUT_INFO=1019
+S_CHECK_AUTOTOOLS=1020
+S_CLEANING_INSTALL=1021
 
 #### define what are the possible installs and their content
 
 # full install
 
-FULL_INSTALL="$S_CLEANING_INSTALL $S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
+FULL_INSTALL="$S_CLEANING_INSTALL $S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_CUDA $S_INSTALL_GPU  $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
+FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_CUDA $S_INSTALL_GPU $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
+FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_CUDA $S_INSTALL_GPU $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END_WITHOUT_INFO"
+FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_CUDA $S_INSTALL_GPU $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END_WITHOUT_INFO"
 
 # basic install
-BASIC_INSTALL="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
+BASIC_INSTALL="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_CUDA $S_INSTALL_GPU  $S_END"
 
 # install only paradiseo-peo
 PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
@@ -119,6 +123,7 @@ MPICH_UNPACKING_ERROR=105
 EO_INSTALL_ERROR=106
 MO_INSTALL_ERROR=107
 MOEO_INSTALL_ERROR=108
+GPU_INSTALL_ERROR=123
 PARADISEO_INSTALL_ERROR=110
 LIBXML_INSTALL_ERROR=111
 MPICH_INSTALL_ERROR=112
@@ -133,6 +138,7 @@ RM_UTIL_ERROR=120
 BASIC_INSTALL_MISSING_ERROR=121
 DART_SUBMISSION_ERROR=64
 CHECK_AUTOTOOLS_ERROR=122
+CUDA_INSTALLING_ERROR=124
 
 #Date
 DATE=`/bin/date '+%Y%m%d%H%M%S'`
@@ -296,7 +302,14 @@ function on_error()
 		echo 
 		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr  and join $SPY"
 		echo ;;
-
+       
+        $CUDA_INSTALLING_ERROR)
+		echo
+		echo "  An error has occured : impossible to install CudaToolkit.See $SPY for more details" 
+	  	echo "If you need help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		echo 
+		kill $$;;
 	$EO_INSTALL_ERROR) 
 		echo
 		echo "  An error has occured : impossible to install Paradiseo-EO.See $SPY for more details" 
@@ -482,8 +495,25 @@ function run_install_step()
 			return $SUCCESSFUL_STEP
 		fi 
 		;;
-
-
+         $S_INSTALL_CUDA)
+		########## installing cudaToolkit 3.2##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> installing cudaToolkit (required for ParadisEO-GPU) ...'
+		execute_cmd "cd $installKitPath/downloads/" "[$currentStepCounter-2] Go in downloads dir"  $SPY 
+                sudo ./cudatoolkit_3.2.16_linux_32_ubuntu10.04.run
+		RETURN=$?
+          if [ ! "$?" = "0" ]
+		then
+			echo ''
+			echo "		--> Error when installing cudaToolkit"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $CUDA_INSTALLING_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
+		kill $?;;
 	$S_INSTALL_EO)
 		########## installing paradiseo-eo ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
@@ -570,6 +600,49 @@ function run_install_step()
 			return $SUCCESSFUL_STEP
 		fi 
 		;;
+        $S_INSTALL_GPU)
+		##########  installing paradiseo-gpu ##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> Installing Paradiseo-GPU. Please wait ...'
+	
+		if [ ! "$installKitPath" = "$resourceKitPath" ]
+		    then
+		    cp  -Rf $resourceKitPath/paradiseo-gpu/ $installKitPath/
+		    cp $resourceKitPath/install.cmake $installKitPath/
+		    rm -Rf $installKitPath/paradiseo-gpu/build/*
+		fi
+
+		execute_cmd "cd $installKitPath/paradiseo-gpu/build" "[$currentStepCounter-1] Go in Paradiseo-GPU dir"  $SPY 
+		RETURN=$?
+		
+		execute_cmd " echo \"cmake ../ -G\"$BUILD_PROCESS_TYPE\" $MIN_CMAKE_FLAGS $OPTIONNAL_CMAKE_FLAGS -DCMAKE_BUILD_TYPE=$BUILD_TYPE\" " "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
+		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" -DCMAKE_BUILD_TYPE=$BUILD_TYPE $MIN_CMAKE_FLAGS $OPTIONNAL_CMAKE_FLAGS>> ${SPY} 2>> ${SPY}
+		RETURN=`expr $RETURN + $?`
+		
+		if [ "$COMPILE_PARADISEO" = "1" ] 
+		then
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-GPU using CTest"  $SPY	
+			LAST_RETURN=$?
+			# don't consider a submission error as a "right error"
+			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
+			then
+				RETURN=`expr $RETURN + $LAST_RETURN`
+			fi			
+		fi
+		
+		if [ ! $(($RETURN)) = 0 ]
+		then
+			echo ''
+			echo "		--> Error when installing Paradiseo-GPU"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $GPU_INSTALL_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
+		;;
+
 	$S_INSTALL_MOEO)
 		########## installing MOEO ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
@@ -744,7 +817,7 @@ function run_install_step()
 		########## removing a previous install of EO ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Removing your previous install of ParadisEO ...'
-	    libxml2="$installKitPath/libxml2/lib"
+	        libxml2="$installKitPath/libxml2/lib"
 		binxml2="$installKitPath/libxml2/bin:"
 		mpich2="$installKitPath/mpich2/bin:"
 		on_uninstall
@@ -770,6 +843,8 @@ function run_install_step()
 		execute_cmd "rm -Rf $installKitPath/paradiseo-eo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-eo/build/*" $SPY 
 		idx=`expr $idx + $?`
 		execute_cmd "rm -Rf $installKitPath/paradiseo-mo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-mo/build/*" $SPY 
+		idx=`expr $idx + $?`
+		execute_cmd "rm -Rf $installKitPath/paradiseo-gpu/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-gpu/build/*" $SPY 
 		idx=`expr $idx + $?`
 		execute_cmd "rm -Rf $installKitPath/paradiseo-moeo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-moeo/build/*" $SPY 
 		idx=`expr $idx + $?`
@@ -1360,7 +1435,7 @@ do
 		echo
 		echo -e ' \033[40m\033[1;33m### Please select your install for ParadisEO : ### \033[0m '
 		echo
-		echo "	 1 : Basic install: only EO,MO and MOEO components will be installed."
+		echo "	 1 : Basic install: only EO,MO,MO-GPU,MOEO components will be installed."
 		echo "	 2 : ParadisEO-PEO install. I've already installed the basic version and I want to install ParadisEO-PEO"
 		echo "	 3 : Full install (all the components : EO,MO,MOEO and PEO)"
 		echo "	 4 : Remove a previous install of ParadisEO located in $INSTALL_PATH"
