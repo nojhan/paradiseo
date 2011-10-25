@@ -34,11 +34,16 @@
  */
 
 /**
- * eoScalarFitness<ScalarType, Compare = less<ScalarType> >:
  * Wraps a scalar fitness values such as a double or int, with the option of
  * maximizing (using less<ScalarType>) or minimizing (using greater<ScalarType>)
-
- * It overrides operator<() to use the Compare template argument
+ *
+ * It overrides operator<() to use the Compare template argument. Thus, if you
+ * need to compare if an indiv1 is "better" than an indiv2, you can use:
+ *     if( indiv1 > indiv2 ) {
+ *          // indiv1 is better
+ *      } else {
+ *          // indiv2 is better
+ *      }
  *
  * Suitable constructors and assignments and casts are defined to work
  * with this quantity as if it were a ScalarType.
@@ -57,6 +62,13 @@ class eoScalarFitness
     eoScalarFitness& operator=(const ScalarType& v)
     { value = v; return *this; }
 
+    /** Conversion operator: it permits to use a fitness instance as  its  scalar
+     * type, if needed. For example, this is possible:
+     *     eoScalarFitness<double,std::less<double> > fit;
+     *     double val = 1.0;
+     *     fit = val;
+     *     val = fit;
+     */
     operator ScalarType(void) const { return value; }
 
     /// Comparison, using less by default
@@ -83,13 +95,13 @@ class eoScalarFitness
  *
  */
 
+
 /**
 Typedefs for fitness comparison, Maximizing Fitness compares with less,
 and minimizing fitness compares with greater. This because we want ordinary
 fitness values (doubles) to be equivalent with Maximizing Fitness, and
 comparing with less is the default behaviour.
 */
-
 #if defined(__CUDACC__)
 typedef eoScalarFitness<float, std::less<float> >    eoMaximizingFitness;
 typedef eoScalarFitness<float, std::greater<float> > eoMinimizingFitness;

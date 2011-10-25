@@ -37,6 +37,12 @@ Authors:
  * edoSamplerUniform
  * This class uses the Uniform distribution parameters (bounds) to return
  * a random position used for population sampling.
+ *
+ * Returns a random number in [min,max[ for each variable defined by the given
+ * distribution.
+ *
+ * Note: if the distribution given at call defines a min==max for one of the
+ * variable, the result will be the same number.
  */
 template < typename EOT, class D = edoUniform<EOT> >
 class edoSamplerUniform : public edoSampler< D >
@@ -58,12 +64,15 @@ public:
 
         // Sampling all dimensions
         for (unsigned int i = 0; i < size; ++i)
-            {
+        {
             double min = distrib.min()[i];
             double max = distrib.max()[i];
             double random = rng.uniform(min, max);
+
+            assert( ( min == random && random == max ) || ( min <= random && random < max) ); // random in [ min, max [
+
             solution.push_back(random);
-            }
+        }
 
         return solution;
     }

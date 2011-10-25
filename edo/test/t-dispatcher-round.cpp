@@ -43,13 +43,13 @@ int main(void)
     edoRepairer<EOT>* rep1 = new edoRepairerFloor<EOT>();
     edoRepairer<EOT>* rep2 = new edoRepairerCeil<EOT>();
 
-    std::set<unsigned int> indexes1;
-    indexes1.insert(0);
-    indexes1.insert(2);
+    std::vector<unsigned int> indexes1;
+    indexes1.push_back(0);
+    indexes1.push_back(2);
 
-    std::set<unsigned int> indexes2;
-    indexes2.insert(1);
-    indexes2.insert(3);
+    std::vector<unsigned int> indexes2;
+    indexes2.push_back(1);
+    indexes2.push_back(3);
 
     edoRepairerDispatcher<EOT> repare( indexes1, rep1 );
     repare.add( indexes2, rep2 );

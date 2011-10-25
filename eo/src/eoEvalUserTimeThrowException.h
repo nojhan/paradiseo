@@ -21,6 +21,13 @@ Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
+#ifndef __unix__
+#warning "Warning: class 'eoEvalUserTimeThrowException' is only available under UNIX systems (defining 'rusage' in 'sys/resource.h'), contributions for other systems are welcomed."
+#else
+
+#ifndef __EOEVALUSERTIMETHROWEXCEPTION_H__
+#define __EOEVALUSERTIMETHROWEXCEPTION_H__
+
 #include <sys/time.h>
 #include <sys/resource.h>
 
@@ -60,3 +67,6 @@ protected:
     const long _max;
     struct rusage _usage;
 };
+
+#endif // __EOEVALUSERTIMETHROWEXCEPTION_H__
+#endif // __UNIX__

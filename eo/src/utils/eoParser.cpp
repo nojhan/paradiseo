@@ -289,7 +289,7 @@ void eoParser::printOn(ostream& os) const
         string str = "--" + param->longName() + "=" + param->getValue();
 
         os.setf(ios_base::left, ios_base::adjustfield);
-        os << setw(40) << str;
+        os << setfill(' ') << setw(40) << str;
 
         os << setw(0) << " # ";
         if (param->shortName())
