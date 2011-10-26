@@ -38,6 +38,4 @@ CUDA_ADD_EXECUTABLE(GPUtestKswapHCByCpy testKswapHCByCpy.cu)
 TARGET_LINK_LIBRARIES(GPUtestKswapHCByModif eoutils ga eo)
 TARGET_LINK_LIBRARIES(GPUtestKswapHCByCpy eoutils ga eo)
 
-
-
 ######################################################################################
