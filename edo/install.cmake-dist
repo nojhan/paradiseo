@@ -12,7 +12,7 @@ SET(EO_LIBRARIES eoutils eo es ga cma gcov) # do not use quotes around this list
 
 SET(MO_INCLUDE_DIRS "${MO_DIR}/src" CACHE PATH "MO include directory" FORCE)
 SET(MO_LIBRARY_DIRS "${MO_DIR}/release/lib" CACHE PATH "MO library directory" FORCE)
-SET(MO_LIBRARIES "mo")
+#SET(MO_LIBRARIES "mo") # no library is generated when building MO
 
 # ... or rather use pkg-config (dont forget to comment the code above)
 
