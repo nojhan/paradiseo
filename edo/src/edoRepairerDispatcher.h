@@ -38,23 +38,31 @@ Authors:
  * of indexes).
  *
  * Only work on EOT that implements the "push_back( EOT::AtomType )" and 
- * "operator[](uint)" and "at(uint)" methods.
+ * "operator[](uint)" and "at(uint)" methods (i.e. random access containers).
  *
  * Expects _addresses_ of the repairer operators.
+ *
+ * Use the second template type if you want a different container to store
+ * indexes. You can use any iterable. For example, you may want to use a set if
+ * you need to be sure that indexes are use only once:
+ *     edoRepairerDispatcher<EOT, std::set<unsigned int> > rpd; 
+ *     std::set<unsigned int> idx(1,1);
+ *     idx.insert(2);
+ *     rpd.add( idx, &repairer );
  *
  * @example t-dispatcher-round.cpp
  *
  * @ingroup Repairers
  */
-
-template < typename EOT >
+template < typename EOT, typename ICT = std::vector<unsigned int> >
 class edoRepairerDispatcher 
     : public edoRepairer<EOT>, 
              std::vector< 
-                  std::pair< std::vector< unsigned int >, edoRepairer< EOT >* > 
+                  std::pair< ICT, edoRepairer< EOT >* > 
              >
 {
 public:
+
     //! Empty constructor
     edoRepairerDispatcher() : 
         std::vector< 
@@ -63,7 +71,7 @@ public:
     {}
 
     //! Constructor with a single index set and repairer operator
-    edoRepairerDispatcher( std::vector<unsigned int> idx, edoRepairer<EOT>* op ) :
+    edoRepairerDispatcher( IndexContainer idx, edoRepairer<EOT>* op ) :
         std::vector< 
             std::pair< std::vector< unsigned int >, edoRepairer< EOT >* > 
         >() 
@@ -72,7 +80,7 @@ public:
     }
 
     //! Add more indexes set and their corresponding repairer operator address to the list
-    void add( std::vector<unsigned int> idx, edoRepairer<EOT>* op )
+    void add( IndexContainer idx, edoRepairer<EOT>* op )
     {
         assert( idx.size() > 0 );
         assert( op != NULL );
