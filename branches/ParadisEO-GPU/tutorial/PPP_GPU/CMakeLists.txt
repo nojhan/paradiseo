@@ -24,7 +24,7 @@ INCLUDE_DIRECTORIES(
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${CUDA_DIR}/lib )	
+LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_LIB_DIR} )	
 
 ######################################################################################
 
