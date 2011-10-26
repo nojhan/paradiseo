@@ -37,5 +37,3 @@ CUDA_ADD_EXECUTABLE(GPU_testSimpleTS testSimpleTS.cu)
 
 TARGET_LINK_LIBRARIES(GPU_testSimpleHC eoutils ga eo)
 TARGET_LINK_LIBRARIES(GPU_testSimpleTS eoutils ga eo)
-
-

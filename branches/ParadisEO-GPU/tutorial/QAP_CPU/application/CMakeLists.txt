@@ -4,6 +4,8 @@
 
 INCLUDE_DIRECTORIES(
 
+  # include CUDA source directory
+  ${GPU_SRC_DIR}
   # include EO source directory
   ${EO_SRC_DIR}/src
   # include MO source directory
@@ -22,7 +24,7 @@ INCLUDE_DIRECTORIES(
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BIN_DIR}/lib)	
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${CUDA_DIR}/lib )	
 
 ######################################################################################
 
