@@ -83,15 +83,27 @@ public:
     //! Repair a solution by calling several repair operator on subset of indexes
     virtual void operator()( EOT& sol )
     {
-        // ipair is an iterator that points on a pair
+//        std::cout << "in dispatcher, sol = " << sol << std::endl;
+
+        // ipair is an iterator that points on a pair of <indexes,repairer>
         for( typename edoRepairerDispatcher<EOT>::iterator ipair = this->begin(); ipair != this->end(); ++ipair ) {
+
+            assert( ipair->first.size() <= sol.size() ); // assert there is less indexes than items in the whole solution
+
             // a partial copy of the sol
             EOT partsol;
 
+//            std::cout << "\tusing indexes = ";
             // j is an iterator that points on an uint
             for( std::vector< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
+
+//                std::cout << *j << " ";
+//                std::cout.flush();
+
                 partsol.push_back( sol.at(*j) );
             } // for j
+//            std::cout << std::endl;
+//            std::cout << "\tpartial sol = " << partsol << std::endl;
 
             assert( partsol.size() > 0 );
 
