@@ -74,18 +74,18 @@ public:
       \param replacor Population replacor
     */
     edoEDASA (eoSelect< EOT > & selector,
-	     edoEstimator< D > & estimator,
-	     eoSelectOne< EOT > & selectone,
-	     edoModifierMass< D > & modifier,
-	     edoSampler< D > & sampler,
-	     eoContinue< EOT > & pop_continue,
-	     edoContinue< D > & distribution_continue,
-	     eoEvalFunc < EOT > & evaluation,
-	     moContinuator< moDummyNeighbor<EOT> > & sa_continue,
-	     moCoolingSchedule<EOT> & cooling_schedule,
-	     double initial_temperature,
-	     eoReplacement< EOT > & replacor
-	     )
+	      edoEstimator< D > & estimator,
+	      eoSelectOne< EOT > & selectone,
+	      edoModifierMass< D > & modifier,
+	      edoSampler< D > & sampler,
+	      eoContinue< EOT > & pop_continue,
+	      edoContinue< D > & distribution_continue,
+	      eoEvalFunc < EOT > & evaluation,
+	      moContinuator< moDummyNeighbor<EOT> > & sa_continue,
+	      moCoolingSchedule<EOT> & cooling_schedule,
+	      double initial_temperature,
+	      eoReplacement< EOT > & replacor
+	      )
 	: _selector(selector),
 	  _estimator(estimator),
 	  _selectone(selectone),
