@@ -71,7 +71,7 @@ public:
     {}
 
     //! Constructor with a single index set and repairer operator
-    edoRepairerDispatcher( IndexContainer idx, edoRepairer<EOT>* op ) :
+    edoRepairerDispatcher( ICT idx, edoRepairer<EOT>* op ) :
         std::vector< 
             std::pair< std::vector< unsigned int >, edoRepairer< EOT >* > 
         >() 
@@ -80,7 +80,7 @@ public:
     }
 
     //! Add more indexes set and their corresponding repairer operator address to the list
-    void add( IndexContainer idx, edoRepairer<EOT>* op )
+    void add( ICT idx, edoRepairer<EOT>* op )
     {
         assert( idx.size() > 0 );
         assert( op != NULL );
