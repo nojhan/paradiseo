@@ -49,6 +49,10 @@ public:
         assert( this->max().size() > 0 );
 
         assert( sol.size() > 0);
+        assert( sol.size() == this->min().size() );
+
+        eo::log << eo::debug << "BounderUniform: from sol = " << sol;
+        eo::log.flush();
 
         unsigned int size = sol.size();
         for (unsigned int d = 0; d < size; ++d) {
@@ -58,6 +62,8 @@ public:
                 sol[d] = rng.uniform( this->min()[d], this->max()[d] );
             }
         } // for d in size
+        
+        eo::log << eo::debug << "\tto sol = " << sol << std::endl;
     }
 };
 
