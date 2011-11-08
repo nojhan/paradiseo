@@ -59,6 +59,7 @@ Authors:
 #include "edoRepairer.h"
 #include "edoRepairerDispatcher.h"
 #include "edoRepairerRound.h"
+#include "edoRepairerModulo.h"
 #include "edoBounder.h"
 #include "edoBounderNo.h"
 #include "edoBounderBound.h"

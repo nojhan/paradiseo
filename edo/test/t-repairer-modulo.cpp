@@ -17,46 +17,39 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-Copyright (C) 2011 Thales group
+Copyright (C) 2010 Thales group
 */
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
-#ifndef _edoRepairerRound_h
-#define _edoRepairerRound_h
+#define _USE_MATH_DEFINES
+#include <math.h>
 
-#include <cmath>
+#include <eo>
+#include <edo>
+#include <es.h>
 
-#include "edoRepairerApply.h"
+typedef eoReal< eoMinimizingFitness > EOT;
 
-/** A repairer that calls "floor" on each items of a solution
- *
- * Just a proxy to "edoRepairerApplyUnary<EOT, EOT::AtomType(EOT::AtomType)> rep( std::floor);"
- *
- * @ingroup Repairers
- */
-template < typename EOT >
-class edoRepairerFloor : public edoRepairerApplyUnary<EOT>
+int main(void)
 {
-public:
-    edoRepairerFloor() : edoRepairerApplyUnary<EOT>( std::floor ) {}
-};
+    EOT sol;
+    sol.push_back( M_PI * 1 );
+    sol.push_back( M_PI * 2 );
+    sol.push_back( M_PI * 3 );
+    sol.push_back( M_PI * 4 );
+    sol.push_back( M_PI * 4 + M_PI / 2 );
+    sol.push_back( M_PI * 5 + M_PI / 2 );
+    // we expect {pi,0,pi,0,pi/2,pi+pi/2}
+    std::cout << "expect: INVALID  4 3.14159 0 3.14159 0 1.5708 4.71239" << std::endl;
 
-/** A repairer that calls "ceil" on each items of a solution
- *
- * @see edoRepairerFloor
- *
- * @ingroup Repairers
- */
-template < typename EOT >
-class edoRepairerCeil : public edoRepairerApplyUnary<EOT>
-{
-public:
-    edoRepairerCeil() : edoRepairerApplyUnary<EOT>( std::ceil ) {}
-};
+    edoRepairer<EOT>* repare = new edoRepairerModulo<EOT>( 2 * M_PI ); // modulo 2pi
 
+    (*repare)(sol);
 
-#endif // !_edoRepairerRound_h
+    std::cout << sol << std::endl;
+
+    return 0;
+}

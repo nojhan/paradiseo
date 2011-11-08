@@ -22,41 +22,26 @@ Copyright (C) 2011 Thales group
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
-#ifndef _edoRepairerRound_h
-#define _edoRepairerRound_h
+#ifndef _edoRepairerModulo_h
+#define _edoRepairerModulo_h
 
 #include <cmath>
 
 #include "edoRepairerApply.h"
 
-/** A repairer that calls "floor" on each items of a solution
- *
- * Just a proxy to "edoRepairerApplyUnary<EOT, EOT::AtomType(EOT::AtomType)> rep( std::floor);"
+/**
  *
  * @ingroup Repairers
  */
 template < typename EOT >
-class edoRepairerFloor : public edoRepairerApplyUnary<EOT>
+class edoRepairerModulo: public edoRepairerApplyBinary<EOT>
 {
 public:
-    edoRepairerFloor() : edoRepairerApplyUnary<EOT>( std::floor ) {}
-};
-
-/** A repairer that calls "ceil" on each items of a solution
- *
- * @see edoRepairerFloor
- *
- * @ingroup Repairers
- */
-template < typename EOT >
-class edoRepairerCeil : public edoRepairerApplyUnary<EOT>
-{
-public:
-    edoRepairerCeil() : edoRepairerApplyUnary<EOT>( std::ceil ) {}
+    edoRepairerModulo<EOT>( double denominator ) : edoRepairerApplyBinary<EOT>( std::fmod, denominator ) {}
 };
 
 
-#endif // !_edoRepairerRound_h
+#endif // !_edoRepairerModulo_h
+

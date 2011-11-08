@@ -39,6 +39,7 @@ SET(SOURCES
   t-uniform
   t-continue
   t-dispatcher-round
+  t-repairer-modulo
   )
 
 FOREACH(current ${SOURCES})
