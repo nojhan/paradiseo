@@ -32,6 +32,7 @@ Authors:
 
 #include "edoRepairerApply.h"
 
+
 /** A repairer that calls "floor" on each items of a solution
  *
  * Just a proxy to "edoRepairerApplyUnary<EOT, EOT::AtomType(EOT::AtomType)> rep( std::floor);"
@@ -44,6 +45,7 @@ class edoRepairerFloor : public edoRepairerApplyUnary<EOT>
 public:
     edoRepairerFloor() : edoRepairerApplyUnary<EOT>( std::floor ) {}
 };
+
 
 /** A repairer that calls "ceil" on each items of a solution
  *
@@ -58,5 +60,46 @@ public:
     edoRepairerCeil() : edoRepairerApplyUnary<EOT>( std::ceil ) {}
 };
 
+
+// FIXME find a way to put this function as a member of edoRepairerRoundDecimals
+template< typename ArgType >
+ArgType edoRound( ArgType val, ArgType prec = 1.0 )
+{ 
+    return (val > 0.0) ? 
+        floor(val * prec + 0.5) / prec : 
+         ceil(val * prec - 0.5) / prec ; 
+}
+
+/** A repairer that round values at a given a precision. 
+ *
+ * e.g. if prec=10, 8.06 will be rounded to 8.1
+ *
+ * @see edoRepairerFloor
+ * @see edoRepairerCeil
+ *
+ * @ingroup Repairers
+ */
+template < typename EOT >
+class edoRepairerRoundDecimals : public edoRepairerApplyBinary<EOT>
+{
+public:
+    typedef typename EOT::AtomType ArgType;
+
+    edoRepairerRoundDecimals( ArgType prec ) : edoRepairerApplyBinary<EOT>( edoRound<ArgType>, prec ) {}
+};
+
+
+/** A repairer that do a rounding around val+0.5
+ *
+ * @see edoRepairerRoundDecimals
+ *
+ * @ingroup Repairers
+ */
+template < typename EOT >
+class edoRepairerRound : public edoRepairerRoundDecimals<EOT>
+{
+public:
+    edoRepairerRound() : edoRepairerRoundDecimals<EOT>( 1.0 ) {}
+};
 
 #endif // !_edoRepairerRound_h
