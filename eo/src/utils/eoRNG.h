@@ -216,6 +216,7 @@ public :
     /** Gaussian deviate
 
     Zero mean Gaussian deviate with standard deviation 1.
+    Note: Use the Marsaglia polar method.
 
     @return Random Gaussian deviate
     */
