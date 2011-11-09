@@ -72,7 +72,7 @@ ArgType edoRound( ArgType val, ArgType prec = 1.0 )
 
 /** A repairer that round values at a given a precision. 
  *
- * e.g. if prec=10, 8.06 will be rounded to 8.1
+ * e.g. if prec=0.1, 8.06 will be rounded to 8.1
  *
  * @see edoRepairerFloor
  * @see edoRepairerCeil
@@ -85,7 +85,8 @@ class edoRepairerRoundDecimals : public edoRepairerApplyBinary<EOT>
 public:
     typedef typename EOT::AtomType ArgType;
 
-    edoRepairerRoundDecimals( ArgType prec ) : edoRepairerApplyBinary<EOT>( edoRound<ArgType>, prec ) {}
+    //! Generally speaking, we expect decimals being <= 1, but it can work for higher values
+    edoRepairerRoundDecimals( ArgType decimals ) : edoRepairerApplyBinary<EOT>( edoRound<ArgType>, 1 / decimals ) {}
 };
 
 
