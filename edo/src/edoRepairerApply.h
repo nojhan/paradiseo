@@ -58,6 +58,7 @@ public:
     virtual void operator()( EOT& sol )
     {
         std::transform( sol.begin(), sol.end(), sol.begin(), *(this->_function) );
+        sol.invalidate();
     }
 };
 
@@ -87,6 +88,7 @@ public:
         for(typename EOT::iterator it = sol.begin(); it != sol.end(); ++it ) {
             *it = (*(this->_function))( *it, _arg );
         }
+        sol.invalidate();
     }
 
 protected:
