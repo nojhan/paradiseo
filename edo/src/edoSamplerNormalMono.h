@@ -28,6 +28,8 @@ Authors:
 #ifndef _edoSamplerNormalMono_h
 #define _edoSamplerNormalMono_h
 
+#include <cmath>
+
 #include <utils/eoRNG.h>
 
 #include "edoSampler.h"
@@ -47,27 +49,25 @@ public:
 
     edoSamplerNormalMono( edoRepairer<EOT> & repairer ) : edoSampler< D >( repairer) {}
 
-    EOT sample( edoNormalMono< EOT >& distrib )
+    EOT sample( edoNormalMono<EOT>& distrib )
     {
         unsigned int size = distrib.size();
         assert(size > 0);
 
-        // Point we want to sample to get higher a set of points
+        // The point we want to draw
         // (coordinates in n dimension)
         // x = {x1, x2, ..., xn}
         EOT solution;
         
         // Sampling all dimensions
-        for (unsigned int i = 0; i < size; ++i)
-            {
+        for (unsigned int i = 0; i < size; ++i) {
             AtomType mean = distrib.mean()[i];
             AtomType variance = distrib.variance()[i];
-            AtomType random = rng.normal(mean, variance);
-
-            assert(variance >= 0);
+            // should use the standard deviation, which have the same scale than the mean
+            AtomType random = rng.normal(mean, sqrt(variance) );
 
             solution.push_back(random);
-            }
+        }
 
         return solution;
     }
