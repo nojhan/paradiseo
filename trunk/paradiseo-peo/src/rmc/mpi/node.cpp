@@ -82,9 +82,6 @@ class MPIThreadedEnv
 
           MPI_Init_thread (__argc, __argv, MPI_THREAD_FUNNELED, & provided);
 
-          assert (provided == MPI_THREAD_FUNNELED); /* The MPI implementation must be multi-threaded.
-          					       Yet, only one thread performs the comm.
-          					       operations */
           MPIThreadedEnvInitialized = true;
         }
     }
