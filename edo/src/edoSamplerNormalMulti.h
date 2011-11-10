@@ -47,7 +47,6 @@ class edoSamplerNormalMulti : public edoSampler< D >
 public:
     typedef typename EOT::AtomType AtomType;
 
-    edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) : edoSampler< D >( repairer) {}
 
     /** Cholesky decomposition, given a matrix V, return a matrix L
      * such as V = L Lt (Lt being the conjugate transpose of L).
@@ -264,8 +263,8 @@ public:
     }; // class Cholesky
 
 
-    edoSamplerNormalMulti( edoBounder< EOT > & bounder )
-        : edoSampler< edoNormalMulti< EOT > >( bounder )
+    edoSamplerNormalMulti( edoRepairer<EOT> & repairer, typename Cholesky::Method use = Cholesky::absolute ) 
+        : edoSampler< D >( repairer), _cholesky(use)
     {}
 
 
@@ -279,8 +278,7 @@ public:
         // We must use cholesky.decomposition() to get the resulting matrix.
         //
         // L = cholesky decomposition of varcovar
-        Cholesky cholesky( Cholesky::absolute );
-        const typename Cholesky::MatrixType& L = cholesky( distrib.varcovar() );
+        const typename Cholesky::MatrixType& L = _cholesky( distrib.varcovar() );
 
         // T = vector of size elements drawn in N(0,1) rng.normal(1.0)
         ublas::vector< AtomType > T( size );
@@ -299,6 +297,9 @@ public:
 
         return solution;
     }
+
+protected:
+    Cholesky _cholesky;
 };
 
 #endif // !_edoSamplerNormalMulti_h
