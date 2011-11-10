@@ -66,7 +66,7 @@ public:
             //! use the algorithm using absolute value within the square root @see factorize_abs
             absolute, 
             //! use the robust algorithm, without square root
-            //robust 
+            robust 
         };
         Method _use;
 
@@ -150,6 +150,8 @@ public:
                 factorize_std( V );
             } else if( _use == absolute ) {
                 factorize_abs( V );
+            } else if( _use == robust ) {
+                factorize_robust( V );
             }
         }
 
@@ -183,7 +185,6 @@ public:
                 // round-off errors may appear here
                 assert( V(i,i) - sum >= 0 );
                 _L(i,i) = sqrt( V(i,i) - sum );
-                //_L(i,i) = sqrt( fabs( V(i,i) - sum) );
 
                 for ( j = i + 1; j < N; ++j ) { // rows
                     // one element
@@ -247,18 +248,37 @@ public:
          *
          * Computes L and D such as V = L D Lt
          */
-        /*
         void factorize_robust( const MatrixType& V)
         {
             unsigned int N = assert_properties( V );
 
             unsigned int i, j, k;
-            ublas::symmetric_matrix< AtomType, ublas::lower > D = ublas::zero_matrix<AtomType>(N);
+            //MatrixType D = ublas::zero_matrix<AtomType>(N);
+            std::vector<AtomType> _D(N,0);
 
-            _L(0, 0) = sqrt( V(0, 0) );
+            _D[0] = V(0,0);
+            _L(0, 0) = 1;
+            //_L(1,0) = 1/D[0] * V(1,0);
 
+            for( j=0; j<N; ++j ) { // each columns
+
+                _D[j] = V(j,j);
+                for( k=0; k<j-1; ++k) { // sum
+                    _D[j] -= _L(j,k) * _L(j,k) * _D[k];
+                }
+
+                for( i=j+1; i<N; ++i ) { // remaining rows
+
+                    _L(i,j) = V(i,j);
+                    for( k=0; k<j-1; ++k) { // sum
+                        _L(i,j) -= _L(i,k)*_L(j,k) * _D[k];
+                    }
+                    _L(i,j) /= _D[j];
+
+                } // for i in rows
+            } // for j in columns
         }
-        */
+        
 
     }; // class Cholesky
 
