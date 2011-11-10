@@ -53,52 +53,115 @@ public:
      * such as V = L Lt (Lt being the conjugate transpose of L).
      *
      * Need a symmetric and positive definite matrix as an input, which 
-     * should be the  case of a non-ill-conditionned covariance matrix.
+     * should be the case of a non-ill-conditionned covariance matrix.
      * Thus, expect a (lower) triangular matrix.
      */
     class Cholesky
     {
-    private:
-        //! The decomposition is a (lower) symetric matrix, just like the covariance matrix
-        ublas::symmetric_matrix< AtomType, ublas::lower > _L;
-
     public:
-        //! The decomposition of the covariance matrix
-        const ublas::symmetric_matrix< AtomType, ublas::lower >& decomposition() const {return _L;}
+        typedef ublas::symmetric_matrix< AtomType, ublas::lower > MatrixType;
+
+        enum Method { 
+            //! use the standard algorithm, with square root @see factorize
+            standard,
+            //! use the algorithm using absolute value within the square root @see factorize_abs
+            absolute, 
+            //! use the robust algorithm, without square root
+            //robust 
+        };
+        Method _use;
+
+
+        /** Instanciate without computing anything, you are responsible of 
+         * calling the algorithm and getting the result with operator()
+         * */
+        Cholesky( Cholesky::Method use = standard ) : _use(use) {}
+
 
         /** Computation is made at instanciation and then cached in a member variable, 
          * use decomposition() to get the result.
+         *
+         * Use the standard unstable method by default.
          */
-        Cholesky( const ublas::symmetric_matrix< AtomType, ublas::lower >& V )
+        Cholesky(const MatrixType& V, Cholesky::Method use = standard ) : _use(use)
+        {
+            factsorize( V );
+        }
+
+
+        /** Compute the factorization and return the result 
+         */
+        const MatrixType& operator()( const MatrixType& V )
         {
             factorize( V );
+            return decomposition();
         }
+
+        //! The decomposition of the covariance matrix
+        const MatrixType & decomposition() const {return _L;}
+
+    protected:
+
+        //! The decomposition is a (lower) symetric matrix, just like the covariance matrix
+        MatrixType _L;
+
 
         /** Assert that the covariance matrix have the required properties and returns its dimension.
          *
          * Note: if compiled with NDEBUG, will not assert anything and just return the dimension.
          */
-        unsigned assert_properties( const ublas::symmetric_matrix< AtomType, ublas::lower >& V )
+        unsigned assert_properties( const MatrixType& V )
         {
             unsigned int Vl = V.size1(); // number of lines
+
+            // the result goes in _L
+            _L.resize(Vl);
+
+#ifndef NDEBUG
             assert(Vl > 0);
 
             unsigned int Vc = V.size2(); // number of columns
             assert(Vc > 0);
             assert( Vl == Vc );
 
-            // FIXME assert definite semi-positive
+            // partial assert that V is semi-positive definite
+            // assert that all diagonal elements are positives
+            for( unsigned int i=0; i < Vl; ++i ) {
+                assert( V(i,i) > 0 );
+            }
 
-            // the result goes in _L
-            _L.resize(Vl);
+            /* FIXME what is the more efficient way to check semi-positive definite? Candidates are:
+                 * perform the cholesky factorization
+                 * check if all eigenvalues are positives
+                 * check if all of the leading principal minors are positive
+                 *
+                 */
+#endif
 
             return Vl;
         }
 
+
+        /** Actually performs the factorization with the method given at 
+         * instanciation. Results are cached in _L.
+         */
+        void factorize( const MatrixType& V )
+        {
+            if( _use == standard ) {
+                factorize_std( V );
+            } else if( _use == absolute ) {
+                factorize_abs( V );
+            }
+        }
+
+
         /** This standard algorithm makes use of square root and is thus subject
           * to round-off errors if the covariance matrix is very ill-conditioned.
+          *
+          * When compiled in debug mode and called on ill-conditionned matrix,
+          * will raise an assert before calling the square root on a negative number.
           */
-        void factorize( const ublas::symmetric_matrix< AtomType, ublas::lower >& V)
+        void factorize_std( const MatrixType& V)
         {
             unsigned int N = assert_properties( V );
 
@@ -137,23 +200,66 @@ public:
         }
 
 
+        /** This standard algorithm makes use of square root but do not fail
+          * if the covariance matrix is very ill-conditioned.
+          * Here, we propagate the error by using the absolute value before
+          * computing the square root.
+          *
+          * Be aware that this increase round-off errors, this is just a ugly
+          * hack to avoid crash.
+          */
+        void factorize_abs( const MatrixType & V)
+        {
+            unsigned int N = assert_properties( V );
+
+            unsigned int i=0, j=0, k;
+            _L(0, 0) = sqrt( V(0, 0) );
+
+            // end of the column
+            for ( j = 1; j < N; ++j ) {
+                _L(j, 0) = V(0, j) / _L(0, 0);
+            }
+
+            // end of the matrix
+            for ( i = 1; i < N; ++i ) { // each column
+                // diagonal
+                double sum = 0.0;
+                for ( k = 0; k < i; ++k) {
+                    sum += _L(i, k) * _L(i, k);
+                }
+
+                _L(i,i) = sqrt( fabs( V(i,i) - sum) );
+
+                for ( j = i + 1; j < N; ++j ) { // rows
+                    // one element
+                    sum = 0.0;
+                    for ( k = 0; k < i; ++k ) {
+                        sum += _L(j, k) * _L(i, k);
+                    }
+
+                    _L(j, i) = (V(j, i) - sum) / _L(i, i);
+
+                } // for j in ]i,N[
+            } // for i in [1,N[
+        }
+
         /** This alternative algorithm does not use square root BUT the covariance 
          * matrix must be invertible.
          *
          * Computes L and D such as V = L D Lt
          */
         /*
-        void factorize_robust( const ublas::symmetric_matrix< AtomType, ublas::lower >& V)
+        void factorize_robust( const MatrixType& V)
         {
             unsigned int N = assert_properties( V );
 
             unsigned int i, j, k;
             ublas::symmetric_matrix< AtomType, ublas::lower > D = ublas::zero_matrix<AtomType>(N);
+
             _L(0, 0) = sqrt( V(0, 0) );
 
         }
         */
-
 
     }; // class Cholesky
 
@@ -173,8 +279,8 @@ public:
         // We must use cholesky.decomposition() to get the resulting matrix.
         //
         // L = cholesky decomposition of varcovar
-        Cholesky cholesky( distrib.varcovar() );
-        ublas::symmetric_matrix< AtomType, ublas::lower > L = cholesky.decomposition();
+        Cholesky cholesky( Cholesky::absolute );
+        const typename Cholesky::MatrixType& L = cholesky( distrib.varcovar() );
 
         // T = vector of size elements drawn in N(0,1) rng.normal(1.0)
         ublas::vector< AtomType > T( size );
