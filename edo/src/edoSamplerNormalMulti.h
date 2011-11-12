@@ -49,7 +49,7 @@ public:
 
 
     /** Cholesky decomposition, given a matrix V, return a matrix L
-     * such as V = L Lt (Lt being the conjugate transpose of L).
+     * such as V = L L^T (L^T being the transposed of L).
      *
      * Need a symmetric and positive definite matrix as an input, which 
      * should be the case of a non-ill-conditionned covariance matrix.
@@ -58,7 +58,8 @@ public:
     class Cholesky
     {
     public:
-        typedef ublas::symmetric_matrix< AtomType, ublas::lower > MatrixType;
+        typedef ublas::symmetric_matrix< AtomType, ublas::lower > CovarMat;
+        typedef ublas::matrix< AtomType > FactorMat;
 
         enum Method { 
             //! use the standard algorithm, with square root @see factorize_LLT
@@ -82,7 +83,8 @@ public:
          *
          * Use the standard unstable method by default.
          */
-        Cholesky(const MatrixType& V, Cholesky::Method use = standard ) : _use(use)
+        Cholesky(const CovarMat& V, Cholesky::Method use = standard ) :
+            _use(use), _L(ublas::zero_matrix<AtomType>(V.size1(),V.size2()))
         {
             factorize( V );
         }
@@ -90,14 +92,14 @@ public:
 
         /** Compute the factorization and return the result 
          */
-        const MatrixType& operator()( const MatrixType& V )
+        const FactorMat& operator()( const CovarMat& V )
         {
             factorize( V );
             return decomposition();
         }
 
         //! The decomposition of the covariance matrix
-        const MatrixType & decomposition() const 
+        const FactorMat & decomposition() const 
         {
             return _L;
         }
@@ -105,18 +107,18 @@ public:
     protected:
 
         //! The decomposition is a (lower) symetric matrix, just like the covariance matrix
-        MatrixType _L;
+        FactorMat _L;
        
         /** Assert that the covariance matrix have the required properties and returns its dimension.
          *
          * Note: if compiled with NDEBUG, will not assert anything and just return the dimension.
          */
-        unsigned assert_properties( const MatrixType& V )
+        unsigned assert_properties( const CovarMat& V )
         {
             unsigned int Vl = V.size1(); // number of lines
 
             // the result goes in _L
-            _L.resize(Vl);
+            _L = ublas::zero_matrix<AtomType>(Vl,Vl);
 
 #ifndef NDEBUG
             assert(Vl > 0);
@@ -135,7 +137,6 @@ public:
                  * perform the cholesky factorization
                  * check if all eigenvalues are positives
                  * check if all of the leading principal minors are positive
-                 *
                  */
 #endif
 
@@ -146,7 +147,7 @@ public:
         /** Actually performs the factorization with the method given at 
          * instanciation. Results are cached in _L.
          */
-        void factorize( const MatrixType& V )
+        void factorize( const CovarMat& V )
         {
             if( _use == standard ) {
                 factorize_LLT( V );
@@ -161,10 +162,12 @@ public:
         /** This standard algorithm makes use of square root and is thus subject
           * to round-off errors if the covariance matrix is very ill-conditioned.
           *
+          * Compute L such that V = L L^T
+          *
           * When compiled in debug mode and called on ill-conditionned matrix,
           * will raise an assert before calling the square root on a negative number.
           */
-        void factorize_LLT( const MatrixType& V)
+        void factorize_LLT( const CovarMat& V)
         {
             unsigned int N = assert_properties( V );
 
@@ -210,7 +213,7 @@ public:
           * Be aware that this increase round-off errors, this is just a ugly
           * hack to avoid crash.
           */
-        void factorize_LLT_abs( const MatrixType & V)
+        void factorize_LLT_abs( const CovarMat & V)
         {
             unsigned int N = assert_properties( V );
 
@@ -247,19 +250,21 @@ public:
         }
 
 
-        /** This alternative algorithm do not use square root.
+        /** This alternative algorithm do not use square root in an inner loop,
+         * but only for some diagonal elements of the matrix D.
          *
-         * Computes L and D such as V = L D Lt
+         * Computes L and D such as V = L D L^T. 
+         * The factorized matrix is (L D^1/2), because V = (L D^1/2) (L D^1/2)^T
          */
-        void factorize_LDLT( const MatrixType& V)
+        void factorize_LDLT( const CovarMat& V)
         {
             // use "int" everywhere, because of the "j-1" operation
             int N = assert_properties( V );
             // example of an invertible matrix whose decomposition is undefined
             assert( V(0,0) != 0 ); 
 
-            MatrixType L(N,N);
-            MatrixType D = ublas::zero_matrix<AtomType>(N,N);
+            FactorMat L = ublas::zero_matrix<AtomType>(N,N);
+            FactorMat D = ublas::zero_matrix<AtomType>(N,N);
             D(0,0) = V(0,0);
             
             for( int j=0; j<N; ++j ) { // each columns
@@ -281,12 +286,12 @@ public:
                 } // for i in rows
             } // for j in columns
 
-            // now compute the final symetric matrix: from _LD_LT to _L_LT
-            // remember that V = (_LD^1/2)(_LD^1/2)^T
+            // now compute the final symetric matrix: _L = L D^1/2
+            // remember that V = ( L D^1/2) ( L D^1/2)^T
 
-            // square root of a diagonal matrix is the square root of all its
-            // scalars
-            MatrixType D12 = D;
+            // fortunately, the square root of a diagonal matrix is the square 
+            // root of all its elements
+            FactorMat D12 = D;
             for(int i=0; i<N; ++i) {
                 D12(i,i) = sqrt(D(i,i));
             }
@@ -295,7 +300,6 @@ public:
             _L = ublas::prod( L, D12);
         }
         
-
     }; // class Cholesky
 
 
@@ -309,14 +313,10 @@ public:
         unsigned int size = distrib.size();
         assert(size > 0);
 
-        // Cholesky factorisation gererating matrix L from covariance
-        // matrix V.
-        // We must use cholesky.decomposition() to get the resulting matrix.
-        //
         // L = cholesky decomposition of varcovar
-        const typename Cholesky::MatrixType& L = _cholesky( distrib.varcovar() );
+        const typename Cholesky::FactorMat& L = _cholesky( distrib.varcovar() );
 
-        // T = vector of size elements drawn in N(0,1) rng.normal(1.0)
+        // T = vector of size elements drawn in N(0,1)
         ublas::vector< AtomType > T( size );
         for ( unsigned int i = 0; i < size; ++i ) {
             T( i ) = rng.normal();
