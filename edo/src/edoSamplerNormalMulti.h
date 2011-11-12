@@ -84,7 +84,7 @@ public:
          */
         Cholesky(const MatrixType& V, Cholesky::Method use = standard ) : _use(use)
         {
-            factsorize( V );
+            factorize( V );
         }
 
 
@@ -99,10 +99,19 @@ public:
         //! The decomposition of the covariance matrix
         const MatrixType & decomposition() const {return _L;}
 
+        /** When your using the LDLT robust decomposition (by passing the "robust" 
+         * option to the constructor, @see factorize_LDTL), this is the diagonal
+         * matrix part.
+         */
+        const MatrixType & diagonal() const {return _D;}
+
     protected:
 
         //! The decomposition is a (lower) symetric matrix, just like the covariance matrix
         MatrixType _L;
+       
+        //! The diagonal matrix when using the LDLT factorization
+        MatrixType _D;
 
 
         /** Assert that the covariance matrix have the required properties and returns its dimension.
@@ -243,37 +252,36 @@ public:
             } // for i in [1,N[
         }
 
-        /** This alternative algorithm does not use square root BUT the covariance 
-         * matrix must be invertible.
+
+        /** This alternative algorithm do not use square root.
          *
          * Computes L and D such as V = L D Lt
          */
         void factorize_LDLT( const MatrixType& V)
         {
-            unsigned int N = assert_properties( V );
+            // use "int" everywhere, because of the "j-1" operation
+            int N = assert_properties( V );
+            // example of an invertible matrix whose decomposition is undefined
+            assert( V(0,0) != 0 ); 
 
-            unsigned int i, j, k;
-            //MatrixType D = ublas::zero_matrix<AtomType>(N);
-            std::vector<AtomType> _D(N,0);
+            _D = ublas::zero_matrix<AtomType>(N,N);
+            _D(0,0) = V(0,0);
+            
+            for( int j=0; j<N; ++j ) { // each columns
+                _L(j, j) = 1;
 
-            _D[0] = V(0,0);
-            _L(0, 0) = 1;
-            //_L(1,0) = 1/D[0] * V(1,0);
-
-            for( j=0; j<N; ++j ) { // each columns
-
-                _D[j] = V(j,j);
-                for( k=0; k<j-1; ++k) { // sum
-                    _D[j] -= _L(j,k) * _L(j,k) * _D[k];
+                _D(j,j) = V(j,j);
+                for( int k=0; k<=j-1; ++k) { // sum
+                    _D(j,j) -= _L(j,k) * _L(j,k) * _D(k,k);
                 }
 
-                for( i=j+1; i<N; ++i ) { // remaining rows
+                for( int i=j+1; i<N; ++i ) { // remaining rows
 
                     _L(i,j) = V(i,j);
-                    for( k=0; k<j-1; ++k) { // sum
-                        _L(i,j) -= _L(i,k)*_L(j,k) * _D[k];
+                    for( int k=0; k<=j-1; ++k) { // sum
+                        _L(i,j) -= _L(i,k)*_L(j,k) * _D(k,k);
                     }
-                    _L(i,j) /= _D[j];
+                    _L(i,j) /= _D(j,j);
 
                 } // for i in rows
             } // for j in columns
