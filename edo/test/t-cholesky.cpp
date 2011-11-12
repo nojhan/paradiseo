@@ -99,7 +99,16 @@ bool equal( const MT& M1, const MT& M2, double prec /* = 1/std::numeric_limits<d
 
 int main(int argc, char** argv)
 {
+
     unsigned int N = 4;
+    double precision = 1e-15;
+
+    if( argc >= 2 ) {
+        N = std::atof(argv[1]);
+    }
+    if( argc >= 3 ) {
+        precision = std::atof(argv[2]);
+    }
 
     typedef edoSamplerNormalMulti<EOT,EOD>::Cholesky::CovarMat CovarMat;
     typedef edoSamplerNormalMulti<EOT,EOD>::Cholesky::FactorMat FactorMat;
@@ -115,9 +124,13 @@ int main(int argc, char** argv)
         }
     }
 
-    double precision = 1e-15;
-    setformat(std::cout);
+    std::cout << "usage: t-cholesky [N] [precision]" << std::endl;
+    std::cout << "N = " << N << std::endl;
+    std::cout << "precision = " << precision << std::endl;
     std::string linesep = "--------------------------------------------------------------------------------------------";
+    std::cout << linesep << std::endl;
+
+    setformat(std::cout);
 
     std::cout << "Covariance matrix" << std::endl << format(V) << std::endl;
     std::cout << linesep << std::endl;
