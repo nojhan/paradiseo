@@ -61,11 +61,11 @@ public:
         typedef ublas::symmetric_matrix< AtomType, ublas::lower > MatrixType;
 
         enum Method { 
-            //! use the standard algorithm, with square root @see factorize
+            //! use the standard algorithm, with square root @see factorize_LLT
             standard,
-            //! use the algorithm using absolute value within the square root @see factorize_abs
+            //! use the algorithm using absolute value within the square root @see factorize_LLT_abs
             absolute, 
-            //! use the robust algorithm, without square root
+            //! use the robust algorithm, without square root @see factorize_LDLT
             robust 
         };
         Method _use;
@@ -147,11 +147,11 @@ public:
         void factorize( const MatrixType& V )
         {
             if( _use == standard ) {
-                factorize_std( V );
+                factorize_LLT( V );
             } else if( _use == absolute ) {
-                factorize_abs( V );
+                factorize_LLT_abs( V );
             } else if( _use == robust ) {
-                factorize_robust( V );
+                factorize_LDLT( V );
             }
         }
 
@@ -162,7 +162,7 @@ public:
           * When compiled in debug mode and called on ill-conditionned matrix,
           * will raise an assert before calling the square root on a negative number.
           */
-        void factorize_std( const MatrixType& V)
+        void factorize_LLT( const MatrixType& V)
         {
             unsigned int N = assert_properties( V );
 
@@ -208,7 +208,7 @@ public:
           * Be aware that this increase round-off errors, this is just a ugly
           * hack to avoid crash.
           */
-        void factorize_abs( const MatrixType & V)
+        void factorize_LLT_abs( const MatrixType & V)
         {
             unsigned int N = assert_properties( V );
 
@@ -248,7 +248,7 @@ public:
          *
          * Computes L and D such as V = L D Lt
          */
-        void factorize_robust( const MatrixType& V)
+        void factorize_LDLT( const MatrixType& V)
         {
             unsigned int N = assert_properties( V );
 
