@@ -41,8 +41,8 @@ Authors:
  *   - compute the Cholesky decomposition L of V (i.e. such as V=LL*)
  *   - return X = M + LT
  */
-template< class EOT, typename D = edoNormalMulti< EOT > >
-class edoSamplerNormalMulti : public edoSampler< D >
+template< class EOT, typename EOD = edoNormalMulti< EOT > >
+class edoSamplerNormalMulti : public edoSampler< EOD >
 {
 public:
     typedef typename EOT::AtomType AtomType;
@@ -97,23 +97,16 @@ public:
         }
 
         //! The decomposition of the covariance matrix
-        const MatrixType & decomposition() const {return _L;}
-
-        /** When your using the LDLT robust decomposition (by passing the "robust" 
-         * option to the constructor, @see factorize_LDTL), this is the diagonal
-         * matrix part.
-         */
-        const MatrixType & diagonal() const {return _D;}
+        const MatrixType & decomposition() const 
+        {
+            return _L;
+        }
 
     protected:
 
         //! The decomposition is a (lower) symetric matrix, just like the covariance matrix
         MatrixType _L;
        
-        //! The diagonal matrix when using the LDLT factorization
-        MatrixType _D;
-
-
         /** Assert that the covariance matrix have the required properties and returns its dimension.
          *
          * Note: if compiled with NDEBUG, will not assert anything and just return the dimension.
@@ -222,6 +215,7 @@ public:
             unsigned int N = assert_properties( V );
 
             unsigned int i=0, j=0, k;
+
             _L(0, 0) = sqrt( V(0, 0) );
 
             // end of the column
@@ -264,27 +258,41 @@ public:
             // example of an invertible matrix whose decomposition is undefined
             assert( V(0,0) != 0 ); 
 
-            _D = ublas::zero_matrix<AtomType>(N,N);
-            _D(0,0) = V(0,0);
+            MatrixType L(N,N);
+            MatrixType D = ublas::zero_matrix<AtomType>(N,N);
+            D(0,0) = V(0,0);
             
             for( int j=0; j<N; ++j ) { // each columns
-                _L(j, j) = 1;
+                L(j, j) = 1;
 
-                _D(j,j) = V(j,j);
+                D(j,j) = V(j,j);
                 for( int k=0; k<=j-1; ++k) { // sum
-                    _D(j,j) -= _L(j,k) * _L(j,k) * _D(k,k);
+                    D(j,j) -= L(j,k) * L(j,k) * D(k,k);
                 }
 
                 for( int i=j+1; i<N; ++i ) { // remaining rows
 
-                    _L(i,j) = V(i,j);
+                    L(i,j) = V(i,j);
                     for( int k=0; k<=j-1; ++k) { // sum
-                        _L(i,j) -= _L(i,k)*_L(j,k) * _D(k,k);
+                        L(i,j) -= L(i,k)*L(j,k) * D(k,k);
                     }
-                    _L(i,j) /= _D(j,j);
+                    L(i,j) /= D(j,j);
 
                 } // for i in rows
             } // for j in columns
+
+            // now compute the final symetric matrix: from _LD_LT to _L_LT
+            // remember that V = (_LD^1/2)(_LD^1/2)^T
+
+            // square root of a diagonal matrix is the square root of all its
+            // scalars
+            MatrixType D12 = D;
+            for(int i=0; i<N; ++i) {
+                D12(i,i) = sqrt(D(i,i));
+            }
+
+            // the factorization is thus _L*D^1/2
+            _L = ublas::prod( L, D12);
         }
         
 
@@ -292,11 +300,11 @@ public:
 
 
     edoSamplerNormalMulti( edoRepairer<EOT> & repairer, typename Cholesky::Method use = Cholesky::absolute ) 
-        : edoSampler< D >( repairer), _cholesky(use)
+        : edoSampler< EOD >( repairer), _cholesky(use)
     {}
 
 
-    EOT sample( edoNormalMulti< EOT >& distrib )
+    EOT sample( EOD& distrib )
     {
         unsigned int size = distrib.size();
         assert(size > 0);

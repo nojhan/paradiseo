@@ -85,12 +85,8 @@ int main(int argc, char** argv)
     std::cout << "-----------------------------------------------------------" << std::endl;
     
     MatrixType L2 = LDLT(V);
-    MatrixType D2 = LDLT.diagonal();
-    std::cout << "LDLT" << std::endl << L2 << std::endl;
-    // ublas do not allow nested products, we should use a temporary matrix, 
-    // thus the inline instanciation of a MatrixType
-    // see: http://www.crystalclearsoftware.com/cgi-bin/boost_wiki/wiki.pl?Effective_UBLAS
-    MatrixType V2 = ublas::prod( MatrixType(ublas::prod( L2, D2 )), ublas::trans(L2) );
+    std::cout << "LDLT: L" << std::endl << L2 << std::endl;
+    MatrixType V2 = ublas::prod( L2, ublas::trans(L2) );
     std::cout << "LDLT covar" << std::endl << V2 << std::endl;
     std::cout << "-----------------------------------------------------------" << std::endl;
     
