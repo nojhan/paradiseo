@@ -58,7 +58,11 @@ public:
     class Cholesky
     {
     public:
+        //! The covariance-matrix is symetric
         typedef ublas::symmetric_matrix< AtomType, ublas::lower > CovarMat;
+
+        //! The factorization matrix is triangular
+        // FIXME check if triangular types behaviour is like having 0
         typedef ublas::matrix< AtomType > FactorMat;
 
         enum Method { 

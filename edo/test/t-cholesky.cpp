@@ -25,12 +25,13 @@ Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
-#include <vector>
+//#include <vector>
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <limits>
 #include <iomanip>
+#include <ctime>
 
 #include <eo>
 #include <es.h>
@@ -97,66 +98,147 @@ bool equal( const MT& M1, const MT& M2, double prec /* = 1/std::numeric_limits<d
 }
 
 
+template<typename MT >
+MT error( const MT& M1, const MT& M2 )
+{
+    assert( M1.size1() == M2.size1() && M1.size1() == M2.size2() );
+
+    MT Err = ublas::zero_matrix<double>(M1.size1(),M1.size2());
+
+    for( unsigned int i=0; i<M1.size1(); ++i ) {
+        for( unsigned int j=0; j<M1.size2(); ++j ) {
+            Err(i,j) = M1(i,j) - M2(i,j);
+        }
+    }
+
+    return Err;
+}
+
+
+template<typename MT >
+double trigsum( const MT& M )
+{
+    double sum;
+    for( unsigned int i=0; i<M.size1(); ++i ) {
+        for( unsigned int j=i; j<M.size2(); ++j ) { // triangular browsing
+            sum += fabs( M(i,j) ); // absolute deviation
+        }
+    }
+    return sum;
+}
+
+
+template<typename T>
+double sum( const T& c )
+{
+     return std::accumulate(c.begin(), c.end(), 0);
+}
+
+
 int main(int argc, char** argv)
 {
+    srand(time(0));
 
-    unsigned int N = 4;
-    double precision = 1e-15;
+    unsigned int N = 4; // size of matrix
+    unsigned int R = 1000; // nb of repetitions
 
     if( argc >= 2 ) {
-        N = std::atof(argv[1]);
+        N = std::atoi(argv[1]);
     }
     if( argc >= 3 ) {
-        precision = std::atof(argv[2]);
+        R = std::atoi(argv[2]);
     }
+
+    std::cout << "Usage: t-cholesky [matrix size] [repetitions]" << std::endl;
+    std::cout << "matrix size = " << N << std::endl;
+    std::cout << "repetitions = " << R << std::endl;
 
     typedef edoSamplerNormalMulti<EOT,EOD>::Cholesky::CovarMat CovarMat;
     typedef edoSamplerNormalMulti<EOT,EOD>::Cholesky::FactorMat FactorMat;
 
-    // a variance-covariance matrix of size N*N
-    CovarMat V(N,N);
+    edoSamplerNormalMulti<EOT,EOD>::Cholesky LLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::standard );
+    edoSamplerNormalMulti<EOT,EOD>::Cholesky LLTa( edoSamplerNormalMulti<EOT,EOD>::Cholesky::absolute );
+    edoSamplerNormalMulti<EOT,EOD>::Cholesky LDLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::robust );
 
-    // random covariance matrix
-    for( unsigned int i=0; i<N; ++i) {
-        V(i,i) = 1 + std::pow(rand(),2); // variance should be > 0
-        for( unsigned int j=i+1; j<N; ++j) {
-            V(i,j) = rand();
+    std::vector<double> s0,s1,s2;
+    for( unsigned int n=0; n<R; ++n ) {
+
+        // a variance-covariance matrix of size N*N
+        CovarMat V(N,N);
+
+        // random covariance matrix
+        for( unsigned int i=0; i<N; ++i) {
+            V(i,i) = std::pow(rand(),2); // variance should be >= 0
+            for( unsigned int j=i+1; j<N; ++j) {
+                V(i,j) = rand();
+            }
         }
+
+        FactorMat L0 = LLT(V);
+        CovarMat V0 = ublas::prod( L0, ublas::trans(L0) );
+        s0.push_back( trigsum(error(V,V0)) );
+
+        FactorMat L1 = LLTa(V);
+        CovarMat V1 = ublas::prod( L1, ublas::trans(L1) );
+        s1.push_back( trigsum(error(V,V1)) );
+
+        FactorMat L2 = LDLT(V);
+        CovarMat V2 = ublas::prod( L2, ublas::trans(L2) );
+        s2.push_back( trigsum(error(V,V2)) );
     }
 
-    std::cout << "usage: t-cholesky [N] [precision]" << std::endl;
-    std::cout << "N = " << N << std::endl;
-    std::cout << "precision = " << precision << std::endl;
-    std::string linesep = "--------------------------------------------------------------------------------------------";
-    std::cout << linesep << std::endl;
+    std::cout << "Average error:" << std::endl;
+    std::cout << "\tLLT:  " << sum(s0)/R << std::endl;
+    std::cout << "\tLLTa: " << sum(s1)/R << std::endl;
+    std::cout << "\tLDLT: " << sum(s2)/R << std::endl;
 
-    setformat(std::cout);
-
-    std::cout << "Covariance matrix" << std::endl << format(V) << std::endl;
-    std::cout << linesep << std::endl;
-
-    edoSamplerNormalMulti<EOT,EOD>::Cholesky LLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::standard );
-    FactorMat L0 = LLT(V);
-    std::cout << "LLT" << std::endl << format(L0) << std::endl;
-    CovarMat V0 = ublas::prod( L0, ublas::trans(L0) );
-    std::cout << "LLT covar" << std::endl << format(V0) << std::endl;
-    assert( equal(V0,V,precision) );
-    std::cout << linesep << std::endl;
-
-    edoSamplerNormalMulti<EOT,EOD>::Cholesky LLTa( edoSamplerNormalMulti<EOT,EOD>::Cholesky::absolute );
-    FactorMat L1 = LLTa(V);
-    std::cout << "LLT abs" << std::endl << format(L1) << std::endl;
-    CovarMat V1 = ublas::prod( L1, ublas::trans(L1) );
-    std::cout << "LLT covar" << std::endl << format(V1) << std::endl;
-    assert( equal(V1,V,precision) );
-    std::cout << linesep << std::endl;
-    
-    edoSamplerNormalMulti<EOT,EOD>::Cholesky LDLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::robust );
-    FactorMat L2 = LDLT(V);
-    std::cout << "LDLT" << std::endl << format(L2) << std::endl;
-    CovarMat V2 = ublas::prod( L2, ublas::trans(L2) );
-    std::cout << "LDLT covar" << std::endl << format(V2) << std::endl;
-    assert( equal(V2,V,precision) );
-    std::cout << linesep << std::endl;
+//    double precision = 1e-15;
+//    if( argc >= 4 ) {
+//        precision = std::atof(argv[3]);
+//    }
+//    std::cout << "precision = " << precision << std::endl;
+//    std::cout << "usage: t-cholesky [N] [precision]" << std::endl;
+//    std::cout << "N = " << N << std::endl;
+//    std::cout << "precision = " << precision << std::endl;
+//    std::string linesep = "--------------------------------------------------------------------------------------------";
+//    std::cout << linesep << std::endl;
+//
+//    setformat(std::cout);
+//
+//    std::cout << "Covariance matrix" << std::endl << format(V) << std::endl;
+//    std::cout << linesep << std::endl;
+//
+//    edoSamplerNormalMulti<EOT,EOD>::Cholesky LLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::standard );
+//    FactorMat L0 = LLT(V);
+//    CovarMat V0 = ublas::prod( L0, ublas::trans(L0) );
+//    CovarMat E0 = error(V,V0);
+//    std::cout << "LLT" << std::endl << format(E0) << std::endl;
+//    std::cout << trigsum(E0) << std::endl;
+//    std::cout << "LLT" << std::endl << format(L0) << std::endl;
+//    std::cout << "LLT covar" << std::endl << format(V0) << std::endl;
+//    assert( equal(V0,V,precision) );
+//    std::cout << linesep << std::endl;
+//
+//    edoSamplerNormalMulti<EOT,EOD>::Cholesky LLTa( edoSamplerNormalMulti<EOT,EOD>::Cholesky::absolute );
+//    FactorMat L1 = LLTa(V);
+//    CovarMat V1 = ublas::prod( L1, ublas::trans(L1) );
+//    CovarMat E1 = error(V,V1);
+//    std::cout << "LLT abs" << std::endl << format(E1) << std::endl;
+//    std::cout << trigsum(E1) << std::endl;
+//    std::cout << "LLT abs" << std::endl << format(L1) << std::endl;
+//    std::cout << "LLT covar" << std::endl << format(V1) << std::endl;
+//    assert( equal(V1,V,precision) );
+//    std::cout << linesep << std::endl;
+//    
+//    edoSamplerNormalMulti<EOT,EOD>::Cholesky LDLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::robust );
+//    FactorMat L2 = LDLT(V);
+//    CovarMat V2 = ublas::prod( L2, ublas::trans(L2) );
+//    CovarMat E2 = error(V,V2);
+//    std::cout << "LDLT" << std::endl << format(E2) << std::endl;
+//    std::cout << trigsum(E2) << std::endl;
+//    std::cout << "LDLT" << std::endl << format(L2) << std::endl;
+//    std::cout << "LDLT covar" << std::endl << format(V2) << std::endl;
+//    assert( equal(V2,V,precision) );
+//    std::cout << linesep << std::endl;
     
 }
