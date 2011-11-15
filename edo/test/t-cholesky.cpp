@@ -158,9 +158,10 @@ int main(int argc, char** argv)
 
     edoSamplerNormalMulti<EOT,EOD>::Cholesky LLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::standard );
     edoSamplerNormalMulti<EOT,EOD>::Cholesky LLTa( edoSamplerNormalMulti<EOT,EOD>::Cholesky::absolute );
+    edoSamplerNormalMulti<EOT,EOD>::Cholesky LLTz( edoSamplerNormalMulti<EOT,EOD>::Cholesky::zeroing );
     edoSamplerNormalMulti<EOT,EOD>::Cholesky LDLT( edoSamplerNormalMulti<EOT,EOD>::Cholesky::robust );
 
-    std::vector<double> s0,s1,s2;
+    std::vector<double> s0,s1,s2,s3;
     for( unsigned int n=0; n<R; ++n ) {
 
         // a variance-covariance matrix of size N*N
@@ -182,15 +183,20 @@ int main(int argc, char** argv)
         CovarMat V1 = ublas::prod( L1, ublas::trans(L1) );
         s1.push_back( trigsum(error(V,V1)) );
 
-        FactorMat L2 = LDLT(V);
+        FactorMat L2 = LLTz(V);
         CovarMat V2 = ublas::prod( L2, ublas::trans(L2) );
         s2.push_back( trigsum(error(V,V2)) );
+
+        FactorMat L3 = LDLT(V);
+        CovarMat V3 = ublas::prod( L3, ublas::trans(L3) );
+        s3.push_back( trigsum(error(V,V3)) );
     }
 
     std::cout << "Average error:" << std::endl;
     std::cout << "\tLLT:  " << sum(s0)/R << std::endl;
     std::cout << "\tLLTa: " << sum(s1)/R << std::endl;
-    std::cout << "\tLDLT: " << sum(s2)/R << std::endl;
+    std::cout << "\tLLTz: " << sum(s2)/R << std::endl;
+    std::cout << "\tLDLT: " << sum(s3)/R << std::endl;
 
 //    double precision = 1e-15;
 //    if( argc >= 4 ) {

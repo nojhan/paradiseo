@@ -70,6 +70,8 @@ public:
             standard,
             //! use the algorithm using absolute value within the square root @see factorize_LLT_abs
             absolute, 
+            //! use the method that set negative square roots to zero @see factorize_LLT_zero
+            zeroing,
             //! use the robust algorithm, without square root @see factorize_LDLT
             robust 
         };
@@ -157,6 +159,8 @@ public:
                 factorize_LLT( V );
             } else if( _use == absolute ) {
                 factorize_LLT_abs( V );
+            } else if( _use == zeroing ) {
+                factorize_LLT_zero( V );
             } else if( _use == robust ) {
                 factorize_LDLT( V );
             }
@@ -239,6 +243,54 @@ public:
                 }
 
                 _L(i,i) = sqrt( fabs( V(i,i) - sum) );
+
+                for ( j = i + 1; j < N; ++j ) { // rows
+                    // one element
+                    sum = 0.0;
+                    for ( k = 0; k < i; ++k ) {
+                        sum += _L(j, k) * _L(i, k);
+                    }
+
+                    _L(j, i) = (V(j, i) - sum) / _L(i, i);
+
+                } // for j in ]i,N[
+            } // for i in [1,N[
+        }
+
+
+        /** This standard algorithm makes use of square root but do not fail
+          * if the covariance matrix is very ill-conditioned.
+          * Here, if the diagonal difference ir negative, we set it to zero.
+          *
+          * Be aware that this increase round-off errors, this is just a ugly
+          * hack to avoid crash.
+          */
+        void factorize_LLT_zero( const CovarMat & V)
+        {
+            unsigned int N = assert_properties( V );
+
+            unsigned int i=0, j=0, k;
+
+            _L(0, 0) = sqrt( V(0, 0) );
+
+            // end of the column
+            for ( j = 1; j < N; ++j ) {
+                _L(j, 0) = V(0, j) / _L(0, 0);
+            }
+
+            // end of the matrix
+            for ( i = 1; i < N; ++i ) { // each column
+                // diagonal
+                double sum = 0.0;
+                for ( k = 0; k < i; ++k) {
+                    sum += _L(i, k) * _L(i, k);
+                }
+
+                if(  V(i,i) - sum >= 0 ) {
+                    _L(i,i) = sqrt( V(i,i) - sum);
+                } else {
+                    _L(i,i) = 0;
+                }
 
                 for ( j = i + 1; j < N; ++j ) { // rows
                     // one element
