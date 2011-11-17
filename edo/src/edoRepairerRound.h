@@ -86,7 +86,11 @@ public:
     typedef typename EOT::AtomType ArgType;
 
     //! Generally speaking, we expect decimals being <= 1, but it can work for higher values
-    edoRepairerRoundDecimals( ArgType decimals ) : edoRepairerApplyBinary<EOT>( edoRound<ArgType>, 1 / decimals ) {}
+    edoRepairerRoundDecimals( ArgType decimals ) : edoRepairerApplyBinary<EOT>( edoRound<ArgType>, 1 / decimals ) 
+    {
+        assert( decimals <= 1.0 );
+        assert( 1/decimals >= 1.0 );
+    }
 };
 
 
