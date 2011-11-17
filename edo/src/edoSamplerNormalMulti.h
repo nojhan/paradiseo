@@ -29,6 +29,7 @@ Authors:
 #define _edoSamplerNormalMulti_h
 
 #include <cmath>
+#include <limits>
 
 #include <edoSampler.h>
 #include <boost/numeric/ublas/lu.hpp>
@@ -110,6 +111,22 @@ public:
             return _L;
         }
 
+        template<typename MT>
+        std::string format(const MT& mat )
+        {
+            std::ostringstream out;
+
+            for( unsigned int i=0; i<mat.size1(); ++i) {
+                out << std::endl;
+                for( unsigned int j=0; j<mat.size2(); ++j) {
+                    out << mat(i,j) << "\t";
+                } // columns
+            } // rows
+
+            return out.str();
+        }
+
+
     protected:
 
         //! The decomposition is a (lower) symetric matrix, just like the covariance matrix
@@ -125,6 +142,8 @@ public:
 
             // the result goes in _L
             _L = ublas::zero_matrix<AtomType>(Vl,Vl);
+
+            eo::log << eo::debug << std::endl << "Covariance matrix:" << format( V ) << std::endl;
 
 #ifndef NDEBUG
             assert(Vl > 0);
@@ -164,6 +183,8 @@ public:
             } else if( _use == robust ) {
                 factorize_LDLT( V );
             }
+            
+            eo::log << eo::debug << std::endl << "Decomposed matrix:" << format( _L ) << std::endl;
         }
 
 
@@ -289,7 +310,7 @@ public:
                 if(  V(i,i) - sum >= 0 ) {
                     _L(i,i) = sqrt( V(i,i) - sum);
                 } else {
-                    _L(i,i) = 0;
+                    _L(i,i) = std::numeric_limits<double>::epsilon();
                 }
 
                 for ( j = i + 1; j < N; ++j ) { // rows
