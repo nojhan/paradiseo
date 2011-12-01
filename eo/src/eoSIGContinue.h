@@ -48,7 +48,7 @@ void	set_bool(int)
 }
 
 /**
-    Ctrl C handling: this eoContinue tells whether the user pressed Ctrl C
+  A continuator that stops if a given signal is received during the execution
 */
 template< class EOT>
 class eoSIGContinue: public eoContinue<EOT>
