@@ -173,10 +173,11 @@
 #include <perturb/moRestartPerturb.h>
 #include <perturb/moSolInit.h>
 
-// #include <problems/bitString/moBitNeighbor.h>
-// #include <problems/bitString/moBitsNeighbor.h>
-// #include <problems/bitString/moBitsNeighborhood.h>
-// #include <problems/bitString/moBitsWithoutReplNeighborhood.h>
+#include <problems/bitString/moBitNeighbor.h>
+#include <problems/bitString/moBitsNeighbor.h>
+#include <problems/bitString/moBitsNeighborhood.h>
+#include <problems/bitString/moBitsWithoutReplNeighborhood.h>
+
 // #include <problems/bitString/moPopBitNeighbor.h>
 // #include <problems/bitString/moPopBitsNeighbor.h>
 // #include <problems/bitString/moPopBitsRndNeighborhood.h>

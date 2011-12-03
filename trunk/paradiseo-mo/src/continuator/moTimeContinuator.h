@@ -78,7 +78,7 @@ public:
      * @param _maxTime maximum running time
      */
     virtual void maxTime(time_t _maxTime) {
-      max = _maxTime
+      max = _maxTime;
     }
 
 
