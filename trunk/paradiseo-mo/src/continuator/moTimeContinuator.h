@@ -47,7 +47,7 @@ public:
      * @param _max maximum running time
      * @param _verbose verbose mode true/false -> on/off
      */
-    moTimeContinuator(time_t _max, bool _verbose=true): max(_max), verbose(_verbose) {
+    moTimeContinuator(time_t _max, bool _verbose = true): max(_max), verbose(_verbose) {
       external = false;
       start = time(NULL);
     }
@@ -69,6 +69,16 @@ public:
      */
     virtual time_t getStartingTime() {
       return start;
+    }
+
+
+    /**
+     * To set the maximum running time
+     *
+     * @param _maxTime maximum running time
+     */
+    virtual void maxTime(time_t _maxTime) {
+      max = _maxTime
     }
 
 

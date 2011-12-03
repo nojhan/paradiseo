@@ -103,6 +103,7 @@
 #include <coolingSchedule/moCoolingSchedule.h>
 #include <coolingSchedule/moDynSpanCoolingSchedule.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
+#include <coolingSchedule/moDynSpanCoolingSchedule.h>
 
 #include <eval/moDummyEval.h>
 #include <eval/moEval.h>
@@ -139,6 +140,7 @@
 #include <memory/moNeighborVectorTabuList.h>
 #include <memory/moRndIndexedVectorTabuList.h>
 #include <memory/moSolVectorTabuList.h>
+#include <memory/moRndIndexedVectorTabuList.h>
 #include <memory/moTabuList.h>
 
 #include <neighborhood/moBackableNeighbor.h>

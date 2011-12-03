@@ -115,15 +115,14 @@ public:
 	 * @return this monitor (sorry I don't why, but it is like this in EO)
 	 */
 	eoMonitor& operator()(void) {
-		if (doubleParam != NULL)
-			valueVec.push_back(doubleParam->value());
-		else
-			if (intParam != NULL)
-				valueVec.push_back((double) intParam->value());
-			else
-				eotVec.push_back(eotParam->value());
-
-		return *this ;
+	  if (doubleParam != NULL) 
+	    valueVec.push_back(doubleParam->value()); 
+	  else
+	    if (intParam != NULL)
+	      valueVec.push_back((double) intParam->value());
+	    else 
+	      eotVec.push_back(eotParam->value());
+	  return *this ;
 	}
 
 	/**
