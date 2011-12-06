@@ -1,5 +1,5 @@
 /*
-  <moEval.h>
+  <moDoubleIncrNeighborhoodEval.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,20 +32,45 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moEval_H
-#define moEval_H
+#ifndef moDoubleIncrNeighborhoodEval_H
+#define moDoubleIncrNeighborhoodEval_H
 
-#include <eoFunctor.h>
+#include <eval/moEval.h>
+#include <evla/moDoubleIncrEvaluation.h>
 
 /**
- * Abstract class for the evaluation
+ * Evaluation of a neighbor from the full evaluation f the neighborhood
+ * 
+ *
  */
 template<class Neighbor>
-class moEval : public eoBF<typename Neighbor::EOT &, Neighbor&, void>
+class moDoubleIncrNeighborhoodEval : public moEval<Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
-    typedef typename EOT::Fitness Fitness;
+  typedef typename moEval<Neighbor>::EOT EOT;
+
+  /**
+   * Ctor
+   * @param _evaluation the double incremental evaluation  of the neighborhood
+   */
+  moDoubleIncrNeighborhoodEval(moDoubleIncrEvaluation<Neighbor>& _evaluation) : evaluation(_evaluation) {}
+
+  /**
+   * evaluation of a neighbor with the double incremental evaluation
+   *
+   * @param _sol current solution
+   * @param _neighbor the neighbor to be evaluated
+   */
+  void operator()(EOT & _sol, Neighbor & _neighbor)
+  {
+    _neighbor.fitness(_sol.fitness() + evaluation.deltaFitness[_neighbor.index()]);
+  }
+
+
+private:
+  /** the evaluation of the neighborhood */
+  moDoubleIncrEvaluation<Neighbor> & evaluation;
+
 };
 
 #endif

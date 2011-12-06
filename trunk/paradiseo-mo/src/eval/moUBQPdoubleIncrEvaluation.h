@@ -43,9 +43,10 @@
  * The neighborhood evaluation for the UBQP
  * The double incremental evaluation is used
  * 
+ * BECAREFULL: This object must be added to the moCheckpoint of the local search (init method)
  */
 template<class Neighbor>
-class moUBQPdoubleIncrEvaluation : public moNeighborhoodEvaluation<Neighbor>, moUpdater
+class moUBQPdoubleIncrEvaluation : public moNeighborhoodEvaluation<Neighbor>
 {
 public:
   using moDoubleIncrEvaluation::deltaFitness;
