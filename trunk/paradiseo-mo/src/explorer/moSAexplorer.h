@@ -59,6 +59,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
 
     /**
      * Constructor
@@ -112,10 +113,10 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init on the first neighbor: supposed to be random solution in the neighborhood
-            neighborhood.init(_solution, current);
+            neighborhood.init(_solution, currentNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, current);
+            eval(_solution, currentNeighbor);
         }
         else {
             //if _solution hasn't neighbor,
@@ -138,9 +139,9 @@ public:
      */
     virtual void move(EOT & _solution) {
         //move the solution
-        current.move(_solution);
+        currentNeighbor.move(_solution);
         //update its fitness
-        _solution.fitness(current.fitness());
+        _solution.fitness(currentNeighbor.fitness());
     };
 
     /**
@@ -152,10 +153,10 @@ public:
         double alpha=0.0;
         double fit1, fit2;
         if (neighborhood.hasNeighbor(_solution)) {
-            if (solNeighborComparator(_solution, current)) // accept if the current neighbor is better than the solution
+            if (solNeighborComparator(_solution, currentNeighbor)) // accept if the current neighbor is better than the solution
                 isAccept = true;
             else {
-                fit1=(double)current.fitness();
+                fit1=(double)currentNeighbor.fitness();
                 fit2=(double)_solution.fitness();
                 if (fit1 < fit2) // this is a maximization
                     alpha = exp((fit1 - fit2) / temperature );
@@ -182,9 +183,6 @@ private:
     moCoolingSchedule<EOT>& coolingSchedule;
 
     double temperature;
-
-    //Pointer on the best and the current neighbor
-    Neighbor current;
 
     // true if the move is accepted
     bool isAccept ;
