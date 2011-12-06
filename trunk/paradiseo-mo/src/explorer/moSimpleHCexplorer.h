@@ -62,16 +62,12 @@ public:
      */
     moSimpleHCexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
         isAccept = false;
-        current=new Neighbor();
-        best=new Neighbor();
     }
 
     /**
      * Destructor
      */
     ~moSimpleHCexplorer() {
-        delete current;
-        delete best;
     }
 
     /**
@@ -100,23 +96,23 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, (*current));
+            neighborhood.init(_solution, current);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, (*current));
+            eval(_solution, current);
 
             //initialize the best neighbor
-            (*best) = (*current);
+            best = current;
 
             //test all others neighbors
             while (neighborhood.cont(_solution)) {
                 //next neighbor
-                neighborhood.next(_solution, (*current));
+                neighborhood.next(_solution, current);
                 //eval
-                eval(_solution, (*current));
+                eval(_solution, current);
                 //if we found a better neighbor, update the best
-                if (neighborComparator((*best), (*current))) {
-                    (*best) = (*current);
+                if (neighborComparator(best, current)) {
+                    best = current;
                 }
             }
 
@@ -142,10 +138,10 @@ public:
      */
     virtual void move(EOT & _solution) {
         //move the solution
-        (*best).move(_solution);
+        best.move(_solution);
 
         //update its fitness
-        _solution.fitness((*best).fitness());
+        _solution.fitness(best.fitness());
 
     };
 
@@ -156,7 +152,7 @@ public:
      */
     virtual bool accept(EOT & _solution) {
         if (neighborhood.hasNeighbor(_solution)) {
-            isAccept = solNeighborComparator(_solution, (*best)) ;
+            isAccept = solNeighborComparator(_solution, best) ;
         }
         return isAccept;
     };
@@ -175,8 +171,8 @@ private:
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
     //Pointer on the best and the current neighbor
-    Neighbor* best;
-    Neighbor* current;
+    Neighbor best;
+    Neighbor current;
 
     // true if the move is accepted
     bool isAccept ;
