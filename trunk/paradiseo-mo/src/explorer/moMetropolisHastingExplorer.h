@@ -58,6 +58,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
 
     /**
      * Constructor
@@ -69,7 +70,6 @@ public:
      */
     moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
         isAccept = false;
-        current=new Neighbor();
         if (!neighborhood.isRandom()) {
             std::cout << "moMetropolisHastingExplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
@@ -79,7 +79,6 @@ public:
      * Destructor
      */
     ~moMetropolisHastingExplorer() {
-        delete current;
     }
 
     /**
@@ -113,10 +112,10 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, (*current));
+            neighborhood.init(_solution, currentNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, (*current));
+            eval(_solution, currentNeighbor);
         }
         else {
             //if _solution hasn't neighbor,
@@ -139,9 +138,9 @@ public:
      */
     virtual void move(EOT & _solution) {
         //move the solution
-        (*current).move(_solution);
+        currentNeighbor.move(_solution);
         //update its fitness
-        _solution.fitness((*current).fitness());
+        _solution.fitness(currentNeighbor.fitness());
     };
 
     /**
@@ -152,18 +151,18 @@ public:
     virtual bool accept(EOT & _solution) {
         double alpha=0.0;
         if (neighborhood.hasNeighbor(_solution)) {
-            if (solNeighborComparator(_solution, *current))
+            if (solNeighborComparator(_solution, currentNeighbor)
                 isAccept = true;
             else {
                 if (_solution.fitness() != 0) {
-                    if ( (double)current->fitness() < (double)_solution.fitness()) // maximizing
-                        alpha = (double) current->fitness() / (double) _solution.fitness();
+                    if ( (double)currentNeighbor.fitness() < (double)_solution.fitness()) // maximizing
+                        alpha = (double) currentNeighbor.fitness() / (double) _solution.fitness();
                     else //minimizing
-                        alpha = (double) _solution.fitness() / (double) current->fitness();
+                        alpha = (double) _solution.fitness() / (double) currentNeighbor.fitness();
                     isAccept = (rng.uniform() < alpha) ;
                 }
                 else {
-                    if ( (double)current->fitness() < (double)_solution.fitness()) // maximizing
+                    if ( (double)currentNeighbor.fitness() < (double)_solution.fitness()) // maximizing
                         isAccept = true;
                     else
                         isAccept = false;
@@ -183,9 +182,6 @@ private:
 
     // maximum number of steps to do
     unsigned int nbStep;
-
-    //Pointer on the best and the current neighbor
-    Neighbor* current;
 
     // true if the move is accepted
     bool isAccept ;

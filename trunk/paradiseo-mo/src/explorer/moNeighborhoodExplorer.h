@@ -44,7 +44,15 @@
 #include <eval/moDummyEval.h>
 
 /**
- * Explore the neighborhood
+ * Explore the neighborhood according to the local search algorithm 
+ *
+ * During this exploration,
+ *   the parameters are updated
+ *   one neighbor is selected
+ *   a comparason with the solution is made to acccept or not this new neighbor
+ * 
+ * the current neighbor is the neighbor under consideration during the search
+ *  
  */
 template< class Neighbor >
 class moNeighborhoodExplorer : public eoUF<typename Neighbor::EOT&, void>
