@@ -170,7 +170,7 @@ private:
     moNeighborComparator<Neighbor>& neighborComparator;
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
-    //Pointer on the best and the current neighbor
+    // the best and the current neighbor
     Neighbor best;
     Neighbor current;
 

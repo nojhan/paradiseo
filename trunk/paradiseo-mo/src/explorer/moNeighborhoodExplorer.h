@@ -118,11 +118,23 @@ public:
     }
 
 protected:
+  // default class for the empty constructor
     moDummyNeighborhood<Neighbor> dummyNeighborhood;
+
+  // default class for the empty constructor
     moDummyEval<Neighbor> dummyEval;
+
+  // the neighborhood which is explored
     Neighborhood & neighborhood;
+
+  // evaluation of a neighbor
     moEval<Neighbor>& eval;
+
+  // flag : true a the neighbor is accepted and the movement is made
     bool isMoved;
+
+  // the current neighbor of the exploration : common features of algorithm
+    Neighbor currentNeighbor
 };
 
 #endif
