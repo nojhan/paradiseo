@@ -151,7 +151,7 @@ public:
     virtual bool accept(EOT & _solution) {
         double alpha=0.0;
         if (neighborhood.hasNeighbor(_solution)) {
-            if (solNeighborComparator(_solution, currentNeighbor)
+	  if (solNeighborComparator(_solution, currentNeighbor))
                 isAccept = true;
             else {
                 if (_solution.fitness() != 0) {

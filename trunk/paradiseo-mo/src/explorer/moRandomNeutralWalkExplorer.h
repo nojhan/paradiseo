@@ -54,6 +54,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
 
     /**
      * Constructor
@@ -70,7 +71,6 @@ public:
             solNeighborComparator(_solNeighborComparator),
             nbStep(_nbStep) {
         isAccept = false;
-        current=new Neighbor();
         if (!neighborhood.isRandom()) {
             std::cout << "moRandomNeutralWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
@@ -80,7 +80,6 @@ public:
      * Destructor
      */
     ~moRandomNeutralWalkExplorer() {
-        delete current;
     }
 
     /**
@@ -115,17 +114,17 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, (*current));
+            neighborhood.init(_solution, currentNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, (*current));
+            eval(_solution, currentNeighbor);
 
             //test all others neighbors
-            while (! solNeighborComparator.equals(_solution, *current) && neighborhood.cont(_solution)) {
+            while (! solNeighborComparator.equals(_solution, currentNeighbor) && neighborhood.cont(_solution)) {
                 //next neighbor
-                neighborhood.next(_solution, (*current));
+                neighborhood.next(_solution, currentNeighbor);
                 //eval
-                eval(_solution, (*current));
+                eval(_solution, currentNeighbor);
             }
         }
         else {
@@ -149,9 +148,9 @@ public:
      */
     virtual void move(EOT & _solution) {
         //move the solution
-        (*current).move(_solution);
+        currentNeighbor.move(_solution);
         //update its fitness
-        _solution.fitness((*current).fitness());
+        _solution.fitness(currentNeighbor.fitness());
     };
 
     /**
@@ -161,7 +160,7 @@ public:
      */
     virtual bool accept(EOT & _solution) {
         if (neighborhood.hasNeighbor(_solution))
-            isAccept = solNeighborComparator.equals(_solution, (*current)) ;
+            isAccept = solNeighborComparator.equals(_solution, currentNeighbor) ;
         return isAccept;
     };
 
@@ -174,9 +173,6 @@ private:
 
     // maximum number of steps to do
     unsigned int nbStep;
-
-    //Pointer on the best and the current neighbor
-    Neighbor* current;
 
     // true if the move is accepted
     bool isAccept ;
