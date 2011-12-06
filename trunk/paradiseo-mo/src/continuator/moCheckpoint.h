@@ -39,6 +39,7 @@
 #include <utils/eoMonitor.h>
 #include <continuator/moStatBase.h>
 #include <utils/eoUpdater.h>
+#include <continuator/moUpdater.h>
 #include <neighborhood/moNeighborhood.h>
 
 /**
@@ -56,7 +57,7 @@ public :
      * @param _interval frequency to compute statistical operators
      */
     moCheckpoint(moContinuator<Neighbor>& _cont, unsigned int _interval=1):interval(_interval), counter(0) {
-        continuators.push_back(&_cont);
+      continuators.push_back(&_cont);
     }
 
     /**
@@ -92,6 +93,14 @@ public :
     }
 
     /**
+     * add a MO updater to the checkpoint
+     * @param _moupd an mo updater
+     */
+    void add(eoUpdater& _moupd) {
+        moupdaters.push_back(&_moupd);
+    }
+
+    /**
      * init all continuators containing in the checkpoint regarding a solution
      * @param _sol the corresponding solution
      */
@@ -99,6 +108,9 @@ public :
         for (unsigned i = 0; i < stats.size(); ++i)
             stats[i]->init(_sol);
         counter=1;
+
+        for (unsigned i = 0; i < moupdaters.size(); ++i)
+            moupdaters[i]->init();
 
         for (unsigned int i = 0; i < monitors.size(); ++i)
             (*monitors[i])();
@@ -132,6 +144,9 @@ public :
         for (i = 0; i < updaters.size(); ++i)
             (*updaters[i])();
 
+        for (i = 0; i < moupdaters.size(); ++i)
+            (*moupdaters[i])();
+
         for (i = 0; i < monitors.size(); ++i)
             (*monitors[i])();
 
@@ -154,6 +169,9 @@ public :
         for (i = 0; i < updaters.size(); ++i)
             updaters[i]->lastCall();
 
+        for (i = 0; i < moupdaters.size(); ++i)
+            moupdaters[i]->lastCall();
+
         for (i = 0; i < monitors.size(); ++i)
             monitors[i]->lastCall();
     }
@@ -167,6 +185,8 @@ private :
     std::vector<eoMonitor*> monitors;
     /** updaters vector */
     std::vector<eoUpdater*> updaters;
+    /** MO updaters vector */
+    std::vector<moUpdater*> moupdaters;
 
     unsigned int interval;
     unsigned int counter;
