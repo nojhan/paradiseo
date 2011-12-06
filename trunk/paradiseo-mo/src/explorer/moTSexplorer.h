@@ -53,6 +53,8 @@ public:
     typedef typename Neighbor::EOT EOT ;
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
+
     /**
      * Constructor
      * @param _neighborhood the neighborhood
@@ -77,16 +79,12 @@ public:
             tabuList(_tabuList), intensification(_intensification), diversification(_diversification), aspiration(_aspiration)
     {
         isAccept = false;
-        current=new Neighbor();
-        best=new Neighbor();
     }
 
     /**
      * Destructor
      */
     ~moTSexplorer() {
-        delete current;
-        delete best;
     }
 
     /**
@@ -110,16 +108,16 @@ public:
     virtual void updateParam(EOT& _solution)
     {
         if ((*this).moveApplied()) {
-            tabuList.add(_solution, *best);
-            intensification.add(_solution, *best);
-            diversification.add(_solution, *best);
+            tabuList.add(_solution, best);
+            intensification.add(_solution, best);
+            diversification.add(_solution, best);
             if (_solution.fitness() > bestSoFar.fitness())
                 bestSoFar = _solution;
         }
-        tabuList.update(_solution, *best);
-        intensification.update(_solution, *best);
-        diversification.update(_solution, *best);
-        aspiration.update(_solution, *best);
+        tabuList.update(_solution, best);
+        intensification.update(_solution, best);
+        diversification.update(_solution, best);
+        aspiration.update(_solution, best);
     };
 
 
@@ -143,25 +141,25 @@ public:
         if (neighborhood.hasNeighbor(_solution))
         {
             //init the current neighbor
-            neighborhood.init(_solution, *current);
+            neighborhood.init(_solution, currentNeighbor);
             //eval the current neighbor
-            eval(_solution, *current);
+            eval(_solution, currentNeighbor);
             
             //Find the first non-tabu element
-            if ( (!tabuList.check(_solution, *current)) || aspiration(_solution, *current) ) {
+            if ( (!tabuList.check(_solution, currentNeighbor)) || aspiration(_solution, currentNeighbor) ) {
                 // set best
-                (*best)= (*current);
+                best = currentNeighbor;
                 found=true;
             }
             while (neighborhood.cont(_solution) && !found) {
                 //next neighbor
-                neighborhood.next(_solution, (*current));
+                neighborhood.next(_solution, currentNeighbor);
                 //eval
-                eval(_solution, (*current));
+                eval(_solution, currentNeighbor);
 
-                if ( (!tabuList.check(_solution, *current)) || aspiration(_solution, *current) ) {
+                if ( (!tabuList.check(_solution, currentNeighbor)) || aspiration(_solution, currentNeighbor) ) {
                     // set best
-                    (*best)=(*current);
+                    best = currentNeighbor;
                     found=true;
                 }
             }
@@ -170,13 +168,13 @@ public:
                 isAccept=true;
                 while (neighborhood.cont(_solution)) {
                     //next neighbor
-                    neighborhood.next(_solution, (*current));
+                    neighborhood.next(_solution, currentNeighbor);
                     //eval
-                    eval(_solution, (*current));
+                    eval(_solution, currentNeighbor);
                     //check if the current is better than the best and is not tabu or if it is aspirat (by the aspiration criteria of course)
-                    if ( (!tabuList.check(_solution, *current) || aspiration(_solution, (*current))) && neighborComparator((*best),(*current))) {
+                    if ( (!tabuList.check(_solution, currentNeighbor) || aspiration(_solution, currentNeighbor)) && neighborComparator(best, currentNeighbor)) {
                         // set best
-                        (*best)=(*current);
+                        best = currentNeighbor;
                     }
                 }
             }
@@ -207,9 +205,9 @@ public:
      */
     virtual void move(EOT & _solution) {
         //move the solution
-        best->move(_solution);
+        best.move(_solution);
         //update its fitness
-        _solution.fitness(best->fitness());
+        _solution.fitness(best.fitness());
     };
 
 
@@ -246,9 +244,8 @@ protected:
     moDiversification<Neighbor> & diversification;
     moAspiration<Neighbor> & aspiration;
 
-    //Current and best neighbor
-    Neighbor* best;
-    Neighbor* current;
+    // Best neighbor
+    Neighbor best;
 
     //Best so far Solution
     EOT bestSoFar;

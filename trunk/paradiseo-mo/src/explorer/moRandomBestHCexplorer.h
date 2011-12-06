@@ -55,6 +55,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
 
     /**
      * Constructor
@@ -71,14 +72,12 @@ public:
             neighborComparator(_neighborComparator),
             solNeighborComparator(_solNeighborComparator) {
         isAccept = false;
-        current=new Neighbor();
     }
 
     /**
      * Destructor
      */
     ~moRandomBestHCexplorer() {
-        delete current;
     }
 
     /**
@@ -114,29 +113,29 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, (*current));
+            neighborhood.init(_solution, currentNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, (*current));
+            eval(_solution, currentNeighbor);
 
             //initialize the best neighbor
-            bestVector.push_back(*current);
+            bestVector.push_back(currentNeighbor);
 
             //test all others neighbors
             while (neighborhood.cont(_solution)) {
                 //next neighbor
-                neighborhood.next(_solution, (*current));
+                neighborhood.next(_solution, currentNeighbor);
 
                 //eval
-                eval(_solution, (*current));
+                eval(_solution, currentNeighbor);
 
                 //if we found a better neighbor, update the best
-                if (neighborComparator(bestVector[0], (*current))) {
+                if (neighborComparator(bestVector[0], currentNeighbor)) {
                     bestVector.clear();
-                    bestVector.push_back(*current);
+                    bestVector.push_back(currentNeighbor);
                 }
-                else if (neighborComparator.equals((*current), bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
-                    bestVector.push_back(*current);
+                else if (neighborComparator.equals(currentNeighbor, bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
+                    bestVector.push_back(currentNeighbor);
             }
         }
         else {
@@ -187,8 +186,6 @@ protected:
 
     // the best solutions in the neighborhood
     std::vector<Neighbor> bestVector;
-    //Pointer on the current neighbor
-    Neighbor* current;
 
     // true if the move is accepted
     bool isAccept ;

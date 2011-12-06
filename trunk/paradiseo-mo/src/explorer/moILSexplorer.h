@@ -114,18 +114,18 @@ public:
      */
     virtual void operator()(EOT & _solution) {
         //copy the solution to perform new local search
-        current=_solution;
+        currentSol=_solution;
 
         //perturb solution exept at the first iteration
         if (!firstIteration) {
-            perturb(current);
+            perturb(currentSol);
 
         }
         else
             firstIteration=false;
 
         //apply the local search on the copy
-        ls(current);
+        ls(currentSol);
 
 //        std::cout << "(solution)\t" << current << std::endl;
 
@@ -145,7 +145,7 @@ public:
      * @param _solution the solution
      */
     virtual void move(EOT & _solution) {
-        _solution=current;
+        _solution=currentSol;
     };
 
     /**
@@ -154,7 +154,7 @@ public:
      * @return true if acceptance criteria is verified
      */
     virtual bool accept(EOT & _solution) {
-        return acceptCrit(_solution, current);
+        return acceptCrit(_solution, currentSol);
     };
 
     /**
@@ -168,7 +168,7 @@ public:
 private:
     //Usefull to use the momory of tabuSearch
     Neighbor emptyNeighbor;
-    EOT current;
+    EOT currentSol;
     moLocalSearch<Neighbor>& ls;
     moPerturbation<Neighbor> & perturb;
     moAcceptanceCriterion<Neighbor>& acceptCrit;
