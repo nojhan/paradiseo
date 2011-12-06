@@ -70,7 +70,7 @@ public:
    *
    */
   virtual void init() {
-    firstEval = false;
+    firstEval = true;
   }
 
   /**
@@ -82,7 +82,9 @@ public:
   virtual operator()(EOT & _solution) {
   }
 
-  /** the delta of fitness for each neighbors */
+  /** the delta of fitness for each neighbors 
+   *  The fitness of the neighbor i is given by : fitness(solution) + deltaFitness[i]
+   */
   Fitness * deltaFitness;
 
 protected:
