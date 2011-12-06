@@ -121,6 +121,16 @@ public:
 		return cont;
 	}
 
+	/**
+	 * to get the neighborhood explorer
+	 *
+	 * @overload
+	 * @return the neighborhood explorer
+	 */
+	moNeighborhoodExplorer<Neighbor> & getNeighborhoodExplorer() const {
+		return searchExplorer;
+	}
+
 protected:
 	// make the exploration of the neighborhood according to a local search heuristic
 	moNeighborhoodExplorer<Neighbor>& searchExplorer;
