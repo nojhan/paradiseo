@@ -83,7 +83,7 @@ public:
     if ((*this).moveApplied()) {
       selection.init(_solution);
     } else 
-      if (selection.cont(current)) {
+      if (selection.cont(currentSol)) {
 	selection.next(_solution);
       } else
 	stop = true;
@@ -102,9 +102,9 @@ public:
     eoMonOp<EOT> & shake = selection.getShake();
     eoMonOp<EOT> & ls    = selection.getLocalSearch();
 
-    current = _solution;
-    shake(current);
-    ls(current);
+    currentSol = _solution;
+    shake(currentSol);
+    ls(currentSol);
   }
 
   /**
@@ -121,7 +121,7 @@ public:
    * @param _solution the solution to move
    */
   virtual void move(EOT & _solution) {
-    _solution = current;
+    _solution = currentSol;
   };
 
   /**
@@ -130,7 +130,7 @@ public:
    * @return true if the neighbor ameliorate the fitness
    */
   virtual bool accept(EOT & _solution) {
-    return acceptCrit(_solution, current);
+    return acceptCrit(_solution, currentSol);
   };
 
   /**
@@ -145,7 +145,7 @@ private:
   moVariableNeighborhoodSelection<EOT>& selection;
   moAcceptanceCriterion<Neighbor>& acceptCrit;
   bool stop;
-  EOT current;
+  EOT currentSol;
 };
 
 
