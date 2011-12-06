@@ -57,6 +57,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
 
     /**
      * Constructor
@@ -65,7 +66,6 @@ public:
      */
     moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval) {
         isAccept = false;
-        current=new Neighbor();
         if (!neighborhood.isRandom()) {
             std::cout << "moRandomWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
@@ -75,7 +75,6 @@ public:
      * Destructor
      */
     ~moRandomWalkExplorer() {
-        delete current;
     }
 
     /**
@@ -109,10 +108,10 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, (*current));
+            neighborhood.init(_solution, currentNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, (*current));
+            eval(_solution, currentNeighbor);
 
             isAccept = true;
         }
@@ -137,9 +136,9 @@ public:
      */
     virtual void move(EOT & _solution) {
         //move the solution
-        (*current).move(_solution);
+        currentNeighbor.move(_solution);
         //update its fitness
-        _solution.fitness((*current).fitness());
+        _solution.fitness(currentNeighbor.fitness());
     };
 
     /**
@@ -154,9 +153,6 @@ public:
     };
 
 private:
-    //Pointer on the best and the current neighbor
-    Neighbor* current;
-
     // true if the move is accepted
     bool isAccept ;
 };
