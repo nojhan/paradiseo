@@ -134,7 +134,7 @@ protected:
     bool isMoved;
 
   // the current neighbor of the exploration : common features of algorithm
-    Neighbor currentNeighbor
+    Neighbor currentNeighbor;
 };
 
 #endif

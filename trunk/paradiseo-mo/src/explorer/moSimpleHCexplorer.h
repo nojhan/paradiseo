@@ -52,6 +52,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
 
     /**
      * Constructor
@@ -96,23 +97,23 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, current);
+            neighborhood.init(_solution, currentNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, current);
+            eval(_solution, currentNeighbor);
 
             //initialize the best neighbor
-            best = current;
+            best = currentNeighbor;
 
             //test all others neighbors
             while (neighborhood.cont(_solution)) {
                 //next neighbor
-                neighborhood.next(_solution, current);
+                neighborhood.next(_solution, currentNeighbor);
                 //eval
-                eval(_solution, current);
+                eval(_solution, currentNeighbor);
                 //if we found a better neighbor, update the best
-                if (neighborComparator(best, current)) {
-                    best = current;
+                if (neighborComparator(best, currentNeighbor)) {
+                    best = currentNeighbor;
                 }
             }
 
@@ -172,7 +173,7 @@ private:
 
     // the best and the current neighbor
     Neighbor best;
-    Neighbor current;
+  //    Neighbor current;
 
     // true if the move is accepted
     bool isAccept ;

@@ -52,6 +52,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
+    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
 
     /**
      * Constructor
@@ -62,14 +63,12 @@ public:
      */
     moFirstImprHCexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
         isAccept = false;
-        current=new Neighbor();
     }
 
     /**
      * Destructor
      */
     ~moFirstImprHCexplorer() {
-        delete current;
     }
 
     /**
