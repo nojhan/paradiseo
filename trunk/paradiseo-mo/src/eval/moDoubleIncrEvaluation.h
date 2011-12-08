@@ -44,7 +44,7 @@
  * The sizes of the neighborhoods are equal
  */
 template<class Neighbor>
-class moDoubleIncrEvaluation : public moNeighborhoodEvaluation<Neighbor>, moUpdater
+class moDoubleIncrEvaluation : public moNeighborhoodEvaluation<Neighbor>, public moUpdater
 {
 public:
   typedef typename Neighbor::EOT EOT;
@@ -74,6 +74,9 @@ public:
    */
   virtual void init() {
     firstEval = true;
+  }
+
+  virtual void operator()() {
   }
 
   /**

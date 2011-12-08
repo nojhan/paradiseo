@@ -125,6 +125,14 @@ public:
         isMoved=_isMoved;
     }
 
+  /**
+   * Getter of the current neighbor
+   * @return current neighbor
+   */
+  Neighbor & getCurrentNeighbor() {
+    return currentNeighbor;
+  }
+  
 protected:
   // default class for the empty constructor
     moDummyNeighborhood<Neighbor> dummyNeighborhood;

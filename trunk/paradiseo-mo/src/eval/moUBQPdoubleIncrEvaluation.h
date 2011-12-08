@@ -62,12 +62,16 @@ public:
    * @param _searchExplorer the neighborhood explorer of the local search
    * @param _incrEval the incremental evaluation of the UBQP
    */
-  moUBQPdoubleIncrEvaluation(unsigned int _neighborhoodSize, moNeighborhoodExplorer<Neighbor> & _searchExplorer, moEval<Neighbor> & _incrEval) : moDoubleIncrEvaluation<Neighbor>(_neighborhoodSize), searchExplorer(_searchExplorer)
+  //  moUBQPdoubleIncrEvaluation(unsigned int _neighborhoodSize, moNeighborhoodExplorer<Neighbor> & _searchExplorer, moEval<Neighbor> & _incrEval) : moDoubleIncrEvaluation<Neighbor>(_neighborhoodSize), searchExplorer(_searchExplorer)
+  moUBQPdoubleIncrEvaluation(unsigned int _neighborhoodSize, moUBQPSimpleIncrEval<Neighbor> & _incrEval) : moDoubleIncrEvaluation<Neighbor>(_neighborhoodSize), searchExplorer(NULL)
   {
     n = _incrEval.getNbVar();
     Q = _incrEval.getQ();
   }
   
+  void neighborhoodExplorer(moNeighborhoodExplorer<Neighbor> & _searchExplorer) {
+    searchExplorer = & _searchExplorer;
+  }
 
   /**
    *  Evaluation of the neighborhood
@@ -100,11 +104,11 @@ public:
       }
     } else {
 
-      if (searchExplorer.moveApplied()) { // compute the new fitness only when the solution has moved
+      if (searchExplorer->moveApplied()) { // compute the new fitness only when the solution has moved
 	// the currentNeighbor is the previous neighbor 
 	// the movement is made on this neighbor
 	// we suppose that the neighborhood is bit string neighborhood (indexed neighbor)
-	unsigned iMove = searchExplorer.currentNeighbor.index();
+	unsigned iMove = searchExplorer->getCurrentNeighbor().index();
 
 	for(unsigned i = 0; i < n; i++) {
 	  if (i == iMove)
@@ -202,7 +206,7 @@ private:
   int ** Q;
 
   /** The search explorer of the local search */
-  moNeighborhoodExplorer<Neighbor> & searchExplorer;
+  moNeighborhoodExplorer<Neighbor> * searchExplorer;
 };
 
 #endif
