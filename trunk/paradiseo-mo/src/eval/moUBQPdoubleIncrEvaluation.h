@@ -35,8 +35,8 @@
 #ifndef moUBQPdoubleIncrEvaluation_H
 #define moUBQPdoubleIncrEvaluation_H
 
-#include <eval/moDoubleIncrNeighborhoodEvaluation.h>
-#include <neighborhood/moNeighborhoodExplorer.h>
+#include <eval/moDoubleIncrEvaluation.h>
+#include <explorer/moNeighborhoodExplorer.h>
 #include <eval/moEval.h>
 
 /**
@@ -46,10 +46,14 @@
  * BECAREFULL: This object must be added to the moCheckpoint of the local search (init method)
  */
 template<class Neighbor>
-class moUBQPdoubleIncrEvaluation : public moNeighborhoodEvaluation<Neighbor>
+class moUBQPdoubleIncrEvaluation : public moDoubleIncrEvaluation<Neighbor>
 {
 public:
-  using moDoubleIncrEvaluation::deltaFitness;
+  typedef typename Neighbor::EOT EOT;
+  typedef typename EOT::Fitness Fitness;
+
+  using moDoubleIncrEvaluation<Neighbor>::deltaFitness;
+  using moDoubleIncrEvaluation<Neighbor>::firstEval;
 
   /**
    * Constructor 
@@ -58,7 +62,7 @@ public:
    * @param _searchExplorer the neighborhood explorer of the local search
    * @param _incrEval the incremental evaluation of the UBQP
    */
-  moUBQPdoubleIncrEvaluation(unsigned int _neighborhoodSize, moNeighborhoodExplorer<Neighbor> & _searchExplorer, moEval<Neighbor> & _incrEval) : moDoubleIncrNeighborhoodEvaluation<Neighbor>(_neighborhoodSize), searchExplorer(_searchExplorer)
+  moUBQPdoubleIncrEvaluation(unsigned int _neighborhoodSize, moNeighborhoodExplorer<Neighbor> & _searchExplorer, moEval<Neighbor> & _incrEval) : moDoubleIncrEvaluation<Neighbor>(_neighborhoodSize), searchExplorer(_searchExplorer)
   {
     n = _incrEval.getNbVar();
     Q = _incrEval.getQ();
@@ -71,7 +75,7 @@ public:
    *
    * @param _solution the current solution 
    */
-  virtual operator()(EOT & _solution) {
+  virtual void operator()(EOT & _solution) {
     if (firstEval) {
       firstEval = false;
 

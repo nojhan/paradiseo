@@ -96,7 +96,7 @@ public :
      * add a MO updater to the checkpoint
      * @param _moupd an mo updater
      */
-    void add(eoUpdater& _moupd) {
+    void add(moUpdater& _moupd) {
         moupdaters.push_back(&_moupd);
     }
 

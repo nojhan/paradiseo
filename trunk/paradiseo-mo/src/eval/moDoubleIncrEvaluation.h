@@ -47,12 +47,15 @@ template<class Neighbor>
 class moDoubleIncrEvaluation : public moNeighborhoodEvaluation<Neighbor>, moUpdater
 {
 public:
+  typedef typename Neighbor::EOT EOT;
+  typedef typename EOT::Fitness Fitness;
+
   /**
    * Constructor 
    *
    * @param _neighborhoodSize the size of the neighborhood
    */
-  moDoubleIncrEvaluation(unsigned int _neighborhoodSize) : moNeighborhoodEvaluation<Neighbor>, moUpdater(), neighborhoodSize(_neighborhoodSize), firstEval(true) { 
+  moDoubleIncrEvaluation(unsigned int _neighborhoodSize) : moNeighborhoodEvaluation<Neighbor>(), moUpdater(), neighborhoodSize(_neighborhoodSize), firstEval(true) { 
     deltaFitness = new Fitness[neighborhoodSize];
   }
   
@@ -79,7 +82,7 @@ public:
    *
    * @param _solution the current solution 
    */
-  virtual operator()(EOT & _solution) {
+  virtual void operator()(EOT & _solution) {
   }
 
   /** the delta of fitness for each neighbors 
