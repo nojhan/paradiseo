@@ -64,6 +64,13 @@ public:
   }
   
   /**
+   * @return true if the neighborhood is random (default false)
+   */
+  virtual bool isRandom() {
+    return originalNeighborhood.isRandom();
+  }
+
+  /**
    * Test if a neighbor exists
    * @param _solution the solution to explore
    * @return true if the neighborhood was not empty

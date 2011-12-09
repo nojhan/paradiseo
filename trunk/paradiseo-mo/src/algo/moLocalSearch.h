@@ -78,6 +78,8 @@ public:
 		// initialization of the external continuator (for example the time, or the number of generations)
 		cont->init(_solution);
 
+		std::cout << _solution.fitness() << std::endl;
+
 		bool b;
 		do {
 			// explore the neighborhood of the solution
@@ -89,6 +91,8 @@ public:
 			} else
 				searchExplorer.moveApplied(false);
 
+			std::cout << _solution.fitness() << std::endl;
+		
 			// update the parameter of the search (for ex. Temperature of the SA)
 			searchExplorer.updateParam(_solution);
 
