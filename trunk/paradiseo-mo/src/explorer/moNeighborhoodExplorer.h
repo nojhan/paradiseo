@@ -51,8 +51,11 @@
  *   one neighbor is selected
  *   a comparason with the solution is made to acccept or not this new neighbor
  * 
- * the current neighbor is the neighbor under consideration during the search
- *  
+ * The current neighbor (currentNeigbor) is the neighbor under consideration during the search (in operator()(EOT &))
+ *
+ * The selected neighbor (selectedNeighbor) is the neighbor selected in method operator()(EOT &). 
+ * If this neighbor is accepted, then the solution is moved on this neighbor (in move(EOT &))
+ *
  */
 template< class Neighbor >
 class moNeighborhoodExplorer : public eoUF<typename Neighbor::EOT&, void>
@@ -91,10 +94,18 @@ public:
     virtual bool isContinue(EOT& _solution) = 0 ;
 
     /**
-     * Move a solution
+     * Move a solution on the selected neighbor
+     * This method can be re-defined according to the metaheuritic
+     *
      * @param _solution the solution to explore
      */
-    virtual void move(EOT& _solution) = 0 ;
+    virtual void move(EOT& _solution) {
+      // move the solution
+      selectedNeighbor.move(_solution);
+
+      // update the fitness
+      _solution.fitness(selectedNeighbor.fitness());
+    }
 
     /**
      * Test if a solution is accepted
@@ -133,6 +144,14 @@ public:
     return currentNeighbor;
   }
   
+  /**
+   * Getter of the selected neighbor
+   * @return selected neighbor
+   */
+  Neighbor & getSelectedNeighbor() {
+    return selectedNeighbor;
+  }
+  
 protected:
   // default class for the empty constructor
     moDummyNeighborhood<Neighbor> dummyNeighborhood;
@@ -151,6 +170,9 @@ protected:
 
   // the current neighbor of the exploration : common features of algorithm
     Neighbor currentNeighbor;
+
+  // the selected neighbor after the exploration of the neighborhood
+    Neighbor selectedNeighbor;
 };
 
 #endif

@@ -58,7 +58,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
-    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
+    using moNeighborhoodExplorer<Neighbor>::selectedNeighbor;
 
     /**
      * Constructor
@@ -112,10 +112,10 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, currentNeighbor);
+            neighborhood.init(_solution, selectedNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, currentNeighbor);
+            eval(_solution, selectedNeighbor);
         }
         else {
             //if _solution hasn't neighbor,
@@ -133,17 +133,6 @@ public:
     };
 
     /**
-     * move the solution with the best neighbor
-     * @param _solution the solution to move
-     */
-    virtual void move(EOT & _solution) {
-        //move the solution
-        currentNeighbor.move(_solution);
-        //update its fitness
-        _solution.fitness(currentNeighbor.fitness());
-    };
-
-    /**
      * accept test if an ameliorated neighbor was found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
@@ -151,18 +140,18 @@ public:
     virtual bool accept(EOT & _solution) {
         double alpha=0.0;
         if (neighborhood.hasNeighbor(_solution)) {
-	  if (solNeighborComparator(_solution, currentNeighbor))
+	  if (solNeighborComparator(_solution, selectedNeighbor))
                 isAccept = true;
             else {
                 if (_solution.fitness() != 0) {
-                    if ( (double)currentNeighbor.fitness() < (double)_solution.fitness()) // maximizing
-                        alpha = (double) currentNeighbor.fitness() / (double) _solution.fitness();
+                    if ( (double)selectedNeighbor.fitness() < (double)_solution.fitness()) // maximizing
+                        alpha = (double) selectedNeighbor.fitness() / (double) _solution.fitness();
                     else //minimizing
-                        alpha = (double) _solution.fitness() / (double) currentNeighbor.fitness();
+                        alpha = (double) _solution.fitness() / (double) selectedNeighbor.fitness();
                     isAccept = (rng.uniform() < alpha) ;
                 }
                 else {
-                    if ( (double)currentNeighbor.fitness() < (double)_solution.fitness()) // maximizing
+                    if ( (double) selectedNeighbor.fitness() < (double) _solution.fitness()) // maximizing
                         isAccept = true;
                     else
                         isAccept = false;
