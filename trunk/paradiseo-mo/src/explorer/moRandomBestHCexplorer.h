@@ -56,6 +56,7 @@ public:
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
     using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
+    using moNeighborhoodExplorer<Neighbor>::selectedNeighbor;
 
     /**
      * Constructor
@@ -137,6 +138,12 @@ public:
                 else if (neighborComparator.equals(currentNeighbor, bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
                     bestVector.push_back(currentNeighbor);
             }
+
+	    // choose randomly one of the best solutions
+	    unsigned int i = rng.random(bestVector.size());
+
+	    // the selected Neighbor
+	    selectedNeighbor = bestVector[i];
         }
         else {
             //if _solution hasn't neighbor,
@@ -157,6 +164,7 @@ public:
      * move the solution with the best neighbor
      * @param _solution the solution to move
      */
+  /*
     virtual void move(EOT & _solution) {
         // choose randomly one of the best solutions
         unsigned int i = rng.random(bestVector.size());
@@ -167,6 +175,7 @@ public:
         //update its fitness
         _solution.fitness(bestVector[i].fitness());
     };
+  */
 
     /**
      * accept test if an amelirated neighbor was found
@@ -175,7 +184,7 @@ public:
      */
     virtual bool accept(EOT & _solution) {
         if (neighborhood.hasNeighbor(_solution))
-            isAccept = solNeighborComparator(_solution, bestVector[0]) ;
+            isAccept = solNeighborComparator(_solution, selectedNeighbor) ;
         return isAccept;
     };
 
