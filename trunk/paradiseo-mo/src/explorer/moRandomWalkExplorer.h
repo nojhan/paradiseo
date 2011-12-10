@@ -58,6 +58,7 @@ public:
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
     using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
+    using moNeighborhoodExplorer<Neighbor>::selectedNeighbor;
 
     /**
      * Constructor
@@ -108,10 +109,10 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init the first neighbor
-            neighborhood.init(_solution, currentNeighbor);
+            neighborhood.init(_solution, selectedNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, currentNeighbor);
+            eval(_solution, selectedNeighbor);
 
             isAccept = true;
         }
@@ -128,17 +129,6 @@ public:
      */
     virtual bool isContinue(EOT & _solution) {
         return isAccept ;
-    };
-
-    /**
-     * move the solution with the best neighbor
-     * @param _solution the solution to move
-     */
-    virtual void move(EOT & _solution) {
-        //move the solution
-        currentNeighbor.move(_solution);
-        //update its fitness
-        _solution.fitness(currentNeighbor.fitness());
     };
 
     /**

@@ -154,7 +154,6 @@ public:
                 isAccept = (rng.uniform() < alpha) ;
             }
         }
-	isAccept = true;
         return isAccept;
     };
 

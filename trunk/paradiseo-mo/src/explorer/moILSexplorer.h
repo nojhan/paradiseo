@@ -119,7 +119,6 @@ public:
         //perturb solution exept at the first iteration
         if (!firstIteration) {
             perturb(currentSol);
-
         }
         else
             firstIteration=false;

@@ -54,6 +54,7 @@ public:
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
     using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
+    using moNeighborhoodExplorer<Neighbor>::selectedNeighbor;
 
     /**
      * Constructor
@@ -108,16 +109,16 @@ public:
     virtual void updateParam(EOT& _solution)
     {
         if ((*this).moveApplied()) {
-            tabuList.add(_solution, best);
-            intensification.add(_solution, best);
-            diversification.add(_solution, best);
+            tabuList.add(_solution, selectedNeighbor);
+            intensification.add(_solution, selectedNeighbor);
+            diversification.add(_solution, selectedNeighbor);
             if (_solution.fitness() > bestSoFar.fitness())
                 bestSoFar = _solution;
         }
-        tabuList.update(_solution, best);
-        intensification.update(_solution, best);
-        diversification.update(_solution, best);
-        aspiration.update(_solution, best);
+        tabuList.update(_solution, selectedNeighbor);
+        intensification.update(_solution, selectedNeighbor);
+        diversification.update(_solution, selectedNeighbor);
+        aspiration.update(_solution, selectedNeighbor);
     };
 
 
@@ -147,8 +148,8 @@ public:
             
             //Find the first non-tabu element
             if ( (!tabuList.check(_solution, currentNeighbor)) || aspiration(_solution, currentNeighbor) ) {
-                // set best
-                best = currentNeighbor;
+                // set selectedNeighbor
+                selectedNeighbor = currentNeighbor;
                 found=true;
             }
             while (neighborhood.cont(_solution) && !found) {
@@ -158,8 +159,8 @@ public:
                 eval(_solution, currentNeighbor);
 
                 if ( (!tabuList.check(_solution, currentNeighbor)) || aspiration(_solution, currentNeighbor) ) {
-                    // set best
-                    best = currentNeighbor;
+                    // set selectedNeighbor
+                    selectedNeighbor = currentNeighbor;
                     found=true;
                 }
             }
@@ -172,9 +173,9 @@ public:
                     //eval
                     eval(_solution, currentNeighbor);
                     //check if the current is better than the best and is not tabu or if it is aspirat (by the aspiration criteria of course)
-                    if ( (!tabuList.check(_solution, currentNeighbor) || aspiration(_solution, currentNeighbor)) && neighborComparator(best, currentNeighbor)) {
-                        // set best
-                        best = currentNeighbor;
+                    if ( (!tabuList.check(_solution, currentNeighbor) || aspiration(_solution, currentNeighbor)) && neighborComparator(selectedNeighbor, currentNeighbor)) {
+                        // set selectedNeighbor
+                        selectedNeighbor = currentNeighbor;
                     }
                 }
             }
@@ -197,19 +198,6 @@ public:
     virtual bool isContinue(EOT & _solution) {
         return true;
     };
-
-
-    /**
-     * move the solution with the best neighbor
-     * @param _solution the solution to move
-     */
-    virtual void move(EOT & _solution) {
-        //move the solution
-        best.move(_solution);
-        //update its fitness
-        _solution.fitness(best.fitness());
-    };
-
 
     /**
      * accept test if an ameliorated neighbor was found
@@ -245,7 +233,7 @@ protected:
     moAspiration<Neighbor> & aspiration;
 
     // Best neighbor
-    Neighbor best;
+  //    Neighbor best;
 
     //Best so far Solution
     EOT bestSoFar;
