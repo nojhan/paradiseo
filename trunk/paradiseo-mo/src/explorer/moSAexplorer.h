@@ -59,7 +59,7 @@ public:
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
     using moNeighborhoodExplorer<Neighbor>::eval;
-    using moNeighborhoodExplorer<Neighbor>::currentNeighbor;
+    using moNeighborhoodExplorer<Neighbor>::selectedNeighbor;
 
     /**
      * Constructor
@@ -68,7 +68,7 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _coolingSchedule the cooling schedule
      */
-    moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
+  moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
         isAccept = false;
 
         if (!neighborhood.isRandom()) {
@@ -88,7 +88,7 @@ public:
      */
     virtual void initParam(EOT & _solution) {
       temperature = coolingSchedule.init(_solution);
-      isAccept = true;
+      isAccept = false;
     };
 
     /**
@@ -113,10 +113,10 @@ public:
         //Test if _solution has a Neighbor
         if (neighborhood.hasNeighbor(_solution)) {
             //init on the first neighbor: supposed to be random solution in the neighborhood
-            neighborhood.init(_solution, currentNeighbor);
+            neighborhood.init(_solution, selectedNeighbor);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, currentNeighbor);
+            eval(_solution, selectedNeighbor);
         }
         else {
             //if _solution hasn't neighbor,
@@ -134,29 +134,18 @@ public:
     };
 
     /**
-     * move the solution to the accepted solution
-     * @param _solution the solution to move
-     */
-    virtual void move(EOT & _solution) {
-        //move the solution
-        currentNeighbor.move(_solution);
-        //update its fitness
-        _solution.fitness(currentNeighbor.fitness());
-    };
-
-    /**
      * acceptance criterion according to the boltzmann criterion
      * @param _solution the solution
      * @return true if better neighbor or rnd < exp(delta f / T)
      */
     virtual bool accept(EOT & _solution) {
-        double alpha=0.0;
-        double fit1, fit2;
         if (neighborhood.hasNeighbor(_solution)) {
-            if (solNeighborComparator(_solution, currentNeighbor)) // accept if the current neighbor is better than the solution
+            if (solNeighborComparator(_solution, selectedNeighbor)) // accept if the current neighbor is better than the solution
                 isAccept = true;
             else {
-                fit1=(double)currentNeighbor.fitness();
+	        double alpha=0.0;
+	        double fit1, fit2;
+	        fit1=(double)selectedNeighbor.fitness();
                 fit2=(double)_solution.fitness();
                 if (fit1 < fit2) // this is a maximization
                     alpha = exp((fit1 - fit2) / temperature );
@@ -165,6 +154,7 @@ public:
                 isAccept = (rng.uniform() < alpha) ;
             }
         }
+	isAccept = true;
         return isAccept;
     };
 
@@ -182,6 +172,7 @@ private:
 
     moCoolingSchedule<EOT>& coolingSchedule;
 
+  // temperatur of the process
     double temperature;
 
     // true if the move is accepted
