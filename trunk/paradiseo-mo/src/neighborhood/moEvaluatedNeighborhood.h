@@ -86,10 +86,10 @@ public:
    * @param _neighbor the first neighbor
    */
   virtual void init(EOT & _solution, Neighbor & _neighbor) {
-    // initialisation of the original neighborhood
-    originalNeighborhood.init(_solution, _neighbor);
     // full evaluation of the neighborhood
     nhEval(_solution);
+    // initialisation of the original neighborhood
+    originalNeighborhood.init(_solution, _neighbor);
   }
 
   /**
