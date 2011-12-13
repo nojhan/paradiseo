@@ -115,7 +115,7 @@ public:
     if (format == 0) {
       for(unsigned int k = 0; k < nbNonZero; k++) {
 	file >> i >> j >> v;
-	Q[i][j] = v;
+	Q[i - 1][j - 1] = v;
       }
     } else {
       for(unsigned int i = 0; i < nbVar; i++) {
