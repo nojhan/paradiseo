@@ -115,7 +115,12 @@ public:
     if (format == 0) {
       for(unsigned int k = 0; k < nbNonZero; k++) {
 	file >> i >> j >> v;
-	Q[i - 1][j - 1] = v;
+	if (i > 0 && j > 0)
+	  Q[i - 1][j - 1] = v;
+	else {
+	  std::string str = "UbqpEval: some indices are 0 in the instance file (in format 0), please check." ;
+	  throw std::runtime_error(str);
+	}
       }
     } else {
       for(unsigned int i = 0; i < nbVar; i++) {
