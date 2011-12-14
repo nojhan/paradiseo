@@ -90,6 +90,14 @@ public:
             explorer(_neighborhood, _eval, _compN, _compSN)
     {}
 
+  /**
+   * Return the class id.
+   * @return the class name as a std::string
+   */
+  virtual std::string className() const {
+    return "moFirstImprHV";
+  }
+
 private:
     // always true continuator
     moTrueContinuator<Neighbor> trueCont;

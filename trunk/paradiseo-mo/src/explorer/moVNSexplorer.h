@@ -58,7 +58,7 @@ public:
    */
   moVNSexplorer(moVariableNeighborhoodSelection<EOT> & _selection,
 		moAcceptanceCriterion<Neighbor>& _acceptCrit):
-    moNeighborhoodExplorer<Neighbor>(), selection(_selection), acceptCrit(_acceptCrit), stop(false)
+    moNeighborhoodExplorer<Neighbor>(), selection(_selection), acceptCrit(_acceptCrit), stop(false), first(true)
   {}
 
   /**
@@ -72,7 +72,12 @@ public:
    * @param _solution the current solution
    */
   virtual void initParam(EOT& _solution) {
+    // the best solution found 
+    bestSoFar = _solution;
+    // initialization of the LS
     selection.init(_solution);
+    // for the first ls, the solution will be improved, so the next ls must be applied
+    first = true;
   }
 
   /**
@@ -80,7 +85,8 @@ public:
    * @param _solution the current solution
    */
   virtual void updateParam(EOT & _solution) {
-    if ((*this).moveApplied()) {
+    if (!first && (*this).moveApplied()) {
+      first = false;
       selection.init(_solution);
     } else 
       if (selection.cont(currentSol)) {
@@ -90,9 +96,11 @@ public:
   }
 
   /**
-   * terminate: NOTHING TO DO
+   * terminate: return the best solution found
    */
-  virtual void terminate(EOT & _solution) {};
+  virtual void terminate(EOT & _solution) {
+    _solution = bestSoFar;
+  }
 
   /**
    * Explore the neighborhood of a solution by the "neighborhood" search heuristics
@@ -105,6 +113,10 @@ public:
     currentSol = _solution;
     shake(currentSol);
     ls(currentSol);
+
+    // update the best solution found
+    if (bestSoFar.fitness() < currentSol.fitness())
+      bestSoFar = currentSol;
   }
 
   /**
@@ -142,10 +154,18 @@ public:
   }
 
 private:  
+  /** the set of LS and shake operators to applied */
   moVariableNeighborhoodSelection<EOT>& selection;
+  /** Acceptance criterium between two LS */
   moAcceptanceCriterion<Neighbor>& acceptCrit;
+  /** stopping criterium flag */
   bool stop;
+  /** the current solution */
   EOT currentSol;
+  /** Best solution found during the search */
+  EOT bestSoFar;
+  /** first LS flag */
+  bool first;
 };
 
 

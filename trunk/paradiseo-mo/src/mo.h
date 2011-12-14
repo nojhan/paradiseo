@@ -60,6 +60,7 @@
 #include <comparator/moEqualNeighborComparator.h>
 #include <comparator/moEqualSolNeighborComparator.h>
 #include <comparator/moSolComparator.h>
+#include <comparator/moEqualSolComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 
 #include <continuator/moAverageFitnessNeighborStat.h>
@@ -177,6 +178,7 @@
 #include <problems/bitString/moBitsNeighbor.h>
 #include <problems/bitString/moBitsNeighborhood.h>
 #include <problems/bitString/moBitsWithoutReplNeighborhood.h>
+#include <problems/bitString/moBitsWithReplNeighborhood.h>
 
 // #include <problems/bitString/moPopBitNeighbor.h>
 // #include <problems/bitString/moPopBitsNeighbor.h>

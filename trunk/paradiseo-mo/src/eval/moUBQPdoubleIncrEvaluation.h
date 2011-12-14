@@ -104,11 +104,12 @@ public:
       }
     } else {
 
-      if (searchExplorer->moveApplied()) { // compute the new fitness only when the solution has moved
-	// the currentNeighbor is the previous neighbor 
+      if (searchExplorer->moveApplied()) { 
+	// compute the new fitness only when the solution has moved
+	// the selectedNeighbor is the neighbor which is selected in the neighborhood
 	// the movement is made on this neighbor
 	// we suppose that the neighborhood is bit string neighborhood (indexed neighbor)
-	unsigned iMove = searchExplorer->getCurrentNeighbor().index();
+	unsigned iMove = searchExplorer->getSelectedNeighbor().index();
 
 	for(unsigned i = 0; i < n; i++) {
 	  if (i == iMove)
@@ -149,56 +150,6 @@ public:
   }
 
 private:
-  /**
-   * compute the delta of fitness in linear time (incremental evaluation)
-   *
-   * @param i the neighbor to consider
-   */
-  /*
-  void fullDelta(unsigned int i) {
-    unsigned int j;
-
-    int d = Q[i][i]; 
-
-    for(j = 0; j < i; j++)
-      if (current[j])
-	d += Q[i][j];
-      
-    for(j = i+1; j < n; j++)
-      if (current[j])
-	d += Q[j][i];
-    
-    if (current[i])
-      d = - d;
-    
-    delta[i] = d;
-  }
-*/
-
-  /**
-   * compute the delta of delta in constant time (3 tests and 1 operation)
-   *
-   * @param i the neighbor to consider
-   */
-  /*
-  void updateDelta(unsigned int i) {
-    if (i == iMove)
-      delta[i] = - delta[i] ;
-    else {
-      if (current[i] != current[iMove])
-	if (i < iMove) 
-	  delta[i] += Q[iMove][i];
-	else
-	  delta[i] += Q[i][iMove];
-      else
-	if (i < iMove) 
-	  delta[i] -= Q[iMove][i];
-	else
-	  delta[i] -= Q[i][iMove];
-    }
-  }
-  */
-
   // number of variables
   int n;
   

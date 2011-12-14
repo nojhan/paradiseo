@@ -58,97 +58,48 @@ public:
    * Constructor
    * @param _length bit string length
    * @param _nBits maximum number of bits to flip (radius of the neighborhood)
+   * @param _exactDistance when true, only neighbor with exactly k bits flip are considered, other neighbor <= Hamming distance k
    */
-  moBitsNeighborhood(unsigned _length, unsigned _nBits): moNeighborhood<Neighbor>(), length(_length), nBits(_nBits) {
-    int j;
-    bool last;
-
-    neighborhoodSize = 0;
-
-    for(int d = 1; d <= nBits; d++) {
-      vector<unsigned int> bits(d);
-
-      // the first one for this Hamming distance
-      for(unsigned i = 0; i < d; i++)
-	bits[i] = i;
-
-      neighborsVec.push_back(bits);
-
-      // the others ones
-      last = false;
-
-      while(!last) {
-	j = d - 1;
-
-	if (bits[j] < length - 1) {
-	  bits[j]++;
-	  neighborsVec.push_back(bits);
-	} else {
-	  j--;
-
-	  while ( (j >= 0) && (bits[j] + 1 == bits[j+1]) ) 
-	    j--;
-
-	  if (j < 0) {
-	    last = true;
-	  } else {
-	    bits[j]++;
-
-	    for(unsigned i = j+1; i < d; i++)
-	      bits[i] = bits[i-1] + 1;
-
-	    neighborsVec.push_back(bits);
-	  }
-	}
-
-      }
+  moBitsNeighborhood(unsigned _length, unsigned _nBits, bool _exactDistance = false): moNeighborhood<Neighbor>(), length(_length), nBits(_nBits) {
+    // neighborhood size : 
+    // for distance == nBits : length \choose nBits = length! / ( (length - nBits)! * nBits!)
+    // for distance <= nBits : sum of previous distances
+    if (_exactDistance) {
+      neighborhoodSize = numberOfNeighbors(nBits);
+    } else {
+      neighborhoodSize = 0;
+      for(int d = 1; d <= nBits; d++) 
+	neighborhoodSize += numberOfNeighbors(d);
     }
 
-    neighborhoodSize = neighborsVec.size();
+  }
+
+  /**
+   * Number fo neighbors at Hamming distance d
+   *
+   * @param d Hamming distance 
+   */
+  unsigned int numberOfNeighbors(unsigned d) {
+      unsigned int fact_nBits = 1;
+
+      for(unsigned k = 1; k <= d; k++)
+	fact_nBits *= k;
+
+      unsigned int fact_length = 1;
+
+      for(unsigned k = length; k > length - d; k--)
+	fact_length *= k;
+
+      return fact_length / fact_nBits;
   }
 
   /**
    * Test if it exist a neighbor
    * @param _solution the solution to explore
-   * @return true if the neighborhood was not empty: the population size is at least 1
+   * @return true if the neighborhood was not empty (bit string larger than 0)
    */
   virtual bool hasNeighbor(EOT& _solution) {
     return _solution.size() > 0;
-  }
-  
-  /**
-   * Initialization of the neighborhood: 
-   * apply several bit flips on the solution
-   * @param _solution the solution to explore 
-   * @param _neighbor the first neighbor
-   */
-  virtual void init(EOT & _solution, Neighbor & _neighbor) {
-    key = 0;
-
-    _neighbor.bits.resize(nBits);
-
-    setNeighbor(0, _neighbor);
-  }
-  
-  /**
-   * Give the next neighbor
-   * apply several bit flips on the solution
-   * @param _solution the solution to explore (population of solutions)
-   * @param _neighbor the next neighbor which in order of distance
-   */
-  virtual void next(EOT & _solution, Neighbor & _neighbor) {
-    key++;
-
-    setNeighbor(key, _neighbor);
-  }
-  
-  /**
-   * Test if all neighbors are explored or not,if false, there is no neighbor left to explore
-   * @param _solution the solution to explore
-   * @return true if there is again a neighbor to explore: population size larger or equals than 1
-   */
-  virtual bool cont(EOT & _solution) {
-    return key < neighborhoodSize - 1;
   }
   
   /**
@@ -157,10 +108,6 @@ public:
    */
   virtual std::string className() const {
     return "moBitsNeighborhood";
-  }
-
-  unsigned int index() {
-    return key;
   }
 
 protected:
@@ -172,25 +119,6 @@ protected:
 
   // size of the neighborhood
   unsigned int neighborhoodSize;
-
-  // list of neighbors 
-  vector< vector<unsigned int> > neighborsVec;
-
-  // key of the neighbor which is currently explored
-  unsigned int key;
-
-
-  /**
-   * Set the neighbor to the correct neighbor
-   * @param _key index in neighborVec of the neighbor to set
-   * @param _neighbor neighbor to set
-   */
-  virtual void setNeighbor(unsigned _key, Neighbor & _neighbor) {
-    _neighbor.nBits = neighborsVec[_key].size();
-
-    for(unsigned i = 0; i < _neighbor.nBits; i++)
-      _neighbor.bits[i] = neighborsVec[_key][i];
-  } 
 
 };
 

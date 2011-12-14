@@ -1,5 +1,5 @@
 /*
-  <moBitsWithoutReplNeighborhood.h>
+  <moBitsWithReplNeighborhood.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,8 +32,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moBitsWithoutReplNeighborhood_h
-#define _moBitsWithoutReplNeighborhood_h
+#ifndef _moBitsWithReplNeighborhood_h
+#define _moBitsWithReplNeighborhood_h
 
 #include <neighborhood/moNeighborhood.h>
 #include <problems/bitString/moBitsNeighborhood.h>
@@ -50,11 +50,12 @@
  * and the number of visited neighbors is a parameter
  */
 template< class Neighbor >
-class moBitsWithoutReplNeighborhood : public moBitsNeighborhood<Neighbor>
+class moBitsWithReplNeighborhood : public moBitsNeighborhood<Neighbor>
 {
   using moBitsNeighborhood<Neighbor>::neighborhoodSize;
   using moBitsNeighborhood<Neighbor>::length;
   using moBitsNeighborhood<Neighbor>::nBits;
+  using moBitsNeighborhood<Neighbor>::numberOfNeighbors;
 
 public:
 
@@ -65,96 +66,88 @@ public:
 
   /**
    * Constructor
+   *
    * @param _length bit string length
    * @param _nBits maximum number of bits to flip (radius of the neighborhood)
    * @param _sampleSize  number of neighbor to sample in the neighborhood, if 0 all the neighborhood is sampled
    * @param _exactDistance when true, only neighbor with exactly k bits flip are considered, other neighbor <= Hamming distance k
    */
-  moBitsWithoutReplNeighborhood(unsigned _length, unsigned _nBits, unsigned _sampleSize, bool _exactDistance = false): moBitsNeighborhood<Neighbor>(_length, _nBits, _exactDistance), sampleSize(_sampleSize) {
+  moBitsWithReplNeighborhood(unsigned _length, unsigned _nBits, unsigned _sampleSize, bool _exactDistance = false): moBitsNeighborhood<Neighbor>(_length, _nBits, _exactDistance), sampleSize(_sampleSize), exactDistance(_exactDistance) {
     if (sampleSize > neighborhoodSize || sampleSize == 0)
       sampleSize = neighborhoodSize;
 
-    indexVector.resize(neighborhoodSize);
+    indexVector.resize(length);
 
-    for(unsigned int i = 0; i < neighborhoodSize; i++)
+    for(unsigned int i = 0; i < length; i++)
       indexVector[i] = i;
 
-    /* all the neighbors */
-    if (neighborhoodSize >= 1000000) {
-      std::cout << "moBitsNeighborhood::Warning : the neighborhood size is larger than 10^6 : " << neighborhoodSize << std::endl;
+    if (!exactDistance) {
+      nSize.resize(nBits);
+      nSize[0] = numberOfNeighbors(1); 
+      for(unsigned d = 2; d <= nBits; d++)
+	nSize[d - 1] = nSize[d - 2] + numberOfNeighbors(d); 
     }
 
-    int j;
-    bool last;
-
-    unsigned firstIndex;
-    if (_exactDistance)
-      firstIndex = nBits;
-    else
-      firstIndex = 1;
-
-    for(int d = firstIndex; d <= nBits; d++) {
-      vector<unsigned int> bits(d);
-
-      // the first one for this Hamming distance
-      for(unsigned i = 0; i < d; i++)
-	bits[i] = i;
-
-      neighborsVec.push_back(bits);
-
-      // the others ones
-      last = false;
-
-      while(!last) {
-	j = d - 1;
-	
-	if (bits[j] < length - 1) {
-	  bits[j]++;
-	  neighborsVec.push_back(bits);
-	} else {
-	  j--;
-
-	  while ( (j >= 0) && (bits[j] + 1 == bits[j+1]) ) 
-	    j--;
-
-	  if (j < 0) {
-	    last = true;
-	  } else {
-	    bits[j]++;
-
-	    for(unsigned i = j+1; i < d; i++)
-	      bits[i] = bits[i-1] + 1;
-
-	    neighborsVec.push_back(bits);
-	  }
-	}
-
-      }
-    }
-
-    if (neighborhoodSize != neighborsVec.size())
-      std::cout << "moBitsNeighborhood::Warning -> error in the neighborhood size computation, please check... : " << neighborhoodSize << " / " << neighborsVec.size() << std::endl;
+    nNeighbors = 0;
   }
 
   /**
+   * one random neighbor at Hamming distance _n
+   *
+   * @param _solution the solution to explore 
+   * @param _neighbor the first neighbor
+   * @param _n Hamming distance of the neighbor
+   */
+  virtual void randomNeighbor(EOT & _solution, Neighbor & _neighbor, unsigned _n) {
+    _neighbor.bits.resize(_n);
+    _neighbor.nBits = _n;
+
+    unsigned i;
+    unsigned b;
+    unsigned tmp;
+
+    for(unsigned k = 0; k < _n; k++) {
+      i = rng.random(length - k);
+      b = indexVector[i];
+
+      _neighbor.bits[k] = b;
+
+      indexVector[i]              = indexVector[length - k - 1];
+      indexVector[length - k - 1] = b;
+    }
+  }
+  
+  /**
+   * one random neighbor at maximal Hamming distance _n
+   *
+   * @param _solution the solution to explore 
+   * @param _neighbor the first neighbor
+   */
+  virtual void randomNeighbor(EOT & _solution, Neighbor & _neighbor) {
+    if (exactDistance) 
+      randomNeighbor(_solution, _neighbor, nBits);
+    else {
+      // equiprobability between neighbors at maximal Hamming distance nBits
+      unsigned n = rng.random(neighborhoodSize);
+
+      unsigned d = 1;
+      while (n < nSize[d - 1]) d++;
+
+      randomNeighbor(_solution, _neighbor, d);
+    }
+  }
+  
+  /**
    * Initialization of the neighborhood: 
-   * apply several bit flips on the solution
+   * one random neighbor 
+   *
    * @param _solution the solution to explore 
    * @param _neighbor the first neighbor
    */
   virtual void init(EOT & _solution, Neighbor & _neighbor) {
-    maxIndex = neighborhoodSize ;
+    randomNeighbor(_solution, _neighbor);
 
-    unsigned i = rng.random(maxIndex);
-    key = indexVector[i];
-
-    unsigned tmp              = indexVector[i];
-    indexVector[i]            = indexVector[maxIndex - 1];
-    indexVector[maxIndex - 1] = tmp;
-    maxIndex--;
-
-    _neighbor.bits.resize(nBits);
-    setNeighbor(key, _neighbor);
+    nNeighbors = 1;
   }
   
   /**
@@ -164,15 +157,9 @@ public:
    * @param _neighbor the next neighbor which in order of distance
    */
   virtual void next(EOT & _solution, Neighbor & _neighbor) {
-    unsigned i = rng.random(maxIndex);
-    key = indexVector[i];
+    randomNeighbor(_solution, _neighbor);
 
-    unsigned tmp              = indexVector[i];
-    indexVector[i]            = indexVector[maxIndex - 1];
-    indexVector[maxIndex - 1] = tmp;
-    maxIndex--;
-
-    setNeighbor(key, _neighbor);
+    nNeighbors++;
   }
   
   /**
@@ -181,7 +168,7 @@ public:
    * @return true if there is again a neighbor to explore: population size larger or equals than 1
    */
   virtual bool cont(EOT & _solution) {
-    return neighborhoodSize - maxIndex < sampleSize ;
+    return nNeighbors < sampleSize ;
   }
   
   /**
@@ -189,41 +176,24 @@ public:
    * @return the class name as a std::string
    */
   virtual std::string className() const {
-    return "moBitsWithoutReplNeighborhood";
-  }
-
-  unsigned int index() {
-    return key;
+    return "moBitsWithReplNeighborhood";
   }
 
 protected:
-  // number of remainded neighbors to sample
-  unsigned int maxIndex;
-
-  // vector of possible index
+  // vector of possible bits
   std::vector<unsigned int> indexVector;
 
   // maximum number of visited neighbor i.e. number of neighbor to sample in the neighborhood
   unsigned int sampleSize;
 
-  // list of neighbors 
-  vector< vector<unsigned int> > neighborsVec;
+  // number of visited neighbors
+  unsigned nNeighbors;
 
-  // key of the neighbor which is currently explored
-  unsigned int key;
+  // when true, only neighbors at Hamming distance nBits
+  bool exactDistance;
 
-  /**
-   * Set the neighbor to the correct neighbor
-   * @param _key index in neighborVec of the neighbor to set
-   * @param _neighbor neighbor to set
-   */
-  virtual void setNeighbor(unsigned _key, Neighbor & _neighbor) {
-    _neighbor.nBits = neighborsVec[_key].size();
-
-    for(unsigned i = 0; i < _neighbor.nBits; i++)
-      _neighbor.bits[i] = neighborsVec[_key][i];
-  }
-  
+  // the number of neighbors below the given distance
+  std::vector<unsigned int> nSize;
 };
 
 #endif
