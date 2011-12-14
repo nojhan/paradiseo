@@ -38,10 +38,18 @@ int main(void)
     sol.push_back(1.1);
     sol.push_back(3.9);
     sol.push_back(3.9);
-    // we expect {1,2,3,4}
+    sol.push_back(5.4);
+    sol.push_back(5.6);
+    sol.push_back(7.011);
+    sol.push_back(8.09);
+    sol.push_back(8.21);
+    
+    std::cout << "expect: INVALID  9 1 2 3 4 5 6 7 8.1 8.2" << std::endl;
 
     edoRepairer<EOT>* rep1 = new edoRepairerFloor<EOT>();
     edoRepairer<EOT>* rep2 = new edoRepairerCeil<EOT>();
+    edoRepairer<EOT>* rep3 = new edoRepairerRound<EOT>();
+    edoRepairer<EOT>* rep4 = new edoRepairerRoundDecimals<EOT>( 10 );
 
     std::vector<unsigned int> indexes1;
     indexes1.push_back(0);
@@ -51,8 +59,19 @@ int main(void)
     indexes2.push_back(1);
     indexes2.push_back(3);
 
+    std::vector<unsigned int> indexes3;
+    indexes3.push_back(4);
+    indexes3.push_back(5);
+
+    std::vector<unsigned int> indexes4;
+    indexes4.push_back(6);
+    indexes4.push_back(7);
+    indexes4.push_back(8);
+
     edoRepairerDispatcher<EOT> repare( indexes1, rep1 );
     repare.add( indexes2, rep2 );
+    repare.add( indexes3, rep3 );
+    repare.add( indexes4, rep4 );
 
     repare(sol);
 

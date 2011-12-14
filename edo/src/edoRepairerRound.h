@@ -30,39 +30,81 @@ Authors:
 
 #include <cmath>
 
-#include "edoRepairer.h"
+#include "edoRepairerApply.h"
 
-/**
+
+/** A repairer that calls "floor" on each items of a solution
+ *
+ * Just a proxy to "edoRepairerApplyUnary<EOT, EOT::AtomType(EOT::AtomType)> rep( std::floor);"
  *
  * @ingroup Repairers
  */
 template < typename EOT >
-class edoRepairerFloor : public edoRepairer<EOT>
+class edoRepairerFloor : public edoRepairerApplyUnary<EOT>
 {
 public:
-    virtual void operator()( EOT& sol )
-    {
-        for( unsigned int i=0; i < sol.size(); ++i ) {
-            sol[i] = floor( sol[i] );
-        }
-    }
+    edoRepairerFloor() : edoRepairerApplyUnary<EOT>( std::floor ) {}
 };
 
-/**
+
+/** A repairer that calls "ceil" on each items of a solution
+ *
+ * @see edoRepairerFloor
  *
  * @ingroup Repairers
  */
 template < typename EOT >
-class edoRepairerCeil : public edoRepairer<EOT>
+class edoRepairerCeil : public edoRepairerApplyUnary<EOT>
 {
 public:
-    virtual void operator()( EOT& sol )
+    edoRepairerCeil() : edoRepairerApplyUnary<EOT>( std::ceil ) {}
+};
+
+
+// FIXME find a way to put this function as a member of edoRepairerRoundDecimals
+template< typename ArgType >
+ArgType edoRound( ArgType val, ArgType prec = 1.0 )
+{ 
+    return (val > 0.0) ? 
+        floor(val * prec + 0.5) / prec : 
+         ceil(val * prec - 0.5) / prec ; 
+}
+
+/** A repairer that round values at a given a precision. 
+ *
+ * e.g. if prec=0.1, 8.06 will be rounded to 8.1
+ *
+ * @see edoRepairerFloor
+ * @see edoRepairerCeil
+ *
+ * @ingroup Repairers
+ */
+template < typename EOT >
+class edoRepairerRoundDecimals : public edoRepairerApplyBinary<EOT>
+{
+public:
+    typedef typename EOT::AtomType ArgType;
+
+    //! Generally speaking, we expect decimals being <= 1, but it can work for higher values
+    edoRepairerRoundDecimals( ArgType decimals ) : edoRepairerApplyBinary<EOT>( edoRound<ArgType>, 1 / decimals ) 
     {
-        for( unsigned int i=0; i < sol.size(); ++i ) {
-            sol[i] = ceil( sol[i] );
-        }
+        assert( decimals <= 1.0 );
+        assert( 1/decimals >= 1.0 );
     }
 };
 
+
+/** A repairer that do a rounding around val+0.5
+ *
+ * @see edoRepairerRoundDecimals
+ *
+ * @ingroup Repairers
+ */
+template < typename EOT >
+class edoRepairerRound : public edoRepairerRoundDecimals<EOT>
+{
+public:
+    edoRepairerRound() : edoRepairerRoundDecimals<EOT>( 1.0 ) {}
+};
 
 #endif // !_edoRepairerRound_h

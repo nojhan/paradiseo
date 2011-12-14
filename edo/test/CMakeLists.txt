@@ -33,12 +33,14 @@ LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/application/common)
 
 SET(SOURCES
+  t-cholesky
   t-edoEstimatorNormalMulti
   t-mean-distance
   t-bounderno
   t-uniform
   t-continue
   t-dispatcher-round
+  t-repairer-modulo
   )
 
 FOREACH(current ${SOURCES})
