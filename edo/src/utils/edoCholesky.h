@@ -129,6 +129,7 @@ protected:
 template< typename T >
 class CholeskyLLT : public CholeskyBase<T>
 {
+public:
     virtual void operator()( const CovarMat& V )
     {
         unsigned int N = assert_properties( V );
@@ -164,6 +165,8 @@ class CholeskyLLT : public CholeskyBase<T>
         } // for i in [1,N[
     }
 
+
+    /** The step of the standard LLT algorithm where round off errors may appear */
     inline virtual L_i_i( const CovarMat& V, const unsigned int& i, const double& sum ) const
     {
         // round-off errors may appear here
@@ -171,7 +174,6 @@ class CholeskyLLT : public CholeskyBase<T>
         return sqrt( V(i,i) - sum );
     }
 };
-
 
 
 /** This standard algorithm makes use of square root but do not fail
@@ -185,6 +187,7 @@ class CholeskyLLT : public CholeskyBase<T>
 template< typename T >
 class CholeskyLLTabs : public CholeskyLLT<T>
 {
+public:
     inline virtual L_i_i( const CovarMat& V, const unsigned int& i, const double& sum ) const
     {
         /***** ugly hack *****/
@@ -203,6 +206,7 @@ class CholeskyLLTabs : public CholeskyLLT<T>
 template< typename T >
 class CholeskyLLTzero : public CholeskyLLT<T>
 {
+public:
     inline virtual L_i_i( const CovarMat& V, const unsigned int& i, const double& sum ) const
     {
         T Lii;
@@ -226,6 +230,7 @@ class CholeskyLLTzero : public CholeskyLLT<T>
 template< typename T >
 class CholeskyLDLT : public CholeskyBase<T>
 {
+public:
     virtual void operator()( const CovarMat& V )
     {
         // use "int" everywhere, because of the "j-1" operation
@@ -256,24 +261,24 @@ class CholeskyLDLT : public CholeskyBase<T>
             } // for i in rows
         } // for j in columns
         
-        _L = compute_L( L, D );
+        _L = root( L, D );
     }
 
 
-    inline FactorMat compute_L( FactorMat& L, FactorMat& D )
+    inline FactorMat root( FactorMat& L, FactorMat& D )
     {
         // now compute the final symetric matrix: _L = L D^1/2
         // remember that V = ( L D^1/2) ( L D^1/2)^T
 
         // fortunately, the square root of a diagonal matrix is the square 
         // root of all its elements
-        FactorMat D12 = D;
+        FactorMat sqrt_D = D;
         for(int i=0; i<N; ++i) {
-            D12(i,i) = sqrt(D(i,i));
+            sqrt_D(i,i) = sqrt(D(i,i));
         }
 
         // the factorization is thus _L*D^1/2
-        return ublas::prod( L, D12);
+        return ublas::prod( L, sqrt_D );
     }
 };
 
