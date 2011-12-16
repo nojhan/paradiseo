@@ -5,7 +5,7 @@
 INCLUDE_DIRECTORIES(
 
   # include CUDA source directory
-  ${CUDA_SRC_DIR}
+  ${CUDA_DIR}/include
   # include EO source directory
   ${PARADISEO_EO_SRC_DIR}/src
   # include MO source directory
@@ -22,7 +22,7 @@ INCLUDE_DIRECTORIES(
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_LIB_DIR} )	
+LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_DIR}/lib )	
 
 
 ######################################################################################
@@ -38,12 +38,9 @@ SET (TEST_LIST
        t-moGPUPermutationVector
        t-moGPUMemory
        t-moGPUObject
-	   t-moGPUBitNeighbor
-	   t-moGPUXBitFlippingNeighbor
-	   t-moGPUXSwapNeighbor
-	   #t-moCudaKswapNeighborhood
-       #t-OneMaxIncrEval
-       #t-EvalOneMax
+       t-moGPUBitNeighbor
+       t-moGPUXBitFlippingNeighbor
+       t-moGPUXSwapNeighbor
 		)
 				
 FOREACH (test ${TEST_LIST})
