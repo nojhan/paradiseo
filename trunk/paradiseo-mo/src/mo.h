@@ -53,7 +53,7 @@
 #include <algo/moSimpleHC.h>
 #include <algo/moTS.h>
 #include <algo/moVNS.h>
-
+#include <algo/eoDummyMonOp.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
@@ -111,6 +111,7 @@
 #include <eval/moEvalCounter.h>
 #include <eval/moFullEvalByCopy.h>
 #include <eval/moFullEvalByModif.h>
+#include <eval/moDoubleIncrNeighborhoodEval.h>
 
 #include <explorer/moDummyExplorer.h>
 #include <explorer/moFirstImprHCexplorer.h>
@@ -162,6 +163,7 @@
 #include <neighborhood/moRndWithReplNeighborhood.h>
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <neighborhood/moVectorVNSelection.h>
+#include <neighborhood/moEvaluatedNeighborhood.h>
 #include <neighborhood/moXBitFlippingNeighbor.h>
 #include <neighborhood/moXChangeNeighbor.h>
 #include <neighborhood/moXChangeNeighborhood.h>
@@ -180,6 +182,21 @@
 #include <problems/bitString/moBitsWithoutReplNeighborhood.h>
 #include <problems/bitString/moBitsWithReplNeighborhood.h>
 
+#include <problems/permutation/moIndexedSwapNeighbor.h>
+#include <problems/permutation/moShiftNeighbor.h>
+#include <problems/permutation/moSwapNeighbor.h>
+#include <problems/permutation/moSwapNeighborhood.h>
+#include <problems/permutation/moTwoOptExNeighbor.h>
+#include <problems/permutation/moTwoOptExNeighborhood.h>
+
+#include <problems/eval/moMaxSATincrEval.h>
+#include <problems/eval/moOneMaxIncrEval.h>
+#include <problems/eval/moQAPIncrEval.h>
+#include <problems/eval/moRoyalRoadIncrEval.h>
+#include <problems/eval/moUBQPSimpleIncrEval.h>
+#include <problems/eval/moUBQPdoubleIncrEvaluation.h>
+#include <problems/eval/moUBQPBitsIncrEval.h>
+
 // #include <problems/bitString/moPopBitNeighbor.h>
 // #include <problems/bitString/moPopBitsNeighbor.h>
 // #include <problems/bitString/moPopBitsRndNeighborhood.h>
@@ -188,22 +205,9 @@
 // #include <problems/bitString/moPopSolNonDomInit.h>
 // #include <problems/bitString/moPopXoverNeighbor.h>
 // #include <problems/bitString/moPopXoverRndNeighborhood.h>
-// #include <problems/eval/moMaxSATincrEval.h>
-// #include <problems/eval/moOneMaxIncrEval.h>
 // #include <problems/eval/moPopBitEval.h>
 // #include <problems/eval/moPopBitsEval.h>
 // #include <problems/eval/moPopXoverEval.h>
-// #include <problems/eval/moQAPIncrEval.h>
-// #include <problems/eval/moRoyalRoadIncrEval.h>
-// #include <problems/eval/moUBQPSimpleIncrEval.h>
-// #include <problems/eval/oneMaxFullEval.h>
-// #include <problems/permutation/moIndexedSwapNeighbor.h>
-// #include <problems/permutation/moShiftNeighbor.h>
-// #include <problems/permutation/moSwapNeighbor.h>
-// #include <problems/permutation/moSwapNeighborhood.h>
-// #include <problems/permutation/moTwoOptExNeighbor.h>
-// #include <problems/permutation/moTwoOptExNeighborhood.h>
-
 
 #include <sampling/moAdaptiveWalkSampling.h>
 #include <sampling/moAutocorrelationSampling.h>
