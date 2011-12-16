@@ -4,8 +4,6 @@
 
 INCLUDE_DIRECTORIES(
 
-  # include CUDA source directory
-  ${GPU_SRC_DIR}
   # include EO source directory
   ${EO_SRC_DIR}/src
   # include MO source directory
