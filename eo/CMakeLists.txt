@@ -16,7 +16,7 @@ INCLUDE(eo-conf.cmake OPTIONAL)
 PROJECT(EO)
 
 # CMake > 2.8 is needed, because of the FindOpenMP feature
-cmake_minimum_required(VERSION 2.8)
+#cmake_minimum_required(VERSION 2.8)
 
 #SET(PROJECT_VERSION_MAJOR 1)
 #SET(PROJECT_VERSION_MINOR 1)

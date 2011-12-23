@@ -29,6 +29,7 @@ Authors:
 #define _edoSamplerNormalMulti_h
 
 #include <cmath>
+#include <limits>
 
 #include <edoSampler.h>
 #include <boost/numeric/ublas/lu.hpp>
@@ -46,8 +47,6 @@ class edoSamplerNormalMulti : public edoSampler< EOD >
 {
 public:
     typedef typename EOT::AtomType AtomType;
-
-
 
     edoSamplerNormalMulti( edoRepairer<EOT> & repairer, typename Cholesky::Method use = Cholesky::absolute ) 
         : edoSampler< EOD >( repairer), _cholesky(use)
