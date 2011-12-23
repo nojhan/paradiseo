@@ -48,26 +48,26 @@ public:
     /** Instanciate without computing anything, you are responsible of 
      * calling the algorithm and getting the result with operator()
      * */
-    Cholesky( size_t s1 = 1, size_t s2 = 1 ) : 
+    CholeskyBase( size_t s1 = 1, size_t s2 = 1 ) : 
         _L(ublas::zero_matrix<T>(s1,s2))
     {}
 
     /** Computation is made at instanciation and then cached in a member variable, 
      * use decomposition() to get the result.
      */
-    Cholesky(const CovarMat& V) :
+    CholeskyBase(const CovarMat& V) :
         _L(ublas::zero_matrix<T>(V.size1(),V.size2()))
     {
         (*this)( V );
     }
 
     /** Compute the factorization and cache the result */
-    virtual void operator()( const CovarMat& V ) = 0;
+    virtual void factorize( const CovarMat& V ) = 0;
 
     /** Compute the factorization and return the result */
     virtual const FactorMat& operator()( const CovarMat& V ) 
     {
-        (*this)( V );
+        this->factorize( V );
         return decomposition();
     }
 
@@ -130,16 +130,16 @@ template< typename T >
 class CholeskyLLT : public CholeskyBase<T>
 {
 public:
-    virtual void operator()( const CovarMat& V )
+  virtual void factorize( const typename CholeskyBase<T>::CovarMat& V )
     {
         unsigned int N = assert_properties( V );
 
         unsigned int i=0, j=0, k;
-        _L(0, 0) = sqrt( V(0, 0) );
+        this->_L(0, 0) = sqrt( V(0, 0) );
 
         // end of the column
         for ( j = 1; j < N; ++j ) {
-            _L(j, 0) = V(0, j) / _L(0, 0);
+            this->_L(j, 0) = V(0, j) / this->_L(0, 0);
         }
 
         // end of the matrix
@@ -147,19 +147,19 @@ public:
             // diagonal
             double sum = 0.0;
             for ( k = 0; k < i; ++k) {
-                sum += _L(i, k) * _L(i, k);
+                sum += this->_L(i, k) * this->_L(i, k);
             }
 
-            _L(i,i) = L_i_i( V, i, sum );
+            this->_L(i,i) = L_i_i( V, i, sum );
 
             for ( j = i + 1; j < N; ++j ) { // rows
                 // one element
                 sum = 0.0;
                 for ( k = 0; k < i; ++k ) {
-                    sum += _L(j, k) * _L(i, k);
+                    sum += this->_L(j, k) * this->_L(i, k);
                 }
 
-                _L(j, i) = (V(j, i) - sum) / _L(i, i);
+                this->_L(j, i) = (V(j, i) - sum) / this->_L(i, i);
 
             } // for j in ]i,N[
         } // for i in [1,N[
@@ -167,7 +167,7 @@ public:
 
 
     /** The step of the standard LLT algorithm where round off errors may appear */
-    inline virtual L_i_i( const CovarMat& V, const unsigned int& i, const double& sum ) const
+    inline virtual T L_i_i( const typename CholeskyBase<T>::CovarMat& V, const unsigned int& i, const double& sum ) const
     {
         // round-off errors may appear here
         assert( V(i,i) - sum >= 0 );
@@ -188,7 +188,7 @@ template< typename T >
 class CholeskyLLTabs : public CholeskyLLT<T>
 {
 public:
-    inline virtual L_i_i( const CovarMat& V, const unsigned int& i, const double& sum ) const
+    inline virtual T L_i_i( const typename CholeskyBase<T>::CovarMat& V, const unsigned int& i, const double& sum ) const
     {
         /***** ugly hack *****/
         return sqrt( fabs( V(i,i) - sum) );
@@ -207,7 +207,7 @@ template< typename T >
 class CholeskyLLTzero : public CholeskyLLT<T>
 {
 public:
-    inline virtual L_i_i( const CovarMat& V, const unsigned int& i, const double& sum ) const
+    inline virtual T L_i_i( const typename CholeskyBase<T>::CovarMat& V, const unsigned int& i, const double& sum ) const
     {
         T Lii;
         if(  V(i,i) - sum >= 0 ) {
@@ -231,15 +231,15 @@ template< typename T >
 class CholeskyLDLT : public CholeskyBase<T>
 {
 public:
-    virtual void operator()( const CovarMat& V )
+    virtual void factorize( const typename CholeskyBase<T>::CovarMat& V )
     {
         // use "int" everywhere, because of the "j-1" operation
         int N = assert_properties( V );
         // example of an invertible matrix whose decomposition is undefined
         assert( V(0,0) != 0 ); 
 
-        FactorMat L = ublas::zero_matrix<T>(N,N);
-        FactorMat D = ublas::zero_matrix<T>(N,N);
+        typename CholeskyBase<T>::FactorMat L = ublas::zero_matrix<T>(N,N);
+        typename CholeskyBase<T>::FactorMat D = ublas::zero_matrix<T>(N,N);
         D(0,0) = V(0,0);
 
         for( int j=0; j<N; ++j ) { // each columns
@@ -261,23 +261,23 @@ public:
             } // for i in rows
         } // for j in columns
         
-        _L = root( L, D );
+        this->_L = root( L, D );
     }
 
 
-    inline FactorMat root( FactorMat& L, FactorMat& D )
+    inline typename CholeskyBase<T>::FactorMat root( typename CholeskyBase<T>::FactorMat& L, typename CholeskyBase<T>::FactorMat& D )
     {
-        // now compute the final symetric matrix: _L = L D^1/2
+        // now compute the final symetric matrix: this->_L = L D^1/2
         // remember that V = ( L D^1/2) ( L D^1/2)^T
 
         // fortunately, the square root of a diagonal matrix is the square 
         // root of all its elements
-        FactorMat sqrt_D = D;
-        for(int i=0; i<N; ++i) {
+        typename CholeskyBase<T>::FactorMat sqrt_D = D;
+        for( int i=0; i < D.size1(); ++i) {
             sqrt_D(i,i) = sqrt(D(i,i));
         }
 
-        // the factorization is thus _L*D^1/2
+        // the factorization is thus this->_L*D^1/2
         return ublas::prod( L, sqrt_D );
     }
 };
