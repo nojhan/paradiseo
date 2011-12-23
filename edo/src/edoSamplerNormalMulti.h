@@ -32,6 +32,7 @@ Authors:
 #include <limits>
 
 #include <edoSampler.h>
+#include <utils/edoCholesky.h>
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/symmetric.hpp>
 
@@ -48,8 +49,8 @@ class edoSamplerNormalMulti : public edoSampler< EOD >
 public:
     typedef typename EOT::AtomType AtomType;
 
-    edoSamplerNormalMulti( edoRepairer<EOT> & repairer, typename Cholesky::Method use = Cholesky::absolute ) 
-        : edoSampler< EOD >( repairer), _cholesky(use)
+    edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) 
+        : edoSampler< EOD >( repairer)
     {}
 
 
@@ -59,7 +60,7 @@ public:
         assert(size > 0);
 
         // L = cholesky decomposition of varcovar
-        const typename Cholesky::FactorMat& L = _cholesky( distrib.varcovar() );
+        const typename cholesky::CholeskyBase<AtomType>::FactorMat& L = _cholesky( distrib.varcovar() );
 
         // T = vector of size elements drawn in N(0,1)
         ublas::vector< AtomType > T( size );
@@ -80,7 +81,7 @@ public:
     }
 
 protected:
-    Cholesky _cholesky;
+    cholesky::CholeskyLLT<AtomType> _cholesky;
 };
 
 #endif // !_edoSamplerNormalMulti_h
