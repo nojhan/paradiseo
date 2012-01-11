@@ -1,5 +1,5 @@
 #######################################################################################
-### Paths to EO, MO, GPU, MOEO and CUDA must be specified above.
+### Paths to EO, MO and GPU must be specified above.
 #######################################################################################
 
 SET(EO_SRC_DIR "${CMAKE_SOURCE_DIR}/../paradiseo-eo" CACHE PATH "ParadisEO-EO source directory" FORCE)
