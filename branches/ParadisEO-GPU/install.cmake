@@ -116,7 +116,7 @@ SET(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/../problems" CACHE PATH "Problems depe
     
 ######################################################################################
 ######################################################################################
-### Subdirectories that CMake should process for MO, MOEO and PEO
+### Subdirectories that CMake should process for EO, MO and GPU
 ######################################################################################
 
 ADD_SUBDIRECTORY(doc)
