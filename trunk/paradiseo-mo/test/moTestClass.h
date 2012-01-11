@@ -53,7 +53,6 @@
 #include <utils/eoUpdater.h>
 
 #include <eoInit.h>
-#include <neighborhood/moXChangeNeighbor.h>
 
 typedef eoBit<eoMinimizingFitness> bitVector;
 typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor;
@@ -81,32 +80,6 @@ public:
 	virtual void move(Solution & _solution) {
 	}
 	virtual void moveBack(Solution & _solution) {
-	}
-};
-
-template < class EOT>
-class XChangeNeighborDummy: public moXChangeNeighbor<EOT> {
-public:
-
-	XChangeNeighborDummy() :
-		moXChangeNeighbor<EOT> () {
-
-	}
-
-	/**
-	 * Constructor
-	 * @param _xChange the number of x-change to do
-	 */
-
-	XChangeNeighborDummy(unsigned int _xChange) :
-		moXChangeNeighbor<EOT> (_xChange) {
-	}
-	/**
-	 * Move a solution
-	 * @param _solution the related solution
-	 */
-	void move(EOT & _solution) {
-
 	}
 };
 
