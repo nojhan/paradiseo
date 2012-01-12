@@ -36,7 +36,7 @@
 #define _moGPUCustomizedNeighbor_h
 
 #include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moXChangeNeighbor.h>
+#include <neighborhood/moGPUXChangeNeighbor.h>
 #include <problems/types/moGPUSolType2Vector.h>
 
 /**
@@ -45,19 +45,19 @@
 
 template<class Fitness>
 class moGPUCustomizedNeighbor: public moBackableNeighbor< moGPUSolType2Vector<Fitness> > ,
-public moXChangeNeighbor< moGPUSolType2Vector<Fitness> > {
+public moGPUXChangeNeighbor< moGPUSolType2Vector<Fitness> > {
 
 public:
 
-	using moXChangeNeighbor< moGPUSolType2Vector<Fitness> >::indices;
-	using moXChangeNeighbor< moGPUSolType2Vector<Fitness> >::xChange;
-	using moXChangeNeighbor< moGPUSolType2Vector<Fitness> >::key;
+	using moGPUXChangeNeighbor< moGPUSolType2Vector<Fitness> >::indices;
+	using moGPUXChangeNeighbor< moGPUSolType2Vector<Fitness> >::xChange;
+	using moGPUXChangeNeighbor< moGPUSolType2Vector<Fitness> >::key;
 	/**
 	 *Default Constructor
 	 */
 
 	moGPUCustomizedNeighbor() :
-		moXChangeNeighbor< moGPUSolType2Vector<Fitness> > () {
+		moGPUXChangeNeighbor< moGPUSolType2Vector<Fitness> > () {
 	}
 
 	/**
@@ -66,7 +66,7 @@ public:
 	 */
 
 	moGPUCustomizedNeighbor(unsigned int _xSwap) :
-		moXChangeNeighbor< moGPUSolType2Vector<Fitness> > (_xSwap) {
+		moGPUXChangeNeighbor< moGPUSolType2Vector<Fitness> > (_xSwap) {
 	}
 
 	/**

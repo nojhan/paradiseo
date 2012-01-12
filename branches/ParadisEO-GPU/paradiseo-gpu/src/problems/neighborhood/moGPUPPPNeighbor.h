@@ -1,5 +1,5 @@
 /*
- <PPPNeighbor.h>
+ <moGPUPPPNeighbor.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Boufaras Karima, Thé Van Luong
@@ -27,31 +27,31 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __PPPNeighbor_h
-#define __PPPNeighbor_h
+#ifndef __moGPUPPPNeighbor_h
+#define __moGPUPPPNeighbor_h
 
 #include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moXChangeNeighbor.h>
+#include <neighborhood/moGPUXChangeNeighbor.h>
 
 /**
  * A GPU X-BitFlipping Neighbor
  */
 
 template<class EOT, class Fitness=typename EOT::Fitness>
-class PPPNeighbor: public moBackableNeighbor<EOT> , public moXChangeNeighbor<
+class moGPUPPPNeighbor: public moBackableNeighbor<EOT> , public moGPUXChangeNeighbor<
 		EOT> {
 public:
 
-	using moXChangeNeighbor<EOT>::indices;
-	using moXChangeNeighbor<EOT>::xChange;
-	using moXChangeNeighbor<EOT>::key;
+	using moGPUXChangeNeighbor<EOT>::indices;
+	using moGPUXChangeNeighbor<EOT>::xChange;
+	using moGPUXChangeNeighbor<EOT>::key;
 
 	/**
 	 *Default Constructor
 	 */
 
-	PPPNeighbor() :
-		moXChangeNeighbor<EOT> () {
+	moGPUPPPNeighbor() :
+		moGPUXChangeNeighbor<EOT> () {
 	}
 
 	/**
@@ -59,8 +59,8 @@ public:
 	 * @param _xFlip the number of bit to flip
 	 */
 
-	PPPNeighbor(unsigned int _xFlip) :
-		moXChangeNeighbor<EOT> (_xFlip) {
+	moGPUPPPNeighbor(unsigned int _xFlip) :
+		moGPUXChangeNeighbor<EOT> (_xFlip) {
 	}
 
 	/**
@@ -91,7 +91,7 @@ public:
 	 */
 
 	virtual std::string className() const {
-		return "PPPNeighbor";
+		return "moGPUPPPNeighbor";
 	}
 
 };
