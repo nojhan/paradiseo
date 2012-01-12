@@ -31,7 +31,7 @@
 #define _moXSwapNeighbor_h
 
 #include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moXChangeNeighbor.h>
+#include <neighborhood/moGPUXChangeNeighbor.h>
 
 /**
  * A X-Swap Neighbor
@@ -39,20 +39,20 @@
 
 template<class EOT, class Fitness = typename EOT::Fitness>
 class moXSwapNeighbor: public moBackableNeighbor<EOT> ,
-		public moXChangeNeighbor<EOT> {
+		public moGPUXChangeNeighbor<EOT> {
 
 public:
 
-	using moXChangeNeighbor<EOT>::indices;
-	using moXChangeNeighbor<EOT>::xChange;
-	using moXChangeNeighbor<EOT>::key;
+	using moGPUXChangeNeighbor<EOT>::indices;
+	using moGPUXChangeNeighbor<EOT>::xChange;
+	using moGPUXChangeNeighbor<EOT>::key;
 
 	/**
 	 *Default Constructor
 	 */
 
 	moXSwapNeighbor() :
-		moXChangeNeighbor<EOT> () {
+		moGPUXChangeNeighbor<EOT> () {
 	}
 
 	/**
@@ -61,7 +61,7 @@ public:
 	 */
 
 	moXSwapNeighbor(unsigned int _xSwap) :
-		moXChangeNeighbor<EOT> (_xSwap) {
+		moGPUXChangeNeighbor<EOT> (_xSwap) {
 	}
 
 	/**
