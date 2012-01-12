@@ -152,7 +152,6 @@
 #include <neighborhood/moForwardVectorVNSelection.h>
 #include <neighborhood/moIndexNeighbor.h>
 #include <neighborhood/moIndexNeighborhood.h>
-#include <neighborhood/moMappingNeighborhood.h>
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
 #include <neighborhood/moOrderNeighborhood.h>
