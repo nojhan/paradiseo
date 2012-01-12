@@ -27,18 +27,21 @@ structure:
    +-- AUTHORS				      Author list 
    |
    |
+   +-- downloads/			      
+   |            | +-- /cudatoolkit_3.2.16_linux_32_ubuntu10.04.run  CUDA toolkit (required for ParadisEO-GPU)
+                | +-- /devdriver_3.2_linux_32_260.19.26.run CUDA driver (required for ParadisEO-GPU)
+   |
    +-- INSTALL                    INSTALL file
    |
    |
-   +-- install.cmake			  ParadisEO main install config file
+   +-- install.cmake			  ParadisEO-GPU main install config file
    |
    |
    +-- installParadiseo.sh		  Install script
    |
-   +-- lib/
-   |	   | +-- /libxml2-2.7.3.tar.gz   LIBXML2 archive (required for ParadisEO-PEO)
-   |	   | +-- /mpich2-1.0.8.tar.gz    MPICH2 archive (required for ParadisEO-PEO)
    |
+   +-- logs                       Log files
+   |   
    |
    + LICENCE				       Licence contents
    |
@@ -46,16 +49,10 @@ structure:
    +-- paradiseo-eo 			   paradiseo-eo dir
    |
    |
+   +-- paradiseo-gpu               paradiseo-gpu  dir
+   |   
+   |
    +-- paradiseo-mo                paradiseo-mo dir 
-   |
-   |
-   +-- paradiseo-moeo              paradiseo-moeo  dir
-   |   
-   |
-   +-- paradiseo-old-mo            paradiseo-old-mo  dir
-   |   
-   |
-   +-- paradiseo-peo               paradiseo-peo  dir
    |
    |
    +-- problems                    classical problems evaluation functions
@@ -67,12 +64,12 @@ structure:
               NOTES
 ==========================================================================================
 
-ParadisEO uses EO, a templates-based, ANSI-C++ compliant evolutionary computation library. 
-It contains classes for almost any kind of evolutionary computation you might come up to - at 
+ParadisEO-GPU uses EO and MO, a templates-based, ANSI-C++ compliant evolutionary computation library and Moving Object Library. 
+It contains classes for almost any kind of evolutionary computation and local search algorithms you might come up to - at 
 least for the ones we could think of.
-EO Website: http://eodev.sourceforge.net/.
+EO Website: http://eodev.sourceforge.net/. 
 EO is distributed under the GNU Lesser General Public License: http://www.gnu.org/copyleft/lesser.html
-
+ParadisEO WebSite : http://paradiseo.gforge.inria.fr/.
 Please read README file of each extracted directory if you have
 problems for the installation.
 
