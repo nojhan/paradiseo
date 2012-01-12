@@ -37,6 +37,10 @@ CUDA_ADD_EXECUTABLE(GPUtestSimpleHCByCpy testSimpleHCByCpy.cu)
 CUDA_ADD_EXECUTABLE(GPUtestSimpleTS testSimpleTS.cu) 
 CUDA_ADD_EXECUTABLE(GPUtestSimulatedAnnealing testSimulatedAnnealing.cu) 
 
+######################################################################################
+### 4) Link the librairies for your target(s)
+######################################################################################
+
 TARGET_LINK_LIBRARIES(GPUtestFirstImpr eoutils ga eo)
 TARGET_LINK_LIBRARIES(GPUtestNeutralHC eoutils ga eo)
 TARGET_LINK_LIBRARIES(GPUtestSimpleHC eoutils ga eo)

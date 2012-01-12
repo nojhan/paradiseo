@@ -43,11 +43,11 @@ using namespace std;
 #include <eo>
 #include <ga.h>
 // One Max full eval function
-#include <problems/eval/EvalOneMax.h>
+#include <problems/eval/moGPUEvalOneMax.h>
 //Parallel evaluation of neighborhood on GPU
 #include <eval/moGPUEvalByCpy.h>
 // One Max increment evaluation function
-#include <problems/eval/OneMaxIncrEval.h>
+#include <problems/eval/moGPUOneMaxIncrEval.h>
 // One Max solution
 #include <GPUType/moGPUBitVector.h>
 // Bit neighbor 
@@ -137,7 +137,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  EvalOneMax<solution> eval;
+  moGPUEvalOneMax<solution> eval;
   
   /* =========================================================
    *
@@ -145,8 +145,8 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
   
-  OneMaxIncrEval<Neighbor> incr_eval;
-  moGPUEvalByCpy<Neighbor,OneMaxIncrEval<Neighbor> > gpuEval(SIZE,incr_eval);
+  moGPUOneMaxIncrEval<Neighbor> incr_eval;
+  moGPUEvalByCpy<Neighbor,moGPUOneMaxIncrEval<Neighbor> > gpuEval(SIZE,incr_eval);
   
   /* =========================================================
    *

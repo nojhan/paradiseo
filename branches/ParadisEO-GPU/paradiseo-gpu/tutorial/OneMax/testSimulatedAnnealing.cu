@@ -43,11 +43,11 @@ using namespace std;
 #include <eo>
 #include <ga.h>
 // OneMax full eval function
-#include <problems/eval/EvalOneMax.h>
+#include <problems/eval/moGPUEvalOneMax.h>
 //Parallel evaluation of neighborhood on GPU
 #include <eval/moGPUEvalByModif.h>
 // OneMax increment eval function
-#include <problems/eval/OneMaxIncrEval.h>
+#include <problems/eval/moGPUOneMaxIncrEval.h>
 // One Max solution
 #include <GPUType/moGPUBitVector.h>
 // Bit neighbor
@@ -137,7 +137,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  EvalOneMax<solution> eval;
+   moGPUEvalOneMax<solution> eval;
 
   /* =========================================================
    *
@@ -145,8 +145,8 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  OneMaxIncrEval<Neighbor> incr_eval;
-  moGPUEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > gpuEval(SIZE,incr_eval);
+   moGPUOneMaxIncrEval<Neighbor> incr_eval;
+   moGPUEvalByModif<Neighbor,moGPUOneMaxIncrEval<Neighbor> > gpuEval(SIZE,incr_eval);
 
   /* =========================================================
    *
@@ -154,7 +154,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(SIZE,gpuEval);
+   Neighborhood neighborhood(SIZE,gpuEval);
 
   /* =========================================================
    *
@@ -163,8 +163,8 @@ void main_function(int argc, char **argv)
    * ========================================================= */
 
 
-  // initial temp, factor of decrease, number of steps without decrease, final temp.
-  moSimpleCoolingSchedule<solution> coolingSchedule(500, 0.9, 1000, 0.01);
+   // initial temp, factor of decrease, number of steps without decrease, final temp.
+   moSimpleCoolingSchedule<solution> coolingSchedule(500, 0.9, 1000, 0.01);
 
   /* =========================================================
    *
@@ -172,7 +172,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moSA<Neighbor> SA(neighborhood, eval, gpuEval,coolingSchedule);
+   moSA<Neighbor> SA(neighborhood, eval, gpuEval,coolingSchedule);
 
   /* =========================================================
    *
@@ -180,13 +180,13 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  //init(solution);
-  eval(sol);
-  std::cout << "initial : " << sol << std::endl;
-  moGPUTimer timer;
-  timer.start();
-  SA(sol);
-  timer.stop(); 
+   //init(solution);
+   eval(sol);
+   std::cout << "initial : " << sol << std::endl;
+   moGPUTimer timer;
+   timer.start();
+   SA(sol);
+   timer.stop(); 
   std::cout << "final : " << sol << std::endl;
   printf("Execution time = %.2lf s\n",timer.getTime()); 
 
