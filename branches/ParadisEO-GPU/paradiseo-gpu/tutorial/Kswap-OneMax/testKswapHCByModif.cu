@@ -42,10 +42,10 @@ using namespace std;
 #include <eo>
 #include <ga.h>
 // OneMax full eval function
-#include <problems/eval/EvalOneMax.h>
+#include <problems/eval/moGPUEvalOneMax.h>
 // OneMax incremental eval function
 #include <eval/moGPUMappingEvalByModif.h>
-#include <problems/eval/OneMaxIncrEval.h>
+#include <problems/eval/moGPUOneMaxIncrEval.h>
 // One Max solution
 #include <GPUType/moGPUBitVector.h>
 // One Max neighbor
@@ -53,7 +53,7 @@ using namespace std;
 //To compute execution time
 #include <performance/moGPUTimer.h>
 //Utils to compute size Mapping of x-change position
-#include <neighborhood/moNeighborhoodSizeUtils.h>
+#include <neighborhood/moGPUNeighborhoodSizeUtils.h>
 // One Max ordered neighborhood
 #include <neighborhood/moGPUXChangeNeighborhoodByModif.h>
 // The Solution and neighbor comparator
@@ -139,7 +139,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  EvalOneMax<solution> eval;
+  moGPUEvalOneMax<solution> eval;
   
   /* =========================================================
    *
@@ -148,8 +148,8 @@ void main_function(int argc, char **argv)
    * ========================================================= */
 
   unsigned long int sizeMap=sizeMapping(SIZE,NB_POS);
-  OneMaxIncrEval<Neighbor> incr_eval;
-  moGPUMappingEvalByModif<Neighbor,OneMaxIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+  moGPUOneMaxIncrEval<Neighbor> incr_eval;
+  moGPUMappingEvalByModif<Neighbor,moGPUOneMaxIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
   /* =========================================================
    *

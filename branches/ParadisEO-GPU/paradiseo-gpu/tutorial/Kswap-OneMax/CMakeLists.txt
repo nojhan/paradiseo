@@ -33,6 +33,10 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${CUDA_DIR}/lib )
 CUDA_ADD_EXECUTABLE(GPUtestKswapHCByModif testKswapHCByModif.cu)
 CUDA_ADD_EXECUTABLE(GPUtestKswapHCByCpy testKswapHCByCpy.cu)  
 
+######################################################################################
+### 4) Link the librairies for your target(s)
+######################################################################################
+
 TARGET_LINK_LIBRARIES(GPUtestKswapHCByModif eoutils ga eo)
 TARGET_LINK_LIBRARIES(GPUtestKswapHCByCpy eoutils ga eo)
 
