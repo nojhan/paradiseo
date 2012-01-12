@@ -31,7 +31,7 @@
 #define __moGPUXBitFlippingNeighbor_h
 
 #include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moXChangeNeighbor.h>
+#include <neighborhood/moGPUXChangeNeighbor.h>
 #include <GPUType/moGPUBitVector.h>
 
 /**
@@ -40,20 +40,20 @@
 
 template< class Fitness >
 class moGPUXBitFlippingNeighbor:public moBackableNeighbor< moGPUBitVector<Fitness> > ,
-		public moXChangeNeighbor< moGPUBitVector<Fitness> > {
+		public moGPUXChangeNeighbor< moGPUBitVector<Fitness> > {
 public:
 
 	typedef moGPUBitVector<Fitness> EOT ;
-	using moXChangeNeighbor<EOT>::indices;
-	using moXChangeNeighbor<EOT>::xChange;
-	using moXChangeNeighbor<EOT>::key;
+	using moGPUXChangeNeighbor<EOT>::indices;
+	using moGPUXChangeNeighbor<EOT>::xChange;
+	using moGPUXChangeNeighbor<EOT>::key;
 
 	/**
 	 *Default Constructor
 	 */
 
 	moGPUXBitFlippingNeighbor() :
-		moXChangeNeighbor<EOT> () {
+		moGPUXChangeNeighbor<EOT> () {
 	}
 
 	/**
@@ -62,7 +62,7 @@ public:
 	 */
 
 	moGPUXBitFlippingNeighbor(unsigned int _xFlip) :
-		moXChangeNeighbor<EOT> (_xFlip) {
+		moGPUXChangeNeighbor<EOT> (_xFlip) {
 	}
 
 	/**
