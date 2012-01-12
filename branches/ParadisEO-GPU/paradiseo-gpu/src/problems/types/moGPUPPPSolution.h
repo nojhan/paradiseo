@@ -1,5 +1,5 @@
 /*
- <PPPSolution.h>
+ <moGPUPPPSolution.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Karima Boufaras, Thé Van LUONG
@@ -32,8 +32,8 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __PPPSolution_H_
-#define __PPPSolution_H_
+#ifndef __moGPUPPPSolution_H_
+#define __moGPUPPPSolution_H_
 
 #include <GPUType/moGPUVector.h>
 
@@ -43,7 +43,7 @@
 
 template<class Fitness>
 
-class PPPSolution: public moGPUVector<int, Fitness> {
+class moGPUPPPSolution: public moGPUVector<int, Fitness> {
 
 public:
 
@@ -54,7 +54,7 @@ public:
 	 * Default constructor.
 	 */
 
-	PPPSolution() :
+	moGPUPPPSolution() :
 		moGPUVector<int, Fitness> () {
 
 	}
@@ -64,7 +64,7 @@ public:
 	 *@param _size The neighborhood size.
 	 */
 
-	PPPSolution(unsigned _size) {
+	moGPUPPPSolution(unsigned _size) {
 
 		N = _size;
 
@@ -79,7 +79,7 @@ public:
 	 *@return a new vector.
 	 */
 
-	PPPSolution& operator=(const PPPSolution & _vector) {
+	moGPUPPPSolution& operator=(const moGPUPPPSolution & _vector) {
 
 		N = _vector.N;
 		vect = new int[N];
