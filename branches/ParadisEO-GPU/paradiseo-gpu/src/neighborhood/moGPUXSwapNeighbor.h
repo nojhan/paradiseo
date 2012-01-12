@@ -30,7 +30,7 @@
 #ifndef __moGPUXSwapNeighbor_h
 #define __moGPUXSwapNeighbor_h
 #include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moXChangeNeighbor.h>
+#include <neighborhood/moGPUXChangeNeighbor.h>
 #include <GPUType/moGPUPermutationVector.h>
 
 /**
@@ -39,21 +39,21 @@
 
 template<class Fitness>
 class moGPUXSwapNeighbor: public moBackableNeighbor<moGPUPermutationVector<Fitness> > ,
-		public moXChangeNeighbor<moGPUPermutationVector<Fitness> > {
+		public moGPUXChangeNeighbor<moGPUPermutationVector<Fitness> > {
 
 public:
 
 	typedef moGPUPermutationVector<Fitness> EOT ;
-	using moXChangeNeighbor<EOT>::indices;
-	using moXChangeNeighbor<EOT>::xChange;
-	using moXChangeNeighbor<EOT>::key;
+	using moGPUXChangeNeighbor<EOT>::indices;
+	using moGPUXChangeNeighbor<EOT>::xChange;
+	using moGPUXChangeNeighbor<EOT>::key;
 
 	/**
 	 *Default Constructor
 	 */
 
 	moGPUXSwapNeighbor() :
-		moXChangeNeighbor<EOT> () {
+		moGPUXChangeNeighbor<EOT> () {
 	}
 
 	/**
@@ -62,7 +62,7 @@ public:
 	 */
 
 	moGPUXSwapNeighbor(unsigned int _xSwap) :
-		moXChangeNeighbor<EOT> (_xSwap) {
+		moGPUXChangeNeighbor<EOT> (_xSwap) {
 	}
 
 	/**
