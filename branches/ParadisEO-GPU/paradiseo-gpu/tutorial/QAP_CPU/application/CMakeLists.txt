@@ -33,5 +33,9 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${CUDA_DIR}/lib )
 CUDA_ADD_EXECUTABLE(testSimpleTS_CPU testSimpleTS_CPU.cu) 			
 CUDA_ADD_EXECUTABLE(testSimpleHC_CPU testSimpleHC_CPU.cu)
 
+######################################################################################
+### 4) Link the librairies for your target(s)
+######################################################################################
+
 TARGET_LINK_LIBRARIES(testSimpleTS_CPU eoutils ga eo)
 TARGET_LINK_LIBRARIES(testSimpleHC_CPU eoutils ga eo)
