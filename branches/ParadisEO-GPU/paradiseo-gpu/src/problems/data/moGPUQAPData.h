@@ -1,5 +1,5 @@
 /*
- <QAPData.h>
+ <moGPUQAPData.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Boufaras Karima, Thé Van Luong
@@ -32,13 +32,13 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef _QAPData_H_
-#define _QAPData_H_
+#ifndef _moGPUQAPData_H_
+#define _moGPUQAPData_H_
 
 #include <memory/moGPUSpecificData.h>
 
 template<class ElemType>
-class QAPData: public moGPUSpecificData {
+class moGPUQAPData: public moGPUSpecificData {
 
 public:
 
@@ -49,7 +49,7 @@ public:
 	 * Default Constructor
 	 */
 
-	QAPData() :
+	moGPUQAPData() :
 		moGPUSpecificData() {
 	}
 
@@ -58,7 +58,7 @@ public:
 	 * @param _fileName the data file name
 	 */
 
-	QAPData(char* _fileName) {
+	moGPUQAPData(char* _fileName) {
 
 		(*this).load(_fileName);
 
@@ -69,7 +69,7 @@ public:
 	 * @param _qapData the specific data of QAP
 	 */
 
-	QAPData(const QAPData & _qapData) {
+	moGPUQAPData(const moGPUQAPData & _qapData) {
 
 		sizeData = _qapData.sizeData;
 		a_h = new int[sizeData * sizeData];
@@ -94,7 +94,7 @@ public:
 	 * @return a QAP Data
 	 */
 
-	QAPData & operator=(const QAPData & _qapData) {
+	moGPUQAPData & operator=(const moGPUQAPData & _qapData) {
 
 		sizeData = _qapData.sizeData;
 		a_h = new int[sizeData * sizeData];
@@ -116,7 +116,7 @@ public:
 	 * Destructor
 	 */
 
-	~QAPData() {
+	~moGPUQAPData() {
 		GPUObject.memFree(a_d);
 		GPUObject.memFree(b_d);
 		delete[] a_h;

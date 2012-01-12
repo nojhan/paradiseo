@@ -1,5 +1,5 @@
 /*
- <PPPData.h>
+ <moGPUPPPData.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Boufaras Karima, Thé Van Luong
@@ -32,13 +32,13 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef _PPPData_H_
-#define _PPPData_H_
+#ifndef _moGPUPPPData_H_
+#define _moGPUPPPData_H_
 
 #include <memory/moGPUSpecificData.h>
 
 template<class ElemType>
-class PPPData: public moGPUSpecificData {
+class moGPUPPPData: public moGPUSpecificData {
 
 public:
 
@@ -48,7 +48,7 @@ public:
 	 * Default Constructor
 	 */
 
-	PPPData() :
+	moGPUPPPData() :
 		moGPUSpecificData() {
 
 		//(*this).load();
@@ -59,7 +59,7 @@ public:
 	 * @param _pppData the specific data of PPP
 	 */
 
-	PPPData(const PPPData & _pppData) {
+	moGPUPPPData(const moGPUPPPData & _pppData) {
 
 		a_h = new int[Md * Nd];
 		H_h = new int[Nd];
@@ -83,7 +83,7 @@ public:
 	 * @return a PPP Data
 	 */
 
-	PPPData & operator=(const PPPData & _pppData) {
+	moGPUPPPData & operator=(const moGPUPPPData & _pppData) {
 
 		a_h = new int[Md * Nd];
 		H_h = new int[Nd];
@@ -105,7 +105,7 @@ public:
 	 * Destructor
 	 */
 
-	~PPPData() {
+	~moGPUPPPData() {
 		GPUObject.memFree(a_d);
 		GPUObject.memFree(H_d);
 		delete[] a_h;
