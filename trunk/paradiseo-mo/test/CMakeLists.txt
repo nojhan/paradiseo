@@ -112,11 +112,6 @@ SET (TEST_LIST
 		t-moFitnessCloudSampling
 		t-moNeutralWalkSampling
 		t-moStatistics
-		t-moNeighborhoodSizeUtils
-		t-moXChangeNeighbor
-		t-moXSwapNeighbor
-		t-moXBitFlippingNeighbor
-		t-moXChangeNeighborhood
 		t-moIndexedVectorTabuList
 		t-moRndIndexedVectorTabuList
 		t-moDynSpanCoolingSchedule
