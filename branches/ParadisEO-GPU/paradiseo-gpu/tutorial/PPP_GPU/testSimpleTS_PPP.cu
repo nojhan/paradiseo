@@ -45,20 +45,20 @@ __device__ int * dev_h;
 #include <eo>
 #include <ga.h>
 // Fitness function
-#include <problems/eval/PPPEval.h>
+#include <problems/eval/moGPUPPPEval.h>
 // GPU Fitness function
 #include <eval/moGPUMappingEvalByModif.h>
-#include <problems/eval/PPPIncrEval.h>
+#include <problems/eval/moGPUPPPIncrEval.h>
 //Specific data to PPP problem
-#include <problems/data/PPPData.h>
+#include <problems/data/moGPUPPPData.h>
 // PPP solution
-#include <problems/types/PPPSolution.h>
+#include <problems/types/moGPUPPPSolution.h>
 // PPP neighbor
-#include <problems/neighborhood/PPPNeighbor.h>
+#include <problems/neighborhood/moGPUPPPNeighbor.h>
 //To compute execution time
 #include <performance/moGPUTimer.h>
 //Utils to compute size Mapping of x-change position
-#include <neighborhood/moNeighborhoodSizeUtils.h>
+#include <neighborhood/moGPUNeighborhoodSizeUtils.h>
 //x-Change neighborhood
 #include <neighborhood/moGPUXChangeNeighborhoodByModif.h>
 // The Solution and neighbor comparator
@@ -75,8 +75,8 @@ __device__ int * dev_h;
 #include <memory/moDummyDiversification.h>
 #include <memory/moBestImprAspiration.h>
 
-typedef PPPSolution<eoMinimizingFitness> solution;
-typedef PPPNeighbor<solution> Neighbor;
+typedef moGPUPPPSolution<eoMinimizingFitness> solution;
+typedef moGPUPPPNeighbor<solution> Neighbor;
 typedef moGPUXChangeNeighborhoodByModif<Neighbor> Neighborhood;
 
 
@@ -139,7 +139,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  PPPData<int> _data;
+  moGPUPPPData<int> _data;
   _data.load();
 
   /* =========================================================
@@ -158,10 +158,10 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-    PPPEval<solution> eval(_data);
+    moGPUPPPEval<solution> eval(_data);
     unsigned long int sizeMap=sizeMapping(Nd,NB_POS);
-    PPPIncrEval<Neighbor> incr_eval;
-    moGPUMappingEvalByModif<Neighbor,PPPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+    moGPUPPPIncrEval<Neighbor> incr_eval;
+    moGPUMappingEvalByModif<Neighbor,moGPUPPPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
   /* =========================================================
    *

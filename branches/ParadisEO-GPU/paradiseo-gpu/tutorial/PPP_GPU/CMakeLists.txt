@@ -22,7 +22,7 @@ INCLUDE_DIRECTORIES(
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_DIR}/lib )	
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${CUDA_DIR}/lib )	
 
 ######################################################################################
 
@@ -31,6 +31,10 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_DIR}/lib )
 ######################################################################################	
 			
 CUDA_ADD_EXECUTABLE(GPUtestSimpleTS_PPP testSimpleTS_PPP.cu) 
+
+######################################################################################
+### 4) Link the librairies for your target(s)
+######################################################################################
 
 TARGET_LINK_LIBRARIES(GPUtestSimpleTS_PPP eoutils ga eo)
 
