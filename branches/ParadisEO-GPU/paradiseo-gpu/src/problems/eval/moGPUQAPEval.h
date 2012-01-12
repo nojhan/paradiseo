@@ -1,5 +1,5 @@
 /*
- <PPPEval.h>
+ <moGPUQAPEval.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Boufaras Karima, Thé Van Luong
@@ -32,30 +32,30 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __PPPEval_H
-#define __PPPEval_H
+#ifndef __moGPUQAPEval_H
+#define __moGPUQAPEval_H
 
-#include <problems/data/PPPData.h>
+#include <problems/data/moGPUQAPData.h>
 
 template<class EOT, class ElemType = typename EOT::ElemType>
-class PPPEval: public eoEvalFunc<EOT> {
+class moGPUQAPEval: public eoEvalFunc<EOT> {
 
 public:
 
 	/**
 	 * Constructor
-	 * @param _pppData the specific data problem useful to evalute solution( vector of 1 & _1 for PPP)
+	 * @param _qapData the specific data problem useful to evalute solution(flow & distance matrices of QAP problem)
 	 */
 
-	PPPEval(PPPData<ElemType> & _pppData) {
-		pppData = _pppData;
+	moGPUQAPEval(moGPUQAPData<ElemType> & _qapData) {
+		qapData = _qapData;
 	}
 
 	/**
 	 * Destructor
 	 */
 
-	~PPPEval() {
+	~moGPUQAPEval() {
 	}
 
 	/**
@@ -64,40 +64,21 @@ public:
 	 */
 
 	void operator()(EOT & _sol) {
-
-		int *H;
-		int tmp;
-		int tmp_1 = 0;
-		int tmp_2 = 0;
-
-		H = new int[Nd];
-
-		for (int i = 0; i < Md; i++) {
-			tmp = 0;
-			for (int j = 0; j < Nd; j++) {
-				tmp += pppData.a_h[i * Nd + j] * _sol[j];
+		int cost = 0;
+		unsigned int size = qapData.getSize();
+		for (unsigned int i = 0; i < size; i++)
+			for (unsigned int j = 0; j < size; j++) {
+				cost += qapData.a_h[i * size + j] * qapData.b_h[_sol[i] * size
+						+ _sol[j]];
 			}
 
-			tmp_1 += abs(tmp) - tmp;
-			if (tmp > 0)
-				H[tmp-1]++;
-		}
-
-		for (int j = 0; j < Nd; j++) {
-			tmp_2 += abs(pppData.H_h[j] - H[j]);
-		}
-
-		_sol.fitness(ca * tmp_1 + cb * tmp_2);
-
-		delete[] H;
-
+		_sol.fitness(cost);
 	}
 
 protected:
 
-	PPPData<ElemType> pppData;
+	moGPUQAPData<ElemType> qapData;
 
 };
 
 #endif
-

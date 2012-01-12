@@ -1,5 +1,5 @@
 /*
- <QAPIncrEval.h>
+ <moGPUPPPIncrEval.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
  Karima Boufaras, Thé Van LUONG
@@ -32,17 +32,17 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __QAPIncrEval_H
-#define __QAPIncrEval_H
+#ifndef __moGPUPPPIncrEval_H
+#define __moGPUPPPIncrEval_H
 
 #include <eval/moGPUEvalFunc.h>
 
 /**
- * Parallel Incremental Evaluation of QAP
+ * Incremental Evaluation of PPP
  */
 
 template<class Neighbor>
-class QAPIncrEval: public moGPUEvalFunc<Neighbor> {
+class moGPUPPPIncrEval: public moGPUEvalFunc<Neighbor> {
 
 public:
 
@@ -54,69 +54,56 @@ public:
 	 * Constructor
 	 */
 
-	QAPIncrEval() {
+	moGPUPPPIncrEval() {
 	}
 
 	/**
 	 * Destructor
 	 */
 
-	~QAPIncrEval() {
+	~moGPUPPPIncrEval() {
 	}
 
 	/**
-	 * Incremental evaluation of the QAP solution,function inline can be called from host or device
+	 * Incremental evaluation of the PPP solution,function inline can be called from host or device
 	 * @param _sol the solution to evaluate
 	 * @param _fitness the fitness of the current solution
 	 * @param _index an array that contains a set of indexes corresponding to the current thread identifier neighbor the last element of this array contains neighborhood size
 	 */
 
-inline __host__ __device__ Fitness operator() (T * _sol,Fitness _fitness, unsigned int *_index) {
+	inline __host__ __device__ Fitness operator() (T* _sol,Fitness _fitness, unsigned int *_index) {
 
-	Fitness tmp=_fitness;
+		int H[Nd];
+		int S[Md];
+		int tmp_1=0;
+		int tmp_2=0;
 
-	T tmp_sol[1];
-	/*
-	 * dev_a & dev_b are global device variable, data specific to QAP problem (flow & distance matices)
-	 * _index[i] the first position of swap
-	 * _index[i+1] the second position of swap
-	 */
-	for(unsigned i=0;i<NB_POS-1;i++) {
-		tmp=tmp+compute_delta(dev_a,dev_b,_sol,_index[i],_index[i+1]);
-		tmp_sol[0]=_sol[_index[i]];
-		_sol[_index[i]]=_sol[_index[i+1]];
-		_sol[_index[i+1]]=tmp_sol[0];
+		for (unsigned i=0; i<Md; i++) {
+			S[i]=0;
+			for (int j=0; j<Nd; j++)
+				S[i]+=dev_a[i*Nd+j]*_sol[j];
+		}
+
+
+			for (unsigned j=0; j<Nd; j++)
+				H[j]=0;
+			for (unsigned i=0; i<Md; i++) {
+				for(unsigned k=0;k<NB_POS;k++)
+					S[i]=S[i]-2*dev_a[i*Nd+_index[k]]*_sol[_index[k]];
+			    tmp_1=tmp_1+abs(S[i])-S[i];
+				if(S[i]>0)
+				H[S[i]-1]=H[S[i]-1]+1;
+			}
+
+		for (unsigned j=0; j<Nd; j++)
+			tmp_2=tmp_2+abs(dev_h[j]-H[j]);
+
+		return ca*tmp_1+cb*tmp_2;
+
 	}
-	return tmp;
 
-}
-
-/**
- *  compute the new fitness of the solution after permutation of pair(i,j)(function inline called from host  device)
- * @param a the flow matrix of size*size (specific data of QAP problem must be declared as global device variable)
- * @param b the distance matrix of size*size (specific data of QAP problem must be declared as global device variable)
- * @param _sol the solution to evaluate
- * @param i the first position of swap
- * @param j the second position of swap
- */
-
-inline __host__ __device__ int compute_delta(int * a,int * b,T * _sol, int i, int j) {
-
-
-	int d;
-	int k;
-	int n=SIZE;
-
-	    d = (a[i*n+i]-a[j*n+j])*(b[_sol[j]*n+_sol[j]]-b[_sol[i]*n+_sol[i]]) +
-	      (a[i*n+j]-a[j*n+i])*(b[_sol[j]*n+_sol[i]]-b[_sol[i]*n+_sol[j]]);
-	    for (k = 0; k < n; k = k + 1)
-	      if (k!=i && k!=j)
-		d = d + (a[k*n+i]-a[k*n+j])*(b[_sol[k]*n+_sol[j]]-b[_sol[k]*n+_sol[i]]) +
-		  (a[i*n+k]-a[j*n+k])*(b[_sol[j]*n+_sol[k]]-b[_sol[i]*n+_sol[k]]);
-	    return(d);
-
-}
 
 };
 
 #endif
+

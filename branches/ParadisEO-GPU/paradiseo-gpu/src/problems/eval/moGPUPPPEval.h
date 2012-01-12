@@ -1,8 +1,8 @@
 /*
- <OneMaxIncrEval.h>
+ <moGPUPPPEval.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
- Karima Boufaras, Thé Van LUONG
+ Boufaras Karima, Thé Van Luong
 
  This software is governed by the CeCILL license under French law and
  abiding by the rules of distribution of free software.  You can  use,
@@ -32,60 +32,72 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __OneMaxIncrEval_H
-#define __OneMaxIncrEval_H
+#ifndef __moGPUPPPEval_H
+#define __moGPUPPPEval_H
 
-#include <eval/moGPUEvalFunc.h>
+#include <problems/data/moGPUPPPData.h>
 
-/**
- * Incremental Evaluation of OneMax
- */
-
-template<class Neighbor>
-class OneMaxIncrEval: public moGPUEvalFunc<Neighbor> {
+template<class EOT, class ElemType = typename EOT::ElemType>
+class moGPUPPPEval: public eoEvalFunc<EOT> {
 
 public:
 
-	typedef typename Neighbor::EOT EOT;
-	typedef typename EOT::Fitness Fitness;
-	typedef typename EOT::ElemType T;
-
 	/**
 	 * Constructor
+	 * @param _pppData the specific data problem useful to evalute solution( vector of 1 & _1 for PPP)
 	 */
 
-	OneMaxIncrEval() {
+	moGPUPPPEval(moGPUPPPData<ElemType> & _pppData) {
+		pppData = _pppData;
 	}
 
 	/**
 	 * Destructor
 	 */
 
-	~OneMaxIncrEval() {
+	~moGPUPPPEval() {
 	}
 
 	/**
-	 * Incremental evaluation of the OneMax solution(bit vector),function inline can be called from host or device
-	 * @param _bitVector the solution to evaluate
-	 * @param _fitness the fitness of the current solution
-	 * @param _index an array that contains a set of indexes corresponding to the current thread identifier neighbor the last element of this array contains neighborhood size
+	 * Full evaluation of the solution
+	 * @param _sol the solution to evaluate
 	 */
 
-inline __host__ __device__ Fitness operator() (T * _bitVector,Fitness _fitness, unsigned int * _index) {
+	void operator()(EOT & _sol) {
 
-	Fitness tmp=_fitness;
-	for(unsigned i=0;i<NB_POS;i++) {
+		int *H;
+		int tmp;
+		int tmp_1 = 0;
+		int tmp_2 = 0;
 
-		if (_bitVector[_index[i]] == 0)
-		tmp= tmp+1;
-		else
-		tmp= tmp-1;
+		H = new int[Nd];
+
+		for (int i = 0; i < Md; i++) {
+			tmp = 0;
+			for (int j = 0; j < Nd; j++) {
+				tmp += pppData.a_h[i * Nd + j] * _sol[j];
+			}
+
+			tmp_1 += abs(tmp) - tmp;
+			if (tmp > 0)
+				H[tmp-1]++;
+		}
+
+		for (int j = 0; j < Nd; j++) {
+			tmp_2 += abs(pppData.H_h[j] - H[j]);
+		}
+
+		_sol.fitness(ca * tmp_1 + cb * tmp_2);
+
+		delete[] H;
 
 	}
-	return tmp;
 
-}
+protected:
+
+	moGPUPPPData<ElemType> pppData;
 
 };
 
 #endif
+

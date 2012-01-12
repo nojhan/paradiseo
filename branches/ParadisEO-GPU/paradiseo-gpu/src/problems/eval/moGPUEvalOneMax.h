@@ -1,5 +1,5 @@
 /*
-  <EvalOneMax.h>
+  <moGPUEvalOneMax.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Karima Boufaras, Thé Van LUONG
@@ -32,15 +32,15 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef __EvalOneMax_H
-#define __EvalOneMax_H
+#ifndef __moGPUEvalOneMax_H
+#define __moGPUEvalOneMax_H
 
 /**
  * Full Evaluation of the solution
  */
 
 template<class EOT>
-class EvalOneMax: public eoEvalFunc<EOT> {
+class moGPUEvalOneMax: public eoEvalFunc<EOT> {
 
  public:
 
@@ -48,14 +48,14 @@ class EvalOneMax: public eoEvalFunc<EOT> {
    * Constructor
    */
 
-  EvalOneMax() {
+  moGPUEvalOneMax() {
   }
 
   /**
    * Destructor
    */
 
-  ~EvalOneMax(void) {
+  ~moGPUEvalOneMax(void) {
   }
 
   /**

@@ -1,8 +1,8 @@
 /*
- <QAPEval.h>
+ <moGPUOneMaxIncrEval.h>
  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
- Boufaras Karima, Thé Van Luong
+ Karima Boufaras, Thé Van LUONG
 
  This software is governed by the CeCILL license under French law and
  abiding by the rules of distribution of free software.  You can  use,
@@ -32,52 +32,59 @@
  Contact: paradiseo-help@lists.gforge.inria.fr
  */
 
-#ifndef __QAPEval_H
-#define __QAPEval_H
+#ifndef __moGPUOneMaxIncrEval_H
+#define __moGPUOneMaxIncrEval_H
 
-#include <problems/data/QAPData.h>
+#include <eval/moGPUEvalFunc.h>
 
-template<class EOT, class ElemType = typename EOT::ElemType>
-class QAPEval: public eoEvalFunc<EOT> {
+/**
+ * Incremental Evaluation of OneMax
+ */
+
+template<class Neighbor>
+class moGPUOneMaxIncrEval: public moGPUEvalFunc<Neighbor> {
 
 public:
 
+	typedef typename Neighbor::EOT EOT;
+	typedef typename EOT::Fitness Fitness;
+	typedef typename EOT::ElemType T;
+
 	/**
 	 * Constructor
-	 * @param _qapData the specific data problem useful to evalute solution(flow & distance matrices of QAP problem)
 	 */
 
-	QAPEval(QAPData<ElemType> & _qapData) {
-		qapData = _qapData;
+	moGPUOneMaxIncrEval() {
 	}
 
 	/**
 	 * Destructor
 	 */
 
-	~QAPEval() {
+	~moGPUOneMaxIncrEval() {
 	}
 
 	/**
-	 * Full evaluation of the solution
-	 * @param _sol the solution to evaluate
+	 * Incremental evaluation of the OneMax solution(bit vector),function inline can be called from host or device
+	 * @param _bitVector the solution to evaluate
+	 * @param _fitness the fitness of the current solution
+	 * @param _index an array that contains a set of indexes corresponding to the current thread identifier neighbor the last element of this array contains neighborhood size
 	 */
 
-	void operator()(EOT & _sol) {
-		int cost = 0;
-		unsigned int size = qapData.getSize();
-		for (unsigned int i = 0; i < size; i++)
-			for (unsigned int j = 0; j < size; j++) {
-				cost += qapData.a_h[i * size + j] * qapData.b_h[_sol[i] * size
-						+ _sol[j]];
-			}
+inline __host__ __device__ Fitness operator() (T * _bitVector,Fitness _fitness, unsigned int * _index) {
 
-		_sol.fitness(cost);
+	Fitness tmp=_fitness;
+	for(unsigned i=0;i<NB_POS;i++) {
+
+		if (_bitVector[_index[i]] == 0)
+		tmp= tmp+1;
+		else
+		tmp= tmp-1;
+
 	}
+	return tmp;
 
-protected:
-
-	QAPData<ElemType> qapData;
+}
 
 };
 
