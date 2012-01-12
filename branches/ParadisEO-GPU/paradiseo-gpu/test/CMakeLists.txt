@@ -31,16 +31,25 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${CUDA_DIR}/lib )
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST	  
-       t-moGPUBitVector
-       t-moGPUIntVector
-       t-moGPURealVector 
-       t-moGPUPermutationVector
-       t-moGPUMemory
-       t-moGPUObject
+SET (TEST_LIST	
        t-moGPUBitNeighbor
+       t-moGPUBitVector
+       t-moGPUEvalOneMax       
+       t-moGPUIntVector
+       t-moGPUMemory
+       t-moGPUNeighborhoodSizeUtils
+       t-moGPUObject
+       t-moGPUOneMaxIncrEval
+       t-moGPUPermutationVector
+       t-moGPURealVector 
+       t-moGPUTimer
        t-moGPUXBitFlippingNeighbor
+       t-moGPUXChangeNeighbor
+       t-moGPUXChangeNeighborhood
        t-moGPUXSwapNeighbor
+       t-moXBitFlippingNeighbor
+	   t-moXSwapNeighbor   
+	   
 		)
 				
 FOREACH (test ${TEST_LIST})
@@ -56,6 +65,9 @@ IF(ENABLE_CMAKE_TESTING)
 		  ADD_TEST(${test} ${test}) 
 	ENDFOREACH (test)
 	
+######################################################################################
+### 4) Link the librairies for your target(s)
+######################################################################################
 	# Link the librairies
 	FOREACH (test ${TEST_LIST})
 	 	TARGET_LINK_LIBRARIES(${test} ga es eoutils eo)
