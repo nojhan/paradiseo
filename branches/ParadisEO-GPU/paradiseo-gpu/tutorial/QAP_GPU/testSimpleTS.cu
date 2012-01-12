@@ -47,12 +47,12 @@ __device__ int * dev_b;
 #include <eo>
 #include <ga.h>
 // Fitness function
-#include <problems/eval/QAPEval.h>
+#include <problems/eval/moGPUQAPEval.h>
 // Cuda Fitness function
 #include <eval/moGPUMappingEvalByCpy.h>
-#include <problems/eval/QAPIncrEval.h>
+#include <problems/eval/moGPUQAPIncrEval.h>
 //Specific data to QAP problem
-#include <problems/data/QAPData.h>
+#include <problems/data/moGPUQAPData.h>
 // QAP solution
 #include <GPUType/moGPUPermutationVector.h>
 // Swap neighbor
@@ -60,7 +60,7 @@ __device__ int * dev_b;
 //To compute execution time
 #include <performance/moGPUTimer.h>
 //Utils to compute size Mapping of x-change position
-#include <neighborhood/moNeighborhoodSizeUtils.h>
+#include <neighborhood/moGPUNeighborhoodSizeUtils.h>
 // Use an ordered neighborhood without mapping, with local copy of solution
 #include <neighborhood/moGPUXChangeNeighborhoodByCpy.h>
 // The Solution and neighbor comparator
@@ -142,7 +142,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  QAPData<int> _data(argv[1]);
+  moGPUQAPData<int> _data(argv[1]);
 
   /* =========================================================
    *
@@ -160,10 +160,10 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-   QAPEval<solution> eval(_data);
+   moGPUQAPEval<solution> eval(_data);
    unsigned long int sizeMap=sizeMapping(_data.sizeData,NB_POS);
-   QAPIncrEval<Neighbor> incr_eval;
-   moGPUMappingEvalByCpy<Neighbor,QAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+   moGPUQAPIncrEval<Neighbor> incr_eval;
+   moGPUMappingEvalByCpy<Neighbor,moGPUQAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
