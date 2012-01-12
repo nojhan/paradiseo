@@ -27,10 +27,6 @@ structure:
    +-- AUTHORS				      Author list 
    |
    |
-   +-- downloads/			      
-   |            | +-- /cudatoolkit_3.2.16_linux_32_ubuntu10.04.run  CUDA toolkit (required for ParadisEO-GPU)
-                | +-- /devdriver_3.2_linux_32_260.19.26.run CUDA driver (required for ParadisEO-GPU)
-   |
    +-- INSTALL                    INSTALL file
    |
    |
@@ -54,9 +50,6 @@ structure:
    |
    |
    +-- paradiseo-moeo              paradiseo-moeo  dir
-   |   
-   |
-   +-- paradiseo-gpu               paradiseo-gpu  dir
    |   
    |
    +-- paradiseo-old-mo            paradiseo-old-mo  dir
