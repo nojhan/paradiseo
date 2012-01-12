@@ -155,7 +155,6 @@
 #include <neighborhood/moMappingNeighborhood.h>
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
-#include <neighborhood/moNeighborhoodSizeUtils.h>
 #include <neighborhood/moOrderNeighborhood.h>
 #include <neighborhood/moRndNeighborhood.h>
 #include <neighborhood/moRndVectorVNSelection.h>
@@ -164,10 +163,6 @@
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <neighborhood/moVectorVNSelection.h>
 #include <neighborhood/moEvaluatedNeighborhood.h>
-#include <neighborhood/moXBitFlippingNeighbor.h>
-#include <neighborhood/moXChangeNeighbor.h>
-#include <neighborhood/moXChangeNeighborhood.h>
-#include <neighborhood/moXSwapNeighbor.h>
 
 #include <perturb/moLocalSearchInit.h>
 #include <perturb/moMonOpPerturb.h>
@@ -197,17 +192,6 @@
 #include <problems/eval/moUBQPdoubleIncrEvaluation.h>
 #include <problems/eval/moUBQPBitsIncrEval.h>
 
-// #include <problems/bitString/moPopBitNeighbor.h>
-// #include <problems/bitString/moPopBitsNeighbor.h>
-// #include <problems/bitString/moPopBitsRndNeighborhood.h>
-// #include <problems/bitString/moPopSol.h>
-// #include <problems/bitString/moPopSolInit.h>
-// #include <problems/bitString/moPopSolNonDomInit.h>
-// #include <problems/bitString/moPopXoverNeighbor.h>
-// #include <problems/bitString/moPopXoverRndNeighborhood.h>
-// #include <problems/eval/moPopBitEval.h>
-// #include <problems/eval/moPopBitsEval.h>
-// #include <problems/eval/moPopXoverEval.h>
 
 #include <sampling/moAdaptiveWalkSampling.h>
 #include <sampling/moAutocorrelationSampling.h>
