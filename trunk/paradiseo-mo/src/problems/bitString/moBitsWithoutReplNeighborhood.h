@@ -94,7 +94,7 @@ public:
       firstIndex = 1;
 
     for(int d = firstIndex; d <= nBits; d++) {
-      vector<unsigned int> bits(d);
+      std::vector<unsigned int> bits(d);
 
       // the first one for this Hamming distance
       for(unsigned i = 0; i < d; i++)
@@ -207,7 +207,7 @@ protected:
   unsigned int sampleSize;
 
   // list of neighbors 
-  vector< vector<unsigned int> > neighborsVec;
+    std::vector< std::vector<unsigned int> > neighborsVec;
 
   // key of the neighbor which is currently explored
   unsigned int key;
