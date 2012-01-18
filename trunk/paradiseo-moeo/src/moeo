@@ -57,7 +57,7 @@
 #include <algo/moeoSPEA2.h>
 #include <algo/moeoUnifiedDominanceBasedLS.h>
 
-#include <archive/moeo2DMinHypervolumeArchive.h>
+//#include <archive/moeo2DMinHypervolumeArchive.h>
 #include <archive/moeoArchive.h>
 #include <archive/moeoBoundedArchive.h>
 #include <archive/moeoEpsilonHyperboxArchive.h>

@@ -183,13 +183,13 @@
 #include <problems/permutation/moTwoOptExNeighbor.h>
 #include <problems/permutation/moTwoOptExNeighborhood.h>
 
-#include <problems/eval/moMaxSATincrEval.h>
-#include <problems/eval/moOneMaxIncrEval.h>
-#include <problems/eval/moQAPIncrEval.h>
-#include <problems/eval/moRoyalRoadIncrEval.h>
-#include <problems/eval/moUBQPSimpleIncrEval.h>
-#include <problems/eval/moUBQPdoubleIncrEvaluation.h>
-#include <problems/eval/moUBQPBitsIncrEval.h>
+//#include <problems/eval/moMaxSATincrEval.h>
+//#include <problems/eval/moOneMaxIncrEval.h>
+//#include <problems/eval/moQAPIncrEval.h>
+//#include <problems/eval/moRoyalRoadIncrEval.h>
+//#include <problems/eval/moUBQPSimpleIncrEval.h>
+//#include <problems/eval/moUBQPdoubleIncrEvaluation.h>
+//#include <problems/eval/moUBQPBitsIncrEval.h>
 
 
 #include <sampling/moAdaptiveWalkSampling.h>

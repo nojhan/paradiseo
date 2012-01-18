@@ -111,9 +111,10 @@ public:
 			result = insert(_moeo.objectiveVector());
 			if (result)
 			{
-				if(size() < maxSize){
-				// if yes, insert it and recompute fitness value of MOEOT and its neighbors
-					insert(hint,_moeo);
+				if(size() < maxSize)
+				{
+					// if yes, insert it and recompute fitness value of MOEOT and its neighbors
+					insert(hint, _moeo);
 					if(size() > 2)
 					{
 						//general case
@@ -131,7 +132,8 @@ public:
 						}
 					}
 				}
-				else{
+				else
+				{
 					result = filter(_moeo);
 				}
 			}
@@ -198,7 +200,8 @@ public:
 	/**
 	 * print objective vector and fitness value of the archive
 	 */
-	void print(){
+	void print()
+	{
 		Iterator it = begin();
 		while(it!=end())
 		{
@@ -210,7 +213,7 @@ public:
 
 protected:
 
-	/** Size max of the archive*/
+	/** size max of the archive */
 	unsigned int maxSize;
 	/** fitness assigned to the first and the last solution in the archive */
 	double maxValue;
@@ -312,7 +315,8 @@ protected:
 		}
 	}
 
-	double computeTmp(const ObjectiveVector & _objVec, int _where){
+	double computeTmp(const ObjectiveVector & _objVec, int _where)
+	{
 		double res, tmp;
 		if(hint==begin() || hint==end())
 			res=maxValue;
@@ -345,7 +349,8 @@ protected:
 	}
 
 
-	void filterbis(){
+	void filterbis()
+	{
 		Iterator it, itd;
 		//used to find sol with minimum fitness value
 		double minFit = maxValue;
@@ -380,21 +385,24 @@ protected:
 		bool res;
 		double x, y, pred, succ, tmp=0;
 
-		if(hint==begin() || hint==end()){
+		if(hint==begin() || hint==end())
+		{
 			insert(hint, _moeo);
 			hint--;
 			computeFitness(hint);
 			filterbis();
 			res=true;
 		}
-		else{
+		else
+		{
 			//compute fitness tmp
 			tmp=computeTmp(_moeo.objectiveVector(), 0);
 			hint--;
 			pred=computeTmp(_moeo.objectiveVector(), -1);
 			hint++;
 			succ=computeTmp(_moeo.objectiveVector(), 1);
-			if(tmp > succ || tmp>pred){
+			if(tmp>succ || tmp>pred)
+			{
 				insert(hint, _moeo);
 				hint--;
 				//ici faudrait utiliser les valeurs qu'on vient de calculer pour les affecter direct (faire attention à ou on se trouve)
@@ -402,7 +410,8 @@ protected:
 				filterbis();
 				res=true;
 			}
-			else{
+			else
+			{
 				Iterator it;
 				double minFit = maxValue;
 				for(it=begin(); it!=end(); it++)
@@ -412,11 +421,13 @@ protected:
 						minFit = it->fitness();
 					}
 				}
-				if(tmp<=minFit){
-					res=false;
+				if (tmp<=minFit)
+				{
+					res = false;
 				}
-				else{
-					//REDONDANT arranger le code
+				else
+				{
+					// REDONDANT arranger le code
 					insert(hint, _moeo);
 					hint--;
 					//ici faudrait utiliser les valeurs qu'on vient de calculer pour les affecter direct (faire attention à ou on se trouve)
@@ -426,10 +437,9 @@ protected:
 				}
 			}
 		}
-
 		return res;
 	}
 
 };
 
-#endif /*MOEO2DMINHYPERVOLUMEARCHIVE_H_ */
+#endif /* MOEO2DMINHYPERVOLUMEARCHIVE_H_ */

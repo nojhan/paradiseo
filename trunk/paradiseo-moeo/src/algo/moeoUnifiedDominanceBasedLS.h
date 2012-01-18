@@ -135,8 +135,10 @@ protected:
             unsigned int i=0;
             while (!res && i < _pop.size()){
                 res = (_pop[i].flag() != 1);
-                i++;
+				i++;
             }
+			//if (res==false)
+				//std::cout << "[Natural stop]" << std::endl;
             return res;
         }
     } naturalContinuator;
