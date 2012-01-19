@@ -448,7 +448,7 @@ public:
             std::nth_element( pop.begin(), pop.begin()+quartile*3, pop.end() );
             typename EOT::Fitness Q3 = pop[quartile*3].fitness();
 
-            value() = Q1 - Q3;
+            value() = Q3 - Q1;
         }
     }
 

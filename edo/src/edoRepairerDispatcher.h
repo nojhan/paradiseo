@@ -120,7 +120,10 @@ public:
     //! Add more indexes set and their corresponding repairer operator address to the list
     void add( ICT idx, edoRepairer<EOT>* op )
     {
-        assert( idx.size() > 0 );
+        //assert( idx.size() > 0 );
+#ifndef NDEBUG
+        eo::log << eo::warnings << "A repairer is added to the dispatcher while having an empty index list, nothing will be repaired" << std::endl;
+#endif
         assert( op != NULL );
 
         this->push_back( std::make_pair(idx, op) );
@@ -131,6 +134,7 @@ public:
     {
 //        std::cout << "in dispatcher, sol = " << sol << std::endl;
 
+        // iterate over { indexe, repairer }
         // ipair is an iterator that points on a pair of <indexes,repairer>
         for( typename edoRepairerDispatcher<EOT>::iterator ipair = this->begin(); ipair != this->end(); ++ipair ) {
 
@@ -140,6 +144,8 @@ public:
             EOT partsol;
 
 //            std::cout << "\tusing indexes = ";
+//
+            // iterate over indexes
             // j is an iterator that points on an uint
             for( std::vector< unsigned int >::iterator j = ipair->first.begin(); j != ipair->first.end(); ++j ) {
 
@@ -151,6 +157,9 @@ public:
 //            std::cout << std::endl;
 //            std::cout << "\tpartial sol = " << partsol << std::endl;
 
+            if( partsol.size() == 0 ) {
+                continue;
+            }
             assert( partsol.size() > 0 );
 
             // apply the repairer on the partial copy
