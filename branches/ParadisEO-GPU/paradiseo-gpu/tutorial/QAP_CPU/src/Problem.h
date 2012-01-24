@@ -1,6 +1,6 @@
 /*
  <Problem.h>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van LUONG
 
@@ -44,7 +44,8 @@ void load(char * _fileName) {
 	fstream file(_fileName, ios::in);
 	if (!file) {
 
-		string str = "QAPData: Could not open file [" + (string)_fileName + "].";
+		string str = "QAPData: Could not open file [" + (string) _fileName
+				+ "].";
 		throw runtime_error(str);
 	}
 	unsigned i, j;
