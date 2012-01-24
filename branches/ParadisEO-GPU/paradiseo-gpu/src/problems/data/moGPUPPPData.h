@@ -1,8 +1,8 @@
 /*
  <moGPUPPPData.h>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
- Boufaras Karima, Thé Van Luong
+ Karima Boufaras, Thé Van Luong
 
  This software is governed by the CeCILL license under French law and
  abiding by the rules of distribution of free software.  You can  use,
@@ -51,7 +51,6 @@ public:
 	moGPUPPPData() :
 		moGPUSpecificData() {
 
-		//(*this).load();
 	}
 
 	/**
@@ -149,7 +148,7 @@ public:
 				H_h[s[i]-1]++;
 		}
 
-		//Allocate and copy QAP data from CPU memory to GPU global memory
+		//Allocate and copy PPP data from CPU memory to GPU global memory
 		GPUObject.memCopy(a_d, a_h, Nd * Md);
 		GPUObject.memCopy(H_d, H_h, Nd);
 
