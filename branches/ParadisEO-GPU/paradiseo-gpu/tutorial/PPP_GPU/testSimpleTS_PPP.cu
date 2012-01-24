@@ -135,7 +135,7 @@ int main(int argc, char **argv)
 
   /* =========================================================
    *
-   * Initilisation of QAP data
+   * Initilisation of PPP data
    *
    * ========================================================= */
 
@@ -161,7 +161,7 @@ int main(int argc, char **argv)
     moGPUPPPEval<solution> eval(_data);
     unsigned long int sizeMap=sizeMapping(Nd,NB_POS);
     moGPUPPPIncrEval<Neighbor> incr_eval;
-    moGPUMappingEvalByModif<Neighbor,moGPUPPPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+    moGPUMappingEvalByModif<Neighbor,moGPUPPPIncrEval<Neighbor> > gpueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
@@ -178,7 +178,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-     Neighborhood neighborhood(sizeMap,NB_POS,cueval);
+     Neighborhood neighborhood(sizeMap,NB_POS,gpueval);
 
   /* =========================================================
    *
@@ -215,7 +215,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  moTS<Neighbor> tabuSearch(neighborhood, eval, cueval, comparator, solComparator, continuator, tl, inten, div, asp);  
+  moTS<Neighbor> tabuSearch(neighborhood, eval, gpueval, comparator, solComparator, continuator, tl, inten, div, asp);  
  
   /* =========================================================
    *
