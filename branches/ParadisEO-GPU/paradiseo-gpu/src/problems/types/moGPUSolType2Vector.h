@@ -97,7 +97,7 @@ public:
 
 		for (int i = 0; i < vect[0].size(); i++) {
 			vect[0].tab1[i] = (int) (rng.rand() % (vect[0].size() - i) + i);
-			vect[0].tab2[i] = (float) (rng.rand() % (vect[0].size() - i) + i);
+			vect[0].tab2[i] = (float) (rng.rand() % (vect[0].size() - i) + (i*2));
 		}
 	}
 
