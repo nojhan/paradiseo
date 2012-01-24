@@ -1,6 +1,6 @@
 /*
   <testSimpleTS.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -163,7 +163,7 @@ int main(int argc, char **argv)
    moGPUQAPEval<solution> eval(_data);
    unsigned long int sizeMap=sizeMapping(_data.sizeData,NB_POS);
    moGPUQAPIncrEval<Neighbor> incr_eval;
-   moGPUMappingEvalByCpy<Neighbor,moGPUQAPIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+   moGPUMappingEvalByCpy<Neighbor,moGPUQAPIncrEval<Neighbor> > gpueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
@@ -180,7 +180,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-   Neighborhood neighborhood(sizeMap,NB_POS,cueval);
+   Neighborhood neighborhood(sizeMap,NB_POS,gpueval);
 
   /* =========================================================
    *
@@ -214,7 +214,7 @@ int main(int argc, char **argv)
    *
    * ========================================================= */
 
-  moTS<Neighbor> tabuSearch(neighborhood, eval, cueval, comparator, solComparator, continuator, tl, inten, div, asp);  
+  moTS<Neighbor> tabuSearch(neighborhood, eval, gpueval, comparator, solComparator, continuator, tl, inten, div, asp);  
  
   /* =========================================================
    *
