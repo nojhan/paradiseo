@@ -1,6 +1,6 @@
 /*
   <testKswapHCByCpy.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -139,7 +139,7 @@ void main_function(int argc, char **argv)
 
   unsigned long int sizeMap=sizeMapping(SIZE,NB_POS);
   moGPUOneMaxIncrEval<Neighbor> incr_eval;
-  moGPUMappingEvalByCpy<Neighbor,moGPUOneMaxIncrEval<Neighbor> > cueval(sizeMap,incr_eval);
+  moGPUMappingEvalByCpy<Neighbor,moGPUOneMaxIncrEval<Neighbor> > gpueval(sizeMap,incr_eval);
   
   /* =========================================================
    *
@@ -156,7 +156,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(sizeMap,NB_POS,cueval);
+  Neighborhood neighborhood(sizeMap,NB_POS,gpueval);
 
   /* =========================================================
    *
@@ -164,7 +164,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moSimpleHCexplorer<Neighbor> explorer(neighborhood, cueval,
+  moSimpleHCexplorer<Neighbor> explorer(neighborhood, gpueval,
 					comparator, solComparator);
 
   /* =========================================================
