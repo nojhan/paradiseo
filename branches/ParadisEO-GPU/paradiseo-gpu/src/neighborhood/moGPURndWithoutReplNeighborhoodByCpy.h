@@ -1,8 +1,8 @@
 /*
   <moGPURndWithoutReplNeighborhood.h>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-  Jerémie Humeau, Boufaras Karima, Thé Van LUONG
+  Karima Boufaras, Thé Van LUONG
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
   modify and/ or redistribute the software under the terms of the CeCILL
@@ -52,11 +52,13 @@ class moGPURndWithoutReplNeighborhood: public moRndWithoutReplNeighborhood<Neigh
   using moRndWithoutReplNeighborhood<Neighbor>::neighborhoodSize;
   using moRndWithoutReplNeighborhood<Neighbor>::maxIndex;
   using moRndWithoutReplNeighborhood<Neighbor>::indexVector;
+
   /**
    * Constructor
    * @param _neighborhoodSize the size of the neighborhood
    * @param _eval show how to evaluate neighborhood of a solution at one time
    */
+
  moGPURndWithoutReplNeighborhood(unsigned int _neighborhoodSize,moGPUEval<
 				  Neighbor>& _eval) :
   moRndWithoutReplNeighborhood<Neighbor> (_neighborhoodSize),eval(_eval) {
@@ -72,7 +74,7 @@ class moGPURndWithoutReplNeighborhood: public moRndWithoutReplNeighborhood<Neigh
   virtual void init(EOT & _solution, Neighbor & _neighbor) {
     moRndWithoutReplNeighborhood<Neighbor>::init(_solution, _neighbor);
     //Compute all neighbors fitness at one time
-    eval.neighborhoodEval(_solution,0,1);
+    eval.neighborhoodEval(_solution,0,0);
   }
 
   /**

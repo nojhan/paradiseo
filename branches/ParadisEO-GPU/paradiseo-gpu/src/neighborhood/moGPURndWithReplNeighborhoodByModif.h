@@ -1,8 +1,8 @@
 /*
   <moGPURndWithReplNeighborhoodByModif.h>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-  Jerémie Humeau, Karima Boufaras, Thé Van LUONG
+  Karima Boufaras, Thé Van LUONG
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -69,7 +69,7 @@ class moGPURndWithReplNeighborhoodByModif: public moRndWithReplNeighborhood<Neig
   virtual void init(EOT & _solution, Neighbor & _neighbor) {
     moRndWithReplNeighborhood<Neighbor>::init(_solution, _neighbor);
     //Compute all neighbors fitness at one time
-    eval.neighborhoodEval(_solution,0,1);
+    eval.neighborhoodEval(_solution,0,0);
 
   }
 

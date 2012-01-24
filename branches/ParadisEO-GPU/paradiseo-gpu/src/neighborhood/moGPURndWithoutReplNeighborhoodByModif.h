@@ -1,8 +1,8 @@
 /*
   <moGPURndWithoutReplNeighborhood.h>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-  Jerémie Humeau, Boufaras Karima, Thé Van LUONG
+  Karima Boufaras, Thé Van LUONG
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
   modify and/ or redistribute the software under the terms of the CeCILL
@@ -72,7 +72,7 @@ class moGPURndWithoutReplNeighborhood: public moRndWithoutReplNeighborhood<Neigh
   virtual void init(EOT & _solution, Neighbor & _neighbor) {
     moRndWithoutReplNeighborhood<Neighbor>::init(_solution, _neighbor);
     //Compute all neighbors fitness at one time
-    eval.neighborhoodEval(_solution,0,1);
+    eval.neighborhoodEval(_solution,0,0);
   }
 
   /**

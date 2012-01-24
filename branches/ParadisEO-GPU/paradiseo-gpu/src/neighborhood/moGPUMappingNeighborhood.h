@@ -1,6 +1,6 @@
 /*
  <moGPUMappingNeighborhood.h>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van LUONG
 
@@ -30,11 +30,11 @@
 #ifndef __moGPUMappingNeighborhood_h
 #define __moGPUMappingNeighborhood_h
 
-#include <neighborhood/moMappingNeighborhood.h>
+#include <neighborhood/moGPUMapping.h>
 #include <eval/moGPUEval.h>
 
 template<class N>
-class moGPUMappingNeighborhood: public moMappingNeighborhood<N> {
+class moGPUMappingNeighborhood: public moGPUMapping<N> {
 
 public:
 
@@ -45,12 +45,12 @@ public:
 	typedef N Neighbor;
 	typedef typename Neighbor::EOT EOT;
 
-	using moMappingNeighborhood<Neighbor>::neighborhoodSize;
-	using moMappingNeighborhood<Neighbor>::currentIndex;
-	using moMappingNeighborhood<Neighbor>::indices;
-	using moMappingNeighborhood<Neighbor>::mapping;
-	using moMappingNeighborhood<Neighbor>::xChange;
-	using moMappingNeighborhood<Neighbor>::mutex;
+	using moGPUMapping<Neighbor>::neighborhoodSize;
+	using moGPUMapping<Neighbor>::currentIndex;
+	using moGPUMapping<Neighbor>::indices;
+	using moGPUMapping<Neighbor>::mapping;
+	using moGPUMapping<Neighbor>::xChange;
+	using moGPUMapping<Neighbor>::mutex;
 
 	/**
 	 * Constructor
@@ -60,7 +60,7 @@ public:
 
 	moGPUMappingNeighborhood(unsigned int _neighborhoodSize,
 			unsigned int _xChange) :
-		moMappingNeighborhood<Neighbor> (_neighborhoodSize, _xChange) {
+		moGPUMapping<Neighbor> (_neighborhoodSize, _xChange) {
 		sendMapping = false;
 		cudaMalloc((void**) &device_Mapping, sizeof(unsigned int)
 				* neighborhoodSize * _xChange);
@@ -84,7 +84,7 @@ public:
 
 	virtual void init(EOT& _solution, Neighbor& _current) {
 
-		moMappingNeighborhood<Neighbor>::init(_solution, _current);
+		moGPUMapping<Neighbor>::init(_solution, _current);
 		if (!sendMapping) {
 			cudaMemcpy(device_Mapping, mapping,xChange * neighborhoodSize
 					* sizeof(unsigned int), cudaMemcpyHostToDevice);

@@ -1,6 +1,6 @@
 /*
-  <moNeighborhoodSizeUtils.h>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  <moGPUNeighborhoodSizeUtils.h>
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -32,8 +32,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moNeighborhoodSizeUtils_h
-#define _moNeighborhoodSizeUtils_h
+#ifndef _moGPUNeighborhoodSizeUtils_h
+#define _moGPUNeighborhoodSizeUtils_h
 
 /**
  * @return the factorial of an integer
