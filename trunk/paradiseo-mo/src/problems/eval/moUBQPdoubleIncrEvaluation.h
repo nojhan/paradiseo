@@ -59,10 +59,8 @@ public:
    * Constructor 
    *
    * @param _neighborhoodSize the size of the neighborhood
-   * @param _searchExplorer the neighborhood explorer of the local search
    * @param _incrEval the incremental evaluation of the UBQP
    */
-  //  moUBQPdoubleIncrEvaluation(unsigned int _neighborhoodSize, moNeighborhoodExplorer<Neighbor> & _searchExplorer, moEval<Neighbor> & _incrEval) : moDoubleIncrEvaluation<Neighbor>(_neighborhoodSize), searchExplorer(_searchExplorer)
   moUBQPdoubleIncrEvaluation(unsigned int _neighborhoodSize, moUBQPSimpleIncrEval<Neighbor> & _incrEval) : moDoubleIncrEvaluation<Neighbor>(_neighborhoodSize), searchExplorer(NULL)
   {
     n = _incrEval.getNbVar();
