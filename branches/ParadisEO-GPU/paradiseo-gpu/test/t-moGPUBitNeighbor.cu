@@ -1,6 +1,6 @@
 /*
   <t-moGPUBitNeighbor.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras,  Thé Van LUONG
 
@@ -90,7 +90,7 @@ int main() {
 
     assert(test1.className()=="moGPUBitNeighbor");
 
-  std::cout << "[t-moCudaBitNeighbor] => OK" << std::endl;
+  std::cout << "[t-moGPUBitNeighbor] => OK" << std::endl;
 
   return EXIT_SUCCESS;
 }

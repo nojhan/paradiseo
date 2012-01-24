@@ -1,6 +1,6 @@
 /*
- <t-moGPUXChangeNeighborhood.cpp>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ <t-moGPUXChange.cu>
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van LUONG
 
@@ -36,18 +36,18 @@
 #include <cassert>
 #include <iostream>
 #include <eoInt.h>
-#include <neighborhood/moGPUXSwapNeighbor.h>
-#include <neighborhood/moXGPUChangeNeighborhood.h>
+#include <neighborhood/moGPUXSwapN.h>
+#include <neighborhood/moGPUXChange.h>
 #include <neighborhood/moGPUNeighborhoodSizeUtils.h>
 #include <eo>
 
 typedef eoInt<eoMaximizingFitness> Solution;
-typedef moXSwapNeighbor<Solution> Neighbor;
-typedef moXChangeNeighborhood<Neighbor> Neighborhood;
+typedef moGPUXSwapN<Solution> Neighbor;
+typedef moGPUXChange<Neighbor> Neighborhood;
 
 int main() {
 
-	std::cout << "[t-moGPUXChangeNeighborhood] => START" << std::endl;
+	std::cout << "[t-moGPUXChange] => START" << std::endl;
 
 	//test factorial
 	assert(factorial(10) == 3628800);
@@ -171,7 +171,7 @@ int main() {
 	delete[] (second);
 	delete[] (third);
 	delete[] (forth);
-	std::cout << "[t-moGPUXChangeNeighborhood] => OK" << std::endl;
+	std::cout << "[t-moGPUXChange] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

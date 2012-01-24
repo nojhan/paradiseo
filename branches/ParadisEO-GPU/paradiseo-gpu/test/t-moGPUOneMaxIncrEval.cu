@@ -1,6 +1,6 @@
 /*
   <t-OneMaxIncrEval.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -37,9 +37,10 @@
 #include <iostream>
 #include <neighborhood/moGPUBitNeighbor.h>
 #include <GPUType/moGPUBitVector.h>
-#include <problems/eval/EvalOneMax.h>
-#include <problems/eval/OneMaxIncrEval.h>
+#include <problems/eval/moGPUEvalOneMax.h>
+#include <problems/eval/moGPUOneMaxIncrEval.h>
 
+#define NB_POS 1
 
 typedef moGPUBitVector<eoMaximizingFitness> Solution;
 typedef moGPUBitNeighbor <Solution,eoMaximizingFitness> Neighbor;
@@ -47,12 +48,12 @@ typedef moGPUBitNeighbor <Solution,eoMaximizingFitness> Neighbor;
 int main() {
 
 
-  std::cout << "[t-OneMaxIncrEval] => START" << std::endl;
+  std::cout << "[t-moGPUOneMaxIncrEval] => START" << std::endl;
 
 
   Solution sol(5);
-  EvalOneMax<Solution> eval;
-  OneMaxIncrEval<Neighbor> incr_eval;
+  moGPUEvalOneMax<Solution> eval;
+  moGPUOneMaxIncrEval<Neighbor> incr_eval;
   int sum=0;
   int fitness=0;
 
@@ -66,18 +67,17 @@ int main() {
   eval(sol);
   assert((int)(sol.fitness())==0);
 
-   
+  sol[0]=1; 
   fitness=incr_eval(sol,fitness,0);
-  sol[0]=1;
-  eval(sol);
+  assert((int)(fitness)==1);
   assert((int)(sol.fitness())==1);
 	
-  fitness=incr_eval(sol,fitness,0);
-  sol[0]=0;
-  eval(sol);
-  assert((int)(sol.fitness())==0);
+  sol[2]=1;
+  fitness=incr_eval(sol,fitness,2);
+  assert((int)(fitness)==2);
+  assert((int)(sol.fitness())==2);
 
-  std::cout << "[t-OneMaxIncrEval] => OK" << std::endl;
+  std::cout << "[t-moGPUOneMaxIncrEval] => OK" << std::endl;
 
   return EXIT_SUCCESS;
 }

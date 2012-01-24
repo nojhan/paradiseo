@@ -1,6 +1,6 @@
 /*
   <t-moGPURealVector.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -55,18 +55,19 @@ int main() {
   Solution sol2(3);
   
   //test copy constructor
-  sol1.fitness(100);  
+  sol1.fitness(10);  
   Solution sol(sol1);
   assert(sol.size()==5);
-  assert(sol.fitness()==100);
+  assert(sol.fitness()==10);
   for(int i=0;i<5;i++)
     assert(sol[i]==sol1[i]);
   
   //test Real vector (create)& getter
-  float tmp;
-  for(int i=0;i<5;i++){
-    tmp=1/sol1[i];
-    assert(abs(tmp)>0);
+  int tmp,tmp1;
+    tmp=(1/(sol1[0]+1))*10;
+    tmp1=(int)(1/(sol1[0]+));
+    
+    assert(tmp1>tmp);
   }
     
   //test size getter
@@ -80,10 +81,10 @@ int main() {
     assert(sol[i]==sol1[i]);
   
   //test assignement operator
-  sol2.fitness(200);
+  sol2.fitness(20);
   sol1=sol2;
   assert(sol1.size()==3);
-  assert(sol1.fitness()==200); 
+  assert(sol1.fitness()==20); 
   for(int i=0;i<3;i++)
     assert(sol1[i]==sol2[i]);
 

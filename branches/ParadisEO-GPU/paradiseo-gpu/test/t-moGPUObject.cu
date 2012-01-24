@@ -1,6 +1,6 @@
 /*
   <t-moGPUObject.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -41,10 +41,14 @@
 __device__ int * dev_data;
 
 //kernel to launch to test GPU global variable
+
 __global__ void testKernel(int * _data,unsigned _size){
+
   // The thread identifier within a grid block's
   int id = blockIdx.x * blockDim.x + threadIdx.x;
+
   if(id<_size)
+
     _data[id]=2*dev_data[id];
 }
 

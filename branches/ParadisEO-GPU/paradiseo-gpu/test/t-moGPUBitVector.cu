@@ -1,6 +1,6 @@
 /*
   <t-moGPUBitVector.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -36,7 +36,7 @@
 #include <cassert>
 #include <iostream>
 #include <GPUType/moGPUBitVector.h>
-#include  <problems/eval/EvalOneMax.h>
+#include  <problems/eval/moGPUEvalOneMax.h>
 #include <eo>
 
 typedef moGPUBitVector<eoMaximizingFitness> Solution;
@@ -47,7 +47,7 @@ int main() {
 
   std::cout << "[t-moGPUBitVector] => START" << std::endl;
 
-  EvalOneMax<Solution> eval;
+  moGPUEvalOneMax<Solution> eval;
   
   //test default constructor
   Solution _sol;
@@ -75,7 +75,7 @@ int main() {
   assert(sol.fitness()==sum);
     
   //test size getter
-  assert(_sol.size()==0);
+  assert(_sol.size()==5);
   assert(sol1.size()==5);
   
   //test size setter

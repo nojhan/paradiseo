@@ -1,6 +1,6 @@
 /*
- <t-moGPUXBitFlippingNeighbor.cpp>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ <t-moGPUXBitFlippingN.cu>
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van LUONG
 
@@ -35,7 +35,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <neighborhood/moGPUXBitFlippingNeighbor.h>
+#include <neighborhood/moGPUXBitFlippingN.h>
 #include <eo>
 #include <ga/eoBit.h>
 

@@ -1,6 +1,6 @@
 /*
- <t-moGPUXSwapNeighbor.cpp>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ <t-moGPUXSwapNeighbor.cu>
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van LUONG
 
