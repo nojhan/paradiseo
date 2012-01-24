@@ -1,6 +1,6 @@
 /*
  <moGPUXChangeNeighborhood.h>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van LUONG
 
@@ -30,11 +30,11 @@
 #ifndef __moGPUXChangeNeighborhood_h
 #define __moGPUXChangeNeighborhood_h
 
-#include <neighborhood/moXChangeNeighborhood.h>
+#include <neighborhood/moGPUXChange.h>
 #include <eval/moGPUEval.h>
 
 template<class N>
-class moGPUXChangeNeighborhood: public moXChangeNeighborhood<N> {
+class moGPUXChangeNeighborhood: public moGPUXChange<N> {
 
 public:
 
@@ -45,12 +45,12 @@ public:
 	typedef N Neighbor;
 	typedef typename Neighbor::EOT EOT;
 
-	using moXChangeNeighborhood<Neighbor>::neighborhoodSize;
-	using moXChangeNeighborhood<Neighbor>::currentIndex;
-	using moXChangeNeighborhood<Neighbor>::indices;
-	using moXChangeNeighborhood<Neighbor>::mapping;
-	using moXChangeNeighborhood<Neighbor>::xChange;
-	using moXChangeNeighborhood<Neighbor>::mutex;
+	using moGPUXChange<Neighbor>::neighborhoodSize;
+	using moGPUXChange<Neighbor>::currentIndex;
+	using moGPUXChange<Neighbor>::indices;
+	using moGPUXChange<Neighbor>::mapping;
+	using moGPUXChange<Neighbor>::xChange;
+	using moGPUXChange<Neighbor>::mutex;
 
 	/**
 	 * Constructor
@@ -60,7 +60,7 @@ public:
 
 	moGPUXChangeNeighborhood(unsigned int _neighborhoodSize,
 			unsigned int _xChange) :
-		moXChangeNeighborhood<Neighbor> (_neighborhoodSize, _xChange) {
+		moGPUXChange<Neighbor> (_neighborhoodSize, _xChange) {
 		sendMapping = false;
 		cudaMalloc((void**) &device_Mapping, sizeof(unsigned int)
 				* neighborhoodSize * _xChange);
@@ -84,7 +84,7 @@ public:
 
 	virtual void init(EOT& _solution, Neighbor& _current) {
 
-		moXChangeNeighborhood<Neighbor>::init(_solution, _current);
+		moGPUXChange<Neighbor>::init(_solution, _current);
 		if (!sendMapping) {
 			cudaMemcpy(device_Mapping, mapping, xChange * neighborhoodSize
 					* sizeof(unsigned int), cudaMemcpyHostToDevice);

@@ -1,6 +1,6 @@
 /*
  <moGPUXChangeNeighborhoodByModif.h>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van Luong
 
