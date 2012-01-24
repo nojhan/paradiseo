@@ -1,6 +1,6 @@
 /*
   <testSimpleHC.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -145,7 +145,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
    moGPUOneMaxIncrEval<Neighbor> incr_eval;
-   moGPUEvalByModif<Neighbor,moGPUOneMaxIncrEval<Neighbor> > cueval(SIZE,incr_eval);
+   moGPUEvalByModif<Neighbor,moGPUOneMaxIncrEval<Neighbor> > gpueval(SIZE,incr_eval);
   
   /* =========================================================
    *
@@ -162,7 +162,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  Neighborhood neighborhood(SIZE,cueval);
+  Neighborhood neighborhood(SIZE,gpueval);
 
   /* =========================================================
    *
@@ -170,7 +170,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moSimpleHCexplorer<Neighbor> explorer(neighborhood, cueval,
+  moSimpleHCexplorer<Neighbor> explorer(neighborhood, gpueval,
 					comparator, solComparator);
 
   /* =========================================================
@@ -190,7 +190,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moSimpleHC<Neighbor> simpleHC(neighborhood,eval,cueval);
+  moSimpleHC<Neighbor> simpleHC(neighborhood,eval,gpueval);
 
   /* =========================================================
    *

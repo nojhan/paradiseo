@@ -1,6 +1,6 @@
 /*
   <testSimpleHCByCpy.cu>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
   Karima Boufaras, Thé Van LUONG
 
@@ -121,7 +121,6 @@ void main_function(int argc, char **argv)
   //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(seed);
-  srand(seed);
   
   /* =========================================================
    *
