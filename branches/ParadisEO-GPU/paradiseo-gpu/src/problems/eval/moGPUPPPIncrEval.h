@@ -1,8 +1,8 @@
 /*
  <moGPUPPPIncrEval.h>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
- Karima Boufaras, Thé Van LUONG
+ Karima Boufaras, Thé Van Luong
 
  This software is governed by the CeCILL license under French law and
  abiding by the rules of distribution of free software.  You can  use,
