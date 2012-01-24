@@ -1,6 +1,6 @@
 /*
  <moGPURealVector.h>
- Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+ Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
  Karima Boufaras, Thé Van LUONG
 
@@ -76,7 +76,7 @@ public:
 	 */
 	void create() {
 		for (unsigned i = 0; i < N; i++)
-			vect[i] = (float) rng.rand() / RAND_MAX;
+			vect[i] = N*rng.rand() /((float) RAND_MAX+1);
 	}
 
 	/**
