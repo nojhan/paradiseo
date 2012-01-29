@@ -231,8 +231,9 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references   
 #---------------------------------------------------------------------------
-TAGFILES               = @PARADISEO_EO_BIN_DIR@/doc/eo.doxytag=http://eodev.sourceforge.net/eo/doc/html \
-			 @PARADISEO_MO_BIN_DIR@/doc/mo.doxytag=http://paradiseo.gforge.inria.fr/addon/paradiseo-mo/doc \
+TAGFILES               = @EO_BIN_DIR@/doc/eo.doxytag=http://eodev.sourceforge.net/eo/doc/html \
+                         @MO_BIN_DIR@/doc/mo.doxytag=http://paradiseo.gforge.inria.fr/addon/paradiseo-mo/doc 
+
 
 GENERATE_TAGFILE       = @CMAKE_BINARY_DIR@/doc/mogpu.doxytag
 ALLEXTERNALS           = NO
