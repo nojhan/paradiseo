@@ -29,11 +29,7 @@ INCLUDE(CheckLibraryExists)
 INCLUDE(Dart OPTIONAL)    
 
 INCLUDE(CPack)     
-                           
-# Set a special flag if the environment is windows (should do the same in a config.g file)
-IF (WIN32)
-	ADD_DEFINITIONS(-D_WINDOWS=1)
-ENDIF (WIN32)
+
 ######################################################################################
 
        
@@ -56,27 +52,11 @@ IF(NOT CMAKE_BUILD_TYPE)
           "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel." 
            FORCE)
 ENDIF(NOT CMAKE_BUILD_TYPE)  
-  
-IF(WIN32 AND NOT CYGWIN)
-  IF(CMAKE_CXX_COMPILER MATCHES cl)
-   IF(NOT WITH_SHARED_LIBS)
-     IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008" OR CMAKE_GENERATOR STREQUAL "Visual Studio 10")
-       SET(CMAKE_CXX_FLAGS "/nologo /Gy")
-       SET(CMAKE_CXX_FLAGS_DEBUG "/W3 /MTd /Z7 /Od")
-       SET(CMAKE_CXX_FLAGS_RELEASE "/w /MT /O2 /wd4530")
-       SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O2")
-       SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MTd /Z7 /Od")
-       SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")  
-      ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008" OR CMAKE_GENERATOR STREQUAL "Visual Studio 10")
-   ENDIF(NOT WITH_SHARED_LIBS)
-  ENDIF(CMAKE_CXX_COMPILER MATCHES cl)  
-ELSE(WIN32 AND NOT CYGWIN)
-    IF(CMAKE_COMPILER_IS_GNUCXX)
+IF(CMAKE_COMPILER_IS_GNUCXX)
        SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra -Wno-unused-parameter -Wno-ignored-qualifiers")                       
        SET(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -O2")
        SET(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} -O6")       
-    ENDIF(CMAKE_COMPILER_IS_GNUCXX)  
-ENDIF(WIN32 AND NOT CYGWIN)
+ENDIF(CMAKE_COMPILER_IS_GNUCXX)  
 
 IF(CMAKE_BUILD_TYPE MATCHES Debug)
     ADD_DEFINITIONS(-DCMAKE_VERBOSE_MAKEFILE=ON)
