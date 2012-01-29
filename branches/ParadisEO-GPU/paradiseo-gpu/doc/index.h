@@ -1,8 +1,8 @@
 /** @mainpage  Welcome ParadisEO GPU
 
-@section intro Introduction
+@section Introduction Introduction
 
-ParadisEO-GPU is a white-box object-oriented generic framework dedicated to the flexible design of local search algorithms on GPU (hill-climbing, tabu search ...)
+ParadisEO-GPU is a white-box object-oriented generic framework dedicated to the flexible design of parallel local search algorithms on GPU (hill-climbing, tabu search ...)
 
 @section tutorials Tutorials
 
