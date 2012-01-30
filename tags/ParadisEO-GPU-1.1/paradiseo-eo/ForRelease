@@ -1,0 +1,13 @@
+In order to create a new release from the current repository, perform the
+following steps:
+
+- Create a branch named "eo_x.y.z"
+- Set version number in eo-conf.cmake
+- Check/update NEWS file, set release date and version in NEWS.
+- use the "archive_current.sh" script to create the source archive
+- Build the packages
+- Put source archive and packages files at SourceForge
+- Post news on SourceForge project-page
+- Send announcement to mailing lists
+- Bump version number to next "x.y.z-edge" in eo-conf.cmake
+

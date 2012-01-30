@@ -1,0 +1,34 @@
+This Templates directory contains template files of an EO project and
+a script createEOproject.sh to create a complete new EO project.
+
+The template requires a complete installation of EO, that is, you must
+have run "make install" in the build-directory.
+
+In particular, the C++ compiler must also know how to find the EO
+include files and the linker must find the EO libraries. Most
+probably, that means that you have to set the variables
+CPLUS_INCLUDE_PATH and LIBRARY_PATH, i.e. for a standard installation
+and using tcsh:
+  setenv CPLUS_INCLUDE_PATH /usr/local/include/eo:"$CPLUS_INCLUDE_PATH"
+  setenv LIBRARY_PATH /usr/local/lib:"$LIBRARY_PATH"
+
+When running bash, use this:
+  export CPLUS_INCLUDE_PATH=/usr/local/include/eo:"$CPLUS_INCLUDE_PATH"
+  export LIBRARY_PATH=/usr/local/lib:"$LIBRARY_PATH"
+
+
+You can freely move the created project around. However, whenever you
+change the location of the source- or build-directories, you need to
+run
+  touch configure.ac && autoreconf
+in the source-directory and
+  make
+in the build-directory (which might or might not be the same for you).
+
+
+When you add additional source files to the project, simply add them
+to the <myproj>_SOURCES variable in src/Makefile.am. Header files
+should be added to noinst_HEADERS.
+
+
+See README.manual for more details.

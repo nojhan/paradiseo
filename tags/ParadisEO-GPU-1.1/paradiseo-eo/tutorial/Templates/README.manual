@@ -1,0 +1,143 @@
+This is the old template-directory README. Most of this information is
+still accurate and it contains more details than the new README.
+However, see there first for the creation of new projects.
+
+========================================================================
+
+This directory contains sample files that should make it easy to
+create an EO algorithm to evolve any type of structure
+(EO comes with two examples, bitstrings and vector of real variables,
+so you'll need this as soon as you want to evolve something else).
+
+At the moment, only algorithms involving a scalar fitness (double)
+are implemented (see test dir for Pareto optimization of multiple-
+objective fitness - or be patient :-)
+
+This file will help you to build the same algorithm than the ones
+in the Lesson4 of the tutorial, but with YOUR genotype instead of
+bitstrings or vector<double>. More details in Lesson5 of the tutorial.
+
+It is assumed in the following that you have read the first part of
+the tutorial (Lessons 1 to 4).
+
+Creating the algorithm for your genotype
+----------------------------------------
+In what follows, we will suppose that you want to evolve some data
+structure, and that you have enough programming skills to be able to
+write C code for its random initilialization, its crossover, its
+mutation and the computation of its fitness.
+
+The helper script * create.sh * will create for you the files you need
+from the samples in tutorial/Templates dir, and all you'll have to do
+is to include the actual code where indicated in those files (between
+keywords START and END).
+
+First, let's choose a name: let's call the new EO class eoAppli.
+All newly created classes will be named eoAppliXXX (in the file
+eoAppliXXX)
+
+1- cd to the tutorial dir
+
+2- create the directory for your application (let's assume you call it
+APPLICATION): type in
+
+	    mkdir APPLICATION
+
+3- go to the Templates dir
+
+	    cd Templates
+
+and run the helper script create.sh with the following arguments
+
+	    ./create.sh Appli ../APPLICATION
+
+4- cd to the APPLICATION dir (cd ../APPLICATION).
+You should see there the following files:
+   AppliEA.cpp            the main file, includes all other, to be compiled
+   Makefile               with default target eoAppliEA
+   eoAppli.h              class eoAppli<FitT>, FitT = template fitness
+   eoAppliEvalFunc.h      class for the computation of fotness
+   eoAppliInit.h          class for genotype initlialization
+   eoAppliMutation.h      class for mutation
+   eoAppliQuadCrossover.h class for (quadratic) crossover
+   make_genotype_Appli.h  helper function that create the initializer
+   make_op_Appli.h        helper function that creates the variatin operators
+
+Note: You can go directly to step 6 and 7: you'll get a lot of
+warnings, but will be able to run an EA that does nothing!
+
+5- Edit those files to suit your needs. The minimal addition you'll need
+to make are
+   in eoAppli.h              define your genotype
+   in eoAppliInit.h          define the initialization of one genotype
+   in eoAppliMutation.h      define the mutation of one genotype
+   in eoAppliQuadCrossover.h define the crossover of 2 genotypes
+
+HINT: look for keywords START and END and modify code in between.
+
+6- Compile eoAppliEA.cpp. If your APPLICATION dir is in the tutorial
+dir, you don't need to modify Makefile. Just type in
+
+	       % make
+
+7- Run the resulting program:
+
+	       % eoAppliEA
+
+The default output is one line per generation with the generation
+number, the number of evaluations performed, the best and average
+fitnesses in the population.
+The algorithm stops by default after 100 generations.
+
+8- Customize the parameters: copy eoAppliEA.status into
+e.g. eoAppliEA.param, edit eoAppliEA.param (uncomment the lines you
+want to become active), and run
+
+	       % eoAppliEA @eoAppliEA.param
+
+(see the Lesson 5 of the tutorial for more details now).
+
+HINTS
+-----
+
+1- If some new classes you create require some user parameter, you can
+either read them in the file where they are created (e.g.
+make_op_Appli.h for variation operators), or pass the eoParser to the
+constructor of the class, and read the parameter from the parser.
+
+2- If you stick to privacy for the data in your EO class, you will
+probably need to write accessors to those data, as well as some public
+methods to modify them, as soon as some other methods need them too.
+
+3- The sample make_op_Appli.h supposes that you ony have one crossover
+and one mutation operator. However, the code for multiple operators is
+there: you can have for instance 2 crossover operators, and choose
+among them according to relative weights (proportional choice) - same
+for mutation. Look at the operator section in eoAppliEA.cpp In
+particular, the user parameters cross1Rate and mut1Rate are totally
+useless for a single operator.
+
+To add another operator, you have to create another class by mimicking
+what has been done for the first operator.
+For instance, let's suppose you want to create another mutation.
+
+* duplicate the code for eoAppliMutation class
+* in the second version, change the class name (eoAppliMutation) into
+another name (let's say eoAppliBetterMutation) - you must change the
+name in the class declaration, in the constructor and in the
+className() method.
+* in the new eoAppliBetterMutation class, change the code for the
+operator() - and eventually the code for the constructor.
+* in the make_op_Appli.h file, in the mutation section, uncomment the
+lines
+      mut = new eoAppliSecondMutation<Indi>(varType  _anyVariable);
+      _state.storeFunctor(mut);
+      double mut2Rate = _parser.createParam(1.0, "mut2Rate", "Relative rate for mutation 2", '2', "Variation Operators").value();
+       propMutation.add(*mut, mut2Rate);
+
+and change the name of the class from eoAppliSecondMutation to your
+name eoAppliBetterMutation (you can also change the keyword from
+mut2Rate to something more meaningful like BetterMutationRate).
+You're done!
+
+In case of problem: Marc.Schoenauer@inria.fr
