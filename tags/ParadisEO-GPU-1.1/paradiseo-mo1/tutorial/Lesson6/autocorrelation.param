@@ -1,0 +1,13 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276179858                        # -S : Random number seed
+
+######    Persistence             ######
+# --out=out.dat                            # -o : Output file of the sampling
+# --status=./autocorrelation.status        # Status file
+
+######    Representation          ######
+# --vecSize=20                             # -V : Genotype size
+# --nbStep=100                             # -n : Number of steps of the random walk

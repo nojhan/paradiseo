@@ -1,0 +1,12 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276179024                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./lesson1_fitContinuator.status # Status file
+
+######    Representation          ######
+# --vecSize=20                             # -V : Genotype size
+# --fitness=16                             # -f : Maximum fitness value to reach

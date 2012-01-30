@@ -1,0 +1,13 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276179899                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./testRandomNeutralWalk.status  # Status file
+
+######    Representation          ######
+# --vecSize=8                              # -V : Genotype size
+# --blockSize=2                            # -k : Size of block in the royal road
+# --nbStep=10                              # -n : Number of steps of the random walk
