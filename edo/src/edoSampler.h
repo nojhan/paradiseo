@@ -55,8 +55,7 @@ public:
 
     EOType operator()( D& distrib )
     {
-        unsigned int size = distrib.size();
-        assert(size > 0);
+        assert( distrib.size() > 0 );
 
         // Point we want to sample to get higher a set of points
         // (coordinates in n dimension)
