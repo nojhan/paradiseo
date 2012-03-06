@@ -110,6 +110,7 @@ inline bool eoUniformGenerator<bool>::operator()(void)
 /**
    The class eoBooleanGenerator can be used in the STL generate function
    to easily generate random booleans with a specified bias
+   \ingroup bitstring
 */
 class eoBooleanGenerator : public eoRndGenerator<bool>
 {
