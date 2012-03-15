@@ -28,10 +28,15 @@ SET(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 ### 3) Include useful features
 ######################################################################################
 
+# include useful features for cmake
+SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
+
 INCLUDE(FindDoxygen)
 INCLUDE(FindPkgConfig)
 
 FIND_PACKAGE(Boost 1.33.0)
+
+FIND_PACKAGE(EO)
 
 INCLUDE_DIRECTORIES(
   ${EO_INCLUDE_DIRS}
@@ -87,7 +92,7 @@ SET(SAMPLE_SRCS)
 ######################################################################################
 
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(application)
+#ADD_SUBDIRECTORY(application)
 ADD_SUBDIRECTORY(test)
 ADD_SUBDIRECTORY(doc)
 

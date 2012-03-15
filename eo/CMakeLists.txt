@@ -70,6 +70,9 @@ CONFIGURE_FILE(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 # now create config install_symlink script file
 CONFIGURE_FILE(install_symlink.py.cmake ${CMAKE_CURRENT_BINARY_DIR}/install_symlink.py)
 
+# now create PKGBUILD file for archlinux package manager
+CONFIGURE_FILE(PKGBUILD.cmake ${CMAKE_CURRENT_BINARY_DIR}/PKGBUILD)
+
 # Set a special flag if the environment is windows (should do the same in a config.g file)
 IF (WIN32)
   ADD_DEFINITIONS(-D_WINDOWS=1)

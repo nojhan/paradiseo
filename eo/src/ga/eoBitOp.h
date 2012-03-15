@@ -36,8 +36,8 @@
 #include <ga/eoBit.h>
 
 
-/** eoBitFlip --> changes 1 bit
-\class eoBitBitFlip eoBitOp.h ga/eoBitOp.h
+/** eoOneBitFlip --> changes 1 bit
+\class eoOneBitFlip eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 
 @ingroup Variators
