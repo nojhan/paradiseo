@@ -55,7 +55,6 @@ private:
 };
 
 
-
 /*!
 An error that signals that a maximum number of evaluations has been reached.
 
@@ -80,4 +79,26 @@ private:
 };
 
 
+/*!
+ * An error that signals a missing parameter
+ *
+ * Thrown by eoParser::getParam
+ *
+ * @ingroup Parameters 
+ */
+class eoMissingParamException : public std::exception
+{
+public:
+    eoMissingParamException(std::string name) : _name(name){}
+
+    virtual const char* what() const throw()
+    {
+        std::ostringstream ss;
+        ss << "The command parameter " << _name << " has not been declared";
+        return ss.str().c_str();
+    }
+
+private:
+    std::string _name;
+};
 #endif // __eoExceptions_h__
