@@ -176,6 +176,12 @@ public:
     eoParam * getParamWithLongName(const std::string& _name) const;
 
 
+    /**
+     * Get a handle on a param from its long name
+     * If not found, raise an eoMissingParamException
+     */
+    eoParam * getParam(const std::string& _name) const;
+
 
     /** Get or create parameter
 

@@ -129,6 +129,15 @@ eoParam * eoParser::getParamWithLongName(const std::string& _name) const
     return 0;
 }
 
+eoParam * getParam(const std::string& _name) const
+{
+    eoParam * p = getParamWithLongName( _name );
+    if( p == NULL ) {
+        throw eoMissingParamException(_name );
+    } else {
+        return p;
+    }
+}
 
 void eoParser::processParam(eoParam& param, std::string section)
 {
