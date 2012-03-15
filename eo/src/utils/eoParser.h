@@ -188,9 +188,6 @@ public:
     It seems finally that the easiest use of the above method is
     through the following, whose interface is similar to that of the
     widely-used createParam.
-
-    For some (probably very stupid) reason, I failed to put it in the
-    .cpp. Any hint???
     */
     template <class ValueType>
     eoValueParam<ValueType>& getORcreateParam(ValueType _defaultValue,
