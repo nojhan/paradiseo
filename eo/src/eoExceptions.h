@@ -98,6 +98,8 @@ public:
         return ss.str().c_str();
     }
 
+    ~eoMissingParamException() throw() {}
+
 private:
     std::string _name;
 };
