@@ -64,12 +64,21 @@ public:
      */
     moFirstImprHCexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
         isAccept = false;
+	stop = true;
     }
 
     /**
      * Destructor
      */
     ~moFirstImprHCexplorer() {
+    }
+
+    /**
+     * to never stop the hill climbing
+     * 
+     */
+    virtual void alwaysContinue() {
+      stop = false;
     }
 
     /**
@@ -122,12 +131,15 @@ public:
     };
 
     /**
-     * continue if a move is accepted
+     * continue if a move is accepted, or according to the flag 'stop'
      * @param _solution the solution
      * @return true if an ameliorated neighbor was found
      */
     virtual bool isContinue(EOT & _solution) {
+      if (stop)
         return isAccept ;
+      else
+	return true;
     };
 
     /**
@@ -149,6 +161,10 @@ private:
 
     // true if the move is accepted
     bool isAccept ;
+
+  // if true the HC stop when to improving solution is found
+  // if false : never stop, always continue (external continuator)
+  bool stop ;
 };
 
 

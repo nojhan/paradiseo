@@ -91,6 +91,14 @@ public:
     {}
 
   /**
+   * to never stop the hill climbing
+   * 
+   */
+  virtual void alwaysContinue() {
+    explorer.alwaysContinue();
+  }
+
+  /**
    * Return the class id.
    * @return the class name as a std::string
    */
