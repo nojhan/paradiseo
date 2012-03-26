@@ -19,6 +19,11 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+Authors :
+    todos@geneura.ugr.es
+    Marc Schoenauer
+    Ramón Casero Cañas
+    Johann Dréo
  */
 //-----------------------------------------------------------------------------
 
@@ -40,7 +45,7 @@
 @ingroup Combination
 */
 template< class EOT>
-class eoCombinedContinue: public eoContinue<EOT> {
+class eoCombinedContinue: public eoContinue<EOT>, public std::vector<eoContinue<EOT>* > {
 public:
 
   /// Define Fitness
@@ -48,45 +53,45 @@ public:
 
   /// Ctor, make sure that at least on continuator is present
   eoCombinedContinue( eoContinue<EOT>& _cont)
-    : eoContinue<EOT> ()
+    : eoContinue<EOT>(), std::vector<eoContinue<EOT>* >(1, &_cont) 
   {
-    continuators.push_back(&_cont);
   }
 
   /// Ctor - for historical reasons ... should disspear some day
   eoCombinedContinue( eoContinue<EOT>& _cont1, eoContinue<EOT>& _cont2)
-    : eoContinue<EOT> ()
+    : eoContinue<EOT>(), std::vector<eoContinue<EOT>* >()
   {
-    continuators.push_back(&_cont1);
-    continuators.push_back(&_cont2);
+#pragma message "The double continuators constructor of eocombinedContinue is deprecated and will be removed in the next release."
+
+    this->push_back(&_cont1);
+    this->push_back(&_cont2);
   }
 
   void add(eoContinue<EOT> & _cont)
   {
-    continuators.push_back(&_cont);
+    this->push_back(&_cont);
   }
 
-  ///////////// RAMON'S CODE ///////////////
   void removeLast(void)
   {
-    continuators.pop_back();
+#pragma message "The removeLast method of eocombinedContinue is deprecated and will be removed in the next release, use pop_back instead."
+    this->pop_back();
   }
-  ///////////// RAMON'S CODE (end) ///////////////
 
 
   /** Returns false when one of the embedded continuators say so (logical and)
    */
   virtual bool operator() ( const eoPop<EOT>& _pop )
   {
-    for (unsigned i = 0; i < continuators.size(); ++i)
-      if ( !(*continuators[i])(_pop) ) return false;
+    for (unsigned i = 0; i < this->size(); ++i)
+      if ( ! (*this->at(i))(_pop) ) return false;
     return true;
   }
 
   virtual std::string className(void) const { return "eoCombinedContinue"; }
 
-private:
-  std::vector<eoContinue<EOT>*>    continuators;
+//private:
+//  std::vector<eoContinue<EOT>*>    continuators;
 };
 
 #endif
