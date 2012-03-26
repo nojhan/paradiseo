@@ -1,4 +1,4 @@
-/* (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
+/* (c) Marc Schoenauer, Maarten Keijzer, GeNeura Team, Thales group
 
 This library is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the Free
@@ -14,9 +14,11 @@ with this library; if not, write to the Free Software Foundation, Inc., 59
 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 Contact: http://eodev.sourceforge.net
-         todos@geneura.ugr.es, http://geneura.ugr.es
-         Marc.Schoenauer@polytechnique.fr
-         mkeijzer@dhi.dk
+Authors:
+    todos@geneura.ugr.es, http://geneura.ugr.es
+    Marc.Schoenauer@polytechnique.fr
+    mkeijzer@dhi.dk
+    Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
 
@@ -181,6 +183,27 @@ public:
      * If not found, raise an eoMissingParamException
      */
     eoParam * getParam(const std::string& _name) const;
+
+
+    /**
+     * Get the value of a param from its long name
+     * If not found, raise an eoMissingParamException
+     *
+     * Remember to specify the expected return type with a templated call:
+     * unsigned int popSize = eoparser.value<unsigned int>("popSize");
+     */
+    template<class ValueType>
+    ValueType value(const std::string& _name) const
+    {
+        eoParam* param = getParam(_name);
+
+        eoValueParam<ValueType>* vparam(
+                dynamic_cast< eoValueParam<ValueType>* >(param)
+            );
+
+        return vparam->value();
+    }
+
 
 
     /** Get or create parameter

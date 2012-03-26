@@ -18,9 +18,12 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@inria.fr
-             mkeijzer@dhi.dk
+Contact: http://eodev.sourceforge.net
+Authors:
+    todos@geneura.ugr.es, http://geneura.ugr.es
+    Marc.Schoenauer@polytechnique.fr
+    mkeijzer@dhi.dk
+    Johann Dréo <johann.dreo@thalesgroup.com>
  */
 //-----------------------------------------------------------------------------
 
@@ -37,6 +40,8 @@
 #include <utils/compatibility.h>
 #include <utils/eoParser.h>
 #include <utils/eoLogger.h>
+#include <eoExceptions.h>
+
 
 using namespace std;
 
@@ -129,7 +134,7 @@ eoParam * eoParser::getParamWithLongName(const std::string& _name) const
     return 0;
 }
 
-eoParam * getParam(const std::string& _name) const
+eoParam * eoParser::getParam(const std::string& _name) const
 {
     eoParam * p = getParamWithLongName( _name );
     if( p == NULL ) {
