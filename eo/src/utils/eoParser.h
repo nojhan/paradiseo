@@ -32,6 +32,7 @@ Authors:
 #include "eoParam.h"
 #include "eoObject.h"
 #include "eoPersistent.h"
+#include "eoExceptions.h"
 
 /** Parameter saving and loading
 
@@ -191,17 +192,24 @@ public:
      *
      * Remember to specify the expected return type with a templated call:
      * unsigned int popSize = eoparser.value<unsigned int>("popSize");
+     *
+     * If the template type is not the good one, an eoWrongParamTypeException is raised.
      */
     template<class ValueType>
-    ValueType value(const std::string& _name) const
+    ValueType valueOf(const std::string& _name) const
     {
         eoParam* param = getParam(_name);
 
-        eoValueParam<ValueType>* vparam(
-                dynamic_cast< eoValueParam<ValueType>* >(param)
-            );
+        // Note: eoParam is the polymorphic base class of eoValueParam, thus we can do a dynamix cast
+        eoValueParam<ValueType>* vparam = dynamic_cast< eoValueParam<ValueType>* >(param);
 
-        return vparam->value();
+        if( vparam == NULL ) {
+            // if the dynamic cast has failed, chances are that ValueType 
+            // is not the same than the one used at declaration.
+            throw eoWrongParamTypeException( _name );
+        } else {
+            return vparam->value();
+        }
     }
 
 

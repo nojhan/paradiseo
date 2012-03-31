@@ -40,7 +40,6 @@ Authors:
 #include <utils/compatibility.h>
 #include <utils/eoParser.h>
 #include <utils/eoLogger.h>
-#include <eoExceptions.h>
 
 
 using namespace std;
