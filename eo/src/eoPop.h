@@ -185,10 +185,12 @@ public:
 #if defined(__CUDACC__)
   eoPop<EOT>::iterator it_best_element()
   {
-        eoPop<EOT>:: iterator it = std::max_element(begin(), end());
+    eoPop<EOT>:: iterator it = std::max_element(begin(), end());
 #else
-        typename eoPop<EOT>::iterator it_best_element() {
-        typename eoPop<EOT>::iterator it = std::max_element(begin(), end());
+  typename eoPop<EOT>::iterator it_best_element()
+  {
+    assert( this->size() > 0 );
+    typename eoPop<EOT>::iterator it = std::max_element(begin(), end());
 #endif
     return it;
   }
@@ -199,7 +201,7 @@ public:
 #if defined(__CUDACC__)
     eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
 #else
-        typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
+    typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
 #endif
     return (*it);
   }
@@ -210,6 +212,7 @@ public:
 #if defined(__CUDACC__)
       eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
 #else
+    assert( this->size() > 0 );
           typename eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
 #endif
     return (*it);
@@ -223,6 +226,7 @@ public:
 #else
   typename eoPop<EOT>::iterator it_worse_element()
   {
+    assert( this->size() > 0 );
           typename eoPop<EOT>::iterator it = std::min_element(begin(), end());
 #endif
     return it;
@@ -239,6 +243,7 @@ public:
 #else
   typename eoPop<EOT>::iterator nth_element(int nth)
   {
+    assert( this->size() > 0 );
           typename eoPop<EOT>::iterator it = begin() + nth;
 #endif
       std::nth_element(begin(), it, end(), std::greater<EOT>());
@@ -265,6 +270,7 @@ public:
   void nth_element(int which, std::vector<const EOT*>& result) const
   {
 
+    assert( this->size() > 0 );
       result.resize(size());
       std::transform(begin(), end(), result.begin(), Ref());
 
