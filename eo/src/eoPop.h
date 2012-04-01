@@ -38,6 +38,7 @@ Authors:
 #include <iostream>
 #include <iterator> // needed for GCC 3.2
 #include <vector>
+#include <assert.h>
 
 // EO includes
 #include <eoOp.h> // for eoInit
