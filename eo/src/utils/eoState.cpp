@@ -18,7 +18,7 @@ using namespace std;
 
 
 
-void removeComment(string& str, string comment)
+void eoState::removeComment(string& str, string comment)
 {
     string::size_type pos = str.find(comment);
 
@@ -28,21 +28,23 @@ void removeComment(string& str, string comment)
     }
 }
 
-bool is_section(const string& str, string& name)
+bool eoState::is_section(const string& str, string& name)
 {
-    string::size_type pos = str.find("\\section{");
+    string::size_type pos = str.find(_tag_section_so);
 
     if (pos == string::npos)
         return false;
     //else
 
-    string::size_type end = str.find("}");
+    string::size_type end = str.find(_tag_section_sc);
 
     if (end == string::npos)
         return false;
     // else
 
-    name = str.substr(pos + 9, end-9);
+    // affect name, passed by reference
+    // Note: substr( start, count )
+    name = str.substr( pos + _tag_section_so.size(), end - _tag_section_so.size() );
 
     return true;
 }
@@ -84,6 +86,7 @@ void eoState::load(const string& _filename)
     load(is);
 }
 
+// FIXME implement parsing and loading of other formats
 void eoState::load(std::istream& is)
 {
     string str;
@@ -158,15 +161,48 @@ void eoState::save(const string& filename) const
     save(os);
 }
 
-void eoState::save(std::ostream& os) const
-{ // saves in order of insertion
-    for (vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
-    {
-        os << "\\section{" << (*it)->first << "}\n";
-        (*it)->second->printOn(os);
-        os << '\n';
-    }
+//void eoState::save(std::ostream& os) const
+//{ // saves in order of insertion
+//    for (vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
+//    {
+//        os << "\\section{" << (*it)->first << "}\n";
+//        (*it)->second->printOn(os);
+//        os << '\n';
+//    }
+//}
+
+void eoState::saveSection( std::ostream& os, vector<ObjectMap::iterator>::const_iterator it) const
+{
+    os << _tag_section_so << (*it)->first << _tag_section_sc;
+
+    os << _tag_content_s;
+    (*it)->second->printOn(os);
+    os << _tag_content_e;
+
+    os << _tag_section_e;
 }
+
+
+void eoState::save(std::ostream& os) const
+{
+    os << _tag_state_so << _tag_state_name << _tag_state_sc;
+   
+    // save the first section
+    assert( creationOrder.size() > 0 );
+    // saves in order of insertion
+    vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin();
+    saveSection(os,it);
+    it++;
+
+    while( it != creationOrder.end() ) {
+        // add a separator only before [1,n] elements
+        os << _tag_section_sep;
+        saveSection(os, it);
+        it++;
+    }
+    os << _tag_state_e;
+}
+
 
 string eoState::createObjectName(eoObject* obj)
 {
