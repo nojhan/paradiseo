@@ -188,6 +188,7 @@ public:
 
   virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose)
   {
+#pragma message "The use of the verbose parameter in eoPropCombinedQuadOp::add is deprecated and will be removed in the next release."
     eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoPropCombinedQuadOp::add is deprecated and will be removed in the next release." << std::endl;
     add(_op,_rate);
   }

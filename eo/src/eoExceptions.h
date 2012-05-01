@@ -55,7 +55,6 @@ private:
 };
 
 
-
 /*!
 An error that signals that a maximum number of evaluations has been reached.
 
@@ -79,5 +78,55 @@ private:
     unsigned long _threshold;
 };
 
+
+/*!
+ * An error that signals a missing parameter
+ *
+ * Thrown by eoParser::getParam
+ *
+ * @ingroup Parameters 
+ */
+class eoMissingParamException : public std::exception
+{
+public:
+    eoMissingParamException(std::string name) : _name(name){}
+
+    virtual const char* what() const throw()
+    {
+        std::ostringstream ss;
+        ss << "The command parameter " << _name << " has not been declared";
+        return ss.str().c_str();
+    }
+
+    ~eoMissingParamException() throw() {}
+
+private:
+    std::string _name;
+};
+
+/*!
+ * An error that signals a bad parameter type
+ *
+ * Thrown by eoParser::valueOf
+ *
+ * @ingroup Parameters 
+ */
+class eoWrongParamTypeException : public std::exception
+{
+public:
+    eoWrongParamTypeException(std::string name) : _name(name){}
+
+    virtual const char* what() const throw()
+    {
+        std::ostringstream ss;
+        ss << "You asked for the parameter " << _name << " but it has not been declared under this type";
+        return ss.str().c_str();
+    }
+
+    ~eoWrongParamTypeException() throw() {}
+
+private:
+    std::string _name;
+};
 
 #endif // __eoExceptions_h__

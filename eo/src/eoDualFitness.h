@@ -103,6 +103,17 @@ public:
         _is_feasible(dual.second)
     {}
 
+    // FIXME is it a good idea to include implicit conversion here?
+    /** Conversion operator: it permits to use a fitness instance as  its  scalar
+     * type, if needed. For example, this is possible:
+     *     eoDualFitness<double,std::less<double> > fit;
+     *     double val = 1.0;
+     *     fit = val;
+     *     val = fit;
+     */
+    operator BaseType(void) const { return _value; }
+
+    
     inline bool is_feasible() const
     {
         return _is_feasible;
