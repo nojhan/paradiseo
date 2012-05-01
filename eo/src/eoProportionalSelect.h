@@ -46,7 +46,7 @@ template <class EOT> class eoProportionalSelect: public eoSelectOne<EOT>
 {
 public:
   /// Sanity check
-  eoProportionalSelect(const eoPop<EOT>& pop = eoPop<EOT>())
+  eoProportionalSelect(const eoPop<EOT>& /*pop*/ = eoPop<EOT>())
   {
     if (minimizing_fitness<EOT>())
       throw std::logic_error("eoProportionalSelect: minimizing fitness");

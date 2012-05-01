@@ -39,7 +39,7 @@ public:
 
   /** It returns 'true' only if the current number of generations modulo
       the period doen't equal to zero. */
-  bool operator () (const eoPop <EOT> & pop)
+  bool operator () (const eoPop <EOT> & /*pop*/)
   {
     return ((++ counter) % period) != 0 ;
   }

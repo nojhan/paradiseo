@@ -241,7 +241,7 @@ private:
         {
                 public:
         eoDummyFlight () {}
-        void operator  () (POT & _po) {}
+	void operator  () (POT & /*_po*/) {}
         }dummyFlight;
 
         // if the initializer does not need to be used, use the dummy one instead

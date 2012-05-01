@@ -57,7 +57,7 @@ public:
     /**
      * Update the neighborhood of the given particle.
      */
-    virtual void updateNeighborhood(POT & ,unsigned _indice){}
+    virtual void updateNeighborhood(POT & ,unsigned /*_indice*/){}
 
 
     /**
