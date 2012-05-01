@@ -46,7 +46,7 @@ public:
     {
         for (unsigned i = 0; i < _pop.size (); i++)
         {
-            operator  ()(_pop[i]);
+            this->operator  ()(_pop[i]);
         }
 
     }
