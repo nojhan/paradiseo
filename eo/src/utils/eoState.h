@@ -31,6 +31,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <assert.h>
 
 #include <eoFunctorStore.h>
 
