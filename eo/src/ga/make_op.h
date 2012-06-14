@@ -115,11 +115,11 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
       throw std::runtime_error("Invalid uRate");
 
     // minimum check
-    bool bCross = true;
+    // bool bCross = true; // not used ?
     if (onePointRateParam.value()+twoPointsRateParam.value()+uRateParam.value()==0)
       {
         std::cerr << "Warning: no crossover" << std::endl;
-        bCross = false;
+        // bCross = false;
       }
 
     // Create the CombinedQuadOp
@@ -162,11 +162,11 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
       throw std::runtime_error("Invalid oneBitRate");
 
     // minimum check
-    bool bMut = true;
+    // bool bMut = true; // not used ?
     if (bitFlipRateParam.value()+oneBitRateParam.value()==0)
       {
         std::cerr << "Warning: no mutation" << std::endl;
-        bMut = false;
+        // bMut = false;
       }
 
     // Create the CombinedMonOp
