@@ -77,6 +77,26 @@ private:
   eoEvalFunc<EOT> & eval;
 };
 
+#ifdef WITH_MPI
+// TODO TODOB commenter
+template<class EOT>
+class eoParallelPopLoopEval : public eoPopEvalFunc<EOT> {
+public:
+  /** Ctor: set value of embedded eoEvalFunc */
+  eoParallelPopLoopEval(eoEvalFunc<EOT> & _eval) : eval(_eval) {}
+
+  /** Do the job: simple loop over the offspring */
+  void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
+  {
+      (void)_parents;
+      parallelApply<EOT>(eval, _offspring);
+  }
+
+private:
+  eoEvalFunc<EOT> & eval;
+};
+#endif
+
 /////////////////////////////////////////////////////////////
 //           eoTimeVaryingLoopEval
 /////////////////////////////////////////////////////////////

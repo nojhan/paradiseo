@@ -41,6 +41,7 @@ SET(EO_SOURCES
   eoCtrlCContinue.cpp
   eoScalarFitnessAssembled.cpp
   eoSIGContinue.cpp
+  eompi.cpp
   )
 
 ADD_LIBRARY(eo STATIC ${EO_SOURCES})

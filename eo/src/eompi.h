@@ -46,8 +46,6 @@ class MpiNodeStore
     static MpiNode* singleton;
 };
 
-MpiNode* MpiNodeStore::singleton;
-
 class MpiNode
 {
 protected:

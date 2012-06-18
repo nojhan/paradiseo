@@ -79,8 +79,17 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
 #else // _OPENMP
 
+    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+
+#endif // !_OPENMP
+}
+
 #ifdef WITH_MPI
+template<class EOT>
+void parallelApply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
+{
     ParallelApply<EOT> job( _proc, _pop );
+
     MasterNode* master = dynamic_cast<MasterNode*>( MpiNodeStore::instance() );
     if ( master )
     {
@@ -92,12 +101,8 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
         WorkerNode* wrk = dynamic_cast<WorkerNode*>( MpiNodeStore::instance() );
         wrk->run( job );
     }
-#else // !_MPI
-    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
-#endif
-
-#endif // !_OPENMP
 }
+#endif
 
 /**
   This is a variant of apply<EOT> which is called in parallel
