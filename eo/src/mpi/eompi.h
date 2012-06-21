@@ -45,23 +45,33 @@ class MpiNode
     static mpi::communicator _comm;
 };
 
-template< typename EOT >
+struct BaseContinuator
+{
+    virtual bool operator()() = 0;
+};
+
+// template< typename EOT >
 class MpiJob
 {
     public:
 
-    MpiJob( std::vector< EOT > & _data, AssignmentAlgorithm& algo, int masterRank ) :
-        data( _data ),
-        comm( MpiNode::comm() ),
+    MpiJob( AssignmentAlgorithm& algo, BaseContinuator* c, int masterRank ) :
         assignmentAlgo( algo ),
-        _masterRank( masterRank )
+        comm( MpiNode::comm() ),
+        _masterRank( masterRank ),
+        _continuator( c )
     {
         // empty
     }
 
+    ~MpiJob()
+    {
+        delete _continuator;
+    }
+
     // master
-    virtual void sendTask( int wrkRank, int index ) = 0;
-    virtual void handleResponse( int wrkRank, int index ) = 0;
+    virtual void sendTask( int wrkRank ) = 0;
+    virtual void handleResponse( int wrkRank ) = 0;
     // worker
     virtual void processTask( ) = 0;
 
@@ -70,6 +80,25 @@ class MpiJob
         int totalWorkers = assignmentAlgo.size();
         cout << "[M] Have " << totalWorkers << " workers." << endl;
 
+        while( (*_continuator)() )
+        {
+            int assignee = assignmentAlgo.get( );
+            cout << "[M] Assignee : " << assignee << endl;
+            while( assignee <= 0 )
+            {
+                cout << "[M] Waitin' for node..." << endl;
+                mpi::status status = comm.probe( mpi::any_source, mpi::any_tag );
+                int wrkRank = status.source();
+                cout << "[M] Node " << wrkRank << " just terminated." << endl;
+                handleResponse( wrkRank );
+                assignmentAlgo.confirm( wrkRank );
+                assignee = assignmentAlgo.get( );
+            }
+            comm.send( assignee, EoMpi::Channel::Commands, EoMpi::Message::Continue );
+            sendTask( assignee );
+        }
+
+        /*
         for( int i = 0, size = data.size();
                 i < size;
                 ++i)
@@ -92,6 +121,7 @@ class MpiJob
             comm.send( assignee, EoMpi::Channel::Commands, EoMpi::Message::Continue );
             sendTask( assignee, i );
         }
+        */
 
         cout << "[M] Frees all the idle." << endl;
         // frees all the idle workers
@@ -102,7 +132,7 @@ class MpiJob
             comm.send( idle, EoMpi::Channel::Commands, EoMpi::Message::Finish );
             idles.push_back( idle );
         }
-        for (int i = 0; i < idles.size(); ++i)
+        for (unsigned int i = 0; i < idles.size(); ++i)
         {
             assignmentAlgo.confirm( idles[i] );
         }
@@ -113,7 +143,7 @@ class MpiJob
         {
             mpi::status status = comm.probe( mpi::any_source, mpi::any_tag );
             int wrkRank = status.source();
-            handleResponse( wrkRank, assignedTasks[ wrkRank ] );
+            handleResponse( wrkRank );
             comm.send( wrkRank, EoMpi::Channel::Commands, EoMpi::Message::Finish );
             assignmentAlgo.confirm( wrkRank );
         }
@@ -145,19 +175,16 @@ class MpiJob
     }
 
 protected:
-
-    std::vector<EOT> & data;
-    std::map< int /* worker rank */, int /* index in vector */> assignedTasks;
     AssignmentAlgorithm& assignmentAlgo;
+    BaseContinuator* _continuator;
     mpi::communicator& comm;
     int _masterRank;
 };
 
-template< class EOT >
 class Role
 {
     public:
-        Role( MpiJob<EOT> & job ) :
+        Role( MpiJob & job ) :
             _job( job )
         {
             _master = job.masterRank() == MpiNode::comm().rank();
@@ -185,7 +212,7 @@ class Role
         }
 
     protected:
-        MpiJob<EOT> & _job;
+        MpiJob & _job;
         bool _master;
 };
 # endif // __EO_MPI_H__

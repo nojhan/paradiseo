@@ -27,7 +27,7 @@ void subtask( vector<int>& v )
     DynamicAssignmentAlgorithm algo( 2, MpiNode::comm().size()-1 );
     plusOne plusOneInstance;
     ParallelApply<int> job( plusOneInstance, v, algo, 1 );
-    Role<int> node( job );
+    Role node( job );
     node.run();
 }
 
@@ -64,7 +64,7 @@ int main(int argc, char** argv)
                 // only one node is assigned to subjob mastering
                 DynamicAssignmentAlgorithm algo( 1, 1 );
                 ParallelApply< vector<int> > job( transmitInstance, metaV, algo, 0 );
-                Role< vector<int> > node( job );
+                Role node( job );
                 node.run();
                 if( node.master() )
                 {

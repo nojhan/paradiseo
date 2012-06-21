@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 
     cout << "Création du job..." << endl;
     ParallelApply<int> job( plusOneInstance, v, algo, 0 );
-    Role<int> node( job );
+    Role node( job );
     node.run();
 
     if( node.master() )
