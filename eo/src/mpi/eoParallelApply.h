@@ -31,13 +31,9 @@ class ParallelApply : public MpiJob< EOT >
         virtual void processTask( )
         {
             EOT ind;
-            cout << "Receiving individual." << endl;
             MpiJob<EOT>::comm.recv( 0, 1, ind );
-            cout << "Applying function." << endl;
             func( ind );
-            cout << "Sending result." << endl;
             MpiJob<EOT>::comm.send( 0, 1, ind );
-            cout << "Leaving processTask" << endl;
         }
 
     protected:

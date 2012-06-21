@@ -5,7 +5,7 @@
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
-### 2) Optionnal: add MPI and Boost MPI dependencies.
+### 2) Optional: add MPI and Boost MPI dependencies.
 ######################################################################################
 
 IF(WITH_MPI)
@@ -25,6 +25,8 @@ IF(WITH_MPI)
     ADD_DEFINITIONS(-DWITH_MPI)
 
     LINK_LIBRARIES(boost_mpi boost_serialization)
+
+    ADD_SUBDIRECTORY(mpi)
 ENDIF()
 
 ######################################################################################
@@ -41,7 +43,6 @@ SET(EO_SOURCES
   eoCtrlCContinue.cpp
   eoScalarFitnessAssembled.cpp
   eoSIGContinue.cpp
-  eompi.cpp
   )
 
 ADD_LIBRARY(eo STATIC ${EO_SOURCES})

@@ -1,5 +1,5 @@
-# include <eompi.h>
-# include <eoParallelApply.h>
+# include <mpi/eompi.h>
+# include <mpi/eoParallelApply.h>
 # include <iostream>
 
 # include <vector>

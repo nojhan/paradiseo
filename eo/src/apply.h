@@ -34,8 +34,8 @@
 #include <omp.h>
 
 # ifdef WITH_MPI
-# include <eompi.h>
-# include <eoParallelApply.h>
+# include <mpi/eompi.h>
+# include <mpi/eoParallelApply.h>
 # endif // WITH_MPI
 
 /**
