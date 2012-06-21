@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 {
     cout << "Appel à init... " << endl;
     MpiNode::init( argc, argv );
-    DynamicAssignmentAlgorithm algo( 1, MpiNode::comm().size() );
+    DynamicAssignmentAlgorithm algo( 1, MpiNode::comm().size()-1 );
 
     cout << "Création des données... " << endl;
     vector<int> v;
@@ -32,8 +32,8 @@ int main(int argc, char** argv)
     plusOne plusOneInstance;
 
     cout << "Création du job..." << endl;
-    ParallelApply<int> job( plusOneInstance, v, algo );
-    Role<int> node( job, MpiNode::comm().rank() == 0 );
+    ParallelApply<int> job( plusOneInstance, v, algo, 0 );
+    Role<int> node( job );
     node.run();
 
     if( node.master() )
