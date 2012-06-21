@@ -170,7 +170,7 @@ class Role
 
         virtual void run( )
         {
-            if( MpiNode::comm().rank() == _job.masterRank() )
+            if( _master )
             {
                 _job.master( );
             } else
