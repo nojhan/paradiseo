@@ -13,7 +13,7 @@ struct DynamicAssignmentAlgorithm : public AssignmentAlgorithm
     public:
         DynamicAssignmentAlgorithm( int offset, int size )
         {
-            for( int i = 0; offset + i < size; ++i)
+            for( int i = 0; offset + i <= size; ++i)
             {
                 availableWrk.push_back( offset + i );
             }

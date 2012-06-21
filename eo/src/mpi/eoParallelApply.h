@@ -10,9 +10,12 @@ template< typename EOT >
 class ParallelApply : public MpiJob< EOT >
 {
     public:
+        using MpiJob<EOT>::comm;
+        using MpiJob<EOT>::data;
+        using MpiJob<EOT>::_masterRank;
 
-        ParallelApply( eoUF<EOT&, void> & _proc, std::vector<EOT>& _pop, AssignmentAlgorithm & algo ) :
-            MpiJob<EOT>( _pop, algo ),
+        ParallelApply( eoUF<EOT&, void> & _proc, std::vector<EOT>& _pop, AssignmentAlgorithm & algo, int _masterRank ) :
+            MpiJob<EOT>( _pop, algo, _masterRank ),
             func( _proc )
         {
             // empty
@@ -20,20 +23,20 @@ class ParallelApply : public MpiJob< EOT >
 
         virtual void sendTask( int wrkRank, int index )
         {
-            MpiJob<EOT>::comm.send( wrkRank, 1, MpiJob<EOT>::data[ index ] );
+            comm.send( wrkRank, 1, data[ index ] );
         }
 
         virtual void handleResponse( int wrkRank, int index )
         {
-            MpiJob<EOT>::comm.recv( wrkRank, 1, MpiJob<EOT>::data[ index ] );
+            comm.recv( wrkRank, 1, data[ index ] );
         }
 
         virtual void processTask( )
         {
             EOT ind;
-            MpiJob<EOT>::comm.recv( 0, 1, ind );
+            comm.recv( _masterRank, 1, ind );
             func( ind );
-            MpiJob<EOT>::comm.send( 0, 1, ind );
+            comm.send( _masterRank, 1, ind );
         }
 
     protected:
