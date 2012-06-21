@@ -1,5 +1,6 @@
 # include <mpi/eompi.h>
 # include <mpi/eoParallelApply.h>
+
 # include <iostream>
 
 # include <vector>
@@ -15,9 +16,9 @@ struct plusOne : public eoUF< int&, void >
 
 int main(int argc, char** argv)
 {
-    DynamicAssignmentAlgorithm algo;
     cout << "Appel à init... " << endl;
-    MpiSingletonFactory::init( argc, argv );
+    MpiNode::init( argc, argv );
+    DynamicAssignmentAlgorithm algo( 1, MpiNode::comm().size() );
 
     cout << "Création des données... " << endl;
     vector<int> v;
@@ -31,8 +32,19 @@ int main(int argc, char** argv)
     plusOne plusOneInstance;
 
     cout << "Création du job..." << endl;
-    ParallelApply<int> job( plusOneInstance, v );
+    ParallelApply<int> job( plusOneInstance, v, algo );
+    Role<int> node( job, MpiNode::comm().rank() == 0 );
+    node.run();
 
+    if( node.master() )
+    {
+        for(int i = 0; i < v.size(); ++i)
+        {
+            cout << v[i] << ' ';
+        }
+        cout << endl;
+    }
+    /*
     cout << "Création de l'instance..." << endl;
     MpiNode* instance = MpiNodeStore::instance();
     if( dynamic_cast<MasterNode*>( instance ) != 0 )
@@ -54,6 +66,7 @@ int main(int argc, char** argv)
     {
         cout << "Nothing to be done;" << endl;
     }
+    */
 
     return 0;
 }

@@ -1,4 +1,5 @@
 # include "eompi.h"
 
-MpiNode* MpiNodeStore::singleton;
+// MpiNode* MpiNodeStore::singleton;
+mpi::communicator MpiNode::_comm;
 

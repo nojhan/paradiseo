@@ -11,8 +11,8 @@ class ParallelApply : public MpiJob< EOT >
 {
     public:
 
-        ParallelApply( eoUF<EOT&, void> & _proc, std::vector<EOT>& _pop ) :
-            MpiJob<EOT>( _pop ),
+        ParallelApply( eoUF<EOT&, void> & _proc, std::vector<EOT>& _pop, AssignmentAlgorithm & algo ) :
+            MpiJob<EOT>( _pop, algo ),
             func( _proc )
         {
             // empty

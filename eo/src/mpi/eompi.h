@@ -7,6 +7,8 @@
 # include <boost/mpi.hpp>
 namespace mpi = boost::mpi;
 
+# include "assignmentAlgorithm.h"
+
 # include <iostream>
 using namespace std;
 // TODO TODOB comment!
@@ -25,102 +27,22 @@ namespace EoMpi
     }
 }
 
-class MpiNode;
-
-class MpiNodeStore
+class MpiNode
 {
     public:
 
-    static void instance( MpiNode* _instance )
+    static void init( int argc, char** argv )
     {
-        singleton = _instance;
+        static mpi::environment env( argc, argv );
     }
 
-    static MpiNode* instance()
-    {
-        return singleton;
-    }
-
-    protected:
-
-    static MpiNode* singleton;
-};
-
-class MpiNode
-{
-protected:
-    mpi::environment& env;
-    mpi::communicator& _comm;
-
-    int rank;
-    int size;
-
-    int argc;
-    char** argv;
-
-public:
-    MpiNode( mpi::environment& _env, mpi::communicator& __comm ) :
-        env(_env),
-        _comm(__comm),
-        rank(__comm.rank()),
-        size(__comm.size())
-    {
-        // empty
-    }
-
-    virtual ~MpiNode()
-    {
-        // empty
-    }
-
-    mpi::communicator& comm()
+    static mpi::communicator& comm()
     {
         return _comm;
     }
-};
-
-struct AssignmentAlgorithm
-{
-    virtual int get( ) = 0;
-    virtual void size( int s ) = 0;
-    virtual int size( ) = 0;
-    virtual void confirm( int wrkRank ) = 0;
-};
-
-struct DynamicAssignmentAlgorithm : public AssignmentAlgorithm
-{
-    public:
-        virtual int get( )
-        {
-            int assignee = -1;
-            if (! availableWrk.empty() )
-            {
-                assignee = availableWrk.back();
-                availableWrk.pop_back();
-            }
-            return assignee;
-        }
-;
-        void size( int s )
-        {
-            for( int i = 1; i < s ; ++i )
-            {
-                availableWrk.push_back( i );
-            }
-        }
-
-        int size()
-        {
-            return availableWrk.size();
-        }
-
-        void confirm( int rank )
-        {
-            availableWrk.push_back( rank );
-        }
 
     protected:
-        std::vector< int > availableWrk;
+    static mpi::communicator _comm;
 };
 
 template< typename EOT >
@@ -128,9 +50,10 @@ class MpiJob
 {
     public:
 
-    MpiJob( std::vector< EOT > & _data ) :
+    MpiJob( std::vector< EOT > & _data, AssignmentAlgorithm& algo ) :
         data( _data ),
-        comm( MpiNodeStore::instance()->comm() )
+        comm( MpiNode::comm() ),
+        assignmentAlgo( algo )
     {
         // empty
     }
@@ -141,14 +64,14 @@ class MpiJob
     // worker
     virtual void processTask( ) = 0;
 
-    void master( AssignmentAlgorithm & assignmentAlgorithm )
+    void master( )
     {
         for( int i = 0, size = data.size();
                 i < size;
                 ++i)
         {
             cout << "Beginning loop for i = " << i << endl;
-            int assignee = assignmentAlgorithm.get( );
+            int assignee = assignmentAlgo.get( );
             cout << "Assignee : " << assignee << endl;
             while( assignee <= 0 )
             {
@@ -157,8 +80,8 @@ class MpiJob
                 int wrkRank = status.source();
                 cout << "Node " << wrkRank << " just terminated." << endl;
                 handleResponse( wrkRank, assignedTasks[ wrkRank ] );
-                assignmentAlgorithm.confirm( wrkRank );
-                assignee = assignmentAlgorithm.get( );
+                assignmentAlgo.confirm( wrkRank );
+                assignee = assignmentAlgo.get( );
             }
             cout << "Assignee found : " << assignee << endl;
             assignedTasks[ assignee ] = i;
@@ -169,25 +92,25 @@ class MpiJob
         // frees all the idle workers
         int idle;
         vector<int> idles;
-        while ( ( idle = assignmentAlgorithm.get( ) ) > 0 )
+        while ( ( idle = assignmentAlgo.get( ) ) > 0 )
         {
             comm.send( idle, EoMpi::Channel::Commands, EoMpi::Message::Finish );
             idles.push_back( idle );
         }
         for (int i = 0; i < idles.size(); ++i)
         {
-            assignmentAlgorithm.confirm( idles[i] );
+            assignmentAlgo.confirm( idles[i] );
         }
 
         // wait for all responses
         int wrkNb = comm.size() - 1;
-        while( assignmentAlgorithm.size() != wrkNb )
+        while( assignmentAlgo.size() != wrkNb )
         {
             mpi::status status = comm.probe( mpi::any_source, mpi::any_tag );
             int wrkRank = status.source();
             handleResponse( wrkRank, assignedTasks[ wrkRank ] );
             comm.send( wrkRank, EoMpi::Channel::Commands, EoMpi::Message::Finish );
-            assignmentAlgorithm.confirm( wrkRank );
+            assignmentAlgo.confirm( wrkRank );
         }
     }
 
@@ -211,77 +134,44 @@ protected:
 
     std::vector<EOT> & data;
     std::map< int /* worker rank */, int /* index in vector */> assignedTasks;
-
+    AssignmentAlgorithm& assignmentAlgo;
     mpi::communicator& comm;
 };
 
-class MasterNode : public MpiNode
-{
-public:
-    MasterNode( int _argc, char** _argv,
-            mpi::environment& _env,
-            mpi::communicator& _comm
-            ) :
-        MpiNode(_env, _comm )
-    {
-        // empty
-    }
-
-    void setAssignmentAlgorithm( AssignmentAlgorithm* assignmentAlgo )
-    {
-        _assignmentAlgo = assignmentAlgo;
-        _assignmentAlgo->size( _comm.size() );
-    }
-
-    template< typename EOT >
-    void run( MpiJob< EOT > & job )
-    {
-        job.master( *_assignmentAlgo );
-    }
-
-protected:
-    AssignmentAlgorithm* _assignmentAlgo;
-};
-
-class WorkerNode : public MpiNode
+template< class EOT >
+class Role
 {
     public:
-
-        WorkerNode(
-                int _argc, char** _argv,
-                mpi::environment& _env,
-                mpi::communicator& _comm ) :
-            MpiNode( _env, _comm )
+        Role( MpiJob<EOT> & job, bool master ) :
+            _job( job ),
+            _master( master )
         {
             // empty
         }
 
-        template< typename EOT >
-        void run( MpiJob<EOT> & job )
+        bool master()
         {
-            job.worker( );
+            return _master;
         }
-};
 
-class MpiSingletonFactory
-{
-    public:
-
-    static void init( int argc, char** argv )
-    {
-        MpiNode* singleton;
-        //mpi::environment* env = new mpi::environment ( argc, argv );
-        //mpi::communicator* world = new mpi::communicator; // TODO clean
-        static mpi::environment env( argc, argv );
-        static mpi::communicator world;
-        if ( world.rank() == 0 )
+        virtual void run( )
         {
-            singleton = new MasterNode( argc, argv, env, world );
-        } else
-        {
-            singleton = new WorkerNode( argc, argv, env, world );
+            if( _master )
+            {
+                _job.master( );
+            } else
+            {
+                _job.worker( );
+            }
         }
-        MpiNodeStore::instance( singleton );
-    }
+
+        virtual ~Role()
+        {
+            // empty
+        }
+
+    protected:
+        bool _master;
+        MpiJob<EOT> & _job;
 };
 # endif // __EO_MPI_H__
