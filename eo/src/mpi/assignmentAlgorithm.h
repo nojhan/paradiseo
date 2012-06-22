@@ -2,7 +2,7 @@
 # define __ASSIGNMENT_ALGORITHM_H__
 
 # include <vector>
-
+# include "MpiNode.h"
 struct AssignmentAlgorithm
 {
     virtual int get( ) = 0;
@@ -14,6 +14,25 @@ struct AssignmentAlgorithm
 struct DynamicAssignmentAlgorithm : public AssignmentAlgorithm
 {
     public:
+
+        DynamicAssignmentAlgorithm( )
+        {
+            for(int i = 1; i < MpiNode::comm().size(); ++i)
+            {
+                availableWrk.push_back( i );
+            }
+        }
+
+        DynamicAssignmentAlgorithm( int unique )
+        {
+            availableWrk.push_back( unique );
+        }
+
+        DynamicAssignmentAlgorithm( const std::vector<int> & workers )
+        {
+            availableWrk = workers;
+        }
+
         DynamicAssignmentAlgorithm( int first, int last )
         {
             for( int i = first; i <= last; ++i)
@@ -55,11 +74,43 @@ struct DynamicAssignmentAlgorithm : public AssignmentAlgorithm
 struct StaticAssignmentAlgorithm : public AssignmentAlgorithm
 {
     public:
+        StaticAssignmentAlgorithm( std::vector<int>& workers, int runs )
+        {
+            init( workers, runs );
+        }
+
         StaticAssignmentAlgorithm( int first, int last, int runs )
         {
-            unsigned int nbWorkers = last - first + 1;
+            std::vector<int> workers;
+            for(int i = first; i <= last; ++i)
+            {
+                workers.push_back( i );
+            }
+            init( workers, runs );
+        }
+
+        StaticAssignmentAlgorithm( int runs )
+        {
+            std::vector<int> workers;
+            for(int i = 1; i < MpiNode::comm().size(); ++i)
+            {
+                workers.push_back( i );
+            }
+            init( workers, runs );
+        }
+
+        StaticAssignmentAlgorithm( int unique, int runs )
+        {
+            std::vector<int> workers;
+            workers.push_back( unique );
+            init( workers, runs );
+        }
+
+private:
+        void init( std::vector<int> & workers, int runs )
+        {
+            unsigned int nbWorkers = workers.size();
             freeWorkers = nbWorkers;
-            offset = first;
             attributions.reserve( nbWorkers );
             busy.resize( nbWorkers, false );
 
@@ -71,8 +122,11 @@ struct StaticAssignmentAlgorithm : public AssignmentAlgorithm
             // r requests to workers, in ascending order
             unsigned int diff = runs - (runs / nbWorkers) * nbWorkers;
             for (unsigned int i = 0; i < diff; ++attributions[i++]);
+
+            realRank = workers;
         }
 
+public:
         int get( )
         {
             int assignee = -1;
@@ -82,7 +136,7 @@ struct StaticAssignmentAlgorithm : public AssignmentAlgorithm
                 {
                     busy[i] = true;
                     --freeWorkers;
-                    assignee = realRank( i );
+                    assignee = realRank[ i ];
                     break;
                 }
             }
@@ -101,40 +155,35 @@ struct StaticAssignmentAlgorithm : public AssignmentAlgorithm
             {
                 if( !busy[i] )
                 {
-                    eo::log << "Idle : " << realRank(i) <<
+                    eo::log << "Idle : " << realRank[i] <<
                         " / attributions : " << attributions[i] << std::endl;
-                    ret.push_back( realRank(i) );
+                    ret.push_back( realRank[i] );
                 }
             }
-            afterIdle = true;
             return ret;
         }
 
         void confirm( int rank )
         {
-            int i = attributionsIndex( rank );
+            int i = -1;
+            for( int j = 0; j < realRank.size(); ++j )
+            {
+                if( realRank[j] == rank )
+                {
+                    i = j;
+                    break;
+                }
+            }
+
             --attributions[ i ];
             busy[ i ] = false;
             ++freeWorkers;
         }
 
     private:
-        int attributionsIndex( int rank )
-        {
-            return rank - offset;
-        }
-
-        int realRank( int index )
-        {
-            return index + offset;
-        }
-
         std::vector<int> attributions;
+        std::vector<int> realRank;
         std::vector<bool> busy;
-
-        bool afterIdle;
-        int runs;
-        int offset;
         unsigned int freeWorkers;
 };
 

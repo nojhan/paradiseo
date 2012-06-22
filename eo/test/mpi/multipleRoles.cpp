@@ -61,7 +61,7 @@ int main(int argc, char** argv)
         case 1:
             {
                 // only one node is assigned to subjob mastering
-                DynamicAssignmentAlgorithm algo( 1, 1 );
+                DynamicAssignmentAlgorithm algo( 1 );
                 ParallelApply< vector<int> > job( transmitInstance, metaV, algo, 0 );
                 job.run();
                 if( job.isMaster() )
