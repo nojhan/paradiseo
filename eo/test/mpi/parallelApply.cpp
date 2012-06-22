@@ -14,16 +14,18 @@ struct plusOne : public eoUF< int&, void >
     }
 };
 
+struct Test
+{
+    AssignmentAlgorithm * assign;
+    string description;
+};
+
 int main(int argc, char** argv)
 {
-    eo::log << eo::setlevel( eo::debug );
-    cout << "Appel à init... " << endl;
+    // eo::log << eo::setlevel( eo::debug );
     MpiNode::init( argc, argv );
-    DynamicAssignmentAlgorithm assign( 1, MpiNode::comm().size()-1 );
 
-    cout << "Création des données... " << endl;
     vector<int> v;
-
     v.push_back(1);
     v.push_back(3);
     v.push_back(3);
@@ -32,18 +34,44 @@ int main(int argc, char** argv)
 
     plusOne plusOneInstance;
 
-    cout << "Création du job..." << endl;
-    ParallelApply<int> job( plusOneInstance, v, assign, 0 );
-    job.run();
+    vector< Test > tests;
 
-    if( job.isMaster() )
+    Test tStatic;
+    tStatic.assign = new StaticAssignmentAlgorithm( 1, MpiNode::comm().size()-1, v.size() );
+    tStatic.description = "Correct static assignment.";
+    tests.push_back( tStatic );
+
+    Test tStaticOverload;
+    tStaticOverload.assign = new StaticAssignmentAlgorithm( 1, MpiNode::comm().size()-1, v.size()+100 );
+    tStaticOverload.description = "Static assignment with too many runs.";
+    tests.push_back( tStaticOverload );
+
+    Test tDynamic;
+    tDynamic.assign = new DynamicAssignmentAlgorithm( 1, MpiNode::comm().size()-1 );
+    tDynamic.description = "Dynamic assignment.";
+    tests.push_back( tDynamic );
+
+    for( unsigned int i = 0; i < tests.size(); ++i )
     {
-        for(int i = 0; i < v.size(); ++i)
-        {
-            cout << v[i] << ' ';
-        }
-        cout << endl;
-    }
+        ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0 );
 
+        if( job.isMaster() )
+        {
+            cout << "Test : " << tests[i].description << endl;
+        }
+
+        job.run();
+
+        if( job.isMaster() )
+        {
+            for(int i = 0; i < v.size(); ++i)
+            {
+                cout << v[i] << ' ';
+            }
+            cout << endl;
+        }
+
+        delete tests[i].assign;
+    }
     return 0;
 }

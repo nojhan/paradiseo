@@ -27,8 +27,7 @@ void subtask( vector<int>& v )
     DynamicAssignmentAlgorithm algo( 2, MpiNode::comm().size()-1 );
     plusOne plusOneInstance;
     ParallelApply<int> job( plusOneInstance, v, algo, 1 );
-    Role node( job );
-    node.run();
+    job.run();
 }
 
 struct transmit : public eoUF< vector<int>&, void >
@@ -37,7 +36,7 @@ struct transmit : public eoUF< vector<int>&, void >
     {
         cout << "Into the master subjob..." << endl;
         subtask( v );
-            }
+    }
 };
 
 int main(int argc, char** argv)
@@ -64,9 +63,8 @@ int main(int argc, char** argv)
                 // only one node is assigned to subjob mastering
                 DynamicAssignmentAlgorithm algo( 1, 1 );
                 ParallelApply< vector<int> > job( transmitInstance, metaV, algo, 0 );
-                Role node( job );
-                node.run();
-                if( node.master() )
+                job.run();
+                if( job.isMaster() )
                 {
                     v = metaV[0];
                     cout << "Results : " << endl;
