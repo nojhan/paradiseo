@@ -3,6 +3,12 @@
 
 # include <vector>
 # include "MpiNode.h"
+
+namespace eo
+{
+    const int REST_OF_THE_WORLD = -1;
+}
+
 struct AssignmentAlgorithm
 {
     virtual int get( ) = 0;
@@ -35,6 +41,11 @@ struct DynamicAssignmentAlgorithm : public AssignmentAlgorithm
 
         DynamicAssignmentAlgorithm( int first, int last )
         {
+            if( last == eo::REST_OF_THE_WORLD )
+            {
+                last = MpiNode::comm().size() - 1;
+            }
+
             for( int i = first; i <= last; ++i)
             {
                 availableWrk.push_back( i );
@@ -82,6 +93,12 @@ struct StaticAssignmentAlgorithm : public AssignmentAlgorithm
         StaticAssignmentAlgorithm( int first, int last, int runs )
         {
             std::vector<int> workers;
+
+            if( last == eo::REST_OF_THE_WORLD )
+            {
+                last = MpiNode::comm().size() - 1;
+            }
+
             for(int i = first; i <= last; ++i)
             {
                 workers.push_back( i );

@@ -24,7 +24,7 @@ struct plusOne : public eoUF< int&, void >
 
 void subtask( vector<int>& v )
 {
-    DynamicAssignmentAlgorithm algo( 2, MpiNode::comm().size()-1 );
+    DynamicAssignmentAlgorithm algo( 2, eo::REST_OF_THE_WORLD );
     plusOne plusOneInstance;
     ParallelApply<int> job( plusOneInstance, v, algo, 1 );
     job.run();

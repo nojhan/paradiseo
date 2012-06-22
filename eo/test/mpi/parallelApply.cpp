@@ -44,7 +44,7 @@ int main(int argc, char** argv)
     const int ALL = MpiNode::comm().size();
 
     Test tIntervalStatic;
-    tIntervalStatic.assign = new StaticAssignmentAlgorithm( 1, MpiNode::comm().size()-1, v.size() );
+    tIntervalStatic.assign = new StaticAssignmentAlgorithm( 1, eo::REST_OF_THE_WORLD, v.size() );
     tIntervalStatic.description = "Correct static assignment with interval.";
     tIntervalStatic.requiredNodesNumber = ALL;
     tests.push_back( tIntervalStatic );
@@ -77,26 +77,26 @@ int main(int argc, char** argv)
     tests.push_back( tVectorStatic );
 
     Test tIntervalDynamic;
-    tIntervalDynamic.assign = new StaticAssignmentAlgorithm( 1, MpiNode::comm().size()-1, v.size() );
-    tIntervalDynamic.description = "Correct static assignment with interval.";
+    tIntervalDynamic.assign = new StaticAssignmentAlgorithm( 1, eo::REST_OF_THE_WORLD, v.size() );
+    tIntervalDynamic.description = "Dynamic assignment with interval.";
     tIntervalDynamic.requiredNodesNumber = ALL;
     tests.push_back( tIntervalDynamic );
 
     Test tUniqueDynamic;
     tUniqueDynamic.assign = new StaticAssignmentAlgorithm( 1, v.size() );
-    tUniqueDynamic.description = "Correct static assignment with unique worker.";
+    tUniqueDynamic.description = "Dynamic assignment with unique worker.";
     tUniqueDynamic.requiredNodesNumber = 2;
     tests.push_back( tUniqueDynamic );
 
     Test tVectorDynamic;
     tVectorDynamic.assign = new StaticAssignmentAlgorithm( workers, v.size() );
-    tVectorDynamic.description = "Correct static assignment with precise workers specified.";
+    tVectorDynamic.description = "Dynamic assignment with precise workers specified.";
     tVectorDynamic.requiredNodesNumber = tVectorStatic.requiredNodesNumber;
     tests.push_back( tVectorDynamic );
 
     Test tWorldDynamic;
     tWorldDynamic.assign = new StaticAssignmentAlgorithm( v.size() );
-    tWorldDynamic.description = "Correct static assignment with whole world as workers.";
+    tWorldDynamic.description = "Dynamic assignment with whole world as workers.";
     tWorldDynamic.requiredNodesNumber = ALL;
     tests.push_back( tWorldDynamic );
 
