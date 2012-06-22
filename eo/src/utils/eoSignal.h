@@ -52,13 +52,23 @@ public :
     eoSignal( int sig = SIGINT ) : eoCheckPoint<EOT>( _dummyContinue ), _sig( sig )
     {
 	::signals_called[_sig] = false;
+
+#ifndef _WINDOWS
+#ifdef SIGQUIT
 	::signal( _sig, handler );
+#endif // !SIGQUIT
+#endif // !_WINDOWS
     }
 
     eoSignal( eoContinue<EOT>& _cont, int sig = SIGINT ) : eoCheckPoint<EOT>( _cont ), _sig( sig )
     {
 	::signals_called[_sig] = false;
+
+#ifndef _WINDOWS
+#ifdef SIGQUIT
 	::signal( _sig, handler );
+#endif // !SIGQUIT
+#endif // !_WINDOWS
     }
 
     bool operator()( const eoPop<EOT>& _pop )

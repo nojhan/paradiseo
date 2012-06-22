@@ -59,6 +59,24 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 
     _state.storeFunctor(checkpoint);
 
+    ////////////////////
+    // Signal monitoring
+    ////////////////////
+
+#ifndef _MSC_VER
+    // the CtrlC monitoring interception
+    eoSignal<EOT> *mon_ctrlCCont;
+    eoValueParam<bool>& mon_ctrlCParam = _parser.createParam(false, "monitor-with-CtrlC", "Monitor current generation upon Ctrl C",0, "Stopping criterion");
+    if (mon_ctrlCParam.value())
+      {
+        mon_ctrlCCont = new eoSignal<EOT>;
+        // store
+        _state.storeFunctor(mon_ctrlCCont);
+        // add to checkpoint
+	checkpoint->add(*mon_ctrlCCont);
+      }
+#endif
+
     ///////////////////
     // Counters
     //////////////////
@@ -117,18 +135,24 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 	    _state.storeFunctor(bestStat);
 	    // add it to the checkpoint
 	    checkpoint->add(*bestStat);
+	    // check if monitoring with signal
+	    if ( mon_ctrlCParam.value() )
+		mon_ctrlCCont->add(*bestStat);
 	}
 
     // Average fitness alone
     //----------------------
     eoAverageStat<EOT> *averageStat = NULL; // do we need averageStat?
-    if ( plotBestParam.value() ) // we need it for gnuplot output
+    if ( printBestParam.value() || plotBestParam.value() || fileBestParam.value() ) // we need it for gnuplot output
 	{
 	    averageStat = new eoAverageStat<EOT>;
 	    // store it
 	    _state.storeFunctor(averageStat);
 	    // add it to the checkpoint
 	    checkpoint->add(*averageStat);
+	    // check if monitoring with signal
+	    if ( mon_ctrlCParam.value() )
+		mon_ctrlCCont->add(*averageStat);
 	}
 
     // Second moment stats: average and stdev
@@ -141,6 +165,9 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 	    _state.storeFunctor(secondStat);
 	    // add it to the checkpoint
 	    checkpoint->add(*secondStat);
+	    // check if monitoring with signal
+	    if ( mon_ctrlCParam.value() )
+		mon_ctrlCCont->add(*secondStat);
 	}
 
     // Dump of the whole population
@@ -155,6 +182,9 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 	    _state.storeFunctor(popStat);
 	    // add it to the checkpoint
 	    checkpoint->add(*popStat);
+	    // check if monitoring with signal
+	    if ( mon_ctrlCParam.value() )
+		mon_ctrlCCont->add(*popStat);
 	}
 
     // do we wnat some histogram of fitnesses snpashots?
@@ -175,7 +205,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 	    _state.storeFunctor(monitor);
 
 	    // when called by the checkpoint (i.e. at every generation)
-	    checkpoint->add(*monitor);
+	    // check if monitoring with signal
+	    if ( ! mon_ctrlCParam.value() )
+		checkpoint->add(*monitor);
+	    else
+		mon_ctrlCCont->add(*monitor);
 
 	    // the monitor will output a series of parameters: add them
 	    monitor->add(*generationCounter);
@@ -186,7 +220,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 		{
 		    tCounter = new eoTimeCounter;
 		    _state.storeFunctor(tCounter);
-		    checkpoint->add(*tCounter);
+		    // check if monitoring with signal
+		    if ( ! mon_ctrlCParam.value() )
+			checkpoint->add(*tCounter);
+		    else
+			mon_ctrlCCont->add(*tCounter);
 		    monitor->add(*tCounter);
 		}
 
