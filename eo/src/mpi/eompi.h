@@ -65,14 +65,13 @@ class MpiJob
 
     void master( )
     {
-        int totalWorkers = assignmentAlgo.size();
+        int totalWorkers = assignmentAlgo.availableWorkers();
         eo::log << eo::debug;
         eo::log << "[M] Have " << totalWorkers << " workers." << std::endl;
 
         while( ! isFinished() )
         {
             int assignee = assignmentAlgo.get( );
-            eo::log << "[M] Assignee : " << assignee << std::endl;
             while( assignee <= 0 )
             {
                 eo::log << "[M] Waitin' for node..." << std::endl;
@@ -83,27 +82,22 @@ class MpiJob
                 assignmentAlgo.confirm( wrkRank );
                 assignee = assignmentAlgo.get( );
             }
+            eo::log << "[M] Assignee : " << assignee << std::endl;
             comm.send( assignee, EoMpi::Channel::Commands, EoMpi::Message::Continue );
             sendTask( assignee );
         }
 
         eo::log << "[M] Frees all the idle." << std::endl;
         // frees all the idle workers
-        int idle;
-        std::vector<int> idles;
-        while ( ( idle = assignmentAlgo.get( ) ) > 0 )
+        std::vector<int> idles = assignmentAlgo.idles();
+        for(unsigned int i = 0; i < idles.size(); ++i)
         {
-            comm.send( idle, EoMpi::Channel::Commands, EoMpi::Message::Finish );
-            idles.push_back( idle );
-        }
-        for (unsigned int i = 0; i < idles.size(); ++i)
-        {
-            assignmentAlgo.confirm( idles[i] );
+            comm.send( idles[i], EoMpi::Channel::Commands, EoMpi::Message::Finish );
         }
 
         eo::log << "[M] Waits for all responses." << std::endl;
         // wait for all responses
-        while( assignmentAlgo.size() != totalWorkers )
+        while( assignmentAlgo.availableWorkers() != totalWorkers )
         {
             mpi::status status = comm.probe( mpi::any_source, mpi::any_tag );
             int wrkRank = status.source();
@@ -121,14 +115,15 @@ class MpiJob
         eo::log << eo::debug;
         while( true )
         {
-            eo::log << "[W] Waiting for an order..." << std::endl;
+            eo::log << "[W" << comm.rank() << "] Waiting for an order..." << std::endl;
             comm.recv( masterRank, EoMpi::Channel::Commands, order );
             if ( order == EoMpi::Message::Finish )
             {
+                eo::log << "[W" << comm.rank() << "] Leaving worker task." << std::endl;
                 return;
             } else
             {
-                eo::log << "[W] Processing task..." << std::endl;
+                eo::log << "[W" << comm.rank() << "] Processing task..." << std::endl;
                 processTask( );
             }
         }
