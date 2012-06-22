@@ -36,18 +36,18 @@ class ParallelApply : public MpiJob
         virtual void processTask( )
         {
             EOT ind;
-            comm.recv( _masterRank, 1, ind );
+            comm.recv( masterRank, 1, ind );
             func( ind );
-            comm.send( _masterRank, 1, ind );
+            comm.send( masterRank, 1, ind );
         }
 
         bool isFinished()
         {
-            return index = size;
+            return index == size;
         }
 
     protected:
-        vector<EOT> & data;
+        std::vector<EOT> & data;
         eoUF<EOT&, void>& func;
         int index;
         int size;

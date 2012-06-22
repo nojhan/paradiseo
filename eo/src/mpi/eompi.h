@@ -7,10 +7,9 @@
 # include <boost/mpi.hpp>
 namespace mpi = boost::mpi;
 
-# include "assignmentAlgorithm.h"
+# include <utils/eoLogger.h>
 
-# include <iostream>
-using namespace std;
+# include "assignmentAlgorithm.h"
 // TODO TODOB comment!
 
 namespace EoMpi
@@ -49,12 +48,12 @@ class MpiJob
 {
     public:
 
-    MpiJob( AssignmentAlgorithm& algo, int masterRank ) :
-        assignmentAlgo( algo ),
+    MpiJob( AssignmentAlgorithm& _algo, int _masterRank ) :
+        assignmentAlgo( _algo ),
         comm( MpiNode::comm() ),
-        _masterRank( masterRank )
+        masterRank( _masterRank )
     {
-        // empty
+        _isMaster = MpiNode::comm().rank() == _masterRank;
     }
 
     // master
@@ -67,18 +66,19 @@ class MpiJob
     void master( )
     {
         int totalWorkers = assignmentAlgo.size();
-        cout << "[M] Have " << totalWorkers << " workers." << endl;
+        eo::log << eo::debug;
+        eo::log << "[M] Have " << totalWorkers << " workers." << std::endl;
 
         while( ! isFinished() )
         {
             int assignee = assignmentAlgo.get( );
-            cout << "[M] Assignee : " << assignee << endl;
+            eo::log << "[M] Assignee : " << assignee << std::endl;
             while( assignee <= 0 )
             {
-                cout << "[M] Waitin' for node..." << endl;
+                eo::log << "[M] Waitin' for node..." << std::endl;
                 mpi::status status = comm.probe( mpi::any_source, mpi::any_tag );
                 int wrkRank = status.source();
-                cout << "[M] Node " << wrkRank << " just terminated." << endl;
+                eo::log << "[M] Node " << wrkRank << " just terminated." << std::endl;
                 handleResponse( wrkRank );
                 assignmentAlgo.confirm( wrkRank );
                 assignee = assignmentAlgo.get( );
@@ -87,10 +87,10 @@ class MpiJob
             sendTask( assignee );
         }
 
-        cout << "[M] Frees all the idle." << endl;
+        eo::log << "[M] Frees all the idle." << std::endl;
         // frees all the idle workers
         int idle;
-        vector<int> idles;
+        std::vector<int> idles;
         while ( ( idle = assignmentAlgo.get( ) ) > 0 )
         {
             comm.send( idle, EoMpi::Channel::Commands, EoMpi::Message::Finish );
@@ -101,7 +101,7 @@ class MpiJob
             assignmentAlgo.confirm( idles[i] );
         }
 
-        cout << "[M] Waits for all responses." << endl;
+        eo::log << "[M] Waits for all responses." << std::endl;
         // wait for all responses
         while( assignmentAlgo.size() != totalWorkers )
         {
@@ -112,70 +112,43 @@ class MpiJob
             assignmentAlgo.confirm( wrkRank );
         }
 
-        cout << "[M] Leaving master task." << endl;
+        eo::log << "[M] Leaving master task." << std::endl;
     }
 
     void worker( )
     {
         int order;
+        eo::log << eo::debug;
         while( true )
         {
-            cout << "[W] Waiting for an order..." << std::endl;
-            comm.recv( _masterRank, EoMpi::Channel::Commands, order );
+            eo::log << "[W] Waiting for an order..." << std::endl;
+            comm.recv( masterRank, EoMpi::Channel::Commands, order );
             if ( order == EoMpi::Message::Finish )
             {
                 return;
             } else
             {
-                cout << "[W] Processing task..." << std::endl;
+                eo::log << "[W] Processing task..." << std::endl;
                 processTask( );
             }
         }
     }
 
-    int masterRank()
+    void run( )
     {
-        return _masterRank;
+        ( _isMaster ) ? master( ) : worker( );
+    }
+
+    bool isMaster( )
+    {
+        return _isMaster;
     }
 
 protected:
     AssignmentAlgorithm& assignmentAlgo;
     mpi::communicator& comm;
-    int _masterRank;
-};
-
-class Role
-{
-    public:
-        Role( MpiJob & job ) :
-            _job( job )
-        {
-            _master = job.masterRank() == MpiNode::comm().rank();
-        }
-
-        bool master()
-        {
-            return _master;
-        }
-
-        virtual void run( )
-        {
-            if( _master )
-            {
-                _job.master( );
-            } else
-            {
-                _job.worker( );
-            }
-        }
-
-        virtual ~Role()
-        {
-            // empty
-        }
-
-    protected:
-        MpiJob & _job;
-        bool _master;
+    int masterRank;
+    bool _isMaster;
 };
 # endif // __EO_MPI_H__
+

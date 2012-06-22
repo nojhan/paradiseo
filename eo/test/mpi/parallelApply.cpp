@@ -16,9 +16,10 @@ struct plusOne : public eoUF< int&, void >
 
 int main(int argc, char** argv)
 {
+    eo::log << eo::setlevel( eo::debug );
     cout << "Appel à init... " << endl;
     MpiNode::init( argc, argv );
-    DynamicAssignmentAlgorithm algo( 1, MpiNode::comm().size()-1 );
+    DynamicAssignmentAlgorithm assign( 1, MpiNode::comm().size()-1 );
 
     cout << "Création des données... " << endl;
     vector<int> v;
@@ -32,11 +33,10 @@ int main(int argc, char** argv)
     plusOne plusOneInstance;
 
     cout << "Création du job..." << endl;
-    ParallelApply<int> job( plusOneInstance, v, algo, 0 );
-    Role node( job );
-    node.run();
+    ParallelApply<int> job( plusOneInstance, v, assign, 0 );
+    job.run();
 
-    if( node.master() )
+    if( job.isMaster() )
     {
         for(int i = 0; i < v.size(); ++i)
         {
