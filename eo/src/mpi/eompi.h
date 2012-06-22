@@ -3,12 +3,9 @@
 
 # include <vector>
 # include <map>
-
-# include <boost/mpi.hpp>
-namespace mpi = boost::mpi;
-
 # include <utils/eoLogger.h>
 
+# include "MpiNode.h"
 # include "assignmentAlgorithm.h"
 // TODO TODOB comment!
 
@@ -25,25 +22,6 @@ namespace EoMpi
         const int Finish = 1;
     }
 }
-
-class MpiNode
-{
-    public:
-
-    static void init( int argc, char** argv )
-    {
-        static mpi::environment env( argc, argv );
-    }
-
-    static mpi::communicator& comm()
-    {
-        return _comm;
-    }
-
-    protected:
-    static mpi::communicator _comm;
-};
-
 class MpiJob
 {
     public:
