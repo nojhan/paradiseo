@@ -13,34 +13,42 @@ using namespace std;
 // 1 : worker of general job, master of subjob
 // 2 and more : workers of subjob
 
-struct plusOne : public eoUF< int&, void >
+struct SubWork: public eoUF< int&, void >
 {
     void operator() ( int & x )
     {
-        cout << "Subjob is being applied." << endl;
+        cout << "Subwork phase." << endl;
         ++x;
     }
 };
 
-void subtask( vector<int>& v )
+void subtask( vector<int>& v, int rank )
 {
-    DynamicAssignmentAlgorithm algo( 2, eo::REST_OF_THE_WORLD );
-    plusOne plusOneInstance;
-    ParallelApply<int> job( plusOneInstance, v, algo, 1 );
+    vector<int> workers;
+    workers.push_back( rank + 2 );
+    workers.push_back( rank + 4 );
+    DynamicAssignmentAlgorithm algo( workers );
+    SubWork sw;
+    ParallelApply<int> job( sw, v, algo, rank );
     job.run();
 }
 
-struct transmit : public eoUF< vector<int>&, void >
+struct Work: public eoUF< vector<int>&, void >
 {
     void operator() ( vector<int>& v )
     {
-        cout << "Into the master subjob..." << endl;
-        subtask( v );
+        cout << "Work phase..." << endl;
+        subtask( v, MpiNode::comm().rank() );
+        for( int i = 0; i < v.size(); ++i )
+        {
+            v[i] *= 2;
+        }
     }
 };
 
 int main(int argc, char** argv)
 {
+    // eo::log << eo::setlevel( eo::debug );
     MpiNode::init( argc, argv );
     vector<int> v;
 
@@ -50,19 +58,19 @@ int main(int argc, char** argv)
     v.push_back(7);
     v.push_back(42);
 
-    transmit transmitInstance;
-
     vector< vector<int> > metaV;
+    metaV.push_back( v );
     metaV.push_back( v );
 
     switch( MpiNode::comm().rank() )
     {
         case 0:
         case 1:
+        case 2:
             {
-                // only one node is assigned to subjob mastering
-                DynamicAssignmentAlgorithm algo( 1 );
-                ParallelApply< vector<int> > job( transmitInstance, metaV, algo, 0 );
+                Work w;
+                DynamicAssignmentAlgorithm algo( 1, 2 );
+                ParallelApply< vector<int> > job( w, metaV, algo, 0 );
                 job.run();
                 if( job.isMaster() )
                 {
@@ -80,7 +88,13 @@ int main(int argc, char** argv)
         default:
             {
                 // all the other nodes are sub workers
-                subtask( v );
+                int rank = MpiNode::comm().rank();
+                if ( rank == 3 or rank == 5 )
+                {
+                    subtask( v, 1 );
+                } else {
+                    subtask( v, 2 );
+                }
             }
             break;
     }
