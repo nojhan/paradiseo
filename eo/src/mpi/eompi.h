@@ -45,31 +45,20 @@ class MpiNode
     static mpi::communicator _comm;
 };
 
-struct BaseContinuator
-{
-    virtual bool operator()() = 0;
-};
-
-// template< typename EOT >
 class MpiJob
 {
     public:
 
-    MpiJob( AssignmentAlgorithm& algo, BaseContinuator* c, int masterRank ) :
+    MpiJob( AssignmentAlgorithm& algo, int masterRank ) :
         assignmentAlgo( algo ),
         comm( MpiNode::comm() ),
-        _masterRank( masterRank ),
-        _continuator( c )
+        _masterRank( masterRank )
     {
         // empty
     }
 
-    ~MpiJob()
-    {
-        delete _continuator;
-    }
-
     // master
+    virtual bool isFinished() = 0;
     virtual void sendTask( int wrkRank ) = 0;
     virtual void handleResponse( int wrkRank ) = 0;
     // worker
@@ -80,7 +69,7 @@ class MpiJob
         int totalWorkers = assignmentAlgo.size();
         cout << "[M] Have " << totalWorkers << " workers." << endl;
 
-        while( (*_continuator)() )
+        while( ! isFinished() )
         {
             int assignee = assignmentAlgo.get( );
             cout << "[M] Assignee : " << assignee << endl;
@@ -97,31 +86,6 @@ class MpiJob
             comm.send( assignee, EoMpi::Channel::Commands, EoMpi::Message::Continue );
             sendTask( assignee );
         }
-
-        /*
-        for( int i = 0, size = data.size();
-                i < size;
-                ++i)
-        {
-            cout << "[M] Beginning loop for i = " << i << endl;
-            int assignee = assignmentAlgo.get( );
-            cout << "[M] Assignee : " << assignee << endl;
-            while( assignee <= 0 )
-            {
-                cout << "[M] Waitin' for node..." << endl;
-                mpi::status status = comm.probe( mpi::any_source, mpi::any_tag );
-                int wrkRank = status.source();
-                cout << "[M] Node " << wrkRank << " just terminated." << endl;
-                handleResponse( wrkRank, assignedTasks[ wrkRank ] );
-                assignmentAlgo.confirm( wrkRank );
-                assignee = assignmentAlgo.get( );
-            }
-            cout << "[M] Assignee found : " << assignee << endl;
-            assignedTasks[ assignee ] = i;
-            comm.send( assignee, EoMpi::Channel::Commands, EoMpi::Message::Continue );
-            sendTask( assignee, i );
-        }
-        */
 
         cout << "[M] Frees all the idle." << endl;
         // frees all the idle workers
@@ -176,7 +140,6 @@ class MpiJob
 
 protected:
     AssignmentAlgorithm& assignmentAlgo;
-    BaseContinuator* _continuator;
     mpi::communicator& comm;
     int _masterRank;
 };
