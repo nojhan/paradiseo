@@ -94,7 +94,7 @@ public:
 
         while (size() > _size)
         {
-            back() = operator[](size()-2);
+            back() = this->operator[](size()-2);
         }
     }
 
@@ -150,7 +150,7 @@ public:
             v[i] = node;
         }
         parse_tree<Node> tmp(v.begin(), v.end());
-        swap(tmp);
+        this->swap(tmp);
 
         /*
          * old code which caused problems for paradisEO
