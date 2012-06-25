@@ -6,39 +6,76 @@
 # include <eoFunctor.h>
 # include <vector>
 
+
 template< typename EOT >
 class ParallelApply : public MpiJob
 {
+    private:
+        struct ParallelApplyAssignment
+        {
+            int index;
+            int size;
+        };
     public:
 
-        ParallelApply( eoUF<EOT&, void> & _proc, std::vector<EOT>& _pop, AssignmentAlgorithm & algo, int _masterRank ) :
+        ParallelApply(
+                eoUF<EOT&, void> & _proc,
+                std::vector<EOT>& _pop,
+                AssignmentAlgorithm & algo,
+                int _masterRank,
+                int _packetSize = 1
+                ) :
             MpiJob( algo, _masterRank ),
             func( _proc ),
             index( 0 ),
             size( _pop.size() ),
-            data( _pop )
+            data( _pop ),
+            packetSize( _packetSize )
         {
-            // empty
+            tempArray = new EOT[ packetSize ];
+        }
+
+        ~ParallelApply()
+        {
+            delete [] tempArray;
         }
 
         virtual void sendTask( int wrkRank )
         {
-            assignedTasks[ wrkRank ] = index;
-            comm.send( wrkRank, 1, data[ index ] );
-            ++index;
+            int futureIndex;
+
+            if( index + packetSize < size )
+            {
+                futureIndex = index + packetSize;
+            } else {
+                futureIndex = size;
+            }
+
+            int sentSize = futureIndex - index ;
+            comm.send( wrkRank, 1, sentSize );
+
+            assignedTasks[ wrkRank ].index = index;
+            assignedTasks[ wrkRank ].size = sentSize;
+
+            comm.send( wrkRank, 1, &data[ index ] , sentSize );
+            index = futureIndex;
         }
 
         virtual void handleResponse( int wrkRank )
         {
-            comm.recv( wrkRank, 1, data[ assignedTasks[ wrkRank ] ] );
+            comm.recv( wrkRank, 1, &data[ assignedTasks[wrkRank].index ], assignedTasks[wrkRank].size );
         }
 
         virtual void processTask( )
         {
-            EOT ind;
-            comm.recv( masterRank, 1, ind );
-            func( ind );
-            comm.send( masterRank, 1, ind );
+            int recvSize;
+            comm.recv( masterRank, 1, recvSize );
+            comm.recv( masterRank, 1, tempArray, recvSize );
+            for( int i = 0; i < recvSize ; ++i )
+            {
+                func( tempArray[ i ] );
+            }
+            comm.send( masterRank, 1, tempArray, recvSize );
         }
 
         bool isFinished()
@@ -51,7 +88,10 @@ class ParallelApply : public MpiJob
         eoUF<EOT&, void>& func;
         int index;
         int size;
-        std::map< int /* worker rank */, int /* index in vector */> assignedTasks;
+        std::map< int /* worker rank */, ParallelApplyAssignment /* min indexes in vector */> assignedTasks;
+
+        int packetSize;
+        EOT* tempArray;
 };
 
 # endif // __EO_PARALLEL_APPLY_H__

@@ -24,8 +24,9 @@ struct Test
 // These tests require at least 3 processes to be launched.
 int main(int argc, char** argv)
 {
-    eo::log << eo::setlevel( eo::debug );
-    bool launchOnlyOne = true;
+    // eo::log << eo::setlevel( eo::debug );
+    bool launchOnlyOne = false; // Set this to true if you wanna launch only the first test.
+
     MpiNode::init( argc, argv );
 
     vector<int> v;

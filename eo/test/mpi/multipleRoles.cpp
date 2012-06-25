@@ -10,8 +10,8 @@ using namespace std;
 
 // Role map
 // 0 : general master
-// 1 : worker of general job, master of subjob
-// 2 and more : workers of subjob
+// 1, 2 : worker of general job, master of subjob
+// 3 to 7 : workers of subjob
 
 struct SubWork: public eoUF< int&, void >
 {
