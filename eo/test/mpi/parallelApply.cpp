@@ -29,6 +29,7 @@ int main(int argc, char** argv)
 
     MpiNode::init( argc, argv );
 
+    srand( time(0) );
     vector<int> v;
     for( int i = 0; i < 1000; ++i )
     {
