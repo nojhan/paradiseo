@@ -3,11 +3,18 @@
 //-----------------------------------------------------------------------------
 
 #include <eo>
+#include <eoPopEvalFunc.h>
+
 #include <es/make_real.h>
-//#include <apply.h>
-#include "real_value.h"
+// #include <apply.h>
+#include "../real_value.h"
+
+#include <mpi/eoMpi.h>
 
 #include <boost/mpi.hpp>
+
+#include <vector>
+using namespace std;
 
 //-----------------------------------------------------------------------------
 
@@ -75,7 +82,7 @@ typedef eoRealSerializable EOT;
 
 int main(int ac, char** av)
 {
-    MpiSingletonFactory::init( ac, av );
+    eo::mpi::Node::init( ac, av );
 
     eoParser parser(ac, av);
 
@@ -100,7 +107,10 @@ int main(int ac, char** av)
 
     eo::log << "Size of population : " << popSize << std::endl;
 
-    eoPopLoopEval< EOT > popEval( eval );
+    eo::log << eo::setlevel( eo::debug );
+
+    eo::mpi::DynamicAssignmentAlgorithm assign;
+    eoParallelPopLoopEval< EOT > popEval( eval, assign, 0, 3 );
     popEval( pop, pop );
 
     eo::log << eo::quiet << "DONE!" << std::endl;

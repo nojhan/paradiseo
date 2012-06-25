@@ -34,7 +34,7 @@
 #include <omp.h>
 
 # ifdef WITH_MPI
-# include <mpi/eompi.h>
+# include <mpi/eoMpi.h>
 # include <mpi/eoParallelApply.h>
 # endif // WITH_MPI
 
@@ -86,21 +86,15 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
 #ifdef WITH_MPI
 template<class EOT>
-void parallelApply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
+void parallelApply(
+        eoUF<EOT&, void>& _proc,
+        std::vector<EOT>& _pop,
+        eo::mpi::AssignmentAlgorithm& _algo,
+        int _masterRank,
+        int _packetSize)
 {
-    ParallelApply<EOT> job( _proc, _pop );
-
-    MasterNode* master = dynamic_cast<MasterNode*>( MpiNodeStore::instance() );
-    if ( master )
-    {
-        DynamicAssignmentAlgorithm algo;
-        master->setAssignmentAlgorithm( &algo );
-        master->run( job );
-    } else
-    {
-        WorkerNode* wrk = dynamic_cast<WorkerNode*>( MpiNodeStore::instance() );
-        wrk->run( job );
-    }
+    eo::mpi::ParallelApply<EOT> job( _proc, _pop, _algo, _masterRank, _packetSize );
+    job.run();
 }
 #endif
 

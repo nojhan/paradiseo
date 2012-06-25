@@ -83,17 +83,33 @@ template<class EOT>
 class eoParallelPopLoopEval : public eoPopEvalFunc<EOT> {
 public:
   /** Ctor: set value of embedded eoEvalFunc */
-  eoParallelPopLoopEval(eoEvalFunc<EOT> & _eval) : eval(_eval) {}
+  eoParallelPopLoopEval(
+          eoEvalFunc<EOT> & _eval,
+          eo::mpi::AssignmentAlgorithm& _assignAlgo,
+          int _masterRank,
+          int _packetSize = 1
+          ) :
+      eval(_eval),
+      assignAlgo( _assignAlgo ),
+      masterRank( _masterRank ),
+      packetSize( _packetSize )
+  {
+      // empty
+  }
 
   /** Do the job: simple loop over the offspring */
   void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
   {
       (void)_parents;
-      parallelApply<EOT>(eval, _offspring);
+      parallelApply<EOT>(eval, _offspring, assignAlgo, masterRank, packetSize);
   }
 
 private:
   eoEvalFunc<EOT> & eval;
+
+  eo::mpi::AssignmentAlgorithm & assignAlgo;
+  int masterRank;
+  int packetSize;
 };
 #endif
 
