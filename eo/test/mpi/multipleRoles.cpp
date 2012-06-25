@@ -1,4 +1,4 @@
-# include <mpi/eompi.h>
+# include <mpi/eoMpi.h>
 # include <mpi/eoParallelApply.h>
 
 # include <boost/serialization/vector.hpp>
@@ -7,6 +7,8 @@
 
 # include <vector>
 using namespace std;
+
+using namespace eo::mpi;
 
 // Role map
 // 0 : general master
@@ -38,7 +40,7 @@ struct Work: public eoUF< vector<int>&, void >
     void operator() ( vector<int>& v )
     {
         cout << "Work phase..." << endl;
-        subtask( v, MpiNode::comm().rank() );
+        subtask( v, Node::comm().rank() );
         for( int i = 0; i < v.size(); ++i )
         {
             v[i] *= 2;
@@ -49,7 +51,7 @@ struct Work: public eoUF< vector<int>&, void >
 int main(int argc, char** argv)
 {
     // eo::log << eo::setlevel( eo::debug );
-    MpiNode::init( argc, argv );
+    Node::init( argc, argv );
     vector<int> v;
 
     v.push_back(1);
@@ -62,7 +64,7 @@ int main(int argc, char** argv)
     metaV.push_back( v );
     metaV.push_back( v );
 
-    switch( MpiNode::comm().rank() )
+    switch( Node::comm().rank() )
     {
         case 0:
         case 1:
@@ -88,7 +90,7 @@ int main(int argc, char** argv)
         default:
             {
                 // all the other nodes are sub workers
-                int rank = MpiNode::comm().rank();
+                int rank = Node::comm().rank();
                 if ( rank == 3 or rank == 5 )
                 {
                     subtask( v, 1 );

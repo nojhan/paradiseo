@@ -1,10 +1,12 @@
-# include <mpi/eompi.h>
+# include <mpi/eoMpi.h>
 # include <mpi/eoParallelApply.h>
 
 # include <iostream>
 
 # include <vector>
 using namespace std;
+
+using namespace eo::mpi;
 
 struct plusOne : public eoUF< int&, void >
 {
@@ -27,7 +29,7 @@ int main(int argc, char** argv)
     // eo::log << eo::setlevel( eo::debug );
     bool launchOnlyOne = false; // Set this to true if you wanna launch only the first test.
 
-    MpiNode::init( argc, argv );
+    Node::init( argc, argv );
 
     srand( time(0) );
     vector<int> v;
@@ -43,10 +45,10 @@ int main(int argc, char** argv)
 
     vector< Test > tests;
     
-    const int ALL = MpiNode::comm().size();
+    const int ALL = Node::comm().size();
 
     Test tIntervalStatic;
-    tIntervalStatic.assign = new StaticAssignmentAlgorithm( 1, eo::REST_OF_THE_WORLD, v.size() );
+    tIntervalStatic.assign = new StaticAssignmentAlgorithm( 1, REST_OF_THE_WORLD, v.size() );
     tIntervalStatic.description = "Correct static assignment with interval.";
     tIntervalStatic.requiredNodesNumber = ALL;
     tests.push_back( tIntervalStatic );
@@ -81,7 +83,7 @@ int main(int argc, char** argv)
         tests.push_back( tVectorStatic );
 
         Test tIntervalDynamic;
-        tIntervalDynamic.assign = new DynamicAssignmentAlgorithm( 1, eo::REST_OF_THE_WORLD );
+        tIntervalDynamic.assign = new DynamicAssignmentAlgorithm( 1, REST_OF_THE_WORLD );
         tIntervalDynamic.description = "Dynamic assignment with interval.";
         tIntervalDynamic.requiredNodesNumber = ALL;
         tests.push_back( tIntervalDynamic );
@@ -114,7 +116,7 @@ int main(int argc, char** argv)
             cout << "Test : " << tests[i].description << endl;
         }
 
-        if( MpiNode::comm().rank() < tests[i].requiredNodesNumber )
+        if( Node::comm().rank() < tests[i].requiredNodesNumber )
         {
             job.run();
         }
@@ -134,7 +136,7 @@ int main(int argc, char** argv)
             cout << endl;
         }
 
-        MpiNode::comm().barrier();
+        Node::comm().barrier();
 
         delete tests[i].assign;
     }
