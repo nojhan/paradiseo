@@ -24,7 +24,8 @@ struct Test
 // These tests require at least 3 processes to be launched.
 int main(int argc, char** argv)
 {
-    // eo::log << eo::setlevel( eo::debug );
+    eo::log << eo::setlevel( eo::debug );
+    bool launchOnlyOne = true;
     MpiNode::init( argc, argv );
 
     vector<int> v;
@@ -49,60 +50,63 @@ int main(int argc, char** argv)
     tIntervalStatic.requiredNodesNumber = ALL;
     tests.push_back( tIntervalStatic );
 
-    Test tWorldStatic;
-    tWorldStatic.assign = new StaticAssignmentAlgorithm( v.size() );
-    tWorldStatic.description = "Correct static assignment with whole world as workers.";
-    tWorldStatic.requiredNodesNumber = ALL;
-    tests.push_back( tWorldStatic );
+    if( !launchOnlyOne )
+    {
+        Test tWorldStatic;
+        tWorldStatic.assign = new StaticAssignmentAlgorithm( v.size() );
+        tWorldStatic.description = "Correct static assignment with whole world as workers.";
+        tWorldStatic.requiredNodesNumber = ALL;
+        tests.push_back( tWorldStatic );
 
-    Test tStaticOverload;
-    tStaticOverload.assign = new StaticAssignmentAlgorithm( v.size()+100 );
-    tStaticOverload.description = "Static assignment with too many runs.";
-    tStaticOverload.requiredNodesNumber = ALL;
-    tests.push_back( tStaticOverload );
+        Test tStaticOverload;
+        tStaticOverload.assign = new StaticAssignmentAlgorithm( v.size()+100 );
+        tStaticOverload.description = "Static assignment with too many runs.";
+        tStaticOverload.requiredNodesNumber = ALL;
+        tests.push_back( tStaticOverload );
 
-    Test tUniqueStatic;
-    tUniqueStatic.assign = new StaticAssignmentAlgorithm( 1, v.size() );
-    tUniqueStatic.description = "Correct static assignment with unique worker.";
-    tUniqueStatic.requiredNodesNumber = 2;
-    tests.push_back( tUniqueStatic );
+        Test tUniqueStatic;
+        tUniqueStatic.assign = new StaticAssignmentAlgorithm( 1, v.size() );
+        tUniqueStatic.description = "Correct static assignment with unique worker.";
+        tUniqueStatic.requiredNodesNumber = 2;
+        tests.push_back( tUniqueStatic );
 
-    Test tVectorStatic;
-    vector<int> workers;
-    workers.push_back( 1 );
-    workers.push_back( 2 );
-    tVectorStatic.assign = new StaticAssignmentAlgorithm( workers, v.size() );
-    tVectorStatic.description = "Correct static assignment with precise workers specified.";
-    tVectorStatic.requiredNodesNumber = 3;
-    tests.push_back( tVectorStatic );
+        Test tVectorStatic;
+        vector<int> workers;
+        workers.push_back( 1 );
+        workers.push_back( 2 );
+        tVectorStatic.assign = new StaticAssignmentAlgorithm( workers, v.size() );
+        tVectorStatic.description = "Correct static assignment with precise workers specified.";
+        tVectorStatic.requiredNodesNumber = 3;
+        tests.push_back( tVectorStatic );
 
-    Test tIntervalDynamic;
-    tIntervalDynamic.assign = new StaticAssignmentAlgorithm( 1, eo::REST_OF_THE_WORLD, v.size() );
-    tIntervalDynamic.description = "Dynamic assignment with interval.";
-    tIntervalDynamic.requiredNodesNumber = ALL;
-    tests.push_back( tIntervalDynamic );
+        Test tIntervalDynamic;
+        tIntervalDynamic.assign = new DynamicAssignmentAlgorithm( 1, eo::REST_OF_THE_WORLD );
+        tIntervalDynamic.description = "Dynamic assignment with interval.";
+        tIntervalDynamic.requiredNodesNumber = ALL;
+        tests.push_back( tIntervalDynamic );
 
-    Test tUniqueDynamic;
-    tUniqueDynamic.assign = new StaticAssignmentAlgorithm( 1, v.size() );
-    tUniqueDynamic.description = "Dynamic assignment with unique worker.";
-    tUniqueDynamic.requiredNodesNumber = 2;
-    tests.push_back( tUniqueDynamic );
+        Test tUniqueDynamic;
+        tUniqueDynamic.assign = new DynamicAssignmentAlgorithm( 1 );
+        tUniqueDynamic.description = "Dynamic assignment with unique worker.";
+        tUniqueDynamic.requiredNodesNumber = 2;
+        tests.push_back( tUniqueDynamic );
 
-    Test tVectorDynamic;
-    tVectorDynamic.assign = new StaticAssignmentAlgorithm( workers, v.size() );
-    tVectorDynamic.description = "Dynamic assignment with precise workers specified.";
-    tVectorDynamic.requiredNodesNumber = tVectorStatic.requiredNodesNumber;
-    tests.push_back( tVectorDynamic );
+        Test tVectorDynamic;
+        tVectorDynamic.assign = new DynamicAssignmentAlgorithm( workers );
+        tVectorDynamic.description = "Dynamic assignment with precise workers specified.";
+        tVectorDynamic.requiredNodesNumber = tVectorStatic.requiredNodesNumber;
+        tests.push_back( tVectorDynamic );
 
-    Test tWorldDynamic;
-    tWorldDynamic.assign = new StaticAssignmentAlgorithm( v.size() );
-    tWorldDynamic.description = "Dynamic assignment with whole world as workers.";
-    tWorldDynamic.requiredNodesNumber = ALL;
-    tests.push_back( tWorldDynamic );
+        Test tWorldDynamic;
+        tWorldDynamic.assign = new DynamicAssignmentAlgorithm;
+        tWorldDynamic.description = "Dynamic assignment with whole world as workers.";
+        tWorldDynamic.requiredNodesNumber = ALL;
+        tests.push_back( tWorldDynamic );
+    }
 
     for( unsigned int i = 0; i < tests.size(); ++i )
     {
-        ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0 );
+        ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0, 3 );
 
         if( job.isMaster() )
         {
