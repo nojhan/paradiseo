@@ -6,7 +6,6 @@
 # include <eoFunctor.h>
 # include <vector>
 
-
 template< typename EOT >
 class ParallelApply : public MpiJob
 {
@@ -32,6 +31,10 @@ class ParallelApply : public MpiJob
             data( _pop ),
             packetSize( _packetSize )
         {
+            if ( _packetSize <= 0 )
+            {
+                throw std::runtime_error("Packet size should not be negative.");
+            }
             tempArray = new EOT[ packetSize ];
         }
 
