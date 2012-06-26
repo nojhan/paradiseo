@@ -26,9 +26,10 @@ namespace eo
                         std::vector<EOT>& _pop,
                         AssignmentAlgorithm & algo,
                         int _masterRank,
-                        int _packetSize = 1
+                        int _packetSize = 1,
+                        long _maxTime = 0
                         ) :
-                    Job( algo, _masterRank ),
+                    Job( algo, _masterRank, _maxTime ),
                     func( _proc ),
                     index( 0 ),
                     size( _pop.size() ),
@@ -42,7 +43,7 @@ namespace eo
                     tempArray = new EOT[ packetSize ];
                 }
 
-                ~ParallelApply()
+                virtual ~ParallelApply()
                 {
                     delete [] tempArray;
                 }
@@ -59,7 +60,10 @@ namespace eo
                     }
 
                     int sentSize = futureIndex - index ;
+
                     comm.send( wrkRank, 1, sentSize );
+
+                    eo::log << eo::progress << "Evaluating individual " << index << std::endl;
 
                     assignedTasks[ wrkRank ].index = index;
                     assignedTasks[ wrkRank ].size = sentSize;
@@ -85,7 +89,7 @@ namespace eo
                     comm.send( masterRank, 1, tempArray, recvSize );
                 }
 
-                bool isFinished()
+                virtual bool isFinished()
                 {
                     return index == size;
                 }

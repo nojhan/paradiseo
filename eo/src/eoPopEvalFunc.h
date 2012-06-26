@@ -87,12 +87,14 @@ public:
           eoEvalFunc<EOT> & _eval,
           eo::mpi::AssignmentAlgorithm& _assignAlgo,
           int _masterRank,
-          int _packetSize = 1
+          int _packetSize = 1,
+          int _maxTime = 0
           ) :
       eval(_eval),
       assignAlgo( _assignAlgo ),
       masterRank( _masterRank ),
-      packetSize( _packetSize )
+      packetSize( _packetSize ),
+      maxTime( _maxTime )
   {
       // empty
   }
@@ -101,7 +103,7 @@ public:
   void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
   {
       (void)_parents;
-      parallelApply<EOT>(eval, _offspring, assignAlgo, masterRank, packetSize);
+      parallelApply<EOT>(eval, _offspring, assignAlgo, masterRank, packetSize, maxTime);
   }
 
 private:
@@ -110,6 +112,7 @@ private:
   eo::mpi::AssignmentAlgorithm & assignAlgo;
   int masterRank;
   int packetSize;
+  int maxTime;
 };
 #endif
 

@@ -3,10 +3,15 @@
 
 # include <vector>
 # include <map>
+# include <sys/time.h>
+# include <sys/resource.h>
+
 # include <utils/eoLogger.h>
+# include <eoExceptions.h>
 
 # include "eoMpiNode.h"
 # include "eoMpiAssignmentAlgorithm.h"
+
 // TODO TODOB comment!
 
 namespace eo
@@ -28,10 +33,11 @@ namespace eo
         {
             public:
 
-                Job( AssignmentAlgorithm& _algo, int _masterRank ) :
+                Job( AssignmentAlgorithm& _algo, int _masterRank, long maxTime = 0 ) :
                     assignmentAlgo( _algo ),
                     comm( Node::comm() ),
-                    masterRank( _masterRank )
+                    masterRank( _masterRank ),
+                    _maxTime( maxTime )
                 {
                     _isMaster = Node::comm().rank() == _masterRank;
                 }
@@ -43,6 +49,8 @@ namespace eo
                 // worker
                 virtual void processTask( ) = 0;
 
+            protected:
+
                 void master( )
                 {
                     int totalWorkers = assignmentAlgo.availableWorkers();
@@ -50,9 +58,18 @@ namespace eo
                     eo::log << eo::debug;
                     eo::log << "[M" << comm.rank() << "] Have " << totalWorkers << " workers." << std::endl;
 # endif
-
+                    bool timeStopped = false;
                     while( ! isFinished() )
                     {
+                        // Time restrictions
+                        getrusage( RUSAGE_SELF , &_usage );
+                        _current = _usage.ru_utime.tv_sec + _usage.ru_stime.tv_sec;
+                        if( _maxTime > 0 && _current > _maxTime )
+                        {
+                            timeStopped = true;
+                            break;
+                        }
+
                         int assignee = assignmentAlgo.get( );
                         while( assignee <= 0 )
                         {
@@ -71,6 +88,7 @@ namespace eo
 # ifndef NDEBUG
                         eo::log << "[M" << comm.rank() << "] Assignee : " << assignee << std::endl;
 # endif
+
                         comm.send( assignee, Channel::Commands, Message::Continue );
                         sendTask( assignee );
                     }
@@ -101,6 +119,10 @@ namespace eo
 # ifndef NDEBUG
                     eo::log << "[M" << comm.rank() << "] Leaving master task." << std::endl;
 # endif
+                    if( timeStopped )
+                    {
+                        throw eoMaxTimeException( _current );
+                    }
                 }
 
                 void worker( )
@@ -131,6 +153,8 @@ namespace eo
                     }
                 }
 
+            public:
+
                 void run( )
                 {
                     ( _isMaster ) ? master( ) : worker( );
@@ -146,6 +170,10 @@ namespace eo
                 bmpi::communicator& comm;
                 int masterRank;
                 bool _isMaster;
+
+                struct rusage _usage;
+                long _current;
+                const long _maxTime;
         };
     }
 }
