@@ -82,10 +82,12 @@ namespace eo
                     int recvSize;
                     comm.recv( masterRank, 1, recvSize );
                     comm.recv( masterRank, 1, tempArray, recvSize );
+                    timerStat.start("worker_processes");
                     for( int i = 0; i < recvSize ; ++i )
                     {
                         func( tempArray[ i ] );
                     }
+                    timerStat.stop("worker_processes");
                     comm.send( masterRank, 1, tempArray, recvSize );
                 }
 
