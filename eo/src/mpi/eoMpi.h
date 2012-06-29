@@ -8,6 +8,7 @@
 
 # include <utils/eoLogger.h>
 # include <utils/eoTimer.h>
+# include <eoFunctor.h>
 # include <eoExceptions.h>
 
 # include "eoMpiNode.h"
@@ -32,27 +33,83 @@ namespace eo
             const int Finish = 1;
         }
 
+        template<class Data>
+        struct SharedDataFunction
+        {
+            void data( Data & _d ) { d = _d; }
+
+            protected:
+            Data d;
+        };
+
+        template<class Data>
+        struct SendTaskFunction : public eoUF<int, void>, public SharedDataFunction<Data>
+        {
+            virtual ~SendTaskFunction() {}
+        };
+
+        template<class Data>
+        struct HandleResponseFunction : public eoUF<int, void>, public SharedDataFunction<Data>
+        {
+            virtual ~HandleResponseFunction() {}
+        };
+
+        template<class Data>
+        struct ProcessTaskFunction : public eoF<void>, public SharedDataFunction<Data>
+        {
+            virtual ~ProcessTaskFunction() {}
+        };
+
+        template<class Data>
+        struct IsFinishedFunction : public eoF<bool>, public SharedDataFunction<Data>
+        {
+            virtual ~IsFinishedFunction() {}
+        };
+
+        template<class Data>
+        struct JobStore
+        {
+            virtual SendTaskFunction<Data> & sendTask() = 0;
+            virtual HandleResponseFunction<Data> & handleResponse() = 0;
+            virtual ProcessTaskFunction<Data> & processTask() = 0;
+            virtual IsFinishedFunction<Data> & isFinished() = 0;
+        };
+
+        template<class Data>
         class Job
         {
             public:
 
-                Job( AssignmentAlgorithm& _algo, int _masterRank, long maxTime = 0 ) :
+                Job( AssignmentAlgorithm& _algo, int _masterRank, JobStore<Data> store ) :
+                // Job( AssignmentAlgorithm& _algo, int _masterRank, long maxTime = 0 ) :
                     assignmentAlgo( _algo ),
                     comm( Node::comm() ),
+                    // _maxTime( maxTime ),
                     masterRank( _masterRank ),
-                    _maxTime( maxTime )
+                    // Functors
+                    sendTask( store.sendTask() ),
+                    handleResponse( store.handleResponse() ),
+                    processTask( store.processTask() ),
+                    isFinished( store.isFinished() )
                 {
                     _isMaster = Node::comm().rank() == _masterRank;
                 }
 
+                /*
                 // master
                 virtual bool isFinished() = 0;
                 virtual void sendTask( int wrkRank ) = 0;
                 virtual void handleResponse( int wrkRank ) = 0;
                 // worker
                 virtual void processTask( ) = 0;
+                */
 
             protected:
+
+                SendTaskFunction<Data> & sendTask;
+                HandleResponseFunction<Data> & handleResponse;
+                ProcessTaskFunction<Data> & processTask;
+                IsFinishedFunction<Data> & isFinished;
 
                 void master( )
                 {
@@ -65,6 +122,7 @@ namespace eo
                     while( ! isFinished() )
                     {
                         // Time restrictions
+                        /*
                         getrusage( RUSAGE_SELF , &_usage );
                         _current = _usage.ru_utime.tv_sec + _usage.ru_stime.tv_sec;
                         if( _maxTime > 0 && _current > _maxTime )
@@ -72,6 +130,7 @@ namespace eo
                             timeStopped = true;
                             break;
                         }
+                        */
 
                         timerStat.start("master_wait_for_assignee");
                         int assignee = assignmentAlgo.get( );
@@ -130,10 +189,12 @@ namespace eo
 # ifndef NDEBUG
                     eo::log << "[M" << comm.rank() << "] Leaving master task." << std::endl;
 # endif
+                    /*
                     if( timeStopped )
                     {
                         throw eoMaxTimeException( _current );
                     }
+                    */
                 }
 
                 void worker( )
@@ -186,7 +247,7 @@ namespace eo
 
                 struct rusage _usage;
                 long _current;
-                const long _maxTime;
+                // const long _maxTime;
         };
     }
 }
