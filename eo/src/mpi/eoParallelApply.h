@@ -17,145 +17,178 @@ namespace eo
         };
 
         template<class EOT>
-        struct ParallelApplyData
-        {
-            ParallelApplyData() {}
+        class SendTaskParallelApply;
 
-            ParallelApplyData(
-                    eoUF<EOT&, void> & _proc,
-                    std::vector<EOT>& _pop,
-                    int _masterRank,
-                    int _packetSize
-                    ) :
-                func( _proc ),
-                data( _pop ),
-                index( 0 ),
-                size( _pop.size() ),
-                packetSize( _packetSize ),
-                // job
-                masterRank( _masterRank ),
-                comm( Node::comm() )
+        template<class EOT>
+        class HandleResponseParallelApply;
+
+        template<class EOT>
+        class ProcessTaskParallelApply;
+
+        template<class EOT>
+        class IsFinishedParallelApply;
+
+        template<class EOT>
+        class ParallelApply;
+
+        template< class EOT >
+        class BaseParallelApply
+        {
+            public:
+            void owner(ParallelApply<EOT> * job)
             {
-                tempArray = new EOT[ _packetSize ];
+                j = job;
             }
 
-            ~ParallelApplyData()
-             {
-                 delete [] tempArray;
-             }
+            protected:
+            ParallelApply<EOT> * j;
+        };
+
+        template< typename EOT >
+        class ParallelApply : public Job
+        {
+            friend class SendTaskParallelApply<EOT>;
+            friend class HandleResponseParallelApply<EOT>;
+            friend class ProcessTaskParallelApply<EOT>;
+            friend class IsFinishedParallelApply<EOT>;
+
+            public:
+
+            ParallelApply(
+                    eoUF<EOT&, void> & _proc,
+                    std::vector<EOT>& _pop,
+                    AssignmentAlgorithm & algo,
+                    int _masterRank,
+                    const JobStore& store,
+                    // long _maxTime = 0,
+                    int _packetSize = 1
+                    ) :
+                Job( algo, _masterRank, store ),
+                // Job( algo, _masterRank, _maxTime ),
+                func( _proc ),
+                data( _pop ),
+                packetSize( _packetSize ),
+                index( 0 ),
+                size( _pop.size() )
+            {
+                if ( _packetSize <= 0 )
+                {
+                    throw std::runtime_error("Packet size should not be negative.");
+                }
+                tempArray = new EOT [ _packetSize ];
+
+                dynamic_cast< BaseParallelApply<EOT>& >( sendTask ).owner( this );
+                dynamic_cast< BaseParallelApply<EOT>& >( handleResponse ).owner( this );
+                dynamic_cast< BaseParallelApply<EOT>& >( processTask ).owner( this );
+                dynamic_cast< BaseParallelApply<EOT>& >( isFinished ).owner( this );
+            }
+
+            ~ParallelApply()
+            {
+                delete [] tempArray;
+            }
+
+            protected:
 
             std::vector<EOT> & data;
             eoUF<EOT&, void> & func;
             int index;
             int size;
             std::map< int /* worker rank */, ParallelApplyAssignment /* min indexes in vector */> assignedTasks;
-
             int packetSize;
             EOT* tempArray;
 
-            int masterRank;
-            bmpi::communicator& comm;
+            // bmpi::communicator& comm;
         };
 
-        template<class Data>
-        struct SendTaskParallelApply : public SendTaskFunction< Data >
+        template< class EOT >
+        class SendTaskParallelApply : public SendTaskFunction, public BaseParallelApply<EOT>
         {
-            SendTaskParallelApply( Data & _d )
-            {
-                data( _d );
-            }
-
-            using SharedDataFunction< Data >::d;
+            public:
+            using BaseParallelApply<EOT>::j;
 
             // futureIndex, index, packetSize, size, comm, assignedTasks, data
             void operator()(int wrkRank)
             {
                 int futureIndex;
 
-                if( d.index + d.packetSize < d.size )
+                if( j->index + j->packetSize < j->size )
                 {
-                    futureIndex = d.index + d.packetSize;
+                    futureIndex = j->index + j->packetSize;
                 } else {
-                    futureIndex = d.size;
+                    futureIndex = j->size;
                 }
 
-                int sentSize = futureIndex - d.index ;
+                int sentSize = futureIndex - j->index ;
 
-                d.comm.send( wrkRank, 1, sentSize );
+                j->comm.send( wrkRank, 1, sentSize );
 
-                eo::log << eo::progress << "Evaluating individual " << d.index << std::endl;
+                eo::log << eo::progress << "Evaluating individual " << j->index << std::endl;
 
-                d.assignedTasks[ wrkRank ].index = d.index;
-                d.assignedTasks[ wrkRank ].size = sentSize;
+                j->assignedTasks[ wrkRank ].index = j->index;
+                j->assignedTasks[ wrkRank ].size = sentSize;
 
-                d.comm.send( wrkRank, 1, & (d.data[ index ]) , sentSize );
-                d.index = futureIndex;
+                j->comm.send( wrkRank, 1, & ( (j->data)[ j->index ] ) , sentSize );
+                j->index = futureIndex;
             }
         };
 
-        template<class Data>
-        struct HandleResponseParallelApply : public HandleResponseFunction< Data >
+        template< class EOT >
+        class HandleResponseParallelApply : public HandleResponseFunction, public BaseParallelApply<EOT>
         {
-            HandleResponseParallelApply( Data & _d )
-            {
-                data( _d );
-            }
+            public:
+            using BaseParallelApply<EOT>::j;
 
-            using SharedDataFunction< Data >::d;
             void operator()(int wrkRank)
             {
-                d.comm.recv( wrkRank, 1, & (d.data[ d.assignedTasks[wrkRank].index ] ), d.assignedTasks[wrkRank].size );
+                j->comm.recv( wrkRank, 1, & (j->data[ j->assignedTasks[wrkRank].index ] ), j->assignedTasks[wrkRank].size );
             }
         };
 
-        template<class Data>
-        struct ProcessTaskParallelApply : public ProcessTaskFunction< Data >
+        template< class EOT >
+        class ProcessTaskParallelApply : public ProcessTaskFunction, public BaseParallelApply<EOT>
         {
-            ProcessTaskParallelApply( Data & _d )
-            {
-                data( _d );
-            }
+            public:
+            using BaseParallelApply<EOT>::j;
 
-            using SharedDataFunction< Data >::d;
             void operator()()
             {
                 int recvSize;
-                d.comm.recv( d.masterRank, 1, recvSize );
-                d.comm.recv( d.masterRank, 1, d.tempArray, recvSize );
+
+                j->comm.recv( j->masterRank, 1, recvSize );
+                j->comm.recv( j->masterRank, 1, j->tempArray, recvSize );
                 timerStat.start("worker_processes");
                 for( int i = 0; i < recvSize ; ++i )
                 {
-                    d.func( d.tempArray[ i ] );
+                    j->func( j->tempArray[ i ] );
                 }
                 timerStat.stop("worker_processes");
-                d.comm.send( d.masterRank, 1, d.tempArray, recvSize );
+                j->comm.send( j->masterRank, 1, j->tempArray, recvSize );
             }
         };
 
-        template<class Data>
-        struct IsFinishedParallelApply : public IsFinishedFunction< Data >
+        template< class EOT >
+        class IsFinishedParallelApply : public IsFinishedFunction, public BaseParallelApply<EOT>
         {
-            IsFinishedParallelApply( Data & _d )
-            {
-                data( _d );
-            }
+            public:
 
-            using SharedDataFunction< Data >::d;
+            using BaseParallelApply<EOT>::j;
+
             bool operator()()
             {
-                return d.index == d.size;
+                return j->index == j->size;
             }
         };
 
-        template< typename Data >
-        struct ParallelApplyStore : public JobStore< Data >
+        template< class EOT >
+        struct ParallelApplyStore : public JobStore
         {
-            ParallelApplyStore( Data & data )
+            ParallelApplyStore()
             {
-                stpa = new SendTaskParallelApply< Data >( data );
-                hrpa = new HandleResponseParallelApply< Data >( data );
-                ptpa = new ProcessTaskParallelApply< Data >( data );
-                ispa = new IsFinishedParallelApply< Data >( data );
+                stpa = new SendTaskParallelApply<EOT>;
+                hrpa = new HandleResponseParallelApply<EOT>;
+                ptpa = new ProcessTaskParallelApply<EOT>;
+                ispa = new IsFinishedParallelApply<EOT>;
             }
 
             ~ParallelApplyStore()
@@ -166,45 +199,16 @@ namespace eo
                 delete ispa;
             }
 
-            SendTaskFunction< Data > & sendTask() { return *stpa; }
-            HandleResponseFunction< Data > & handleResponse() { return *hrpa; }
-            ProcessTaskFunction< Data > & processTask() { return *ptpa; }
-            IsFinishedFunction< Data > & isFinished() { return *ispa; }
+            SendTaskFunction& sendTask() const { return *stpa; }
+            HandleResponseFunction& handleResponse() const { return *hrpa; }
+            ProcessTaskFunction& processTask() const { return *ptpa; }
+            IsFinishedFunction& isFinished() const { return *ispa; }
 
             protected:
-            SendTaskParallelApply< Data >* stpa;
-            HandleResponseParallelApply< Data >* hrpa;
-            ProcessTaskParallelApply< Data >* ptpa;
-            IsFinishedParallelApply< Data >* ispa;
-        };
-
-        template< typename EOT >
-            class ParallelApply : public Job< ParallelApplyData<EOT> >
-        {
-            public:
-
-                ParallelApply(
-                        eoUF<EOT&, void> & _proc,
-                        std::vector<EOT>& _pop,
-                        AssignmentAlgorithm & algo,
-                        int _masterRank,
-                        // long _maxTime = 0,
-                        int _packetSize = 1
-                        ) :
-
-                    Job< ParallelApplyData<EOT> >( algo, _masterRank, ParallelApplyStore< ParallelApplyData<EOT> >( sharedData ) ),
-                    // Job( algo, _masterRank, _maxTime ),
-                    sharedData( _proc, _pop, _masterRank, _packetSize )
-
-            {
-                if ( _packetSize <= 0 )
-                {
-                    throw std::runtime_error("Packet size should not be negative.");
-                }
-            }
-
-            protected:
-                ParallelApplyData<EOT> sharedData;
+            SendTaskParallelApply<EOT>* stpa;
+            HandleResponseParallelApply<EOT>* hrpa;
+            ProcessTaskParallelApply<EOT>* ptpa;
+            IsFinishedParallelApply<EOT>* ispa;
         };
     }
 }

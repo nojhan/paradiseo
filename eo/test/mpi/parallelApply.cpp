@@ -27,7 +27,8 @@ struct Test
 int main(int argc, char** argv)
 {
     // eo::log << eo::setlevel( eo::debug );
-    bool launchOnlyOne = false; // Set this to true if you wanna launch only the first test.
+    eo::log << eo::setlevel( eo::quiet );
+    bool launchOnlyOne = false ; // Set this to true if you wanna launch only the first test.
 
     Node::init( argc, argv );
 
@@ -44,6 +45,8 @@ int main(int argc, char** argv)
     plusOne plusOneInstance;
 
     vector< Test > tests;
+
+    ParallelApplyStore<int> store;
     
     const int ALL = Node::comm().size();
 
@@ -109,7 +112,7 @@ int main(int argc, char** argv)
 
     for( unsigned int i = 0; i < tests.size(); ++i )
     {
-        ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0, 3 );
+        ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0, store, 3 );
 
         if( job.isMaster() )
         {

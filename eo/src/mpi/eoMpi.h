@@ -33,54 +33,42 @@ namespace eo
             const int Finish = 1;
         }
 
-        template<class Data>
-        struct SharedDataFunction
+        class SendTaskFunction : public eoUF<int, void>
         {
-            void data( Data & _d ) { d = _d; }
-
-            protected:
-            Data d;
-        };
-
-        template<class Data>
-        struct SendTaskFunction : public eoUF<int, void>, public SharedDataFunction<Data>
-        {
+            public:
             virtual ~SendTaskFunction() {}
         };
 
-        template<class Data>
-        struct HandleResponseFunction : public eoUF<int, void>, public SharedDataFunction<Data>
+        class HandleResponseFunction : public eoUF<int, void>
         {
+            public:
             virtual ~HandleResponseFunction() {}
         };
 
-        template<class Data>
-        struct ProcessTaskFunction : public eoF<void>, public SharedDataFunction<Data>
+        class ProcessTaskFunction : public eoF<void>
         {
+            public:
             virtual ~ProcessTaskFunction() {}
         };
 
-        template<class Data>
-        struct IsFinishedFunction : public eoF<bool>, public SharedDataFunction<Data>
+        class IsFinishedFunction : public eoF<bool>
         {
+            public:
             virtual ~IsFinishedFunction() {}
         };
 
-        template<class Data>
         struct JobStore
         {
-            virtual SendTaskFunction<Data> & sendTask() = 0;
-            virtual HandleResponseFunction<Data> & handleResponse() = 0;
-            virtual ProcessTaskFunction<Data> & processTask() = 0;
-            virtual IsFinishedFunction<Data> & isFinished() = 0;
+            virtual SendTaskFunction & sendTask() const = 0;
+            virtual HandleResponseFunction & handleResponse() const = 0;
+            virtual ProcessTaskFunction & processTask() const = 0;
+            virtual IsFinishedFunction & isFinished() const = 0;
         };
 
-        template<class Data>
         class Job
         {
             public:
-
-                Job( AssignmentAlgorithm& _algo, int _masterRank, JobStore<Data> store ) :
+                Job( AssignmentAlgorithm& _algo, int _masterRank, const JobStore & store ) :
                 // Job( AssignmentAlgorithm& _algo, int _masterRank, long maxTime = 0 ) :
                     assignmentAlgo( _algo ),
                     comm( Node::comm() ),
@@ -106,10 +94,10 @@ namespace eo
 
             protected:
 
-                SendTaskFunction<Data> & sendTask;
-                HandleResponseFunction<Data> & handleResponse;
-                ProcessTaskFunction<Data> & processTask;
-                IsFinishedFunction<Data> & isFinished;
+                SendTaskFunction & sendTask;
+                HandleResponseFunction & handleResponse;
+                ProcessTaskFunction & processTask;
+                IsFinishedFunction & isFinished;
 
                 void master( )
                 {
