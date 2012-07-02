@@ -38,7 +38,7 @@ int main(int argc, char** argv)
     {
         v.push_back( rand() );
     }
-    
+
     int offset = 0;
     vector<int> originalV = v;
 
@@ -46,8 +46,6 @@ int main(int argc, char** argv)
 
     vector< Test > tests;
 
-    ParallelApplyStore<int> store;
-    
     const int ALL = Node::comm().size();
 
     Test tIntervalStatic;
@@ -112,7 +110,9 @@ int main(int argc, char** argv)
 
     for( unsigned int i = 0; i < tests.size(); ++i )
     {
-        ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0, store, 3 );
+        // ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0, store, 3 );
+        ParallelApplyStore< int > store( plusOneInstance, v, 0, 3 );
+        Job< JobData<int> > job( *(tests[i].assign), 0, store );
 
         if( job.isMaster() )
         {

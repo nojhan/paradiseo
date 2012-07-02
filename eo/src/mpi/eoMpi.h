@@ -33,42 +33,91 @@ namespace eo
             const int Finish = 1;
         }
 
-        class SendTaskFunction : public eoUF<int, void>
+        template< typename JobData, typename Wrapped >
+        struct SharedDataFunction
+        {
+            SharedDataFunction( Wrapped * w )
+            {
+                wrapped = w;
+            }
+
+            void data( JobData* _d )
+            {
+                d = _d;
+            }
+
+            protected:
+            JobData* d;
+            Wrapped* wrapped;
+        };
+
+        template< typename JobData >
+        struct SendTaskFunction : public eoUF<int, void>, public SharedDataFunction< JobData, SendTaskFunction<JobData> >
         {
             public:
+
+            SendTaskFunction( SendTaskFunction<JobData>* w = 0 ) : SharedDataFunction<JobData, SendTaskFunction<JobData> >( w )
+            {
+                // empty
+            }
+
             virtual ~SendTaskFunction() {}
         };
 
-        class HandleResponseFunction : public eoUF<int, void>
+        template< typename JobData >
+        struct HandleResponseFunction : public eoUF<int, void>, public SharedDataFunction< JobData, HandleResponseFunction<JobData> >
         {
             public:
+
+            HandleResponseFunction( HandleResponseFunction<JobData>* w = 0 ) : SharedDataFunction<JobData, HandleResponseFunction<JobData> >( w )
+            {
+                // empty
+            }
+
             virtual ~HandleResponseFunction() {}
         };
 
-        class ProcessTaskFunction : public eoF<void>
+        template< typename JobData >
+        struct ProcessTaskFunction : public eoF<void>, public SharedDataFunction< JobData, ProcessTaskFunction<JobData> >
         {
             public:
+
+            ProcessTaskFunction( ProcessTaskFunction<JobData>* w = 0 ) : SharedDataFunction<JobData, ProcessTaskFunction<JobData> >( w )
+            {
+                // empty
+            }
+
             virtual ~ProcessTaskFunction() {}
         };
 
-        class IsFinishedFunction : public eoF<bool>
+        template< typename JobData >
+        struct IsFinishedFunction : public eoF<bool>, public SharedDataFunction< JobData, IsFinishedFunction<JobData> >
         {
             public:
+
+            IsFinishedFunction( IsFinishedFunction<JobData>* w = 0 ) : SharedDataFunction<JobData, IsFinishedFunction<JobData> >( w )
+            {
+                // empty
+            }
+
             virtual ~IsFinishedFunction() {}
         };
 
+        template< typename JobData >
         struct JobStore
         {
-            virtual SendTaskFunction & sendTask() const = 0;
-            virtual HandleResponseFunction & handleResponse() const = 0;
-            virtual ProcessTaskFunction & processTask() const = 0;
-            virtual IsFinishedFunction & isFinished() const = 0;
+            virtual SendTaskFunction<JobData> & sendTask() const = 0;
+            virtual HandleResponseFunction<JobData> & handleResponse() const = 0;
+            virtual ProcessTaskFunction<JobData> & processTask() const = 0;
+            virtual IsFinishedFunction<JobData> & isFinished() const = 0;
+            virtual JobData* data() = 0;
         };
 
+        template< class JobData >
         class Job
         {
             public:
-                Job( AssignmentAlgorithm& _algo, int _masterRank, const JobStore & store ) :
+                Job( AssignmentAlgorithm& _algo, int _masterRank, JobStore<JobData> & store ) :
                 // Job( AssignmentAlgorithm& _algo, int _masterRank, long maxTime = 0 ) :
                     assignmentAlgo( _algo ),
                     comm( Node::comm() ),
@@ -81,6 +130,11 @@ namespace eo
                     isFinished( store.isFinished() )
                 {
                     _isMaster = Node::comm().rank() == _masterRank;
+
+                    sendTask.data( store.data() );
+                    handleResponse.data( store.data() );
+                    processTask.data( store.data() );
+                    isFinished.data( store.data() );
                 }
 
                 /*
@@ -94,10 +148,10 @@ namespace eo
 
             protected:
 
-                SendTaskFunction & sendTask;
-                HandleResponseFunction & handleResponse;
-                ProcessTaskFunction & processTask;
-                IsFinishedFunction & isFinished;
+                SendTaskFunction<JobData> & sendTask;
+                HandleResponseFunction<JobData> & handleResponse;
+                ProcessTaskFunction<JobData> & processTask;
+                IsFinishedFunction<JobData> & isFinished;
 
                 void master( )
                 {
