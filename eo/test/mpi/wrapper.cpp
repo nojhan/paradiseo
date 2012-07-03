@@ -19,16 +19,16 @@ struct plusOne : public eoUF< int&, void >
 template< class EOT >
 struct ShowWrappedResult : public IsFinishedParallelApply<EOT>
 {
-    using IsFinishedParallelApply<EOT>::wrapped;
+    using IsFinishedParallelApply<EOT>::_wrapped;
 
-    ShowWrappedResult ( IsFinishedParallelApply<EOT> * w ) : IsFinishedParallelApply<EOT>( w ), times( 0 )
+    ShowWrappedResult ( IsFinishedParallelApply<EOT> * w = 0 ) : IsFinishedParallelApply<EOT>( w ), times( 0 )
     {
         // empty
     }
 
     bool operator()()
     {
-        bool wrappedValue = wrapped->operator()(); // (*wrapped)();
+        bool wrappedValue = _wrapped->operator()(); // (*_wrapped)();
         cout << times << ") Wrapped function would say that it is " << ( wrappedValue ? "":"not ") << "finished" << std::endl;
         ++times;
         return wrappedValue;
@@ -61,12 +61,11 @@ int main(int argc, char** argv)
     StaticAssignmentAlgorithm assign( v.size() );
 
     ParallelApplyStore< int > store( plusOneInstance, v, 0, 1 );
-    IsFinishedParallelApply< int >& wrapped = store.isFinished();
-    ShowWrappedResult< int >* wrapper = new ShowWrappedResult<int>( &wrapped );
-    store.isFinished( wrapper );
+    store.wrapIsFinished( new ShowWrappedResult<int> );
 
-    // Job< ParallelApplyData<int> > job( assign, 0, store );
     ParallelApply<int> job( assign, 0, store );
+    // Equivalent to:
+    // Job< ParallelApplyData<int> > job( assign, 0, store );
     job.run();
 
     if( job.isMaster() )

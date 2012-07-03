@@ -25,6 +25,7 @@ namespace eo
         namespace Channel
         {
             const int Commands = 0;
+            const int Messages = 1;
         }
 
         namespace Message
@@ -33,26 +34,32 @@ namespace eo
             const int Finish = 1;
         }
 
+
         template< typename JobData, typename Wrapped >
         struct SharedDataFunction
         {
-            SharedDataFunction( Wrapped * w )
+            SharedDataFunction( Wrapped * w = 0 ) : _wrapped( w )
             {
-                wrapped = w;
+                // empty
+            }
+
+            void wrapped( Wrapped * w )
+            {
+                _wrapped = w;
             }
 
             void data( JobData* _d )
             {
                 d = _d;
-                if( wrapped )
+                if( _wrapped )
                 {
-                    wrapped->data( _d );
+                    _wrapped->data( _d );
                 }
             }
 
             protected:
             JobData* d;
-            Wrapped* wrapped;
+            Wrapped* _wrapped;
         };
 
         template< typename JobData >
@@ -110,11 +117,78 @@ namespace eo
         template< typename JobData >
         struct JobStore
         {
-            virtual SendTaskFunction<JobData> & sendTask() const = 0;
-            virtual HandleResponseFunction<JobData> & handleResponse() const = 0;
-            virtual ProcessTaskFunction<JobData> & processTask() const = 0;
-            virtual IsFinishedFunction<JobData> & isFinished() const = 0;
+            JobStore(
+                SendTaskFunction<JobData>* stf,
+                HandleResponseFunction<JobData>* hrf,
+                ProcessTaskFunction<JobData>* ptf,
+                IsFinishedFunction<JobData>* iff
+            ) :
+                _stf( stf ), _hrf( hrf ), _ptf( ptf ), _iff( iff )
+            {
+                // empty
+            }
+
+            JobStore()
+            {
+                // empty
+            }
+
+            SendTaskFunction<JobData> & sendTask() { return *_stf; }
+            HandleResponseFunction<JobData> & handleResponse() { return *_hrf; }
+            ProcessTaskFunction<JobData> & processTask() { return *_ptf; }
+            IsFinishedFunction<JobData> & isFinished() { return *_iff; }
+
+            void sendTask( SendTaskFunction<JobData>* stf ) { _stf = stf; }
+            void handleResponse( HandleResponseFunction<JobData>* hrf ) { _hrf = hrf; }
+            void processTask( ProcessTaskFunction<JobData>* ptf ) { _ptf = ptf; }
+            void isFinished( IsFinishedFunction<JobData>* iff ) { _iff = iff; }
+
+            void wrapSendTask( SendTaskFunction<JobData>* stf )
+            {
+                if( stf )
+                {
+                    stf->wrapped( _stf );
+                    _stf = stf;
+                }
+            }
+
+            void wrapHandleResponse( HandleResponseFunction<JobData>* hrf )
+            {
+                if( hrf )
+                {
+                    hrf->wrapped( _hrf );
+                    _hrf = hrf;
+                }
+            }
+
+            void wrapProcessTask( ProcessTaskFunction<JobData>* ptf )
+            {
+                if( ptf )
+                {
+                    ptf->wrapped( _ptf );
+                    _ptf = ptf;
+                }
+            }
+
+            void wrapIsFinished( IsFinishedFunction<JobData>* iff )
+            {
+                if( iff )
+                {
+                    iff->wrapped( _iff );
+                    _iff = iff;
+                }
+            }
+
+            // TODO commenter : laissé à la couche d'en dessous car impossible d'initialiser une donnée membre d'une classe mère depuis une classe fille.
             virtual JobData* data() = 0;
+
+            protected:
+
+            // TODO commenter : Utiliser des pointeurs pour éviter d'écraser les fonctions wrappées
+            SendTaskFunction< JobData >* _stf;
+            HandleResponseFunction< JobData >* _hrf;
+            ProcessTaskFunction< JobData >* _ptf;
+            IsFinishedFunction< JobData >* _iff;
         };
 
         template< class JobData >
@@ -140,15 +214,6 @@ namespace eo
                     processTask.data( store.data() );
                     isFinished.data( store.data() );
                 }
-
-                /*
-                // master
-                virtual bool isFinished() = 0;
-                virtual void sendTask( int wrkRank ) = 0;
-                virtual void handleResponse( int wrkRank ) = 0;
-                // worker
-                virtual void processTask( ) = 0;
-                */
 
             protected:
 

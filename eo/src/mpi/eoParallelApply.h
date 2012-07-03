@@ -153,6 +153,11 @@ namespace eo
         template< class EOT >
         struct ParallelApplyStore : public JobStore< ParallelApplyData<EOT> >
         {
+            using JobStore< ParallelApplyData<EOT> >::_stf;
+            using JobStore< ParallelApplyData<EOT> >::_hrf;
+            using JobStore< ParallelApplyData<EOT> >::_ptf;
+            using JobStore< ParallelApplyData<EOT> >::_iff;
+
             ParallelApplyStore(
                     eoUF<EOT&, void> & _proc,
                     std::vector<EOT>& _pop,
@@ -162,42 +167,28 @@ namespace eo
                    )
                 : _data( _proc, _pop, _masterRank, _packetSize )
             {
-                stpa = new SendTaskParallelApply<EOT>;
-                hrpa = new HandleResponseParallelApply<EOT>;
-                ptpa = new ProcessTaskParallelApply<EOT>;
-                ispa = new IsFinishedParallelApply<EOT>;
+                _stf = new SendTaskParallelApply<EOT>;
+                _hrf = new HandleResponseParallelApply<EOT>;
+                _ptf = new ProcessTaskParallelApply<EOT>;
+                _iff = new IsFinishedParallelApply<EOT>;
             }
-
-            ~ParallelApplyStore()
-            {
-                delete stpa;
-                delete hrpa;
-                delete ptpa;
-                delete ispa;
-            }
-
-            SendTaskParallelApply< EOT >& sendTask() const { return *stpa; }
-            HandleResponseParallelApply< EOT >& handleResponse() const { return *hrpa; }
-            ProcessTaskParallelApply< EOT > & processTask() const { return *ptpa; }
-            IsFinishedParallelApply< EOT >& isFinished() const { return *ispa; }
-
-            void sendTask( SendTaskParallelApply< EOT >* _stpa ) { stpa = _stpa; }
-            void handleResponse( HandleResponseParallelApply< EOT >* _hrpa ) { hrpa = _hrpa; }
-            void processTask( ProcessTaskParallelApply< EOT >* _ptpa ) { ptpa = _ptpa; }
-            void isFinished( IsFinishedParallelApply< EOT >* _ispa ) { ispa = _ispa; }
 
             ParallelApplyData<EOT>* data() { return &_data; }
 
-            protected:
-            // TODO commenter : Utiliser des pointeurs pour éviter d'écraser les fonctions wrappées
-            SendTaskParallelApply<EOT>* stpa;
-            HandleResponseParallelApply<EOT>* hrpa;
-            ProcessTaskParallelApply<EOT>* ptpa;
-            IsFinishedParallelApply<EOT>* ispa;
+            ~ParallelApplyStore()
+            {
+                delete _stf;
+                delete _hrf;
+                delete _ptf;
+                delete _iff;
+            }
 
+            protected:
             ParallelApplyData<EOT> _data;
         };
 
+        // TODO commentaire : impossible de faire un typedef sur un template sans passer
+        // par un traits => complique la tâche de l'utilisateur pour rien.
         template< typename EOT >
         class ParallelApply : public Job< ParallelApplyData<EOT> >
         {
@@ -212,10 +203,6 @@ namespace eo
             {
                 // empty
             }
-
-            protected:
-
-            // bmpi::communicator& comm;
         };
     }
 }
