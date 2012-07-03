@@ -44,6 +44,10 @@ namespace eo
             void data( JobData* _d )
             {
                 d = _d;
+                if( wrapped )
+                {
+                    wrapped->data( _d );
+                }
             }
 
             protected:

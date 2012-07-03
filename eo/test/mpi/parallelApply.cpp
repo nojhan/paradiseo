@@ -112,7 +112,8 @@ int main(int argc, char** argv)
     {
         // ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0, store, 3 );
         ParallelApplyStore< int > store( plusOneInstance, v, 0, 3 );
-        Job< JobData<int> > job( *(tests[i].assign), 0, store );
+        // Job< JobData<int> > job( *(tests[i].assign), 0, store );
+        ParallelApply< int > job( *(tests[i].assign), 0, store );
 
         if( job.isMaster() )
         {
