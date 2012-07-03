@@ -31,7 +31,9 @@ void subtask( vector<int>& v, int rank )
     workers.push_back( rank + 4 );
     DynamicAssignmentAlgorithm algo( workers );
     SubWork sw;
-    ParallelApply<int> job( sw, v, algo, rank );
+
+    ParallelApplyStore<int> store( sw, v, rank );
+    ParallelApply<int> job( algo, rank, store );
     job.run();
 }
 
@@ -72,7 +74,8 @@ int main(int argc, char** argv)
             {
                 Work w;
                 DynamicAssignmentAlgorithm algo( 1, 2 );
-                ParallelApply< vector<int> > job( w, metaV, algo, 0 );
+                ParallelApplyStore< vector<int> > store( w, metaV, 0 );
+                ParallelApply< vector<int> > job( algo, 0, store );
                 job.run();
                 if( job.isMaster() )
                 {
