@@ -60,10 +60,10 @@ int main(int argc, char** argv)
 
     StaticAssignmentAlgorithm assign( v.size() );
 
-    ParallelApplyStore< int > store( plusOneInstance, v, 0, 1 );
+    ParallelApplyStore< int > store( plusOneInstance, v, eo::mpi::DEFAULT_MASTER, 1 );
     store.wrapIsFinished( new ShowWrappedResult<int> );
 
-    ParallelApply<int> job( assign, 0, store );
+    ParallelApply<int> job( assign, eo::mpi::DEFAULT_MASTER, store );
     // Equivalent to:
     // Job< ParallelApplyData<int> > job( assign, 0, store );
     job.run();

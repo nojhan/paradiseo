@@ -34,6 +34,7 @@ namespace eo
             const int Finish = 1;
         }
 
+        const int DEFAULT_MASTER = 0;
 
         template< typename JobData, typename Wrapped >
         struct SharedDataFunction
