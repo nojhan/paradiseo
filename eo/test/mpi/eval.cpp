@@ -11,6 +11,8 @@
 
 #include <mpi/eoMpi.h>
 
+#include <mpi/eoTerminateJob.h>
+
 #include <boost/mpi.hpp>
 
 #include <vector>
@@ -83,6 +85,7 @@ typedef eoRealSerializable EOT;
 int main(int ac, char** av)
 {
     eo::mpi::Node::init( ac, av );
+    eo::log << eo::setlevel( eo::debug );
 
     eoParser parser(ac, av);
 
@@ -110,7 +113,7 @@ int main(int ac, char** av)
     eo::log << eo::setlevel( eo::debug );
 
     eo::mpi::DynamicAssignmentAlgorithm assign;
-    eoParallelPopLoopEval< EOT > popEval( eval, assign, 0, 3 );
+    eoParallelPopLoopEval< EOT > popEval( eval, assign, eo::mpi::DEFAULT_MASTER, 3 );
     popEval( pop, pop );
 
     eo::log << eo::quiet << "DONE!" << std::endl;

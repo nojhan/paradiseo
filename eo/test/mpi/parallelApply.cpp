@@ -110,7 +110,6 @@ int main(int argc, char** argv)
 
     for( unsigned int i = 0; i < tests.size(); ++i )
     {
-        // ParallelApply<int> job( plusOneInstance, v, *(tests[i].assign), 0, store, 3 );
         ParallelApplyStore< int > store( plusOneInstance, v, eo::mpi::DEFAULT_MASTER, 3 );
         // Job< JobData<int> > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );
         ParallelApply< int > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );

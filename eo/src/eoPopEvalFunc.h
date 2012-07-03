@@ -99,6 +99,15 @@ public:
       // empty
   }
 
+  ~eoParallelPopLoopEval()
+  {
+      if( eo::mpi::Node::comm().rank() == masterRank )
+      {
+          eo::mpi::EmptyJob job( assignAlgo, masterRank );
+          job.run();
+      }
+  }
+
   /** Do the job: simple loop over the offspring */
   void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
   {

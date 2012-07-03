@@ -36,6 +36,7 @@
 # ifdef WITH_MPI
 # include <mpi/eoMpi.h>
 # include <mpi/eoMultiParallelApply.h>
+# include <mpi/eoTerminateJob.h>
 # endif // WITH_MPI
 
 /**
@@ -94,7 +95,8 @@ void parallelApply(
         int _packetSize,
         int _maxTime)
 {
-    eo::mpi::MultiParallelApply<EOT> job( _proc, _pop, _algo, _masterRank, _packetSize, _maxTime );
+    eo::mpi::ParallelEvalStore<EOT> store( _proc, _pop, _masterRank, _packetSize );
+    eo::mpi::ParallelApply<EOT> job( _algo, _masterRank, store );
     job.run();
 }
 #endif

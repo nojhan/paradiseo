@@ -1,4 +1,3 @@
-
 # ifndef __EO_MULTI_PARALLEL_APPLY_H__
 # define __EO_MULTI_PARALLEL_APPLY_H__
 
@@ -8,36 +7,41 @@ namespace eo
 {
     namespace mpi
     {
-        template< typename EOT >
-        class MultiParallelApply : public ParallelApply<EOT>
+        template< class EOT >
+        class ProcessTaskParallelEval : public ProcessTaskParallelApply<EOT>
         {
             public:
 
-                // using ParallelApply<EOT>::comm;
-                using ParallelApply<EOT>::masterRank;
+            using ProcessTaskParallelApply<EOT>::_wrapped;
+            using ProcessTaskParallelApply<EOT>::d;
 
-                MultiParallelApply(
-                        eoUF<EOT&, void> & _proc,
-                        std::vector<EOT>& _pop,
-                        AssignmentAlgorithm & algo,
-                        int _masterRank,
-                        int _packetSize = 1,
-                        long _maxTime = 0
-                        ) :
-                    ParallelApply<EOT>( _proc, _pop, algo, _masterRank, _packetSize, _maxTime )
+            void operator()()
+            {
+                int order = Message::Continue;
+                while( order != Message::Finish )
                 {
-                    // empty
+                    _wrapped->operator()();
+                    d->comm.recv( d->masterRank, Channel::Commands, order );
                 }
+            }
+        };
 
-                virtual void processTask( )
-                {
-                    int order = Message::Continue;
-                    while( order != Message::Finish )
-                    {
-                        ParallelApply<EOT>::processTask( );
-                        ParallelApply<EOT>::comm.recv( masterRank, Channel::Commands, order );
-                    }
-                }
+        template< class EOT >
+        struct ParallelEvalStore : public ParallelApplyStore< EOT >
+        {
+            using ParallelApplyStore<EOT>::wrapProcessTask;
+
+            ParallelEvalStore(
+                    eoUF<EOT&, void> & _proc,
+                    std::vector<EOT>& _pop,
+                    int _masterRank,
+                    // long _maxTime = 0,
+                    int _packetSize = 1
+                   ) :
+                ParallelApplyStore< EOT >( _proc, _pop, _masterRank, _packetSize )
+            {
+                wrapProcessTask( new ProcessTaskParallelEval<EOT> );
+            }
         };
     }
 }

@@ -24,7 +24,7 @@ namespace eo
                     std::vector<EOT>& _pop,
                     int _masterRank,
                     // long _maxTime = 0,
-                    int _packetSize // FIXME = 1 ?
+                    int _packetSize
                    ) :
                 data( _pop ), func( _proc ), index( 0 ), size( _pop.size() ), packetSize( _packetSize ), masterRank( _masterRank ), comm( Node::comm() )
             {
@@ -163,14 +163,19 @@ namespace eo
                     std::vector<EOT>& _pop,
                     int _masterRank,
                     // long _maxTime = 0,
-                    int _packetSize = 1
-                   )
-                : _data( _proc, _pop, _masterRank, _packetSize )
+                    int _packetSize = 1,
+                    // JobStore functors
+                    SendTaskParallelApply<EOT> * stpa = new SendTaskParallelApply<EOT>,
+                    HandleResponseParallelApply<EOT>* hrpa = new HandleResponseParallelApply<EOT>,
+                    ProcessTaskParallelApply<EOT>* ptpa = new ProcessTaskParallelApply<EOT>,
+                    IsFinishedParallelApply<EOT>* ifpa = new IsFinishedParallelApply<EOT>
+                   ) :
+                _data( _proc, _pop, _masterRank, _packetSize )
             {
-                _stf = new SendTaskParallelApply<EOT>;
-                _hrf = new HandleResponseParallelApply<EOT>;
-                _ptf = new ProcessTaskParallelApply<EOT>;
-                _iff = new IsFinishedParallelApply<EOT>;
+                _stf = stpa;
+                _hrf = hrpa;
+                _ptf = ptpa;
+                _iff = ifpa;
             }
 
             ParallelApplyData<EOT>* data() { return &_data; }
