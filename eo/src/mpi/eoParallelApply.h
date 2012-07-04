@@ -21,7 +21,7 @@ namespace eo
         {
             ParallelApplyData(
                     eoUF<EOT&, void> & _proc,
-                    std::vector<EOT>& _pop,
+                    std::vector<EOT> & _pop,
                     int _masterRank,
                     // long _maxTime = 0,
                     int _packetSize
@@ -33,6 +33,14 @@ namespace eo
                     throw std::runtime_error("Packet size should not be negative.");
                 }
                 tempArray = new EOT[ _packetSize ];
+            }
+
+            void init( std::vector<EOT>& _pop )
+            {
+                index = 0;
+                size = _pop.size();
+                data = _pop;
+                assignedTasks.clear();
             }
 
             ~ParallelApplyData()
@@ -180,7 +188,7 @@ namespace eo
 
             ParallelApplyData<EOT>* data() { return &_data; }
 
-            ~ParallelApplyStore()
+            virtual ~ParallelApplyStore()
             {
                 delete _stf;
                 delete _hrf;

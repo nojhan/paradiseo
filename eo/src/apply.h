@@ -88,15 +88,13 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 #ifdef WITH_MPI
 template<class EOT>
 void parallelApply(
-        eoUF<EOT&, void>& _proc,
         std::vector<EOT>& _pop,
         eo::mpi::AssignmentAlgorithm& _algo,
         int _masterRank,
-        int _packetSize,
-        int _maxTime)
+        eo::mpi::ParallelEvalStore<EOT> & _store )
 {
-    eo::mpi::ParallelEvalStore<EOT> store( _proc, _pop, _masterRank, _packetSize );
-    eo::mpi::ParallelApply<EOT> job( _algo, _masterRank, store );
+    _store.data( _pop );
+    eo::mpi::ParallelApply<EOT> job( _algo, _masterRank, _store );
     job.run();
 }
 #endif

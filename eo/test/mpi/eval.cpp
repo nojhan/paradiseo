@@ -82,10 +82,40 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
 
 typedef eoRealSerializable EOT;
 
+struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
+{
+    CatBestAnswers()
+    {
+        best.fitness( 1000000000. );
+    }
+
+    using eo::mpi::HandleResponseParallelApply<EOT>::_wrapped;
+    using eo::mpi::HandleResponseParallelApply<EOT>::d;
+
+    void operator()(int wrkRank)
+    {
+        int index = d->assignedTasks[wrkRank].index;
+        int size = d->assignedTasks[wrkRank].size;
+        (*_wrapped)( wrkRank );
+        for(int i = index; i < index+size; ++i)
+        {
+            if( best.fitness() < d->data[ i ].fitness() )
+            {
+                eo::log << eo::quiet << "Better solution found:" << d->data[i].fitness() << std::endl;
+                best = d->data[ i ];
+            }
+        }
+    }
+
+    protected:
+
+    EOT best;
+};
+
 int main(int ac, char** av)
 {
     eo::mpi::Node::init( ac, av );
-    eo::log << eo::setlevel( eo::debug );
+    eo::log << eo::setlevel( eo::quiet );
 
     eoParser parser(ac, av);
 
@@ -106,17 +136,33 @@ int main(int ac, char** av)
     eoEvalFuncPtr< EOT, double, const std::vector< double >& > mainEval( real_value );
     eoEvalFuncCounter< EOT > eval( mainEval );
 
-    eoPop< EOT > pop( popSize, init );
-
-    eo::log << "Size of population : " << popSize << std::endl;
-
-    eo::log << eo::setlevel( eo::debug );
-
+    int rank = eo::mpi::Node::comm().rank();
     eo::mpi::DynamicAssignmentAlgorithm assign;
-    eoParallelPopLoopEval< EOT > popEval( eval, assign, eo::mpi::DEFAULT_MASTER, 3 );
-    popEval( pop, pop );
+    if( rank == eo::mpi::DEFAULT_MASTER )
+    {
+        eoPop< EOT > pop( popSize, init );
 
-    eo::log << eo::quiet << "DONE!" << std::endl;
+        eo::log << "Size of population : " << popSize << std::endl;
+
+        eo::mpi::ParallelEvalStore< EOT > store( eval, eo::mpi::DEFAULT_MASTER );
+        store.wrapHandleResponse( new CatBestAnswers );
+
+        eoParallelPopLoopEval< EOT > popEval( eval, assign, &store, eo::mpi::DEFAULT_MASTER, 3 );
+        eo::log << eo::quiet << "Before first evaluation." << std::endl;
+        popEval( pop, pop );
+        eo::log << eo::quiet << "After first evaluation." << std::endl;
+
+        pop = eoPop< EOT >( popSize, init );
+        popEval( pop, pop );
+        eo::log << eo::quiet << "After second evaluation." << std::endl;
+
+        eo::log << eo::quiet << "DONE!" << std::endl;
+    } else
+    {
+        eoPop< EOT > pop( popSize, init );
+        eoParallelPopLoopEval< EOT > popEval( eval, assign, eo::mpi::DEFAULT_MASTER, 3 );
+        popEval( pop, pop );
+    }
 
     return 0;
 }

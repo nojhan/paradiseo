@@ -24,6 +24,11 @@ namespace eo
                     d->comm.recv( d->masterRank, Channel::Commands, order );
                 }
             }
+
+            ~ProcessTaskParallelEval()
+            {
+                delete _wrapped;
+            }
         };
 
         template< class EOT >
@@ -33,14 +38,19 @@ namespace eo
 
             ParallelEvalStore(
                     eoUF<EOT&, void> & _proc,
-                    std::vector<EOT>& _pop,
                     int _masterRank,
                     // long _maxTime = 0,
                     int _packetSize = 1
                    ) :
-                ParallelApplyStore< EOT >( _proc, _pop, _masterRank, _packetSize )
+                ParallelApplyStore< EOT >( _proc, *( new std::vector<EOT> ), _masterRank, _packetSize )
+                // FIXME memory leak because of vector ==> use const correctness
             {
                 wrapProcessTask( new ProcessTaskParallelEval<EOT> );
+            }
+
+            void data( std::vector<EOT>& _pop )
+            {
+                ParallelApplyStore<EOT>::_data.init( _pop );
             }
         };
     }

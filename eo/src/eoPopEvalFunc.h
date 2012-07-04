@@ -80,48 +80,72 @@ private:
 #ifdef WITH_MPI
 // TODO TODOB commenter
 template<class EOT>
-class eoParallelPopLoopEval : public eoPopEvalFunc<EOT> {
-public:
-  /** Ctor: set value of embedded eoEvalFunc */
-  eoParallelPopLoopEval(
-          eoEvalFunc<EOT> & _eval,
-          eo::mpi::AssignmentAlgorithm& _assignAlgo,
-          int _masterRank,
-          int _packetSize = 1,
-          int _maxTime = 0
-          ) :
-      eval(_eval),
-      assignAlgo( _assignAlgo ),
-      masterRank( _masterRank ),
-      packetSize( _packetSize ),
-      maxTime( _maxTime )
-  {
-      // empty
-  }
+class eoParallelPopLoopEval : public eoPopEvalFunc<EOT>
+{
+    public:
+        /** Ctor: set value of embedded eoEvalFunc */
+        eoParallelPopLoopEval(
+                eoEvalFunc<EOT> & _eval,
+                eo::mpi::AssignmentAlgorithm& _assignAlgo,
+                int _masterRank,
+                int _packetSize = 1
+                ) :
+            eval(_eval),
+            assignAlgo( _assignAlgo ),
+            masterRank( _masterRank ),
+            packetSize( _packetSize ),
+            needToDeleteStore( true )
+        {
+            store = new eo::mpi::ParallelEvalStore<EOT>( _eval, _masterRank, _packetSize );
+        }
 
-  ~eoParallelPopLoopEval()
-  {
-      if( eo::mpi::Node::comm().rank() == masterRank )
-      {
-          eo::mpi::EmptyJob job( assignAlgo, masterRank );
-          job.run();
-      }
-  }
+        eoParallelPopLoopEval(
+                eoEvalFunc<EOT> & _eval,
+                eo::mpi::AssignmentAlgorithm& _assignAlgo,
+                eo::mpi::ParallelEvalStore<EOT>* _store,
+                int _masterRank,
+                int _packetSize = 1
+                ) :
+            eval(_eval),
+            assignAlgo( _assignAlgo ),
+            masterRank( _masterRank ),
+            packetSize( _packetSize ),
+            needToDeleteStore( false ),
+            store( _store )
+        {
+            // empty
+        }
 
-  /** Do the job: simple loop over the offspring */
-  void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
-  {
-      (void)_parents;
-      parallelApply<EOT>(eval, _offspring, assignAlgo, masterRank, packetSize, maxTime);
-  }
+        ~eoParallelPopLoopEval()
+        {
+            if( eo::mpi::Node::comm().rank() == masterRank )
+            {
+                eo::mpi::EmptyJob job( assignAlgo, masterRank );
+                job.run();
+            }
 
-private:
-  eoEvalFunc<EOT> & eval;
+            if( needToDeleteStore )
+            {
+                delete store;
+            }
+        }
 
-  eo::mpi::AssignmentAlgorithm & assignAlgo;
-  int masterRank;
-  int packetSize;
-  int maxTime;
+        /** Do the job: simple loop over the offspring */
+        void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
+        {
+            (void)_parents;
+            parallelApply<EOT>(_offspring, assignAlgo, masterRank, *store);
+        }
+
+    private:
+        eoEvalFunc<EOT> & eval;
+
+        eo::mpi::AssignmentAlgorithm & assignAlgo;
+        eo::mpi::ParallelEvalStore<EOT>* store;
+        int masterRank;
+        int packetSize;
+
+        bool needToDeleteStore;
 };
 #endif
 
