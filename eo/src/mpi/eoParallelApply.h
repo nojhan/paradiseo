@@ -26,7 +26,7 @@ namespace eo
                     // long _maxTime = 0,
                     int _packetSize
                    ) :
-                data( _pop ), func( _proc ), index( 0 ), size( _pop.size() ), packetSize( _packetSize ), masterRank( _masterRank ), comm( Node::comm() )
+                _data( &_pop ), func( _proc ), index( 0 ), size( _pop.size() ), packetSize( _packetSize ), masterRank( _masterRank ), comm( Node::comm() )
             {
                 if ( _packetSize <= 0 )
                 {
@@ -39,7 +39,7 @@ namespace eo
             {
                 index = 0;
                 size = _pop.size();
-                data = _pop;
+                _data = &_pop;
                 assignedTasks.clear();
             }
 
@@ -48,7 +48,12 @@ namespace eo
                 delete [] tempArray;
             }
 
-            std::vector<EOT> & data;
+            std::vector<EOT>& data()
+            {
+                return *_data;
+            }
+
+            std::vector<EOT> * _data;
             eoUF<EOT&, void> & func;
             int index;
             int size;
@@ -71,7 +76,6 @@ namespace eo
                 // empty
             }
 
-            // futureIndex, index, packetSize, size, comm, assignedTasks, data
             void operator()(int wrkRank)
             {
                 int futureIndex;
@@ -92,7 +96,7 @@ namespace eo
                 d->assignedTasks[ wrkRank ].index = d->index;
                 d->assignedTasks[ wrkRank ].size = sentSize;
 
-                d->comm.send( wrkRank, 1, & ( (d->data)[ d->index ] ) , sentSize );
+                d->comm.send( wrkRank, 1, & ( (d->data())[ d->index ] ) , sentSize );
                 d->index = futureIndex;
             }
         };
@@ -110,7 +114,7 @@ namespace eo
 
             void operator()(int wrkRank)
             {
-                d->comm.recv( wrkRank, 1, & (d->data[ d->assignedTasks[wrkRank].index ] ), d->assignedTasks[wrkRank].size );
+                d->comm.recv( wrkRank, 1, & (d->data()[ d->assignedTasks[wrkRank].index ] ), d->assignedTasks[wrkRank].size );
             }
         };
 

@@ -99,10 +99,10 @@ struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
         (*_wrapped)( wrkRank );
         for(int i = index; i < index+size; ++i)
         {
-            if( best.fitness() < d->data[ i ].fitness() )
+            if( best.fitness() < d->data()[ i ].fitness() )
             {
-                eo::log << eo::quiet << "Better solution found:" << d->data[i].fitness() << std::endl;
-                best = d->data[ i ];
+                eo::log << eo::quiet << "Better solution found:" << d->data()[i].fitness() << std::endl;
+                best = d->data()[ i ];
             }
         }
     }
