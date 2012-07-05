@@ -197,10 +197,8 @@ namespace eo
         {
             public:
                 Job( AssignmentAlgorithm& _algo, int _masterRank, JobStore<JobData> & store ) :
-                // Job( AssignmentAlgorithm& _algo, int _masterRank, long maxTime = 0 ) :
                     assignmentAlgo( _algo ),
                     comm( Node::comm() ),
-                    // _maxTime( maxTime ),
                     masterRank( _masterRank ),
                     // Functors
                     sendTask( store.sendTask() ),
@@ -230,20 +228,8 @@ namespace eo
                     eo::log << eo::debug;
                     eo::log << "[M" << comm.rank() << "] Have " << totalWorkers << " workers." << std::endl;
 # endif
-                    bool timeStopped = false;
                     while( ! isFinished() )
                     {
-                        // Time restrictions
-                        /*
-                        getrusage( RUSAGE_SELF , &_usage );
-                        _current = _usage.ru_utime.tv_sec + _usage.ru_stime.tv_sec;
-                        if( _maxTime > 0 && _current > _maxTime )
-                        {
-                            timeStopped = true;
-                            break;
-                        }
-                        */
-
                         timerStat.start("master_wait_for_assignee");
                         int assignee = assignmentAlgo.get( );
                         while( assignee <= 0 )
@@ -301,12 +287,6 @@ namespace eo
 # ifndef NDEBUG
                     eo::log << "[M" << comm.rank() << "] Leaving master task." << std::endl;
 # endif
-                    /*
-                    if( timeStopped )
-                    {
-                        throw eoMaxTimeException( _current );
-                    }
-                    */
                 }
 
                 void worker( )
@@ -359,7 +339,6 @@ namespace eo
 
                 struct rusage _usage;
                 long _current;
-                // const long _maxTime;
         };
     }
 }

@@ -11,6 +11,7 @@ namespace eo
         {
             void operator()( int _ )
             {
+                ++_;
             }
         };
 
@@ -18,6 +19,7 @@ namespace eo
         {
             void operator()( int _ )
             {
+                ++_;
             }
         };
 
