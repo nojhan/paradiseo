@@ -139,7 +139,8 @@ void main_function()
     eoGenContinue<Chrom> continuator1(50);
     eoFitContinue<Chrom> continuator2(65535.f);
 
-    eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
+    eoCombinedContinue<Chrom> continuator(continuator1);
+    continuator.add( continuator2);
 
     eoCheckPoint<Chrom> checkpoint(continuator);
 

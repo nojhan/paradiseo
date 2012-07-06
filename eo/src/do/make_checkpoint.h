@@ -201,7 +201,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
     // The Stdout monitor will print parameters to the screen ...
     if ( needStdoutMonitor )
 	{
-	    eoStdoutMonitor *monitor = new eoStdoutMonitor(false);
+	    eoStdoutMonitor *monitor = new eoStdoutMonitor(/*false FIXME remove this deprecated prototype*/);
 	    _state.storeFunctor(monitor);
 
 	    // when called by the checkpoint (i.e. at every generation)
