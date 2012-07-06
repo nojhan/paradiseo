@@ -31,7 +31,10 @@
 #include <utils/eoLogger.h>
 #include <eoFunctor.h>
 #include <vector>
+
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 
 /**
   Applies a unary function to a std::vector of things.
