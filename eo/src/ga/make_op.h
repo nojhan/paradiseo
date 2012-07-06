@@ -115,11 +115,11 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
       throw std::runtime_error("Invalid uRate");
 
     // minimum check
-    bool bCross = true;
+    // bool bCross = true; // not used ?
     if (onePointRateParam.value()+twoPointsRateParam.value()+uRateParam.value()==0)
       {
         std::cerr << "Warning: no crossover" << std::endl;
-        bCross = false;
+        // bCross = false;
       }
 
     // Create the CombinedQuadOp
@@ -156,17 +156,29 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     if ( (bitFlipRateParam.value() < 0) )
       throw std::runtime_error("Invalid bitFlipRate");
 
+    // oneBitFlip
     eoValueParam<double> & oneBitRateParam = _parser.createParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'd', "Variation Operators" );
     // minimum check
     if ( (oneBitRateParam.value() < 0) )
       throw std::runtime_error("Invalid oneBitRate");
 
+    // kBitFlip
+    eoValueParam<unsigned> & kBitParam = _parser.createParam((unsigned)1, "kBit", "Number of bit for deterministic k bit-flip mutation", 0, "Variation Operators" );
     // minimum check
-    bool bMut = true;
+    if ( ! kBitParam.value() )
+      throw std::runtime_error("Invalid kBit");
+
+    eoValueParam<double> & kBitRateParam = _parser.createParam(0.0, "kBitRate", "Relative rate for deterministic k bit-flip mutation", 0, "Variation Operators" );
+    // minimum check
+    if ( (kBitRateParam.value() < 0) )
+      throw std::runtime_error("Invalid kBitRate");
+
+    // minimum check
+    // bool bMut = true; // not used ?
     if (bitFlipRateParam.value()+oneBitRateParam.value()==0)
       {
         std::cerr << "Warning: no mutation" << std::endl;
-        bMut = false;
+        // bMut = false;
       }
 
     // Create the CombinedMonOp
@@ -183,6 +195,11 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
   ptMon = new eoDetBitFlip<EOT>;
   _state.storeFunctor(ptMon);
   ptCombinedMonOp->add(*ptMon, oneBitRateParam.value());
+
+  // mutate exactly k bit per individual
+  ptMon = new eoDetBitFlip<EOT>(kBitParam.value());
+  _state.storeFunctor(ptMon);
+  ptCombinedMonOp->add(*ptMon, kBitRateParam.value());
 
   _state.storeFunctor(ptCombinedMonOp);
 

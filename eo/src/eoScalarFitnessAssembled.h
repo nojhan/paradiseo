@@ -212,7 +212,7 @@ public:
   //! Print term values and descriptions
   void printAll(std::ostream& os) const {
     for (size_type i=0; i < size(); ++i )
-      os << FitnessTraits::getDescription(i) << " = " << operator[](i) << " ";
+      os << FitnessTraits::getDescription(i) << " = " << this->operator[](i) << " ";
   }
 
   //! Comparison, using less by default

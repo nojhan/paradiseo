@@ -194,8 +194,7 @@ int eoLogger::outbuf::overflow(int_type c)
       {
         if (_fd >= 0 && c != EOF)
           {
-              size_t num;
-              num = ::write(_fd, &c, 1);
+              ::write(_fd, &c, 1);
           }
       }
     return c;

@@ -129,7 +129,7 @@ private :
 class eoDummyEval : public eoPopEvalFunc<POT>
     {
     public:
-        void operator()(eoPop<POT> &,eoPop<POT> &_pop)
+        void operator()(eoPop<POT> &,eoPop<POT> &/*_pop*/)
         {}
     }
     dummyEval;

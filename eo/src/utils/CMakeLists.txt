@@ -29,6 +29,7 @@ SET(EOUTILS_SOURCES
   pipecom.cpp
   eoLogger.cpp
   eoParallel.cpp
+  eoSignal.cpp
   )
 
 ADD_LIBRARY(eoutils STATIC ${EOUTILS_SOURCES})

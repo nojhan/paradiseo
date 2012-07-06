@@ -217,7 +217,7 @@ public:
 
 #ifndef NDEBUG
   // check whether the stuff is still in sync
-  check_sync(index, _pop[index]);
+  this->check_sync(index, _pop[index]);
 #endif
 
     return _pop[index];

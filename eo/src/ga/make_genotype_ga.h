@@ -60,7 +60,7 @@
  * @ingroup Builders
 */
 template <class EOT>
-eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
+eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT, float _bias=0.5)
 {
   // for bitstring, only thing needed is the size
   // but it might have been already read in the definition fo the performance
@@ -68,7 +68,7 @@ eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 
   // Then we can built a bitstring random initializer
   // based on boolean_generator class (see utils/rnd_generator.h)
-  eoBooleanGenerator * gen = new eoBooleanGenerator;
+  eoBooleanGenerator * gen = new eoBooleanGenerator(_bias);
   _state.storeFunctor(gen);
   eoInitFixedLength<EOT>* init = new eoInitFixedLength<EOT>(theSize, *gen);
   // store in state

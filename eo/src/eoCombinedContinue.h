@@ -61,7 +61,9 @@ public:
   eoCombinedContinue( eoContinue<EOT>& _cont1, eoContinue<EOT>& _cont2)
     : eoContinue<EOT>(), std::vector<eoContinue<EOT>* >()
   {
+#ifndef DEPRECATED_MESSAGES
 #pragma message "The double continuators constructor of eocombinedContinue is deprecated and will be removed in the next release."
+#endif // !DEPRECATED_MESSAGES
 
     this->push_back(&_cont1);
     this->push_back(&_cont2);
@@ -74,7 +76,10 @@ public:
 
   void removeLast(void)
   {
+#ifndef DEPRECATED_MESSAGES
 #pragma message "The removeLast method of eocombinedContinue is deprecated and will be removed in the next release, use pop_back instead."
+#endif // !DEPRECATED_MESSAGES
+
     this->pop_back();
   }
 

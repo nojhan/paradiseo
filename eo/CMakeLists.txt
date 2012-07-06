@@ -1,3 +1,4 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 ######################################################################################
 ### 0) If you want to set your variables in eo-conf.cmake and avoid the cmd line
