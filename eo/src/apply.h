@@ -94,6 +94,7 @@ void parallelApply(
         eo::mpi::ParallelEvalStore<EOT> & _store )
 {
     _store.data( _pop );
+    _algo.reinit( _pop.size() );
     eo::mpi::ParallelApply<EOT> job( _algo, _masterRank, _store );
     job.run();
 }

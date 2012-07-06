@@ -73,6 +73,15 @@ namespace eo
             {
                 // empty
             }
+
+            ~EmptyJob()
+            {
+                std::vector< int > idles = assignmentAlgo.idles();
+                for(unsigned i = 0, size = idles.size(); i < size; ++i)
+                {
+                    comm.send( idles[i], Channel::Commands, Message::Kill );
+                }
+            }
         };
 
         /*

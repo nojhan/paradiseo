@@ -16,6 +16,7 @@ namespace eo
             virtual int availableWorkers( ) = 0;
             virtual void confirm( int wrkRank ) = 0;
             virtual std::vector<int> idles( ) = 0;
+            virtual void reinit( int runs ) = 0;
         };
 
         struct DynamicAssignmentAlgorithm : public AssignmentAlgorithm
@@ -77,6 +78,12 @@ namespace eo
                 std::vector<int> idles( )
                 {
                     return availableWrk;
+                }
+
+                void reinit( int _ )
+                {
+                    ++_;
+                    // nothing to do
                 }
 
             protected:
@@ -181,7 +188,7 @@ namespace eo
 
                 void confirm( int rank )
                 {
-                    int i = -1;
+                    int i = -1; // i is the real index in table
                     for( unsigned int j = 0; j < realRank.size(); ++j )
                     {
                         if( realRank[j] == rank )
@@ -194,6 +201,11 @@ namespace eo
                     --attributions[ i ];
                     busy[ i ] = false;
                     ++freeWorkers;
+                }
+
+                void reinit( int runs )
+                {
+                    init( realRank, runs );
                 }
 
             private:
