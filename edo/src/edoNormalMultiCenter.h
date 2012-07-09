@@ -31,6 +31,9 @@ Authors:
 #include "edoModifierMass.h"
 #include "edoNormalMulti.h"
 
+
+#ifdef WITH_BOOST
+
 //! edoNormalMultiCenter< EOT >
 
 template < typename EOT >
@@ -46,5 +49,12 @@ public:
 	distrib.mean() = mean;
     }
 };
+
+#else
+#ifdef WITH_EIGEN
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
+
 
 #endif // !_edoNormalMultiCenter_h

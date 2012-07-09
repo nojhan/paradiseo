@@ -33,6 +33,9 @@ Authors:
 #include "edoStat.h"
 #include "edoNormalMulti.h"
 
+
+#ifdef WITH_BOOST
+
 //! edoStatNormalMulti< EOT >
 
 template < typename EOT >
@@ -66,5 +69,12 @@ public:
 	value() += os.str();
     }
 };
+
+#else
+#ifdef WITH_EIGEN
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
+
 
 #endif // !_edoStatNormalMulti_h

@@ -32,6 +32,9 @@ Authors:
 #include <limits>
 
 #include <edoSampler.h>
+
+#ifdef WITH_BOOST
+
 #include <utils/edoCholesky.h>
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/symmetric.hpp>
@@ -83,5 +86,12 @@ public:
 protected:
     cholesky::CholeskyLLT<AtomType> _cholesky;
 };
+
+#else
+#ifdef WITH_EIGEN
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
+
 
 #endif // !_edoSamplerNormalMulti_h

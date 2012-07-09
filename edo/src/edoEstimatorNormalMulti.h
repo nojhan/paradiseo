@@ -29,9 +29,11 @@ Authors:
 #ifndef _edoEstimatorNormalMulti_h
 #define _edoEstimatorNormalMulti_h
 
+
 #include "edoEstimator.h"
 #include "edoNormalMulti.h"
 
+#ifdef WITH_BOOST
 //! edoEstimatorNormalMulti< EOT >
 
 template < typename EOT >
@@ -148,5 +150,11 @@ public:
 	return edoNormalMulti< EOT >( cov.get_mean(), cov.get_varcovar() );
     }
 };
+
+#else
+#ifdef WITH_EIGEN
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
 
 #endif // !_edoEstimatorNormalMulti_h

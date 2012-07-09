@@ -28,10 +28,13 @@ Copyright (C) 2010 Thales group
 #ifndef _edoNormalMulti_h
 #define _edoNormalMulti_h
 
+#include "edoDistrib.h"
+
+#ifdef WITH_BOOST
+
 #include <boost/numeric/ublas/symmetric.hpp>
 #include <boost/numeric/ublas/lu.hpp>
 
-#include "edoDistrib.h"
 
 namespace ublas = boost::numeric::ublas;
 
@@ -69,5 +72,12 @@ private:
     ublas::vector< AtomType > _mean;
     ublas::symmetric_matrix< AtomType, ublas::lower > _varcovar;
 };
+
+
+#else
+#ifdef WITH_EIGEN
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
 
 #endif // !_edoNormalMulti_h
