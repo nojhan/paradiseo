@@ -109,21 +109,19 @@ public:
         unsigned int size = distrib.size();
         assert(size > 0);
 
-        // L = cholesky decomposition of varcovar
+        // LsD = cholesky decomposition of varcovar
 
         // Computes L and D such as V = L D L^T
         Eigen::LDLT<Matrix> cholesky( distrib.varcovar() );
-        Matrix L0 = cholesky.matrixL();
-        Eigen::Diagonal<const Matrix> D = cholesky.vectorD();
+        Matrix L = cholesky.matrixL();
+        Matrix D = cholesky.vectorD();
 
-        // now compute the final symetric matrix: this->_L = L D^1/2
+        // now compute the final symetric matrix: LsD = L D^1/2
         // remember that V = ( L D^1/2) ( L D^1/2)^T
         // fortunately, the square root of a diagonal matrix is the square 
         // root of all its elements
-        Eigen::Diagonal<const Matrix> sqrtD = D.cwiseSqrt();
-
-        Matrix L = L0 * D;
-
+        Matrix sqrtD = D.cwiseSqrt();
+        Matrix LsD = L * sqrtD;
 
         // T = vector of size elements drawn in N(0,1)
         Vector T( size );
@@ -131,12 +129,14 @@ public:
             T( i ) = rng.normal();
         }
 
-        // LT = L * T
-        Vector LT = L * T;
+        // LDT = (L D^1/2) * T
+        Vector LDT = LsD * T;
 
-        // solution = means + LT
+        // solution = means + LDT
         Vector mean = distrib.mean();
-        Vector typed_solution = mean + LT;
+        Vector typed_solution = mean + LDT;
+
+        // copy in the EOT structure (more probably a vector)
         EOT solution( size );
         for( unsigned int i = 0; i < mean.innerSize(); i++ ) {
             solution.push_back( typed_solution(i) );
