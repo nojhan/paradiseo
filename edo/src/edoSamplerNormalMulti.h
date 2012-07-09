@@ -33,12 +33,6 @@ Authors:
 
 #include <edoSampler.h>
 
-#ifdef WITH_BOOST
-
-#include <utils/edoCholesky.h>
-#include <boost/numeric/ublas/lu.hpp>
-#include <boost/numeric/ublas/symmetric.hpp>
-
 /** Sample points in a multi-normal law defined by a mean vector and a covariance matrix.
  *
  * Given M the mean vector and V the covariance matrix, of order n:
@@ -46,6 +40,13 @@ Authors:
  *   - compute the Cholesky decomposition L of V (i.e. such as V=LL*)
  *   - return X = M + LT
  */
+
+#ifdef WITH_BOOST
+
+#include <utils/edoCholesky.h>
+#include <boost/numeric/ublas/lu.hpp>
+#include <boost/numeric/ublas/symmetric.hpp>
+
 template< class EOT, typename EOD = edoNormalMulti< EOT > >
 class edoSamplerNormalMulti : public edoSampler< EOD >
 {
@@ -90,6 +91,60 @@ protected:
 #else
 #ifdef WITH_EIGEN
 
+template< class EOT, typename EOD = edoNormalMulti< EOT > >
+class edoSamplerNormalMulti : public edoSampler< EOD >
+{
+public:
+    typedef typename EOT::AtomType AtomType;
+    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector;
+    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
+
+    edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) 
+        : edoSampler< EOD >( repairer)
+    {}
+
+
+    EOT sample( EOD& distrib )
+    {
+        unsigned int size = distrib.size();
+        assert(size > 0);
+
+        // L = cholesky decomposition of varcovar
+
+        // Computes L and D such as V = L D L^T
+        Eigen::LDLT<Matrix> cholesky( distrib.varcovar() );
+        Matrix L0 = cholesky.matrixL();
+        Eigen::Diagonal<const Matrix> D = cholesky.vectorD();
+
+        // now compute the final symetric matrix: this->_L = L D^1/2
+        // remember that V = ( L D^1/2) ( L D^1/2)^T
+        // fortunately, the square root of a diagonal matrix is the square 
+        // root of all its elements
+        Eigen::Diagonal<const Matrix> sqrtD = D.cwiseSqrt();
+
+        Matrix L = L0 * D;
+
+
+        // T = vector of size elements drawn in N(0,1)
+        Vector T( size );
+        for ( unsigned int i = 0; i < size; ++i ) {
+            T( i ) = rng.normal();
+        }
+
+        // LT = L * T
+        Vector LT = L * T;
+
+        // solution = means + LT
+        Vector mean = distrib.mean();
+        Vector typed_solution = mean + LT;
+        EOT solution( size );
+        for( unsigned int i = 0; i < mean.innerSize(); i++ ) {
+            solution.push_back( typed_solution(i) );
+        }
+
+        return solution;
+    }
+};
 #endif // WITH_EIGEN
 #endif // WITH_BOOST
 

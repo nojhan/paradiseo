@@ -21,8 +21,8 @@ Copyright (C) 2010 Thales group
 */
 /*
     Authors:
-	     Johann Dreo <johann.dreo@thalesgroup.com>
-	     Caner Candan <caner.candan@thalesgroup.com>
+             Johann Dreo <johann.dreo@thalesgroup.com>
+             Caner Candan <caner.candan@thalesgroup.com>
 */
 
 #ifndef _edoNormalMulti_h
@@ -39,7 +39,6 @@ Copyright (C) 2010 Thales group
 namespace ublas = boost::numeric::ublas;
 
 //! edoNormalMulti< EOT >
-
 template < typename EOT >
 class edoNormalMulti : public edoDistrib< EOT >
 {
@@ -51,18 +50,18 @@ public:
      const ublas::vector< AtomType >& mean,
      const ublas::symmetric_matrix< AtomType, ublas::lower >& varcovar
      )
-	: _mean(mean), _varcovar(varcovar)
+        : _mean(mean), _varcovar(varcovar)
     {
-	assert(_mean.size() > 0);
-	assert(_mean.size() == _varcovar.size1());
-	assert(_mean.size() == _varcovar.size2());
+        assert(_mean.size() > 0);
+        assert(_mean.size() == _varcovar.size1());
+        assert(_mean.size() == _varcovar.size2());
     }
 
     unsigned int size()
     {
-	assert(_mean.size() == _varcovar.size1());
-	assert(_mean.size() == _varcovar.size2());
-	return _mean.size();
+        assert(_mean.size() == _varcovar.size1());
+        assert(_mean.size() == _varcovar.size2());
+        return _mean.size();
     }
 
     ublas::vector< AtomType > mean() const {return _mean;}
@@ -76,6 +75,44 @@ private:
 
 #else
 #ifdef WITH_EIGEN
+
+#include <Eigen/Dense>
+
+template < typename EOT >
+class edoNormalMulti : public edoDistrib< EOT >
+{
+public:
+    typedef typename EOT::AtomType AtomType;
+    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector; // Note: by default, Eigen is column-major
+    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
+
+    edoNormalMulti(
+        const Vector & mean,
+        const Matrix & varcovar
+    )
+        : _mean(mean), _varcovar(varcovar)
+    {
+        assert(_mean.innerSize() > 0);
+        assert(_mean.innerSize() == _varcovar.innerSize());
+        assert(_mean.innerSize() == _varcovar.outerSize());
+    }
+
+    unsigned int size()
+    {
+        assert(_mean.innerSize() == _varcovar.innerSize());
+        assert(_mean.innerSize() == _varcovar.outerSize());
+        return _mean.innerSize();
+    }
+
+    Vector mean() const {return _mean;}
+    Matrix varcovar() const {return _varcovar;}
+
+private:
+    Vector _mean;
+    Matrix _varcovar;
+};
+
+
 
 #endif // WITH_EIGEN
 #endif // WITH_BOOST

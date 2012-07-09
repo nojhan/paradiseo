@@ -28,16 +28,24 @@ Authors:
 #ifndef _edoStatNormalMulti_h
 #define _edoStatNormalMulti_h
 
-#include <boost/numeric/ublas/io.hpp>
+#include<sstream>
 
 #include "edoStat.h"
 #include "edoNormalMulti.h"
 
-
 #ifdef WITH_BOOST
 
-//! edoStatNormalMulti< EOT >
+#include <boost/numeric/ublas/io.hpp>
 
+#else
+#ifdef WITH_EIGEN
+
+    // include nothing
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
+
+//! edoStatNormalMulti< EOT >
 template < typename EOT >
 class edoStatNormalMulti : public edoDistribStat< edoNormalMulti< EOT > >
 {
@@ -47,34 +55,28 @@ public:
     using edoDistribStat< edoNormalMulti< EOT > >::value;
 
     edoStatNormalMulti( std::string desc = "" )
-	: edoDistribStat< edoNormalMulti< EOT > >( desc )
+        : edoDistribStat< edoNormalMulti< EOT > >( desc )
     {}
 
     void operator()( const edoNormalMulti< EOT >& distrib )
     {
-	value() = "\n# ====== multi normal distribution dump =====\n";
+        value() = "\n# ====== multi normal distribution dump =====\n";
 
-	std::ostringstream os;
+        std::ostringstream os;
 
-	os << distrib.mean() << " " << distrib.varcovar() << std::endl;
+        os << distrib.mean() << " " << distrib.varcovar() << std::endl;
 
-	// ublas::vector< AtomType > mean = distrib.mean();
-	// std::copy(mean.begin(), mean.end(), std::ostream_iterator< std::string >( os, " " ));
+        // ublas::vector< AtomType > mean = distrib.mean();
+        // std::copy(mean.begin(), mean.end(), std::ostream_iterator< std::string >( os, " " ));
 
-	// ublas::symmetric_matrix< AtomType, ublas::lower > varcovar = distrib.varcovar();
-	// std::copy(varcovar.begin(), varcovar.end(), std::ostream_iterator< std::string >( os, " " ));
+        // ublas::symmetric_matrix< AtomType, ublas::lower > varcovar = distrib.varcovar();
+        // std::copy(varcovar.begin(), varcovar.end(), std::ostream_iterator< std::string >( os, " " ));
 
-	// os << std::endl;
+        // os << std::endl;
 
-	value() += os.str();
+        value() += os.str();
     }
 };
-
-#else
-#ifdef WITH_EIGEN
-
-#endif // WITH_EIGEN
-#endif // WITH_BOOST
 
 
 #endif // !_edoStatNormalMulti_h

@@ -31,7 +31,6 @@ Authors:
 #include "edoModifierMass.h"
 #include "edoNormalMulti.h"
 
-
 #ifdef WITH_BOOST
 
 //! edoNormalMultiCenter< EOT >
@@ -44,14 +43,28 @@ public:
 
     void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
     {
-	ublas::vector< AtomType > mean( distrib.size() );
-	std::copy( mass.begin(), mass.end(), mean.begin() );
-	distrib.mean() = mean;
+        ublas::vector< AtomType > mean( distrib.size() );
+        std::copy( mass.begin(), mass.end(), mean.begin() );
+        distrib.mean() = mean;
     }
 };
 
 #else
 #ifdef WITH_EIGEN
+
+template < typename EOT >
+class edoNormalMultiCenter : public edoModifierMass< edoNormalMulti< EOT > >
+{
+public:
+    typedef typename EOT::AtomType AtomType;
+
+    void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
+    {
+        assert( distrib.size() == mass.innerSize() );
+        Eigen::Matrix< AtomType, Eigen::Dynamic, 1 > mean( mass );
+        distrib.mean() = mean;
+    }
+};
 
 #endif // WITH_EIGEN
 #endif // WITH_BOOST
