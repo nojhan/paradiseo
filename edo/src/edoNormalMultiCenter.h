@@ -57,11 +57,13 @@ class edoNormalMultiCenter : public edoModifierMass< edoNormalMulti< EOT > >
 {
 public:
     typedef typename EOT::AtomType AtomType;
+    // typedef typename edoNormalMulti<AtomType>::Vector Vector;
+    typedef Eigen::Matrix< AtomType, 1, Eigen::Dynamic, Eigen::RowMajor> Vector;
 
     void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
     {
         assert( distrib.size() == mass.innerSize() );
-        Eigen::Matrix< AtomType, Eigen::Dynamic, 1 > mean( mass );
+        Vector mean( mass );
         distrib.mean() = mean;
     }
 };

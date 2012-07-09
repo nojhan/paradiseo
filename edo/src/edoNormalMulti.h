@@ -83,8 +83,8 @@ class edoNormalMulti : public edoDistrib< EOT >
 {
 public:
     typedef typename EOT::AtomType AtomType;
-    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector; // Note: by default, Eigen is column-major
-    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
+    typedef Eigen::Matrix< AtomType, 1, Eigen::Dynamic, Eigen::RowMajor> Vector;
+    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
 
     edoNormalMulti(
         const Vector & mean,

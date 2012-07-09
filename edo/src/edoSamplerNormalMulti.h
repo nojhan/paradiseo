@@ -96,8 +96,10 @@ class edoSamplerNormalMulti : public edoSampler< EOD >
 {
 public:
     typedef typename EOT::AtomType AtomType;
-    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector;
-    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
+    // typedef typename edoNormalMulti<AtomType>::Vector Vector;
+    // typedef typename edoNormalMulti<AtomType>::Matrix Matrix;
+    typedef Eigen::Matrix< AtomType, 1, Eigen::Dynamic, Eigen::RowMajor> Vector;
+    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
 
     edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) 
         : edoSampler< EOD >( repairer)
