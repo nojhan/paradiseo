@@ -162,9 +162,8 @@ int main(int ac, char** av)
 
     // EDA algorithm configuration
     edoAlgo< Distrib >* algo = new edoEDA< Distrib >
-        (*selector, *estimator, *sampler,
-         pop_continue, *distribution_continue,
-         popEval, *replacor);
+        (popEval, *selector, *estimator, *sampler, *replacor,
+         pop_continue, *distribution_continue );
 
     // Beginning of the algorithm call
     try {
