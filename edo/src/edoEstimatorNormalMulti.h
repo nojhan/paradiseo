@@ -202,8 +202,6 @@ public:
 
             // division by n
             _mean /= p_size;
-
-            assert(_mean.innerSize()==2);
         }
 
         const Matrix& get_varcovar() const {return _varcovar;}
