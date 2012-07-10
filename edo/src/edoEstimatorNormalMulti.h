@@ -155,18 +155,16 @@ public:
 #ifdef WITH_EIGEN
 
 //! edoEstimatorNormalMulti< EOT >
-template < typename EOT >
-class edoEstimatorNormalMulti : public edoEstimator< edoNormalMulti< EOT > >
+template < typename EOT, typename EOD = edoNormalMulti<EOT> >
+class edoEstimatorNormalMulti : public edoEstimator< EOD >
 {
 public:
     class CovMatrix
     {
     public:
         typedef typename EOT::AtomType AtomType;
-        // typedef typename edoNormalMulti<AtomType>::Vector Vector;
-        // typedef typename edoNormalMulti<AtomType>::Matrix Matrix;
-        typedef Eigen::Matrix< AtomType, 1, Eigen::Dynamic, Eigen::RowMajor> Vector;
-        typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
+        typedef typename EOD::Vector Vector;
+        typedef typename EOD::Matrix Matrix;
 
         CovMatrix( const eoPop< EOT >& pop )
         {

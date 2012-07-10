@@ -43,7 +43,7 @@ Authors:
 
 typedef eoReal< eoMinimizingFitness > EOT;
 typedef edoNormalMulti< EOT > Distrib;
-typedef EOT::AtomType AtomType;
+typedef typename EOT::AtomType AtomType;
 
 #ifdef WITH_BOOST
 #include <boost/numeric/ublas/vector.hpp>
@@ -53,10 +53,8 @@ typedef EOT::AtomType AtomType;
 #else
 #ifdef WITH_EIGEN
 #include <Eigen/Dense>
-    // typedef typename edoNormalMulti<AtomType>::Vector Vector;
-    // typedef typename edoNormalMulti<AtomType>::Matrix Matrix;
-    typedef Eigen::Matrix< AtomType, 1, Eigen::Dynamic, Eigen::RowMajor> Vector;
-    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
+    typedef typename edoNormalMulti<EOT>::Vector Vector;
+    typedef typename edoNormalMulti<EOT>::Matrix Matrix;
 #endif
 #endif
 
@@ -144,7 +142,14 @@ int main(int ac, char** av)
                     // (2) distribution initial parameters
 
 
+#ifdef WITH_BOOST
                     Vector mean( s_size, mean_value );
+#else
+#ifdef WITH_EIGEN
+                    Vector mean( s_size );
+                    mean = Vector::Constant( s_size, mean_value);
+#endif
+#endif
                     Matrix varcovar( s_size, s_size );
 
                     varcovar( 0, 0 ) = covar1_value;

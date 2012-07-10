@@ -96,10 +96,9 @@ class edoSamplerNormalMulti : public edoSampler< EOD >
 {
 public:
     typedef typename EOT::AtomType AtomType;
-    // typedef typename edoNormalMulti<AtomType>::Vector Vector;
-    // typedef typename edoNormalMulti<AtomType>::Matrix Matrix;
-    typedef Eigen::Matrix< AtomType, 1, Eigen::Dynamic, Eigen::RowMajor> Vector;
-    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
+
+    typedef typename EOD::Vector Vector;
+    typedef typename EOD::Matrix Matrix;
 
     edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) 
         : edoSampler< EOD >( repairer)
@@ -116,7 +115,7 @@ public:
         // Computes L and D such as V = L D L^T
         Eigen::LDLT<Matrix> cholesky( distrib.varcovar() );
         Matrix L = cholesky.matrixL();
-        Matrix D = cholesky.vectorD();
+        Matrix D = cholesky.vectorD().asDiagonal();
 
         // now compute the final symetric matrix: LsD = L D^1/2
         // remember that V = ( L D^1/2) ( L D^1/2)^T

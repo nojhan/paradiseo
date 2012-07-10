@@ -52,13 +52,12 @@ public:
 #else
 #ifdef WITH_EIGEN
 
-template < typename EOT >
-class edoNormalMultiCenter : public edoModifierMass< edoNormalMulti< EOT > >
+template < typename EOT, typename EOD = edoNormalMulti< EOT > >
+class edoNormalMultiCenter : public edoModifierMass<EOD>
 {
 public:
     typedef typename EOT::AtomType AtomType;
-    // typedef typename edoNormalMulti<AtomType>::Vector Vector;
-    typedef Eigen::Matrix< AtomType, 1, Eigen::Dynamic, Eigen::RowMajor> Vector;
+    typedef typename EOD::Vector Vector;
 
     void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
     {
