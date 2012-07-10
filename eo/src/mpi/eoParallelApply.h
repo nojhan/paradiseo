@@ -207,7 +207,7 @@ namespace eo
         // TODO commentaire : impossible de faire un typedef sur un template sans passer
         // par un traits => complique la tâche de l'utilisateur pour rien.
         template< typename EOT >
-        class ParallelApply : public Job< ParallelApplyData<EOT> >
+        class ParallelApply : public MultiJob< ParallelApplyData<EOT> >
         {
             public:
 
@@ -216,7 +216,7 @@ namespace eo
                     int _masterRank,
                     ParallelApplyStore<EOT> & store
                     ) :
-                Job< ParallelApplyData<EOT> >( algo, _masterRank, store )
+                MultiJob< ParallelApplyData<EOT> >( algo, _masterRank, store )
             {
                 // empty
             }

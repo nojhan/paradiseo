@@ -199,10 +199,12 @@ namespace eo
             public:
                 Job( AssignmentAlgorithm& _algo,
                      int _masterRank,
+                     int _workerStopCondition,
                      JobStore<JobData> & store
                     ) :
                     assignmentAlgo( _algo ),
                     masterRank( _masterRank ),
+                    workerStopCondition( _workerStopCondition ),
                     comm( Node::comm() ),
                     // Functors
                     sendTask( store.sendTask() ),
@@ -339,7 +341,7 @@ namespace eo
 # ifndef NDEBUG
                         eo::log << "[W" << comm.rank() << "] Waiting for an order..." << std::endl;
 # endif
-                        if ( order == Message::Kill )
+                        if ( order == workerStopCondition )
                         {
 # ifndef NDEBUG
                             eo::log << "[W" << comm.rank() << "] Leaving worker task." << std::endl;
@@ -375,6 +377,7 @@ namespace eo
 
                 AssignmentAlgorithm& assignmentAlgo;
                 int masterRank;
+                const int workerStopCondition;
                 bmpi::communicator& comm;
 
                 SendTaskFunction<JobData> & sendTask;
@@ -383,6 +386,35 @@ namespace eo
                 IsFinishedFunction<JobData> & isFinished;
 
                 bool _isMaster;
+
+        };
+
+        template< class JobData >
+        class OneShotJob : public Job< JobData >
+        {
+            // TODO commentaire : ce job s'arrête sur message terminate
+            public:
+                OneShotJob( AssignmentAlgorithm& algo,
+                            int masterRank,
+                            JobStore<JobData> & store )
+                    : Job<JobData>( algo, masterRank, Message::Finish, store )
+                {
+                    // empty
+                }
+        };
+
+        template< class JobData >
+        class MultiJob : public Job< JobData >
+        {
+            public:
+                // TODO commentaire : ce job s'arrête sur message kill
+                MultiJob ( AssignmentAlgorithm& algo,
+                            int masterRank,
+                            JobStore<JobData> & store )
+                    : Job<JobData>( algo, masterRank, Message::Kill, store )
+                {
+                    // empty
+                }
         };
     }
 }

@@ -65,10 +65,10 @@ namespace eo
             void* data() { return 0; }
         };
 
-        struct EmptyJob : public Job<void>
+        struct EmptyJob : public OneShotJob<void>
         {
             EmptyJob( AssignmentAlgorithm& algo, int masterRank ) :
-                Job<void>( algo, masterRank, *(new DummyJobStore) )
+                OneShotJob<void>( algo, masterRank, *(new DummyJobStore) )
                 // FIXME memory leak => will be corrected by using const correctness
             {
                 // empty
