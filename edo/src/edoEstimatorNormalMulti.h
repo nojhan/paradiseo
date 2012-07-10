@@ -194,16 +194,19 @@ public:
             // Be sure that the symmetric matrix got the good size
             assert(var.innerSize() == s_size);
             assert(var.outerSize() == s_size);
-            assert(var.innerSize() == _varcovar.innerSize());
-            assert(var.outerSize() == _varcovar.outerSize());
 
             _varcovar = var / p_size;
+
+            // assert(var.innerSize() == _varcovar.innerSize());
+            // assert(var.outerSize() == _varcovar.outerSize());
+
 
             // _mean.resize(s_size); // FIXME: check if it is really used because of the assignation below
 
             // unit vector
             // ublas::scalar_vector< AtomType > u( p_size, 1 );
-            Vector u( p_size, 1);
+            Vector u( p_size);
+            u = Vector::Constant(p_size, 1);
 
             // sum over columns
             // _mean = ublas::prod( ublas::trans( sample ), u );
