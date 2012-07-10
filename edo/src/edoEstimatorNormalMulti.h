@@ -175,7 +175,6 @@ public:
             assert(s_size > 0);
 
             // Copy the population to an ublas matrix
-            //ublas::matrix< AtomType > sample( p_size, s_size );
             Matrix sample( p_size, s_size );
 
             for (unsigned int i = 0; i < p_size; ++i) {
@@ -184,11 +183,8 @@ public:
                     }
             }
 
-            // _varcovar.resize(s_size);
-
             // variance-covariance matrix are symmetric, thus a triangular storage is sufficient
             // variance-covariance matrix computation : transpose(A) * A
-            //ublas::symmetric_matrix< AtomType, ublas::lower > var = ublas::prod( ublas::trans( sample ), sample );
             Matrix var = sample.transpose() * sample;
 
             // Be sure that the symmetric matrix got the good size
@@ -197,35 +193,23 @@ public:
 
             _varcovar = var / p_size;
 
-            // assert(var.innerSize() == _varcovar.innerSize());
-            // assert(var.outerSize() == _varcovar.outerSize());
-
-
-            // _mean.resize(s_size); // FIXME: check if it is really used because of the assignation below
-
             // unit vector
-            // ublas::scalar_vector< AtomType > u( p_size, 1 );
             Vector u( p_size);
             u = Vector::Constant(p_size, 1);
 
             // sum over columns
-            // _mean = ublas::prod( ublas::trans( sample ), u );
             _mean = sample.transpose() * u;
 
             // division by n
             _mean /= p_size;
         }
 
-        // const ublas::symmetric_matrix< AtomType, ublas::lower >& get_varcovar() const {return _varcovar;}
         const Matrix& get_varcovar() const {return _varcovar;}
 
-        // const ublas::vector< AtomType >& get_mean() const {return _mean;}
         const Vector& get_mean() const {return _mean;}
 
     private:
-        // ublas::symmetric_matrix< AtomType, ublas::lower > _varcovar;
         Matrix _varcovar;
-        // ublas::vector< AtomType > _mean;
         Vector _mean;
     };
 
