@@ -77,6 +77,72 @@ private:
   eoEvalFunc<EOT> & eval;
 };
 
+#ifdef WITH_MPI
+// TODO TODOB commenter
+template<class EOT>
+class eoParallelPopLoopEval : public eoPopEvalFunc<EOT>
+{
+    public:
+        /** Ctor: set value of embedded eoEvalFunc */
+        eoParallelPopLoopEval(
+                // Job parameters
+                eo::mpi::AssignmentAlgorithm& _assignAlgo,
+                int _masterRank,
+                // Default parameters for store
+                eoEvalFunc<EOT> & _eval,
+                int _packetSize = 1
+                ) :
+            assignAlgo( _assignAlgo ),
+            masterRank( _masterRank ),
+            needToDeleteStore( true )
+        {
+            store = new eo::mpi::ParallelEvalStore<EOT>( _eval, _masterRank, _packetSize );
+        }
+
+        eoParallelPopLoopEval(
+                // Job parameters
+                eo::mpi::AssignmentAlgorithm& _assignAlgo,
+                int _masterRank,
+                eo::mpi::ParallelEvalStore<EOT>* _store
+                ) :
+            assignAlgo( _assignAlgo ),
+            masterRank( _masterRank ),
+            store( _store ),
+            needToDeleteStore( false )
+        {
+            // empty
+        }
+
+        ~eoParallelPopLoopEval()
+        {
+            if( eo::mpi::Node::comm().rank() == masterRank )
+            {
+                eo::mpi::EmptyJob job( assignAlgo, masterRank );
+                job.run();
+            }
+
+            if( needToDeleteStore )
+            {
+                delete store;
+            }
+        }
+
+        /** Do the job: simple loop over the offspring */
+        void operator()( eoPop<EOT> & _parents, eoPop<EOT> & _offspring )
+        {
+            (void)_parents;
+            parallelApply<EOT>(_offspring, assignAlgo, masterRank, *store);
+        }
+
+    private:
+        eo::mpi::AssignmentAlgorithm & assignAlgo;
+        int masterRank;
+
+        eo::mpi::ParallelEvalStore<EOT>* store;
+        bool needToDeleteStore;
+};
+#endif
+
 /////////////////////////////////////////////////////////////
 //           eoTimeVaryingLoopEval
 /////////////////////////////////////////////////////////////

@@ -36,6 +36,12 @@
 #include <omp.h>
 #endif
 
+# ifdef WITH_MPI
+# include <mpi/eoMpi.h>
+# include <mpi/eoMultiParallelApply.h>
+# include <mpi/eoTerminateJob.h>
+# endif // WITH_MPI
+
 /**
   Applies a unary function to a std::vector of things.
 
@@ -51,29 +57,29 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
     double t1 = 0;
 
     if ( eo::parallel.enableResults() )
-	{
-	    t1 = omp_get_wtime();
-	}
+    {
+        t1 = omp_get_wtime();
+    }
 
     if (!eo::parallel.isDynamic())
-	{
+    {
 #pragma omp parallel for if(eo::parallel.isEnabled()) //default(none) shared(_proc, _pop, size)
-	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
-	}
+        for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+    }
     else
-	{
+    {
 #pragma omp parallel for schedule(dynamic) if(eo::parallel.isEnabled())
-	    //doesnot work with gcc 4.1.2
-	    //default(none) shared(_proc, _pop, size)
-	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
-	}
+        //doesnot work with gcc 4.1.2
+        //default(none) shared(_proc, _pop, size)
+        for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+    }
 
     if ( eo::parallel.enableResults() )
-	{
-	    double t2 = omp_get_wtime();
-	    eoLogger log;
-	    log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
-	}
+    {
+        double t2 = omp_get_wtime();
+        eoLogger log;
+        log << eo::file(eo::parallel.prefix()) << t2 - t1 << ' ';
+    }
 
 #else // _OPENMP
 
@@ -81,6 +87,21 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
 #endif // !_OPENMP
 }
+
+#ifdef WITH_MPI
+template<class EOT>
+void parallelApply(
+        std::vector<EOT>& _pop,
+        eo::mpi::AssignmentAlgorithm& _algo,
+        int _masterRank,
+        eo::mpi::ParallelEvalStore<EOT> & _store )
+{
+    _store.data( _pop );
+    _algo.reinit( _pop.size() );
+    eo::mpi::ParallelApply<EOT> job( _algo, _masterRank, _store );
+    job.run();
+}
+#endif
 
 /**
   This is a variant of apply<EOT> which is called in parallel

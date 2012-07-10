@@ -102,6 +102,33 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
         offspring.reserve(_offspringSize); // This line avoids an incremental resize of offsprings.
     }
 
+    /**
+     * @brief Ctor allowing to specify which pop eval function we're going to use.
+     *
+     * Ctor taking a breed and merge, an overload of ctor to define an offspring size, and
+     * the pop eval function used. This allows to precise if we would like to use the 
+     * parallel evaluation, for instance.
+     */
+    eoEasyEA(
+      eoContinue<EOT>& _continuator,
+      eoEvalFunc<EOT>& _eval,
+      eoPopEvalFunc<EOT>& _pop_eval,
+      eoBreed<EOT>& _breed,
+      eoReplacement<EOT>& _replace,
+      unsigned _offspringSize
+    ) : continuator(_continuator),
+        eval (_eval),
+        loopEval(_eval),
+        popEval(_pop_eval),
+        selectTransform(dummySelect, dummyTransform),
+        breed(_breed),
+        mergeReduce(dummyMerge, dummyReduce),
+        replace(_replace),
+	    isFirstCall(true)
+    {
+        offspring.reserve(_offspringSize); // This line avoids an incremental resize of offsprings.
+    }
+
     /*
     eoEasyEA(eoContinue <EOT> & _continuator,
       eoPopEvalFunc <EOT> & _pop_eval,
@@ -219,6 +246,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
     /// Apply a few generation of evolution to the population.
     virtual void operator()(eoPop<EOT>& _pop)
     {
+
+        eo::log << "[EasyEA] Call to operator()" << std::endl;
 	if (isFirstCall)
 	    {
 		size_t total_capacity = _pop.capacity() + offspring.capacity();
@@ -227,22 +256,33 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 		isFirstCall = false;
 	    }
 
+    // TODO TODOB delete all log traces
+    std::cout << "[EasyEA] After is first call." << std::endl;
+
       eoPop<EOT> empty_pop;
+        std::cout << "[EasyEA] After empty_pop." << std::endl;
 
       popEval(empty_pop, _pop); // A first eval of pop.
+        std::cout << "[EasyEA] After pop_eval." << std::endl;
 
       do
         {
           try
             {
+        std::cout << "[EasyEA] Beginning try." << std::endl;
               unsigned pSize = _pop.size();
+        std::cout << "[EasyEA] psize determinated." << std::endl;
               offspring.clear(); // new offspring
+        std::cout << "[EasyEA] offspring cleared." << std::endl;
 
               breed(_pop, offspring);
 
+        std::cout << "[EasyEA] After breed, evaluating pop." << std::endl;
               popEval(_pop, offspring); // eval of parents + offspring if necessary
 
+        std::cout << "[EasyEA] After evaluation, replacing pop." << std::endl;
               replace(_pop, offspring); // after replace, the new pop. is in _pop
+        std::cout << "[EasyEA] After replacing, continuator." << std::endl;
 
               if (pSize > _pop.size())
                 throw std::runtime_error("Population shrinking!");
