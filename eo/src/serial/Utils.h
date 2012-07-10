@@ -76,6 +76,7 @@ namespace eoserial
     String* make( const T & value )
     {
         std::stringstream ss;
+        ss.precision(std::numeric_limits<double>::digits10 + 1);
         ss << value;
         return new String( ss.str() );
     }

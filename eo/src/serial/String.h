@@ -3,6 +3,7 @@
 
 # include <string>
 # include <sstream>
+# include <limits>
 
 # include "Entity.h"
 
@@ -60,6 +61,7 @@ template<class T>
 inline void String::deserialize( T & value )
 {
     std::stringstream ss;
+    ss.precision(std::numeric_limits<double>::digits10 + 1);
     ss << *this;
     ss >> value;
 }
