@@ -194,10 +194,6 @@ namespace eo
 
             virtual ~ParallelApplyStore()
             {
-                delete _stf;
-                delete _hrf;
-                delete _ptf;
-                delete _iff;
             }
 
             protected:

@@ -54,14 +54,6 @@ namespace eo
                 _iff = new DummyIsFinishedFunction;
             }
 
-            ~DummyJobStore()
-            {
-                delete _stf;
-                delete _hrf;
-                delete _ptf;
-                delete _iff;
-            }
-
             void* data() { return 0; }
         };
 
@@ -83,38 +75,6 @@ namespace eo
                 }
             }
         };
-
-        /*
-        class TerminateJob : public Job
-        {
-            public:
-                TerminateJob( AssignmentAlgorithm& algo, int _ )
-                    : Job( algo, _ )
-                {
-                    // empty
-                }
-
-                void sendTask( int wrkRank )
-                {
-                    // empty
-                }
-
-                void handleResponse( int wrkRank )
-                {
-                    // empty
-                }
-
-                void processTask( )
-                {
-                    // empty
-                }
-
-                bool isFinished()
-                {
-                    return true;
-                }
-        };
-        */
     }
 }
 

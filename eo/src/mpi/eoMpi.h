@@ -119,6 +119,7 @@ namespace eo
         template< typename JobData >
         struct JobStore
         {
+            // TODO commentaire: ces pointeurs devraient être alloués avec new pour éviter segfault on quit.
             JobStore(
                 SendTaskFunction<JobData>* stf,
                 HandleResponseFunction<JobData>* hrf,
@@ -133,6 +134,16 @@ namespace eo
             JobStore()
             {
                 // empty
+            }
+
+            ~JobStore()
+            {
+                // TODO commentaire: Composition Pattern => délégation de la destruction => destruction homogène => new
+                // et delete partout.
+                delete _stf;
+                delete _hrf;
+                delete _ptf;
+                delete _iff;
             }
 
             SendTaskFunction<JobData> & sendTask() { return *_stf; }
@@ -377,7 +388,7 @@ namespace eo
 
                 AssignmentAlgorithm& assignmentAlgo;
                 int masterRank;
-                const int workerStopCondition;
+                const int workerStopCondition; // TODO commentaire: message signifiant l'arrêt pour un worker
                 bmpi::communicator& comm;
 
                 SendTaskFunction<JobData> & sendTask;
