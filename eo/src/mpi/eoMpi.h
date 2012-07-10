@@ -31,7 +31,8 @@ namespace eo
         namespace Message
         {
             const int Continue = 0;
-            const int Finish = 1;
+            const int Finish = 1; // TODO commentaire : différence entre finir une tâche et arrêter le worker à expliciter.
+            const int Kill = 2;
         }
 
         const int DEFAULT_MASTER = 0;
@@ -239,6 +240,7 @@ namespace eo
                     ~FinallyBlock()
                     {
 # ifndef NDEBUG
+                        eo::log << eo::debug;
                         eo::log << "[M" << comm.rank() << "] Frees all the idle." << std::endl;
 # endif
                         // frees all the idle workers
@@ -264,7 +266,6 @@ namespace eo
                             assignmentAlgo.confirm( wrkRank );
                         }
                         timerStat.stop("master_wait_for_all_responses");
-
 # ifndef NDEBUG
                         eo::log << "[M" << comm.rank() << "] Leaving master task." << std::endl;
 # endif
@@ -321,7 +322,6 @@ namespace eo
                         s.append( " in eoMpi loop");
                         throw std::runtime_error( s );
                     }
-
                 }
 
                 void worker( )
@@ -330,27 +330,32 @@ namespace eo
 # ifndef NDEBUG
                     eo::log << eo::debug;
 # endif
+                    timerStat.start("worker_wait_for_order");
+                    comm.recv( masterRank, Channel::Commands, order );
+                    timerStat.stop("worker_wait_for_order");
+
                     while( true )
                     {
 # ifndef NDEBUG
                         eo::log << "[W" << comm.rank() << "] Waiting for an order..." << std::endl;
 # endif
-                        timerStat.start("worker_wait_for_order");
-                        comm.recv( masterRank, Channel::Commands, order );
-                        timerStat.stop("worker_wait_for_order");
-                        if ( order == Message::Finish )
+                        if ( order == Message::Kill )
                         {
 # ifndef NDEBUG
                             eo::log << "[W" << comm.rank() << "] Leaving worker task." << std::endl;
 # endif
                             return;
-                        } else
+                        } else if( order == Message::Continue )
                         {
 # ifndef NDEBUG
                             eo::log << "[W" << comm.rank() << "] Processing task..." << std::endl;
 # endif
                             processTask( );
                         }
+
+                        timerStat.start("worker_wait_for_order");
+                        comm.recv( masterRank, Channel::Commands, order );
+                        timerStat.stop("worker_wait_for_order");
                     }
                 }
 
