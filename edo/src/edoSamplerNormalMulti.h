@@ -115,33 +115,53 @@ public:
         // Computes L and D such as V = L D L^T
         Eigen::LDLT<Matrix> cholesky( distrib.varcovar() );
         Matrix L = cholesky.matrixL();
+        assert(L.innerSize() == size);
+        assert(L.outerSize() == size);
+
         Matrix D = cholesky.vectorD().asDiagonal();
+        assert(D.innerSize() == size);
+        assert(D.outerSize() == size);
 
         // now compute the final symetric matrix: LsD = L D^1/2
         // remember that V = ( L D^1/2) ( L D^1/2)^T
         // fortunately, the square root of a diagonal matrix is the square 
         // root of all its elements
         Matrix sqrtD = D.cwiseSqrt();
+        assert(sqrtD.innerSize() == size);
+        assert(sqrtD.outerSize() == size);
+
         Matrix LsD = L * sqrtD;
+        assert(LsD.innerSize() == size);
+        assert(LsD.outerSize() == size);
 
         // T = vector of size elements drawn in N(0,1)
         Vector T( size );
         for ( unsigned int i = 0; i < size; ++i ) {
             T( i ) = rng.normal();
         }
+        assert(T.innerSize() == size);
+        assert(T.outerSize() == 1);
 
         // LDT = (L D^1/2) * T
         Vector LDT = LsD * T;
+        assert(LDT.innerSize() == size);
+        assert(LDT.outerSize() == 1);
 
         // solution = means + LDT
         Vector mean = distrib.mean();
+        assert(mean.innerSize() == size);
+        assert(mean.outerSize() == 1);
+
         Vector typed_solution = mean + LDT;
+        assert(typed_solution.innerSize() == size);
+        assert(typed_solution.outerSize() == 1);
 
         // copy in the EOT structure (more probably a vector)
         EOT solution( size );
         for( unsigned int i = 0; i < mean.innerSize(); i++ ) {
-            solution.push_back( typed_solution(i) );
+            solution[i]= typed_solution(i);
         }
+        assert( solution.size() == size );
 
         return solution;
     }

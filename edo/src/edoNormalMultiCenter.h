@@ -62,7 +62,10 @@ public:
     void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
     {
         assert( distrib.size() == mass.innerSize() );
-        Vector mean( mass );
+        Vector mean( distrib.size() );
+        for( unsigned int i=0; i < distrib.size(); i++ ) {
+            mean(i) = mass[i];
+        }
         distrib.mean() = mean;
     }
 };

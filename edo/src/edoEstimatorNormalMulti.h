@@ -202,6 +202,8 @@ public:
 
             // division by n
             _mean /= p_size;
+
+            assert(_mean.innerSize()==2);
         }
 
         const Matrix& get_varcovar() const {return _varcovar;}
@@ -218,13 +220,18 @@ public:
 
     edoNormalMulti< EOT > operator()(eoPop<EOT>& pop)
     {
-        unsigned int popsize = pop.size();
-        assert(popsize > 0);
+        unsigned int p_size = pop.size();
+        assert(p_size > 0);
 
-        unsigned int dimsize = pop[0].size();
-        assert(dimsize > 0);
+        unsigned int s_size = pop[0].size();
+        assert(s_size > 0);
 
         CovMatrix cov( pop );
+
+        assert( cov.get_mean().innerSize() == s_size );
+        assert( cov.get_mean().outerSize() == 1 );
+        assert( cov.get_varcovar().innerSize() == s_size );
+        assert( cov.get_varcovar().outerSize() == s_size );
 
         return edoNormalMulti< EOT >( cov.get_mean(), cov.get_varcovar() );
     }

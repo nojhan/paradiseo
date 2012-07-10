@@ -64,7 +64,7 @@ public:
 
         std::ostringstream os;
 
-        os << distrib.mean() << " " << distrib.varcovar() << std::endl;
+        os << distrib.mean() << std::endl << std::endl << distrib.varcovar() << std::endl;
 
         // ublas::vector< AtomType > mean = distrib.mean();
         // std::copy(mean.begin(), mean.end(), std::ostream_iterator< std::string >( os, " " ));
