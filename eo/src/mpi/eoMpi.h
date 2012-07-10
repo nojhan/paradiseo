@@ -197,10 +197,13 @@ namespace eo
         class Job
         {
             public:
-                Job( AssignmentAlgorithm& _algo, int _masterRank, JobStore<JobData> & store ) :
+                Job( AssignmentAlgorithm& _algo,
+                     int _masterRank,
+                     JobStore<JobData> & store
+                    ) :
                     assignmentAlgo( _algo ),
-                    comm( Node::comm() ),
                     masterRank( _masterRank ),
+                    comm( Node::comm() ),
                     // Functors
                     sendTask( store.sendTask() ),
                     handleResponse( store.handleResponse() ),
@@ -217,11 +220,6 @@ namespace eo
 
             protected:
 
-                SendTaskFunction<JobData> & sendTask;
-                HandleResponseFunction<JobData> & handleResponse;
-                ProcessTaskFunction<JobData> & processTask;
-                IsFinishedFunction<JobData> & isFinished;
-
                 struct FinallyBlock
                 {
                     FinallyBlock(
@@ -231,8 +229,9 @@ namespace eo
                             ) :
                         totalWorkers( _totalWorkers ),
                         assignmentAlgo( _algo ),
-                        comm( Node::comm() ),
-                        that( _that )
+                        that( _that ),
+                        // global field
+                        comm( Node::comm() )
                     {
                         // empty
                     }
@@ -274,9 +273,10 @@ namespace eo
                     protected:
 
                     int totalWorkers;
-                    bmpi::communicator & comm;
-                    Job< JobData > & that;
                     AssignmentAlgorithm& assignmentAlgo;
+                    Job< JobData > & that;
+
+                    bmpi::communicator & comm;
                 };
 
                 void master( )
@@ -372,13 +372,17 @@ namespace eo
                 }
 
             protected:
-                AssignmentAlgorithm& assignmentAlgo;
-                bmpi::communicator& comm;
-                int masterRank;
-                bool _isMaster;
 
-                struct rusage _usage;
-                long _current;
+                AssignmentAlgorithm& assignmentAlgo;
+                int masterRank;
+                bmpi::communicator& comm;
+
+                SendTaskFunction<JobData> & sendTask;
+                HandleResponseFunction<JobData> & handleResponse;
+                ProcessTaskFunction<JobData> & processTask;
+                IsFinishedFunction<JobData> & isFinished;
+
+                bool _isMaster;
         };
     }
 }

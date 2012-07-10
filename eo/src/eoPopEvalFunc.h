@@ -107,8 +107,8 @@ class eoParallelPopLoopEval : public eoPopEvalFunc<EOT>
                 ) :
             assignAlgo( _assignAlgo ),
             masterRank( _masterRank ),
-            needToDeleteStore( false ),
-            store( _store )
+            store( _store ),
+            needToDeleteStore( false )
         {
             // empty
         }
