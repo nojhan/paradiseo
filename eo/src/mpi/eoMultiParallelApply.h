@@ -27,7 +27,6 @@ namespace eo
 
             ~ProcessTaskParallelEval()
             {
-                delete _wrapped;
             }
         };
 
@@ -39,7 +38,6 @@ namespace eo
             ParallelEvalStore(
                     eoUF<EOT&, void> & _proc,
                     int _masterRank,
-                    // long _maxTime = 0,
                     int _packetSize = 1
                    ) :
                 ParallelApplyStore< EOT >( _proc, *( new std::vector<EOT> ), _masterRank, _packetSize )

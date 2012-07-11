@@ -49,9 +49,13 @@ namespace eo
             DummyJobStore()
             {
                 _stf = new DummySendTaskFunction;
+                _stf->needDelete( true );
                 _hrf = new DummyHandleResponseFunction;
+                _hrf->needDelete( true );
                 _ptf = new DummyProcessTaskFunction;
+                _ptf->needDelete( true );
                 _iff = new DummyIsFinishedFunction;
+                _iff->needDelete( true );
             }
 
             void* data() { return 0; }

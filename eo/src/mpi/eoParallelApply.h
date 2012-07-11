@@ -21,17 +21,23 @@ namespace eo
         {
             ParallelApplyData(
                     eoUF<EOT&, void> & _proc,
-                    std::vector<EOT> & _pop,
                     int _masterRank,
                     // long _maxTime = 0,
-                    int _packetSize
+                    int _packetSize,
+                    std::vector<EOT> * _pop = 0
                    ) :
-                _data( &_pop ), func( _proc ), index( 0 ), size( _pop.size() ), packetSize( _packetSize ), masterRank( _masterRank ), comm( Node::comm() )
+                _data( _pop ), func( _proc ), index( 0 ), packetSize( _packetSize ), masterRank( _masterRank ), comm( Node::comm() )
             {
                 if ( _packetSize <= 0 )
                 {
                     throw std::runtime_error("Packet size should not be negative.");
                 }
+
+                if( _pop )
+                {
+                    size = _pop->size();
+                }
+
                 tempArray = new EOT[ _packetSize ];
             }
 
@@ -172,18 +178,36 @@ namespace eo
 
             ParallelApplyStore(
                     eoUF<EOT&, void> & _proc,
-                    std::vector<EOT>& _pop,
                     int _masterRank,
-                    // long _maxTime = 0,
                     int _packetSize = 1,
                     // JobStore functors
-                    SendTaskParallelApply<EOT> * stpa = new SendTaskParallelApply<EOT>,
-                    HandleResponseParallelApply<EOT>* hrpa = new HandleResponseParallelApply<EOT>,
-                    ProcessTaskParallelApply<EOT>* ptpa = new ProcessTaskParallelApply<EOT>,
-                    IsFinishedParallelApply<EOT>* ifpa = new IsFinishedParallelApply<EOT>
+                    SendTaskParallelApply<EOT> * stpa = 0,
+                    HandleResponseParallelApply<EOT>* hrpa = 0,
+                    ProcessTaskParallelApply<EOT>* ptpa = 0,
+                    IsFinishedParallelApply<EOT>* ifpa = 0
                    ) :
-                _data( _proc, _pop, _masterRank, _packetSize )
+                _data( _proc, _masterRank, _packetSize )
             {
+                if( stpa == 0 ) {
+                    stpa = new SendTaskParallelApply<EOT>;
+                    stpa->needDelete( true );
+                }
+
+                if( hrpa == 0 ) {
+                    hrpa = new HandleResponseParallelApply<EOT>;
+                    hrpa->needDelete( true );
+                }
+
+                if( ptpa == 0 ) {
+                    ptpa = new ProcessTaskParallelApply<EOT>;
+                    ptpa->needDelete( true );
+                }
+
+                if( ifpa == 0 ) {
+                    ifpa = new IsFinishedParallelApply<EOT>;
+                    ifpa->needDelete( true );
+                }
+
                 _stf = stpa;
                 _hrf = hrpa;
                 _ptf = ptpa;
@@ -191,6 +215,11 @@ namespace eo
             }
 
             ParallelApplyData<EOT>* data() { return &_data; }
+
+            void data( std::vector<EOT>& _pop )
+            {
+                _data.init( _pop );
+            }
 
             virtual ~ParallelApplyStore()
             {

@@ -40,9 +40,17 @@ namespace eo
         template< typename JobData, typename Wrapped >
         struct SharedDataFunction
         {
-            SharedDataFunction( Wrapped * w = 0 ) : _wrapped( w )
+            SharedDataFunction( Wrapped * w = 0 ) : _wrapped( w ), _needDelete( false )
             {
                 // empty
+            }
+
+            virtual ~SharedDataFunction()
+            {
+                if( _wrapped && _wrapped->needDelete() )
+                {
+                    delete _wrapped;
+                }
             }
 
             void wrapped( Wrapped * w )
@@ -59,9 +67,13 @@ namespace eo
                 }
             }
 
+            bool needDelete() { return _needDelete; }
+            void needDelete( bool b ) { _needDelete = b; }
+
             protected:
             JobData* d;
             Wrapped* _wrapped;
+            bool _needDelete;
         };
 
         template< typename JobData >
@@ -119,7 +131,6 @@ namespace eo
         template< typename JobData >
         struct JobStore
         {
-            // TODO commentaire: ces pointeurs devraient être alloués avec new pour éviter segfault on quit.
             JobStore(
                 SendTaskFunction<JobData>* stf,
                 HandleResponseFunction<JobData>* hrf,
@@ -138,12 +149,10 @@ namespace eo
 
             ~JobStore()
             {
-                // TODO commentaire: Composition Pattern => délégation de la destruction => destruction homogène => new
-                // et delete partout.
-                delete _stf;
-                delete _hrf;
-                delete _ptf;
-                delete _iff;
+                if( _stf->needDelete() ) delete _stf;
+                if( _hrf->needDelete() ) delete _hrf;
+                if( _ptf->needDelete() ) delete _ptf;
+                if( _iff->needDelete() ) delete _iff;
             }
 
             SendTaskFunction<JobData> & sendTask() { return *_stf; }
