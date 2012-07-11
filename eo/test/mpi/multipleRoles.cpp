@@ -1,5 +1,6 @@
 # include <mpi/eoMpi.h>
 # include <mpi/eoParallelApply.h>
+# include <mpi/eoTerminateJob.h>
 
 # include <boost/serialization/vector.hpp>
 
@@ -32,9 +33,11 @@ void subtask( vector<int>& v, int rank )
     DynamicAssignmentAlgorithm algo( workers );
     SubWork sw;
 
-    ParallelApplyStore<int> store( sw, v, rank );
+    ParallelApplyStore<int> store( sw, rank );
+    store.data( v );
     ParallelApply<int> job( algo, rank, store );
     job.run();
+    EmptyJob stop( algo, rank );
 }
 
 struct Work: public eoUF< vector<int>&, void >
@@ -74,11 +77,13 @@ int main(int argc, char** argv)
             {
                 Work w;
                 DynamicAssignmentAlgorithm algo( 1, 2 );
-                ParallelApplyStore< vector<int> > store( w, metaV, 0 );
+                ParallelApplyStore< vector<int> > store( w, 0 );
+                store.data( metaV );
                 ParallelApply< vector<int> > job( algo, 0, store );
                 job.run();
                 if( job.isMaster() )
                 {
+                    EmptyJob stop( algo, 0 );
                     v = metaV[0];
                     cout << "Results : " << endl;
                     for(int i = 0; i < v.size(); ++i)

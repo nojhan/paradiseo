@@ -1,5 +1,6 @@
 # include <mpi/eoMpi.h>
 # include <mpi/eoParallelApply.h>
+# include <mpi/eoTerminateJob.h>
 
 # include <iostream>
 
@@ -110,8 +111,8 @@ int main(int argc, char** argv)
 
     for( unsigned int i = 0; i < tests.size(); ++i )
     {
-        ParallelApplyStore< int > store( plusOneInstance, v, eo::mpi::DEFAULT_MASTER, 3 );
-        // Job< JobData<int> > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );
+        ParallelApplyStore< int > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 3 );
+        store.data( v );
         ParallelApply< int > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );
 
         if( job.isMaster() )
@@ -126,6 +127,7 @@ int main(int argc, char** argv)
 
         if( job.isMaster() )
         {
+            EmptyJob stop( *(tests[i].assign), eo::mpi::DEFAULT_MASTER );
             ++offset;
             for(int i = 0; i < v.size(); ++i)
             {

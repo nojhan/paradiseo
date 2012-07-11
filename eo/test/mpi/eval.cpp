@@ -11,8 +11,6 @@
 
 #include <mpi/eoMpi.h>
 
-#include <mpi/eoTerminateJob.h>
-
 #include <boost/mpi.hpp>
 
 #include <vector>
@@ -144,10 +142,10 @@ int main(int ac, char** av)
 
         eo::log << "Size of population : " << popSize << std::endl;
 
-        eo::mpi::ParallelEvalStore< EOT > store( eval, eo::mpi::DEFAULT_MASTER );
+        eo::mpi::ParallelApplyStore< EOT > store( eval, eo::mpi::DEFAULT_MASTER );
         store.wrapHandleResponse( new CatBestAnswers );
 
-        eoParallelPopLoopEval< EOT > popEval( eval, assign, &store, eo::mpi::DEFAULT_MASTER, 3 );
+        eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, &store );
         eo::log << eo::quiet << "Before first evaluation." << std::endl;
         popEval( pop, pop );
         eo::log << eo::quiet << "After first evaluation." << std::endl;
@@ -160,7 +158,7 @@ int main(int ac, char** av)
     } else
     {
         eoPop< EOT > pop( popSize, init );
-        eoParallelPopLoopEval< EOT > popEval( eval, assign, eo::mpi::DEFAULT_MASTER, 3 );
+        eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, eval );
         popEval( pop, pop );
     }
 

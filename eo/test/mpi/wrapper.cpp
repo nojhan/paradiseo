@@ -1,5 +1,6 @@
 # include <mpi/eoMpi.h>
 # include <mpi/eoParallelApply.h>
+# include <mpi/eoTerminateJob.h>
 
 # include <iostream>
 
@@ -60,13 +61,15 @@ int main(int argc, char** argv)
 
     StaticAssignmentAlgorithm assign( v.size() );
 
-    ParallelApplyStore< int > store( plusOneInstance, v, eo::mpi::DEFAULT_MASTER, 1 );
+    ParallelApplyStore< int > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 1 );
+    store.data( v );
     store.wrapIsFinished( new ShowWrappedResult<int> );
 
     ParallelApply<int> job( assign, eo::mpi::DEFAULT_MASTER, store );
     // Equivalent to:
     // Job< ParallelApplyData<int> > job( assign, 0, store );
     job.run();
+    EmptyJob stop( assign, eo::mpi::DEFAULT_MASTER );
 
     if( job.isMaster() )
     {
