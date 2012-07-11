@@ -7,6 +7,8 @@
 # include <vector>
 # include <map>
 
+# include "utils/eoParallel.h"
+
 # ifdef WITH_MPI
 # include <boost/serialization/access.hpp>
 # include <boost/serialization/vector.hpp>
@@ -119,16 +121,22 @@ class eoTimerStat
 
         void start( const std::string & key )
         {
-            _timers[ key ].restart();
+            if( eo::parallel.doMeasure() )
+            {
+                _timers[ key ].restart();
+            }
         }
 
         void stop( const std::string& key )
         {
-            Stat & s = _stats[ key ];
-            eoTimer & t = _timers[ key ];
-            s.utime.push_back( t.usertime() );
-            s.stime.push_back( t.systime() );
-            s.wtime.push_back( t.wallclock() );
+            if( eo::parallel.doMeasure() )
+            {
+                Stat & s = _stats[ key ];
+                eoTimer & t = _timers[ key ];
+                s.utime.push_back( t.usertime() );
+                s.stime.push_back( t.systime() );
+                s.wtime.push_back( t.wallclock() );
+            }
         }
 
         std::map< std::string, Stat > stats()
