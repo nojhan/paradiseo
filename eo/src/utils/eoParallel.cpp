@@ -37,6 +37,7 @@ eoParallel::eoParallel() :
     _nthreads( 0, "parallelize-nthreads", "Define the number of threads you want to use, nthreads = 0 means you want to use all threads available", '\0' ),
     _enableResults( false, "parallelize-enable-results", "Enable the generation of results", '\0' ),
     _doMeasure( false, "parallelize-do-measure", "Do some measures during execution", '\0' ),
+    _packetSize( 1U, "parallelize-packet-size", "Number of elements which should be sent at a time during a parallel evaluation based on message passing.", '\0'),
     _t_start(0)
 {
 }
@@ -90,6 +91,7 @@ void eoParallel::_createParameters( eoParser& parser )
     parser.processParam( _nthreads, section );
     parser.processParam( _enableResults, section );
     parser.processParam( _doMeasure, section );
+    parser.processParam( _packetSize, section );
 }
 
 void make_parallel(eoParser& parser)

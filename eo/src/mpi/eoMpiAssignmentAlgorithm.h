@@ -114,13 +114,14 @@ namespace eo
                     init( workers, runs );
                 }
 
-                StaticAssignmentAlgorithm( int runs )
+                StaticAssignmentAlgorithm( int runs = 0 )
                 {
                     std::vector<int> workers;
                     for(int i = 1; i < Node::comm().size(); ++i)
                     {
                         workers.push_back( i );
                     }
+
                     init( workers, runs );
                 }
 

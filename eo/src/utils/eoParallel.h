@@ -54,6 +54,7 @@ public:
     std::string prefix() const;
 
     inline unsigned int nthreads() const { return _nthreads.value(); }
+    inline unsigned int packetSize() const { return _packetSize.value(); }
 
     inline bool enableResults() const { return _enableResults.value(); }
     inline bool doMeasure() const { return _doMeasure.value(); }
@@ -68,6 +69,7 @@ private:
     eoValueParam<bool> _isDynamic;
     eoValueParam<std::string> _prefix;
     eoValueParam<unsigned int> _nthreads;
+    eoValueParam<unsigned int> _packetSize;
     eoValueParam<bool> _enableResults;
     eoValueParam<bool> _doMeasure;
     double _t_start;
