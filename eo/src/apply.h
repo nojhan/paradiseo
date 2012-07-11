@@ -91,7 +91,7 @@ void parallelApply(
         std::vector<EOT>& _pop,
         eo::mpi::AssignmentAlgorithm& _algo,
         int _masterRank,
-        eo::mpi::ParallelEvalStore<EOT> & _store )
+        eo::mpi::ParallelApplyStore<EOT> & _store )
 {
     _store.data( _pop );
     _algo.reinit( _pop.size() );

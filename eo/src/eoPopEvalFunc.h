@@ -96,14 +96,15 @@ class eoParallelPopLoopEval : public eoPopEvalFunc<EOT>
             masterRank( _masterRank ),
             needToDeleteStore( true )
         {
-            store = new eo::mpi::ParallelEvalStore<EOT>( _eval, _masterRank, _packetSize );
+            // FIXME memory leak because of new.
+            store = new eo::mpi::ParallelApplyStore<EOT>( _eval, _masterRank, _packetSize );
         }
 
         eoParallelPopLoopEval(
                 // Job parameters
                 eo::mpi::AssignmentAlgorithm& _assignAlgo,
                 int _masterRank,
-                eo::mpi::ParallelEvalStore<EOT>* _store
+                eo::mpi::ParallelApplyStore<EOT>* _store
                 ) :
             assignAlgo( _assignAlgo ),
             masterRank( _masterRank ),
@@ -138,7 +139,7 @@ class eoParallelPopLoopEval : public eoPopEvalFunc<EOT>
         eo::mpi::AssignmentAlgorithm & assignAlgo;
         int masterRank;
 
-        eo::mpi::ParallelEvalStore<EOT>* store;
+        eo::mpi::ParallelApplyStore<EOT>* store;
         bool needToDeleteStore;
 };
 #endif
