@@ -37,8 +37,6 @@ namespace eo
                 {
                     size = _pop->size();
                 }
-
-                tempArray = new EOT[ _packetSize ];
             }
 
             void init( std::vector<EOT>& _pop )
@@ -47,11 +45,6 @@ namespace eo
                 size = _pop.size();
                 _data = &_pop;
                 assignedTasks.clear();
-            }
-
-            ~ParallelApplyData()
-            {
-                delete [] tempArray;
             }
 
             std::vector<EOT>& data()
@@ -65,7 +58,7 @@ namespace eo
             int size;
             std::map< int /* worker rank */, ParallelApplyAssignment /* min indexes in vector */> assignedTasks;
             int packetSize;
-            EOT* tempArray;
+            std::vector<EOT> tempArray;
 
             int masterRank;
             bmpi::communicator& comm;
@@ -140,14 +133,15 @@ namespace eo
                 int recvSize;
 
                 d->comm.recv( d->masterRank, 1, recvSize );
-                d->comm.recv( d->masterRank, 1, d->tempArray, recvSize );
+                d->tempArray.resize( recvSize );
+                d->comm.recv( d->masterRank, 1, & d->tempArray[0] , recvSize );
                 timerStat.start("worker_processes");
                 for( int i = 0; i < recvSize ; ++i )
                 {
                     d->func( d->tempArray[ i ] );
                 }
                 timerStat.stop("worker_processes");
-                d->comm.send( d->masterRank, 1, d->tempArray, recvSize );
+                d->comm.send( d->masterRank, 1, & d->tempArray[0], recvSize );
             }
         };
 

@@ -35,6 +35,9 @@
 #include <mpi/eoTerminateJob.h>
 #include <mpi/eoMpiAssignmentAlgorithm.h>
 #include <mpi/eoParallelApply.h>
+#include <utils/eoParallel.h>
+
+#include <cmath> // ceil
 # endif // WITH_MPI
 
 /** eoPopEvalFunc: This abstract class is for GLOBAL evaluators
@@ -192,7 +195,12 @@ class eoParallelPopLoopEval : public eoPopEvalFunc<EOT>
             (void)_parents;
             // Reinits the store and the scheduling algorithm
             store->data( _offspring );
-            assignAlgo.reinit( _offspring.size() );
+            // For static scheduling, it's mandatory to reinit attributions
+            int nbWorkers = assignAlgo.availableWorkers();
+            assignAlgo.reinit( nbWorkers );
+            if( ! eo::parallel.isDynamic() ) {
+                store->data()->packetSize = ceil( static_cast<double>( _offspring.size() ) / nbWorkers );
+            }
             // Effectively launches the job.
             eo::mpi::ParallelApply<EOT> job( assignAlgo, masterRank, *store );
             job.run();

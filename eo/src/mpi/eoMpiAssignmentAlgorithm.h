@@ -137,7 +137,10 @@ namespace eo
                 {
                     unsigned int nbWorkers = workers.size();
                     freeWorkers = nbWorkers;
+
+                    attributions.clear();
                     attributions.reserve( nbWorkers );
+                    busy.clear();
                     busy.resize( nbWorkers, false );
 
                     // Let be the euclidean division of runs by nbWorkers :
