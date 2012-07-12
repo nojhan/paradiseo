@@ -83,15 +83,22 @@ class eoTimer
         {
             struct rusage _now;
             getrusage( RUSAGE_SELF, &_now );
+
             long int result = _now.ru_utime.tv_sec - _start.ru_utime.tv_sec;
-            if( _now.ru_utime.tv_sec == _start.ru_utime.tv_sec )
+            long int remainder = _now.ru_utime.tv_usec - _start.ru_utime.tv_usec;
+            if( remainder >= 0 )
             {
-                uuremainder += _now.ru_utime.tv_usec - _start.ru_utime.tv_usec;
-                if( uuremainder > 1000000)
-                {
-                    ++result;
-                    uuremainder -= 1000000;
-                }
+                uuremainder += remainder;
+            } else
+            {
+                uuremainder += ( 1000000 - remainder );
+                --result;
+            }
+
+            if( uuremainder >= 1000000 )
+            {
+                uuremainder -= 1000000;
+                ++result;
             }
             return result;
         }
@@ -109,15 +116,22 @@ class eoTimer
         {
             struct rusage _now;
             getrusage( RUSAGE_SELF, &_now );
+
             long int result = _now.ru_stime.tv_sec - _start.ru_stime.tv_sec;
-            if( _now.ru_stime.tv_sec == _start.ru_stime.tv_sec )
+            long int remainder = _now.ru_stime.tv_usec - _start.ru_stime.tv_usec;
+            if( remainder >= 0 )
             {
-                usremainder += _now.ru_stime.tv_usec - _start.ru_stime.tv_usec;
-                if( usremainder > 1000000)
-                {
-                    ++result;
-                    usremainder -= 1000000;
-                }
+                usremainder += remainder;
+            } else
+            {
+                usremainder += ( 1000000 - remainder );
+                --result;
+            }
+
+            if( usremainder >= 1000000 )
+            {
+                usremainder -= 1000000;
+                ++result;
             }
             return result;
         }
