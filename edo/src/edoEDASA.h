@@ -46,13 +46,13 @@ class edoEDASA : public edoAlgo< D >
 {
 public:
     //! Alias for the type EOT
-    typedef typename D::EOType EOT;
+    typedef typename D::EOType EOType;
 
     //! Alias for the atom type
-    typedef typename EOT::AtomType AtomType;
+    typedef typename EOType::AtomType AtomType;
 
     //! Alias for the fitness
-    typedef typename EOT::Fitness Fitness;
+    typedef typename EOType::Fitness Fitness;
 
 public:
 
@@ -73,18 +73,18 @@ public:
       \param initial_temperature The initial temperature.
       \param replacor Population replacor
     */
-    edoEDASA (eoSelect< EOT > & selector,
+    edoEDASA (eoSelect< EOType > & selector,
 	      edoEstimator< D > & estimator,
-	      eoSelectOne< EOT > & selectone,
+	      eoSelectOne< EOType > & selectone,
 	      edoModifierMass< D > & modifier,
 	      edoSampler< D > & sampler,
-	      eoContinue< EOT > & pop_continue,
+	      eoContinue< EOType > & pop_continue,
 	      edoContinue< D > & distribution_continue,
-	      eoEvalFunc < EOT > & evaluation,
-	      moContinuator< moDummyNeighbor<EOT> > & sa_continue,
-	      moCoolingSchedule<EOT> & cooling_schedule,
+	      eoEvalFunc < EOType > & evaluation,
+	      moContinuator< moDummyNeighbor<EOType> > & sa_continue,
+	      moCoolingSchedule<EOType> & cooling_schedule,
 	      double initial_temperature,
-	      eoReplacement< EOT > & replacor
+	      eoReplacement< EOType > & replacor
 	      )
 	: _selector(selector),
 	  _estimator(estimator),
@@ -108,15 +108,15 @@ public:
       \param pop A population to improve.
       \return TRUE.
     */
-    void operator ()(eoPop< EOT > & pop)
+    void operator ()(eoPop< EOType > & pop)
     {
 	assert(pop.size() > 0);
 
 	double temperature = _initial_temperature;
 
-	eoPop< EOT > current_pop;
+	eoPop< EOType > current_pop;
 
-	eoPop< EOT > selected_pop;
+	eoPop< EOType > selected_pop;
 
 
 	//-------------------------------------------------------------
@@ -165,7 +165,7 @@ public:
 		// Init of a variable contening a point with the bestest fitnesses
 		//-------------------------------------------------------------
 
-		EOT current_solution = _selectone(selected_pop);
+		EOType current_solution = _selectone(selected_pop);
 
 		//-------------------------------------------------------------
 
@@ -200,7 +200,7 @@ public:
 
 		do
 		    {
-			EOT candidate_solution = _sampler(distrib);
+			EOType candidate_solution = _sampler(distrib);
 			_evaluation( candidate_solution );
 
 			// TODO: verifier le critere d'acceptation
@@ -232,14 +232,14 @@ public:
 
 private:
 
-    //! A EOT selector
-    eoSelect < EOT > & _selector;
+    //! A EOType selector
+    eoSelect < EOType > & _selector;
 
-    //! A EOT estimator. It is going to estimate distribution parameters.
+    //! A EOType estimator. It is going to estimate distribution parameters.
     edoEstimator< D > & _estimator;
 
     //! SelectOne
-    eoSelectOne< EOT > & _selectone;
+    eoSelectOne< EOType > & _selectone;
 
     //! A D modifier
     edoModifierMass< D > & _modifier;
@@ -247,26 +247,26 @@ private:
     //! A D sampler
     edoSampler< D > & _sampler;
 
-    //! A EOT population continuator
-    eoContinue < EOT > & _pop_continue;
+    //! A EOType population continuator
+    eoContinue < EOType > & _pop_continue;
 
     //! A D continuator
     edoContinue < D > & _distribution_continue;
 
     //! A full evaluation function.
-    eoEvalFunc < EOT > & _evaluation;
+    eoEvalFunc < EOType > & _evaluation;
 
     //! Stopping criterion before temperature update
-    moContinuator< moDummyNeighbor<EOT> > & _sa_continue;
+    moContinuator< moDummyNeighbor<EOType> > & _sa_continue;
 
     //! The cooling schedule
-    moCoolingSchedule<EOT> & _cooling_schedule;
+    moCoolingSchedule<EOType> & _cooling_schedule;
 
     //! Initial temperature
     double  _initial_temperature;
 
-    //! A EOT replacor
-    eoReplacement < EOT > & _replacor;
+    //! A EOType replacor
+    eoReplacement < EOType > & _replacor;
 };
 
 #endif // !_edoEDASA_h

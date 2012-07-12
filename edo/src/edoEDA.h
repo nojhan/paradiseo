@@ -46,13 +46,13 @@ class edoEDA : public edoAlgo< D >
 {
 public:
     //! Alias for the type EOT
-    typedef typename D::EOType EOT;
+    typedef typename D::EOType EOType;
 
     //! Alias for the atom type
-    typedef typename EOT::AtomType AtomType;
+    typedef typename EOType::AtomType AtomType;
 
     //! Alias for the fitness
-    typedef typename EOT::Fitness Fitness;
+    typedef typename EOType::Fitness Fitness;
 
 public:
 
@@ -69,12 +69,12 @@ public:
       \param distribution_continuator Stopping criterion based on the distribution features
     */
     edoEDA (
-        eoPopEvalFunc < EOT > & evaluator,
-        eoSelect< EOT > & selector,
+        eoPopEvalFunc < EOType > & evaluator,
+        eoSelect< EOType > & selector,
         edoEstimator< D > & estimator,
         edoSampler< D > & sampler,
-        eoReplacement< EOT > & replacor,
-        eoContinue< EOT > & pop_continuator,
+        eoReplacement< EOType > & replacor,
+        eoContinue< EOType > & pop_continuator,
         edoContinue< D > & distribution_continuator
     ) :
         _evaluator(evaluator),
@@ -99,12 +99,12 @@ public:
       \param pop_continuator Stopping criterion based on the population features
     */
     edoEDA (
-        eoPopEvalFunc < EOT > & evaluator,
-        eoSelect< EOT > & selector,
+        eoPopEvalFunc < EOType > & evaluator,
+        eoSelect< EOType > & selector,
         edoEstimator< D > & estimator,
         edoSampler< D > & sampler,
-        eoReplacement< EOT > & replacor,
-        eoContinue< EOT > & pop_continuator
+        eoReplacement< EOType > & replacor,
+        eoContinue< EOType > & pop_continuator
     ) :
         _evaluator(evaluator),
         _selector(selector),
@@ -123,12 +123,12 @@ public:
      * \param pop the population of candidate solutions
      * \return void
     */
-    void operator ()(eoPop< EOT > & pop)
+    void operator ()(eoPop< EOType > & pop)
     {
         assert(pop.size() > 0);
 
-        eoPop< EOT > current_pop;
-        eoPop< EOT > selected_pop;
+        eoPop< EOType > current_pop;
+        eoPop< EOType > selected_pop;
 
         // FIXME one must instanciate a first distrib here because there is no empty constructor, see if it is possible to instanciate Distributions without parameters
         D distrib = _estimator(pop);
@@ -167,22 +167,22 @@ public:
 private:
 
     //! A full evaluation function.
-    eoPopEvalFunc < EOT > & _evaluator;
+    eoPopEvalFunc < EOType > & _evaluator;
 
-    //! A EOT selector
-    eoSelect < EOT > & _selector;
+    //! A EOType selector
+    eoSelect < EOType > & _selector;
 
-    //! A EOT estimator. It is going to estimate distribution parameters.
+    //! A EOType estimator. It is going to estimate distribution parameters.
     edoEstimator< D > & _estimator;
 
     //! A D sampler
     edoSampler< D > & _sampler;
 
-    //! A EOT replacor
-    eoReplacement < EOT > & _replacor;
+    //! A EOType replacor
+    eoReplacement < EOType > & _replacor;
 
-    //! A EOT population continuator
-    eoContinue < EOT > & _pop_continuator;
+    //! A EOType population continuator
+    eoContinue < EOType > & _pop_continuator;
 
     //! A D continuator that always return true
     edoDummyContinue<D> _dummy_continue;

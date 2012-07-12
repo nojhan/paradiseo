@@ -40,7 +40,7 @@ template < typename D >
 class edoAlgo : public eoAlgo< typename D::EOType >
 {
     //! Alias for the type
-    typedef typename D::EOType EOT;
+    typedef typename D::EOType EOType;
 
     // virtual R operator()(A1) = 0; (defined in eoUF)
 
