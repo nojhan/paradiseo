@@ -69,9 +69,9 @@ public:
         assert(T.innerSize() == size);
         assert(T.outerSize() == 1);
 
-        //Vector t_sol = distrib.mean() + distrib.sigma() * distrib.coord_sys() * distrib.scaling() * T;
-        Vector sol = distrib.mean() + distrib.sigma()
-            * distrib.coord_sys().dot( distrib.scaling().dot( T ) );
+        Vector sol = distrib.mean() + distrib.sigma() * distrib.coord_sys() * (distrib.scaling().dot(T) );
+        /*Vector sol = distrib.mean() + distrib.sigma()
+            * distrib.coord_sys().dot( distrib.scaling().dot( T ) );*/
 
         // copy in the EOT structure (more probably a vector)
         EOT solution( size );

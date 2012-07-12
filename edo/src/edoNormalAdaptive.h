@@ -39,6 +39,7 @@ template < typename EOT >
 class edoNormalAdaptive : public edoDistrib< EOT >
 {
 public:
+    //typedef EOT EOType;
     typedef typename EOT::AtomType AtomType;
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector;
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
@@ -55,13 +56,40 @@ public:
         assert( dim > 0);
     }
 
+    edoNormalAdaptive( unsigned int dim, 
+            Vector mean,
+            Matrix C,
+            Matrix B,
+            Vector D,
+            double sigma,
+            Vector p_c,
+            Vector p_s
+        ) :
+        _mean( mean ),
+        _C( C ),
+        _B( B ),
+        _D( D ),
+        _sigma(sigma),
+        _p_c( p_c ),
+        _p_s( p_s )
+    {
+        assert( dim > 0);
+        assert( _mean.innerSize() == dim );
+        assert( _C.innerSize() == dim && _C.outerSize() == dim );
+        assert( _B.innerSize() == dim && _B.outerSize() == dim );
+        assert( _D.innerSize() == dim );
+        assert( _sigma != 0.0 );
+        assert( _p_c.innerSize() == dim );
+        assert( _p_s.innerSize() == dim );
+    }
+
     unsigned int size()
     {
         return _mean.innerSize();
     }
 
     Vector mean() const {return _mean;}
-    Matrix covar() const {return _covar;}
+    Matrix covar() const {return _C;}
     Matrix coord_sys() const {return _B;}
     Vector scaling() const {return _D;}
     double sigma() const {return _sigma;}
@@ -73,8 +101,8 @@ public:
     void coord_sys(  Matrix b ) { _B = b; }
     void scaling(    Vector d ) { _D = d; }
     void sigma(      double s ) { _sigma = s; }
-    void path_covar( Vector p ) { _path_covar = p; }
-    void path_sigma( Vector p ) { _path_sigma = p; }
+    void path_covar( Vector p ) { _p_c = p; }
+    void path_sigma( Vector p ) { _p_s = p; }
 
 private:
     Vector _mean; // 
