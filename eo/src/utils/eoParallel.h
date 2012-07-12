@@ -20,8 +20,7 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-Caner Candan <caner.candan@thalesgroup.com>
-
+    Caner Candan <caner.candan@thalesgroup.com>
 */
 
 /** @defgroup Parallel Parallel

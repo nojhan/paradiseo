@@ -33,12 +33,6 @@
 #include <vector>
 #include <omp.h>
 
-# ifdef WITH_MPI
-# include <mpi/eoMpi.h>
-# include <mpi/eoMultiParallelApply.h>
-# include <mpi/eoTerminateJob.h>
-# endif // WITH_MPI
-
 /**
   Applies a unary function to a std::vector of things.
 
@@ -84,21 +78,6 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 
 #endif // !_OPENMP
 }
-
-#ifdef WITH_MPI
-template<class EOT>
-void parallelApply(
-        std::vector<EOT>& _pop,
-        eo::mpi::AssignmentAlgorithm& _algo,
-        int _masterRank,
-        eo::mpi::ParallelApplyStore<EOT> & _store )
-{
-    _store.data( _pop );
-    _algo.reinit( _pop.size() );
-    eo::mpi::ParallelApply<EOT> job( _algo, _masterRank, _store );
-    job.run();
-}
-#endif
 
 /**
   This is a variant of apply<EOT> which is called in parallel
