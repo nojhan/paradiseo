@@ -47,7 +47,7 @@ Authors:
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/symmetric.hpp>
 
-template< class EOT, typename EOD = edoNormalMulti< EOT > >
+template< typename EOT, typename EOD = edoNormalMulti< EOT > >
 class edoSamplerNormalMulti : public edoSampler< EOD >
 {
 public:
@@ -91,7 +91,7 @@ protected:
 #else
 #ifdef WITH_EIGEN
 
-template< class EOT, typename EOD = edoNormalMulti< EOT > >
+template< typename EOT, typename EOD = edoNormalMulti< EOT > >
 class edoSamplerNormalMulti : public edoSampler< EOD >
 {
 public:
