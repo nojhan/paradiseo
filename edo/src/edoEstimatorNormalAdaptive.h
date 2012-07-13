@@ -45,12 +45,11 @@ class edoEstimatorNormalAdaptive : public edoEstimatorAdaptive< EOD >
 {
 public:
     typedef typename EOT::AtomType AtomType;
-    typedef typename EOD::Vector Vector;
+    typedef typename EOD::Vector Vector; // column vectors @see edoNormalAdaptive
     typedef typename EOD::Matrix Matrix;
 
-    edoEstimatorNormalAdaptive( EOD& distrib, unsigned int mu ) :
+    edoEstimatorNormalAdaptive( EOD& distrib ) :
         edoEstimatorAdaptive<EOD>( distrib ),
-        _mu(mu),
         _calls(0),
         _eigeneval(0)
     {}
@@ -61,14 +60,15 @@ private:
         // compute recombination weights
         Eigen::VectorXd weights( pop_size );
         double sum_w = 0;
-        for( unsigned int i = 0; i < _mu; ++i ) {
-            double w_i = log( _mu + 0.5 ) - log( i + 1 );
+        for( unsigned int i = 0; i < pop_size; ++i ) {
+            double w_i = log( pop_size + 0.5 ) - log( i + 1 );
             weights(i) = w_i;
             sum_w += w_i;
         }
         // normalization of weights
         weights /= sum_w;
 
+        assert( weights.size() == pop_size);
         return weights;
     }
 
@@ -97,17 +97,18 @@ public:
         // Here, if we are in canonical CMA-ES,
         // pop is supposed to be the mu ranked better solutions,
         // as the rank mu selection is supposed to have occured.
-        Matrix arx( pop.size(), N );
+        Matrix arx( N, lambda );
 
         // copy the pop (most probably a vector of vectors) in a Eigen3 matrix
-        for( unsigned int i = 0; i < lambda; ++i ) {
-            for( unsigned int d = 0; d < N; ++d ) {
-                arx(i,d) = pop[i][d];
+        for( unsigned int d = 0; d < N; ++d ) {
+            for( unsigned int i = 0; i < lambda; ++i ) {
+                arx(d,i) = pop[i][d]; // NOTE: pop = arx.transpose()
             } // dimensions
         } // individuals
 
         // muXone array for weighted recombination
-        Eigen::VectorXd weights = edoCMAESweights( N );
+        Eigen::VectorXd weights = edoCMAESweights( lambda );
+        assert( weights.size() == lambda );
 
         // FIXME exposer les constantes dans l'interface
 
@@ -137,6 +138,8 @@ public:
         Matrix invsqrtC =
             d.coord_sys() * d.scaling().asDiagonal().inverse()
             * d.coord_sys().transpose();
+        assert( invsqrtC.innerSize() == d.coord_sys().innerSize() );
+        assert( invsqrtC.outerSize() == d.coord_sys().outerSize() );
 
         // expectation of ||N(0,I)|| == norm(randn(N,1))
         double chiN = sqrt(N)*(1-1/(4*N)+1/(21*pow(N,2)));
@@ -148,8 +151,11 @@ public:
 
         // compute weighted mean into xmean
         Vector xold = d.mean();
-        d.mean( arx * weights );
-        Vector xmean = d.mean();
+        assert( xold.size() == N );
+        //  xmean ( N, 1 ) = arx( N, lambda ) * weights( lambda, 1 )
+        Vector xmean = arx * weights;
+        assert( xmean.size() == N );
+        d.mean( xmean );
 
 
         /**********************************************************************
@@ -157,9 +163,9 @@ public:
          *********************************************************************/
 
         // cumulation for sigma
-        d.path_sigma( 
-                (1.0-cs)*d.path_sigma() + sqrt(cs*(2.0-cs)*mueff)*invsqrtC*(xmean-xold)/d.sigma()
-                );
+        d.path_sigma(
+            (1.0-cs)*d.path_sigma() + sqrt(cs*(2.0-cs)*mueff)*invsqrtC*(xmean-xold)/d.sigma()
+        );
 
         // sign of h
         double hsig;
@@ -173,10 +179,16 @@ public:
 
         // cumulation for the covariance matrix
         d.path_covar(
-                (1.0-cc)*d.path_covar() + hsig*sqrt(cc*(2.0-cc)*mueff)*(xmean-xold) / d.sigma()
-                );
+            (1.0-cc)*d.path_covar() + hsig*sqrt(cc*(2.0-cc)*mueff)*(xmean-xold) / d.sigma()
+        );
 
-        Matrix artmp = (1.0/d.sigma()) * arx - xold.rowwise().replicate(_mu);
+        Matrix xmu( N, lambda);
+        xmu = xold.rowwise().replicate(lambda);
+        assert( xmu.innerSize() == N );
+        assert( xmu.outerSize() == lambda );
+        Matrix artmp = (1.0/d.sigma()) * (arx - xmu);
+        // Matrix artmp = (1.0/d.sigma()) * arx - xold.colwise().replicate(lambda);
+        assert( artmp.innerSize() == N && artmp.outerSize() == lambda );
 
 
         /**********************************************************************
@@ -214,10 +226,11 @@ public:
             Eigen::SelfAdjointEigenSolver<Matrix> eigensolver( d.covar() ); // FIXME use JacobiSVD?
             d.coord_sys( eigensolver.eigenvectors() );
             Matrix D = eigensolver.eigenvalues().asDiagonal();
+            assert( D.innerSize() == N && D.outerSize() == N );
 
             // from variance to standard deviations
             D.cwiseSqrt();
-            d.scaling( D );
+            d.scaling( D.diagonal() );
         }
 
         return d;
@@ -225,7 +238,6 @@ public:
 
 protected:
 
-    unsigned int _mu;
     unsigned int _calls;
     unsigned int _eigeneval;
 

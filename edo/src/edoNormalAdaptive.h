@@ -41,10 +41,11 @@ class edoNormalAdaptive : public edoDistrib< EOT >
 public:
     //typedef EOT EOType;
     typedef typename EOT::AtomType AtomType;
-    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector;
+    typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector; // column vectors ( n lines, 1 column)
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
 
     edoNormalAdaptive( unsigned int dim ) :
+        _dim(dim),
         _mean( Vector::Zero(dim) ),
         _C( Matrix::Identity(dim,dim) ),
         _B( Matrix::Identity(dim,dim) ),
@@ -53,7 +54,7 @@ public:
         _p_c( Vector::Zero(dim) ),
         _p_s( Vector::Zero(dim) )
     {
-        assert( dim > 0);
+        assert( _dim > 0);
     }
 
     edoNormalAdaptive( unsigned int dim, 
@@ -88,23 +89,24 @@ public:
         return _mean.innerSize();
     }
 
-    Vector mean() const {return _mean;}
-    Matrix covar() const {return _C;}
-    Matrix coord_sys() const {return _B;}
-    Vector scaling() const {return _D;}
-    double sigma() const {return _sigma;}
+    Vector mean()       const {return _mean;}
+    Matrix covar()      const {return _C;}
+    Matrix coord_sys()  const {return _B;}
+    Vector scaling()    const {return _D;}
+    double sigma()      const {return _sigma;}
     Vector path_covar() const {return _p_c;}
     Vector path_sigma() const {return _p_s;}
 
-    void mean(       Vector m ) { _mean = m; }
-    void covar(      Matrix c ) { _C = c; }
-    void coord_sys(  Matrix b ) { _B = b; }
-    void scaling(    Vector d ) { _D = d; }
-    void sigma(      double s ) { _sigma = s; }
-    void path_covar( Vector p ) { _p_c = p; }
-    void path_sigma( Vector p ) { _p_s = p; }
+    void mean(       Vector m ) { _mean = m;  assert( m.size() == _dim ); }
+    void covar(      Matrix c ) { _C = c;     assert( c.innerSize() == _dim && c.outerSize() == _dim ); }
+    void coord_sys(  Matrix b ) { _B = b;     assert( b.innerSize() == _dim && b.outerSize() == _dim ); }
+    void scaling(    Vector d ) { _D = d;     assert( d.size() == _dim ); }
+    void sigma(      double s ) { _sigma = s; assert( s != 0.0 );}
+    void path_covar( Vector p ) { _p_c = p;   assert( p.size() == _dim ); }
+    void path_sigma( Vector p ) { _p_s = p;   assert( p.size() == _dim ); }
 
 private:
+    unsigned int _dim;
     Vector _mean; // 
     Matrix _C; // covariance matrix
     Matrix _B; // eigen vectors / coordinates system

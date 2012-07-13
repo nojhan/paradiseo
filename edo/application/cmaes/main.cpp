@@ -57,7 +57,7 @@ int main(int ac, char** av)
     eoState state;
 
     // Instantiate all needed parameters for EDA algorithm
-    double selection_rate = parser.createParam((double)0.5, "selection_rate", "Selection Rate", 'R', section).value(); // R
+    //double selection_rate = parser.createParam((double)0.5, "selection_rate", "Selection Rate", 'R', section).value(); // R
 
     unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
 
@@ -69,10 +69,10 @@ int main(int ac, char** av)
 
     edoNormalAdaptive<RealVec> distribution(dim);
 
-    eoSelect< RealVec >* selector = new eoDetSelect< RealVec >( selection_rate );
+    eoSelect< RealVec >* selector = new eoRankMuSelect< RealVec >( mu );
     state.storeFunctor(selector);
 
-    edoEstimator< Distrib >* estimator = new edoEstimatorNormalAdaptive<RealVec>( distribution, mu );
+    edoEstimator< Distrib >* estimator = new edoEstimatorNormalAdaptive<RealVec>( distribution );
     state.storeFunctor(estimator);
 
     eoEvalFunc< RealVec >* plainEval = new Rosenbrock< RealVec >();

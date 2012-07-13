@@ -58,24 +58,28 @@ public:
 
     EOT sample( EOD& distrib )
     {
-        unsigned int size = distrib.size();
-        assert(size > 0);
+        unsigned int N = distrib.size();
+        assert( N > 0);
 
         // T = vector of size elements drawn in N(0,1)
-        Vector T( size );
-        for ( unsigned int i = 0; i < size; ++i ) {
+        Vector T( N );
+        for ( unsigned int i = 0; i < N; ++i ) {
             T( i ) = rng.normal();
         }
-        assert(T.innerSize() == size);
+        assert(T.innerSize() == N );
         assert(T.outerSize() == 1);
 
-        Vector sol = distrib.mean() + distrib.sigma() * distrib.coord_sys() * (distrib.scaling().dot(T) );
+        // mean(N,1) + sigma * B(N,N) * ( D(N,1) .* T(N,1) )
+        Vector sol = distrib.mean()
+            + distrib.sigma()
+            * distrib.coord_sys() * (distrib.scaling().cwiseProduct(T) ); // C * T = B * (D .* T)
+        assert( sol.size() == N );
         /*Vector sol = distrib.mean() + distrib.sigma()
             * distrib.coord_sys().dot( distrib.scaling().dot( T ) );*/
 
         // copy in the EOT structure (more probably a vector)
-        EOT solution( size );
-        for( unsigned int i = 0; i < size; i++ ) {
+        EOT solution( N );
+        for( unsigned int i = 0; i < N; i++ ) {
             solution[i]= sol(i);
         }
 
