@@ -120,6 +120,11 @@ ENDIF (ENABLE_CMAKE_TESTING)
 ADD_SUBDIRECTORY(doc)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(test)
+
+IF(WITH_MPI)
+    ADD_SUBDIRECTORY(test/mpi)
+ENDIF()
+
 ADD_SUBDIRECTORY(tutorial)
 
 ######################################################################################
