@@ -137,6 +137,8 @@ namespace eo
          * These tags are used for framework communication and fits "channels", so as to differentiate when we're
          * sending an order to a worker (Commands) or data (Messages). They are not reserved by the framework and can be
          * used by the user, but he is not bound to.
+         *
+         * @ingroup MPI
          */
         namespace Channel
         {
@@ -149,6 +151,8 @@ namespace eo
          *
          * These orders are sent by the master to the workers, to indicate to them if they should receive another task
          * to do (Continue), if an one shot job is done (Finish) or if a multi job is done (Kill).
+         *
+         * @ingroup MPI
          */
         namespace Message
         {
@@ -159,6 +163,8 @@ namespace eo
 
         /**
          * @brief If the job only has one master, the user can use this constant, so as not to worry with integer ids.
+         *
+         * @ingroup MPI
          */
         const int DEFAULT_MASTER = 0;
 
@@ -204,6 +210,8 @@ namespace eo
          * };
          * @endcode
          * This makes the code easier to write for the user.
+         *
+         * @ingroup MPI
          */
         template< typename JobData, typename Wrapped >
         struct SharedDataFunction
@@ -277,6 +285,8 @@ namespace eo
          *
          * This is a functor implementing void operator()(int), and also a shared data function, containing wrapper on its
          * own type.
+         *
+         * @ingroup MPI
          */
         template< typename JobData >
         struct SendTaskFunction : public eoUF<int, void>, public SharedDataFunction< JobData, SendTaskFunction<JobData> >
@@ -300,6 +310,8 @@ namespace eo
          *
          * This is a functor implementing void operator()(int), and also a shared data function, containing wrapper on
          * its own type.
+         *
+         * @ingroup MPI
          */
         template< typename JobData >
         struct HandleResponseFunction : public eoUF<int, void>, public SharedDataFunction< JobData, HandleResponseFunction<JobData> >
@@ -325,6 +337,8 @@ namespace eo
          *
          * This is a functor implementing void operator()(), and also a shared data function, containing wrapper on its
          * own type.
+         *
+         * @ingroup MPI
          */
         template< typename JobData >
         struct ProcessTaskFunction : public eoF<void>, public SharedDataFunction< JobData, ProcessTaskFunction<JobData> >
@@ -348,6 +362,8 @@ namespace eo
          *
          * This is a functor implementing bool operator()(), and also a shared function, containing wrapper on its own
          * type.
+         *
+         * @ingroup MPI
          */
         template< typename JobData >
         struct IsFinishedFunction : public eoF<bool>, public SharedDataFunction< JobData, IsFinishedFunction<JobData> >
@@ -377,6 +393,8 @@ namespace eo
          * The user has to implement data(), which is the getter for retrieving JobData. We don't have any idea of who
          * owns the data, moreover it is impossible to initialize it in this generic JobStore, as we don't know its
          * form. As a matter of fact, the user has to define this in the JobStore subclasses.
+         *
+         * @ingroup MPI
          */
         template< typename JobData >
         struct JobStore
@@ -501,6 +519,8 @@ namespace eo
          *
          * Any of the 3 master functors can launch exception, it will be catched and rethrown as a std::runtime_exception
          * to the higher layers.
+         *
+         * @ingroup MPI
          */
         template< class JobData >
         class Job
@@ -755,6 +775,8 @@ namespace eo
          * times. The job will be terminated on both sides (master and worker) once the master would have said it.
          *
          * It uses the message Message::Finish as the termination message.
+         *
+         * @ingroup MPI
          */
         template< class JobData >
         class OneShotJob : public Job< JobData >
@@ -780,6 +802,8 @@ namespace eo
          * It uses the message Message::Kill as the termination message. This message can be launched with an EmptyJob,
          * launched only by the master. If no Message::Kill is sent on the Channels::Commands, the worker will wait
          * forever, which will cause a deadlock.
+         *
+         * @ingroup MPI
          */
         template< class JobData >
         class MultiJob : public Job< JobData >

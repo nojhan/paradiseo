@@ -24,6 +24,7 @@ Authors:
 
 # include <iostream> // ostream
 
+
 /**
  * @brief Contains all the necessary entities to serialize eo objects into JSON objects.
  *
@@ -36,7 +37,7 @@ Authors:
  *
  * @ingroup Utilities
  * @defgroup Serialization Serialization helpers
- */
+**/
 namespace eoserial
 {
 

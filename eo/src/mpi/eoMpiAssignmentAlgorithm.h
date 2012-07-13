@@ -32,6 +32,8 @@ namespace eo
         /**
          * @brief Constant indicating to use all the resting available workers, in assignment algorithms constructor
          * using an interval.
+         *
+         * @ingroup MPI
          */
         const int REST_OF_THE_WORLD = -1;
 
@@ -42,7 +44,7 @@ namespace eo
          * from the state "available" to the state "busy", and the master has to wait for their response for considering
          * them available again.
          *
-         * @ingroup Parallel
+         * @ingroup MPI
          */
         struct AssignmentAlgorithm
         {
@@ -104,7 +106,7 @@ namespace eo
          * This kind of assignment is adapted for tasks whose execution time is stochastic or unknown, but without any
          * warranty to be faster than other assignments.
          *
-         * @ingroup Parallel
+         * @ingroup MPI
          */
         struct DynamicAssignmentAlgorithm : public AssignmentAlgorithm
         {
@@ -210,7 +212,7 @@ namespace eo
          * duration of processing task will be the same for each run. There is no warranty that this algorithm is more
          * or less efficient that another one. When having a doubt, use DynamicAssignmentAlgorithm.
          *
-         * @ingroup Parallel
+         * @ingroup MPI
          */
         struct StaticAssignmentAlgorithm : public AssignmentAlgorithm
         {

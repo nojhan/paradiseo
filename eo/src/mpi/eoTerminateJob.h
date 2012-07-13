@@ -29,7 +29,7 @@ namespace eo
     namespace mpi
     {
         /**
-         * @ingroup Parallel
+         * @ingroup MPI
          * @{
          */
 

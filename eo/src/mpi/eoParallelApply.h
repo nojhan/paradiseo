@@ -78,7 +78,7 @@ namespace eo
          *   this rank has evaluated. Without this map, when receiving results from a worker, the master couldn't be
          *   able to replace the right elements in the table.
          *
-         * @ingroup Parallel
+         * @ingroup MPI
          */
         template<class EOT>
         struct ParallelApplyData
@@ -272,7 +272,7 @@ namespace eo
          * User can tune functors when constructing the object. For each functor which is not given, a default one is
          * generated.
          *
-         * @ingroup Parallel
+         * @ingroup MPI
          */
         template< class EOT >
         struct ParallelApplyStore : public JobStore< ParallelApplyData<EOT> >
@@ -357,7 +357,7 @@ namespace eo
          * A typedef wouldn't have been working, as typedef on templates don't work in C++. Traits would be a
          * disgraceful overload for the user.
          *
-         * @ingroup Parallel
+         * @ingroup MPI
          * @see eoParallelApply.h
          */
         template< typename EOT >

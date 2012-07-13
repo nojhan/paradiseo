@@ -35,7 +35,7 @@ namespace eo
          * boost::mpi::communicator is the main object used to send and receive messages between the different hosts of
          * a MPI algorithm.
          *
-         * @ingroup Parallel
+         * @ingroup MPI
          */
         class Node
         {
