@@ -39,6 +39,8 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 #include <omp.h>
 
+#include <unistd.h>
+
 #include "real_value.h"
 
 //-----------------------------------------------------------------------------

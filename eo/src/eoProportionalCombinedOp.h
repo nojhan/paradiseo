@@ -186,6 +186,7 @@ public:
 
   virtual std::string className() const { return "eoPropCombinedQuadOp"; }
 
+  /* FIXME remove in next release
   virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose)
   {
 #ifndef DEPRECATED_MESSAGES
@@ -195,6 +196,7 @@ public:
 
     add(_op,_rate);
   }
+  */
 
   // addition of a true operator
   virtual void add(eoQuadOp<EOT> & _op, const double _rate)
@@ -202,7 +204,7 @@ public:
     ops.push_back(&_op);
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
-      printOn( eo::log << eo::logging );
+    printOn( eo::log << eo::logging );
   }
 
   // outputs the operators and percentages

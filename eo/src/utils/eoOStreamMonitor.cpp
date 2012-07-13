@@ -37,6 +37,7 @@ eoMonitor& eoOStreamMonitor::operator()(void)
     } // if firstime
 
     // ok, now the real saving. write out
+    // FIXME deprecated, remove in next release
     //! @todo old verbose formatting, do we still need it?
     /*
         for (iterator it = vec.begin (); it != vec.end (); ++it) {

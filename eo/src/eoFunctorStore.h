@@ -28,6 +28,9 @@
 #define _eoFunctorStore_h
 
 #include <vector>
+#include<algorithm>
+
+#include "utils/eoLogger.h"
 
 class eoFunctorBase;
 
@@ -52,6 +55,13 @@ public:
     template <class Functor>
     Functor& storeFunctor(Functor* r)
         {
+#ifndef NDEBUG
+        unsigned int existing = std::count( vec.begin(), vec.end(), r );
+        if( existing > 0 ) {
+             eo::log << eo::warnings << "WARNING: you asked eoFunctorStore to store the functor " << r << " " 
+                     << existing + 1 << " times, a segmentation fault may occur in the destructor." << std::endl;
+        }
+#endif
             // If the compiler complains about the following line,
             // check if you really are giving it a pointer to an
             // eoFunctorBase derived object
@@ -67,6 +77,7 @@ private :
     /** no assignment allowed */
     eoFunctorStore operator=(const eoFunctorStore&);
 
+protected:
     std::vector<eoFunctorBase*> vec;
 };
 

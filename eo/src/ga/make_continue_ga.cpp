@@ -37,7 +37,7 @@
  *
  * The corresponding ***INSTANCIATED DECLARATIONS*** are contained
  *       in ga.h
- * while the TEMPLATIZED code is define in make_contninue.h in the src/do dir
+ * while the TEMPLATIZED code is define in make_continue.h in the src/do dir
  *
  * Unlike most EO .h files, it does not (and should not) contain any code,
  * just declarations

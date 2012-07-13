@@ -25,7 +25,9 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 
 #include "eoParallel.h"
 #include "eoLogger.h"

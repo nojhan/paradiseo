@@ -150,7 +150,8 @@ public :
             initialize(2*s);
         }
 
-    /** Re-initializes the Random Number Generator
+    /* FIXME remove in next release
+    ** Re-initializes the Random Number Generator
 
     This is the traditional seeding procedure. This version is deprecated and
     only provided for compatibility with old code. In new projects you should
@@ -159,11 +160,12 @@ public :
     @see reseed for details on usage of the seeding value.
 
     @version old version (deprecated)
-    */
+    *
     void oldReseed(uint32_t s)
         {
             initialize(s);
         }
+    */
 
     /** Random number from unifom distribution
 

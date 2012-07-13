@@ -44,14 +44,17 @@ Authors:
 class eoOStreamMonitor : public eoMonitor
 {
 public :
-    eoOStreamMonitor( std::ostream & _out, bool /*_verbose*/=true, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
+    /* FIXME remove in next release
+    eoOStreamMonitor( std::ostream & _out, bool _verbose=true, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
         out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true)
     {
 #ifndef DEPRECATED_MESSAGES
         eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoOStreamMonitor constructor is deprecated and will be removed in the next release" << std::endl;
 #pragma message "WARNING: the use of the verbose parameter in eoOStreamMonitor constructor is deprecated and will be removed in the next release"
 #endif // !DEPRECATED_MESSAGES
+
     }
+    */
 
     eoOStreamMonitor( std::ostream & _out, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
         out(_out), delim(_delim), width(_width), fill(_fill), firsttime(true)

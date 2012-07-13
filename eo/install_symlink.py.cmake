@@ -31,8 +31,16 @@ def uninstall():
     print('All symlinks have been removed.')
 
 def install():
-    for dirname in DATA['dirs']: os.mkdir(dirname)
-    for src, dst in DATA['links']: os.symlink(src, dst)
+    for dirname in DATA['dirs']:
+        try: 
+            os.makedirs(dirname) 
+        except(os.error): 
+            pass
+    for src, dst in DATA['links']: 
+        try:
+            os.symlink(src, dst)
+        except:
+            pass    
     print('All symlinks have been installed.')
 
 def data():

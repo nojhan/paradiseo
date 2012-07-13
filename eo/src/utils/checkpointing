@@ -36,6 +36,7 @@
 #include <utils/eoGnuplot1DSnapshot.h>
 #endif
 #include <utils/eoCheckPoint.h>
+#include <utils/eoSignal.h>
 #include <utils/eoStat.h>
 #include <utils/eoScalarFitnessStat.h>
 #include <utils/eoAssembledFitnessStat.h>
