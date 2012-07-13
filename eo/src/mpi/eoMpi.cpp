@@ -1,6 +1,5 @@
 # include "eoMpi.h"
 
-// MpiNode* MpiNodeStore::singleton;
 namespace eo
 {
     namespace mpi

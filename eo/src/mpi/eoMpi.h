@@ -37,6 +37,7 @@ namespace eo
     /**
      * @ingroup Parallel
      * @defgroup MPI Message Passing Interface parallelization
+     * @{
      */
 
     /**
@@ -790,6 +791,10 @@ namespace eo
                 }
         };
     }
+
+    /**
+     * @}
+     */
 }
 # endif // __EO_MPI_H__
 
