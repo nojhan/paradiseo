@@ -78,7 +78,7 @@ namespace eo
              * the workers which are currently processing data, and the other ones who could be waiting : the idles.
              * This function indicates to the master which worker aren't doing anything.
              *
-             * @param A std::vector containing all the MPI ranks of the idles workers.
+             * @return A std::vector containing all the MPI ranks of the idles workers.
              */
             virtual std::vector<int> idles( ) = 0;
 

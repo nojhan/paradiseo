@@ -84,7 +84,7 @@ class Parser
          *
          * @param str The string we're parsing.
          * @param pos The index of the current position in the string.
-         * @param eoserial The current JSON object for which we're adding a key-value pair.
+         * @param json The current JSON object for which we're adding a key-value pair.
          */
         static void parseLeft(const std::string & str, size_t & pos, eoserial::Object* json);
 

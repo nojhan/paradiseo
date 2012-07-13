@@ -46,7 +46,7 @@ namespace eoserial
             /**
              * @brief Adds a pair into the JSON object.
              * @param key The key associated with the eoserial object
-             * @param eoserial The JSON object as created with framework.
+             * @param json The JSON object as created with framework.
              */
             void add( const std::string& key, eoserial::Entity* json )
             {

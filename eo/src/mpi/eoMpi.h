@@ -514,12 +514,15 @@ namespace eo
                  * AssignmentAlgorithm for more details.
                  *
                  * @param _masterRank The MPI rank of the master.
+                 * 
                  * @param _workerStopCondition Number of the message which will cause the workers to terminate. It could
                  * be one of the constants defined in eo::mpi::Commands, or any other integer. The user has to be sure
                  * that a message containing this integer will be sent to each worker on the Commands channel, otherwise
                  * deadlock will happen. Master sends Finish messages at the end of a simple job, but as a job can
                  * happen multiples times (multi job), workers don't have to really finish on these messages but on
                  * another message. This is here where you can configurate it. See also OneShotJob and MultiJob.
+                 *
+                 * @param store The JobStore containing functors and data for this job.
                  */
                 Job( AssignmentAlgorithm& _algo,
                      int _masterRank,
