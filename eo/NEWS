@@ -1,4 +1,5 @@
 * current version
+  - fixed compilation issues in Microsoft Visual C++
 
 * release 1.2  (16. May. 2011)
   - fixed the incremental allocation issue in variation operators which were
