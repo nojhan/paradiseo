@@ -217,6 +217,10 @@ class eoParallelPopLoopEval : public eoPopEvalFunc<EOT>
         // Do we have to delete the store by ourselves ?
         bool needToDeleteStore;
 };
+
+/**
+ * @example t-mpi-eval.cpp
+ */
 #endif
 
 /////////////////////////////////////////////////////////////

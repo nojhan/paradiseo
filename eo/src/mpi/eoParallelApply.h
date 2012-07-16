@@ -375,6 +375,11 @@ namespace eo
                 // empty
             }
         };
+
+        /**
+         * @example t-mpi-parallelApply.cpp
+         * @example t-mpi-multipleRoles.cpp
+         */
     }
 }
 # endif // __EO_PARALLEL_APPLY_H__

@@ -36,7 +36,8 @@ namespace eo
 {
     /**
      * @ingroup Parallel
-     * @defgroup MPI Message Passing Interface parallelization
+     * @defgroup MPI Message Passing Interface
+     * @brief See namespace eo::mpi to have all explanations about this module.
      * @{
      */
 
@@ -506,6 +507,10 @@ namespace eo
             ProcessTaskFunction< JobData >* _ptf;
             IsFinishedFunction< JobData >* _iff;
         };
+
+        /**
+         * @example t-mpi-wrapper.cpp
+         */
 
         /**
          * @brief Class implementing the centralized job algorithm.
