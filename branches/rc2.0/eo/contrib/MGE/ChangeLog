@@ -1,0 +1,11 @@
+2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* contrib/MGE/VirusOp.h (VirusShiftMutation::operator()): Fix test for
+	i>1. This makes t-MGE1bit pass on x86_64 using GCC.
+
+
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:
