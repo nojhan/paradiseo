@@ -1,0 +1,15 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276174177                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./lesson1_combinedContinuator.status # Status file
+
+######    Representation          ######
+# --vecSize=20                             # -V : Genotype size
+# --fulleval=2                             # Maximum number of full evaluation
+# --eval=30                                # -e : Maximum number of neighbor evaluation
+# --fitness=16                             # -f : Maximum fitness value to reach
+# --iter=10                                # -i : Maximum number of iterations

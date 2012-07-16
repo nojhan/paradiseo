@@ -1,0 +1,12 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276179018                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./lesson1_evalContinuator.status # Status file
+
+######    Representation          ######
+# --vecSize=20                             # -V : Genotype size
+# --eval=30                                # -e : Maximum number of neighbor evaluation

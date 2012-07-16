@@ -1,0 +1,11 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1276179075                        # -S : Random number seed
+
+######    Persistence             ######
+# --status=./lesson1_simpleHC.status       # Status file
+
+######    Representation          ######
+# --vecSize=20                             # -V : Genotype size

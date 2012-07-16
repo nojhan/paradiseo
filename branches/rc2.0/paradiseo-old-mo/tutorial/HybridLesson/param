@@ -1,0 +1,17 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+
+######    Configuration           ######
+# --instancePath=../examples/tsp/benchs/berlin52.tsp # Path to the instance.
+# --seed=1224599328                        # Seed for rand.
+# --popSize=100                            # Size of the population.
+# --maxIter=1000                           # Maximum number of iterations.
+# --crossRate=1                            # Probability of crossover.
+# --mutRate=0.01                           # Probability of mutation.
+# --nbSelPar=100                           # Number of selected parents.
+# --elitismRate=1                          # Percentage of the best individuals kept.
+# --tournRate=0.7                          # Percentage of the individuals used during the tournament.
+# --crossType=Partial                      # Crossover to use, it can be 'Partial', 'Order' or 'Edge'.
+# --selectionType=Best                     # Type of the selection: 'Best', 'First' or 'Random'.

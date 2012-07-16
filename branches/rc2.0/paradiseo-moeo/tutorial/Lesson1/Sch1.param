@@ -1,0 +1,14 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+
+######    Param                   ######
+--popSize=100                            # -P : Population size
+--maxGen=100                             # -G : Maximum number of generations
+--mutEpsilon=0.01                        # -e : epsilon for mutation
+--pCross=0.25                            # -C : Crossover probability
+--pMut=0.35                              # -M : Mutation probability
+
+######    Persistence             ######
+# --status=./Sch1.status                   # Status file
