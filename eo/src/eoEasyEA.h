@@ -37,8 +37,6 @@
 #include <eoMergeReduce.h>
 #include <eoReplacement.h>
 
-
-
 template <class EOT> class eoIslandsEasyEA ;
 
 template <class EOT> class eoDistEvalEasyEA ;
@@ -106,7 +104,7 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
      * @brief Ctor allowing to specify which pop eval function we're going to use.
      *
      * Ctor taking a breed and merge, an overload of ctor to define an offspring size, and
-     * the pop eval function used. This allows to precise if we would like to use the 
+     * the pop eval function used. This allows to precise if we would like to use the
      * parallel evaluation, for instance.
      */
     eoEasyEA(
@@ -247,57 +245,43 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
     virtual void operator()(eoPop<EOT>& _pop)
     {
 
-        eo::log << "[EasyEA] Call to operator()" << std::endl;
-	if (isFirstCall)
-	    {
-		size_t total_capacity = _pop.capacity() + offspring.capacity();
-		_pop.reserve(total_capacity);
-		offspring.reserve(total_capacity);
-		isFirstCall = false;
-	    }
-
-    // TODO TODOB delete all log traces
-    std::cout << "[EasyEA] After is first call." << std::endl;
-
-      eoPop<EOT> empty_pop;
-        std::cout << "[EasyEA] After empty_pop." << std::endl;
-
-      popEval(empty_pop, _pop); // A first eval of pop.
-        std::cout << "[EasyEA] After pop_eval." << std::endl;
-
-      do
+        if (isFirstCall)
         {
-          try
+            size_t total_capacity = _pop.capacity() + offspring.capacity();
+            _pop.reserve(total_capacity);
+            offspring.reserve(total_capacity);
+            isFirstCall = false;
+        }
+
+        eoPop<EOT> empty_pop;
+
+        do
+        {
+            try
             {
-        std::cout << "[EasyEA] Beginning try." << std::endl;
-              unsigned pSize = _pop.size();
-        std::cout << "[EasyEA] psize determinated." << std::endl;
-              offspring.clear(); // new offspring
-        std::cout << "[EasyEA] offspring cleared." << std::endl;
+                unsigned pSize = _pop.size();
 
-              breed(_pop, offspring);
+                offspring.clear(); // new offspring
 
-        std::cout << "[EasyEA] After breed, evaluating pop." << std::endl;
-              popEval(_pop, offspring); // eval of parents + offspring if necessary
+                breed(_pop, offspring);
 
-        std::cout << "[EasyEA] After evaluation, replacing pop." << std::endl;
-              replace(_pop, offspring); // after replace, the new pop. is in _pop
-        std::cout << "[EasyEA] After replacing, continuator." << std::endl;
+                popEval(_pop, offspring); // eval of parents + offspring if necessary
 
-              if (pSize > _pop.size())
-                throw std::runtime_error("Population shrinking!");
-              else if (pSize < _pop.size())
-                throw std::runtime_error("Population growing!");
+                replace(_pop, offspring); // after replace, the new pop. is in _pop
 
+                if (pSize > _pop.size())
+                    throw std::runtime_error("Population shrinking!");
+                else if (pSize < _pop.size())
+                    throw std::runtime_error("Population growing!");
             }
-          catch (std::exception& e)
+            catch (std::exception& e)
             {
-              std::string s = e.what();
-              s.append( " in eoEasyEA");
-              throw std::runtime_error( s );
+                std::string s = e.what();
+                s.append( " in eoEasyEA");
+                throw std::runtime_error( s );
             }
         }
-      while ( continuator( _pop ) );
+        while ( continuator( _pop ) );
     }
 
   protected :

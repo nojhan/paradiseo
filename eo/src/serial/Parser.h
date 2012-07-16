@@ -1,3 +1,24 @@
+/*
+(c) Thales group, 2012
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation;
+    version 2 of the License.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+Contact: http://eodev.sourceforge.net
+
+Authors:
+    Benjamin Bouvier <benjamin.bouvier@gmail.com>
+*/
 # ifndef __EOSERIAL_PARSER_H__
 # define __EOSERIAL_PARSER_H__
 
@@ -6,6 +27,8 @@
 # include "Object.h"
 
 /**
+ * @file Parser.h
+ *
  * This file contains a tiny JSON parser used in DAE. This parser just handles 
  * a subset of JSON grammar, with the following restrictions :
  * - all strings must be surrounded by double quotes.
@@ -26,6 +49,8 @@ namespace eoserial
  * This parser does just retrieve values and does NOT check the structure of
  * the input. This implies that if the input is not correct, the result is undefined
  * and can result to a failure on execution.
+ *
+ * @ingroup Serialization
  */
 class Parser
 {
@@ -59,7 +84,7 @@ class Parser
          *
          * @param str The string we're parsing.
          * @param pos The index of the current position in the string.
-         * @param eoserial The current JSON object for which we're adding a key-value pair.
+         * @param json The current JSON object for which we're adding a key-value pair.
          */
         static void parseLeft(const std::string & str, size_t & pos, eoserial::Object* json);
 
