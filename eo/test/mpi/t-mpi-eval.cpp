@@ -1,12 +1,35 @@
-//-----------------------------------------------------------------------------
-// t-eoMpiParallel.cpp
+/*
+(c) Thales group, 2012
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation;
+    version 2 of the License.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+Contact: http://eodev.sourceforge.net
+
+Authors:
+    Benjamin Bouvier <benjamin.bouvier@gmail.com>
+*/
+
+/*
+ * This file shows an example of parallel evaluation of a population, when using an eoEasyEA algorithm.
+ * Moreover, we add a basic wrapper on the parallel evaluation, so as to show how to retrieve the best solutions.
+ */
 //-----------------------------------------------------------------------------
 
 #include <eo>
 #include <eoPopEvalFunc.h>
 
 #include <es/make_real.h>
-// #include <apply.h>
 #include "../real_value.h"
 
 #include <mpi/eoMpi.h>
@@ -80,6 +103,16 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
 
 typedef eoRealSerializable EOT;
 
+/*
+ * Wrapper for HandleResponse: shows the best answer, as it is found.
+ *
+ * Finding the best solution is an associative operation (as it is based on a "min" function, which is associative too)
+ * and that's why we can perform it here. Indeed, the min element of 5 elements is the min element of the 3 first
+ * elements and the min element of the 2 last elements:
+ * min(1, 2, 3, 4, 5) = min( min(1, 2, 3), min(4, 5) )
+ *
+ * This is a reduction. See MapReduce example to have another examples of reduction.
+ */
 struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
 {
     CatBestAnswers()
@@ -87,14 +120,15 @@ struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
         best.fitness( 1000000000. );
     }
 
-    using eo::mpi::HandleResponseParallelApply<EOT>::_wrapped;
-    using eo::mpi::HandleResponseParallelApply<EOT>::d;
+    // if EOT were a template, we would have to do: (thank you C++ :)
+    // using eo::mpi::HandleResponseParallelApply<EOT>::_wrapped;
+    // using eo::mpi::HandleResponseParallelApply<EOT>::d;
 
     void operator()(int wrkRank)
     {
         int index = d->assignedTasks[wrkRank].index;
         int size = d->assignedTasks[wrkRank].size;
-        (*_wrapped)( wrkRank );
+        (*_wrapped)( wrkRank ); // call to the wrapped function HERE
         for(int i = index; i < index+size; ++i)
         {
             if( best.fitness() < d->data()[ i ].fitness() )
@@ -134,6 +168,9 @@ int main(int ac, char** av)
     eoEvalFuncPtr< EOT, double, const std::vector< double >& > mainEval( real_value );
     eoEvalFuncCounter< EOT > eval( mainEval );
 
+    // until this point, everything (but eo::mpi::Node::init) is exactly as in an sequential version.
+    // We then instanciate the parallel algorithm. The store is directly used by the eoParallelPopLoopEval, which
+    // internally uses parallel apply.
     int rank = eo::mpi::Node::comm().rank();
     eo::mpi::DynamicAssignmentAlgorithm assign;
     if( rank == eo::mpi::DEFAULT_MASTER )
@@ -157,7 +194,7 @@ int main(int ac, char** av)
         eo::log << eo::quiet << "DONE!" << std::endl;
     } else
     {
-        eoPop< EOT > pop( popSize, init );
+        eoPop< EOT > pop; // the population doesn't have to be initialized, as it is not used by workers.
         eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, eval );
         popEval( pop, pop );
     }
