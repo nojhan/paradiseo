@@ -40,7 +40,8 @@ Authors:
 
 //! edoEDA< D >
 
-// FIXME factoriser edoAdaptiveAlgo et edoEDA, la seule différence est la référence _distrib !
+/** A generic stochastic search template for algorithms that need a distribution parameter.
+ */
 template < typename EOD >
 class edoAdaptiveAlgo : public edoAlgo< EOD >
 {
@@ -59,6 +60,7 @@ public:
     /*!
       Takes algo operators, all are mandatory
 
+      \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
       \param evaluation Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
@@ -126,6 +128,7 @@ public:
     /*!
       Takes algo operators, all are mandatory
 
+      \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
       \param evaluation Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
@@ -156,8 +159,6 @@ public:
 
     //! constructor without an edoContinue nor a distribution
     /*!
-      Takes algo operators, all are mandatory
-
       \param evaluation Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
@@ -186,9 +187,7 @@ public:
     {}
 
 
-
-
-    /** Covariance Matrix Adaptation Evolution Strategies
+    /** Call the algorithm
      *
      * \param pop the population of candidate solutions
      * \return void
@@ -200,7 +199,8 @@ public:
         eoPop< EOType > current_pop;
         eoPop< EOType > selected_pop;
 
-        // FIXME one must instanciate a first distrib here because there is no empty constructor, see if it is possible to instanciate Distributions without parameters
+        // update the extern distribution passed to the estimator (cf. CMA-ES)
+        // OR replace the dummy distribution for estimators that do not need extern distributions (cf. EDA)
         _distrib = _estimator(pop);
 
         // Evaluating a first time the candidate solutions
@@ -209,10 +209,8 @@ public:
 
         do {
             // (1) Selection of the best points in the population
-            //selected_pop.clear(); // FIXME is it necessary to clear?
             _selector(pop, selected_pop);
             assert( selected_pop.size() > 0 );
-            // TODO: utiliser selected_pop ou pop ???
 
             // (2) Estimation of the distribution parameters
             _distrib = _estimator(selected_pop);
@@ -237,8 +235,14 @@ public:
 
 protected:
 
+    /** A dummy distribution, for algorithms willing to replace it instead of updating
+     *
+     * Thus we can instanciate _distrib on this and replace it at the first iteration with an estimator.
+     * This is why an edoDistrib must have an empty constructor.
+     */
     EOD _dummy_distrib;
 
+    //! The distribution that you want to update
     EOD & _distrib;
 
     //! A full evaluation function.
