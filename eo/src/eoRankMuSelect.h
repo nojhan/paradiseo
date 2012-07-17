@@ -28,6 +28,8 @@ Authors:
 #ifndef _eoRankMuSelect_h
 #define _eoRankMuSelect_h
 
+#include "eoDetSelect.h"
+
 /** Selects the "Mu" bests individuals.
  *
  * Note: sorts the population before trucating it.
