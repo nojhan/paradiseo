@@ -30,7 +30,6 @@ Authors:
 
 #include "edoAlgo.h"
 //#include "edoEDASA.h"
-#include "edoEDA.h"
 #include "edoAdaptiveAlgo.h"
 
 #include "edoDistrib.h"

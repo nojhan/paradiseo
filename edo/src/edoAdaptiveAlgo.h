@@ -77,6 +77,7 @@ public:
         eoContinue< EOType > & pop_continuator,
         edoContinue< EOD > & distribution_continuator
     ) :
+        _dummy_distrib(),
         _distrib(distrib),
         _evaluator(evaluator),
         _selector(selector),
@@ -88,7 +89,72 @@ public:
         _distribution_continuator(distribution_continuator)
     {}
 
+    /*!
+      Without a distribution
+
+      \param evaluation Evaluate a population
+      \param selector Selection of the best candidate solutions in the population
+      \param estimator Estimation of the distribution parameters
+      \param sampler Generate feasible solutions using the distribution
+      \param replacor Replace old solutions by new ones
+      \param pop_continuator Stopping criterion based on the population features
+      \param distribution_continuator Stopping criterion based on the distribution features
+    */
+    edoAdaptiveAlgo(
+        eoPopEvalFunc < EOType > & evaluator,
+        eoSelect< EOType > & selector,
+        edoEstimator< EOD > & estimator,
+        edoSampler< EOD > & sampler,
+        eoReplacement< EOType > & replacor,
+        eoContinue< EOType > & pop_continuator,
+        edoContinue< EOD > & distribution_continuator
+    ) :
+        _dummy_distrib(),
+        _distrib( _dummy_distrib ),
+        _evaluator(evaluator),
+        _selector(selector),
+        _estimator(estimator),
+        _sampler(sampler),
+        _replacor(replacor),
+        _pop_continuator(pop_continuator),
+        _dummy_continue(),
+        _distribution_continuator(distribution_continuator)
+    {}
+
+
     //! constructor without an edoContinue
+    /*!
+      Takes algo operators, all are mandatory
+
+      \param evaluation Evaluate a population
+      \param selector Selection of the best candidate solutions in the population
+      \param estimator Estimation of the distribution parameters
+      \param sampler Generate feasible solutions using the distribution
+      \param replacor Replace old solutions by new ones
+      \param pop_continuator Stopping criterion based on the population features
+    */
+    edoAdaptiveAlgo (
+        EOD & distrib,
+        eoPopEvalFunc < EOType > & evaluator,
+        eoSelect< EOType > & selector,
+        edoEstimator< EOD > & estimator,
+        edoSampler< EOD > & sampler,
+        eoReplacement< EOType > & replacor,
+        eoContinue< EOType > & pop_continuator
+    ) :
+        _dummy_distrib(),
+        _distrib( distrib ),
+        _evaluator(evaluator),
+        _selector(selector),
+        _estimator(estimator),
+        _sampler(sampler),
+        _replacor(replacor),
+        _pop_continuator(pop_continuator),
+        _dummy_continue(),
+        _distribution_continuator( _dummy_continue )
+    {}
+
+    //! constructor without an edoContinue nor a distribution
     /*!
       Takes algo operators, all are mandatory
 
@@ -107,7 +173,8 @@ public:
         eoReplacement< EOType > & replacor,
         eoContinue< EOType > & pop_continuator
     ) :
-        _distrib( EOD() ),
+        _dummy_distrib(),
+        _distrib( _dummy_distrib ),
         _evaluator(evaluator),
         _selector(selector),
         _estimator(estimator),
@@ -117,6 +184,7 @@ public:
         _dummy_continue(),
         _distribution_continuator( _dummy_continue )
     {}
+
 
 
 
@@ -168,6 +236,8 @@ public:
 
 
 protected:
+
+    EOD _dummy_distrib;
 
     EOD & _distrib;
 
