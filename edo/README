@@ -33,11 +33,11 @@ In the edo/build/ directory:
 (Unix)       > ctest
 Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
 
-In the directory "application", there are several directory such as eda_sa which instantiate EDA-SA solver.
+In the directory "application", there are several directory such as eda which instantiate EDA solver.
 
-(Unix) After compilation you can run the binary "build/eda_sa" and see results. Parameters can be modified from command line.
+(Unix) After compilation you can run the binary "build/eda" and see results. Parameters can be modified from command line.
 
-(Windows) Add argument "eda_sa.param" and execute the corresponding algorithms.
+(Windows) Add argument "eda.param" and execute the corresponding algorithms.
 Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
 
 
