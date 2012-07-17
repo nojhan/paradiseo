@@ -100,8 +100,8 @@ public:
         _varcovar( Matrix::Identity(dim,dim) )
     {
         assert(_mean.size() > 0);
-        assert(_mean.size() == _varcovar.size1());
-        assert(_mean.size() == _varcovar.size2());
+        assert(_mean.innerSize() == _varcovar.innerSize());
+        assert(_mean.innerSize() == _varcovar.outerSize());
     }
 
     edoNormalMulti(
