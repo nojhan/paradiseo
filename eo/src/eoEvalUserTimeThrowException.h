@@ -58,7 +58,7 @@ public:
             if( current >= _max ) {
                 throw eoMaxTimeException( current );
             } else {
-                func(eo);
+                this->func(eo);
             }
         }
     }
