@@ -137,35 +137,6 @@ int main(int ac, char** av)
     make_verbose(parser);
     make_help(parser);
 
-    // population output (after helper)
-    //
-    // FIXME: theses objects are instanciated there in order to avoid a folder
-    // removing as edoFileSnapshot does within ctor.
-    edoPopStat< RealVec >* popStat = new edoPopStat<RealVec>;
-    state.storeFunctor(popStat);
-    pop_continue.add(*popStat);
-
-    edoFileSnapshot* fileSnapshot = new edoFileSnapshot("EDA_ResPop");
-    state.storeFunctor(fileSnapshot);
-    fileSnapshot->add(*popStat);
-    pop_continue.add(*fileSnapshot);
-
-    // distribution output (after helper)
-    // edoDistribStat< Distrib >* distrib_stat = new edoStatNormalAdaptive< RealVec >();
-    // state.storeFunctor(distrib_stat);
-
-    // distribution_continue->add( *distrib_stat );
-
-    // eoMonitor* stdout_monitor = new eoStdoutMonitor();
-    // state.storeFunctor(stdout_monitor);
-    // stdout_monitor->add(*distrib_stat);
-    // distribution_continue->add( *stdout_monitor );
-
-    eoFileMonitor* file_monitor = new eoFileMonitor("eda_distribution_bounds.txt");
-    state.storeFunctor(file_monitor);
-    // file_monitor->add(*distrib_stat);
-    distribution_continue->add( *file_monitor );
-
     eoPopLoopEval<RealVec> popEval( eval );
 
     // EDA algorithm configuration
