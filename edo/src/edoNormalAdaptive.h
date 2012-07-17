@@ -44,7 +44,7 @@ public:
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector; // column vectors ( n lines, 1 column)
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
 
-    edoNormalAdaptive( unsigned int dim ) :
+    edoNormalAdaptive( unsigned int dim = 1 ) :
         _dim(dim),
         _mean( Vector::Zero(dim) ),
         _C( Matrix::Identity(dim,dim) ),
@@ -57,7 +57,7 @@ public:
         assert( _dim > 0);
     }
 
-    edoNormalAdaptive( unsigned int dim, 
+    edoNormalAdaptive( unsigned int dim,
             Vector mean,
             Matrix C,
             Matrix B,
