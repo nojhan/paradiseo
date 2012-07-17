@@ -2,33 +2,50 @@
 # Version: 0.0.1
 #
 # The following variables are filled out:
-# - PARADISEO_INCLUDE_DIRS
-# - PARADISEO_LIBRARY_DIRS
-# - PARADISEO_LIBRARIES
-# - PARADISEO_FOUND
+# - PARADISEO_INCLUDE_DIR : EO, MO and MOEO source dir
+# - EO_INCLUDE_DIR :        EO source dir
+# - MO_INCLUDE_DIR :        MO source dir
+# - MOEO_INCLUDE_DIR :      MOEO source dir. WARNING : You have ton include MO before !
+# - PARADISEO_LIBRARIES :   the list of all required modules
+# - PARADISEO_XXX_LIBRARY : the name of the library to link for the required module   
+# - PARADISEO_XXX_FOUND :   true if the required module is found
+# - PARADISEO_FOUND :       true if all required modules are found
 #
 # Here are the components:
+# - eo
 # - PyEO
 # - es
 # - ga
 # - cma
+# - flowshop
+# - moeo
+# You can use find_package(Paradiseo COMPONENTS ... ) to enable one or several components. If you not specifie component, all components will be load.
 #
-# You can use FIND_PACKAGE( EO COMPONENTS ... ) to enable one or several components.
+# Output
+# ------
 #
+# example:
+#   find_package(Paradiseo COMPONENTS eo eoutils cma es flowshop ga moeo REQUIRED)
+#   include_directories(${PARADISEO_INCLUDE_DIR})
+#   add_executable(example ...)
+#   target_link_libraries(examplep ${PARADISEO_LIBRARIES})
 
-# Default enabled components
-set(PARADISEO_LIBRARIES_TO_FIND eo eoutils cma es flowshop ga moeo)
 
-# Use FIND_PACKAGE( Paradiseo COMPONENTS ... ) to enable modules
-if(PARADISEO_FIND_COMPONENTS)
-  foreach(component ${PARADISEO_FIND_COMPONENTS})
-    string(TOUPPER ${component} _COMPONENT)
-    set(PARADISEO_USE_${_COMPONENT} 1)
-  endforeach(component)
-endif(PARADISEO_FIND_COMPONENTS)
+
+# enabled components
+if ("${Paradiseo_FIND_COMPONENTS}" STREQUAL "")
+    set(PARADISEO_LIBRARIES_TO_FIND eo eoutils cma es flowshop ga moeo)
+else()
+    set(PARADISEO_LIBRARIES_TO_FIND ${Paradiseo_FIND_COMPONENTS})
+endif()
+
+#set the build directory
+if(NOT DEFINED ${BUILD_DIR})
+    set(BUILD_DIR build)
+endif()
 
 # Path
-set(PARADISEO_PATHS
+set(PARADISEO_SRC_PATHS
         ${PARADISEO_ROOT}
         $ENV{PARADISEO_ROOT}
         /usr/local/
@@ -37,51 +54,77 @@ set(PARADISEO_PATHS
         /opt/local/ # DarwinPorts
         /opt/csw/ # Blastwave
         /opt/
-        HKEY_CURRENT_USER\Software
-        HKEY_LOCAL_MACHINE\Software
+        #KEY_CURRENT_USER\Software
+        #HKEY_LOCAL_MACHINE\Software
 )
 
-# Set lib path
-if(NOT PARADISEO_INCLUDE_DIRS)
-    find_path(
-        PARADISEO_INCLUDE_DIRS
-        PATH_SUFFIXES include
-        PATHS ${PARADISEO_PATHS}
-    )
-endif(NOT PARADISEO_INCLUDE_DIRS)
+find_path(EO_INCLUDE_DIR eo
+          PATH_SUFFIXES include eo/src
+          PATHS ${PARADISEO_SRC_PATHS})
+          
+find_path(MO_INCLUDE_DIR mo
+          PATH_SUFFIXES include mo/src
+          PATHS ${PARADISEO_SRC_PATHS})
 
-# Set include path
-if(NOT PARADISEO_LIBRARY_DIRS)
-    find_path(
-        PARADISEO_LIBRARY_DIRS
-        PATH_SUFFIXES lib
-        PATHS ${PARADISEO_PATHS}
-    )
-endif(NOT PARADISEO_LIBRARY_DIRS)
+find_path(MOEO_INCLUDE_DIR moeo
+          PATH_SUFFIXES include moeo/src
+          PATHS ${PARADISEO_SRC_PATHS})
+           
+set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
 
-if(NOT PARADISEO_LIBRARIES)
-  set(PARADISEO_LIBRARIES)
-  foreach(component ${PARADISEO_LIBRARIES_TO_FIND})
-    find_library(
-      PARADISEO_${component}_LIBRARY
-      NAMES ${component}
-      PATH_SUFFIXES lib64 lib
-      PATHS ${PARADISEO_PATHS}
-      )
+# find the requested modules
+set(PARADISEO_FOUND TRUE) # will be set to false if one of the required modules is not found
 
-      
-    if(PARADISEO_${component}_LIBRARY)
-      set(PARADISEO_LIBRARIES ${PARADISEO_LIBRARIES} ${PARADISEO_${component}_LIBRARY})
-    else(PARADISEO_${component}_LIBRARY)
-      message(FATAL_ERROR "${component} component not found.")
-    endif(PARADISEO_${component}_LIBRARY)
-  endforeach(component)
-endif(NOT PARADISEO_LIBRARIES)
+set(FIND_PARADISEO_LIB_PATHS
+        ${PARADISEO_ROOT}/${BUILD_DIR}
+        $ENV{PARADISEO_ROOT}
+        /usr/local/
+        /usr/
+        /sw # Fink
+        /opt/local/ # DarwinPorts
+        /opt/csw/ # Blastwave
+        /opt/
+        #KEY_CURRENT_USER\Software
+        #HKEY_LOCAL_MACHINE\Software
+)
 
-if(PARADISEO_INCLUDE_DIRS AND PARADISEO_LIBRARY_DIRS AND PARADISEO_LIBRARIES)
-  set(PARADISEO_FOUND 1)
-  mark_as_advanced(PARADISEO_FOUND)
-  mark_as_advanced(PARADISEO_INCLUDE_DIRS)
-  mark_as_advanced(PARADISEO_LIBRARY_DIRS)
-  mark_as_advanced(PARADISEO_LIBRARIES)
-endif(PARADISEO_INCLUDE_DIRS AND PARADISEO_LIBRARY_DIRS AND PARADISEO_LIBRARIES)
+#Suffixes
+set(PARADISEO_LIB_PATHS_SUFFIXES
+        eo/lib 
+        mo/lib 
+        moeo/lib 
+        moeo/tutorial/examples/flowshop/lib #For flowshop library
+        lib 
+        lib32 
+        lib64
+        )
+        
+foreach(FIND_PARADISEO_COMPONENT ${PARADISEO_LIBRARIES_TO_FIND})
+    string(TOUPPER ${FIND_PARADISEO_COMPONENT} FIND_PARADISEO_COMPONENT_UPPER)
+    # release library
+    find_library(PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_LIBRARY
+                 NAMES ${FIND_PARADISEO_COMPONENT}
+                 PATH_SUFFIXES ${PARADISEO_LIB_PATHS_SUFFIXES}
+                 PATHS ${FIND_PARADISEO_LIB_PATHS})
+    if (PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_LIBRARY)
+        # library found
+        set(PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_FOUND TRUE)
+    else()
+        # library not found
+        set(PARADISEO_FOUND FALSE)
+        set(PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_FOUND FALSE)
+        set(FIND_PARADISEO_MISSING "${FIND_PARADISEO_MISSING} ${FIND_PARADISEO_COMPONENT}")
+    endif()
+    set(PARADISEO_LIBRARIES ${PARADISEO_LIBRARIES} "${PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_LIBRARY}")
+endforeach()
+
+# handle result
+if(PARADISEO_FOUND)
+    message(STATUS "Found ParadisEO includes :")
+    message(${EO_INCLUDE_DIR})
+    message(${MO_INCLUDE_DIR})
+    message(${MOEO_INCLUDE_DIR})
+else()
+    # include directory or library not found
+    message(FATAL_ERROR "Could NOT find ParadisEO (missing : ${FIND_PARADISEO_MISSING})")
+endif()
