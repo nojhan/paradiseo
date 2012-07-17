@@ -27,6 +27,9 @@ Authors:
 
 namespace cholesky {
 
+
+#ifdef WITH_BOOST
+
 /** Cholesky decomposition, given a matrix V, return a matrix L
  * such as V = L L^T (L^T being the transposed of L).
  *
@@ -281,5 +284,12 @@ public:
         return ublas::prod( L, sqrt_D );
     }
 };
+
+#else
+#ifdef WITH_EIGEN
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
+
 
 } // namespace cholesky

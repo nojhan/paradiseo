@@ -7,8 +7,8 @@ INCLUDE_DIRECTORIES(
   )
 
 ADD_SUBDIRECTORY(common)
-ADD_SUBDIRECTORY(eda_sa)
+#ADD_SUBDIRECTORY(eda_sa)
 ADD_SUBDIRECTORY(eda)
-#ADD_SUBDIRECTORY(sa)
+ADD_SUBDIRECTORY(cmaes)
 
 ######################################################################################
