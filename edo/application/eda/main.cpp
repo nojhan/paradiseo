@@ -161,7 +161,7 @@ int main(int ac, char** av)
     eoPopLoopEval<EOT> popEval( eval );
 
     // EDA algorithm configuration
-    edoAlgo< Distrib >* algo = new edoAdaptiveAlgo< Distrib >
+    edoAlgo< Distrib >* algo = new edoAlgoStateless< Distrib >
         (popEval, *selector, *estimator, *sampler, *replacor,
          pop_continue, *distribution_continue );
 

@@ -25,8 +25,8 @@ Authors:
     Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
-#ifndef _edoAdaptiveAlgo_h
-#define _edoAdaptiveAlgo_h
+#ifndef _edoAlgoAdaptive_h
+#define _edoAlgoAdaptive_h
 
 #include <eo>
 
@@ -43,7 +43,7 @@ Authors:
 /** A generic stochastic search template for algorithms that need a distribution parameter.
  */
 template < typename EOD >
-class edoAdaptiveAlgo : public edoAlgo< EOD >
+class edoAlgoAdaptive : public edoAlgo< EOD >
 {
 public:
     //! Alias for the type EOT
@@ -69,7 +69,7 @@ public:
       \param pop_continuator Stopping criterion based on the population features
       \param distribution_continuator Stopping criterion based on the distribution features
     */
-    edoAdaptiveAlgo(
+    edoAlgoAdaptive(
         EOD & distrib,
         eoPopEvalFunc < EOType > & evaluator,
         eoSelect< EOType > & selector,
@@ -79,40 +79,7 @@ public:
         eoContinue< EOType > & pop_continuator,
         edoContinue< EOD > & distribution_continuator
     ) :
-        _dummy_distrib(),
         _distrib(distrib),
-        _evaluator(evaluator),
-        _selector(selector),
-        _estimator(estimator),
-        _sampler(sampler),
-        _replacor(replacor),
-        _pop_continuator(pop_continuator),
-        _dummy_continue(),
-        _distribution_continuator(distribution_continuator)
-    {}
-
-    /*!
-      Without a distribution
-
-      \param evaluation Evaluate a population
-      \param selector Selection of the best candidate solutions in the population
-      \param estimator Estimation of the distribution parameters
-      \param sampler Generate feasible solutions using the distribution
-      \param replacor Replace old solutions by new ones
-      \param pop_continuator Stopping criterion based on the population features
-      \param distribution_continuator Stopping criterion based on the distribution features
-    */
-    edoAdaptiveAlgo(
-        eoPopEvalFunc < EOType > & evaluator,
-        eoSelect< EOType > & selector,
-        edoEstimator< EOD > & estimator,
-        edoSampler< EOD > & sampler,
-        eoReplacement< EOType > & replacor,
-        eoContinue< EOType > & pop_continuator,
-        edoContinue< EOD > & distribution_continuator
-    ) :
-        _dummy_distrib(),
-        _distrib( _dummy_distrib ),
         _evaluator(evaluator),
         _selector(selector),
         _estimator(estimator),
@@ -136,7 +103,7 @@ public:
       \param replacor Replace old solutions by new ones
       \param pop_continuator Stopping criterion based on the population features
     */
-    edoAdaptiveAlgo (
+    edoAlgoAdaptive (
         EOD & distrib,
         eoPopEvalFunc < EOType > & evaluator,
         eoSelect< EOType > & selector,
@@ -145,7 +112,6 @@ public:
         eoReplacement< EOType > & replacor,
         eoContinue< EOType > & pop_continuator
     ) :
-        _dummy_distrib(),
         _distrib( distrib ),
         _evaluator(evaluator),
         _selector(selector),
@@ -156,36 +122,6 @@ public:
         _dummy_continue(),
         _distribution_continuator( _dummy_continue )
     {}
-
-    //! constructor without an edoContinue nor a distribution
-    /*!
-      \param evaluation Evaluate a population
-      \param selector Selection of the best candidate solutions in the population
-      \param estimator Estimation of the distribution parameters
-      \param sampler Generate feasible solutions using the distribution
-      \param replacor Replace old solutions by new ones
-      \param pop_continuator Stopping criterion based on the population features
-    */
-    edoAdaptiveAlgo (
-        eoPopEvalFunc < EOType > & evaluator,
-        eoSelect< EOType > & selector,
-        edoEstimator< EOD > & estimator,
-        edoSampler< EOD > & sampler,
-        eoReplacement< EOType > & replacor,
-        eoContinue< EOType > & pop_continuator
-    ) :
-        _dummy_distrib(),
-        _distrib( _dummy_distrib ),
-        _evaluator(evaluator),
-        _selector(selector),
-        _estimator(estimator),
-        _sampler(sampler),
-        _replacor(replacor),
-        _pop_continuator(pop_continuator),
-        _dummy_continue(),
-        _distribution_continuator( _dummy_continue )
-    {}
-
 
     /** Call the algorithm
      *
@@ -235,13 +171,6 @@ public:
 
 protected:
 
-    /** A dummy distribution, for algorithms willing to replace it instead of updating
-     *
-     * Thus we can instanciate _distrib on this and replace it at the first iteration with an estimator.
-     * This is why an edoDistrib must have an empty constructor.
-     */
-    EOD _dummy_distrib;
-
     //! The distribution that you want to update
     EOD & _distrib;
 
@@ -271,5 +200,5 @@ protected:
 
 };
 
-#endif // !_edoAdaptiveAlgo_h
+#endif // !_edoAlgoAdaptive_h
 

@@ -140,7 +140,7 @@ int main(int ac, char** av)
     eoPopLoopEval<RealVec> popEval( eval );
 
     // EDA algorithm configuration
-    edoAlgo< Distrib >* algo = new edoAdaptiveAlgo< Distrib >
+    edoAlgo< Distrib >* algo = new edoAlgoAdaptive< Distrib >
         (distribution, popEval, *selector, *estimator, *sampler, *replacor,
          pop_continue, *distribution_continue );
 
