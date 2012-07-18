@@ -222,7 +222,7 @@ namespace eo
              *
              * The user is not bound to give a wrapped functor.
              */
-            SharedDataFunction( Wrapped * w = 0 ) : _wrapped( w ), _needDelete( false )
+            SharedDataFunction( Wrapped * w = 0 ) : _data( 0 ), _wrapped( w ), _needDelete( false )
             {
                 // empty
             }
@@ -255,23 +255,25 @@ namespace eo
              *
              * Calls the setter on the functor and on the wrapped functors, in a Composite pattern fashion.
              */
-            void data( JobData* _d )
+            void data( JobData* d )
             {
-                d = _d;
+                _data = d;
                 if( _wrapped )
                 {
-                    _wrapped->data( _d );
+                    _wrapped->data( d );
                 }
             }
 
             /**
              * @brief Returns true if we need to use operator delete on this wrapper, false otherwise.
+             *
+             * Allows the user to reject delete responsability to the framework, by setting this value to true.
              **/
             bool needDelete() { return _needDelete; }
             void needDelete( bool b ) { _needDelete = b; }
 
             protected:
-            JobData* d;
+            JobData* _data;
             Wrapped* _wrapped; // Pointer and not a reference so as to be set at any time and to avoid affectation
             bool _needDelete;
         };

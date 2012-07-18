@@ -138,6 +138,7 @@ struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
 
     void operator()(int wrkRank)
     {
+        eo::mpi::ParallelApplyData<EOT> * d = _data;
         // Retrieve informations about the slice processed by the worker
         int index = d->assignedTasks[wrkRank].index;
         int size = d->assignedTasks[wrkRank].size;
@@ -146,10 +147,10 @@ struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
         // Compare fitnesses of evaluated individuals with the best saved
         for(int i = index; i < index+size; ++i)
         {
-            if( best.fitness() < d->data()[ i ].fitness() )
+            if( best.fitness() < d->table()[ i ].fitness() )
             {
-                eo::log << eo::quiet << "Better solution found:" << d->data()[i].fitness() << std::endl;
-                best = d->data()[ i ];
+                eo::log << eo::quiet << "Better solution found:" << d->table()[i].fitness() << std::endl;
+                best = d->table()[ i ];
             }
         }
     }

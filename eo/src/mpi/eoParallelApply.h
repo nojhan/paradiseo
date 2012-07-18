@@ -89,46 +89,46 @@ namespace eo
              * @param _proc The functor to apply on each element in the table
              * @param _masterRank The MPI rank of the master
              * @param _packetSize The number of elements on which the function will be applied by the worker, at a time.
-             * @param _pop The table to apply. If this value is NULL, user will have to call init() before launching the
+             * @param table The table to apply. If this value is NULL, user will have to call init() before launching the
              * job.
              */
             ParallelApplyData(
                     eoUF<EOT&, void> & _proc,
                     int _masterRank,
                     int _packetSize,
-                    std::vector<EOT> * _pop = 0
+                    std::vector<EOT> * table = 0
                    ) :
-                _data( _pop ), func( _proc ), index( 0 ), packetSize( _packetSize ), masterRank( _masterRank ), comm( Node::comm() )
+                _table( table ), func( _proc ), index( 0 ), packetSize( _packetSize ), masterRank( _masterRank ), comm( Node::comm() )
             {
                 if ( _packetSize <= 0 )
                 {
                     throw std::runtime_error("Packet size should not be negative.");
                 }
 
-                if( _pop )
+                if( table )
                 {
-                    size = _pop->size();
+                    size = table->size();
                 }
             }
 
             /**
              * @brief Reinitializes the data for a new table to evaluate.
              */
-            void init( std::vector<EOT>& _pop )
+            void init( std::vector<EOT>& table )
             {
                 index = 0;
-                size = _pop.size();
-                _data = &_pop;
+                size = table.size();
+                _table = &table;
                 assignedTasks.clear();
             }
 
-            std::vector<EOT>& data()
+            std::vector<EOT>& table()
             {
-                return *_data;
+                return *_table;
             }
 
             // All elements are public since functors will often use them.
-            std::vector<EOT> * _data;
+            std::vector<EOT> * _table;
             eoUF<EOT&, void> & func;
             int index;
             int size;
@@ -153,7 +153,7 @@ namespace eo
         class SendTaskParallelApply : public SendTaskFunction< ParallelApplyData<EOT> >
         {
             public:
-            using SendTaskFunction< ParallelApplyData<EOT> >::d;
+            using SendTaskFunction< ParallelApplyData<EOT> >::_data;
 
             SendTaskParallelApply( SendTaskParallelApply<EOT> * w = 0 ) : SendTaskFunction< ParallelApplyData<EOT> >( w )
             {
@@ -164,24 +164,24 @@ namespace eo
             {
                 int futureIndex;
 
-                if( d->index + d->packetSize < d->size )
+                if( _data->index + _data->packetSize < _data->size )
                 {
-                    futureIndex = d->index + d->packetSize;
+                    futureIndex = _data->index + _data->packetSize;
                 } else {
-                    futureIndex = d->size;
+                    futureIndex = _data->size;
                 }
 
-                int sentSize = futureIndex - d->index ;
+                int sentSize = futureIndex - _data->index ;
 
-                d->comm.send( wrkRank, 1, sentSize );
+                _data->comm.send( wrkRank, 1, sentSize );
 
-                eo::log << eo::progress << "Evaluating individual " << d->index << std::endl;
+                eo::log << eo::progress << "Evaluating individual " << _data->index << std::endl;
 
-                d->assignedTasks[ wrkRank ].index = d->index;
-                d->assignedTasks[ wrkRank ].size = sentSize;
+                _data->assignedTasks[ wrkRank ].index = _data->index;
+                _data->assignedTasks[ wrkRank ].size = sentSize;
 
-                d->comm.send( wrkRank, 1, & ( (d->data())[ d->index ] ) , sentSize );
-                d->index = futureIndex;
+                _data->comm.send( wrkRank, 1, & ( (_data->table())[ _data->index ] ) , sentSize );
+                _data->index = futureIndex;
             }
         };
 
@@ -194,7 +194,7 @@ namespace eo
         class HandleResponseParallelApply : public HandleResponseFunction< ParallelApplyData<EOT> >
         {
             public:
-            using HandleResponseFunction< ParallelApplyData<EOT> >::d;
+            using HandleResponseFunction< ParallelApplyData<EOT> >::_data;
 
             HandleResponseParallelApply( HandleResponseParallelApply<EOT> * w = 0 ) : HandleResponseFunction< ParallelApplyData<EOT> >( w )
             {
@@ -203,7 +203,7 @@ namespace eo
 
             void operator()(int wrkRank)
             {
-                d->comm.recv( wrkRank, 1, & (d->data()[ d->assignedTasks[wrkRank].index ] ), d->assignedTasks[wrkRank].size );
+                _data->comm.recv( wrkRank, 1, & (_data->table()[ _data->assignedTasks[wrkRank].index ] ), _data->assignedTasks[wrkRank].size );
             }
         };
 
@@ -219,7 +219,7 @@ namespace eo
         class ProcessTaskParallelApply : public ProcessTaskFunction< ParallelApplyData<EOT> >
         {
             public:
-            using ProcessTaskFunction< ParallelApplyData<EOT> >::d;
+            using ProcessTaskFunction< ParallelApplyData<EOT> >::_data;
 
             ProcessTaskParallelApply( ProcessTaskParallelApply<EOT> * w = 0 ) : ProcessTaskFunction< ParallelApplyData<EOT> >( w )
             {
@@ -230,16 +230,16 @@ namespace eo
             {
                 int recvSize;
 
-                d->comm.recv( d->masterRank, 1, recvSize );
-                d->tempArray.resize( recvSize );
-                d->comm.recv( d->masterRank, 1, & d->tempArray[0] , recvSize );
+                _data->comm.recv( _data->masterRank, 1, recvSize );
+                _data->tempArray.resize( recvSize );
+                _data->comm.recv( _data->masterRank, 1, & _data->tempArray[0] , recvSize );
                 timerStat.start("worker_processes");
                 for( int i = 0; i < recvSize ; ++i )
                 {
-                    d->func( d->tempArray[ i ] );
+                    _data->func( _data->tempArray[ i ] );
                 }
                 timerStat.stop("worker_processes");
-                d->comm.send( d->masterRank, 1, & d->tempArray[0], recvSize );
+                _data->comm.send( _data->masterRank, 1, & _data->tempArray[0], recvSize );
             }
         };
 
@@ -253,7 +253,7 @@ namespace eo
         class IsFinishedParallelApply : public IsFinishedFunction< ParallelApplyData<EOT> >
         {
             public:
-            using IsFinishedFunction< ParallelApplyData<EOT> >::d;
+            using IsFinishedFunction< ParallelApplyData<EOT> >::_data;
 
             IsFinishedParallelApply( IsFinishedParallelApply<EOT> * w = 0 ) : IsFinishedFunction< ParallelApplyData<EOT> >( w )
             {
@@ -262,7 +262,7 @@ namespace eo
 
             bool operator()()
             {
-                return d->index == d->size;
+                return _data->index == _data->size;
             }
         };
 
