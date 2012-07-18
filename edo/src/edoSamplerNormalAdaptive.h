@@ -33,12 +33,8 @@ Authors:
 
 #include <edoSampler.h>
 
-/** Sample points in a multi-normal law defined by a mean vector and a covariance matrix.
- *
- * Given M the mean vector and V the covariance matrix, of order n:
- *   - draw a vector T in N(0,I) (i.e. each value is drawn in a normal law with mean=0 an stddev=1)
- *   - compute the Cholesky decomposition L of V (i.e. such as V=LL*)
- *   - return X = M + LT
+/** Sample points in a multi-normal law defined by a mean vector, a covariance matrix, a sigma scale factor and
+ * evolution paths. This is a step of the CMA-ES algorithm.
  */
 #ifdef WITH_EIGEN
 

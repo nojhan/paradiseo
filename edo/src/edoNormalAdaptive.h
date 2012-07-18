@@ -35,6 +35,16 @@ Authors:
 
 #include <Eigen/Dense>
 
+/** A normal distribution that can be updated via several components. This is the data structure on which works the CMA-ES
+ * algorithm.
+ *
+ * This is *just* a data structure, the operators working on it are supposed to maintain its consistency (e.g. of the
+ * covariance matrix against its eigen vectors).
+ *
+ * The distribution is defined by its mean, its covariance matrix (which can be decomposed in its eigen vectors and
+ * values), a scaling factor (sigma) and the so-called evolution paths for the covariance and sigma.
+ * evolution paths.
+ */
 template < typename EOT >
 class edoNormalAdaptive : public edoDistrib< EOT >
 {
@@ -107,11 +117,11 @@ public:
 
 private:
     unsigned int _dim;
-    Vector _mean; // 
+    Vector _mean; // mean vector
     Matrix _C; // covariance matrix
     Matrix _B; // eigen vectors / coordinates system
     Vector _D; // eigen values / scaling
-    double _sigma; // 
+    double _sigma; // absolute scaling of the distribution
     Vector _p_c; // evolution path for C
     Vector _p_s; // evolution path for sigma
 };

@@ -38,8 +38,9 @@ Authors:
 #include "edoNormalAdaptive.h"
 #include "edoEstimatorAdaptive.h"
 
-
-//! edoEstimatorNormalMulti< EOT >
+/** An estimator that works on adaptive normal distributions, basically the heart of the CMA-ES algorithm.
+ *
+ */
 template< typename EOT, typename EOD = edoNormalAdaptive<EOT> >
 class edoEstimatorNormalAdaptive : public edoEstimatorAdaptive< EOD >
 {
