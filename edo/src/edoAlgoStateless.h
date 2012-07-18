@@ -30,9 +30,11 @@ Authors:
 
 #include "edoAlgoAdaptive.h"
 
-//! edoEDA< D >
-
-/** A generic stochastic search template for algorithms that need a distribution parameter.
+/** A generic stochastic search template for algorithms that need a distribution parameter but replace it rather than update it
+ *
+ * This use a default dummy distribution, for algorithms willing to replace it instead of updating
+ * Thus we can instanciate _distrib on this and replace it at the first iteration with an estimator.
+ * This is why an edoDistrib must have an empty constructor.
  */
 template < typename EOD >
 class edoAlgoStateless : public edoAlgoAdaptive< EOD >
@@ -49,10 +51,7 @@ public:
 
 public:
 
-
-    /*!
-      Without a distribution
-
+    /** Full constructor
       \param evaluation Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
@@ -60,6 +59,8 @@ public:
       \param replacor Replace old solutions by new ones
       \param pop_continuator Stopping criterion based on the population features
       \param distribution_continuator Stopping criterion based on the distribution features
+
+      You are not supposed to override the tmp_distrib default initalization, or else use edoAlgoAdaptive
     */
     edoAlgoStateless(
         eoPopEvalFunc < EOType > & evaluator,
@@ -71,21 +72,19 @@ public:
         edoContinue< EOD > & distribution_continuator,
         EOD* tmp_distrib = (new EOD())
     ) :
-        edoAlgoAdaptive<EOD>( *tmp_distrib, evaluator, selector, estimator, sampler, replacor, pop_continuator, distribution_continuator),
-        _tmp_distrib( tmp_distrib ),
-        _dummy_distrib()
-    {
-        this->_distrib = _dummy_distrib;
-    }
+        edoAlgoAdaptive<EOD>( *tmp_distrib, evaluator, selector, estimator, sampler, replacor, pop_continuator, distribution_continuator)
+    {}
 
-    //! constructor without an edoContinue nor a distribution
-    /*!
+    /** Constructor without an edoContinue
+
       \param evaluation Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
       \param replacor Replace old solutions by new ones
       \param pop_continuator Stopping criterion based on the population features
+
+      You are not supposed to override the tmp_distrib default initalization, or else use edoAlgoAdaptive
     */
     edoAlgoStateless (
         eoPopEvalFunc < EOType > & evaluator,
@@ -96,30 +95,14 @@ public:
         eoContinue< EOType > & pop_continuator,
         EOD* tmp_distrib = (new EOD())
     ) :
-        edoAlgoAdaptive<EOD>( *tmp_distrib, evaluator, selector, estimator, sampler, replacor, pop_continuator),
-        _tmp_distrib( tmp_distrib ),
-        _dummy_distrib()
-    {
-        this->_distrib = _dummy_distrib;
-    }
+        edoAlgoAdaptive<EOD>( *tmp_distrib, evaluator, selector, estimator, sampler, replacor, pop_continuator)
+    {}
 
     ~edoAlgoStateless()
     {
-        delete _tmp_distrib;
+        // delete the temporary distrib allocated in constructors
+        delete &(this->_distrib);
     }
-
-
-protected:
-
-    EOD* _tmp_distrib;
-
-    /** A dummy distribution, for algorithms willing to replace it instead of updating
-     *
-     * Thus we can instanciate _distrib on this and replace it at the first iteration with an estimator.
-     * This is why an edoDistrib must have an empty constructor.
-     */
-    EOD _dummy_distrib;
-
 };
 
 #endif // !_edoAlgoStateless_h
