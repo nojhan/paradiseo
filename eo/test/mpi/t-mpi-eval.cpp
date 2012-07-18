@@ -120,15 +120,30 @@ struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
         best.fitness( 1000000000. );
     }
 
+    /*
+        our structure inherits the member _wrapped from HandleResponseFunction,
+        which is a HandleResponseFunction pointer;
+
+        it inherits also the member _d (like Data), which is a pointer to the
+        ParallelApplyData used in the HandleResponseParallelApply&lt;EOT&gt;. Details
+        of this data are contained in the file eoParallelApply. We need just to know that
+        it contains a member assignedTasks which maps a worker rank and the sent slice
+        to be processed by the worker, and a reference to the processed table via the
+        call of the data() function.
+    */
+
     // if EOT were a template, we would have to do: (thank you C++ :)
     // using eo::mpi::HandleResponseParallelApply<EOT>::_wrapped;
     // using eo::mpi::HandleResponseParallelApply<EOT>::d;
 
     void operator()(int wrkRank)
     {
+        // Retrieve informations about the slice processed by the worker
         int index = d->assignedTasks[wrkRank].index;
         int size = d->assignedTasks[wrkRank].size;
-        (*_wrapped)( wrkRank ); // call to the wrapped function HERE
+        // call to the wrapped function HERE
+        (*_wrapped)( wrkRank );
+        // Compare fitnesses of evaluated individuals with the best saved
         for(int i = index; i < index+size; ++i)
         {
             if( best.fitness() < d->data()[ i ].fitness() )
@@ -147,6 +162,7 @@ struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply<EOT>
 int main(int ac, char** av)
 {
     eo::mpi::Node::init( ac, av );
+    // eo::log << eo::setlevel( eo::debug );
     eo::log << eo::setlevel( eo::quiet );
 
     eoParser parser(ac, av);
@@ -179,10 +195,15 @@ int main(int ac, char** av)
 
         eo::log << "Size of population : " << popSize << std::endl;
 
+        /*
         eo::mpi::ParallelApplyStore< EOT > store( eval, eo::mpi::DEFAULT_MASTER );
         store.wrapHandleResponse( new CatBestAnswers );
 
         eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, &store );
+        */
+
+        eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, eval, 5 );
+
         eo::log << eo::quiet << "Before first evaluation." << std::endl;
         popEval( pop, pop );
         eo::log << eo::quiet << "After first evaluation." << std::endl;
