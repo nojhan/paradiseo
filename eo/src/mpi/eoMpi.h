@@ -539,7 +539,7 @@ namespace eo
                  * AssignmentAlgorithm for more details.
                  *
                  * @param _masterRank The MPI rank of the master.
-                 * 
+                 *
                  * @param _workerStopCondition Number of the message which will cause the workers to terminate. It could
                  * be one of the constants defined in eo::mpi::Commands, or any other integer. The user has to be sure
                  * that a message containing this integer will be sent to each worker on the Commands channel, otherwise
@@ -552,24 +552,25 @@ namespace eo
                 Job( AssignmentAlgorithm& _algo,
                      int _masterRank,
                      int _workerStopCondition,
-                     JobStore<JobData> & store
+                     JobStore<JobData> & _store
                     ) :
                     assignmentAlgo( _algo ),
                     masterRank( _masterRank ),
                     workerStopCondition( _workerStopCondition ),
                     comm( Node::comm() ),
                     // Functors
-                    sendTask( store.sendTask() ),
-                    handleResponse( store.handleResponse() ),
-                    processTask( store.processTask() ),
-                    isFinished( store.isFinished() )
+                    store( _store ),
+                    sendTask( _store.sendTask() ),
+                    handleResponse( _store.handleResponse() ),
+                    processTask( _store.processTask() ),
+                    isFinished( _store.isFinished() )
                 {
                     _isMaster = Node::comm().rank() == _masterRank;
 
-                    sendTask.data( store.data() );
-                    handleResponse.data( store.data() );
-                    processTask.data( store.data() );
-                    isFinished.data( store.data() );
+                    sendTask.data( _store.data() );
+                    handleResponse.data( _store.data() );
+                    processTask.data( _store.data() );
+                    isFinished.data( _store.data() );
                 }
 
             protected:
@@ -764,6 +765,7 @@ namespace eo
                 const int workerStopCondition;
                 bmpi::communicator& comm;
 
+                JobStore<JobData>& store;
                 SendTaskFunction<JobData> & sendTask;
                 HandleResponseFunction<JobData> & handleResponse;
                 ProcessTaskFunction<JobData> & processTask;
