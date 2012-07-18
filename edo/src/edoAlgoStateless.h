@@ -59,8 +59,6 @@ public:
       \param replacor Replace old solutions by new ones
       \param pop_continuator Stopping criterion based on the population features
       \param distribution_continuator Stopping criterion based on the distribution features
-
-      You are not supposed to override the tmp_distrib default initalization, or else use edoAlgoAdaptive
     */
     edoAlgoStateless(
         eoPopEvalFunc < EOType > & evaluator,
@@ -69,10 +67,9 @@ public:
         edoSampler< EOD > & sampler,
         eoReplacement< EOType > & replacor,
         eoContinue< EOType > & pop_continuator,
-        edoContinue< EOD > & distribution_continuator,
-        EOD* tmp_distrib = (new EOD())
+        edoContinue< EOD > & distribution_continuator
     ) :
-        edoAlgoAdaptive<EOD>( *tmp_distrib, evaluator, selector, estimator, sampler, replacor, pop_continuator, distribution_continuator)
+        edoAlgoAdaptive<EOD>( *(new EOD), evaluator, selector, estimator, sampler, replacor, pop_continuator, distribution_continuator)
     {}
 
     /** Constructor without an edoContinue
@@ -83,8 +80,6 @@ public:
       \param sampler Generate feasible solutions using the distribution
       \param replacor Replace old solutions by new ones
       \param pop_continuator Stopping criterion based on the population features
-
-      You are not supposed to override the tmp_distrib default initalization, or else use edoAlgoAdaptive
     */
     edoAlgoStateless (
         eoPopEvalFunc < EOType > & evaluator,
@@ -92,10 +87,9 @@ public:
         edoEstimator< EOD > & estimator,
         edoSampler< EOD > & sampler,
         eoReplacement< EOType > & replacor,
-        eoContinue< EOType > & pop_continuator,
-        EOD* tmp_distrib = (new EOD())
+        eoContinue< EOType > & pop_continuator
     ) :
-        edoAlgoAdaptive<EOD>( *tmp_distrib, evaluator, selector, estimator, sampler, replacor, pop_continuator)
+        edoAlgoAdaptive<EOD>( *(new EOD), evaluator, selector, estimator, sampler, replacor, pop_continuator)
     {}
 
     ~edoAlgoStateless()
