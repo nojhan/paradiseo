@@ -22,30 +22,34 @@ Copyright (C) 2010 Thales group
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
+    Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
+#ifndef _edoEstimatorAdaptive_h
+#define _edoEstimatorAdaptive_h
 
-#ifndef _edoAlgo_h
-#define _edoAlgo_h
+#include <eoPop.h>
+#include <eoFunctor.h>
 
-#include <eoAlgo.h>
+#include "edoEstimator.h"
 
-/** An EDO algorithm difffers from a canonical EO algorithm because it is
- * templatized on a Distribution rather than just an EOT.
- *
- * Derivating from an eoAlgo, it should define an operator()( EOT sol )
+/** An interface that explicits the needs for a permanent distribution 
+ * that will be updated by operators.
  */
-template < typename D >
-class edoAlgo : public eoAlgo< typename D::EOType >
+template < typename EOD >
+class edoEstimatorAdaptive : public edoEstimator<EOD>
 {
-    //! Alias for the type
-    typedef typename D::EOType EOType;
-
-    // virtual R operator()(A1) = 0; (defined in eoUF)
-
 public:
-    virtual ~edoAlgo(){}
+    typedef typename EOD::EOType EOType;
+
+    edoEstimatorAdaptive<EOD>( EOD& distrib ) : _distrib(distrib) {}
+
+    // virtual D operator() ( eoPop< EOT >& )=0 (provided by eoUF< A1, R >)
+
+    EOD & distribution() const { return _distrib; }
+
+protected:
+    EOD & _distrib;
 };
 
-#endif // !_edoAlgo_h
+#endif // !_edoEstimatorAdaptive_h

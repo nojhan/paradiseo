@@ -31,7 +31,7 @@ Authors:
 #include<sstream>
 
 #include "edoStat.h"
-#include "edoNormalMulti.h"
+#include "../edoNormalMulti.h"
 
 #ifdef WITH_BOOST
 

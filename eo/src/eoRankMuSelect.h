@@ -17,35 +17,38 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-Copyright (C) 2010 Thales group
+Copyright (C) 2012 Thales group
 */
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
 */
 
 
-#ifndef _edoAlgo_h
-#define _edoAlgo_h
+#ifndef _eoRankMuSelect_h
+#define _eoRankMuSelect_h
 
-#include <eoAlgo.h>
+#include "eoDetSelect.h"
 
-/** An EDO algorithm difffers from a canonical EO algorithm because it is
- * templatized on a Distribution rather than just an EOT.
+/** Selects the "Mu" bests individuals.
  *
- * Derivating from an eoAlgo, it should define an operator()( EOT sol )
- */
-template < typename D >
-class edoAlgo : public eoAlgo< typename D::EOType >
+ * Note: sorts the population before trucating it.
+ *
+ * @ingroup Selectors
+*/
+template<typename EOT>
+class eoRankMuSelect : public eoDetSelect<EOT>
 {
-    //! Alias for the type
-    typedef typename D::EOType EOType;
+public :
+    // false, because mu is not a rate
+    eoRankMuSelect( unsigned int mu ) : eoDetSelect<EOT>( mu, false ) {}
 
-    // virtual R operator()(A1) = 0; (defined in eoUF)
-
-public:
-    virtual ~edoAlgo(){}
+    void operator()(const eoPop<EOT>& source, eoPop<EOT>& dest)
+    {
+        eoPop<EOT> tmp( source );
+        tmp.sort();
+        eoDetSelect<EOT>::operator()( tmp, dest );
+    }
 };
 
-#endif // !_edoAlgo_h
+#endif // !_eoRankMuselect_h

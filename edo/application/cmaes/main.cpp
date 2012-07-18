@@ -41,8 +41,8 @@ Authors:
 #include "Sphere.h"
 
 
-typedef eoReal<eoMinimizingFitness> EOT;
-typedef edoNormalMulti< EOT > Distrib;
+typedef eoReal<eoMinimizingFitness> RealVec;
+typedef edoNormalAdaptive< RealVec > Distrib;
 
 
 int main(int ac, char** av)
@@ -57,26 +57,34 @@ int main(int ac, char** av)
     eoState state;
 
     // Instantiate all needed parameters for EDA algorithm
-    double selection_rate = parser.createParam((double)0.5, "selection_rate", "Selection Rate", 'R', section).value(); // R
-
-    eoSelect< EOT >* selector = new eoDetSelect< EOT >( selection_rate );
-    state.storeFunctor(selector);
-
-    edoEstimator< Distrib >* estimator =    new edoEstimatorNormalMulti< EOT >();
-    state.storeFunctor(estimator);
-
-    eoEvalFunc< EOT >* plainEval = new Rosenbrock< EOT >();
-    state.storeFunctor(plainEval);
+    //double selection_rate = parser.createParam((double)0.5, "selection_rate", "Selection Rate", 'R', section).value(); // R
 
     unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
-    eoEvalFuncCounterBounder< EOT > eval(*plainEval, max_eval);
+
+    unsigned int dim = parser.createParam((unsigned int)10, "dimension-size", "Dimension size", 'd', section).value(); // d
+
+
+    double mu = dim / 2;
+
+
+    edoNormalAdaptive<RealVec> distribution(dim);
+
+    eoSelect< RealVec >* selector = new eoRankMuSelect< RealVec >( mu );
+    state.storeFunctor(selector);
+
+    edoEstimator< Distrib >* estimator = new edoEstimatorNormalAdaptive<RealVec>( distribution );
+    state.storeFunctor(estimator);
+
+    eoEvalFunc< RealVec >* plainEval = new Rosenbrock< RealVec >();
+    state.storeFunctor(plainEval);
+
+    eoEvalFuncCounterBounder< RealVec > eval(*plainEval, max_eval);
 
     eoRndGenerator< double >* gen = new eoUniformGenerator< double >(-5, 5);
     state.storeFunctor(gen);
 
-    unsigned int dimension_size = parser.createParam((unsigned int)10, "dimension-size", "Dimension size", 'd', section).value(); // d
 
-    eoInitFixedLength< EOT >* init = new eoInitFixedLength< EOT >( dimension_size, *gen );
+    eoInitFixedLength< RealVec >* init = new eoInitFixedLength< RealVec >( dim, *gen );
     state.storeFunctor(init);
 
 
@@ -84,28 +92,28 @@ int main(int ac, char** av)
     // Generation of population from do_make_pop (creates parameters, manages persistance and so on...)
     // ... and creates the parameters: L P r S
     // this first sampler creates a uniform distribution independently from our distribution (it does not use edoUniform).
-    eoPop< EOT >& pop = do_make_pop(parser, state, *init);
+    eoPop< RealVec >& pop = do_make_pop(parser, state, *init);
 
     // (2) First evaluation before starting the research algorithm
     apply(eval, pop);
 
     // Prepare bounder class to set bounds of sampling.
     // This is used by edoSampler.
-    edoBounder< EOT >* bounder = 
-        new edoBounderRng< EOT >( EOT(pop[0].size(), -5), EOT(pop[0].size(), 5), *gen); // FIXME do not use hard-coded bounds
+    edoBounder< RealVec >* bounder = 
+        new edoBounderRng< RealVec >( RealVec(dim, -5), RealVec(dim, 5), *gen); // FIXME do not use hard-coded bounds
     state.storeFunctor(bounder);
 
     // Prepare sampler class with a specific distribution
-    edoSampler< Distrib >* sampler = new edoSamplerNormalMulti< EOT >( *bounder );
+    edoSampler< Distrib >* sampler = new edoSamplerNormalAdaptive< RealVec >( *bounder );
     state.storeFunctor(sampler);
-    
+
     // stopping criteria
     // ... and creates the parameter letters: C E g G s T
-    eoContinue< EOT >& eo_continue = do_make_continue(parser, state, eval);
-    
+    eoContinue< RealVec >& eo_continue = do_make_continue(parser, state, eval);
+
     // population output
-    eoCheckPoint< EOT >& pop_continue = do_make_checkpoint(parser, state, eval, eo_continue);
-    
+    eoCheckPoint< RealVec >& pop_continue = do_make_checkpoint(parser, state, eval, eo_continue);
+
     // distribution output
     edoDummyContinue< Distrib >* dummy_continue = new edoDummyContinue< Distrib >();
     state.storeFunctor(dummy_continue);
@@ -115,9 +123,9 @@ int main(int ac, char** av)
 
     // eoEPRemplacement causes the using of the current and previous
     // sample for sampling.
-    eoReplacement< EOT >* replacor = new eoEPReplacement< EOT >(pop.size());
+    eoReplacement< RealVec >* replacor = new eoEPReplacement< RealVec >(pop.size());
     state.storeFunctor(replacor);
-    
+
     // Some stuff to display helper when we are using -h option
     if (parser.userNeedsHelp())
     {
@@ -129,40 +137,11 @@ int main(int ac, char** av)
     make_verbose(parser);
     make_help(parser);
 
-    // population output (after helper)
-    //
-    // FIXME: theses objects are instanciated there in order to avoid a folder
-    // removing as edoFileSnapshot does within ctor.
-    edoPopStat< EOT >* popStat = new edoPopStat<EOT>;
-    state.storeFunctor(popStat);
-    pop_continue.add(*popStat);
-
-    edoFileSnapshot* fileSnapshot = new edoFileSnapshot("EDA_ResPop");
-    state.storeFunctor(fileSnapshot);
-    fileSnapshot->add(*popStat);
-    pop_continue.add(*fileSnapshot);
-
-    // distribution output (after helper)
-    edoDistribStat< Distrib >* distrib_stat = new edoStatNormalMulti< EOT >();
-    state.storeFunctor(distrib_stat);
-
-    distribution_continue->add( *distrib_stat );
-
-    // eoMonitor* stdout_monitor = new eoStdoutMonitor();
-    // state.storeFunctor(stdout_monitor);
-    // stdout_monitor->add(*distrib_stat);
-    // distribution_continue->add( *stdout_monitor );
-
-    eoFileMonitor* file_monitor = new eoFileMonitor("eda_distribution_bounds.txt");
-    state.storeFunctor(file_monitor);
-    file_monitor->add(*distrib_stat);
-    distribution_continue->add( *file_monitor );
-
-    eoPopLoopEval<EOT> popEval( eval );
+    eoPopLoopEval<RealVec> popEval( eval );
 
     // EDA algorithm configuration
-    edoAlgo< Distrib >* algo = new edoEDA< Distrib >
-        (popEval, *selector, *estimator, *sampler, *replacor,
+    edoAlgo< Distrib >* algo = new edoAlgoAdaptive< Distrib >
+        (distribution, popEval, *selector, *estimator, *sampler, *replacor,
          pop_continue, *distribution_continue );
 
 
