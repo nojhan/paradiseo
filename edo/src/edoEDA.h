@@ -29,7 +29,7 @@ Authors:
 #define _edoEDA_h
 
 #include <eo>
-#include <mo>
+//#include <mo>
 
 #include <utils/eoRNG.h>
 
