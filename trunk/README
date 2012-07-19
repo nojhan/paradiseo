@@ -3,17 +3,23 @@
                        RELEASE		
 ==========================================================================================
 
-The current release is paradisEO-1.4
+The current release is paradisEO-2.0
 
 ==========================================================================================
                       INSTALLATION
 ==========================================================================================
-The basic installation procedure must be done in the directory 
-which contains the extracted archive.
+The basic installation procedure must be done in a separatly folder in order to keep
+your file tree clean.
 
- --> Example : bash installParadiseo.sh
+1) mkdir build
+2) cd build
+3) cmake ..
+4) make
+5) Take a cofee.
+6) Congratulation, ParadiseEO is installed !
 
-Please try source installParadiseo.sh --help  for further information
+Please refer to paradisEO website or INSTALL file for further information about
+installation types and options.
 
 ==========================================================================================
                        DIRECTORY STRUCTURE
@@ -21,41 +27,34 @@ Please try source installParadiseo.sh --help  for further information
 After unpacking the archive file, you should end up with the following
 structure:
 
-.../                        Installation directory (specified with ./installParadiseo.sh)
+.../                        
    |
    |
    +-- AUTHORS				      Author list 
    |
    |
+   +-- cmake/				      CMake dir
+   |
+   |
+   +-- CMakeLists.txt			  For building process
+   |
+   |
+   +-- CTestConfig.cmake		  For testing process
+   |
+   |
    +-- INSTALL                    INSTALL file
    |
    |
-   +-- install.cmake			  ParadisEO main install config file
+   +-- LICENCE				      Licence contents
    |
    |
-   +-- installParadiseo.sh		  Install script
-   |
-   +-- lib/
-   |	   | +-- /libxml2-2.7.3.tar.gz   LIBXML2 archive (required for ParadisEO-PEO)
-   |	   | +-- /mpich2-1.0.8.tar.gz    MPICH2 archive (required for ParadisEO-PEO)
+   +-- paradiseo-eo 			  paradiseo-eo dir
    |
    |
-   + LICENCE				       Licence contents
+   +-- paradiseo-mo               paradiseo-mo dir 
    |
    |
-   +-- paradiseo-eo 			   paradiseo-eo dir
-   |
-   |
-   +-- paradiseo-mo                paradiseo-mo dir 
-   |
-   |
-   +-- paradiseo-moeo              paradiseo-moeo  dir
-   |   
-   |
-   +-- paradiseo-old-mo            paradiseo-old-mo  dir
-   |   
-   |
-   +-- paradiseo-peo               paradiseo-peo  dir
+   +-- paradiseo-moeo             paradiseo-moeo  dir
    |
    |
    +-- problems                    classical problems evaluation functions

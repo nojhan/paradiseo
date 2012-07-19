@@ -1,0 +1,54 @@
+* current version
+
+* release 1.2  (16. May. 2011)
+  - fixed the incremental allocation issue in variation operators which were
+    taking too much time for big population sizes
+  - new class eoParallel enabling parallelization in EO using OpenMP. At this
+    time, it only concerns the evaluation operator, for advanced details go to
+    the file test/t-eoParallel.cpp. The default parallelization mode is off, to
+    switch it on, see the parameters prefixed by --parallelize-* 
+  - pyeo compatible with the last version of Boost and Python libraries
+  - script installing EO manually in using symbolic links
+  - evaluators that throw an exception if a maximum time has been reached 
+    (wallclock and CPU user time for POSIX systems), independently of the number of generations
+  - merged parser and parser-logger
+  - some bugfixes for windows systems
+
+* release 1.1 (8. Nov. 2010)
+  - provide cmake build system, remove the old autotools one
+  - package generation system
+  - GCC 4.3 compatibility
+  - new versatile log system with several nested verbose levels
+  - classes using intern verbose parameters marked as deprecated, please update your code accordingly if you use one of the following files:
+	eo/src/eoCombinedInit.h
+	eo/src/eoGenContinue.h
+	eo/src/eoProportionalCombinedOp.h
+	eo/src/utils/eoData.h
+	eo/src/utils/eoStdoutMonitor.h
+  - an evaluator that throw an exception if a maximum eval numbers has been reached, independently of the number of generations
+  - new monitor that can write on any ostream
+  - new continuator that can catch POSIX system user signals
+  - dual fitness class to handle feasibility of individual with guarantee that feasible fitness will always be better than unfeasible one
+  - feasible fitness ratio stat
+  - interquartile range stat
+  - average size of individuals stat
+  - uniform(min,max) random function
+  - compatibility macros for compiling paradiseo with CUDACC
+  - removed old multi-objective classes, deprecated by the Paradiseo-MOEO project
+  - new website, switch from CVS to GIT, and a cool logo!
+
+* release 1.0.1 (23. Jan. 2006)
+  - Templates/ improvements
+
+* release 1.0 (29. Dec. 2006)
+  - Implement CMA-ES.
+  - Update introductory pages of documentation and webpage.
+  - Add Microsoft Visual C++ project support files (for Visual Studio 2003 and 2005)
+  - Upgrade Teamplates/ script to create a complete standalone EO project (using autotools)
+  - Remove support for pre-standard C++ compiler (i.e. gcc-2.x), which allows to
+    clean up the code considerably.
+    Assume availability of sstream and limits.
+
+* release 0.9.3z.1 (1. Oct. 2005)
+  - Support gcc-3.4 and gcc.4.x.
+  - Provide full automake/autoconf/configure support.

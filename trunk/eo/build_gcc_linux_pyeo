@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+mkdir -p release
+cd release
+cmake -DENABLE_PYEO=1 ..
+make
+cd ..

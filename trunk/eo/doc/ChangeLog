@@ -1,0 +1,27 @@
+2007-01-23  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* eo.cfg (PROJECT_NUMBER): Bump to 1.0.1
+
+2006-12-18  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* mainpage.html, publications.html: Update for release.
+
+	* index.h: Add old ToDos
+
+	* eo.cfg (PROJECT_NUMBER): Bump version to 1.0
+
+2006-12-03  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* mainpage.html: update, add link to Niko Hansen's comparison
+
+2006-12-01  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* Makefile.am: Update for release-distribution.
+	
+
+
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:

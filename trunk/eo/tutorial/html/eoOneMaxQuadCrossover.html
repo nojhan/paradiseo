@@ -1,0 +1,168 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
+   <title>Templates/eoOneMaxQuadCrossover.h</title>
+</head>
+<body text="#000000" bgcolor="#C3C2B4" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<a href="eoLesson5.html">Back to Lesson
+5</a> - <a href="eoTutorial.html">Tutorial main page </a>- <a href="eoTopDown.html">Top-Down
+page</a> - <a href="eoBottomUp.html">Bottom-up page</a> - <a href="eoProgramming.html">Programming
+hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<br>
+<hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
+<center>
+<h1>
+<font color="#FF0000">Templates/eoOneMaxQuadCrossover.h</font></h1></center>
+The places where you have to put some code are on <b><font color="#FF6666">pink
+background</font></b>.. Only the the <a href="eoTutorial.html#colors">character
+colors have the usual meaning</a>.
+<br><a NAME="start"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE><tt><font color="#993300">/** -*- mode: c++; c-indent-level:
+4; c++-member-init-indent: 8; comment-column: 35; -*-</font></tt>
+<br><tt><font color="#993300">The above line is usefulin Emacs-like editors</font></tt>
+<br><tt><font color="#993300">*/</font></tt>
+<br><tt><font color="#993300">/*</font></tt>
+<br><tt><font color="#993300">Template for simple quadratic crossover operators</font></tt>
+<br><tt><font color="#993300">=================================================</font></tt>
+<br><tt><font color="#993300">Quadratic crossover operators modify the
+both genotypes</font></tt>
+<br><tt><font color="#993300">*/</font></tt>
+<p><b><tt><font color="#993300">#ifndef eoOneMaxQuadCrossover_H</font></tt></b>
+<br><b><tt><font color="#993300">#define eoOneMaxQuadCrossover_H</font></tt></b>
+<p><b><tt><font color="#993300">#include &lt;eoOp.h></font></tt></b>
+<p><tt><font color="#993300">/**&nbsp;</font></tt>
+<br><tt><font color="#993300">*&nbsp; Always write a comment in this format
+before class definition</font></tt>
+<br><tt><font color="#993300">*&nbsp; if you want the class to be documented
+by Doxygen</font></tt>
+<br><tt><font color="#993300">*</font></tt>
+<br><tt><font color="#993300">* THere is NO ASSUMPTION on the class GenoypeT.</font></tt>
+<br><tt><font color="#993300">* In particular, it does not need to derive
+from EO</font></tt>
+<br><tt><font color="#993300">*/</font></tt></td>
+</tr>
+</table>
+<a NAME="crossover"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#993399">template&lt;class GenotypeT>&nbsp;</font></tt></b>
+<br><b><tt><font color="#993399">class eoOneMaxQuadCrossover: public eoQuadOp&lt;GenotypeT></font></tt></b>
+<br><b><tt><font color="#993399">{</font></tt></b>
+<br><b><tt><font color="#993399">public:</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;</b> /**</font></tt>
+<br><tt><font color="#993399">&nbsp;&nbsp; * Ctor - no requirement</font></tt>
+<br><tt><font color="#993399">&nbsp;&nbsp; */</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><a NAME="constructor"></a><tt><font color="#993399">// START eventually
+add or modify the anyVariable argument</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoOneMaxQuadCrossover()</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;</b> //&nbsp; eoOneMaxQuadCrossover(
+varType&nbsp; _anyVariable) : anyVariable(_anyVariable)&nbsp;</font></tt>
+<br><tt><font color="#993399">// END eventually add or modify the anyVariable
+argument</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#993399">&nbsp;{</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+START Code of Ctor of an eoOneMaxEvalFunc object</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+END&nbsp;&nbsp;&nbsp; Code of Ctor of an eoOneMaxEvalFunc object</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#993399">&nbsp;}</font></tt></b>
+<p><tt><font color="#993399"><b>&nbsp;</b> /// The class name. Used to
+display statistics</font></tt>
+<br><b><tt><font color="#993399">&nbsp;string className() const { return
+"eoOneMaxQuadCrossover"; }</font></tt></b>
+<p><tt><font color="#993399"><b>&nbsp;</b> /**</font></tt>
+<br><tt><font color="#993399">&nbsp;&nbsp; * eoQuad crossover - modifies
+both parents</font></tt>
+<br><tt><font color="#993399">&nbsp;&nbsp; * @param _genotype1 The first
+parent</font></tt>
+<br><tt><font color="#993399">&nbsp;&nbsp; * @param _genotype2 The second
+parent</font></tt>
+<br><tt><font color="#993399">&nbsp;&nbsp; */</font></tt>
+<br><b><tt><font color="#993399">&nbsp;bool operator()(GenotypeT&amp; _genotype1,
+GenotypeT &amp; _genotype2)&nbsp;</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;{</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp; bool oneAtLeastIsModified;</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><a NAME="operator"></a><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+// START code for crossover of _genotype1 and _genotype2 objects</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+/** Requirement</font></tt>
+<br><tt><font color="#993399">* if (at least one genotype has been modified)
+// no way to distinguish</font></tt>
+<br><tt><font color="#993399">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+oneAtLeastIsModified = true;</font></tt>
+<br><tt><font color="#993399">* else</font></tt>
+<br><tt><font color="#993399">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+oneAtLeastIsModified = false;</font></tt>
+<br><tt><font color="#993399">*/</font></tt>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp; return oneAtLeastIsModified;</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+END code for crossover of _genotype1 and _genotype2 objects</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#993399">&nbsp;}</font></tt></b>
+<p><b><tt><font color="#993399">private:</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><a NAME="data"></a><tt><font color="#993399">// START Private data
+of an eoOneMaxQuadCrossover object</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b> //&nbsp; varType anyVariable;&nbsp;&nbsp;&nbsp;
+// for example ...</font></tt>
+<br><tt><font color="#993399">// END&nbsp;&nbsp;&nbsp; Private data of
+an eoOneMaxQuadCrossover object</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#993399">};</font></tt></b>
+<p><b><tt><font color="#993399">#endif</font></tt></b></td>
+</tr>
+</table>
+
+<hr WIDTH="100%"><a href="eoLesson5.html">Back to Lesson 5</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<hr>
+<address>
+<a href="mailto:marc.schoenauer@inria.fr">Marc Schoenauer</a></address>
+
+<br><!-- Created: Nov 2000 --><!-- hhmts start -->Last modified: Fri May
+3 07:47:13 2002<!-- hhmts end -->
+</body>
+</html>

@@ -1,0 +1,11 @@
+2007-08-21  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* eoBitOp.h (eoNPtsBitXover::operator()): Make sure bit is within
+	allocated length of vector points: [0, max_size).
+
+
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:

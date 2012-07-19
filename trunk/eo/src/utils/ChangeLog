@@ -1,0 +1,42 @@
+2007-08-22  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+        * eoRNG.h (eoRng::random): Add comment on truncation as standard way of
+        floating point to integer conversion.
+
+2006-12-04  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+        * eoRNG.h (eoRng::normal(stdev)): Revert erroneous change.
+
+2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+        * eoTimedMonitor.h (eoTimedMonitor::seconds): Make unsigned.
+
+        * eoRNG.h: Cleanup docs and document /all/ members.
+
+        * eoRNG.cpp, eoRNG.h (K, M, N): Declare static and initialize in cpp.
+
+2006-12-01  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+        * eoRNG.cpp: Use C++ style cast.
+
+        * Makefile.am: Add missing header for distribution.
+
+2006-11-30  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+        * eoRNG.h: Generally include <cmath>
+
+2006-11-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+        * eoParser.h (eoParser::getORcreateParam): Make this a real if-then-else
+        clause around ptParam (found or not).
+
+        * eoParam.h (eoValueParam::setValue): Document.
+        (eoValueParam<std::vector<double> >::setValue): Allow delimiters ',' and
+        ';'. A plain ' ' does not work, as it is not correctly read by
+        eoParser::readFrom.
+
+        * Local Variables:
+        * coding: iso-8859-1
+        * mode: flyspell
+        * fill-column: 80
+        * End:
