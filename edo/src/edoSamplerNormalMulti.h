@@ -33,32 +33,49 @@ Authors:
 
 #include <edoSampler.h>
 
+
+#ifdef WITH_BOOST
+#include <utils/edoCholesky.h>
+#include <boost/numeric/ublas/lu.hpp>
+#include <boost/numeric/ublas/symmetric.hpp>
+namespace ublas = boost::numeric::ublas;
+#else
+#ifdef WITH_EIGEN
+#include <Eigen/Dense>
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
+
+
 /** Sample points in a multi-normal law defined by a mean vector and a covariance matrix.
  *
  * Given M the mean vector and V the covariance matrix, of order n:
  *   - draw a vector T in N(0,I) (i.e. each value is drawn in a normal law with mean=0 an stddev=1)
  *   - compute the Cholesky decomposition L of V (i.e. such as V=LL*)
  *   - return X = M + LT
+ *
+ * Exists in two implementations, using either
+ * <a href="http://www.boost.org/doc/libs/1_50_0/libs/numeric/ublas/doc/index.htm">Boost::uBLAS</a> (if compiled WITH_BOOST)
+ * or <a href="http://eigen.tuxfamily.org">Eigen3</a> (WITH_EIGEN).
+ *
+ * @ingroup Samplers
+ * @ingroup EMNA
+ * @ingroup Multinormal
  */
+template< typename EOT, typename D = edoNormalMulti< EOT > >
+class edoSamplerNormalMulti : public edoSampler< D >
+{
 
 #ifdef WITH_BOOST
 
-#include <utils/edoCholesky.h>
-#include <boost/numeric/ublas/lu.hpp>
-#include <boost/numeric/ublas/symmetric.hpp>
-
-template< typename EOT, typename EOD = edoNormalMulti< EOT > >
-class edoSamplerNormalMulti : public edoSampler< EOD >
-{
 public:
     typedef typename EOT::AtomType AtomType;
 
     edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) 
-        : edoSampler< EOD >( repairer)
+        : edoSampler< D >( repairer)
     {}
 
 
-    EOT sample( EOD& distrib )
+    EOT sample( D& distrib )
     {
         unsigned int size = distrib.size();
         assert(size > 0);
@@ -86,47 +103,43 @@ public:
 
 protected:
     cholesky::CholeskyLLT<AtomType> _cholesky;
-};
 
 #else
 #ifdef WITH_EIGEN
 
-template< typename EOT, typename EOD = edoNormalMulti< EOT > >
-class edoSamplerNormalMulti : public edoSampler< EOD >
-{
 public:
     typedef typename EOT::AtomType AtomType;
 
-    typedef typename EOD::Vector Vector;
-    typedef typename EOD::Matrix Matrix;
+    typedef typename D::Vector Vector;
+    typedef typename D::Matrix Matrix;
 
     edoSamplerNormalMulti( edoRepairer<EOT> & repairer ) 
-        : edoSampler< EOD >( repairer)
+        : edoSampler< D >( repairer)
     {}
 
 
-    EOT sample( EOD& distrib )
+    EOT sample( D& distrib )
     {
         unsigned int size = distrib.size();
         assert(size > 0);
 
         // LsD = cholesky decomposition of varcovar
 
-        // Computes L and D such as V = L D L^T
+        // Computes L and mD such as V = L mD L^T
         Eigen::LDLT<Matrix> cholesky( distrib.varcovar() );
         Matrix L = cholesky.matrixL();
         assert(L.innerSize() == size);
         assert(L.outerSize() == size);
 
-        Matrix D = cholesky.vectorD().asDiagonal();
-        assert(D.innerSize() == size);
-        assert(D.outerSize() == size);
+        Matrix mD = cholesky.vectorD().asDiagonal();
+        assert(mD.innerSize() == size);
+        assert(mD.outerSize() == size);
 
-        // now compute the final symetric matrix: LsD = L D^1/2
-        // remember that V = ( L D^1/2) ( L D^1/2)^T
+        // now compute the final symetric matrix: LsD = L mD^1/2
+        // remember that V = ( L mD^1/2) ( L mD^1/2)^T
         // fortunately, the square root of a diagonal matrix is the square 
         // root of all its elements
-        Matrix sqrtD = D.cwiseSqrt();
+        Matrix sqrtD = mD.cwiseSqrt();
         assert(sqrtD.innerSize() == size);
         assert(sqrtD.outerSize() == size);
 
@@ -142,7 +155,7 @@ public:
         assert(T.innerSize() == size);
         assert(T.outerSize() == 1);
 
-        // LDT = (L D^1/2) * T
+        // LDT = (L mD^1/2) * T
         Vector LDT = LsD * T;
         assert(LDT.innerSize() == size);
         assert(LDT.outerSize() == 1);
@@ -165,9 +178,9 @@ public:
 
         return solution;
     }
-};
 #endif // WITH_EIGEN
 #endif // WITH_BOOST
+}; // class edoNormalMulti
 
 
 #endif // !_edoSamplerNormalMulti_h

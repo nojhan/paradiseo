@@ -33,8 +33,12 @@ Authors:
 
 #ifdef WITH_BOOST
 
-//! edoNormalMultiCenter< EOT >
-
+/** Changes a given distribution's mean by a given EOT.
+ *
+ * @ingroup Modifiers
+ * @ingroup EMNA
+ * @inngroup Multinormal
+ */
 template < typename EOT >
 class edoNormalMultiCenter : public edoModifierMass< edoNormalMulti< EOT > >
 {
@@ -52,12 +56,16 @@ public:
 #else
 #ifdef WITH_EIGEN
 
-template < typename EOT, typename EOD = edoNormalMulti< EOT > >
-class edoNormalMultiCenter : public edoModifierMass<EOD>
+/** Changes a given distribution's mean by a given EOT.
+ *
+ * @ingroup Modifiers
+ */
+template < typename EOT, typename D = edoNormalMulti< EOT > >
+class edoNormalMultiCenter : public edoModifierMass<D>
 {
 public:
     typedef typename EOT::AtomType AtomType;
-    typedef typename EOD::Vector Vector;
+    typedef typename D::Vector Vector;
 
     void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
     {

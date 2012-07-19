@@ -28,8 +28,8 @@ Authors:
 #ifndef _edoVectorBounds_h
 #define _edoVectorBounds_h
 
-//! edoVectorBounds< EOT >
-
+/** A class that holds min and max bounds vectors.
+ */
 template < typename EOT >
 class edoVectorBounds
 {

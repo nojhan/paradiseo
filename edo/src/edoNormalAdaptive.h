@@ -35,6 +35,23 @@ Authors:
 
 #include <Eigen/Dense>
 
+/** @defgroup CMAES CMAES
+ *
+ * CMA-ES (Covariance Matrix Adaptation Evolution Strategy) is a stochastic,
+ * derivative-free methods for numerical optimization of non-linear or
+ * non-convex continuous optimization problems.
+ *
+ * @ingroup Algorithms
+ */
+
+/** @defgroup Adaptivenormal Adaptive normal
+ *
+ * A multi-variate normal distribution that can be updated via several components.
+ * This is the data structure on which works the CMA-ES algorithm.
+ *
+ * @ingroup Distributions
+ */
+
 /** A normal distribution that can be updated via several components. This is the data structure on which works the CMA-ES
  * algorithm.
  *
@@ -44,6 +61,12 @@ Authors:
  * The distribution is defined by its mean, its covariance matrix (which can be decomposed in its eigen vectors and
  * values), a scaling factor (sigma) and the so-called evolution paths for the covariance and sigma.
  * evolution paths.
+ *
+ * NOTE: this is only available as an Eigen3 implementation (built WITH_EIGEN).
+ *
+ * @ingroup Distributions
+ * @ingroup CMAES
+ * @ingroup Adaptivenormal
  */
 template < typename EOT >
 class edoNormalAdaptive : public edoDistrib< EOT >
@@ -126,6 +149,8 @@ private:
     Vector _p_s; // evolution path for sigma
 };
 
+#else
+#pragma message "WARNING: there is no Boost::uBLAS implementation of edoNormalAdaptive, build WITH_EIGEN if you need it."
 #endif // WITH_EIGEN
 
 #endif // !_edoNormalAdaptive_h

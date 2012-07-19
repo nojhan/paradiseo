@@ -31,8 +31,12 @@ Authors:
 #include "edoDistrib.h"
 #include "edoVectorBounds.h"
 
-//! edoUniform< EOT >
-
+/** A uniform distribution.
+ *
+ * Defined by its bounds.
+ *
+ * @ingroup Distributions
+ */
 template < typename EOT >
 class edoUniform : public edoDistrib< EOT >, public edoVectorBounds< EOT >
 {

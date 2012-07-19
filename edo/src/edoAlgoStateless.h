@@ -35,13 +35,15 @@ Authors:
  * This use a default dummy distribution, for algorithms willing to replace it instead of updating
  * Thus we can instanciate _distrib on this and replace it at the first iteration with an estimator.
  * This is why an edoDistrib must have an empty constructor.
+ *
+ * @ingroup Algorithms
  */
-template < typename EOD >
-class edoAlgoStateless : public edoAlgoAdaptive< EOD >
+template < typename D >
+class edoAlgoStateless : public edoAlgoAdaptive< D >
 {
 public:
     //! Alias for the type EOT
-    typedef typename EOD::EOType EOType;
+    typedef typename D::EOType EOType;
 
     //! Alias for the atom type
     typedef typename EOType::AtomType AtomType;
@@ -52,7 +54,7 @@ public:
 public:
 
     /** Full constructor
-      \param evaluation Evaluate a population
+      \param evaluator Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
@@ -63,18 +65,18 @@ public:
     edoAlgoStateless(
         eoPopEvalFunc < EOType > & evaluator,
         eoSelect< EOType > & selector,
-        edoEstimator< EOD > & estimator,
-        edoSampler< EOD > & sampler,
+        edoEstimator< D > & estimator,
+        edoSampler< D > & sampler,
         eoReplacement< EOType > & replacor,
         eoContinue< EOType > & pop_continuator,
-        edoContinue< EOD > & distribution_continuator
+        edoContinue< D > & distribution_continuator
     ) :
-        edoAlgoAdaptive<EOD>( *(new EOD), evaluator, selector, estimator, sampler, replacor, pop_continuator, distribution_continuator)
+        edoAlgoAdaptive<D>( *(new D), evaluator, selector, estimator, sampler, replacor, pop_continuator, distribution_continuator)
     {}
 
     /** Constructor without an edoContinue
 
-      \param evaluation Evaluate a population
+      \param evaluator Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
@@ -84,12 +86,12 @@ public:
     edoAlgoStateless (
         eoPopEvalFunc < EOType > & evaluator,
         eoSelect< EOType > & selector,
-        edoEstimator< EOD > & estimator,
-        edoSampler< EOD > & sampler,
+        edoEstimator< D > & estimator,
+        edoSampler< D > & sampler,
         eoReplacement< EOType > & replacor,
         eoContinue< EOType > & pop_continuator
     ) :
-        edoAlgoAdaptive<EOD>( *(new EOD), evaluator, selector, estimator, sampler, replacor, pop_continuator)
+        edoAlgoAdaptive<D>( *(new D), evaluator, selector, estimator, sampler, replacor, pop_continuator)
     {}
 
     ~edoAlgoStateless()

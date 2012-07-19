@@ -33,23 +33,26 @@ Authors:
 
 #include "edoEstimator.h"
 
-/** An interface that explicits the needs for a permanent distribution 
+/** An interface that explicits the needs for a permanent distribution
  * that will be updated by operators.
+ *
+ * @ingroup Estimators
+ * @ingroup Core
  */
-template < typename EOD >
-class edoEstimatorAdaptive : public edoEstimator<EOD>
+template < typename D >
+class edoEstimatorAdaptive : public edoEstimator<D>
 {
 public:
-    typedef typename EOD::EOType EOType;
+    typedef typename D::EOType EOType;
 
-    edoEstimatorAdaptive<EOD>( EOD& distrib ) : _distrib(distrib) {}
+    edoEstimatorAdaptive<D>( D& distrib ) : _distrib(distrib) {}
 
     // virtual D operator() ( eoPop< EOT >& )=0 (provided by eoUF< A1, R >)
 
-    EOD & distribution() const { return _distrib; }
+    D & distribution() const { return _distrib; }
 
 protected:
-    EOD & _distrib;
+    D & _distrib;
 };
 
 #endif // !_edoEstimatorAdaptive_h

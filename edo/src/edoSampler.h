@@ -33,8 +33,23 @@ Authors:
 #include "edoRepairer.h"
 #include "edoBounderNo.h"
 
-//! edoSampler< D >
 
+/** @defgroup Samplers
+ *
+ * Functors that draw and repair individuals according to a given distribution.
+ */
+
+/** Base class for samplers
+ *
+ * The functor here is already implemented: it first sample an EOT from the
+ * given distribution, and then apply the given repairers (if set).
+ *
+ * Thus, the function that need to be overloaded is "sample", unlike most of EO
+ * functors.
+ *
+ * @ingroup Samplers
+ * @ingroup Core
+ */
 template < typename D >
 class edoSampler : public eoUF< D&, typename D::EOType >
 {

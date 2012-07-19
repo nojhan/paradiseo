@@ -38,16 +38,25 @@ Authors:
 #include "edoSampler.h"
 #include "edoContinue.h"
 
-//! edoEDA< D >
-
 /** A generic stochastic search template for algorithms that need a distribution parameter.
+ *
+ * An adaptive algorithm will directly updates a distribution, it must thus be instanciated
+ * with an edoDistrib at hand. Thus, this distribution object should be instanciated appart.
+ * The reference to this distribution is generally also needed by at least one of the
+ * algorithm's operator, generally for algorithms that shares the same algorithms across
+ * operators and/or iterations.
+ *
+ * If you no operator needs to update the distribution, then it is simpler to use an
+ * edoAlgoStateless .
+ *
+ * @ingroup Algorithms
  */
-template < typename EOD >
-class edoAlgoAdaptive : public edoAlgo< EOD >
+template < typename D >
+class edoAlgoAdaptive : public edoAlgo< D >
 {
 public:
     //! Alias for the type EOT
-    typedef typename EOD::EOType EOType;
+    typedef typename D::EOType EOType;
 
     //! Alias for the atom type
     typedef typename EOType::AtomType AtomType;
@@ -61,7 +70,7 @@ public:
       Takes algo operators, all are mandatory
 
       \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
-      \param evaluation Evaluate a population
+      \param evaluator Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
@@ -70,14 +79,14 @@ public:
       \param distribution_continuator Stopping criterion based on the distribution features
     */
     edoAlgoAdaptive(
-        EOD & distrib,
+        D & distrib,
         eoPopEvalFunc < EOType > & evaluator,
         eoSelect< EOType > & selector,
-        edoEstimator< EOD > & estimator,
-        edoSampler< EOD > & sampler,
+        edoEstimator< D > & estimator,
+        edoSampler< D > & sampler,
         eoReplacement< EOType > & replacor,
         eoContinue< EOType > & pop_continuator,
-        edoContinue< EOD > & distribution_continuator
+        edoContinue< D > & distribution_continuator
     ) :
         _distrib(distrib),
         _evaluator(evaluator),
@@ -96,7 +105,7 @@ public:
       Takes algo operators, all are mandatory
 
       \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
-      \param evaluation Evaluate a population
+      \param evaluator Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
@@ -104,11 +113,11 @@ public:
       \param pop_continuator Stopping criterion based on the population features
     */
     edoAlgoAdaptive (
-        EOD & distrib,
+        D & distrib,
         eoPopEvalFunc < EOType > & evaluator,
         eoSelect< EOType > & selector,
-        edoEstimator< EOD > & estimator,
-        edoSampler< EOD > & sampler,
+        edoEstimator< D > & estimator,
+        edoSampler< D > & sampler,
         eoReplacement< EOType > & replacor,
         eoContinue< EOType > & pop_continuator
     ) :
@@ -172,7 +181,7 @@ public:
 protected:
 
     //! The distribution that you want to update
-    EOD & _distrib;
+    D & _distrib;
 
     //! A full evaluation function.
     eoPopEvalFunc<EOType> & _evaluator;
@@ -181,10 +190,10 @@ protected:
     eoSelect<EOType> & _selector;
 
     //! A EOType estimator. It is going to estimate distribution parameters.
-    edoEstimator<EOD> & _estimator;
+    edoEstimator<D> & _estimator;
 
     //! A D sampler
-    edoSampler<EOD> & _sampler;
+    edoSampler<D> & _sampler;
 
     //! A EOType replacor
     eoReplacement<EOType> & _replacor;
@@ -193,10 +202,10 @@ protected:
     eoContinue<EOType> & _pop_continuator;
 
     //! A D continuator that always return true
-    edoDummyContinue<EOD> _dummy_continue;
+    edoDummyContinue<D> _dummy_continue;
 
     //! A D continuator
-    edoContinue<EOD> & _distribution_continuator;
+    edoContinue<D> & _distribution_continuator;
 
 };
 

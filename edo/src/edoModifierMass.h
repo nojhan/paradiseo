@@ -32,8 +32,11 @@ Authors:
 
 #include "edoModifier.h"
 
-//! edoModifierMass< D >
 
+/** An semantic pseudo-interface for modifiers that updates mass parameters (like mean).
+ *
+ * @ingroup Modifiers
+ */
 template < typename D >
 class edoModifierMass : public edoModifier< D >, public eoBF< D&, typename D::EOType&, void >
 {

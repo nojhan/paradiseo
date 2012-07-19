@@ -30,23 +30,34 @@ Authors:
 
 #include "edoDistrib.h"
 
-//! edoNormalMono< EOT >
+/** @defgroup Mononormal Normal
+ * A normal (Gaussian) distribution that only model variances of variables.
+ *
+ * @ingroup Distributions
+ */
 
+/** A normal (Gaussian) distribution that only model variances of variables.
+ *
+ * This is basically a mean vector and a variances vector. Do not model co-variances.
+ *
+ * @ingroup Distributions
+ * @ingroup Mononormal
+ */
 template < typename EOT >
 class edoNormalMono : public edoDistrib< EOT >
 {
 public:
     edoNormalMono( const EOT& mean, const EOT& variance )
-	: _mean(mean), _variance(variance)
+        : _mean(mean), _variance(variance)
     {
-	assert(_mean.size() > 0);
-	assert(_mean.size() == _variance.size());
+        assert(_mean.size() > 0);
+        assert(_mean.size() == _variance.size());
     }
 
     unsigned int size()
     {
-	assert(_mean.size() == _variance.size());
-	return _mean.size();
+        assert(_mean.size() == _variance.size());
+        return _mean.size();
     }
 
     EOT mean(){return _mean;}

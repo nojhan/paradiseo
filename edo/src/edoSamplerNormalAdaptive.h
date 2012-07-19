@@ -35,24 +35,28 @@ Authors:
 
 /** Sample points in a multi-normal law defined by a mean vector, a covariance matrix, a sigma scale factor and
  * evolution paths. This is a step of the CMA-ES algorithm.
+ *
+ * @ingroup Samplers
+ * @ingroup CMAES
+ * @ingroup Adaptivenormal
  */
 #ifdef WITH_EIGEN
 
-template< class EOT, typename EOD = edoNormalAdaptive< EOT > >
-class edoSamplerNormalAdaptive : public edoSampler< EOD >
+template< class EOT, typename D = edoNormalAdaptive< EOT > >
+class edoSamplerNormalAdaptive : public edoSampler< D >
 {
 public:
     typedef typename EOT::AtomType AtomType;
 
-    typedef typename EOD::Vector Vector;
-    typedef typename EOD::Matrix Matrix;
+    typedef typename D::Vector Vector;
+    typedef typename D::Matrix Matrix;
 
     edoSamplerNormalAdaptive( edoRepairer<EOT> & repairer ) 
-        : edoSampler< EOD >( repairer)
+        : edoSampler< D >( repairer)
     {}
 
 
-    EOT sample( EOD& distrib )
+    EOT sample( D& distrib )
     {
         unsigned int N = distrib.size();
         assert( N > 0);

@@ -31,17 +31,49 @@ Copyright (C) 2010 Thales group
 #include "edoDistrib.h"
 
 #ifdef WITH_BOOST
-
 #include <boost/numeric/ublas/symmetric.hpp>
 #include <boost/numeric/ublas/lu.hpp>
-
-
 namespace ublas = boost::numeric::ublas;
+#else
+#ifdef WITH_EIGEN
+#include <Eigen/Dense>
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
 
-//! edoNormalMulti< EOT >
+/** @defgroup EMNA
+ *
+ * Estimation of Multivariate Normal Algorithm (EMNA) is a stochastic,
+ * derivative-free methods for numerical optimization of non-linear or
+ * non-convex continuous optimization problems.
+ *
+ * @ingroup Algorithms
+ */
+
+/** @defgroup Multinormal Multivariate normal
+ *
+ * Distribution that model co-variances between variables.
+ *
+ * @ingroup Distributions
+ */
+
+/** A multi-normal distribution, that models co-variances.
+ *
+ * Defines a mean vector and a co-variances matrix.
+ *
+ * Exists in two implementations, using either
+ * <a href="http://www.boost.org/doc/libs/1_50_0/libs/numeric/ublas/doc/index.htm">Boost::uBLAS</a> (if compiled WITH_BOOST)
+ * or <a href="http://eigen.tuxfamily.org">Eigen3</a> (WITH_EIGEN).
+ *
+ * @ingroup Distributions
+ * @ingroup EMNA
+ * @ingroup Multinormal
+ */
 template < typename EOT >
 class edoNormalMulti : public edoDistrib< EOT >
 {
+#ifdef WITH_BOOST
+
+
 public:
     typedef typename EOT::AtomType AtomType;
 
@@ -79,17 +111,11 @@ public:
 private:
     ublas::vector< AtomType > _mean;
     ublas::symmetric_matrix< AtomType, ublas::lower > _varcovar;
-};
-
 
 #else
 #ifdef WITH_EIGEN
 
-#include <Eigen/Dense>
 
-template < typename EOT >
-class edoNormalMulti : public edoDistrib< EOT >
-{
 public:
     typedef typename EOT::AtomType AtomType;
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector;
@@ -128,11 +154,10 @@ public:
 private:
     Vector _mean;
     Matrix _varcovar;
-};
-
-
 
 #endif // WITH_EIGEN
 #endif // WITH_BOOST
+
+}; // class edoNormalMulti
 
 #endif // !_edoNormalMulti_h

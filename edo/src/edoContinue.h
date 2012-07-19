@@ -31,8 +31,13 @@ Authors:
 #include <eoFunctor.h>
 #include <eoPersistent.h>
 
-//! edoContinue< D > class fitted to Distribution Object library
-
+/** A continuator that check the state of an edoDistrib
+ *
+ * @see eoContinue
+ *
+ * @ingroup Continuators
+ * @ingroup Core
+ */
 template < typename D >
 class edoContinue : public eoUF< const D&, bool >, public eoPersistent
 {

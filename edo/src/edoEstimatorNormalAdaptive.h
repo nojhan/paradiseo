@@ -40,17 +40,20 @@ Authors:
 
 /** An estimator that works on adaptive normal distributions, basically the heart of the CMA-ES algorithm.
  *
+ * @ingroup Estimators
+ * @ingroup CMAES
+ * @ingroup Adaptivenormal
  */
-template< typename EOT, typename EOD = edoNormalAdaptive<EOT> >
-class edoEstimatorNormalAdaptive : public edoEstimatorAdaptive< EOD >
+template< typename EOT, typename D = edoNormalAdaptive<EOT> >
+class edoEstimatorNormalAdaptive : public edoEstimatorAdaptive< D >
 {
 public:
     typedef typename EOT::AtomType AtomType;
-    typedef typename EOD::Vector Vector; // column vectors @see edoNormalAdaptive
-    typedef typename EOD::Matrix Matrix;
+    typedef typename D::Vector Vector; // column vectors @see edoNormalAdaptive
+    typedef typename D::Matrix Matrix;
 
-    edoEstimatorNormalAdaptive( EOD& distrib ) :
-        edoEstimatorAdaptive<EOD>( distrib ),
+    edoEstimatorNormalAdaptive( D& distrib ) :
+        edoEstimatorAdaptive<D>( distrib ),
         _calls(0),
         _eigeneval(0)
     {}
@@ -133,7 +136,7 @@ public:
 
 
         // shortcut to the referenced distribution
-        EOD& d = this->distribution();
+        D& d = this->distribution();
 
         // C^-1/2
         Matrix invsqrtC =
@@ -226,12 +229,12 @@ public:
 
             Eigen::SelfAdjointEigenSolver<Matrix> eigensolver( d.covar() ); // FIXME use JacobiSVD?
             d.coord_sys( eigensolver.eigenvectors() );
-            Matrix D = eigensolver.eigenvalues().asDiagonal();
-            assert( D.innerSize() == N && D.outerSize() == N );
+            Matrix mD = eigensolver.eigenvalues().asDiagonal();
+            assert( mD.innerSize() == N && mD.outerSize() == N );
 
             // from variance to standard deviations
-            D.cwiseSqrt();
-            d.scaling( D.diagonal() );
+            mD.cwiseSqrt();
+            d.scaling( mD.diagonal() );
         }
 
         return d;
@@ -243,7 +246,7 @@ protected:
     unsigned int _eigeneval;
 
 
-    // EOD & distribution() inherited from edoEstimatorAdaptive
+    // D & distribution() inherited from edoEstimatorAdaptive
 };
 #endif // WITH_EIGEN
 

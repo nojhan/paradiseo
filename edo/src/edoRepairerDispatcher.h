@@ -175,7 +175,7 @@ public:
                 } // for j
             } // context for k
         } // for ipair
-        
+
         sol.invalidate();
     }
 };

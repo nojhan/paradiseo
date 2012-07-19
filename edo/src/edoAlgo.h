@@ -31,10 +31,23 @@ Authors:
 
 #include <eoAlgo.h>
 
-/** An EDO algorithm difffers from a canonical EO algorithm because it is
+/**
+  @defgroup Algorithms Algorithms
+
+  In EDO, as in EO, an algorithm is a functor that takes one or several
+  solutions to an optimization problem as arguments, and iteratively modify
+  them with the help of operators.It differs from a canonical EO algorithm
+  because it is templatized on a edoDistrib rather than just an EOT.
+
+  @see eoAlgo
+*/
+
+/** An EDO algorithm differs from a canonical EO algorithm because it is
  * templatized on a Distribution rather than just an EOT.
  *
  * Derivating from an eoAlgo, it should define an operator()( EOT sol )
+ *
+ * @ingroup Algorithms
  */
 template < typename D >
 class edoAlgo : public eoAlgo< typename D::EOType >

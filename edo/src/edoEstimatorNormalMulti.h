@@ -34,11 +34,31 @@ Authors:
 #include "edoNormalMulti.h"
 
 #ifdef WITH_BOOST
+#include <boost/numeric/ublas/symmetric.hpp>
+#include <boost/numeric/ublas/lu.hpp>
+namespace ublas = boost::numeric::ublas;
+#else
+#ifdef WITH_EIGEN
+#include <Eigen/Dense>
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
 
-//! edoEstimatorNormalMulti< EOT >
+
+/** An estimator for edoNormalMulti
+ *
+ * Exists in two implementations, using either
+ * <a href="http://www.boost.org/doc/libs/1_50_0/libs/numeric/ublas/doc/index.htm">Boost::uBLAS</a> (if compiled WITH_BOOST)
+ * or <a href="http://eigen.tuxfamily.org">Eigen3</a> (WITH_EIGEN).
+ *
+ * @ingroup Estimators
+ * @ingroup EMNA
+ * @ingroup Multinormal
+ */
 template < typename EOT >
 class edoEstimatorNormalMulti : public edoEstimator< edoNormalMulti< EOT > >
 {
+
+#ifdef WITH_BOOST
 public:
     class CovMatrix
     {
@@ -154,17 +174,13 @@ public:
 #else
 #ifdef WITH_EIGEN
 
-//! edoEstimatorNormalMulti< EOT >
-template < typename EOT, typename EOD = edoNormalMulti<EOT> >
-class edoEstimatorNormalMulti : public edoEstimator< EOD >
-{
 public:
     class CovMatrix
     {
     public:
         typedef typename EOT::AtomType AtomType;
-        typedef typename EOD::Vector Vector;
-        typedef typename EOD::Matrix Matrix;
+        typedef typename D::Vector Vector;
+        typedef typename D::Matrix Matrix;
 
         CovMatrix( const eoPop< EOT >& pop )
         {
@@ -233,8 +249,8 @@ public:
 
         return edoNormalMulti< EOT >( cov.get_mean(), cov.get_varcovar() );
     }
-};
 #endif // WITH_EIGEN
 #endif // WITH_BOOST
+}; // class edoNormalMulti
 
 #endif // !_edoEstimatorNormalMulti_h
