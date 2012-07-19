@@ -16,6 +16,11 @@ project("ParadisEO")
 ## Language
 enable_language(CXX)
 
+## Test the presence of a compiler
+if("${CMAKE_CXX_COMPILER}" STREQUAL "" OR "${CMAKE_C_COMPILER}" STREQUAL "")
+    message(FATAL_ERROR "No compiler founded !")
+endif()
+
 ## Versioning
 set(VERSION_MAJOR 2)
 set(VERSION_MINOR 0)
@@ -24,10 +29,6 @@ set(VERSION_PATCH 0)
 ######################################################################################
 ### 2) Check dependencies
 ######################################################################################
-
-## Required
-include(CMakeBackwardCompatibilityCXX REQUIRED)
-include(CheckLibraryExists REQUIRED) 
  
 ## Optional
 include(FindDoxygen OPTIONAL)
@@ -81,7 +82,9 @@ if(NOT EO_ONLY)
 endif()
 
 ######################################################################################
-### 5) Packaging
+### 5) Packaging : only in release !
 ######################################################################################
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Package.cmake)
+if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Package.cmake)
+endif()

@@ -33,9 +33,9 @@ if(PROFILING)
             COMMAND make
             COMMAND ctest
             COMMAND lcov -d . -c -o output.info
-            COMMAND lcov -r output.info */tutorial* -o output.info
-            COMMAND lcov -r output.info /usr* -o output.info
-            COMMAND lcov -r output.info */test* -o output.info
+            COMMAND lcov -r output.info '*/tutorial*' -o output.info
+            COMMAND lcov -r output.info '/usr*' -o output.info
+            COMMAND lcov -r output.info '*/test*' -o output.info
             COMMAND genhtml output.info -o coverage/ --highlight --legend
         )
     else(LCOV)

@@ -3,7 +3,7 @@
 ######################################################################################
 
 file(GLOB HDRS *.h mo)
-install(FILES ${HDRS} DESTINATION include/paradiseo/mo COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/mo COMPONENT headers)
 
 ######################################################################################
 ### 1) Install directories

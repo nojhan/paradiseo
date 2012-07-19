@@ -21,8 +21,9 @@ Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
+
 #ifndef __unix__
-#warning "Warning: class 'eoEvalUserTimeThrowException' is only available under UNIX systems (defining 'rusage' in 'sys/resource.h'), contributions for other systems are welcomed."
+/*#warning "Warning: class 'eoEvalUserTimeThrowException' is only available under UNIX systems (defining 'rusage' in 'sys/resource.h'), contributions for other systems are welcomed."*/
 #else
 
 #ifndef __EOEVALUSERTIMETHROWEXCEPTION_H__

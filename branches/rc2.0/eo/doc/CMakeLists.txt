@@ -17,10 +17,18 @@ IF (DOXYGEN_FOUND)
 
   # define the doc target
   IF (DOXYGEN_EXECUTABLE)
-    ADD_CUSTOM_TARGET(doc-eo
-      COMMAND ${DOXYGEN_EXECUTABLE} ${EO_DOC_CONFIG_FILE}
-      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-      )
+  # Creating the custom target
+    if(UNIX AND NOT ${CMAKE_VERBOSE_MAKEFILE})
+        add_custom_target(doc-eo
+            COMMAND ${DOXYGEN_EXECUTABLE} ${EO_DOC_CONFIG_FILE} 2> /dev/null > /dev/null
+            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            )
+    else(UNIX AND NOT ${CMAKE_VERBOSE_MAKEFILE})
+        ADD_CUSTOM_TARGET(doc-eo
+            COMMAND ${DOXYGEN_EXECUTABLE} ${EO_DOC_CONFIG_FILE}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            )
+      endif()
   ENDIF (DOXYGEN_EXECUTABLE)
 
   # configure cfg file

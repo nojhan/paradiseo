@@ -39,7 +39,7 @@ Then, follow UNIX instructions.
 1.0 DEPENDENCIES
 ------------------------------------------------------------------------------------------
 Required
-- Compiler with OpenMP implementation (thus, Clang isn't supported atm).
+- Compiler with OpenMP implementation (hence, Clang isn't supported atm).
 
 Optionnal
 - Doxygen for documentation
@@ -51,17 +51,17 @@ Optionnal
 
 After getting ParadisEO sources from repository, you have to create a build directory in order to keep your file tree clean.
 
-mkdir build
-cd build
+> mkdir build
+> cd build
 
 To make the installation easier, ParadisEO propose you two installation types which are "Full" and "Min".
-Full always corresponds to a DEBUG build with examples / lessons, tests and obviously libraries. 
-Min corresponds to libraries and headers with Debug build if you don't specify the contrary with -DCMAKE_BUILD_TYPE=Release. In both cases, you are free to build the documentation (refer to the documentation section)
+Full corresponds examples / lessons, tests and obviously libraries. 
+Min corresponds to libraries and headers.
 
 You can specified an installation type by adding the following declaration to cmake :
 
-cmake .. -DINSTALL_TYPE=full
-cmake .. -DINSTALL_TYPE=min
+> cmake .. -DINSTALL_TYPE=full
+> cmake .. -DINSTALL_TYPE=min
 
 Actually, by default the generator will be "Unix Makefiles" and cmake will try to look for a C++ compiler. 
 Be sure you have make installed, or choose an alternative according to your configuration. 
@@ -69,14 +69,12 @@ To know available generators on your computer, type cmake -help. If you are on W
 
 To compile ParadisEO simply compile sources using your generator. For instance, if you are using Unix Makefiles, type make.
 
-WARNING : The default build type is Debug. If you want to build in Release, see the next section which concerns Build types.
-
 ------------------------------------------------------------------------------------------
 1.2 BUILD TYPE
 ------------------------------------------------------------------------------------------
 
-There are 2 type of build : Release or Debug.
-To explicitly change the type, add -DCMAKE_BUILD_TYPE=Release for instance.
+There are 2 types of build : Release or Debug.
+To explicitly change the type, add -DCMAKE_BUILD_TYPE=Debug for instance.
 
 ------------------------------------------------------------------------------------------
 1.3 INSTALLATION
@@ -86,7 +84,7 @@ WARNING : This require administration rights.
 
 To install ParadisEO in standard paths (such as /usr/lib for lib and /usr/include for headers on UNIX-like) :
 
-make install
+> make install
 
 ------------------------------------------------------------------------------------------
 2. DOCUMENTATION
@@ -122,8 +120,8 @@ Easy, isn't it ?
 ------------------------------------------------------------------------------------------
 
 By performing tests, you can check your installation. 
-Testing is disable by default and if you enable it, the build type automatically will switch on DEBUG.
-To enable testing, define -DENABLE_TESTING when you launch cmake/
+Testing is disable by default, except if you build with the full install type.
+To enable testing, define -DENABLE_TESTING when you launch cmake.
 
 To perform tests simply type ctest ou make test.
 
@@ -133,7 +131,7 @@ To perform tests simply type ctest ou make test.
 
 Feel free to send us reports about building, installation, tests and profiling in order to help us to improve compatibilty and installation process. Sending reports is very simple :
 
-ctest -D Experimental
+> ctest -D Experimental
 
 WARNING : Reports are anonymous. CTest will also send informations about your configuration such as OS, CPU frequency, etc.
 

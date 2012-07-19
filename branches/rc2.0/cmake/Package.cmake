@@ -61,7 +61,7 @@ set(CPACK_PACKAGE_EXECUTABLES "${PROJECT_NAME}" "${PROJECT_NAME}")
 set(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME} ${VERSION_MAJOR}.${VERSION_MINOR}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
 set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}-${ARCH}")
 
 if(UNIX)
@@ -75,13 +75,25 @@ if(UNIX)
 
     else()
         # Generators for Unix-like
-        set(CPACK_GENERATOR "DEB;RPM") 
+        set(CPACK_GENERATOR "DEB;RPM")
+        # Determine architecture
+        include(CheckTypeSize)
+        check_type_size(void* SIZEOF_VOID_PTR)
+        if("${SIZEOF_VOID_PTR}" STREQUAL "4")
+            set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE i386)
+        elseif("${SIZEOF_VOID_PTR}" STREQUAL "8")
+            set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE amd64)
+        else()
+            message(FATAL_ERROR "Unsupported architecture")
+            return()
+        endif()
 
     endif()
 else(UNIX)
 
     # Generator for Windows
     set(CPACK_GENERATOR "NSIS")
+    #set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/winicon.bpm")
   
 endif()
 

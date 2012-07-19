@@ -30,7 +30,7 @@ install(TARGETS moeo ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 ######################################################################################
 
 file(GLOB HDRS moeo)
-install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/paradiseo-moeo COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/moeo COMPONENT headers)
 
 ######################################################################################
 ### 4) Install directories

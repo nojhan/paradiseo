@@ -30,7 +30,9 @@
 #   add_executable(example ...)
 #   target_link_libraries(examplep ${PARADISEO_LIBRARIES})
 
-
+if(UNIX)
+    set(INSTALL_SUB_DIR /paradiseo)
+endif()
 
 # enabled components
 if ("${Paradiseo_FIND_COMPONENTS}" STREQUAL "")
@@ -40,9 +42,7 @@ else()
 endif()
 
 #set the build directory
-if(NOT DEFINED ${BUILD_DIR})
-    set(BUILD_DIR build)
-endif()
+set(BUILD_DIR build)
 
 # Path
 set(PARADISEO_SRC_PATHS
@@ -54,20 +54,20 @@ set(PARADISEO_SRC_PATHS
         /opt/local/ # DarwinPorts
         /opt/csw/ # Blastwave
         /opt/
-        #KEY_CURRENT_USER\Software
-        #HKEY_LOCAL_MACHINE\Software
+        [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]
+        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadiseEO]
 )
 
 find_path(EO_INCLUDE_DIR eo
-          PATH_SUFFIXES include eo/src
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/eo eo/src
           PATHS ${PARADISEO_SRC_PATHS})
           
 find_path(MO_INCLUDE_DIR mo
-          PATH_SUFFIXES include mo/src
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/mo mo/src
           PATHS ${PARADISEO_SRC_PATHS})
 
 find_path(MOEO_INCLUDE_DIR moeo
-          PATH_SUFFIXES include moeo/src
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/moeo moeo/src
           PATHS ${PARADISEO_SRC_PATHS})
            
 set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
@@ -84,8 +84,8 @@ set(FIND_PARADISEO_LIB_PATHS
         /opt/local/ # DarwinPorts
         /opt/csw/ # Blastwave
         /opt/
-        #KEY_CURRENT_USER\Software
-        #HKEY_LOCAL_MACHINE\Software
+        [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]
+        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadiseEO]
 )
 
 #Suffixes

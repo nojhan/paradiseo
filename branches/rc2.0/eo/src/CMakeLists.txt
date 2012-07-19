@@ -29,7 +29,7 @@ INSTALL(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo COMPONENT headers
 INSTALL(DIRECTORY do es ga gp other utils 
         DESTINATION include${INSTALL_SUB_DIR}/eo 
         COMPONENT headers
-        FILES_MATCHING PATTERN "*.h"
+        FILES_MATCHING PATTERN "*.h" PATTERN "checkpointing" PATTERN external_eo
         )
 
 ######################################################################################

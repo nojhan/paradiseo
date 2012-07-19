@@ -22,13 +22,12 @@ if("${SIZEOF_VOID_PTR}" STREQUAL "4")
     set(ARCH x86)
     set(LIB lib32)
 elseif("${SIZEOF_VOID_PTR}" STREQUAL "8")
-    set(ARCH x64)
+    set(ARCH x86_64)
     set(LIB lib64)
 else()
     message(FATAL_ERROR "Unsupported architecture")
     return()
 endif()
-
 
 ######################################################################################
 ### 0) Define general CXX flags for DEBUG and RELEASE
@@ -36,7 +35,7 @@ endif()
 
 add_definitions(-DDEPRECATED_MESSAGES)
 set(CMAKE_CXX_FLAGS_DEBUG  "-Wunknown-pragmas -O0 -g -Wall -Wextra -ansi -pedantic -fopenmp -std=c++0x" CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_RELEASE  "-Wunknown-pragmas -O3 -fopenmp -std=c++0x" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS_RELEASE  "-Wunknown-pragmas -O2 -fopenmp -std=c++0x" CACHE STRING "" FORCE)
 
 ######################################################################################
 ### 1) Define installation type
@@ -66,7 +65,6 @@ endif(PROFILING)
 if(ENABLE_CMAKE_TESTING)
     enable_testing()
     include(CTest REQUIRED)
-    set(DEBUG "true" CACHE STRING "" FORCE)
 endif(ENABLE_CMAKE_TESTING)
 
 ######################################################################################
@@ -75,7 +73,7 @@ endif(ENABLE_CMAKE_TESTING)
 
 if(NOT DEFINED DEBUG)
   set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
-else( NOT DEFINED DEBUG OR DEFINED PREFIX )
+else( NOT DEFINED DEBUG)
   set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "" FORCE)
 endif(NOT DEFINED DEBUG)
 
