@@ -54,8 +54,8 @@ namespace ublas = boost::numeric::ublas;
  * @ingroup EMNA
  * @ingroup Multinormal
  */
-template < typename EOT >
-class edoEstimatorNormalMulti : public edoEstimator< edoNormalMulti< EOT > >
+template < typename EOT, typename D=edoNormalMulti<EOT> >
+class edoEstimatorNormalMulti : public edoEstimator<D>
 {
 
 #ifdef WITH_BOOST
