@@ -115,7 +115,7 @@ namespace eo
              */
             EmptyJob( AssignmentAlgorithm& algo, int masterRank ) :
                 OneShotJob<void>( algo, masterRank, *(new DummyJobStore) )
-                // FIXME memory leak, meaningless but present
+                // the job store is deleted on destructor
             {
                 // empty
             }
@@ -127,6 +127,7 @@ namespace eo
                 {
                     comm.send( idles[i], Channel::Commands, Message::Kill );
                 }
+                delete & this->store;
             }
         };
 

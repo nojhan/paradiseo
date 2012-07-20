@@ -101,7 +101,7 @@ int main(int argc, char** argv)
     // This is the only thing which changes: we wrap the IsFinished function.
     // According to RAII, we'll delete the invokated wrapper at the end of the main ; the store won't delete it
     // automatically.
-    IsFinishedParallelApply* wrapper = new ShowWrappedResult<int>;
+    IsFinishedParallelApply<int>* wrapper = new ShowWrappedResult<int>;
     store.wrapIsFinished( wrapper );
 
     ParallelApply<int> job( assign, eo::mpi::DEFAULT_MASTER, store );

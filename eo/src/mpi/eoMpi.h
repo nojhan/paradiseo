@@ -222,7 +222,7 @@ namespace eo
              *
              * The user is not bound to give a wrapped functor.
              */
-            SharedDataFunction( Wrapped * w = 0 ) : _wrapped( w ), _needDelete( false )
+            SharedDataFunction( Wrapped * w = 0 ) : _data( 0 ), _wrapped( w ), _needDelete( false )
             {
                 // empty
             }
@@ -255,23 +255,25 @@ namespace eo
              *
              * Calls the setter on the functor and on the wrapped functors, in a Composite pattern fashion.
              */
-            void data( JobData* _d )
+            void data( JobData* d )
             {
-                d = _d;
+                _data = d;
                 if( _wrapped )
                 {
-                    _wrapped->data( _d );
+                    _wrapped->data( d );
                 }
             }
 
             /**
              * @brief Returns true if we need to use operator delete on this wrapper, false otherwise.
+             *
+             * Allows the user to reject delete responsability to the framework, by setting this value to true.
              **/
             bool needDelete() { return _needDelete; }
             void needDelete( bool b ) { _needDelete = b; }
 
             protected:
-            JobData* d;
+            JobData* _data;
             Wrapped* _wrapped; // Pointer and not a reference so as to be set at any time and to avoid affectation
             bool _needDelete;
         };
@@ -539,7 +541,7 @@ namespace eo
                  * AssignmentAlgorithm for more details.
                  *
                  * @param _masterRank The MPI rank of the master.
-                 * 
+                 *
                  * @param _workerStopCondition Number of the message which will cause the workers to terminate. It could
                  * be one of the constants defined in eo::mpi::Commands, or any other integer. The user has to be sure
                  * that a message containing this integer will be sent to each worker on the Commands channel, otherwise
@@ -552,24 +554,25 @@ namespace eo
                 Job( AssignmentAlgorithm& _algo,
                      int _masterRank,
                      int _workerStopCondition,
-                     JobStore<JobData> & store
+                     JobStore<JobData> & _store
                     ) :
                     assignmentAlgo( _algo ),
                     masterRank( _masterRank ),
                     workerStopCondition( _workerStopCondition ),
                     comm( Node::comm() ),
                     // Functors
-                    sendTask( store.sendTask() ),
-                    handleResponse( store.handleResponse() ),
-                    processTask( store.processTask() ),
-                    isFinished( store.isFinished() )
+                    store( _store ),
+                    sendTask( _store.sendTask() ),
+                    handleResponse( _store.handleResponse() ),
+                    processTask( _store.processTask() ),
+                    isFinished( _store.isFinished() )
                 {
                     _isMaster = Node::comm().rank() == _masterRank;
 
-                    sendTask.data( store.data() );
-                    handleResponse.data( store.data() );
-                    processTask.data( store.data() );
-                    isFinished.data( store.data() );
+                    sendTask.data( _store.data() );
+                    handleResponse.data( _store.data() );
+                    processTask.data( _store.data() );
+                    isFinished.data( _store.data() );
                 }
 
             protected:
@@ -764,6 +767,7 @@ namespace eo
                 const int workerStopCondition;
                 bmpi::communicator& comm;
 
+                JobStore<JobData>& store;
                 SendTaskFunction<JobData> & sendTask;
                 HandleResponseFunction<JobData> & handleResponse;
                 ProcessTaskFunction<JobData> & processTask;
