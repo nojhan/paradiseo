@@ -14,11 +14,22 @@ INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib/MGE)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
+IF(WITH_MPI)
+    INCLUDE_DIRECTORIES(${BOOST_DIR}/include)
+    INCLUDE_DIRECTORIES(${MPI_DIR}/include)
+ENDIF()
+
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
 LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
+
+IF(WITH_MPI)
+    LINK_DIRECTORIES(${BOOST_DIR}/lib)
+    LINK_DIRECTORIES(${MPI_DIR}/lib)
+    SET(CMAKE_CXX_COMPILER "${MPI_DIR}/bin/mpicxx")
+ENDIF()
 
 ######################################################################################
 ### 3) Define your targets and link the librairies
@@ -65,8 +76,8 @@ SET (TEST_LIST
   t-eoExtendedVelocity
   t-eoLogger
   t-eoIQRStat
-  t-eoParallel
-  #t-openmp # does not work anymore since functions used in this test were removed from EO
+  #t-eoParallel
+  #t-openmp
   #t-eoDualFitness
   t-eoParser
   )
