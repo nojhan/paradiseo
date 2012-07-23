@@ -30,17 +30,21 @@ Authors:
 
 #include "edoAlgo.h"
 //#include "edoEDASA.h"
-#include "edoEDA.h"
+#include "edoAlgoAdaptive.h"
+#include "edoAlgoStateless.h"
 
 #include "edoDistrib.h"
 #include "edoUniform.h"
 #include "edoNormalMono.h"
 #include "edoNormalMulti.h"
+#include "edoNormalAdaptive.h"
 
 #include "edoEstimator.h"
 #include "edoEstimatorUniform.h"
 #include "edoEstimatorNormalMono.h"
 #include "edoEstimatorNormalMulti.h"
+#include "edoEstimatorAdaptive.h"
+#include "edoEstimatorNormalAdaptive.h"
 
 #include "edoModifier.h"
 #include "edoModifierDispersion.h"
@@ -53,6 +57,7 @@ Authors:
 #include "edoSamplerUniform.h"
 #include "edoSamplerNormalMono.h"
 #include "edoSamplerNormalMulti.h"
+#include "edoSamplerNormalAdaptive.h"
 
 #include "edoVectorBounds.h"
 

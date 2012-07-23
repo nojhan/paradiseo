@@ -45,6 +45,15 @@ class edoNormalMulti : public edoDistrib< EOT >
 public:
     typedef typename EOT::AtomType AtomType;
 
+    edoNormalMulti( unsigned int dim = 1 ) :
+            _mean( const ublas::vector<AtomType>(0,dim)        ),
+        _varcovar( const ublas::identity_matrix<AtomType>(dim) )
+    {
+        assert(_mean.size() > 0);
+        assert(_mean.size() == _varcovar.size1());
+        assert(_mean.size() == _varcovar.size2());
+    }
+
     edoNormalMulti
     (
      const ublas::vector< AtomType >& mean,
@@ -85,6 +94,15 @@ public:
     typedef typename EOT::AtomType AtomType;
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, 1> Vector;
     typedef Eigen::Matrix< AtomType, Eigen::Dynamic, Eigen::Dynamic> Matrix;
+
+    edoNormalMulti( unsigned int dim = 1 ) :
+            _mean( Vector::Zero(dim) ),
+        _varcovar( Matrix::Identity(dim,dim) )
+    {
+        assert(_mean.size() > 0);
+        assert(_mean.innerSize() == _varcovar.innerSize());
+        assert(_mean.innerSize() == _varcovar.outerSize());
+    }
 
     edoNormalMulti(
         const Vector & mean,

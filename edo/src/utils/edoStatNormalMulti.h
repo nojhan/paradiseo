@@ -31,7 +31,7 @@ Authors:
 #include<sstream>
 
 #include "edoStat.h"
-#include "edoNormalMulti.h"
+#include "../edoNormalMulti.h"
 
 #ifdef WITH_BOOST
 
@@ -50,7 +50,7 @@ template < typename EOT >
 class edoStatNormalMulti : public edoDistribStat< edoNormalMulti< EOT > >
 {
 public:
-    typedef typename EOT::AtomType AtomType;
+  //    typedef typename EOT::AtomType AtomType;
 
     using edoDistribStat< edoNormalMulti< EOT > >::value;
 

@@ -58,14 +58,26 @@ void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
     if (!eo::parallel.isDynamic())
 	{
 #pragma omp parallel for if(eo::parallel.isEnabled()) //default(none) shared(_proc, _pop, size)
+#ifdef _MSC_VER
+            //Visual Studio supports only OpenMP version 2.0 in which
+            //an index variable must be of a signed integral type
+	    for (long long i = 0; i < size; ++i) { _proc(_pop[i]); }
+#else // _MSC_VER
 	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+#endif
 	}
     else
 	{
 #pragma omp parallel for schedule(dynamic) if(eo::parallel.isEnabled())
+#ifdef _MSC_VER
+            //Visual Studio supports only OpenMP version 2.0 in which
+            //an index variable must be of a signed integral type
+	    for (long long i = 0; i < size; ++i) { _proc(_pop[i]); }
+#else // _MSC_VER
 	    //doesnot work with gcc 4.1.2
 	    //default(none) shared(_proc, _pop, size)
 	    for (size_t i = 0; i < size; ++i) { _proc(_pop[i]); }
+#endif
 	}
 
     if ( eo::parallel.enableResults() )
