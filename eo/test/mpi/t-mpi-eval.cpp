@@ -196,14 +196,12 @@ int main(int ac, char** av)
 
         eo::log << "Size of population : " << popSize << std::endl;
 
-        /*
         eo::mpi::ParallelApplyStore< EOT > store( eval, eo::mpi::DEFAULT_MASTER );
         store.wrapHandleResponse( new CatBestAnswers );
 
         eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, &store );
-        */
 
-        eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, eval, 5 );
+        //eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, eval, 5 );
 
         eo::log << eo::quiet << "Before first evaluation." << std::endl;
         popEval( pop, pop );
