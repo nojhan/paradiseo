@@ -40,6 +40,8 @@ Authors:
 # include <mpi/eoParallelApply.h>
 # include <mpi/eoTerminateJob.h>
 
+# include "t-mpi-common.h"
+
 # include <iostream>
 
 # include <vector>
@@ -50,9 +52,9 @@ using namespace eo::mpi;
 /*
  * The function to be called on each element of the table: just increment the value.
  */
-struct plusOne : public eoUF< int&, void >
+struct plusOne : public eoUF< SerializableBase<int>&, void >
 {
-    void operator() ( int & x )
+    void operator() ( SerializableBase<int> & x )
     {
         ++x;
     }
@@ -79,7 +81,7 @@ int main(int argc, char** argv)
 
     // Initializes a vector with random values.
     srand( time(0) );
-    vector<int> v;
+    vector< SerializableBase<int> > v;
     for( int i = 0; i < 1000; ++i )
     {
         v.push_back( rand() );
@@ -90,7 +92,7 @@ int main(int argc, char** argv)
     // incremented and we can compare the returned value of each element to the value of each element in originalV +
     // offset. If the two values are different, there has been a problem.
     int offset = 0;
-    vector<int> originalV = v;
+    vector< SerializableBase<int> > originalV = v;
 
     // Instanciates the functor to apply on each element
     plusOne plusOneInstance;
@@ -166,11 +168,11 @@ int main(int argc, char** argv)
     for( unsigned int i = 0; i < tests.size(); ++i )
     {
         // Instanciates a store with the functor, the master rank and size of packet (see ParallelApplyStore doc).
-        ParallelApplyStore< int > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 3 );
+        ParallelApplyStore< SerializableBase<int> > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 3 );
         // Updates the contained data
         store.data( v );
         // Creates the job with the assignment algorithm, the master rank and the store
-        ParallelApply< int > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );
+        ParallelApply< SerializableBase<int> > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );
 
         // Only master writes information
         if( job.isMaster() )

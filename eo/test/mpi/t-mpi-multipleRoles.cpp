@@ -41,7 +41,9 @@ Authors:
 # include <mpi/eoParallelApply.h>
 # include <mpi/eoTerminateJob.h>
 
-# include <boost/serialization/vector.hpp>
+# include "t-mpi-common.h"
+
+// # include <boost/serialization/vector.hpp>
 
 # include <iostream>
 
@@ -50,10 +52,30 @@ using namespace std;
 
 using namespace eo::mpi;
 
-// The real job to execute, for the subworkers: add one to each element of a table.
-struct SubWork: public eoUF< int&, void >
+template< class T >
+struct SerializableVector : public std::vector<T>, public eoserial::Persistent
 {
-    void operator() ( int & x )
+    public:
+
+    void unpack( const eoserial::Object* obj )
+    {
+        this->clear();
+        eoserial::Array* vector = static_cast<eoserial::Array*>( obj->find("vector")->second );
+        vector->deserialize< std::vector<T>, eoserial::Array::UnpackObjectAlgorithm >( *this );
+    }
+
+    eoserial::Object* pack( void ) const
+    {
+        eoserial::Object* obj = new eoserial::Object;
+        obj->add("vector", eoserial::makeArray< std::vector<T>, eoserial::SerializablePushAlgorithm >( *this ) );
+        return obj;
+    }
+};
+
+// The real job to execute, for the subworkers: add one to each element of a table.
+struct SubWork: public eoUF< SerializableBase<int>&, void >
+{
+    void operator() ( SerializableBase<int> & x )
     {
         cout << "Subwork phase." << endl;
         ++x;
@@ -62,7 +84,7 @@ struct SubWork: public eoUF< int&, void >
 
 // Function called by both subworkers and delegates.
 // v is the vector to process, rank is the MPI rank of the sub master
-void subtask( vector<int>& v, int rank )
+void subtask( vector< SerializableBase<int> >& v, int rank )
 {
     // Attach workers according to nodes.
     // Submaster with rank 1 will have ranks 3 and 5 as subworkers.
@@ -74,9 +96,9 @@ void subtask( vector<int>& v, int rank )
     SubWork sw;
 
     // Launch the job!
-    ParallelApplyStore<int> store( sw, rank );
+    ParallelApplyStore< SerializableBase<int> > store( sw, rank );
     store.data( v );
-    ParallelApply<int> job( algo, rank, store );
+    ParallelApply< SerializableBase<int> > job( algo, rank, store );
     job.run();
     EmptyJob stop( algo, rank );
 }
@@ -85,9 +107,9 @@ void subtask( vector<int>& v, int rank )
 // each result by two).
 // Note that this work receives a vector of integers as an entry, while subworkers task's operator receives a simple
 // integer.
-struct Work: public eoUF< vector<int>&, void >
+struct Work: public eoUF< SerializableVector< SerializableBase<int> >&, void >
 {
-    void operator() ( vector<int>& v )
+    void operator() ( SerializableVector< SerializableBase<int> >& v )
     {
         cout << "Work phase..." << endl;
         subtask( v, Node::comm().rank() );
@@ -103,10 +125,10 @@ int main(int argc, char** argv)
     // eo::log << eo::setlevel( eo::debug );
     Node::init( argc, argv );
     if( Node::comm().size() != 7 ) {
-        throw std::runtime_error("World size should be 7.");
+        // throw std::runtime_error("World size should be 7.");
     }
 
-    vector<int> v;
+    SerializableVector< SerializableBase<int> > v;
 
     v.push_back(1);
     v.push_back(3);
@@ -116,7 +138,7 @@ int main(int argc, char** argv)
 
     // As submasters' operator receives a vector<int> as an input, and ParallelApply takes a vector of
     // operator's input as an input, we have to deal with a vector of vector of integers for the master task.
-    vector< vector<int> > metaV;
+    vector< SerializableVector< SerializableBase<int> > > metaV;
     // Here, we send twice the same vector. We could also have splitted the first vector into two vectors, one
     // containing the beginning and another one containing the end.
     metaV.push_back( v );
@@ -132,9 +154,9 @@ int main(int argc, char** argv)
             {
                 Work w;
                 DynamicAssignmentAlgorithm algo( 1, 2 );
-                ParallelApplyStore< vector<int> > store( w, 0 );
+                ParallelApplyStore< SerializableVector< SerializableBase<int> > > store( w, 0 );
                 store.data( metaV );
-                ParallelApply< vector<int> > job( algo, 0, store );
+                ParallelApply< SerializableVector< SerializableBase<int> > > job( algo, 0, store );
                 job.run();
                 if( job.isMaster() )
                 {

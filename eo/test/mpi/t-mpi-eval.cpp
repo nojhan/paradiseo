@@ -34,7 +34,7 @@ Authors:
 
 #include <mpi/eoMpi.h>
 
-#include <boost/mpi.hpp>
+// #include <boost/mpi.hpp>
 
 #include <vector>
 using namespace std;
@@ -55,6 +55,14 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
                     eoserial::makeArray< vector<double>, eoserial::MakeAlgorithm >
                     ( *this )
                     );
+
+            bool invalidFitness = invalid();
+            obj->add("invalid", eoserial::make( invalidFitness ) );
+            if( !invalidFitness )
+            {
+                double fitnessVal = fitness();
+                obj->add("fitness", eoserial::make( fitnessVal ) );
+            }
             return obj;
         }
 
@@ -62,14 +70,23 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
         {
             eoserial::unpackArray< vector<double>, eoserial::Array::UnpackAlgorithm >
                 ( *obj, "array", *this );
+
+            bool invalidFitness;
+            eoserial::unpack( *obj, "invalid", invalidFitness );
+            if( invalidFitness ) {
+                invalidate();
+            } else {
+                double fitnessVal;
+                eoserial::unpack<double>( *obj, "fitness", fitnessVal );
+                fitness( fitnessVal );
+            }
         }
 
+        /*
         // Gives access to boost serialization
         friend class boost::serialization::access;
 
-        /**
-         * Serializes the decomposition in a boost archive (useful for boost::mpi)
-         */
+
         template <class Archive>
             void save( Archive & ar, const unsigned int version ) const
             {
@@ -81,9 +98,7 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
                 (void) version; // avoid compilation warning
             }
 
-        /**
-         * Deserializes the decomposition from a boost archive (useful for boost:mpi)
-         */
+
         template <class Archive>
             void load( Archive & ar, const unsigned int version )
             {
@@ -98,6 +113,7 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
 
         // Indicates that boost save and load operations are not the same.
         BOOST_SERIALIZATION_SPLIT_MEMBER()
+        */
 
 };
 
