@@ -3,6 +3,14 @@
 
 #include <serial/eoSerial.h>
 
+/**
+ * @file t-mpi-common.h
+ *
+ * This file shows an example of serialization of a primitive type, so as to be used in a parallel algorithm.
+ * It is fully compatible with the basic type, by implementing conversion operator and constructor based on type.
+ * It can contain any simple type which can be written in a std::ostream.
+ */
+
 template< class T >
 struct SerializableBase : public eoserial::Persistent
 {

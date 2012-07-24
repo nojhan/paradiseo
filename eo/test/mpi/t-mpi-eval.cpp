@@ -34,8 +34,6 @@ Authors:
 
 #include <mpi/eoMpi.h>
 
-// #include <boost/mpi.hpp>
-
 #include <vector>
 using namespace std;
 
@@ -68,6 +66,7 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
 
         void unpack( const eoserial::Object* obj )
         {
+            this->clear();
             eoserial::unpackArray< vector<double>, eoserial::Array::UnpackAlgorithm >
                 ( *obj, "array", *this );
 
@@ -81,40 +80,6 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
                 fitness( fitnessVal );
             }
         }
-
-        /*
-        // Gives access to boost serialization
-        friend class boost::serialization::access;
-
-
-        template <class Archive>
-            void save( Archive & ar, const unsigned int version ) const
-            {
-                std::stringstream ss;
-                printOn( ss );
-                std::string asStr = ss.str();
-                ar & asStr;
-
-                (void) version; // avoid compilation warning
-            }
-
-
-        template <class Archive>
-            void load( Archive & ar, const unsigned int version )
-            {
-                std::string asStr;
-                ar & asStr;
-                std::stringstream ss;
-                ss << asStr;
-                readFrom( ss );
-
-                (void) version; // avoid compilation warning
-            }
-
-        // Indicates that boost save and load operations are not the same.
-        BOOST_SERIALIZATION_SPLIT_MEMBER()
-        */
-
 };
 
 typedef eoRealSerializable EOT;

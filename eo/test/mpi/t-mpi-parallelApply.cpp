@@ -25,6 +25,9 @@ Authors:
  * incremented... in a parallel fashion. While this operation is very easy to perform even on a single host, it's just
  * an example for parallel apply use.
  *
+ * The table of integers has to be serialized before it's sent. The wrapper object SerializableBase allows to serialize
+ * any type and manipulate it like this type: SerializableBase<int> can be exactly be used as an integer.
+ *
  * Besides, this is also a test for assignment (scheduling) algorithms, in different cases. The test succeeds if and
  * only if the program terminates without any segfault ; otherwise, there could be a deadlock which prevents the end or
  * a segfault at any time.
@@ -56,7 +59,7 @@ struct plusOne : public eoUF< SerializableBase<int>&, void >
 {
     void operator() ( SerializableBase<int> & x )
     {
-        ++x;
+        ++x; // implicit conversion of SerializableBase<int> in the integer it contains
     }
 };
 

@@ -43,8 +43,6 @@ Authors:
 
 # include "t-mpi-common.h"
 
-// # include <boost/serialization/vector.hpp>
-
 # include <iostream>
 
 # include <vector>
@@ -52,6 +50,13 @@ using namespace std;
 
 using namespace eo::mpi;
 
+/*
+ * This class allows the user to easily serialize a vector of elements which implement eoserial::Persistent too.
+ *
+ * T is the type of the contained element, which must implement eoserial::Persistent too.
+ *
+ * Here, it contains SerializableBase<int>, which is a serializable integer that can be used as an integer.
+ */
 template< class T >
 struct SerializableVector : public std::vector<T>, public eoserial::Persistent
 {
@@ -125,7 +130,7 @@ int main(int argc, char** argv)
     // eo::log << eo::setlevel( eo::debug );
     Node::init( argc, argv );
     if( Node::comm().size() != 7 ) {
-        // throw std::runtime_error("World size should be 7.");
+        throw std::runtime_error("World size should be 7.");
     }
 
     SerializableVector< SerializableBase<int> > v;
