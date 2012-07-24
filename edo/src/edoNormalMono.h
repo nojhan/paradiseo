@@ -46,7 +46,11 @@ Authors:
 template < typename EOT >
 class edoNormalMono : public edoDistrib< EOT >
 {
-public:
+public:    
+    edoNormalMono()
+      : _mean(EOT(1,0)), _variance(EOT(1,1))
+    {}
+
     edoNormalMono( const EOT& mean, const EOT& variance )
         : _mean(mean), _variance(variance)
     {

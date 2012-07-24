@@ -50,7 +50,7 @@ template < typename EOT >
 class edoStatNormalMulti : public edoDistribStat< edoNormalMulti< EOT > >
 {
 public:
-    typedef typename EOT::AtomType AtomType;
+  //    typedef typename EOT::AtomType AtomType;
 
     using edoDistribStat< edoNormalMulti< EOT > >::value;
 
