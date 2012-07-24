@@ -22,8 +22,8 @@ Authors:
 # ifndef __MPI_NODE_H__
 # define __MPI_NODE_H__
 
-# include <boost/mpi.hpp>
-namespace bmpi = boost::mpi;
+# include "implMpi.hpp"
+namespace bmpi = mpi;
 
 namespace eo
 {

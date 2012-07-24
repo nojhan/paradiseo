@@ -9,3 +9,11 @@ namespace eo
     }
 }
 
+namespace mpi
+{
+    void broadcast( communicator & comm, int value, int root )
+    {
+        comm; // unused
+        MPI_Bcast( &value, 1, MPI_INT, root, MPI_COMM_WORLD );
+    }
+}
