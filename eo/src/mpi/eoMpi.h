@@ -143,8 +143,8 @@ namespace eo
          */
         namespace Channel
         {
-            const int Commands = 0;
-            const int Messages = 1;
+            extern const int Commands;
+            extern const int Messages;
         }
 
         /**
@@ -157,9 +157,9 @@ namespace eo
          */
         namespace Message
         {
-            const int Continue = 0;
-            const int Finish = 1;
-            const int Kill = 2;
+            extern const int Continue;
+            extern const int Finish;
+            extern const int Kill;
         }
 
         /**
@@ -167,7 +167,7 @@ namespace eo
          *
          * @ingroup MPI
          */
-        const int DEFAULT_MASTER = 0;
+        extern const int DEFAULT_MASTER;
 
         /**
          * @brief Base class for the 4 algorithm functors.

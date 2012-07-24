@@ -4,16 +4,24 @@ namespace eo
 {
     namespace mpi
     {
-        bmpi::communicator Node::_comm;
+        /**********************************************
+         * *********** GLOBALS ************************
+         * *******************************************/
         eoTimerStat timerStat;
-    }
-}
 
-namespace mpi
-{
-    void broadcast( communicator & comm, int value, int root )
-    {
-        comm; // unused
-        MPI_Bcast( &value, 1, MPI_INT, root, MPI_COMM_WORLD );
+        namespace Channel
+        {
+            const int Commands = 0;
+            const int Messages = 1;
+        }
+
+        namespace Message
+        {
+            const int Continue = 0;
+            const int Finish = 1;
+            const int Kill = 2;
+        }
+
+        const int DEFAULT_MASTER = 0;
     }
 }

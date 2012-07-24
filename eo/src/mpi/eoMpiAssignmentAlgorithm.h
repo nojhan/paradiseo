@@ -23,7 +23,6 @@ Authors:
 # define __MPI_ASSIGNMENT_ALGORITHM_H__
 
 # include <vector> // std::vector
-# include "eoMpiNode.h"
 
 namespace eo
 {
@@ -35,7 +34,7 @@ namespace eo
          *
          * @ingroup MPI
          */
-        const int REST_OF_THE_WORLD = -1;
+        extern const int REST_OF_THE_WORLD;
 
         /**
          * @brief Contains informations on the available workers and allows to find assignees for jobs.
@@ -115,33 +114,21 @@ namespace eo
                 /**
                  * @brief Uses all the hosts whose rank is higher to 1, inclusive, as workers.
                  */
-                DynamicAssignmentAlgorithm( )
-                {
-                    for(int i = 1; i < Node::comm().size(); ++i)
-                    {
-                        availableWrk.push_back( i );
-                    }
-                }
+                DynamicAssignmentAlgorithm( );
 
                 /**
                  * @brief Uses the unique host with given rank as a worker.
                  *
                  * @param unique MPI rank of the unique worker.
                  */
-                DynamicAssignmentAlgorithm( int unique )
-                {
-                    availableWrk.push_back( unique );
-                }
+                DynamicAssignmentAlgorithm( int unique );
 
                 /**
                  * @brief Uses the workers whose ranks are present in the argument as workers.
                  *
                  * @param workers std::vector containing MPI ranks of workers.
                  */
-                DynamicAssignmentAlgorithm( const std::vector<int> & workers )
-                {
-                    availableWrk = workers;
-                }
+                DynamicAssignmentAlgorithm( const std::vector<int> & workers );
 
                 /**
                  * @brief Uses a range of ranks as workers.
@@ -150,50 +137,17 @@ namespace eo
                  * @param last The last worker to be included (inclusive). If last == eo::mpi::REST_OF_THE_WORLD, all
                  * hosts whose rank is higher than first are taken.
                  */
-                DynamicAssignmentAlgorithm( int first, int last )
-                {
-                    if( last == REST_OF_THE_WORLD )
-                    {
-                        last = Node::comm().size() - 1;
-                    }
+                DynamicAssignmentAlgorithm( int first, int last );
 
-                    for( int i = first; i <= last; ++i)
-                    {
-                        availableWrk.push_back( i );
-                    }
-                }
+                virtual int get( );
 
-                virtual int get( )
-                {
-                    int assignee = -1;
-                    if (! availableWrk.empty() )
-                    {
-                        assignee = availableWrk.back();
-                        availableWrk.pop_back();
-                    }
-                    return assignee;
-                }
+                int availableWorkers();
 
-                int availableWorkers()
-                {
-                    return availableWrk.size();
-                }
+                void confirm( int rank );
 
-                void confirm( int rank )
-                {
-                    availableWrk.push_back( rank );
-                }
+                std::vector<int> idles( );
 
-                std::vector<int> idles( )
-                {
-                    return availableWrk;
-                }
-
-                void reinit( int _ )
-                {
-                    ++_;
-                    // nothing to do
-                }
+                void reinit( int _ );
 
             protected:
                 std::vector< int > availableWrk;
@@ -223,10 +177,7 @@ namespace eo
                  * @param workers std::vector of MPI ranks of workers which will be used.
                  * @param runs Fixed amount of runs, strictly positive.
                  */
-                StaticAssignmentAlgorithm( std::vector<int>& workers, int runs )
-                {
-                    init( workers, runs );
-                }
+                StaticAssignmentAlgorithm( std::vector<int>& workers, int runs );
 
                 /**
                  * @brief Uses a range of workers.
@@ -236,21 +187,7 @@ namespace eo
                  * workers from the first one are taken as workers.
                  * @param runs Fixed amount of runs, strictly positive.
                  */
-                StaticAssignmentAlgorithm( int first, int last, int runs )
-                {
-                    std::vector<int> workers;
-
-                    if( last == REST_OF_THE_WORLD )
-                    {
-                        last = Node::comm().size() - 1;
-                    }
-
-                    for(int i = first; i <= last; ++i)
-                    {
-                        workers.push_back( i );
-                    }
-                    init( workers, runs );
-                }
+                StaticAssignmentAlgorithm( int first, int last, int runs );
 
                 /**
                  * @brief Uses all the hosts whose rank is higher than 1 (inclusive) as workers.
@@ -258,16 +195,7 @@ namespace eo
                  * @param runs Fixed amount of runs, strictly positive. If it's not set, you'll have to call reinit()
                  * later.
                  */
-                StaticAssignmentAlgorithm( int runs = 0 )
-                {
-                    std::vector<int> workers;
-                    for(int i = 1; i < Node::comm().size(); ++i)
-                    {
-                        workers.push_back( i );
-                    }
-
-                    init( workers, runs );
-                }
+                StaticAssignmentAlgorithm( int runs = 0 );
 
                 /**
                  * @brief Uses an unique host as worker.
@@ -275,12 +203,7 @@ namespace eo
                  * @param unique The MPI rank of the host which will be the worker.
                  * @param runs Fixed amount of runs, strictly positive.
                  */
-                StaticAssignmentAlgorithm( int unique, int runs )
-                {
-                    std::vector<int> workers;
-                    workers.push_back( unique );
-                    init( workers, runs );
-                }
+                StaticAssignmentAlgorithm( int unique, int runs );
 
             private:
                 /**
@@ -292,89 +215,18 @@ namespace eo
                  * @param workers Vector of hosts' ranks
                  * @param runs Fixed amount of runs, strictly positive.
                  */
-                void init( std::vector<int> & workers, int runs )
-                {
-                    unsigned int nbWorkers = workers.size();
-                    freeWorkers = nbWorkers;
-
-                    busy.clear();
-                    busy.resize( nbWorkers, false );
-                    realRank = workers;
-
-                    if( runs <= 0 )
-                    {
-                        return;
-                    }
-
-                    attributions.clear();
-                    attributions.reserve( nbWorkers );
-
-                    // Let be the euclidean division of runs by nbWorkers :
-                    // runs == q * nbWorkers + r, 0 <= r < nbWorkers
-                    // This one liner affects q requests to each worker
-                    for (unsigned int i = 0; i < nbWorkers; attributions[i++] = runs / nbWorkers) ;
-                    // The first line computes r and the one liner affects the remaining
-                    // r requests to workers, in ascending order
-                    unsigned int diff = runs - (runs / nbWorkers) * nbWorkers;
-                    for (unsigned int i = 0; i < diff; ++attributions[i++]);
-                }
+                void init( std::vector<int> & workers, int runs );
 
             public:
-                int get( )
-                {
-                    int assignee = -1;
-                    for( unsigned i = 0; i < busy.size(); ++i )
-                    {
-                        if( !busy[i] && attributions[i] > 0 )
-                        {
-                            busy[i] = true;
-                            --freeWorkers;
-                            assignee = realRank[ i ];
-                            break;
-                        }
-                    }
-                    return assignee;
-                }
+                int get( );
 
-                int availableWorkers( )
-                {
-                    return freeWorkers;
-                }
+                int availableWorkers( );
 
-                std::vector<int> idles()
-                {
-                    std::vector<int> ret;
-                    for(unsigned int i = 0; i < busy.size(); ++i)
-                    {
-                        if( !busy[i] )
-                        {
-                            ret.push_back( realRank[i] );
-                        }
-                    }
-                    return ret;
-                }
+                std::vector<int> idles();
 
-                void confirm( int rank )
-                {
-                    int i = -1; // i is the real index in table
-                    for( unsigned int j = 0; j < realRank.size(); ++j )
-                    {
-                        if( realRank[j] == rank )
-                        {
-                            i = j;
-                            break;
-                        }
-                    }
+                void confirm( int rank );
 
-                    --attributions[ i ];
-                    busy[ i ] = false;
-                    ++freeWorkers;
-                }
-
-                void reinit( int runs )
-                {
-                    init( realRank, runs );
-                }
+                void reinit( int runs );
 
             private:
                 std::vector<int> attributions;
