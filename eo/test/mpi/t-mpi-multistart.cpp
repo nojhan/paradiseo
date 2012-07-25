@@ -113,10 +113,10 @@ struct SerializableBasicType : public eoserial::Persistent
 template< class EOT, class FitT >
 struct MultiStartData
 {
-    MultiStartData( mpi::communicator& _comm, eoAlgo<EOT>& _algo, const eoPop< EOT >& _originalPop, int _masterRank )
+    MultiStartData( mpi::communicator& _comm, eoAlgo<EOT>& _algo, int _masterRank, eoInit<EOT>* _init = 0 )
         :
         runs( 0 ), firstIndividual( true ), bestFitness(), pop(),
-        comm( _comm ), algo( _algo ), originalPop( _originalPop ), masterRank( _masterRank )
+        comm( _comm ), algo( _algo ), masterRank( _masterRank ), init( _init )
     {
         // empty
     }
@@ -131,7 +131,7 @@ struct MultiStartData
     // static parameters
     mpi::communicator& comm;
     eoAlgo<EOT>& algo;
-    const eoPop< EOT >& originalPop;
+    eoInit<EOT>* init;
     int masterRank;
 };
 
@@ -205,8 +205,10 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
 {
     public:
 
-        MultiStartStore( eoAlgo<EOT> & algo, const eoPop< EOT >& pop, int masterRank )
-            : _data( Node::comm(), algo, pop, masterRank )
+        MultiStartStore( eoAlgo<EOT> & algo, int masterRank, const eoPop< EOT > & pop, eoInit<EOT>* init = 0 )
+            : _data( Node::comm(), algo, masterRank, init ),
+              _pop( pop ),
+              _firstPopInit( true )
         {
             this->_iff = new IsFinishedMultiStart< EOT, FitT >;
             this->_iff->needDelete(true);
@@ -221,7 +223,16 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
         void init( int runs )
         {
             _data.runs = runs;
-            _data.pop = _data.originalPop; // FIXME ?
+
+            if( _data.init )
+            {
+                _data.pop = eoPop<EOT>( _pop.size(), *_data.init );
+            } else if( _firstPopInit )
+            {
+                _data.pop = _pop;
+            }
+            _firstPopInit = false;
+
             _data.firstIndividual = true;
         }
 
@@ -232,6 +243,8 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
 
     private:
         MultiStartData< EOT, FitT > _data;
+        const eoPop< EOT >& _pop;
+        bool _firstPopInit;
 };
 
 template< class EOT, class FitT >
@@ -347,7 +360,7 @@ int main(int argc, char **argv)
     // eoEasyPSO<Particle> pso2(init,genCont2, eval, velocity, flight);
 
     DynamicAssignmentAlgorithm assignmentAlgo;
-    MultiStartStore< Particle, ParticleFitness > store( pso1, pop, DEFAULT_MASTER );
+    MultiStartStore< Particle, ParticleFitness > store( pso1, DEFAULT_MASTER, pop );
 
     MultiStart< Particle, ParticleFitness > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
     msjob.run();
