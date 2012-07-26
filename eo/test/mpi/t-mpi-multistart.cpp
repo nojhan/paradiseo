@@ -61,7 +61,6 @@ public:
 //-----------------------------------------------------------------------------
 // define your individuals
 typedef SerializableEOReal Indi;
-typedef double IndiFitness;
 
 // EVAL
 //-----------------------------------------------------------------------------
@@ -113,7 +112,7 @@ struct SerializableBasicType : public eoserial::Persistent
         T _value;
 };
 
-template< class EOT, class FitT >
+template< class EOT >
 struct MultiStartData
 {
     typedef eoF<void> ResetAlgo;
@@ -129,7 +128,7 @@ struct MultiStartData
     // dynamic parameters
     int runs;
     bool firstIndividual;
-    FitT bestFitness;
+    typename EOT::Fitness bestFitness;
     EOT bestIndividual;
     eoPop< EOT > pop;
 
@@ -140,11 +139,11 @@ struct MultiStartData
     int masterRank;
 };
 
-template< class EOT, class FitT >
-class SendTaskMultiStart : public SendTaskFunction< MultiStartData< EOT, FitT > >
+template< class EOT >
+class SendTaskMultiStart : public SendTaskFunction< MultiStartData< EOT > >
 {
     public:
-        using SendTaskFunction< MultiStartData< EOT, FitT > >::_data;
+        using SendTaskFunction< MultiStartData< EOT > >::_data;
 
         void operator()( int wrkRank )
         {
@@ -152,18 +151,18 @@ class SendTaskMultiStart : public SendTaskFunction< MultiStartData< EOT, FitT > 
         }
 };
 
-template< class EOT, class FitT >
-class HandleResponseMultiStart : public HandleResponseFunction< MultiStartData< EOT, FitT > >
+template< class EOT >
+class HandleResponseMultiStart : public HandleResponseFunction< MultiStartData< EOT > >
 {
     public:
-        using HandleResponseFunction< MultiStartData< EOT, FitT > >::_data;
+        using HandleResponseFunction< MultiStartData< EOT > >::_data;
 
         void operator()( int wrkRank )
         {
             std::cout << "Response received." << std::endl;
 
             EOT individual;
-            MultiStartData< EOT, FitT >& d = *_data;
+            MultiStartData< EOT >& d = *_data;
             d.comm.recv( wrkRank, 1, individual );
 
             std::cout << "Fitness of individual: " << individual.fitness() << std::endl;
@@ -180,11 +179,11 @@ class HandleResponseMultiStart : public HandleResponseFunction< MultiStartData< 
         }
 };
 
-template< class EOT, class FitT >
-class ProcessTaskMultiStart : public ProcessTaskFunction< MultiStartData< EOT, FitT > >
+template< class EOT >
+class ProcessTaskMultiStart : public ProcessTaskFunction< MultiStartData< EOT > >
 {
     public:
-        using ProcessTaskFunction< MultiStartData<EOT, FitT > >::_data;
+        using ProcessTaskFunction< MultiStartData<EOT > >::_data;
 
         void operator()()
         {
@@ -200,11 +199,11 @@ class ProcessTaskMultiStart : public ProcessTaskFunction< MultiStartData< EOT, F
         }
 };
 
-template< class EOT, class FitT >
-class IsFinishedMultiStart : public IsFinishedFunction< MultiStartData< EOT, FitT > >
+template< class EOT >
+class IsFinishedMultiStart : public IsFinishedFunction< MultiStartData< EOT > >
 {
     public:
-        using IsFinishedFunction< MultiStartData< EOT, FitT > >::_data;
+        using IsFinishedFunction< MultiStartData< EOT > >::_data;
 
         bool operator()()
         {
@@ -212,12 +211,12 @@ class IsFinishedMultiStart : public IsFinishedFunction< MultiStartData< EOT, Fit
         }
 };
 
-template< class EOT, class FitT >
-class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
+template< class EOT >
+class MultiStartStore : public JobStore< MultiStartData< EOT > >
 {
     public:
 
-        typedef typename MultiStartData<EOT,FitT>::ResetAlgo ResetAlgo;
+        typedef typename MultiStartData<EOT>::ResetAlgo ResetAlgo;
         typedef eoUF< eoPop<EOT>&, void > ReinitJob;
         typedef eoUF< int, std::vector<int> > GetSeeds;
 
@@ -234,13 +233,13 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
             _getSeeds( getSeeds ),
             _reinitJob( reinitJob )
         {
-            this->_iff = new IsFinishedMultiStart< EOT, FitT >;
+            this->_iff = new IsFinishedMultiStart< EOT >;
             this->_iff->needDelete(true);
-            this->_stf = new SendTaskMultiStart< EOT, FitT >;
+            this->_stf = new SendTaskMultiStart< EOT >;
             this->_stf->needDelete(true);
-            this->_hrf = new HandleResponseMultiStart< EOT, FitT >;
+            this->_hrf = new HandleResponseMultiStart< EOT >;
             this->_hrf->needDelete(true);
-            this->_ptf = new ProcessTaskMultiStart< EOT, FitT >;
+            this->_ptf = new ProcessTaskMultiStart< EOT >;
             this->_ptf->needDelete(true);
         }
 
@@ -279,31 +278,31 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
             }
         }
 
-        MultiStartData<EOT, FitT>* data()
+        MultiStartData<EOT>* data()
         {
             return &_data;
         }
 
     private:
-        MultiStartData< EOT, FitT > _data;
+        MultiStartData< EOT > _data;
 
         GetSeeds & _getSeeds;
         ReinitJob & _reinitJob;
         int _masterRank;
 };
 
-template< class EOT, class FitT >
-class MultiStart : public OneShotJob< MultiStartData< EOT, FitT > >
+template< class EOT >
+class MultiStart : public OneShotJob< MultiStartData< EOT > >
 {
     public:
 
         MultiStart( AssignmentAlgorithm & algo,
                 int masterRank,
-                MultiStartStore< EOT, FitT > & store,
+                MultiStartStore< EOT > & store,
                 // dynamic parameters
                 int runs,
                 const std::vector<int>& seeds = std::vector<int>()  ) :
-            OneShotJob< MultiStartData< EOT, FitT > >( algo, masterRank, store )
+            OneShotJob< MultiStartData< EOT > >( algo, masterRank, store )
     {
         store.init( algo.idles(), runs );
     }
@@ -313,14 +312,14 @@ class MultiStart : public OneShotJob< MultiStartData< EOT, FitT > >
         return this->store.data()->bestIndividual;
     }
 
-    FitT best_fitness()
+    typename EOT::Fitness best_fitness()
     {
         return this->store.data()->bestFitness;
     }
 };
 
-template<class EOT, class FitT>
-struct DummyGetSeeds : public MultiStartStore<EOT,FitT>::GetSeeds
+template<class EOT>
+struct DummyGetSeeds : public MultiStartStore<EOT>::GetSeeds
 {
     std::vector<int> operator()( int n )
     {
@@ -328,8 +327,8 @@ struct DummyGetSeeds : public MultiStartStore<EOT,FitT>::GetSeeds
     }
 };
 
-template<class EOT, class FitT>
-struct GetRandomSeeds : public MultiStartStore<EOT,FitT>::GetSeeds
+template<class EOT>
+struct GetRandomSeeds : public MultiStartStore<EOT>::GetSeeds
 {
     std::vector<int> operator()( int n )
     {
@@ -341,8 +340,8 @@ struct GetRandomSeeds : public MultiStartStore<EOT,FitT>::GetSeeds
     }
 };
 
-template<class EOT, class FitT>
-struct ReinitMultiEA : public MultiStartStore<EOT,FitT>::ReinitJob
+template<class EOT>
+struct ReinitMultiEA : public MultiStartStore<EOT>::ReinitJob
 {
     ReinitMultiEA( const eoPop<EOT>& pop, eoEvalFunc<EOT>& eval ) : _originalPop( pop ), _eval( eval )
     {
@@ -363,8 +362,8 @@ struct ReinitMultiEA : public MultiStartStore<EOT,FitT>::ReinitJob
     eoEvalFunc<EOT>& _eval;
 };
 
-template<class EOT, class FitT>
-struct ResetAlgoEA : public MultiStartStore<EOT,FitT>::ResetAlgo
+template<class EOT>
+struct ResetAlgoEA : public MultiStartStore<EOT>::ResetAlgo
 {
     ResetAlgoEA( eoGenContinue<EOT> & continuator ) :
         _continuator( continuator ),
@@ -501,14 +500,14 @@ int main(int argc, char **argv)
             eval, continuator);
 
     DynamicAssignmentAlgorithm assignmentAlgo;
-    MultiStartStore< Indi, IndiFitness > store(
+    MultiStartStore< Indi > store(
             gga,
             DEFAULT_MASTER,
-            *new ReinitMultiEA< Indi, IndiFitness >( pop, eval ),
-            *new ResetAlgoEA< Indi, IndiFitness >( continuator ),
-            *new DummyGetSeeds< Indi, IndiFitness >());
+            *new ReinitMultiEA< Indi >( pop, eval ),
+            *new ResetAlgoEA< Indi >( continuator ),
+            *new DummyGetSeeds< Indi >());
 
-    MultiStart< Indi, IndiFitness > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
+    MultiStart< Indi > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
     msjob.run();
 
     if( msjob.isMaster() )
@@ -516,7 +515,7 @@ int main(int argc, char **argv)
         std::cout << "Global best individual has fitness " << msjob.best_fitness() << std::endl;
     }
 
-    MultiStart< Indi, IndiFitness > msjob10( assignmentAlgo, DEFAULT_MASTER, store, 10 );
+    MultiStart< Indi > msjob10( assignmentAlgo, DEFAULT_MASTER, store, 10 );
     msjob10.run();
 
     return 0;
