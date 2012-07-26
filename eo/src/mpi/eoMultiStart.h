@@ -480,7 +480,7 @@ namespace eo
             eoCountContinue<EOT>& _continuator;
             eoPop<EOT> _originalPop;
             bool _firstTime;
-        }
+        };
     } // namespace mpi
 } // namespace eo
 
