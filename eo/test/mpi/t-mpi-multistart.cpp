@@ -162,6 +162,7 @@ int main(int argc, char **argv)
     /////////////////////////////////////
     // stop after MAX_GEN generations
     eoGenContinue<Indi> continuator(MAX_GEN);
+    // eoSteadyFitContinue< Indi > continuator( 10, 50 );
 
     // GENERATION
     /////////////////////////////////////////

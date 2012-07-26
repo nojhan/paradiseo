@@ -219,10 +219,9 @@ namespace eo
         struct ReuseOriginalPopEA: public MultiStartStore<EOT>::ResetAlgo
         {
             ReuseOriginalPopEA(
-                    eoGenContinue<EOT> & continuator,
+                    eoCountContinue<EOT> & continuator,
                     const eoPop<EOT>& originalPop,
                     eoEvalFunc<EOT>& eval) :
-                _initial( continuator.totalGenerations() ),
                 _continuator( continuator ),
                 _originalPop( originalPop ),
                 _eval( eval )
@@ -237,12 +236,11 @@ namespace eo
                 {
                     _eval( pop[i] );
                 }
-                _continuator.totalGenerations( _initial );
+                _continuator.reset();
             }
 
             private:
-            unsigned int _initial;
-            eoGenContinue<EOT> & _continuator;
+            eoCountContinue<EOT> & _continuator;
             const eoPop<EOT>& _originalPop;
             eoEvalFunc<EOT>& _eval;
         };
@@ -251,14 +249,13 @@ namespace eo
         struct ReuseSamePopEA : public MultiStartStore<EOT>::ResetAlgo
         {
             ReuseSamePopEA(
-                    eoGenContinue<EOT>& continuator,
+                    eoCountContinue<EOT>& continuator,
                     const eoPop<EOT>& originalPop,
                     eoEvalFunc<EOT>& eval
                     ) :
                 _continuator( continuator ),
                 _originalPop( originalPop ),
-                _firstTime( true ),
-                _initial( continuator.totalGenerations() )
+                _firstTime( true )
             {
                 for( unsigned i = 0, size = originalPop.size();
                         i < size; ++i )
@@ -274,15 +271,14 @@ namespace eo
                     pop = _originalPop;
                     _firstTime = false;
                 }
-                _continuator.totalGenerations( _initial );
+                _continuator.reset();
             }
 
             protected:
 
-            eoGenContinue<EOT>& _continuator;
+            eoCountContinue<EOT>& _continuator;
             eoPop<EOT> _originalPop;
             bool _firstTime;
-            int _initial;
         };
 
         template< class EOT >
