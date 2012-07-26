@@ -67,4 +67,43 @@ public:
   }
 };
 
+/**
+ * Termination condition with a count condition (totalGenerations). This continuator contains
+ * a count of cycles, which can be retrieved or set.
+ *
+ * @ingroup Continuators
+ * @ingroup Core
+ */
+template< class EOT >
+class eoCountContinue : public eoContinue< EOT >
+{
+    public:
+
+    eoCountContinue( ) :
+        thisGenerationPlaceholder( 0 ),
+        thisGeneration( thisGenerationPlaceholder )
+    {
+        // empty
+    }
+
+    eoCountContinue( unsigned long& currentGen ) :
+        thisGenerationPlaceholder( 0 ),
+        thisGeneration( currentGen )
+    {
+        // empty
+    }
+
+    virtual std::string className( void ) const { return "eoCountContinue"; }
+
+    virtual void reset( )
+    {
+        thisGeneration = 0;
+    }
+
+    protected:
+
+    unsigned long thisGenerationPlaceholder;
+    unsigned long& thisGeneration;
+};
+
 #endif
