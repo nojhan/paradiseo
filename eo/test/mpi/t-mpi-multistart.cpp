@@ -319,6 +319,7 @@ class MultiStart : public OneShotJob< MultiStartData< EOT > >
 };
 
 template<class EOT>
+// No seeds! Use default generator
 struct DummyGetSeeds : public MultiStartStore<EOT>::GetSeeds
 {
     std::vector<int> operator()( int n )
@@ -328,8 +329,42 @@ struct DummyGetSeeds : public MultiStartStore<EOT>::GetSeeds
 };
 
 template<class EOT>
+// Multiple of a seed
+struct MultiplesOfNumber : public MultiStartStore<EOT>::GetSeeds
+{
+    MultiplesOfNumber ( int n = 0 )
+    {
+        while( n == 0 )
+        {
+            n = eo::rng.rand();
+        }
+        _seed = n;
+        _i = 0;
+    }
+
+    std::vector<int> operator()( int n )
+    {
+        std::vector<int> ret;
+        for( unsigned int i = 0; i < n; ++i )
+        {
+            ret.push_back( (++_i) * _seed );
+        }
+    }
+
+    private:
+
+    unsigned int _seed;
+    unsigned int _i;
+};
+
+template<class EOT>
 struct GetRandomSeeds : public MultiStartStore<EOT>::GetSeeds
 {
+    GetRandomSeeds( int seed )
+    {
+        eo::rng.reseed( seed );
+    }
+
     std::vector<int> operator()( int n )
     {
         std::vector<int> ret;
@@ -341,9 +376,9 @@ struct GetRandomSeeds : public MultiStartStore<EOT>::GetSeeds
 };
 
 template<class EOT>
-struct ReinitMultiEA : public MultiStartStore<EOT>::ReinitJob
+struct RecopyPopEA : public MultiStartStore<EOT>::ReinitJob
 {
-    ReinitMultiEA( const eoPop<EOT>& pop, eoEvalFunc<EOT>& eval ) : _originalPop( pop ), _eval( eval )
+    RecopyPopEA( const eoPop<EOT>& pop, eoEvalFunc<EOT>& eval ) : _originalPop( pop ), _eval( eval )
     {
         // empty
     }
@@ -363,9 +398,9 @@ struct ReinitMultiEA : public MultiStartStore<EOT>::ReinitJob
 };
 
 template<class EOT>
-struct ResetAlgoEA : public MultiStartStore<EOT>::ResetAlgo
+struct ResetGenContinueEA: public MultiStartStore<EOT>::ResetAlgo
 {
-    ResetAlgoEA( eoGenContinue<EOT> & continuator ) :
+    ResetGenContinueEA( eoGenContinue<EOT> & continuator ) :
         _continuator( continuator ),
         _initial( continuator.totalGenerations() )
     {
@@ -503,8 +538,8 @@ int main(int argc, char **argv)
     MultiStartStore< Indi > store(
             gga,
             DEFAULT_MASTER,
-            *new ReinitMultiEA< Indi >( pop, eval ),
-            *new ResetAlgoEA< Indi >( continuator ),
+            *new RecopyPopEA< Indi >( pop, eval ),
+            *new ResetGenContinueEA< Indi >( continuator ),
             *new DummyGetSeeds< Indi >());
 
     MultiStart< Indi > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
