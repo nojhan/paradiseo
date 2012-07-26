@@ -115,7 +115,7 @@ struct SerializableBasicType : public eoserial::Persistent
 template< class EOT >
 struct MultiStartData
 {
-    typedef eoF<void> ResetAlgo;
+    typedef eoUF< eoPop<EOT>&, void> ResetAlgo;
 
     MultiStartData( mpi::communicator& _comm, eoAlgo<EOT>& _algo, int _masterRank, ResetAlgo & _resetAlgo )
         :
@@ -193,7 +193,7 @@ class ProcessTaskMultiStart : public ProcessTaskFunction< MultiStartData< EOT > 
 
             // std::cout << "POP(" << _data->pop.size() << ") : " << _data->pop << std::endl;
 
-            _data->resetAlgo();
+            _data->resetAlgo( _data->pop );
             _data->algo( _data->pop );
             _data->comm.send( _data->masterRank, 1, _data->pop.best_element() );
         }
@@ -217,21 +217,18 @@ class MultiStartStore : public JobStore< MultiStartData< EOT > >
     public:
 
         typedef typename MultiStartData<EOT>::ResetAlgo ResetAlgo;
-        typedef eoUF< eoPop<EOT>&, void > ReinitJob;
         typedef eoUF< int, std::vector<int> > GetSeeds;
 
         MultiStartStore(
                 eoAlgo<EOT> & algo,
                 int masterRank,
                 // eoInit<EOT>* init = 0
-                ReinitJob & reinitJob,
                 ResetAlgo & resetAlgo,
                 GetSeeds & getSeeds
                 )
             : _data( Node::comm(), algo, masterRank, resetAlgo ),
             _masterRank( masterRank ),
-            _getSeeds( getSeeds ),
-            _reinitJob( reinitJob )
+            _getSeeds( getSeeds )
         {
             this->_iff = new IsFinishedMultiStart< EOT >;
             this->_iff->needDelete(true);
@@ -245,11 +242,9 @@ class MultiStartStore : public JobStore< MultiStartData< EOT > >
 
         void init( const std::vector<int>& workers, int runs )
         {
-            int nbWorkers = workers.size();
-
-            _reinitJob( _data.pop );
             _data.runs = runs;
 
+            int nbWorkers = workers.size();
             std::vector< int > seeds = _getSeeds( nbWorkers );
             if( Node::comm().rank() == _masterRank )
             {
@@ -287,7 +282,6 @@ class MultiStartStore : public JobStore< MultiStartData< EOT > >
         MultiStartData< EOT > _data;
 
         GetSeeds & _getSeeds;
-        ReinitJob & _reinitJob;
         int _masterRank;
 };
 
@@ -376,9 +370,16 @@ struct GetRandomSeeds : public MultiStartStore<EOT>::GetSeeds
 };
 
 template<class EOT>
-struct RecopyPopEA : public MultiStartStore<EOT>::ReinitJob
+struct ReusePopEA: public MultiStartStore<EOT>::ResetAlgo
 {
-    RecopyPopEA( const eoPop<EOT>& pop, eoEvalFunc<EOT>& eval ) : _originalPop( pop ), _eval( eval )
+    ReusePopEA(
+            eoGenContinue<EOT> & continuator,
+            const eoPop<EOT>& originalPop,
+            eoEvalFunc<EOT>& eval) :
+        _initial( continuator.totalGenerations() ),
+        _continuator( continuator ),
+        _originalPop( originalPop ),
+        _eval( eval )
     {
         // empty
     }
@@ -390,49 +391,13 @@ struct RecopyPopEA : public MultiStartStore<EOT>::ReinitJob
         {
             _eval( pop[i] );
         }
-    }
-
-    private:
-    const eoPop<EOT>& _originalPop;
-    eoEvalFunc<EOT>& _eval;
-};
-
-template<class EOT>
-struct ResetGenContinueEA: public MultiStartStore<EOT>::ResetAlgo
-{
-    ResetGenContinueEA( eoGenContinue<EOT> & continuator ) :
-        _continuator( continuator ),
-        _initial( continuator.totalGenerations() )
-    {
-        // empty
-    }
-
-    void operator()()
-    {
         _continuator.totalGenerations( _initial );
     }
 
     private:
     unsigned int _initial;
     eoGenContinue<EOT> & _continuator;
-};
-
-template< class EOT >
-struct eoInitAndEval : public eoInit<EOT>
-{
-    eoInitAndEval( eoInit<EOT>& init, eoEvalFunc<EOT>& eval ) : _init( init ), _eval( eval )
-    {
-        // empty
-    }
-
-    void operator()( EOT & indi )
-    {
-        _init( indi );
-        _eval( indi );
-    }
-
-    private:
-    eoInit<EOT>& _init;
+    const eoPop<EOT>& _originalPop;
     eoEvalFunc<EOT>& _eval;
 };
 
@@ -444,9 +409,9 @@ int main(int argc, char **argv)
     // all parameters are hard-coded!
     const unsigned int SEED = 133742; // seed for random number generator
     const unsigned int VEC_SIZE = 8; // Number of object variables in genotypes
-    const unsigned int POP_SIZE = 20; // Size of population
+    const unsigned int POP_SIZE = 100; // Size of population
     const unsigned int T_SIZE = 3; // size for tournament selection
-    const unsigned int MAX_GEN = 20; // Maximum number of generation before STOP
+    const unsigned int MAX_GEN = 100; // Maximum number of generation before STOP
     const float CROSS_RATE = 0.8; // Crossover rate
     const double EPSILON = 0.01;  // range for real uniform mutation
     const float MUT_RATE = 0.5;   // mutation rate
@@ -538,8 +503,7 @@ int main(int argc, char **argv)
     MultiStartStore< Indi > store(
             gga,
             DEFAULT_MASTER,
-            *new RecopyPopEA< Indi >( pop, eval ),
-            *new ResetGenContinueEA< Indi >( continuator ),
+            *new ReusePopEA< Indi >( continuator, pop, eval ),
             *new DummyGetSeeds< Indi >());
 
     MultiStart< Indi > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
