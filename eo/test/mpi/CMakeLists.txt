@@ -31,6 +31,7 @@ SET (TEST_LIST
     t-mpi-wrapper
     t-mpi-multipleRoles
     t-mpi-eval
+    t-mpi-multistart
     )
 
 FOREACH (test ${TEST_LIST})
