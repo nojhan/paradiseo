@@ -11,7 +11,8 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 IF(WITH_MPI)
     MESSAGE("[EO] Compilation with MPI.")
 
-    SET(CMAKE_CXX_COMPILER "${MPI_DIR}/bin/mpicxx")
+    #SET(CMAKE_CXX_COMPILER "${MPI_DIR}/bin/mpicxx")
+    SET(CMAKE_CXX_COMPILER mpicxx)
 
     # headers location
     INCLUDE_DIRECTORIES(${MPI_DIR}/include)
