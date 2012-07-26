@@ -34,8 +34,6 @@ Authors:
 
 #include <mpi/eoMpi.h>
 
-#include <boost/mpi.hpp>
-
 #include <vector>
 using namespace std;
 
@@ -55,50 +53,33 @@ class eoRealSerializable : public eoReal< eoMinimizingFitness >, public eoserial
                     eoserial::makeArray< vector<double>, eoserial::MakeAlgorithm >
                     ( *this )
                     );
+
+            bool invalidFitness = invalid();
+            obj->add("invalid", eoserial::make( invalidFitness ) );
+            if( !invalidFitness )
+            {
+                double fitnessVal = fitness();
+                obj->add("fitness", eoserial::make( fitnessVal ) );
+            }
             return obj;
         }
 
         void unpack( const eoserial::Object* obj )
         {
+            this->clear();
             eoserial::unpackArray< vector<double>, eoserial::Array::UnpackAlgorithm >
                 ( *obj, "array", *this );
+
+            bool invalidFitness;
+            eoserial::unpack( *obj, "invalid", invalidFitness );
+            if( invalidFitness ) {
+                invalidate();
+            } else {
+                double fitnessVal;
+                eoserial::unpack<double>( *obj, "fitness", fitnessVal );
+                fitness( fitnessVal );
+            }
         }
-
-        // Gives access to boost serialization
-        friend class boost::serialization::access;
-
-        /**
-         * Serializes the decomposition in a boost archive (useful for boost::mpi)
-         */
-        template <class Archive>
-            void save( Archive & ar, const unsigned int version ) const
-            {
-                std::stringstream ss;
-                printOn( ss );
-                std::string asStr = ss.str();
-                ar & asStr;
-
-                (void) version; // avoid compilation warning
-            }
-
-        /**
-         * Deserializes the decomposition from a boost archive (useful for boost:mpi)
-         */
-        template <class Archive>
-            void load( Archive & ar, const unsigned int version )
-            {
-                std::string asStr;
-                ar & asStr;
-                std::stringstream ss;
-                ss << asStr;
-                readFrom( ss );
-
-                (void) version; // avoid compilation warning
-            }
-
-        // Indicates that boost save and load operations are not the same.
-        BOOST_SERIALIZATION_SPLIT_MEMBER()
-
 };
 
 typedef eoRealSerializable EOT;
@@ -196,14 +177,12 @@ int main(int ac, char** av)
 
         eo::log << "Size of population : " << popSize << std::endl;
 
-        /*
         eo::mpi::ParallelApplyStore< EOT > store( eval, eo::mpi::DEFAULT_MASTER );
         store.wrapHandleResponse( new CatBestAnswers );
 
         eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, &store );
-        */
 
-        eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, eval, 5 );
+        //eoParallelPopLoopEval< EOT > popEval( assign, eo::mpi::DEFAULT_MASTER, eval, 5 );
 
         eo::log << eo::quiet << "Before first evaluation." << std::endl;
         popEval( pop, pop );

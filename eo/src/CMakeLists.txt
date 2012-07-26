@@ -9,22 +9,18 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 ######################################################################################
 
 IF(WITH_MPI)
-    MESSAGE("[EO] Compilation with MPI and BoostMPI.")
+    MESSAGE("[EO] Compilation with MPI.")
 
     SET(CMAKE_CXX_COMPILER "${MPI_DIR}/bin/mpicxx")
 
     # headers location
     INCLUDE_DIRECTORIES(${MPI_DIR}/include)
-    INCLUDE_DIRECTORIES(${BOOST_DIR}/include)
 
     # lib location
     LINK_DIRECTORIES(${MPI_DIR}/lib)
-    LINK_DIRECTORIES(${BOOST_DIR}/lib)
 
     # for conditional compilation in code
     ADD_DEFINITIONS(-DWITH_MPI)
-
-    LINK_LIBRARIES(boost_mpi boost_serialization)
 
     ADD_SUBDIRECTORY(mpi)
 ENDIF()

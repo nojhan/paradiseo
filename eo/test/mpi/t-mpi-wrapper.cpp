@@ -33,7 +33,10 @@ Authors:
 # include <mpi/eoParallelApply.h>
 # include <mpi/eoTerminateJob.h>
 
+# include "t-mpi-common.h"
+
 # include <iostream>
+# include <cstdlib>
 
 # include <vector>
 using namespace std;
@@ -41,9 +44,9 @@ using namespace std;
 using namespace eo::mpi;
 
 // Job functor.
-struct plusOne : public eoUF< int&, void >
+struct plusOne : public eoUF< SerializableBase<int>&, void >
 {
-    void operator() ( int & x )
+    void operator() ( SerializableBase<int>& x )
     {
         ++x;
     }
@@ -83,28 +86,28 @@ int main(int argc, char** argv)
     Node::init( argc, argv );
 
     srand( time(0) );
-    vector<int> v;
+    vector< SerializableBase<int> > v;
     for( int i = 0; i < 1000; ++i )
     {
         v.push_back( rand() );
     }
 
     int offset = 0;
-    vector<int> originalV = v;
+    vector< SerializableBase<int> > originalV = v;
 
     plusOne plusOneInstance;
 
     StaticAssignmentAlgorithm assign( v.size() );
 
-    ParallelApplyStore< int > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 1 );
+    ParallelApplyStore< SerializableBase<int> > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 1 );
     store.data( v );
     // This is the only thing which changes: we wrap the IsFinished function.
     // According to RAII, we'll delete the invokated wrapper at the end of the main ; the store won't delete it
     // automatically.
-    IsFinishedParallelApply<int>* wrapper = new ShowWrappedResult<int>;
-    store.wrapIsFinished( wrapper );
+    ShowWrappedResult< SerializableBase<int> > wrapper;
+    store.wrapIsFinished( &wrapper );
 
-    ParallelApply<int> job( assign, eo::mpi::DEFAULT_MASTER, store );
+    ParallelApply< SerializableBase<int> > job( assign, eo::mpi::DEFAULT_MASTER, store );
     // Equivalent to:
     // Job< ParallelApplyData<int> > job( assign, 0, store );
     job.run();
@@ -124,8 +127,6 @@ int main(int argc, char** argv)
         }
         cout << endl;
     }
-
-    delete wrapper;
 
     return 0;
 }

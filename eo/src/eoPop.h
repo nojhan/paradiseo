@@ -221,9 +221,10 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
 #else
             typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
 #endif
+            if( it == end() )
+                throw std::runtime_error("eoPop<EOT>: Empty population, when calling best_element().");
             return (*it);
         }
-
 
         /** returns a const reference to the worse individual DOES NOT MOVE ANYBODY */
         const EOT & worse_element() const

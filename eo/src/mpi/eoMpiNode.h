@@ -22,17 +22,17 @@ Authors:
 # ifndef __MPI_NODE_H__
 # define __MPI_NODE_H__
 
-# include <boost/mpi.hpp>
-namespace bmpi = boost::mpi;
+# include "implMpi.h"
+namespace bmpi = mpi;
 
 namespace eo
 {
     namespace mpi
     {
         /**
-         * @brief Global object used to reach boost::mpi::communicator everywhere.
+         * @brief Global object used to reach mpi::communicator everywhere.
          *
-         * boost::mpi::communicator is the main object used to send and receive messages between the different hosts of
+         * mpi::communicator is the main object used to send and receive messages between the different hosts of
          * a MPI algorithm.
          *
          * @ingroup MPI
@@ -49,18 +49,12 @@ namespace eo
                  * @param argc Main's argc
                  * @param argv Main's argv
                  */
-                static void init( int argc, char** argv )
-                {
-                    static bmpi::environment env( argc, argv );
-                }
+                static void init( int argc, char** argv );
 
                 /**
-                 * @brief Returns the global boost::mpi::communicator
+                 * @brief Returns the global mpi::communicator
                  */
-                static bmpi::communicator& comm()
-                {
-                    return _comm;
-                }
+                static bmpi::communicator& comm();
 
             protected:
                 static bmpi::communicator _comm;

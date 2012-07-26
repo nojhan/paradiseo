@@ -25,6 +25,9 @@ Authors:
  * incremented... in a parallel fashion. While this operation is very easy to perform even on a single host, it's just
  * an example for parallel apply use.
  *
+ * The table of integers has to be serialized before it's sent. The wrapper object SerializableBase allows to serialize
+ * any type and manipulate it like this type: SerializableBase<int> can be exactly be used as an integer.
+ *
  * Besides, this is also a test for assignment (scheduling) algorithms, in different cases. The test succeeds if and
  * only if the program terminates without any segfault ; otherwise, there could be a deadlock which prevents the end or
  * a segfault at any time.
@@ -40,7 +43,10 @@ Authors:
 # include <mpi/eoParallelApply.h>
 # include <mpi/eoTerminateJob.h>
 
+# include "t-mpi-common.h"
+
 # include <iostream>
+# include <cstdlib>
 
 # include <vector>
 using namespace std;
@@ -50,11 +56,11 @@ using namespace eo::mpi;
 /*
  * The function to be called on each element of the table: just increment the value.
  */
-struct plusOne : public eoUF< int&, void >
+struct plusOne : public eoUF< SerializableBase<int>&, void >
 {
-    void operator() ( int & x )
+    void operator() ( SerializableBase<int> & x )
     {
-        ++x;
+        ++x; // implicit conversion of SerializableBase<int> in the integer it contains
     }
 };
 
@@ -79,7 +85,7 @@ int main(int argc, char** argv)
 
     // Initializes a vector with random values.
     srand( time(0) );
-    vector<int> v;
+    vector< SerializableBase<int> > v;
     for( int i = 0; i < 1000; ++i )
     {
         v.push_back( rand() );
@@ -90,7 +96,7 @@ int main(int argc, char** argv)
     // incremented and we can compare the returned value of each element to the value of each element in originalV +
     // offset. If the two values are different, there has been a problem.
     int offset = 0;
-    vector<int> originalV = v;
+    vector< SerializableBase<int> > originalV = v;
 
     // Instanciates the functor to apply on each element
     plusOne plusOneInstance;
@@ -166,11 +172,11 @@ int main(int argc, char** argv)
     for( unsigned int i = 0; i < tests.size(); ++i )
     {
         // Instanciates a store with the functor, the master rank and size of packet (see ParallelApplyStore doc).
-        ParallelApplyStore< int > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 3 );
+        ParallelApplyStore< SerializableBase<int> > store( plusOneInstance, eo::mpi::DEFAULT_MASTER, 3 );
         // Updates the contained data
         store.data( v );
         // Creates the job with the assignment algorithm, the master rank and the store
-        ParallelApply< int > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );
+        ParallelApply< SerializableBase<int> > job( *(tests[i].assign), eo::mpi::DEFAULT_MASTER, store );
 
         // Only master writes information
         if( job.isMaster() )

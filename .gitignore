@@ -20,4 +20,5 @@
 !lib/
 !src/
 !test/
+!eompi.html
 build/
