@@ -4,10 +4,50 @@
 # include <eo>
 # include "eoMpi.h"
 
+/**
+ * @ingroup MPI
+ * @{
+ */
+
+/**
+ * @file eoMultiStart.h
+ *
+ * Contains implementation of a MPI job which consists in a multi start, which basically consists in the following:
+ * the same eoAlgo is launched on computers of a clusters, with different seeds for each. As the eoAlgo are most of
+ * the time stochastics, the results won't be the same. It is fully equivalent to launch the same program but with
+ * different seeds.
+ *
+ * It follows the structure of a MPI job, as described in eoMpi.h. The basic algorithm is trivial:
+ * - Loop while we have a run to perform.
+ * - Worker performs runs and send their best solution (individual with best fitness) to the master.
+ * - Master retrieves the best solution and adds it to a eoPop of best solutions (the user can chooses what he does
+ *   with this population, for instance: retrieve the best element, etc.)
+ *
+ * The principal concerns about this algorithm are:
+ * - How do we reinitialize the algorithm? An eoAlgo can have several forms, and initializations have to be performed
+ *   before each "start". We can hence decide whether we reinits the population or keep the same population obtained
+ *   after the previous start, we have to reinitialize continuator, etc. This is customizable in the store.
+ *
+ * - Which seeds should be chosen? If we want the run to be re-runnable with the same results, we need to be sure that
+ *   the seeds are the same. But user can not care about this, and just want random seeds. This is customizable in the
+ *   store.
+ *
+ * These concerns are handled by functors, inheriting from MultiStartStore<EOT>::ResetAlgo (for the first concern), and
+ * MultiStartStore<EOT>::GetSeeds (for the second one). There are default implementations, but there is no problem about
+ * specializing them or coding your own, by directly inheriting from them.
+ *
+ * @ingroup MPI
+ */
+
 namespace eo
 {
     namespace mpi
     {
+        /**
+         * @brief Data used by the Multi Start job.
+         *
+         * This data is shared between the different Job functors. More details are given for each attribute.
+         */
         template< class EOT >
         struct MultiStartData
         {
@@ -22,17 +62,49 @@ namespace eo
             }
 
             // dynamic parameters
+            /**
+             * @brief Total remaining number of runs.
+             *
+             * It's decremented as the runs are performed.
+             */
             int runs;
+
+            /**
+             * @brief eoPop of the best individuals, which are the one sent by the workers.
+             */
             eoPop< EOT > bests;
+
+            /**
+             * @brief eoPop on which the worker is working.
+             */
             eoPop< EOT > pop;
 
             // static parameters
+            /**
+             * @brief Communicator, used to send and retrieve messages.
+             */
             bmpi::communicator& comm;
+
+            /**
+             * @brief Algorithm which will be performed by the worker.
+             */
             eoAlgo<EOT>& algo;
+
+            /**
+             * @brief Reset Algo functor, which defines how to reset the algo (above) before re running it.
+             */
             ResetAlgo& resetAlgo;
+
+            // Rank of master
             int masterRank;
         };
 
+        /**
+         * @brief Send task (master side) in the Multi Start job.
+         *
+         * It only consists in decrementing the number of runs, as the worker already have the population and
+         * all the necessary parameters to run the eoAlgo.
+         */
         template< class EOT >
         class SendTaskMultiStart : public SendTaskFunction< MultiStartData< EOT > >
         {
@@ -41,10 +113,17 @@ namespace eo
 
                 void operator()( int wrkRank )
                 {
+                    wrkRank++; // unused
                     --(_data->runs);
                 }
         };
 
+        /**
+         * @brief Handle Response (master side) in the Multi Start job.
+         *
+         * It consists in retrieving the best solution sent by the worker and adds it to a population of best
+         * solutions.
+         */
         template< class EOT >
         class HandleResponseMultiStart : public HandleResponseFunction< MultiStartData< EOT > >
         {
@@ -60,6 +139,12 @@ namespace eo
                 }
         };
 
+        /**
+         * @brief Process Task (worker side) in the Multi Start job.
+         *
+         * Consists in resetting the algorithm and launching it on the population, then
+         * send the best individual (the one with the best fitness) to the master.
+         */
         template< class EOT >
         class ProcessTaskMultiStart : public ProcessTaskFunction< MultiStartData< EOT > >
         {
@@ -74,6 +159,11 @@ namespace eo
                 }
         };
 
+        /**
+         * @brief Is Finished (master side) in the Multi Start job.
+         *
+         * The job is finished if and only if all the runs have been performed.
+         */
         template< class EOT >
         class IsFinishedMultiStart : public IsFinishedFunction< MultiStartData< EOT > >
         {
@@ -86,14 +176,41 @@ namespace eo
                 }
         };
 
+        /**
+         * @brief Store for the Multi Start job.
+         *
+         * Contains the data used by the workers (algo,...) and functor to
+         * send the seeds.
+         */
         template< class EOT >
         class MultiStartStore : public JobStore< MultiStartData< EOT > >
         {
             public:
 
+                /**
+                 * @brief Generic functor to reset an algorithm before it's launched by
+                 * the worker.
+                 *
+                 * This reset algorithm should reinits population (if necessary), continuator, etc.
+                 */
                 typedef typename MultiStartData<EOT>::ResetAlgo ResetAlgo;
+
+                /**
+                 * @brief Generic functor which returns a vector of seeds for the workers.
+                 *
+                 * If this vector hasn't enough seeds to send, random ones are generated and
+                 * sent to the workers.
+                 */
                 typedef eoUF< int, std::vector<int> > GetSeeds;
 
+                /**
+                 * @brief Default ctor for MultiStartStore.
+                 *
+                 * @param algo The algorithm to launch in parallel
+                 * @param masterRank The MPI rank of the master
+                 * @param resetAlgo The ResetAlgo functor
+                 * @param getSeeds The GetSeeds functor
+                 */
                 MultiStartStore(
                         eoAlgo<EOT> & algo,
                         int masterRank,
@@ -103,17 +220,27 @@ namespace eo
                     : _data( eo::mpi::Node::comm(), algo, masterRank, resetAlgo ),
                     _getSeeds( getSeeds ),
                     _masterRank( masterRank )
-            {
-                this->_iff = new IsFinishedMultiStart< EOT >;
-                this->_iff->needDelete(true);
-                this->_stf = new SendTaskMultiStart< EOT >;
-                this->_stf->needDelete(true);
-                this->_hrf = new HandleResponseMultiStart< EOT >;
-                this->_hrf->needDelete(true);
-                this->_ptf = new ProcessTaskMultiStart< EOT >;
-                this->_ptf->needDelete(true);
-            }
+                {
+                    // Default job functors for this one.
+                    this->_iff = new IsFinishedMultiStart< EOT >;
+                    this->_iff->needDelete(true);
+                    this->_stf = new SendTaskMultiStart< EOT >;
+                    this->_stf->needDelete(true);
+                    this->_hrf = new HandleResponseMultiStart< EOT >;
+                    this->_hrf->needDelete(true);
+                    this->_ptf = new ProcessTaskMultiStart< EOT >;
+                    this->_ptf->needDelete(true);
+                }
 
+                /**
+                 * @brief Send new seeds to the workers before a job.
+                 *
+                 * Uses the GetSeeds functor given in constructor. If there's not
+                 * enough seeds to send, random seeds are sent to the workers.
+                 *
+                 * @param workers Vector of MPI ranks of the workers
+                 * @param runs The number of runs to perform
+                 */
                 void init( const std::vector<int>& workers, int runs )
                 {
                     _data.runs = runs;
@@ -156,8 +283,51 @@ namespace eo
                 int _masterRank;
         };
 
+        /**
+         * @brief MultiStart job, created for convenience.
+         *
+         * This is an OneShotJob, which means workers leave it along with
+         * the master.
+         */
+        template< class EOT >
+        class MultiStart : public OneShotJob< MultiStartData< EOT > >
+        {
+            public:
+
+                MultiStart( AssignmentAlgorithm & algo,
+                        int masterRank,
+                        MultiStartStore< EOT > & store,
+                        // dynamic parameters
+                        int runs,
+                        const std::vector<int>& seeds = std::vector<int>()  ) :
+                    OneShotJob< MultiStartData< EOT > >( algo, masterRank, store )
+            {
+                store.init( algo.idles(), runs );
+            }
+
+            /**
+             * @brief Returns the best solution, at the end of the job.
+             *
+             * Warning: if you call this function from a worker, or from the master before the
+             * launch of the job, you will only get an empty population!
+             *
+             * @return Population of best individuals retrieved by the master.
+             */
+            eoPop<EOT>& best_individuals()
+            {
+                return this->store.data()->bests;
+            }
+        };
+
+        /*************************************
+         * DEFAULT GET SEEDS IMPLEMENTATIONS *
+         ************************************/
+
+        /**
+         * @brief Uses the internal default seed generator to get seeds,
+         * which means: random seeds are sent.
+         */
         template<class EOT>
-        // No seeds! Use default generator
         struct DummyGetSeeds : public MultiStartStore<EOT>::GetSeeds
         {
             std::vector<int> operator()( int n )
@@ -166,8 +336,14 @@ namespace eo
             }
         };
 
+        /**
+         * @brief Sends seeds to the workers, which are multiple of a number
+         * given by the master. If no number is given, a random one is used.
+         *
+         * This functor ensures that even if the same store is used with
+         * different jobs, the seeds will be different.
+         */
         template<class EOT>
-        // Multiple of a seed
         struct MultiplesOfNumber : public MultiStartStore<EOT>::GetSeeds
         {
             MultiplesOfNumber ( int n = 0 )
@@ -196,6 +372,10 @@ namespace eo
             unsigned int _i;
         };
 
+        /**
+         * @brief Returns random seeds to the workers. We can controle which seeds are generated
+         * by precising the seed of the master.
+         */
         template<class EOT>
         struct GetRandomSeeds : public MultiStartStore<EOT>::GetSeeds
         {
@@ -215,6 +395,17 @@ namespace eo
             }
         };
 
+        /**************************************
+         * DEFAULT RESET ALGO IMPLEMENTATIONS *
+         **************************************
+
+        /**
+         * @brief For a Genetic Algorithm, reinits the population by copying the original one
+         * given in constructor, and reinits the continuator.
+         *
+         * The evaluator should also be given, as the population needs to be evaluated
+         * before each run.
+         */
         template<class EOT>
         struct ReuseOriginalPopEA: public MultiStartStore<EOT>::ResetAlgo
         {
@@ -231,7 +422,7 @@ namespace eo
 
             void operator()( eoPop<EOT>& pop )
             {
-                pop = _originalPop;
+                pop = _originalPop; // copies the original population
                 for(unsigned i = 0, size = pop.size(); i < size; ++i)
                 {
                     _eval( pop[i] );
@@ -245,6 +436,16 @@ namespace eo
             eoEvalFunc<EOT>& _eval;
         };
 
+        /**
+         * @brief For a Genetic Algorithm, reuses the same population without
+         * modifying it after a run.
+         *
+         * This means, if you launch a run after another one, you'll make evolve
+         * the same population.
+         *
+         * The evaluator should also be sent, as the population needs to be evaluated
+         * at the first time.
+         */
         template< class EOT >
         struct ReuseSamePopEA : public MultiStartStore<EOT>::ResetAlgo
         {
@@ -279,32 +480,12 @@ namespace eo
             eoCountContinue<EOT>& _continuator;
             eoPop<EOT> _originalPop;
             bool _firstTime;
-        };
-
-        template< class EOT >
-        class MultiStart : public OneShotJob< MultiStartData< EOT > >
-        {
-            public:
-
-                MultiStart( AssignmentAlgorithm & algo,
-                        int masterRank,
-                        MultiStartStore< EOT > & store,
-                        // dynamic parameters
-                        int runs,
-                        const std::vector<int>& seeds = std::vector<int>()  ) :
-                    OneShotJob< MultiStartData< EOT > >( algo, masterRank, store )
-            {
-                store.init( algo.idles(), runs );
-            }
-
-                eoPop<EOT>& best_individuals()
-                {
-                    return this->store.data()->bests;
-                }
-        };
-
+        }
     } // namespace mpi
-
 } // namespace eo
+
+/**
+ * @}
+ */
 
 # endif // __EO_MULTISTART_H__

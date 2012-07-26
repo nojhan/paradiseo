@@ -8,9 +8,24 @@ using namespace eo::mpi;
 #include <eo>
 #include <es.h>
 
-// Use functions from namespace std
+/*
+ * This file is based on the tutorial lesson 1. We'll consider that you know all the EO
+ * related parts of the algorithm and we'll focus our attention on parallelization.
+ *
+ * This file shows an example of multistart applied to a eoSGA (simple genetic
+ * algorithm). As individuals need to be serialized, we implement a class inheriting
+ * from eoReal (which is the base individual), so as to manipulate individuals as they
+ * were eoReal AND serialize them.
+ *
+ * The main function shows how to launch a multistart job, with default functors. If you
+ * don't know which functors to use, these ones should fit the most of your purposes.
+ */
+
 using namespace std;
 
+/*
+ * eoReal is a vector of double: we just have to serializes the value and the fitness.
+ */
 class SerializableEOReal: public eoReal<double>, public eoserial::Persistent
 {
 public:
@@ -91,99 +106,48 @@ int main(int argc, char **argv)
     const double EPSILON = 0.01;  // range for real uniform mutation
     const float MUT_RATE = 0.5;   // mutation rate
 
-    // GENERAL
-    //////////////////////////
-    //  Random seed
-    //////////////////////////
-    //reproducible random seed: if you don't change SEED above,
-    // you'll aways get the same result, NOT a random run
-    // rng.reseed(SEED);
-
-    // EVAL
-    /////////////////////////////
-    // Fitness function
-    ////////////////////////////
-    // Evaluation: from a plain C++ fn to an EvalFunc Object
     eoEvalFuncPtr<Indi> eval( real_value );
-
-    // INIT
-    ////////////////////////////////
-    // Initilisation of population
-    ////////////////////////////////
-
-    // declare the population
     eoPop<Indi> pop;
-    // fill it!
-    /*
-    for (unsigned int igeno=0; igeno<POP_SIZE; igeno++)
-    {
-        Indi v;          // void individual, to be filled
-        for (unsigned ivar=0; ivar<VEC_SIZE; ivar++)
-        {
-            double r = 2*rng.uniform() - 1; // new value, random in [-1,1)
-            v.push_back(r);       // append that random value to v
-        }
-        eval(v);                  // evaluate it
-        pop.push_back(v);         // and put it in the population
-    }
-    */
     eoUniformGenerator< double > generator;
     eoInitFixedLength< Indi > init( VEC_SIZE, generator );
-    // eoInitAndEval< Indi > init( real_init, eval, continuator );
     pop = eoPop<Indi>( POP_SIZE, init );
 
-    // ENGINE
-    /////////////////////////////////////
-    // selection and replacement
-    ////////////////////////////////////
-    // SELECT
-    // The robust tournament selection
-    eoDetTournamentSelect<Indi> select(T_SIZE);       // T_SIZE in [2,POP_SIZE]
-
-    // REPLACE
-    // eoSGA uses generational replacement by default
-    // so no replacement procedure has to be given
-
-    // OPERATORS
-    //////////////////////////////////////
-    // The variation operators
-    //////////////////////////////////////
-    // CROSSOVER
-    // offspring(i) is a linear combination of parent(i)
+    eoDetTournamentSelect<Indi> select(T_SIZE);
     eoSegmentCrossover<Indi> xover;
-    // MUTATION
-    // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
     eoUniformMutation<Indi>  mutation(EPSILON);
 
-    // STOP
-    // CHECKPOINT
-    //////////////////////////////////////
-    // termination condition
-    /////////////////////////////////////
-    // stop after MAX_GEN generations
     eoGenContinue<Indi> continuator(MAX_GEN);
+    /* Does work too with a steady fit continuator. */
     // eoSteadyFitContinue< Indi > continuator( 10, 50 );
-
-    // GENERATION
-    /////////////////////////////////////////
-    // the algorithm
-    ////////////////////////////////////////
-    // standard Generational GA requires
-    // selection, evaluation, crossover and mutation, stopping criterion
 
     eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE,
             eval, continuator);
 
+    /* How to assign tasks, which are starts? */
     DynamicAssignmentAlgorithm assignmentAlgo;
+    /* Before a worker starts its algorithm, how does it reinits the population?
+     * There are a few default usable functors, defined in eoMultiStart.h.
+     *
+     * This one (ReuseSamePopEA) doesn't modify the population after a start, so
+     * the same population is reevaluated on each multistart: the solution tend
+     * to get better and better.
+     */
     ReuseSamePopEA< Indi > resetAlgo( continuator, pop, eval );
+    /**
+     * How to send seeds to the workers, at the beginning of the parallel job?
+     * This functors indicates that seeds should be random values.
+     */
     GetRandomSeeds< Indi > getSeeds( SEED );
 
+    // Builds the store
     MultiStartStore< Indi > store(
             gga,
             DEFAULT_MASTER,
             resetAlgo,
             getSeeds);
 
+    // Creates the multistart job and runs it.
+    // The last argument indicates that we want to launch 5 runs.
     MultiStart< Indi > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
     msjob.run();
 
@@ -202,5 +166,4 @@ int main(int argc, char **argv)
         std::cout << "Global best individual has fitness " << msjob10.best_individuals().best_element().fitness() << std::endl;
     }
     return 0;
-
 }
