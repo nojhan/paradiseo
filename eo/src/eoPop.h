@@ -201,6 +201,8 @@ public:
 #else
         typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
 #endif
+    if( it == end() )
+        throw std::runtime_error("eoPop<EOT>: Empty population, when calling best_element().");
     return (*it);
   }
 
