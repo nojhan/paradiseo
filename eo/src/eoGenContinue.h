@@ -35,24 +35,24 @@
     @ingroup Continuators
 */
 template< class EOT>
-class eoGenContinue: public eoContinue<EOT>, public eoValueParam<unsigned>
+class eoGenContinue: public eoCountContinue<EOT>, public eoValueParam<unsigned>
 {
 public:
 
+    using eoCountContinue<EOT>::thisGeneration;
+    using eoCountContinue<EOT>::thisGenerationPlaceholder;
+
   /// Ctor for setting a
   eoGenContinue( unsigned long _totalGens)
-          : eoValueParam<unsigned>(0, "Generations", "Generations"),
-            repTotalGenerations( _totalGens ),
-            thisGenerationPlaceHolder(0),
-            thisGeneration(thisGenerationPlaceHolder)
+          : eoCountContinue<EOT>( ),
+            eoValueParam<unsigned>(0, "Generations", "Generations"),
+            repTotalGenerations( _totalGens )
     {};
 
   /// Ctor for enabling the save/load the no. of generations counted
   eoGenContinue( unsigned long _totalGens, unsigned long& _currentGen)
-          : eoValueParam<unsigned>(0, "Generations", "Generations"),
-            repTotalGenerations( _totalGens ),
-            thisGenerationPlaceHolder(0),
-            thisGeneration(_currentGen)
+          : eoCountContinue<EOT>( _currentGen ), eoValueParam<unsigned>(0, "Generations", "Generations"),
+            repTotalGenerations( _totalGens )
     {};
 
   /** Returns false when a certain number of generations is
@@ -77,7 +77,7 @@ public:
     */
   virtual void totalGenerations( unsigned long _tg ) {
           repTotalGenerations = _tg;
-          thisGeneration = 0;
+          eoCountContinue<EOT>::reset();
         };
 
   /** Returns the number of generations to reach*/
@@ -85,7 +85,6 @@ public:
   {
     return repTotalGenerations;
   };
-
 
   virtual std::string className(void) const { return "eoGenContinue"; }
 
@@ -107,8 +106,6 @@ public:
 
 private:
   unsigned long repTotalGenerations;
-  unsigned long thisGenerationPlaceHolder;
-  unsigned long& thisGeneration;
 };
 
 #endif

@@ -14,6 +14,9 @@ SET(LIBRARY_OUTPUT_PATH ${EOMPI_LIB_OUTPUT_PATH})
 
 SET(EOMPI_SOURCES
     eoMpi.cpp
+    eoMpiAssignmentAlgorithm.cpp
+    eoMpiNode.cpp
+    implMpi.cpp
     )
 
 ADD_LIBRARY(eompi STATIC ${EOMPI_SOURCES})

@@ -15,7 +15,6 @@ INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib/MGE)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 IF(WITH_MPI)
-    INCLUDE_DIRECTORIES(${BOOST_DIR}/include)
     INCLUDE_DIRECTORIES(${MPI_DIR}/include)
 ENDIF()
 
@@ -26,9 +25,8 @@ ENDIF()
 LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
 
 IF(WITH_MPI)
-    LINK_DIRECTORIES(${BOOST_DIR}/lib)
     LINK_DIRECTORIES(${MPI_DIR}/lib)
-    SET(CMAKE_CXX_COMPILER "${MPI_DIR}/bin/mpicxx")
+    SET(CMAKE_CXX_COMPILER "mpicxx")
 ENDIF()
 
 ######################################################################################

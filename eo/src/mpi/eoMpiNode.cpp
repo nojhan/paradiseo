@@ -19,30 +19,22 @@ Contact: http://eodev.sourceforge.net
 Authors:
     Benjamin Bouvier <benjamin.bouvier@gmail.com>
 */
-# include "eoMpi.h"
+# include "eoMpiNode.h"
 
 namespace eo
 {
     namespace mpi
     {
-        /**********************************************
-         * *********** GLOBALS ************************
-         * *******************************************/
-        eoTimerStat timerStat;
-
-        namespace Channel
+        void Node::init( int argc, char** argv )
         {
-            const int Commands = 0;
-            const int Messages = 1;
+            static bmpi::environment env( argc, argv );
         }
 
-        namespace Message
+        bmpi::communicator& Node::comm()
         {
-            const int Continue = 0;
-            const int Finish = 1;
-            const int Kill = 2;
+            return _comm;
         }
 
-        const int DEFAULT_MASTER = 0;
+        bmpi::communicator Node::_comm;
     }
 }

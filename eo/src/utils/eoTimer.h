@@ -30,12 +30,7 @@ Authors:
 
 # include "utils/eoParallel.h" // eo::parallel
 
-# ifdef WITH_MPI
-// For serialization purposes
-# include <boost/serialization/access.hpp>
-# include <boost/serialization/vector.hpp>
-# include <boost/serialization/map.hpp>
-# endif
+# include "serial/eoSerial.h" // eo::Persistent
 
 /**
  * @brief Timer allowing to measure time between a start point and a stop point.
@@ -202,6 +197,9 @@ class eoTimer
  * @ingroup Utilities
  */
 class eoTimerStat
+# ifdef WITH_MPI
+    : public eoserial::Persistent
+# endif
 {
     public:
 
@@ -215,41 +213,63 @@ class eoTimerStat
          * It can readily be serialized with boost when compiling with mpi.
          */
         struct Stat
+# ifdef WITH_MPI
+            : public eoserial::Persistent
+# endif
         {
             std::vector<long int> utime;
             std::vector<long int> stime;
             std::vector<double> wtime;
 #ifdef WITH_MPI
-            // Gives access to boost serialization
-            friend class boost::serialization::access;
+            void unpack( const eoserial::Object* obj )
+            {
+                utime.clear();
+                static_cast< eoserial::Array* >(obj->find("utime")->second)
+                    ->deserialize< std::vector<long int>, eoserial::Array::UnpackAlgorithm >( utime );
 
-            /**
-             * Serializes the single statistic in a boost archive (useful for boost::mpi).
-             * Just serializes the 3 vectors.
-             */
-            template <class Archive>
-                void serialize( Archive & ar, const unsigned int version )
-                {
-                    ar & utime & stime & wtime;
-                    (void) version; // avoid compilation warning
-                }
+                stime.clear();
+                static_cast< eoserial::Array* >(obj->find("stime")->second)
+                    ->deserialize< std::vector<long int>, eoserial::Array::UnpackAlgorithm >( stime );
+
+                wtime.clear();
+                static_cast< eoserial::Array* >(obj->find("wtime")->second)
+                    ->deserialize< std::vector<double>, eoserial::Array::UnpackAlgorithm >( wtime );
+            }
+
+            eoserial::Object* pack( void ) const
+            {
+                eoserial::Object* obj = new eoserial::Object;
+                obj->add("utime", eoserial::makeArray< std::vector<long int>, eoserial::MakeAlgorithm >( utime ) );
+                obj->add("stime", eoserial::makeArray< std::vector<long int>, eoserial::MakeAlgorithm >( stime ) );
+                obj->add("wtime", eoserial::makeArray< std::vector<double>, eoserial::MakeAlgorithm >( wtime ) );
+                return obj;
+            }
 # endif
         };
 
 #ifdef WITH_MPI
-        // Gives access to boost serialization
-        friend class boost::serialization::access;
-
-        /**
-         * Serializes the timerStat object in a boost archive (useful for boost::mpi).
-         * Just serializes the map.
-         */
-        template <class Archive>
-            void serialize( Archive & ar, const unsigned int version )
+        void unpack( const eoserial::Object* obj )
+        {
+            _stats.clear();
+            for( eoserial::Object::const_iterator it = obj->begin(), final = obj->end();
+                    it != final;
+                    ++it)
             {
-                ar & _stats;
-                (void) version; // avoid compilation warning
+                eoserial::unpackObject( *obj, it->first, _stats[ it->first ] );
             }
+        }
+
+        eoserial::Object* pack( void ) const
+        {
+            eoserial::Object* obj = new eoserial::Object;
+            for( std::map<std::string, Stat >::const_iterator it = _stats.begin(), final = _stats.end();
+                    it != final;
+                    ++it)
+            {
+                obj->add( it->first, it->second.pack() );
+            }
+            return obj;
+        }
 # endif
 
         /**
