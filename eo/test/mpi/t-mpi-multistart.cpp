@@ -84,7 +84,7 @@ struct MultiStartData
 
     MultiStartData( mpi::communicator& _comm, eoAlgo<EOT>& _algo, int _masterRank, ResetAlgo & _resetAlgo )
         :
-        runs( 0 ), firstIndividual( true ), bestFitness(), pop(),
+        runs( 0 ), pop(), bests(),
         comm( _comm ), algo( _algo ), masterRank( _masterRank ), resetAlgo( _resetAlgo )
     {
         // empty
@@ -92,9 +92,7 @@ struct MultiStartData
 
     // dynamic parameters
     int runs;
-    bool firstIndividual;
-    typename EOT::Fitness bestFitness;
-    EOT bestIndividual;
+    eoPop< EOT > bests;
     eoPop< EOT > pop;
 
     // static parameters
@@ -127,13 +125,7 @@ class HandleResponseMultiStart : public HandleResponseFunction< MultiStartData< 
             EOT individual;
             MultiStartData< EOT >& d = *_data;
             d.comm.recv( wrkRank, 1, individual );
-
-            if( d.firstIndividual || individual.fitness() > d.bestFitness )
-            {
-                d.bestFitness = individual.fitness();
-                d.bestIndividual = individual;
-                d.firstIndividual = false;
-            }
+            d.bests.push_back( individual );
         }
 };
 
@@ -249,14 +241,9 @@ class MultiStart : public OneShotJob< MultiStartData< EOT > >
         store.init( algo.idles(), runs );
     }
 
-    EOT& best_individual()
+    eoPop<EOT>& best_individuals()
     {
-        return this->store.data()->bestIndividual;
-    }
-
-    typename EOT::Fitness best_fitness()
-    {
-        return this->store.data()->bestFitness;
+        return this->store.data()->bests;
     }
 };
 
@@ -320,9 +307,9 @@ struct GetRandomSeeds : public MultiStartStore<EOT>::GetSeeds
 };
 
 template<class EOT>
-struct ReusePopEA: public MultiStartStore<EOT>::ResetAlgo
+struct ReuseOriginalPopEA: public MultiStartStore<EOT>::ResetAlgo
 {
-    ReusePopEA(
+    ReuseOriginalPopEA(
             eoGenContinue<EOT> & continuator,
             const eoPop<EOT>& originalPop,
             eoEvalFunc<EOT>& eval) :
@@ -372,7 +359,7 @@ int main(int argc, char **argv)
     //////////////////////////
     //reproducible random seed: if you don't change SEED above,
     // you'll aways get the same result, NOT a random run
-    rng.reseed(SEED);
+    // rng.reseed(SEED);
 
     // EVAL
     /////////////////////////////
@@ -449,22 +436,32 @@ int main(int argc, char **argv)
             eval, continuator);
 
     DynamicAssignmentAlgorithm assignmentAlgo;
+    ReuseOriginalPopEA< Indi > resetAlgo( continuator, pop, eval );
+    GetRandomSeeds< Indi > getSeeds( SEED );
+
     MultiStartStore< Indi > store(
             gga,
             DEFAULT_MASTER,
-            *new ReusePopEA< Indi >( continuator, pop, eval ),
-            *new DummyGetSeeds< Indi >());
+            resetAlgo,
+            getSeeds);
 
     MultiStart< Indi > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
     msjob.run();
 
     if( msjob.isMaster() )
     {
-        std::cout << "Global best individual has fitness " << msjob.best_fitness() << std::endl;
+        msjob.best_individuals().sort();
+        std::cout << "Global best individual has fitness " << msjob.best_individuals().best_element().fitness() << std::endl;
     }
 
     MultiStart< Indi > msjob10( assignmentAlgo, DEFAULT_MASTER, store, 10 );
     msjob10.run();
 
+    if( msjob10.isMaster() )
+    {
+        msjob10.best_individuals().sort();
+        std::cout << "Global best individual has fitness " << msjob10.best_individuals().best_element().fitness() << std::endl;
+    }
     return 0;
+
 }
