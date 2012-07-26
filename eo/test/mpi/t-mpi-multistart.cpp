@@ -338,6 +338,44 @@ struct ReuseOriginalPopEA: public MultiStartStore<EOT>::ResetAlgo
     eoEvalFunc<EOT>& _eval;
 };
 
+template< class EOT >
+struct ReuseSamePopEA : public MultiStartStore<EOT>::ResetAlgo
+{
+    ReuseSamePopEA(
+            eoGenContinue<EOT>& continuator,
+            const eoPop<EOT>& originalPop,
+            eoEvalFunc<EOT>& eval
+            ) :
+        _continuator( continuator ),
+        _originalPop( originalPop ),
+        _firstTime( true ),
+        _initial( continuator.totalGenerations() )
+    {
+        for( unsigned i = 0, size = originalPop.size();
+                i < size; ++i )
+        {
+            eval(_originalPop[i]);
+        }
+    }
+
+    void operator()( eoPop<EOT>& pop )
+    {
+        if( _firstTime )
+        {
+            pop = _originalPop;
+            _firstTime = false;
+        }
+        _continuator.totalGenerations( _initial );
+    }
+
+    protected:
+
+    eoGenContinue<EOT>& _continuator;
+    eoPop<EOT> _originalPop;
+    bool _firstTime;
+    int _initial;
+};
+
 int main(int argc, char **argv)
 {
     Node::init( argc, argv );
@@ -436,7 +474,7 @@ int main(int argc, char **argv)
             eval, continuator);
 
     DynamicAssignmentAlgorithm assignmentAlgo;
-    ReuseOriginalPopEA< Indi > resetAlgo( continuator, pop, eval );
+    ReuseSamePopEA< Indi > resetAlgo( continuator, pop, eval );
     GetRandomSeeds< Indi > getSeeds( SEED );
 
     MultiStartStore< Indi > store(
