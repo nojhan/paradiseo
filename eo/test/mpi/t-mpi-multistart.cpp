@@ -11,7 +11,6 @@ using namespace eo::mpi;
 // Use functions from namespace std
 using namespace std;
 
-
 class SerializableEOReal: public eoReal<double>, public eoserial::Persistent
 {
 public:
@@ -19,6 +18,7 @@ public:
     SerializableEOReal(unsigned size = 0, double value = 0.0) :
             eoReal<double>(size, value)
     {
+        // empty
     }
 
     void unpack( const eoserial::Object* obj )
@@ -69,48 +69,13 @@ typedef SerializableEOReal Indi;
 
 double real_value(const Indi & _indi)
 {
-  double sum = 0;
-  for (unsigned i = 0; i < _indi.size(); i++)
-      sum += _indi[i]*_indi[i];
-  return (-sum);            // maximizing only
+    double sum = 0;
+    for (unsigned i = 0; i < _indi.size(); i++)
+        sum += _indi[i]*_indi[i];
+    return (-sum);            // maximizing only
 }
 
 /************************** PARALLELIZATION JOB *******************************/
-/*
- * This file is a template for a new eo::mpi::Job. You have everything that should be necessary to implement a new
- * parallelized algorithm.
- *
- * Replace MultiStart by the name of your algorithm (for instance: MultiStart, ParallelApply, etc.).
- */
-
-template< class T >
-struct SerializableBasicType : public eoserial::Persistent
-{
-    public:
-        SerializableBasicType( T & value )
-        {
-            _value = value;
-        }
-
-        operator T&()
-        {
-            return _value;
-        }
-
-        void unpack( const eoserial::Object* obj )
-        {
-            eoserial::unpack( *obj, "value", _value );
-        }
-
-        eoserial::Object* pack( void ) const
-        {
-            eoserial::Object* obj = new eoserial::Object;
-            obj->add( "value", eoserial::make( _value ) );
-        }
-
-    private:
-        T _value;
-};
 
 template< class EOT >
 struct MultiStartData
@@ -159,16 +124,9 @@ class HandleResponseMultiStart : public HandleResponseFunction< MultiStartData< 
 
         void operator()( int wrkRank )
         {
-            std::cout << "Response received." << std::endl;
-
             EOT individual;
             MultiStartData< EOT >& d = *_data;
             d.comm.recv( wrkRank, 1, individual );
-
-            std::cout << "Fitness of individual: " << individual.fitness() << std::endl;
-            if ( ! d.firstIndividual ) {
-                std::cout << "Best fitness: " << d.bestFitness << std::endl;
-            }
 
             if( d.firstIndividual || individual.fitness() > d.bestFitness )
             {
@@ -187,12 +145,6 @@ class ProcessTaskMultiStart : public ProcessTaskFunction< MultiStartData< EOT > 
 
         void operator()()
         {
-            // DEBUG
-            //static int i = 0;
-            //std::cout << Node::comm().rank() << "-" << i++ << " random: " << eo::rng.rand() << std::endl;
-
-            // std::cout << "POP(" << _data->pop.size() << ") : " << _data->pop << std::endl;
-
             _data->resetAlgo( _data->pop );
             _data->algo( _data->pop );
             _data->comm.send( _data->masterRank, 1, _data->pop.best_element() );
@@ -222,13 +174,12 @@ class MultiStartStore : public JobStore< MultiStartData< EOT > >
         MultiStartStore(
                 eoAlgo<EOT> & algo,
                 int masterRank,
-                // eoInit<EOT>* init = 0
                 ResetAlgo & resetAlgo,
                 GetSeeds & getSeeds
                 )
             : _data( Node::comm(), algo, masterRank, resetAlgo ),
-            _masterRank( masterRank ),
-            _getSeeds( getSeeds )
+            _getSeeds( getSeeds ),
+            _masterRank( masterRank )
         {
             this->_iff = new IsFinishedMultiStart< EOT >;
             this->_iff->needDelete(true);
@@ -250,12 +201,10 @@ class MultiStartStore : public JobStore< MultiStartData< EOT > >
             {
                 if( seeds.size() < nbWorkers )
                 {
-                    // TODO
-                    // get multiples of the current seed?
-                    // generate seeds?
-                    for( int i = 1; seeds.size() < nbWorkers ; ++i )
+                    // Random seeds
+                    for( int i = seeds.size(); i < nbWorkers; ++i )
                     {
-                        seeds.push_back( i );
+                        seeds.push_back( eo::rng.rand() );
                     }
                 }
 
@@ -268,7 +217,7 @@ class MultiStartStore : public JobStore< MultiStartData< EOT > >
             {
                 int seed;
                 Node::comm().recv( _masterRank, 1, seed );
-                std::cout << Node::comm().rank() << "- Seed: " << seed << std::endl;
+                eo::log << eo::debug << Node::comm().rank() << "- Seed: " << seed << std::endl;
                 eo::rng.reseed( seed );
             }
         }
@@ -280,7 +229,6 @@ class MultiStartStore : public JobStore< MultiStartData< EOT > >
 
     private:
         MultiStartData< EOT > _data;
-
         GetSeeds & _getSeeds;
         int _masterRank;
 };
@@ -343,6 +291,7 @@ struct MultiplesOfNumber : public MultiStartStore<EOT>::GetSeeds
         {
             ret.push_back( (++_i) * _seed );
         }
+        return ret;
     }
 
     private:
@@ -366,6 +315,7 @@ struct GetRandomSeeds : public MultiStartStore<EOT>::GetSeeds
         {
             ret.push_back( eo::rng.rand() );
         }
+        return ret;
     }
 };
 
@@ -486,8 +436,7 @@ int main(int argc, char **argv)
     // termination condition
     /////////////////////////////////////
     // stop after MAX_GEN generations
-    eoGenContinue<Indi> continuator(MAX_GEN); /** TODO FIXME FIXME BUG HERE!
-                                                Continuator thinks it's done! */
+    eoGenContinue<Indi> continuator(MAX_GEN);
 
     // GENERATION
     /////////////////////////////////////////
