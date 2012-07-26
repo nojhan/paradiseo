@@ -1,76 +1,79 @@
 # include <mpi/eoMpi.h>
 using namespace eo::mpi;
 
+#include <stdexcept>
+#include <iostream>
+#include <sstream>
+
 #include <eo>
+#include <es.h>
 
-/***************************** EASY PSO STUFF ********************************/
-//-----------------------------------------------------------------------------
-typedef eoMinimizingFitness ParticleFitness;
-//-----------------------------------------------------------------------------
-class SerializableParticle : public eoRealParticle< ParticleFitness >, public eoserial::Persistent
+// Use functions from namespace std
+using namespace std;
+
+
+class SerializableEOReal: public eoReal<double>, public eoserial::Persistent
 {
-    public:
+public:
 
-        SerializableParticle(unsigned size = 0, double positions = 0.0,double velocities = 0.0,double bestPositions = 0.0): eoRealParticle< ParticleFitness > (size, positions,velocities,bestPositions) {}
+    SerializableEOReal(unsigned size = 0, double value = 0.0) :
+            eoReal<double>(size, value)
+    {
+    }
 
-        void unpack( const eoserial::Object* obj )
+    void unpack( const eoserial::Object* obj )
+    {
+        this->clear();
+        eoserial::unpackArray
+            < std::vector<double>, eoserial::Array::UnpackAlgorithm >
+            ( *obj, "vector", *this );
+
+        bool invalidFitness;
+        eoserial::unpack( *obj, "invalid_fitness", invalidFitness );
+        if( invalidFitness )
         {
-            this->clear();
-            eoserial::unpackArray
-                < std::vector<double>, eoserial::Array::UnpackAlgorithm >
-                ( *obj, "vector", *this );
+            this->invalidate();
+        } else
+        {
+            double f;
+            eoserial::unpack( *obj, "fitness", f );
+            this->fitness( f );
+        }
+    }
 
-            this->bestPositions.clear();
-            eoserial::unpackArray
-                < std::vector<double>, eoserial::Array::UnpackAlgorithm >
-                ( *obj, "best_positions", this->bestPositions );
+    eoserial::Object* pack( void ) const
+    {
+        eoserial::Object* obj = new eoserial::Object;
+        obj->add( "vector", eoserial::makeArray< std::vector<double>, eoserial::MakeAlgorithm >( *this ) );
 
-            this->velocities.clear();
-            eoserial::unpackArray
-                < std::vector<double>, eoserial::Array::UnpackAlgorithm >
-                ( *obj, "velocities", this->velocities );
-
-            bool invalidFitness;
-            eoserial::unpack( *obj, "invalid_fitness", invalidFitness );
-            if( invalidFitness )
-            {
-                this->invalidate();
-            } else
-            {
-                ParticleFitness f;
-                eoserial::unpack( *obj, "fitness", f );
-                this->fitness( f );
-            }
+        bool invalidFitness = this->invalid();
+        obj->add( "invalid_fitness", eoserial::make( invalidFitness ) );
+        if( !invalidFitness )
+        {
+            obj->add( "fitness", eoserial::make( this->fitness() ) );
         }
 
-        eoserial::Object* pack( void ) const
-        {
-            eoserial::Object* obj = new eoserial::Object;
-            obj->add( "vector", eoserial::makeArray< std::vector<double>, eoserial::MakeAlgorithm >( *this ) );
-            obj->add( "best_positions", eoserial::makeArray< std::vector<double>, eoserial::MakeAlgorithm >( this->bestPositions ) );
-            obj->add( "velocities", eoserial::makeArray< std::vector<double>, eoserial::MakeAlgorithm>( this->velocities ) );
-
-            bool invalidFitness = this->invalid();
-            obj->add( "invalid_fitness", eoserial::make( invalidFitness ) );
-            if( !invalidFitness )
-            {
-                obj->add( "fitness", eoserial::make( this->fitness() ) );
-            }
-
-            return obj;
-        }
-
+        return obj;
+    }
 };
-typedef SerializableParticle Particle;
-//-----------------------------------------------------------------------------
 
-// the objective function
-double real_value (const Particle & _particle)
+// REPRESENTATION
+//-----------------------------------------------------------------------------
+// define your individuals
+typedef SerializableEOReal Indi;
+typedef double IndiFitness;
+
+// EVAL
+//-----------------------------------------------------------------------------
+// a simple fitness function that computes the euclidian norm of a real vector
+//    @param _indi A real-valued individual
+
+double real_value(const Indi & _indi)
 {
-    double sum = 0;
-    for (unsigned i = 0; i < _particle.size ()-1; i++)
-    sum += pow(_particle[i],2);
-    return (sum);
+  double sum = 0;
+  for (unsigned i = 0; i < _indi.size(); i++)
+      sum += _indi[i]*_indi[i];
+  return (-sum);            // maximizing only
 }
 
 /************************** PARALLELIZATION JOB *******************************/
@@ -113,10 +116,12 @@ struct SerializableBasicType : public eoserial::Persistent
 template< class EOT, class FitT >
 struct MultiStartData
 {
-    MultiStartData( mpi::communicator& _comm, eoAlgo<EOT>& _algo, int _masterRank, eoInit<EOT>* _init = 0 )
+    typedef eoF<void> ResetAlgo;
+
+    MultiStartData( mpi::communicator& _comm, eoAlgo<EOT>& _algo, int _masterRank, ResetAlgo & _resetAlgo )
         :
         runs( 0 ), firstIndividual( true ), bestFitness(), pop(),
-        comm( _comm ), algo( _algo ), masterRank( _masterRank ), init( _init )
+        comm( _comm ), algo( _algo ), masterRank( _masterRank ), resetAlgo( _resetAlgo )
     {
         // empty
     }
@@ -131,7 +136,7 @@ struct MultiStartData
     // static parameters
     mpi::communicator& comm;
     eoAlgo<EOT>& algo;
-    eoInit<EOT>* init;
+    ResetAlgo& resetAlgo;
     int masterRank;
 };
 
@@ -183,6 +188,13 @@ class ProcessTaskMultiStart : public ProcessTaskFunction< MultiStartData< EOT, F
 
         void operator()()
         {
+            // DEBUG
+            //static int i = 0;
+            //std::cout << Node::comm().rank() << "-" << i++ << " random: " << eo::rng.rand() << std::endl;
+
+            // std::cout << "POP(" << _data->pop.size() << ") : " << _data->pop << std::endl;
+
+            _data->resetAlgo();
             _data->algo( _data->pop );
             _data->comm.send( _data->masterRank, 1, _data->pop.best_element() );
         }
@@ -205,10 +217,22 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
 {
     public:
 
-        MultiStartStore( eoAlgo<EOT> & algo, int masterRank, const eoPop< EOT > & pop, eoInit<EOT>* init = 0 )
-            : _data( Node::comm(), algo, masterRank, init ),
-              _pop( pop ),
-              _firstPopInit( true )
+        typedef typename MultiStartData<EOT,FitT>::ResetAlgo ResetAlgo;
+        typedef eoUF< eoPop<EOT>&, void > ReinitJob;
+        typedef eoUF< int, std::vector<int> > GetSeeds;
+
+        MultiStartStore(
+                eoAlgo<EOT> & algo,
+                int masterRank,
+                // eoInit<EOT>* init = 0
+                ReinitJob & reinitJob,
+                ResetAlgo & resetAlgo,
+                GetSeeds & getSeeds
+                )
+            : _data( Node::comm(), algo, masterRank, resetAlgo ),
+            _masterRank( masterRank ),
+            _getSeeds( getSeeds ),
+            _reinitJob( reinitJob )
         {
             this->_iff = new IsFinishedMultiStart< EOT, FitT >;
             this->_iff->needDelete(true);
@@ -220,20 +244,39 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
             this->_ptf->needDelete(true);
         }
 
-        void init( int runs )
+        void init( const std::vector<int>& workers, int runs )
         {
+            int nbWorkers = workers.size();
+
+            _reinitJob( _data.pop );
             _data.runs = runs;
 
-            if( _data.init )
+            std::vector< int > seeds = _getSeeds( nbWorkers );
+            if( Node::comm().rank() == _masterRank )
             {
-                _data.pop = eoPop<EOT>( _pop.size(), *_data.init );
-            } else if( _firstPopInit )
-            {
-                _data.pop = _pop;
-            }
-            _firstPopInit = false;
+                if( seeds.size() < nbWorkers )
+                {
+                    // TODO
+                    // get multiples of the current seed?
+                    // generate seeds?
+                    for( int i = 1; seeds.size() < nbWorkers ; ++i )
+                    {
+                        seeds.push_back( i );
+                    }
+                }
 
-            _data.firstIndividual = true;
+                for( int i = 0 ; i < nbWorkers ; ++i )
+                {
+                    int wrkRank = workers[i];
+                    Node::comm().send( wrkRank, 1, seeds[ i ] );
+                }
+            } else
+            {
+                int seed;
+                Node::comm().recv( _masterRank, 1, seed );
+                std::cout << Node::comm().rank() << "- Seed: " << seed << std::endl;
+                eo::rng.reseed( seed );
+            }
         }
 
         MultiStartData<EOT, FitT>* data()
@@ -243,12 +286,14 @@ class MultiStartStore : public JobStore< MultiStartData< EOT, FitT > >
 
     private:
         MultiStartData< EOT, FitT > _data;
-        const eoPop< EOT >& _pop;
-        bool _firstPopInit;
+
+        GetSeeds & _getSeeds;
+        ReinitJob & _reinitJob;
+        int _masterRank;
 };
 
 template< class EOT, class FitT >
-class MultiStart : public MultiJob< MultiStartData< EOT, FitT > >
+class MultiStart : public OneShotJob< MultiStartData< EOT, FitT > >
 {
     public:
 
@@ -258,38 +303,9 @@ class MultiStart : public MultiJob< MultiStartData< EOT, FitT > >
                 // dynamic parameters
                 int runs,
                 const std::vector<int>& seeds = std::vector<int>()  ) :
-            MultiJob< MultiStartData< EOT, FitT > >( algo, masterRank, store )
+            OneShotJob< MultiStartData< EOT, FitT > >( algo, masterRank, store )
     {
-        store.init( runs );
-
-        if( this->isMaster() )
-        {
-            int nbWorkers = algo.availableWorkers();
-            std::vector<int> realSeeds = seeds;
-            if( realSeeds.size() < nbWorkers )
-            {
-                // TODO
-                // get multiples of the current seed?
-                // generate seeds?
-                for( int i = 1; realSeeds.size() < nbWorkers ; ++i )
-                {
-                    realSeeds.push_back( i );
-                }
-            }
-
-            std::vector<int> idles = algo.idles();
-            for( int i = 0 ; i < nbWorkers ; ++i )
-            {
-                int wrkRank = idles[i];
-                Node::comm().send( wrkRank, 1, realSeeds[ i ] );
-            }
-        } else
-        {
-            int seed;
-            Node::comm().recv( masterRank, 1, seed );
-            std::cout << Node::comm().rank() << "- Seed: " << seed << std::endl;
-            eo::rng.reseed( seed );
-        }
+        store.init( algo.idles(), runs );
     }
 
     EOT& best_individual()
@@ -303,95 +319,205 @@ class MultiStart : public MultiJob< MultiStartData< EOT, FitT > >
     }
 };
 
+template<class EOT, class FitT>
+struct DummyGetSeeds : public MultiStartStore<EOT,FitT>::GetSeeds
+{
+    std::vector<int> operator()( int n )
+    {
+        return std::vector<int>();
+    }
+};
+
+template<class EOT, class FitT>
+struct GetRandomSeeds : public MultiStartStore<EOT,FitT>::GetSeeds
+{
+    std::vector<int> operator()( int n )
+    {
+        std::vector<int> ret;
+        for(int i = 0; i < n; ++i)
+        {
+            ret.push_back( eo::rng.rand() );
+        }
+    }
+};
+
+template<class EOT, class FitT>
+struct ReinitMultiEA : public MultiStartStore<EOT,FitT>::ReinitJob
+{
+    ReinitMultiEA( const eoPop<EOT>& pop, eoEvalFunc<EOT>& eval ) : _originalPop( pop ), _eval( eval )
+    {
+        // empty
+    }
+
+    void operator()( eoPop<EOT>& pop )
+    {
+        pop = _originalPop;
+        for(unsigned i = 0, size = pop.size(); i < size; ++i)
+        {
+            _eval( pop[i] );
+        }
+    }
+
+    private:
+    const eoPop<EOT>& _originalPop;
+    eoEvalFunc<EOT>& _eval;
+};
+
+template<class EOT, class FitT>
+struct ResetAlgoEA : public MultiStartStore<EOT,FitT>::ResetAlgo
+{
+    ResetAlgoEA( eoGenContinue<EOT> & continuator ) :
+        _continuator( continuator ),
+        _initial( continuator.totalGenerations() )
+    {
+        // empty
+    }
+
+    void operator()()
+    {
+        _continuator.totalGenerations( _initial );
+    }
+
+    private:
+    unsigned int _initial;
+    eoGenContinue<EOT> & _continuator;
+};
+
+template< class EOT >
+struct eoInitAndEval : public eoInit<EOT>
+{
+    eoInitAndEval( eoInit<EOT>& init, eoEvalFunc<EOT>& eval ) : _init( init ), _eval( eval )
+    {
+        // empty
+    }
+
+    void operator()( EOT & indi )
+    {
+        _init( indi );
+        _eval( indi );
+    }
+
+    private:
+    eoInit<EOT>& _init;
+    eoEvalFunc<EOT>& _eval;
+};
+
 int main(int argc, char **argv)
 {
     Node::init( argc, argv );
 
-    const unsigned int VEC_SIZE = 2;
-    const unsigned int POP_SIZE = 20;
-    const unsigned int NEIGHBORHOOD_SIZE= 5;
-    unsigned i;
+    // PARAMETRES
+    // all parameters are hard-coded!
+    const unsigned int SEED = 133742; // seed for random number generator
+    const unsigned int VEC_SIZE = 8; // Number of object variables in genotypes
+    const unsigned int POP_SIZE = 20; // Size of population
+    const unsigned int T_SIZE = 3; // size for tournament selection
+    const unsigned int MAX_GEN = 20; // Maximum number of generation before STOP
+    const float CROSS_RATE = 0.8; // Crossover rate
+    const double EPSILON = 0.01;  // range for real uniform mutation
+    const float MUT_RATE = 0.5;   // mutation rate
 
-    eo::rng.reseed(1);
+    // GENERAL
+    //////////////////////////
+    //  Random seed
+    //////////////////////////
+    //reproducible random seed: if you don't change SEED above,
+    // you'll aways get the same result, NOT a random run
+    rng.reseed(SEED);
 
-    // the population:
-    eoPop<Particle> pop;
+    // EVAL
+    /////////////////////////////
+    // Fitness function
+    ////////////////////////////
+    // Evaluation: from a plain C++ fn to an EvalFunc Object
+    eoEvalFuncPtr<Indi> eval( real_value );
 
-    // Evaluation
-    eoEvalFuncPtr<Particle, double, const Particle& > eval(  real_value );
+    // INIT
+    ////////////////////////////////
+    // Initilisation of population
+    ////////////////////////////////
 
-    // position init
-    eoUniformGenerator < double >uGen (-3, 3);
-    eoInitFixedLength < Particle > random (VEC_SIZE, uGen);
+    // declare the population
+    eoPop<Indi> pop;
+    // fill it!
+    /*
+    for (unsigned int igeno=0; igeno<POP_SIZE; igeno++)
+    {
+        Indi v;          // void individual, to be filled
+        for (unsigned ivar=0; ivar<VEC_SIZE; ivar++)
+        {
+            double r = 2*rng.uniform() - 1; // new value, random in [-1,1)
+            v.push_back(r);       // append that random value to v
+        }
+        eval(v);                  // evaluate it
+        pop.push_back(v);         // and put it in the population
+    }
+    */
+    eoUniformGenerator< double > generator;
+    eoInitFixedLength< Indi > init( VEC_SIZE, generator );
+    // eoInitAndEval< Indi > init( real_init, eval, continuator );
+    pop = eoPop<Indi>( POP_SIZE, init );
 
-    // velocity init
-    eoUniformGenerator < double >sGen (-2, 2);
-    eoVelocityInitFixedLength < Particle > veloRandom (VEC_SIZE, sGen);
+    // ENGINE
+    /////////////////////////////////////
+    // selection and replacement
+    ////////////////////////////////////
+    // SELECT
+    // The robust tournament selection
+    eoDetTournamentSelect<Indi> select(T_SIZE);       // T_SIZE in [2,POP_SIZE]
 
-    // local best init
-    eoFirstIsBestInit < Particle > localInit;
+    // REPLACE
+    // eoSGA uses generational replacement by default
+    // so no replacement procedure has to be given
 
-    // perform position initialization
-    pop.append (POP_SIZE, random);
+    // OPERATORS
+    //////////////////////////////////////
+    // The variation operators
+    //////////////////////////////////////
+    // CROSSOVER
+    // offspring(i) is a linear combination of parent(i)
+    eoSegmentCrossover<Indi> xover;
+    // MUTATION
+    // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
+    eoUniformMutation<Indi>  mutation(EPSILON);
 
-    // topology
-    eoLinearTopology<Particle> topology(NEIGHBORHOOD_SIZE);
+    // STOP
+    // CHECKPOINT
+    //////////////////////////////////////
+    // termination condition
+    /////////////////////////////////////
+    // stop after MAX_GEN generations
+    eoGenContinue<Indi> continuator(MAX_GEN); /** TODO FIXME FIXME BUG HERE!
+                                                Continuator thinks it's done! */
 
-    // the full initializer
-    eoInitializer <Particle> init(eval,veloRandom,localInit,topology,pop);
-    init();
+    // GENERATION
+    /////////////////////////////////////////
+    // the algorithm
+    ////////////////////////////////////////
+    // standard Generational GA requires
+    // selection, evaluation, crossover and mutation, stopping criterion
 
-    // bounds
-    eoRealVectorBounds bnds(VEC_SIZE,-1.5,1.5);
-
-    // velocity
-    eoStandardVelocity <Particle> velocity (topology,1,1.6,2,bnds);
-
-    // flight
-    eoStandardFlight <Particle> flight;
-
-    // Terminators
-    eoGenContinue <Particle> genCont1 (50);
-    eoGenContinue <Particle> genCont2 (50);
-
-    // PS flight
-    eoEasyPSO<Particle> pso1(genCont1, eval, velocity, flight);
-
-    // eoEasyPSO<Particle> pso2(init,genCont2, eval, velocity, flight);
+    eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE,
+            eval, continuator);
 
     DynamicAssignmentAlgorithm assignmentAlgo;
-    MultiStartStore< Particle, ParticleFitness > store( pso1, DEFAULT_MASTER, pop );
+    MultiStartStore< Indi, IndiFitness > store(
+            gga,
+            DEFAULT_MASTER,
+            *new ReinitMultiEA< Indi, IndiFitness >( pop, eval ),
+            *new ResetAlgoEA< Indi, IndiFitness >( continuator ),
+            *new DummyGetSeeds< Indi, IndiFitness >());
 
-    MultiStart< Particle, ParticleFitness > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
+    MultiStart< Indi, IndiFitness > msjob( assignmentAlgo, DEFAULT_MASTER, store, 5 );
     msjob.run();
 
     if( msjob.isMaster() )
     {
-        eo::mpi::EmptyJob tjob( assignmentAlgo, DEFAULT_MASTER );
         std::cout << "Global best individual has fitness " << msjob.best_fitness() << std::endl;
     }
 
-    // flight
-    /*
-    try
-    {
-        pso1(pop);
-        std::cout << "FINAL POPULATION AFTER PSO n°1:" << std::endl;
-        for (i = 0; i < pop.size(); ++i)
-            std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
-
-        pso2(pop);
-        std::cout << "FINAL POPULATION AFTER PSO n°2:" << std::endl;
-        for (i = 0; i < pop.size(); ++i)
-            std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
-    }
-    catch (std::exception& e)
-    {
-        std::cout << "exception: " << e.what() << std::endl;;
-        exit(EXIT_FAILURE);
-    }
-    */
+    MultiStart< Indi, IndiFitness > msjob10( assignmentAlgo, DEFAULT_MASTER, store, 10 );
+    msjob10.run();
 
     return 0;
-
 }
