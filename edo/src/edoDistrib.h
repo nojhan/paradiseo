@@ -30,8 +30,24 @@ Authors:
 
 #include <eoFunctor.h>
 
-//! edoDistrib< EOT >
+/** @defgroup Core
+ *
+ * Core functors that made the basis of EDO.
+ */
 
+/** @defgroup Distributions Distributions
+ *
+ * A distribution is a data structure that holds sufficient informations to
+ * describe a probability density function by a set of parameters.
+ *
+ * It is passed across EDO operators and can be updated or manipulated by them.
+ */
+
+/** Base class for distributions. This is really just an empty shell.
+ *
+ * @ingroup Distributions
+ * @ingroup Core
+ */
 template < typename EOT >
 class edoDistrib : public eoFunctorBase
 {

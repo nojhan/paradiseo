@@ -104,7 +104,7 @@ public:
     unsigned eliminated = howMany(popSize);
     if (!eliminated)   // nothing to do
       return ;
-    unsigned newsize = popSize - eliminated;
+    long newsize = static_cast<long>(popSize) - static_cast<long>(eliminated);
     if (newsize < 0)
       throw std::logic_error("eoLinearTruncateSplit: Cannot truncate to a larger size!\n");
 

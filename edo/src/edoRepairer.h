@@ -30,11 +30,19 @@ Authors:
 
 #include <eoFunctor.h>
 
+/** @defgroup Repairers
+ *
+ * A set of classes that modifies an unfeasible candidate 
+ * solution so as to respect a given set of constraints and thus make a feasible
+ * solution.
+ */
+
 /** The interface of a set of classes that modifies an unfeasible candidate 
  * solution so as to respect a given set of constraints and thus make a feasible
  * solution.
  *
  * @ingroup Repairers
+ * @ingroup Core
  */
 template < typename EOT >
 class edoRepairer : public eoUF< EOT&, void >

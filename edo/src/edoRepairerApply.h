@@ -31,7 +31,10 @@ Authors:
 
 #include "edoRepairer.h"
 
-
+/** Interface for applying an arbitrary unary function as a repairer on each item of the solution
+ *
+ * @ingroup Repairers
+ */
 template < typename EOT, typename F = typename EOT::AtomType(typename EOT::AtomType) >
 class edoRepairerApply : public edoRepairer<EOT>
 {

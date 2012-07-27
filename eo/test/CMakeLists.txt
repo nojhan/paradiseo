@@ -26,7 +26,7 @@ LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
 
 IF(WITH_MPI)
     LINK_DIRECTORIES(${MPI_DIR}/lib)
-    SET(CMAKE_CXX_COMPILER "${MPI_DIR}/bin/mpicxx")
+    SET(CMAKE_CXX_COMPILER "mpicxx")
 ENDIF()
 
 ######################################################################################

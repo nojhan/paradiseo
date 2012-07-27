@@ -129,7 +129,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
 
   // STDOUT
   // ------
-  eoStdoutMonitor *monitor = new eoStdoutMonitor(false);
+  eoStdoutMonitor *monitor = new eoStdoutMonitor(/*false FIXME remove this deprecated prototype*/);
   _state.storeFunctor(monitor);
   checkpoint->add(*monitor);
   monitor->add(*generationCounter);

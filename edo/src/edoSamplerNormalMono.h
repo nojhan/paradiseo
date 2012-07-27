@@ -36,10 +36,10 @@ Authors:
 #include "edoNormalMono.h"
 #include "edoBounder.h"
 
-/**
- * edoSamplerNormalMono
- * This class uses the NormalMono distribution parameters (bounds) to return
- * a random position used for population sampling.
+/** A sampler for edoNormalMono
+ *
+ * @ingroup Samplers
+ * @ingroup Mononormal
  */
 template < typename EOT, typename D = edoNormalMono< EOT > >
 class edoSamplerNormalMono : public edoSampler< D >

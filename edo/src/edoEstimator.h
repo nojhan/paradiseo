@@ -31,8 +31,20 @@ Authors:
 #include <eoPop.h>
 #include <eoFunctor.h>
 
-//! edoEstimator< D >
+/** @defgroup Estimators Estimators
+ *
+ * Estimators takes an eoPop and estimates the parameters of a distributions
+ * (defined as an hypothesis) from it.
+ */
 
+/** Base class for estimators.
+ *
+ * Estimators takes an eoPop and estimates the parameters of a distributions
+ * (defined as an hypothesis) from it.
+ *
+ * @ingroup Estimators
+ * @ingroup Core
+ */
 template < typename D >
 class edoEstimator : public eoUF< eoPop< typename D::EOType >&, D >
 {

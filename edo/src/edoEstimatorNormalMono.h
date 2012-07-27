@@ -31,8 +31,11 @@ Authors:
 #include "edoEstimator.h"
 #include "edoNormalMono.h"
 
-//! edoEstimatorNormalMono< EOT >
-
+/** An estimator for edoNormalMono
+ *
+ * @ingroup Estimators
+ * @ingroup Mononormal
+ */
 template < typename EOT >
 class edoEstimatorNormalMono : public edoEstimator< edoNormalMono< EOT > >
 {

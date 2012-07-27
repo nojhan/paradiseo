@@ -31,8 +31,10 @@ Authors:
 #include "edoModifierMass.h"
 #include "edoUniform.h"
 
-//! edoUniformCenter< EOT >
-
+/** Modify an edoUniform distribution by centering its bounds around a given EOT.
+ *
+ * @ingroup Modifiers
+ */
 template < typename EOT >
 class edoUniformCenter : public edoModifierMass< edoUniform< EOT > >
 {
@@ -41,16 +43,16 @@ public:
 
     void operator() ( edoUniform< EOT >& distrib, EOT& mass )
     {
-	for (unsigned int i = 0, n = mass.size(); i < n; ++i)
-	    {
-		AtomType& min = distrib.min()[i];
-		AtomType& max = distrib.max()[i];
+        for (unsigned int i = 0, n = mass.size(); i < n; ++i)
+        {
+            AtomType& min = distrib.min()[i];
+            AtomType& max = distrib.max()[i];
 
-		AtomType range = (max - min) / 2;
+            AtomType range = (max - min) / 2;
 
-		min = mass[i] - range;
-		max = mass[i] + range;
-	    }
+            min = mass[i] - range;
+            max = mass[i] + range;
+        }
     }
 };
 

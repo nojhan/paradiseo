@@ -31,7 +31,7 @@ Authors:
 
 #include "edoRepairerApply.h"
 
-/**
+/** Repair an EOT container by applying the standard modulo function on it.
  *
  * @ingroup Repairers
  */

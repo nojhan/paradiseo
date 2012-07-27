@@ -28,8 +28,16 @@ Authors:
 #ifndef _edoModifier_h
 #define _edoModifier_h
 
-//! edoModifier< D >
+/** @defgroup Modifiers
+ *
+ * A set of classes that arbitrarly modify a given distribution.
+ */
 
+/** A functor to arbitrarly modify a distribution
+ *
+ * @ingroup Core
+ * @ingroup Modifiers
+ */
 template < typename D >
 class edoModifier
 {

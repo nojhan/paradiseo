@@ -26,7 +26,7 @@ Authors:
 */
 
 #include <eo>
-#include <mo>
+// #include <mo>
 
 #include <eoEvalFuncCounterBounder.h>
 
@@ -92,7 +92,7 @@ int main(int ac, char** av)
     // Prepare bounder class to set bounds of sampling.
     // This is used by edoSampler.
     edoBounder< EOT >* bounder = 
-        new edoBounderRng< EOT >( EOT(pop[0].size(), -5), EOT(pop[0].size(), 5), *gen); // FIXME do not use hard-coded bounds
+        new edoBounderRng< EOT >( EOT(dimension_size, -5), EOT(dimension_size, 5), *gen); // FIXME do not use hard-coded bounds
     state.storeFunctor(bounder);
 
     // Prepare sampler class with a specific distribution
@@ -117,17 +117,17 @@ int main(int ac, char** av)
     // sample for sampling.
     eoReplacement< EOT >* replacor = new eoEPReplacement< EOT >(pop.size());
     state.storeFunctor(replacor);
-    
+
+    // Help + Verbose routines
+    make_verbose(parser);
+    make_help(parser);
+
     // Some stuff to display helper when we are using -h option
     if (parser.userNeedsHelp())
     {
         parser.printHelp(std::cout);
         exit(1);
     }
-
-    // Help + Verbose routines
-    make_verbose(parser);
-    make_help(parser);
 
     // population output (after helper)
     //
@@ -161,10 +161,9 @@ int main(int ac, char** av)
     eoPopLoopEval<EOT> popEval( eval );
 
     // EDA algorithm configuration
-    edoAlgo< Distrib >* algo = new edoEDA< Distrib >
-        (*selector, *estimator, *sampler,
-         pop_continue, *distribution_continue,
-         popEval, *replacor);
+    edoAlgo< Distrib >* algo = new edoAlgoStateless< Distrib >
+        (popEval, *selector, *estimator, *sampler, *replacor,
+         pop_continue, *distribution_continue );
 
     // Beginning of the algorithm call
     try {

@@ -31,6 +31,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <assert.h>
 
 #include <eoFunctorStore.h>
 
@@ -56,9 +57,49 @@ class eoState : public eoFunctorStore
 {
 public :
 
-    eoState(void) {}
+    eoState(std::string name="") :
+      _tag_state_so(""),
+      _tag_state_name(name),
+      _tag_state_sc(""),
+      _tag_section_so("\\section{"),
+      _tag_section_sc("}\n"),
+      _tag_content_s(""),
+      _tag_content_e(""),
+      _tag_section_sep(""),
+      _tag_section_e("\n"),
+      _tag_state_e("")
+    {}
 
     ~eoState(void);
+
+    void formatLatex(std::string name)
+    {
+        _tag_state_so = "";
+        _tag_state_name = name;
+        _tag_state_sc = "";
+        _tag_section_so = "\\section{";
+        _tag_section_sc = "}\n";
+        _tag_content_s = "";
+        _tag_content_e = "";
+        _tag_section_sep = "";
+        _tag_section_e = "\n";
+        _tag_state_e = "";
+    }
+
+    void formatJSON(std::string name)
+    {
+        _tag_state_so = "{ \"";
+        _tag_state_name = name;
+        _tag_state_sc = "\":\n";
+        _tag_section_so = "\t{ \"";
+        _tag_section_sc = "\":\n";
+        _tag_content_s = "\"";
+        _tag_content_e = "\"";
+        _tag_section_sep = ",\n";
+        _tag_section_e = "\t}\n";
+        _tag_state_e = "}\n";
+    }
+
 
     /**
     * Object registration function, note that it does not take ownership!
@@ -130,6 +171,43 @@ private :
     // private copy and assignment as eoState is supposed to be unique
     eoState(const eoState&);
     eoState& operator=(const eoState&);
+
+    /* \@{
+     * s=start, e=end
+     * o=open, c=close
+     *
+     * { "my_state": 
+     *     {
+     *         "section_pop":"…",
+     *         "section_rng":"…"
+     *     }
+     *  }
+     *
+     *                           // JSON         LATEX (default)
+     */
+    std::string _tag_state_so;   // { "          
+    std::string _tag_state_name; // my_state     
+    std::string _tag_state_sc;   // ":           
+
+    std::string _tag_section_so; // { "          \\section{
+    std::string _tag_section_sc; // ":           }\n
+
+    std::string _tag_content_s; // "
+    std::string _tag_content_e; // "
+
+    std::string _tag_section_sep;// ,
+
+    std::string _tag_section_e; // }           \n
+
+    std::string _tag_state_e;   // }
+    /** \@} */
+ 
+    void removeComment( std::string& str, std::string comment);
+
+    bool is_section(const std::string& str, std::string& name);
+
+protected:
+    void saveSection( std::ostream& os, std::vector<ObjectMap::iterator>::const_iterator it) const;
 
 };
 /** @example t-eoStateAndParser.cpp

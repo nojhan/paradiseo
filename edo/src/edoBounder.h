@@ -34,6 +34,7 @@ Authors:
  * a given set of bounds (typically an hypercube).
  *
  * @ingroup Repairers
+ * @ingroup Core
  */
 template < typename EOT >
 class edoBounder : public edoRepairer< EOT >

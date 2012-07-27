@@ -31,8 +31,11 @@ Authors:
 #include "edoModifierMass.h"
 #include "edoNormalMono.h"
 
-//! edoNormalMonoCenter< EOT >
-
+/** Change a distribution's mean for a given EOT
+ *
+ * @ingroup Modifiers
+ * @ingroup Mononormal
+ */
 template < typename EOT >
 class edoNormalMonoCenter : public edoModifierMass< edoNormalMono< EOT > >
 {
@@ -41,7 +44,7 @@ public:
 
     void operator() ( edoNormalMono< EOT >& distrib, EOT& mass )
     {
-	distrib.mean() = mass;
+        distrib.mean() = mass;
     }
 };
 

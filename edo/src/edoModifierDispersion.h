@@ -33,8 +33,10 @@ Authors:
 
 #include "edoModifier.h"
 
-//! edoModifierDispersion< D >
-
+/** An semantic pseudo-interface for modifiers that updates dispersion parameters (like variance).
+ *
+ * @ingroup Modifiers
+ */
 template < typename D >
 class edoModifierDispersion : public edoModifier< D >, public eoBF< D&, eoPop< typename D::EOType >&, void >
 {

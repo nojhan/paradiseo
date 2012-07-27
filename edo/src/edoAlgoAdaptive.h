@@ -22,14 +22,13 @@ Copyright (C) 2010 Thales group
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
+    Pierre Savéant <pierre.saveant@thalesgroup.com>
 */
 
-#ifndef _edoEDA_h
-#define _edoEDA_h
+#ifndef _edoAlgoAdaptive_h
+#define _edoAlgoAdaptive_h
 
 #include <eo>
-#include <mo>
 
 #include <utils/eoRNG.h>
 
@@ -39,28 +38,39 @@ Authors:
 #include "edoSampler.h"
 #include "edoContinue.h"
 
-//! edoEDA< D >
-
+/** A generic stochastic search template for algorithms that need a distribution parameter.
+ *
+ * An adaptive algorithm will directly updates a distribution, it must thus be instanciated
+ * with an edoDistrib at hand. Thus, this distribution object should be instanciated appart.
+ * The reference to this distribution is generally also needed by at least one of the
+ * algorithm's operator, generally for algorithms that shares the same algorithms across
+ * operators and/or iterations.
+ *
+ * If you no operator needs to update the distribution, then it is simpler to use an
+ * edoAlgoStateless .
+ *
+ * @ingroup Algorithms
+ */
 template < typename D >
-class edoEDA : public edoAlgo< D >
+class edoAlgoAdaptive : public edoAlgo< D >
 {
 public:
     //! Alias for the type EOT
-    typedef typename D::EOType EOT;
+    typedef typename D::EOType EOType;
 
     //! Alias for the atom type
-    typedef typename EOT::AtomType AtomType;
+    typedef typename EOType::AtomType AtomType;
 
     //! Alias for the fitness
-    typedef typename EOT::Fitness Fitness;
+    typedef typename EOType::Fitness Fitness;
 
 public:
 
-    //! edoEDA constructor
     /*!
       Takes algo operators, all are mandatory
 
-      \param evaluation Evaluate a population
+      \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
+      \param evaluator Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
@@ -68,15 +78,17 @@ public:
       \param pop_continuator Stopping criterion based on the population features
       \param distribution_continuator Stopping criterion based on the distribution features
     */
-    edoEDA (
-        eoPopEvalFunc < EOT > & evaluator,
-        eoSelect< EOT > & selector,
+    edoAlgoAdaptive(
+        D & distrib,
+        eoPopEvalFunc < EOType > & evaluator,
+        eoSelect< EOType > & selector,
         edoEstimator< D > & estimator,
         edoSampler< D > & sampler,
-        eoReplacement< EOT > & replacor,
-        eoContinue< EOT > & pop_continuator,
+        eoReplacement< EOType > & replacor,
+        eoContinue< EOType > & pop_continuator,
         edoContinue< D > & distribution_continuator
     ) :
+        _distrib(distrib),
         _evaluator(evaluator),
         _selector(selector),
         _estimator(estimator),
@@ -87,25 +99,29 @@ public:
         _distribution_continuator(distribution_continuator)
     {}
 
-    //! edoEDA constructor without an edoContinue
+
+    //! constructor without an edoContinue
     /*!
       Takes algo operators, all are mandatory
 
-      \param evaluation Evaluate a population
+      \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
+      \param evaluator Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
       \param sampler Generate feasible solutions using the distribution
       \param replacor Replace old solutions by new ones
       \param pop_continuator Stopping criterion based on the population features
     */
-    edoEDA (
-        eoPopEvalFunc < EOT > & evaluator,
-        eoSelect< EOT > & selector,
+    edoAlgoAdaptive (
+        D & distrib,
+        eoPopEvalFunc < EOType > & evaluator,
+        eoSelect< EOType > & selector,
         edoEstimator< D > & estimator,
         edoSampler< D > & sampler,
-        eoReplacement< EOT > & replacor,
-        eoContinue< EOT > & pop_continuator
+        eoReplacement< EOType > & replacor,
+        eoContinue< EOType > & pop_continuator
     ) :
+        _distrib( distrib ),
         _evaluator(evaluator),
         _selector(selector),
         _estimator(estimator),
@@ -116,43 +132,40 @@ public:
         _distribution_continuator( _dummy_continue )
     {}
 
-
-    /** A basic EDA algorithm that iterates over:
-     * selection, estimation, sampling, bounding, evaluation, replacement
+    /** Call the algorithm
      *
      * \param pop the population of candidate solutions
      * \return void
     */
-    void operator ()(eoPop< EOT > & pop)
+    void operator ()(eoPop< EOType > & pop)
     {
         assert(pop.size() > 0);
 
-        eoPop< EOT > current_pop;
-        eoPop< EOT > selected_pop;
+        eoPop< EOType > current_pop;
+        eoPop< EOType > selected_pop;
 
-        // FIXME one must instanciate a first distrib here because there is no empty constructor, see if it is possible to instanciate Distributions without parameters
-        D distrib = _estimator(pop);
+        // update the extern distribution passed to the estimator (cf. CMA-ES)
+        // OR replace the dummy distribution for estimators that do not need extern distributions (cf. EDA)
+        _distrib = _estimator(pop);
 
         // Evaluating a first time the candidate solutions
         // The first pop is not supposed to be evaluated (@see eoPopLoopEval).
-        _evaluator( current_pop, pop );
+        // _evaluator( current_pop, pop );
 
         do {
             // (1) Selection of the best points in the population
-            //selected_pop.clear(); // FIXME is it necessary to clear?
             _selector(pop, selected_pop);
             assert( selected_pop.size() > 0 );
-            // TODO: utiliser selected_pop ou pop ???
 
             // (2) Estimation of the distribution parameters
-            distrib = _estimator(selected_pop);
+            _distrib = _estimator(selected_pop);
 
             // (3) sampling
             // The sampler produces feasible solutions (@see edoSampler that
             // encapsulate an edoBounder)
             current_pop.clear();
             for( unsigned int i = 0; i < pop.size(); ++i ) {
-                current_pop.push_back( _sampler(distrib) );
+                current_pop.push_back( _sampler(_distrib) );
             }
 
             // (4) Evaluate new solutions
@@ -161,35 +174,40 @@ public:
             // (5) Replace old solutions by new ones
             _replacor(pop, current_pop); // e.g. copy current_pop in pop
 
-        } while( _distribution_continuator( distrib ) && _pop_continuator( pop ) );
+        } while( _distribution_continuator( _distrib ) && _pop_continuator( pop ) );
     } // operator()
 
-private:
+
+protected:
+
+    //! The distribution that you want to update
+    D & _distrib;
 
     //! A full evaluation function.
-    eoPopEvalFunc < EOT > & _evaluator;
+    eoPopEvalFunc<EOType> & _evaluator;
 
-    //! A EOT selector
-    eoSelect < EOT > & _selector;
+    //! A EOType selector
+    eoSelect<EOType> & _selector;
 
-    //! A EOT estimator. It is going to estimate distribution parameters.
-    edoEstimator< D > & _estimator;
+    //! A EOType estimator. It is going to estimate distribution parameters.
+    edoEstimator<D> & _estimator;
 
     //! A D sampler
-    edoSampler< D > & _sampler;
+    edoSampler<D> & _sampler;
 
-    //! A EOT replacor
-    eoReplacement < EOT > & _replacor;
+    //! A EOType replacor
+    eoReplacement<EOType> & _replacor;
 
-    //! A EOT population continuator
-    eoContinue < EOT > & _pop_continuator;
+    //! A EOType population continuator
+    eoContinue<EOType> & _pop_continuator;
 
     //! A D continuator that always return true
     edoDummyContinue<D> _dummy_continue;
 
     //! A D continuator
-    edoContinue < D > & _distribution_continuator;
+    edoContinue<D> & _distribution_continuator;
 
 };
 
-#endif // !_edoEDA_h
+#endif // !_edoAlgoAdaptive_h
+

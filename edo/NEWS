@@ -1,0 +1,10 @@
+* current release:
+
+* release 1.3.0 (2011-07-24)
+    - alternative implementation of the multi-normal operators using the Eigen3 library
+
+* release 0.0 (2011-09-15)
+    - basic design for estimation of distribution algorithms and, more generally for randomized search heuristics
+    - continuous EDA example
+    - EDA using multi-normal distribution, implementation using the boost::ublas library
+

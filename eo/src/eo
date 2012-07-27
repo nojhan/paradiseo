@@ -102,6 +102,7 @@
 #include <eoSharingSelect.h>
 // Embedding truncation selection
 #include <eoTruncatedSelectOne.h>
+#include <eoRankMuSelect.h>
 
 // the batch selection - from an eoSelectOne
 #include <eoSelectPerc.h>

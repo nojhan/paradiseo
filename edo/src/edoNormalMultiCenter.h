@@ -31,8 +31,14 @@ Authors:
 #include "edoModifierMass.h"
 #include "edoNormalMulti.h"
 
-//! edoNormalMultiCenter< EOT >
+#ifdef WITH_BOOST
 
+/** Changes a given distribution's mean by a given EOT.
+ *
+ * @ingroup Modifiers
+ * @ingroup EMNA
+ * @inngroup Multinormal
+ */
 template < typename EOT >
 class edoNormalMultiCenter : public edoModifierMass< edoNormalMulti< EOT > >
 {
@@ -41,10 +47,39 @@ public:
 
     void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
     {
-	ublas::vector< AtomType > mean( distrib.size() );
-	std::copy( mass.begin(), mass.end(), mean.begin() );
-	distrib.mean() = mean;
+        ublas::vector< AtomType > mean( distrib.size() );
+        std::copy( mass.begin(), mass.end(), mean.begin() );
+        distrib.mean() = mean;
     }
 };
+
+#else
+#ifdef WITH_EIGEN
+
+/** Changes a given distribution's mean by a given EOT.
+ *
+ * @ingroup Modifiers
+ */
+template < typename EOT, typename D = edoNormalMulti< EOT > >
+class edoNormalMultiCenter : public edoModifierMass<D>
+{
+public:
+    typedef typename EOT::AtomType AtomType;
+    typedef typename D::Vector Vector;
+
+    void operator() ( edoNormalMulti< EOT >& distrib, EOT& mass )
+    {
+        assert( distrib.size() == mass.innerSize() );
+        Vector mean( distrib.size() );
+        for( unsigned int i=0; i < distrib.size(); i++ ) {
+            mean(i) = mass[i];
+        }
+        distrib.mean() = mean;
+    }
+};
+
+#endif // WITH_EIGEN
+#endif // WITH_BOOST
+
 
 #endif // !_edoNormalMultiCenter_h

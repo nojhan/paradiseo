@@ -29,7 +29,7 @@ Authors:
 #include <iomanip>
 
 #include <eo>
-#include <mo>
+//#include <mo>
 
 #include <edo>
 
@@ -40,22 +40,29 @@ typedef eoReal< eoMinimizingFitness > EOT;
 typedef edoNormalMulti< EOT > Distrib;
 typedef EOT::AtomType AtomType;
 
+#ifdef WITH_BOOST
+#include <boost/numeric/ublas/vector.hpp>
+#include <boost/numeric/ublas/symmetric.hpp>
+    typedef ublas::vector< AtomType > Vector;
+    typedef ublas::symmetric_matrix< AtomType, ublas::lower > Matrix;
+#else
+#ifdef WITH_EIGEN
+#include <Eigen/Dense>
+    typedef typename edoNormalMulti<EOT>::Vector Vector;
+    typedef typename edoNormalMulti<EOT>::Matrix Matrix;
+#endif
+#endif
+
 int main(int ac, char** av)
 {
-    //-----------------------------------------------------
     // (0) parser + eo routines
-    //-----------------------------------------------------
-
     eoParser parser(ac, av);
 
-    std::string	section("Algorithm parameters");
+    std::string        section("Algorithm parameters");
 
-    unsigned int p_size = parser.createParam((unsigned int)100, "popSize", "Population Size", 'P', section).value(); // P
-
-    unsigned int s_size = parser.createParam((unsigned int)2, "dimension-size", "Dimension size", 'd', section).value(); // d
-
-    AtomType mean_value = parser.createParam((AtomType)0, "mean", "Mean value", 'm', section).value(); // m
-
+    unsigned int p_size   = parser.createParam((unsigned int)100, "popSize", "Population Size", 'P', section).value(); // P
+    unsigned int s_size   = parser.createParam((unsigned int)2, "dimension-size", "Dimension size", 'd', section).value(); // d
+    AtomType mean_value   = parser.createParam((AtomType)0, "mean", "Mean value", 'm', section).value(); // m
     AtomType covar1_value = parser.createParam((AtomType)1.0, "covar1", "Covar value 1", '1', section).value();
     AtomType covar2_value = parser.createParam((AtomType)0.5, "covar2", "Covar value 2", '2', section).value();
     AtomType covar3_value = parser.createParam((AtomType)1.0, "covar3", "Covar value 3", '3', section).value();
@@ -66,29 +73,20 @@ int main(int ac, char** av)
        << covar3_value << "_gen";
     std::string gen_filename = ss.str();
 
-    if (parser.userNeedsHelp())
-	{
-	    parser.printHelp(std::cout);
-	    exit(1);
-	}
+    if( parser.userNeedsHelp() ) {
+            parser.printHelp(std::cout);
+            exit(1);
+    }
 
     make_verbose(parser);
     make_help(parser);
 
-
     assert(p_size > 0);
     assert(s_size > 0);
 
-
     eoState state;
 
-    //-----------------------------------------------------
-
-
-    //-----------------------------------------------------
     // (1) Population init and sampler
-    //-----------------------------------------------------
-
     eoRndGenerator< double >* gen = new eoUniformGenerator< double >(-5, 5);
     state.storeFunctor(gen);
 
@@ -99,18 +97,14 @@ int main(int ac, char** av)
     // fill population thanks to eoInit instance
     eoPop< EOT >& pop = state.takeOwnership( eoPop< EOT >( p_size, *init ) );
 
-    //-----------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (2) distribution initial parameters
-    //-----------------------------------------------------------------------------
+    Vector mean( s_size );
 
-    ublas::vector< AtomType > mean( s_size );
+    for (unsigned int i = 0; i < s_size; ++i) {
+        mean( i ) = mean_value; 
+    }
 
-    for (unsigned int i = 0; i < s_size; ++i) { mean( i ) = mean_value; }
-
-    ublas::symmetric_matrix< AtomType, ublas::lower > varcovar( s_size, s_size );
+    Matrix varcovar( s_size, s_size );
 
     varcovar( 0, 0 ) = covar1_value;
     varcovar( 0, 1 ) = covar2_value;
@@ -118,13 +112,7 @@ int main(int ac, char** av)
 
     Distrib distrib( mean, varcovar );
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (3a) distribution output preparation
-    //-----------------------------------------------------------------------------
-
     edoDummyContinue< Distrib >* distrib_dummy_continue = new edoDummyContinue< Distrib >();
     state.storeFunctor(distrib_dummy_continue);
 
@@ -141,60 +129,29 @@ int main(int ac, char** av)
     distrib_file_snapshot->add(*distrib_stat);
     distrib_continue->add(*distrib_file_snapshot);
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (3b) distribution output
-    //-----------------------------------------------------------------------------
-
     (*distrib_continue)( distrib );
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // Prepare bounder class to set bounds of sampling.
     // This is used by edoSampler.
-    //-----------------------------------------------------------------------------
-
-    edoBounder< EOT >* bounder = new edoBounderRng< EOT >(EOT(pop[0].size(), -5),
-							EOT(pop[0].size(), 5),
-							*gen);
+    edoBounder< EOT >* bounder = new edoBounderRng< EOT >(
+            EOT(pop[0].size(), -5), EOT(pop[0].size(), 5), *gen
+        );
     state.storeFunctor(bounder);
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // Prepare sampler class with a specific distribution
-    //-----------------------------------------------------------------------------
-
     edoSampler< Distrib >* sampler = new edoSamplerNormalMulti< EOT >( *bounder );
     state.storeFunctor(sampler);
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (4) sampling phase
-    //-----------------------------------------------------------------------------
-
     pop.clear();
 
-    for (unsigned int i = 0; i < p_size; ++i)
-	{
-	    EOT candidate_solution = (*sampler)( distrib );
-	    pop.push_back( candidate_solution );
-	}
+    for( unsigned int i = 0; i < p_size; ++i ) {
+        EOT candidate_solution = (*sampler)( distrib );
+        pop.push_back( candidate_solution );
+    }
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (5) population output
-    //-----------------------------------------------------------------------------
-
     eoContinue< EOT >* pop_cont = new eoGenContinue< EOT >( 2 ); // never reached fitness
     state.storeFunctor(pop_cont);
 
@@ -212,53 +169,31 @@ int main(int ac, char** av)
 
     (*pop_continue)( pop );
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (6) estimation phase
-    //-----------------------------------------------------------------------------
-
     edoEstimator< Distrib >* estimator = new edoEstimatorNormalMulti< EOT >();
     state.storeFunctor(estimator);
 
     distrib = (*estimator)( pop );
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (7) distribution output
-    //-----------------------------------------------------------------------------
-
     (*distrib_continue)( distrib );
 
-    //-----------------------------------------------------------------------------
-
-
-    //-----------------------------------------------------------------------------
     // (8) euclidianne distance estimation
-    //-----------------------------------------------------------------------------
-
-    ublas::vector< AtomType > new_mean = distrib.mean();
-    ublas::symmetric_matrix< AtomType, ublas::lower > new_varcovar = distrib.varcovar();
+    Vector new_mean = distrib.mean();
+    Matrix new_varcovar = distrib.varcovar();
 
     AtomType distance = 0;
-
-    for ( unsigned int d = 0; d < s_size; ++d )
-	{
-	    distance += pow( mean[ d ] - new_mean[ d ], 2 );
-	}
+    for( unsigned int d = 0; d < s_size; ++d ) {
+        distance += pow( mean[ d ] - new_mean[ d ], 2 );
+    }
 
     distance = sqrt( distance );
 
     eo::log << eo::logging
-	    << "mean: " << mean << std::endl
-	    << "new mean: " << new_mean << std::endl
-	    << "distance: " << distance << std::endl
-	;
-
-    //-----------------------------------------------------------------------------
+            << "mean: " << mean << std::endl
+            << "new mean: " << new_mean << std::endl
+            << "distance: " << distance << std::endl
+        ;
 
     return 0;
 }

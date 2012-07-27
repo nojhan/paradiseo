@@ -31,42 +31,42 @@ Authors:
 #include "edoEstimator.h"
 #include "edoUniform.h"
 
-// TODO: calcule de la moyenne + covariance dans une classe derivee
-
-//! edoEstimatorUniform
-
+/** An estimator for edoUniform
+ *
+ * @ingroup Estimators
+ */
 template < typename EOT >
 class edoEstimatorUniform : public edoEstimator< edoUniform< EOT > >
 {
 public:
     edoUniform< EOT > operator()(eoPop<EOT>& pop)
     {
-	unsigned int size = pop.size();
+        unsigned int size = pop.size();
 
-	assert(size > 0);
+        assert(size > 0);
 
-	EOT min = pop[0];
-	EOT max = pop[0];
+        EOT min = pop[0];
+        EOT max = pop[0];
 
-	for (unsigned int i = 1; i < size; ++i)
-	    {
-		unsigned int size = pop[i].size();
+        for (unsigned int i = 1; i < size; ++i)
+        {
+            unsigned int size = pop[i].size();
 
-		assert(size > 0);
+            assert(size > 0);
 
-		// possibilité d'utiliser std::min_element et std::max_element mais exige 2 pass au lieu d'1.
+            // possibilité d'utiliser std::min_element et std::max_element mais exige 2 pass au lieu d'1.
 
-		for (unsigned int d = 0; d < size; ++d)
-		    {
-			if (pop[i][d] < min[d])
-			    min[d] = pop[i][d];
+            for (unsigned int d = 0; d < size; ++d)
+            {
+                if (pop[i][d] < min[d])
+                    min[d] = pop[i][d];
 
-			if (pop[i][d] > max[d])
-			    max[d] = pop[i][d];
-		    }
-	    }
+                if (pop[i][d] > max[d])
+                    max[d] = pop[i][d];
+            }
+        }
 
-	return edoUniform< EOT >(min, max);
+        return edoUniform< EOT >(min, max);
     }
 };
 

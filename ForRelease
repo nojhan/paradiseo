@@ -5,8 +5,8 @@ following steps:
 - Set version number in eo-conf.cmake
 - Check/update NEWS file, set release date and version in NEWS.
 - use the "archive_current.sh" script to create the source archive
-- Build the packages
 - Put source archive and packages files at SourceForge
+- Update the documentation on the website
 - Post news on SourceForge project-page
 - Send announcement to mailing lists
 - Bump version number to next "x.y.z-edge" in eo-conf.cmake

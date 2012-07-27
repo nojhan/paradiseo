@@ -34,7 +34,6 @@ Authors:
 #include "edoUniform.h"
 
 /**
- * edoSamplerUniform
  * This class uses the Uniform distribution parameters (bounds) to return
  * a random position used for population sampling.
  *
@@ -43,6 +42,8 @@ Authors:
  *
  * Note: if the distribution given at call defines a min==max for one of the
  * variable, the result will be the same number.
+ *
+ * @ingroup Samplers
  */
 template < typename EOT, class D = edoUniform<EOT> >
 class edoSamplerUniform : public edoSampler< D >

@@ -30,7 +30,7 @@
 #ifndef eoCtrlCContinue_h
 #define eoCtrlCContinue_h
 
-#include <signal.h>
+#include <csignal>
 #include <eoContinue.h>
 
 /**
