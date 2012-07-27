@@ -1,4 +1,6 @@
-* current release
+* current release:
+
+* release 1.3.0 (2011-07-24)
     - alternative implementation of the multi-normal operators using the Eigen3 library
 
 * release 0.0 (2011-09-15)
