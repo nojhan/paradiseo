@@ -68,9 +68,9 @@ private:
     eoValueParam<bool> _isDynamic;
     eoValueParam<std::string> _prefix;
     eoValueParam<unsigned int> _nthreads;
-    eoValueParam<unsigned int> _packetSize;
     eoValueParam<bool> _enableResults;
     eoValueParam<bool> _doMeasure;
+    eoValueParam<unsigned int> _packetSize;
     double _t_start;
 };
 

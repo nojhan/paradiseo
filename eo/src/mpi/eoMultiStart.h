@@ -53,10 +53,14 @@ namespace eo
         {
             typedef eoUF< eoPop<EOT>&, void> ResetAlgo;
 
-            MultiStartData( bmpi::communicator& _comm, eoAlgo<EOT>& _algo, int _masterRank, ResetAlgo & _resetAlgo )
+            MultiStartData(
+                    bmpi::communicator& _comm,
+                    eoAlgo<EOT>& _algo,
+                    int _masterRank,
+                    ResetAlgo & _resetAlgo )
                 :
-                    runs( 0 ), pop(), bests(),
-                    comm( _comm ), algo( _algo ), masterRank( _masterRank ), resetAlgo( _resetAlgo )
+                    runs( 0 ), bests(), pop(),
+                    comm( _comm ), algo( _algo ), resetAlgo( _resetAlgo ), masterRank( _masterRank )
             {
                 // empty
             }
@@ -245,20 +249,20 @@ namespace eo
                 {
                     _data.runs = runs;
 
-                    int nbWorkers = workers.size();
+                    unsigned nbWorkers = workers.size();
                     std::vector< int > seeds = _getSeeds( nbWorkers );
                     if( eo::mpi::Node::comm().rank() == _masterRank )
                     {
                         if( seeds.size() < nbWorkers )
                         {
                             // Random seeds
-                            for( int i = seeds.size(); i < nbWorkers; ++i )
+                            for( unsigned i = seeds.size(); i < nbWorkers; ++i )
                             {
                                 seeds.push_back( eo::rng.rand() );
                             }
                         }
 
-                        for( int i = 0 ; i < nbWorkers ; ++i )
+                        for( unsigned i = 0 ; i < nbWorkers ; ++i )
                         {
                             int wrkRank = workers[i];
                             eo::mpi::Node::comm().send( wrkRank, 1, seeds[ i ] );
