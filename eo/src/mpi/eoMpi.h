@@ -447,10 +447,53 @@ namespace eo
             IsFinishedFunction<JobData> & isFinished() { return *_iff; }
 
             // Setters
-            void sendTask( SendTaskFunction<JobData>* stf ) { _stf = stf; }
-            void handleResponse( HandleResponseFunction<JobData>* hrf ) { _hrf = hrf; }
-            void processTask( ProcessTaskFunction<JobData>* ptf ) { _ptf = ptf; }
-            void isFinished( IsFinishedFunction<JobData>* iff ) { _iff = iff; }
+            void sendTask( SendTaskFunction<JobData>* stf )
+            {
+                if( !stf )
+                    return;
+
+                if( _stf && _stf->needDelete() )
+                {
+                    delete _stf;
+                }
+                _stf = stf;
+            }
+
+            void handleResponse( HandleResponseFunction<JobData>* hrf )
+            {
+                if( !hrf )
+                    return;
+
+                if( _hrf && _hrf->needDelete() )
+                {
+                    delete _hrf;
+                }
+                _hrf = hrf;
+            }
+
+            void processTask( ProcessTaskFunction<JobData>* ptf )
+            {
+                if( !ptf )
+                    return;
+
+                if( _ptf && _ptf->needDelete() )
+                {
+                    delete _ptf;
+                }
+                _ptf = ptf;
+            }
+
+            void isFinished( IsFinishedFunction<JobData>* iff )
+            {
+                if( !iff )
+                    return;
+
+                if( _iff && _iff->needDelete() )
+                {
+                    delete _iff;
+                }
+                _iff = iff;
+            }
 
             /**
              * @brief Helpers for wrapping send task functor.

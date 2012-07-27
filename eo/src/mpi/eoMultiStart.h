@@ -397,7 +397,7 @@ namespace eo
 
         /**************************************
          * DEFAULT RESET ALGO IMPLEMENTATIONS *
-         **************************************
+         **************************************/
 
         /**
          * @brief For a Genetic Algorithm, reinits the population by copying the original one
