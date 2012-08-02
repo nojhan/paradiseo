@@ -668,7 +668,7 @@ namespace eo
                         timerStat.start("master_wait_for_all_responses");
                         while( assignmentAlgo.availableWorkers() != totalWorkers )
                         {
-                            bmpi::status status = comm.probe( bmpi::any_source, bmpi::any_tag );
+                            bmpi::status status = comm.probe( bmpi::any_source, eo::mpi::Channel::Messages );
                             int wrkRank = status.source();
                             that.handleResponse( wrkRank );
                             comm.send( wrkRank, Channel::Commands, Message::Finish );
@@ -716,7 +716,7 @@ namespace eo
 # ifndef NDEBUG
                                 eo::log << "[M" << comm.rank() << "] Waitin' for node..." << std::endl;
 # endif
-                                bmpi::status status = comm.probe( bmpi::any_source, bmpi::any_tag );
+                                bmpi::status status = comm.probe( bmpi::any_source, eo::mpi::Channel::Messages );
                                 int wrkRank = status.source();
 # ifndef NDEBUG
                                 eo::log << "[M" << comm.rank() << "] Node " << wrkRank << " just terminated." << std::endl;

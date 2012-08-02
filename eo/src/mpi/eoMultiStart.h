@@ -138,7 +138,7 @@ namespace eo
                 {
                     EOT individual;
                     MultiStartData< EOT >& d = *_data;
-                    d.comm.recv( wrkRank, 1, individual );
+                    d.comm.recv( wrkRank, eo::mpi::Channel::Messages, individual );
                     d.bests.push_back( individual );
                 }
         };
@@ -159,7 +159,7 @@ namespace eo
                 {
                     _data->resetAlgo( _data->pop );
                     _data->algo( _data->pop );
-                    _data->comm.send( _data->masterRank, 1, _data->pop.best_element() );
+                    _data->comm.send( _data->masterRank, eo::mpi::Channel::Messages, _data->pop.best_element() );
                 }
         };
 
@@ -265,12 +265,12 @@ namespace eo
                         for( unsigned i = 0 ; i < nbWorkers ; ++i )
                         {
                             int wrkRank = workers[i];
-                            eo::mpi::Node::comm().send( wrkRank, 1, seeds[ i ] );
+                            eo::mpi::Node::comm().send( wrkRank, eo::mpi::Channel::Commands, seeds[ i ] );
                         }
                     } else
                     {
                         int seed;
-                        eo::mpi::Node::comm().recv( _masterRank, 1, seed );
+                        eo::mpi::Node::comm().recv( _masterRank, eo::mpi::Channel::Commands, seed );
                         eo::log << eo::debug << eo::mpi::Node::comm().rank() << "- Seed: " << seed << std::endl;
                         eo::rng.reseed( seed );
                     }
