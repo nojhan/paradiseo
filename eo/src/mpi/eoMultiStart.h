@@ -302,8 +302,7 @@ namespace eo
                         int masterRank,
                         MultiStartStore< EOT > & store,
                         // dynamic parameters
-                        int runs,
-                        const std::vector<int>& seeds = std::vector<int>()  ) :
+                        int runs ) :
                     OneShotJob< MultiStartData< EOT > >( algo, masterRank, store )
             {
                 store.init( algo.idles(), runs );
