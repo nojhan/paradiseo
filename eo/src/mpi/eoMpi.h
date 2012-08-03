@@ -648,10 +648,8 @@ namespace eo
 
                     ~FinallyBlock()
                     {
-# ifndef NDEBUG
-                        eo::log << eo::debug;
-                        eo::log << "[M" << comm.rank() << "] Frees all the idle." << std::endl;
-# endif
+                        eo::log << eo::debug << "[M" << comm.rank() << "] Frees all the idle." << std::endl;
+
                         // frees all the idle workers
                         timerStat.start("master_wait_for_idles");
                         std::vector<int> idles = assignmentAlgo.idles();
@@ -661,9 +659,8 @@ namespace eo
                         }
                         timerStat.stop("master_wait_for_idles");
 
-# ifndef NDEBUG
-                        eo::log << "[M" << comm.rank() << "] Waits for all responses." << std::endl;
-# endif
+                        eo::log << eo::debug << "[M" << comm.rank() << "] Waits for all responses." << std::endl;
+
                         // wait for all responses
                         timerStat.start("master_wait_for_all_responses");
                         while( assignmentAlgo.availableWorkers() != totalWorkers )
@@ -675,9 +672,8 @@ namespace eo
                             assignmentAlgo.confirm( wrkRank );
                         }
                         timerStat.stop("master_wait_for_all_responses");
-# ifndef NDEBUG
-                        eo::log << "[M" << comm.rank() << "] Leaving master task." << std::endl;
-# endif
+
+                        eo::log << eo::debug << "[M" << comm.rank() << "] Leaving master task." << std::endl;
                     }
 
                     protected:
@@ -701,10 +697,8 @@ namespace eo
                 void master( )
                 {
                     int totalWorkers = assignmentAlgo.availableWorkers();
-# ifndef NDEBUG
-                    eo::log << eo::debug;
-                    eo::log << "[M" << comm.rank() << "] Have " << totalWorkers << " workers." << std::endl;
-# endif
+                    eo::log << eo::debug << "[M" << comm.rank() << "] Have " << totalWorkers << " workers." << std::endl;
+
                     try {
                         FinallyBlock finally( totalWorkers, assignmentAlgo, *this );
                         while( ! isFinished() )
@@ -713,22 +707,20 @@ namespace eo
                             int assignee = assignmentAlgo.get( );
                             while( assignee <= 0 )
                             {
-# ifndef NDEBUG
-                                eo::log << "[M" << comm.rank() << "] Waitin' for node..." << std::endl;
-# endif
+                                eo::log << eo::debug << "[M" << comm.rank() << "] Waitin' for node..." << std::endl;
+
                                 bmpi::status status = comm.probe( bmpi::any_source, eo::mpi::Channel::Messages );
                                 int wrkRank = status.source();
-# ifndef NDEBUG
-                                eo::log << "[M" << comm.rank() << "] Node " << wrkRank << " just terminated." << std::endl;
-# endif
+
+                                eo::log << eo::debug << "[M" << comm.rank() << "] Node " << wrkRank << " just terminated." << std::endl;
+
                                 handleResponse( wrkRank );
                                 assignmentAlgo.confirm( wrkRank );
                                 assignee = assignmentAlgo.get( );
                             }
                             timerStat.stop("master_wait_for_assignee");
-# ifndef NDEBUG
-                            eo::log << "[M" << comm.rank() << "] Assignee : " << assignee << std::endl;
-# endif
+
+                            eo::log << eo::debug << "[M" << comm.rank() << "] Assignee : " << assignee << std::endl;
 
                             timerStat.start("master_wait_for_send");
                             comm.send( assignee, Channel::Commands, Message::Continue );
@@ -752,29 +744,22 @@ namespace eo
                 void worker( )
                 {
                     int order;
-# ifndef NDEBUG
-                    eo::log << eo::debug;
-# endif
+
                     timerStat.start("worker_wait_for_order");
                     comm.recv( masterRank, Channel::Commands, order );
                     timerStat.stop("worker_wait_for_order");
 
                     while( true )
                     {
-# ifndef NDEBUG
-                        eo::log << "[W" << comm.rank() << "] Waiting for an order..." << std::endl;
-# endif
+                        eo::log << eo::debug << "[W" << comm.rank() << "] Waiting for an order..." << std::endl;
+
                         if ( order == workerStopCondition )
                         {
-# ifndef NDEBUG
-                            eo::log << "[W" << comm.rank() << "] Leaving worker task." << std::endl;
-# endif
+                            eo::log << eo::debug << "[W" << comm.rank() << "] Leaving worker task." << std::endl;
                             return;
                         } else if( order == Message::Continue )
                         {
-# ifndef NDEBUG
-                            eo::log << "[W" << comm.rank() << "] Processing task..." << std::endl;
-# endif
+                            eo::log << eo::debug << "[W" << comm.rank() << "] Processing task..." << std::endl;
                             processTask( );
                         }
 

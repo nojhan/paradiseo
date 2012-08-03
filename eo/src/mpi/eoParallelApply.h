@@ -175,7 +175,7 @@ namespace eo
 
                 _data->comm.send( wrkRank, eo::mpi::Channel::Messages, sentSize );
 
-                eo::log << eo::progress << "Evaluating individual " << _data->index << std::endl;
+                eo::log << eo::debug << "Evaluating individual " << _data->index << std::endl;
 
                 _data->assignedTasks[ wrkRank ].index = _data->index;
                 _data->assignedTasks[ wrkRank ].size = sentSize;
