@@ -99,7 +99,7 @@ namespace eo
          * STATIC ASSIGNMENT ALGORITHM **************************
          *******************************************************/
 
-        StaticAssignmentAlgorithm::StaticAssignmentAlgorithm( std::vector<int>& workers, int runs )
+        StaticAssignmentAlgorithm::StaticAssignmentAlgorithm( const std::vector<int>& workers, int runs )
         {
             init( workers, runs );
         }
@@ -138,7 +138,7 @@ namespace eo
             init( workers, runs );
         }
 
-        void StaticAssignmentAlgorithm::init( std::vector<int> & workers, int runs )
+        void StaticAssignmentAlgorithm::init( const std::vector<int> & workers, int runs )
         {
             unsigned int nbWorkers = workers.size();
             freeWorkers = nbWorkers;
