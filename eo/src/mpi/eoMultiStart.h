@@ -419,7 +419,19 @@ namespace eo
                     eoEvalFunc<EOT>& eval) :
                 _continuator( continuator ),
                 _originalPop( originalPop ),
-                _eval( eval )
+                _pop_eval( eval )
+            {
+                // empty
+            }
+
+            ReuseOriginalPopEA(
+                    eoCountContinue<EOT> & continuator,
+                    const eoPop<EOT>& originalPop,
+                    eoPopEvalFunc<EOT>& pop_eval
+                    ) :
+                _continuator( continuator ),
+                _originalPop( originalPop ),
+                _pop_eval( pop_eval )
             {
                 // empty
             }
@@ -427,17 +439,14 @@ namespace eo
             void operator()( eoPop<EOT>& pop )
             {
                 pop = _originalPop; // copies the original population
-                for(unsigned i = 0, size = pop.size(); i < size; ++i)
-                {
-                    _eval( pop[i] );
-                }
+                _pop_eval( pop, pop );
                 _continuator.reset();
             }
 
             private:
             eoCountContinue<EOT> & _continuator;
             const eoPop<EOT>& _originalPop;
-            eoEvalFunc<EOT>& _eval;
+            eoPopEvalFunc<EOT>& _pop_eval;
         };
 
         /**
@@ -467,6 +476,18 @@ namespace eo
                 {
                     eval(_originalPop[i]);
                 }
+            }
+
+            ReuseSamePopEA(
+                    eoCountContinue<EOT>& continuator,
+                    const eoPop<EOT>& originalPop,
+                    eoPopEvalFunc<EOT>& pop_eval
+                    ) :
+                _continuator( continuator ),
+                _originalPop( originalPop ),
+                _firstTime( true )
+            {
+                pop_eval( _originalPop, _originalPop );
             }
 
             void operator()( eoPop<EOT>& pop )
