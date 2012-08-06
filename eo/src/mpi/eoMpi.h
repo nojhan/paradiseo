@@ -314,6 +314,9 @@ namespace eo
          * This is a functor implementing void operator()(int), and also a shared data function, containing wrapper on
          * its own type.
          *
+         * The master has to receive worker's data on channel (= MPI tag) eo::mpi::Channel::Messages. No other tags are
+         * allowed.
+         *
          * @ingroup MPI
          */
         template< typename JobData >
@@ -335,7 +338,8 @@ namespace eo
          * This is where the real computation happen.
          * Whenever the master sends the command "Continue" to workers, which indicates the worker will receive a task,
          * the worker calls this functor. The user has to explicitly retrieve the data, handle it and transmit it,
-         * processed, back to the master. If the worker does not send any data back to the master, the latter will
+         * processed, back to the master. Data sent back needs to be transmitted via channel (= MPI tag)
+         * eo::mpi::Channel::Messages, and no one else. If the worker does not send any data back to the master, the latter will
          * consider the worker isn't done and a deadlock could occur.
          *
          * This is a functor implementing void operator()(), and also a shared data function, containing wrapper on its
