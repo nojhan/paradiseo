@@ -53,10 +53,14 @@ namespace eo
         {
             typedef eoUF< eoPop<EOT>&, void> ResetAlgo;
 
-            MultiStartData( bmpi::communicator& _comm, eoAlgo<EOT>& _algo, int _masterRank, ResetAlgo & _resetAlgo )
+            MultiStartData(
+                    bmpi::communicator& _comm,
+                    eoAlgo<EOT>& _algo,
+                    int _masterRank,
+                    ResetAlgo & _resetAlgo )
                 :
-                    runs( 0 ), pop(), bests(),
-                    comm( _comm ), algo( _algo ), masterRank( _masterRank ), resetAlgo( _resetAlgo )
+                    runs( 0 ), bests(), pop(),
+                    comm( _comm ), algo( _algo ), resetAlgo( _resetAlgo ), masterRank( _masterRank )
             {
                 // empty
             }
@@ -134,7 +138,7 @@ namespace eo
                 {
                     EOT individual;
                     MultiStartData< EOT >& d = *_data;
-                    d.comm.recv( wrkRank, 1, individual );
+                    d.comm.recv( wrkRank, eo::mpi::Channel::Messages, individual );
                     d.bests.push_back( individual );
                 }
         };
@@ -155,7 +159,7 @@ namespace eo
                 {
                     _data->resetAlgo( _data->pop );
                     _data->algo( _data->pop );
-                    _data->comm.send( _data->masterRank, 1, _data->pop.best_element() );
+                    _data->comm.send( _data->masterRank, eo::mpi::Channel::Messages, _data->pop.best_element() );
                 }
         };
 
@@ -245,28 +249,28 @@ namespace eo
                 {
                     _data.runs = runs;
 
-                    int nbWorkers = workers.size();
+                    unsigned nbWorkers = workers.size();
                     std::vector< int > seeds = _getSeeds( nbWorkers );
                     if( eo::mpi::Node::comm().rank() == _masterRank )
                     {
                         if( seeds.size() < nbWorkers )
                         {
                             // Random seeds
-                            for( int i = seeds.size(); i < nbWorkers; ++i )
+                            for( unsigned i = seeds.size(); i < nbWorkers; ++i )
                             {
                                 seeds.push_back( eo::rng.rand() );
                             }
                         }
 
-                        for( int i = 0 ; i < nbWorkers ; ++i )
+                        for( unsigned i = 0 ; i < nbWorkers ; ++i )
                         {
                             int wrkRank = workers[i];
-                            eo::mpi::Node::comm().send( wrkRank, 1, seeds[ i ] );
+                            eo::mpi::Node::comm().send( wrkRank, eo::mpi::Channel::Commands, seeds[ i ] );
                         }
                     } else
                     {
                         int seed;
-                        eo::mpi::Node::comm().recv( _masterRank, 1, seed );
+                        eo::mpi::Node::comm().recv( _masterRank, eo::mpi::Channel::Commands, seed );
                         eo::log << eo::debug << eo::mpi::Node::comm().rank() << "- Seed: " << seed << std::endl;
                         eo::rng.reseed( seed );
                     }
@@ -298,8 +302,7 @@ namespace eo
                         int masterRank,
                         MultiStartStore< EOT > & store,
                         // dynamic parameters
-                        int runs,
-                        const std::vector<int>& seeds = std::vector<int>()  ) :
+                        int runs ) :
                     OneShotJob< MultiStartData< EOT > >( algo, masterRank, store )
             {
                 store.init( algo.idles(), runs );
@@ -397,7 +400,7 @@ namespace eo
 
         /**************************************
          * DEFAULT RESET ALGO IMPLEMENTATIONS *
-         **************************************
+         **************************************/
 
         /**
          * @brief For a Genetic Algorithm, reinits the population by copying the original one
@@ -415,7 +418,19 @@ namespace eo
                     eoEvalFunc<EOT>& eval) :
                 _continuator( continuator ),
                 _originalPop( originalPop ),
-                _eval( eval )
+                _pop_eval( eval )
+            {
+                // empty
+            }
+
+            ReuseOriginalPopEA(
+                    eoCountContinue<EOT> & continuator,
+                    const eoPop<EOT>& originalPop,
+                    eoPopEvalFunc<EOT>& pop_eval
+                    ) :
+                _continuator( continuator ),
+                _originalPop( originalPop ),
+                _pop_eval( pop_eval )
             {
                 // empty
             }
@@ -423,17 +438,14 @@ namespace eo
             void operator()( eoPop<EOT>& pop )
             {
                 pop = _originalPop; // copies the original population
-                for(unsigned i = 0, size = pop.size(); i < size; ++i)
-                {
-                    _eval( pop[i] );
-                }
+                _pop_eval( pop, pop );
                 _continuator.reset();
             }
 
             private:
             eoCountContinue<EOT> & _continuator;
             const eoPop<EOT>& _originalPop;
-            eoEvalFunc<EOT>& _eval;
+            eoPopEvalFunc<EOT>& _pop_eval;
         };
 
         /**
@@ -463,6 +475,18 @@ namespace eo
                 {
                     eval(_originalPop[i]);
                 }
+            }
+
+            ReuseSamePopEA(
+                    eoCountContinue<EOT>& continuator,
+                    const eoPop<EOT>& originalPop,
+                    eoPopEvalFunc<EOT>& pop_eval
+                    ) :
+                _continuator( continuator ),
+                _originalPop( originalPop ),
+                _firstTime( true )
+            {
+                pop_eval( _originalPop, _originalPop );
             }
 
             void operator()( eoPop<EOT>& pop )

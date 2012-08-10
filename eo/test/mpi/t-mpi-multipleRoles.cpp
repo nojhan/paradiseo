@@ -118,7 +118,7 @@ struct Work: public eoUF< SerializableVector< SerializableBase<int> >&, void >
     {
         cout << "Work phase..." << endl;
         subtask( v, Node::comm().rank() );
-        for( int i = 0; i < v.size(); ++i )
+        for( unsigned i = 0; i < v.size(); ++i )
         {
             v[i] *= 2;
         }
@@ -168,7 +168,7 @@ int main(int argc, char** argv)
                     EmptyJob stop( algo, 0 );
                     v = metaV[0];
                     cout << "Results : " << endl;
-                    for(int i = 0; i < v.size(); ++i)
+                    for(unsigned i = 0; i < v.size(); ++i)
                     {
                         cout << v[i] << ' ';
                     }

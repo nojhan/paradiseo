@@ -32,6 +32,7 @@ SET (TEST_LIST
     t-mpi-multipleRoles
     t-mpi-eval
     t-mpi-multistart
+    t-mpi-distrib-exp
     )
 
 FOREACH (test ${TEST_LIST})

@@ -173,14 +173,14 @@ namespace eo
 
                 int sentSize = futureIndex - _data->index ;
 
-                _data->comm.send( wrkRank, 1, sentSize );
+                _data->comm.send( wrkRank, eo::mpi::Channel::Messages, sentSize );
 
-                eo::log << eo::progress << "Evaluating individual " << _data->index << std::endl;
+                eo::log << eo::debug << "Evaluating individual " << _data->index << std::endl;
 
                 _data->assignedTasks[ wrkRank ].index = _data->index;
                 _data->assignedTasks[ wrkRank ].size = sentSize;
 
-                _data->comm.send( wrkRank, 1, & ( (_data->table())[ _data->index ] ) , sentSize );
+                _data->comm.send( wrkRank, eo::mpi::Channel::Messages, & ( (_data->table())[ _data->index ] ) , sentSize );
                 _data->index = futureIndex;
             }
         };
@@ -203,7 +203,7 @@ namespace eo
 
             void operator()(int wrkRank)
             {
-                _data->comm.recv( wrkRank, 1, & (_data->table()[ _data->assignedTasks[wrkRank].index ] ), _data->assignedTasks[wrkRank].size );
+                _data->comm.recv( wrkRank, eo::mpi::Channel::Messages, & (_data->table()[ _data->assignedTasks[wrkRank].index ] ), _data->assignedTasks[wrkRank].size );
             }
         };
 
@@ -230,16 +230,16 @@ namespace eo
             {
                 int recvSize;
 
-                _data->comm.recv( _data->masterRank, 1, recvSize );
+                _data->comm.recv( _data->masterRank, eo::mpi::Channel::Messages, recvSize );
                 _data->tempArray.resize( recvSize );
-                _data->comm.recv( _data->masterRank, 1, & _data->tempArray[0] , recvSize );
+                _data->comm.recv( _data->masterRank, eo::mpi::Channel::Messages, & _data->tempArray[0] , recvSize );
                 timerStat.start("worker_processes");
                 for( int i = 0; i < recvSize ; ++i )
                 {
                     _data->func( _data->tempArray[ i ] );
                 }
                 timerStat.stop("worker_processes");
-                _data->comm.send( _data->masterRank, 1, & _data->tempArray[0], recvSize );
+                _data->comm.send( _data->masterRank, eo::mpi::Channel::Messages, & _data->tempArray[0], recvSize );
             }
         };
 

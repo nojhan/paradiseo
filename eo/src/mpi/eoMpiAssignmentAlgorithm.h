@@ -177,7 +177,7 @@ namespace eo
                  * @param workers std::vector of MPI ranks of workers which will be used.
                  * @param runs Fixed amount of runs, strictly positive.
                  */
-                StaticAssignmentAlgorithm( std::vector<int>& workers, int runs );
+                StaticAssignmentAlgorithm( const std::vector<int>& workers, int runs );
 
                 /**
                  * @brief Uses a range of workers.
@@ -215,7 +215,7 @@ namespace eo
                  * @param workers Vector of hosts' ranks
                  * @param runs Fixed amount of runs, strictly positive.
                  */
-                void init( std::vector<int> & workers, int runs );
+                void init( const std::vector<int> & workers, int runs );
 
             public:
                 int get( );
