@@ -11,11 +11,20 @@ endif(UNIX)
 ######################################################################################
 
 if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
-    add_custom_target(doc 
-        COMMAND make doc-eo
-        COMMAND make doc-mo 
-        COMMAND make doc-moeo
-    )
+    if(SMP)
+        add_custom_target(doc 
+            COMMAND make doc-eo
+            COMMAND make doc-mo 
+            COMMAND make doc-moeo
+            COMMAND make doc-smp
+        )
+    else()
+        add_custom_target(doc 
+            COMMAND make doc-eo
+            COMMAND make doc-mo 
+            COMMAND make doc-moeo
+        )
+    endif()
 endif(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
 
 ######################################################################################

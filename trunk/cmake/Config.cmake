@@ -34,8 +34,13 @@ endif()
 ######################################################################################
 
 add_definitions(-DDEPRECATED_MESSAGES)
-set(CMAKE_CXX_FLAGS_DEBUG  "-Wunknown-pragmas -O0 -g -Wall -Wextra -ansi -pedantic -fopenmp -std=c++0x" CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_RELEASE  "-Wunknown-pragmas -O2 -fopenmp -std=c++0x" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS_DEBUG  "-Wunknown-pragmas -O0 -g -Wall -Wextra -ansi -pedantic" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS_RELEASE  "-Wunknown-pragmas -O2" CACHE STRING "" FORCE)
+
+if(SMP)
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -pthread" CACHE STRING "" FORCE)
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11 -pthread" CACHE STRING "" FORCE)
+endif(SMP)
 
 ######################################################################################
 ### 1) Define installation type
@@ -55,6 +60,7 @@ endif()
 
 if(PROFILING)
         set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -pg --coverage" CACHE STRING "" FORCE)
+        set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "" FORCE)
         set(ENABLE_CMAKE_TESTING "true" CACHE STRING "" FORCE)
 endif(PROFILING)
 
@@ -66,16 +72,6 @@ if(ENABLE_CMAKE_TESTING)
     enable_testing()
     include(CTest REQUIRED)
 endif(ENABLE_CMAKE_TESTING)
-
-######################################################################################
-### 4) Set DEBUG or RELEASE build type depending testing and profiling
-######################################################################################
-
-if(NOT DEFINED DEBUG)
-  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
-else( NOT DEFINED DEBUG)
-  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "" FORCE)
-endif(NOT DEFINED DEBUG)
 
 ######################################################################################
 ### 5) Build examples ?

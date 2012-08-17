@@ -38,9 +38,6 @@ Then, follow UNIX instructions.
 ------------------------------------------------------------------------------------------
 1.0 DEPENDENCIES
 ------------------------------------------------------------------------------------------
-Required
-- Compiler with OpenMP implementation (hence, Clang isn't supported atm).
-
 Optionnal
 - Doxygen for documentation
 - lcov for coverage
@@ -74,7 +71,7 @@ To compile ParadisEO simply compile sources using your generator. For instance, 
 ------------------------------------------------------------------------------------------
 
 There are 2 types of build : Release or Debug.
-To explicitly change the type, add -DCMAKE_BUILD_TYPE=Debug for instance.
+To explicitly change the type, add -DDEBUG=true, otherwise, it will be the Release type.
 
 ------------------------------------------------------------------------------------------
 1.3 INSTALLATION
@@ -97,6 +94,7 @@ doc for all documentations
 doc-eo for building EO documentation
 doc-mo for MO
 doc-moeo for MOEO
+doc-smp for SMP
 
 Each documentation are generated separatly in the module build folder. 
 For instance, after the generation of the MO documentation, you will find it in build/paradise-mo/doc.

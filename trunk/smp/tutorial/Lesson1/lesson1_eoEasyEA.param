@@ -1,0 +1,37 @@
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1104133126                        # -S : Random number seed
+
+######    Evolution Engine        ######
+--popSize=10                               # -P : Population Size
+--tSize=2 				   #tournament size
+
+
+######    Output                  ######
+# --useEval=1                              # Use nb of eval. as counter (vs nb of gen.)
+# --useTime=1                              # Display time (s) every generation
+# --printBestStat=1                        # Print Best/avg/stdev every gen.
+# --printPop=0                             # Print sorted pop. every gen.
+
+######    Output - Disk           ######
+# --resDir=Res                             # Directory to store DISK outputs
+# --eraseDir=1                             # erase files in dirName if any
+# --fileBestStat=0                         # Output bes/avg/std to file
+
+######    Output - Graphical      ######
+# --plotBestStat=0                         # Plot Best/avg Stat
+# --plotHisto=0                            # Plot histogram of fitnesses
+
+######    Persistence             ######
+# --Load=L                                  # -L : A save file to restart from
+--inst=lesson1_data.dat	   	    		# -i
+--schema=schema.xml			    			# -s
+
+######    Stopping criterion      ######
+--maxGen=10                               # -G : Maximum number of generations () = none)
+--minGen=1                                # -g : Minimum number of generations
+
+######    Variation Operators     ######
+--pCross=0.7                                # -C : Probability of Crossover
+--pMut=0.8                                  # -M : Probability of Mutation
