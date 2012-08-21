@@ -43,7 +43,7 @@ namespace smp
 
     Thread& Thread::operator=(Thread&& other)
     {
-            t = std::move(other.t);
+        t = std::move(other.t);
         return *this;
     }
 
