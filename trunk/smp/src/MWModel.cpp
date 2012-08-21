@@ -31,7 +31,7 @@ template<template <class> class EOAlgo, class EOT>
 template<class... Args>
 paradiseo::smp::MWModel<EOAlgo,EOT>::MWModel (unsigned workersNb, Args&... args) :
     EOAlgo<EOT>(args...),
-    scheduler(workersNb-1)
+    scheduler(workersNb)
 { assert(workersNb > 0); }
 
 template<template <class> class EOAlgo, class EOT>

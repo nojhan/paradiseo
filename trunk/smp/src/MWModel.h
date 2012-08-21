@@ -58,7 +58,7 @@ class MWModel : public EOAlgo<EOT>
 public:
     /**
      * Constructor
-     * @param workersNb the number of workers including the master
+     * @param workersNb the number of workers
      * @param args... list of parameters according to the constructor of your algorithm
      */
     template<class... Args>
