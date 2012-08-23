@@ -19,7 +19,8 @@
 # - cma
 # - flowshop
 # - moeo
-# You can use find_package(Paradiseo COMPONENTS ... ) to enable one or several components. If you not specifie component, all components will be load.
+# - smp
+# You can use find_package(Paradiseo COMPONENTS ... ) to enable one or several components. If you not specifie component, all components will be load except SMP for compatibility reasons.
 #
 # Output
 # ------
@@ -69,11 +70,25 @@ find_path(MO_INCLUDE_DIR mo
 find_path(MOEO_INCLUDE_DIR moeo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/moeo moeo/src
           PATHS ${PARADISEO_SRC_PATHS})
+          
+# Specific for SMP
+foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
+    if(${COMP} STREQUAL "smp")
+        set(SMP_FOUND true)
+        find_path(SMP_INCLUDE_DIR smp
+              PATH_SUFFIXES include${INSTALL_SUB_DIR}/smp smp/src
+              PATHS ${PARADISEO_SRC_PATHS})
+    endif()
+endforeach()
            
-set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
+if(SMP_FOUND)
+    set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR} ${SMP_INCLUDE_DIR})
+else()
+    set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
+endif()
 
 # find the requested modules
-set(PARADISEO_FOUND TRUE) # will be set to false if one of the required modules is not found
+set(PARADISEO_FOUND true) # will be set to false if one of the required modules is not found
 
 set(FIND_PARADISEO_LIB_PATHS
         ${PARADISEO_ROOT}/${BUILD_DIR}
@@ -94,6 +109,7 @@ set(PARADISEO_LIB_PATHS_SUFFIXES
         mo/lib 
         moeo/lib 
         moeo/tutorial/examples/flowshop/lib #For flowshop library
+        smp/lib
         lib 
         lib32 
         lib64
@@ -108,11 +124,11 @@ foreach(FIND_PARADISEO_COMPONENT ${PARADISEO_LIBRARIES_TO_FIND})
                  PATHS ${FIND_PARADISEO_LIB_PATHS})
     if (PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_LIBRARY)
         # library found
-        set(PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_FOUND TRUE)
+        set(PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_FOUND true)
     else()
         # library not found
-        set(PARADISEO_FOUND FALSE)
-        set(PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_FOUND FALSE)
+        set(PARADISEO_FOUND false)
+        set(PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_FOUND false)
         set(FIND_PARADISEO_MISSING "${FIND_PARADISEO_MISSING} ${FIND_PARADISEO_COMPONENT}")
     endif()
     set(PARADISEO_LIBRARIES ${PARADISEO_LIBRARIES} "${PARADISEO_${FIND_PARADISEO_COMPONENT_UPPER}_LIBRARY}")
@@ -124,6 +140,9 @@ if(PARADISEO_FOUND)
     message(${EO_INCLUDE_DIR})
     message(${MO_INCLUDE_DIR})
     message(${MOEO_INCLUDE_DIR})
+    if(${SMP_FOUND})
+        message(${SMP_INCLUDE_DIR})
+    endif()
 else()
     # include directory or library not found
     message(FATAL_ERROR "Could NOT find ParadisEO (missing : ${FIND_PARADISEO_MISSING})")

@@ -4,7 +4,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 ### 0) If you want to set your variables in eo-conf.cmake and avoid the cmd line
 ######################################################################################
 
-INCLUDE(eo-conf.cmake OPTIONAL)
+#INCLUDE(eo-conf.cmake OPTIONAL)
 
 ######################################################################################
 
@@ -134,6 +134,6 @@ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/eo.pc DESTINATION ${LIB}/pkgconfig COM
 ### 7) Include packaging
 ######################################################################################
 
-INCLUDE(Packaging.cmake)
+#INCLUDE(Packaging.cmake)
 
 ######################################################################################

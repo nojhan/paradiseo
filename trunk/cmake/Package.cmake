@@ -71,7 +71,7 @@ if(UNIX)
         set(CPACK_BINARY_TGZ "OFF")
         set(CPACK_BINARY_STGZ "OFF")
         
-        set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/mac.rtf")
+        #set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/mac.rtf")
 
     else()
         # Generators for Unix-like

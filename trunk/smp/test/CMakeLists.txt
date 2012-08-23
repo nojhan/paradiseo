@@ -34,7 +34,3 @@ execute_process(
     ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat
     ${CMAKE_CURRENT_BINARY_DIR}/t-data.dat)
 
-execute_process(
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    ${CMAKE_CURRENT_SOURCE_DIR}/bench.sh
-    ${CMAKE_CURRENT_BINARY_DIR}/bench.sh)

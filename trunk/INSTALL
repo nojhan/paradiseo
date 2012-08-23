@@ -53,7 +53,7 @@ After getting ParadisEO sources from repository, you have to create a build dire
 
 To make the installation easier, ParadisEO propose you two installation types which are "Full" and "Min".
 Full corresponds examples / lessons, tests and obviously libraries. 
-Min corresponds to libraries and headers and it's the standard behavior.
+Min corresponds to libraries and headers and it is the standard behavior.
 
 You can specified an installation type by adding the following declaration to cmake :
 
@@ -76,7 +76,17 @@ There are 2 types of build : Release or Debug.
 To explicitly change the type, add -DDEBUG=true, otherwise, it will be the Release type.
 
 ------------------------------------------------------------------------------------------
-1.3 INSTALLATION
+1.3 COMPILERS
+------------------------------------------------------------------------------------------
+
+You can change the compiler used by CMake with the following options :
+
+>-DCMAKE_C_COMPILER=/path/to/your/c/compiler
+
+>-DCMAKE_CXX_COMPILER=/path/to/your/c++/compiler
+
+------------------------------------------------------------------------------------------
+1.4 INSTALLATION
 ------------------------------------------------------------------------------------------
 
 WARNING : This require administration rights.
