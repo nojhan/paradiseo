@@ -25,7 +25,6 @@ int main(void)
 
     int nbWorkers = 4;
 
-        
     Scheduler<Indi> sched(nbWorkers);
     
     sched(plainEval, pop);

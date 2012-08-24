@@ -1,5 +1,5 @@
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::MWModel<EOAlgo,EOT>::operator()(eoPop<EOT>& _pop, const eoEasyEA_tag&) 
+template<template <class> class EOAlgo, class EOT, class Policy>
+void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& _pop, const eoEasyEA_tag&) 
 {
     
 	if (this->isFirstCall)

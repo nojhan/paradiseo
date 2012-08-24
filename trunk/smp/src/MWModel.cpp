@@ -27,44 +27,44 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-template<template <class> class EOAlgo, class EOT>
+template<template <class> class EOAlgo, class EOT, class Policy>
 template<class... Args>
-paradiseo::smp::MWModel<EOAlgo,EOT>::MWModel (unsigned workersNb, Args&... args) :
+paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel (unsigned workersNb, Args&... args) :
     EOAlgo<EOT>(args...),
     scheduler(workersNb)
 { assert(workersNb > 0); }
 
-template<template <class> class EOAlgo, class EOT>
+template<template <class> class EOAlgo, class EOT, class Policy>
 template<class... Args>
-paradiseo::smp::MWModel<EOAlgo,EOT>::MWModel (Args&... args) :
+paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel (Args&... args) :
     MWModel(Thread::hardware_concurrency(), args...)
 {}
 
-template<template <class> class EOAlgo, class EOT>
-paradiseo::smp::MWModel<EOAlgo,EOT>::~MWModel () 
+template<template <class> class EOAlgo, class EOT, class Policy>
+paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::~MWModel () 
 {}
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::MWModel<EOAlgo,EOT>::apply(eoUF<EOT&, void>& func, eoPop<EOT>& pop) 
+template<template <class> class EOAlgo, class EOT, class Policy>
+void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::apply(eoUF<EOT&, void>& func, eoPop<EOT>& pop) 
 {     
     scheduler(func, pop);
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::MWModel<EOAlgo,EOT>::evaluate(eoPop<EOT>& pop) 
+template<template <class> class EOAlgo, class EOT, class Policy>
+void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::evaluate(eoPop<EOT>& pop) 
 {     
     scheduler(this->eval, pop);
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::MWModel<EOAlgo,EOT>::operator()(eoPop<EOT>& pop) 
+template<template <class> class EOAlgo, class EOT, class Policy>
+void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& pop) 
 {
     // Call the tag dispatcher
     operator()(pop,typename traits<EOAlgo,EOT>::type());
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::MWModel<EOAlgo,EOT>::operator()(eoPop<EOT>& pop, const error_tag&) 
+template<template <class> class EOAlgo, class EOT, class Policy>
+void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& pop, const error_tag&) 
 {
     throw std::runtime_error("This is not a valid algorithm");
 }

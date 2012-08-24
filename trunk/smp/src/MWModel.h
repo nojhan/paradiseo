@@ -33,8 +33,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 #include <scheduler.h>
-#include <tagDispatching.h>
-
+#include <algoDispatching.h>
+#include <policiesDispatching.h>
 
 
 #include <eo>
@@ -52,7 +52,7 @@ The MW Model wraps any algorithm in order to apply it on several populations.
 @see smp::Worker, smp::Thread
 */
 
-template<template <class> class EOAlgo, class EOT>
+template<template <class> class EOAlgo, class EOT, class Policy = LinearPolicy>
 class MWModel : public EOAlgo<EOT>
 {
 public:
@@ -114,7 +114,7 @@ protected:
     void operator()(eoPop<EOT>& pop,const error_tag&);
     
     std::vector<Thread*> workers;
-    Scheduler<EOT> scheduler;
+    Scheduler<EOT,Policy> scheduler;
 };
 
 #include <MWModel.cpp>

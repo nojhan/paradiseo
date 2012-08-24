@@ -34,12 +34,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 #include <atomic>
 #include <mutex>
-#include <condition_variable>
 
 #include <thread.h>
+#include <policiesDispatching.h>
 
 #include <eoEvalFunc.h>
 #include <eoPop.h>
+
 
 namespace paradiseo
 {
@@ -48,7 +49,7 @@ namespace smp
 /** 
 A scheduler class
 */
-template<class EOT>
+template<class EOT, class Policy = LinearPolicy>
 class Scheduler
 {
 public:
@@ -69,15 +70,32 @@ public:
      * @param pop reference to the population
      */
     void operator()(eoUF<EOT&, void>& func, eoPop<EOT>& pop);
-    
+
 protected:
+    /**
+     * Perform scheduling with a linear policy
+     */
+    void operator()(eoUF<EOT&, void>& func, eoPop<EOT>& pop, const LinearPolicy&);
+    
+    /**
+     * Perform scheduling with a linear policy
+     */
+    void operator()(eoUF<EOT&, void>& func, eoPop<EOT>& pop, const ProgressivePolicy&);
+
+    /**
+     * Apply an unary functor on a sub-group of population
+     * @param func unary functor
+     * @param pop reference to the sub-group
+     */
+    void applyLinearPolicy(eoUF<EOT&, void>& func, std::vector<EOT*>& pop);
+    
     /**
      * Apply an unary functor on a sub-group of population
      * @param func unary functor
      * @param pop reference to the sub-group
      * @param id id of the thread
      */
-    void apply(eoUF<EOT&, void>& func, std::vector<EOT*>& pop, int id);
+    void applyProgressivePolicy(eoUF<EOT&, void>& func, std::vector<EOT*>& pop, int id);
     
     /**
      * Create sub-groups with similar size from a population.
@@ -87,13 +105,11 @@ protected:
     
     std::vector<Thread> workers;
     std::vector<std::vector<EOT*>> popPackages;
-    std::mutex m;
+    
     std::atomic<bool> done;
     std::vector<unsigned> planning;
-    std::atomic<int> idWaitingThread;
-    
-    std::condition_variable cv;
-    std::condition_variable cvt;
+    std::vector<std::atomic<int>> isWorking;
+    std::vector<std::mutex> m;
 };
 
 #include <scheduler.cpp>
