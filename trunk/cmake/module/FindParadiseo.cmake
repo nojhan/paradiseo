@@ -20,6 +20,7 @@
 # - flowshop
 # - moeo
 # - smp
+# - peo
 # You can use find_package(Paradiseo COMPONENTS ... ) to enable one or several components. If you not specifie component, all components will be load except SMP for compatibility reasons.
 #
 # Output
@@ -56,7 +57,7 @@ set(PARADISEO_SRC_PATHS
         /opt/csw/ # Blastwave
         /opt/
         [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]
-        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadiseEO]
+        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadisEO]
 )
 
 find_path(EO_INCLUDE_DIR eo
@@ -71,20 +72,29 @@ find_path(MOEO_INCLUDE_DIR moeo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/moeo moeo/src
           PATHS ${PARADISEO_SRC_PATHS})
           
-# Specific for SMP
+# Specific for SMP and PEO
 foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
     if(${COMP} STREQUAL "smp")
         set(SMP_FOUND true)
         find_path(SMP_INCLUDE_DIR smp
               PATH_SUFFIXES include${INSTALL_SUB_DIR}/smp smp/src
               PATHS ${PARADISEO_SRC_PATHS})
+    elseif(${COMP} STREQUAL "peo")
+        set(PEO_FOUND true)
+        find_path(PEO_INCLUDE_DIR peo
+              PATH_SUFFIXES include${INSTALL_SUB_DIR}/peo peo/src
+              PATHS ${PARADISEO_SRC_PATHS})
     endif()
 endforeach()
-           
+
+set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})           
+
 if(SMP_FOUND)
-    set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR} ${SMP_INCLUDE_DIR})
-else()
-    set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
+    set(PARADISEO_INCLUDE_DIR ${PARADISEO_INCLUDE_DIR} ${SMP_INCLUDE_DIR})
+endif()
+
+if(PEO_FOUND)
+    set(PARADISEO_INCLUDE_DIR ${PARADISEO_INCLUDE_DIR} ${PEO_INCLUDE_DIR})
 endif()
 
 # find the requested modules
@@ -100,7 +110,7 @@ set(FIND_PARADISEO_LIB_PATHS
         /opt/csw/ # Blastwave
         /opt/
         [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]
-        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadiseEO]
+        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadisEO]
 )
 
 #Suffixes
@@ -110,6 +120,7 @@ set(PARADISEO_LIB_PATHS_SUFFIXES
         moeo/lib 
         moeo/tutorial/examples/flowshop/lib #For flowshop library
         smp/lib
+        peo/lib
         lib 
         lib32 
         lib64
@@ -140,8 +151,11 @@ if(PARADISEO_FOUND)
     message(${EO_INCLUDE_DIR})
     message(${MO_INCLUDE_DIR})
     message(${MOEO_INCLUDE_DIR})
-    if(${SMP_FOUND})
+    if(SMP_FOUND)
         message(${SMP_INCLUDE_DIR})
+    endif()
+    if(PEO_FOUND)
+        message(${PEO_INCLUDE_DIR})
     endif()
 else()
     # include directory or library not found

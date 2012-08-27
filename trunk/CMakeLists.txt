@@ -63,6 +63,9 @@ set(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/moeo" CACHE PATH "ParadisEO-MOEO binary di
 set(SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp" CACHE PATH "ParadisEO-SMP source directory" FORCE)
 set(SMP_BIN_DIR "${CMAKE_BINARY_DIR}/smp" CACHE PATH "ParadisEO-SMP binary directory" FORCE)
 
+set(PEO_SRC_DIR "${CMAKE_SOURCE_DIR}/peo" CACHE PATH "ParadisEO-PEO source directory" FORCE)
+set(PEO_BIN_DIR "${CMAKE_BINARY_DIR}/peo" CACHE PATH "ParadisEO-PEO binary directory" FORCE)
+
 set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE PATH "Problems dependant source directory" FORCE)
 
 set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
@@ -88,6 +91,13 @@ if(NOT EO_ONLY)
         set(SMP_MODULE_NAME "ParadisEO-SMP")
         set(CMAKE_SOURCE_DIR ${SMP_SRC_DIR})
         add_subdirectory(${SMP_SRC_DIR})
+    endif()
+    
+    ## PEO Module
+    if(PEO)
+        set(PEO_MODULE_NAME "ParadisEO-PEO")
+        set(CMAKE_SOURCE_DIR ${PEO_SRC_DIR})
+        add_subdirectory(${PEO_SRC_DIR})
     endif()
 endif()
 
