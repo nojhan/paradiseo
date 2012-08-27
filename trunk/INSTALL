@@ -126,6 +126,16 @@ If you are in that case and assuming you have a standard path for gcc et g++ 4.7
 > cmake .. -DSMP=true -DCMAKE_C_COMPILER=/usr/bin/gcc-4.7 -DCMAKE_CXX_COMPILER=/usr/bin/g++-4.7
 
 ------------------------------------------------------------------------------------------
+2.2 PEO MODULE
+------------------------------------------------------------------------------------------
+
+WARNING : The PEO module requires libXML 2 and a MPI implementation such as MPICH2.
+
+To enable the compilation of the PEO module, just add -DPEO=true to CMake :
+
+> cmake .. -DPEO=true
+
+------------------------------------------------------------------------------------------
 3. DOCUMENTATION
 ------------------------------------------------------------------------------------------
 
