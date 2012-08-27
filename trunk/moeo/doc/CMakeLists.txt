@@ -26,7 +26,7 @@ if(DOXYGEN_FOUND)
                    "${MOEO_DOC_DIR}/${MOEO_DOC_CONFIG_FILE}")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        DESTINATION share${INSTALL_SUB_DIR}/moeo COMPONENT doc
+        DESTINATION local/share${INSTALL_SUB_DIR}/moeo COMPONENT doc
         PATTERN "CMakeFiles" EXCLUDE
         PATTERN "cmake_install.cmake" EXCLUDE
         PATTERN "CTestTestfile.cmake" EXCLUDE
