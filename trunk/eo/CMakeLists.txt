@@ -88,7 +88,7 @@ ENDIF (WIN32)
 ### compilation of examples?
 ######################################################################################
 
-SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
+#SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
 
 ######################################################################################
 
@@ -97,9 +97,9 @@ SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters f
 ### 4) Test config
 ######################################################################################
 
-IF (ENABLE_CMAKE_TESTING)
-  ENABLE_TESTING()
-ENDIF (ENABLE_CMAKE_TESTING)
+#IF (ENABLE_CMAKE_TESTING)
+#  ENABLE_TESTING()
+#ENDIF (ENABLE_CMAKE_TESTING)
 
 ######################################################################################
 
