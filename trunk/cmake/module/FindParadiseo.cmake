@@ -56,8 +56,8 @@ set(PARADISEO_SRC_PATHS
         /opt/local/ # DarwinPorts
         /opt/csw/ # Blastwave
         /opt/
-        [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]
-        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadisEO]
+        [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]/local
+        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadisEO]/local
 )
 
 find_path(EO_INCLUDE_DIR eo
@@ -109,8 +109,8 @@ set(FIND_PARADISEO_LIB_PATHS
         /opt/local/ # DarwinPorts
         /opt/csw/ # Blastwave
         /opt/
-        [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]
-        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadisEO]
+        [KEY_CURRENT_USER\\Software\\Inria\\ParadisEO]/local
+        [HKEY_LOCAL_MACHINE\\Software\\Inria\\ParadisEO]/local
 )
 
 #Suffixes
