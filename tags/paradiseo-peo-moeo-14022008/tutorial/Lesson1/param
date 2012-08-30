@@ -1,9 +1,0 @@
-## miscallenous parameters
-
---debug=false
-
-## deployment schema
-
---schema=schema.xml
-
-

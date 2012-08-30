@@ -1,9 +1,0 @@
-
-######                 General    ######
-# --help=0                                 # -h : Prints this message
-# --stopOnUnknownParam=1                   # Stop if unkown param entered
-
-######    Configuration           ######
---instancePath=../tsp/benchs/berlin52.tsp # Path to the instance.
-# --seed=1224772265                        # Seed for rand.
---maxIter=1000                           # Maximum number of iterations.

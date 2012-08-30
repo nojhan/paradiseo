@@ -1,9 +1,0 @@
-######    Configuration           ######
---instancePath=../tsp/benchs/berlin52.tsp       # Path to the instance.
---popSize=100                            # Size of the population.
---nbOffspring=100                           # Number of selected parents.
---maxGen=1000                           # Maximum number of iterations.
---crossType=Partial                      # Crossover to use, it can be 'Partial', 'Order' or 'Edge'.
---crossRate=1                            # Probability of crossover.
---mutRate=0.01                           # Probability of mutation
-

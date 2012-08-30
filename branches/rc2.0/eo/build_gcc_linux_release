@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-mkdir -p release
-cd release
-cmake ..
-make
-cd ..

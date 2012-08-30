@@ -1,3 +1,0 @@
-######    Configuration           ######
---instancePath=../tsp/benchs/berlin52.tsp  # Path to the instance.
---selectionType=Best                       # Type of the selection: 'Best', 'First' or 'Random'.
