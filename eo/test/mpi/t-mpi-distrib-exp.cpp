@@ -46,9 +46,10 @@ class Distribution : public std::vector< type >
      */
     virtual int next_element() = 0;
 
-    // Idea for function name: enlarge_your_parser
     /**
      * @brief Creates params and retrieves values from parser
+     *
+     * Parser's params should take milliseconds as inputs.
      */
     virtual void make_parser( eoParser & parser ) = 0;
 
@@ -56,7 +57,7 @@ class Distribution : public std::vector< type >
      * @brief Returns true if this distribution has been activated by the
      * command line.
      *
-     * Serves to main program to check if at least one distribution has been
+     * Used by the main program so as to check if at least one distribution has been
      * activated.
      */
     bool isActive() { return _active; }
@@ -78,13 +79,13 @@ class UniformDistribution : public Distribution
     void make_parser( eoParser & parser )
     {
         _active = parser.createParam( false, "uniform", "Uniform distribution", '\0', "Uniform").value();
-        _min = parser.createParam( 0.0, "uniform-min", "Minimum for uniform distribution", '\0', "Uniform").value();
-        _max = parser.createParam( 1.0, "uniform-max", "Maximum for uniform distribution", '\0', "Uniform").value();
+        _min = parser.createParam( 0.0, "uniform-min", "Minimum for uniform distribution, in ms.", '\0', "Uniform").value();
+        _max = parser.createParam( 1.0, "uniform-max", "Maximum for uniform distribution, in ms.", '\0', "Uniform").value();
     }
 
     int next_element()
     {
-        return std::floor( 1000. * _rng.uniform( _min, _max ) );
+        return std::floor( _rng.uniform( _min, _max ) );
     }
 
     protected:
