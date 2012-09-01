@@ -154,31 +154,54 @@ int main( int argc, char** argv )
     Node::init( argc, argv );
     eoParser parser( argc, argv );
 
-    // TODO for each available distribution, check if activated.
+    // General parameters for the experimentation
+    unsigned size = parser.createParam( 10U, "size", "Number of elements to distribute.", 's', "Distribution").value();
+    unsigned packet_size = parser.createParam( 1U, "packet_size", "Number of elements to distribute at each time for a single worker.", 'p', "Parallelization").value();
+
+    std::vector<Distribution*> distribs;
+    distribs.push_back( &uniformDistribution );
+    distribs.push_back( &normalDistribution );
+
+    // for each available distribution, check if activated.
     // If no distribution is activated, show an error message
     // If two distributions or more are activated, show an error message
     // Otherwise, use the activated distribution as distrib
-    Distribution & distrib = uniformDistribution;
-    // Make parser of distribution here
-    distrib.make_parser( parser );
-
-    unsigned size = parser.createParam( 10U, "size", "Number of elements to distribute.", 's', "Distribution").value();
-    unsigned packet_size = parser.createParam( 1U, "packet_size", "Number of elements to distribute at each time for a single worker.", 'p', "Parallelization").value();
+    bool isChosenDistrib = false;
+    Distribution* pdistrib = 0;
+    for( int i = 0, s = distribs.size(); i < s; ++i )
+    {
+        distribs[i]->make_parser( parser );
+        if( distribs[i]->isActive() )
+        {
+            if( isChosenDistrib )
+            {
+                throw std::runtime_error("Only one distribution can be chosen during a launch!");
+            } else
+            {
+                isChosenDistrib = true;
+                pdistrib = distribs[i];
+            }
+        }
+    }
 
     make_parallel( parser );
     make_help( parser );
 
-    ParallelApplyStore< type> store( wait, DEFAULT_MASTER, packet_size );
+    if( !isChosenDistrib )
+    {
+        throw std::runtime_error("No distribution chosen. One distribution should be chosen.");
+    }
 
     // Fill distribution
+    Distribution& distrib = *pdistrib;
     distrib.fill( size );
-    store.data( distrib );
 
+    ParallelApplyStore< type > store( wait, DEFAULT_MASTER, packet_size );
+    store.data( distrib );
     DynamicAssignmentAlgorithm scheduling;
     ParallelApply< type > job( scheduling, DEFAULT_MASTER, store );
 
     job.run();
-
     if( job.isMaster() )
     {
         EmptyJob( scheduling, DEFAULT_MASTER ); // to terminate parallel apply
