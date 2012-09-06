@@ -130,7 +130,22 @@ public:
     Vector path_covar() const {return _p_c;}
     Vector path_sigma() const {return _p_s;}
 
+    //! Set the mean with an Eigen3 vector
     void mean(       Vector m ) { _mean = m;  assert( m.size() == _dim ); }
+
+    /** Set the mean with an EOT instead of an Eigen3 mean
+     *
+     * Explicit copy of the EOT in a vector.
+     */
+    void mean(       EOT m )
+    {
+        Vector center( m.size() );
+        for( unsigned int i=0, end=m.size(); i<end; ++i) {
+            center[i] = m[i];
+        }
+        mean( center );
+    }
+
     void covar(      Matrix c ) { _C = c;     assert( c.innerSize() == _dim && c.outerSize() == _dim ); }
     void coord_sys(  Matrix b ) { _B = b;     assert( b.innerSize() == _dim && b.outerSize() == _dim ); }
     void scaling(    Vector d ) { _D = d;     assert( d.size() == _dim ); }
