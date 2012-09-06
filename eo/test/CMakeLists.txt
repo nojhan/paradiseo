@@ -34,6 +34,7 @@ ENDIF()
 ######################################################################################
 
 SET (TEST_LIST
+  t-eoInitVariableLength
   t-eofitness
   t-eoRandom
   t-eobin
