@@ -49,23 +49,12 @@ int main(int ac, char** av)
 {
     eoParser parser(ac, av);
 
-    // Letters used by the following declarations:
-    // a d i p t
-
-    std::string    section("Algorithm parameters");
-
     eoState state;
-
-    // Instantiate all needed parameters for EDA algorithm
-    //double selection_rate = parser.createParam((double)0.5, "selection_rate", "Selection Rate", 'R', section).value(); // R
-
+    // Letters used by the following declarations:
     unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
-
-    unsigned int dim = parser.createParam((unsigned int)10, "dimension-size", "Dimension size", 'd', section).value(); // d
-
+    unsigned int dim = parser.createParam((unsigned int)10, "dimension-size", "Dimension size", 'd', "Problem").value(); // d
 
     double mu = dim / 2;
-
 
     edoNormalAdaptive<RealVec> distribution(dim);
 
@@ -113,6 +102,11 @@ int main(int ac, char** av)
 
     // population output
     eoCheckPoint< RealVec >& pop_continue = do_make_checkpoint(parser, state, eval, eo_continue);
+    // keep the best solution found so far in an eoStat
+    // thus, if the population's best individual fitness decreases during the search, we could
+    // still keep the best found since the beginning, while avoiding the bias of elitism on the sample
+    eoBestIndividualStat<RealVec> best_indiv;
+    pop_continue.add( best_indiv );
 
     // distribution output
     edoDummyContinue< Distrib >* dummy_continue = new edoDummyContinue< Distrib >();
@@ -121,10 +115,12 @@ int main(int ac, char** av)
     edoCheckPoint< Distrib >* distribution_continue = new edoCheckPoint< Distrib >( *dummy_continue );
     state.storeFunctor(distribution_continue);
 
-    // eoEPRemplacement causes the using of the current and previous
-    // sample for sampling.
-    eoReplacement< RealVec >* replacor = new eoEPReplacement< RealVec >(pop.size());
+    eoReplacement< RealVec >* replacor = new eoCommaReplacement< RealVec >();
     state.storeFunctor(replacor);
+
+    // Help + Verbose routines
+    make_verbose(parser);
+    make_help(parser);
 
     // Some stuff to display helper when we are using -h option
     if (parser.userNeedsHelp())
@@ -133,28 +129,28 @@ int main(int ac, char** av)
         exit(1);
     }
 
-    // Help + Verbose routines
-    make_verbose(parser);
-    make_help(parser);
-
     eoPopLoopEval<RealVec> popEval( eval );
 
-    // EDA algorithm configuration
+    // CMA-ES algorithm configuration
     edoAlgo< Distrib >* algo = new edoAlgoAdaptive< Distrib >
         (distribution, popEval, *selector, *estimator, *sampler, *replacor,
          pop_continue, *distribution_continue );
 
+    // Use the best solution of the random first pop to start the search
+    // That is, center the distribution's mean on it.
+    distribution.mean( pop.best_element() );
 
     // Beginning of the algorithm call
     try {
+        eo::log << eo::progress << "Best solution after random init: " << pop.best_element().fitness() << std::endl;
         do_run(*algo, pop);
 
     } catch (eoEvalFuncCounterBounderException& e) {
             eo::log << eo::warnings << "warning: " << e.what() << std::endl;
-
-    } catch (std::exception& e) {
-        eo::log << eo::errors << "error: " << e.what() << std::endl;
-        exit(EXIT_FAILURE);
     }
+
+    // use the stat instead of the pop, to get the best solution of the whole search
+    std::cout << best_indiv.value() << std::endl;
+
     return 0;
 }
