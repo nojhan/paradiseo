@@ -356,6 +356,38 @@ private :
 /** @example t-eoSSGA.cpp
  */
 
+/** Keep the best individual found so far
+ */
+template <class EOT>
+class eoBestIndividualStat : public eoStat<EOT, EOT>
+{
+public:
+    using eoStat<EOT, EOT>::value;
+
+    eoBestIndividualStat(std::string _description = "BestIndiv ")
+        : eoStat<EOT, EOT>( EOT(), _description )
+        {}
+
+    void operator()(const eoPop<EOT>& pop) 
+    {
+        EOT best = pop.best_element();
+        // on the first call, value() is invalid
+        if( value().invalid() ) {
+            // thus we cannot compare it to something else
+            value() = best;
+        } else {
+            // keep the best individual found so far
+            if( best.fitness() > value().fitness() ) {
+                value() = best;
+            }
+        }
+    }
+
+    virtual std::string className(void) const { return "eoBestIndividualStat"; }
+};
+
+
+
 template <class EOT>
 class eoDistanceStat : public eoStat<EOT, double>
 {
