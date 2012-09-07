@@ -34,8 +34,8 @@
   sometime necessary and one can't use elitist replacors, as one do not want to
   introduce a bias in the population.
 
-  The eoEvalBestKeep is a wrapper around a classical evaluator, that keep the
-  best individual it has found since its instanciation.
+  The eoEvalBestKeep can be used as a wrapper around a classical evaluator, 
+  that keep the best individual it has found since its instanciation.
 
   To get the best individual, you have to call best_element() on the
   eoEvalKeepBest itself, and not on the population (or else you would get the
@@ -60,30 +60,58 @@
     // do not use pop.best_element()!
     std::cout << wrapped_eval.best_element() << std::endl;
 
+
+  You can also inherits from eoEvalKeepBest, if you want to add its interface
+  with your own one. But then, you will have to explicitely call the base class
+  functor:
+    class MyEval : public eoEvalKeepBest<EOT>
+    {
+        MyEval() : eoEvalKeepBest<EOT>() {}
+        virtual void operator()(EOT& sol)
+        {
+            // evaluate sol here
+            // ...
+
+            // keep the best
+            eoEvalKeepBest<EOT>::operator()( sol );
+    };
+
   @ingroup Evaluation
   */
 template<class EOT> class eoEvalKeepBest : public eoEvalFunc<EOT>, public eoValueParam<EOT>
 {
     public :
+
+        /** A constructor for inheritance: if you want to inherit from eoEvalKeepBest.
+         *
+         * Keep in mind that you will have to call eoEvalKeepBest in your own implementation of operator().
+         *
+         * This constructor uses a dummy evaluator.
+         */
+        eoEvalKeepBest( std::string _name = "VeryBest. " )
+            : eoValueParam<EOT>(EOT(), _name), dummy_eval(), func(dummy_eval) {}
+
+
+        /** A constructor for wrapping your own evaluator in a eoEvalKeepBest.
+         */
         eoEvalKeepBest(eoEvalFunc<EOT>& _func, std::string _name = "VeryBest. ")
-            : eoValueParam<EOT>(EOT(), _name), func(_func) {}
+            : eoValueParam<EOT>(EOT(), _name), dummy_eval(), func(_func) {}
 
         virtual void operator()(EOT& sol)
         {
-            if( sol.invalid() ) {
-                func(sol); // evaluate
+            func(sol); // evaluate
+            assert( ! sol.invalid() );
 
-                // if there is no best kept
-                if( this->value().invalid() ) {
-                    // take the first individual as best
+            // if there is no best kept
+            if( this->value().invalid() ) {
+                // take the first individual as best
+                this->value() = sol;
+            } else {
+                // if sol is better than the kept individual
+                if( sol.fitness() > this->value().fitness() ) {
                     this->value() = sol;
-                } else {
-                    // if sol is better than the kept individual
-                    if( sol.fitness() > this->value().fitness() ) {
-                        this->value() = sol;
-                    }
                 }
-            } // if invalid
+            }
         }
 
         //! Return the best individual found so far.
@@ -100,7 +128,13 @@ template<class EOT> class eoEvalKeepBest : public eoEvalFunc<EOT>, public eoValu
             this->value() = new_best;
         }
 
+    class DummyEval : public eoEvalFunc<EOT>
+    {
+        void operator()(EOT& sol) {/*empty*/}
+    };
+
     protected :
+        DummyEval dummy_eval;
         eoEvalFunc<EOT>& func;
 };
 
