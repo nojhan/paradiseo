@@ -7,7 +7,7 @@
 # include <eo>
 
 # include <mpi/eoParallelApply.h>
-# include "../test/mpi/t-mpi-common.h"
+# include "t-mpi-common.h"
 
 using namespace eo::mpi;
 
