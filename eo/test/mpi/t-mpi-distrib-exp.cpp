@@ -111,42 +111,23 @@ class NormalDistribution : public Distribution
         // empty
     }
 
-    ~NormalDistribution()
-    {
-        if( _rng )
-        {
-            delete _rng;
-        }
-    }
-
     void make_parser( eoParser & parser )
     {
         _active = parser.createParam( false, "normal", "Normal distribution", '\0', "Normal").value();
         _mean = parser.createParam( 0.0, "normal-mean", "Mean for the normal distribution (0 by default), in ms.", '\0', "Normal").value();
-        double _stddev = parser.createParam( 1.0, "normal-stddev", "Standard deviation for the normal distribution (1ms by default), 0 isn't acceptable.", '\0', "Normal").value();
-
-        if( _active )
-        {
-            _rng = new eoNormalGenerator<double>( _stddev );
-        }
+        _stddev = parser.createParam( 1.0, "normal-stddev", "Standard deviation for the normal distribution (1ms by default), 0 isn't acceptable.", '\0', "Normal").value();
     }
 
     int next_element()
     {
-        int next = std::floor( _mean + (*_rng)() );
-        if( next < 0 )
-        {
-            next = 0;
-        }
-        return next;
+        return std::floor( _rng.normal( _mean, _stddev ) );
     }
 
     protected:
 
-    eoNormalGenerator<double> * _rng;
-
+    eoRng _rng;
     double _mean;
-
+    double _stddev;
 } normalDistribution;
 
 int main( int argc, char** argv )
