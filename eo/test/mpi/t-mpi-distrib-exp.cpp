@@ -34,7 +34,9 @@ class Distribution : public std::vector< type >
     {
         for( unsigned i = 0; i < size; ++i )
         {
-            push_back( next_element() );
+            int next = next_element();
+            if( next < 0 ) next = 0;
+            push_back( next );
         }
     }
 
