@@ -130,6 +130,33 @@ class NormalDistribution : public Distribution
     double _stddev;
 } normalDistribution;
 
+class ExponentialDistribution : public Distribution
+{
+    public:
+
+    ExponentialDistribution() : _rng( 0 )
+    {
+        // empty
+    }
+
+    void make_parser( eoParser & parser )
+    {
+        _active = parser.createParam( false, "exponential", "Exponential distribution", '\0', "Exponential").value();
+        _mean = parser.createParam( 0.0, "exponential-mean", "Mean for the exponential distribution (0 by default), in ms.", '\0', "Exponential").value();
+    }
+
+    int next_element()
+    {
+        return std::floor( _rng.negexp( _mean ) );
+    }
+
+    protected:
+
+    eoRng _rng;
+    double _mean;
+
+} exponentialDistribution;
+
 int main( int argc, char** argv )
 {
     Node::init( argc, argv );
@@ -142,6 +169,7 @@ int main( int argc, char** argv )
     std::vector<Distribution*> distribs;
     distribs.push_back( &uniformDistribution );
     distribs.push_back( &normalDistribution );
+    distribs.push_back( &exponentialDistribution );
 
     // for each available distribution, check if activated.
     // If no distribution is activated, show an error message
