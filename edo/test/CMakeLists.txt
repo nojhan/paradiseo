@@ -34,6 +34,7 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/application/common)
 
 SET(SOURCES
     #t-cholesky
+  t-variance
   t-edoEstimatorNormalMulti
   t-mean-distance
   t-bounderno
