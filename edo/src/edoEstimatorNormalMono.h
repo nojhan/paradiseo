@@ -39,64 +39,84 @@ Authors:
 template < typename EOT >
 class edoEstimatorNormalMono : public edoEstimator< edoNormalMono< EOT > >
 {
-public:
-    typedef typename EOT::AtomType AtomType;
-
-    class Variance
-    {
     public:
-        Variance() : _sumvar(0){}
+        typedef typename EOT::AtomType AtomType;
 
-        void update(AtomType v)
+        //! Knuth's algorithm, online variance, numericably stable
+        class Variance
         {
-            _n++;
+            public:
+                Variance() : _n(0), _mean(0), _M2(0) {}
 
-            AtomType d = v - _mean;
-
-            _mean += 1 / _n * d;
-            _sumvar += (_n - 1) / _n * d * d;
-        }
-
-        AtomType get_mean() const {return _mean;}
-        AtomType get_var() const {return _sumvar / (_n - 1);}
-        AtomType get_std() const {return sqrt( get_var() );}
-
-    private:
-        AtomType _n;
-        AtomType _mean;
-        AtomType _sumvar;
-    };
-
-public:
-    edoNormalMono< EOT > operator()(eoPop<EOT>& pop)
-    {
-        unsigned int popsize = pop.size();
-        assert(popsize > 0);
-
-        unsigned int dimsize = pop[0].size();
-        assert(dimsize > 0);
-
-        std::vector< Variance > var( dimsize );
-
-        for (unsigned int i = 0; i < popsize; ++i)
-            {
-            for (unsigned int d = 0; d < dimsize; ++d)
+                void update(AtomType x)
                 {
-                var[d].update( pop[i][d] );
+                    _n++;
+
+                    AtomType delta = x - _mean;
+
+                    _mean += delta / _n;
+                    _M2 += delta * ( x - _mean );
+                }
+
+                AtomType mean() const {return _mean;}
+
+                //! Population variance
+                AtomType var_n() const {
+                    assert( _n > 0 );
+                    return _M2 / _n;
+                }
+
+                /** Sample variance (using Bessel's correction)
+                 * is an unbiased estimate of the population variance,
+                 * but it has uniformly higher mean squared error
+                 */
+                AtomType var() const {
+                    assert( _n > 1 );
+                    return _M2 / (_n - 1);
+                }
+
+                //! Population standard deviation
+                AtomType std_n() const {return sqrt( var_n() );}
+
+                //! Sample standard deviation, is a biased estimate of the population standard deviation
+                AtomType std() const {return sqrt( var() );}
+
+            private:
+                AtomType _n;
+                AtomType _mean;
+                AtomType _M2;
+        };
+
+    public:
+        edoNormalMono< EOT > operator()(eoPop<EOT>& pop)
+        {
+            unsigned int popsize = pop.size();
+            assert(popsize > 0);
+
+            unsigned int dimsize = pop[0].size();
+            assert(dimsize > 0);
+
+            std::vector< Variance > var( dimsize );
+
+            for (unsigned int i = 0; i < popsize; ++i)
+            {
+                for (unsigned int d = 0; d < dimsize; ++d)
+                {
+                    var[d].update( pop[i][d] );
                 }
             }
 
-        EOT mean( dimsize );
-        EOT variance( dimsize );
+            EOT mean( dimsize );
+            EOT variance( dimsize );
 
-        for (unsigned int d = 0; d < dimsize; ++d)
+            for (unsigned int d = 0; d < dimsize; ++d)
             {
-            mean[d] = var[d].get_mean();
-            variance[d] = var[d].get_var();
+                mean[d] = var[d].mean();
+                variance[d] = var[d].var_n();
             }
 
-        return edoNormalMono< EOT >( mean, variance );
-    }
+            return edoNormalMono< EOT >( mean, variance );
+        }
 };
 
 #endif // !_edoEstimatorNormalMono_h
