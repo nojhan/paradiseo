@@ -32,6 +32,7 @@
 # include <unistd.h> // usleep
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <vector>
 
@@ -231,11 +232,15 @@ class ExponentialDistribution : public Distribution
 int main( int argc, char** argv )
 {
     Node::init( argc, argv );
+    mpi::communicator& comm = eo::mpi::Node::comm();
     eoParser parser( argc, argv );
+
+    // forces the statistics to be retrieved
+    parser.setORcreateParam( true, "parallelize-do-measure", "Do some measures during execution" );
 
     // General parameters for the experimentation
     unsigned size = parser.createParam( 10U, "size", "Number of elements to distribute.", 's', "Distribution").value();
-    unsigned packet_size = parser.createParam( 1U, "packet_size", "Number of elements to distribute at each time for a single worker.", 'p', "Parallelization").value();
+    unsigned packet_size = parser.createParam( 1U, "packet-size", "Number of elements to distribute at each time for a single worker.", 'p', "Parallelization").value();
 
     std::vector<Distribution*> distribs;
     distribs.push_back( &uniformDistribution );
@@ -285,6 +290,32 @@ int main( int argc, char** argv )
     if( job.isMaster() )
     {
         EmptyJob( scheduling, DEFAULT_MASTER ); // to terminate parallel apply
+        // Receive statistics
+        typedef std::map< std::string, eoTimerStat::Stat > typeStats;
+        std::cout << std::fixed << std::setprecision( 5 );
+        for( int i = 1, s = comm.size(); i < s; ++i )
+        {
+            eoTimerStat timerStat;
+            comm.recv( i, eo::mpi::Channel::Commands, timerStat );
+            typeStats stats = timerStat.stats();
+            for( typeStats::iterator it = stats.begin(),
+                    end = stats.end();
+                 it != end;
+                 ++it )
+            {
+                std::cout << "Worker " << i << ": Wallclock time of " << it->first << std::endl;
+                for( int j = 0, t = it->second.wtime.size(); j < t; ++j )
+                {
+                    std::cout << it->second.wtime[j] << " ";
+                }
+                std::cout << std::endl;
+            }
+            std::cout << std::endl;
+        }
+    } else
+    {
+        // Send statistics
+        comm.send( DEFAULT_MASTER, eo::mpi::Channel::Commands, eo::mpi::timerStat );
     }
 
     return 0;
