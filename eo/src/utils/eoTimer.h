@@ -22,7 +22,7 @@ Authors:
 # ifndef __EO_TIMER_H__
 # define __EO_TIMER_H__
 
-# include <sys/time.h> // time()
+# include <sys/time.h> // gettimeofday()
 # include <sys/resource.h> // rusage()
 
 # include <vector> // std::vector
@@ -61,7 +61,7 @@ class eoTimer
          */
         void restart()
         {
-            wc_start = time(NULL);
+            gettimeofday( &wc_start, NULL );
             getrusage( RUSAGE_SELF, &_start );
         }
 
@@ -138,7 +138,9 @@ class eoTimer
          */
         double wallclock()
         {
-            return std::difftime( std::time(NULL) , wc_start );
+            struct timeval wc_end;
+            gettimeofday( &wc_end, NULL );
+            return ( wc_end.tv_sec - wc_start.tv_sec ) + ( wc_end.tv_usec - wc_start.tv_usec ) / 1000000.;
         }
 
     protected:
@@ -149,7 +151,7 @@ class eoTimer
         // Remainder (in milliseconds) for system time.
         long int usremainder;
         // Structure used to measure wallclock time.
-        time_t wc_start;
+        struct timeval wc_start;
 };
 
 /**
