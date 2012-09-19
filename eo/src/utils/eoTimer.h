@@ -318,6 +318,14 @@ class eoTimerStat
             return _stats;
         }
 
+        /**
+         * @brief Empties the statistics map.
+         */
+        void clear()
+        {
+            _stats.clear();
+        }
+
     protected:
         // Statistics map: links a key (string) to a statistic.
         std::map< std::string, Stat > _stats;
