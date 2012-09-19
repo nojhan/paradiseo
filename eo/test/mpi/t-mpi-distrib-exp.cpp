@@ -16,6 +16,19 @@
  * Authors:
  *      Benjamin Bouvier <benjamin.bouvier@gmail.com>
  */
+
+/**
+ * @file t-mpi-distrib-exp.cpp
+ * @brief File for parallel experimentations.
+ *
+ * When using parallel evaluation, the individuals to evaluate are sent by packets (group),
+ * so as to avoid that communication time be more important than worker's execution time.
+ * However, the ideal size of packet depends on the problem and the time needed to carry out
+ * the atomic operation on each individual. This experiment tries to find a relation between
+ * the total number of elements to process (size), the execution time and the size of packet.
+ * This could lead to an heuristic allowing to optimize the size of packet according to the
+ * processing times.
+ */
 # include <unistd.h> // usleep
 
 # include <iostream>
@@ -29,8 +42,14 @@
 
 using namespace eo::mpi;
 
+// Serializable int
 typedef SerializableBase<int> type;
 
+/*
+ * The task is the following: the worker receives a number of milliseconds to wait, which
+ * simulates the process of one individual. This way, the sequences of processing times are
+ * generated only by the master and are more easily reproductible.
+ */
 struct Wait : public eoUF< type &, void >
 {
     void operator()( type & milliseconds )
@@ -41,6 +60,9 @@ struct Wait : public eoUF< type &, void >
     }
 } wait;
 
+/**
+ * @brief Represents a distribution of processing times.
+ */
 class Distribution : public std::vector< type >
 {
     public:
@@ -62,7 +84,8 @@ class Distribution : public std::vector< type >
      * @brief Returns the next element of the distribution to put in the
      * vector.
      *
-     * @returns Number of milliseconds to wait
+     * @returns Number of milliseconds to wait. Can be negative ; in this case,
+     * the number will be truncated to 0ms.
      */
     virtual int next_element() = 0;
 
@@ -87,6 +110,19 @@ class Distribution : public std::vector< type >
     bool _active;
 };
 
+/**
+ * @brief Uniform distribution.
+ *
+ * This is an uniform distribution, defined by a minimum value and a maximum value.
+ * In the uniform distribution, every number from min to max has the same probability
+ * to appear.
+ *
+ * The 3 parameters activable from a parser are the following:
+ * - uniform=1 : if we want to use the uniform distribution
+ * - uniform-min=x : use x milliseconds as the minimum value of waiting time.
+ * - uniform-max=y : use y milliseconds as the maximum value of waiting time.
+ * Ensure that x < y, or the results are unpredictable.
+ */
 class UniformDistribution : public Distribution
 {
     public:
@@ -121,6 +157,10 @@ class UniformDistribution : public Distribution
  * @brief Normal (gaussian) distribution of times.
  *
  * A normal distribution is defined by a mean and a standard deviation.
+ * The 3 parameters activable from the parser are the following:
+ * - normal=1: activates the gaussian distribution.
+ * - normal-mean=50: use 50ms as the mean of the distribution.
+ * - normal-stddev=10: use 10ms as the standard deviation of the distribution.
  */
 class NormalDistribution : public Distribution
 {
@@ -150,6 +190,17 @@ class NormalDistribution : public Distribution
     double _stddev;
 } normalDistribution;
 
+/**
+ * @brief Exponential distribution.
+ *
+ * This distribution belongs to the category of the decreasing power laws and are affected by long trails
+ * phenomenons.
+ * An exponential distribution is only defined by its mean.
+ *
+ * The 2 parameters activable from the parser are the following:
+ * - exponential=1: to activate the exponential distribution.
+ * - exponential-mean=50: indicates that the mean must be 50ms.
+ */
 class ExponentialDistribution : public Distribution
 {
     public:
