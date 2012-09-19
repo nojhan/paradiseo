@@ -281,6 +281,7 @@ int main( int argc, char** argv )
 
     make_parallel( parser );
     make_help( parser );
+    timerStat.start("main");
 
     if( !isChosenDistrib )
     {
@@ -298,6 +299,8 @@ int main( int argc, char** argv )
     ParallelApply< type > job( scheduling, DEFAULT_MASTER, store );
 
     job.run();
+
+    timerStat.stop("main");
     if( job.isMaster() )
     {
         EmptyJob( scheduling, DEFAULT_MASTER ); // to terminate parallel apply
