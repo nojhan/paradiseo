@@ -53,13 +53,22 @@ typedef SerializableBase<int> type;
  */
 struct Wait : public eoUF< type &, void >
 {
+    Wait( bool print ) : _print( print )
+    {
+        // empty
+    }
+
     void operator()( type & milliseconds )
     {
-        std::cout << "Sleeping for " << milliseconds << "ms..." << std::endl;
+        if( _print )
+            std::cout << "Sleeping for " << milliseconds << "ms..." << std::endl;
         // usleep takes an input in microseconds
         usleep( milliseconds * 1000 );
     }
-} wait;
+
+    private:
+    bool _print;
+};
 
 /**
  * @brief Represents a distribution of processing times.
@@ -241,6 +250,7 @@ int main( int argc, char** argv )
     // General parameters for the experimentation
     unsigned size = parser.createParam( 10U, "size", "Number of elements to distribute.", 's', "Distribution").value();
     unsigned packet_size = parser.createParam( 1U, "packet-size", "Number of elements to distribute at each time for a single worker.", 'p', "Parallelization").value();
+    bool worker_print_waiting_time = parser.createParam( false, "print-waiting-time", "Do the workers need to print the time they wait?", '\0', "Parallelization").value();
 
     std::vector<Distribution*> distribs;
     distribs.push_back( &uniformDistribution );
@@ -281,6 +291,7 @@ int main( int argc, char** argv )
     Distribution& distrib = *pdistrib;
     distrib.fill( size );
 
+    Wait wait( worker_print_waiting_time );
     ParallelApplyStore< type > store( wait, DEFAULT_MASTER, packet_size );
     store.data( distrib );
     DynamicAssignmentAlgorithm scheduling;
