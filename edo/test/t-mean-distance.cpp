@@ -43,7 +43,7 @@ Authors:
 
 typedef eoReal< eoMinimizingFitness > EOT;
 typedef edoNormalMulti< EOT > Distrib;
-typedef typename EOT::AtomType AtomType;
+typedef EOT::AtomType AtomType;
 
 #ifdef WITH_BOOST
 #include <boost/numeric/ublas/vector.hpp>
@@ -53,8 +53,8 @@ typedef typename EOT::AtomType AtomType;
 #else
 #ifdef WITH_EIGEN
 #include <Eigen/Dense>
-    typedef typename edoNormalMulti<EOT>::Vector Vector;
-    typedef typename edoNormalMulti<EOT>::Matrix Matrix;
+    typedef edoNormalMulti<EOT>::Vector Vector;
+    typedef edoNormalMulti<EOT>::Matrix Matrix;
 #endif
 #endif
 

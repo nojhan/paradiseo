@@ -48,8 +48,8 @@ typedef EOT::AtomType AtomType;
 #else
 #ifdef WITH_EIGEN
 #include <Eigen/Dense>
-    typedef typename edoNormalMulti<EOT>::Vector Vector;
-    typedef typename edoNormalMulti<EOT>::Matrix Matrix;
+    typedef edoNormalMulti<EOT>::Vector Vector;
+    typedef edoNormalMulti<EOT>::Matrix Matrix;
 #endif
 #endif
 
