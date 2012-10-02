@@ -245,6 +245,18 @@ public :
     double normal(double mean, double stdev)
         { return mean + normal(stdev); }
 
+    /**
+     * @brief Forgets the last cached value of normal(), so as to be able to perform some repeatable calls to normal().
+     *
+     * As normal() stores a cached value for performance purposes, sequences of pseudo random numbers can't be repeated
+     * when reseeding, since the cached value can be yield before a number is generated. To avoid that, this method
+     * allows one to clean the cache and force to regenerate a new pseudo random number.
+     */
+    void clearCache()
+    {
+        cached = false;
+    }
+
     /** Random numbers using a negative exponential distribution
 
     @param mean Mean value of distribution
