@@ -124,6 +124,7 @@ Entity* Parser::parseRight(const std::string & str, size_t & pos)
         DEBUG("We read an object.")
         Object* obj = new Object;
         pos += 1;
+        ignoreChars( str, pos );
         while( pos < str.size() && str[ pos ] != '}' )
         {
             parseLeft( str, pos, obj );
@@ -145,11 +146,13 @@ Entity* Parser::parseRight(const std::string & str, size_t & pos)
         DEBUG("We read an array")
         Array* array = new Array;
         pos += 1;
+        ignoreChars( str, pos );
         while( pos < str.size() && str[ pos ] != ']' )
         {
             Entity* child = parseRight( str, pos );
             if ( child )
                 array->push_back( child );
+            ignoreChars( str, pos );
         }
         DEBUG("We've finished to read our array.")
         pos += 1; // we're on the ], go to the next char
