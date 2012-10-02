@@ -78,6 +78,7 @@
 #include <eoEvalCounterThrowException.h>
 #include <eoEvalTimeThrowException.h>
 #include <eoEvalUserTimeThrowException.h>
+#include <eoEvalKeepBest.h>
 
 // Continuators - all include eoContinue.h
 #include <eoCombinedContinue.h>
