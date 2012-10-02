@@ -73,7 +73,7 @@ struct Wait : public eoUF< type &, void >
 /**
  * @brief Represents a distribution of processing times.
  */
-class Distribution : public std::vector< type >
+class Distribution : public std::vector< type >, public eoserial::Persistent
 {
     public:
 
@@ -154,6 +154,21 @@ class UniformDistribution : public Distribution
         return std::floor( _rng.uniform( _min, _max ) );
     }
 
+    eoserial::Object* pack( void ) const
+    {
+        eoserial::Object* obj = new eoserial::Object;
+        obj->add( "name", eoserial::make( "uniform" ) );
+        obj->add( "min", eoserial::make( _min ) );
+        obj->add( "max", eoserial::make( _max ) );
+        return obj;
+    }
+
+    void unpack( const eoserial::Object* obj )
+    {
+        eoserial::unpack( *obj, "min", _min );
+        eoserial::unpack( *obj, "max", _max );
+    }
+
     protected:
 
     eoRng _rng;
@@ -193,6 +208,21 @@ class NormalDistribution : public Distribution
         return std::floor( _rng.normal( _mean, _stddev ) );
     }
 
+    eoserial::Object* pack( void ) const
+    {
+        eoserial::Object* obj = new eoserial::Object;
+        obj->add( "name", eoserial::make( "normal" ) );
+        obj->add( "mean", eoserial::make( _mean ) );
+        obj->add( "stddev", eoserial::make( _stddev ) );
+        return obj;
+    }
+
+    void unpack( const eoserial::Object* obj )
+    {
+        eoserial::unpack( *obj, "mean", _mean );
+        eoserial::unpack( *obj, "stddev", _stddev );
+    }
+
     protected:
 
     eoRng _rng;
@@ -229,6 +259,19 @@ class ExponentialDistribution : public Distribution
     int next_element()
     {
         return std::floor( _rng.negexp( _mean ) );
+    }
+
+    eoserial::Object* pack( void ) const
+    {
+        eoserial::Object* obj = new eoserial::Object;
+        obj->add( "name", eoserial::make( "exponential" ) );
+        obj->add( "mean", eoserial::make( _mean ) );
+        return obj;
+    }
+
+    void unpack( const eoserial::Object* obj )
+    {
+        eoserial::unpack( *obj, "mean", _mean );
     }
 
     protected:
