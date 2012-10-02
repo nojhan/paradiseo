@@ -277,21 +277,33 @@ class ExponentialDistribution : public Distribution
 
 } exponentialDistribution;
 
+/**
+ * @brief Serializable experiment.
+ *
+ * Allows an experiment to be saved and loaded via a file, using eoserial.
+ *
+ * Construct the experiment with the good parameters from the command line or load experiments from a file. Then call run() to launch the parallel job.
+ *
+ * If a filename is given to the constructor (or during the loading), the results of the experiments (time series) will
+ * be redirected to the file with the given file name. Otherwise (filename == ""), the output will just be shown on the
+ * standard output.
+ */
 class Experiment : public eoserial::Persistent
 {
     public:
 
-    Experiment() : _distribution(0)
+    Experiment() : _distribution(0), _fileName("")
     {
         // empty
     }
 
-    Experiment( Distribution* distrib, unsigned size, unsigned packet_size, bool print_waiting_time, unsigned seed ) :
+    Experiment( Distribution* distrib, unsigned size, unsigned packet_size, bool print_waiting_time, unsigned seed, const std::string& fileName = "" ) :
         _distribution( distrib ),
         _size( size ),
         _packet_size( packet_size ),
         _worker_print_waiting_time( print_waiting_time ),
-        _seed( seed )
+        _seed( seed ),
+        _fileName( fileName )
     {
         // empty
     }
@@ -307,6 +319,7 @@ class Experiment : public eoserial::Persistent
         {
             obj->add( "distribution", _distribution );
         }
+        obj->add( "filename", eoserial::make( _fileName ) );
         return obj;
     }
 
@@ -316,6 +329,7 @@ class Experiment : public eoserial::Persistent
         eoserial::unpack( *obj, "packet-size", _packet_size );
         eoserial::unpack( *obj, "worker-print-waiting-time", _worker_print_waiting_time );
         eoserial::unpack( *obj, "seed", _seed );
+        eoserial::unpack( *obj, "filename", _fileName );
 
         eoserial::Object* distribObject = static_cast<eoserial::Object*>( obj->find("distribution")->second );
         std::string distribName = *static_cast<eoserial::String*>( distribObject->find("name")->second );
@@ -337,8 +351,9 @@ class Experiment : public eoserial::Persistent
     void run()
     {
         mpi::communicator& comm = eo::mpi::Node::comm();
+        // reinits every objects
         eo::rng.reseed( _seed );
-        eo::rng.clearCache();
+        eo::rng.clearCache(); // trick for repeatable sequences of normal numbers, cf eo::rng
         _distribution->clear();
         _distribution->fill( _size );
 
@@ -356,8 +371,20 @@ class Experiment : public eoserial::Persistent
             EmptyJob( scheduling, DEFAULT_MASTER ); // to terminate parallel apply
             // Receive statistics
             typedef std::map< std::string, eoTimerStat::Stat > typeStats;
-            // TODO put that in a file instead
-            std::cout << std::fixed << std::setprecision( 5 );
+
+            std::ostream* pout;
+            std::ofstream file;
+            bool fileSaveActivated = false;
+            if( _fileName == "" ) {
+                pout = & std::cout;
+            } else {
+                pout = & file;
+                file.open( _fileName.c_str() );
+                fileSaveActivated = true;
+            }
+            std::ostream& out = *pout;
+
+            out << std::fixed << std::setprecision( 5 );
             for( int i = 1, s = comm.size(); i < s; ++i )
             {
                 eoTimerStat timerStat;
@@ -368,14 +395,18 @@ class Experiment : public eoserial::Persistent
                         it != end;
                         ++it )
                 {
-                    std::cout << "Worker " << i << ": Wallclock time of " << it->first << std::endl;
+                    out << i << " " << it->first << std::endl;
                     for( int j = 0, t = it->second.wtime.size(); j < t; ++j )
                     {
-                        std::cout << it->second.wtime[j] << " ";
+                        out << it->second.wtime[j] << " ";
                     }
-                    std::cout << std::endl;
+                    out << std::endl;
                 }
-                std::cout << std::endl;
+                out << std::endl;
+            }
+
+            if( fileSaveActivated ) {
+                file.close();
             }
         } else
         {
@@ -392,6 +423,7 @@ class Experiment : public eoserial::Persistent
     unsigned _packet_size;
     bool _worker_print_waiting_time;
     unsigned _seed;
+    std::string _fileName;
 };
 
 int main( int argc, char** argv )
@@ -407,6 +439,7 @@ int main( int argc, char** argv )
     unsigned packet_size = parser.createParam( 1U, "packet-size", "Number of elements to distribute at each time for a single worker.", 'p', "Parallelization").value();
     bool worker_print_waiting_time = parser.createParam( false, "print-waiting-time", "Do the workers need to print the time they wait?", '\0', "Parallelization").value();
     unsigned seed = parser.createParam( 0U, "seed", "Seed of random generator", '\0', "General").value();
+    std::string fileName = parser.createParam( std::string(""), "filename", "File name to which redirect the results (for a single experiment)", '\0', "General").value();
 
     std::vector<Distribution*> distribs;
     distribs.push_back( &uniformDistribution );
@@ -443,7 +476,7 @@ int main( int argc, char** argv )
         throw std::runtime_error("No distribution chosen. One distribution should be chosen.");
     }
 
-    Experiment e( pdistrib, size, packet_size, worker_print_waiting_time, seed );
+    Experiment e( pdistrib, size, packet_size, worker_print_waiting_time, seed, fileName );
     eoserial::Object* obj = e.pack();
     obj->print( std::cout );
     delete obj;
