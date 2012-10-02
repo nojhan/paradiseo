@@ -292,7 +292,7 @@ class Experiment : public eoserial::Persistent
 {
     public:
 
-    Experiment() : _distribution(0), _fileName("")
+    Experiment() : _distribution(0), _worker_print_waiting_time( false ), _fileName("")
     {
         // empty
     }
@@ -312,8 +312,8 @@ class Experiment : public eoserial::Persistent
     {
         eoserial::Object* obj = new eoserial::Object;
         obj->add( "size", eoserial::make( _size ) );
-        obj->add( "packet-size", eoserial::make( _packet_size ) );
-        obj->add( "worker-print-waiting-time", eoserial::make( _worker_print_waiting_time ) );
+        obj->add( "packet_size", eoserial::make( _packet_size ) );
+        obj->add( "worker_print_waiting_time", eoserial::make( _worker_print_waiting_time ) );
         obj->add( "seed", eoserial::make( _seed ) );
         if( _distribution )
         {
@@ -326,8 +326,8 @@ class Experiment : public eoserial::Persistent
     void unpack( const eoserial::Object* obj )
     {
         eoserial::unpack( *obj, "size", _size );
-        eoserial::unpack( *obj, "packet-size", _packet_size );
-        eoserial::unpack( *obj, "worker-print-waiting-time", _worker_print_waiting_time );
+        eoserial::unpack( *obj, "packet_size", _packet_size );
+        eoserial::unpack( *obj, "worker_print_waiting_time", _worker_print_waiting_time );
         eoserial::unpack( *obj, "seed", _seed );
         eoserial::unpack( *obj, "filename", _fileName );
 
@@ -432,7 +432,7 @@ int main( int argc, char** argv )
     eoParser parser( argc, argv );
 
     // forces the statistics to be retrieved
-    parser.setORcreateParam( true, "parallelize-do-measure", "Do some measures during execution" );
+    eo::mpi::timerStat.forceDoMeasure();
 
     // General parameters for the experimentation
     unsigned size = parser.createParam( 10U, "size", "Number of elements to distribute.", 's', "Distribution").value();
@@ -441,48 +441,77 @@ int main( int argc, char** argv )
     unsigned seed = parser.createParam( 0U, "seed", "Seed of random generator", '\0', "General").value();
     std::string fileName = parser.createParam( std::string(""), "filename", "File name to which redirect the results (for a single experiment)", '\0', "General").value();
 
-    std::vector<Distribution*> distribs;
-    distribs.push_back( &uniformDistribution );
-    distribs.push_back( &normalDistribution );
-    distribs.push_back( &exponentialDistribution );
+    bool useExperimentFile = parser.createParam( false, "use-experiment-file", "Put to true if you want to launch experiments from a file formatted in JSON (see experiment-file).", '\0', "General").value();
+    std::string experimentFile = parser.createParam( std::string("experiments.json"), "experiment-file", "File name of experiments to provide, in format JSON.", '\0', "General").value();
 
-    // for each available distribution, check if activated.
-    // If no distribution is activated, show an error message
-    // If two distributions or more are activated, show an error message
-    // Otherwise, use the activated distribution as distrib
-    bool isChosenDistrib = false;
-    Distribution* pdistrib = 0;
-    for( int i = 0, s = distribs.size(); i < s; ++i )
+    if( !useExperimentFile )
     {
-        distribs[i]->make_parser( parser );
-        if( distribs[i]->isActive() )
+        std::vector<Distribution*> distribs;
+        distribs.push_back( &uniformDistribution );
+        distribs.push_back( &normalDistribution );
+        distribs.push_back( &exponentialDistribution );
+
+        // for each available distribution, check if activated.
+        // If no distribution is activated, show an error message
+        // If two distributions or more are activated, show an error message
+        // Otherwise, use the activated distribution as distrib
+        bool isChosenDistrib = false;
+        Distribution* pdistrib = 0;
+        for( int i = 0, s = distribs.size(); i < s; ++i )
         {
-            if( isChosenDistrib )
+            distribs[i]->make_parser( parser );
+            if( distribs[i]->isActive() )
             {
-                throw std::runtime_error("Only one distribution can be chosen during a launch!");
-            } else
-            {
-                isChosenDistrib = true;
-                pdistrib = distribs[i];
+                if( isChosenDistrib )
+                {
+                    throw std::runtime_error("Only one distribution can be chosen during a launch!");
+                } else
+                {
+                    isChosenDistrib = true;
+                    pdistrib = distribs[i];
+                }
             }
         }
+
+        make_parallel( parser );
+        make_help( parser );
+
+        if( !isChosenDistrib )
+        {
+            throw std::runtime_error("No distribution chosen. One distribution should be chosen.");
+        }
+
+        Experiment e( pdistrib, size, packet_size, worker_print_waiting_time, seed, fileName );
+        e.run();
     }
-
-    make_parallel( parser );
-    make_help( parser );
-
-    if( !isChosenDistrib )
+    else // use experiments file
     {
-        throw std::runtime_error("No distribution chosen. One distribution should be chosen.");
+        // read content of file
+        std::ifstream file( experimentFile.c_str() );
+        std::string fileContent;
+        while( file )
+        {
+            char temp[4096];
+            file.getline( temp, 4096, '\n' );
+            fileContent += temp;
+            fileContent += '\n';
+        }
+        file.close();
+
+        // transform content into array of experiments
+        eoserial::Object* wrapper = eoserial::Parser::parse( fileContent );
+        eoserial::Array& experiments = *static_cast< eoserial::Array* >( wrapper->find("experiments")->second );
+
+        for( unsigned i = 0, s = experiments.size(); i < s; ++i )
+        {
+            std::cout << "Launching experiment " << (i+1) << "..." << std::endl;
+            eoserial::Object* expObj = static_cast< eoserial::Object* >( experiments[i] );
+            Experiment exp;
+            exp.unpack( expObj );
+            exp.run();
+        }
+        delete wrapper;
     }
-
-    Experiment e( pdistrib, size, packet_size, worker_print_waiting_time, seed, fileName );
-    eoserial::Object* obj = e.pack();
-    obj->print( std::cout );
-    delete obj;
-    std::cout << '\n' << std::endl;
-
-    e.run();
 
     return 0;
 }
