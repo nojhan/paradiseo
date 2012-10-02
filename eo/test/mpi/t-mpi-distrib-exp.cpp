@@ -137,7 +137,7 @@ class UniformDistribution : public Distribution
 {
     public:
 
-    UniformDistribution() : _rng(0)
+    UniformDistribution()
     {
         // empty
     }
@@ -151,7 +151,7 @@ class UniformDistribution : public Distribution
 
     int next_element()
     {
-        return std::floor( _rng.uniform( _min, _max ) );
+        return std::floor( eo::rng.uniform( _min, _max ) );
     }
 
     eoserial::Object* pack( void ) const
@@ -171,8 +171,6 @@ class UniformDistribution : public Distribution
 
     protected:
 
-    eoRng _rng;
-
     double _min;
     double _max;
 
@@ -191,7 +189,7 @@ class NormalDistribution : public Distribution
 {
     public:
 
-    NormalDistribution() : _rng( 0 )
+    NormalDistribution()
     {
         // empty
     }
@@ -205,7 +203,7 @@ class NormalDistribution : public Distribution
 
     int next_element()
     {
-        return std::floor( _rng.normal( _mean, _stddev ) );
+        return std::floor( eo::rng.normal( _mean, _stddev ) );
     }
 
     eoserial::Object* pack( void ) const
@@ -225,7 +223,6 @@ class NormalDistribution : public Distribution
 
     protected:
 
-    eoRng _rng;
     double _mean;
     double _stddev;
 } normalDistribution;
@@ -245,7 +242,7 @@ class ExponentialDistribution : public Distribution
 {
     public:
 
-    ExponentialDistribution() : _rng( 0 )
+    ExponentialDistribution()
     {
         // empty
     }
@@ -258,7 +255,7 @@ class ExponentialDistribution : public Distribution
 
     int next_element()
     {
-        return std::floor( _rng.negexp( _mean ) );
+        return std::floor( eo::rng.negexp( _mean ) );
     }
 
     eoserial::Object* pack( void ) const
@@ -276,7 +273,6 @@ class ExponentialDistribution : public Distribution
 
     protected:
 
-    eoRng _rng;
     double _mean;
 
 } exponentialDistribution;
@@ -290,11 +286,12 @@ class Experiment : public eoserial::Persistent
         // empty
     }
 
-    Experiment( Distribution* distrib, unsigned size, unsigned packet_size, bool print_waiting_time ) :
+    Experiment( Distribution* distrib, unsigned size, unsigned packet_size, bool print_waiting_time, unsigned seed ) :
         _distribution( distrib ),
         _size( size ),
         _packet_size( packet_size ),
-        _worker_print_waiting_time( print_waiting_time )
+        _worker_print_waiting_time( print_waiting_time ),
+        _seed( seed )
     {
         // empty
     }
@@ -305,6 +302,7 @@ class Experiment : public eoserial::Persistent
         obj->add( "size", eoserial::make( _size ) );
         obj->add( "packet-size", eoserial::make( _packet_size ) );
         obj->add( "worker-print-waiting-time", eoserial::make( _worker_print_waiting_time ) );
+        obj->add( "seed", eoserial::make( _seed ) );
         if( _distribution )
         {
             obj->add( "distribution", _distribution );
@@ -317,6 +315,7 @@ class Experiment : public eoserial::Persistent
         eoserial::unpack( *obj, "size", _size );
         eoserial::unpack( *obj, "packet-size", _packet_size );
         eoserial::unpack( *obj, "worker-print-waiting-time", _worker_print_waiting_time );
+        eoserial::unpack( *obj, "seed", _seed );
 
         eoserial::Object* distribObject = static_cast<eoserial::Object*>( obj->find("distribution")->second );
         std::string distribName = *static_cast<eoserial::String*>( distribObject->find("name")->second );
@@ -338,10 +337,12 @@ class Experiment : public eoserial::Persistent
     void run()
     {
         mpi::communicator& comm = eo::mpi::Node::comm();
-        timerStat.start("run");
+        eo::rng.reseed( _seed );
+        eo::rng.clearCache();
         _distribution->clear();
         _distribution->fill( _size );
 
+        timerStat.start("run");
         Wait wait( _worker_print_waiting_time );
         ParallelApplyStore< type > store( wait, DEFAULT_MASTER, _packet_size );
         store.data( *_distribution );
@@ -390,6 +391,7 @@ class Experiment : public eoserial::Persistent
     unsigned _size;
     unsigned _packet_size;
     bool _worker_print_waiting_time;
+    unsigned _seed;
 };
 
 int main( int argc, char** argv )
@@ -404,6 +406,7 @@ int main( int argc, char** argv )
     unsigned size = parser.createParam( 10U, "size", "Number of elements to distribute.", 's', "Distribution").value();
     unsigned packet_size = parser.createParam( 1U, "packet-size", "Number of elements to distribute at each time for a single worker.", 'p', "Parallelization").value();
     bool worker_print_waiting_time = parser.createParam( false, "print-waiting-time", "Do the workers need to print the time they wait?", '\0', "Parallelization").value();
+    unsigned seed = parser.createParam( 0U, "seed", "Seed of random generator", '\0', "General").value();
 
     std::vector<Distribution*> distribs;
     distribs.push_back( &uniformDistribution );
@@ -440,7 +443,7 @@ int main( int argc, char** argv )
         throw std::runtime_error("No distribution chosen. One distribution should be chosen.");
     }
 
-    Experiment e( pdistrib, size, packet_size, worker_print_waiting_time );
+    Experiment e( pdistrib, size, packet_size, worker_print_waiting_time, seed );
     eoserial::Object* obj = e.pack();
     obj->print( std::cout );
     delete obj;
