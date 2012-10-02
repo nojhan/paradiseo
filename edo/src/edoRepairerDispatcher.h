@@ -120,9 +120,10 @@ public:
     //! Add more indexes set and their corresponding repairer operator address to the list
     void add( ICT idx, edoRepairer<EOT>* op )
     {
-        //assert( idx.size() > 0 );
 #ifndef NDEBUG
-        eo::log << eo::warnings << "A repairer is added to the dispatcher while having an empty index list, nothing will be repaired" << std::endl;
+        if( idx.size() == 0 ) {
+            eo::log << eo::warnings << "A repairer is added to the dispatcher while having an empty index list, nothing will be repaired" << std::endl;
+        }
 #endif
         assert( op != NULL );
 
