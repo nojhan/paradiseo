@@ -206,6 +206,14 @@ class eoTimerStat
     public:
 
         /**
+         * @brief Initializes a timer stat object.
+         */
+        eoTimerStat() : _forceDoMeasure(false)
+        {
+            // empty
+        }
+
+        /**
          * @brief Statistic related to a key (name).
          *
          * This structure is the value in the map saved in the eoTimerStat. It contains the statistic bound to a key,
@@ -275,6 +283,14 @@ class eoTimerStat
 # endif
 
         /**
+         * @brief Forces the measures to be retrieved.
+         */
+        void forceDoMeasure()
+        {
+            _forceDoMeasure = true;
+        }
+
+        /**
          * @brief Starts a new measure for the given key.
          *
          * This is only performed if parallel.doMeasure() is true, which is equivalent to the fact that
@@ -284,7 +300,7 @@ class eoTimerStat
          */
         void start( const std::string & key )
         {
-            if( eo::parallel.doMeasure() )
+            if( eo::parallel.doMeasure() or _forceDoMeasure )
             {
                 _timers[ key ].restart();
             }
@@ -302,7 +318,7 @@ class eoTimerStat
          */
         void stop( const std::string& key )
         {
-            if( eo::parallel.doMeasure() )
+            if( eo::parallel.doMeasure() or _forceDoMeasure )
             {
                 Stat & s = _stats[ key ];
                 eoTimer & t = _timers[ key ];
@@ -333,6 +349,8 @@ class eoTimerStat
         std::map< std::string, Stat > _stats;
         // Timers map: links a key to its timer.
         std::map< std::string, eoTimer > _timers;
+        // boolean to force the retrieval of statistics
+        bool _forceDoMeasure;
 };
 
 # endif // __TIMER_H__
