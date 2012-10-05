@@ -38,13 +38,10 @@ SET(CMA_SOURCES
   )
 
 ADD_LIBRARY(es STATIC ${ES_SOURCES})
-INSTALL(TARGETS es ARCHIVE DESTINATION lib COMPONENT libraries)
+INSTALL(TARGETS es ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
 
 ADD_LIBRARY(cma STATIC ${CMA_SOURCES})
-INSTALL(TARGETS cma ARCHIVE DESTINATION lib COMPONENT libraries)
-
-FILE(GLOB HDRS *.h)
-INSTALL(FILES ${HDRS} DESTINATION include/eo/es COMPONENT headers)
+INSTALL(TARGETS cma ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Optionnal

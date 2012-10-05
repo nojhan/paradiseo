@@ -5,29 +5,7 @@
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
-### 2) Optional: add MPI and Boost MPI dependencies.
-######################################################################################
-
-IF(WITH_MPI)
-    MESSAGE("[EO] Compilation with MPI.")
-
-    #SET(CMAKE_CXX_COMPILER "${MPI_DIR}/bin/mpicxx")
-    SET(CMAKE_CXX_COMPILER mpicxx)
-
-    # headers location
-    INCLUDE_DIRECTORIES(${MPI_DIR}/include)
-
-    # lib location
-    LINK_DIRECTORIES(${MPI_DIR}/lib)
-
-    # for conditional compilation in code
-    ADD_DEFINITIONS(-DWITH_MPI)
-
-    ADD_SUBDIRECTORY(mpi)
-ENDIF()
-
-######################################################################################
-### 3) Define the eo target
+### 2) Define the eo target
 ######################################################################################
 
 SET(EO_LIB_OUTPUT_PATH ${EO_BINARY_DIR}/lib)
@@ -43,29 +21,31 @@ SET(EO_SOURCES
   )
 
 ADD_LIBRARY(eo STATIC ${EO_SOURCES})
-INSTALL(TARGETS eo ARCHIVE DESTINATION lib COMPONENT libraries)
+INSTALL(TARGETS eo ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
 
 FILE(GLOB HDRS *.h eo)
-INSTALL(FILES ${HDRS} DESTINATION include/eo COMPONENT headers)
+INSTALL(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/eo COMPONENT headers)
+
+INSTALL(DIRECTORY do es ga gp other utils 
+        DESTINATION local/include${INSTALL_SUB_DIR}/eo 
+        COMPONENT headers
+        FILES_MATCHING PATTERN "*.h" PATTERN "checkpointing" PATTERN external_eo
+        )
 
 ######################################################################################
-### 4) Optionnal: define your target(s)'s version: no effect for windows
+### 3) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
 SET(EO_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(eo PROPERTIES VERSION "${EO_VERSION}")
 
 ######################################################################################
-### 5) Where must cmake go now ?
+### 4) Where must cmake go now ?
 ######################################################################################
 
-ADD_SUBDIRECTORY(do)
 ADD_SUBDIRECTORY(es)
 ADD_SUBDIRECTORY(ga)
-ADD_SUBDIRECTORY(gp)
-ADD_SUBDIRECTORY(other)
 ADD_SUBDIRECTORY(utils)
-ADD_SUBDIRECTORY(serial)
 
 IF(ENABLE_PYEO)
   ADD_SUBDIRECTORY(pyeo)

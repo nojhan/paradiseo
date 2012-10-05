@@ -4,7 +4,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 ### 0) If you want to set your variables in eo-conf.cmake and avoid the cmd line
 ######################################################################################
 
-INCLUDE(eo-conf.cmake OPTIONAL)
+#INCLUDE(eo-conf.cmake OPTIONAL)
 
 ######################################################################################
 
@@ -13,7 +13,7 @@ INCLUDE(eo-conf.cmake OPTIONAL)
 ### 1) Main project config
 ######################################################################################
 
-# set the project name and other variables
+# set the project namef and other variables
 PROJECT(EO)
 
 # CMake > 2.8 is needed, because of the FindOpenMP feature
@@ -45,12 +45,10 @@ ENABLE_LANGUAGE(C)
 ### 2) Include required modules / configuration files
 #####################################################################################
 
-IF(WITH_OMP)
-    FIND_PACKAGE(OpenMP)
-    IF(OPENMP_FOUND)
-      SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-      SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-    ENDIF()
+FIND_PACKAGE(OpenMP)
+IF(OPENMP_FOUND)
+  SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 ENDIF()
 
 INCLUDE(CMakeBackwardCompatibilityCXX)
@@ -83,13 +81,6 @@ ENDIF (WIN32)
 
 ######################################################################################
 
-
-#####################################################################################
-### 3) Manage the build type
-#####################################################################################
-
-INCLUDE(BuildConfig.cmake)
-
 ######################################################################################
 
 
@@ -97,7 +88,7 @@ INCLUDE(BuildConfig.cmake)
 ### compilation of examples?
 ######################################################################################
 
-SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
+#SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
 
 ######################################################################################
 
@@ -106,9 +97,9 @@ SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters f
 ### 4) Test config
 ######################################################################################
 
-IF (ENABLE_CMAKE_TESTING)
-  ENABLE_TESTING()
-ENDIF (ENABLE_CMAKE_TESTING)
+#IF (ENABLE_CMAKE_TESTING)
+#  ENABLE_TESTING()
+#ENDIF (ENABLE_CMAKE_TESTING)
 
 ######################################################################################
 
@@ -121,11 +112,6 @@ ENDIF (ENABLE_CMAKE_TESTING)
 ADD_SUBDIRECTORY(doc)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(test)
-
-IF(WITH_MPI)
-    ADD_SUBDIRECTORY(test/mpi)
-ENDIF()
-
 ADD_SUBDIRECTORY(tutorial)
 
 ######################################################################################
@@ -139,7 +125,7 @@ SET(PCPREFIX "/usr")
 SET(PCFLAGS "-leoutils -leo -les -lga -lcma -lgcov")
 SET(PCINCLUDEDIR "eo")
 CONFIGURE_FILE(pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/eo.pc)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/eo.pc DESTINATION lib/pkgconfig COMPONENT headers)
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/eo.pc DESTINATION local/${LIB}/pkgconfig COMPONENT headers)
 
 ######################################################################################
 
@@ -148,6 +134,6 @@ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/eo.pc DESTINATION lib/pkgconfig COMPON
 ### 7) Include packaging
 ######################################################################################
 
-INCLUDE(Packaging.cmake)
+#INCLUDE(Packaging.cmake)
 
 ######################################################################################

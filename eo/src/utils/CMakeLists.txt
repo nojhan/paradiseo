@@ -33,10 +33,8 @@ SET(EOUTILS_SOURCES
   )
 
 ADD_LIBRARY(eoutils STATIC ${EOUTILS_SOURCES})
-INSTALL(TARGETS eoutils ARCHIVE DESTINATION lib COMPONENT libraries)
+INSTALL(TARGETS eoutils ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
 
-FILE(GLOB HDRS *.h checkpointing)
-INSTALL(FILES ${HDRS} DESTINATION include/eo/utils COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal

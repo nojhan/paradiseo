@@ -5,7 +5,7 @@
 The best place to learn about the features and approaches of %EO with the help of examples is to look at
 the <a href="../../tutorial/html/eoTutorial.html">tutorial</a>.
 
-Once you have understand the @ref design of %EO, you can search for advanced features by browsing the <a
+Once you have understand the @ref design of %EO, you could search for advanced features by browsing the <a
 href="modules.html">modules</a> page.
 
 

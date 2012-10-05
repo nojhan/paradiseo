@@ -14,28 +14,17 @@ INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib/MGE)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
-IF(WITH_MPI)
-    INCLUDE_DIRECTORIES(${MPI_DIR}/include)
-ENDIF()
-
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
 LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
 
-IF(WITH_MPI)
-    LINK_DIRECTORIES(${MPI_DIR}/lib)
-    SET(CMAKE_CXX_COMPILER "mpicxx")
-ENDIF()
-
 ######################################################################################
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
 SET (TEST_LIST
-  t-eoEvalKeepBest
-  t-eoInitVariableLength
   t-eofitness
   t-eoRandom
   t-eobin
@@ -75,9 +64,9 @@ SET (TEST_LIST
   t-eoOrderXover
   t-eoExtendedVelocity
   t-eoLogger
-  t-eoIQRStat
-  #t-eoParallel
-  #t-openmp
+  #t-eoIQRStat # Temporary by-passed in order to test coverage
+  t-eoParallel
+  #t-openmp # does not work anymore since functions used in this test were removed from EO
   #t-eoDualFitness
   t-eoParser
   )
@@ -104,7 +93,7 @@ ELSEIF(ENABLE_CMAKE_TESTING)
     ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})
     ADD_TEST(${test} ${test})
     TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo)
-    INSTALL(TARGETS ${test} RUNTIME DESTINATION share/eo/test COMPONENT test)
+    INSTALL(TARGETS ${test} RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/test COMPONENT test)
   ENDFOREACH (test)
 
   SET(RESOURCES
