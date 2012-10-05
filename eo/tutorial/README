@@ -1,0 +1,12 @@
+Eo Tutorial - corresponding to EO version 0.9.1+
+
+To start the tutorial, read index.html in your favorite browser.
+
+Many things are missing, including many solutions for the exercises,
+the introduction to EC and most of the Component-based pages.
+More important, all examples of this tutorial have only been tested
+on a Linux computer, and the Makefile will not work with MS-Windows
+systems. Any help is welcome!
+
+Be patient ...
+evoMarc

@@ -1,0 +1,16 @@
+bin_PROGRAMS 		= MyStruct
+
+noinst_HEADERS		= eoMyStruct.h \
+			eoMyStructEvalFunc.h \
+			eoMyStructInit.h \
+			eoMyStructMutation.h \
+			eoMyStructQuadCrossover.h
+
+MyStruct_SOURCES 	= MyStructEA.cpp
+
+
+dnl Local Variables:
+dnl coding: iso-8859-1
+dnl mode: makefile-automake
+dnl fill-column: 80
+dnl End:

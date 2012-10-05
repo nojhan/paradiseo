@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/HTML; charset=utf-8"  />
+        <meta name=" robot" content="follow, index, all" />
+        <meta name="author" content="EO development team" />
+        <meta name="keywords" content="Class libraries, evolutionary computation, evolution strategies, genetic algorithms, genetic programming, simulated annealing, C++" />
+        <meta name="resource-type" content="document" />
+        <meta name="distribution" content="Global" />
+
+        <link rel="icon" type="image/png" href="eo_ico.png" />
+
+        <link rel="stylesheet" type="text/css" href="lightblue.css" title="Default" />
+
+        <title>Evolving Objects (EO): Evolutionary Computation Framework</title>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://static.jappix.com/php/get.php?l=fr&amp;t=js&amp;g=mini.xml"></script>
+
+        <!--
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                    MINI_GROUPCHATS = ["eo@chat.jabberfr.org"];
+                    MINI_ANIMATE = true;
+                    launchMini(false, true, "anonymous.jappix.com");
+                    });
+        </script>
+        -->
+    </head>
+
+<body>
+
+<div id="alt">
+    <img style="clear:left;" src="eo_logo.png" alt="Evolving Objects logo" />
+    <div id="menu">
+        <p>C++ evolutionary computation components framework</p>
+        <script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_thin_badge.js"></script>
+
+        <div class="shortcuts">
+            <p>Shortcuts:</p>
+            <ul>
+                <li><a href="http://sourceforge.net/project/showfiles.php?group_id=9775">Download</a></li>
+                <li><a href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">Tutorial</a></li>
+                <li><a href="https://sourceforge.net/apps/trac/eodev/wiki/faq">FAQ</a></li>
+                <li><a href="http://eodev.sourceforge.net/eo/doc/html/index.html">EO documentation</a></li>
+                <li><a href="http://eodev.sourceforge.net/edo/doc/html/index.html">EDO documentation</a></li>
+                <li><a href="http://sourceforge.net/project/?group_id=9775">Project page</a></li>
+                <li><a href="https://lists.sourceforge.net/lists/listinfo/eodev-main">Contact us</a></li>
+                <!--<li><a href="http://chat.jabberfr.org/muckl_int/index.php?room=eo">Chat with us</a></li>-->
+                <li><a href="https://sourceforge.net/apps/trac/eodev/wiki/WikiStart">Submit a bug</a></li>
+                <li>see also <a href="http://paradiseo.gforge.inria.fr/">ParadisEO</a></li>
+            </ul>
+        </div>
+
+        <div class="shortcuts">
+            <ol>
+                <lh>Jump to section:</lh>
+                <li>
+                <ol>
+                    <lh><a href="#Features">Features</a></lh>
+                    <li><a href="#Component-based">Component-based</a></li>
+                    <li><a href="#Main-Features">Main Features</a></li>
+                    <li><a href="#Portability">Portability</a></li>
+                    <li><a href="#Presentations">Presentations</a></li>
+                </ol>
+                </li>
+                <li>
+                <ol>
+                    <lh><a href="#Code">Code</a></lh>
+                    <li><a href="#Download">Download</a></li>
+                    <li><a href="#Facts">Facts</a></li>
+                    <li><a href="#License">License</a></li>
+                    <li><a href="#Documentation">Documentation</a></li>
+                </ol>
+                </li>
+                <li>
+                <ol>
+                    <lh><a href="#Development">Development</a></lh>
+                    <li><a href="#Mailing-lists">Mailing-lists</a></li>
+                    <li><a href="#Get-involved">Get involved</a></li>
+                    <li><a href="#Related-software">Related software</a></li>
+                    <li><a href="#Authors">Authors</a></li>
+                    <li><a href="#Links">Links</a></li>
+                </ol>
+                </li>
+            </ol>
+        </div><!-- class=shortcuts -->
+
+        <ul class="badges">
+            <li>
+                <!-- ++Begin Dynamic Feed Wizard Generated Code++ -->
+                <!--
+                // Created with a Google AJAX Search and Feed Wizard
+                // http://code.google.com/apis/ajaxsearch/wizards.html
+                -->
+
+                <!--
+                // The Following div element will end up holding the actual feed control.
+                // You can place this anywhere on your page.
+                -->
+                <div id="feed-control">
+                    <span style="color:#676767;font-size:11px;margin:10px;padding:4px;">Loading...</span>
+                </div>
+
+                <!-- Google Ajax Api
+                -->
+                <script src="http://www.google.com/jsapi?key=notsupplied-wizard"
+                    type="text/javascript"></script>
+
+                <!-- Dynamic Feed Control and Stylesheet -->
+                <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js"
+                    type="text/javascript"></script>
+                <style type="text/css">
+                    @import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");
+                </style>
+
+                <script type="text/javascript">
+                    function LoadDynamicFeedControl() {
+                        var feeds = [
+                        {title: 'Activity',
+                            url: 'http://sourceforge.net/export/rss2_keepsake.php?group_id=9775'
+                        },
+                        {title: 'User\'s reviews',
+                            url: 'https://sourceforge.net/projects/eodev/reviews_feed.rss'
+                        }];
+                        var options = {
+                            stacked : true,
+                            horizontal : false,
+                            title : "Latest news from EO",
+                            numResults : 20
+                        }
+
+                        new GFdynamicFeedControl(feeds, 'feed-control', options);
+                    }
+                    // Load the feeds API and set the onload callback.
+                    google.load('feeds', '1');
+                    google.setOnLoadCallback(LoadDynamicFeedControl);
+                </script>
+                <!-- ++End Dynamic Feed Control Wizard Generated Code++ -->
+            </li>
+            <li> <a href="http://sourceforge.net/projects/eodev"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=9775&amp;type=8" width="80" height="15" alt="Get Evolving Objects at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></li>
+        </ul>
+
+    </div> <!-- id=menu -->
+</div> <!-- id=alt -->
+
+
+<div id="main">
+
+    <h1><a name="Plan"></a>Evolving Objects (EO): an Evolutionary Computation Framework</h1>
+
+    <p>EO is <em>a template-based, ANSI-C++ evolutionary computation library</em> which helps you to write your own stochastic optimization algorithms insanely fast.</p>
+
+    <!--
+    <div style="font-size:1.5em;color:red;border:thin solid red; background-color:#fee;margin:1em;padding:2em;text-align:center;">We have lost all the mailing-list subscriptions in a crash, please subscribe again on the <a href="https://lists.sourceforge.net/lists/listinfo/eodev-main">eodev-main subscription page</a>.</div>
+    -->
+
+    <p>Evolutionary algorithms forms a family of algorithms inspired by the theory of evolution, that solve various problems.
+    They evolve a set of solutions to a given problem, in order to produce the best results.
+    These are stochastic algorithms, because they iteratively use random processes.
+    The vast majority of these methods are used to solve optimization problems, and may be also called "metaheuristics".
+    They are also ranked among <em>computational intelligence</em> methods, a domain close to artificial intelligence.
+    </p>
+
+    <p>With the help of EO, you can easily design evolutionary algorithms that will find solutions to virtually all kind of hard optimization problems, from continuous to combinatorial ones.</p>
+
+    <div style="font-size:1.5em;color:red;border:thin solid blue; background-color:#eef;margin:1em;padding:0.5em;text-align:center;-moz-border-radius:1em;"><a href="http://sourceforge.net/projects/eodev/files/">Download</a></div>
+
+    <p>If you need <em>immediate support or have any question</em>, the best way to get
+    answers is to <a href="https://lists.sourceforge.net/lists/listinfo/eodev-main">subscribe to the mailing list</a> and send your email to <a href="mailto:eodev-main@lists.sourceforge.net">eodev-main@lists.sourceforge.net</a></p>
+
+    <p>Alternatively, you can join us on the official chatroom. You can try our <a href="http://irc.lc/freenode/paradiseo">webchat interface</a>, or if you already use IRC, you can directly connect to the <a href="irc://irc.freenode.org/#paradiseo">irc.freenode.org/#paradiseo</a> multi-user chatroom with your favorite client.</p>
+
+    <!--
+    <p>If you want to know how to help us to improve EO, the easiest way is to click on the following button:
+
+    <form method="POST" action="http://openhatch.org/+do/project.views.wanna_help_do">
+        <input type="hidden" name="from_offsite" value="True" />
+        <input type="hidden" value="6519" name="project"/>
+        <input type="submit" value="I want to help" rel="tipsy-south" id="openhatch-wannahelp-button" original-title="Click to add yourself to the list of people who want to contribute. People of all levels are welcome!"/>
+    </form>
+
+    <style>
+        @import url('http://openhatch.org/static/css/tipsy.css');
+    </style>
+
+    <style type="text/css">
+        #openhatch-wannahelp-button:hover, #openhatch-wannahelp-button:focus { background-image:url('http://openhatch.org/static/images/wannahelp-button-bg-hover.png'); color:#222; text-decoration:none; }
+        #openhatch-wannahelp-button { background: #C8E29D url('http://openhatch.org/static/images/wannahelp-button-bg.png') repeat-x scroll center top; border:3px solid #fff;  cursor:pointer; cursor: hand; font-family: Helvetica, sans-serif; font-size:13pt; font-weight:normal; text-align:center; text-shadow:0 1px 0 #fff; white-space:normal; }
+        #openhatch-wannahelp-button { -moz-border-radius: 8px; color: #444; float:left; padding:10px 20px; display:block; padding:2px 8px; }
+        #openhatch-wannahelp-button:focus { outline-color:-moz-use-text-color; outline-style:none; outline-width:medium; }
+    </style>
+    -->
+    <!--<script type="text/javascript" src="http://openhatch.org/static/packed/selections_for_widget.js?1271800811"></script>-->
+
+    <br />
+    <br />
+    </p>
+
+    <h1><a name="Features"></a>Features <a href="#Plan">⤒</a></h1>
+
+    <h2><a name="Component-based"></a>Component-based framework</h2>
+
+    <p>Designing an algorithm with EO consists in choosing what components you want to use for your specific needs, just as building a structure with Lego blocks.</p>
+    <p>If you have a classical problem for which available code exists (for example if you have a black-box problem with real-valued variables), you will just choose components to form an algorithm and connect it to your <em>fitness function</em> (which computes the quality of a given solution).</p>
+    <p>If your problem is a bit more exotic, you will have to code a class that represents how your <em>individuals</em> (a solution to your problem) are represented, and perhaps some <em>variations operators</em>, but most of the other operators (selection, replacement, stopping criteria, command-line interface, etc.) are already available in EO.</p>
+    <p><img src="Evolutionary_algorithm.png" title="A typical Evolutionary Algorithm, as seen from the EO point of vue − Johann Dréo − CC-BY-SA" /></p>
+
+    <h2><a name="Main-Features"></a>Main Features</h2>
+
+    <!-- <img src="http://upload.wikimedia.org/wikipedia/en/timeline/3f507249a36a4a38020e7fc0a5f448df.png" title="Metaheuristics that can be implemented with EO and ParadisEO, ordered by date of invention − Johann Dréo/Wikipédia − CC-BY-SA" style="float:right;" /> --> <!-- http://en.wikipedia.org/wiki/Metaheuristic -->
+
+    <table style="float:right;" class="examples">
+        <caption>Examples of problems that you can solve with the help of EO:</caption>
+        <tr><td>
+                <img src="Gallagher_Gaussian_BBOB_f21.png" title="Continuous problems (here Gallagher's Gaussian 101-me Peaks function, Black Box Optimization Benchmark, f21 − COCO team)" /> <!-- http://coco.lri.fr/BBOB-downloads/download10.2/bbobdocfunctions.pdf -->
+        </tr></td>
+        <tr><td>
+                <img src="200px-Graph_betweenness.svg.png" title="Graph problems (here a Hue scale representing node betweenness on a graph − Claudio Rocchini − CC-BY)" /><!-- http://commons.wikimedia.org/wiki/File:Graph_betweenness.svg -->
+        </tr></td>
+        <tr><td>
+                <img src="BatchGantt1.png" title="Planning problems (here a Gantt Chart for a Batch Process − Casilett − DP)" /><!-- http://en.wikipedia.org/wiki/File:BatchGantt1.png -->
+        </tr></td>
+    </table>
+
+
+    <ul>
+        <li>Flexible design that permits to easily create virtually any algorithm</li>
+        <li>Solution representation for continuous and combinatorial problems:
+        <ul>
+            <li>binary-strings,</li>
+            <li>permutations,</li>
+            <li>vectors,</li>
+            <li>easily write your own,</li>
+            <li>…</li>
+        </ul>
+        </li>
+        <li>Several algorithm paradigms:
+        <ul>
+            <li>evolution strategies,</li>
+            <li>genetic algorithms,</li>
+            <li>estimation of distribution,</li>
+            <li>particle swarm optimization</li>
+            <li>…</li>
+        </ul>
+        </li>
+        <li>Many selection and replacement operators:
+        <ul>
+            <li>rank-based,</li>
+            <li>deterministic or stochastic tournaments,</li>
+            <li>roulette,</li>
+            <li>elitism,</li>
+            <li>…</li>
+        </ul>
+        </li>
+        <li>Ready-to-use variations operators:
+        <ul>
+            <li>uniform initializer,</li>
+            <li>gaussian mutation,</li>
+            <li>subtree crossover,</li>
+            <li>…</li>
+        </ul>
+        </li>
+        <li>Easy combination of several operators:
+        <ul>
+            <li>proportional combination,</li>
+            <li>sequential call,</li>
+            <li>…</li>
+        </ul>
+        </li>
+        <li>Parallelization tools:
+        <ul>
+            <li>Shared memory loops unrolling (with <a href="http://openmp.org">OpenMP</a>)</li>
+            <li>Message passing parallelization (with <a href="http://www.open-mpi.org/">openMPI</a>):
+            <ul>
+                <li>map/reduce-like design, with operators choice, as in EO</li>
+                <li>useful existing operators (parallel dynamic multi-start, static evaluations, …)</li>
+            </ul>
+            </li>
+        </ul>
+        </l>
+        <li>Portable and human-readable parameter files</li>
+        <li>Suspend and load population from files</li>
+        <li>Versatile checkpointing and logging:
+        <ul>
+            <li>graphical display,</li>
+            <li>file dump,</li>
+            <li>various statistics,</li>
+            <li>signal catching,</li>
+            <li>…</li>
+        </ul>
+        </li>
+        <li>Mersenne Twister random number generator (and various distributions)</li>
+        <li>No useless computation (sparing fitness call, functor-based calls)</li>
+        <li>Fast running speed, thanks to C++</li>
+        <li><em>And more!</em></li>
+    </ul>
+
+
+    <h2><a name="Portability"></a>Portability</h2>
+
+    <p> EO should work on Windows and any Un*x-like operating system with a
+    standard-conforming C++ development system. </p>
+
+    <p>Recent versions of EO have been tested on the following platforms:
+    </p>
+
+    <ul>
+        <li>Linux x86 with GCC 3.x and 4.x</li>
+        <li>Linux x86_64 with GCC 3.x and GCC 4.x</li>
+        <li>MacOS X/Darwin PowerPC with GCC 3.x</li>
+        <li>MacOS X/Darwin x86 with GCC 4.x</li>
+        <li>Microsoft Windows using Cygwin's GCC 3.x (cygming special).</li>
+        <li>Microsoft Windows using Visual Studio 2003/2005; projects files
+        are provided.</li>
+        <li>Solaris SPARC with GCC 3.x</li>
+        <li>Solaris x86 with GCC 3.x</li>
+    </ul>
+
+    <p>Recent versions of EO uses the <a href="http://www.cmake.org">CMake</a> portable build system, that permits to easily generate a build chain for your environment.</p>
+
+    <p> If you have tested EO on a system not listed here, please <a href="mailto:eodev-main@lists.sourceforge.net?subject=test-report">let
+        us know</a>. </p>
+
+    <p> If you are working on a system with an older C++ compiler there
+    is a good chance that eo-0.9.3z.1 works. It is tested on Linux
+    with gcc-2.9x and several systems (IRIX, Solaris) with egcs. </p>
+
+
+    <h2><a name="Presentations"></a>Presentations</h2>
+
+    <p> A functional and "philosophical" overview of EO was presented at <a href="http://www.cmap.polytechnique.fr/%7Eea01/">EA'01 conference</a>.
+    You can download <a href="http://eodev.sourceforge.net/eo/doc/EO_EA2001.pdf">the paper</a>
+    or <a href="http://eodev.sourceforge.net/eo/doc/LeCreusot.pdf">the
+        slides</a>, or browse them right here:</p>
+
+    <div style="text-align:center;" id="__ss_4878872"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/nojhan/evolving-objects-yet-another-evolutionary-computation-library" title="Evolving Objects: Yet Another Evolutionary Computation Library?">Evolving Objects: Yet Another Evolutionary Computation Library?</a></strong><object id="__sse4878872" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=lecreusot-100731121355-phpapp01&stripped_title=evolving-objects-yet-another-evolutionary-computation-library" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse4878872" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=lecreusot-100731121355-phpapp01&stripped_title=evolving-objects-yet-another-evolutionary-computation-library" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object></div>
+
+    <p>You can also read this <a href="http://geneura.ugr.es/~jmerelo/GAPPT/index.html">
+        PowerPoint presentation</a>, that shows the EO philosophy.
+    It includes a Visual Basic macro for evolving objects in Visual Basic
+    for Applications. </p>
+
+    <p>EO is described in the following scientific article:<br />
+    <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
+        <a href= "http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">"Evolving
+            objects: A general purpose evolutionary computation
+            library",</a> <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
+    </p>
+
+    <p>
+    <font face="monospace">
+        @<font color="#0000ff">Article</font>{<font color="#ff00ff">Keijzer2001</font>,<br/>
+        &nbsp;&nbsp;<font color="#a52a2a">title</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Evolving Objects: A General Purpose Evolutionary Computation Library &quot;,<br/>
+        &nbsp;&nbsp;<font color="#a52a2a">author</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;Maarten Keijzer and J. J. Merelo and G. Romero and M. Schoenauer&quot;,<br/>
+        &nbsp;&nbsp;<font color="#a52a2a">journal</font>&nbsp;=&nbsp;&nbsp;&nbsp;&quot;Artificial Evolution&quot;,<br/>
+        &nbsp;&nbsp;<font color="#a52a2a">year</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;2002&quot;,<br/>
+        &nbsp;&nbsp;<font color="#a52a2a">volume</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;2310&quot;,<br/>
+        &nbsp;&nbsp;<font color="#a52a2a">pages</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;829--888&quot;,<br/>
+        &nbsp;&nbsp;<font color="#a020f0">keywords</font>&nbsp;=&nbsp; &quot;genetic algorithms, genetic programming, evolutionary computation, metaheuristic, computational intelligence, optimization&quot;,<br/>
+        &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">http://www.lri.fr/~marc/EO/EO-EA01.ps.gz</a>&quot;,<br/>
+        &nbsp;&nbsp;<font color="#ff00ff">size</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;12 pages&quot;,<br/>
+        &nbsp;&nbsp;<font color="#a020f0">abstract</font>&nbsp;=&nbsp; &quot;This paper presents the evolving objects library<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (EOlib), an object-oriented framework for evolutionary<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; computation (EC)&nbsp;that aims to provide a flexible set of<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; classes to build EC applications. EOlib design<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objective is to be able to evolve any object in which<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fitness makes sense.&quot;,<br/>
+        }<br/>
+        <br/>
+    </font>
+    </p>
+
+    <p>If you want to understand the message-passing parallelization module, check the <a href="http://eodev.sourceforge.net/eo/tutorial/Parallelization/eompi.html">introduction to eo::MPI</a> by Benjamin Bouvier.</p>
+
+    <p>Here is a list of some known publications that used EO:</p>
+    <ul class="publications">
+        <li>J.J. Gilijamse, J. Küpper, S. Hoekstra, S.Y.T. van de Meerakker, G. Meijer,
+        <a href= "http://dx.doi.org/10.1103/PhysRevA.73.063410">Optimizing the Stark-decelerator beamline for the trapping of
+            cold molecules using evolutionary strategies</a>,
+        <i> Physical Review</i>, A <b>73</b>, 063410 (2006). <br/>
+        Also available at <a href= "http://arxiv.org/abs/physics/0603108"><i>arXiv</i>
+            physics/0603108 (2006)</a>.</li>
+        <li>Johann Dreo, <a href="http://www.nojhan.net/pro/spip.php?article31">Using Performance Fronts for Parameter Setting of Stochastic Metaheuristics</a>, <i>Genetic and Evolutionary Computation Conference</i>, (2009).</li>
+        <li>Jacques Bibaï, Pierre Savéant, Marc Schoenauer, Vincent Vidal, <a href="http://www.aaai.org/ocs/index.php/ICAPS/ICAPS10/paper/view/1414">An Evolutionary Metaheuristic Based on State Decomposition for Domain-Independent Satisficing Planning</a>, <i>Twentieth International Conference on Automated Planning and Scheduling </i> (2010).</li>
+        <li>Jacques Bibaï, Pierre Savéant, Marc Schoenauer, Vincent Vidal, <a href="">An Evolutionary Metaheuristic for Domain-Independent Satisficing Planning</a>, <i>Genetic and Evolutionary Computation Conference</i> (2010). <em>Silver Medal at the Human-Competitive Competition</em></li>
+    </ul>
+
+
+    <h1><a name="Code"></a>Code <a href="#Plan">⤒</a></h1>
+
+    <h2><a name="Download"></a>Download</h2>
+
+    <p> The current stable release is <a
+        href="http://sourceforge.net/project/showfiles.php?group_id=9775">EO 1.0</a>.
+    It supports any standard-compliant C++ compiler. </p>
+
+    <p> You can obtain the latest version directly via <a
+        href="https://sourceforge.net/scm/?type=git&group_id=9775">GIT</a>
+    or <a href="http://eodev.git.sourceforge.net/git/gitweb.cgi?p=eodev/eodev;a=tree;f=eo;h=d93666f049104f360ffdff3af0bf54902e2feae1;hb=HEAD">browse the repository online</a>.
+    <!-- or download a daily snapshot from <a
+        href="http://www.lri.fr/%7Emarc/EO/snapshot">LRI</a> -->
+    </p>
+
+    <p> All releases can be obtained from the SourceForge <a
+        href="http://sourceforge.net/project/showfiles.php?group_id=9775">download
+        area</a>. </p>
+
+    <h2><a name="Facts"></a>Facts</h2>
+
+    <p>Those statistics are automatically generated by <a href="https://www.ohloh.net/p/eodev">ohloh.net</a>, directly from the EO source code.</p>
+
+    <table>
+        <tr>
+            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_languages.js"></script></td>
+            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_basic_stats.js"></script></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_factoids.js"></script></td>
+            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_cocomo.js"></script></td>
+        </tr>
+    </table>
+
+
+    <h2><a name="License"></a>License</h2>
+
+    <p>EO is distributed under the
+    <a href="http://www.gnu.org/copyleft/lesser.html">
+        GNU Lesser General Public License</a>.</p>
+
+    <p>Note that this license places copyleft restrictions on a program created with EO, but does not apply these restrictions to other software that would links with the program.</p>
+
+
+    <h2><a name="Documentation"></a>Documentation</h2>
+
+    <p>The tutorial demonstrates that writing an evolutionary algorithm
+    evolving your own structures is now <em>easy</em>, using ready-to-use
+    template files. Although the tutorial has not been upgraded for some
+    time now and refers to version 0.9.2 of EO, it nevertheless remains the
+    best way to dive into EO. You can start by trying it on-line at <a
+        href="http://www.lri.fr/%7Emarc/EO/eo/tutorial/html/eoTutorial.html">LRI</a>
+    or <a
+        href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">SourceForge</a>,
+    before <a href="http://www.lri.fr/%7Emarc/EO/">downloading it</a>. The
+    tutorial is also included in the <a
+        href="http://sourceforge.net/project/showfiles.php?group_id=9775">released
+        sources</a>. </p>
+
+    <p>The latest <a
+        href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">tutorial
+        release</a>.
+    </p>
+
+    <p>The complete code is also well documented and you can look at the
+    generated <a
+        href="http://eodev.sourceforge.net/eo/doc/html/index.html">interface
+        documentation</a>. </p>
+
+    <p>The easiest way to create a complete new EO-project, even for new
+    genomes, is to use the script provided in tutorial/Templates/; see
+    the README in that directory and lesson 5 of the tutorial for
+    detail.</p>
+
+
+    <h1><a name="Development"></a>Development <a href="#Plan">⤒</a></h1>
+
+    <h2><a name="Mailing-lists"></a>Mailing-lists</h2>
+
+    <p>EO is an open development effort; that is why we have
+    created mailing lists to discuss future developments, solve technical
+    problems, announce releases, publish patches, and discuss evolutionary
+    computation in general. Browse the archives or join the <a
+        href="http://sourceforge.net/mail/?group_id=9775">EO mailing lists</a>.</p>
+
+
+    <h2><a name="Get-involved"></a>Get involved</h2>
+
+    <p>The following resources are available, thanks to sourceforge</p>
+    <ul>
+        <li> <a href="http://sourceforge.net/project/?group_id=9775">EO
+            SourceForge Project Page</a></li>
+        <li><a href="http://eodev.sourceforge.net/eo/doc/html/index.html">EO
+            automatic documentation page at SF</a><br/>
+        </li>
+        <li><a href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">EO
+            tutorial page at SF</a><br/>
+        </li>
+        <li> <a href="https://sourceforge.net/project/showfiles.php?group_id=9775">Releases</a></li>
+        <li> <a href="http://sourceforge.net/mail/?group_id=9775">Mailing Lists</a></li>
+        <li> <a href="http://sourceforge.net/forum/?group_id=9775">Message Forums</a></li>
+        <li> <a href="https://sourceforge.net/apps/trac/eodev/wiki/WikiStart">Bug Submission and Tracking</a></li>
+        <li> <a href="https://sourceforge.net/projects/eodev/support">Technical Support</a></li>
+        <li> <a href="https://sourceforge.net/scm/?type=git&group_id=9775">Code repository</a></li>
+    </ul>
+
+    <h2><a name="Related-software"></a>Related software</h2>
+
+    <p>The softwares listed here are using EO, but they are not maintained by the EO team.
+    They may not be free softwares or may even be outdated.</p>
+
+    <ul>
+        <li> <a href="http://paradiseo.gforge.inria.fr"
+            >ParadisEO</a> provides EO extensions for
+        the flexible design of <b>single solution-based metaheuristics</b>,
+        metaheuristics for <b>multi objective optimization</b> as well as <b>hybrid, parallel and distributed
+            metaheuristics</b>.</li>
+
+        <li> <a href="http://geneura.ugr.es/~jmerelo/DegaX/">DegaX</a>
+        is an ActiveX control which embeds EO 0.8.4.
+        </li>
+
+        <li><a href="https://lsiit.u-strasbg.fr/easea/index.php/EASEA_platform">EASEA</a> was a GUI that permits to build evolutionary algorithm with EO or the <a href="http://lancet.mit.edu/ga/">GAlib</a>.
+        It is now a platform that allows program evolutionary algorithms on massively parallel many-core architectures.</li>
+
+        <li><a href="https://gforge.inria.fr/projects/guide">GUIDE</a> is a GUI that allows the generation of evolutionary algorithms. It can use EO or <a href="http://cs.gmu.edu/~eclab/projects/ecj/">ECJ</a>.</li>
+    </ul>
+
+
+    <h2><a name="Authors"></a>Authors</h2>
+
+    <p>EO was started by the <a href="http://geneura.ugr.es/">Geneura
+        Team</a> at the University of Granada, headed by <a
+        href="http://geneura.ugr.es/%7Ejmerelo/">Juan Julián Merelo</a>. The <a
+        href="http://geneura.ugr.es/~jmerelo/EO.orig.html"
+        >original Web site</a> is also the only place where you
+    will find old releases of EO (up to 0.8.7), but beware that it is not
+    compatible at all with the current version. </p>
+
+    <p>The developement team has then been reinforced by <a
+        href="http://www.cs.vu.nl/~mkeijzer">Maarten Keijzer</a>, the C++
+    wizzard, and <a href="http://www.lri.fr/%7Emarc">Marc Schoenauer</a>.
+    Later came <a href="http://www.liacs.nl/%7Ejeggermo/">Jeroen
+        Eggermont</a>, who, among other things, did a lot of work on GP,
+    INRIA Dolphin Team, <a
+        href="mailto:okoenig@users.sourceforge.net">Olivier König</a>, who did a
+    lot of useful additions and cleaning of the code and <a
+        href="http://www.jochen-kuepper.de">Jochen Küpper</a>, working on
+    infrastructure maintenance. </p>
+
+    <p>The project is now maintained by <a href="http://johann.dreo.fr">Johann Dréo</a>,
+    working on it with the help of <a href="http://caner.candan.fr">Caner Candan</a>.
+    <a href="https://github.com/BenjBouv">Benjamin Bouvier</a> have designed a 
+    whole new MPI parallelization module.</p>
+
+
+    <h2><a name="Links"></a>Links</h2>
+
+    <ul>
+        <li><a href="http://coco.gforge.inria.fr/">COCO (COmparing Continuous Optimisers)</a>, a platform for systematic and sound comparisons of real-parameter global optimisers. COCO provides benchmark function testbeds and tools for processing and visualizing data generated by one or several optimizers.</li>
+        <li><a href="http://www.aip.de/~ast/EvolCompFAQ" >The Hitch-Hiker's Guide to Evolutionary Computation</a>, FAQ for <a href="news:comp.ai.genetic">comp.ai.genetic</a>.</li>
+        <li>Wikipedia entries on <a href="http://en.wikipedia.org/wiki/Evolutionary_algorithm">Evolutionary algorithms</a>.</li>
+        <li>Charles Darwin: <a href="http://en.wikipedia.org/wiki/The_Origin_of_Species" >The Origin of Species</a>.</li>
+    </ul>
+
+</div> <!-- id=main -->
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/eodev/" : "http://sourceforge.net/apps/piwik/eodev/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+</script><noscript><p><img src="http://sourceforge.net/apps/piwik/eodev/piwik.php?idsite=1" style="border:0" alt=""/></p></noscript>
+<!-- End Piwik Tag -->
+
+
+  </body>
+</html>

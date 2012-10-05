@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+mkdir -p release
+cd release
+cmake -D_GLIBCXX_PARALLEL=1 ..
+make
+cd ..

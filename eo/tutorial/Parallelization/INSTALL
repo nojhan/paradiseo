@@ -1,0 +1,63 @@
+How to install EoMPI
+====================
+
+Install OpenMpi
+---------------
+
+1) Download OpenMPI on their website or with the following command:
+
+    wget http://www.open-mpi.org/software/ompi/v1.6/downloads/openmpi-1.6.tar.bz2
+
+2) Untar the downloaded archive in a directory and change working directory to there:
+
+    tar -xvjf openmpi*.tar.bz2
+    cd openmpi-X.Y
+
+3) Use configuration script to indicate in which directory OpenMPI should be installed, and other options:
+
+Simplest configuration:
+    ./configure --prefix=/home/`whoami`/openmpi/
+
+Only static libraries:
+    ./configure --enable-static --disable-shared
+
+Only static libraries, with prefix, disable build for Fortran77 and Fortran90, add support for SGE:
+    ./configure --enable-static --disable-shared --prefix=/home/`whoami`/openmpi/ --disable-mpi-f77 --disable-mpi-f90 --with-sge
+
+Other options are available in the README file.
+
+4) Make it and install:
+
+In sequential:
+    make all install
+
+Or in parallel:
+    make -j 2 all
+    make install
+
+5) Try to compile and run the sample program:
+
+    ~/openmpi/bin/mpicxx -o sample mpi.c
+    ~/openmpi/bin/mpirun -np 3 ./sample
+
+Configure EO to use MPI
+-----------------------
+
+You only need to configure eo-conf.cmake so as to use MPI :
+
+1) Put the WITH_MPI boolean to true:
+
+    SET(WITH_MPI TRUE CACHE BOOL "Use mpi ?" FORCE)
+
+2) Indicate in which directories you have installed openmpi:
+
+    SET(MPI_DIR "/where/did/you/install/openmpi" CACHE PATH "OpenMPI directory" FORCE)
+
+3) Recompile eo:
+
+    ./distclean
+    ./build_gcc_linux_release.sh
+
+4) If you meet any issue, don't hesitate to contact the EO mailing list:
+
+    eodev-main@lists.sourceforge.net

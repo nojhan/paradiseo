@@ -1,0 +1,468 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="cpp2html Marc Schoenauer">
+   <title>SecondRealEA</title>
+</head>
+<body text="#000000" bgcolor="#C3C2B4" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<a href="eoLesson3.html">Back to Lesson 3</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<br>
+<hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
+<center>
+<h1>
+<font color="#FF0000">SecondRealEA</font></h1></center>
+Click on the figure to see the corresponding code.<br>
+In the code, the <a href="eoTutorial.html#colors">colors are meaningfull</a><br>
+The actual code is in boldface and the comment in normal face.
+<br><img SRC="EA_tutorial.jpg" USEMAP="#Map" >
+<map NAME="Map">
+<!-- Init -->
+<area SHAPE="rect" HREF="#init" COORDS="14,31,135,70">
+<area SHAPE="rect" HREF="#eval" COORDS="14,110,135,150">
+<!-- main loop -->
+<area SHAPE="rect" HREF="#representation" COORDS="170,110,295,150">
+<area SHAPE="rect" HREF="#output" COORDS="280,45,480,70">
+<area SHAPE="rect" HREF="#stop" COORDS="348,110,430,150">
+<area SHAPE="rect" HREF="#select" COORDS="495,110,615,150">
+<area SHAPE="rect" HREF="#representation" COORDS="495,190,615,230">
+<area SHAPE="rect" HREF="#crossover" COORDS="495,265,625,287">
+<area SHAPE="rect" HREF="#mutation" COORDS="495,287,625,305">
+<area SHAPE="rect" HREF="#representation" COORDS="240,270,465,310">
+<area SHAPE="rect" HREF="#eval" COORDS="170,270,295,310">
+<area SHAPE="rect" HREF="#replace" COORDS="170,190,295,230">
+<!-- Center of loop -->
+<area SHAPE="rect" HREF="#generation" COORDS="310,160,485,260">
+<!-- 4 bottom lines -->
+<area SHAPE="rect" HREF="#operators" COORDS="15,350,260,370">
+<area SHAPE="rect" HREF="#representation" COORDS="270,350,460,370">
+<area SHAPE="rect" HREF="#engine" COORDS="15,377,400,397">
+<area SHAPE="rect" HREF="#eval" COORDS="15,403,230,423">
+<area SHAPE="rect" HREF="#checkpoint" COORDS="15,430,221,450">
+<area SHAPE="rect" HREF="#stop" COORDS="221,430,345,450">
+<area SHAPE="rect" HREF="#stat" COORDS="375,430,445,450">
+<area SHAPE="rect" HREF="#parametres" COORDS="0,358,278,378">
+</map>
+<br>&nbsp;
+<A NAME="start"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE><tt><font color="#993300">
+//-----------------------------------------------------------------------------<br>
+// SecondRealEA.cpp<br>
+//-----------------------------------------------------------------------------<br>
+//*<br>
+// Same code than FirstBitEA as far as Evolutionary Computation is concerned<br>
+// but now you learn to enter the parameters in a more flexible way<br>
+// (also slightly different than in SecondBitEA.cpp)<br>
+// and to twidle the output to your preferences (as in SecondBitEA.cpp)<br>
+//<br>
+//-----------------------------------------------------------------------------<br>
+// standard includes<br>
+<b>#include &lt;stdexcept>  &nbsp;</b>// runtime_error <br>
+<b>#include &lt;iostream>  &nbsp; &nbsp;</b>// cout<br>
+<b>#include &lt;strstream>  &nbsp;</b>// ostrstream, istrstream<br>
+// the general include for eo<br>
+<b>#include &lt;eo></b><br>
+<b>#include &lt;es.h></b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="representation"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" NOSAVE >
+<tr>
+<td>
+<tt><font color="#999900">
+//-----------------------------------------------------------------------------<br>
+// define your individuals<br>
+<b>typedef eoReal&lt;eoMinimizingFitness> Indi;	</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="evalfunc"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td>
+<tt><font color="#CC0000">
+//-----------------------------------------------------------------------------<br>
+// a simple fitness function that computes the euclidian norm of a real vector<br>
+// Now in a separate file, and declared as binary_value(const vector&lt;bool> &)<br>
+<b>#include "real_value.h"</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="general"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td>
+<tt><font color="#993300">
+//-----------------------------------------------------------------------------<br>
+<b>void main_function(int argc, char **argv)</b><br>
+<b>{</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="parametres"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#3366FF">
+//-----------------------------------------------------------------------------<br>
+// instead of having all values of useful parameters as constants, read them:<br>
+// either on the command line (--option=value or -o=value)<br>
+//  &nbsp; &nbsp; &nbsp; &nbsp;or in a parameter file (same syntax, order independent, <br>
+//  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# = usual comment character <br>
+//  &nbsp; &nbsp; &nbsp; &nbsp;or in the environment (TODO)<br>
+<b>  &nbsp;</b>// First define a parser from the command-line arguments<br>
+<b>  &nbsp;eoParser parser(argc, argv);</b><br>
+<b>  &nbsp;</b><br>
+<b>  &nbsp;</b>// For each parameter, you can in on single line<br>
+<b>  &nbsp;</b>// define the parameter, read it through the parser, and assign it<br>
+<b>  &nbsp;</b><br>
+<a NAME="random"></a>
+<b>  &nbsp;unsigned seed = parser.createParam(unsigned(time(0)), "seed", "Random number seed", 'S').value(); </b>// will be in default section General<br>
+<b>  &nbsp;</b><br>
+<b>  &nbsp;</b>// description of genotype<br>
+<b>  &nbsp;unsigned vecSize = parser.createParam(unsigned(8), "vecSize", "Genotype size",'V', "Representation" ).value();</b><br>
+<b>  &nbsp; &nbsp;</b>// parameters for evolution engine<br>
+<b>  &nbsp; &nbsp; &nbsp;unsigned popSize = parser.createParam(unsigned(10), "popSize", "Population size",'P', "Evolution engine" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;unsigned tSize = parser.createParam(unsigned(2), "tSize", "Tournament size",'T', "Evolution Engine" ).value();</b><br>
+<b>  &nbsp; &nbsp;</b>// init and stop<br>
+<b>  &nbsp; &nbsp; &nbsp;string loadName = parser.createParam(string(""), "Load","A save file to restart from",'L', "Persistence" ).value();</b><br>
+<b> </b><br>
+<b>  &nbsp; &nbsp; &nbsp;unsigned maxGen = parser.createParam(unsigned(100), "maxGen", "Maximum number of generations",'G', "Stopping criterion" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;unsigned minGen = parser.createParam(unsigned(100), "minGen", "Minimum number of generations",'g', "Stopping criterion" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;unsigned steadyGen = parser.createParam(unsigned(100), "steadyGen", "Number of generations with no improvement",'s', "Stopping criterion" ).value();</b><br>
+<b>  &nbsp; &nbsp;</b>// operators probabilities at the algorithm level<br>
+<b>  &nbsp; &nbsp; &nbsp;double pCross = parser.createParam(double(0.6), "pCross", "Probability of Crossover", 'C', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;double pMut = parser.createParam(double(0.1), "pMut", "Probability of Mutation", 'M', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp;</b>// relative rates for crossovers<br>
+<b>  &nbsp; &nbsp; &nbsp;double hypercubeRate = parser.createParam(double(1), "hypercubeRate", "Relative rate for hypercube crossover", '\0', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;double segmentRate = parser.createParam(double(1), "segmentRate", "Relative rate for segment crossover", '\0', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// internal parameters for the mutations<br>
+<b>  &nbsp; &nbsp; &nbsp;double EPSILON = parser.createParam(double(0.01), "EPSILON", "Width for uniform mutation", '\0', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;double SIGMA = parser.createParam(double(0.3), "SIGMA", "Sigma for normal mutation", '\0', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp;</b>// relative rates for mutations<br>
+<b>  &nbsp; &nbsp; &nbsp;double uniformMutRate = parser.createParam(double(1), "uniformMutRate", "Relative rate for uniform mutation", '\0', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;double detMutRate = parser.createParam(double(1), "detMutRate", "Relative rate for det-uniform mutation", '\0', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;double normalMutRate = parser.createParam(double(1), "normalMutRate", "Relative rate for normal mutation", '\0', "Genetic Operators" ).value();</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// the name of the "status" file where all actual parameter values will be saved <br>
+<b>  &nbsp; &nbsp; &nbsp;string str_status = parser.ProgramName() + ".status"; </b>// default value<br>
+<b>  &nbsp; &nbsp; &nbsp;string statusName = parser.createParam(str_status, "status","Status file",'S', "Persistence" ).value();</b><br>
+<b>  &nbsp; &nbsp;</b>// do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED<br>
+<b>  &nbsp; &nbsp;</b>// i.e. in case you need parameters somewhere else, postpone these<br>
+<b>  &nbsp; &nbsp; &nbsp;if (parser.userNeedsHelp())</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;parser.printHelp(cout);</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit(1);</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</b><br>
+<b>  &nbsp; &nbsp; &nbsp;if (statusName != "")</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{</b><br>
+<b>ofstream os(statusName.c_str());</b><br>
+<b>os &lt;&lt; parser;		</b>// and you can use that file as parameter file<br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="eval"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td>
+<tt><font color="#CC0000">
+<b>  &nbsp;</b>/////////////////////////////<br>
+<b>  &nbsp;</b>// Fitness function<br>
+<b>  &nbsp;</b>////////////////////////////<br>
+<b>  &nbsp;</b>// Evaluation: from a plain C++ fn to an EvalFunc Object<br>
+<b>  &nbsp;</b>// you need to give the full description of the function<br>
+<b>  &nbsp;eoEvalFuncPtr&lt;Indi, double, const vector&lt;double>& > plainEval(  &nbsp;real_value );</b><br>
+<b>  &nbsp;</b>// ... to an object that counts the nb of actual evaluations<br>
+<b>  &nbsp;eoEvalFuncCounter&lt;Indi> eval(plainEval);</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="init"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#993399">
+<b>  &nbsp;</b>////////////////////////////////<br>
+<b>  &nbsp;</b>// Initilisation of population<br>
+<b>  &nbsp;</b>////////////////////////////////<br>
+<b>  &nbsp;</b>// Either load or initialize<br>
+<b>  &nbsp;</b>// create an empty pop<br>
+<b>  &nbsp;eoPop&lt;Indi> pop;</b><br>
+<b>  &nbsp;</b>// create a state for reading<br>
+<b>  &nbsp;eoState inState;		</b>// a state for loading - WITHOUT the parser<br>
+<b>  &nbsp;</b>// register the rng and the pop in the state, so they can be loaded,<br>
+<b>  &nbsp;</b>// and the present run will be the exact conitnuation of the saved run<br>
+<b>  &nbsp;</b>// eventually with different parameters<br>
+<b>  &nbsp;inState.registerObject(rng);</b><br>
+<b>  &nbsp;inState.registerObject(pop);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b><br>
+<b>  &nbsp;if (loadName != "")</b><br>
+<b>  &nbsp; &nbsp; &nbsp;{</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inState.load(loadName); </b>//  &nbsp;load the pop and the rng<br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// the fitness is read in the file: <br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// do only evaluate the pop if the fitness has changed<br>
+<b>  &nbsp; &nbsp; &nbsp;}</b><br>
+<b>  &nbsp;else</b><br>
+<b>  &nbsp; &nbsp; &nbsp;{</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rng.reseed(seed);</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// a Indi random initializer<br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// based on boolean_generator class (see utils/rnd_generator.h)<br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;eoUniformGenerator&lt;double> uGen(-1.0, 1.0);</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;eoInitFixedLength&lt;Indi> random(vecSize, uGen);</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// Init pop from the randomizer: need to use the append function<br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pop.append(popSize, random);  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// and evaluate pop (STL syntax)  &nbsp; &nbsp; &nbsp;<br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;apply&lt;Indi>(eval, pop);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;} </b>// end of initializatio of the population<br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="stop"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#3366FF">
+<b>  &nbsp;</b>// sort pop before printing it!<br>
+<b>  &nbsp;pop.sort();</b><br>
+<b>  &nbsp;</b>// Print (sorted) intial population (raw printout)<br>
+<b>  &nbsp;cout &lt;&lt; "Initial Population" &lt;&lt; endl;</b><br>
+<b>  &nbsp;cout &lt;&lt; pop;</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="engine"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td>
+<tt><font color="#009900">
+<b>  &nbsp;</b>/////////////////////////////////////<br>
+<b>  &nbsp;</b>// selection and replacement<br>
+<b>  &nbsp;</b>////////////////////////////////////<br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="select"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td>
+<tt><font color="#009900">
+<b>  &nbsp;</b>// The robust tournament selection<br>
+<b>  &nbsp;eoDetTournamentSelect&lt;Indi> selectOne(tSize);</b><br>
+<b>  &nbsp;</b>// is now encapsulated in a eoSelectPerc (entage)<br>
+<b>  &nbsp;eoSelectPerc&lt;Indi> select(selectOne);</b>// by default rate==1<br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="replace"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td>
+<tt><font color="#009900">
+<b>  &nbsp;</b>// And we now have the full slection/replacement - though with <br>
+<b>  &nbsp;</b>// no replacement (== generational replacement) at the moment :-)<br>
+<b>  &nbsp;eoGenerationalReplacement&lt;Indi> replace; </b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="operators"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#993399">
+<b>  &nbsp;</b>//////////////////////////////////////<br>
+<b>  &nbsp;</b>// The variation operators<br>
+<b>  &nbsp;</b>//////////////////////////////////////<br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="crossover"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#993399">
+<b>  &nbsp;</b>// uniform chooce on segment made by the parents<br>
+<b>  &nbsp;eoSegmentCrossover&lt;Indi> xoverS;</b><br>
+<b>  &nbsp;</b>// uniform choice in hypercube built by the parents<br>
+<b>  &nbsp;eoHypercubeCrossover&lt;Indi> xoverA;</b><br>
+<b>  &nbsp;</b>// Combine them with relative weights<br>
+<b>  &nbsp;eoPropCombinedQuadOp&lt;Indi> xover(xoverS, segmentRate);</b><br>
+<b>  &nbsp;xover.add(xoverA, hypercubeRate, true);</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="mutation"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#993399">
+<b>  &nbsp;</b>// offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]<br>
+<b>  &nbsp;eoUniformMutation&lt;Indi>  &nbsp;mutationU(EPSILON); </b><br>
+<b>  &nbsp;</b>// k (=1) coordinates of parents are uniformly modified<br>
+<b>  &nbsp;eoDetUniformMutation&lt;Indi>  &nbsp;mutationD(EPSILON); </b><br>
+<b>  &nbsp;</b>// all coordinates of parents are normally modified (stDev SIGMA)<br>
+<b>  &nbsp;eoNormalMutation&lt;Indi>  &nbsp;mutationN(SIGMA); </b><br>
+<b>  &nbsp;</b>// Combine them with relative weights<br>
+<b>  &nbsp;eoPropCombinedMonOp&lt;Indi> mutation(mutationU, uniformMutRate);</b><br>
+<b>  &nbsp;mutation.add(mutationD, detMutRate);</b><br>
+<b>  &nbsp;mutation.add(mutationN, normalMutRate, true);</b><br>
+<b>  &nbsp;</b>// The operators are  &nbsp;encapsulated into an eoTRansform object<br>
+<b>  &nbsp;eoSGATransform&lt;Indi> transform(xover, pCross, mutation, pMut);</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="stop"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#3366FF">
+<b>  &nbsp;</b>//////////////////////////////////////<br>
+<b>  &nbsp;</b>// termination condition see FirstBitEA.cpp<br>
+<b>  &nbsp;</b>/////////////////////////////////////<br>
+<b>  &nbsp;eoGenContinue&lt;Indi> genCont(maxGen);</b><br>
+<b>  &nbsp;eoSteadyFitContinue&lt;Indi> steadyCont(minGen, steadyGen);</b><br>
+<b>  &nbsp;eoFitContinue&lt;Indi> fitCont(0);</b><br>
+<b>  &nbsp;eoCombinedContinue&lt;Indi> continuator(genCont);</b><br>
+<b>  &nbsp;continuator.add(steadyCont);</b><br>
+<b>  &nbsp;continuator.add(fitCont);</b><br>
+<b>  &nbsp;</b><br>
+<b>  &nbsp;</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="checkpoint"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#3366FF">
+<b>  &nbsp;</b>// but now you want to make many different things every generation <br>
+<b>  &nbsp;</b>// (e.g. statistics, plots, ...).<br>
+<b>  &nbsp;</b>// the class eoCheckPoint is dedicated to just that:<br>
+<b>  &nbsp;</b>// Declare a checkpoint (from a continuator: an eoCheckPoint <br>
+<b>  &nbsp;</b>// IS AN eoContinue and will be called in the loop of all algorithms)<br>
+<b>  &nbsp;eoCheckPoint&lt;Indi> checkpoint(continuator);</b><br>
+<b>  &nbsp;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Create a counter parameter<br>
+<b>  &nbsp; &nbsp; &nbsp;eoValueParam&lt;unsigned> generationCounter(0, "Gen.");</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Create an incrementor (sub-class of eoUpdater). Note that the <br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// parameter's value is passed by reference, <br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// so every time the incrementer is updated (every generation),<br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// the data in generationCounter will change.<br>
+<b>  &nbsp; &nbsp; &nbsp;eoIncrementor&lt;unsigned> increment(generationCounter.value());</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Add it to the checkpoint, <br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// so the counter is updated (here, incremented) every generation<br>
+<b>  &nbsp; &nbsp; &nbsp;checkpoint.add(increment);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// now some statistics on the population:<br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Best fitness in population<br>
+<b>  &nbsp; &nbsp; &nbsp;eoBestFitnessStat&lt;Indi> bestStat;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Second moment stats: average and stdev<br>
+<b>  &nbsp; &nbsp; &nbsp;eoSecondMomentStats&lt;Indi> SecondStat;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Add them to the checkpoint to get them called at the appropriate time<br>
+<b>  &nbsp; &nbsp; &nbsp;checkpoint.add(bestStat);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;checkpoint.add(SecondStat);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// The Stdout monitor will print parameters to the screen ...<br>
+<b>  &nbsp; &nbsp; &nbsp;eoStdoutMonitor monitor(false);</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// when called by the checkpoint (i.e. at every generation)<br>
+<b>  &nbsp; &nbsp; &nbsp;checkpoint.add(monitor);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// the monitor will output a series of parameters: add them <br>
+<b>  &nbsp; &nbsp; &nbsp;monitor.add(generationCounter);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;monitor.add(eval);		</b>// because now eval is an eoEvalFuncCounter!<br>
+<b>  &nbsp; &nbsp; &nbsp;monitor.add(bestStat);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;monitor.add(SecondStat);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// A file monitor: will print parameters to ... a File, yes, you got it!<br>
+<b>  &nbsp; &nbsp; &nbsp;eoFileMonitor fileMonitor("stats.xg", " ");</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// the checkpoint mechanism can handle multiple monitors<br>
+<b>  &nbsp; &nbsp; &nbsp;checkpoint.add(fileMonitor);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// the fileMonitor can monitor parameters, too, but you must tell it!<br>
+<b>  &nbsp; &nbsp; &nbsp;fileMonitor.add(generationCounter);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;fileMonitor.add(bestStat);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;fileMonitor.add(SecondStat);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Last type of item the eoCheckpoint can handle: state savers:<br>
+<b>  &nbsp; &nbsp; &nbsp;eoState outState;</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Register the algorithm into the state (so it has something to save!!)<br>
+<b>  &nbsp; &nbsp; &nbsp;outState.registerObject(parser);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;outState.registerObject(pop);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;outState.registerObject(rng);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// and feed the state to state savers<br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// save state every 100th  &nbsp;generation<br>
+<b>  &nbsp; &nbsp; &nbsp;eoCountedStateSaver stateSaver1(20, outState, "generation"); </b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// save state every 1 seconds <br>
+<b>  &nbsp; &nbsp; &nbsp;eoTimedStateSaver  &nbsp; &nbsp;stateSaver2(1, outState, "time"); </b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// Don't forget to add the two savers to the checkpoint<br>
+<b>  &nbsp; &nbsp; &nbsp;checkpoint.add(stateSaver1);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;checkpoint.add(stateSaver2);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;</b>// and that's it for the (control and) output<br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="generation"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td>
+<tt><font color="#FF6666">
+<b>  &nbsp;</b>/////////////////////////////////////////<br>
+<b>  &nbsp;</b>// the algorithm<br>
+<b>  &nbsp;</b>////////////////////////////////////////<br>
+<b>  &nbsp;</b>// Easy EA requires <br>
+<b>  &nbsp;</b>// stopping criterion, eval, selection, transformation, replacement<br>
+<b>  &nbsp;eoEasyEA&lt;Indi> gga(checkpoint, eval, select, transform, replace);</b><br>
+<b>  &nbsp;</b>// Apply algo to pop - that's it!<br>
+<b>  &nbsp;gga(pop);</b><br>
+<b>  &nbsp;</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="stop"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td>
+<tt><font color="#3366FF">
+<b>  &nbsp;</b>// Print (sorted) intial population<br>
+<b>  &nbsp;pop.sort();</b><br>
+<b>  &nbsp;cout &lt;&lt; "FINAL Population\n" &lt;&lt; pop &lt;&lt; endl;</b><br>
+</font></tt>
+</td>
+</tr>
+</table>
+<a NAME="general"></a><table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td>
+<tt><font color="#993300">
+<b>}</b><br>
+// A main that catches the exceptions<br>
+<b>int main(int argc, char **argv)</b><br>
+<b>{</b><br>
+<b>  &nbsp; &nbsp; &nbsp;try</b><br>
+<b>  &nbsp; &nbsp; &nbsp;{</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;main_function(argc, argv);</b><br>
+<b>  &nbsp; &nbsp; &nbsp;}</b><br>
+<b>  &nbsp; &nbsp; &nbsp;catch(exception& e)</b><br>
+<b>  &nbsp; &nbsp; &nbsp;{</b><br>
+<b>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cout &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; '\n';</b><br>
+<b>  &nbsp; &nbsp; &nbsp;}</b><br>
+<b>  &nbsp; &nbsp; &nbsp;return 1;</b><br>
+<b>}</b><br>
+</font></font></font></td>
+</tr>
+</table>
+<hr WIDTH="100%"><a href="eoLesson3.html">Back to Lesson 3</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<hr>
+<address>
+<a href="mailto:marc.schoenauer@inria.fr">Marc Schoenauer</a></address>
+<br><!-- Created: Nov 2000 --><!-- hhmts start -->Last
+modified: Sun Apr 28 06:42:44 2002
+<!-- hhmts end -->
+</body>
+</html>

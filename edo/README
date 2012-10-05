@@ -1,0 +1,57 @@
+This package contains the source code for EDO.
+
+# Step 1 - Configuration
+------------------------
+Rename the "install.cmake-dist" file as "install.cmake" and edit it, inserting the FULL PATH
+to your ParadisEO distribution.
+On Windows write your path with double antislash (ex: C:\\Users\\...)
+
+
+# Step 2 - Build process
+------------------------
+ParadisEO is assumed to be compiled. To download ParadisEO, please visit http://paradiseo.gforge.inria.fr/.
+Go to the DO/build/ directory and lunch cmake:
+(Unix)       > cmake ..
+(Windows)    > cmake .. -G"Visual Studio 9 2008"
+
+Note for windows users: if you don't use VisualStudio 9, enter the name of your generator instead of "VisualStudio 9 2008".
+
+
+# Step 3 - Compilation
+----------------------
+In the edo/build/ directory:
+(Unix)       > make
+(Windows)    Open the VisualStudio solution and compile it, compile also the target install.
+You can refer to this tutorial if you don't know how to compile a solution: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
+
+
+# Step 4 - Execution
+---------------------
+A toy example is given to test the components. You can run these tests as following.
+To define problem-related components for your own problem, please refer to the tutorials available on the website : http://paradiseo.gforge.inria.fr/.
+In the edo/build/ directory:
+(Unix)       > ctest
+Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
+
+In the directory "application", there are several directory such as eda which instantiate EDA solver.
+
+(Unix) After compilation you can run the binary "build/eda" and see results. Parameters can be modified from command line.
+
+(Windows) Add argument "eda.param" and execute the corresponding algorithms.
+Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
+
+
+# Documentation
+---------------
+The API-documentation is available in doc/html/index.html
+
+
+# Things to keep in mind when using EDO
+----------------------------------------
+* By default, the EO random generator's seed is initialized by the number of seconds since the epoch (with time(0)). It is available in the status file dumped at each execution. Please, keep in mind that if you start two run at the same second without modifying the seed, you will get exactly the same results.
+
+* Execution times are measured with the boost:timer, that measure wallclock time. Additionaly, it could not measure times larger than approximatively 596.5 hours (or even less). See http://www.boost.org/doc/libs/1_33_1/libs/timer/timer.htm
+
+* The q-quantile computation use averaging at discontinuities (in R, it correspond to the R-2 method, in SAS, SAS-5). For more explanations, see http://en.wikipedia.org/wiki/Quantile#Estimating_the_quantiles_of_a_population and http://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html
+
+* You can send a SIGUSR1 to a process to get some information (written down in the log file) on the current state of the search.

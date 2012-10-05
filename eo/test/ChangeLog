@@ -1,0 +1,36 @@
+2006-12-04  Jochen Kpper  <jochen@fhi-berlin.mpg.de>
+
+	* Makefile.am: Add t-eoRNG
+
+	* t-eoRNG.cpp: Start test for random number generator.
+
+2006-12-02  Jochen Kpper  <jochen@fhi-berlin.mpg.de>
+
+	* t-MGE1bit.cpp: Change float to double.
+
+	* t-eoGenOp.cpp (init): Do not add std::ends to end of string, as this
+	results in escape-codes (^@) to be printed at runtime and is not
+	necessary anyway.
+
+	* test/t-eoSymreg.cpp (SymregNode::operator()): Initialize r1 and r2 to
+	avoid compiler warnings.
+
+
+2006-07-02  Thomas Legrand  <thomas.legrand@inria.fr>
+
+	* test/t-eoEasyPSO.cpp: added PSO test
+
+	* test/Makefile.am: added PSO test
+
+
+2006-02-27  Thomas Legrand  <thomas.legrand@inria.fr>
+
+	* test/t-eoSyncEasyPSO.cpp: added synchronous PSO test
+	* test/t-eoEasyPSO.cpp: customized PSO test (initialization)
+	* test/Makefile.am: added synchronous PSO test
+
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:

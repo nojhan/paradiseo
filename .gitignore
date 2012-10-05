@@ -1,0 +1,24 @@
+# ignore html files
+*.html
+
+# ignore all textual files
+*.txt
+
+# ignore object and archive files
+*.[oa]
+
+# ignore auto-saved files
+*~
+\#*\#
+
+# excepted these manually configured files
+!CMakeLists.txt
+!README.txt
+!application/
+!build/
+!doc/
+!lib/
+!src/
+!test/
+!eompi.html
+build/

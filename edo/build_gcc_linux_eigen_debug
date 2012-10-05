@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+mkdir -p debug
+cd debug
+cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_EIGEN=1 ..
+make
+cd ..

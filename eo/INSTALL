@@ -1,0 +1,86 @@
+
+Basic Installation
+==================
+
+The simplest way to compile the libraries or the provided softwares  is  to  run
+one of the script beginnig with "build_". Each script permits to build different
+parts of the framework, with different options. 
+
+To compile EO you will need CMake and a compiler for your system.
+
+So far the available scripts for posix systems using g++ are the following:
+    * build_gcc_linux_release      : the most usefull script, build the core libraries in release mode
+    * build_gcc_linux_debug        : build the core libraries with debugging informations in the binaries
+    * build_gcc_linux_tutorial     : build the core libraries and the tutorials
+    * build_gcc_linux_unittest     : build the core libraries and the tests executables
+    * build_gcc_linux_stl_parallel : build the core libraries enabling STL parallel algorithms (like sorting)
+    * build_gcc_linux_pyeo         : build the core libraries and the python module
+    * distclean : remove the "release/" and "debug/" directories where the build scripts put the binaries
+
+For Windows systems using Visual Studio:
+    * build_vs2008_release.bat
+        You may need to adapt the ID to your version of Visual Studio, edit
+        the "Visual Studio 9 2008" string accordingly.
+
+The libraries are in the "release/lib/" or "debug/lib/" directories.
+
+
+Compilers and Options
+=====================
+
+The build scripts are really simple, take a look at them to see how to use the
+build system.
+
+Basically, the steps are:
+    0. remove any old build directory that's on the way:
+        rm -rf build/
+    1. create a directory in which to put build files:
+        mkdir build/
+    2. go in this directory:
+        cd build/
+    3. call cmake with the options you want, using the "-D" option and passing the 
+    EO directory as an argument, for example:
+        cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_CMAKE_TESTING =1  ..
+    4. now type your favorite "make" command, like:
+        make -j # use several processors at once when possible
+    5. enjoy:
+        ./debug/test/t-eofitness
+
+Some of the available options are:
+    * CMAKE_BUILD_TYPE : 
+        * "Debug" : embed debugging informations in the binaries) or
+        * "Release" : no debugging info and some optimizations (the default)
+    * ENABLE_EO_TUTORIAL : build the tutorial ("no" by default)
+    * ENABLE_CMAKE_TESTING : build the tests executables ("no" by default)
+    * ENABLE_PYEO : build the python module ("no" by default)
+
+You can pass generic options to the compiler, like:
+    * _GLIBCXX_PARALLEL : use the parallel version of the STL
+
+
+Installation using packages
+===========================
+
+To construct a dummy template of the EO package you will need CPack.  Be  warned
+that those  do  not  guarantee  correct  dependencies  and  version  management.
+
+Use the "package_*" scripts:
+    * package_deb : for debian-like systems
+    * package_rpm : for red-hat-like systems
+
+Or go through the following steps:
+    1. go in the build directory where your binaries are:
+        cd build/
+    2. call CPack specifying the desired package system:
+        cpack -G DEB
+    3. install the package:
+        sudo dpkg -i EO-1.1.1-Linux.deb
+
+
+Basic installation
+==================
+
+To install the framework system-wide, copy the "eo/" directory somewhere in  your
+path.  The "lib/" directory should be reachable for the linker  and  the  "src/"
+directory must be in the compiler include path.
+

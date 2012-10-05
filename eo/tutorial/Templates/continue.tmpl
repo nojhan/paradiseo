@@ -1,0 +1,64 @@
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+The above line is usefulin Emacs-like editors
+ */
+
+/*
+Template for continuator in EO, i.e. stopping conditions for EO algorithms
+==========================================================================
+*/
+
+#ifndef _eoMyStructContinue_h
+#define _eoMyStructContinue_h
+
+// include the base definition of eoContinue
+#include <eoContinue.h>
+
+/**
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * ATTENTION, class EOT *must* derive from EO, as operator() will
+ * be called with an eoPop<EOT>
+ */
+template< class EOT>
+class eoMyStructContinue: public eoContinue<EOT> {
+public:
+  /**
+   * Ctor - no requirement
+   */
+// START eventually add or modify the anyVariable argument
+  eoMyStructContinue()
+  //  eoMyStructBinCrossover( varType  _anyVariable) : anyVariable(_anyVariable)
+// END eventually add or modify the anyVariable argument
+  {
+    // START Code of Ctor of an eoMyStructEvalFunc object
+    // END   Code of Ctor of an eoMyStructEvalFunc object
+  }
+
+
+  /** Returns false when you want to stop
+   *
+   * @param _pop an eoPop
+   */
+  virtual bool operator() ( const eoPop<EOT>& _pop )
+    {
+      bool stopCondition ; // to store the stopping condition
+    // START Code of computation of stopping condition
+	// stopCondition = blablabla
+    // END   Code of computation of stopping condition
+      if (stopCondition) // the algo will stop upon return FALSE
+	{
+	  cout << "STOP in eoMyStructContinue \n";
+	  return false;
+	}
+      return true;		   // == do not stop
+    }
+
+private:
+// START Private data of an eoMyStructContinue object
+  //  varType anyVariable;		   // for example ...
+// END   Private data of an eoMyStructContinue object
+};
+
+#endif
