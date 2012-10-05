@@ -118,6 +118,7 @@ Entity* Parser::parseRight(const std::string & str, size_t & pos)
 {
     Entity* value = 0;
 
+    ignoreChars( str, pos );
     if ( str[ pos ] == '{' )
     {
         // next one is an object
