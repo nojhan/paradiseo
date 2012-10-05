@@ -9,8 +9,8 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 ### 2) Define the es and cma targets
 ######################################################################################
 
-SET(ES_LIB_OUTPUT_PATH ${EO_BINARY_DIR}/lib)
-SET(CMA_LIB_OUTPUT_PATH ${EO_BINARY_DIR}/lib)
+SET(ES_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
+SET(CMA_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
 
 SET(LIBRARY_OUTPUT_PATH ${ES_LIB_OUTPUT_PATH}) # the same output for the two libs
 

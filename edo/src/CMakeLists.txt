@@ -2,14 +2,30 @@
 ### 1) Set all needed source files for the project
 ######################################################################################
 
-FILE(GLOB HDRS *.h edo)
-INSTALL(FILES ${HDRS} DESTINATION include/edo COMPONENT headers)
+include_directories(${EO_SRC_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-FILE(GLOB SOURCES *.cpp)
+set(EDO_LIB_OUTPUT_PATH ${EDO_BINARY_DIR}/lib)
+set(LIBRARY_OUTPUT_PATH ${EDO_LIB_OUTPUT_PATH})
 
-SET(SAMPLE_SRCS ${SOURCES} PARENT_SCOPE)
 
 ######################################################################################
+### 3) Look for headers
+######################################################################################
+
+file(GLOB HDRS edo)
+install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/edo COMPONENT headers)
+
+
+######################################################################################
+### 4) Install directories
+######################################################################################
+
+install(DIRECTORY utils
+        DESTINATION local/include${INSTALL_SUB_DIR}/moeo
+        COMPONENT headers
+        FILES_MATCHING PATTERN "*.h"
+        )
 
 
 ######################################################################################

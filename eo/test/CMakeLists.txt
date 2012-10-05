@@ -18,7 +18,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib)
 
 ######################################################################################
 ### 3) Define your targets and link the librairies

@@ -9,7 +9,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 ### 2) Define the eoserial target
 ######################################################################################
 
-SET(EOSERIAL_LIB_OUTPUT_PATH ${EO_BINARY_DIR}/lib)
+SET(EOSERIAL_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${EOSERIAL_LIB_OUTPUT_PATH})
 
 SET(EOSERIAL_SOURCES

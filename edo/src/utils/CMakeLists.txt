@@ -1,14 +1,21 @@
 ######################################################################################
-### 1) Set all needed source files for the project
+### 1) Include the sources
 ######################################################################################
 
-FILE(GLOB SOURCES *.cpp)
-
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
-ADD_LIBRARY(edoutils ${SOURCES})
-INSTALL(TARGETS edoutils ARCHIVE DESTINATION lib COMPONENT libraries)
-
-FILE(GLOB HDRS *.h utils)
-INSTALL(FILES ${HDRS} DESTINATION include/edo/utils COMPONENT headers)
+include_directories(${EO_SRC_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
+### 2) Define the target
+######################################################################################
+
+set(EDOUTILS_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
+set(LIBRARY_OUTPUT_PATH ${EDOUTILS_LIB_OUTPUT_PATH})
+
+file(GLOB SOURCES *.cpp)
+add_library(edoutils ${SOURCES})
+install(TARGETS edoutils ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+
+set(EDOUTILS_VERSION ${GLOBAL_VERSION})
+set_target_properties(edoutils PROPERTIES VERSION "${EDOUTILS_VERSION}")
+
