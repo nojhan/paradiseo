@@ -34,6 +34,7 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
+# include <sstream>
 # include <vector>
 
 # include <eo>
@@ -115,6 +116,11 @@ class Distribution : public std::vector< type >, public eoserial::Persistent
      */
     bool isActive() { return _active; }
 
+    /**
+     * @brief Prints the name and the parameters of the distribution
+     */
+    virtual std::string toString() const = 0;
+
     protected:
 
     bool _active;
@@ -169,6 +175,15 @@ class UniformDistribution : public Distribution
         eoserial::unpack( *obj, "max", _max );
     }
 
+    std::string toString() const
+    {
+        std::stringstream ss;
+        ss << "uniform" << '\n'
+            << "min: " << _min << '\n'
+            << "max: " << _max << '\n';
+        return ss.str();
+    }
+
     protected:
 
     double _min;
@@ -221,6 +236,15 @@ class NormalDistribution : public Distribution
         eoserial::unpack( *obj, "stddev", _stddev );
     }
 
+    std::string toString() const
+    {
+        std::stringstream ss;
+        ss << "normal" << '\n'
+            << "mean: " << _mean << '\n'
+            << "stddev: " << _stddev << '\n';
+        return ss.str();
+    }
+
     protected:
 
     double _mean;
@@ -269,6 +293,14 @@ class ExponentialDistribution : public Distribution
     void unpack( const eoserial::Object* obj )
     {
         eoserial::unpack( *obj, "mean", _mean );
+    }
+
+    std::string toString() const
+    {
+        std::stringstream ss;
+        ss << "exponential" << '\n'
+            << "mean: " << _mean << '\n';
+        return ss.str();
     }
 
     protected:
@@ -384,6 +416,13 @@ class Experiment : public eoserial::Persistent
             }
             std::ostream& out = *pout;
 
+            // Reminder of the parameters
+            out << "size: " << _size << '\n'
+                << "packet_size: " << _packet_size << '\n'
+                << "distribution: " << _distribution->toString()
+                << "seed: " << _seed << '\n' << std::endl;
+
+            // Results
             out << std::fixed << std::setprecision( 5 );
             for( int i = 1, s = comm.size(); i < s; ++i )
             {
