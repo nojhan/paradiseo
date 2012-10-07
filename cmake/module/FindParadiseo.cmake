@@ -1,9 +1,8 @@
-# File: FindParadiseo.cmake
-# Version: 0.0.1
 #
 # The following variables are filled out:
 # - PARADISEO_INCLUDE_DIR : EO, MO and MOEO source dir
 # - EO_INCLUDE_DIR :        EO source dir
+# - EDO_INCLUDE_DIR :        EO source dir
 # - MO_INCLUDE_DIR :        MO source dir
 # - MOEO_INCLUDE_DIR :      MOEO source dir. WARNING : You have ton include MO before !
 # - PARADISEO_LIBRARIES :   the list of all required modules
@@ -13,6 +12,7 @@
 #
 # Here are the components:
 # - eo
+# - edo
 # - PyEO
 # - es
 # - ga
@@ -38,7 +38,7 @@ endif()
 
 # enabled components
 if ("${Paradiseo_FIND_COMPONENTS}" STREQUAL "")
-    set(PARADISEO_LIBRARIES_TO_FIND eo eoutils cma es flowshop ga moeo)
+    set(PARADISEO_LIBRARIES_TO_FIND eo eoutils edoutils cma es flowshop ga moeo)
 else()
     set(PARADISEO_LIBRARIES_TO_FIND ${Paradiseo_FIND_COMPONENTS})
 endif()
@@ -63,7 +63,11 @@ set(PARADISEO_SRC_PATHS
 find_path(EO_INCLUDE_DIR eo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/eo eo/src
           PATHS ${PARADISEO_SRC_PATHS})
-          
+
+find_path(EDO_INCLUDE_DIR edo
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/edo edo/src
+          PATHS ${PARADISEO_SRC_PATHS})
+
 find_path(MO_INCLUDE_DIR mo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/mo mo/src
           PATHS ${PARADISEO_SRC_PATHS})
@@ -71,7 +75,7 @@ find_path(MO_INCLUDE_DIR mo
 find_path(MOEO_INCLUDE_DIR moeo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/moeo moeo/src
           PATHS ${PARADISEO_SRC_PATHS})
-          
+
 # Specific for SMP and PEO
 foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
     if(${COMP} STREQUAL "smp")
@@ -87,7 +91,7 @@ foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
     endif()
 endforeach()
 
-set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})           
+set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${EDO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
 
 if(SMP_FOUND)
     set(PARADISEO_INCLUDE_DIR ${PARADISEO_INCLUDE_DIR} ${SMP_INCLUDE_DIR})
@@ -116,6 +120,7 @@ set(FIND_PARADISEO_LIB_PATHS
 #Suffixes
 set(PARADISEO_LIB_PATHS_SUFFIXES
         eo/lib 
+        edo/lib 
         mo/lib 
         moeo/lib 
         moeo/tutorial/examples/flowshop/lib #For flowshop library
@@ -125,7 +130,7 @@ set(PARADISEO_LIB_PATHS_SUFFIXES
         lib32 
         lib64
         )
-        
+
 foreach(FIND_PARADISEO_COMPONENT ${PARADISEO_LIBRARIES_TO_FIND})
     string(TOUPPER ${FIND_PARADISEO_COMPONENT} FIND_PARADISEO_COMPONENT_UPPER)
     # release library
@@ -149,6 +154,7 @@ endforeach()
 if(PARADISEO_FOUND)
     message(STATUS "Found ParadisEO includes :")
     message(${EO_INCLUDE_DIR})
+    message(${EDO_INCLUDE_DIR})
     message(${MO_INCLUDE_DIR})
     message(${MOEO_INCLUDE_DIR})
     if(SMP_FOUND)
