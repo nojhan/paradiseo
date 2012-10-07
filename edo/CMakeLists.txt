@@ -45,7 +45,6 @@ if(ENABLE_CMAKE_EXAMPLE)
     if(${CMAKE_VERBOSE_MAKEFILE})
         message("EDO examples:")
     endif(${CMAKE_VERBOSE_MAKEFILE})
-    add_subdirectory(tutorial)
     add_subdirectory(application)
 endif(ENABLE_CMAKE_EXAMPLE)
 

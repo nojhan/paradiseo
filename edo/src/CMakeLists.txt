@@ -5,7 +5,7 @@
 include_directories(${EO_SRC_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(EDO_LIB_OUTPUT_PATH ${EDO_BINARY_DIR}/lib)
+set(EDO_LIB_OUTPUT_PATH ${EDO_BIN_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH ${EDO_LIB_OUTPUT_PATH})
 
 
@@ -22,7 +22,7 @@ install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/edo COMPONENT 
 ######################################################################################
 
 install(DIRECTORY utils
-        DESTINATION local/include${INSTALL_SUB_DIR}/moeo
+        DESTINATION local/include${INSTALL_SUB_DIR}/edo
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
         )

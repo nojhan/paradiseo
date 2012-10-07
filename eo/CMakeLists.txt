@@ -51,7 +51,7 @@ if(ENABLE_CMAKE_EXAMPLE)
         message("EO examples:")
     endif(${CMAKE_VERBOSE_MAKEFILE})
     add_subdirectory(tutorial)
-    add_subdirectory(app)
+    #add_subdirectory(app) # FIXME must be updated
 endif(ENABLE_CMAKE_EXAMPLE)
 
 
