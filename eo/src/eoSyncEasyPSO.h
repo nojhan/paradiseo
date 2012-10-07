@@ -216,7 +216,7 @@ public:
 
     }
 
-private:
+protected:
 
     eoInitializerBase <POT> &init;
     eoContinue < POT > &continuator;
