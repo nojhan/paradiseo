@@ -23,16 +23,18 @@
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-FIND_PACKAGE(Boost 1.33.0)
+find_package(Boost 1.33.0)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
-LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
+include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
 
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/application/common)
+include_directories(${CMAKE_SOURCE_DIR}/application/common)
+include_directories(${EO_SRC_DIR}/src)
+include_directories(${EDO_SRC_DIR}/src)
 
-SET(SOURCES
+set(SOURCES
     #t-cholesky
   t-variance
   t-edoEstimatorNormalMulti
@@ -44,11 +46,11 @@ SET(SOURCES
   t-repairer-modulo
   )
 
-FOREACH(current ${SOURCES})
-  ADD_EXECUTABLE(${current} ${current}.cpp)
-  ADD_TEST(${current} ${current})
-  TARGET_LINK_LIBRARIES(${current} edo edoutils ${EO_LIBRARIES} ${MO_LIBRARIES} ${Boost_LIBRARIES})
-  INSTALL(TARGETS ${current} RUNTIME DESTINATION share/edo/test COMPONENT test)
-ENDFOREACH()
+foreach(current ${SOURCES})
+  add_executable(${current} ${current}.cpp)
+  add_test(${current} ${current})
+  target_link_libraries(${current} eo eoutils edoutils ${Boost_LIBRARIES})
+  install(TARGETS ${current} RUNTIME DESTINATION share/edo/test COMPONENT test)
+endforeach()
 
 ######################################################################################

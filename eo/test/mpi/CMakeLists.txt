@@ -8,25 +8,25 @@
 ### 1) Include the sources
 ######################################################################################
 
-MESSAGE("EO SOURCE DIR: ${EO_SOURCE_DIR}")
-MESSAGE("OMPI: ${MPI_DIR}")
+message("EO SOURCE DIR: ${EO_SRC_DIR}")
+message("OMPI: ${MPI_DIR}")
 
-INCLUDE_DIRECTORIES(${MPI_DIR}/include)
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${MPI_DIR}/include)
+include_directories(${EO_SRC_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BIN_DIR}/lib)
-LINK_DIRECTORIES(${MPI_DIR}/lib)
+link_directories(${EO_BIN_DIR}/lib)
+link_directories(${MPI_DIR}/lib)
 
 ######################################################################################
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST
+set (TEST_LIST
     t-mpi-parallelApply
     t-mpi-wrapper
     t-mpi-multipleRoles
@@ -35,20 +35,20 @@ SET (TEST_LIST
     t-mpi-distrib-exp
     )
 
-FOREACH (test ${TEST_LIST})
-  SET ("T_${test}_SOURCES" "${test}.cpp")
-ENDFOREACH (test)
+foreach (test ${TEST_LIST})
+  set ("T_${test}_SOURCES" "${test}.cpp")
+endforeach (test)
 
-SET(CMAKE_CXX_COMPILER "mpicxx")
-ADD_DEFINITIONS(-DWITH_MPI)
+set(CMAKE_CXX_COMPILER "mpicxx")
+add_definitions(-DWITH_MPI)
 
-IF(ENABLE_CMAKE_TESTING)
-    FOREACH (test ${TEST_LIST})
-    ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})
-    ADD_TEST(${test} ${test})
-    TARGET_LINK_LIBRARIES(${test} eoutils eompi eoserial eo)
-    INSTALL(TARGETS ${test} RUNTIME DESTINATION share/eo/test COMPONENT test)
-    ENDFOREACH (test)
-ENDIF()
+if(ENABLE_CMAKE_TESTING)
+    foreach (test ${TEST_LIST})
+    add_executable(${test} ${T_${test}_SOURCES})
+    add_test(${test} ${test})
+    target_link_libraries(${test} eoutils eompi eoserial eo)
+    install(TARGETS ${test} RUNTIME DESTINATION share/eo/test COMPONENT test)
+    endforeach (test)
+endif()
 
 ######################################################################################
