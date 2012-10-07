@@ -78,8 +78,10 @@ set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dep
 set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
 
 set(EO_ONLY "false" CACHE BOOL "Only build EO and not the other modules")
+set(ENABLE_OPENMP "false" CACHE BOOL "Build EO with the OpenMP support (shared-memory parallel evaluators on multi-core)")
+set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-time convergence plotting)")
 set(EDO "true" CACHE BOOL "Build the EDO module")
-set(EDO_USE_LIB "Eigen3" CACHE STRING "Which library to use to build EDO ('UBlas' or 'Eigen3')")
+set(EDO_USE_LIB "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
 set(SMP "false" CACHE BOOL "Build the SMP module")
 #set(PEO "true" CACHE BOOL "Build the PEO module")
 
