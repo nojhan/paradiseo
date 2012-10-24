@@ -86,17 +86,32 @@ public:
 	 * Getter
 	 * @return index of the IndexNeighbor
 	 */
-	unsigned int index() {
+	inline unsigned int index() const {
 		return key;
 	}
 
 	/**
-	 * Setter
+	 * Setter : 
+	 * Only set the index which not depends on the current solution
+	 *
 	 * @param _key index of the IndexNeighbor
 	 */
-	void index(unsigned int _key) {
-		key = _key;
+  	void index(unsigned int _key) {
+	  key = _key;
 	}
+  
+  
+	/**
+	 * Setter 
+	 * The "parameters" of the neighbor is a function of key and the current solution
+	 * for example, for variable length solution
+	 *
+	 * @param _solution solution from which the neighborhood is visited
+	 * @param _key index of the IndexNeighbor
+	 */
+  virtual void index(EOT & _solution, unsigned int _key) {
+    key = _key;
+  }
 
 	/**
 	 * @param _neighbor a neighbor

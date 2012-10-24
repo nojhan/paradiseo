@@ -75,7 +75,7 @@ public:
      * @param _neighbor the first neighbor
      */
     virtual void init(EOT & _solution, Neighbor & _neighbor) {
-        _neighbor.index(rng.random(neighborhoodSize));
+      _neighbor.index(_solution, rng.random(neighborhoodSize));
     }
 
     /**
@@ -84,7 +84,7 @@ public:
      * @param _neighbor the next neighbor
      */
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
-        _neighbor.index(rng.random(neighborhoodSize));
+      _neighbor.index(_solution, rng.random(neighborhoodSize));
     }
 
     /**

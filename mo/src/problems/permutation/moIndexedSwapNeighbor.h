@@ -49,15 +49,12 @@ public:
    * @param _solution the solution to move
    */
   virtual void move(EOT& _solution) {
-    unsigned int tmp;
-    unsigned i, j;
-
-    this->getIndices(_solution.size(), i, j);
-
-    tmp          = _solution[i];
-    _solution[i] = _solution[j];
-    _solution[j] = tmp;
-
+    // bof utiliser plutot le template du vector : to do
+    EOT tmp(1);
+    
+    tmp[0] = _solution[indices.first];
+    _solution[indices.first] = _solution[indices.second];
+    _solution[indices.second] = tmp[0];
     _solution.invalidate();
   }
   
@@ -74,25 +71,42 @@ public:
    * @param _solution the solution to move back
    */
   virtual void moveBack(EOT& _solution) {
-
-	  move(_solution);
+    move(_solution);
   }
   
   /**
-   * Get the two indexes of the swap
-   * @param N size of the permutation
+   * Setter 
+   * The "parameters" of the neighbor is a function of key and the current solution
+   * for example, for variable length solution
+   *
+   * @param _solution solution from which the neighborhood is visited
+   * @param _key index of the IndexNeighbor
+   */
+  virtual void index(EOT & _solution, unsigned int _key) {
+    index( _key );
+    
+    unsigned int n = (unsigned int) ( (1 + sqrt(1 + 8 * _key)) / 2);
+
+    indices.first  = _key - (n - 1) * n / 2;
+    indices.second = N - 1  - (n - 1 - _first);
+  }
+
+  /**
+   * Setter to fix the two indexes to swap
    * @param _first first index
    * @param _second second index
    */
-  void getIndices(unsigned N, unsigned int & _first, unsigned int & _second) {
-    unsigned int n = (unsigned int) ( (1 + sqrt(1 + 8 * key)) / 2);
+  void set(unsigned int _first, unsigned int _second) {
+    indices.first = _first;
+    indices.second = _second;
 
-    _first  = key - (n - 1) * n / 2;
-    _second = N - 1  - (n - 1 - _first);
+    // set the index
+    unsigned n = _solution.nbClientsWithin()  + _first - _second;
+    index( _first + n * (n - 1) / 2 );
   }
 
-
-    
+private:
+  std::pair<unsigned int, unsigned int> indices;    
 
 };
 

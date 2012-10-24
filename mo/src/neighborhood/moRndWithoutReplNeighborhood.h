@@ -82,7 +82,7 @@ public:
         unsigned int i, tmp;
         maxIndex = neighborhoodSize ;
         i = rng.random(maxIndex);
-        _neighbor.index(indexVector[i]);
+        _neighbor.index(_solution, indexVector[i]);
         tmp=indexVector[i];
         indexVector[i]=indexVector[maxIndex-1];
         indexVector[maxIndex-1]=tmp;
@@ -97,7 +97,7 @@ public:
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
         unsigned int i, tmp;
         i = rng.random(maxIndex);
-        _neighbor.index(indexVector[i]);
+        _neighbor.index(_solution, indexVector[i]);
         tmp=indexVector[i];
         indexVector[i]=indexVector[maxIndex-1];
         indexVector[maxIndex-1]=tmp;

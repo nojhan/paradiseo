@@ -49,7 +49,14 @@ public:
 	 */
 	typedef typename Neighbor::EOT EOT;
 
-	using moIndexNeighborhood<Neighbor>::neighborhoodSize;
+	using moIndexNeighborhood<Neighbor>::getNeighborhoodSize;
+
+	/**
+	 * Empty constructor
+	 */
+	moOrderNeighborhood() :
+		moIndexNeighborhood<Neighbor>(0), currentIndex(0) {
+	}
 
 	/**
 	 * Constructor
@@ -65,7 +72,7 @@ public:
 	 * @return true if the neighborhood was not empty
 	 */
 	virtual bool hasNeighbor(EOT& _solution) {
-		return neighborhoodSize > 0;
+	  return getNeighborhoodSize() > 0;
 	}
 
 	/**
@@ -75,7 +82,7 @@ public:
 	 */
 	virtual void init(EOT & _solution, Neighbor & _neighbor) {
 		currentIndex = 0;
-		_neighbor.index(currentIndex);
+		_neighbor.index(_solution, currentIndex);
 	}
 
 	/**
@@ -85,7 +92,7 @@ public:
 	 */
 	virtual void next(EOT & _solution, Neighbor & _neighbor) {
 		currentIndex++;
-		_neighbor.index(currentIndex);
+		_neighbor.index(_solution, currentIndex);
 	}
 
 	/**
@@ -96,14 +103,14 @@ public:
 	 * @return true if there is again a neighbor to explore
 	 */
 	virtual bool cont(EOT & _solution) {
-		return (currentIndex < neighborhoodSize - 1);
+	  return (currentIndex < getNeighborhoodSize() - 1);
 	}
 
 	/**
 	 * Getter
 	 * @return the position in the Neighborhood
 	 */
-	unsigned int position() {
+	inline unsigned int position() const {
 		return currentIndex;
 	}
 
