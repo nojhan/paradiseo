@@ -43,6 +43,7 @@ public:
 
   using moBackableNeighbor<EOT>::fitness;
   using moIndexNeighbor<EOT>::key;
+  using moIndexNeighbor<EOT>::index;
   
   /**
    * Apply the swap
@@ -88,20 +89,21 @@ public:
     unsigned int n = (unsigned int) ( (1 + sqrt(1 + 8 * _key)) / 2);
 
     indices.first  = _key - (n - 1) * n / 2;
-    indices.second = N - 1  - (n - 1 - _first);
+    indices.second = _solution.size() - 1  - (n - 1 - indices.first);
   }
 
   /**
    * Setter to fix the two indexes to swap
+   * @param _solution solution from which the neighborhood is visited
    * @param _first first index
    * @param _second second index
    */
-  void set(unsigned int _first, unsigned int _second) {
+  void set(EOT & _solution, unsigned int _first, unsigned int _second) {
     indices.first = _first;
     indices.second = _second;
 
     // set the index
-    unsigned n = _solution.nbClientsWithin()  + _first - _second;
+    unsigned n = _solution.size()  + _first - _second;
     index( _first + n * (n - 1) / 2 );
   }
 
