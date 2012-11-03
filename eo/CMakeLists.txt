@@ -111,8 +111,17 @@ ENDIF (WIN32)
 #ADD_SUBDIRECTORY(app)
 ADD_SUBDIRECTORY(doc)
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(test)
-ADD_SUBDIRECTORY(tutorial)
+
+if(ENABLE_CMAKE_TESTING)
+    add_subdirectory(test)
+endif(ENABLE_CMAKE_TESTING)
+
+if(ENABLE_CMAKE_EXAMPLE)
+    if(${CMAKE_VERBOSE_MAKEFILE})
+        message("EO Examples :")
+    endif(${CMAKE_VERBOSE_MAKEFILE})
+    add_subdirectory(tutorial)
+endif(ENABLE_CMAKE_EXAMPLE)
 
 ######################################################################################
 
