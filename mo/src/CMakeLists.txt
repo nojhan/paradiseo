@@ -9,7 +9,7 @@ install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/mo COMPONENT h
 ### 1) Install directories
 ######################################################################################
 
-install(DIRECTORY acceptCrit algo comparator continuator coolingSchedule eval eplorer memory neighborhood perturb problems sampling
+install(DIRECTORY acceptCrit algo comparator continuator coolingSchedule eval explorer memory neighborhood perturb problems sampling
         DESTINATION local/include${INSTALL_SUB_DIR}/mo 
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
