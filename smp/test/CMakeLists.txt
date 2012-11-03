@@ -34,4 +34,4 @@ execute_process(
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat
     ${CMAKE_CURRENT_BINARY_DIR}/t-data.dat)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat RESSOURCE DESTINATION local/share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/t-data.datgi DESTINATION local/share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
