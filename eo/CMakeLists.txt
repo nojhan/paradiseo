@@ -134,7 +134,7 @@ SET(PCPREFIX "/usr")
 SET(PCFLAGS "-leoutils -leo -les -lga -lcma -lgcov")
 SET(PCINCLUDEDIR "eo")
 CONFIGURE_FILE(pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/eo.pc)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/eo.pc DESTINATION local/${LIB}/pkgconfig COMPONENT headers)
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/eo.pc DESTINATION ${LIB}/pkgconfig COMPONENT headers)
 
 ######################################################################################
 

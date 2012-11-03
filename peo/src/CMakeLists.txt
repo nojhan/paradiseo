@@ -10,14 +10,14 @@ add_subdirectory(rmc)
 ######################################################################################
 
 file(GLOB HDRS peo)
-install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/peo COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/peo COMPONENT headers)
 
 ######################################################################################
 ### 2) Install directories
 ######################################################################################
 
 install(DIRECTORY core rmc
-        DESTINATION local/include${INSTALL_SUB_DIR}/peo
+        DESTINATION include${INSTALL_SUB_DIR}/peo
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
         )

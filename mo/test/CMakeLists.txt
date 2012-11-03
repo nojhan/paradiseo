@@ -106,7 +106,7 @@ foreach (test ${TEST_LIST})
     add_executable(${test} ${T_${test}_SOURCES}) 
     add_test(${test} ${test}) 
     target_link_libraries(${test} ga es eoutils eo)
-    install(TARGETS ${test} RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/mo/test COMPONENT tests)
+    install(TARGETS ${test} RUNTIME DESTINATION share${INSTALL_SUB_DIR}/mo/test COMPONENT tests)
 endforeach (test)
 
 

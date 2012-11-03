@@ -45,7 +45,7 @@ execute_process(
 foreach (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
     set("T_${test}_SOURCES" "${test}.cpp")
     add_executable(${test} ${T_${test}_SOURCES})
-    install(TARGETS ${test} RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/peo/test COMPONENT tests)
+    install(TARGETS ${test} RUNTIME DESTINATION share${INSTALL_SUB_DIR}/peo/test COMPONENT tests)
 endforeach (test)
 	
 foreach (testrun ${TEST_RUN})

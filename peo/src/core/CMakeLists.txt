@@ -30,4 +30,4 @@ set(CORE_SOURCES 	peo_init.cpp
 
 add_library(peo STATIC ${CORE_SOURCES})
 
-install(TARGETS peo ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS peo ARCHIVE DESTINATION ${LIB} COMPONENT libraries)

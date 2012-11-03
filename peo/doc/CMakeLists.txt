@@ -24,7 +24,7 @@ if(DOXYGEN_FOUND)
                    
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        DESTINATION local/share${INSTALL_SUB_DIR}/peo COMPONENT doc
+        DESTINATION share${INSTALL_SUB_DIR}/peo COMPONENT doc
         PATTERN "CMakeFiles" EXCLUDE
         PATTERN "cmake_install.cmake" EXCLUDE
         PATTERN "CTestTestfile.cmake" EXCLUDE

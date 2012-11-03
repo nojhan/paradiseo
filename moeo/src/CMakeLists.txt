@@ -23,21 +23,21 @@ add_library(moeo STATIC ${MOEO_CORE})
 set(MOEO_VERSION ${GLOBAL_VERSION})
 set_target_properties(moeo PROPERTIES VERSION "${MOEO_VERSION}")
 
-install(TARGETS moeo ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS moeo ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Look for headers
 ######################################################################################
 
 file(GLOB HDRS moeo)
-install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/moeo COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/moeo COMPONENT headers)
 
 ######################################################################################
 ### 4) Install directories
 ######################################################################################
 
 install(DIRECTORY acceptCrit algo archive comparator core distance diversity do explorer fitness hybridization metric replacement scalarStuffs selection utils
-        DESTINATION local/include${INSTALL_SUB_DIR}/moeo
+        DESTINATION include${INSTALL_SUB_DIR}/moeo
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
         )

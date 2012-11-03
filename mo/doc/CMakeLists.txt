@@ -23,7 +23,7 @@ if(DOXYGEN_FOUND)
                    "${MO_DOC_DIR}/${MO_DOC_CONFIG_FILE}")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        DESTINATION local/share${INSTALL_SUB_DIR}/mo COMPONENT doc
+        DESTINATION share${INSTALL_SUB_DIR}/mo COMPONENT doc
         PATTERN "CMakeFiles" EXCLUDE
         PATTERN "cmake_install.cmake" EXCLUDE
         PATTERN "CTestTestfile.cmake" EXCLUDE

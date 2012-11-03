@@ -17,4 +17,4 @@ execute_process(
             ${CMAKE_CURRENT_SOURCE_DIR}/benchs
             ${CMAKE_CURRENT_BINARY_DIR}/benchs)
             
-install(DIRECTORY benchs DESTINATION local/include${INSTALL_SUB_DIR}/peo/tutorial COMPONENT tutorial)
+install(DIRECTORY benchs DESTINATION include${INSTALL_SUB_DIR}/peo/tutorial COMPONENT tutorial)

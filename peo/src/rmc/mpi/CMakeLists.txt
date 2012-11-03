@@ -39,4 +39,4 @@ set (RMC_MPI_SOURCES node.cpp
 						
 add_library(rmc_mpi STATIC ${RMC_MPI_SOURCES})
 add_dependencies(rmc_mpi peo)
-install(TARGETS rmc_mpi ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS rmc_mpi ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
