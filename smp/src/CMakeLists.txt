@@ -18,7 +18,8 @@ set(LIBRARY_OUTPUT_PATH ${SMP_LIB_OUTPUT_PATH})
 set (SMP_FILE 
     thread.cpp
     MWModel.h
-    scheduler.h)
+    scheduler.h
+    island.h)
 
 add_library(smp STATIC ${SMP_FILE})
 

@@ -16,6 +16,7 @@ set (TEST_LIST
         t-smpMW_eoEasyEA
         t-smpMW_eoEasyPSO
         t-smpMW_eoSyncEasyPSO
+        t-smpIsland
 		)
 
 ######################################################################################
