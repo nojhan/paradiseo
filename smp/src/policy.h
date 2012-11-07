@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<policy.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,14 +27,58 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
+#ifndef POLICY_H_
+#define POLICY_H_
 
-#include <thread.h>
-#include <MWModel.h>
-#include <scheduler.h>
-#include <island.h>
-#include <policy.h>
-#include <PPE.h>
+#include <eo>
+
+namespace paradiseo
+{
+namespace smp
+{
+
+template <class EOT>
+class PolicyElement : public eoContinue<EOT>
+{
+public :
+    PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criteria) :
+        selection(_selection),
+        criteria(_criteria)
+    {
+        
+    }
+    
+    bool operator()(const eoPop<EOT>& _pop)
+    {
+        std::cout << "Policy Element" << std::endl;   
+        
+        return false;
+    }
+    
+protected :
+    eoSelect<EOT>& selection;
+    eoContinue<EOT>& criteria;
+};
+
+template <class EOT>
+class Policy : public eoContinue<EOT>, public std::vector<PolicyElement<EOT>>
+{
+public:
+    bool operator()(const eoPop<EOT>& _pop)
+    {
+        for(PolicyElement<EOT>& elem : *this)
+        {
+            if(!elem(_pop))
+                std::cout << "On lance l'emmigration" << std::endl;
+        } 
+       
+        
+        return true; // Always return true because it never stops the algorithm
+    }
+};
+
+}
+
+}
 
 #endif

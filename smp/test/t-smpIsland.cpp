@@ -1,4 +1,4 @@
-#include <island.h>
+#include <smp.h>
 #include <eo>
 
 #include "smpTestClass.h"
@@ -49,7 +49,14 @@ int main(void)
 
     try
     {
-        Island<eoEasyEA,Indi> test(genCont, plainEval, select, transform, replace);
+        // Emigration policy
+        eoGenContinue<Indi> criteria(1); // We mig each gen
+        Policy<Indi> pol;
+        pol.push_back(PolicyElement<Indi>(select, genCont));
+        
+        Island<eoEasyEA,Indi> test(param.popSize, chromInit, replace, pol, genCont, plainEval, select, transform, replace);
+        test();
+        cout << test.getPop() << endl;
     }
     catch(exception& e)
     {

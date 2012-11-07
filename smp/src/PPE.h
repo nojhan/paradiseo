@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<PPE.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,14 +27,35 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
+#ifndef PPE_H_
+#define PPE_H_
 
-#include <thread.h>
-#include <MWModel.h>
-#include <scheduler.h>
-#include <island.h>
-#include <policy.h>
-#include <PPE.h>
+
+template<class... Arg> class Loop;
+ 
+template<class T, class... Arg>
+class Loop<T,Arg...>
+{
+    template<class U>
+    U& findValueImpl(T&, Arg&... arg, std::false_type)
+    {
+        return Loop<Arg...>().template findValue<U>(arg...);
+    }
+ 
+    template<class U>
+    U& findValueImpl(T& t, Arg&... arg, std::true_type)
+    {
+        return t;
+    }
+ 
+public:
+    template<class U>
+    U& findValue(T& t, Arg&... arg)
+    {
+        typedef typename std::is_base_of<U,T>::type tag;
+        return findValueImpl<U>(t,arg...,tag());
+    }
+ 
+};
 
 #endif

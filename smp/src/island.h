@@ -30,7 +30,12 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef ISLAND_H_
 #define ISLAND_H_
 
+#include <queue>
+#include <vector>
+#include <utility>
+
 #include <eo>
+#include <policy.h>
 
 namespace paradiseo
 {
@@ -42,11 +47,21 @@ class Island
 {
 public:
     template<class... Args>
-    Island(Args&... args);
+    Island(unsigned _popSize, eoInit<EOT>& _chromInit, eoReplacement<EOT>& _intPolicy, Policy<EOT>& _migPolicy, Args&... args);
+    
+    void operator()();
+    
+    void update(eoPop<EOT>& _data);
+    
+    eoPop<EOT>& getPop();
 
 protected:
+    void send();
+
     eoPop<EOT> pop;
     EOAlgo<EOT> algo;
+    std::queue<std::pair<unsigned, eoPop<EOT>>> listImigrants;
+    eoReplacement<EOT>& intPolicy;
 };
 
 #include <island.cpp>

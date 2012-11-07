@@ -31,9 +31,35 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 template<template <class> class EOAlgo, class EOT>
 template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT>::Island(Args&... args) :
-    algo(EOAlgo<EOT>(args...))
+paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, eoReplacement<EOT>& _intPolicy, Policy<EOT>& _migPolicy, Args&... args) :
+    pop(_popSize, _chromInit),
+    algo(EOAlgo<EOT>(args...)),
+    intPolicy(_intPolicy)
 {
-    static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherits from eoAlgo<EOT>");
+    static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");
+}
+
+template<template <class> class EOAlgo, class EOT>
+void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
+{
+    algo(pop);
+}
+
+template<template <class> class EOAlgo, class EOT>
+void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT>& _data)
+{
+    algo(pop);
+}
+
+template<template <class> class EOAlgo, class EOT>
+eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
+{
+    return pop;
+}
+
+template<template <class> class EOAlgo, class EOT>
+void paradiseo::smp::Island<EOAlgo,EOT>::send()
+{
+    algo(pop);
 }
 
