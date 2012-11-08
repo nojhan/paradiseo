@@ -35,7 +35,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <utility>
 
 #include <eo>
-#include <policy.h>
+#include <migPolicy.h>
+#include <PPExpander.h>
+#include <contWrapper.h>
+#include <contDispatching.h>
 
 namespace paradiseo
 {
@@ -43,7 +46,7 @@ namespace smp
 {
 
 template<template <class> class EOAlgo, class EOT>
-class Island
+class Island : private ContWrapper<EOT>
 {
 public:
     template<class... Args>

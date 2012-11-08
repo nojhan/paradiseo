@@ -1,5 +1,5 @@
 /*
-<island.cpp>
+<policyElement.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,40 +27,50 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <type_traits>
+#ifndef POLICY_ELEM_H_
+#define POLICY_ELEM_H_
 
-template<template <class> class EOAlgo, class EOT>
-template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, eoReplacement<EOT>& _intPolicy, Policy<EOT>& _migPolicy, Args&... args) :
-    ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...),_migPolicy),
-    pop(_popSize, _chromInit),
-    algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
-    intPolicy(_intPolicy)
+#include <eo>
+
+namespace paradiseo
 {
-    static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");  
+namespace smp
+{
+
+template <class EOT>
+class PolicyElement : public eoContinue<EOT>
+{
+public :
+    PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criteria) :
+        selection(_selection),
+        criteria(_criteria)
+    {
+        
+    }
+    
+    bool operator()(const eoPop<EOT>& _pop)
+    {
+        // DEBUG
+        static int i = 0;
+        std::cout << i << std::endl;   
+        i++;
+        // END DEBUG
+        
+        return criteria(_pop);
+    }
+    
+    void addCriteria(eoContinue<EOT>& _criteria)
+    {
+        criteria.add(_criteria);
+    }
+    
+protected :
+    eoSelect<EOT>& selection;
+    eoContinue<EOT>& criteria;
+};
+
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
-{
-    algo(pop);
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT>& _data)
-{
-    algo(pop);
-}
-
-template<template <class> class EOAlgo, class EOT>
-eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
-{
-    return pop;
-}
-
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::send()
-{
-    algo(pop);
-}
-
+#endif

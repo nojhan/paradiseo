@@ -13,7 +13,7 @@ int main(void)
         unsigned tSize = 2;
         double pCross = 0.8;
         double pMut = 0.7;
-        unsigned maxGen = 1000;
+        unsigned maxGen = 100;
     } Param; 
 
     Param param;
@@ -50,9 +50,9 @@ int main(void)
     try
     {
         // Emigration policy
-        eoGenContinue<Indi> criteria(1); // We mig each gen
+        eoPeriodicContinue<Indi> criteria(25); // We mig each gen
         Policy<Indi> pol;
-        pol.push_back(PolicyElement<Indi>(select, genCont));
+        pol.push_back(PolicyElement<Indi>(select, criteria));
         
         Island<eoEasyEA,Indi> test(param.popSize, chromInit, replace, pol, genCont, plainEval, select, transform, replace);
         test();

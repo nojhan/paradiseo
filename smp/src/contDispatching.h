@@ -1,5 +1,5 @@
 /*
-<PPE.h>
+<contDispatching.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,35 +27,31 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef PPE_H_
-#define PPE_H_
+#ifndef CONT_D_H_
+#define CONT_D_H_
 
+/** Continuator Dispatching
+* The Continuator Dispatching enable to wrap continuator in Island constructor for a better user interface
+**/
 
-template<class... Arg> class Loop;
- 
-template<class T, class... Arg>
-class Loop<T,Arg...>
-{
-    template<class U>
-    U& findValueImpl(T&, Arg&... arg, std::false_type)
-    {
-        return Loop<Arg...>().template findValue<U>(arg...);
-    }
- 
-    template<class U>
-    U& findValueImpl(T& t, Arg&... arg, std::true_type)
-    {
-        return t;
-    }
- 
-public:
-    template<class U>
-    U& findValue(T& t, Arg&... arg)
-    {
-        typedef typename std::is_base_of<U,T>::type tag;
-        return findValueImpl<U>(t,arg...,tag());
-    }
- 
-};
+template<class T, class U>
+U& wrap_pp_impl(T&, U& u, std::false_type)
+{ return u; }
+
+template<class T, class U>
+T& wrap_pp_impl(T& t, U&, std::true_type)
+{ return t; }
+
+template<class T, class U>
+struct result_of_wrap_pp :
+  std::conditional<std::is_base_of<T,U>::value,T&,U&>
+{};
+
+template<class T, class U>
+typename result_of_wrap_pp<T,U>::type wrap_pp(T& t, U& u)
+{ 
+  typedef typename std::is_base_of<T,U>::type tag;
+  return wrap_pp_impl(t,u,tag());
+}
 
 #endif

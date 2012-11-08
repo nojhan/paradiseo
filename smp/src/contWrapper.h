@@ -1,5 +1,5 @@
 /*
-<policy.h>
+<contWrapper.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,54 +27,33 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef POLICY_H_
-#define POLICY_H_
+#ifndef CONTWRAPPER_H_
+#define CONTWRAPPER_H_
+
+#include <queue>
+#include <vector>
+#include <utility>
 
 #include <eo>
+#include <migPolicy.h>
 
 namespace paradiseo
 {
 namespace smp
 {
 
-template <class EOT>
-class PolicyElement : public eoContinue<EOT>
-{
-public :
-    PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criteria) :
-        selection(_selection),
-        criteria(_criteria)
-    {
-        
-    }
-    
-    bool operator()(const eoPop<EOT>& _pop)
-    {
-        std::cout << "Policy Element" << std::endl;   
-        
-        return false;
-    }
-    
-protected :
-    eoSelect<EOT>& selection;
-    eoContinue<EOT>& criteria;
-};
-
-template <class EOT>
-class Policy : public eoContinue<EOT>, public std::vector<PolicyElement<EOT>>
+template<class EOT>
+class ContWrapper
 {
 public:
-    bool operator()(const eoPop<EOT>& _pop)
+    ContWrapper(eoContinue<EOT>& _cont, Policy<EOT>& _policy) :
+        ck(_cont)
     {
-        for(PolicyElement<EOT>& elem : *this)
-        {
-            if(!elem(_pop))
-                std::cout << "On lance l'emmigration" << std::endl;
-        } 
-       
-        
-        return true; // Always return true because it never stops the algorithm
+        ck.add(_policy);
     }
+
+protected:
+    eoCheckPoint<EOT> ck;
 };
 
 }

@@ -1,5 +1,5 @@
 /*
-<island.cpp>
+<PPE.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,40 +27,38 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <type_traits>
+#ifndef PPE_H_
+#define PPE_H_
 
-template<template <class> class EOAlgo, class EOT>
-template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, eoReplacement<EOT>& _intPolicy, Policy<EOT>& _migPolicy, Args&... args) :
-    ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...),_migPolicy),
-    pop(_popSize, _chromInit),
-    algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
-    intPolicy(_intPolicy)
+/** Parameter Pack Expansion: Utility file to expand parameter pack
+/* Utility file to expand parameter pack with the recursive method
+**/
+
+template<class... Arg> class Loop;
+ 
+template<class T, class... Arg>
+class Loop<T,Arg...>
 {
-    static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");  
-}
+    template<class U>
+    U& findValueImpl(T&, Arg&... arg, std::false_type)
+    {
+        return Loop<Arg...>().template findValue<U>(arg...);
+    }
+ 
+    template<class U>
+    U& findValueImpl(T& t, Arg&... arg, std::true_type)
+    {
+        return t;
+    }
+ 
+public:
+    template<class U>
+    U& findValue(T& t, Arg&... arg)
+    {
+        typedef typename std::is_base_of<U,T>::type tag;
+        return findValueImpl<U>(t,arg...,tag());
+    }
+ 
+};
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
-{
-    algo(pop);
-}
-
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT>& _data)
-{
-    algo(pop);
-}
-
-template<template <class> class EOAlgo, class EOT>
-eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
-{
-    return pop;
-}
-
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::send()
-{
-    algo(pop);
-}
-
+#endif

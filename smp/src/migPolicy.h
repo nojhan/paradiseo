@@ -1,5 +1,5 @@
 /*
-<island.cpp>
+<policy.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,40 +27,39 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <type_traits>
+#ifndef MIG_POLICY_H_
+#define MIG_POLICY_H_
 
-template<template <class> class EOAlgo, class EOT>
-template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, eoReplacement<EOT>& _intPolicy, Policy<EOT>& _migPolicy, Args&... args) :
-    ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...),_migPolicy),
-    pop(_popSize, _chromInit),
-    algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
-    intPolicy(_intPolicy)
+#include <eo>
+
+#include <migPolicyElement.h>
+
+namespace paradiseo
 {
-    static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");  
+namespace smp
+{
+
+template <class EOT>
+class Policy : public eoContinue<EOT>, public std::vector<PolicyElement<EOT>>
+{
+public:
+    bool operator()(const eoPop<EOT>& _pop)
+    {
+        std::cout << "On regarde la politique de migration" << std::endl;
+        for(PolicyElement<EOT>& elem : *this)
+        {
+            std::cout << ".";
+            if(!elem(_pop))
+                std::cout << "On lance l'emmigration" << std::endl;
+        } 
+       
+        
+        return true; // Always return true because it never stops the algorithm
+    }
+};
+
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
-{
-    algo(pop);
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT>& _data)
-{
-    algo(pop);
-}
-
-template<template <class> class EOAlgo, class EOT>
-eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
-{
-    return pop;
-}
-
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::send()
-{
-    algo(pop);
-}
-
+#endif
