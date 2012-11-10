@@ -51,10 +51,13 @@ int main(void)
     {
         // Emigration policy
         eoPeriodicContinue<Indi> criteria(25); // We mig each gen
+        eoDetTournamentSelect<Indi> selectOne(2);
+        eoSelectNumber<Indi> who(selectOne, 5);
         Policy<Indi> pol;
-        pol.push_back(PolicyElement<Indi>(select, criteria));
+        pol.push_back(PolicyElement<Indi>(who, criteria));
         
         Island<eoEasyEA,Indi> test(param.popSize, chromInit, replace, pol, genCont, plainEval, select, transform, replace);
+        
         test();
         cout << test.getPop() << endl;
     }

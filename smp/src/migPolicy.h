@@ -30,14 +30,20 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef MIG_POLICY_H_
 #define MIG_POLICY_H_
 
-#include <eo>
+#include <set>
 
+#include <eo>
 #include <migPolicyElement.h>
+#include <island.h>
+#include <abstractIsland.h>
 
 namespace paradiseo
 {
 namespace smp
 {
+// Forward declaration
+template <class EOT>
+class AIsland;
 
 template <class EOT>
 class Policy : public eoContinue<EOT>, public std::vector<PolicyElement<EOT>>
@@ -50,12 +56,34 @@ public:
         {
             std::cout << ".";
             if(!elem(_pop))
+            {
                 std::cout << "On lance l'emmigration" << std::endl;
-        } 
-       
-        
+                notifyIsland(elem.getSelect());
+            }
+        }     
         return true; // Always return true because it never stops the algorithm
     }
+    
+    void addObserver(AIsland<EOT>* _observer)
+    {
+        observers.insert(_observer);
+    }
+ 
+    void removeObserver(AIsland<EOT>* _observer)
+    {
+        observers.erase(_observer);
+    }
+   
+protected:
+
+    void notifyIsland(eoSelect<EOT>& _select) const
+    {
+        std::cout << "On notifie les iles" << std::endl;
+        for (AIsland<EOT>* it : observers)
+            it->send(_select);
+    }
+
+    std::set<AIsland<EOT>*> observers;
 };
 
 }

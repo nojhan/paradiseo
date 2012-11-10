@@ -37,7 +37,8 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chro
     algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
     intPolicy(_intPolicy)
 {
-    static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");  
+    static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");
+    _migPolicy.addObserver(this);  
 }
 
 template<template <class> class EOAlgo, class EOT>
@@ -49,7 +50,7 @@ void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
 template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT>& _data)
 {
-    algo(pop);
+    listImigrants.push_back(&_data);
 }
 
 template<template <class> class EOAlgo, class EOT>
@@ -59,8 +60,21 @@ eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
 }
 
 template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::send()
+void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
 {
-    algo(pop);
+    std::cout << "Ile lance la migration" << std::endl;
+    eoPop<EOT> migPop;
+    _select(pop, migPop);
+    std::cout << "   La population migrante est :" << std::endl << migPop << std::endl;
 }
 
+template<template <class> class EOAlgo, class EOT>
+void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
+{
+    while (!listImigrants.empty())
+    {
+        intPolicy(pop, *(listImigrants.front()));
+        listImigrants.pop();
+    }
+
+}

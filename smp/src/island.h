@@ -35,6 +35,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <utility>
 
 #include <eo>
+#include <abstractIsland.h>
 #include <migPolicy.h>
 #include <PPExpander.h>
 #include <contWrapper.h>
@@ -46,7 +47,7 @@ namespace smp
 {
 
 template<template <class> class EOAlgo, class EOT>
-class Island : private ContWrapper<EOT>
+class Island : private ContWrapper<EOT>, public AIsland<EOT>
 {
 public:
     template<class... Args>
@@ -57,13 +58,16 @@ public:
     void update(eoPop<EOT>& _data);
     
     eoPop<EOT>& getPop();
-
+    
+    //friend void Policy<EOT>::notifyIsland(eoSelect<EOT>& _select) const;
+    
 protected:
-    void send();
+    void send(eoSelect<EOT>& _select);
+    void receive(void);
 
     eoPop<EOT> pop;
     EOAlgo<EOT> algo;
-    std::queue<std::pair<unsigned, eoPop<EOT>>> listImigrants;
+    std::queue<eoPop<EOT>*> listImigrants;
     eoReplacement<EOT>& intPolicy;
 };
 

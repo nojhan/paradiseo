@@ -64,6 +64,11 @@ public :
         criteria.add(_criteria);
     }
     
+    eoSelect<EOT>& getSelect() 
+    {
+        return selection;
+    }
+    
 protected :
     eoSelect<EOT>& selection;
     eoContinue<EOT>& criteria;
