@@ -1,5 +1,5 @@
 /*
-<island.h>
+<abstractIsland.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,84 +27,42 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef ISLAND_H_
-#define ISLAND_H_
-
-#include <queue>
-#include <vector>
-#include <utility>
+#ifndef ABS_ISLAND_H_
+#define ABS_ISLAND_H_
 
 #include <eo>
-#include <abstractIsland.h>
 #include <migPolicy.h>
-#include <intPolicy.h>
-#include <PPExpander.h>
-#include <contWrapper.h>
-#include <contDispatching.h>
 
 namespace paradiseo
 {
 namespace smp
 {
 
-template<template <class> class EOAlgo, class EOT>
-class Island : private ContWrapper<EOT>, public AIsland<EOT>
+/** AbstractIsland: An abstract island.
+
+@see smp::Island
+*/
+
+template<class EOT>
+class AIsland
 {
 public:
-    /**
-     * Constructor
-     * @param _popSize Size of the algorithm population.
-     * @param _chromInit Population initializer.
-     * @param _intPolicy Integration policy
-     * @param _migPolicy Migration policy
-     * @param args Parameters to construct the algorithm of the island.
-     */
-    template<class... Args>
-    Island(unsigned _popSize, eoInit<EOT>& _chromInit, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
-    
-    /**
-     * Start the island.
-     */
-    void operator()();
-    
-    /**
-     * Update the list of imigrants.
-     * @param _data Elements to integrate in the main population.
-     */
-    void update(eoPop<EOT>& _data);
-    
-    /**
-     * Return a reference to the island population.
-     * @return Reference to the island population
-     */
-    eoPop<EOT>& getPop();
-    
-    /**
-     * Check if there is population to receive or to migrate
-     */
-    virtual void check(void);
-    
-protected:
-
     /**
      * Send population to mediator
      * @param _select Method to select EOT to send
      */
-    virtual void send(eoSelect<EOT>& _select);
+    virtual void send(eoSelect<EOT>& _select) = 0;
     
     /**
      * Check if there is population to receive
      */
-    virtual void receive(void);
+    virtual void receive(void) = 0;
     
-    eoPop<EOT> pop;
-    EOAlgo<EOT> algo;
-    std::queue<eoPop<EOT>*> listImigrants;
-    IntPolicy<EOT>& intPolicy;
-    MigPolicy<EOT>& migPolicy;
+    /**
+     * Check if there is population to receive or to emigrate
+     */
+    virtual void check(void) = 0;
 };
-
-#include <island.cpp>
 
 }
 

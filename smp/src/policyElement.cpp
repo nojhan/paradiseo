@@ -1,5 +1,5 @@
 /*
-<policy.h>
+<policyElement.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,24 +27,35 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef MIG_POLICY_H_
-#define MIG_POLICY_H_
-
 #include <eo>
-#include <policyElement.h>
 
-namespace paradiseo
+template <class EOT>
+paradiseo::smp::PolicyElement<EOT>::PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criteria) :
+    selection(_selection),
+    criteria(_criteria)
+{ }
+    
+template <class EOT>
+bool paradiseo::smp::PolicyElement<EOT>::operator()(const eoPop<EOT>& _pop)
 {
-namespace smp
+    // DEBUG
+    static int i = 0;
+    std::cout << i << std::endl;   
+    i++;
+    // END DEBUG
+        
+    return criteria(_pop);
+}
+    
+template <class EOT>
+void paradiseo::smp::PolicyElement<EOT>::addCriteria(eoContinue<EOT>& _criteria)
 {
-/** MigPolicy: Migration policy
-*/
-
-template <class EOT> 
-using MigPolicy = std::vector<PolicyElement<EOT>>;
-
+    criteria.add(_criteria);
+}
+    
+template <class EOT>
+eoSelect<EOT>& paradiseo::smp::PolicyElement<EOT>::getSelect() 
+{
+    return selection;
 }
 
-}
-
-#endif

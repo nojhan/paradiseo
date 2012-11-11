@@ -1,5 +1,5 @@
 /*
-<policy.h>
+<islandNotifier.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,24 +27,15 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef MIG_POLICY_H_
-#define MIG_POLICY_H_
-
-#include <eo>
-#include <policyElement.h>
-
-namespace paradiseo
+template <class EOT>
+paradiseo::smp::IslandNotifier<EOT>::IslandNotifier(AIsland<EOT>* _observer, std::function<void(AIsland<EOT>*)> _task) :
+    observer(_observer),
+    task(_task)
+{}
+    
+template <class EOT>
+void paradiseo::smp::IslandNotifier<EOT>::operator()()
 {
-namespace smp
-{
-/** MigPolicy: Migration policy
-*/
-
-template <class EOT> 
-using MigPolicy = std::vector<PolicyElement<EOT>>;
-
+    task(observer);
 }
 
-}
-
-#endif

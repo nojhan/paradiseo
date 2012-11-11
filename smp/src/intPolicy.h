@@ -1,5 +1,5 @@
 /*
-<policyElement.h>
+<intPolicy.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef POLICY_ELEM_H_
-#define POLICY_ELEM_H_
+#ifndef INT_POLICY_H_
+#define INT_POLICY_H_
 
 #include <eo>
 
@@ -37,42 +37,29 @@ namespace paradiseo
 namespace smp
 {
 
+/** IntPolicy: Integration policy for island.
+
+The island model will check its policy to know how to integrate population sent by other islands.
+
+@see smp::Island, smp::MigPolicy
+*/
+
 template <class EOT>
-class PolicyElement : public eoContinue<EOT>
+class IntPolicy
 {
-public :
-    PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criteria) :
-        selection(_selection),
-        criteria(_criteria)
-    {
-        
-    }
+public:
+    /**
+     * Constructor
+     * @param _eval Method to evaluate the population to integrate.
+     * @param _replace Method to replace elements in the island.
+     */
+    IntPolicy(eoEvalFunc<EOT>& _eval, eoReplacement<EOT>& _replace);
     
-    bool operator()(const eoPop<EOT>& _pop)
-    {
-        // DEBUG
-        static int i = 0;
-        std::cout << i << std::endl;   
-        i++;
-        // END DEBUG
-        
-        return criteria(_pop);
-    }
-    
-    void addCriteria(eoContinue<EOT>& _criteria)
-    {
-        criteria.add(_criteria);
-    }
-    
-    eoSelect<EOT>& getSelect() 
-    {
-        return selection;
-    }
-    
-protected :
-    eoSelect<EOT>& selection;
-    eoContinue<EOT>& criteria;
+    eoEvalFunc<EOT>& eval;
+    eoReplacement<EOT>& replace;
 };
+
+#include<intPolicy.cpp>
 
 }
 

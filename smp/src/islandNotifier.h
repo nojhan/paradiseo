@@ -1,5 +1,5 @@
 /*
-<policy.h>
+<islandNotifier.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,21 +27,39 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef MIG_POLICY_H_
-#define MIG_POLICY_H_
+#ifndef ISLAND_NOTIFIER_H_
+#define ISLAND_NOTIFIER_H_
 
-#include <eo>
-#include <policyElement.h>
+#include <vector>
+#include <utility>
+
+/** IslandNotifier: The notifier will perform the binded task each generation.
+
+The island notifier makes the binded task executed by the island which observes.
+We can imagine that a continuator check is we have to execute the binded task.
+At the moment the task is perfermed each generation.
+
+*/
 
 namespace paradiseo
 {
 namespace smp
 {
-/** MigPolicy: Migration policy
-*/
 
-template <class EOT> 
-using MigPolicy = std::vector<PolicyElement<EOT>>;
+template <class EOT>
+class IslandNotifier : public eoUpdater
+{
+public :
+    IslandNotifier(AIsland<EOT>* _observer, std::function<void(AIsland<EOT>*)> _task);
+    
+    virtual void operator()();
+    
+protected :
+    AIsland<EOT>* observer;
+    std::function<void(AIsland<EOT>*)> task;
+};
+
+#include <islandNotifier.cpp>
 
 }
 

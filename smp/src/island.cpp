@@ -31,14 +31,18 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 template<template <class> class EOAlgo, class EOT>
 template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, eoReplacement<EOT>& _intPolicy, Policy<EOT>& _migPolicy, Args&... args) :
-    ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...),_migPolicy),
-    pop(_popSize, _chromInit),
+paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
+    // The PPExpander looks for the continuator in the parameters pack.
+    // The private inheritance of ContWrapper wraps the continuator and add islandNotifier.
+    ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
+    // We inject the wrapped continuator by tag dispatching method during the algorithm construction.
     algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
-    intPolicy(_intPolicy)
+    pop(_popSize, _chromInit),
+    intPolicy(_intPolicy),
+    migPolicy(_migPolicy)
 {
+    // Check in compile time the inheritance thanks to type_trait.
     static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");
-    _migPolicy.addObserver(this);  
 }
 
 template<template <class> class EOAlgo, class EOT>
@@ -60,6 +64,21 @@ eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
 }
 
 template<template <class> class EOAlgo, class EOT>
+void paradiseo::smp::Island<EOAlgo,EOT>::check()
+{
+    std::cout << "On check" << std::endl;
+    for(PolicyElement<EOT>& elem : migPolicy)
+    {
+        if(!elem(pop))
+        {
+            std::cout << "On lance l'emmigration" << std::endl;
+            send(elem.getSelect());
+        }
+    }
+    receive();    
+}
+
+template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
 {
     std::cout << "Ile lance la migration" << std::endl;
@@ -73,8 +92,11 @@ void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
 {
     while (!listImigrants.empty())
     {
-        intPolicy(pop, *(listImigrants.front()));
+        eoPop<EOT> offspring = *(listImigrants.front());
+        for(auto indi : offspring)
+        
+        intPolicy.replace(pop, offspring);
         listImigrants.pop();
+        
     }
-
 }

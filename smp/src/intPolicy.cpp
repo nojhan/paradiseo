@@ -1,5 +1,5 @@
 /*
-<policy.h>
+<intPolicy.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,24 +27,9 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef MIG_POLICY_H_
-#define MIG_POLICY_H_
+template <class EOT>
+paradiseo::smp::IntPolicy<EOT>::IntPolicy(eoEvalFunc<EOT>& _eval, eoReplacement<EOT>& _replace) :
+    eval(_eval),
+    replace(_replace)
+{}
 
-#include <eo>
-#include <policyElement.h>
-
-namespace paradiseo
-{
-namespace smp
-{
-/** MigPolicy: Migration policy
-*/
-
-template <class EOT> 
-using MigPolicy = std::vector<PolicyElement<EOT>>;
-
-}
-
-}
-
-#endif

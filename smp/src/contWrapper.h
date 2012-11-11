@@ -36,25 +36,35 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <eo>
 #include <migPolicy.h>
+#include <islandNotifier.h>
 
 namespace paradiseo
 {
 namespace smp
 {
 
+/** ContWrapper: Utility class to wrap the algorithm continuators with island notifier.
+
+Utility class to wrap the algorithm continuators with island notifier during the island construction.
+
+*/
 template<class EOT>
 class ContWrapper
 {
 public:
-    ContWrapper(eoContinue<EOT>& _cont, Policy<EOT>& _policy) :
-        ck(_cont)
-    {
-        ck.add(_policy);
-    }
+    /**
+     * Constructor
+     * @param _cont Original continuators
+     * @param _policy Policy to wrap with continuators
+     */
+    ContWrapper(eoContinue<EOT>& _cont, AIsland<EOT>* island);
 
 protected:
     eoCheckPoint<EOT> ck;
+    IslandNotifier<EOT> islandNotifier;
 };
+
+#include <contWrapper.cpp>
 
 }
 
