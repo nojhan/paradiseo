@@ -57,8 +57,11 @@ public:
     /**
      * Constructor
      * @param _neighborhoodSize the size of the neighborhood
+     * @param _maxNeighbors the maximum number of visited neighbors (0 = infinite number) 
      */
-    moRndWithReplNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize) {}
+ moRndWithReplNeighborhood(unsigned int _neighborhoodSize, unsigned int _maxNeighbors = 0): moIndexNeighborhood<Neighbor>(_neighborhoodSize), maxNeighbors(_maxNeighbors) 
+  {
+  }
 
     /**
      * Test if it exist a neighbor
@@ -75,6 +78,7 @@ public:
      * @param _neighbor the first neighbor
      */
     virtual void init(EOT & _solution, Neighbor & _neighbor) {
+      nNeighbors = 1;
       _neighbor.index(_solution, rng.random(neighborhoodSize));
     }
 
@@ -84,6 +88,7 @@ public:
      * @param _neighbor the next neighbor
      */
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
+      nNeighbors++;
       _neighbor.index(_solution, rng.random(neighborhoodSize));
     }
 
@@ -93,7 +98,10 @@ public:
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
+      if (maxNeighbors == 0)
         return neighborhoodSize > 0;
+      else
+	return (neighborhoodSize > 0) && (nNeighbors < maxNeighbors);
     }
 
     /**
@@ -103,6 +111,13 @@ public:
     virtual std::string className() const {
         return "moRndWithReplNeighborhood";
     }
+
+private:
+  // maximum number of visited neighbors
+  unsigned int maxNeighbors;
+
+  // number of visited neighbors
+  unsigned int nNeighbors;
 
 };
 
