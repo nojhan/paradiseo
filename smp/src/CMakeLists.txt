@@ -22,21 +22,21 @@ set (SMP_FILE
 
 add_library(smp STATIC ${SMP_FILE})
 
-install(TARGETS smp ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS smp ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Look for headers
 ######################################################################################
 
 file(GLOB HDRS smp *.h)
-install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/smp COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/smp COMPONENT headers)
 
 ######################################################################################
 ### 4) Install directories
 ######################################################################################
 
 install(DIRECTORY MWAlgo
-        DESTINATION local/include${INSTALL_SUB_DIR}/smp
+        DESTINATION include${INSTALL_SUB_DIR}/smp
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
         )

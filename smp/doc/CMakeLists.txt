@@ -23,7 +23,7 @@ if(DOXYGEN_FOUND)
                    "${SMP_DOC_DIR}/${SMP_DOC_CONFIG_FILE}")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        DESTINATION local/share${INSTALL_SUB_DIR}/smp COMPONENT doc
+        DESTINATION share${INSTALL_SUB_DIR}/smp COMPONENT doc
         PATTERN "CMakeFiles" EXCLUDE
         PATTERN "cmake_install.cmake" EXCLUDE
         PATTERN "CTestTestfile.cmake" EXCLUDE

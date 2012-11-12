@@ -33,17 +33,17 @@ add_dependencies(flowshop moeo)
 
 target_link_libraries(flowshop eo)
 
-install(TARGETS flowshop ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS flowshop ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 5) Installing benchs
 ######################################################################################
 
-install(DIRECTORY benchs DESTINATION local/include${INSTALL_SUB_DIR}/moeo/tutorial/flowshop COMPONENT tutorial)
+install(DIRECTORY benchs DESTINATION include${INSTALL_SUB_DIR}/moeo/tutorial/flowshop COMPONENT tutorial)
 
 ######################################################################################
 ### 6) Look for headers
 ######################################################################################
 
 file(GLOB HDRS *.h)
-install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/moeo/tutorial/examples/flowshop COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/moeo/tutorial/examples/flowshop COMPONENT headers)

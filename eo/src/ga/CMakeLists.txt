@@ -23,7 +23,7 @@ SET(GA_SOURCES
   )
 
 ADD_LIBRARY(ga STATIC ${GA_SOURCES})
-INSTALL(TARGETS ga ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+INSTALL(TARGETS ga ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Optionnal

@@ -27,11 +27,11 @@ foreach (test ${TEST_LIST})
     add_executable(${test} ${T_${test}_SOURCES})
     target_link_libraries(${test} smp eo eoutils)
     add_test(${test} ${test}) 
-    install(TARGETS ${test} RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
+    install(TARGETS ${test} RUNTIME DESTINATION share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
 endforeach (test)
 
 execute_process(
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat
     ${CMAKE_CURRENT_BINARY_DIR}/t-data.dat)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat RESSOURCE DESTINATION local/share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat DESTINATION share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
