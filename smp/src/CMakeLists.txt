@@ -19,7 +19,11 @@ set (SMP_FILE
     thread.cpp
     MWModel.h
     scheduler.h
-    island.h)
+    island.h
+    topology/abstractTopology.h
+    topology/booleanTopology.h
+    topology/topologyBuilder.h
+    )
 
 add_library(smp STATIC ${SMP_FILE})
 
