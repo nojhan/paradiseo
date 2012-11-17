@@ -23,6 +23,9 @@ set (SMP_FILE
     topology/abstractTopology.h
     topology/booleanTopology.h
     topology/topologyBuilder.h
+    topology/completeTopologyBuilder.cpp
+    topology/starTopologyBuilder.cpp
+    topology/ringTopologyBuilder.cpp
     )
 
 add_library(smp STATIC ${SMP_FILE})
