@@ -27,6 +27,7 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#include <thread>
 #include <eo>
 
 template <class EOT>
@@ -39,9 +40,9 @@ template <class EOT>
 bool paradiseo::smp::PolicyElement<EOT>::operator()(const eoPop<EOT>& _pop)
 {
     // DEBUG
-    static int i = 0;
-    std::cout << i << std::endl;   
-    i++;
+    //static int i = 0;
+    //std::cout << " " << std::this_thread::get_id() << std::endl;   
+    //i++;
     // END DEBUG
         
     return criteria(_pop);

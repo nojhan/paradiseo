@@ -1,5 +1,5 @@
 /*
-<abstractIsland.h>
+<IslandModel.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,58 +27,73 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef ABS_ISLAND_H_
-#define ABS_ISLAND_H_
+#ifndef ISLAND_MODEL_H_
+#define ISLAND_MODEL_H_
 
-#include <atomic>
-
-#include <eo>
-#include <migPolicy.h>
+#include <queue>
+#include <algorithm>
+#include <utility>
+#include <future>
+#include <thread>
+#include <bimap.h>
+#include <abstractIsland.h>
 
 namespace paradiseo
 {
 namespace smp
 {
 
-// Forward declaration
-template<class EOT>
-class IslandModel;
+/** IslandModel
 
-/** AbstractIsland: An abstract island.
-
-@see smp::Island
 */
 
 template<class EOT>
-class AIsland
+class IslandModel
 {
 public:
+    void add(AIsland<EOT>& _island)
+    {
+        static unsigned i = 0;
+        islands[i] = &_island;
+        islands[i]->setModel(this);
+        i++;
+    }
 
-    virtual void operator()() = 0;
+    void operator()()
+    {
+        std::vector<Thread> threads(islands.size());
+
+        unsigned i = 0;
+        for(auto it : islands)
+        {
+            threads[i].start(&AIsland<EOT>::operator(), it.second);
+            i++;
+        }
+
+        unsigned workingThread = islands.size();
+        while(workingThread > 0)
+        {
+            workingThread = islands.size();
+            for(auto& it : islands)
+                if(it.second->isStopped())
+                    workingThread--;
+            std::this_thread::sleep_for(std::chrono::nanoseconds(10));
+        }
+        
+        for(auto& thread : threads)
+            thread.join();
+        
+    }
     
-    /**
-     * Check if there is population to receive
-     */
-    virtual void setModel(IslandModel<EOT>* _model) = 0;
+    void update(eoPop<EOT>* _data, AIsland<EOT>* _island)
+    {
+        listEmigrants.insert(std::pair<eoPop<EOT>*,AIsland<EOT>*>(_data, _island));
+    }
     
-    /**
-     * Send population to mediator
-     * @param _select Method to select EOT to send
-     */
-    virtual void send(eoSelect<EOT>& _select) = 0;
-    
-    /**
-     * Check if there is population to receive
-     */
-    virtual void receive(void) = 0;
-    
-    /**
-     * Check if there is population to receive or to emigrate
-     */
-    virtual void check(void) = 0;
-    
-    virtual bool isStopped(void) = 0;
-    
+protected:
+    std::queue<std::pair<eoPop<EOT>*,AIsland<EOT>*>> listEmigrants;
+    Bimap<unsigned, unsigned> table;
+    std::map<unsigned, AIsland<EOT>*> islands;
 };
 
 }

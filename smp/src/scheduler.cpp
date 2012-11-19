@@ -114,9 +114,8 @@ void paradiseo::smp::Scheduler<EOT,Policy>::operator()(eoUF<EOT&, void>& func, e
                 planning[i] *= 2;
             }
         }
-        /* A nanosleep can increase performances by 10% but
-           as it is not supported by Fedora atm, I deactivate it. */
-        //std::this_thread::sleep_for(std::chrono::nanoseconds(10));
+        
+        std::this_thread::sleep_for(std::chrono::nanoseconds(10));
     }
       
     done = true;
