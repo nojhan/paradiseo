@@ -1,5 +1,5 @@
 /*
-<abstractTopology.h>
+<star.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,20 +27,25 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#ifndef STAR_H_
+#define STAR_H_
 
 #include <vector>
+#include <topology/topologyBuilder.h>
 
 namespace paradiseo
 {
 namespace smp
 {
 
-class AbstractTopology
+class Star : public TopologyBuilder
 {
 public :
-	virtual std::vector<unsigned> getIdNeighbors(unsigned idIsland) const =0;
+	void operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const;
 };
 
 }
 
 }
+
+#endif

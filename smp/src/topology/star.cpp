@@ -1,5 +1,5 @@
 /*
-<abstractTopology.h>
+<star.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,20 +27,19 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-
 #include <vector>
+#include <topology/star.h>
 
-namespace paradiseo
+void paradiseo::smp::Star::operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const
 {
-namespace smp
-{
+	matrix.clear();
+	std::vector<bool> line (nbIsland,false);
 
-class AbstractTopology
-{
-public :
-	virtual std::vector<unsigned> getIdNeighbors(unsigned idIsland) const =0;
-};
-
-}
-
+	line[0]=true;
+	matrix.assign(nbIsland-1,line);
+	
+	line.clear();
+	line.assign(nbIsland, false);
+	std::vector<std::vector<bool>>::iterator it = matrix.begin();
+	matrix.insert(it, line);
 }

@@ -1,5 +1,5 @@
 /*
-<abstractTopology.h>
+<topology.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,19 +27,29 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-
 #include <vector>
+#include <topology/abstractTopology.h>
 
 namespace paradiseo
 {
 namespace smp
 {
 
-class AbstractTopology
+template<class TopologyType>
+class Topology : public AbstractTopology
 {
+
 public :
-	virtual std::vector<unsigned> getIdNeighbors(unsigned idIsland) const =0;
+	Topology() = default;
+	std::vector<unsigned> getIdNeighbors(unsigned idIsland) const;
+	void construct(unsigned nbIsland);
+	
+private :
+    TopologyType _builder;
+	std::vector<std::vector<bool>> _matrix;
 };
+
+#include<topology/topology.cpp>
 
 }
 

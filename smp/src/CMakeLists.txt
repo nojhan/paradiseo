@@ -21,11 +21,11 @@ set (SMP_FILE
     scheduler.h
     island.h
     topology/abstractTopology.h
-    topology/booleanTopology.h
+    topology/topology.h
     topology/topologyBuilder.h
-    topology/completeTopologyBuilder.cpp
-    topology/starTopologyBuilder.cpp
-    topology/ringTopologyBuilder.cpp
+    topology/complete.cpp
+    topology/star.cpp
+    topology/ring.cpp
     )
 
 add_library(smp STATIC ${SMP_FILE})
