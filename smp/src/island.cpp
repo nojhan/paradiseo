@@ -38,6 +38,8 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chro
     ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
     // We inject the wrapped continuator by tag dispatching method during the algorithm construction.
     algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
+    // With the PPE we look for the eval function in order to evaluate EOT to integrate
+    eval(Loop<Args...>().template findValue<eoEvalFunc<EOT>>(args...)),
     pop(_popSize, _chromInit),
     intPolicy(_intPolicy),
     migPolicy(_migPolicy),
@@ -120,9 +122,12 @@ void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
     while (!listImigrants.empty())
     {
         eoPop<EOT> offspring = *(listImigrants.front());
-        for(auto indi : offspring)
         
-        intPolicy.replace(pop, offspring);
+        // Evaluate objects to integrate
+        for(auto& indi : offspring)
+            eval(indi);
+        
+        intPolicy(pop, offspring);
         listImigrants.pop();
         
     }

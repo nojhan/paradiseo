@@ -45,21 +45,7 @@ The island model will check its policy to know how to integrate population sent 
 */
 
 template <class EOT>
-class IntPolicy
-{
-public:
-    /**
-     * Constructor
-     * @param _eval Method to evaluate the population to integrate.
-     * @param _replace Method to replace elements in the island.
-     */
-    IntPolicy(eoEvalFunc<EOT>& _eval, eoReplacement<EOT>& _replace);
-    
-    eoEvalFunc<EOT>& eval;
-    eoReplacement<EOT>& replace;
-};
-
-#include<intPolicy.cpp>
+using IntPolicy = eoReplacement<EOT>;
 
 }
 
