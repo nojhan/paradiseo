@@ -28,7 +28,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #include <vector>
-#include <topology/topologyBuilder.h>
 #include <topology/star.h>
 
 void paradiseo::smp::Star::operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const

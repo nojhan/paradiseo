@@ -40,9 +40,9 @@ class Topology : public AbstractTopology
 {
 
 public :
-	Topology(unsigned nbIsland);
-
-	std::vector<unsigned> getIdNeighbours(unsigned idIsland) const;
+	Topology() = default;
+	std::vector<unsigned> getIdNeighbors(unsigned idIsland) const;
+	void construct(unsigned nbIsland);
 	
 private :
     TopologyType _builder;

@@ -38,7 +38,7 @@ namespace smp
 class AbstractTopology
 {
 public :
-	virtual std::vector<unsigned> getIdNeighbours(unsigned idIsland) const =0;
+	virtual std::vector<unsigned> getIdNeighbors(unsigned idIsland) const =0;
 };
 
 }

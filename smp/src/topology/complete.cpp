@@ -38,4 +38,4 @@ void paradiseo::smp::Complete::operator()(unsigned nbIsland, std::vector<std::ve
     matrix.assign(nbIsland, line);
     for(int i=0;i<nbIsland;i++)
         matrix[i][i]=false;
-}		
+}

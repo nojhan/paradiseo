@@ -28,7 +28,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #include <vector>
-#include <topology/topologyBuilder.h>
 #include <topology/ring.h>
 
 void paradiseo::smp::Ring::operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const
