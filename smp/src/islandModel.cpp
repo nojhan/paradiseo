@@ -1,5 +1,5 @@
 /*
-<islandNotifier.h>
+<islandModel.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,42 +27,51 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef ISLAND_NOTIFIER_H_
-#define ISLAND_NOTIFIER_H_
-
-#include <vector>
-#include <utility>
-
-/** IslandNotifier: The notifier will perform the binded task each generation.
-
-The island notifier makes the binded task executed by the island which observes.
-We can imagine that a continuator checks if we have to execute the binded task.
-At the moment, the task is performed each generation.
-
-*/
-
-namespace paradiseo
+template<class EOT>
+void paradiseo::smp::IslandModel<EOT>::add(AIsland<EOT>& _island)
 {
-namespace smp
-{
-
-template <class EOT>
-class IslandNotifier : public eoUpdater
-{
-public :
-    IslandNotifier(AIsland<EOT>* _observer, std::function<void(AIsland<EOT>*)> _task);
-    
-    virtual void operator()();
-    
-protected :
-    AIsland<EOT>* observer;
-    std::function<void(AIsland<EOT>*)> task;
-};
-
-#include <islandNotifier.cpp>
-
+    static unsigned i = 0;
+    islands[i] = &_island;
+    islands[i]->setModel(this);
+    i++;
 }
 
+template<class EOT>
+void paradiseo::smp::IslandModel<EOT>::operator()()
+{
+    std::vector<Thread> threads(islands.size());
+
+    unsigned i = 0;
+    for(auto it : islands)
+    {
+        threads[i].start(&AIsland<EOT>::operator(), it.second);
+        i++;
+    }
+
+    unsigned workingThread = islands.size();
+    while(workingThread > 0)
+    {
+        workingThread = islands.size();
+        for(auto& it : islands)
+            if(it.second->isStopped())
+                workingThread--;
+        std::this_thread::sleep_for(std::chrono::nanoseconds(10));
+    }
+        
+    for(auto& thread : threads)
+        thread.join();
+        
 }
 
-#endif
+template<class EOT>  
+void paradiseo::smp::IslandModel<EOT>::update(eoPop<EOT> _data, AIsland<EOT>* _island)
+{
+    std::cout << "Pop reçue par le médiateur" << std::endl;
+    std::lock_guard<std::mutex> lock(this->m);
+
+    std::cout << _data << std::endl;
+    listEmigrants.push(std::pair<eoPop<EOT>,AIsland<EOT>*>(_data, _island));
+}
+    
+
+

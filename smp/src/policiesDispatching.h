@@ -37,7 +37,9 @@ namespace paradiseo
 namespace smp
 {
 /** Policies Dispatching
-* The Policies Dispatching enable to choose the policy to call at compile time by tag-dispatching method
+
+The Policies Dispatching enable to choose the policy to call at compile time by tag-dispatching method
+
 **/
 
 struct LinearPolicy {};

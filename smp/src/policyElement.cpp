@@ -31,9 +31,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eo>
 
 template <class EOT>
-paradiseo::smp::PolicyElement<EOT>::PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criteria) :
+paradiseo::smp::PolicyElement<EOT>::PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criterion) :
     selection(_selection),
-    criteria(_criteria)
+    criterion(_criterion)
 { }
     
 template <class EOT>
@@ -45,13 +45,13 @@ bool paradiseo::smp::PolicyElement<EOT>::operator()(const eoPop<EOT>& _pop)
     //i++;
     // END DEBUG
         
-    return criteria(_pop);
+    return criterion(_pop);
 }
     
 template <class EOT>
-void paradiseo::smp::PolicyElement<EOT>::addCriteria(eoContinue<EOT>& _criteria)
+void paradiseo::smp::PolicyElement<EOT>::addCriterion(eoContinue<EOT>& _criterion)
 {
-    criteria.add(_criteria);
+    criterion.add(_criterion);
 }
     
 template <class EOT>

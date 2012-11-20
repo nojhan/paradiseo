@@ -29,6 +29,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <type_traits>
 
+
 template<template <class> class EOAlgo, class EOT>
 template<class... Args>
 paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
@@ -51,6 +52,9 @@ void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
 {
     stopped = false;
     algo(pop);
+    // Let's wait the end of communications with the island model
+    for(auto& message : sentMessages)
+        message.join();
     stopped = true;
 }
 
@@ -100,6 +104,14 @@ void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
     eoPop<EOT> migPop;
     _select(pop, migPop);
     //std::cout << "   La population migrante est :" << std::endl << migPop << std::endl;
+    
+    // Delete delivered messages
+    for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
+        if(!it->joinable())
+            sentMessages.erase(it);
+  
+    sentMessages.push_back(std::thread(&IslandModel<EOT>::update, model, migPop, this));
+
 }
 
 template<template <class> class EOAlgo, class EOT>

@@ -46,6 +46,8 @@ class IslandModel;
 
 /** AbstractIsland: An abstract island.
 
+The abstract island is used to manipulate island pointers wihout the knowledge of the algorithm.
+
 @see smp::Island
 */
 
@@ -77,6 +79,10 @@ public:
      */
     virtual void check(void) = 0;
     
+    /**
+     * Check if the algorithm is stopped.
+     * @return true if stopped
+     */
     virtual bool isStopped(void) = 0;
     
 };

@@ -36,6 +36,7 @@ paradiseo::smp::BooleanTopology<TopologyType>::BooleanTopology(unsigned nbIsland
 	TopologyType builder;
 	builder(nbIsland, _matrix);
 }
+
 template <class TopologyType>	
 std::vector<unsigned> paradiseo::smp::BooleanTopology<TopologyType>::getIdNeighbours(unsigned idIsland) const
 {
