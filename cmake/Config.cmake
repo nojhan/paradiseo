@@ -44,6 +44,7 @@ set(CMAKE_CXX_FLAGS_RELEASE  "-Wunknown-pragmas -O2" CACHE STRING "" FORCE)
 if(SMP)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -pthread" CACHE STRING "" FORCE)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11 -pthread" CACHE STRING "" FORCE)
+    add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
 endif(SMP)
 
 ######################################################################################

@@ -33,9 +33,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <queue>
 #include <vector>
 #include <utility>
+#include <atomic>
 
 #include <eo>
 #include <abstractIsland.h>
+#include <islandModel.h>
 #include <migPolicy.h>
 #include <intPolicy.h>
 #include <PPExpander.h>
@@ -65,7 +67,13 @@ public:
     /**
      * Start the island.
      */
-    void operator()();
+    void operator()(void);
+    
+    /**
+     * Set model
+     * @param _model Pointer to the Island Model corresponding 
+     */
+    virtual void setModel(IslandModel<EOT>* _model);
     
     /**
      * Update the list of imigrants.
@@ -84,6 +92,8 @@ public:
      */
     virtual void check(void);
     
+    virtual bool isStopped(void);
+    
 protected:
 
     /**
@@ -97,11 +107,13 @@ protected:
      */
     virtual void receive(void);
     
+    IslandModel<EOT>* model;
     eoPop<EOT> pop;
     EOAlgo<EOT> algo;
     std::queue<eoPop<EOT>*> listImigrants;
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;
+    std::atomic<bool> stopped;
 };
 
 #include <island.cpp>

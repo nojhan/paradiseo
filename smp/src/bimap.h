@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<bimap.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,17 +27,59 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
+#ifndef BIMAP_MODEL_H_
+#define BIMAP_H_
 
-#include <thread.h>
-#include <MWModel.h>
-#include <scheduler.h>
-#include <islandModel.h>
-#include <island.h>
-#include <migPolicy.h>
-#include <intPolicy.h>
-#include <policyElement.h>
-#include <islandNotifier.h>
+#include <set>
+#include <map>
+
+namespace paradiseo
+{
+namespace smp
+{
+
+template<class A, class B>
+class Bimap
+{
+public:
+    
+    void add(A a, B b)
+    {
+        ASet.insert(a);
+        BSet.insert(b);
+        rightAssociation[&a] = &b;
+        leftAssociation[&b] = &a;
+    }
+    
+    B& getRight(A const a)
+    {
+        return *rightAssociation[&a];
+    }
+    
+    A& getLeft(B const b)
+    {
+        return *leftAssociation[&b];
+    }
+    
+    unsigned size()
+    {
+        return ASet.size();
+    }
+    
+    bool empty()
+    {
+        return ASet.empty();
+    }
+
+protected:
+    std::set<A> ASet;
+    std::set<B> BSet;
+    std::map<A*,B*> rightAssociation;
+    std::map<B*,A*> leftAssociation;
+};
+
+}
+
+}
 
 #endif

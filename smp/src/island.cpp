@@ -39,7 +39,8 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chro
     algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
     pop(_popSize, _chromInit),
     intPolicy(_intPolicy),
-    migPolicy(_migPolicy)
+    migPolicy(_migPolicy),
+    stopped(false)
 {
     // Check in compile time the inheritance thanks to type_trait.
     static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");
@@ -48,7 +49,15 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chro
 template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
 {
+    stopped = false;
     algo(pop);
+    stopped = true;
+}
+
+template<template <class> class EOAlgo, class EOT>
+void paradiseo::smp::Island<EOAlgo,EOT>::setModel(IslandModel<EOT>* _model)
+{
+    model = _model;
 }
 
 template<template <class> class EOAlgo, class EOT>
@@ -66,12 +75,12 @@ eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
 template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::check()
 {
-    std::cout << "On check" << std::endl;
+    // std::cout << "On check" << std::endl;
     for(PolicyElement<EOT>& elem : migPolicy)
     {
         if(!elem(pop))
         {
-            std::cout << "On lance l'emmigration" << std::endl;
+            // std::cout << "On lance l'emmigration" << std::endl;
             send(elem.getSelect());
         }
     }
@@ -79,12 +88,18 @@ void paradiseo::smp::Island<EOAlgo,EOT>::check()
 }
 
 template<template <class> class EOAlgo, class EOT>
+bool paradiseo::smp::Island<EOAlgo,EOT>::isStopped(void)
+{
+    return (bool)stopped;
+}
+
+template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
 {
-    std::cout << "Ile lance la migration" << std::endl;
+    //std::cout << "Ile lance la migration" << std::endl;
     eoPop<EOT> migPop;
     _select(pop, migPop);
-    std::cout << "   La population migrante est :" << std::endl << migPop << std::endl;
+    //std::cout << "   La population migrante est :" << std::endl << migPop << std::endl;
 }
 
 template<template <class> class EOAlgo, class EOT>

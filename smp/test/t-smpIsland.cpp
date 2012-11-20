@@ -13,7 +13,7 @@ int main(void)
         unsigned tSize = 2;
         double pCross = 0.8;
         double pMut = 0.7;
-        unsigned maxGen = 100;
+        unsigned maxGen = 10;
     } Param; 
 
     Param param;
@@ -43,24 +43,55 @@ int main(void)
     eoPlusReplacement<Indi> replace;
 
     eoGenContinue<Indi> genCont(param.maxGen); // generation continuation
+    eoGenContinue<Indi> genCont_2(param.maxGen); // generation continuation
     
     // Define population
     eoPop<Indi> pop(param.popSize, chromInit);
 
     try
     {
-        // Emigration policy
-        eoPeriodicContinue<Indi> criteria(25); // We mig each gen
+        // Island 1
+        // // Emigration policy
+        // // // Element 1 
+        eoPeriodicContinue<Indi> criteria(5);
         eoDetTournamentSelect<Indi> selectOne(2);
-        eoSelectNumber<Indi> who(selectOne, 5);
+        eoSelectNumber<Indi> who(selectOne, 1);
+        
         MigPolicy<Indi> migPolicy;
         migPolicy.push_back(PolicyElement<Indi>(who, criteria));
-        IntPolicy<Indi> intPolicy(plainEval,replace);
         
+        // // Integration policy
+        eoPlusReplacement<Indi> replace_1;
+        IntPolicy<Indi> intPolicy(plainEval,replace_1);
+
         Island<eoEasyEA,Indi> test(param.popSize, chromInit, intPolicy, migPolicy, genCont, plainEval, select, transform, replace);
         
-        test();
+        // Island 2
+        // // Emigration policy
+        // // // Element 1 
+        eoPeriodicContinue<Indi> criteria_2(5);
+        eoDetTournamentSelect<Indi> selectOne_2(2);
+        eoSelectNumber<Indi> who_2(selectOne_2, 1);
+        
+        MigPolicy<Indi> migPolicy_2;
+        migPolicy_2.push_back(PolicyElement<Indi>(who_2, criteria_2));
+        
+        // // Integration policy
+        eoPlusReplacement<Indi> replace_2;
+        IntPolicy<Indi> intPolicy_2(plainEval,replace_2);
+        
+        Island<eoEasyEA,Indi> test2(param.popSize, chromInit, intPolicy_2, migPolicy_2, genCont_2, plainEval, select, transform, replace);
+        
+        //test();
+        
+        IslandModel<Indi> model;
+        model.add(test);
+        model.add(test2);
+        
+        model();
+        
         cout << test.getPop() << endl;
+        cout << test2.getPop() << endl;
     }
     catch(exception& e)
     {
