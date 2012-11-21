@@ -46,6 +46,8 @@ namespace smp
 /** ContWrapper: Utility class to wrap the algorithm continuators with island notifier.
 
 Utility class to wrap the algorithm continuators with island notifier during the island construction.
+By using the wrapper, we do not have to modify original continuators inside the IslandModel and then,
+it avoids some side effects.
 
 */
 template<class EOT>

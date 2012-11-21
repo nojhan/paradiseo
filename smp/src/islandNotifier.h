@@ -36,8 +36,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /** IslandNotifier: The notifier will perform the binded task each generation.
 
 The island notifier makes the binded task executed by the island which observes.
-We can imagine that a continuator check is we have to execute the binded task.
-At the moment the task is perfermed each generation.
+We can imagine that a continuator checks if we have to execute the binded task.
+At the moment, the task is performed each generation.
 
 */
 

@@ -37,12 +37,22 @@ namespace paradiseo
 {
 namespace smp
 {
+/** Bimap
 
+Bidirectional map in order to create a bijection between islands and vertices.
+A and B objects are stocked in two std::set, then if you would avoid instances duplications,
+template A and B with pointers.
+
+**/
 template<class A, class B>
 class Bimap
 {
 public:
-    
+    /**
+     * Add a relation 
+     * @param workersNb the number of workers
+     * @param args... list of parameters according to the constructor of your algorithm
+     */
     void add(A a, B b)
     {
         ASet.insert(a);
@@ -50,6 +60,7 @@ public:
         rightAssociation[&a] = &b;
         leftAssociation[&b] = &a;
     }
+    
     
     B& getRight(A const a)
     {

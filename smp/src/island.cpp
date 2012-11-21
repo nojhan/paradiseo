@@ -29,6 +29,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <type_traits>
 
+
 template<template <class> class EOAlgo, class EOT>
 template<class... Args>
 paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
@@ -37,6 +38,8 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chro
     ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
     // We inject the wrapped continuator by tag dispatching method during the algorithm construction.
     algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
+    // With the PPE we look for the eval function in order to evaluate EOT to integrate
+    eval(Loop<Args...>().template findValue<eoEvalFunc<EOT>>(args...)),
     pop(_popSize, _chromInit),
     intPolicy(_intPolicy),
     migPolicy(_migPolicy),
@@ -51,6 +54,9 @@ void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
 {
     stopped = false;
     algo(pop);
+    // Let's wait the end of communications with the island model
+    for(auto& message : sentMessages)
+        message.join();
     stopped = true;
 }
 
@@ -100,6 +106,14 @@ void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
     eoPop<EOT> migPop;
     _select(pop, migPop);
     //std::cout << "   La population migrante est :" << std::endl << migPop << std::endl;
+    
+    // Delete delivered messages
+    for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
+        if(!it->joinable())
+            sentMessages.erase(it);
+  
+    sentMessages.push_back(std::thread(&IslandModel<EOT>::update, model, migPop, this));
+
 }
 
 template<template <class> class EOAlgo, class EOT>
@@ -108,9 +122,12 @@ void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
     while (!listImigrants.empty())
     {
         eoPop<EOT> offspring = *(listImigrants.front());
-        for(auto indi : offspring)
         
-        intPolicy.replace(pop, offspring);
+        // Evaluate objects to integrate
+        for(auto& indi : offspring)
+            eval(indi);
+        
+        intPolicy(pop, offspring);
         listImigrants.pop();
         
     }

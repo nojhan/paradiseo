@@ -46,9 +46,12 @@ namespace paradiseo
 {
 namespace smp
 {
-/** 
-A scheduler class
+/** Scheduler : Dispatch load between workers according to a policy.
+
+Dispatch load between the specified number of workers according to a policy.
+
 */
+
 template<class EOT, class Policy = LinearPolicy>
 class Scheduler
 {

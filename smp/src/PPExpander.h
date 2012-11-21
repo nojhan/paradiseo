@@ -1,5 +1,5 @@
 /*
-<PPE.h>
+<PPExpander.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -31,7 +31,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define PPE_H_
 
 /** Parameter Pack Expansion: Utility file to expand parameter pack
-/* Utility file to expand parameter pack with the recursive method
+
+Utility file to expand parameter pack with the recursive method
+
 **/
 
 template<class... Arg> class Loop;

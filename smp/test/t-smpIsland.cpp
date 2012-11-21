@@ -9,11 +9,11 @@ using namespace std;
 int main(void)
 {
     typedef struct {
-        unsigned popSize = 10;
+        unsigned popSize = 100;
         unsigned tSize = 2;
         double pCross = 0.8;
         double pMut = 0.7;
-        unsigned maxGen = 10;
+        unsigned maxGen = 10000;
     } Param; 
 
     Param param;
@@ -61,8 +61,7 @@ int main(void)
         migPolicy.push_back(PolicyElement<Indi>(who, criteria));
         
         // // Integration policy
-        eoPlusReplacement<Indi> replace_1;
-        IntPolicy<Indi> intPolicy(plainEval,replace_1);
+        eoPlusReplacement<Indi> intPolicy;
 
         Island<eoEasyEA,Indi> test(param.popSize, chromInit, intPolicy, migPolicy, genCont, plainEval, select, transform, replace);
         
@@ -77,8 +76,7 @@ int main(void)
         migPolicy_2.push_back(PolicyElement<Indi>(who_2, criteria_2));
         
         // // Integration policy
-        eoPlusReplacement<Indi> replace_2;
-        IntPolicy<Indi> intPolicy_2(plainEval,replace_2);
+        eoPlusReplacement<Indi> intPolicy_2;
         
         Island<eoEasyEA,Indi> test2(param.popSize, chromInit, intPolicy_2, migPolicy_2, genCont_2, plainEval, select, transform, replace);
         

@@ -1,5 +1,5 @@
 /*
-<policy.h>
+<migPolicy.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -37,7 +37,7 @@ namespace paradiseo
 {
 namespace smp
 {
-/** MigPolicy: Migration policy
+/** MigPolicy: Migration policy is a vector of PolicyElement.
 */
 
 template <class EOT> 

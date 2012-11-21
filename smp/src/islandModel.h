@@ -1,5 +1,5 @@
 /*
-<IslandModel.h>
+<islandModel.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -45,56 +45,40 @@ namespace smp
 
 /** IslandModel
 
+The IslandModel object is an island container that provides mecanism in order to perform a
+island model pattern according to a topology.
+
+@see smp::Island, smp::MigPolicy
 */
 
 template<class EOT>
 class IslandModel
 {
 public:
-    void add(AIsland<EOT>& _island)
-    {
-        static unsigned i = 0;
-        islands[i] = &_island;
-        islands[i]->setModel(this);
-        i++;
-    }
+    /**
+     * Add an island to the model.
+     * @param _island Island to add.
+     */
+    void add(AIsland<EOT>& _island);
 
-    void operator()()
-    {
-        std::vector<Thread> threads(islands.size());
-
-        unsigned i = 0;
-        for(auto it : islands)
-        {
-            threads[i].start(&AIsland<EOT>::operator(), it.second);
-            i++;
-        }
-
-        unsigned workingThread = islands.size();
-        while(workingThread > 0)
-        {
-            workingThread = islands.size();
-            for(auto& it : islands)
-                if(it.second->isStopped())
-                    workingThread--;
-            std::this_thread::sleep_for(std::chrono::nanoseconds(10));
-        }
-        
-        for(auto& thread : threads)
-            thread.join();
-        
-    }
+    /**
+     * Launch the island model by starting islands on their population.
+     */
+    void operator()();
     
-    void update(eoPop<EOT>* _data, AIsland<EOT>* _island)
-    {
-        listEmigrants.insert(std::pair<eoPop<EOT>*,AIsland<EOT>*>(_data, _island));
-    }
+    /**
+     * Update the island model by adding population to send in the emigrants list.
+     */
+    void update(eoPop<EOT> _data, AIsland<EOT>* _island);
     
 protected:
-    std::queue<std::pair<eoPop<EOT>*,AIsland<EOT>*>> listEmigrants;
+    std::queue<std::pair<eoPop<EOT>,AIsland<EOT>*>> listEmigrants;
     Bimap<unsigned, unsigned> table;
     std::map<unsigned, AIsland<EOT>*> islands;
+    std::mutex m;
 };
+
+#include <islandModel.cpp>
 
 }
 

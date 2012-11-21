@@ -48,6 +48,12 @@ namespace paradiseo
 {
 namespace smp
 {
+/** Island: Concrete island that wraps an algorithm
+
+The island wraps an algorithm and provide mecanism for emigration and integration of populations.
+
+@see smp::AbstractIsland, smp::MigPolicy
+*/
 
 template<template <class> class EOAlgo, class EOT>
 class Island : private ContWrapper<EOT>, public AIsland<EOT>
@@ -59,7 +65,7 @@ public:
      * @param _chromInit Population initializer.
      * @param _intPolicy Integration policy
      * @param _migPolicy Migration policy
-     * @param args Parameters to construct the algorithm of the island.
+     * @param args Parameters to construct the algorithm.
      */
     template<class... Args>
     Island(unsigned _popSize, eoInit<EOT>& _chromInit, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
@@ -92,7 +98,11 @@ public:
      */
     virtual void check(void);
     
-    virtual bool isStopped(void);
+    /**
+     * Check if the algorithm is stopped.
+     * @return true if stopped
+     */
+    virtual bool isStopped(void); 
     
 protected:
 
@@ -107,13 +117,16 @@ protected:
      */
     virtual void receive(void);
     
-    IslandModel<EOT>* model;
+    IslandModel<EOT>* model; 
+    eoEvalFunc<EOT>& eval;               
     eoPop<EOT> pop;
     EOAlgo<EOT> algo;
     std::queue<eoPop<EOT>*> listImigrants;
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;
     std::atomic<bool> stopped;
+    std::vector<std::thread> sentMessages;
+    
 };
 
 #include <island.cpp>

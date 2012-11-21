@@ -31,27 +31,33 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define CONT_D_H_
 
 /** Continuator Dispatching
-* The Continuator Dispatching enable to wrap continuator in Island constructor for a better user interface
+
+The Continuator Dispatching enable to wrap continuators in Island constructor for a better user interface
+
 **/
 
 template<class T, class U>
 U& wrap_pp_impl(T&, U& u, std::false_type)
-{ return u; }
+{ 
+    return u; 
+}
 
 template<class T, class U>
 T& wrap_pp_impl(T& t, U&, std::true_type)
-{ return t; }
+{ 
+    return t; 
+}
 
 template<class T, class U>
-struct result_of_wrap_pp :
-  std::conditional<std::is_base_of<T,U>::value,T&,U&>
+struct result_of_wrap_pp : 
+    std::conditional<std::is_base_of<T,U>::value,T&,U&>
 {};
 
 template<class T, class U>
 typename result_of_wrap_pp<T,U>::type wrap_pp(T& t, U& u)
 { 
-  typedef typename std::is_base_of<T,U>::type tag;
-  return wrap_pp_impl(t,u,tag());
+    typedef typename std::is_base_of<T,U>::type tag;
+    return wrap_pp_impl(t,u,tag());
 }
 
 #endif

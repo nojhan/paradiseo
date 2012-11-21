@@ -36,6 +36,11 @@ namespace paradiseo
 {
 namespace smp
 {
+/** PolicyElement: PolicyElement is an element of a migration policy.
+
+The policy element is a pair of a selection method and a criterion to apply the selection.
+
+*/
 
 template <class EOT>
 class PolicyElement : public eoContinue<EOT>
@@ -44,22 +49,22 @@ public :
     /**
      * Constructor
      * @param _selection How to select elements for migration
-     * @param _criteria When notifying the island
+     * @param _criterion When notifying the island
      */
-    PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criteria);
+    PolicyElement(eoSelect<EOT>& _selection, eoContinue<EOT>& _criterion);
     
     /**
-     * Check is the criteria is reach
+     * Check is the criterion is reach
      * @param _pop Population which is checked by the criteria.
-     * @return false if the criteria is reached.
+     * @return false if the criterion is reached.
      */
     bool operator()(const eoPop<EOT>& _pop);
     
     /**
      * Add criteria for the same selection method.
-     * @param _criteria New criteria.
+     * @param _criterion New criterion.
      */
-    void addCriteria(eoContinue<EOT>& _criteria);
+    void addCriterion(eoContinue<EOT>& _criterion);
     
      /**
      * Access to the selection method.
@@ -69,7 +74,7 @@ public :
     
 protected :
     eoSelect<EOT>& selection;
-    eoContinue<EOT>& criteria;
+    eoContinue<EOT>& criterion;
 };
 
 #include <policyElement.cpp>

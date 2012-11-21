@@ -37,7 +37,9 @@ namespace paradiseo
 namespace smp
 {
 /** Algo Dispatching
-* The Algo Dispatching enable to choose the algorithm to call at compile time by tag-dispatching method
+
+The Algo Dispatching enable to choose the algorithm to call at compile time by tag-dispatching method
+
 **/
 
 // Main algorithms tags
