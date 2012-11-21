@@ -38,9 +38,15 @@ namespace paradiseo
 namespace smp
 {
 
+/**
+*Star: Inherit from TopologyBuilder. Reprents a builder for a star topology : each node excepted the first has every other node for neighor. The first node doesn't have any neighbor.
+*/
 class Star : public TopologyBuilder
 {
 public :
+    /**
+    *Fills the given matrix for a star topology with the specified number of nodes.
+    */
 	void operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const;
 };
 

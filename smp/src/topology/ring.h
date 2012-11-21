@@ -38,10 +38,16 @@ namespace paradiseo
 namespace smp
 {
 
+/**
+*Ring: Inherit from TopologyBuilder. Reprents a builder for a complete topology : each node has the next node for neighor. The last node is connected to the first.
+*/
 class Ring : public TopologyBuilder
 {
 public :
-	void operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const;
+    /**
+    *Fills the given matrix for a ring topology with the specified number of nodes.
+    */
+    void operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const;
 };
 
 }

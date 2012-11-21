@@ -37,9 +37,15 @@ namespace paradiseo
 namespace smp
 {
 
+/**
+*Complete: Inherit from TopologyBuilder. Reprents a builder for a complete topology : each node has every other node for neighor.
+*/
 class Complete: public TopologyBuilder
 {
 public :
+    /**
+    *Fills the given matrix for a complete topology with the specified number of nodes.
+    */
 	void operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const;
 };
 

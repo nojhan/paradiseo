@@ -35,10 +35,28 @@ namespace paradiseo
 namespace smp
 {
 
+/** AbstractTopology: The Abstract Topology defines what is necessary to any topology.
+In order to know a topology, we just need to know how to construct it and what are the neighbors of each node, regardless of the type of topology (boolean or stochastic).
+
+@see smp::topology::Topology, smp::topology::TopologyBuilder
+
+*/
+
 class AbstractTopology
 {
-public :
+public :    
+
+    /**
+    * Return a vector containing the index of nearby nodes according to the topology
+    * @param idIsland index of the node of which you want the neighbors.
+    */
 	virtual std::vector<unsigned> getIdNeighbors(unsigned idIsland) const =0;
+	
+	/**
+	* Construct or re-construct a topology with the given number of nodes.
+	* @param nbIsland number of nodes for the topology 
+	*/
+	virtual void construct(unsigned nbIsland) =0;
 };
 
 }

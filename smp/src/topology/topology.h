@@ -35,16 +35,38 @@ namespace paradiseo
 namespace smp
 {
 
+/**
+Topology : Inherit from AbstractTopology and must be templated with the type of Topology (e.g : Ring, Star...)
+It represents the boolean topology, and cannot be used for Stochastic topology.
+
+@see smp::topology::AbstractTopology
+*/
+
 template<class TopologyType>
 class Topology : public AbstractTopology
 {
 
 public :
+
+    /**
+    * Default constructor
+    */
 	Topology() = default;
+	
+    /**
+    * Inherited from AbstractTopology
+    * @see smp::topology::AbstractTopology::getIdNeighbors
+    */	
 	std::vector<unsigned> getIdNeighbors(unsigned idIsland) const;
+	
+	/**
+	* Inherited from AbstractTopology : construct or re-construct a topology with the given number of nodes
+	* @param nbIsland number of nodes for the topology
+	*/
 	void construct(unsigned nbIsland);
 	
 private :
+
     TopologyType _builder;
 	std::vector<std::vector<bool>> _matrix;
 };
