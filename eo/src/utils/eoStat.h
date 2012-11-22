@@ -179,15 +179,13 @@ private :
     Average fitness + Std. dev. of a population, fitness needs to be scalar.
 */
 template <class EOT>
-class eoSecondMomentStats : public eoStat<EOT, std::pair<double, double> >
+class eoSecondMomentStats : public eoStat<EOT, std::pair<typename EOT::Fitness, typename EOT::Fitness> >
 {
 public :
+    typedef typename EOT::Fitness FitT;
 
-    using eoStat<EOT, std::pair<double, double> >::value;
-
-    typedef typename EOT::Fitness fitness_type;
-
-    typedef std::pair<double, double> SquarePair;
+    using eoStat<EOT, std::pair<FitT, FitT> >::value;
+    typedef std::pair<FitT, FitT> SquarePair;
 
     eoSecondMomentStats(std::string _description = "Average & Stdev")
         : eoStat<EOT, SquarePair>(std::make_pair(0.0,0.0), _description)
@@ -195,7 +193,7 @@ public :
 
     static SquarePair sumOfSquares(SquarePair _sq, const EOT& _eo)
     {
-        double fitness = _eo.fitness();
+        FitT fitness = _eo.fitness();
 
         _sq.first += fitness;
         _sq.second += fitness * fitness;
