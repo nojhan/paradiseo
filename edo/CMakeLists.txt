@@ -1,11 +1,11 @@
 
-IF(EDO_USE_LIB STREQUAL "UBlas")
-    FIND_PACKAGE(Boost 1.33.0)
+IF(EDO_USE_LIB STREQUAL "uBLAS")
+    FIND_PACKAGE(Boost )
     IF( Boost_FOUND )
         INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIRS} )
         ADD_DEFINITIONS( -DWITH_BOOST )
     ELSE()
-        MESSAGE( "ERROR: You asked for Boost:ublas but it has not been found." )
+        MESSAGE( "ERROR: You asked for Boost::uBLAS but it has not been found." )
         SET(IS_FATAL 1)
     ENDIF()
 ELSEIF( EDO_USE_LIB STREQUAL "Eigen3" )
@@ -25,7 +25,7 @@ ELSEIF( EDO_USE_LIB STREQUAL "Eigen3" )
 
 ELSE()
     # FIXME ideally, we would have a minimal implementation with STL vectors…
-    MESSAGE( "You must set EDO_USE_LIB to either 'UBlas' or 'Eigen3'." )
+    MESSAGE( "You must set EDO_USE_LIB to either 'uBLAS' or 'Eigen3'." )
     SET(IS_FATAL 1)
 ENDIF()
 
