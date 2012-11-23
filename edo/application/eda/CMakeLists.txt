@@ -19,8 +19,8 @@ set(RESOURCES
 foreach(FILE ${RESOURCES})
   execute_process(
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    ${CMAKE_CURRENT_SOURCE_DIR}/${file}
-    ${EDO_BIN_DIR}/${file}
+    ${CMAKE_CURRENT_SOURCE_DIR}/${FILE}
+    ${EDO_BIN_DIR}/${FILE}
     )
 endforeach(FILE)
 
