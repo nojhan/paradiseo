@@ -23,6 +23,8 @@
 #ifndef eoEvalKeepBest_H
 #define eoEvalKeepBest_H
 
+#include <fstream>
+
 #include <eoEvalFunc.h>
 #include <utils/eoParam.h>
 
@@ -89,27 +91,31 @@ template<class EOT> class eoEvalKeepBest : public eoEvalFunc<EOT>, public eoValu
          * This constructor uses a dummy evaluator.
          */
         eoEvalKeepBest( std::string _name = "VeryBest. " )
-            : eoValueParam<EOT>(EOT(), _name), dummy_eval(), func(dummy_eval) {}
+            : eoValueParam<EOT>(EOT(), _name), dummy_eval(), func(dummy_eval), _found(false) {}
 
 
         /** A constructor for wrapping your own evaluator in a eoEvalKeepBest.
          */
         eoEvalKeepBest(eoEvalFunc<EOT>& _func, std::string _name = "VeryBest. ")
-            : eoValueParam<EOT>(EOT(), _name), dummy_eval(), func(_func) {}
+            : eoValueParam<EOT>(EOT(), _name), dummy_eval(), func(_func), _found(false) {}
 
         virtual void operator()(EOT& sol)
         {
+            _found = false;
+
             func(sol); // evaluate
             assert( ! sol.invalid() );
 
             // if there is no best kept
             if( this->value().invalid() ) {
+                // FIXME replace this test by a reference fitness passed at instanciation
                 // take the first individual as best
                 this->value() = sol;
             } else {
                 // if sol is better than the kept individual
                 if( sol.fitness() > this->value().fitness() ) {
                     this->value() = sol;
+                    _found = true;
                 }
             }
         }
@@ -128,6 +134,12 @@ template<class EOT> class eoEvalKeepBest : public eoEvalFunc<EOT>, public eoValu
             this->value() = new_best;
         }
 
+        //! Tell if a best individual has been found during the last call
+        bool found() const
+        {
+            return _found;
+        }
+
     class DummyEval : public eoEvalFunc<EOT>
     {
         void operator()(EOT& sol) {/*empty*/}
@@ -136,6 +148,6 @@ template<class EOT> class eoEvalKeepBest : public eoEvalFunc<EOT>, public eoValu
     protected :
         DummyEval dummy_eval;
         eoEvalFunc<EOT>& func;
+        bool _found;
 };
-
 #endif
