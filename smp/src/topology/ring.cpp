@@ -30,13 +30,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 #include <topology/ring.h>
 
-void paradiseo::smp::Ring::operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const
+void paradiseo::smp::Ring::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
 	matrix.clear();
 	std::vector<bool> line;
-	line.assign(nbIsland, false);
-	matrix.assign(nbIsland, line);
+	line.assign(nbNode, false);
+	matrix.assign(nbNode, line);
 	
-	for(int i=0; i<nbIsland;i++)
-		matrix[i][(i+1)%nbIsland]=true;
+	for(int i=0; i<nbNode;i++)
+		matrix[i][(i+1)%nbNode]=true;
 }	

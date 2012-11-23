@@ -30,16 +30,16 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 #include <topology/star.h>
 
-void paradiseo::smp::Star::operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const
+void paradiseo::smp::Star::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
 	matrix.clear();
-	std::vector<bool> line (nbIsland,false);
+	std::vector<bool> line (nbNode,false);
 
 	line[0]=true;
-	matrix.assign(nbIsland-1,line);
+	matrix.assign(nbNode-1,line);
 	
 	line.clear();
-	line.assign(nbIsland, false);
+	line.assign(nbNode, false);
 	std::vector<std::vector<bool>>::iterator it = matrix.begin();
 	matrix.insert(it, line);
 }

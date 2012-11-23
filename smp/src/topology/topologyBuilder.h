@@ -1,5 +1,5 @@
 /*
-<abstractIsland.h>
+<abstractNode.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -48,7 +48,7 @@ public :
     *Build th topology with the given number of nodes in the matrix.
     *@see smp::topology::Ring, smp::topology::Star, smp::topology::Complete
     **/
-	virtual void operator()(unsigned _nbIsland, std::vector<std::vector<bool>>& _matrix) const = 0;
+	virtual void operator()(unsigned _nbNode, std::vector<std::vector<bool>>& _matrix) const = 0;
 };
 
 }

@@ -27,6 +27,9 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#ifndef TOPOLOGY_H_
+#define TOPOLOGY_H_
+
 #include <vector>
 #include <topology/abstractTopology.h>
 
@@ -57,13 +60,13 @@ public :
     * Inherited from AbstractTopology
     * @see smp::topology::AbstractTopology::getIdNeighbors
     */	
-	std::vector<unsigned> getIdNeighbors(unsigned idIsland) const;
+	std::vector<unsigned> getIdNeighbors(unsigned idNode) const;
 	
 	/**
 	* Inherited from AbstractTopology : construct or re-construct a topology with the given number of nodes
-	* @param nbIsland number of nodes for the topology
+	* @param nbNode number of nodes for the topology
 	*/
-	void construct(unsigned nbIsland);
+	void construct(unsigned nbNode);
 	
 private :
 
@@ -76,3 +79,5 @@ private :
 }
 
 }
+
+#endif

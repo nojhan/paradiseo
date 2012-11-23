@@ -30,12 +30,12 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <topology/complete.h>
 #include <vector>
 
-void paradiseo::smp::Complete::operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const
+void paradiseo::smp::Complete::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
 	matrix.clear();
 	std::vector<bool> line;
-	line.assign(nbIsland,true);
-    matrix.assign(nbIsland, line);
-    for(int i=0;i<nbIsland;i++)
+	line.assign(nbNode,true);
+    matrix.assign(nbNode, line);
+    for(int i=0;i<nbNode;i++)
         matrix[i][i]=false;
 }

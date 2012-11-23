@@ -50,15 +50,15 @@ public :
 
     /**
     * Return a vector containing the index of nearby nodes according to the topology
-    * @param idIsland index of the node of which you want the neighbors.
+    * @param idNode index of the node of which you want the neighbors.
     */
-	virtual std::vector<unsigned> getIdNeighbors(unsigned idIsland) const =0;
+	virtual std::vector<unsigned> getIdNeighbors(unsigned idNode) const =0;
 	
 	/**
 	* Construct or re-construct a topology with the given number of nodes.
-	* @param nbIsland number of nodes for the topology 
+	* @param nbNode number of nodes for the topology 
 	*/
-	virtual void construct(unsigned nbIsland) =0;
+	virtual void construct(unsigned nbNode) =0;
 };
 
 }

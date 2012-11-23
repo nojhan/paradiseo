@@ -31,17 +31,17 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 
 template <class TopologyType>	
-std::vector<unsigned> paradiseo::smp::Topology<TopologyType>::getIdNeighbors(unsigned idIsland) const
+std::vector<unsigned> paradiseo::smp::Topology<TopologyType>::getIdNeighbors(unsigned idNode) const
 {
 	std::vector<unsigned> neighbors;
 	for(unsigned j=0; j<_matrix.size();j++)
-		if(_matrix[idIsland][j]) neighbors.push_back(j);
+		if(_matrix[idNode][j]) neighbors.push_back(j);
 		
 	return neighbors;
 }
 
 template <class TopologyType>
-void paradiseo::smp::Topology<TopologyType>::construct(unsigned nbIsland)
+void paradiseo::smp::Topology<TopologyType>::construct(unsigned nbNode)
 {
-    _builder(nbIsland, _matrix);
+    _builder(nbNode, _matrix);
 }
