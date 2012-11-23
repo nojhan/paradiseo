@@ -59,6 +59,12 @@ public :
 	* @param nbNode number of nodes for the topology 
 	*/
 	virtual void construct(unsigned nbNode) =0;
+
+    /**
+    *Changes the topology : removes any connection from/to the given node.
+    *@param idNode index of the node to be isolated
+    */
+    virtual void isolateNode(unsigned idNode) =0;
 };
 
 }

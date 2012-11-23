@@ -68,6 +68,12 @@ public :
 	*/
 	void construct(unsigned nbNode);
 	
+    /**
+    *Inherited from AbstractTopology : changes the topology : removes any connection from/to the given node.
+    *@param idNode index of the node to be isolated
+    */
+    void isolateNode(unsigned idNode);
+	
 private :
 
     TopologyType _builder;

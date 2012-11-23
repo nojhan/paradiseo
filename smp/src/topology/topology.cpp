@@ -28,8 +28,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 
-#include <vector>
-
 template <class TopologyType>	
 std::vector<unsigned> paradiseo::smp::Topology<TopologyType>::getIdNeighbors(unsigned idNode) const
 {
@@ -44,4 +42,18 @@ template <class TopologyType>
 void paradiseo::smp::Topology<TopologyType>::construct(unsigned nbNode)
 {
     _builder(nbNode, _matrix);
+}
+
+
+template <class TopologyType>
+void paradiseo::smp::Topology<TopologyType>::isolateNode(unsigned idNode)
+{
+    for(int i=0;i<_matrix.size();i++)
+    {
+        //Line of idNode to false : no connection FROM this node
+        _matrix[idNode][i]=false;         
+        
+        //Column of idNode to false : no connection TO this node
+        _matrix[i][idNode]=false;
+    }
 }
