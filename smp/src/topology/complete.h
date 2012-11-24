@@ -46,7 +46,7 @@ public :
     /**
     *Fills the given matrix for a complete topology with the specified number of nodes.
     */
-	void operator()(unsigned nbIsland, std::vector<std::vector<bool>>& matrix) const;
+	void operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const;
 };
 
 }

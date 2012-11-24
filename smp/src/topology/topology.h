@@ -60,13 +60,19 @@ public :
     * Inherited from AbstractTopology
     * @see smp::topology::AbstractTopology::getIdNeighbors
     */	
-	std::vector<unsigned> getIdNeighbors(unsigned idIsland) const;
+	std::vector<unsigned> getIdNeighbors(unsigned idNode) const;
 	
 	/**
 	* Inherited from AbstractTopology : construct or re-construct a topology with the given number of nodes
-	* @param nbIsland number of nodes for the topology
+	* @param nbNode number of nodes for the topology
 	*/
-	void construct(unsigned nbIsland);
+	void construct(unsigned nbNode);
+	
+    /**
+    *Inherited from AbstractTopology : changes the topology : removes any connection from/to the given node.
+    *@param idNode index of the node to be isolated
+    */
+    void isolateNode(unsigned idNode);
 	
 private :
 
