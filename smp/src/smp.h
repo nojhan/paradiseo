@@ -40,4 +40,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <policyElement.h>
 #include <islandNotifier.h>
 
+// Topologies
+#include <topology/topology.h>
+#include <topology/complete.h>
+#include <topology/ring.h>
+#include <topology/star.h>
+
 #endif

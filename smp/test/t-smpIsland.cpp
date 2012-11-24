@@ -9,11 +9,11 @@ using namespace std;
 int main(void)
 {
     typedef struct {
-        unsigned popSize = 100;
+        unsigned popSize = 3;
         unsigned tSize = 2;
         double pCross = 0.8;
         double pMut = 0.7;
-        unsigned maxGen = 10000;
+        unsigned maxGen = 10;
     } Param; 
 
     Param param;
@@ -77,12 +77,13 @@ int main(void)
         
         // // Integration policy
         eoPlusReplacement<Indi> intPolicy_2;
-        
+  
         Island<eoEasyEA,Indi> test2(param.popSize, chromInit, intPolicy_2, migPolicy_2, genCont_2, plainEval, select, transform, replace);
         
-        //test();
+        // Topology
+        Topology<Complete> topo;
         
-        IslandModel<Indi> model;
+        IslandModel<Indi> model(topo);
         model.add(test);
         model.add(test2);
         

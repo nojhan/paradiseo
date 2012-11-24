@@ -37,6 +37,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <thread>
 #include <bimap.h>
 #include <abstractIsland.h>
+#include <topology/topology.h>
 
 namespace paradiseo
 {
@@ -55,6 +56,8 @@ template<class EOT>
 class IslandModel
 {
 public:
+    IslandModel(AbstractTopology& topo);
+
     /**
      * Add an island to the model.
      * @param _island Island to add.
@@ -72,9 +75,19 @@ public:
     void update(eoPop<EOT> _data, AIsland<EOT>* _island);
     
 protected:
+    
+    /**
+     * Send population to islands
+     */
+    void send(void);
+    
+    Bimap<unsigned, AIsland<EOT>*> createTable(AbstractTopology& _topo, std::vector<AIsland<EOT>*>& _islands);
+
     std::queue<std::pair<eoPop<EOT>,AIsland<EOT>*>> listEmigrants;
-    Bimap<unsigned, unsigned> table;
-    std::map<unsigned, AIsland<EOT>*> islands;
+    Bimap<unsigned, AIsland<EOT>*> table;
+    std::vector<AIsland<EOT>*> islands;
+    AbstractTopology& topo;
+    std::vector<std::thread> sentMessages;
     std::mutex m;
 };
 

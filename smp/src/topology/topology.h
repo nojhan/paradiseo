@@ -27,6 +27,9 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#ifndef TOPOLOGY_H_
+#define TOPOLOGY_H_
+
 #include <vector>
 #include <topology/abstractTopology.h>
 
@@ -76,3 +79,5 @@ private :
 }
 
 }
+
+#endif

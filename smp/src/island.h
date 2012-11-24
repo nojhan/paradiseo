@@ -82,12 +82,6 @@ public:
     virtual void setModel(IslandModel<EOT>* _model);
     
     /**
-     * Update the list of imigrants.
-     * @param _data Elements to integrate in the main population.
-     */
-    void update(eoPop<EOT>& _data);
-    
-    /**
      * Return a reference to the island population.
      * @return Reference to the island population
      */
@@ -99,10 +93,16 @@ public:
     virtual void check(void);
     
     /**
+     * Update the list of imigrants.
+     * @param _data Elements to integrate in the main population.
+     */
+    void update(eoPop<EOT> _data);
+    
+    /**
      * Check if the algorithm is stopped.
      * @return true if stopped
      */
-    virtual bool isStopped(void); 
+    virtual bool isStopped(void) const; 
     
 protected:
 
@@ -121,7 +121,7 @@ protected:
     eoEvalFunc<EOT>& eval;               
     eoPop<EOT> pop;
     EOAlgo<EOT> algo;
-    std::queue<eoPop<EOT>*> listImigrants;
+    std::queue<eoPop<EOT>> listImigrants;
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;
     std::atomic<bool> stopped;

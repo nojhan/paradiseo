@@ -80,11 +80,18 @@ public:
     virtual void check(void) = 0;
     
     /**
+     * Update the island  by adding population to send in the imigrants list.
+     */
+    virtual void update(eoPop<EOT> _data) = 0;
+    
+    /**
      * Check if the algorithm is stopped.
      * @return true if stopped
      */
-    virtual bool isStopped(void) = 0;
-    
+    virtual bool isStopped(void) const = 0;
+
+protected:
+    std::mutex m;    
 };
 
 }

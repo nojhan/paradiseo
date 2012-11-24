@@ -40,7 +40,7 @@ namespace smp
 /** Bimap
 
 Bidirectional map in order to create a bijection between islands and vertices.
-A and B objects are stocked in two std::set, then if you would avoid instances duplications,
+A and B objects are stocked in two std::map, then if you would like to avoid instances duplications,
 template A and B with pointers.
 
 **/
@@ -50,43 +50,45 @@ class Bimap
 public:
     /**
      * Add a relation 
-     * @param workersNb the number of workers
-     * @param args... list of parameters according to the constructor of your algorithm
+     * @param A right key
+     * @param B left key
      */
-    void add(A a, B b)
+    void add(A& a, B& b)
     {
-        ASet.insert(a);
-        BSet.insert(b);
-        rightAssociation[&a] = &b;
-        leftAssociation[&b] = &a;
+        rightAssociation[a] = b;
+        leftAssociation[b] = a;
+        
+        std::cout << "DUMP" << std::endl;
+        for(auto i : rightAssociation)
+            std::cout << i.first << "------" << i.second << std::endl;
+        for(auto i : leftAssociation)
+            std::cout << i.first << "------" << i.second << std::endl;
+        std::cout << "END DUMP" << std::endl;
     }
     
-    
-    B& getRight(A const a)
+    std::map<A,B> getRight() const
     {
-        return *rightAssociation[&a];
+        return rightAssociation;
     }
     
-    A& getLeft(B const b)
+    std::map<B,A> getLeft() const
     {
-        return *leftAssociation[&b];
+        return leftAssociation;
     }
     
-    unsigned size()
+    unsigned size() const
     {
-        return ASet.size();
+        return leftAssociation.size();
     }
     
-    bool empty()
+    bool empty() const
     {
-        return ASet.empty();
+        return leftAssociation.empty();
     }
 
 protected:
-    std::set<A> ASet;
-    std::set<B> BSet;
-    std::map<A*,B*> rightAssociation;
-    std::map<B*,A*> leftAssociation;
+    std::map<A,B> rightAssociation;
+    std::map<B,A> leftAssociation;
 };
 
 }

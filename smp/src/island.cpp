@@ -67,12 +67,6 @@ void paradiseo::smp::Island<EOAlgo,EOT>::setModel(IslandModel<EOT>* _model)
 }
 
 template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT>& _data)
-{
-    listImigrants.push_back(&_data);
-}
-
-template<template <class> class EOAlgo, class EOT>
 eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
 {
     return pop;
@@ -94,7 +88,7 @@ void paradiseo::smp::Island<EOAlgo,EOT>::check()
 }
 
 template<template <class> class EOAlgo, class EOT>
-bool paradiseo::smp::Island<EOAlgo,EOT>::isStopped(void)
+bool paradiseo::smp::Island<EOAlgo,EOT>::isStopped(void) const
 {
     return (bool)stopped;
 }
@@ -119,16 +113,39 @@ void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
 template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
 {
+    std::lock_guard<std::mutex> lock(this->m);
+    if(!listImigrants.empty()) {
+    std::cout << "______________________________________________" << std::endl;
+    std::cout << "Ile : " << this << std::endl;
+    std::cout << "Pop avant : " << std::endl << pop << std::endl;
     while (!listImigrants.empty())
     {
-        eoPop<EOT> offspring = *(listImigrants.front());
+        
+        eoPop<EOT> offspring = listImigrants.front();
         
         // Evaluate objects to integrate
+        std::cout << "Evaluation des individus : " << std::endl;
         for(auto& indi : offspring)
+        {
             eval(indi);
+            std::cout << indi << std::endl;
+        }
+        //std::cout << "Ile " << this << " recoit : " << std::endl;
+        //std::cout << offspring << std::endl;
         
         intPolicy(pop, offspring);
         listImigrants.pop();
-        
+
     }
+    std::cout << "Pop après : " << std::endl << pop << std::endl;
+        std::cout << "______________________________________________" << std::endl;
+    }    
 }
+
+template<template <class> class EOAlgo, class EOT>
+void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT> _data)
+{
+    std::lock_guard<std::mutex> lock(this->m);
+    listImigrants.push(_data);
+}
+
