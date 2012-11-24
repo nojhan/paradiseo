@@ -64,9 +64,14 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
         // Count working islands
         workingThread = islands.size();
         for(auto& it : islands)
+        {
+            // If an island is stopped we need to isolate its node in the topology
             if(it->isStopped())
+            {
                 workingThread--;
-                
+                topo.isolateNode(table.getLeft()[it]);
+            }
+        }        
         // Check reception
         send();
         
@@ -95,14 +100,14 @@ void paradiseo::smp::IslandModel<EOT>::send(void)
     std::lock_guard<std::mutex> lock(m);
     while (!listEmigrants.empty())
     {
-        std::cout << "Le mediateur va envoyer de " << listEmigrants.front().second  << " qui est " << table.getLeft()[listEmigrants.front().second] << std::endl;
+        //std::cout << "Le mediateur va envoyer de " << listEmigrants.front().second  << " qui est " << table.getLeft()[listEmigrants.front().second] << std::endl;
 
         unsigned id = table.getLeft()[listEmigrants.front().second];
         std::vector<unsigned> neighbors = topo.getIdNeighbors(id);
         eoPop<EOT> migPop = listEmigrants.front().first;
         for (unsigned neighbor : neighbors)
         {
-            std::cout << "On envoie à " << neighbor << std::endl;
+            //std::cout << "On envoie à " << neighbor << std::endl;
             sentMessages.push_back(std::thread(&AIsland<EOT>::update, table.getRight()[neighbor], migPop));
 		}    
         listEmigrants.pop();

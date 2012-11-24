@@ -9,7 +9,7 @@ using namespace std;
 int main(void)
 {
     typedef struct {
-        unsigned popSize = 3;
+        unsigned popSize = 1000;
         unsigned tSize = 2;
         double pCross = 0.8;
         double pMut = 0.7;
@@ -87,8 +87,9 @@ int main(void)
         model.add(test);
         model.add(test2);
         
-        model();
-        
+        //model();
+        test();
+        test2();
         cout << test.getPop() << endl;
         cout << test2.getPop() << endl;
     }

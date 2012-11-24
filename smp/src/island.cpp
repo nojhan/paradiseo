@@ -43,7 +43,8 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chro
     pop(_popSize, _chromInit),
     intPolicy(_intPolicy),
     migPolicy(_migPolicy),
-    stopped(false)
+    stopped(false),
+    model(nullptr)
 {
     // Check in compile time the inheritance thanks to type_trait.
     static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");
@@ -58,6 +59,7 @@ void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
     for(auto& message : sentMessages)
         message.join();
     stopped = true;
+    //std::cout << "Fin de l'île " << this << std::endl;
 }
 
 template<template <class> class EOAlgo, class EOT>
@@ -96,39 +98,37 @@ bool paradiseo::smp::Island<EOAlgo,EOT>::isStopped(void) const
 template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
 {
-    //std::cout << "Ile lance la migration" << std::endl;
-    eoPop<EOT> migPop;
-    _select(pop, migPop);
-    //std::cout << "   La population migrante est :" << std::endl << migPop << std::endl;
-    
-    // Delete delivered messages
-    for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
-        if(!it->joinable())
-            sentMessages.erase(it);
-  
-    sentMessages.push_back(std::thread(&IslandModel<EOT>::update, model, migPop, this));
-
+    if(model != nullptr)
+    {
+        //std::cout << "Ile lance la migration" << std::endl;
+        eoPop<EOT> migPop;
+        _select(pop, migPop);
+        //std::cout << "   La population migrante est :" << std::endl << migPop << std::endl;
+        
+        // Delete delivered messages
+        for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
+            if(!it->joinable())
+                sentMessages.erase(it);
+      
+        sentMessages.push_back(std::thread(&IslandModel<EOT>::update, model, migPop, this));
+    }
 }
 
 template<template <class> class EOAlgo, class EOT>
 void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
 {
     std::lock_guard<std::mutex> lock(this->m);
-    if(!listImigrants.empty()) {
-    std::cout << "______________________________________________" << std::endl;
-    std::cout << "Ile : " << this << std::endl;
-    std::cout << "Pop avant : " << std::endl << pop << std::endl;
     while (!listImigrants.empty())
     {
         
         eoPop<EOT> offspring = listImigrants.front();
         
         // Evaluate objects to integrate
-        std::cout << "Evaluation des individus : " << std::endl;
+        //std::cout << "Evaluation des individus : " << std::endl;
         for(auto& indi : offspring)
         {
             eval(indi);
-            std::cout << indi << std::endl;
+            //std::cout << indi << std::endl;
         }
         //std::cout << "Ile " << this << " recoit : " << std::endl;
         //std::cout << offspring << std::endl;
@@ -137,9 +137,6 @@ void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
         listImigrants.pop();
 
     }
-    std::cout << "Pop après : " << std::endl << pop << std::endl;
-        std::cout << "______________________________________________" << std::endl;
-    }    
 }
 
 template<template <class> class EOAlgo, class EOT>

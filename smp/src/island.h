@@ -117,7 +117,6 @@ protected:
      */
     virtual void receive(void);
     
-    IslandModel<EOT>* model; 
     eoEvalFunc<EOT>& eval;               
     eoPop<EOT> pop;
     EOAlgo<EOT> algo;
@@ -126,7 +125,7 @@ protected:
     MigPolicy<EOT>& migPolicy;
     std::atomic<bool> stopped;
     std::vector<std::thread> sentMessages;
-    
+    IslandModel<EOT>* model; 
 };
 
 #include <island.cpp>

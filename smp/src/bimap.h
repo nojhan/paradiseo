@@ -57,13 +57,6 @@ public:
     {
         rightAssociation[a] = b;
         leftAssociation[b] = a;
-        
-        std::cout << "DUMP" << std::endl;
-        for(auto i : rightAssociation)
-            std::cout << i.first << "------" << i.second << std::endl;
-        for(auto i : leftAssociation)
-            std::cout << i.first << "------" << i.second << std::endl;
-        std::cout << "END DUMP" << std::endl;
     }
     
     std::map<A,B> getRight() const
