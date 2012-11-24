@@ -74,6 +74,12 @@ public:
      */
     void update(eoPop<EOT> _data, AIsland<EOT>* _island);
     
+    /**
+     * Change topology
+     * @param _topo New topology.
+     */
+    void setTopology(AbstractTopology& _topo);
+    
 protected:
     
     /**

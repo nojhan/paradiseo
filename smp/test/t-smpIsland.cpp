@@ -87,9 +87,8 @@ int main(void)
         model.add(test);
         model.add(test2);
         
-        //model();
-        test();
-        test2();
+        model();
+
         cout << test.getPop() << endl;
         cout << test2.getPop() << endl;
     }

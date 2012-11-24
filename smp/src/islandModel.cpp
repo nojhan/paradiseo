@@ -50,7 +50,7 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
     // Create table
     table = createTable(topo, islands);
     
-    // Lauching threads
+    // Launching threads
     unsigned i = 0;
     for(auto it : islands)
     {
@@ -72,7 +72,7 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
                 topo.isolateNode(table.getLeft()[it]);
             }
         }        
-        // Check reception
+        // Check sending
         send();
         
         std::this_thread::sleep_for(std::chrono::nanoseconds(10));
@@ -89,9 +89,13 @@ template<class EOT>
 void paradiseo::smp::IslandModel<EOT>::update(eoPop<EOT> _data, AIsland<EOT>* _island)
 {
     std::lock_guard<std::mutex> lock(m);
-    //std::cout << "Pop reçue par le médiateur depuis " << _island << std::endl;
-    //std::cout << _data << std::endl;
     listEmigrants.push(std::pair<eoPop<EOT>,AIsland<EOT>*>(_data, _island));
+}
+
+template<class EOT>  
+void paradiseo::smp::IslandModel<EOT>::setTopology(AbstractTopology& _topo)
+{
+    topo = _topo;
 }
 
 template<class EOT>      
@@ -100,16 +104,15 @@ void paradiseo::smp::IslandModel<EOT>::send(void)
     std::lock_guard<std::mutex> lock(m);
     while (!listEmigrants.empty())
     {
-        //std::cout << "Le mediateur va envoyer de " << listEmigrants.front().second  << " qui est " << table.getLeft()[listEmigrants.front().second] << std::endl;
-
-        unsigned id = table.getLeft()[listEmigrants.front().second];
-        std::vector<unsigned> neighbors = topo.getIdNeighbors(id);
+        // Get the neighbors
+        unsigned idFrom = table.getLeft()[listEmigrants.front().second];
+        std::vector<unsigned> neighbors = topo.getIdNeighbors(idFrom);
+        
+        // Send elements to neighbors
         eoPop<EOT> migPop = listEmigrants.front().first;
-        for (unsigned neighbor : neighbors)
-        {
-            //std::cout << "On envoie à " << neighbor << std::endl;
-            sentMessages.push_back(std::thread(&AIsland<EOT>::update, table.getRight()[neighbor], migPop));
-		}    
+        for (unsigned idTo : neighbors)
+            sentMessages.push_back(std::thread(&AIsland<EOT>::update, table.getRight()[idTo], migPop)); 
+             
         listEmigrants.pop();
     }
 }
