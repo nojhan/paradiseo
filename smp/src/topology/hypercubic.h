@@ -1,5 +1,5 @@
 /*
-<star.cpp>
+<abstractIsland.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,24 +27,32 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#ifndef HYPERCUBIC_H_
+#define HYPERCUBIC_H_
+
 #include <vector>
-#include <topology/star.h>
+#include <topology/topologyBuilder.h>
 
-void paradiseo::smp::Star::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
+namespace paradiseo
 {
-	matrix.clear();
+namespace smp
+{
 
-	matrix.resize(nbNode);
-	for(auto& line : matrix)
-	    line.resize(nbNode);
+/**
+*Hypercubic: Inherit from TopologyBuilder. Represents a builder for an hypercubic topology.
+*The number of nodes must be a power of 2, and will be the degree of the hpercube. If it is not the case, the topology will not be built.
+*/
+class Hypercubic: public TopologyBuilder
+{
+public :
+    /**
+    *Fills the given matrix for a hypercubic topology with the specified number of nodes.
+    */
+	void operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const;
+};
 
-	std::vector<bool> line (nbNode,false);
-
-	line[0]=true;
-	matrix.assign(nbNode-1,line);
-	
-	line.clear();
-	line.assign(nbNode, false);
-	std::vector<std::vector<bool>>::iterator it = matrix.begin();
-	matrix.insert(it, line);
 }
+
+}
+
+#endif

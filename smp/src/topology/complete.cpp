@@ -33,6 +33,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 void paradiseo::smp::Complete::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
 	matrix.clear();
+
+	matrix.resize(nbNode);
+	for(auto& line : matrix)
+	    line.resize(nbNode);
+
 	std::vector<bool> line;
 	line.assign(nbNode,true);
     matrix.assign(nbNode, line);

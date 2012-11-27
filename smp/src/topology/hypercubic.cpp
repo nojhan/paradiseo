@@ -1,5 +1,5 @@
 /*
-<star.cpp>
+<hypercubic.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,24 +27,36 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+
+#include <topology/hypercubic.h>
 #include <vector>
-#include <topology/star.h>
+#include <assert.h>
 
-void paradiseo::smp::Star::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
+void paradiseo::smp::Hypercubic::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
-	matrix.clear();
+	//Check if the number of node is coherent with an hypercube
+	assert((nbNode & (nbNode-1)) == 0);
 
+	unsigned power=0,i,j;
+	while((nbNode & 1<<power) == 0)
+        power++;
+    
+	matrix.clear();
 	matrix.resize(nbNode);
+	
 	for(auto& line : matrix)
 	    line.resize(nbNode);
 
-	std::vector<bool> line (nbNode,false);
-
-	line[0]=true;
-	matrix.assign(nbNode-1,line);
-	
-	line.clear();
-	line.assign(nbNode, false);
-	std::vector<std::vector<bool>>::iterator it = matrix.begin();
-	matrix.insert(it, line);
+    //Construction
+    matrix[0][0] = false;
+    for (unsigned dim = 1; dim <= power; dim ++)
+    {
+        int stepNbNode = 1<< (dim-1); //represents the number of nodes for the current step.
+        for(i=0; i <stepNbNode; i++)
+            for(j=0; j< stepNbNode;j++)
+            {
+                matrix[i+stepNbNode][j+stepNbNode]=matrix[i][j];//Diagonal part
+                matrix[i][j+stepNbNode]= matrix[i+stepNbNode][j] = (i == j);//Identity
+            }
+    }
 }

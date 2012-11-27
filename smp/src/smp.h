@@ -45,5 +45,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <topology/complete.h>
 #include <topology/ring.h>
 #include <topology/star.h>
+#include <topology/hypercubic.h>
 
 #endif
