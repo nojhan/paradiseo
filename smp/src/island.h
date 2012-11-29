@@ -34,8 +34,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 #include <utility>
 #include <atomic>
+#include <type_traits>
 
-#include <eo>
+#include <eoEvalFunc.h>
+#include <eoSelect.h>
+#include <eoAlgo.h>
+#include <eoPop.h>
+
 #include <abstractIsland.h>
 #include <islandModel.h>
 #include <migPolicy.h>
@@ -68,7 +73,7 @@ public:
      * @param args Parameters to construct the algorithm.
      */
     template<class... Args>
-    Island(unsigned _popSize, eoInit<EOT>& _chromInit, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
+    Island(eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
     
     /**
      * Start the island.
@@ -118,7 +123,7 @@ protected:
     virtual void receive(void);
     
     eoEvalFunc<EOT>& eval;               
-    eoPop<EOT> pop;
+    eoPop<EOT>& pop;
     EOAlgo<EOT> algo;
     std::queue<eoPop<EOT>> listImigrants;
     IntPolicy<EOT>& intPolicy;

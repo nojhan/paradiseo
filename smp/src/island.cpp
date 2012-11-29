@@ -27,12 +27,9 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <type_traits>
-
-
 template<template <class> class EOAlgo, class EOT>
 template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chromInit, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
+paradiseo::smp::Island<EOAlgo,EOT>::Island(eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
     // The PPExpander looks for the continuator in the parameters pack.
     // The private inheritance of ContWrapper wraps the continuator and add islandNotifier.
     ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
@@ -40,7 +37,7 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(unsigned _popSize, eoInit<EOT>& _chro
     algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
     // With the PPE we look for the eval function in order to evaluate EOT to integrate
     eval(Loop<Args...>().template findValue<eoEvalFunc<EOT>>(args...)),
-    pop(_popSize, _chromInit),
+    pop(_pop),
     intPolicy(_intPolicy),
     migPolicy(_migPolicy),
     stopped(false),

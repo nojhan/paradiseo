@@ -18,6 +18,7 @@ set (TEST_LIST
         t-smpMW_eoSyncEasyPSO
         t-smpIsland
         t-smpTopo
+        t-smpMI_Homogeneous
 		)
 
 ######################################################################################
