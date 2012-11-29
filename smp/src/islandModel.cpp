@@ -27,49 +27,65 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#include <functional>
+#include <algorithm>
+
 template<class EOT>
 paradiseo::smp::IslandModel<EOT>::IslandModel(AbstractTopology& _topo) :
-    topo(_topo)
+    topo(_topo),
+    running(false)
 { }
 
 template<class EOT>
 void paradiseo::smp::IslandModel<EOT>::add(AIsland<EOT>& _island)
 {
-    islands.push_back(&_island);
-    islands.back()->setModel(this);
+    islands.push_back(std::pair<AIsland<EOT>*, bool>(&_island, false));
+    islands.back().first->setModel(this);
 }
 
 template<class EOT>
 void paradiseo::smp::IslandModel<EOT>::operator()()
 {
+    running = true;
+
     std::vector<std::thread> threads(islands.size());
+    
+    // Preparing islands
+    for(auto it : islands)
+        it.second = true;
     
     // Construct topology according to the number of islands
     topo.construct(islands.size());
     
     // Create table
-    table = createTable(topo, islands);
+    table = createTable();
     
     // Launching threads
     unsigned i = 0;
     for(auto it : islands)
     {
-        threads[i] = std::thread(&AIsland<EOT>::operator(), it);
+        threads[i] = std::thread(&AIsland<EOT>::operator(), it.first);
         i++;
     }
 
-    unsigned workingThread = islands.size();
-    while(workingThread > 0)
+    // 
+    std::function<int()> workingIslands = [this]() -> int
+    {
+        return (int)std::count_if(std::begin(islands), std::end(islands),
+            [](std::pair<AIsland<EOT>*, bool>& i) -> bool
+            { return i.second; } );
+    };
+            
+    while(workingIslands() > 0)
     {
         // Count working islands
-        workingThread = islands.size();
         for(auto& it : islands)
         {
             // If an island is stopped we need to isolate its node in the topology
-            if(it->isStopped())
+            if(it.second && it.first->isStopped())
             {
-                workingThread--;
-                topo.isolateNode(table.getLeft()[it]);
+                it.second = false;
+                topo.isolateNode(table.getLeft()[it.first]);
             }
         }        
         // Check sending
@@ -82,7 +98,9 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
         thread.join();
     
     for(auto& message : sentMessages)
-        message.join();   
+        message.join();
+        
+    running = false;
 }
 
 template<class EOT>  
@@ -95,7 +113,18 @@ void paradiseo::smp::IslandModel<EOT>::update(eoPop<EOT> _data, AIsland<EOT>* _i
 template<class EOT>  
 void paradiseo::smp::IslandModel<EOT>::setTopology(AbstractTopology& _topo)
 {
+    // If we change topo, we need to protect it
+    std::lock_guard<std::mutex> lock(m);
     topo = _topo;
+    // If we change when the algorithm is running, we need to recontruct the topo
+    if(running)
+    {
+        topo.construct(islands.size());
+        // If we change the topology during the algorithm, we need to isolate stopped islands
+        for(auto it : islands)
+            if(!it.second)
+                topo.isolateNode(table.getLeft()[it.first]);
+    }
 }
 
 template<class EOT>      
@@ -118,16 +147,21 @@ void paradiseo::smp::IslandModel<EOT>::send(void)
 }
 
 template<class EOT>     
-Bimap<unsigned, AIsland<EOT>*> paradiseo::smp::IslandModel<EOT>::createTable(AbstractTopology& _topo, std::vector<AIsland<EOT>*>& _islands)
+Bimap<unsigned, AIsland<EOT>*> paradiseo::smp::IslandModel<EOT>::createTable()
 {
     Bimap<unsigned, AIsland<EOT>*> table;
     unsigned islandId = 0;
     for(auto it : islands)
     {
-        table.add(islandId, it);
+        table.add(islandId, it.first);
         islandId++;
     }
     
     return table;
 }
 
+template<class EOT>     
+bool paradiseo::smp::IslandModel<EOT>::isRunning() const
+{
+    return (bool)running;
+}

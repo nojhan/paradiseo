@@ -80,6 +80,8 @@ public:
      */
     void setTopology(AbstractTopology& _topo);
     
+    bool isRunning() const;
+    
 protected:
     
     /**
@@ -87,14 +89,15 @@ protected:
      */
     void send(void);
     
-    Bimap<unsigned, AIsland<EOT>*> createTable(AbstractTopology& _topo, std::vector<AIsland<EOT>*>& _islands);
+    Bimap<unsigned, AIsland<EOT>*> createTable();
 
     std::queue<std::pair<eoPop<EOT>,AIsland<EOT>*>> listEmigrants;
     Bimap<unsigned, AIsland<EOT>*> table;
-    std::vector<AIsland<EOT>*> islands;
+    std::vector<std::pair<AIsland<EOT>*, bool>> islands;
     AbstractTopology& topo;
     std::vector<std::thread> sentMessages;
     std::mutex m;
+    std::atomic<bool> running;
 };
 
 #include <islandModel.cpp>
