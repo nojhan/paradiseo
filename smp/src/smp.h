@@ -35,6 +35,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <scheduler.h>
 #include <islandModel.h>
 #include <island.h>
+#include <abstractIsland.h>
 #include <migPolicy.h>
 #include <intPolicy.h>
 #include <policyElement.h>

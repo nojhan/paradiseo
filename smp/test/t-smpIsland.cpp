@@ -82,15 +82,6 @@ int main(void)
         eoPop<Indi> pop2(param.popSize, chromInit);
         Island<eoEasyEA,Indi> test2(pop2, intPolicy_2, migPolicy_2, genCont_2, plainEval, select, transform, replace);
         
-        // Topology
-        Topology<Complete> topo;
-        
-        IslandModel<Indi> model(topo);
-        model.add(test);
-        model.add(test2);
-        
-        //model();
-        
         test();
         test2();
         

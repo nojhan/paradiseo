@@ -9,11 +9,11 @@ using namespace std;
 int main(void)
 {
     typedef struct {
-        unsigned popSize = 100;
+        unsigned popSize = 10;
         unsigned tSize = 2;
         double pCross = 0.8;
         double pMut = 0.7;
-        unsigned maxGen = 100;
+        unsigned maxGen = 10;
     } Param; 
 
     Param param;

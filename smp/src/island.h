@@ -60,10 +60,22 @@ The island wraps an algorithm and provide mecanism for emigration and integratio
 @see smp::AbstractIsland, smp::MigPolicy
 */
 
-template<template <class> class EOAlgo, class EOT>
-class Island : private ContWrapper<EOT>, public AIsland<EOT>
+template<template <class> class EOAlgo, class EOT, class bEOT = EOT>
+class Island : private ContWrapper<EOT, bEOT>, public AIsland<bEOT>
 {
 public:
+    /**
+     * Constructor
+     * @param _convertFromBase Function to convert EOT from base EOT
+     * @param _convertToBase Function to convert base EOT to EOT
+     * @param _popSize Size of the algorithm population.
+     * @param _chromInit Population initializer.
+     * @param _intPolicy Integration policy
+     * @param _migPolicy Migration policy
+     * @param args Parameters to construct the algorithm.
+     */
+    template<class... Args>
+    Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
     /**
      * Constructor
      * @param _popSize Size of the algorithm population.
@@ -84,7 +96,7 @@ public:
      * Set model
      * @param _model Pointer to the Island Model corresponding 
      */
-    virtual void setModel(IslandModel<EOT>* _model);
+    virtual void setModel(IslandModel<bEOT>* _model);
     
     /**
      * Return a reference to the island population.
@@ -101,7 +113,7 @@ public:
      * Update the list of imigrants.
      * @param _data Elements to integrate in the main population.
      */
-    void update(eoPop<EOT> _data);
+    void update(eoPop<bEOT> _data);
     
     /**
      * Check if the algorithm is stopped.
@@ -125,12 +137,14 @@ protected:
     eoEvalFunc<EOT>& eval;               
     eoPop<EOT>& pop;
     EOAlgo<EOT> algo;
-    std::queue<eoPop<EOT>> listImigrants;
+    std::queue<eoPop<bEOT>> listImigrants;
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;
     std::atomic<bool> stopped;
     std::vector<std::thread> sentMessages;
-    IslandModel<EOT>* model; 
+    IslandModel<bEOT>* model;
+    std::function<EOT(bEOT&)> convertFromBase; 
+    std::function<bEOT(EOT&)> convertToBase;
 };
 
 #include <island.cpp>

@@ -63,16 +63,7 @@ public:
      */
     virtual void setModel(IslandModel<EOT>* _model) = 0;
     
-    /**
-     * Send population to mediator
-     * @param _select Method to select EOT to send
-     */
-    virtual void send(eoSelect<EOT>& _select) = 0;
-    
-    /**
-     * Check if there is population to receive
-     */
-    virtual void receive(void) = 0;
+
     
     /**
      * Check if there is population to receive or to emigrate

@@ -52,6 +52,8 @@ island model pattern according to a topology.
 @see smp::Island, smp::MigPolicy
 */
 
+
+
 template<class EOT>
 class IslandModel
 {
