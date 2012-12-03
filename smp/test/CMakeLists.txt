@@ -19,7 +19,7 @@ set (TEST_LIST
         t-smpIsland
         t-smpTopo
         t-smpMI_Homogeneous
-        #t-smpMI_Heterogeneous
+        t-smpMI_Heterogeneous
 		)
 
 ######################################################################################

@@ -107,7 +107,7 @@ template<class EOT>
 void paradiseo::smp::IslandModel<EOT>::update(eoPop<EOT> _data, AIsland<EOT>* _island)
 {
     std::lock_guard<std::mutex> lock(m);
-    std::cout << "Mediateur reçoit ! " << _data << std::endl;
+    //std::cout << "Mediateur reçoit ! " << _data << std::endl;
     listEmigrants.push(std::pair<eoPop<EOT>,AIsland<EOT>*>(_data, _island));
 }
 
@@ -134,7 +134,7 @@ void paradiseo::smp::IslandModel<EOT>::send(void)
     std::lock_guard<std::mutex> lock(m);
     while (!listEmigrants.empty())
     {
-        std::cout << "Mediator envoie ! " << listEmigrants.size() << std::endl;
+        //std::cout << "Mediator envoie ! " << listEmigrants.size() << std::endl;
         // Get the neighbors
         unsigned idFrom = table.getLeft()[listEmigrants.front().second];
         std::vector<unsigned> neighbors = topo.getIdNeighbors(idFrom);

@@ -51,7 +51,7 @@ The abstract island is used to manipulate island pointers wihout the knowledge o
 @see smp::Island
 */
 
-template<class EOT>
+template<class bEOT>
 class AIsland
 {
 public:
@@ -61,9 +61,7 @@ public:
     /**
      * Check if there is population to receive
      */
-    virtual void setModel(IslandModel<EOT>* _model) = 0;
-    
-
+    virtual void setModel(IslandModel<bEOT>* _model) = 0;
     
     /**
      * Check if there is population to receive or to emigrate
@@ -73,7 +71,7 @@ public:
     /**
      * Update the island  by adding population to send in the imigrants list.
      */
-    virtual void update(eoPop<EOT> _data) = 0;
+    virtual void update(eoPop<bEOT> _data) = 0;
     
     /**
      * Check if the algorithm is stopped.

@@ -29,7 +29,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
 template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
+paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(std::function<EOT&&(bEOT&)> _convertFromBase, std::function<bEOT&&(EOT&)> _convertToBase, eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
     // The PPExpander looks for the continuator in the parameters pack.
     // The private inheritance of ContWrapper wraps the continuator and add islandNotifier.
     ContWrapper<EOT, bEOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
@@ -54,8 +54,8 @@ template<class... Args>
 paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
     Island(
     // Default conversion functions for homogeneous islands
-    [](bEOT& i) -> EOT { return (EOT)i; },
-    [](EOT& i) -> bEOT { return (bEOT)i; },
+    [](bEOT& i) -> EOT&& { return std::forward<EOT>(i); },
+    [](EOT& i) -> bEOT&& { return std::forward<bEOT>(i); },
     _pop, _intPolicy, _migPolicy, args...)
 { }
 
@@ -114,7 +114,7 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
         for(auto& indi : migPop)
             baseMigPop.push_back(convertToBase(indi));
             
-        std::cout << "On envoie de l'île : " << migPop << std::endl;
+        //std::cout << "On envoie de l'île : " << migPop << std::endl;
        
         // Delete delivered messages
         for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
@@ -131,7 +131,7 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
     std::lock_guard<std::mutex> lock(this->m);
     while (!listImigrants.empty())
     { 
-        std::cout << "On reçoit dans l'île : " << listImigrants.size() << std::endl;
+        //std::cout << "On reçoit dans l'île : " << listImigrants.size() << std::endl;
         eoPop<bEOT> base_offspring = listImigrants.front();
         
         // Convert objects from base to our objects type
@@ -152,7 +152,7 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
 template<template <class> class EOAlgo, class EOT, class bEOT>
 void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::update(eoPop<bEOT> _data)
 {
-    std::cout << "On update dans l'île" << std::endl;
+    //std::cout << "On update dans l'île" << std::endl;
     std::lock_guard<std::mutex> lock(this->m);
     listImigrants.push(_data);
 }
