@@ -94,10 +94,7 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
     for(auto& thread : threads)
         thread.join();
     
-    // Send last population
-    while(!listEmigrants.empty())
-        send();
-    
+   
     // Wait the end of messages sending
     for(auto& message : sentMessages)
         message.join();

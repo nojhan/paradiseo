@@ -29,7 +29,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
 template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(std::function<EOT&&(bEOT&)> _convertFromBase, std::function<bEOT&&(EOT&)> _convertToBase, eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
+paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
     // The PPExpander looks for the continuator in the parameters pack.
     // The private inheritance of ContWrapper wraps the continuator and add islandNotifier.
     ContWrapper<EOT, bEOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
@@ -54,8 +54,8 @@ template<class... Args>
 paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
     Island(
     // Default conversion functions for homogeneous islands
-    [](bEOT& i) -> EOT&& { return std::forward<EOT>(i); },
-    [](EOT& i) -> bEOT&& { return std::forward<bEOT>(i); },
+    [](bEOT& i) -> EOT { return std::forward<EOT>(i); },
+    [](EOT& i) -> bEOT { return std::forward<bEOT>(i); },
     _pop, _intPolicy, _migPolicy, args...)
 { }
 
