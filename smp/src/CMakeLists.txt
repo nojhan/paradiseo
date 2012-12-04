@@ -28,6 +28,7 @@ set (SMP_FILE
     topology/star.cpp
     topology/ring.cpp
     topology/hypercubic.cpp
+    topology/mesh.cpp
     )
 
 add_library(smp STATIC ${SMP_FILE})

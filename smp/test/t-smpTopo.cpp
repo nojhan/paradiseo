@@ -81,12 +81,26 @@ int main()
 
     value.clear();
 	assert(neighbors == value);
-
-	neighbors=topo_star.getIdNeighbors(1);
+    //---------------------------------------
+	neighbors=topo_star.getIdNeighbors(2);
 	    
     value.clear();
 	value.push_back(0);
 	assert(neighbors == value);
+	//---------------------------------------
+	topo_star.getBuilder().setCenter(2);
+	topo_star.construct(n);
+
+	neighbors=topo_star.getIdNeighbors(0);    
+    
+    value.clear();
+    value.push_back(2);
+	assert(neighbors == value);
+    //---------------------------------------
+	neighbors=topo_star.getIdNeighbors(2);
+    value.clear();
+	assert(neighbors == value);
+	
 	
 /////////////////////////////////////////////////////////////////////////
 	//Test of Ring Topology
@@ -99,13 +113,13 @@ int main()
     value.clear();
 	value.push_back(5);
 	assert(neighbors == value);
-
+    //---------------------------------------
 	neighbors=topo_ring.getIdNeighbors(7);
     
     value.clear();
 	value.push_back(0);
 	assert(neighbors == value);
-	
+	//---------------------------------------
 	neighbors=topo_ring.getIdNeighbors(0);
 
     value.clear();
@@ -117,13 +131,13 @@ int main()
 	n=2;
 	Topology<Hypercubic> topo_hyper;
 	topo_hyper.construct(n);
-
+    
 	neighbors=topo_hyper.getIdNeighbors(0);
 	   
     value.clear();
 	value.push_back(1);
 	assert(neighbors == value);
-
+    //------------------------------------
     n=4;
    	topo_hyper.construct(n);
    	
@@ -133,7 +147,7 @@ int main()
 	value.push_back(0);
 	value.push_back(3);
 	assert(neighbors == value);
-   	
+   	//-------------------------------------
    	n=8;
    	topo_hyper.construct(n);
    	
@@ -144,4 +158,33 @@ int main()
 	value.push_back(4);
 	value.push_back(7);
 	assert(neighbors == value);
+	
+	/////////////////////////////////////////////////////////////////////////
+	//Test of Mesh Topology
+	n=9;
+	Topology<Mesh> topo_mesh;
+	topo_mesh.construct(n);
+	neighbors=topo_mesh.getIdNeighbors(0);
+    
+    value.clear();
+	value.push_back(1);
+	value.push_back(3);
+	assert(neighbors == value);
+	//-------------------------------------
+	topo_mesh.getBuilder().setRatio(0.4);
+	topo_mesh.construct(n);
+	neighbors=topo_mesh.getIdNeighbors(5);
+
+    value.clear();
+	value.push_back(6);
+	//assert(neighbors == value);	
+    //--------------------------------------
+	n=8;
+	topo_mesh.construct(n);
+	neighbors=topo_mesh.getIdNeighbors(0);
+	
+    value.clear();
+	value.push_back(1);
+	value.push_back(4);
+	assert(neighbors == value);        	
 }

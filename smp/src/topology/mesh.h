@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<mesh.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,25 +27,44 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
+#ifndef MESH_H_
+#define MESH_H_
 
-#include <thread.h>
-#include <MWModel.h>
-#include <scheduler.h>
-#include <islandModel.h>
-#include <island.h>
-#include <migPolicy.h>
-#include <intPolicy.h>
-#include <policyElement.h>
-#include <islandNotifier.h>
+#include <vector>
+#include <topology/topologyBuilder.h>
 
-// Topologies
-#include <topology/topology.h>
-#include <topology/complete.h>
-#include <topology/ring.h>
-#include <topology/star.h>
-#include <topology/hypercubic.h>
-#include <topology/mesh.cpp>
+namespace paradiseo
+{
+namespace smp
+{
+
+/**
+*Mesh: Inherit from TopologyBuilder. Represents a builder for a mesh topology : nodes are organised over a rectangular grid, and each node is connected to : 2 nodes (corner), 3 nodes (edge) or 4 nodes (center). The default mesh has a ratio near 1 (square), but the user can change the ratio between 0 and 1 (line to square) 
+*/
+class Mesh : public TopologyBuilder
+{
+public :
+    /**
+    *Fills the given matrix for a mesh topology with the specified number of nodes.
+    */
+    void operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const;
+    
+    /**
+    *Setter for the variable _ratio
+    */
+    void setRatio(double r);
+    
+private :
+    /**
+    *Ratio of the grid, between 0 and 1 (default). The change will not be done before next construction of the topology.
+    */
+    double _ratio=1;
+    
+    std::vector<unsigned> factorization(unsigned n) const;
+};
+
+}
+
+}
 
 #endif
