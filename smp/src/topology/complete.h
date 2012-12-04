@@ -38,7 +38,7 @@ namespace smp
 {
 
 /**
-*Complete: Inherit from TopologyBuilder. Reprents a builder for a complete topology : each node has every other node for neighor.
+*Complete: Inherit from TopologyBuilder. Represents a builder for a complete topology : each node has every other node for neighor.
 */
 class Complete: public TopologyBuilder
 {

@@ -39,7 +39,7 @@ namespace smp
 {
 
 /**
-*Ring: Inherit from TopologyBuilder. Reprents a builder for a complete topology : each node has the next node for neighor. The last node is connected to the first.
+*Ring: Inherit from TopologyBuilder. Represents a builder for a ring topology : each node has the next node for neighor. The last node is connected to the first.
 */
 class Ring : public TopologyBuilder
 {
