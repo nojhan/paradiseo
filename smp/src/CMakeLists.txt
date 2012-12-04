@@ -17,7 +17,6 @@ set(LIBRARY_OUTPUT_PATH ${SMP_LIB_OUTPUT_PATH})
 ######################################################################################
 
 set (SMP_FILE 
-    thread.cpp
     MWModel.h
     scheduler.h
     island.h
@@ -28,6 +27,7 @@ set (SMP_FILE
     topology/star.cpp
     topology/ring.cpp
     topology/hypercubic.cpp
+    notifier.cpp
     )
 
 add_library(smp STATIC ${SMP_FILE})

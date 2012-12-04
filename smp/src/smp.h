@@ -30,7 +30,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_H
 #define SMP_H
 
-#include <thread.h>
 #include <MWModel.h>
 #include <scheduler.h>
 #include <islandModel.h>
@@ -40,6 +39,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <intPolicy.h>
 #include <policyElement.h>
 #include <islandNotifier.h>
+#include <notifier.h>
 
 // Topologies
 #include <topology/topology.h>

@@ -31,6 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define MWMODEL_H_
 
 #include <cassert>
+#include <thread>
 
 #include <scheduler.h>
 #include <algoDispatching.h>
@@ -113,7 +114,7 @@ protected:
      */
     void operator()(eoPop<EOT>& pop,const error_tag&);
     
-    std::vector<Thread*> workers;
+    std::vector<std::thread*> workers;
     Scheduler<EOT,Policy> scheduler;
 };
 
