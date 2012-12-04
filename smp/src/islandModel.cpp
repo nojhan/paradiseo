@@ -48,18 +48,12 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
 {
     running = true;
 
+    // INIT PART
+    // Create topology, table and initialize islands
+    initModel();
+    
     std::vector<std::thread> threads(islands.size());
-    
-    // Preparing islands
-    for(auto& it : islands)
-        it.second = true; // Indicate islands are running
-    
-    // Construct topology according to the number of islands
-    topo.construct(islands.size());
-    
-    // Create table
-    table = createTable();
-    
+
     // Launching threads
     unsigned i = 0;
     for(auto it : islands)
@@ -68,14 +62,15 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
         i++;
     }
 
-    // 
+    // Lambda function in order to know the number of working islands
     std::function<int()> workingIslands = [this]() -> int
     {
         return (int)std::count_if(std::begin(islands), std::end(islands),
             [](std::pair<AIsland<EOT>*, bool>& i) -> bool
             { return i.second; } );
     };
-  
+    
+    // SCHEDULING PART
     while(workingIslands() > 0)
     {
         // Count working islands
@@ -93,12 +88,31 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
         
         std::this_thread::sleep_for(std::chrono::nanoseconds(10));
     }
-        
+    
+    // ENDING PART
+    // Wait the end of algorithms
     for(auto& thread : threads)
         thread.join();
     
+    // Send last population
+    while(!listEmigrants.empty())
+        send();
+    
+    // Wait the end of messages sending
     for(auto& message : sentMessages)
         message.join();
+        
+    // Force last integration
+    i = 0;
+    for(auto it : islands)
+    {
+        threads[i] = std::thread(&AIsland<EOT>::receive, it.first);
+        i++;
+    }
+    
+    // Wait the end of the last integration
+    for(auto& thread : threads)
+        thread.join();
         
     running = false;
 }
@@ -120,6 +134,7 @@ void paradiseo::smp::IslandModel<EOT>::setTopology(AbstractTopology& _topo)
     // If we change when the algorithm is running, we need to recontruct the topo
     if(running)
     {
+        std::cout << "Changing topology" << std::endl;
         topo.construct(islands.size());
         // If we change the topology during the algorithm, we need to isolate stopped islands
         for(auto it : islands)
@@ -132,7 +147,7 @@ template<class EOT>
 void paradiseo::smp::IslandModel<EOT>::send(void)
 {
     std::lock_guard<std::mutex> lock(m);
-    while (!listEmigrants.empty())
+    if (!listEmigrants.empty())
     {
         //std::cout << "Mediator envoie ! " << listEmigrants.size() << std::endl;
         // Get the neighbors
@@ -149,6 +164,26 @@ void paradiseo::smp::IslandModel<EOT>::send(void)
 }
 
 template<class EOT>     
+bool paradiseo::smp::IslandModel<EOT>::isRunning() const
+{
+    return (bool)running;
+}
+
+template<class EOT> 
+void paradiseo::smp::IslandModel<EOT>::initModel(void)
+{
+    // Preparing islands
+    for(auto& it : islands)
+        it.second = true; // Indicate islands are active
+    
+    // Construct topology according to the number of islands
+    topo.construct(islands.size());
+    
+    // Create table
+    table = createTable();
+}
+
+template<class EOT>     
 Bimap<unsigned, AIsland<EOT>*> paradiseo::smp::IslandModel<EOT>::createTable()
 {
     Bimap<unsigned, AIsland<EOT>*> table;
@@ -160,10 +195,4 @@ Bimap<unsigned, AIsland<EOT>*> paradiseo::smp::IslandModel<EOT>::createTable()
     }
     
     return table;
-}
-
-template<class EOT>     
-bool paradiseo::smp::IslandModel<EOT>::isRunning() const
-{
-    return (bool)running;
 }

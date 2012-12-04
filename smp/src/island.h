@@ -121,6 +121,11 @@ public:
      */
     virtual bool isStopped(void) const; 
     
+    /**
+     * Check if there is population to receive
+     */
+    virtual void receive(void);
+    
 protected:
 
     /**
@@ -128,11 +133,6 @@ protected:
      * @param _select Method to select EOT to send
      */
     virtual void send(eoSelect<EOT>& _select);
-    
-    /**
-     * Check if there is population to receive
-     */
-    virtual void receive(void);
     
     eoEvalFunc<EOT>& eval;               
     eoPop<EOT>& pop;

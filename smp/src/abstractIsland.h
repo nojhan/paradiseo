@@ -78,6 +78,8 @@ public:
      * @return true if stopped
      */
     virtual bool isStopped(void) const = 0;
+    
+    virtual void receive(void) = 0;
 
 protected:
     std::mutex m;    

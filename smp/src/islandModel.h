@@ -91,6 +91,11 @@ protected:
      */
     void send(void);
     
+    /**
+     * Initialize islands, topology and table before starting the model
+     */
+    void initModel(void);
+    
     Bimap<unsigned, AIsland<EOT>*> createTable();
 
     std::queue<std::pair<eoPop<EOT>,AIsland<EOT>*>> listEmigrants;

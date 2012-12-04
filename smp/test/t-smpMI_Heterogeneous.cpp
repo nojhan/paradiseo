@@ -1,3 +1,5 @@
+// TODO : Un vrai test, propre, qui veut dire quelque chose :)
+
 #include <smp>
 #include <eo>
 #include <ga.h>
