@@ -39,7 +39,7 @@ namespace smp
 {
 
 /**
-*Star: Inherit from TopologyBuilder. Reprents a builder for a star topology : each node excepted the first has every other node for neighor. The first node doesn't have any neighbor.
+*Star: Inherit from TopologyBuilder. Represents a builder for a star topology : each node excepted the center has every other node for neighor. The center node doesn't have any neighbor. The center is the first node by default.
 */
 class Star : public TopologyBuilder
 {
@@ -48,6 +48,17 @@ public :
     *Fills the given matrix for a star topology with the specified number of nodes.
     */
 	void operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const;
+	
+	/**
+    *Setter for the variable _center
+    */
+    void setCenter(unsigned c);
+	
+private :
+    /**
+    *Index of the node which is the center. The change will not be done before next construction of the topology.
+    */
+    unsigned _center=0;
 };
 
 }

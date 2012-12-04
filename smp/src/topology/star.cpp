@@ -32,19 +32,21 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 void paradiseo::smp::Star::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
-	matrix.clear();
+    matrix.clear();
 
-	matrix.resize(nbNode);
+    matrix.resize(nbNode);
 	for(auto& line : matrix)
 	    line.resize(nbNode);
+    
+    std::vector<bool> line (nbNode,false); 
 
-	std::vector<bool> line (nbNode,false);
+    line[_center]=true;
+    matrix.assign(nbNode,line);
 
-	line[0]=true;
-	matrix.assign(nbNode-1,line);
-	
-	line.clear();
-	line.assign(nbNode, false);
-	std::vector<std::vector<bool>>::iterator it = matrix.begin();
-	matrix.insert(it, line);
+    matrix[_center][_center]=false;
+}
+
+void paradiseo::smp::Star::setCenter(unsigned c)
+{
+    _center=c;
 }
