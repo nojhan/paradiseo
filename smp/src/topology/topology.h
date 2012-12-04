@@ -73,6 +73,11 @@ public :
     *@param idNode index of the node to be isolated
     */
     void isolateNode(unsigned idNode);
+    
+    /**
+    *Getter for the variable _builder by reference
+    */
+    TopologyType & getBuilder();
 	
 private :
 

@@ -27,7 +27,6 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-
 template <class TopologyType>	
 std::vector<unsigned> paradiseo::smp::Topology<TopologyType>::getIdNeighbors(unsigned idNode) const
 {
@@ -57,3 +56,11 @@ void paradiseo::smp::Topology<TopologyType>::isolateNode(unsigned idNode)
         _matrix[i][idNode] = false;
     }
 }
+
+template <class TopologyType>
+TopologyType & paradiseo::smp::Topology<TopologyType>::getBuilder()
+{
+    TopologyType &b=_builder;
+    return b;
+}
+
