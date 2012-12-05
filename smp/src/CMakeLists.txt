@@ -45,7 +45,7 @@ install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/smp COMPONENT header
 ### 4) Install directories
 ######################################################################################
 
-install(DIRECTORY MWAlgo
+install(DIRECTORY MWAlgo topology
         DESTINATION include${INSTALL_SUB_DIR}/smp
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"

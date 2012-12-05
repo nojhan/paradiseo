@@ -28,7 +28,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #ifndef BIMAP_MODEL_H_
-#define BIMAP_H_
+#define BIMAP_MODEL_H_
 
 #include <set>
 #include <map>

@@ -6,6 +6,19 @@
 using namespace paradiseo::smp;
 using namespace std;
 
+void changeTopo(IslandModel<Indi>& _model, AbstractTopology& _topo)
+{
+    static bool first = false;
+    // Change topology after 1s of computation
+    std::chrono::milliseconds dura(1000);
+    std::this_thread::sleep_for( dura );
+    if(!first)
+    {
+        _model.setTopology(_topo);
+        first = !first;
+    }
+}
+
 int main(void)
 {
     // Defining parameters
@@ -35,6 +48,11 @@ int main(void)
     eoSGATransform<Indi> transform(Xover, param.pCross, mutationSwap, param.pMut);
     eoPlusReplacement<Indi> replace;
     
+    // MODEL
+    // Topologies
+    Topology<Complete> topo;
+    IslandModel<Indi> model(topo);
+    
     // ISLAND 1
     // // Algorithm part
     eoGenContinue<Indi> genCont(param.maxGen+100);
@@ -44,6 +62,10 @@ int main(void)
     eoPeriodicContinue<Indi> criteria(5);
     eoDetTournamentSelect<Indi> selectOne1(20);
     eoSelectNumber<Indi> who(selectOne1, 3);
+    
+    Topology<Ring> topo2;
+    //std::function<void(void)> task = std::bind(changeTopo, model, topo2);
+    //Notifier topoChanger(task);
     
     MigPolicy<Indi> migPolicy;
     migPolicy.push_back(PolicyElement<Indi>(who, criteria));
@@ -92,24 +114,14 @@ int main(void)
 
     try
     {
-        // Topologies
-        Topology<Complete> topo;
-        Topology<Ring> topo2;
         
-        IslandModel<Indi> model(topo);
+        
+        
         model.add(test);
         model.add(test2);
         model.add(test3);
         
-        std::thread t = std::thread(&IslandModel<Indi>::operator(), &model);
-        
-        // Change topology after 1s of computation
-        std::chrono::milliseconds dura(1000);
-        std::this_thread::sleep_for( dura );
-
-        model.setTopology(topo2);
-        
-        t.join();
+        model();
         
         cout << test.getPop() << endl;
         cout << test2.getPop() << endl;
