@@ -27,10 +27,10 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-template<class EOT>
-paradiseo::smp::ContWrapper<EOT>::ContWrapper(eoContinue<EOT>& _cont, AIsland<EOT>* island) :
+template<class EOT, class bEOT>
+paradiseo::smp::ContWrapper<EOT, bEOT>::ContWrapper(eoContinue<EOT>& _cont, AIsland<bEOT>* island) :
     ck(_cont),
-    islandNotifier(island, &AIsland<EOT>::check)
+    islandNotifier(island, &AIsland<bEOT>::check)
 {   
     ck.add(islandNotifier);
 }

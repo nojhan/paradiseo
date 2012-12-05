@@ -39,7 +39,7 @@ paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel(unsigned workersNb, Args&...
 template<template <class> class EOAlgo, class EOT, class Policy>
 template<class... Args>
 paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel(Args&... args) :
-    MWModel(Thread::hardware_concurrency(), args...)
+    MWModel(std::thread::hardware_concurrency(), args...)
 {}
 
 template<template <class> class EOAlgo, class EOT, class Policy>

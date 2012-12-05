@@ -50,7 +50,7 @@ By using the wrapper, we do not have to modify original continuators inside the 
 it avoids some side effects.
 
 */
-template<class EOT>
+template<class EOT, class bEOT>
 class ContWrapper
 {
 public:
@@ -59,11 +59,11 @@ public:
      * @param _cont Original continuators
      * @param _policy Policy to wrap with continuators
      */
-    ContWrapper(eoContinue<EOT>& _cont, AIsland<EOT>* island);
+    ContWrapper(eoContinue<EOT>& _cont, AIsland<bEOT>* island);
 
 protected:
     eoCheckPoint<EOT> ck;
-    IslandNotifier<EOT> islandNotifier;
+    IslandNotifier<bEOT> islandNotifier;
 };
 
 #include <contWrapper.cpp>

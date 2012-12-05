@@ -52,6 +52,8 @@ island model pattern according to a topology.
 @see smp::Island, smp::MigPolicy
 */
 
+
+
 template<class EOT>
 class IslandModel
 {
@@ -88,6 +90,11 @@ protected:
      * Send population to islands
      */
     void send(void);
+    
+    /**
+     * Initialize islands, topology and table before starting the model
+     */
+    void initModel(void);
     
     Bimap<unsigned, AIsland<EOT>*> createTable();
 

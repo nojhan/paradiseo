@@ -35,7 +35,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <atomic>
 #include <mutex>
 
-#include <thread.h>
 #include <policiesDispatching.h>
 
 #include <eoEvalFunc.h>
@@ -106,7 +105,7 @@ protected:
      */
     std::vector<std::vector<EOT*>> subGroups(eoPop<EOT>& pop);
     
-    std::vector<Thread> workers;
+    std::vector<std::thread> workers;
     std::vector<std::vector<EOT*>> popPackages;
     
     std::atomic<bool> done;

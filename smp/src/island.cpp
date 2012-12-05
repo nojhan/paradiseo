@@ -27,12 +27,12 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-template<template <class> class EOAlgo, class EOT>
+template<template <class> class EOAlgo, class EOT, class bEOT>
 template<class... Args>
-paradiseo::smp::Island<EOAlgo,EOT>::Island(eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
+paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
     // The PPExpander looks for the continuator in the parameters pack.
     // The private inheritance of ContWrapper wraps the continuator and add islandNotifier.
-    ContWrapper<EOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
+    ContWrapper<EOT, bEOT>(Loop<Args...>().template findValue<eoContinue<EOT>>(args...), this),
     // We inject the wrapped continuator by tag dispatching method during the algorithm construction.
     algo(EOAlgo<EOT>(wrap_pp<eoContinue<EOT>>(this->ck,args)...)),
     // With the PPE we look for the eval function in order to evaluate EOT to integrate
@@ -41,14 +41,26 @@ paradiseo::smp::Island<EOAlgo,EOT>::Island(eoPop<EOT>& _pop, IntPolicy<EOT>& _in
     intPolicy(_intPolicy),
     migPolicy(_migPolicy),
     stopped(false),
-    model(nullptr)
+    model(nullptr),
+    convertFromBase(_convertFromBase),
+    convertToBase(_convertToBase)
 {
     // Check in compile time the inheritance thanks to type_trait.
     static_assert(std::is_base_of<eoAlgo<EOT>,EOAlgo<EOT>>::value, "Algorithm must inherit from eoAlgo<EOT>");
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
+template<template <class> class EOAlgo, class EOT, class bEOT>
+template<class... Args>
+paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args) :
+    Island(
+    // Default conversion functions for homogeneous islands
+    [](bEOT& i) -> EOT { return std::forward<EOT>(i); },
+    [](EOT& i) -> bEOT { return std::forward<bEOT>(i); },
+    _pop, _intPolicy, _migPolicy, args...)
+{ }
+
+template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::operator()()
 {
     stopped = false;
     algo(pop);
@@ -58,20 +70,20 @@ void paradiseo::smp::Island<EOAlgo,EOT>::operator()()
         message.join();
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::setModel(IslandModel<EOT>* _model)
+template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::setModel(IslandModel<bEOT>* _model)
 {
     model = _model;
 }
 
-template<template <class> class EOAlgo, class EOT>
-eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT>::getPop()
+template<template <class> class EOAlgo, class EOT, class bEOT>
+eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT,bEOT>::getPop()
 {
     return pop;
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::check()
+template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::check()
 {
     // Sending
     for(PolicyElement<EOT>& elem : migPolicy)
@@ -82,37 +94,50 @@ void paradiseo::smp::Island<EOAlgo,EOT>::check()
     receive();    
 }
 
-template<template <class> class EOAlgo, class EOT>
-bool paradiseo::smp::Island<EOAlgo,EOT>::isStopped(void) const
+template<template <class> class EOAlgo, class EOT, class bEOT>
+bool paradiseo::smp::Island<EOAlgo,EOT,bEOT>::isStopped(void) const
 {
     return (bool)stopped;
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::send(eoSelect<EOT>& _select)
+template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
 {
     // Allow island to work alone
     if(model != nullptr)
     {
         eoPop<EOT> migPop;
         _select(pop, migPop);
+
+        // Convert pop to base pop
+        eoPop<bEOT> baseMigPop;
+        for(auto& indi : migPop)
+            baseMigPop.push_back(convertToBase(indi));
+            
+        //std::cout << "On envoie de l'île : " << migPop << std::endl;
        
         // Delete delivered messages
         for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
             if(!it->joinable())
                 sentMessages.erase(it);
       
-        sentMessages.push_back(std::thread(&IslandModel<EOT>::update, model, migPop, this));
+        sentMessages.push_back(std::thread(&IslandModel<bEOT>::update, model, baseMigPop, this));
     }
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
+template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
 {
     std::lock_guard<std::mutex> lock(this->m);
     while (!listImigrants.empty())
     { 
-        eoPop<EOT> offspring = listImigrants.front();
+        //std::cout << "On reçoit dans l'île : " << listImigrants.size() << std::endl;
+        eoPop<bEOT> base_offspring = listImigrants.front();
+        
+        // Convert objects from base to our objects type
+        eoPop<EOT> offspring;
+        for(auto& indi : base_offspring)
+            offspring.push_back(convertFromBase(indi));
         
         // Evaluate objects to integrate
         for(auto& indi : offspring)
@@ -124,9 +149,10 @@ void paradiseo::smp::Island<EOAlgo,EOT>::receive(void)
     }
 }
 
-template<template <class> class EOAlgo, class EOT>
-void paradiseo::smp::Island<EOAlgo,EOT>::update(eoPop<EOT> _data)
+template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::update(eoPop<bEOT> _data)
 {
+    //std::cout << "On update dans l'île" << std::endl;
     std::lock_guard<std::mutex> lock(this->m);
     listImigrants.push(_data);
 }

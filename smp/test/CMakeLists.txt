@@ -11,7 +11,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 ######################################################################################
 
 set (TEST_LIST  
-        t-smpThread
         t-smpScheduler
         t-smpMW_eoEasyEA
         t-smpMW_eoEasyPSO
@@ -19,6 +18,7 @@ set (TEST_LIST
         t-smpIsland
         t-smpTopo
         t-smpMI_Homogeneous
+        t-smpMI_Heterogeneous
 		)
 
 ######################################################################################

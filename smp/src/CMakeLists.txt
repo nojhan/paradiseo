@@ -17,7 +17,6 @@ set(LIBRARY_OUTPUT_PATH ${SMP_LIB_OUTPUT_PATH})
 ######################################################################################
 
 set (SMP_FILE 
-    thread.cpp
     MWModel.h
     scheduler.h
     island.h
@@ -29,6 +28,7 @@ set (SMP_FILE
     topology/ring.cpp
     topology/hypercubic.cpp
     topology/mesh.cpp
+    notifier.cpp
     )
 
 add_library(smp STATIC ${SMP_FILE})
@@ -46,7 +46,7 @@ install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/smp COMPONENT header
 ### 4) Install directories
 ######################################################################################
 
-install(DIRECTORY MWAlgo
+install(DIRECTORY MWAlgo topology
         DESTINATION include${INSTALL_SUB_DIR}/smp
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
