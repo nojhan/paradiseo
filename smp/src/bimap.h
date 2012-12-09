@@ -44,7 +44,7 @@ A and B objects are stocked in two std::map, then if you would like to avoid ins
 template A and B with pointers.
 
 **/
-template<class A, class B>
+    template<class A, class B>
 class Bimap
 {
 public:
@@ -53,54 +53,50 @@ public:
      * @param A right key
      * @param B left key
      */
-    void add(A& a, B& b)
-    {
-        rightAssociation[a] = b;
-        leftAssociation[b] = a;
-    }
+    void add(A& a, B& b);
     
-    std::map<A,B> getRight() const
-    {
-        return rightAssociation;
-    }
+    /**
+     * Return a map which represents the right association.
+     * @return rightAssociation
+     */
+    std::map<A,B> getRight() const;
     
-    std::map<B,A> getLeft() const
-    {
-        return leftAssociation;
-    }
+     /**
+     * Return a map which represents the left association.
+     * @return leftAssociation
+     */
+    std::map<B,A> getLeft() const;
     
-    void removeFromRight(const A& a)
-    {
-        for(auto& it : leftAssociation)
-            if(it->second == a)
-                leftAssociation.erase(it);
-        
-        rightAssociation.erase(a);
-    }
+    /**
+     * Remove an association from a right key.
+     * @param Right key of the association to be removed.
+     */
+    void removeFromRight(const A& a);
     
-    void removeFromLeft(const B& b) 
-    {
-        for(auto& it : rightAssociation)
-            if(it->second == b)
-                rightAssociation.erase(it);
-        
-        leftAssociation.erase(b);
-    }
+    /**
+     * Remove an association from a left key.
+     * @param Left key of the association to be removed.
+     */
+    void removeFromLeft(const B& b);
+
+    /**
+     * Return the number of associations.
+     * @return Size of bimap
+     */
+    unsigned size() const;
     
-    unsigned size() const
-    {
-        return leftAssociation.size();
-    }
-    
-    bool empty() const
-    {
-        return leftAssociation.empty();
-    }
+    /**
+     * Check if the bimap is empty
+     * @return true if the bimap is empty
+     */
+    bool empty() const;
 
 protected:
     std::map<A,B> rightAssociation;
     std::map<B,A> leftAssociation;
 };
+
+#include <bimap.cpp>
 
 }
 

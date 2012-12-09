@@ -32,7 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 /** Continuator Dispatching
 
-The Continuator Dispatching enable to wrap continuators in Island constructor for a better user interface
+The Continuator Dispatching enables to wrap continuators in the Island constructor for a better user interface and, moreover, avoiding side effect.
 
 **/
 

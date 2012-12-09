@@ -48,7 +48,7 @@ namespace smp
 
 /** MWModel: Master / Worker Model for multicore computation
 
-The MW Model wraps any algorithm in order to apply it on several populations.
+The MW Model wraps any algorithm in order to dispatch load between threads.
 
 @see smp::Worker, smp::Thread
 */
@@ -100,7 +100,7 @@ protected:
     void operator()(eoPop<EOT>& pop, const eoEasyEA_tag&);
     
     /**
-     * Specifid algorithm for EasyPSO
+     * Specific algorithm for EasyPSO
      */
     void operator()(eoPop<EOT>& pop, const eoEasyPSO_tag&);
     

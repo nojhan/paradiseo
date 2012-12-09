@@ -45,8 +45,15 @@ namespace smp
 class Notifier : public eoUpdater
 {
 public :
+    /**
+     * Constructor
+     * @param _task task to perform each generation
+     */
     Notifier(std::function<void(void)> _task);
     
+    /**
+     * Performing the binded task
+     */
     virtual void operator()();
     
 protected :

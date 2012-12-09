@@ -39,7 +39,7 @@ namespace smp
 
 /** IntPolicy: Integration policy for island.
 
-The island model will check its policy to know how to integrate population sent by other islands.
+The island model will check its policy to know how to integrate populations sent by other islands.
 
 @see smp::Island, smp::MigPolicy
 */

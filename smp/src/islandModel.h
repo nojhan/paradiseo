@@ -46,13 +46,10 @@ namespace smp
 
 /** IslandModel
 
-The IslandModel object is an island container that provides mecanism in order to perform a
-island model pattern according to a topology.
+The IslandModel object is an island container that provides mecanisms in order to manage island communications according to a topology.
 
 @see smp::Island, smp::MigPolicy
 */
-
-
 
 template<class EOT>
 class IslandModel

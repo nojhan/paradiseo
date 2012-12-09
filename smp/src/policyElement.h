@@ -38,7 +38,7 @@ namespace smp
 {
 /** PolicyElement: PolicyElement is an element of a migration policy.
 
-The policy element is a pair of a selection method and a criterion to apply the selection.
+The policy element is a pair made of a selection method and a criterion to apply the selection.
 
 */
 

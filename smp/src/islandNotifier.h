@@ -50,8 +50,16 @@ template <class EOT>
 class IslandNotifier : public eoUpdater
 {
 public :
+    /**
+     * Constructor
+     * @param _observer Island which will perform the task
+     * @param _task Task to perform each generation
+     */
     IslandNotifier(AIsland<EOT>* _observer, std::function<void(AIsland<EOT>*)> _task);
     
+    /**
+     * Notify the island by performing the binded task
+     */
     virtual void operator()();
     
 protected :

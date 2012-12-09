@@ -45,18 +45,33 @@ namespace paradiseo
 namespace smp
 {
 
+/** HomogeneousIslandModel: Wrapper to create homogeneous model easily
+
+@see smp::IslandModel
+*/
 
 template<template <class> class EOAlgo, class EOT>
 class HomogeneousIslandModel
 {
 public:
+     /**
+     * Constructor
+     * @param _islandNumber number of islands to create
+     * @param _topo Topology
+     * @param args... list of parameters according to the constructor of the island
+     */
     template<class... IslandInit>
     HomogeneousIslandModel(unsigned _islandNumber, AbstractTopology& _topo, unsigned _popSize, eoInit<EOT> &_chromInit, IslandInit... args);
     
+    /**
+     * Destructor
+     */
     ~HomogeneousIslandModel();
-    
-    void operator()();
 
+    /**
+     * Get populations
+     * @return Populations
+     */
     std::vector<eoPop<EOT>>& getPop();
 
 protected:

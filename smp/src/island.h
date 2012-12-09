@@ -55,7 +55,8 @@ namespace smp
 {
 /** Island: Concrete island that wraps an algorithm
 
-The island wraps an algorithm and provide mecanism for emigration and integration of populations.
+The island wraps an algorithm and provide mecanisms for emigration and integration of populations.
+An island also have a base type which represents the type of individuals of the Island Model.
 
 @see smp::AbstractIsland, smp::MigPolicy
 */
@@ -68,8 +69,7 @@ public:
      * Constructor
      * @param _convertFromBase Function to convert EOT from base EOT
      * @param _convertToBase Function to convert base EOT to EOT
-     * @param _popSize Size of the algorithm population.
-     * @param _chromInit Population initializer.
+     * @param _pop Population of the island
      * @param _intPolicy Integration policy
      * @param _migPolicy Migration policy
      * @param args Parameters to construct the algorithm.
@@ -78,8 +78,7 @@ public:
     Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
     /**
      * Constructor
-     * @param _popSize Size of the algorithm population.
-     * @param _chromInit Population initializer.
+     * @param _pop Population of the island
      * @param _intPolicy Integration policy
      * @param _migPolicy Migration policy
      * @param args Parameters to construct the algorithm.

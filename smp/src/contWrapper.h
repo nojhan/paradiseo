@@ -57,9 +57,9 @@ public:
     /**
      * Constructor
      * @param _cont Original continuators
-     * @param _policy Policy to wrap with continuators
+     * @param _island Pointer on the island used by the notifier
      */
-    ContWrapper(eoContinue<EOT>& _cont, AIsland<bEOT>* island);
+    ContWrapper(eoContinue<EOT>& _cont, AIsland<bEOT>* _island);
 
 protected:
     eoCheckPoint<EOT> ck;

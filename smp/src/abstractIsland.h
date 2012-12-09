@@ -41,14 +41,15 @@ namespace smp
 {
 
 // Forward declaration
-template<class EOT>
+template<class bEOT>
 class IslandModel;
 
 /** AbstractIsland: An abstract island.
 
 The abstract island is used to manipulate island pointers wihout the knowledge of the algorithm.
+The template is the base type for individuals.
 
-@see smp::Island
+@see smp::Island smp::IslandModel
 */
 
 template<class bEOT>
@@ -59,26 +60,31 @@ public:
     virtual void operator()() = 0;
     
     /**
-     * Check if there is population to receive
+     * Set the Island Model.
+     * @param _model The model which manipulate the island.
      */
     virtual void setModel(IslandModel<bEOT>* _model) = 0;
     
     /**
-     * Check if there is population to receive or to emigrate
+     * Check if there is population to receive or to emigrate.
      */
     virtual void check(void) = 0;
     
     /**
-     * Update the island  by adding population to send in the imigrants list.
+     * Update the island by adding population to send in the imigrants list.
+     * @param _data Population to integrate.
      */
     virtual void update(eoPop<bEOT> _data) = 0;
     
     /**
      * Check if the algorithm is stopped.
-     * @return true if stopped
+     * @return true if stopped.
      */
     virtual bool isStopped(void) const = 0;
     
+    /**
+     * Receive population by integrate individuals.
+     */
     virtual void receive(void) = 0;
 
 protected:
