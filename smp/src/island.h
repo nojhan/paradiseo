@@ -102,7 +102,7 @@ public:
      * Return a reference to the island population.
      * @return Reference to the island population
      */
-    eoPop<EOT>& getPop();
+    eoPop<EOT>& getPop() const;
     
     /**
      * Check if there is population to receive or to migrate

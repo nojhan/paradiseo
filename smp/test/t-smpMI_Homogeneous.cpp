@@ -6,19 +6,6 @@
 using namespace paradiseo::smp;
 using namespace std;
 
-void changeTopo(IslandModel<Indi>& _model, AbstractTopology& _topo)
-{
-    static bool first = false;
-    // Change topology after 1s of computation
-    std::chrono::milliseconds dura(1000);
-    std::this_thread::sleep_for( dura );
-    if(!first)
-    {
-        _model.setTopology(_topo);
-        first = !first;
-    }
-}
-
 int main(void)
 {
     // Defining parameters
@@ -62,10 +49,6 @@ int main(void)
     eoPeriodicContinue<Indi> criteria(5);
     eoDetTournamentSelect<Indi> selectOne1(20);
     eoSelectNumber<Indi> who(selectOne1, 3);
-    
-    Topology<Ring> topo2;
-    //std::function<void(void)> task = std::bind(changeTopo, model, topo2);
-    //Notifier topoChanger(task);
     
     MigPolicy<Indi> migPolicy;
     migPolicy.push_back(PolicyElement<Indi>(who, criteria));

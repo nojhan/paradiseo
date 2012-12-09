@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<homogeneousModel.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,27 +27,32 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
+template<template <class> class EOAlgo, class EOT>
+template<class... IslandInit>
+paradiseo::smp::HomogeneousIslandModel<EOAlgo, EOT>::HomogeneousIslandModel(unsigned _islandNumber, AbstractTopology& _topo, unsigned _popSize, eoInit<EOT> &_chromInit, IslandInit... args) :
+    model(_topo)
+{
+    pops.resize(_islandNumber);
+    islands.resize(_islandNumber);
+    for(unsigned i = 0; i < _islandNumber; i++)
+    {
+        pops[i] = eoPop<EOT>(_popSize, _chromInit);
+        islands[i] = new Island<EOAlgo, EOT>(pops[i], args...);
+        model.add(*islands[i]);
+    }
+    
+    model();
+}
 
-#include <MWModel.h>
-#include <scheduler.h>
-#include <islandModel.h>
-#include <homogeneousModel.h>
-#include <island.h>
-#include <abstractIsland.h>
-#include <migPolicy.h>
-#include <intPolicy.h>
-#include <policyElement.h>
-#include <islandNotifier.h>
-#include <notifier.h>
+template<template <class> class EOAlgo, class EOT>
+paradiseo::smp::HomogeneousIslandModel<EOAlgo, EOT>::~HomogeneousIslandModel()
+{
+    for(auto& island : islands)
+        delete island;
+}
 
-// Topologies
-#include <topology/topology.h>
-#include <topology/complete.h>
-#include <topology/ring.h>
-#include <topology/star.h>
-#include <topology/hypercubic.h>
-#include <topology/mesh.cpp>
-
-#endif
+template<template <class> class EOAlgo, class EOT>
+std::vector<eoPop<EOT>>& paradiseo::smp::HomogeneousIslandModel<EOAlgo, EOT>::getPop()
+{
+    return pops;
+}

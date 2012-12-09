@@ -77,7 +77,7 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::setModel(IslandModel<bEOT>* _model
 }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
-eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT,bEOT>::getPop()
+eoPop<EOT>& paradiseo::smp::Island<EOAlgo,EOT,bEOT>::getPop() const
 {
     return pop;
 }

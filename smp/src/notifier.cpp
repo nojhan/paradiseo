@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<notifier.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,27 +27,14 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
-
-#include <MWModel.h>
-#include <scheduler.h>
-#include <islandModel.h>
-#include <homogeneousModel.h>
-#include <island.h>
-#include <abstractIsland.h>
-#include <migPolicy.h>
-#include <intPolicy.h>
-#include <policyElement.h>
-#include <islandNotifier.h>
 #include <notifier.h>
 
-// Topologies
-#include <topology/topology.h>
-#include <topology/complete.h>
-#include <topology/ring.h>
-#include <topology/star.h>
-#include <topology/hypercubic.h>
-#include <topology/mesh.cpp>
+paradiseo::smp::Notifier::Notifier(std::function<void(void)> _task) :
+    task(_task)
+{}
+    
+void paradiseo::smp::Notifier::operator()()
+{
+    task();
+}
 
-#endif

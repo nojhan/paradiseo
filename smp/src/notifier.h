@@ -1,5 +1,5 @@
 /*
-<bimap.h>
+<notifier.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -27,79 +27,30 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef BIMAP_MODEL_H_
-#define BIMAP_MODEL_H_
+#ifndef NOTIFIER_H_
+#define NOTIFIER_H_
 
-#include <set>
-#include <map>
+#include <eo>
+#include <functional>
+
+/** Notifier: The notifier will perform the binded task each generation.
+
+*/
 
 namespace paradiseo
 {
 namespace smp
 {
-/** Bimap
 
-Bidirectional map in order to create a bijection between islands and vertices.
-A and B objects are stocked in two std::map, then if you would like to avoid instances duplications,
-template A and B with pointers.
-
-**/
-template<class A, class B>
-class Bimap
+class Notifier : public eoUpdater
 {
-public:
-    /**
-     * Add a relation 
-     * @param A right key
-     * @param B left key
-     */
-    void add(A& a, B& b)
-    {
-        rightAssociation[a] = b;
-        leftAssociation[b] = a;
-    }
+public :
+    Notifier(std::function<void(void)> _task);
     
-    std::map<A,B> getRight() const
-    {
-        return rightAssociation;
-    }
+    virtual void operator()();
     
-    std::map<B,A> getLeft() const
-    {
-        return leftAssociation;
-    }
-    
-    void removeFromRight(const A& a)
-    {
-        for(auto& it : leftAssociation)
-            if(it->second == a)
-                leftAssociation.erase(it);
-        
-        rightAssociation.erase(a);
-    }
-    
-    void removeFromLeft(const B& b) 
-    {
-        for(auto& it : rightAssociation)
-            if(it->second == b)
-                rightAssociation.erase(it);
-        
-        leftAssociation.erase(b);
-    }
-    
-    unsigned size() const
-    {
-        return leftAssociation.size();
-    }
-    
-    bool empty() const
-    {
-        return leftAssociation.empty();
-    }
-
-protected:
-    std::map<A,B> rightAssociation;
-    std::map<B,A> leftAssociation;
+protected :
+    std::function<void(void)> task;
 };
 
 }

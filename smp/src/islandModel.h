@@ -58,7 +58,7 @@ template<class EOT>
 class IslandModel
 {
 public:
-    IslandModel(AbstractTopology& topo);
+    IslandModel(AbstractTopology& _topo);
 
     /**
      * Add an island to the model.
