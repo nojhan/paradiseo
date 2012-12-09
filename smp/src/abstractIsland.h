@@ -32,7 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <atomic>
 
-#include <eo>
+#include <eoPop.h>
 #include <migPolicy.h>
 
 namespace paradiseo

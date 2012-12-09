@@ -37,7 +37,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <algoDispatching.h>
 #include <policiesDispatching.h>
 
-
 #include <eo>
 
 

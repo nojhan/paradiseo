@@ -33,8 +33,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <queue>
 #include <algorithm>
 #include <utility>
-#include <future>
 #include <thread>
+
 #include <bimap.h>
 #include <abstractIsland.h>
 #include <topology/topology.h>

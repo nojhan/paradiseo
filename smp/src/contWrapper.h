@@ -30,11 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_CONT_WRAPPER_H_
 #define SMP_CONT_WRAPPER_H_
 
-#include <queue>
-#include <vector>
-#include <utility>
-
-#include <eo>
+#include <utils/eoCheckPoint.h>
+#include <eoContinue.h>
 #include <migPolicy.h>
 #include <islandNotifier.h>
 

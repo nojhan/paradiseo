@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_NOTIFIER_H_
 #define SMP_NOTIFIER_H_
 
-#include <eo>
+#include <utils/eoUpdater.h>
 #include <functional>
 
 /** Notifier: The notifier will perform the binded task each generation.

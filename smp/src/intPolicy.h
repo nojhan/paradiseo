@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_INT_POLICY_H_
 #define SMP_INT_POLICY_H_
 
-#include <eo>
+#include <eoReplacement.h>
 
 namespace paradiseo
 {

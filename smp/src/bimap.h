@@ -30,7 +30,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_BIMAP_MODEL_H_
 #define SMP_BIMAP_MODEL_H_
 
-#include <set>
 #include <map>
 
 namespace paradiseo

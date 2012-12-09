@@ -30,8 +30,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_POLICIES_DISPATCHING_H_
 #define SMP_POLICIES_DISPATCHING_H_
 
-#include <eo>
-
 namespace paradiseo
 {
 namespace smp

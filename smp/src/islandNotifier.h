@@ -30,7 +30,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_ISLAND_NOTIFIER_H_
 #define SMP_ISLAND_NOTIFIER_H_
 
-#include <vector>
 #include <utility>
 
 /** IslandNotifier: The notifier will perform the binded task each generation.

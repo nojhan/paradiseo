@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_MIG_POLICY_H_
 #define SMP_MIG_POLICY_H_
 
-#include <eo>
+#include <vector>
 #include <policyElement.h>
 
 namespace paradiseo
