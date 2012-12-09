@@ -112,7 +112,7 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
         // Convert pop to base pop
         eoPop<bEOT> baseMigPop;
         for(auto& indi : migPop)
-            baseMigPop.push_back(convertToBase(indi));
+            baseMigPop.push_back(std::move(convertToBase(indi)));
             
         //std::cout << "On envoie de l'île : " << migPop << std::endl;
        
@@ -121,7 +121,7 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
             if(!it->joinable())
                 sentMessages.erase(it);
       
-        sentMessages.push_back(std::thread(&IslandModel<bEOT>::update, model, baseMigPop, this));
+        sentMessages.push_back(std::thread(&IslandModel<bEOT>::update, model, std::move(baseMigPop), this));
     }
 }
 
@@ -132,12 +132,12 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
     while (!listImigrants.empty())
     { 
         //std::cout << "On reçoit dans l'île : " << listImigrants.size() << std::endl;
-        eoPop<bEOT> base_offspring = listImigrants.front();
+        eoPop<bEOT> base_offspring = std::move(listImigrants.front());
         
         // Convert objects from base to our objects type
         eoPop<EOT> offspring;
         for(auto& indi : base_offspring)
-            offspring.push_back(convertFromBase(indi));
+            offspring.push_back(std::move(convertFromBase(indi)));
         
         // Evaluate objects to integrate
         for(auto& indi : offspring)

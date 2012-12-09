@@ -131,7 +131,6 @@ void paradiseo::smp::IslandModel<EOT>::setTopology(AbstractTopology& _topo)
     // If we change when the algorithm is running, we need to recontruct the topo
     if(running)
     {
-        std::cout << "Changing topology" << std::endl;
         topo.construct(islands.size());
         // If we change the topology during the algorithm, we need to isolate stopped islands
         for(auto it : islands)
@@ -152,9 +151,9 @@ void paradiseo::smp::IslandModel<EOT>::send(void)
         std::vector<unsigned> neighbors = topo.getIdNeighbors(idFrom);
         
         // Send elements to neighbors
-        eoPop<EOT> migPop = listEmigrants.front().first;
+        eoPop<EOT> migPop = std::move(listEmigrants.front().first);
         for (unsigned idTo : neighbors)
-            sentMessages.push_back(std::thread(&AIsland<EOT>::update, table.getRight()[idTo], migPop)); 
+            sentMessages.push_back(std::thread(&AIsland<EOT>::update, table.getRight()[idTo], std::move(migPop))); 
              
         listEmigrants.pop();
     }
