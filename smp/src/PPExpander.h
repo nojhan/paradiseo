@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef PPE_H_
-#define PPE_H_
+#ifndef SMP_PPE_H_
+#define SMP_PPE_H_
 
 /** Parameter Pack Expansion: Utility file to expand parameter pack
 

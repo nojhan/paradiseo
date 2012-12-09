@@ -39,7 +39,7 @@ paradiseo::smp::HomogeneousIslandModel<EOAlgo, EOT>::HomogeneousIslandModel(unsi
         pops[i] = eoPop<EOT>(_popSize, _chromInit);
         islands[i] = new Island<EOAlgo, EOT>(pops[i], args...);
         model.add(*islands[i]);
-    }
+    } 
     
     model();
 }

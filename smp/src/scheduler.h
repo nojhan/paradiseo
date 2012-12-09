@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SCHEDULER_H_
-#define SCHEDULER_H_
+#ifndef SMP_SCHEDULER_H_
+#define SMP_SCHEDULER_H_
 
 #include <iostream>
 #include <vector>

@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef HOMOGENEOUS_ISLAND_MODEL_H_
-#define HOMOGENEOUS_ISLAND_MODEL_H_
+#ifndef SMP_HOMOGENEOUS_ISLAND_MODEL_H_
+#define SMP_HOMOGENEOUS_ISLAND_MODEL_H_
 
 #include <queue>
 #include <algorithm>
@@ -54,6 +54,8 @@ public:
     HomogeneousIslandModel(unsigned _islandNumber, AbstractTopology& _topo, unsigned _popSize, eoInit<EOT> &_chromInit, IslandInit... args);
     
     ~HomogeneousIslandModel();
+    
+    void operator()();
 
     std::vector<eoPop<EOT>>& getPop();
 

@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef ISLAND_MODEL_H_
-#define ISLAND_MODEL_H_
+#ifndef SMP_ISLAND_MODEL_H_
+#define SMP_ISLAND_MODEL_H_
 
 #include <queue>
 #include <algorithm>

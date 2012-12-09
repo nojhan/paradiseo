@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef BIMAP_MODEL_H_
-#define BIMAP_MODEL_H_
+#ifndef SMP_BIMAP_MODEL_H_
+#define SMP_BIMAP_MODEL_H_
 
 #include <set>
 #include <map>

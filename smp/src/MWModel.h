@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef MWMODEL_H_
-#define MWMODEL_H_
+#ifndef SMP_MWMODEL_H_
+#define SMP_MWMODEL_H_
 
 #include <cassert>
 #include <thread>

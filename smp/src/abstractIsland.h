@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef ABS_ISLAND_H_
-#define ABS_ISLAND_H_
+#ifndef SMP_ABSTRACT_ISLAND_H_
+#define SMP_ABSTRACT_ISLAND_H_
 
 #include <atomic>
 

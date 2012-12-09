@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef ALGO_D_H_
-#define ALGO_D_H_
+#ifndef SMP_ALGO_DISPATCHING_H_
+#define SMP_ALGO_DISPATCHING_H_
 
 #include <eo>
 

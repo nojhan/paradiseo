@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef CONT_D_H_
-#define CONT_D_H_
+#ifndef SMP_CONT_DISPATCHING_H_
+#define SMP_CONT_DISPATCHING_H_
 
 /** Continuator Dispatching
 

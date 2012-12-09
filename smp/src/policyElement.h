@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef POLICY_ELEM_H_
-#define POLICY_ELEM_H_
+#ifndef SMP_POLICY_ELEMENT_H_
+#define SMP_POLICY_ELEMENT_H_
 
 #include <eo>
 

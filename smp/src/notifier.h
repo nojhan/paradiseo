@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef NOTIFIER_H_
-#define NOTIFIER_H_
+#ifndef SMP_NOTIFIER_H_
+#define SMP_NOTIFIER_H_
 
 #include <eo>
 #include <functional>

@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef CONTWRAPPER_H_
-#define CONTWRAPPER_H_
+#ifndef SMP_CONT_WRAPPER_H_
+#define SMP_CONT_WRAPPER_H_
 
 #include <queue>
 #include <vector>

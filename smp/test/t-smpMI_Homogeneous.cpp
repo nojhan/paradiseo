@@ -97,9 +97,7 @@ int main(void)
 
     try
     {
-        
-        
-        
+
         model.add(test);
         model.add(test2);
         model.add(test3);
