@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "Testing -h"
+./t-eoCheckpointing -h
+
+echo "Finished"
+
+#TODO test if an error occured
+echo "Ok"

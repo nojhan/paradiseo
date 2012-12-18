@@ -1,0 +1,286 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
+   <title>Tutorial EO</title>
+</head>
+<body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
+<a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
+- <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
+<hr WIDTH="100%">
+<center><b><font color="#FF0000">Welcome to EO, the Evolving Objects library,
+and to</font></b></center>
+
+<center>
+<h1>
+<font color="#FF0000">EO Tutorial</font></h1></center>
+
+<center><font color="#FF0000">Important notice - December 2006</font>
+</center><br>
+The code that is proposed in this tutorial should <font color="#FF0000"><b>not</b></font> 
+be used
+as a basis for any comparison with any original method on any benchmark problem. 
+It is an illustration of what you can achieve with EO, but reaching state-of-the-art results
+requires more work. In particular, if you want to compare your evolutionary
+algorithm with a good performing algorithm in parameteric optimisation, 
+do <font color="#FF0000"><b>not</b></font> 
+use <font color="#FF6666"><b>ESEA</b></font> in Lesson4, 
+but go to the <font color="#FF6666"><b>test</b></font> directory, type
+<font color="#FF6600"><b>make t-eoCMAES</b></font> and use the resulting <font
+color="#FF6666"><b>t-eoCMAES</b></font>. But as of today, 
+the latest algorithms (and comparative results) 
+are better found on <a href="http://www.bionik.tu-berlin.de/user/niko/">Nikolaus Hansen Web page</a>
+and on his <a href="http://www.bionik.tu-berlin.de/user/niko/cec2005.html">"Comparison of Evolutionary Algorithms on a Benchmark Function Set" page</a>).<br>
+<br>
+<br>
+
+<center><font color="#FF0000">Version 0.98a - December 2004</font>
+</center>
+
+<ul>
+<li><b><font color="#FF0000">New</font></b> - 
+Well, in fact, nothing really new, 
+but some people advised us to announce from the very beginning that
+if you are looking for a <font color="#FF0000"><b>ready-to-use</b></font>
+(except for the fitness)  <font color="#FF0000"><b>fully tunable Evolutionary
+Algorithm</b></font> evolving real values or bitstring, you can 
+<font color="#FF0000"><b>go directly to</font><font color="#000000">
+<a href="eoLesson4.html">Lesson 4</a></font></b> after just reading
+this page, and maybe the <a href="eoProgramming.html">Programming
+hints</a> (link on top of each page too). <br/>
+
+In fact, there is something new: EO's automatic configuration and
+build process has been cleaned up and upgraded. For consistency, the
+same automatically-built <tt><font
+color="#FF6666"><b>Makefiles</b></font></tt> have been created in the
+tutorial directories. The good-old manually-created files are
+still there, now named 
+<tt><font color="#FF6666"><b>Makefile.simple</b></font></tt>.
+Moreover, when you compile the whole library (typing <font color="#FF6600"><b>make</b></font> in the main EO dir), all lessons of the tutorial gets compiled, too.
+</li>
+<br>
+
+<center><font color="#FF0000">Version 0.98 - May 2004</font></center>
+</b> 
+<li><b><font color="#000000"><a href="eoLesson5.html">Lesson 5</a>
+	  </font></b><font color="#000000">has been improved: some of 
+the empty template files in dir 
+<b><tt><font color="#FF6666"><b>.../eo/tutorial/Templates</b></font></tt></b>
+have been simplified, and file <font color="#3366FF"><b>stat.tmpl</b></font>
+has been added, allowing you to 
+<font color="#FF6600"><b>compute</b></font> and 
+<font color="#FF6600"><b>print</b></font> and 
+<font color="#FF6600"><b>save-to-disk</b></font> and 
+<font color="#FF6600"><b>plot-on-line</b></font> your 
+own <font color="#3366FF"><b>statistics</b></font>. 
+The magic script is now (see Lesson5) <b><tt><font color="#993300">createSimple</font></tt></b>.<br>
+
+The same simplified main file  in 
+dir <b><tt><font
+color="#FF6666"><b>.../eo/tutorial/Templates</b></font></tt></b>)
+also allows you to use 
+<font color="#FF6600"><b>fitness sharing</b></font>
+ (together with roulette wheel) as a possible selector.<br>
+
+Unfortunately, the HTML file for Lesson5 and the corresponding
+html-ized code are not yet updated - time is missing
+(volunteers welcome).<br><br>
+</li>
+
+<center><font color="#FF0000">May 2002</font></center>
+<li>
+<center>
+<font color="#000000">Thanks to <a href="mailto:paradiseo-help@lists.gforge.inria.fr">S&eacute;bastien
+Cahon</a> (LIFL, Lille)</font></center>
+
+</ul>
+<hr WIDTH="100%">
+<center><b>Welcome to EO tutorial/on-line documentation.</b></center>
+<hr WIDTH="100%"><b><h2><font color="#000099">About this tutorial</font></b></h2>
+First, please note that <b><font color="#FF6600">this tutorial is <font color="#FF0000">not</font> supposed
+to be printed and read off-line</font></b>, as it takes full advantage
+of hyper-text links between the different parts, and with the technical
+documentation.
+This tutorial can be used in 2 different ways: algorithm-based and component-based.
+<ul>
+<li>
+<a href="eoTopDown.html">Algorithm-Based</a> means you start from a <font color="#FF6600">very
+simple, ready-to-run algorithm,</font> and gradually modify it, making
+it both more powerful and more complex.</li>
+
+<li>
+<a href="eoBottomUp.html">Component-Based</a> means you start by examining
+the
+<font color="#FF6600">components of an EA one by one</font>, down to
+the level of complexity you feel comfortable with, and then build the whole
+algorithm using those components you need (or the one you are mastering).
+Such approach might be viewed as going through a simplified user guide,
+too.</li>
+</ul>
+However, it is <b><font color="#FF6600">strongly recommended</font></b>
+that you take some time on the first lesson of the Algorithm-Based approach
+to get familiar with the basic concepts that are used throughout EO. Anyway,
+as of today, December 19, the Component-Based is only very sparsely written
+:-)
+<p>
+<hr WIDTH="100%"><b><font color="#000099"><font size=+2>Links and Related
+documents</font></font></b>
+<ul>
+<li>
+There are of course a few (very few) <a href="eoProgramming.html">programming
+hints</a> that you should know.</li>
+
+<li>
+THe <a href="../../doc/html/index.html">EO documentation </a>- automatically
+generated from the comments in the code - is very helpful to get an idea
+of the <b><font color="#FF6600">inheritance diagrams</font></b> of EO classes,
+and to quickly reach some specific part of the code.</li>
+
+<br>The top page of each class documentation is for instance the inheritance
+diagram of the class, and you'll learn a lot by simply looking at it.
+<li>
+For those who wish to get deeper in STL (Standard Template Library), you
+might visit the well documented <a href="http://www.sgi.com/Technology/STL/">SGI
+STL Web site</a>. But don't forget you'll find the very basic minimum in
+EO <a href="eoProgramming.html#STL">programming hints</a>.</li>
+
+<li>
+And, last but not least, we assume you know approximately that an Evolutionary
+Algorithm looks like this, but otherwise you can try this <a href="eoIntroEA.html">very
+brief introduction</a> (not written yet, Jan. 2001, sorry).</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%"><b><font color="#000099"><font size=+2>Colors and navigation:</font></font></b>
+<p>You will see this diagram in quite many places, as for instance at the
+top of all examples - usually it will be clickable and will help you navigate
+among the different parts of an EO program. See the <a href="eoIntroEA.html">brief
+introduction to Evolutionary Computation</a> for a detailed explanation.
+<center>
+<p><img SRC="EA_tutorial.jpg" ></center>
+<a NAME="colors"></a>
+<p>But in the text itself, <b><font color="#FF6600">colors are important</font></b>,
+as they will be used throughout this tutorial to clearly mark which part
+of the algorithm we are discussing. So please keep in mind that, whereas
+<b><font color="#FF6600">orange
+is for emphasis</font></b>,
+<ul>
+<li>
+<b><font color="#999900">Yellowish</font></b> is for <b><font color="#999900">representation</font></b>,
+i.e. the choice of the <b><font color="#999900">genotype</font></b></li>
+
+<li>
+<font color="#CC33CC">Magenta</font> is for the <font color="#CC33CC">stochastic
+operators</font> that are <b><font color="#999900">representation-dependent</font>,</b>
+i.e. <font color="#CC33CC">initialisation</font> and variation operators
+(<font color="#CC33CC">crossover</font>, <font color="#CC33CC">mutation</font>
+and the like).</li>
+
+<li>
+<font color="#009900">Green</font> is for the implementation of <font color="#009900">Darwinism</font>,
+i.e. the way the individuals are <font color="#009900">selected</font>
+for reproduction and <font color="#009900">survive.</font></li>
+
+<li>
+<font color="#CC0000">Red</font> is for evaluation, i.e. the computation
+of the <font color="#CC0000">fitness</font> of all individuals</li>
+
+<li>
+<font color="#3366FF">Blue</font> is for interactions of the user and the
+program, as for instance choice of <font color="#3366FF">stopping criterion</font>,
+on-line display of nice <font color="#3366FF">statistics</font> or initial
+<font color="#3366FF">choice
+of all program parameters</font>.</li>
+
+<li>
+<font color="#993300">Brown</font> is for everything that is NOT part of
+any of the above, i.e. random number generator, or basic C++/STL syntax
+.</li>
+
+<li>
+Note that <font color="#FF6666">pink</font> will be used to describe the
+syntax of compile orders (i.e. at the operating system level, see e.g.
+<a href="#install">below</a>).</li>
+
+<li>
+<b><font face="Arial,Helvetica"><font size=+1>Last, but not least, all
+links into EO documentation will use the Helvetica typeface, like this
+line you are now reading.</font></font></b></li>
+</ul>
+
+<hr WIDTH="100%"><b><font color="#000099"><font size=+1>This tutorial is
+not</font></font></b>
+<ul>
+<li>
+A course on Evolutionary Computation. You can find such things on the Internet,
+maybe you can start <a href="http://www.evonet.polytechnique.fr/CIRCUS2/node.php?node=240">here.</a></li>
+
+<li>
+An interface that would allow you to build your Evolutionary Programs by
+a few clicks; such a thing does exist, is called <a href="http://www-rocq.inria.fr/EASEA/">EASEA</a>,
+and is complementary to this tutorial as it helps the user to build some
+simple EO programs from simple description. But there are things that EASEA
+cannot do, and you will have to do it yourself and will need to increase
+your knowledge about EO for that - hence this tutorial.</li>
+
+<li>
+A coffee machine - though you might want to spend some time here when you're
+tired of everything else, to improve your knowledge of EO slowly and gradually
+rather than when you have something urgent to code :-)</li>
+</ul>
+
+<hr WIDTH="100%"><a NAME="install"></a><b><font color="#000099"><font size=+1>Before
+you start</font></font></b>
+<p>You should of course have downloaded and installed the whole <a href="http://www.sourceforge.net/projects/eodev">EO
+library</a> (how did you get this file if not???). 
+If you are using a recent version of EO (0.9.3+), all tutorial Lessons 
+should have been compiled when installing the library, and you can now 
+proceed with <a href="eoLesson1.html">Lesson1</a>. <br>
+<br>Otherwise, we'll assume that you are now in the tutorial directory, and that
+your prompt looks something like
+<p><b><tt><font color="#FF6666">(myname@myhost) EOdir/tutorial %</font></tt></b>
+<p>so you should now type in
+<p><b><tt><font color="#FF6666">make Lesson1</font></tt></b>
+<p>and see something like
+<p><font face="Courier New,Courier"><font color="#000000">(myname@myhost)
+EOdir/tutorial % make Lesson1</font></font>
+<br><b><tt><font color="#FF6666">c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.1\"
+-I. -I../../src -Wall -g -c FirstBitGA.cpp</font></tt></b>
+<br><b><tt><font color="#FF6666">c++ -Wall -g -o FirstBitGA FirstBitGA.o
+../../src/libeo.a ../../src/utils/libeoutils.a</font></tt></b>
+<br><b><tt><font color="#FF6666">c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.1\"
+-I. -I../../src -Wall -g -c FirstRealGA.cpp</font></tt></b>
+<br><b><tt><font color="#FF6666">c++ -Wall -g -o FirstRealGA FirstRealGA.o
+../../src/libeo.a ../../src/utils/libeoutils.a</font></tt></b>
+<p>and two now executable files should have appeared in the subdirectory
+Lesson1, namely <b><tt><font color="#990000">FirstBitGA</font></tt></b>
+and <b><tt><font color="#990000">FirstRealGA</font></tt></b> (see <a href="eoLesson1.html">First
+lesson</a> to know more about these two ready-to-run programs). If this
+doesn't work, please go back to the main EO directory and run the installation
+program.
+<p>You should also test that you can access the EO documentation in the
+menu line below: you might not need to go there immediately, but just in
+case you make rapid progress ... This menu bar should be on all pages of
+this tutorial, allowing you to navigate easily.
+<p>Last, but not least: EO is improving only&nbsp; from the good will of
+contributors. This is also true for this tutorial: If you find anything
+that you think could be improved, you are welcome to <a href="mailto:Marc.Schoenauer@inria.fr">e-mail
+me</a>.
+<center>
+<p><font color="#000099"><font size=+2>Enjoy!
+<hr WIDTH="100%"></font></font><a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
+hints</a> -<b><font size=+1> <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b></center>
+
+<hr>
+<address>
+<a href="mailto:Marc.Schoenauer@inria.fr">Marc Schoenauer</a></address>
+
+<br>
+<!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
+modified: Wed Feb 22 2006&nbsp;<!-- hhmts end -->
+</body>
+</html>

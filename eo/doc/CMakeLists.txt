@@ -3,16 +3,16 @@
 ##########################################################################################
 IF (DOXYGEN_FOUND)
 
-  SET(DOC_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE PATH "EO documentation directory")
-  SET(EO_DOC_CONFIG_FILE "eo.cfg" CACHE PATH "EO documentation configuration file")
+    SET(EO_DOC_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "EO documentation directory" FORCE)
+    SET(EO_DOC_CONFIG_FILE "eo.doxyfile" CACHE INTERNAL "EO documentation configuration file")
 
   # Copy necessary doc files
-  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/index.h ${DOC_DIR}/index.h COPYONLY)
+  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/index.h ${EO_DOC_DIR}/index.h COPYONLY)
   FILE(GLOB header_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*.htm*)
   FILE(GLOB pdf_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*.pdf)
   FILE(GLOB jpg_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*.jpg)
   FOREACH (file ${header_files} ${pdf_files} ${jpg_files})
-    CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/${file} ${DOC_DIR}/${file} COPYONLY)
+      CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/${file} ${EO_DOC_DIR}/${file} COPYONLY)
   ENDFOREACH (file)
 
   # define the doc target

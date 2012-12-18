@@ -1,0 +1,70 @@
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+The above line is useful in Emacs-like editors
+ */
+
+/*
+Template for simple binary crossover operators
+==============================================
+
+Binary crossover operators modify the first genotype only,
+based on the second
+*/
+
+#ifndef eoMyStructBinCrossover_H
+#define eoMyStructBinCrossover_H
+
+#include <eoOp.h>
+
+/**
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * THere is NO ASSUMPTION on the class GenoypeT.
+ * In particular, it does not need to derive from EO
+ */
+template<class GenotypeT>
+class eoMyStructBinCrossover: public eoBinOp<GenotypeT>
+{
+public:
+  /**
+   * Ctor - no requirement
+   */
+// START eventually add or modify the anyVariable argument
+  eoMyStructBinCrossover()
+  //  eoMyStructBinCrossover( varType  _anyVariable) : anyVariable(_anyVariable)
+// END eventually add or modify the anyVariable argument
+  {
+    // START Code of Ctor of an eoMyStructEvalFunc object
+    // END   Code of Ctor of an eoMyStructEvalFunc object
+  }
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoMyStructBinCrossover"; }
+
+  /**
+   * binCrossover - modifies first genotype only
+   * @param _genotype1 The first genotype
+   * @param _genotype2 The second genotype - const
+   */
+  bool operator()(GenotypeT & _genotype1, const GenotypeT & _genotype2)
+  {
+    // START code for crossover of _genotype1 and _genotype2 objects
+
+       /** Requirement
+	* if _genotype1 has been modified
+	*     return true;
+	* otherwise
+	*     return false;
+	*/
+
+    // END code for crossover of _genotype1 and _genotype2 objects
+  }
+
+private:
+// START Private data of an eoMyStructBinCrossover object
+  //  varType anyVariable;		   // for example ...
+// END   Private data of an eoMyStructBinCrossover object
+};
+
+#endif

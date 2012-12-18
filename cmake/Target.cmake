@@ -1,9 +1,9 @@
 ######################################################################################
-### Mrproper will delete all files and folders in build directory
+### cleanall will delete all files and folders in build directory
 ######################################################################################
 
 if(UNIX)
-    add_custom_target(mrproper COMMAND cd ${CMAKE_BINARY_DIR} && rm -rf *)
+    add_custom_target(cleanall COMMAND cd ${CMAKE_BINARY_DIR} && rm -rf *)
 endif(UNIX)
 
 ######################################################################################
@@ -12,16 +12,18 @@ endif(UNIX)
 
 if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
     if(SMP)
-        add_custom_target(doc 
+        add_custom_target(doc
             COMMAND make doc-eo
-            COMMAND make doc-mo 
+            COMMAND make doc-edo
+            COMMAND make doc-mo
             COMMAND make doc-moeo
             COMMAND make doc-smp
         )
     else()
-        add_custom_target(doc 
+        add_custom_target(doc
             COMMAND make doc-eo
-            COMMAND make doc-mo 
+            COMMAND make doc-edo
+            COMMAND make doc-mo
             COMMAND make doc-moeo
         )
     endif()

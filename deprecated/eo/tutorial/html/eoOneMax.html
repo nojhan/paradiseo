@@ -1,0 +1,209 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
+   <title>Templates/eoOneMax.h</title>
+</head>
+<body text="#000000" bgcolor="#C3C2B4" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<a href="eoLesson5.html">Back to Lesson 5</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<br>
+<hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
+<center>
+<h1>
+<font color="#FF0000">Templates/eoOneMax.h</font></h1></center>
+The places where you have to put some code are on <b><font color="#FF6666">pink
+background</font></b>.. Only the the <a href="eoTutorial.html#colors">character
+colors have the usual meaning</a>.
+<br><a NAME="start"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE><tt><font color="#993300">/** -*- mode: c++; c-indent-level:
+4; c++-member-init-indent: 8; comment-column: 35; -*-</font></tt>
+<br><tt><font color="#993300">The above line is usefulin Emacs-like editors</font></tt>
+<br><tt><font color="#993300">*/</font></tt>
+<br><tt><font color="#993300">/*</font></tt>
+<br><tt><font color="#993300">Template for creating a new representation
+in EO</font></tt>
+<br><tt><font color="#993300">================================================</font></tt>
+<br><tt><font color="#993300">*/</font></tt>
+<br><b><tt><font color="#993300">#ifndef _eoOneMax_h</font></tt></b>
+<br><b><tt><font color="#993300">#define _eoOneMax_h</font></tt></b>
+<br><tt><font color="#993300">/**&nbsp;</font></tt>
+<br><tt><font color="#993300">*&nbsp; Always write a comment in this format
+before class definition</font></tt>
+<br><tt><font color="#993300">*&nbsp; if you want the class to be documented
+by Doxygen</font></tt>
+<br><tt><font color="#993300">* Note that you MUST derive your structure
+from EO&lt;fitT></font></tt>
+<br><tt><font color="#993300">* but you MAY use some other already prepared
+class in the hierarchy</font></tt>
+<br><tt><font color="#993300">* like eoVector for instance, if you handle
+a vector of something....</font></tt>
+<br><tt><font color="#993300">* If you create a structure from scratch,</font></tt>
+<br><tt><font color="#993300">* the only thing you need to provide are&nbsp;</font></tt>
+<br><tt><font color="#993300">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a default constructor</font></tt>
+<br><tt><font color="#993300">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+IO routines printOn and readFrom</font></tt>
+<br><tt><font color="#993300">*</font></tt>
+<br><tt><font color="#993300">* Note that operator&lt;&lt; and operator>>
+are defined at EO level</font></tt>
+<br><tt><font color="#993300">* using these routines</font></tt>
+<br><tt><font color="#993300">*/</font></tt></td>
+</tr>
+</table>
+<a NAME="representation"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#999900">template&lt; class FitT></font></tt></b>
+<br><b><tt><font color="#999900">class eoOneMax: public EO&lt;FitT> {</font></tt></b>
+<br><b><tt><font color="#999900">public:</font></tt></b>
+<br><tt><font color="#999900"><b>&nbsp;</b> /** Ctor: you MUST provide
+a default ctor.</font></tt>
+<br><tt><font color="#999900">&nbsp;&nbsp; * though such individuals will
+generally be processed&nbsp;</font></tt>
+<br><tt><font color="#999900">&nbsp;&nbsp; * by some eoInit object</font></tt>
+<br><tt><font color="#999900">&nbsp;&nbsp; */</font></tt>
+<br><b><tt><font color="#999900">&nbsp;eoOneMax()&nbsp;</font></tt></b>
+<br><b><tt><font color="#999900">&nbsp;{&nbsp;</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><a NAME="constructor"></a><tt><font color="#999900"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+// START Code of default Ctor of an eoOneMax object</font></tt>
+<br><tt><font color="#999900"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+END&nbsp;&nbsp;&nbsp; Code of default Ctor of an eoOneMax object</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#999900">&nbsp;}</font></tt></b>
+<p><b><tt><font color="#999900">&nbsp;virtual ~eoOneMax()</font></tt></b>
+<br><b><tt><font color="#999900">&nbsp;{</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><a NAME="destructor"></a><tt><font color="#999900"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+// START Code of Destructor of an eoEASEAGenome object</font></tt>
+<br><tt><font color="#999900"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+END&nbsp;&nbsp;&nbsp; Code of Destructor of an eoEASEAGenome object</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#999900">&nbsp;}</font></tt></b>
+<p><b><tt><font color="#999900">&nbsp;virtual string className() const
+{ return "eoOneMax"; }</font></tt></b>
+<br>&nbsp;</td>
+</tr>
+</table>
+<a NAME="output"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b> /** printing... */</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;void printOn(ostream&amp; os) const</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;{</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+First write the fitness</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; EO&lt;FitT>::printOn(os);</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; os &lt;&lt; '
+';</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><a NAME="print"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+// START Code of default output&nbsp;</font></tt>
+<p><tt><font color="#3366FF">/** HINTS</font></tt>
+<br><tt><font color="#3366FF">* in EO we systematically write the sizes
+of things before the things</font></tt>
+<br><tt><font color="#3366FF">* so readFrom is easier to code (see below)</font></tt>
+<br><tt><font color="#3366FF">*/</font></tt>
+<p><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> // END&nbsp;&nbsp;&nbsp;
+Code of default output</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt></b>
+<p><tt><font color="#3366FF"><b>&nbsp;</b> /** reading...&nbsp;</font></tt>
+<br><tt><font color="#3366FF">&nbsp;&nbsp; * of course, your readFrom must
+be able to read what printOn writes!!!</font></tt>
+<br><tt><font color="#3366FF">&nbsp;&nbsp; */</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;void readFrom(istream&amp; is)</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;{</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+of course you should read the fitness first!</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; EO&lt;FitT>::readFrom(is);</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><a NAME="read"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+// START Code of input</font></tt>
+<p><tt><font color="#3366FF">/** HINTS</font></tt>
+<br><tt><font color="#3366FF">* remember the eoOneMax object will come
+from the default ctor</font></tt>
+<br><tt><font color="#3366FF">* this is why having the sizes written out
+is useful</font></tt>
+<br><tt><font color="#3366FF">*/</font></tt>
+<p><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> // END&nbsp;&nbsp;&nbsp;
+Code of input</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#3366FF">&nbsp;}</font></tt></b>
+<br>&nbsp;</td>
+</tr>
+</table>
+<a NAME="data"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#999900"><b>private:&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+put all data here</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#999900"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+START Private data of an eoOneMax object</font></tt>
+<br><tt><font color="#999900"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> //
+END&nbsp;&nbsp;&nbsp; Private data of an eoOneMax object</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#999900">};</font></tt></b>
+<p><b><tt><font color="#999900">#endif</font></tt></b></td>
+</tr>
+</table>
+
+<hr WIDTH="100%"><a href="eoLesson5.html">Back to Lesson 5</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<hr>
+<address>
+<a href="mailto:marc.schoenauer@inria.fr">Marc Schoenauer</a></address>
+
+<br><!-- Created: Nov 2000 --><!-- hhmts start -->Last modified: Fri May
+3 06:06:09 2002<!-- hhmts end -->
+</body>
+</html>

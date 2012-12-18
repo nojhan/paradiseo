@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>EO::MPI parallelization</title>
+	
+	<meta name="description" content="A short presentation on EO::MPI parallelization">
+	<meta name="author" content="Benjamin BOUVIER">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="css/deck.core.css">
+	<link rel="stylesheet" href="css/deck.goto.css">
+	<link rel="stylesheet" href="css/deck.menu.css">
+	<link rel="stylesheet" href="css/deck.navigation.css">
+    <link rel="stylesheet" href="css/deck.status.css">
+	<link rel="stylesheet" href="css/deck.hash.css">
+	<link rel="stylesheet" href="css/deck.scale.css">
+	
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+    <!-- <link rel="stylesheet" href="../themes/style/web-2.0.css"> -->
+	<link rel="stylesheet" href="css/thales.css">
+	<link rel="stylesheet" href="css/eompi.css">
+    
+
+    <!-- highlight js -->
+    <link rel="stylesheet" href="css/shjs.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" href="css/horizontal-slide.css">
+	
+	<script src="js/modernizr.custom.js"></script>
+</head>
+
+<body class="deck-container">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+    <h1>EO's Parallelization with MPI</h1>
+</section>
+
+<section class="slide">
+    <h2>What is parallelization?</h2>
+    <ul>
+        <li><h3>Divide and Conquer paradigm</h3>
+            <p>A difficult problem can be splitted into simpler sub problems.</p>
+            <p>Therefore the sub problems should be solved faster.</p>
+        </li>
+        <li class="slide"><h3>Parallelize.</h3>
+        <p>Process serveral tasks together (<em>concurrent programming</em>).</p>
+            <p>By different ways :
+                <ul>
+                    <li><em>Shared memory</em> : Multitask, OpenMP, etc.</li>
+                    <li><em>Message Passing Interface</em> : MPI.</li>
+                    <li>Other ways, undetailed here: <em>coroutines</em>, <em>multi-thread / LightWeightProcess</em>,
+                    <em>Field Programmable Gate Array (FPGA)</em>, <em>General Purpose GPU (GPGPU)</em>, etc.</li>
+                </ul>
+            </p>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Shared memory (e.g : OpenMP)</h2>
+    <ul>
+        <li class="slide"><strong>Multicore</strong> : more than one core per processor.
+            <ul>
+                <li>Processes several instruction streams together, each one manipulating different datas.</li>
+                <li>Different from <em>superscalar</em> processors, which can process more than one instruction during a
+                single processor cycle.</li>
+                <li>A multicore processor can however be superscalar.</li>
+                <li>For instance : <em>IBM's Cell microprocessor (PlayStation3)</em></li>
+            </ul>
+        </li>
+
+        <li class="slide"><strong>Symmetric multiprocessing</strong> : More than one processor which communicate through
+        a specific bus.
+            <ul>
+                <li><em>Bus contention</em> is the principal limitating factor.</li>
+            </ul>
+        </li>
+
+        <li class="slide">The main drawback is explicitly contained in the name.
+            <ul>
+                <li>Memory is <em>shared</em></li>
+                <li>Bus contention?</li>
+                <li>Low memory?</li>
+                <li>Use of virtual memory (swap) and page faults?</li>
+                <li>=> Can slow the speedup compared with the number of processors.</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Message Passing Interface (e.g : OpenMPI)</h2>
+    <p>Memory isn't shared here, manipulated objects are sent on a network: there is communication between the machines
+    (called <em>hosts</em>)</p>
+    <ul>
+        <li><strong>Cluster</strong>
+        <ul class="slide">
+            <li>Several machines network connected (for instance, in an Ethernet network).</li>
+            <li>Can have different specifications, but this can affect load balancing.</li>
+            <li>Most of the <em>supercomputers</em> are clusters.</li>
+            <li>For exemple : Beowulf Cluster, Sun Grid Engine...</li>
+        </ul>
+        </li>
+
+        <li><strong>Massive parallel processing</strong>
+        <ul class="slide">
+            <li>This is not machines but processors which are directly connected by network.</li>
+            <li>Like a cluster, but the networks are specific, so as to wire more processors.</li>
+        </ul>
+        </li>
+
+        <li><strong>Grid (a.k.a Distributed Computing)</strong>
+        <ul class="slide">
+            <li>Networks with potentially high latence and low bandwith, like Internet.</li>
+            <li>Example of programs : BOINC, Seti@home...</li>
+        </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h1>Parallelization myths</h1>
+</section>
+
+<section class="slide">
+    <h2>A myth about speed: the car's enigma</h2>
+    <ul>
+        <li class="slide">If a car has to travel 100 Km, but has yet traveled 60 Km in 1 hour (i.e it has an average
+        speed of 60 Km per hour), what is its maximal average speed on the whole traject
+        ?</li>
+
+        <p><img src="http://www.canailleblog.com/photos/blogs/chevaux-trop-rigolo-229540.jpg" /></p>
+        <li class="slide">Some hints:
+            <ul>
+                <li>The driver can use all the hilarious gas (N<sub>2</sub>O, nitrous oxyde, a.k.a <em>nitro</em>) he
+                needs.</li>
+                <li>Let's suppose even that the car can travel at speed of light, or teleport (despite general theory of
+                relativity).</li>
+            </ul>
+        </li>
+
+        <li class="slide">The solution: <strong>100 Km/h</strong></li>
+        <li class="slide">The explanation: let's suppose that the car teleports after the first 60 Km. It would have
+        traveled 60 Km in 1 hour and 40 Km in 0 seconds, which is 100 Km in 1 hour: 100 Km/h.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>A myth about speed: "Il dit qu'il voit pas le rapport ?"</h2>
+    <p><img src="http://r.linter.fr/questionnaire/document/image/250/7241.jpg" /></p>
+    <ul class="slide">
+        <li>Let P be the parallelizable proportion of the program (~ the remaining distance to travel), which can be
+        processed by N machines.</li>
+        <li>Then 1 - P is the sequential (non parallelizable) proportion of the program (~ the already traveled distance), which
+        can be processed by 1 machine.</li>
+        <li>A sequential version would take 1 - P + P = 1 unit (of time) to terminate.</li>
+        <li>A parallel version would take (1-P) + P / N units to terminate.</li>
+        <li>The <em>speedup</em> (gain of speed) would then be:
+            <img src="http://upload.wikimedia.org/wikipedia/en/math/f/4/0/f40f1968282e110c7e65222d2b5d3115.png"
+            style="height:100px;"/>
+        which tends to 1-P as N tends to infinity.</li>
+        <li>The maximal theoritical speedup (~ maximal average speed) would then be 1 / (1-P)</li>
+        <li><h3>This result is known as Amdahl's law</h3></li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>A myth about data : the cat's enigma</h2>
+    <ul>
+        <li class="slide">
+            <p>If 3 cats catch 3 mices in 3 minutes, how many cats are needed to catch 9 mices in 9
+            minutes ?
+            <img src="http://www.creabar.com/photo/Animaux/ggq91fch.jpg" />
+            </p>
+        </li>
+        <li class="slide">The solution: 3 too !</li>
+        <li class="slide">A better question to ask would be: how many mices can catch 9 cats in 3 minutes ?</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>A myth about data</h2>
+    <ul>
+        <li>The idea is no more to make a processing faster (for a constant amount of data) but to process more data (in
+        the same time).</li>
+        <li>In this case, the most hosts we add, the most data we can process at a time.</li>
+        <li>This doesn't contradict Amdahl's Law, which makes the assumption that the amount of data to process stays
+        the same.</li>
+        <li>There is also another way to calculate speedup here:
+            <img src="http://upload.wikimedia.org/wikipedia/en/math/1/9/f/19f6e664e94fbcaa0f5877d74b6bffcd.png"
+            style="height: 50px;" />
+            where P is the number of processes, alpha the non parallelizable part of the program.
+        </li>
+        <li><h3>This result is known as the Gustafson's Law</h3></li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>A metric: speedup</h2>
+    <ul>
+        <li><strong>Speedup</strong> refers to how much a parallel algorithm is faster than a corresponding sequential algorithm</li>
+        <li>It's a quantitative mesure, relative to the sequential version :
+            <img src="http://upload.wikimedia.org/wikipedia/en/math/a/8/0/a8080d5bd23d7ba57a9cf4fedcefadad.png"
+            style="height:100px;"/>
+            where T<sub>1</sub> is the time taken by the sequential version and T<sub>p</sub> the time taken by the parallel version with p
+            processes.
+        </li>
+        <li>A speedup equal to one indicates that the version is as performant as the sequential version.</li>
+        <li>Practically, speedup may not be linear in number of processes (Amdahl's Law)</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h1>Parallelization in EO</h1>
+</section>
+
+<section class="slide">
+    <h2>Objectives</h2>
+    <ul>
+        <li>Remember, tasks have to be independant from one to another.</li>
+        <li>Process data faster: what takes time in EO?
+            <ul class="slide">
+                <li>Evaluation!</li>
+            </ul>
+        </li>
+        <li>Process more data during the same time: where?
+            <ul class="slide">
+                <li>Multi-start!</li>
+            </ul>
+        </li>
+        <li>Other objectives :
+            <ul>
+                <li>Readily serialize EO objects.</li>
+                <li>Be able to easily implement other parallel algorithms.</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Evaluation: Long story short</h2>
+    <pre class="sh_cpp"><code>
+    int main( int argc, char **argv )
+    {
+        eo::mpi::Node::init( argc, argv );
+        // PUT EO STUFF HERE
+        // Let's make the assumption that pop is a eoPop&lt;EOT&gt;
+        // and evalFunc is an evaluation functor
+        eo::mpi::DynamicAssignmentAlgorithm assign;
+        eoParallelPopLoopEval&lt;EOT&gt; popEval( assign, eo::mpi::DEFAULT_MASTER, evalFunc );
+        popEval( pop, pop );
+    }
+    </code></pre>
+</section>
+
+<section class="slide">
+    <h2>Serializing EO objects</h2>
+    <ul>
+        <li>Serializing is writing a message from a binary source into a message transmissible data.</li>
+        <li>Several formats can be used
+            <ul class="slide">
+                <li>Binary directly - but all the hosts have to be the same!</li>
+                <li>Text based formats: XML, YAML, JSON,...</li>
+            </ul>
+        </li>
+        <li>So why use text?
+            <ul class="slide">
+                <li>It's human readable, more or less easily parsable.</li>
+                <li>It's independant from the data type representations on the machines (e.g: an int on a 32 bits and on
+                a 64 bits machines are not the same).</li>
+                <li>Main drawbacks: it takes more space and it needs a processing for encoding and decoding.</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>eoserial : principle</h2>
+    <img src="./img/serialisation.png" style="float:left;margin-right:25px;" />
+    <ul>
+        <li>JSON serialization
+            <ul class="slide">
+                <li>Lighter than XML.</li>
+                <li>Easily parsable, the grammar is trivial.</li>
+                <li>Allows to represent tables, objects and texts: it's sufficient!</li>
+            </ul>
+        </li>
+        <li>What happens in your life when you're serializable?
+        </li>
+        <li>Implement interface eoserial::Persistent and your object can be saved and loaded, in JSON format.</li>
+        <li>No need to serialize the whole object, you choose what you need to save and load.</li>
+        <li>Everything can be serialized!<ul class="slide">
+            <li>Atomic types are directly serialized into eoserial::String (thanks to std::stringstream)</li>
+            <li>Arrays are serializable (into eoserial::Array), if what they contain is too.</li>
+            <li>Object can be serializable (into eoserial::Object), if what they contain is too.</li>
+        </ul></li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>eoserial : interface eoserial::Persistent</h2>
+    <pre class="sh_cpp">
+    <code>
+    # include &lt;serial/eoSerial.h&gt;
+
+    class MyObject : public eoserial::Persistent {
+        public:
+
+        // A persistent class needs a default empty ctor.
+        MyObject() {}
+
+        int id;
+
+        // Implementation of eoserial::Persistent::pack
+        // What to save when making a serialized object?
+        eoserial::Object* pack() const
+        {
+            eoserial::Object* obj = new eoserial::Object;
+            // eoserial::make creates a eoserial::String from a basic type
+            eoserial::String* idAsString = eoserial::make( id );
+            // the key "saved_id" will be associated to the JSON object idAsString
+            obj->add( "saved_id", idAsString );
+            // could have be done with
+            // (*obj)["saved_id"] = idAsString;
+            // as obj is a std::map pointer
+            return obj;
+        }
+
+        // Implementation of eoserial::Persistent::unpack
+        // What data to retrieve from a JSON object and where to put it?
+        void unpack(const eoserial::Object* json)
+        {
+            // retrieves the value from key "saved_id" in "*json" object and put it into member "id"
+            eoserial::unpack( *json, "saved_id" , id );
+        }
+    };
+    </code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>eoserial : use it</h2>
+    <pre class="sh_cpp">
+    <code>
+# include &lt;eoSerial.h&gt;
+# include &lt;fstream&gt;
+# include &lt;cassert&gt;
+
+    int main(void)
+    {
+        MyObject instance;
+        instance.id = 42;
+
+        // Writes
+        eoserial::Object* obj = instance.pack();
+        std::ofstream ofile("filename");
+        obj->print( ofile );
+        ofile.close();
+        delete obj;
+
+        // Reads
+        std::ifstream ifile("filename");
+        std::stringstream ss;
+        while( ifile )
+        {
+            std::string s;
+            ifile &gt;&gt; s;
+            ss &lt;&lt; s;
+        }
+        eoserial::Object* objCopy = eoserial::Parser::parse( ss.str() );
+        MyObject instanceCopy;
+        instanceCopy.unpack( objCopy );
+
+        assert( instanceCopy.id == instance.id );
+
+        return 0;
+    }
+    </code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>eoserial : more complex uses</h2>
+    <pre class="sh_cpp"><code>
+    struct ComplexObject
+    {
+        bool someBooleanValue; // will be serialized into a string
+        MyObject obj; // Objects can contain other objects too
+        std::vector&lt;int&gt;; // and tables too!
+    };
+
+    int main(void)
+    {
+        ComplexObject co;
+        // let's imagine we've set values of co.
+        eoserial::Object* json = new eoserial::Object;
+        // serialize basic type
+        (*json)["some_boolean_value"] = eoserial::make( co.someBooleanValue );
+        // MyObject is Persistent, so eoserial knows how to serialize it
+        json->add( "my_object", &co.obj );
+        // Instead of having a "for" loop, let's automatically serialize the content of the array
+        json->add( "int_array",
+            eoserial::makeArray&lt; std::vector&lt;int&gt;, eoserial::MakeAlgorithm &gt;( co.array ) );
+        // Print everything on the standard output
+        json->print( std::cout );
+        delete json;
+        return 0;
+    }
+    </code></pre>
+</section>
+
+<section class="slide">
+    <h2>MPI</h2>
+    <ul>
+        <li>We know how to serialize our objects. Now, we need to transmit them over the network.</li>
+        <li><strong>Message Passing Interface</strong> (MPI) is a norm.</li>
+        <li>OpenMPI implements it, in C, in the SPMD (Single Program Multiple Data) fashion. It is an active community
+        and the library is very well documented.</li>
+        <li>Boost::mpi gives it a C++ flavour (and tests each status code returned by MPI calls, throwing up exceptions
+        instead).</li>
+        <li>MPI helps by:
+            <ul class="slide">
+                <li>Managing the administration of roles: each MPI process has a <em>rank</em> and knows the whole
+                <em>size</em> of the cluster.</li>
+                <li>Regrouping outputs of different processes into one single output.</li>
+                <li>Managing the routing of messages and connections between the processes.</li>
+                <li>Launch a given number of processes via SSH, or a cluster engine (like SGE).</li>
+            </ul>
+        </li>
+        <li>MPI doesn't deal with:
+            <ul class="slide">
+                <li>Debugging: if one of your program segfaults, buy a parallel debugger or... Good luck!</li>
+                <li>More generally, knowing what happens: even the standard output becomes a shared resource without any
+                protection!</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h1>Design of parallel algorithms</h1>
+</section>
+
+<section class="slide">
+    <h2>Some vocabulary</h2>
+    <ul>
+        <li>In the most of cases, we want the results to be retrieved in one place. Besides, communication in MPI is
+        synchronous (it's a design choice making things are simpler).</li>
+        <li>One process will have particular responsabilities, like aggregating results: it's the <strong>master</strong>.</li>
+        <li>Other processes will be used to do the processing (it's the goal, after all?) : they're the
+        <strong>workers</strong>. Or <strong>slaves</strong>, but it may be <em>patronizing</em> and the master is rarely called
+        the <em>patron</em>.</li>
+        <li>As there is one master, the algorithm is said to be <strong>centralized</strong>. Some well-known parallel algorithms
+        use this paradigm: <em>Google's MapReduce</em>, <em>Apache's Hadoop</em>(free implementation of Google's one :-)),...</li>
+        <li>A <strong>job</strong> is the parallel algorithm seen in its globality (i.e., as a function).</li>
+        <li>A job is a set of <strong>tasks</strong>, which are the atomic, decomposed part which can be serialized and
+        processed by a worker, at a time.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Evaluation (1/2)</h2>
+    <p>
+        Let's see how we could implement our parallelized evaluation<br/>
+        It's feasible as evaluating an individual is independant from evaluating another one.<br/>
+        <pre><code>
+        // On master side
+        function parallel_evaluate( population p )
+            foreach individual i in p,
+                send i to a worker
+                if there is no available worker,
+                    wait for any response (return)
+                    and retry
+                endif
+            endforeach
+            inform all the available workers that they are done (yes, it's a centralized algorithm)
+            wait for all remaining responses
+        endfunction
+
+        when receiving a response:
+            replace the evaluated individual in the population
+
+        // On worker side
+        function parallel_evaluate( evaluation function f )
+            wait for a individual i
+            apply f on it
+            send i to the master
+        endfunction
+        </code></pre>
+    </p>
+</section>
+
+<section class="slide">
+    <h2>Evaluation (2/2)</h2>
+    <p>But a parallelization algorithm is interesting only if the process time is higher than the
+    communication time. If process time is too short relatively to the communication time, we can do the following:
+        <pre><code>
+        // On master side<span class="changed">
+        function parallel_evaluate( population p, number of elements to send each time packet_size )
+            index = 0
+            while index &lt; size
+                sentSize := how many individuals (&lt;= packet_size) can we send to a worker?
+                find a worker. If there is no one, wait for any response (return) and retry
+                send the sentSize to the worker
+                send the individuals to the worker
+                index += sentSize
+            endwhile</span>
+            inform all the available workers that they're done
+            wait for all remaining responses
+        endfunction
+
+        when receiving a response:
+            replace the evaluated individuals in the population
+
+        // On worker side
+        function parallel_evaluate( evaluation function f )
+        <span class="changed">size := wait for a sentSize as described above
+            individuals := wait for size individuals
+            apply f on each of them
+            send back the individuals</span>
+        endfunction
+        </code></pre>
+</section>
+
+<section class="slide">
+    <h2>Multi start</h2>
+    <p>The idea behing multi-start is to run many times the same algorithm (for instance, eoEasyEA), but with different
+    seeds: the workers launch the algorithm and send their solutions as they come to the master, which saves the
+    ultimate best solution.</p>
+    <pre>
+        // On master side
+        variable best_score (initialized at the worst value ever) // score can be fitness, for instance
+
+        function parallel_multistart( integer runs )
+            seeds = table of generated seeds, or fixed seeds, whose size is at least "runs"
+            for i := 0; i &lt; runs; ++i
+                find a worker. If there is no one, wait for any response (return) and retry
+                send to the worker a different seed
+            endfor
+            inform all the available workers that they're done
+            wait for all remaining responses
+        endfunction
+
+        when receiving a response:
+            received_score := receive score from the worker.
+            If the received_score &gt; best_score
+                send worker a message indicating that master is interested by the solution
+                receive the solution
+                updates the best_score
+            else
+                send worker a message indicating that master isn't interested by the solution
+            endif
+
+        // On worker side
+        function parallel_multistart( algorithm eoAlgo )
+            seed := wait for a seed
+            solution := eoAlgo( seed )
+            send solution score to master
+            master_is_interested := wait for the response
+            if master_is_interested
+                send solution to master
+            endif
+        endfunction
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>Common parts vs specific parts</h2>
+    <ul>
+        <li>These two algorithms have common parts and specific parts.</li>
+        <li>Identifying them allows to design generic parallel algorithms.</li>
+        <li>In the following code sample, specific parts are in red. Everything else is hence generic.</li>
+    </ul>
+
+    <pre><code>
+        // On master side
+        function parallel_evaluate(<span class="specific">population p, number of elements to send each time packet_size </span>)
+            <span class="specific">index = 0</span>
+            while <span class="specific">index &lt; size</span>
+                find a worker. If there is no one, wait for any response (return) and retry
+                <span class="specific">sentSize := how many individuals (&lt;= packet_size) can we send to a worker?
+                send the sentSize to the worker
+                send the individuals to the worker
+                index += sentSize</span>
+            endwhile</span>
+            inform all the available workers that they're done
+            wait for all remaining responses
+        endfunction
+
+        when receiving a response:
+            <span class="specific">replace the evaluated individuals in the population</span>
+
+        // On worker side
+        function parallel_evaluate(<span class="specific"> evaluation function f </span>)
+        <span class="specific">size := wait for a sentSize as described above
+            individuals := wait for size individuals
+            apply f on each of them
+            send back the individuals</span>
+        endfunction
+        </code></pre>
+
+</section>
+
+<section class="slide">
+    <h2>Common parts</h2>
+    <ul>
+        <li>Master runs a loop.</li>
+        <li>Master has to manage workers (find them, wait for them, etc...)</li>
+        <li>Workers need to be informed if they have something to do or not (stop condition in master part)</li>
+        <li>Master needs to wait to get all the responses.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Specific parts</h2>
+    <ul>
+        <li>Loop condition in the master's part.</li>
+        <li>What has to be sent to a worker by master?</li>
+        <li>What has to be done by a worker when it receives an order?</li>
+        <li>What has to be done when the master receives a response?</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Generic parallel algorithm</h2>
+    <p>The calls to specific parts are in red.</p>
+    <pre><code>
+    // Master side
+    function parallel_algorithm()
+        while ! <span class="specific">isFinished()</span>
+            worker := none
+            while worker is none
+                wait for a response and affect worker the origin of the response
+                <span class="specific">handleResponse( worker )</span>
+                worker = retrieve worker
+            endwhile
+            send worker a work order
+            <span class="specific">sendTask( worker )</span>
+        endwhile
+
+        foreach available worker
+            indicate worker it's done (send them a termination order)
+        endforeach
+
+        while all responses haven't be received
+            worker := none
+            wait for a response and affect worker the origin of the response
+            <span class="specific">handleResponse( worker )</span>
+            send worker a termination order
+        endwhile
+    endfunction
+
+    // Worker side
+    function parallel_algorithm()
+        order := receive order
+        while order is not termination order
+            <span class="specific">processTask( )</span>
+            order = receive order
+        endwhile
+    endfunction
+    </code></pre>
+</section>
+
+<section class="slide">
+    <h2>TLDR;</h2>
+    <img src="./img/generic_parallel.png" style="height:800px;"/>
+</section>
+
+<section class="slide">
+    <h2>Functors</h2>
+    <ul>
+        <li>Using functors allows them to wrap <em>and</em> be wrapped (decorator pattern).</li>
+        <li>IsFinished : implements <em>bool operator()()</em>, indicating that the job is over.</li>
+        <li>SendTask : implements <em>void operator()( int worker_rank )</em>, indicating what to send to the
+        worker.</li>
+        <li>ProcessTask : implements <em>void operator()()</em>, indicating what the worker has to do when it receives a
+        task.</li>
+        <li>HandleResponse : implements <em>void operator()( int worker_rank )</em>, indicating what to do when
+        receiving a worker response.</li>
+        <li>Implementing these 4 functors is sufficient for a parallel algorithm!</li>
+        <li>You can also wrap the existing one to add functionalities.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Stores</h2>
+    <ul>
+        <li>These 4 functors can use about the same data.</li>
+        <li>This data needs to be shared : all the functors are templated on a JobData structure.</li>
+        <li>A job needs data and functors to be launched.</li>
+        <li>Several jobs can use the same data and functors.</li>
+        <li>=> Data and functors are saved into a store, which can be reused between different jobs.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Scheduling tasks between workers</h2>
+    <ul>
+        <li>Until here, we don't know how to schedule tasks between workers.</li>
+        <li>Naive, simple solution: as soon as a worker has finished a task, give it a new task. Workers are put in a
+        queue, this is the <strong>dynamic assignment</strong> (scheduling).</li>
+        <li>If the worker's number of call is well-known, initially give to each worker a fixed amount of tasks. When a
+        worker has finished a task, give it another task only if it the amount of remaining tasks is positive ; else,
+        wait for another worker. Workers are managed with a fixed table, this is the <strong>static
+            assignment</strong>.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Let's go back to evaluation in EO</h2>
+    <ul>
+        <li>The idea behind applying a functor to each element of a table is very generic. Google, Python and Javascript
+        call it <strong>map</strong>, we call it <strong>ParallelApply</strong>, according to existing
+        <strong>apply</strong> function, in apply.h.</li>
+        <li>There is also a <em>ParallelApplyJob</em>, a <em>ParallelApplyStore</em> which contains a
+        <em>ParallelApplyData</em>, a <em>IsFinishedParallelApply</em>, etc...</li>
+        <li>This is what is used when calling parallel evaluation.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Customizing evaluation: reminder</h2>
+    <pre class="sh_cpp"><code>
+    int main( int argc, char **argv )
+    {
+        eo::mpi::Node::init( argc, argv );
+        // PUT EO STUFF HERE
+        // Let's make the assumption that pop is a eoPop&lt;EOT&gt;
+        // and evalFunc is an evaluation functor
+        eo::mpi::DynamicAssignmentAlgorithm assign;
+        eoParallelPopLoopEval&lt;EOT&gt; popEval( assign, eo::mpi::DEFAULT_MASTER, evalFunc );
+        // The store is hidden behind this call, but it can be given at eoParallelPopLoopEval constructor!
+        popEval( pop, pop );
+    }
+    </code></pre>
+</section>
+
+<section class="slide">
+    <h2>Customizing evaluation: the idea</h2>
+    <ul>
+        <li>We would like to retrieve best individuals, as soon as they're processed, and print their fitness in the
+        standard output, for instance.</li>
+        <li>We can wrap one of the 4 functors.</li>
+        <li>Master side or worker side?
+            <ul class="slide">
+                <li>Master side: we want to retrieve the <em>global</em> best individual, not the best individual in
+                population slices.</li>
+                <li>We have 3 choices: IsFinished, HandleResponse, SendTask.</li>
+                <li>So which one?
+                    <ul class="slide">
+                    <li>The functor HandleResponse should be reimplemented: in a sequential version, it would be done just
+                    after the evaluation of an individual. The HandleResponse is the nearest functor called after having
+                    received the result.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>How to do it?
+            <ol class="slide">
+                <li>Retrieve which slice has been processed by the worker.</li>
+                <li>Call the embedded HandleResponse.</li>
+                <li>Compare the fitnesses of individuals in the slice to the global best individual.</li>
+            </ol>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Customizing evaluation: implementation!</h2>
+    <pre class="sh_cpp"><code>
+    // Our objective is to minimize fitness, for instance
+    struct CatBestAnswers : public eo::mpi::HandleResponseParallelApply&lt;EOT&gt;
+    {
+        CatBestAnswers()
+        {
+            best.fitness( 1000000000. );
+        }
+
+        void operator()(int wrkRank)
+        {
+            // Retrieve informations about the slice processed by the worker
+            int index = _data->assignedTasks[wrkRank].index;
+            int size = _data->assignedTasks[wrkRank].size;
+            // call to the wrapped function HERE
+            (*_wrapped)( wrkRank );
+            // Compare fitnesses of evaluated individuals with the best saved
+            for(int i = index; i &lt; index+size; ++i)
+            {
+                if( best.fitness() &lt; _data->table()[ i ].fitness() )
+                {
+                    eo::log &lt;&lt; eo::quiet &lt;&lt; "Better solution found:" &lt;&lt; _data->table()[i].fitness() &lt;&lt; std::endl;
+                    best = _data->table()[ i ];
+                }
+            }
+        }
+
+        protected:
+
+        EOT best;
+    };
+    </code></pre>
+</section>
+
+<section class="slide">
+    <h2>Using customized handler</h2>
+    <pre class="sh_cpp"><code>
+        int main( int argc, char **argv )
+        {
+            eo::mpi::Node::init( argc, argv );
+            // PUT EO STUFF HERE
+            // Let's make the assumption that pop is a eoPop&lt;EOT&gt;
+            // and evalFunc is an evaluation functor
+            eo::mpi::DynamicAssignmentAlgorithm assign;
+            // What was used before
+            // eoParallelPopLoopEval&lt;EOT&gt; popEval( assign, eo::mpi::DEFAULT_MASTER, evalFunc );
+            // What's new
+            eo::mpi::ParallelApplyStore&lt; EOT &gt; store( evalFunc, eo::mpi::DEFAULT_MASTER );
+            CatBestAnswer catBestAnswers;
+            store.wrapHandleResponse( &catBestAnswers );
+
+            eoParallelPopLoopEval&lt; EOT &gt; popEval( assign, eo::mpi::DEFAULT_MASTER, &store );
+            // What doesn't change
+            popEval( pop, pop );
+        }
+    </code></pre>
+</section>
+
+<section class="slide">
+    <h1>Thank you for your attention</h1>
+</section>
+
+<section class="slide">
+    <h2>Remarks</h2>
+    <ul>
+        <li>This presentation is made of HTML5, CSS3, JavaScript, thanks to frameworks
+        <a href="http://imakewebthings.com/deck.js/">Deck.js</a> (slides) and <a href="http://shjs.sourceforge.net/">SHJS</a> (syntax
+        highlighting).
+        <li>If you have any complaint to make, please refer to <a href="mailto:johann@dreo.fr">Johann Dreo</a>.</li>
+        <li>If you have any question or compliment, please refer to <a href="mailto:benjamin.bouvier@gmail.com">me</a>
+        (Benjamin Bouvier).</li>
+    </ul>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Précédent">&#8592;</a>
+<a href="#" class="deck-next-link" title="Suivant">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+<!-- Grab CDN jQuery, with a protocol relative URL; fall back to local if offline -->
+<!-- <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script> -->
+<script>window.jQuery || document.write('<script src="js/jquery-1.7.min.js"><\/script>')</script>
+
+<!-- Deck Core and extensions -->
+<script src="js/deck.core.js"></script>
+<script src="js/deck.hash.js"></script>
+<script src="js/deck.menu.js"></script>
+<script src="js/deck.goto.js"></script>
+<script src="js/deck.status.js"></script>
+<script src="js/deck.navigation.js"></script>
+<script src="js/deck.scale.js"></script>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+<!-- Initialize the highlighter -->
+<script src="js/shjs.js"></script>
+<script src="js/shjs-cpp.js"></script>
+<script>
+    sh_highlightDocument();
+</script>
+
+</body>
+</html>

@@ -73,7 +73,8 @@ int main()
   // Terminators
   eoGenContinue<Chrom> continuator1(10);
   eoFitContinue<Chrom> continuator2(CHROM_SIZE);
-  eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
+  eoCombinedContinue<Chrom> continuator(continuator1);
+  continuator.add( continuator2);
   eoCheckPoint<Chrom> checkpoint(continuator);
   eoStdoutMonitor monitor;
   checkpoint.add(monitor);

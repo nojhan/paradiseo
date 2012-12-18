@@ -2,14 +2,14 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries (mandatory: before 3) )
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
+LINK_DIRECTORIES(${EO_BIN_DIR}/${LIB})
 
 ######################################################################################
 ### 3) Define your target(s): just an executable here

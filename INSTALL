@@ -136,6 +136,17 @@ To enable the compilation of the PEO module, just add -DPEO=true to CMake :
 > cmake .. -DPEO=true
 
 ------------------------------------------------------------------------------------------
+2.3 EDO MODULE
+------------------------------------------------------------------------------------------
+
+WARNING : The EDO module requires either the Boost::ublas or the Eigen3 library.
+
+To enable the compilation of the EDO module, just add -DEDO=true to CMake :
+
+> cmake .. -DEDO=true
+
+
+------------------------------------------------------------------------------------------
 3. DOCUMENTATION
 ------------------------------------------------------------------------------------------
 
@@ -145,6 +156,7 @@ Targets are :
 doc for all documentations
 doc-eo for building EO documentation
 doc-mo for MO
+doc-edo for MO
 doc-moeo for MOEO
 doc-smp for SMP
 

@@ -1,0 +1,174 @@
+
+
+To build PyEO, a number of steps are neccessary. PyEO depends on Boost.Python v2,
+which in turn expects the presence of python2.2. As we can't expect people to have 
+this installed some instructions are in order to help people build PyEO.so 
+
+First of all, currently Windows is not supported. I don't develop on windows and 
+don't have access to a compiler on it. 
+
+PyEO has been developed on Debian, using gcc 2.95-4.
+
+My primary platform is debian, so the default Makefile provides for that. Below you
+will also find instructions for rpm-based distributions. As far as I know this includes
+RedHat, Mandrake, Suse, Yellowdog, and probably a lot more. If I recall correctly, the RPM
+format is the LSB default.
+
+===== Building PyEO on Debian =====
+
+Point your /etc/apt/sources.list to the unstable distribution (if it's not there already),
+and install:
+
+for Python:
+
+$ apt-get install python2.2
+$ apt-get install python2.2-dev
+
+It might also be a good idea to install the numeric library
+
+$ apt-get install python2.2-numeric
+
+
+For Boost.Python:
+
+$ apt-get install libboost-python1.29.0
+$ apt-get install libboost-python-dev
+
+If all goes well, this will also install libstlport. If it doesn't,
+
+$ apt-get install libstlport4.5
+
+and maybe
+
+$ apt-get install libstlport4.5-dev 
+
+but I'm not sure about the latter.
+
+Now you can type
+
+$ make
+
+And after (a long) wait, a file called PyEO.so will be produced. 
+
+===== Building PyEO on an RPM-based Distro =====
+
+The following recipe has only been tested on a RedHat 7.1 installation, on other
+systems some stuff might be different.
+
+== Getting Python2.2 ==
+
+If you don't have python2.2 installed (newer distro's install this by default),
+you can either install it from a binary specifically build for your distro, or
+you can build it from source by going to:
+
+http://www.python.org/2.2.1/rpms.html
+
+and getting the source by clicking the link to python2-2.2.1-2.src.rpm
+
+This actually links to:
+
+http://www.python.org/ftp/python/2.2.1/rpms/python2-2.2.1-2.src.rpm
+
+for your convenience I mirrored this file at:
+
+http://www.cs.vu.nl/~mkeijzer/PyEO/python2-2.2.1-2.src.rpm
+
+by usuing the command:
+
+$ rpm --rebuild python2-2.2.1-2.src.rpm
+
+or  with newer versions of rpm
+
+$ rpmbuild python2-2.2.1-2.src.rpm
+
+It will build a binary rpm for your computer. On this Redhat 7.1 box it put the 
+RPMS it build in
+
+/usr/src/redhat/RPMS/i386/
+
+The ones you need to install are:
+
+python2-2.2.1-2.i386.rpm
+python2-devel-2.2.1-2.i386.rpm
+
+But you might want to install the rest as well.
+
+== Getting Boost.Python ==
+
+First of all, do a quick check. At the prompt type:
+
+$ python
+
+If you see something like:
+
+Python 2.2.2 (#4, Oct 15 2002, 04:21:28)
+[GCC 2.95.4 20011002 (Debian prerelease)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+
+(don't mind the second line, It's the version info we're interested in)
+
+You're set to go. Unfortunately, on this Redhat 7.1 box I tested things on, /usr/bin/python
+insisted on pointing to /usr/bin/python1.5 . Unfortunately, the boost source rpm depends
+on python to provide 2.2. If this is the case on your machine as well, there are two
+possible fixes (of which one I tested).
+
+/usr/bin/python is a symlink, let it point to /usr/bin/python2.2 (this one I tested)
+
+DON'T forget to repoint /usr/bin/python to /usr/bin/python1.5 after you build the boost libraries: Redhat tools
+depend on this!
+
+or
+
+alias python=/usr/bin/python2.2 (which would be better if it works, but untested.)
+
+So given that you are in a shell that uses python2.2 if you issue 
+the command 'python', get two boost source rpms at:
+
+http://www.starostik.de/malte/boost/
+
+namely
+
+boost-jam-3.1.3-1.src.rpm
+boost-1.29.0-2.src.rpm
+
+Which I also mirrored at
+
+http://www.cs.vu.nl/~mkeijzer/PyEO/boost-jam-3.1.3-1.src.rpm
+http://www.cs.vu.nl/~mkeijzer/PyEO/boost-1.29.0-2.src.rpm
+
+First build and install jam using either rpm --rebuild or rpmbuild.
+
+The file you have to install is:
+
+boost-jam-3.1.3-1.i386.rpm
+
+This is the 'make' replacement that is used by boost.
+
+Next, build boost-1.29.0.src.rpm using 'rpm --rebuild' or 'rpmbuild'
+
+The only rpm's that this procedure produces that you need to install is:
+
+boost-python-1.29.0-2.i386.rpm
+boost-python-devel-1.29.0-2.i386.rpm
+
+
+When installing boost-python-devel, I got a dependency problem with libpython-dev,
+this was probably caused by the same problem I had with python2.2, python1.5. I ignored
+it by using:
+
+$ rpm -i --nodep boost-python-devel-1.29.0-2.i386.rpm
+
+and you're all set to type
+
+$ make -fMakefile.rpm
+
+in the PyEO build directory
+
+==== Testing PyEO==========
+
+After building go to the test directory and type
+
+$ ./run_tests.sh
+
+If you don't see errors, all is well and you're ready to go
+

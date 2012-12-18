@@ -55,7 +55,7 @@ class eoMergeReduce : public eoReplacement<EOT>
         merge(_merge), reduce(_reduce)
         {}
 
-        void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
+        virtual void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
         {
             merge(_parents, _offspring); // parents untouched, result in offspring
             reduce(_offspring, _parents.size());
@@ -91,6 +91,14 @@ class eoCommaReplacement : public eoMergeReduce<EOT>
 {
     public :
         eoCommaReplacement() : eoMergeReduce<EOT>(no_elite, truncate) {}
+
+        virtual void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
+        {
+            // There must be more offsprings than parents, or else an exception will be raised
+            assert( _offspring.size() >= _parents.size() );
+
+            eoMergeReduce<EOT>::operator()( _parents, _offspring );
+        }
 
     private :
         eoNoElitism<EOT> no_elite;

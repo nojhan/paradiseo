@@ -32,6 +32,7 @@ Contact: http://eodev.sourceforge.net
 #ifndef _eoStat_h
 #define _eoStat_h
 
+#include <iostream>
 #include <numeric> // accumulate
 
 #include <eoFunctor.h>
@@ -176,18 +177,27 @@ private :
 };
 
 /**
-    Average fitness + Std. dev. of a population, fitness needs to be scalar.
+    Average fitness + Std. dev. of a population, fitness HAVE TO BE to be scalar.
 */
 template <class EOT>
-class eoSecondMomentStats : public eoStat<EOT, std::pair<double, double> >
+// FIXME find a way to use generic Fitness types instead of scala fitness here :
+// class eoSecondMomentStats : public eoStat<EOT, std::pair<typename EOT::Fitness, typename EOT::Fitness> >
+    // Here, I failed to find a way to overload eoValueParam::getValue and setValue,
+    // because there is no way to use the partial specializations located in eoParam.h
+    // Indeed, eoValueParam is templatized on a ValueType, but the getValue signature does not
+    // contain this type.
+    // Thus, in order to use partial specializations the user would have to specify getValue<ValueType>(),
+    // which is not the case in most of the existing code.
+    // Overloading getValue in this class does not seems to work, the call falls to eoValueParam::getValue
+    // and fails on the output stream.
+class eoSecondMomentStats : public eoStat<EOT, std::pair<double,double> >
 {
 public :
+    // typedef typename EOT::Fitness FitT;
+    typedef double FitT;
 
-    using eoStat<EOT, std::pair<double, double> >::value;
-
-    typedef typename EOT::Fitness fitness_type;
-
-    typedef std::pair<double, double> SquarePair;
+    using eoStat<EOT, std::pair<FitT, FitT> >::value;
+    typedef std::pair<FitT, FitT> SquarePair;
 
     eoSecondMomentStats(std::string _description = "Average & Stdev")
         : eoStat<EOT, SquarePair>(std::make_pair(0.0,0.0), _description)
@@ -195,7 +205,7 @@ public :
 
     static SquarePair sumOfSquares(SquarePair _sq, const EOT& _eo)
     {
-        double fitness = _eo.fitness();
+        FitT fitness = _eo.fitness();
 
         _sq.first += fitness;
         _sq.second += fitness * fitness;
@@ -211,8 +221,10 @@ public :
         value().second = sqrt( (result.second - n * value().first * value().first) / (n - 1.0)); // stdev
     }
 
-  virtual std::string className(void) const { return "eoSecondMomentStats"; }
+    virtual std::string className(void) const { return "eoSecondMomentStats"; }
+
 };
+
 
 /**
     The n_th element fitness in the population (see eoBestFitnessStat)
@@ -244,6 +256,7 @@ public :
   virtual std::string className(void) const { return "eoNthElementFitnessStat"; }
 private :
 
+    /* Very old code...
     struct CmpFitness
     {
       CmpFitness(unsigned _whichElement, bool _maxim) : whichElement(_whichElement), maxim(_maxim) {}
@@ -259,6 +272,7 @@ private :
       unsigned whichElement;
       bool maxim;
     };
+    */
 
     // for everything else
     template <class T>
@@ -329,6 +343,7 @@ public:
 
 private :
 
+    /* Very old code...
     struct CmpFitness
     {
       CmpFitness(unsigned _which, bool _maxim) : which(_which), maxim(_maxim) {}
@@ -344,6 +359,7 @@ private :
       unsigned which;
       bool maxim;
     };
+    */
 
     // default
     template<class T>
@@ -355,6 +371,39 @@ private :
 };
 /** @example t-eoSSGA.cpp
  */
+
+
+/** Keep the best individual found so far
+ */
+template <class EOT>
+class eoBestIndividualStat : public eoStat<EOT, EOT>
+{
+public:
+    using eoStat<EOT, EOT>::value;
+
+    eoBestIndividualStat(std::string _description = "BestIndiv ")
+        : eoStat<EOT, EOT>( EOT(), _description )
+        {}
+
+    void operator()(const eoPop<EOT>& pop)
+    {
+        EOT best = pop.best_element();
+        // on the first call, value() is invalid
+        if( value().invalid() ) {
+            // thus we cannot compare it to something else
+            value() = best;
+        } else {
+            // keep the best individual found so far
+            if( best.fitness() > value().fitness() ) {
+                value() = best;
+            }
+        }
+    }
+
+    virtual std::string className(void) const { return "eoBestIndividualStat"; }
+};
+
+
 
 template <class EOT>
 class eoDistanceStat : public eoStat<EOT, double>

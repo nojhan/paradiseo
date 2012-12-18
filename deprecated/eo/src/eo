@@ -1,0 +1,209 @@
+//-----------------------------------------------------------------------------
+// eo
+// (c) GeNeura Team 1998 - 2000
+/*
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+ */
+//-----------------------------------------------------------------------------
+
+#ifdef _MSC_VER
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif
+
+#ifndef _eo_
+#define _eo_
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+// general purpose
+#include <utils/eoData.h>
+#include <eoObject.h>
+#include <eoPrintable.h>
+#include <eoPersistent.h>
+#include <eoScalarFitness.h>
+#include <eoDualFitness.h>
+#include <EO.h>
+
+#include <utils/rnd_generators.h>
+#include <eoFunctor.h>
+#include <apply.h>
+
+// eo's
+#include <eoVector.h>
+
+#include <other/eoString.h>
+
+#include <utils/eoRndGenerators.h>
+#include <eoInit.h>
+#include <utils/eoUniformInit.h>
+
+// the variation operators
+#include <eoOp.h>
+#include <eoGenOp.h>
+#include <eoCloneOps.h>
+#include <eoOpContainer.h>
+// combinations of simple eoOps (eoMonOp and eoQuadOp)
+#include <eoProportionalCombinedOp.h>
+// didactic (mimics SGA-like variation into an eoGenOp)
+// calls crossover and mutation sequentially,
+// with their respective mutation rates
+#include <eoSGAGenOp.h>
+// its dual: crossover, mutation (and copy) - proportional choice
+// w.r.t. given relative weights
+#include <eoPropGAGenOp.h>
+
+// population
+#include <eoPop.h>
+
+// Evaluation functions (all include eoEvalFunc.h)
+#include <eoPopEvalFunc.h>
+#include <eoEvalFuncPtr.h>
+#include <eoEvalCounterThrowException.h>
+#include <eoEvalTimeThrowException.h>
+#include <eoEvalUserTimeThrowException.h>
+
+// Continuators - all include eoContinue.h
+#include <eoCombinedContinue.h>
+#include <eoGenContinue.h>
+#include <eoSteadyFitContinue.h>
+#include <eoEvalContinue.h>
+#include <eoFitContinue.h>
+#include <eoPeriodicContinue.h>
+#include <eoTimeContinue.h> // added th T.Legrand
+#ifndef _MSC_VER
+#include <eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)
+#endif
+// Selection
+// the eoSelectOne's
+#include <eoRandomSelect.h>
+#include <eoSequentialSelect.h>
+#include <eoDetTournamentSelect.h>
+#include <eoProportionalSelect.h>
+#include <eoFitnessScalingSelect.h> // also contains eoLinearFitScaling.h
+#include <eoRankingSelect.h>
+#include <eoStochTournamentSelect.h>
+#include <eoSharingSelect.h>
+// Embedding truncation selection
+#include <eoTruncatedSelectOne.h>
+
+// the batch selection - from an eoSelectOne
+#include <eoSelectPerc.h>
+#include <eoSelectNumber.h>
+#include <eoSelectMany.h>
+#include <eoTruncatedSelectMany.h>
+
+// other batch selections
+// DetSelect can also be obtained as eoSequentialSelect, an eoSelectOne
+// (using setup and an index)
+#include <eoDetSelect.h>
+
+// Breeders
+#include <eoGeneralBreeder.h>	// applies one eoGenOp, stop on offspring count
+// #include <eoOneToOneBreeder.h>	// parent + SINGLE offspring compete (e.g. DE) - not ready yet...
+
+// Replacement
+// #include <eoReplacement.h>
+#include <eoMergeReduce.h>
+#include <eoReduceMerge.h>
+#include <eoSurviveAndDie.h>
+
+// a simple transformer
+#include <eoSGATransform.h>
+
+// Perf2Worth stuff - includes eoSelectFromWorth.h
+#include <eoNDSorting.h>
+
+
+// Algorithms
+#include <eoEasyEA.h>
+#include <eoSGA.h>
+// #include <eoEvolutionStrategy.h>   removed for a while - until eoGenOp is done
+
+// Utils
+#include <utils/checkpointing>
+#include <utils/eoRealVectorBounds.h> // includes eoRealBounds.h
+#include <utils/eoIntBounds.h>        // no eoIntVectorBounds
+
+// aliens
+#include <other/external_eo>
+#include <eoCounter.h>
+
+
+//-----------------------------------------------------------------------------
+// to be continued ...
+//-----------------------------------------------------------------------------
+
+/*** Particle Swarm Optimization stuff ***/
+
+// basic particle definitions
+#include <PO.h>
+#include <eoVectorParticle.h>
+#include <eoBitParticle.h>
+#include <eoRealParticle.h>
+
+// initialization
+#include <eoParticleBestInit.h>
+#include <eoInitializer.h>
+
+// velocities
+#include <eoVelocity.h>
+#include <eoStandardVelocity.h>
+#include <eoExtendedVelocity.h>
+#include <eoIntegerVelocity.h>
+#include <eoConstrictedVelocity.h>
+#include <eoFixedInertiaWeightedVelocity.h>
+#include <eoVariableInertiaWeightedVelocity.h>
+#include <eoConstrictedVariableWeightVelocity.h>
+
+// flights
+#include <eoFlight.h>
+#include <eoStandardFlight.h>
+#include <eoVelocityInit.h>
+#include <eoBinaryFlight.h>
+#include <eoSigBinaryFlight.h>
+
+// topologies
+#include <eoTopology.h>
+#include <eoStarTopology.h>
+#include <eoLinearTopology.h>
+#include <eoRingTopology.h>
+#include <eoNeighborhood.h>
+#include <eoSocialNeighborhood.h>
+
+// PS algorithms
+#include <eoPSO.h>
+#include <eoEasyPSO.h>
+#include <eoSyncEasyPSO.h>
+
+// utils
+#include <eoRealBoundModifier.h>
+#include <eoRandomRealWeightUp.h>
+#include <eoWeightUpdater.h>
+#include <eoLinearDecreasingWeightUp.h>
+#include <eoGaussRealWeightUp.h>
+
+#include <utils/eoLogger.h>
+#include <utils/eoParallel.h>
+
+#endif
+
+// Local Variables:
+// mode: C++
+// End:

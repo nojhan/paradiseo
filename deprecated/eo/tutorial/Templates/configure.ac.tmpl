@@ -1,0 +1,39 @@
+# EO template autogeneration configure.ac template
+#
+# Copyright (C) 2006 Jochen Küpper <jochen@fhi-berlin.mpg.de>
+#
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(MyStruct, 0.1)
+AC_CONFIG_SRCDIR(src/eoMyStruct.h)
+AM_INIT_AUTOMAKE
+AC_CONFIG_HEADERS(config.h)
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_CXX
+AC_ISC_POSIX
+
+dnl Checks for header files.
+AC_STDC_HEADERS
+AC_LANG(C++)
+AC_CHECK_HEADERS([eo], [], [AC_ERROR(Evolving Objects headers are required)])
+
+dnl Checks for libraries.
+AC_LANG(C++)
+AC_CHECK_LIB([eoutils], [main], [],
+	     AC_MSG_ERROR([Evolving Objects utility library is required.]))
+AC_CHECK_LIB([eo], [main], [],
+	     AC_MSG_ERROR([Evolving Objects library is required.]))
+AC_CHECK_LIB([es], [main], [],
+	     AC_MSG_ERROR([EO Evolutionary strategies library is required.]))
+
+dnl Checks for library functions.
+
+AC_OUTPUT([Makefile src/Makefile])
+
+
+dnl Local Variables:
+dnl coding: iso-8859-1
+dnl mode: autoconf
+dnl fill-column: 80
+dnl End:

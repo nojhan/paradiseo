@@ -34,7 +34,7 @@
 #include <math.h>
 //-----------------------------------------------------------------------------
 
-/** eoDetSelect selects many individuals determinisctically
+/** eoDetSelect selects many individuals deterministically
  *
  * @ingroup Selectors
 */

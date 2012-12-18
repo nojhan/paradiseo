@@ -4,9 +4,9 @@
 
 if(DOXYGEN_FOUND)
     # Directory where the generation will be launched
-    set(MO_DOC_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE PATH "Documentation directory")
+    set(MO_DOC_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "Documentation directory" FORCE)
     # Name of the doxygene configuration file
-    set(MO_DOC_CONFIG_FILE "mo.doxyfile" CACHE PATH "Documentation configuration file")
+    set(MO_DOC_CONFIG_FILE "mo.doxyfile" CACHE INTERNAL "Documentation configuration file")
     if(DOXYGEN_EXECUTABLE)
         # Creating the custom target
         if(UNIX AND NOT ${CMAKE_VERBOSE_MAKEFILE})

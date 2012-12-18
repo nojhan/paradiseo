@@ -116,7 +116,7 @@ namespace eo
      */
     struct file
     {
-        file(const std::string f);
+        explicit file(const std::string f);
         const std::string _f;
     };
 
@@ -126,8 +126,8 @@ namespace eo
      */
     struct setlevel
     {
-        setlevel(const std::string v);
-        setlevel(const Levels lvl);
+        explicit setlevel(const std::string v);
+        explicit setlevel(const Levels lvl);
         const std::string _v;
         const Levels _lvl;
     };

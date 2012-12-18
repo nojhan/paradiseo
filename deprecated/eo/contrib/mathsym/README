@@ -1,0 +1,198 @@
+
+This is not yet another gp system (nyagp). For one, it is not general.
+It does one thing, find mathematical functions, and tries to do that well.
+
+So, if you're trying to steer ants on various New Mexico trails, or build your
+own tiny block world, you're in the wrong place. However, if you're interested
+in finding mathematical functions either through direct application on data or
+running it through a simulator, you might find what you're looking for here.
+
+=== Representation (sym/ + gen/) ========
+
+Mathsym has a few interesting characteristics. First and foremost is the
+basic representation. It uses trees, but these trees are stored in a 
+reference counted hashtable. This means that every distinct subtree that is alive
+is stored once and only once. 
+The reference counting mechanism takes care of memory management. 
+
+The idea of using a hashtable (for offline analysis) comes from Walter Tackett, in his
+1994 dissertation. The current system is just a real-time implementation of this
+idea, adding the reference counting for ease of use.
+
+The hashtable brings overhead. It's still pretty fast, but a string based representation
+would run circles around it. However, by virtue of it storing every subtree only once, it
+is fairly tight on memory. This helps tremendously when confronted with excessively growing populations, bloat.
+The hashtable implementation can not stop bloat, but does make it more manageable. In a typical
+GP run, the number of distinct subtrees is only 10-20% of the total number of subtrees.
+
+Other advantages of the hashtable are in the ability to examine the run more thoroughly. It is easy
+to check how many subtrees are present in the system, and for each subtree you can check the reference
+count. 
+
+The basic tree is called a Sym. A Sym is simply a tree, and has children, accessible through args().
+A Sym simply contains an iterator (== decorated pointer) to an entry in the hashtable. 
+Every time you create a Sym, it is either looked up in the hashtable or added to the hashtable.
+A Sym has several members: size, depth, args, etc. One interesting member is the refcount().
+This returns the reference count of the Sym in the hashtable, and thus returns the number
+of distinct contexts in which the Sym is used.
+
+Another nice thing of these hashtable Syms is that a check for equality reduces to a pointer comparison.
+
+The Sym nodes are identified by a simple token, of type token_t (usually an unsigned int). It
+is completely generic and could conceivably be adapted to steer ants. The rest of the library
+is however targeted at mathematical functions purely. 
+
+sym/Sym.h is the file to look into for the functionality provided by Sym. The sym/ directory
+is where the source files are stored that are relevant for the generic Sym functionality. The
+'gen/' directory contains some generic functionality to build and traverse trees, independent of 
+the function and terminal set.
+
+The file sym/README.cpp documents the use of the sym library for general GP use.
+
+=== Function Set (fun/) ===
+
+The standard GP function set of binary functions: addition, multiplication, subtraction and
+division is NOT supported. 
+
+What is however supported are the functions of:
+
+summation: arbitrary arity, arity zero meaning 0.0. Arity 2 is standard addition
+product:   arbitrary arity, arity zero meaning 1.0. Arity 2 is standard multiplication
+inversion:  1.0 / x. Only arity 1
+unary minus: -x. Only arity 1
+
+Plus a whole bunch of other functions (see "fun/FunDef.h")
+
+The reason for this is the observation (actually from a friend of mine, thanks Luuk),
+that this set of functions is complete and slightly more orthogonal than a binary set.
+
+The directory 'fun' contains the functionality for the function and terminal set, together
+with ERC's etc. fun/FunDef.cpp contains the definition of the functionality. Stuff can be
+added here, but best to contact me if you miss particular functions.
+
+With the sym and the function set in place, some fairly nice overloading is possible. A quick tour:
+
+To create a variable that reads the first value from the inputs, do:
+
+Sym var = SymVar(0);
+
+To create a constant of value 0.4432, do
+
+Sym cnst = SymConst(0.4432);
+
+The constants are also stored uniquely so that:
+
+Sym cnst2 = SymConst(0.4432)
+
+will lead to:
+
+cnst == cnst2
+
+to be true (this happens without value compare, they point to the same element in the hashtable)
+
+To add two values, do
+
+Sym sym = var + const;
+
+This will create a tree with three nodes. Other operators are overloaded similarily.
+
+=== Evaluation (eval/) ===
+
+The second important thing is evaluation. Although Syms can be evaluated through an interpreter,
+this is not the fastest way to go about with it. The standard way of evaluating a Sym is to 
+first *compile* it to a function, and then run it in your favourite environment. Compilation
+is done through the use of the excellent tinycc compiler, which is blazingly fast and produces
+pretty good functions.
+
+Compilation comes in several flavours: compile a single function and retrieve a pointer to a function
+of signature:
+
+double func(const double* x);
+
+where x is the input array. Another option is to compile a bunch of functions in one go, and retrieve an array
+of such function pointers. The Syms are simply printed and compiled. An example: 
+
+double func(const double* x) { return x*x + x * 1./x; }
+
+The batch version proceeds significantly more quickly than calling compile every time. The function pointers
+can be given to a simulation for extremely quick evaluation.
+
+A third option is to compile a complete population in one go, and return a single pointer of signature
+
+void func(const double* x, double* y);
+
+Where 'y' is the (preallocated) output array. This allows to evaluate a complete population in one function
+call, storing the results in 'y'. It uses the hashtable to store every calculation only once. An example
+for the two function x*x + x*1./x and x + sin(x*x) is:
+
+void func(const double* x, double* y) {
+    double a0 = x;
+    double a1 = a0 * a0;
+    double a2 = 1.0;
+    double a3 = a2 / a0;
+    double a4 = a2 * a3;
+    y[0] = a4;
+    double a5 = sin(a1);
+    double a6 = a0 + a5;
+    y[1] = a6;
+}
+
+This is the fastest way to evaluate even humongous populations quickly. You might be surprised at
+the amount of code re-use in a GP population.
+
+The three compilation functions can be found in eval/sym_compile.h
+
+A limiting factor in tinycc is that the struct TCCState that is used to hold the compilation context,
+is not really self-contained. This unfortunately means that with every call to 'compile' ALL previous
+pointers that have been produced become unsafe for use. I'm still looking at ways to circumvent this.
+
+To work with mathsym, a few small changes in tccelf.c were necessary, check README.TCC for details.
+
+=== Interval Arithmetic (eval/) ===
+
+GP is pretty good at finding mathematical expressions that are numerically unsound. Take for instance
+the function '1 / x'. This is well defined only when x is strictly positive, but will lead to problems
+when x equals 0. The standard answer is to define some pseudo-arithmetical function called 'protected
+division' that will return some value (usually 1) when a division by zero occurs. This leads to a number
+of protected functions (sqrt, log, tan, etc.) which all need to be protected. Interpreting results from
+GP using such functions is in general hard.
+
+Interval arithmetic (through another excellent library boost/numeric/interval) is used to calculate
+if particular functions can conceivably produce problems. This completely annihilates the use for Koza-style
+protected operators and is a more safe and sound method. For interval arithmetic to function, the bounds
+on the input variables need to be known. As for every function we can calculate a guarenteed, 
+though not necessarily tight, output interval given the input intervals, we can check arbitrary functions
+for possible problems. If, for example for division, the input interval contains 0, we know that a division
+by zero is theoretically possible. It's then best to throw away the entire function.
+
+Interval Arithmetic is accessible through the class IntervalBoundsCheck (eval/BoundsCheck.h)
+
+=== More generic support (gen/) ===
+
+The gen subdirectory contains some general utility classes for defining function sets and for 
+creating trees. The idea is that these functions are generic and only append on the sym/ part
+of the library. Unfortunately, the language table currently needs an ERC function, a default
+implementation is hidden inside fun/FunDef.cpp. Will fix at some point.
+
+gen/LanguageTable.cpp -> defines the functions/terminals that can be used
+gen/TreeBuilder.cpp   -> can create trees based on a LanguageTable
+
+=== Data and Errors (regression/)  ===
+
+The above classes are generic and apply for any type of problem where a mathematical function can be 
+used to steer some process, run a simulation, whatever. First check the intervals, then compile the 
+Sym(s) to a (set of) function pointer(s), and use the pointers in some way to evaluate for fitness. 
+One particular type of problem for which support is built in is 'symbolic regression'. This type of
+problem involves finding an mathematical input/output relationship based on some data.
+
+To enable this, regression/ introduces the class Dataset to contain the data and ErrorMeasure to calculate
+error. Currently supported: mean squared error, mean absolute error and mean squared error scaled (proportional
+to correlation squared). They use some helper classes such as Scaling and TargetInfo.
+
+=== EO interface (eo_interface/) ===
+
+Contains the classes to make it all work with EO. Check the root application 'symreg' for ways to use this
+
+
+
+

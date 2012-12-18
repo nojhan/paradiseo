@@ -20,8 +20,7 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-Caner Candan <caner.candan@thalesgroup.com>
-
+    Caner Candan <caner.candan@thalesgroup.com>
 */
 
 /** @defgroup Parallel Parallel
@@ -54,6 +53,7 @@ public:
     std::string prefix() const;
 
     inline unsigned int nthreads() const { return _nthreads.value(); }
+    inline unsigned int packetSize() const { return _packetSize.value(); }
 
     inline bool enableResults() const { return _enableResults.value(); }
     inline bool doMeasure() const { return _doMeasure.value(); }
@@ -70,6 +70,7 @@ private:
     eoValueParam<unsigned int> _nthreads;
     eoValueParam<bool> _enableResults;
     eoValueParam<bool> _doMeasure;
+    eoValueParam<unsigned int> _packetSize;
     double _t_start;
 };
 

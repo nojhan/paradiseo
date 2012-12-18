@@ -1,0 +1,354 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <title>FirstRealEA.cpp</title>
+</head>
+<body text="#000000" bgcolor="#C3C2B4" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<a href="eoLesson2.html">Back to Lesson 2</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+documentation</a></font>
+<br>
+<hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
+<center>
+<h1>
+<font color="#FF0000">FirstRealEA.cpp</font></h1></center>
+Click on the figure to see the corresponding code.
+<br>In the code, the <a href="eoTutorial.html#colors">colors are meaningfull</a>
+<br>The actual code is in boldface and the comment in normal face.
+<br><img SRC="EA_tutorial.jpg" USEMAP="#Map" ><map NAME="Map"><!-- Init --><area SHAPE="rect" HREF="#init" COORDS="14,31,135,70"><area SHAPE="rect" HREF="#eval" COORDS="14,110,135,150"><!-- main loop --><area SHAPE="rect" HREF="#representation" COORDS="170,110,295,150"><area SHAPE="rect" HREF="#output" COORDS="280,45,480,70"><area SHAPE="rect" HREF="#stop" COORDS="348,110,430,150"><area SHAPE="rect" HREF="#select" COORDS="495,110,615,150"><area SHAPE="rect" HREF="#representation" COORDS="495,190,615,230"><area SHAPE="rect" HREF="#crossover" COORDS="495,265,625,287"><area SHAPE="rect" HREF="#mutation" COORDS="495,287,625,305"><area SHAPE="rect" HREF="#representation" COORDS="240,270,465,310"><area SHAPE="rect" HREF="#eval" COORDS="170,270,295,310"><area SHAPE="rect" HREF="#replace" COORDS="170,190,295,230"><!-- Center of loop --><area SHAPE="rect" HREF="#generation" COORDS="310,160,485,260"><!-- 4 bottom lines --><area SHAPE="rect" HREF="#operators" COORDS="15,350,260,370"><area SHAPE="rect" HREF="#representation" COORDS="270,350,460,370"><area SHAPE="rect" HREF="#engine" COORDS="15,377,400,397"><area SHAPE="rect" HREF="#eval" COORDS="15,403,230,423"><area SHAPE="rect" HREF="#checkpoint" COORDS="15,430,221,450"><area SHAPE="rect" HREF="#stop" COORDS="221,430,345,450"><area SHAPE="rect" HREF="#stat" COORDS="375,430,445,450"><area SHAPE="rect" HREF="#parametres" COORDS="0,358,278,378"></map>
+<br><a NAME="start"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#993300">// FirstRealEA.cpp</font></tt>
+<br><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#993300">//*</font></tt>
+<br><tt><font color="#993300">// Still an instance of a VERY simple Real-coded&nbsp;
+Genetic Algorithm&nbsp;</font></tt>
+<br><tt><font color="#993300">// (see FirstBitGA.cpp) but now with&nbsp;
+Breeder - and Combined Ops</font></tt>
+<br><tt><font color="#993300">//</font></tt>
+<br><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#993300">// standard includes</font></tt>
+<br><tt><font color="#993300"><b>#include &lt;stdexcept>&nbsp; </b>// runtime_error&nbsp;</font></tt>
+<br><tt><font color="#993300"><b>#include &lt;iostream>&nbsp;&nbsp;&nbsp;
+</b>// cout</font></tt>
+<br><tt><font color="#993300"><b>#include &lt;strstream>&nbsp; </b>// ostrstream,
+istrstream</font></tt>
+<br><tt><font color="#993300">// the general include for eo</font></tt>
+<br><b><tt><font color="#993300">#include &lt;eo></font></tt></b></td>
+</tr>
+</table>
+<a NAME="representation"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" NOSAVE >
+<tr>
+<td><tt><font color="#999900"><b>#include &lt;es.h></b></font></tt><br>
+<tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#999900">// define your individuals</font></tt>
+<br><b><tt><font color="#999900">typedef eoReal&lt;double> Indi;&nbsp;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="evalfunc"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#CC0000">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#CC0000">// a simple fitness function that computes
+the euclidian norm of a real vector</font></tt>
+<br><tt><font color="#CC0000">// Now in a separate file, and declared as
+binary_value(const vector&lt;bool> &amp;)</font></tt>
+<br><b><tt><font color="#CC0000">#include "real_value.h"</font></tt></b></td>
+</tr>
+</table>
+<a NAME="general"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><b><tt><font color="#993300">void main_function(int argc, char **argv)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b></td>
+</tr>
+</table>
+<a NAME="parametres"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;const unsigned int SEED = 42; </b>//
+seed for random number generator</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int T_SIZE = 3; </b>//
+size for tournament selection</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int VEC_SIZE = 8;
+</b>// Number of object variables in genotypes</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int POP_SIZE = 20;
+</b>// Size of population</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int MAX_GEN = 500;
+</b>// Maximum number of generation before STOP</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int MIN_GEN = 10;&nbsp;
+</b>// Minimum number of generation before ...</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int STEADY_GEN =
+50; </b>// stop after STEADY_GEN gen. without improvelent</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const float P_CROSS = 0.8; </b>//
+Crossover probability</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const float P_MUT = 0.5; </b>//
+mutation probability</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double EPSILON = 0.01; </b>//
+range for real uniform mutation</font></tt>
+<br><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>double
+SIGMA = 0.3;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // std dev.
+for normal mutation</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// some parameters for chosing
+among different operators</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double hypercubeRate = 0.5;&nbsp;&nbsp;&nbsp;
+</b>// relative weight for hypercube Xover</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double segmentRate = 0.5;
+</b>// relative weight for segment Xover</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double uniformMutRate = 0.5;
+</b>// relative weight for uniform mutation</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double detMutRate = 0.5;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// relative weight for det-uniform mutation</font></tt>
+<br><tt><font color="#3366FF">&nbsp;<b>const double normalMutRate = 0.5;</b>&nbsp;
+// relative weight for normal mutation</font></tt></td>
+</tr>
+</table>
+<a NAME="general"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><tt><font color="#993300"><b>&nbsp;</b>//////////////////////////</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>//&nbsp; Random seed</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>//////////////////////////</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>//reproducible random seed:
+if you don't change SEED above,&nbsp;</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>// you'll aways get the same
+result, NOT a random run</font></tt>
+<br><b><tt><font color="#993300">&nbsp;rng.reseed(SEED);</font></tt></b></td>
+</tr>
+</table>
+<a NAME="eval"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#CC0000"><b>&nbsp;</b>/////////////////////////////</font></tt>
+<br><tt><font color="#CC0000"><b>&nbsp;</b>// Fitness function</font></tt>
+<br><tt><font color="#CC0000"><b>&nbsp;</b>////////////////////////////</font></tt>
+<br><tt><font color="#CC0000"><b>&nbsp;</b>// Evaluation: from a plain
+C++ fn to an EvalFunc Object</font></tt>
+<br><tt><font color="#CC0000"><b>&nbsp;</b>// you need to give the full
+description of the function</font></tt>
+<br><b><tt><font color="#CC0000">&nbsp;eoEvalFuncPtr&lt;Indi, double, const
+vector&lt;double>&amp; > eval(&nbsp; real_value );</font></tt></b></td>
+</tr>
+</table>
+<a NAME="init"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td><tt><font color="#993399"><b>&nbsp;</b>////////////////////////////////</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>// Initilisation of population</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>////////////////////////////////</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>// based on a uniform generator</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoInitFixedLength&lt;Indi, uniform_generator&lt;double>
+></font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+random(VEC_SIZE, uniform_generator&lt;double>(-1.0, 1.0));</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp; </b>// Initialization of
+the population</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoPop&lt;Indi> pop(POP_SIZE, random);</font></tt></b>
+<p><tt><font color="#993399"><b>&nbsp;</b>// and evaluate it in one loop</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;apply&lt;Indi>(eval, pop); </b>//
+STL syntax</font></tt></td>
+</tr>
+</table>
+<a NAME="output"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b>// sort pop before printing
+it!</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;pop.sort();</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// Print (sorted) intial population
+(raw printout)</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;cout &lt;&lt; "Initial Population"
+&lt;&lt; endl;</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;cout &lt;&lt; pop;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="engine"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td><tt><font color="#009900"><b>&nbsp;</b>/////////////////////////////////////</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;</b>// selection and replacement</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;</b>////////////////////////////////////</font></tt></td>
+</tr>
+</table>
+<a NAME="select"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
+<br><b><tt><font color="#009900">&nbsp;eoDetTournamentSelect&lt;Indi> selectOne(T_SIZE);</font></tt></b>
+<br><a NAME="select_encapsulate"></a><tt><font color="#009900"><b> </b>//
+is now encapsulated in a eoSelectPerc (entage)</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;eoSelectPerc&lt;Indi> select(selectOne);</b>//
+by default rate==1</font></tt></td>
+</tr>
+</table>
+<a NAME="replace"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td><tt><font color="#009900"><b>&nbsp;</b>// And we now have the full
+slection/replacement - though with&nbsp;</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;</b>// no replacement (== generational
+replacement) at the moment :-)</font></tt>
+<br><b><tt><font color="#009900">&nbsp;eoNoReplacement&lt;Indi> replace;&nbsp;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="operators"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td><tt><font color="#993399"><b>&nbsp;</b>//////////////////////////////////////</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>// The variation operators</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>//////////////////////////////////////</font></tt></td>
+</tr>
+</table>
+<a NAME="crossover"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td><tt><font color="#993399"><b>&nbsp;</b>// uniform chooce on segment
+made by the parents</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoSegmentCrossover&lt;Indi> xoverS;</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;</b>// uniform choice in hypercube
+built by the parents</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoHypercubeCrossover&lt;Indi> xoverA;</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;</b>// Combine them with relative
+weights</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoPropCombinedQuadOp&lt;Indi> xover(xoverS,
+segmentRate);</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;xover.add(xoverA, hypercubeRate,
+true);</font></tt></b></td>
+</tr>
+</table>
+<a NAME="mutation"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td>
+<br><tt><font color="#993399"><b>&nbsp;</b>// offspring(i) uniformly chosen
+in [parent(i)-epsilon, parent(i)+epsilon]</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoUniformMutation&lt;Indi>&nbsp;
+mutationU(EPSILON);&nbsp;</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;</b>// k (=1) coordinates of parents
+are uniformly modified</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoDetUniformMutation&lt;Indi>&nbsp;
+mutationD(EPSILON);&nbsp;</font></tt></b>
+<br><tt><font color="#993399">&nbsp;// all coordinates of parents are normally
+modified (stDev SIGMA)</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoNormalMutation&lt;Indi>&nbsp;
+mutationN(SIGMA);&nbsp;</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;</b>// Combine them with relative
+weights</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoPropCombinedMonOp&lt;Indi> mutation(mutationU,
+uniformMutRate);</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;mutation.add(mutationD, detMutRate);</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;mutation.add(mutationN, normalMutRate,
+true);</font></tt></b>
+<p><tt><font color="#993399"><b>&nbsp;</b>// The operators are&nbsp; encapsulated
+into an eoTRansform object</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoSGATransform&lt;Indi> transform(xover,
+P_CROSS, mutation, P_MUT);</font></tt></b></td>
+</tr>
+</table>
+<a NAME="stop"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td></td>
+</tr>
+</table>
+<a NAME="checkpoint"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b>//////////////////////////////////////</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// termination conditions: use
+more than one</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>/////////////////////////////////////</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// stop after MAX_GEN generations</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;eoGenContinue&lt;Indi> genCont(MAX_GEN);</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// do MIN_GEN gen., then stop
+after STEADY_GEN gen. without improvement</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;eoSteadyFitContinue&lt;Indi> steadyCont(MIN_GEN,
+STEADY_GEN);</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// stop when fitness reaches
+a target (here VEC_SIZE)</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;eoFitContinue&lt;Indi> fitCont(0);</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// do stop when one of the above
+says so</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;eoCombinedContinue&lt;Indi> continuator(genCont);</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;continuator.add(steadyCont);</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;continuator.add(fitCont);</font></tt></b></td>
+</tr>
+</table>
+<a NAME="generation"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><tt><font color="#FF6666"><b>&nbsp;</b>/////////////////////////////////////////</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// the algorithm</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>////////////////////////////////////////</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// Easy EA requires&nbsp;</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// selection, transformation,
+eval, replacement, and stopping criterion</font></tt>
+<br><b><tt><font color="#FF6666">&nbsp;eoEasyEA&lt;Indi> gga(continuator,
+eval, select, transform, replace);</font></tt></b>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// Apply algo to pop - that's
+it!</font></tt>
+<br><b><tt><font color="#FF6666">&nbsp;cout &lt;&lt; "\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Here we go\n\n";</font></tt></b>
+<br><b><tt><font color="#FF6666">&nbsp;gga(pop);</font></tt></b>
+<br>&nbsp;</td>
+</tr>
+</table>
+<a NAME="output"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b>// Print (sorted) intial population</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;pop.sort();</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;cout &lt;&lt; "FINAL Population\n"
+&lt;&lt; pop &lt;&lt; endl;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="general"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><b><tt><font color="#993300">}</font></tt></b>
+<br><tt><font color="#993300">// A main that catches the exceptions</font></tt>
+<br><b><tt><font color="#993300">int main(int argc, char **argv)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b>
+<br><b><tt><font color="#993300">#ifdef _MSC_VER</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp;</b>//&nbsp; rng.reseed(42);</font></tt>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; int flag = _CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF);</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flag
+|= _CRTDBG_LEAK_CHECK_DF;</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; _CrtSetDbgFlag(flag);</font></tt></b>
+<br><tt><font color="#993300">//&nbsp;&nbsp;&nbsp; _CrtSetBreakAlloc(100);</font></tt>
+<br><b><tt><font color="#993300">#endif</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; try</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+main_function(argc, argv);</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; catch(exception&amp;
+e)</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; '\n';</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; return 1;</font></tt></b>
+<br><b><tt><font color="#993300">}</font></tt></b></td>
+</tr>
+</table>
+
+<hr WIDTH="100%"><a href="eoLesson2.html">Back to Lesson 2</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+documentation</a></font>
+<hr>
+<address>
+<a href="mailto:Marc.Schoenauer@inria.fr">Marc Schoenauer</a></address>
+
+<br><!-- Created: Nov 2000 --><!-- hhmts start -->Last modified: Wed Nov
+29 07:38:36 2000<!-- hhmts end -->
+</body>
+</html>

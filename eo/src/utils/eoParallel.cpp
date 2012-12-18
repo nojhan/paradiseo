@@ -21,22 +21,25 @@
 Contact: http://eodev.sourceforge.net
 
 Authors:
-Caner Candan <caner.candan@thalesgroup.com>
+    Caner Candan <caner.candan@thalesgroup.com>
 
 */
 
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 
 #include "eoParallel.h"
 #include "eoLogger.h"
 
 eoParallel::eoParallel() :
     _isEnabled( false, "parallelize-loop", "Enable memory shared parallelization into evaluation's loops", '\0' ),
-    _isDynamic( false, "parallelize-dynamic", "Enable dynamic memory shared parallelization", '\0' ),
+    _isDynamic( true, "parallelize-dynamic", "Enable dynamic memory shared parallelization", '\0' ),
     _prefix( "results", "parallelize-prefix", "Here's the prefix filename where the results are going to be stored", '\0' ),
     _nthreads( 0, "parallelize-nthreads", "Define the number of threads you want to use, nthreads = 0 means you want to use all threads available", '\0' ),
     _enableResults( false, "parallelize-enable-results", "Enable the generation of results", '\0' ),
     _doMeasure( false, "parallelize-do-measure", "Do some measures during execution", '\0' ),
+    _packetSize( 1U, "parallelize-packet-size", "Number of elements which should be sent in a single message during a parallel evaluation based on message passing.", '\0'),
     _t_start(0)
 {
 }
@@ -90,6 +93,7 @@ void eoParallel::_createParameters( eoParser& parser )
     parser.processParam( _nthreads, section );
     parser.processParam( _enableResults, section );
     parser.processParam( _doMeasure, section );
+    parser.processParam( _packetSize, section );
 }
 
 void make_parallel(eoParser& parser)

@@ -1,0 +1,61 @@
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1104133126                        # -S : Random number seed
+
+######    ES mutation             ######
+# --Isotropic=1                            # -i : Isotropic self-adaptive mutation
+# --Stdev=0                                # -s : One self-adaptive stDev per variable
+# --Correl=0                               # -c : Use correlated mutations
+
+######    Evolution Engine        ######
+--popSize=1                             # -P : Population Size
+--selection=Sequential                   # -S : Selection: DetTour(T), StochTour(t), Roulette, Ranking(p,e) or Sequential(ordered/unordered)
+--nbOffspring=700%                       # -O : Nb of offspring (percentage or absolute)
+--replacement=Comma                      # -R : Replacement: Comma, Plus or EPTour(T), SSGAWorst, SSGADet(T), SSGAStoch(t)
+--weakElitism=0                          # -w : Old best parent replaces new worst offspring *if necessary*
+
+######    Genotype Initialization    ######
+# --vecSize=10                             # -n : The number of variables
+# --initBounds=10[-1,1]                    # -B : Bounds for initialization (MUST be bounded)
+--sigmaInit=0.3%                          # -s : Initial value for Sigmas (with a '%' -> scaled by the range of each variable)
+
+######    Output                  ######
+# --useEval=1                              # Use nb of eval. as counter (vs nb of gen.)
+# --useTime=1                              # Display time (s) every generation
+# --printBestStat=1                        # Print Best/avg/stdev every gen.
+# --printPop=0                             # Print sorted pop. every gen.
+
+######    Output - Disk           ######
+# --resDir=Res                             # Directory to store DISK outputs
+# --eraseDir=1                             # erase files in dirName if any
+# --fileBestStat=0                         # Output bes/avg/std to file
+
+######    Output - Graphical      ######
+# --plotBestStat=0                         # Plot Best/avg Stat
+# --plotHisto=0                            # Plot histogram of fitnesses
+
+######    Persistence             ######
+# --Load=                                  # -L : A save file to restart from
+# --recomputeFitness=0                     # -r : Recompute the fitness after re-loading the pop.?
+# --saveFrequency=0                        # Save every F generation (0 = only final state, absent = never)
+# --saveTimeInterval=0                     # Save every T seconds (0 or absent = never)
+# --status=t-eoESAll.status                # Status file
+
+######    Stopping criterion      ######
+# --maxGen=100                             # -G : Maximum number of generations () = none)
+# --steadyGen=100                          # -s : Number of generations with no improvement
+# --minGen=0                               # -g : Minimum number of generations
+# --maxEval=0                              # -E : Maximum number of evaluations (0 = none)
+# --targetFitness=0                        # -T : Stop when fitness reaches
+# --CtrlC=0                                # -C : Terminate current generation upon Ctrl C
+
+######    Variation Operators     ######
+# --objectBounds=10[-inf,+inf]             # -B : Bounds for variables
+# --operator=SGA                           # -o : Description of the operator (SGA only now)
+# --pCross=1                               # -C : Probability of Crossover
+# --pMut=1                                 # -M : Probability of Mutation
+# --crossType=global                       # -C : Type of ES recombination (global or standard)
+# --crossObj=discrete                      # -O : Recombination of object variables (discrete, intermediate or none)
+# --crossStdev=intermediate                # -S : Recombination of mutation strategy parameters (intermediate, discrete or none)
+# --TauLoc=1                               # -l : Local Tau (before normalization)

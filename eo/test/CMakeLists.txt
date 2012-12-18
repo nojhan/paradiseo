@@ -9,22 +9,22 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib)
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib/MGE)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${EO_SRC_DIR}/src)
+include_directories(${EO_SRC_DIR}/contrib)
+include_directories(${EO_SRC_DIR}/contrib/MGE)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
+link_directories(${EO_BIN_DIR}/lib)
 
 ######################################################################################
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST
+set (TEST_LIST
   t-eofitness
   t-eoRandom
   t-eobin
@@ -72,45 +72,45 @@ SET (TEST_LIST
   )
 
 
-FOREACH (test ${TEST_LIST})
-  SET ("T_${test}_SOURCES" "${test}.cpp")
-ENDFOREACH (test)
+foreach (test ${TEST_LIST})
+  set ("T_${test}_SOURCES" "${test}.cpp")
+endforeach (test)
 
 
-IF(ENABLE_MINIMAL_CMAKE_TESTING)
+if(ENABLE_MINIMAL_CMAKE_TESTING)
 
-  SET (MIN_TEST_LIST t-eoEasyPSO)
-  FOREACH (mintest ${MIN_TEST_LIST})
-    SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
-    ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES})
-    ADD_TEST(${mintest} ${mintest})
-    TARGET_LINK_LIBRARIES(${mintest} ga es cma eoutils eo)
-  ENDFOREACH (mintest)
+  set (MIN_TEST_LIST t-eoEasyPSO)
+  foreach (mintest ${MIN_TEST_LIST})
+    set ("T_${mintest}_SOURCES" "${mintest}.cpp")
+    add_executable(${mintest} ${T_${mintest}_SOURCES})
+    add_test(${mintest} ${mintest})
+    target_link_libraries(${mintest} ga es cma eoutils eo)
+  endforeach (mintest)
 
-ELSEIF(ENABLE_CMAKE_TESTING)
+elseif(ENABLE_CMAKE_TESTING)
 
-  FOREACH (test ${TEST_LIST})
-    ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})
-    ADD_TEST(${test} ${test})
-    TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo)
-    INSTALL(TARGETS ${test} RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/test COMPONENT test)
-  ENDFOREACH (test)
+  foreach (test ${TEST_LIST})
+    add_executable(${test} ${T_${test}_SOURCES})
+    add_test(${test} ${test})
+    target_link_libraries(${test} ga es cma eoutils eo)
+    install(TARGETS ${test} RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/test COMPONENT test)
+  endforeach (test)
 
-  SET(RESOURCES
+  set(RESOURCES
     boxplot.py
     boxplot_to_png.py
     boxplot_to_pdf.py
     t-openmp.py
     )
 
-  FOREACH(file ${RESOURCES})
-    EXECUTE_PROCESS(
+  foreach(file ${RESOURCES})
+    execute_process(
       COMMAND ${CMAKE_COMMAND} -E copy_if_different
       ${CMAKE_CURRENT_SOURCE_DIR}/${file}
       ${CMAKE_CURRENT_BINARY_DIR}/${file}
       )
-  ENDFOREACH(file)
+  endforeach(file)
 
-ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
+endif(ENABLE_MINIMAL_CMAKE_TESTING)
 
 ######################################################################################

@@ -2,17 +2,17 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${EO_SRC_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
 ### 2) Define the ga target
 ######################################################################################
 
-SET(EOUTILS_LIB_OUTPUT_PATH ${EO_BINARY_DIR}/lib)
-SET(LIBRARY_OUTPUT_PATH ${EOUTILS_LIB_OUTPUT_PATH})
+set(EOUTILS_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
+set(LIBRARY_OUTPUT_PATH ${EOUTILS_LIB_OUTPUT_PATH})
 
-SET(EOUTILS_SOURCES
+set(EOUTILS_SOURCES
   eoData.cpp
   eoFileMonitor.cpp
   eoGnuplot.cpp
@@ -32,15 +32,15 @@ SET(EOUTILS_SOURCES
   eoSignal.cpp
   )
 
-ADD_LIBRARY(eoutils STATIC ${EOUTILS_SOURCES})
-INSTALL(TARGETS eoutils ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
+add_library(eoutils STATIC ${EOUTILS_SOURCES})
+install(TARGETS eoutils ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
 
 
 ######################################################################################
 ### 3) Optionnal
 ######################################################################################
 
-SET(EOUTILS_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(eoutils PROPERTIES VERSION "${EOUTILS_VERSION}")
+set(EOUTILS_VERSION ${GLOBAL_VERSION})
+set_target_properties(eoutils PROPERTIES VERSION "${EOUTILS_VERSION}")
 
 ######################################################################################

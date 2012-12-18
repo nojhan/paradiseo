@@ -1,0 +1,18 @@
+2006-12-01  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* Makefile.am: Add missing CMA header for distribution.
+
+2006-11-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* make_genotype_real.h (eoEsChromInit): Rewrite vecSigmaInit-handling:
+	If sigmaInit is relative (%), do not read vecSigmaInit. Otherwise
+	always use vecSigmaInit with default all values of sigmaInit.
+
+	* eoEsChromInit.h (class eoEsChromInit):  Take const-reference to sigma-vector.
+	include <cassert>
+
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:

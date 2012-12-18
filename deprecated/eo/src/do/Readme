@@ -1,0 +1,36 @@
+This directory contains templatized code that is supposed to be
+instanciated and compiled in an actual library for every type of EOT
+
+The user can then modify and recompile only the part he/she wishes to
+change (as in any library!).
+
+See in EO src/ga dir the corresponding .cpp files, that simply instanciate
+the functions here for eoBit<double> AND eoBit<eoMinimizingFitness>
+and in EO test dir the t-eoGA.cpp file that is a sample program that uses
+the whole facility.
+
+All make_XXX.h file define some parser-based constructions of basic
+Evolutionary Algorithms components, using state-based memory management
+(see in src/utils dir, or read the tutorial).
+
+In this src/do dir, the following ***representation indedendent*** code
+is defined
+
+make_algo_scalar.h     The selection/replacement for scalar fitnesses
+make_checkpoint.h      The output facilities
+make_continue.h        The stpping criteria
+make_pop.h             Init of the population (from an EOT initializer)
+make_run.h             Run the algorithm
+
+See also (NOW MOVED TO util DIR, as it was useful everywhere)
+make_help.cpp          Help on demand (+ status file)
+
+Note:
+-----
+two additional make_XXX.h files need to be defined for each representation
+
+make_genotype.h        Builds an initializer for the corresponding EOType
+make_op.h              Builds a general Operator to be used in the algo
+
+MS, April 23, 2001
+    July 23, 2001

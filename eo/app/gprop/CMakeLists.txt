@@ -2,30 +2,30 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${EO_SRC_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
-### 2) Specify where CMake can find the libraries (mandatory: before 3) )
+### 2) specify where cmake can find the libraries (mandatory: before 3) )
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
+link_directories(${EO_BIN_DIR}/lib)
 
 ######################################################################################
-### 3) Define your target(s): just an executable here
+### 3) define your target(s): just an executable here
 ######################################################################################
 
-SET (GPROP_SOURCES gprop.cpp)
+set (GPROP_SOURCES gprop.cpp)
 
 # especially for Visual Studio
-IF(NOT WIN32 OR CYGWIN)
-  	ADD_EXECUTABLE(gprop ${GPROP_SOURCES})
-    ADD_DEPENDENCIES(gprop eo eoutils)
+if(NOT WIN32 OR CYGWIN)
+    add_executable(gprop ${GPROP_SOURCES})
+    add_dependencies(gprop eo eoutils)
 
-    TARGET_LINK_LIBRARIES(gprop eo eoutils)
+    target_link_libraries(gprop eo eoutils)
 
-    SET(GPROP_VERSION ${GLOBAL_VERSION})
-  SET_TARGET_PROPERTIES(gprop PROPERTIES VERSION "${GPROP_VERSION}")
-ENDIF(NOT WIN32 OR CYGWIN)
+    set(GPROP_VERSION ${GLOBAL_VERSION})
+  set_target_properties(gprop PROPERTIES VERSION "${GPROP_VERSION}")
+endif(NOT WIN32 OR CYGWIN)
 
 ######################################################################################

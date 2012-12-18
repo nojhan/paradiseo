@@ -1,0 +1,81 @@
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+The above line is usefulin Emacs-like editors
+ */
+
+/*
+Template for general operators
+===============================
+i.e. that takes any number of parents and generates any number of offspring
+
+a GenOp that creates less offspring than there are parents
+
+Second version, get parents  using an external eoSelectOne
+*/
+
+#ifndef eoLessOffspringExternalSelectorGenOp_H
+#define eoLessOffspringExternalSelectorGenOp_H
+
+#include <eoGenOp.h>
+
+/**
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * ATTENTION, class EOT *must* derive from EO, as method invalidate()
+ * must be called if the genotypes of the indis is modified
+ */
+template<class EOT>
+class eoLessOffspringExternalSelectorGenOp: public eoGenOp<EOT>
+{
+public:
+  /**
+   * (Default) Constructor.
+   */
+  eoLessOffspringExternalSelectorGenOp(eoSelectOne<EOT> & _sel, paramType _anyParameter) :
+    sel(_sel), anyParameter(_anyParameter) {}
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoLessOffspringExternalSelectorGenOp"; }
+
+  /// The TOTAL number of offspring (here = nb of parents modified in place)
+  unsigned max_production(void) { return NbLeftParents; }
+
+  /**
+   * eoShrinkGen operator - modifies some parents in the populator
+   *     using extra "parents" selected from an external selector
+   *
+   * @param _pop a POPULATOR (not a simple population)
+   */
+    void apply(eoPopulator<EOT>& _plop)
+    {
+     // First, select as many parents as you will have offspring
+      EOT& parent1 = *_plop; // select the first parent
+      ++_plop;          // advance once for each selected parents
+      ...
+      EOT& parentN = *_plop; // say you want N offspring
+
+      // get extra parents - use private selector
+      // _plop.source() is the eoPop<EOT> used by _plop to get parents
+      // WARNING: you are not allowed to modify them (mandatory "const")
+      const EOT& parentN+1 = sel(_plop.source());
+      ...
+      const EOT& parentN+K = sel(_plop.source());
+
+      // modify (in place) the "true" parents
+      // (i.e. parent1, ..., parentsN)
+      ...
+
+      // invalidate fitnesses of modified parents
+      parent1.invalidate();
+      ...
+      parentN.invalidate();
+    }
+
+
+private:
+	eoSelectOne<EOT> & sel;
+  paramType anyParameter
+};
+
+#endif

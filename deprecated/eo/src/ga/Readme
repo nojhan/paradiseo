@@ -1,0 +1,20 @@
+This directory contains:
+
+- some standard EO source files, named eoXXXXX, that define objects
+for the eoBit<FitT> representation (bitstrings).
+
+- some make_XXX.cpp files that are instanciations for EO bitstrings
+(eoBit<double> AND eoBit<eoMinimizingFitness>) of the tempatized code
+that is defined in the EO src/do dir.
+This MK's trick allows to actually compile all these bits in a library
+(eolibga.a) and to only recompile the bits you need for your own
+(bitstring!) application.
+@see src/do/make_XXX.h files, and test/t-eoGA.cpp for an example use.
+
+Note:
+Also are *defined* here two representation dependent make_XXX.h files
+(together with their instanciations in make_XXX.cpp), namely the ones
+that constructs the EOType initializer (make_genotype.h) and the one
+that buils up the operators (make_op.h).
+
+MS, April 23, 2001CVS

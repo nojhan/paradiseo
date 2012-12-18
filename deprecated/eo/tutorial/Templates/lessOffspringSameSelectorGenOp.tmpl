@@ -1,0 +1,76 @@
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+The above line is usefulin Emacs-like editors
+ */
+
+/*
+Template for general operators
+===============================
+i.e. that takes any number of parents and generates any number of offspring
+
+a GenOp that creates less offspring than there are parents
+
+First version, get parents from populator using the imbedded select() method
+*/
+
+#ifndef eoLessOffspringSameSelectorGenOp_H
+#define eoLessOffspringSameSelectorGenOp_H
+
+#include <eoGenOp.h>
+
+/**
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * ATTENTION, class EOT *must* derive from EO, as method invalidate()
+ * must be called if the genotypes of the indis is modified
+ */
+template<class EOT>
+class eoLessOffspringSameSelectorGenOp: public eoGenOp<EOT>
+{
+public:
+  /**
+   * (Default) Constructor.
+   */
+  eoLessOffspringSameSelectorGenOp(paramType _anyParameter) :
+    anyParameter(_anyParameter) {}
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoLessOffspringSameSelectorGenOp"; }
+
+  /// The TOTAL number of offspring (here = nb of remaining modified parents)
+  unsigned max_production(void) { return NbLeftParents; }
+
+  /**
+   * eoLesOffspringSameSelectorGenOp operator -
+   *        gets extra parents from the populator
+   *
+   * @param _pop a POPULATOR (not a simple population)
+   */
+    void apply(eoPopulator<EOT>& _plop)
+    {
+     // First, select as many parents as you will have offspring
+      EOT& parent1 = *_plop; // select the first parent
+      ++_plop;          // advance once for each selected parents
+      ...
+      EOT& parentN = *_plop; // say you want N offspring
+
+      // Now select extra parents from the populator
+      EOT& parentN+1 = _plop.select();
+      ...
+      EOT& parentN+K = _plop.select();
+
+      // modify the first N parents
+      ...
+
+      // oh right, and invalidate their fitnesses
+      parent1.invalidate();
+      ...
+      parentN.invalidate();
+    }
+
+private:
+  paramType anyParameter
+};
+
+#endif

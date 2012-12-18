@@ -43,6 +43,7 @@ Authors:
 class eoStdoutMonitor : public eoOStreamMonitor
 {
 public :
+    /* FIXME remove in next release
     eoStdoutMonitor(bool _verbose, std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
        eoOStreamMonitor( std::cout, _verbose, _delim, _width, _fill)
     {
@@ -50,6 +51,7 @@ public :
         eo::log << eo::warnings << "WARNING: the use of the verbose parameter in eoStdoutMonitor constructor is deprecated and will be removed in the next release" << std::endl;
 #endif // !DEPRECATED_MESSAGES
     }
+   */
 
     eoStdoutMonitor(std::string _delim = "\t", unsigned int _width=20, char _fill=' ' ) :
        eoOStreamMonitor( std::cout, _delim, _width, _fill)

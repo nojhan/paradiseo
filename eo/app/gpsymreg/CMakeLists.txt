@@ -2,37 +2,37 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${EO_SRC_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
-### 2) Specify where CMake can find the libraries (mandatory: before 3) )
+### 2) specify where cmake can find the libraries (mandatory: before 3) )
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BINARY_DIR}/lib)
+link_directories(${EO_BIN_DIR}/lib)
 
 ######################################################################################
-### 3) Define your target(s): just an executable here
+### 3) define your target(s): just an executable here
 ######################################################################################
 
-SET (GPSYMREG_SOURCES main.cpp)
+set (GPSYMREG_SOURCES main.cpp)
 
 # no matter what is the OS, hopefully
-ADD_EXECUTABLE(gpsymreg ${GPSYMREG_SOURCES})
+add_executable(gpsymreg ${GPSYMREG_SOURCES})
 
-ADD_DEPENDENCIES(gpsymreg eo eoutils)
-
-######################################################################################
-### 4) Optionnal: define your target(s)'s version: no effect for windows
-######################################################################################
-
-SET(GPSYMREG_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(gpsymreg PROPERTIES VERSION "${GPSYMREG_VERSION}")
+add_dependencies(gpsymreg eo eoutils)
 
 ######################################################################################
-### 5) Link the librairies for your target(s)
+### 4) optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(gpsymreg eo eoutils)
+set(GPSYMREG_VERSION ${GLOBAL_VERSION})
+set_target_properties(gpsymreg PROPERTIES VERSION "${GPSYMREG_VERSION}")
+
+######################################################################################
+### 5) link the librairies for your target(s)
+######################################################################################
+
+target_link_libraries(gpsymreg eo eoutils)
 
 ######################################################################################

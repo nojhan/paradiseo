@@ -51,12 +51,13 @@ endif(SMP)
 ######################################################################################
 
 if(INSTALL_TYPE STREQUAL full)
-    set(ENABLE_CMAKE_EXAMPLE "true" CACHE PATH "ParadisEO examples")
-    set(ENABLE_CMAKE_TESTING "true" CACHE PATH "ParadisEO tests")
+    set(ENABLE_CMAKE_EXAMPLE "true" CACHE BOOL "ParadisEO examples")
+    set(ENABLE_CMAKE_TESTING "true" CACHE BOOL "ParadisEO tests")
 elseif(INSTALL_TYPE STREQUAL min OR NOT DEFINED INSTALL_TYPE)
-    set(ENABLE_CMAKE_EXAMPLE "false" CACHE PATH "ParadisEO examples")
-    set(ENABLE_CMAKE_TESTING "false" CACHE PATH "ParadisEO tests")
+    set(ENABLE_CMAKE_EXAMPLE "false" CACHE BOOL "ParadisEO examples")
+    set(ENABLE_CMAKE_TESTING "false" CACHE BOOL "ParadisEO tests")
 endif()
+
 
 ######################################################################################
 ### 2) Define profiling flags
@@ -65,7 +66,7 @@ endif()
 if(PROFILING)
         set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -pg --coverage" CACHE STRING "" FORCE)
         set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "" FORCE)
-        set(ENABLE_CMAKE_TESTING "true" CACHE STRING "" FORCE)
+        set(ENABLE_CMAKE_TESTING "true" CACHE BOOL "" FORCE)
 endif(PROFILING)
 
 ######################################################################################
@@ -81,7 +82,7 @@ endif(ENABLE_CMAKE_TESTING)
 ### 5) Build examples ?
 ######################################################################################
 
-set(ENABLE_CMAKE_EXAMPLE "true" CACHE PATH "ParadisEO examples")
+set(ENABLE_CMAKE_EXAMPLE "true" CACHE BOOL "ParadisEO examples")
 
 ######################################################################################
 ### 6) Determine prefix for installation

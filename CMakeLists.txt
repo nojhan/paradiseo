@@ -22,9 +22,13 @@ if("${CMAKE_CXX_COMPILER}" STREQUAL "" OR "${CMAKE_C_COMPILER}" STREQUAL "")
 endif()
 
 ## Versioning
-set(VERSION_MAJOR 2)
-set(VERSION_MINOR 0)
-set(VERSION_PATCH 1)
+set(VERSION_MAJOR 2 CACHE STRING "Major version number" )
+set(VERSION_MINOR 1 CACHE STRING "Minor version number" )
+set(VERSION_PATCH 0 CACHE STRING "Patch version number" )
+
+SET(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}" CACHE INTERNAL "Package version" FORCE)
+SET(VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}${PROJECT_VERSION_MISC}" CACHE INTERNAL "Global version" FORCE)
+SET(GLOBAL_VERSION "${VERSION}")
 
 ######################################################################################
 ### 2) Check dependencies
@@ -51,24 +55,35 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Target.cmake)
 ######################################################################################
 
 ## Paths
-set(EO_SRC_DIR "${CMAKE_SOURCE_DIR}/eo" CACHE PATH "ParadisEO-EO source directory" FORCE)
-set(EO_BIN_DIR "${CMAKE_BINARY_DIR}/eo" CACHE PATH "ParadisEO-EO binary directory" FORCE)
-    
-set(MO_SRC_DIR "${CMAKE_SOURCE_DIR}/mo" CACHE PATH "ParadisEO-MO source directory" FORCE)
-set(MO_BIN_DIR "${CMAKE_BINARY_DIR}/mo" CACHE PATH "ParadisEO-MO binary directory" FORCE)
+set( EO_SRC_DIR "${CMAKE_SOURCE_DIR}/eo"    CACHE INTERNAL "ParadisEO-EO source directory"   FORCE)
+set( EO_BIN_DIR "${CMAKE_BINARY_DIR}/eo"    CACHE INTERNAL "ParadisEO-EO binary directory"   FORCE)
 
-set(MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/moeo" CACHE PATH "ParadisEO-MOEO source directory" FORCE)
-set(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/moeo" CACHE PATH "ParadisEO-MOEO binary directory" FORCE)
+set( EDO_SRC_DIR "${CMAKE_SOURCE_DIR}/edo"  CACHE INTERNAL "ParadisEO-EDO source directory"  FORCE)
+set( EDO_BIN_DIR "${CMAKE_BINARY_DIR}/edo"  CACHE INTERNAL "ParadisEO-EDO binary directory"  FORCE)
 
-set(SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp" CACHE PATH "ParadisEO-SMP source directory" FORCE)
-set(SMP_BIN_DIR "${CMAKE_BINARY_DIR}/smp" CACHE PATH "ParadisEO-SMP binary directory" FORCE)
+set(  MO_SRC_DIR "${CMAKE_SOURCE_DIR}/mo"   CACHE INTERNAL "ParadisEO-MO source directory"   FORCE)
+set(  MO_BIN_DIR "${CMAKE_BINARY_DIR}/mo"   CACHE INTERNAL "ParadisEO-MO binary directory"   FORCE)
 
-set(PEO_SRC_DIR "${CMAKE_SOURCE_DIR}/peo" CACHE PATH "ParadisEO-PEO source directory" FORCE)
-set(PEO_BIN_DIR "${CMAKE_BINARY_DIR}/peo" CACHE PATH "ParadisEO-PEO binary directory" FORCE)
+set(MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/moeo" CACHE INTERNAL "ParadisEO-MOEO source directory" FORCE)
+set(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/moeo" CACHE INTERNAL "ParadisEO-MOEO binary directory" FORCE)
 
-set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE PATH "Problems dependant source directory" FORCE)
+set( SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP source directory"  FORCE)
+set( SMP_BIN_DIR "${CMAKE_BINARY_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP binary directory"  FORCE)
+
+#set( PEO_SRC_DIR "${CMAKE_SOURCE_DIR}/peo"  CACHE INTERNAL "ParadisEO-PEO source directory"  FORCE)
+#set( PEO_BIN_DIR "${CMAKE_BINARY_DIR}/peo"  CACHE INTERNAL "ParadisEO-PEO binary directory"  FORCE)
+
+set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dependant source directory" FORCE)
 
 set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
+
+set(EO_ONLY "false" CACHE BOOL "Only build EO and not the other modules")
+set(ENABLE_OPENMP "false" CACHE BOOL "Build EO with the OpenMP support (shared-memory parallel evaluators on multi-core)")
+set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-time convergence plotting)")
+set(EDO "true" CACHE BOOL "Build the EDO module")
+set(EDO_USE_LIB "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
+set(SMP "false" CACHE BOOL "Build the SMP module")
+#set(PEO "true" CACHE BOOL "Build the PEO module")
 
 ## EO Module
 set(EO_MODULE_NAME "Evolving Object")
@@ -77,28 +92,35 @@ add_subdirectory(${CMAKE_SOURCE_DIR})
 
 if(NOT EO_ONLY)
     ## MO Module
-    set(MO_MODULE_NAME "ParadisEO-MO")
+    set(MO_MODULE_NAME "Moving objects")
     set(CMAKE_SOURCE_DIR ${MO_SRC_DIR})
     add_subdirectory(${MO_SRC_DIR})
 
+    ## EDO Module
+    if(EDO)
+        set(EDO_MODULE_NAME "Evolving Distribution Objects")
+        set(CMAKE_SOURCE_DIR ${EDO_SRC_DIR})
+        add_subdirectory(${EDO_SRC_DIR})
+    endif()
+
     ## MOEO Module
-    set(MOEO_MODULE_NAME "ParadisEO-MOEO")
+    set(MOEO_MODULE_NAME "Multi-Objectives EO")
     set(CMAKE_SOURCE_DIR ${MOEO_SRC_DIR})
     add_subdirectory(${MOEO_SRC_DIR})
-    
+
     ## SMP Module
     if(SMP)
-        set(SMP_MODULE_NAME "ParadisEO-SMP")
+        set(SMP_MODULE_NAME "Symmetric Multi-Processing")
         set(CMAKE_SOURCE_DIR ${SMP_SRC_DIR})
         add_subdirectory(${SMP_SRC_DIR})
     endif()
-    
+
     ## PEO Module
-    if(PEO)
-        set(PEO_MODULE_NAME "ParadisEO-PEO")
-        set(CMAKE_SOURCE_DIR ${PEO_SRC_DIR})
-        add_subdirectory(${PEO_SRC_DIR})
-    endif()
+    #    if(PEO)
+    #    set(PEO_MODULE_NAME "Parallel-EO")
+    #    set(CMAKE_SOURCE_DIR ${PEO_SRC_DIR})
+    #    add_subdirectory(${PEO_SRC_DIR})
+    #endif()
 endif()
 
 ######################################################################################

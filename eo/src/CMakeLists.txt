@@ -2,16 +2,16 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
 ### 2) Define the eo target
 ######################################################################################
 
-SET(EO_LIB_OUTPUT_PATH ${EO_BINARY_DIR}/lib)
-SET(LIBRARY_OUTPUT_PATH ${EO_LIB_OUTPUT_PATH})
+set(EO_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
+set(LIBRARY_OUTPUT_PATH ${EO_LIB_OUTPUT_PATH})
 
-SET(EO_SOURCES
+set(EO_SOURCES
   eoFunctorStore.cpp
   eoPersistent.cpp
   eoPrintable.cpp
@@ -20,35 +20,36 @@ SET(EO_SOURCES
   eoSIGContinue.cpp
   )
 
-ADD_LIBRARY(eo STATIC ${EO_SOURCES})
-INSTALL(TARGETS eo ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
-
-FILE(GLOB HDRS *.h eo)
-INSTALL(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo COMPONENT headers)
-
-INSTALL(DIRECTORY do es ga gp other utils 
-        DESTINATION include${INSTALL_SUB_DIR}/eo 
-        COMPONENT headers
-        FILES_MATCHING PATTERN "*.h" PATTERN "checkpointing" PATTERN external_eo
-        )
+add_library(eo STATIC ${EO_SOURCES})
 
 ######################################################################################
 ### 3) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(EO_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(eo PROPERTIES VERSION "${EO_VERSION}")
+set(EO_VERSION ${GLOBAL_VERSION})
+set_target_properties(eo PROPERTIES VERSION "${EO_VERSION}")
+
+install(TARGETS eo ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+
+file(GLOB HDRS *.h eo)
+install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/eo COMPONENT headers)
+
+install(DIRECTORY do es ga gp other utils
+        DESTINATION local/include${INSTALL_SUB_DIR}/eo
+        COMPONENT headers
+        FILES_MATCHING PATTERN "*.h" PATTERN "checkpointing" PATTERN external_eo
+        )
 
 ######################################################################################
 ### 4) Where must cmake go now ?
 ######################################################################################
 
-ADD_SUBDIRECTORY(es)
-ADD_SUBDIRECTORY(ga)
-ADD_SUBDIRECTORY(utils)
+add_subdirectory(es)
+add_subdirectory(ga)
+add_subdirectory(utils)
 
-IF(ENABLE_PYEO)
-  ADD_SUBDIRECTORY(pyeo)
-ENDIF(ENABLE_PYEO)
+if(ENABLE_PYEO)
+  add_subdirectory(pyeo)
+endif(ENABLE_PYEO)
 
 ######################################################################################

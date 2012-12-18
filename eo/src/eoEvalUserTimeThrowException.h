@@ -21,28 +21,30 @@ Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
-
-#ifndef __unix__
-/*#warning "Warning: class 'eoEvalUserTimeThrowException' is only available under UNIX systems (defining 'rusage' in 'sys/resource.h'), contributions for other systems are welcomed."*/
-#else
+#if !defined(__unix__) && !defined(_WINDOWS)
+#warning "Warning: class 'eoEvalUserTimeThrowException' is only available under UNIX (defining 'rusage' in 'sys/resource.h') or Win32 (defining 'GetProcessTimes' in 'WinBase.h') systems, contributions for other systems are welcomed."
+#else //!defined(__unix__) && !defined(_WINDOWS)
 
 #ifndef __EOEVALUSERTIMETHROWEXCEPTION_H__
 #define __EOEVALUSERTIMETHROWEXCEPTION_H__
-
-#include <sys/time.h>
-#include <sys/resource.h>
-
-#include <eoExceptions.h>
 
 /** Check at each evaluation if a given CPU user time contract has been reached.
  *
  * Throw an eoMaxTimeException if the given max time has been reached.
  * Usefull if you want to end the search independently of generations.
- * This class uses (almost-)POSIX headers.
+ * This class uses (almost-)POSIX or Win32 headers, depending on the platform.
  * It uses a computation of the user time used on the CPU. For a wallclock time measure, see eoEvalTimeThrowException
  *
  * @ingroup Evaluation
  */
+
+#include <eoExceptions.h>
+
+#ifdef __unix__
+
+#include <sys/time.h>
+#include <sys/resource.h>
+
 template< class EOT >
 class eoEvalUserTimeThrowException : public eoEvalFuncCounter< EOT >
 {
@@ -59,7 +61,7 @@ public:
             if( current >= _max ) {
                 throw eoMaxTimeException( current );
             } else {
-                func(eo);
+                this->func(eo);
             }
         }
     }
@@ -69,5 +71,41 @@ protected:
     struct rusage _usage;
 };
 
+#else
+#ifdef _WINDOWS
+//here _WINDOWS is defined
+
+#include <WinBase.h>
+
+template< class EOT >
+class eoEvalUserTimeThrowException : public eoEvalFuncCounter< EOT >
+{
+public:
+    eoEvalUserTimeThrowException( eoEvalFunc<EOT> & func, const long max ) : eoEvalFuncCounter<EOT>( func, "CPU-user"), _max(max) {}
+
+    virtual void operator() ( EOT & eo )
+    {
+        if( eo.invalid() ) {
+            FILETIME dummy;
+            GetProcessTimes(GetCurrentProcess(), &dummy, &dummy, &dummy, &_usage);
+
+            ULARGE_INTEGER current;
+            current.LowPart = _usage.dwLowDateTime;
+            current.HighPart = _usage.dwHighDateTime;
+            if( current.QuadPart >= _max ) {
+                throw eoMaxTimeException( current.QuadPart );
+            } else {
+                func(eo);
+            }
+        }
+    }
+
+protected:
+    const long _max;
+    FILETIME _usage;
+};
+
+#endif // _WINDOWS
+#endif //__unix__
 #endif // __EOEVALUSERTIMETHROWEXCEPTION_H__
-#endif // __UNIX__
+#endif //!defined(__unix__) && !defined(_WINDOWS)

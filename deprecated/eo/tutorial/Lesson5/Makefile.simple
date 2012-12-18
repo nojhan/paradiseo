@@ -1,0 +1,56 @@
+### This Makefile is part of the tutorial of the EO library
+# Unlike other Makefiles in EO, it is not using the automake/autoconf
+# so that it stays easy to understant (you are in the tutorial, remember!)
+# MS, Oct. 2002
+
+# if you use this Makefile as a starting point for another application
+# you might need to modify the following
+DIR_EO = ../../src
+
+.SUFFIXES: .cpp
+
+# Warning: $(CXX) in Linux (RedHat and Mandrake at least) is g++
+# However, if you are using this Makefile within xemacs,
+# and have problems with the interpretation of the output (and its colors)
+# then you should use c++ instead (make CXX=c++ will do)
+
+.cpp: ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -o $@  $*.cpp $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a
+
+.cpp.o: ; $(CXX) -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -c $*.cpp
+
+# local sources
+COMMON_SOURCES =    eoOneMax.h \
+   eoOneMaxEvalFunc.h \
+   eoOneMaxInit.h \
+   eoOneMaxMutation.h \
+   eoOneMaxQuadCrossover.h \
+   make_genotype_OneMax.h \
+   make_op_OneMax.h
+
+NO_LIB_SOURCES = OneMaxEA.cpp
+
+LIB_SOURCES = OneMaxLibEA.cpp make_OneMax.cpp
+
+
+SOURCES = $(COMMON_SOURCES) OneMaxEA.cpp OneMaxLibEA.cpp make_OneMax.cpp
+
+LIB_EO = $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a
+
+ALL = OneMaxEA OneMaxLibEA
+
+OneMaxEA : OneMaxEA.o
+	$(CXX) -g -o $@ OneMaxEA.o $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a -lm
+
+OneMaxLibEA : OneMaxLibEA.o make_OneMax.o
+	$(CXX) -g -o $@ OneMaxLibEA.o make_OneMax.o $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a -lm
+
+tar : ; tar czvf OneMax.tgz *.h *.cpp Makefile
+
+all : $(ALL)
+
+clean : ; /bin/rm  *.o $(ALL)
+
+########## local dependencies
+OneMaxEA.o : $(COMMON_SOURCES) OneMaxEA.cpp
+OneMaxLibEA.o : $(COMMON_SOURCES) OneMaxLibEA.cpp
+make_OneMax.o : make_OneMax.cpp eoOneMax.h

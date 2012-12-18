@@ -35,23 +35,26 @@
     @ingroup Continuators
 */
 template< class EOT>
-class eoSteadyFitContinue: public eoContinue<EOT>
+class eoSteadyFitContinue: public eoCountContinue<EOT>
 {
 public:
   typedef typename EOT::Fitness Fitness;
 
+  using eoCountContinue<EOT>::thisGenerationPlaceholder;
+  using eoCountContinue<EOT>::thisGeneration;
+
   /// Ctor for setting a
   eoSteadyFitContinue( unsigned long _minGens, unsigned long _steadyGens)
-    : repMinGenerations( _minGens ), repSteadyGenerations( _steadyGens),
-      steadyState(false), thisGenerationPlaceHolder(0),
-      thisGeneration(thisGenerationPlaceHolder){};
+    : eoCountContinue<EOT>( ), repMinGenerations( _minGens ), repSteadyGenerations( _steadyGens),
+      steadyState(false)
+    {};
 
   /// Ctor for enabling the save/load the no. of generations counted
   eoSteadyFitContinue( unsigned long _minGens, unsigned long _steadyGen,
                  unsigned long& _currentGen)
-    : repMinGenerations( _minGens ), repSteadyGenerations( _steadyGen),
-      steadyState(_currentGen>_minGens), thisGenerationPlaceHolder(0),
-      thisGeneration(_currentGen){};
+    : eoCountContinue<EOT>( _currentGen ), repMinGenerations( _minGens ), repSteadyGenerations( _steadyGen),
+      steadyState(_currentGen>_minGens)
+    {};
 
   /** Returns false when a certain number of generations is
    * reached withtout improvement */
@@ -96,7 +99,7 @@ public:
   /// Resets the state after it's been reached
   virtual void reset () {
     steadyState=false;
-    thisGeneration = 0;
+    eoCountContinue<EOT>::reset();
   }
 
   /** accessors*/
@@ -110,8 +113,6 @@ private:
   unsigned long repMinGenerations;
   unsigned long  repSteadyGenerations;
   bool steadyState;
-  unsigned long thisGenerationPlaceHolder;
-  unsigned long& thisGeneration;
   unsigned int lastImprovement;
   Fitness bestSoFar;
 };

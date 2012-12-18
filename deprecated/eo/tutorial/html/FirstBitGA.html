@@ -1,0 +1,312 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
+   <title>FirstBitGA.html</title>
+<!-- Changed by: Marc Schoenauer, 29-Nov-2000 -->
+</head>
+<body text="#000000" bgcolor="#C3C2B4" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<a href="eoLesson1.html">Back to Lesson 1</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+documentation</a></font>
+<br>
+<hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
+<center>
+<h1>
+<font color="#FF0000">Code for FirstBitGA</font></h1></center>
+Click on the figure to see the corresponding code.
+<br>In the code, the <a href="eoTutorial.html#colors">colors are meaningfull</a>
+<br>The actual code is in boldface and the comment in normal face.
+<br><img SRC="EA_tutorial.jpg" USEMAP="#Map" ><map NAME="Map"><!-- Init --><area SHAPE="rect" HREF="#init" COORDS="14,31,135,70"><area SHAPE="rect" HREF="#eval" COORDS="14,110,135,150"><!-- main loop --><area SHAPE="rect" HREF="#representation" COORDS="170,110,295,150"><area SHAPE="rect" HREF="#output" COORDS="280,45,480,70"><area SHAPE="rect" HREF="#stop" COORDS="348,110,430,150"><area SHAPE="rect" HREF="#select" COORDS="495,110,615,150"><area SHAPE="rect" HREF="#representation" COORDS="495,190,615,230"><area SHAPE="rect" HREF="#crossover" COORDS="495,265,625,287"><area SHAPE="rect" HREF="#mutation" COORDS="495,287,625,305"><area SHAPE="rect" HREF="#representation" COORDS="240,270,465,310"><area SHAPE="rect" HREF="#eval" COORDS="170,270,295,310"><area SHAPE="rect" HREF="#replace" COORDS="170,190,295,230"><!-- Center of loop --><area SHAPE="rect" HREF="#generation" COORDS="310,160,485,260"><!-- 4 bottom lines --><area SHAPE="rect" HREF="#operators" COORDS="15,350,260,370"><area SHAPE="rect" HREF="#representation" COORDS="270,350,460,370"><area SHAPE="rect" HREF="#engine" COORDS="15,377,400,397"><area SHAPE="rect" HREF="#eval" COORDS="15,403,230,423"><area SHAPE="rect" HREF="#checkpoint" COORDS="15,430,221,450"><area SHAPE="rect" HREF="#stop" COORDS="221,430,345,450"><area SHAPE="rect" HREF="#stat" COORDS="375,430,445,450"><area SHAPE="rect" HREF="#parametres" COORDS="0,358,278,378"></map>
+<br><a NAME="start"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#993300">// FirstBitGA.cpp</font></tt>
+<br><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#993300">//*</font></tt>
+<br><tt><font color="#993300">// An instance of a VERY simple Bitstring
+Genetic Algorithm</font></tt>
+<br><tt><font color="#993300">//</font></tt>
+<br><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#993300">// standard includes</font></tt>
+<br><tt><font color="#993300"><b>#include &lt;stdexcept>&nbsp; </b>// runtime_error&nbsp;</font></tt>
+<br><tt><font color="#993300"><b>#include &lt;iostream>&nbsp;&nbsp;&nbsp;
+</b>// cout</font></tt>
+<br><tt><font color="#993300"><b>#include &lt;strstream>&nbsp; </b>// ostrstream,
+istrstream</font></tt>
+<br><tt><font color="#993300">// the general include for eo</font></tt>
+<br><b><tt><font color="#993300">#include &lt;eo></font></tt></b></td>
+</tr>
+</table>
+<a NAME="representation"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" NOSAVE >
+<tr>
+<td><b><tt><font color="#999900">#include &lt;ga.h></font></tt></b><br>
+<tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#999900">// define your individuals</font></tt>
+<br><tt><font color="#999900"><b>typedef eoBit&lt;double> Indi;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// A bitstring with fitness double</font></tt></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#CC0000">//-----------------------------------------------------------------------------</font></tt>
+<br><tt><font color="#CC0000">// a simple fitness function that computes
+the number of ones of a bitstring</font></tt>
+<br><tt><font color="#CC0000">//&nbsp; @param _indi A biststring individual</font></tt>
+<br><a NAME="evalfunc"></a><b><tt><font color="#CC0000">double binary_value(const
+Indi &amp; _indi)</font></tt></b>
+<br><b><tt><font color="#CC0000">{</font></tt></b>
+<br><b><tt><font color="#CC0000">&nbsp;double sum = 0;</font></tt></b>
+<br><b><tt><font color="#CC0000">&nbsp;for (unsigned i = 0; i &lt; _indi.size();
+i++)</font></tt></b>
+<br><b><tt><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp; sum += _indi[i];</font></tt></b>
+<br><b><tt><font color="#CC0000">&nbsp;return sum;</font></tt></b>
+<br><b><tt><font color="#CC0000">}</font></tt></b></td>
+</tr>
+</table>
+<a NAME="general"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
+<br><b><tt><font color="#993300">void main_function(int argc, char **argv)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b></td>
+</tr>
+</table>
+<a NAME="parametres"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b>// all parameters are hard-coded!</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int SEED = 42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// seed for random number generator</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int T_SIZE = 3;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// size for tournament selection</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int VEC_SIZE = 8;&nbsp;&nbsp;&nbsp;
+</b>// Number of bits in genotypes</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int POP_SIZE = 20;&nbsp;
+</b>// Size of population</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int MAX_GEN = 100;&nbsp;
+</b>// Maximum number of generation before STOP</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const float CROSS_RATE = 0.8;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// Crossover rate</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double P_MUT_PER_BIT = 0.01;
+</b>// probability of bit-flip mutation</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const float MUT_RATE = 1.0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// mutation rate</font></tt></td>
+</tr>
+</table>
+<a NAME="general"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><a NAME="random"></a><tt><font color="#993300"><b> </b>//////////////////////////</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>//&nbsp; Random seed</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>//////////////////////////</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>//reproducible random seed:
+if you don't change SEED above,&nbsp;</font></tt>
+<br><tt><font color="#993300"><b>&nbsp;</b>// you'll aways get the same
+result, NOT a random run</font></tt>
+<br><b><tt><font color="#993300">&nbsp;rng.reseed(SEED);</font></tt></b></td>
+</tr>
+</table>
+<a NAME="eval"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
+<tr>
+<td><tt><font color="#CC0000"><b>&nbsp;</b>/////////////////////////////</font></tt>
+<br><tt><font color="#CC0000"><b>&nbsp;</b>// Fitness function</font></tt>
+<br><tt><font color="#CC0000"><b>&nbsp;</b>////////////////////////////</font></tt>
+<br><tt><font color="#CC0000"><b>&nbsp;</b>// Evaluation: from a plain
+C++ fn to an EvalFunc Object</font></tt>
+<br><b><tt><font color="#CC0000">&nbsp;eoEvalFuncPtr&lt;Indi> eval(&nbsp;
+binary_value );</font></tt></b></td>
+</tr>
+</table>
+<a NAME="init"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td><tt><font color="#993399"><b>&nbsp;</b>////////////////////////////////</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>// Initilisation of population</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>////////////////////////////////</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>// declare the population</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoPop&lt;Indi> pop;</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;</b>// fill it!</font></tt>
+<br><b><tt><font color="#993399">&nbsp;for (unsigned int igeno=0; igeno&lt;POP_SIZE;
+igeno++)</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Indi v;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// void individual, to be filled</font></tt>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for (unsigned ivar=0; ivar&lt;VEC_SIZE; ivar++)</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+bool r = rng.flip(); </b>// new value, random in {0,1}</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+v.push_back(r);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
+append that random value to v</font></tt>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt></b>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+eval(v);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>// evaluate it</font></tt>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pop.push_back(v);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></tt></b><tt><font color="#993399">// and put it in the population</font></tt>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt></b></td>
+</tr>
+</table>
+<a NAME="output"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b>// sort pop before printing
+it!</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;pop.sort();</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// Print (sorted) intial population
+(raw printout)</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;cout &lt;&lt; "Initial Population"
+&lt;&lt; endl;</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;cout &lt;&lt; pop;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="engine"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td><tt><font color="#009900"><b>&nbsp;</b>/////////////////////////////////////</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;</b>// selection and replacement</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;</b>////////////////////////////////////</font></tt></td>
+</tr>
+</table>
+<a NAME="select"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;eoDetTournamentSelect&lt;Indi> select(T_SIZE);&nbsp;
+</b>// T_SIZE in [2,POP_SIZE]</font></tt></td>
+</tr>
+</table>
+<a NAME="replace"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
+<tr>
+<td><tt><font color="#009900"><b>&nbsp;</b>// The simple GA evolution engine
+uses generational replacement</font></tt>
+<br><tt><font color="#009900"><b>&nbsp;</b>// so no replacement procedure
+is needed</font></tt></td>
+</tr>
+</table>
+<a NAME="stop"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td></td>
+</tr>
+</table>
+<a NAME="operators"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td><tt><font color="#993399"><b>&nbsp;</b>//////////////////////////////////////</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>// The variation operators</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;</b>//////////////////////////////////////</font></tt></td>
+</tr>
+</table>
+<a NAME="crossover"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td><tt><font color="#993399"><b>&nbsp;</b>// 1-point crossover for bitstring</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eo1PtBitXover&lt;Indi> xover;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="mutation"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
+<tr>
+<td>
+<br><tt><font color="#993399"><b>&nbsp;</b>// standard bit-flip mutation
+for bitstring</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eoBitMutation&lt;Indi>&nbsp; mutation(P_MUT_PER_BIT);</font></tt></b></td>
+</tr>
+</table>
+<a NAME="stop"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b>//////////////////////////////////////</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// termination condition</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>/////////////////////////////////////</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;</b>// stop after MAX_GEN generations</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;eoGenContinue&lt;Indi> continuator(MAX_GEN);</font></tt></b>
+<br>&nbsp;</td>
+</tr>
+</table>
+<a NAME="generation"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><tt><font color="#FF6666"><b>&nbsp;</b>/////////////////////////////////////////</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// the algorithm</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>////////////////////////////////////////</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// standard Generational GA
+requires as parameters</font></tt>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// selection, evaluation, crossover
+and mutation, stopping criterion</font></tt>
+<p><b><tt><font color="#FF6666">&nbsp;eoSGA&lt;Indi> gga(select, xover,
+CROSS_RATE, mutation, MUT_RATE,&nbsp;</font></tt></b>
+<br><b><tt><font color="#FF6666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+eval, continuator);</font></tt></b>
+<br><tt><font color="#FF6666"><b>&nbsp;</b>// Apply algo to pop - that's
+it!</font></tt>
+<br><b><tt><font color="#FF6666">&nbsp;gga(pop);</font></tt></b>
+<br>&nbsp;</td>
+</tr>
+</table>
+<a NAME="final_output"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
+<tr>
+<td><tt><font color="#3366FF"><b>&nbsp;</b>// Print (sorted) intial population</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;pop.sort();</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;cout &lt;&lt; "FINAL Population\n"
+&lt;&lt; pop &lt;&lt; endl;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="main"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><b><tt><font color="#993300">}</font></tt></b>
+<br><tt><font color="#993300">// A main that catches the exceptions</font></tt>
+<br><b><tt><font color="#993300">int main(int argc, char **argv)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b>
+<br><b><tt><font color="#993300">#ifdef _MSC_VER</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp;</b>//&nbsp; rng.reseed(42);</font></tt>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; int flag = _CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF);</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flag
+|= _CRTDBG_LEAK_CHECK_DF;</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; _CrtSetDbgFlag(flag);</font></tt></b>
+<br><tt><font color="#993300">//&nbsp;&nbsp;&nbsp; _CrtSetBreakAlloc(100);</font></tt>
+<br><b><tt><font color="#993300">#endif</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; try</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+main_function(argc, argv);</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; catch(exception&amp;
+e)</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; '\n';</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp; return 1;</font></tt></b>
+<br><b><tt><font color="#993300">}</font></tt></b></td>
+</tr>
+</table>
+
+<hr WIDTH="100%"><a href="eoLesson1.html">Back to Lesson 1</a> - <a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+documentation</a></font>
+<hr>
+<address>
+<a href="mailto:Marc.Schoenauer@inria.fr">Marc Schoenauer</a></address>
+
+<br><!-- Created: Nov 2000 --><!-- hhmts start -->Last modified: Sun Nov
+19 08:31:26 2000<!-- hhmts end -->
+</body>
+</html>

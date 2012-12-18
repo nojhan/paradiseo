@@ -1,0 +1,277 @@
+/****************************************************************************
+ *                                                                          *
+ * contented3 - An open source xhtml/css website template by Contented      *
+ * Designs.  You're free to modify it and use it for any purpose without    *
+ * cost or obligation. We'd prefer that you leave the link to our website   *
+ * in the footer but it's not required.                                     *
+ *                                                                          *
+ * If you have comments or questions, please contact us at                  *
+ * http://www.ContentedDesigns.com. Thanks!                                 *
+ *                                                                          *
+ ***************************************************************************/
+
+* {
+    padding:0px;
+    margin:0px;
+}
+
+html {
+}
+
+body {
+    color: #333333;
+    font-family:Arial, sans-serif;
+    font-size:0.83em;
+
+    background-image:url("fronde.png");
+    background-repeat:no-repeat;
+    background-position:bottom left;
+}
+
+#alt {
+    float:left;
+    width:20%;
+    text-align:center;
+    margin-right:5%;
+}
+
+.shortcuts {
+    text-align:left;
+    clear:both;
+}
+
+.shortcuts p {
+    margin-top:2em;
+    margin-bottom:0em;
+}
+
+.shortcuts ul {
+    margin-top:0em;
+}
+
+ul.badges {
+    list-style-type:none;
+    margin-top:2em;
+}
+
+ul.badges li {
+    margin-left:0px;
+    margin-top:0.5em;
+}
+
+#menu {
+    padding:0.5em;
+}
+
+#main {
+    float:right;
+    width:75%;
+}
+
+blockquote {
+    padding-left:1em;
+}
+
+table.examples {
+    margin-right:0.5em;
+}
+
+ul.publications em {
+    font-width:bold;
+    color:#f0f;
+}
+
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl,
+fieldset, address { margin:0.75em 0;}
+
+h1 {
+    font-size:1.67em;
+    border-bottom:thin solid lightgray;
+    margin-top:2em;
+}
+
+h2 {font-size:1.39em;}
+
+h3 {font-size:1.2em;}
+
+h4 {font-size:1em;}
+
+li, dd {
+    margin-left:2em;
+}
+
+table > caption {
+    font-weight:bold;
+}
+
+table {
+    padding:0.5em;
+    border:thin solid lightgray;
+    border-left:0.2em solid #3366CC;
+}
+
+a {
+    color: #3366CC;
+    /*background-color: #FFFFFF;*/
+    font-weight: normal;
+    text-decoration: none;
+    outline:none;
+}
+
+a:hover {
+    color: #0033CC;
+    /*background-color: #FFFFFF;*/
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+
+#appendix {
+    background:url("Purine_Nucleoside_Phosphorylase_small.jpg");
+    background-repeat:no-repeat;
+    background-position:top right;
+}
+
+#title {
+    color:#3366CC;
+    /*background-color:#FFFFFF;*/
+    font-size:3em;
+    font-weight:bold;
+    margin:0px 0px 10px 0px;
+    float:left;
+}
+
+#slogan {
+    color: #88f;
+    /*background-color:#FFFFFF;*/
+    font-size:small;
+    font-weight:normal;
+    font-style:italic;
+    padding:18px 0px 0px 50px;
+    float:left;
+    margin:0px 0px 10px 0px;
+}
+
+ul#login {
+    margin:0px;
+    padding:0px;
+    list-style: none;
+    position:absolute;
+    top:0px;
+    right:1em;
+}
+
+ul#login li {
+    display:inline;
+}
+
+ul#menu {
+    clear:both;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+/*width:650px;*/
+}
+
+ul#menu li {
+    margin: 0;
+    padding:0;
+    float: left;
+    width:16.5%;
+    text-align: center;
+}
+
+ul#menu li a {
+    display: block;
+    font-size: small;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    background: #5588CC;
+    padding: 2px 0px 2px 0px;
+    padding: 0em 1em 0em 1em;
+}
+
+ul#menu li a:hover { background: #3366CC; color: #FFFFFF; }
+ul#menu a.selected:link { background: #3366CC; color: #FFFFFF; }
+ul#menu a.selected:visited { background: #3366CC; color: #FFFFFF; }
+
+#page {
+    font-size:1.0em;
+    padding:1em;
+    margin:1em;
+    /*width:650px;
+      float:left;*/
+    clear:left;
+}
+
+
+#foot {
+    color:#000000;
+    background-color:#FFFFFF;
+    border-top:1px solid #0033CC;
+    font-size:80%;
+    /*line-height:1.5em;*/
+    /*width: 650px;*/
+    clear:both;
+}
+
+#foot a {
+    color:#3366CC;
+    background-color:#FFFFFF;
+    text-decoration: none;
+}
+
+#foot a:hover {
+    color:#0033CC;
+    background-color:#FFFFFF;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+#copyright {
+    color:#000000;
+    background-color:#FFFFFF;
+    padding:5px 20px 5px 0px;
+    float:left;
+}
+
+#contact {
+    color:#0033CC;
+    background-color:#FFFFFF;
+    padding:5px 0px 5px 0px;
+    float:right;
+}
+
+
+.table_form_title {
+    font-weight:bold;
+}
+
+.table_form_label {
+    text-align:right;
+    padding-right:1em;
+}
+
+.table_form_submit {
+    text-align:center;
+}
+
+.figure {
+    float:right;
+    text-align:center;
+    margin:1em;
+    padding:5px;
+    border:thin solid #eee;
+}
+
+.legend {
+    font-style:italic;
+    font-size:80%;
+}
+
+#ohloh_stats {
+    text-align:left;
+    font-weight:normal;
+    font-style:italic;
+}

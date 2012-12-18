@@ -1,0 +1,12 @@
+# Package Information for pkg-config
+
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/edo
+
+Name: Evolving Distribution Objects
+Description: Evolving Distribution Objects
+Version: 1.0
+Libs: -L${libdir} -ledo -ledoutils
+Cflags: -I${includedir}
