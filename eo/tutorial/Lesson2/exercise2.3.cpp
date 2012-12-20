@@ -131,7 +131,7 @@ void main_function(int argc, char **argv)
   // Combine them with relative rates
   eoPropCombinedQuadOp<Indi> xover(xover1, onePointRate);
   xover.add(xoverU, URate);
-  xover.add(xover2, twoPointsRate, true);
+  xover.add(xover2, twoPointsRate);
 
 // MUTATION
   // standard bit-flip mutation for bitstring

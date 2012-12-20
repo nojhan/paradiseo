@@ -34,7 +34,8 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // neighborhood description
-#include <neighborhood/moOrderNeighborhood.h> // visit all neighbors in increasing order of bit index
+#include <neighborhood/moRndWithReplNeighborhood.h> // visit all neighbors in random order with neighbor
+#include <neighborhood/moOrderNeighborhood.h> // visit all neighbors in order with neighbor
 
 //-----------------------------------------------------------------------------
 // the simple Hill-Climbing local search

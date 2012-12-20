@@ -122,7 +122,7 @@ void main_function(int argc, char **argv)
   eoHypercubeCrossover<Indi> xoverA;
   // Combine them with relative weights
   eoPropCombinedQuadOp<Indi> xover(xoverS, segmentRate);
-  xover.add(xoverA, hypercubeRate, true);
+  xover.add(xoverA, hypercubeRate);
 
 // MUTATION
   // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
