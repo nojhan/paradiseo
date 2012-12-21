@@ -19,6 +19,7 @@ set (TEST_LIST
         t-smpTopo
         t-smpMI_Homogeneous
         t-smpMI_Heterogeneous
+        t-smpMI_Wrapper
 		)
 
 ######################################################################################

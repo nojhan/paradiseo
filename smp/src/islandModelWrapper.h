@@ -1,5 +1,5 @@
 /*
-<homogeneousModel.h>
+<islandModelWrapper.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
@@ -34,6 +34,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <algorithm>
 #include <utility>
 #include <thread>
+#include <tuple>
+#include <vector>
 
 #include <bimap.h>
 #include <abstractIsland.h>
@@ -45,42 +47,41 @@ namespace paradiseo
 namespace smp
 {
 
-/** HomogeneousIslandModel: Wrapper to create homogeneous model easily
+/** IslandModelWrapper: Wrapper to create homogeneous model easily
+
+IslandModelWrapper is a function that creates an homogeneous model with the number
+of specified islands, built with same parameters.
 
 @see smp::IslandModel
 */
 
-template<template <class> class EOAlgo, class EOT>
-class HomogeneousIslandModel
+template<template <class> class EOAlgo, class EOT, class... IslandInit>
+std::vector<eoPop<EOT>> IslandModelWrapper(unsigned _islandNumber, AbstractTopology& _topo, unsigned _popSize, eoInit<EOT> &_chromInit, IslandInit... args)
 {
-public:
-     /**
-     * Constructor
-     * @param _islandNumber number of islands to create
-     * @param _topo Topology
-     * @param args... list of parameters according to the constructor of the island
-     */
-    template<class... IslandInit>
-    HomogeneousIslandModel(unsigned _islandNumber, AbstractTopology& _topo, unsigned _popSize, eoInit<EOT> &_chromInit, IslandInit... args);
+    // Model creation
+    IslandModel<EOT> model(_topo);
     
-    /**
-     * Destructor
-     */
-    ~HomogeneousIslandModel();
-
-    /**
-     * Get populations
-     * @return Populations
-     */
-    std::vector<eoPop<EOT>>& getPop();
-
-protected:
-    IslandModel<EOT> model;
-    std::vector<Island<EOAlgo,EOT>*> islands;
-    std::vector<eoPop<EOT>> pops;
-};
-
-#include <homogeneousModel.cpp>
+    // Island and pop containers
+    std::vector<Island<EOAlgo,EOT>*> islands(_islandNumber);
+    std::vector<eoPop<EOT>> pops(_islandNumber);
+    
+    // Generate islands and put them in the model
+    for(unsigned i = 0; i < _islandNumber; i++)
+    {
+        pops[i] = eoPop<EOT>(_popSize, _chromInit);
+        islands[i] = new Island<EOAlgo, EOT>(pops[i], args...);
+        model.add(*islands[i]);
+    }
+    
+    // Start the model
+    model();
+    
+    // Delete islands
+    for(auto& island : islands)
+        delete island;
+    
+    return pops;
+}
 
 }
 

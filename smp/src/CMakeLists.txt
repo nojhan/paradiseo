@@ -29,6 +29,7 @@ set (SMP_FILE
     topology/hypercubic.cpp
     topology/mesh.cpp
     notifier.cpp
+    islandModelWrapper.h
     )
 
 add_library(smp STATIC ${SMP_FILE})
@@ -39,7 +40,7 @@ install(TARGETS smp ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 ### 3) Look for headers
 ######################################################################################
 
-file(GLOB HDRS smp *.h)
+file(GLOB HDRS smp *.h *.cpp)
 install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/smp COMPONENT headers)
 
 ######################################################################################
@@ -50,4 +51,5 @@ install(DIRECTORY MWAlgo topology
         DESTINATION include${INSTALL_SUB_DIR}/smp
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
+        PATTERN "*.cpp"
         )

@@ -156,4 +156,3 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::update(eoPop<bEOT> _data)
     std::lock_guard<std::mutex> lock(this->m);
     listImigrants.push(_data);
 }
-
