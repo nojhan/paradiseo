@@ -56,7 +56,7 @@ of specified islands, built with same parameters.
 */
 
 template<template <class> class EOAlgo, class EOT, class... IslandInit>
-std::vector<eoPop<EOT>> IslandModelWrapper(unsigned _islandNumber, AbstractTopology& _topo, unsigned _popSize, eoInit<EOT> &_chromInit, IslandInit... args)
+std::vector<eoPop<EOT>> IslandModelWrapper(unsigned _islandNumber, AbstractTopology& _topo, unsigned _popSize, eoInit<EOT> &_chromInit, IslandInit&&... args)
 {
     // Model creation
     IslandModel<EOT> model(_topo);

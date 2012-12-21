@@ -39,10 +39,7 @@ paradiseo::smp::PolicyElement<EOT>::PolicyElement(eoSelect<EOT>& _selection, eoC
 template <class EOT>
 bool paradiseo::smp::PolicyElement<EOT>::operator()(const eoPop<EOT>& _pop)
 {
-    // DEBUG
-    //static int i = 0;
-    //std::cout << " " << std::this_thread::get_id() << std::endl;   
-    //i++;
+
     // END DEBUG
         
     return criterion(_pop);
