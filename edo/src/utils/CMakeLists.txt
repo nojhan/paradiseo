@@ -14,7 +14,7 @@ set(LIBRARY_OUTPUT_PATH ${EDOUTILS_LIB_OUTPUT_PATH})
 
 file(GLOB SOURCES *.cpp)
 add_library(edoutils ${SOURCES})
-install(TARGETS edoutils ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS edoutils ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 set(EDOUTILS_VERSION ${GLOBAL_VERSION})
 set_target_properties(edoutils PROPERTIES VERSION "${EDOUTILS_VERSION}")

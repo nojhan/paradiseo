@@ -29,13 +29,13 @@ add_library(eo STATIC ${EO_SOURCES})
 set(EO_VERSION ${GLOBAL_VERSION})
 set_target_properties(eo PROPERTIES VERSION "${EO_VERSION}")
 
-install(TARGETS eo ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS eo ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 file(GLOB HDRS *.h eo)
-install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/eo COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo COMPONENT headers)
 
 install(DIRECTORY do es ga gp other utils
-        DESTINATION local/include${INSTALL_SUB_DIR}/eo
+        DESTINATION include${INSTALL_SUB_DIR}/eo
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h" PATTERN "checkpointing" PATTERN external_eo
         )

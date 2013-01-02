@@ -20,10 +20,10 @@ set(EOMPI_SOURCES
     )
 
 add_library(eompi STATIC ${EOMPI_SOURCES})
-install(TARGETS eompi ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS eompi ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 file(GLOB HDRS *.h)
-install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/eo/mpi COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo/mpi COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal

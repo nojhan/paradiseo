@@ -93,7 +93,7 @@ elseif(ENABLE_CMAKE_TESTING)
     add_executable(${test} ${T_${test}_SOURCES})
     add_test(${test} ${test})
     target_link_libraries(${test} ga es cma eoutils eo)
-    install(TARGETS ${test} RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/test COMPONENT test)
+    install(TARGETS ${test} RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/test COMPONENT test)
   endforeach (test)
 
   set(RESOURCES

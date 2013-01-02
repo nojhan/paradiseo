@@ -48,7 +48,7 @@ set(EO_SOURCES
 
 # shared library
 add_library(PyEO MODULE ${SOURCES} ${EO_SOURCES})
-install(TARGETS PyEO LIBRARY DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS PyEO LIBRARY DESTINATION ${LIB} COMPONENT libraries)
 
 # python 2.5 must have pyd
 if(WIN32 AND NOT CYGWIN)

@@ -14,7 +14,7 @@ set(LIBRARY_OUTPUT_PATH ${EDO_LIB_OUTPUT_PATH})
 ######################################################################################
 
 file(GLOB HDRS edo)
-install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/edo COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/edo COMPONENT headers)
 
 
 ######################################################################################
@@ -22,7 +22,7 @@ install(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/edo COMPONENT 
 ######################################################################################
 
 install(DIRECTORY utils
-        DESTINATION local/include${INSTALL_SUB_DIR}/edo
+        DESTINATION include${INSTALL_SUB_DIR}/edo
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
         )

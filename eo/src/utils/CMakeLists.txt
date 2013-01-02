@@ -33,7 +33,7 @@ set(EOUTILS_SOURCES
   )
 
 add_library(eoutils STATIC ${EOUTILS_SOURCES})
-install(TARGETS eoutils ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
+install(TARGETS eoutils ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 
 ######################################################################################

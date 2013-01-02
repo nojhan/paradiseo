@@ -26,7 +26,7 @@ if(DOXYGEN_FOUND)
         "${EDO_DOC_DIR}/${EDO_DOC_CONFIG_FILE}")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        DESTINATION local/share${INSTALL_SUB_DIR}/edo COMPONENT doc
+        DESTINATION share${INSTALL_SUB_DIR}/edo COMPONENT doc
         PATTERN "CMakeFiles" EXCLUDE
         PATTERN "cmake_install.cmake" EXCLUDE
         PATTERN "CTestTestfile.cmake" EXCLUDE
