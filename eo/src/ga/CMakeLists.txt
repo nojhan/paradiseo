@@ -23,10 +23,7 @@ set(GA_SOURCES
   )
 
 add_library(ga STATIC ${GA_SOURCES})
-install(TARGETS ga ARCHIVE DESTINATION lib COMPONENT libraries)
-
-file(GLOB HDRS *.h)
-install(FILES ${HDRS} DESTINATION include/eo/ga COMPONENT headers)
+install(TARGETS ga ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Optionnal

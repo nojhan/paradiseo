@@ -30,7 +30,7 @@ macro(add_lesson module target files)
 	    elseif(${module} MATCHES smp)
 	        target_link_libraries(${i} smp eo eoutils)
 	    endif() 
-	    install(TARGETS ${i} RUNTIME DESTINATION ${INSTALL_BASE}/share${INSTALL_SUB_DIR}/${module}/tutorial/${target} COMPONENT examples)   
+	    install(TARGETS ${i} RUNTIME DESTINATION share${INSTALL_SUB_DIR}/${module}/tutorial/${target} COMPONENT examples)   
 	endforeach(i)
 	
 	# Custom target

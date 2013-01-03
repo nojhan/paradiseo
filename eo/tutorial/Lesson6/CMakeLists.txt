@@ -45,7 +45,7 @@ target_link_libraries(RealPSO eo eoutils)
 ### 6) Configure project installation paths
 ######################################################################################
 
-install(TARGETS BinaryPSO RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson6 COMPONENT examples)
-install(TARGETS RealPSO RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson6 COMPONENT examples)
+install(TARGETS BinaryPSO RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson6 COMPONENT examples)
+install(TARGETS RealPSO RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson6 COMPONENT examples)
 
 ######################################################################################

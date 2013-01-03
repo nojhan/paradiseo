@@ -91,8 +91,8 @@ target_link_libraries(ESEA es ga eo eoutils)
 ### 6) Configure project installation paths
 ######################################################################################
 
-install(TARGETS BitEA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson4 COMPONENT examples)
-install(TARGETS RealEA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson4 COMPONENT examples)
-install(TARGETS ESEA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson4 COMPONENT examples)
+install(TARGETS BitEA RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson4 COMPONENT examples)
+install(TARGETS RealEA RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson4 COMPONENT examples)
+install(TARGETS ESEA RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson4 COMPONENT examples)
 
 ######################################################################################

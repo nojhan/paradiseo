@@ -50,7 +50,7 @@ target_link_libraries(OneMaxLibEA es ga eo eoutils)
 ### 6) Configure project installation paths
 ######################################################################################
 
-install(TARGETS OneMaxEA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson5 COMPONENT examples)
-install(TARGETS OneMaxLibEA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson5 COMPONENT examples)
+install(TARGETS OneMaxEA RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson5 COMPONENT examples)
+install(TARGETS OneMaxLibEA RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson5 COMPONENT examples)
 
 ######################################################################################

@@ -57,8 +57,8 @@ target_link_libraries(exercise3.1 ga eoutils eo)
 ### 6) Configure project installation paths
 ######################################################################################
 
-install(TARGETS SecondBitEA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson3 COMPONENT examples)
-install(TARGETS SecondRealEA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson3 COMPONENT examples)
-install(TARGETS exercise3.1 RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson3 COMPONENT examples)
+install(TARGETS SecondBitEA RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson3 COMPONENT examples)
+install(TARGETS SecondRealEA RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson3 COMPONENT examples)
+install(TARGETS exercise3.1 RUNTIME DESTINATION share${INSTALL_SUB_DIR}/eo/examples/Lesson3 COMPONENT examples)
 
 ######################################################################################
