@@ -70,9 +70,6 @@ set(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/moeo" CACHE INTERNAL "ParadisEO-MOEO binar
 set( SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP source directory"  FORCE)
 set( SMP_BIN_DIR "${CMAKE_BINARY_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP binary directory"  FORCE)
 
-#set( PEO_SRC_DIR "${CMAKE_SOURCE_DIR}/peo"  CACHE INTERNAL "ParadisEO-PEO source directory"  FORCE)
-#set( PEO_BIN_DIR "${CMAKE_BINARY_DIR}/peo"  CACHE INTERNAL "ParadisEO-PEO binary directory"  FORCE)
-
 set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dependant source directory" FORCE)
 
 set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
@@ -80,10 +77,9 @@ set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
 set(EO_ONLY "false" CACHE BOOL "Only build EO and not the other modules")
 set(ENABLE_OPENMP "false" CACHE BOOL "Build EO with the OpenMP support (shared-memory parallel evaluators on multi-core)")
 set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-time convergence plotting)")
-set(EDO "true" CACHE BOOL "Build the EDO module")
+set(EDO "false" CACHE BOOL "Build the EDO module")
 set(EDO_USE_LIB "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
 set(SMP "false" CACHE BOOL "Build the SMP module")
-#set(PEO "true" CACHE BOOL "Build the PEO module")
 
 ## EO Module
 set(EO_MODULE_NAME "Evolving Object")
@@ -114,13 +110,7 @@ if(NOT EO_ONLY)
         set(CMAKE_SOURCE_DIR ${SMP_SRC_DIR})
         add_subdirectory(${SMP_SRC_DIR})
     endif()
-
-    ## PEO Module
-    #    if(PEO)
-    #    set(PEO_MODULE_NAME "Parallel-EO")
-    #    set(CMAKE_SOURCE_DIR ${PEO_SRC_DIR})
-    #    add_subdirectory(${PEO_SRC_DIR})
-    #endif()
+    
 endif()
 
 ######################################################################################

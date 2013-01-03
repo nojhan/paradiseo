@@ -42,15 +42,20 @@ int main(int ac, char** av)
 
     eo::log << eo::quiet << "DONE!" << std::endl;
 
+#ifdef ENABLE_OPENMP
+
 #pragma omp parallel
     {
-	if ( 0 == omp_get_thread_num() )
+	if ( 0 == omp_get_thread_num() ) //Warning: omp_get_thread_num doestn't work with pragma and required openMP
 	    {
-		eo::log << "num of threads: " << omp_get_num_threads() << std::endl;
+		eo::log << "num of threads: " << omp_get_num_threads() << std::endl; //Warning: omp_get_num_threads doestn't work with pragma and required openMP
 	    }
     }
 
     return 0;
+
+#endif
 }
+
 
 //-----------------------------------------------------------------------------
