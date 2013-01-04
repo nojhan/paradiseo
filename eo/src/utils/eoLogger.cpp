@@ -58,7 +58,7 @@ void eoLogger::_init()
 }
 
 eoLogger::eoLogger() :
-    std::ostream(&_obuf),
+    std::ostream(NULL),
 
     _verbose("quiet", "verbose", "Set the verbose level", 'v'),
     _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
@@ -69,11 +69,12 @@ eoLogger::eoLogger() :
     _fd(2),
     _obuf(_fd, _contextLevel, _selectedLevel)
 {
+    std::ostream::init(&_obuf);
     _init();
 }
 
 eoLogger::eoLogger(eo::file file) :
-    std::ostream(&_obuf),
+    std::ostream(NULL),
 
     _verbose("quiet", "verbose", "Set the verbose level", 'v'),
     _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
@@ -84,6 +85,7 @@ eoLogger::eoLogger(eo::file file) :
     _fd(2),
     _obuf(_fd, _contextLevel, _selectedLevel)
 {
+    std::ostream::init(&_obuf);
     _init();
     *this << file;
 }
