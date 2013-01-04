@@ -40,7 +40,7 @@
 #endif
 #endif
 
-#if defined(_MSC_VER) && (_MSC_VER < 1300)
+#if defined(_MSC_VER) && (_MSC_VER <= 1600)
 /*
 Maarten: added this code here because Mirkosoft has the
 nasty habit of #define min and max in stdlib.h (and windows.h)
@@ -56,6 +56,8 @@ Olivier: this has been removed in .NET :) One step more standard...
 #undef min
 #undef max // as they come in std::pairs
 #endif
+
+#ifndef _STLP_INTERNAL_ALGOBASE_H
 
 // add min and max to std...
 namespace std
@@ -77,6 +79,9 @@ namespace std
     }
 }
 
-#endif
-        // _MSC_VER
+#endif // _STLP_INTERNAL_ALGOBASE_H
+
+#endif // _MSC_VER
+
+
 #endif
