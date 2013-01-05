@@ -43,7 +43,8 @@ A and B objects are stocked in two std::map, then if you would like to avoid ins
 template A and B with pointers.
 
 **/
-    template<class A, class B>
+
+template<class A, class B>
 class Bimap
 {
 public:
