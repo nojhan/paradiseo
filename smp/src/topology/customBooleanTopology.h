@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<customBooleanTopology.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,30 +27,51 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
+#ifndef CUST_BOOL_TOPO_H_
+#define CUST_BOOL_TOPO_H_
 
-#include <MWModel.h>
-#include <scheduler.h>
-#include <islandModel.h>
-#include <islandModelWrapper.h>
-#include <island.h>
-#include <abstractIsland.h>
-#include <migPolicy.h>
-#include <intPolicy.h>
-#include <policyElement.h>
-#include <islandNotifier.h>
-#include <notifier.h>
+#include <vector>
+#include <topology/abstractTopology.h>
+#include <string>
 
-// Topologies
-#include <topology/topology.h>
-#include <topology/complete.h>
-#include <topology/ring.h>
-#include <topology/star.h>
-#include <topology/hypercubic.h>
-#include <topology/mesh.cpp>
-#include <topology/customBooleanTopology.h>
-#include <topology/customBooleanTopology.h>
+namespace paradiseo
+{
+namespace smp
+{
 
+class CustomBooleanTopology : public AbstractTopology
+{
+public :
+    /**
+    *Constructor for a custom topology from a file
+    *@param filename Name of the file, must be in the same directory as the executable
+    */
+	CustomBooleanTopology(std::string filename);
+	
+    /**
+    * Inherited from AbstractTopology
+    * @see smp::topology::AbstractTopology::getIdNeighbors
+    */	
+	std::vector<unsigned> getIdNeighbors(unsigned idNode) const;
+	
+	/**
+	* Inherited from AbstractTopology : a custom topology cannot be reconstructed in a different way, so the method throws an error if nbNode doesn't match with the actual number of nodes.
+	* @param nbNode number of nodes for the topology
+	*/
+	void construct(unsigned nbNode);
+	
+    /**
+    *Inherited from AbstractTopology : changes the topology : removes any connection from/to the given node.
+    *@param idNode index of the node to be isolated
+    */
+    void isolateNode(unsigned idNode);
+	
+private :
+	std::vector<std::vector<bool>> _matrix;
+};
+
+}
+
+}
 
 #endif

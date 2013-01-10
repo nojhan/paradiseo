@@ -20,6 +20,7 @@ set (TEST_LIST
         t-smpMI_Homogeneous
         t-smpMI_Heterogeneous
         t-smpMI_Wrapper
+        t-smpCustomTopo
 		)
 
 ######################################################################################
@@ -39,3 +40,15 @@ execute_process(
     ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat
     ${CMAKE_CURRENT_BINARY_DIR}/t-data.dat)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/t-data.dat DESTINATION share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
+
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${CMAKE_CURRENT_SOURCE_DIR}/data-topo-bool
+    ${CMAKE_CURRENT_BINARY_DIR}/data-topo-bool)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data-topo-bool DESTINATION share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)
+
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${CMAKE_CURRENT_SOURCE_DIR}/data-topo-stoch
+    ${CMAKE_CURRENT_BINARY_DIR}/data-topo-stoch)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data-topo-stoch DESTINATION share${INSTALL_SUB_DIR}/smp/test COMPONENT tests)

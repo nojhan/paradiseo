@@ -1,6 +1,7 @@
 #include <smp>
 #include <iostream>
 #include <vector>
+#include <assert.h>
 
 using namespace paradiseo::smp;
 

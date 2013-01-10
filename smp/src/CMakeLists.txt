@@ -28,6 +28,8 @@ set (SMP_FILE
     topology/ring.cpp
     topology/hypercubic.cpp
     topology/mesh.cpp
+    topology/customBooleanTopology.cpp
+    topology/customStochasticTopology.cpp
     notifier.cpp
     islandModelWrapper.h
     )
