@@ -118,7 +118,7 @@ void paradiseo::smp::CustomStochasticTopology::construct(unsigned nbNode)
 
 void paradiseo::smp::CustomStochasticTopology::isolateNode(unsigned idNode)
 {
-    for(int i=0;i<_matrix.size();i++)
+    for(unsigned i = 0; i < _matrix.size(); i++)
     {
         //Line of idNode to false : no connection FROM this node
         _matrix[idNode][i]=0;         

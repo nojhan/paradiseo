@@ -47,7 +47,7 @@ void paradiseo::smp::Topology<TopologyType>::construct(unsigned nbNode)
 template <class TopologyType>
 void paradiseo::smp::Topology<TopologyType>::isolateNode(unsigned idNode)
 {
-    for(int i=0;i<_matrix.size();i++)
+    for(unsigned i = 0; i < _matrix.size(); i++)
     {
         //Line of idNode to false : no connection FROM this node
         _matrix[idNode][i] = false;         

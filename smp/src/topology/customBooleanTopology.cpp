@@ -39,7 +39,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 paradiseo::smp::CustomBooleanTopology::CustomBooleanTopology(std::string filename)
 {
-    std :: ifstream f(filename);
+    std::ifstream f(filename);
     if (f)
     {
         int temp;
@@ -56,7 +56,7 @@ paradiseo::smp::CustomBooleanTopology::CustomBooleanTopology(std::string filenam
             std::istringstream tokenizer(line);
             std::string token;
             
-            while(tokenizer>> temp >> std::skipws)
+            while(tokenizer >> temp >> std::skipws)
             {
                 //white spaces are skipped, and the integer is converted to boolean, to be stored
                 isNeighbor = (bool) temp;
@@ -67,12 +67,12 @@ paradiseo::smp::CustomBooleanTopology::CustomBooleanTopology(std::string filenam
             if(isFirst)
             {
                 size = lineVector.size();
-                isFirst=false;
+                isFirst = false;
             }
             
             //for each vector non empty, if the size is not equal to the others, error
             if(lineVector.size() != size && !lineVector.empty())
-                throw std::runtime_error("Mistake in the topology, line "+ std::to_string(_matrix.size()+1) );
+                throw std::runtime_error("Mistake in the topology, line " + std::to_string(_matrix.size()+1) );
                 
             if(!lineVector.empty())
                 _matrix.push_back(lineVector);
@@ -81,7 +81,7 @@ paradiseo::smp::CustomBooleanTopology::CustomBooleanTopology(std::string filenam
         //for each vector, verify if the size is equal to the size of the final matrix
         for(auto& line : _matrix)
             if(line.size() != _matrix.size())
-                throw std::runtime_error("Mistake in the topology, matrix is not square" );
+                throw std::runtime_error("Mistake in the topology, matrix is not squared" );
 
         f.close () ;
     }   
@@ -94,7 +94,7 @@ paradiseo::smp::CustomBooleanTopology::CustomBooleanTopology(std::string filenam
 std::vector<unsigned> paradiseo::smp::CustomBooleanTopology::getIdNeighbors(unsigned idNode) const
 {
 	std::vector<unsigned> neighbors;
-	for(unsigned j=0; j<_matrix.size();j++)
+	for(unsigned j = 0; j < _matrix.size();j++)
 		if(_matrix[idNode][j])
 		    neighbors.push_back(j);
 	
@@ -103,17 +103,17 @@ std::vector<unsigned> paradiseo::smp::CustomBooleanTopology::getIdNeighbors(unsi
 
 void paradiseo::smp::CustomBooleanTopology::construct(unsigned nbNode)
 {
-    assert(nbNode==_matrix.size());
+    assert(nbNode == _matrix.size());
 }
 
 void paradiseo::smp::CustomBooleanTopology::isolateNode(unsigned idNode)
 {
-    for(int i=0;i<_matrix.size();i++)
+    for(unsigned i = 0; i < _matrix.size(); i++)
     {
         //Line of idNode to false : no connection FROM this node
-        _matrix[idNode][i]=false;         
+        _matrix[idNode][i] = false;         
         
         //Column of idNode to false : no connection TO this node
-        _matrix[i][idNode]=false;
+        _matrix[i][idNode] = false;
     }
 }

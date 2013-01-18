@@ -14,6 +14,7 @@ typedef eoBit<double> Indi2;     // A bitstring with fitness double
 // Conversion functions
 Indi2 fromBase(Indi& i, unsigned size)
 {
+    (void)i;
     // Dummy conversion. We just create a new Indi2
     Indi2 v;
     for (unsigned ivar=0; ivar<size; ivar++)
@@ -27,6 +28,7 @@ Indi2 fromBase(Indi& i, unsigned size)
 
 Indi toBase(Indi2& i)
 {
+    (void)i;
     // Dummy conversion. We just create a new Indi
     Indi v;
     std::cout << "Convert to base : " << v << std::endl;

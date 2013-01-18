@@ -32,7 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 void paradiseo::smp::Complete::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
-	if(nbNode!=matrix.size())
+	if(nbNode != matrix.size())
 	{
 	    matrix.clear();
 
@@ -43,7 +43,7 @@ void paradiseo::smp::Complete::operator()(unsigned nbNode, std::vector<std::vect
 	    std::vector<bool> line;
 	    line.assign(nbNode,true);
         matrix.assign(nbNode, line);
-        for(int i=0;i<nbNode;i++)
+        for(unsigned i = 0; i < nbNode; i++)
             matrix[i][i]=false;
     }
 }

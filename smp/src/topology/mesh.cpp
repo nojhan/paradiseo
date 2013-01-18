@@ -33,31 +33,28 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 void paradiseo::smp::Mesh::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
-    int i=0, j, height, width;
+    unsigned i = 0, j, height, width;
     std::vector<unsigned> listFact = paradiseo::smp::Mesh::factorization(nbNode);
-    int nbFact = listFact.size();
 	    
 	//Compute width and height
 	//find the ratio height/width of the grid that matches best the variable _ratio
-	while (i<listFact.size()-1 && (double)listFact[i]*listFact[i]/nbNode<_ratio)
+	while (i < listFact.size() - 1 && (double)listFact[i]*listFact[i] / nbNode < _ratio)
 	    i++;
 
-    /*
-    listFact[i] contains first factor which produces a ratio above the variable _ratio,
-    or the last element if there is no ratio that can go over the variable _ratio. 
-	*/
-	double r1 = (double)listFact[i]*listFact[i]/nbNode;
-	double r2 = (double)listFact[i-1]*listFact[i-1]/nbNode;
+    // listFact[i] contains first factor which produces a ratio above the variable _ratio,
+    // or the last element if there is no ratio that can go over the variable _ratio. 
+	double r1 = (double)listFact[i] * listFact[i] / nbNode;
+	double r2 = (double)listFact[i-1] * listFact[i-1] / nbNode;
 	
-	//which ratio (r1,r2) matches _ratio best?
-    if (std::abs(r2-_ratio) <= _ratio-r1)
+	// Which ratio (r1,r2) matches _ratio best?
+    if (std::abs(r2 - _ratio) <= _ratio - r1)
         height = listFact[i-1];
     else
         height = listFact[i];
     
     width = nbNode/height;
 	
-	//Building matrix
+	// Building matrix
 	matrix.clear();
 	
 	matrix.resize(nbNode);

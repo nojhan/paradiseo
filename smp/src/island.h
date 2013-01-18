@@ -135,9 +135,9 @@ protected:
      */
     virtual void send(eoSelect<EOT>& _select);
     
+    EOAlgo<EOT> algo;
     eoEvalFunc<EOT>& eval;               
     eoPop<EOT>& pop;
-    EOAlgo<EOT> algo;
     std::queue<eoPop<bEOT>> listImigrants;
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;

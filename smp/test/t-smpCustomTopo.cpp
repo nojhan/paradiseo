@@ -73,13 +73,12 @@ int main()
     }
     
     //Reading the actual matrix
-    std :: ifstream f("data-topo-stoch");
+    std::ifstream f("data-topo-stoch");
     std::vector<std::vector<double>> _matrix;
     if (f)
     {
         double temp;
-        unsigned size;
-        double isNeighbor, isFirst = true;
+        double isNeighbor;
         std::string line;
         std::vector<double> lineVector;
         
@@ -91,7 +90,7 @@ int main()
             std::istringstream tokenizer(line);
             std::string token;
             
-            while(tokenizer>> temp >> std::skipws)
+            while(tokenizer >> temp >> std::skipws)
             {
                 //white spaces are skipped, and the integer is converted to boolean, to be stored
                 
@@ -112,7 +111,7 @@ int main()
     }
     
     //Comparison to the actual matrix : _matrix
-    for(int i = 0; i < matrix.size(); i++)
-        for(int j = 0; j < matrix.size(); j++)
+    for(unsigned i = 0; i < matrix.size(); i++)
+        for(unsigned j = 0; j < matrix.size(); j++)
             assert(std::abs(_matrix[i][j] - matrix[i][j]) < .05);
 }

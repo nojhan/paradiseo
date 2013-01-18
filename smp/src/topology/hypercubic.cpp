@@ -34,13 +34,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 void paradiseo::smp::Hypercubic::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
-	if(nbNode!=matrix.size())
+	if(nbNode != matrix.size())
 	{
-	    //Check if the number of node is coherent with an hypercube
+	    // Check if the number of node is coherent with an hypercube
 	    assert((nbNode & (nbNode-1)) == 0);
 
-	    unsigned power=0,i,j;
-	    while((nbNode & 1<<power) == 0)
+	    unsigned power = 0, i, j;
+	    while((nbNode & 1 << power) == 0)
             power++;
         
 	    matrix.clear();
@@ -51,14 +51,14 @@ void paradiseo::smp::Hypercubic::operator()(unsigned nbNode, std::vector<std::ve
 
         //Construction
         matrix[0][0] = false;
-        for (unsigned dim = 1; dim <= power; dim ++)
+        for(unsigned dim = 1; dim <= power; dim ++)
         {
-            int stepNbNode = 1<< (dim-1); //represents the number of nodes for the current step.
-            for(i=0; i <stepNbNode; i++)
-                for(j=0; j< stepNbNode;j++)
+            unsigned stepNbNode = 1 << (dim-1); //represents the number of nodes for the current step.
+            for(i = 0; i < stepNbNode; i++)
+                for(j = 0; j < stepNbNode; j++)
                 {
-                    matrix[i+stepNbNode][j+stepNbNode]=matrix[i][j];//Diagonal part
-                    matrix[i][j+stepNbNode]= matrix[i+stepNbNode][j] = (i == j);//Identity
+                    matrix[i+stepNbNode][j+stepNbNode]=matrix[i][j]; //Diagonal part
+                    matrix[i][j+stepNbNode]= matrix[i+stepNbNode][j] = (i == j); //Identity
                 }
         }
     }
