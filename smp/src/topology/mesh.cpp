@@ -36,12 +36,12 @@ void paradiseo::smp::Mesh::operator()(unsigned nbNode, std::vector<std::vector<b
     unsigned i = 0, j, height, width;
     std::vector<unsigned> listFact = paradiseo::smp::Mesh::factorization(nbNode);
 	    
-	//Compute width and height
-	//find the ratio height/width of the grid that matches best the variable _ratio
+	// Compute width and height
+	// Find the ratio height/width of the grid that matches best the variable _ratio
 	while (i < listFact.size() - 1 && (double)listFact[i]*listFact[i] / nbNode < _ratio)
 	    i++;
 
-    // listFact[i] contains first factor which produces a ratio above the variable _ratio,
+    // ListFact[i] contains first factor which produces a ratio above the variable _ratio,
     // or the last element if there is no ratio that can go over the variable _ratio. 
 	double r1 = (double)listFact[i] * listFact[i] / nbNode;
 	double r2 = (double)listFact[i-1] * listFact[i-1] / nbNode;

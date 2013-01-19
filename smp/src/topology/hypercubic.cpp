@@ -49,7 +49,7 @@ void paradiseo::smp::Hypercubic::operator()(unsigned nbNode, std::vector<std::ve
 	    for(auto& line : matrix)
 	        line.resize(nbNode);
 
-        //Construction
+        // Construction
         matrix[0][0] = false;
         for(unsigned dim = 1; dim <= power; dim ++)
         {

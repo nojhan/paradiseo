@@ -40,7 +40,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 paradiseo::smp::CustomBooleanTopology::CustomBooleanTopology(std::string filename)
 {
     std::ifstream f(filename);
-    if (f)
+    
+    if(f)
     {
         int temp;
         unsigned size;

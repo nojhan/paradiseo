@@ -1,5 +1,3 @@
-// TODO : Un vrai test, propre, qui veut dire quelque chose :)
-
 #include <smp>
 #include <eo>
 #include <ga.h>
@@ -9,7 +7,7 @@
 using namespace paradiseo::smp;
 using namespace std;
 
-typedef eoBit<double> Indi2;     // A bitstring with fitness double
+typedef eoBit<double> Indi2; // A bitstring with fitness double
 
 // Conversion functions
 Indi2 fromBase(Indi& i, unsigned size)
@@ -35,127 +33,83 @@ Indi toBase(Indi2& i)
     return v;
 }
 
-// EVAL
-//-----------------------------------------------------------------------------
-// a simple fitness function that computes the number of ones of a bitstring
-//  @param _Indi2 A biststring Indi2vidual
+// Eval function for the PSO
+// A simple fitness function that computes the number of ones of a bitstring
+// @param _Indi2 A biststring Indi2vidual
 
 double binary_value(const Indi2 & _Indi2)
 {
-  double sum = 0;
-  for (unsigned i = 0; i < _Indi2.size(); i++)
-    sum += _Indi2[i];
-  return sum;
+    double sum = 0;
+    for (unsigned i = 0; i < _Indi2.size(); i++)
+        sum += _Indi2[i];
+    return sum;
 }
-// GENERAL
-//-----------------------------------------------------------------------------
 
 int main(void)
 {
-// PARAMETRES
-  // all parameters are hard-coded!
-  const unsigned int SEED = 42;      // seed for random number generator
-  const unsigned int T_SIZE = 3;     // size for tournament selection
-  const unsigned int VEC_SIZE = 16;   // Number of bits in genotypes
-  const unsigned int POP_SIZE = 10;  // Size of population
-  const unsigned int MAX_GEN = 10;  // Maximum number of generation before STOP
-  const float CROSS_RATE = 0.8;      // Crossover rate
-  const double P_MUT_PER_BIT = 0.01; // probability of bit-flip mutation
-  const float MUT_RATE = 1.0;        // mutation rate
+//////////////////////////////////////////////////////////////////
+// PSO PART
+//////////////////////////////////////////////////////////////////
+    // PSO general parameters
+    const unsigned int SEED = 42;      // seed for random number generator
+    const unsigned int T_SIZE = 3;     // size for tournament selection
+    const unsigned int VEC_SIZE = 16;   // Number of bits in genotypes
+    const unsigned int POP_SIZE = 10;  // Size of population
+    const unsigned int MAX_GEN = 10;  // Maximum number of generation before STOP
+    const float CROSS_RATE = 0.8;      // Crossover rate
+    const double P_MUT_PER_BIT = 0.01; // probability of bit-flip mutation
+    const float MUT_RATE = 1.0;        // mutation rate
 
-// GENERAL
-  //////////////////////////
-  //  Random seed
-  //////////////////////////
-  //reproducible random seed: if you don't change SEED above,
-  // you'll aways get the same result, NOT a random run
-  rng.reseed(SEED);
+    rng.reseed(SEED);
 
-// EVAL
-  /////////////////////////////
-  // Fitness function
-  ////////////////////////////
-  // Evaluation: from a plain C++ fn to an EvalFunc Object
-  eoEvalFuncPtr<Indi2> eval(  binary_value );
+    eoEvalFuncPtr<Indi2> eval(binary_value);
 
-// INIT
-  ////////////////////////////////
-  // Initilisation of population
-  ////////////////////////////////
+    // PSO population initialization
+    eoPop<Indi2> pop;
 
-  // declare the population
-  eoPop<Indi2> pop;
-  // fill it!
-  for (unsigned int igeno=0; igeno<POP_SIZE; igeno++)
+    for(unsigned int igeno=0; igeno<POP_SIZE; igeno++)
     {
-      Indi2 v;           // void Indi2vidual, to be filled
-      for (unsigned ivar=0; ivar<VEC_SIZE; ivar++)
-	{
-	  bool r = rng.flip(); // new value, random in {0,1}
-	  v.push_back(r);      // append that random value to v
-	}
-      eval(v);                 // evaluate it
-      pop.push_back(v);        // and put it in the population
+        Indi2 v;           // void Indi2vidual, to be filled
+        for (unsigned ivar=0; ivar<VEC_SIZE; ivar++)
+        {
+            bool r = rng.flip(); // new value, random in {0,1}
+            v.push_back(r);      // append that random value to v
+        }
+        eval(v);                 // evaluate it
+        pop.push_back(v);        // and put it in the population
     }
 
-// ENGINE
-  /////////////////////////////////////
-  // selection and replacement
-  ////////////////////////////////////
-// SELECT
-  // The robust tournament selection
-  eoDetTournamentSelect<Indi2> select(T_SIZE);  // T_SIZE in [2,POP_SIZE]
+    // ISLAND 1 : PSO
+    // // Algorithm part
+    eoDetTournamentSelect<Indi2> select(T_SIZE);  // T_SIZE in [2,POP_SIZE]
+    eo1PtBitXover<Indi2> xover;
+    eoBitMutation<Indi2> mutation(P_MUT_PER_BIT);
+    eoGenContinue<Indi2> continuator(MAX_GEN);
 
-// REPLACE
-  // The simple GA evolution engine uses generational replacement
-  // so no replacement procedure is needed
-
-// OPERATORS
-  //////////////////////////////////////
-  // The variation operators
-  //////////////////////////////////////
-// CROSSOVER
-  // 1-point crossover for bitstring
-  eo1PtBitXover<Indi2> xover;
-// MUTATION
-  // standard bit-flip mutation for bitstring
-  eoBitMutation<Indi2>  mutation(P_MUT_PER_BIT);
-
-// STOP
-// CHECKPOINT
-  //////////////////////////////////////
-  // termination condition
-  /////////////////////////////////////
-  // stop after MAX_GEN generations
-  eoGenContinue<Indi2> continuator(MAX_GEN);
-
-// GENERATION
-  /////////////////////////////////////////
-  // the algorithm
-  ////////////////////////////////////////
-  // standard Generational GA requires as parameters
-  // selection, evaluation, crossover and mutation, stopping criterion
-
-// // Emigration policy
-        // // // Element 1 
-        eoPeriodicContinue<Indi2> criteria(1);
-        eoDetTournamentSelect<Indi2> selectOne(2);
-        eoSelectNumber<Indi2> who(selectOne, 1);
+    // // Emigration policy
+    // // // Element 1 
+    eoPeriodicContinue<Indi2> criteria(1);
+    eoDetTournamentSelect<Indi2> selectOne(2);
+    eoSelectNumber<Indi2> who(selectOne, 1);
         
-        MigPolicy<Indi2> migPolicy;
-        migPolicy.push_back(PolicyElement<Indi2>(who, criteria));
+    MigPolicy<Indi2> migPolicy;
+    migPolicy.push_back(PolicyElement<Indi2>(who, criteria));
         
-        // // Integration policy
-        eoPlusReplacement<Indi2> intPolicy;
+    // // Integration policy
+    eoPlusReplacement<Indi2> intPolicy;
         
-        // We bind conversion functions
-        auto frombase = std::bind(fromBase, std::placeholders::_1, VEC_SIZE);
-        auto tobase = std::bind(toBase, std::placeholders::_1);
+    // We bind conversion functions
+    auto frombase = std::bind(fromBase, std::placeholders::_1, VEC_SIZE);
+    auto tobase = std::bind(toBase, std::placeholders::_1);
 
-  Island<eoSGA,Indi2, Indi> gga(frombase, tobase, pop, intPolicy, migPolicy, select, xover, CROSS_RATE, mutation, MUT_RATE,
-		  eval, continuator);
+    Island<eoSGA,Indi2, Indi> gga(frombase, tobase, pop, intPolicy, migPolicy, select, xover, CROSS_RATE, mutation, MUT_RATE, eval, continuator);
 //////////////////////////////////////////////////////////////////
-        typedef struct {
+
+//////////////////////////////////////////////////////////////////
+// EasyEA PART
+//////////////////////////////////////////////////////////////////
+    // EA general parameters
+    typedef struct {
         unsigned popSize = 10;
         unsigned tSize = 2;
         double pCross = 0.8;
@@ -164,7 +118,6 @@ int main(void)
     } Param; 
 
     Param param;
-
     loadInstances("t-data.dat", n, bkv, a, b);
       
     // Evaluation function
@@ -186,13 +139,10 @@ int main(void)
     
     // Define replace operator
     eoPlusReplacement<Indi> replace;
-
     eoGenContinue<Indi> genCont(param.maxGen); // generation continuation
-    
-    // Define population
     eoPop<Indi> pop2(param.popSize, chromInit);
 
-    // Island 1
+    // ISLAND 2 : EasyEA
     // // Emigration policy
     // // // Element 1 
     eoPeriodicContinue<Indi> criteria2(1);
@@ -207,18 +157,26 @@ int main(void)
 
     Island<eoEasyEA,Indi> test(pop2, intPolicy2, migPolicy2, genCont, plainEval, select2, transform, replace);
     
-    // Topology
-        Topology<Complete> topo;
-        
-        IslandModel<Indi> model(topo);
+    // MODEL CREATION
+    Topology<Complete> topo;
+    IslandModel<Indi> model(topo);
+    
+    try
+    {
+    
         model.add(test);
         model.add(gga);
-        
+            
         model();
-        
+            
         cout << test.getPop() << endl;
         cout << gga.getPop() << endl;
-
+        
+    }
+    catch(exception& e)
+    {
+        cout << "Exception: " << e.what() << '\n';
+    }    
 
     return 0;
 }

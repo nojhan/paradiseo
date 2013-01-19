@@ -40,8 +40,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 paradiseo::smp::CustomStochasticTopology::CustomStochasticTopology(std::string filename)
 {
-    std :: ifstream f(filename);
-    if (f)
+    std::ifstream f(filename);
+    if(f)
     {
         double temp;
         unsigned size;
@@ -53,14 +53,13 @@ paradiseo::smp::CustomStochasticTopology::CustomStochasticTopology(std::string f
         {
             lineVector.clear();
             
-            //line contains a line of text from the file
+            // Line contains a line of text from the file
             std::istringstream tokenizer(line);
             std::string token;
             
             while(tokenizer>> temp >> std::skipws)
             {
-                //white spaces are skipped, and the integer is converted to boolean, to be stored
-                
+                // White spaces are skipped, and the integer is converted to boolean, to be stored
                 if(temp<0)
                     isNeighbor = 0;
                 else if(temp>1)
@@ -70,14 +69,14 @@ paradiseo::smp::CustomStochasticTopology::CustomStochasticTopology(std::string f
                 lineVector.push_back(isNeighbor);
             }
             
-            //if this is the first line, we must initiate the variable size
+            // If this is the first line, we must initiate the variable size
             if(isFirst)
             {
                 size = lineVector.size();
                 isFirst=false;
             }
             
-            //for each vector non empty, if the size is not equal to the others, error
+            // For each vector non empty, if the size is not equal to the others, error
             if(lineVector.size() != size && !lineVector.empty())
                 throw std::runtime_error("Mistake in the topology, line "+ std::to_string(_matrix.size()+1) );
                 
@@ -85,7 +84,7 @@ paradiseo::smp::CustomStochasticTopology::CustomStochasticTopology(std::string f
                 _matrix.push_back(lineVector);
         }
 
-        //for each vector, verify if the size is equal to the size of the final matrix
+        // For each vector, verify if the size is equal to the size of the final matrix
         for(auto& line : _matrix)
             if(line.size() != _matrix.size())
                 throw std::runtime_error("Mistake in the topology, matrix is not square" );
@@ -105,7 +104,7 @@ std::vector<unsigned> paradiseo::smp::CustomStochasticTopology::getIdNeighbors(u
 	std::uniform_real_distribution<> dis(0,1);
 	
 	std::vector<unsigned> neighbors;
-	for(unsigned j=0; j<_matrix.size();j++)
+	for(unsigned j = 0; j < _matrix.size(); j++)
 		if(_matrix[idNode][j] > dis(gen))
 		    neighbors.push_back(j);
 	return neighbors;
@@ -113,7 +112,7 @@ std::vector<unsigned> paradiseo::smp::CustomStochasticTopology::getIdNeighbors(u
 
 void paradiseo::smp::CustomStochasticTopology::construct(unsigned nbNode)
 {
-    assert(nbNode==_matrix.size());
+    assert(nbNode == _matrix.size());
 }
 
 void paradiseo::smp::CustomStochasticTopology::isolateNode(unsigned idNode)
