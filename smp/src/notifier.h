@@ -33,15 +33,16 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <utils/eoUpdater.h>
 #include <functional>
 
-/** Notifier: The notifier will perform the binded task each generation.
-
-*/
-
 namespace paradiseo
 {
 namespace smp
 {
 
+/** 
+
+Notifier: The notifier will perform the binded task each generation.
+
+*/
 class Notifier : public eoUpdater
 {
 public :

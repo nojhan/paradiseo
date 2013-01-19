@@ -30,12 +30,16 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_PPE_H_
 #define SMP_PPE_H_
 
+namespace paradiseo
+{
+namespace smp
+{
+
 /** Parameter Pack Expansion: Utility file to expand parameter pack
 
 Utility file to expand parameter pack with the recursive method
 
 **/
-
 template<class... Arg> class Loop;
  
 template<class T, class... Arg>
@@ -62,5 +66,9 @@ public:
     }
  
 };
+
+}
+
+}
 
 #endif

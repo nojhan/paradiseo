@@ -32,6 +32,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <utility>
 
+namespace paradiseo
+{
+namespace smp
+{
+
 /** IslandNotifier: The notifier will perform the binded task each generation.
 
 The island notifier makes the binded task executed by the island which observes.
@@ -39,12 +44,6 @@ We can imagine that a continuator checks if we have to execute the binded task.
 At the moment, the task is performed each generation.
 
 */
-
-namespace paradiseo
-{
-namespace smp
-{
-
 template <class EOT>
 class IslandNotifier : public eoUpdater
 {
