@@ -29,19 +29,21 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 template<template <class> class EOAlgo, class EOT, class Policy>
 template<class... Args>
-paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel (unsigned workersNb, Args&... args) :
+paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel(unsigned workersNb, Args&... args) :
     EOAlgo<EOT>(args...),
     scheduler(workersNb)
-{ assert(workersNb > 0); }
+{ 
+    assert(workersNb > 0); 
+}
 
 template<template <class> class EOAlgo, class EOT, class Policy>
 template<class... Args>
-paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel (Args&... args) :
-    MWModel(Thread::hardware_concurrency(), args...)
+paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::MWModel(Args&... args) :
+    MWModel(std::thread::hardware_concurrency(), args...)
 {}
 
 template<template <class> class EOAlgo, class EOT, class Policy>
-paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::~MWModel () 
+paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::~MWModel() 
 {}
 
 template<template <class> class EOAlgo, class EOT, class Policy>

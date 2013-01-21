@@ -27,17 +27,17 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef POLICIES_D_H_
-#define POLICIES_D_H_
-
-#include <eo>
+#ifndef SMP_POLICIES_DISPATCHING_H_
+#define SMP_POLICIES_DISPATCHING_H_
 
 namespace paradiseo
 {
 namespace smp
 {
 /** Policies Dispatching
-* The Policies Dispatching enable to choose the policy to call at compile time by tag-dispatching method
+
+The Policies Dispatching enables to choose the policy to call at compile time by tag-dispatching method
+
 **/
 
 struct LinearPolicy {};

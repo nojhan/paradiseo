@@ -11,7 +11,7 @@ if(DOXYGEN_FOUND)
         # Creating the custom target
         if(UNIX AND NOT ${CMAKE_VERBOSE_MAKEFILE})
             add_custom_target(doc-smp
-                COMMAND ${DOXYGEN_EXECUTABLE} ${SMP_DOC_CONFIG_FILE} 2> /dev/null > /dev/null
+                COMMAND ${DOXYGEN_EXECUTABLE} ${SMP_DOC_CONFIG_FILE} 
                 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
         else(UNIX AND NOT ${CMAKE_VERBOSE_MAKEFILE})
             add_custom_target(doc-smp

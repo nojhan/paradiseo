@@ -27,15 +27,15 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef MWMODEL_H_
-#define MWMODEL_H_
+#ifndef SMP_MWMODEL_H_
+#define SMP_MWMODEL_H_
 
 #include <cassert>
+#include <thread>
 
 #include <scheduler.h>
 #include <algoDispatching.h>
 #include <policiesDispatching.h>
-
 
 #include <eo>
 
@@ -47,7 +47,7 @@ namespace smp
 
 /** MWModel: Master / Worker Model for multicore computation
 
-The MW Model wraps any algorithm in order to apply it on several populations.
+The MW Model wraps any algorithm in order to dispatch load between threads.
 
 @see smp::Worker, smp::Thread
 */
@@ -99,7 +99,7 @@ protected:
     void operator()(eoPop<EOT>& pop, const eoEasyEA_tag&);
     
     /**
-     * Specifid algorithm for EasyPSO
+     * Specific algorithm for EasyPSO
      */
     void operator()(eoPop<EOT>& pop, const eoEasyPSO_tag&);
     
@@ -113,7 +113,7 @@ protected:
      */
     void operator()(eoPop<EOT>& pop,const error_tag&);
     
-    std::vector<Thread*> workers;
+    std::vector<std::thread*> workers;
     Scheduler<EOT,Policy> scheduler;
 };
 

@@ -30,8 +30,27 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef SMP_H
 #define SMP_H
 
-#include <thread.h>
 #include <MWModel.h>
 #include <scheduler.h>
+#include <islandModel.h>
+#include <islandModelWrapper.h>
+#include <island.h>
+#include <abstractIsland.h>
+#include <migPolicy.h>
+#include <intPolicy.h>
+#include <policyElement.h>
+#include <islandNotifier.h>
+#include <notifier.h>
+
+// Topologies
+#include <topology/topology.h>
+#include <topology/complete.h>
+#include <topology/ring.h>
+#include <topology/star.h>
+#include <topology/hypercubic.h>
+#include <topology/mesh.cpp>
+#include <topology/customBooleanTopology.h>
+#include <topology/customBooleanTopology.h>
+
 
 #endif

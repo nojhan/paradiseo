@@ -47,6 +47,10 @@ if(PROFILING)
             COMMAND lcov -r output.info '*/tutorial*' -o output.info
             COMMAND lcov -r output.info '/usr*' -o output.info
             COMMAND lcov -r output.info '*/test*' -o output.info
+            COMMAND lcov -r output.info '*/eo*' -o output.info
+            COMMAND lcov -r output.info '*/mo*' -o output.info
+            COMMAND lcov -r output.info '*/moeo*' -o output.info
+            COMMAND lcov -r output.info '*/problems*' -o output.info
             COMMAND genhtml output.info -o coverage/ --highlight --legend
         )
     else(LCOV)

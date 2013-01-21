@@ -27,8 +27,8 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef ALGO_D_H_
-#define ALGO_D_H_
+#ifndef SMP_ALGO_DISPATCHING_H_
+#define SMP_ALGO_DISPATCHING_H_
 
 #include <eo>
 
@@ -37,7 +37,9 @@ namespace paradiseo
 namespace smp
 {
 /** Algo Dispatching
-* The Algo Dispatching enable to choose the algorithm to call at compile time by tag-dispatching method
+
+The Algo Dispatching enables to choose the algorithm to call at compile time by tag-dispatching method
+
 **/
 
 // Main algorithms tags

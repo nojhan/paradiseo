@@ -4,7 +4,7 @@
 
 ParadisEO-SMP for Symmetric MultiProcessing or Shared Memory Parallelism is a module for multicores computations on several algorithms proposed by ParadiseEO. By simply wrapping the algorithms, it allows you to refer only to the API of your algorithm instead of learning a new one.
 
-Different parallelism models are avaiable such as the Master / Slaves model or the Island Model.
+Different parallelism models are available such as the Master / Slaves Model or the Island Model.
 
 @section tutorials Tutorials
 

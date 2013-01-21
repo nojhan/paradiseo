@@ -27,15 +27,14 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SCHEDULER_H_
-#define SCHEDULER_H_
+#ifndef SMP_SCHEDULER_H_
+#define SMP_SCHEDULER_H_
 
 #include <iostream>
 #include <vector>
 #include <atomic>
 #include <mutex>
 
-#include <thread.h>
 #include <policiesDispatching.h>
 
 #include <eoEvalFunc.h>
@@ -46,9 +45,12 @@ namespace paradiseo
 {
 namespace smp
 {
-/** 
-A scheduler class
+/** Scheduler : Dispatch load between workers according to a policy.
+
+Dispatch load between the specified number of workers according to a policy.
+
 */
+
 template<class EOT, class Policy = LinearPolicy>
 class Scheduler
 {
@@ -103,7 +105,7 @@ protected:
      */
     std::vector<std::vector<EOT*>> subGroups(eoPop<EOT>& pop);
     
-    std::vector<Thread> workers;
+    std::vector<std::thread> workers;
     std::vector<std::vector<EOT*>> popPackages;
     
     std::atomic<bool> done;

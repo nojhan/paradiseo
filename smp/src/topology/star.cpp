@@ -1,8 +1,8 @@
 /*
-<thread.cpp>
+<star.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy, Thibault Lasnier - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,47 +27,26 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <algorithm>
-#include <utility>
-#include <thread.h>
+#include <vector>
+#include <topology/star.h>
 
-namespace paradiseo
+void paradiseo::smp::Star::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
-namespace smp
-{
+    matrix.clear();
 
-    Thread::Thread(Thread&& other)
-    {
-        t = std::move(other.t);
-    }
+    matrix.resize(nbNode);
+	for(auto& line : matrix)
+	    line.resize(nbNode);
+    
+    std::vector<bool> line (nbNode,false); 
 
-    Thread& Thread::operator=(Thread&& other)
-    {
-        t = std::move(other.t);
-        return *this;
-    }
+    line[_center]=true;
+    matrix.assign(nbNode,line);
 
-    const std::thread::id paradiseo::smp::Thread::getId() const
-    {
-        return t.get_id();
-    }
-
-    bool paradiseo::smp::Thread::joinable() const
-    {
-        return t.joinable();
-    }
-
-    void paradiseo::smp::Thread::join() 
-    {
-        t.join();
-    }
-
-    int paradiseo::smp::Thread::hardware_concurrency() 
-    {
-        return std::thread::hardware_concurrency();
-    }
-
+    matrix[_center][_center]=false;
 }
 
+void paradiseo::smp::Star::setCenter(unsigned c)
+{
+    _center=c;
 }
-

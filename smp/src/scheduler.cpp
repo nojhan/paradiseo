@@ -27,8 +27,6 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <typeinfo>
-
 template<class EOT, class Policy>
 paradiseo::smp::Scheduler<EOT,Policy>::Scheduler(unsigned workersNb) :
     workers(workersNb),
@@ -75,7 +73,7 @@ void paradiseo::smp::Scheduler<EOT,Policy>::operator()(eoUF<EOT&, void>& func, e
         
     // Starting threads
     for(unsigned i = 0; i < workers.size(); i++)
-        workers[i].start(&Scheduler<EOT,Policy>::applyLinearPolicy, this,  std::ref(func), std::ref(popPackages[i]));
+        workers[i] = std::thread(&Scheduler<EOT,Policy>::applyLinearPolicy, this,  std::ref(func), std::ref(popPackages[i]));
         
     // Wait the end of tasks
     for(unsigned i = 0; i < workers.size(); i++)
@@ -90,7 +88,7 @@ void paradiseo::smp::Scheduler<EOT,Policy>::operator()(eoUF<EOT&, void>& func, e
     for(unsigned i = 0; i < workers.size(); i++)
     {
         planning[i] = 2;
-        workers[i].start(&Scheduler<EOT,Policy>::applyProgressivePolicy, this,  std::ref(func), std::ref(popPackages[i]), i);
+        workers[i] = std::thread(&Scheduler<EOT,Policy>::applyProgressivePolicy, this,  std::ref(func), std::ref(popPackages[i]), i);
     }
 
     unsigned counter = 0;
@@ -114,9 +112,8 @@ void paradiseo::smp::Scheduler<EOT,Policy>::operator()(eoUF<EOT&, void>& func, e
                 planning[i] *= 2;
             }
         }
-        /* A nanosleep can increase performances by 10% but
-           as it is not supported by Fedora atm, I deactivate it. */
-        //std::this_thread::sleep_for(std::chrono::nanoseconds(10));
+        
+        std::this_thread::sleep_for(std::chrono::nanoseconds(10));
     }
       
     done = true;
