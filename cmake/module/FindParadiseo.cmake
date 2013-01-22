@@ -38,7 +38,7 @@ endif()
 
 # enabled components
 if ("${Paradiseo_FIND_COMPONENTS}" STREQUAL "")
-    set(PARADISEO_LIBRARIES_TO_FIND eo eoutils edoutils cma es flowshop ga moeo)
+    set(PARADISEO_LIBRARIES_TO_FIND eo eoutils cma es flowshop ga moeo)
 else()
     set(PARADISEO_LIBRARIES_TO_FIND ${Paradiseo_FIND_COMPONENTS})
 endif()
@@ -64,10 +64,6 @@ find_path(EO_INCLUDE_DIR eo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/eo eo/src
           PATHS ${PARADISEO_SRC_PATHS})
 
-find_path(EDO_INCLUDE_DIR edo
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/edo edo/src
-          PATHS ${PARADISEO_SRC_PATHS})
-
 find_path(MO_INCLUDE_DIR mo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/mo mo/src
           PATHS ${PARADISEO_SRC_PATHS})
@@ -85,7 +81,12 @@ foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
               PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "peo")
         set(PEO_FOUND true)
-        find_path(PEO_INCLUDE_DIR peo
+        find_path(EDO_INCLUDE_DIR edo
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/edo edo/src
+          PATHS ${PARADISEO_SRC_PATHS})
+    elseif(${COMP} STREQUAL "edo")
+        set(EDO_FOUND true)
+        find_path(EDO_INCLUDE_DIR peo
               PATH_SUFFIXES include${INSTALL_SUB_DIR}/peo peo/src
               PATHS ${PARADISEO_SRC_PATHS})
     endif()
