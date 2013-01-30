@@ -3,6 +3,10 @@ README
 
 To launch a set of experiments with t-mpi-distrib-exp:
 
+0) Compile it:
+
+    mpic++ -o distrib-exp t-mpi-distrib-exp.cpp -I../../src/ -I../../src/mpi/ -DWITH_MPI -L ../../../build/eo/lib/ -leoutils -leo -leompi -leoserial
+
 1) Generate the experiments, thanks to the script gen-xp.py
 This script will guide you and ask you for all experiments. The prefix is used in the results filenames.
 You may want to modify the name of the experiments file (default value: "experiments.json") or

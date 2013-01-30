@@ -39,7 +39,7 @@
 
 # include <eo>
 
-# include <mpi/eoParallelApply.h>
+# include <mpi/eoMpi.h>
 # include "t-mpi-common.h"
 
 using namespace eo::mpi;
@@ -389,7 +389,7 @@ class Experiment : public eoserial::Persistent
         _distribution->clear();
         _distribution->fill( _size );
 
-        timerStat.start("run");
+        eo::mpi::timerStat.start("run");
         Wait wait( _worker_print_waiting_time );
         ParallelApplyStore< type > store( wait, DEFAULT_MASTER, _packet_size );
         store.data( *_distribution );
@@ -397,7 +397,7 @@ class Experiment : public eoserial::Persistent
         ParallelApply< type > job( scheduling, DEFAULT_MASTER, store );
 
         job.run();
-        timerStat.stop("run");
+        eo::mpi::timerStat.stop("run");
         if( job.isMaster() )
         {
             EmptyJob( scheduling, DEFAULT_MASTER ); // to terminate parallel apply
