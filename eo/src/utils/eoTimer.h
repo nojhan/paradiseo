@@ -22,7 +22,7 @@ Authors:
 # ifndef __EO_TIMER_H__
 # define __EO_TIMER_H__
 
-# include <sys/time.h> // time()
+# include <sys/time.h> // gettimeofday()
 # include <sys/resource.h> // rusage()
 
 # include <vector> // std::vector
@@ -61,7 +61,7 @@ class eoTimer
          */
         void restart()
         {
-            wc_start = time(NULL);
+            gettimeofday( &wc_start, NULL );
             getrusage( RUSAGE_SELF, &_start );
         }
 
@@ -138,7 +138,9 @@ class eoTimer
          */
         double wallclock()
         {
-            return std::difftime( std::time(NULL) , wc_start );
+            struct timeval wc_end;
+            gettimeofday( &wc_end, NULL );
+            return ( wc_end.tv_sec - wc_start.tv_sec ) + ( wc_end.tv_usec - wc_start.tv_usec ) / 1000000.;
         }
 
     protected:
@@ -149,7 +151,7 @@ class eoTimer
         // Remainder (in milliseconds) for system time.
         long int usremainder;
         // Structure used to measure wallclock time.
-        time_t wc_start;
+        struct timeval wc_start;
 };
 
 /**
@@ -202,6 +204,14 @@ class eoTimerStat
 # endif
 {
     public:
+
+        /**
+         * @brief Initializes a timer stat object.
+         */
+        eoTimerStat() : _forceDoMeasure(false)
+        {
+            // empty
+        }
 
         /**
          * @brief Statistic related to a key (name).
@@ -273,6 +283,14 @@ class eoTimerStat
 # endif
 
         /**
+         * @brief Forces the measures to be retrieved.
+         */
+        void forceDoMeasure()
+        {
+            _forceDoMeasure = true;
+        }
+
+        /**
          * @brief Starts a new measure for the given key.
          *
          * This is only performed if parallel.doMeasure() is true, which is equivalent to the fact that
@@ -282,7 +300,7 @@ class eoTimerStat
          */
         void start( const std::string & key )
         {
-            if( eo::parallel.doMeasure() )
+            if( eo::parallel.doMeasure() or _forceDoMeasure )
             {
                 _timers[ key ].restart();
             }
@@ -300,7 +318,7 @@ class eoTimerStat
          */
         void stop( const std::string& key )
         {
-            if( eo::parallel.doMeasure() )
+            if( eo::parallel.doMeasure() or _forceDoMeasure )
             {
                 Stat & s = _stats[ key ];
                 eoTimer & t = _timers[ key ];
@@ -318,11 +336,21 @@ class eoTimerStat
             return _stats;
         }
 
+        /**
+         * @brief Empties the statistics map.
+         */
+        void clear()
+        {
+            _stats.clear();
+        }
+
     protected:
         // Statistics map: links a key (string) to a statistic.
         std::map< std::string, Stat > _stats;
         // Timers map: links a key to its timer.
         std::map< std::string, eoTimer > _timers;
+        // boolean to force the retrieval of statistics
+        bool _forceDoMeasure;
 };
 
 # endif // __TIMER_H__
