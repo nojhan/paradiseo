@@ -198,10 +198,7 @@ class eoTimer
  *
  * @ingroup Utilities
  */
-class eoTimerStat
-# ifdef WITH_MPI
-    : public eoserial::Persistent
-# endif
+class eoTimerStat : public eoserial::Persistent
 {
     public:
 
@@ -222,15 +219,12 @@ class eoTimerStat
          *
          * It can readily be serialized with boost when compiling with mpi.
          */
-        struct Stat
-# ifdef WITH_MPI
-            : public eoserial::Persistent
-# endif
+        struct Stat : public eoserial::Persistent
         {
             std::vector<long int> utime;
             std::vector<long int> stime;
             std::vector<double> wtime;
-#ifdef WITH_MPI
+
             void unpack( const eoserial::Object* obj )
             {
                 utime.clear();
@@ -254,10 +248,8 @@ class eoTimerStat
                 obj->add("wtime", eoserial::makeArray< std::vector<double>, eoserial::MakeAlgorithm >( wtime ) );
                 return obj;
             }
-# endif
         };
 
-#ifdef WITH_MPI
         void unpack( const eoserial::Object* obj )
         {
             _stats.clear();
@@ -280,7 +272,6 @@ class eoTimerStat
             }
             return obj;
         }
-# endif
 
         /**
          * @brief Forces the measures to be retrieved.
