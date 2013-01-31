@@ -15,10 +15,17 @@
 !CMakeLists.txt
 !README.txt
 !application/
-!build/
 !doc/
 !lib/
 !src/
 !test/
 !eompi.html
+
+# ignore built files
 build/
+release/*
+debug/*
+build/*
+website/EO_star.png
+website/paradiseo_logo.png
+
