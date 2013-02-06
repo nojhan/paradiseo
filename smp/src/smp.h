@@ -48,7 +48,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <topology/ring.h>
 #include <topology/star.h>
 #include <topology/hypercubic.h>
-#include <topology/mesh.cpp>
+#include <topology/mesh.h>
 #include <topology/customBooleanTopology.h>
 #include <topology/customBooleanTopology.h>
 
