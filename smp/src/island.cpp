@@ -116,14 +116,14 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
         eoPop<bEOT> baseMigPop;
         for(auto& indi : migPop)
             baseMigPop.push_back(std::move(convertToBase(indi)));
-            
-        //std::cout << "On envoie de l'île : " << migPop << std::endl;
        
         // Delete delivered messages
-        for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
-            if(!it->joinable())
-                sentMessages.erase(it);
-      
+        sentMessages.erase(std::remove_if(sentMessages.begin(), sentMessages.end(), 
+            [&](std::thread& i) -> bool
+            { return !i.joinable(); }
+            ), 
+            sentMessages.end());
+
         sentMessages.push_back(std::thread(&IslandModel<bEOT>::update, model, std::move(baseMigPop), this));
     }
 }

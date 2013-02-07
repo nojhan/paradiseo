@@ -49,9 +49,9 @@ std::map<B,A> paradiseo::smp::Bimap<A,B>::getLeft() const
 template<class A, class B>    
 void paradiseo::smp::Bimap<A,B>::removeFromRight(const A& a)
 {
-    for(auto& it : leftAssociation)
-        if(it->second == a)
-            leftAssociation.erase(it);
+    leftAssociation.erase(remove(leftAssociation.begin(), leftAssociation.end(), 
+        [&](std::pair<B,A>& i) -> bool { return i->second == a; }), 
+        leftAssociation.end());
         
     rightAssociation.erase(a);
 }
@@ -59,9 +59,9 @@ void paradiseo::smp::Bimap<A,B>::removeFromRight(const A& a)
 template<class A, class B>    
 void paradiseo::smp::Bimap<A,B>::removeFromLeft(const B& b) 
 {
-    for(auto& it : rightAssociation)
-        if(it->second == b)
-            rightAssociation.erase(it);
+    rightAssociation.erase(remove(rightAssociation.begin(), rightAssociation.end(), 
+        [&](std::pair<A,B>& i) -> bool { return i->second == b; }), 
+        rightAssociation.end());
        
     leftAssociation.erase(b);
 }

@@ -35,6 +35,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <utility>
 #include <atomic>
 #include <type_traits>
+#include <algorithm>
 
 #include <eoEvalFunc.h>
 #include <eoSelect.h>
