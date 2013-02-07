@@ -107,6 +107,22 @@ public:
     index( _first + n * (n - 1) / 2 );
   }
 
+  /**
+   * Getter of the firt location
+   * @return first indice
+   */
+  unsigned int first() {
+    return indices.first;
+  }
+
+  /**
+   * Getter of the second location
+   * @return second indice
+   */
+  unsigned int second() {
+    return indices.second;
+  }
+
 private:
   std::pair<unsigned int, unsigned int> indices;    
 

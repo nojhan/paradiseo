@@ -48,8 +48,9 @@ public:
      * Constructor
      * @param _monOp an eoMonOp (pertubation operator)
      * @param _fullEval a full evaluation function
+     * @param _nbPerturbation number of operator executions for perturbation
      */
-    moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval):monOp(_monOp), fullEval(_fullEval) {}
+  moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval, unsigned int _nbPerturbation = 1):monOp(_monOp), fullEval(_fullEval), nbPerturbation(_nbPerturbation) {}
 
     /**
      * Apply monOp on the solution
@@ -57,16 +58,22 @@ public:
      * @return value of monOp
      */
     bool operator()(EOT& _solution) {
-        bool res = monOp(_solution);
-	_solution.invalidate();
-        fullEval(_solution);
-        return res;
+      bool res = false;
+
+      for(unsigned int i = 0; i < nbPerturbation; i++)
+	res = res || monOp(_solution);
+      
+      _solution.invalidate();
+      fullEval(_solution);
+
+      return res;
     }
 
 private:
-    /** monOp */
-    eoMonOp<EOT>& monOp;
-    eoEvalFunc<EOT>& fullEval;
+  /** monOp */
+  eoMonOp<EOT>& monOp;
+  eoEvalFunc<EOT>& fullEval;
+  unsigned int nbPerturbation;
 };
 
 #endif
