@@ -2,13 +2,18 @@
 ### 1) Where do we go now ?!?
 ######################################################################################
 
-INCLUDE_DIRECTORIES(
+include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/common
   )
 
-ADD_SUBDIRECTORY(common) # Rosenbrock and Sphere
-#ADD_SUBDIRECTORY(eda_sa)
-ADD_SUBDIRECTORY(eda)
-ADD_SUBDIRECTORY(cmaes)
+include_directories(${EIGEN3_INCLUDE_DIR})
+
+add_subdirectory(common) # Rosenbrock and Sphere
+#add_subdirectory(eda_sa)
+
+if(EIGEN3_FOUND) # see edoNormalAdaptive
+    add_subdirectory(eda)
+    add_subdirectory(cmaes)
+endif()
 
 ######################################################################################

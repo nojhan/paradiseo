@@ -53,7 +53,7 @@ public:
   virtual void move(EOT & _solution) {
     insertion(_solution, indices.first, indices.second);
 
-    _sol.invalidate();
+    _solution.invalidate();
   }
 
   /**

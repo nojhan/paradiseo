@@ -55,7 +55,7 @@ public :
                         throw eoEvalFuncCounterBounderException(_threshold);
                     }
 
-                func(eo);
+                this->func(eo);
             }
     }
 

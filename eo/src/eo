@@ -113,6 +113,7 @@
 // DetSelect can also be obtained as eoSequentialSelect, an eoSelectOne
 // (using setup and an index)
 #include <eoDetSelect.h>
+#include <eoRankMuSelect.h>
 
 // Breeders
 #include <eoGeneralBreeder.h>	// applies one eoGenOp, stop on offspring count

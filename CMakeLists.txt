@@ -18,7 +18,7 @@ enable_language(CXX)
 
 ## Test the presence of a compiler
 if("${CMAKE_CXX_COMPILER}" STREQUAL "" OR "${CMAKE_C_COMPILER}" STREQUAL "")
-    message(FATAL_ERROR "No compiler found !")
+    message(FATAL_ERROR "No compiler found!")
 endif()
 
 ## Versioning
@@ -35,6 +35,7 @@ SET(GLOBAL_VERSION "${VERSION}")
 ######################################################################################
  
 ## Optional
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/module" CACHE INTERNAL "Cmake module" FORCE)
 include(FindDoxygen OPTIONAL)
 
 ######################################################################################
