@@ -78,7 +78,6 @@
 #include <eoEvalCounterThrowException.h>
 #include <eoEvalTimeThrowException.h>
 #include <eoEvalUserTimeThrowException.h>
-#include <eoEvalKeepBest.h>
 
 // Continuators - all include eoContinue.h
 #include <eoCombinedContinue.h>
@@ -103,7 +102,6 @@
 #include <eoSharingSelect.h>
 // Embedding truncation selection
 #include <eoTruncatedSelectOne.h>
-#include <eoRankMuSelect.h>
 
 // the batch selection - from an eoSelectOne
 #include <eoSelectPerc.h>
@@ -142,9 +140,6 @@
 #include <utils/checkpointing>
 #include <utils/eoRealVectorBounds.h> // includes eoRealBounds.h
 #include <utils/eoIntBounds.h>        // no eoIntVectorBounds
-
-// Serialization stuff
-#include <serial/eoSerial.h>
 
 // aliens
 #include <other/external_eo>
