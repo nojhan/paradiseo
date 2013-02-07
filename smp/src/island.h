@@ -119,7 +119,12 @@ public:
      * Check if the algorithm is stopped.
      * @return true if stopped
      */
-    virtual bool isStopped(void) const; 
+    virtual bool isStopped(void) const;
+    
+    /**
+     * Set the stopped indicator on false
+     */
+    virtual void setRunning(void); 
     
     /**
      * Check if there is population to receive

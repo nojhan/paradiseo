@@ -83,6 +83,11 @@ public:
     virtual bool isStopped(void) const = 0;
     
     /**
+     * Set the stopped indicator on false
+     */
+    virtual void setRunning(void) = 0;
+    
+    /**
      * Receive population by integrate individuals.
      */
     virtual void receive(void) = 0;

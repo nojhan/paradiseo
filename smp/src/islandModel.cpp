@@ -58,6 +58,7 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
     unsigned i = 0;
     for(auto it : islands)
     {
+        it.first->setRunning();
         threads[i] = std::thread(&AIsland<EOT>::operator(), it.first);
         i++;
     }

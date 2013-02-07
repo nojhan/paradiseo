@@ -104,6 +104,12 @@ bool paradiseo::smp::Island<EOAlgo,EOT,bEOT>::isStopped(void) const
 }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::setRunning(void)
+{
+    stopped = false;
+}
+
+template<template <class> class EOAlgo, class EOT, class bEOT>
 void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
 {
     // Allow island to work alone
