@@ -68,6 +68,9 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::operator()()
     // Let's wait the end of communications with the island model
     for(auto& message : sentMessages)
         message.join();
+    
+    // Clear the sentMessages container
+    sentMessages.clear();
 }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>

@@ -99,6 +99,9 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
     for(auto& message : sentMessages)
         message.join();
         
+    // Clear the sentMessages container
+    sentMessages.clear();
+        
     // Force last integration
     i = 0;
     for(auto it : islands)
