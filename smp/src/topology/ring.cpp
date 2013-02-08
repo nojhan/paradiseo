@@ -44,5 +44,4 @@ void paradiseo::smp::Ring::operator()(unsigned nbNode, std::vector<std::vector<b
 	
     for(unsigned i=0; i < nbNode; i++)
         matrix[i][(i+1)%nbNode]=true;
-    }
 }	
