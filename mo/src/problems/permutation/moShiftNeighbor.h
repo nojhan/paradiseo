@@ -38,11 +38,11 @@
  * Other name : insertion operator
  */
 template <class EOT, class Fitness=typename EOT::Fitness>
-class moShiftNeighbor: public moBackableNeighbor<EOT, Fitness>, public moIndexNeighbor<EOT>
+class moShiftNeighbor: public moBackableNeighbor<EOT, Fitness>, public moIndexNeighbor<EOT, Fitness>
 {
 public:
 
-  using moBackableNeighbor<EOT>::fitness;
+  using moBackableNeighbor<EOT, Fitness>::fitness;
   using moIndexNeighbor<EOT, Fitness>::key;
   using moIndexNeighbor<EOT, Fitness>::index;
   
