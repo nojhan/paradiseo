@@ -55,8 +55,7 @@ class moeoConvertPopToObjectiveVectors : public eoUF < const eoPop < MOEOT >, co
      */
     const std::vector < ObjectiveVector > operator()(const eoPop < MOEOT > _pop)
     {
-      std::vector < ObjectiveVector > result;
-      result.resize(_pop.size());
+      std::vector < ObjectiveVector > result(0);
       for (unsigned int i=0; i<_pop.size(); i++)
         {
           result.push_back(_pop[i].objectiveVector());
