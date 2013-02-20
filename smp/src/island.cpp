@@ -67,7 +67,7 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::operator()()
     stopped = true;
     // Let's wait the end of communications with the island model
     for(auto& message : sentMessages)
-        message.join();
+        message.wait();
     
     // Clear the sentMessages container
     sentMessages.clear();
@@ -125,12 +125,12 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
        
         // Delete delivered messages
         sentMessages.erase(std::remove_if(sentMessages.begin(), sentMessages.end(), 
-            [&](std::thread& i) -> bool
-            { return !i.joinable(); }
+            [&](std::shared_future<bool>& i) -> bool
+            { return i.wait_for(std::chrono::nanoseconds(0)) == std::future_status::ready; }
             ), 
             sentMessages.end());
 
-        sentMessages.push_back(std::thread(&IslandModel<bEOT>::update, model, std::move(baseMigPop), this));
+        sentMessages.push_back(std::async(std::launch::async, &IslandModel<bEOT>::update, model, std::move(baseMigPop), this));
     }
 }
 
@@ -159,9 +159,11 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
 }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
-void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::update(eoPop<bEOT> _data)
+bool paradiseo::smp::Island<EOAlgo,EOT,bEOT>::update(eoPop<bEOT> _data)
 {
     //std::cout << "On update dans l'île" << std::endl;
     std::lock_guard<std::mutex> lock(this->m);
     listImigrants.push(_data);
+    
+    return true;
 }

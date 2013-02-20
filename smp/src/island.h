@@ -34,6 +34,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 #include <utility>
 #include <atomic>
+#include <future>
 #include <type_traits>
 #include <algorithm>
 
@@ -113,7 +114,7 @@ public:
      * Update the list of imigrants.
      * @param _data Elements to integrate in the main population.
      */
-    void update(eoPop<bEOT> _data);
+    bool update(eoPop<bEOT> _data);
     
     /**
      * Check if the algorithm is stopped.
@@ -148,7 +149,7 @@ protected:
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;
     std::atomic<bool> stopped;
-    std::vector<std::thread> sentMessages;
+    std::vector<std::shared_future<bool>> sentMessages;
     IslandModel<bEOT>* model;
     std::function<EOT(bEOT&)> convertFromBase; 
     std::function<bEOT(EOT&)> convertToBase;

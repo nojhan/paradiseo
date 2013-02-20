@@ -98,7 +98,7 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
    
     // Wait the end of messages sending
     for(auto& message : sentMessages)
-        message.join();
+        message.wait();
         
     // Clear the sentMessages container
     sentMessages.clear();
@@ -119,10 +119,12 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
 }
 
 template<class EOT>  
-void paradiseo::smp::IslandModel<EOT>::update(eoPop<EOT> _data, AIsland<EOT>* _island)
+bool paradiseo::smp::IslandModel<EOT>::update(eoPop<EOT> _data, AIsland<EOT>* _island)
 {
     std::lock_guard<std::mutex> lock(m);
     listEmigrants.push(std::pair<eoPop<EOT>,AIsland<EOT>*>(_data, _island));
+    
+    return true;
 }
 
 template<class EOT>  
@@ -154,11 +156,17 @@ void paradiseo::smp::IslandModel<EOT>::send(void)
         
         // Send elements to neighbors
         eoPop<EOT> migPop = std::move(listEmigrants.front().first);
+        sentMessages.erase(std::remove_if(sentMessages.begin(), sentMessages.end(), 
+            [&](std::shared_future<bool>& i) -> bool
+            { return i.wait_for(std::chrono::nanoseconds(0)) == std::future_status::ready; }
+            ), 
+            sentMessages.end());
         for (unsigned idTo : neighbors)
-            sentMessages.push_back(std::thread(&AIsland<EOT>::update, table.getRight()[idTo], std::move(migPop))); 
+            sentMessages.push_back(std::async(std::launch::async, &AIsland<EOT>::update, table.getRight()[idTo], std::move(migPop))); 
              
         listEmigrants.pop();
     }
+
 }
 
 template<class EOT>     
