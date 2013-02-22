@@ -32,19 +32,16 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 void paradiseo::smp::Ring::operator()(unsigned nbNode, std::vector<std::vector<bool>>& matrix) const
 {
-	if(nbNode != matrix.size())
-	{
-	    matrix.clear();
+    matrix.clear();
 
-	    matrix.resize(nbNode);
-	    for(auto& line : matrix)
-	        line.resize(nbNode);
+    matrix.resize(nbNode);
+    for(auto& line : matrix)
+        line.resize(nbNode);
 
-	    std::vector<bool> line;
-	    line.assign(nbNode, false);
-	    matrix.assign(nbNode, line);
+    std::vector<bool> line;
+    line.assign(nbNode, false);
+    matrix.assign(nbNode, line);
 	
-	    for(unsigned i=0; i < nbNode; i++)
-		    matrix[i][(i+1)%nbNode]=true;
-    }
+    for(unsigned i=0; i < nbNode; i++)
+        matrix[i][(i+1)%nbNode]=true;
 }	

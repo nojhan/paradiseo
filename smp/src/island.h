@@ -34,7 +34,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <vector>
 #include <utility>
 #include <atomic>
+#include <future>
 #include <type_traits>
+#include <algorithm>
 
 #include <eoEvalFunc.h>
 #include <eoSelect.h>
@@ -112,13 +114,18 @@ public:
      * Update the list of imigrants.
      * @param _data Elements to integrate in the main population.
      */
-    void update(eoPop<bEOT> _data);
+    bool update(eoPop<bEOT> _data);
     
     /**
      * Check if the algorithm is stopped.
      * @return true if stopped
      */
-    virtual bool isStopped(void) const; 
+    virtual bool isStopped(void) const;
+    
+    /**
+     * Set the stopped indicator on false
+     */
+    virtual void setRunning(void); 
     
     /**
      * Check if there is population to receive
@@ -142,7 +149,7 @@ protected:
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;
     std::atomic<bool> stopped;
-    std::vector<std::thread> sentMessages;
+    std::vector<std::shared_future<bool>> sentMessages;
     IslandModel<bEOT>* model;
     std::function<EOT(bEOT&)> convertFromBase; 
     std::function<bEOT(EOT&)> convertToBase;

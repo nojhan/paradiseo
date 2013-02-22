@@ -67,7 +67,10 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::operator()()
     stopped = true;
     // Let's wait the end of communications with the island model
     for(auto& message : sentMessages)
-        message.join();
+        message.wait();
+    
+    // Clear the sentMessages container
+    sentMessages.clear();
 }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
@@ -101,6 +104,12 @@ bool paradiseo::smp::Island<EOAlgo,EOT,bEOT>::isStopped(void) const
 }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
+void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::setRunning(void)
+{
+    stopped = false;
+}
+
+template<template <class> class EOAlgo, class EOT, class bEOT>
 void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
 {
     // Allow island to work alone
@@ -113,15 +122,15 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::send(eoSelect<EOT>& _select)
         eoPop<bEOT> baseMigPop;
         for(auto& indi : migPop)
             baseMigPop.push_back(std::move(convertToBase(indi)));
-            
-        //std::cout << "On envoie de l'île : " << migPop << std::endl;
        
         // Delete delivered messages
-        for(auto it = sentMessages.begin(); it != sentMessages.end(); it++)
-            if(!it->joinable())
-                sentMessages.erase(it);
-      
-        sentMessages.push_back(std::thread(&IslandModel<bEOT>::update, model, std::move(baseMigPop), this));
+        sentMessages.erase(std::remove_if(sentMessages.begin(), sentMessages.end(), 
+            [&](std::shared_future<bool>& i) -> bool
+            { return i.wait_for(std::chrono::nanoseconds(0)) == std::future_status::ready; }
+            ), 
+            sentMessages.end());
+
+        sentMessages.push_back(std::async(std::launch::async, &IslandModel<bEOT>::update, model, std::move(baseMigPop), this));
     }
 }
 
@@ -150,9 +159,11 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
 }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
-void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::update(eoPop<bEOT> _data)
+bool paradiseo::smp::Island<EOAlgo,EOT,bEOT>::update(eoPop<bEOT> _data)
 {
     //std::cout << "On update dans l'île" << std::endl;
     std::lock_guard<std::mutex> lock(this->m);
     listImigrants.push(_data);
+    
+    return true;
 }

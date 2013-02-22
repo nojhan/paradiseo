@@ -23,16 +23,12 @@
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-find_package(Boost 1.33.0)
-
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
-include_directories(${Boost_INCLUDE_DIRS})
-link_directories(${Boost_LIBRARY_DIRS})
-
 include_directories(${CMAKE_SOURCE_DIR}/application/common)
 include_directories(${EO_SRC_DIR}/src)
 include_directories(${EDO_SRC_DIR}/src)
+
+include_directories(${EIGEN3_INCLUDE_DIR})
 
 set(SOURCES
     #t-cholesky
@@ -42,14 +38,14 @@ set(SOURCES
   t-bounderno
   t-uniform
   t-continue
-  t-dispatcher-round
+#  t-dispatcher-round
   t-repairer-modulo
   )
 
 foreach(current ${SOURCES})
   add_executable(${current} ${current}.cpp)
   add_test(${current} ${current})
-  target_link_libraries(${current} eo eoutils edoutils ${Boost_LIBRARIES})
+  target_link_libraries(${current} eo eoutils edoutils)
   install(TARGETS ${current} RUNTIME DESTINATION share/edo/test COMPONENT test)
 endforeach()
 

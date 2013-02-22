@@ -33,6 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <queue>
 #include <algorithm>
 #include <utility>
+#include <future>
 #include <thread>
 
 #include <bimap.h>
@@ -71,7 +72,7 @@ public:
     /**
      * Update the island model by adding population to send in the emigrants list.
      */
-    void update(eoPop<EOT> _data, AIsland<EOT>* _island);
+    bool update(eoPop<EOT> _data, AIsland<EOT>* _island);
     
     /**
      * Change topology
@@ -99,7 +100,7 @@ protected:
     Bimap<unsigned, AIsland<EOT>*> table;
     std::vector<std::pair<AIsland<EOT>*, bool>> islands;
     AbstractTopology& topo;
-    std::vector<std::thread> sentMessages;
+    std::vector<std::shared_future<bool>> sentMessages;
     std::mutex m;
     std::atomic<bool> running;
 };

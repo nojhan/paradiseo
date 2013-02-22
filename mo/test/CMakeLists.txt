@@ -93,7 +93,7 @@ set (TEST_LIST
 		t-moNeutralWalkSampling
 		t-moStatistics
 		t-moIndexedVectorTabuList
-		t-moRndIndexedVectorTabuList
+#		t-moRndIndexedVectorTabuList
 		t-moDynSpanCoolingSchedule
 		)
 

@@ -74,13 +74,18 @@ public:
      * Update the island by adding population to send in the imigrants list.
      * @param _data Population to integrate.
      */
-    virtual void update(eoPop<bEOT> _data) = 0;
+    virtual bool update(eoPop<bEOT> _data) = 0;
     
     /**
      * Check if the algorithm is stopped.
      * @return true if stopped.
      */
     virtual bool isStopped(void) const = 0;
+    
+    /**
+     * Set the stopped indicator on false
+     */
+    virtual void setRunning(void) = 0;
     
     /**
      * Receive population by integrate individuals.

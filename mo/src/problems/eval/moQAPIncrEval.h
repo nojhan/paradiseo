@@ -61,10 +61,10 @@ public:
     int d; 
     int k;
     
-    unsigned i, j;
+    unsigned i = _neighbor.first();
+    unsigned j = _neighbor.second();
 
-    _neighbor.getIndices(n, i, j);
-
+    //    _neighbor.getIndices(n, i, j);
     d = (A[i][i]-A[j][j])*(B[_solution[j]][_solution[j]]-B[_solution[i]][_solution[i]]) +
       (A[i][j]-A[j][i])*(B[_solution[j]][_solution[i]]-B[_solution[i]][_solution[j]]);
     

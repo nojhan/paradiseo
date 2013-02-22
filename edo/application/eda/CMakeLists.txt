@@ -8,8 +8,8 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
 include_directories(${EO_SRC_DIR}/src)
-include_directories(${EDO_SRC_DIR}/src)
 link_directories(${EO_BIN_DIR}/${LIB})
+include_directories(${EDO_SRC_DIR}/src)
 link_directories(${EDO_BIN_DIR}/${LIB})
 
 set(RESOURCES
