@@ -68,7 +68,7 @@ public:
     moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval) {
         isAccept = false;
         if (!neighborhood.isRandom()) {
-            std::cout << "moRandomWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
+            std::cout << "moRandomNeutralWalkExplorer::Warning -> the neighborhood used is not random (" << neighborhood.className() << ")" << std::endl;
         }
     }
 

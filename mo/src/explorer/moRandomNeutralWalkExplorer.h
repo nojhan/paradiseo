@@ -73,7 +73,7 @@ public:
             nbStep(_nbStep) {
         isAccept = false;
         if (!neighborhood.isRandom()) {
-            std::cout << "moRandomNeutralWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
+            std::cout << "moRandomNeutralWalkExplorer::Warning -> the neighborhood used is not random (" << neighborhood.className() << ")" << std::endl;
         }
     }
 
