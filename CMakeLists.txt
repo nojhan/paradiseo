@@ -70,6 +70,9 @@ set(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/moeo" CACHE INTERNAL "ParadisEO-MOEO binar
 set( SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP source directory"  FORCE)
 set( SMP_BIN_DIR "${CMAKE_BINARY_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP binary directory"  FORCE)
 
+set( MPI_SRC_DIR "${CMAKE_SOURCE_DIR}/eo/src/mpi"  CACHE INTERNAL "ParadisEO-MPI source directory" FORCE)
+set( MPI_BIN_DIR "${CMAKE_BINARY_DIR}/eo/mpi"  CACHE INTERNAL "ParadisEO-MPI binary directory" FORCE)
+
 set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dependant source directory" FORCE)
 
 set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
@@ -80,11 +83,12 @@ set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-t
 set(EDO "false" CACHE BOOL "Build the EDO module")
 set(EDO_USE_LIB "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
 set(SMP "false" CACHE BOOL "Build the SMP module")
+set(MPI "false" CACHE BOOL "Build the MPI module")
 
 ## EO Module
 set(EO_MODULE_NAME "Evolving Object")
 set(CMAKE_SOURCE_DIR ${EO_SRC_DIR})
-add_subdirectory(${CMAKE_SOURCE_DIR})
+add_subdirectory(${EO_SRC_DIR})
 
 if(NOT EO_ONLY)
     ## MO Module
@@ -110,7 +114,16 @@ if(NOT EO_ONLY)
         set(CMAKE_SOURCE_DIR ${SMP_SRC_DIR})
         add_subdirectory(${SMP_SRC_DIR})
     endif()
-    
+
+    ## MPI Module
+    if(MPI)
+        find_package(MPI REQUIRED)
+        add_definitions(-DWITH_MPI)
+        set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
+        set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
+        include_directories(MPI_INCLUDE_PATH)
+        add_subdirectory(${MPI_SRC_DIR})
+    endif()
 endif()
 
 ######################################################################################

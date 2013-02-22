@@ -1,0 +1,6 @@
+{
+    "experiments":[
+        {"size":"10", "packet_size":"1", "seed":"1337", "distribution":{"name":"normal", "mean":"500", "stddev":"100"}, "worker_print_waiting_time":"1", "filename":"exp1.result.txt"},
+        {"size":"10", "packet_size":"1", "seed":"1337", "distribution":{"name":"normal", "mean":"100", "stddev":"20"}, "worker_print_waiting_time":"1", "filename":"exp2.result.txt"}
+    ]
+}
