@@ -88,7 +88,7 @@ set(MPI "false" CACHE BOOL "Build the MPI module")
 ## EO Module
 set(EO_MODULE_NAME "Evolving Object")
 set(CMAKE_SOURCE_DIR ${EO_SRC_DIR})
-add_subdirectory(${CMAKE_SOURCE_DIR})
+add_subdirectory(${EO_SRC_DIR})
 
 if(NOT EO_ONLY)
     ## MO Module
