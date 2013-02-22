@@ -66,7 +66,6 @@ public:
      */
     moBitFlipNeighborhood(double _rate, unsigned _length, unsigned _sampleSize): moNeighborhood<Neighbor>(), rate(_rate), length(_length), sampleSize(_sampleSize) {
         nNeighbors = 0;
-        std::cout << "rate = " << rate << std::endl;
     }
     
     /**
