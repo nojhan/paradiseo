@@ -102,6 +102,34 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
         offspring.reserve(_offspringSize); // This line avoids an incremental resize of offsprings.
     }
 
+    /**
+     * @brief Ctor allowing to specify which pop eval function we're going to use.
+     *
+     * Ctor taking a breed and merge, an overload of ctor to define an offspring size, and
+     * the pop eval function used. This allows to precise if we would like to use the
+     * parallel evaluation, for instance.
+     */
+    eoEasyEA(
+      eoContinue<EOT>& _continuator,
+      eoEvalFunc<EOT>& _eval,
+      eoPopEvalFunc<EOT>& _pop_eval,
+      eoBreed<EOT>& _breed,
+      eoReplacement<EOT>& _replace,
+      unsigned _offspringSize
+    ) : continuator(_continuator),
+    	eval (_eval),
+    	loopEval(_eval),
+    	popEval(_pop_eval),
+    	selectTransform(dummySelect, dummyTransform),
+    	breed(_breed),
+    	mergeReduce(dummyMerge, dummyReduce),
+    	replace(_replace),
+    	isFirstCall(true)
+    {
+    	offspring.reserve(_offspringSize); // This line avoids an incremental resize of offsprings.
+    }
+
+
     /*
     eoEasyEA(eoContinue <EOT> & _continuator,
       eoPopEvalFunc <EOT> & _pop_eval,
