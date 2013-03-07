@@ -31,6 +31,10 @@ add_subdirectory(src)
 
 if(ENABLE_CMAKE_TESTING AND EIGEN3_FOUND)  # see edoNormalAdaptive
     add_subdirectory(test)
+else()
+    if( NOT EIGEN3_FOUND )
+        message("Eigen3 has not been found, cannot build EDO tests")
+    endif()
 endif()
 
 if(ENABLE_CMAKE_EXAMPLE)
