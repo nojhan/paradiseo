@@ -41,6 +41,7 @@ set(SOURCES
 #  t-dispatcher-round
   t-repairer-modulo
   t-binomial
+  t-binomialmulti
   )
 
 foreach(current ${SOURCES})
