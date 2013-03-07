@@ -40,6 +40,7 @@ set(SOURCES
   t-continue
 #  t-dispatcher-round
   t-repairer-modulo
+  t-binomial
   )
 
 foreach(current ${SOURCES})

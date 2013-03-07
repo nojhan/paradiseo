@@ -38,6 +38,7 @@ Authors:
 #include "edoNormalMono.h"
 #include "edoNormalMulti.h"
 #include "edoNormalAdaptive.h"
+#include "edoBinomial.h"
 
 #include "edoEstimator.h"
 #include "edoEstimatorUniform.h"
@@ -45,6 +46,7 @@ Authors:
 #include "edoEstimatorNormalMulti.h"
 #include "edoEstimatorAdaptive.h"
 #include "edoEstimatorNormalAdaptive.h"
+#include "edoEstimatorBinomial.h"
 
 #include "edoModifier.h"
 #include "edoModifierDispersion.h"
@@ -58,6 +60,7 @@ Authors:
 #include "edoSamplerNormalMono.h"
 #include "edoSamplerNormalMulti.h"
 #include "edoSamplerNormalAdaptive.h"
+#include "edoSamplerBinomial.h"
 
 #include "edoVectorBounds.h"
 
