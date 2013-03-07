@@ -36,19 +36,18 @@ Authors:
  * @ingroup Binomial
  */
 template< class EOT, class D = edoBinomial<EOT> >
-class edoEstimatorBinomial : public edoEstimator< edoBinomial< EOT > >
+class edoEstimatorBinomial : public edoEstimator<D>
 {
     public:
         /** This generic implementation makes no assumption about the underlying
-         * atom type of the EOT. It can be any type that may be interpreted as
-         * true or false.
+         * atom type of the EOT. It can be any type that may be casted in a 
+         * double as 1 or 0.
          *
-         * For instance, you can use a vector<int>, and any variable greater
-         * than one will increase the associated probability.
+         * For instance, you can use a vector<int>, but it must contains 1 or 0.
          *
-         * FIXME: Partial template specializations without the conditional branching may be more efficient.
+         * FIXME: Partial template specializations with a conditional branching may be more generic.
          */
-        edoBinomial<EOT> operator()( eoPop<EOT>& pop )
+        D operator()( eoPop<EOT>& pop )
         {
             unsigned int popsize = pop.size();
             assert(popsize > 0);
@@ -56,14 +55,11 @@ class edoEstimatorBinomial : public edoEstimator< edoBinomial< EOT > >
             unsigned int dimsize = pop[0].size();
             assert(dimsize > 0);
 
-            edoBinomial<EOT> probas(dimsize, 0.0);
+            D probas(dimsize, 0.0);
 
             for (unsigned int i = 0; i < popsize; ++i) {
                 for (unsigned int d = 0; d < dimsize; ++d) {
-                    // if this variable is true (whatever that means, x=1, x=true, etc.)
-                    // if( pop[i][d] ) {
-                    //     probas[d] += 1/popsize; // we hope the compiler optimization pre-computes 1/p
-                    // }
+                    assert( pop[i][d] == 0 || pop[i][d] == 1 );
                     probas[d] += static_cast<double>(pop[i][d]) / popsize;
                 }
             }

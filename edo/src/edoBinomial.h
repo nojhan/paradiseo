@@ -29,10 +29,11 @@ Authors:
 
 #include <vector>
 
-#include <eoFunctor.h>
+#include "edoDistrib.h"
 
 /** @defgroup Binomial Binomial
- * A binomial distribution that model marginal probabilities across variables.
+ * A binomial distribution that model marginal probabilities across boolean
+ * variables.
  *
  * @ingroup Distributions
  */

@@ -43,7 +43,7 @@ class edoSamplerBinomial : public edoSampler<D>
 public:
     edoSamplerBinomial() : edoSampler<D>() {}
 
-    EOT sample( edoBinomial<EOT>& distrib )
+    EOT sample( D& distrib )
     {
         unsigned int size = distrib.size();
         assert(size > 0);
