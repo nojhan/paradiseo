@@ -53,6 +53,13 @@ int main(int ac, char** av)
     unsigned int dim = parser.createParam((unsigned int)20, "dim", "Dimension size", 'd', section).value(); // d
     double proba = parser.createParam((double)0.5, "proba", "Probability to estimate", 'b', section).value(); // b
 
+    if( parser.userNeedsHelp() ) {
+            parser.printHelp(std::cout);
+            exit(1);
+    }
+
+    make_help(parser);
+
 
     // This generate a random boolean when called...
     eoBooleanGenerator flip( proba );
