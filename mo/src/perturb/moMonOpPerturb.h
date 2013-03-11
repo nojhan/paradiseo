@@ -60,8 +60,8 @@ public:
     bool operator()(EOT& _solution) {
       bool res = false;
 
-      for(unsigned int i = 0; i < nbPerturbation; i++)
-	res = res || monOp(_solution);
+      for(unsigned int i = 0; i < nbPerturbation; i++) 
+	res = monOp(_solution) || res;
       
       _solution.invalidate();
       fullEval(_solution);

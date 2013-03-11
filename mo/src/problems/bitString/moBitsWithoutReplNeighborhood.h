@@ -81,7 +81,7 @@ public:
 
     /* all the neighbors */
     if (neighborhoodSize >= 1000000) {
-      std::cout << "moBitsNeighborhood::Warning : the neighborhood size is larger than 10^6 : " << neighborhoodSize << std::endl;
+      std::cout << "moBitsWithoutReplNeighborhood::Warning : the neighborhood size is larger than 10^6 : " << neighborhoodSize << std::endl;
     }
 
     int j;
