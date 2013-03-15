@@ -19,7 +19,7 @@ Contact: http://eodev.sourceforge.net
 Authors:
     Benjamin Bouvier <benjamin.bouvier@gmail.com>
 */
-# include "Object.h"
+# include "SerialObject.h"
 
 using namespace eoserial;
 
