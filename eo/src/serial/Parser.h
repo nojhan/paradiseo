@@ -23,8 +23,8 @@ Authors:
 # define __EOSERIAL_PARSER_H__
 
 # include "Entity.h"
-# include "String.h"
-# include "Object.h"
+# include "SerialString.h"
+# include "SerialObject.h"
 
 /**
  * @file Parser.h

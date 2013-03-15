@@ -22,10 +22,10 @@ Authors:
 # ifndef __EOSERIAL_HEADERS__
 # define __EOSERIAL_HEADERS__
 
-# include "Object.h"
+# include "SerialObject.h"
 # include "Serializable.h"
-# include "Array.h"
-# include "Object.h"
+# include "SerialArray.h"
+# include "SerialObject.h"
 # include "String.h"
 # include "Parser.h"
 # include "Utils.h"
