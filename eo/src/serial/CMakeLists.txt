@@ -13,10 +13,10 @@ set(EOSERIAL_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH ${EOSERIAL_LIB_OUTPUT_PATH})
 
 set(EOSERIAL_SOURCES
-    Array.cpp
-    Object.cpp
+    SerialArray.cpp
+    SerialObject.cpp
     Parser.cpp
-    String.cpp
+    SerialString.cpp
   )
 
 add_library(eoserial STATIC ${EOSERIAL_SOURCES})

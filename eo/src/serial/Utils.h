@@ -22,9 +22,9 @@ Authors:
 # ifndef __EOSERIAL_UTILS_H__
 # define __EOSERIAL_UTILS_H__
 
-# include "Array.h"
-# include "Object.h"
-# include "String.h"
+# include "SerialArray.h"
+# include "SerialObject.h"
+# include "SerialString.h"
 
 namespace eoserial
 {
