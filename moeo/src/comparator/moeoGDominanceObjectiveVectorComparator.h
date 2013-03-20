@@ -64,7 +64,7 @@ class moeoGDominanceObjectiveVectorComparator : public moeoObjectiveVectorCompar
      * @param _objectiveVector1 the first objective vector
      * @param _objectiveVector2 the second objective vector
      */
-    const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
+    bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
     {
       unsigned int flag1 = flag(_objectiveVector1);
       unsigned int flag2 = flag(_objectiveVector2);

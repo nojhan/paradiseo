@@ -54,7 +54,7 @@ class moeoFitnessComparator : public moeoComparator < MOEOT >
      * @param _moeo1 the first solution
      * @param _moeo2 the second solution
      */
-    const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2) 
+    bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2) 
     {
           return _moeo1.fitness() < _moeo2.fitness();
     }

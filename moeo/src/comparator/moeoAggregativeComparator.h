@@ -62,7 +62,7 @@ class moeoAggregativeComparator : public moeoComparator < MOEOT >
      * @param _moeo1 the first solution
      * @param _moeo2 the second solution
      */
-    const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
     {
       return ( weightFitness * _moeo1.fitness() + weightDiversity * _moeo1.diversity() ) < ( weightFitness * _moeo2.fitness() + weightDiversity * _moeo2.diversity() );
     }

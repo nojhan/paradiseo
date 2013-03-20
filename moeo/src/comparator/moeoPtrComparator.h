@@ -29,31 +29,30 @@
  */
 
 template < class MOEOT >
-class moeoPtrComparator : public eoBF < const MOEOT *, const MOEOT *, const bool >
-  {
-	public:
+class moeoPtrComparator : public eoBF < const MOEOT *, const MOEOT *, bool >
+{
+public:
 
     /**
      * Ctor with a comparator
      * @param _cmp comparator to be employed
+    */
+    moeoPtrComparator( moeoComparator<MOEOT> & _cmp) : cmp(_cmp) {}
 
-	*/
-	 moeoPtrComparator( moeoComparator<MOEOT> & _cmp) : cmp(_cmp) {}
+    /** compare two const individuals */
+    bool operator() (const MOEOT *ptr1, const MOEOT *ptr2)
+    {
+        return cmp(*ptr1, *ptr2);
+    }
 
-	/** compare two const individuals */
-	 const bool operator() (const MOEOT *ptr1, const MOEOT *ptr2)
-	 {
-			return cmp(*ptr1, *ptr2);
-	 }
+    /** compare two non const individuals */
+    bool operator() (MOEOT *ptr1, MOEOT *ptr2)
+    {
+        return cmp(*ptr1, *ptr2);
+    }
 
-	 /** compare two non const individuals */
-	 const bool operator() (MOEOT *ptr1, MOEOT *ptr2)
-	 {
-			return cmp(*ptr1, *ptr2);
-	 }
-
-	private:
-		moeoComparator<MOEOT> &cmp;
-  };
+private:
+    moeoComparator<MOEOT> &cmp;
+};
 
 #endif /*MOEOPTRCOMPARATOR_H_*/

@@ -53,7 +53,7 @@ public:
      * @param _objectiveVector1 the first objective vector
      * @param _objectiveVector2 the second objective vector
      */
-    const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
+    bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
     {
         for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
         {

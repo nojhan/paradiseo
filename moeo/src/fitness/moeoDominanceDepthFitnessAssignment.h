@@ -151,7 +151,7 @@ class moeoDominanceDepthFitnessAssignment : public moeoDominanceBasedFitnessAssi
          * @param _moeo1 the first solution
          * @param _moeo2 the second solution
          */
-        const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+        bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
           return cmp(_moeo1.objectiveVector(), _moeo2.objectiveVector());
         }

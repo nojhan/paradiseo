@@ -62,19 +62,19 @@ class moeoManhattanDistance : public moeoObjSpaceDistance < MOEOT >
       @param _normalizer the normalizer used for every ObjectiveVector
       */
     moeoManhattanDistance (moeoObjectiveVectorNormalizer<MOEOT> &_normalizer):normalizer(_normalizer)
-	  {}
+    {}
     /**
       default ctr
       */
     moeoManhattanDistance ():normalizer(defaultNormalizer)
-	  {}
+    {}
 
     /**
      * Returns the Manhattan distance between _obj1 and _obj2 in the objective space
      * @param _obj1 the first objective vector
      * @param _obj2 the second objective vector
      */
-    const double operator()(const ObjectiveVector & _obj1, const ObjectiveVector & _obj2)
+    double operator()(const ObjectiveVector & _obj1, const ObjectiveVector & _obj2)
     {
       double result = 0.0;
       double tmp1, tmp2;
