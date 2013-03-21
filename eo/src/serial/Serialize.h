@@ -88,6 +88,7 @@ Authors:
  */
 
 # include <vector>
+# include <list>
 # include <string>
 # include <stdexcept>   // std::runtime_error
 # include <type_traits> // std::is_convertible (C++11)
@@ -157,6 +158,7 @@ namespace eoserial
         MKSIMPLE(long)
         MKSIMPLE(float)
         MKSIMPLE(double)
+        MKSIMPLE(char)
         MKSIMPLE(std::string)
 # undef MKSIMPLE
 
@@ -173,6 +175,7 @@ namespace eoserial
     DSSIMPLE(long);
     DSSIMPLE(float);
     DSSIMPLE(double);
+    DSSIMPLE(char);
     DSSIMPLE(std::string);
 # undef DSSIMPLE
 
@@ -182,11 +185,11 @@ namespace eoserial
             value.unpack( static_cast<const eoserial::Object*>( json ) );
         }
 
-    template<class V>
-        eoserial::Entity* makeSimple( const std::vector<V> & v )
+    template<class Container>
+        eoserial::Entity* makeSimpleIterable( const Container & c )
         {
             eoserial::Array* array = new eoserial::Array;
-            for( auto it = v.begin(), end = v.end();
+            for( auto it = c.begin(), end = c.end();
                     it != end;
                     ++it )
             {
@@ -195,21 +198,45 @@ namespace eoserial
             return array;
         }
 
+    template<class V>
+        eoserial::Entity* makeSimple( const std::vector<V> & v )
+        {
+            return makeSimpleIterable( v );
+        }
+
+    template<class V>
+        eoserial::Entity* makeSimple( const std::list<V> & l )
+        {
+            return makeSimpleIterable( l );
+        }
+
     template<class T>
         void deserializeBase( const eoserial::Entity* json, T & value );
 
-    template< class T  >
-        void deserializeSimple( const eoserial::Entity* json, std::vector<T> & v )
+    template< class Container >
+        void deserializeSimplePushBack( const eoserial::Entity* json, Container & c )
         {
             const eoserial::Array* sArray = static_cast<const eoserial::Array*>(json);
             for( auto it = sArray->begin(), end = sArray->end();
                     it != end;
                     ++it )
             {
-                T single;
+                typename Container::value_type single;
                 eoserial::deserializeBase( *it, single );
-                v.push_back( single );
+                c.push_back( single );
             }
+        }
+
+    template< class T >
+        void deserializeSimple( const eoserial::Entity* json, std::vector<T> & v )
+        {
+            deserializeSimplePushBack( json, v );
+        }
+
+    template< class T >
+        void deserializeSimple( const eoserial::Entity* json, std::list<T> & v )
+        {
+            deserializeSimplePushBack( json, v );
         }
 
     template<class T>
