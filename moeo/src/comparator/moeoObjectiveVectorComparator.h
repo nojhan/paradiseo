@@ -46,7 +46,7 @@
  * The template argument ObjectiveVector have to be a moeoObjectiveVector.
  */
 template < class ObjectiveVector >
-class moeoObjectiveVectorComparator : public eoBF < const ObjectiveVector &, const ObjectiveVector &, const bool >
+class moeoObjectiveVectorComparator : public eoBF < const ObjectiveVector &, const ObjectiveVector &, bool >
   {};
 
 #endif /*MOEOOBJECTIVEVECTORCOMPARATOR_H_*/
