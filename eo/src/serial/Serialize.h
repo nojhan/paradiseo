@@ -78,7 +78,7 @@ Authors:
  * }
  * @endcode
  *
- * @todo Encapsulate non private functions. As of today (2013-03-19), it is not
+ * @todo Encapsulate private functions. As of today (2013-03-19), it is not
  * possible as GCC and Clang refuse to have std::vector specializations of template methods (while it works with
  * functions).
  *
@@ -129,13 +129,13 @@ namespace eoserial
     template<class T>
         void deserializeSimple( const eoserial::Entity* json, T & value )
         {
-            std::runtime_error("eoSerial: deserializeSimple called with an unknown basic type.");
+            throw std::runtime_error("eoSerial: deserializeSimple called with an unknown basic type.");
         }
 
     template<class T>
         void deserializeObject( const eoserial::Entity* json, T & value )
         {
-            std::runtime_error("eoSerial:: deserializeObject called with a non eoserial::Persistent object.");
+            throw std::runtime_error("eoSerial:: deserializeObject called with a non eoserial::Persistent object.");
         }
 
     template<>
