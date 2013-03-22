@@ -39,7 +39,96 @@ Authors:
  *
  * @todo provide more composite implementations (map<String, T>)
  *
- * @todo provide example
+ * Example
+ *
+ * @code
+# include <vector>
+# include <string>
+# include <iostream>
+
+# include "eoSerial.h"
+
+struct SimpleObject: public eoserial::Persistent
+{
+    public:
+
+    SimpleObject( int v ) : value(v)
+    {
+        // empty
+    }
+
+    eoserial::Object* pack() const
+    {
+        eoserial::Object* obj = new eoserial::Object;
+        (*obj)["value"] = eoserial::pack( value );
+        return obj;
+    }
+
+    void unpack( const eoserial::Object* json )
+    {
+        eoserial::unpack( *json, "value", value );
+    }
+
+    int value;
+};
+
+int main()
+{
+    eoserial::Object o;
+
+    std::cout << "packing..." << std::endl;
+    // directly pack raw types
+    o["long"] = eoserial::pack(123456L);
+    o["bool"] = eoserial::pack(true);
+    o["double"] = eoserial::pack(3.141592653);
+    o["float"] = eoserial::pack(3.141592653f);
+
+    std::string str = "Hello, world!";
+    o["str"] = eoserial::pack( str );
+
+    // pack objects the same way
+    SimpleObject obj(42);
+    o["obj"] = eoserial::pack( obj );
+
+    // pack vector and list the same way
+    std::vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(3);
+    vec.push_back(3);
+    vec.push_back(7);
+    o["vec"] = eoserial::pack( vec );
+
+    // print it
+    o.print( std::cout );
+
+    std::cout << "unpacking..." << std::endl;
+
+    // unpack as easily raw types
+    long oneTwoThreeFourFiveSix = 0L;
+    eoserial::unpack( o, "long", oneTwoThreeFourFiveSix);
+    std::cout << "the long: " << oneTwoThreeFourFiveSix << std::endl;
+
+    // since vec is encoded as an internal eoserial::Array, it can be
+    // decoded into a std::vector or a std::list without difference.
+    std::list<int> lis;
+    eoserial::unpack( o, "vec", lis );
+
+    std::cout << "the list: ";
+    for( auto it = lis.begin(), end = lis.end(); it != end; ++it)
+    {
+        std::cout << *it << ';';
+    }
+    std::cout << std::endl;
+
+    obj.value = -1;
+    // unpack object the same way
+    eoserial::unpack( o, "obj", obj );
+    std::cout << "obj.value = " << obj.value << std::endl;
+
+    return 0;
+}
+
+@endcode
  *
  * @author Benjamin Bouvier <benjamin.bouvier@gmail.com>
  */
