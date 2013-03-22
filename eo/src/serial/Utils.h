@@ -35,28 +35,24 @@ Authors:
  *
  * @brief Contains utilities for simple serialization and deserialization.
  *
- * @todo comment new version.
- *
  * @todo encapsulate implementations.
  *
  * @todo provide more composite implementations (map<String, T>)
+ *
+ * @todo provide example
+ *
+ * @author Benjamin Bouvier <benjamin.bouvier@gmail.com>
  */
 
 namespace eoserial
 {
-    /* ***************************
-     * DESERIALIZATION FUNCTIONS *
-     *****************************
-    These functions are useful for casting eoserial::objects into simple, primitive
-    variables or into class instance which implement eoserial::Persistent.
+    /* *****************
+     * DESERIALIZATION *
+     ******************/
 
-    The model is always quite the same : 
-    - the first argument is the containing object (which is a eoserial::Entity, 
-    an object or an array)
-    - the second argument is the key or index,
-    - the last argument is the value in which we're writing.
-    */
-
+    /**
+     * @brief Recursively unpack elements of an object which implements push_back.
+     */
     template< class T >
     inline void unpackBasePushBack( const Entity* obj, T& container )
     {
@@ -71,18 +67,30 @@ namespace eoserial
         }
     }
 
+    /**
+     * @brief Unpack method for std::vector
+     */
     template< class T >
     inline void unpackBase( const Entity* obj, std::vector<T>& v )
     {
         unpackBasePushBack( obj, v );
     }
 
+    /**
+     * @brief Unpack method for std::list
+     */
     template< class T >
     inline void unpackBase( const Entity* obj, std::list<T>& l )
     {
         unpackBasePushBack( obj, l );
     }
 
+    /**
+     * @brief Unpack implementation for non eoserial::Persistent objects.
+     *
+     * This implementation is being used for every objects that can be transmitted
+     * to a std::ostream (i.e. which implements the operator <<)
+     */
     template<class T, int n>
     struct UnpackImpl
     {
@@ -92,6 +100,9 @@ namespace eoserial
         }
     };
 
+    /**
+     * @brief Unpack implementation for eoserial::Persistent objects.
+     */
     template<class T>
     struct UnpackImpl<T, 1>
     {
@@ -101,6 +112,14 @@ namespace eoserial
         }
     };
 
+    /**
+     * @brief Unpack helper for determining which implementation to use.
+     *
+     * The trick comes from Herb Sutter: IsDerivedFrom<T, Persistent>::value is
+     * true if and only if T inherits from Persistent. In this case, it's equal
+     * to 1, thus the partial specialization of UnpackImpl is used. In the other
+     * case, it's equal to 0 and the generic implementation is used.
+     */
     template<class T>
     inline void unpackBase( const Entity* obj, T& value )
     {
@@ -108,6 +127,13 @@ namespace eoserial
         impl( obj, value );
     }
 
+    /**
+     * @brief Universal unpack method.
+     *
+     * @param obj The eoserial::object containing the value to deserialize.
+     * @param key Name of the field to deserialize
+     * @param value The object in which we'll store the deserialized value.
+     */
     template<class T>
     inline void unpack( const Object& obj, const std::string& key, T& value )
     {
@@ -118,6 +144,12 @@ namespace eoserial
      * SERIALIZATION *****
      ********************/
 
+    /**
+     * @brief Pack implementation for non eoserial::Printable objects.
+     *
+     * This implementation is being used for every objects that can be transmitted
+     * to a std::istream (i.e. which implements the operator >>)
+     */
     template<class T, int n>
     struct PackImpl
     {
@@ -130,6 +162,9 @@ namespace eoserial
         }
     };
 
+    /**
+     * @brief Pack implementation for eoserial::Printable objects.
+     */
     template<class T>
     struct PackImpl<T, 1>
     {
@@ -139,9 +174,13 @@ namespace eoserial
         }
     };
 
+    // Pre declaration for being usable in packIterable.
     template<class T>
     inline Entity* pack( const T& value );
 
+    /**
+     * @brief Pack method for iterable (begin, end) objects.
+     */
     template<class T>
     inline Entity* packIterable( const T& container )
     {
@@ -155,18 +194,32 @@ namespace eoserial
         return arr;
     }
 
+    /**
+     * @brief Pack method for std::vector
+     */
     template<class T>
     inline Entity* pack( const std::vector<T>& v )
     {
         return packIterable( v );
     }
 
+    /**
+     * @brief Pack method for std::list
+     */
     template<class T>
     inline Entity* pack( const std::list<T>& l )
     {
         return packIterable( l );
     }
 
+    /**
+     * @brief Universal pack method.
+     *
+     * @see unpackBase to understand the trick with the implementation.
+     *
+     * @param value Variable to store into an entity.
+     * @return An entity to store into an object.
+     */
     template<class T>
     inline Entity* pack( const T& value )
     {
@@ -174,7 +227,19 @@ namespace eoserial
         return impl( value );
     }
 
-    // Kept for compatibility
+    /** **************
+     * OLD FUNCTIONS *
+     ****************
+    These functions are useful for casting eoserial::objects into simple, primitive
+    variables or into class instance which implement eoserial::Persistent.
+
+    The model is always quite the same :
+    - the first argument is the containing object (which is a eoserial::Entity, 
+    an object or an array)
+    - the second argument is the key or index,
+    - the last argument is the value in which we're writing.
+
+    */
     inline void unpackObject( const Object & obj, const std::string & key, Persistent & value )
     {
         static_cast<Object*>( obj.find( key )->second )->deserialize( value );
