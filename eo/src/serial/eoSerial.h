@@ -28,5 +28,6 @@ Authors:
 # include "SerialString.h"
 # include "Parser.h"
 # include "Utils.h"
+# include "Serialize.h"
 
 # endif // __EOSERIAL_HEADERS__
