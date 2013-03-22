@@ -26,6 +26,22 @@ Authors:
 # include "SerialObject.h"
 # include "SerialString.h"
 
+# include "Traits.h"
+
+# include <list>
+
+/**
+ * @file Utils.h
+ *
+ * @brief Contains utilities for simple serialization and deserialization.
+ *
+ * @todo comment new version.
+ *
+ * @todo encapsulate implementations.
+ *
+ * @todo provide more composite implementations (map<String, T>)
+ */
+
 namespace eoserial
 {
     /* ***************************
@@ -42,11 +58,123 @@ namespace eoserial
     */
 
     template< class T >
-    inline void unpack( const Object & obj, const std::string & key, T & value )
+    inline void unpackBasePushBack( const Entity* obj, T& container )
     {
-        static_cast<String*>( obj.find( key )->second )->deserialize( value );
+        const Array* arr = static_cast<const Array*>( obj );
+        for( auto it = arr->begin(), end = arr->end();
+            it != end;
+            ++it )
+        {
+            typename T::value_type item;
+            unpackBase( *it, item );
+            container.push_back( item );
+        }
     }
 
+    template< class T >
+    inline void unpackBase( const Entity* obj, std::vector<T>& v )
+    {
+        unpackBasePushBack( obj, v );
+    }
+
+    template< class T >
+    inline void unpackBase( const Entity* obj, std::list<T>& l )
+    {
+        unpackBasePushBack( obj, l );
+    }
+
+    template<class T, int n>
+    struct UnpackImpl
+    {
+        void operator()( const Entity* obj, T& value )
+        {
+            static_cast<const String*>( obj )->deserialize( value );
+        }
+    };
+
+    template<class T>
+    struct UnpackImpl<T, 1>
+    {
+        void operator()( const Entity* obj, T& value )
+        {
+            value.unpack( static_cast<const Object*>(obj) );
+        }
+    };
+
+    template<class T>
+    inline void unpackBase( const Entity* obj, T& value )
+    {
+        UnpackImpl< T, IsDerivedFrom< T, Persistent >::value > impl;
+        impl( obj, value );
+    }
+
+    template<class T>
+    inline void unpack( const Object& obj, const std::string& key, T& value )
+    {
+        unpackBase( obj.find(key)->second, value );
+    }
+
+    /* *******************
+     * SERIALIZATION *****
+     ********************/
+
+    template<class T, int n>
+    struct PackImpl
+    {
+        Entity* operator()( const T& value )
+        {
+            std::stringstream ss;
+            ss.precision(std::numeric_limits<double>::digits10 + 1);
+            ss << value;
+            return new String(ss.str());
+        }
+    };
+
+    template<class T>
+    struct PackImpl<T, 1>
+    {
+        Entity* operator()( const T& value )
+        {
+            return value.pack();
+        }
+    };
+
+    template<class T>
+    inline Entity* pack( const T& value );
+
+    template<class T>
+    inline Entity* packIterable( const T& container )
+    {
+        Array* arr = new Array;
+        for( auto it = container.begin(), end = container.end();
+                it != end;
+                ++it )
+        {
+            arr->push_back( pack(*it) );
+        }
+        return arr;
+    }
+
+    template<class T>
+    inline Entity* pack( const std::vector<T>& v )
+    {
+        return packIterable( v );
+    }
+
+    template<class T>
+    inline Entity* pack( const std::list<T>& l )
+    {
+        return packIterable( l );
+    }
+
+    template<class T>
+    inline Entity* pack( const T& value )
+    {
+        PackImpl<T, IsDerivedFrom< T, Printable >::value> impl;
+        return impl( value );
+    }
+
+    // Kept for compatibility
     inline void unpackObject( const Object & obj, const std::string & key, Persistent & value )
     {
         static_cast<Object*>( obj.find( key )->second )->deserialize( value );
