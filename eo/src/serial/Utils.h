@@ -29,6 +29,7 @@ Authors:
 # include "Traits.h"
 
 # include <list>
+# include <map>
 
 /**
  * @file Utils.h
@@ -36,8 +37,6 @@ Authors:
  * @brief Contains utilities for simple serialization and deserialization.
  *
  * @todo encapsulate implementations.
- *
- * @todo provide more composite implementations (map<String, T>)
  *
  * Example
  *
@@ -98,6 +97,12 @@ int main()
     vec.push_back(7);
     o["vec"] = eoserial::pack( vec );
 
+    std::map<std::string, int> str2int;
+    str2int["one"] = 1;
+    str2int["two"] = 2;
+    str2int["answer"] = 42;
+    o["map"] = eoserial::pack( str2int );
+
     // print it
     o.print( std::cout );
 
@@ -119,6 +124,10 @@ int main()
         std::cout << *it << ';';
     }
     std::cout << std::endl;
+
+    std::map< std::string, int > readMap;
+    eoserial::unpack( o, "map", readMap );
+    std::cout << "The answer is " << readMap["answer"] << std::endl;
 
     obj.value = -1;
     // unpack object the same way
@@ -172,6 +181,21 @@ namespace eoserial
     inline void unpackBase( const Entity* obj, std::list<T>& l )
     {
         unpackBasePushBack( obj, l );
+    }
+
+    /**
+     * @brief Unpack method for std::map< std::string, T >
+     */
+    template< class T >
+    inline void unpackBase( const Entity* entity, std::map<std::string, T> & m )
+    {
+        const Object* obj = static_cast< const Object* >( entity );
+        for( auto it = obj->begin(), end = obj->end();
+                it != end;
+                ++it )
+        {
+            unpackBase( it->second, m[ it->first ] );
+        }
     }
 
     /**
@@ -299,6 +323,22 @@ namespace eoserial
     inline Entity* pack( const std::list<T>& l )
     {
         return packIterable( l );
+    }
+
+    /**
+     * @brief Pack method for std::map< std::string, T >
+     */
+    template<class T>
+    inline Entity* pack( const std::map<std::string, T>& map )
+    {
+        Object* obj = new Object;
+        for( auto it = map.begin(), end = map.end();
+                it != end;
+                ++it )
+        {
+            (*obj)[ it->first ] = pack( it->second );
+        }
+        return obj;
     }
 
     /**
