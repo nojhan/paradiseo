@@ -207,6 +207,7 @@
 #include <utils/moeoAverageObjVecStat.h>
 #include <utils/moeoBestObjVecStat.h>
 #include <utils/moeoBinaryMetricSavingUpdater.h>
+#include <utils/moeoBinaryMetricStat.h>
 #include <utils/moeoConvertPopToObjectiveVectors.h>
 #include <utils/moeoDominanceMatrix.h>
 #include <utils/moeoObjectiveVectorNormalizer.h>
