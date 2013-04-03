@@ -213,4 +213,6 @@
 #include <utils/moeoObjectiveVectorNormalizer.h>
 #include <utils/moeoObjVecStat.h>
 
+#include <continue/moeoHypContinue.h>
+
 #endif /*MOEO_*/
