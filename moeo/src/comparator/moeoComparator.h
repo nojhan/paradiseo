@@ -44,7 +44,7 @@
  * Functor allowing to compare two solutions.
  */
 template < class MOEOT >
-class moeoComparator : public eoBF < const MOEOT &, const MOEOT &, const bool >
+class moeoComparator : public eoBF < const MOEOT &, const MOEOT &, bool >
   {};
 
 #endif /*MOEOCOMPARATOR_H_*/
