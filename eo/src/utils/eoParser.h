@@ -162,8 +162,18 @@ public:
     Checks if _param has been actually entered by the user
     */
     virtual bool isItThere(eoParam& _param) const
-        { return getValue(_param).first; }
+    {
+        return getValue(_param).first;
+    }
 
+    /** Has param been entered by user?
+
+    Checks if a given param has been actually entered by the user
+    */
+    virtual bool isItThere( const std::string& name ) const
+    {
+        return isItThere(*getParamWithLongName(name));
+    }
 
     std::string get( const std::string & name) const;
 
