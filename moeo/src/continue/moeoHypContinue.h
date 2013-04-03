@@ -106,9 +106,9 @@ public:
     virtual std::string className(void) const { return "moeoHypContinue"; }
 
 private:
+    moeoArchive <MOEOT> & arch;
     moeoHyperVolumeDifferenceMetric <ObjectiveVector> metric;
     std::vector <ObjectiveVector> OptimSet;
-    moeoArchive <MOEOT> & arch;
 };
 
 #endif
