@@ -49,6 +49,13 @@ public:
     edoBinomialMulti( T initial_probas )
         : T(initial_probas) {}
 
+    /** Initialize all the probabilities to a constant
+     *
+     * 0.5 by default
+     */
+    edoBinomialMulti( unsigned int rows, unsigned int cols, double proba=0.5 )
+        : T::Constant(rows,cols,proba) {}
+
     /** Constructor without any assumption.
      */
     edoBinomialMulti() {}

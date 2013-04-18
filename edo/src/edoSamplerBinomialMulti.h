@@ -44,6 +44,24 @@ template< class EOT, class D = edoBinomialMulti<EOT> >
 class edoSamplerBinomialMulti : public edoSampler<D>
 {
 public:
+    typedef typename EOT::AtomType AtomType;
+
+    /** Called if the sampler draw the item at (i,j)
+     *
+     * The default implementation is to push back a true boolean.
+     * If you have a more complex data structure, you can just overload this.
+     */
+    virtual void make_true( AtomType & atom, unsigned int i, unsigned int j )
+    {
+        atom.push_back( 1 );
+    }
+
+    /** @see make_true */
+    virtual void make_false( AtomType & atom, unsigned int i, unsigned int j )
+    {
+        atom.push_back( 0 );
+    }
+
     EOT sample( D& distrib )
     {
         unsigned int rows = distrib.rows();
@@ -52,17 +70,22 @@ public:
         assert(cols > 0);
 
         // The point we want to draw
-        // x = {x1, x2, ..., xn}
+        // X = {x1, x2, ..., xn}
+        // with xn a container of booleans
         EOT solution;
 
         // Sampling all dimensions
         for( unsigned int i = 0; i < rows; ++i ) {
-            typename EOT::AtomType vec;
+            AtomType atom;
             for( unsigned int j = 0; j < cols; ++j ) {
                 // Toss a coin, biased by the proba of being 1.
-                vec.push_back( rng.flip( distrib(i,j) ) );
+                if( rng.flip( distrib(i,j) ) ) {
+                    make_true( atom, i, j );
+                } else {
+                    make_false( atom, i, j );
+                }
             }
-            solution.push_back( vec );
+            solution.push_back( atom );
         }
 
         return solution;
