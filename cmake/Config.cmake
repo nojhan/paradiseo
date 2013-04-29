@@ -31,11 +31,11 @@ endif()
 ### 0) Define general CXX flags for DEBUG and RELEASE
 ######################################################################################
 
-if(DEBUG)
-  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "" FORCE)
-else(DEBUG)
-  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
-endif(DEBUG)
+#if(DEBUG)
+#  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "" FORCE)
+#else(DEBUG)
+#  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
+#endif(DEBUG)
 
 add_definitions(-DDEPRECATED_MESSAGES)
 set(CMAKE_CXX_FLAGS_DEBUG  "-Wunknown-pragmas -O0 -g -Wall -Wextra -ansi -pedantic" CACHE STRING "" FORCE)
