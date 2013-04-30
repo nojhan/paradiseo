@@ -21,6 +21,8 @@ endif(ENABLE_OPENMP)
 
 if(ENABLE_GNUPLOT)
     include(FindGnuplot)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DHAVE_GNUPLOT -DGNUPLOT_PROGRAM=\\\"${GNUPLOT_EXECUTABLE}\\\"")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAVE_GNUPLOT -DGNUPLOT_PROGRAM=\\\"${GNUPLOT_EXECUTABLE}\\\"")
 endif(ENABLE_GNUPLOT)
 
 # set a special flag if the environment is windows (should do the same in a config.g file)
