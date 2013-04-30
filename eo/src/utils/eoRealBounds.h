@@ -27,9 +27,12 @@
 #ifndef _eoRealBounds_h
 #define _eoRealBounds_h
 
+#include <cassert>
 #include <sstream>
 #include <stdexcept>               // std::exceptions!
+
 #include <utils/eoRNG.h>
+#include "eoLogger.h"
 
 /**
 \defgroup Real Vector of reals
