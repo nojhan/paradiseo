@@ -59,7 +59,7 @@ class moeoHypervolumeBinaryMetric : public moeoNormalizedSolutionVsSolutionBinar
      * Ctor
      * @param _rho value used to compute the reference point from the worst values for each objective (default : 1.1)
      */
-    moeoHypervolumeBinaryMetric(double _rho = 1.1) : rho(_rho)
+    moeoHypervolumeBinaryMetric(double _rho = 1.1) : moeoNormalizedSolutionVsSolutionBinaryMetric<ObjectiveVector, double>(), rho(_rho)
     {
       // not-a-maximization problem check
       for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
