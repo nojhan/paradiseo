@@ -27,6 +27,7 @@
 #ifndef _eoRealBounds_h
 #define _eoRealBounds_h
 
+#include <sstream>
 #include <stdexcept>               // std::exceptions!
 #include <utils/eoRNG.h>
 
@@ -226,10 +227,14 @@ public :
   */
   eoRealInterval(double _min=0, double _max=1) :
     repMinimum(_min), repMaximum(_max), repRange(_max-_min)
-  {
-    if (repRange<=0)
-      throw std::logic_error("Void range in eoRealBounds");
-  }
+    {
+        assert( repRange >= 0 );
+#ifndef NDEBUG
+        if( repRange == 0 ) {
+            eo::log << eo::warnings << "Null range in eoRealBounds (min=" << _min << ", max=" << _max << ")" << std::endl;
+        }
+#endif
+    }
 
   // accessors
   virtual double minimum() const { return repMinimum; }
