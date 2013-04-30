@@ -155,7 +155,7 @@ namespace eoserial
     inline void unpackBasePushBack( const Entity* obj, T& container )
     {
         const Array* arr = static_cast<const Array*>( obj );
-        for( auto it = arr->begin(), end = arr->end();
+        for( Array::const_iterator it = arr->begin(), end = arr->end();
             it != end;
             ++it )
         {
@@ -190,7 +190,7 @@ namespace eoserial
     inline void unpackBase( const Entity* entity, std::map<std::string, T> & m )
     {
         const Object* obj = static_cast< const Object* >( entity );
-        for( auto it = obj->begin(), end = obj->end();
+        for( Object::const_iterator it = obj->begin(), end = obj->end();
                 it != end;
                 ++it )
         {
@@ -298,7 +298,7 @@ namespace eoserial
     inline Entity* packIterable( const T& container )
     {
         Array* arr = new Array;
-        for( auto it = container.begin(), end = container.end();
+        for( Array::const_iterator it = container.begin(), end = container.end();
                 it != end;
                 ++it )
         {
@@ -332,7 +332,7 @@ namespace eoserial
     inline Entity* pack( const std::map<std::string, T>& map )
     {
         Object* obj = new Object;
-        for( auto it = map.begin(), end = map.end();
+        for( Object::const_iterator it = map.begin(), end = map.end();
                 it != end;
                 ++it )
         {
