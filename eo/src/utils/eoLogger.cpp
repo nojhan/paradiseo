@@ -47,9 +47,6 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 void eoLogger::_init()
 {
-    _standard_io_streams[&std::cout] = 1;
-    _standard_io_streams[&std::clog] = 2;
-    _standard_io_streams[&std::cerr] = 2;
 
     // /!\ If you want to add a level dont forget to add it at the header file in the enumerator Levels
 
@@ -61,7 +58,6 @@ void eoLogger::_init()
     addLevel("debug", eo::debug);
     addLevel("xdebug", eo::xdebug);
 
-    //outStream = &std::cout;
 }
 
 eoLogger::eoLogger() :
@@ -78,27 +74,13 @@ eoLogger::eoLogger() :
     std::ostream::init(&_obuf);
     _init();
 }
-/*
-eoLogger::eoLogger(eo::file file) :
-    std::ostream(NULL),
-
-    _verbose("quiet", "verbose", "Set the verbose level", 'v'),
-    _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
-    _output("", "output", "Redirect a standard output to a file", 'o'),
-
-    _selectedLevel(eo::progress),
-    _contextLevel(eo::quiet),
-    _fd(2),
-    _obuf(_fd, _contextLevel, _selectedLevel)
-{
-    std::ostream::init(&_obuf);
-    _init();
-    *this << file;
-}*/
 
 eoLogger::~eoLogger()
 {
-    //if (_fd > 2) { ::close(_fd); }
+	//redirect(NULL);
+	if (_obuf._ownedFileStream != NULL) {
+		delete _obuf._ownedFileStream;
+	}
 }
 
 void eoLogger::_createParameters( eoParser& parser )
@@ -116,22 +98,21 @@ void eoLogger::_createParameters( eoParser& parser )
 
 
     //------------------------------------------------------------------
-    // we're gonna redirect the log to the given filename if -o is used.
+    // we redirect the log to the given filename if -o is used.
     //------------------------------------------------------------------
-/*
+
     if ( ! _output.value().empty() )
         {
-            eo::log << eo::file( _output.value() );
+    		redirect(_output.value());
         }
-*/
-// TODO with a stream
 
-
-    //------------------------------------------------------------------
 
 
     //------------------------------------------------------------------
-    // we're gonna print the list of levels if -l parameter is used.
+
+
+    //------------------------------------------------------------------
+    // we print the list of levels if -l parameter is used.
     //------------------------------------------------------------------
 
     if ( _printVerboseLevels.value() )
@@ -171,12 +152,6 @@ eoLogger& operator<<(eoLogger& l, const eo::Levels lvl)
     l._contextLevel = lvl;
     return l;
 }
-/*
-eoLogger& operator<<(eoLogger& l, eo::file f)
-{
-    l._fd = ::open(f._f.c_str(), O_WRONLY | O_APPEND | O_CREAT, 0644);
-    return l;
-}*/
 
 eoLogger& operator<<(eoLogger& l, eo::setlevel v)
 {
@@ -186,35 +161,49 @@ eoLogger& operator<<(eoLogger& l, eo::setlevel v)
 
 eoLogger& operator<<(eoLogger& l, std::ostream& os)
 {
-/*
-    if (l._standard_io_streams.find(&os) != l._standard_io_streams.end())
-        {
-            l._fd = l._standard_io_streams[&os];
-        }
-*/
-    l._obuf.outStream = &os;
+    l._obuf._outStream = &os;
     return l;
 }
 
-void eoLogger::redirectTo(std::ostream& os)
+void eoLogger::redirect(std::ostream& os)
 {
-    _obuf.outStream = &os;
+	if (_obuf._ownedFileStream != NULL) {
+		delete _obuf._ownedFileStream;
+		_obuf._ownedFileStream = NULL;
+	}
+    _obuf._outStream = &os;
+}
+
+void eoLogger::redirect(const char * filename)
+{
+	std::ofstream * os;
+	if (filename == NULL) {
+		os = NULL;
+	} else {
+		os = new std::ofstream(filename);
+	}
+	redirect(*os);
+	_obuf._ownedFileStream = os;
+}
+
+void eoLogger::redirect(const std::string& filename)
+{
+	redirect(filename.c_str());
 }
 
 
 eoLogger::outbuf::outbuf(const eo::Levels& contexlvl,
                          const eo::Levels& selectedlvl)
-    : outStream(&std::cout), /*ownedFileStream(NULL),*/ _contextLevel(contexlvl), _selectedLevel(selectedlvl)
+    : _outStream(&std::cout), _ownedFileStream(NULL), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
 {}
 
 int eoLogger::outbuf::overflow(int_type c)
 {
     if (_selectedLevel >= _contextLevel)
       {
-        if (outStream && c != EOF)
+        if (_outStream && c != EOF)
           {
-              //::write(_fd, &c, 1);
-              (*outStream) << (char) c;
+              (*_outStream) << (char) c;
           }
       }
     return c;
@@ -222,10 +211,6 @@ int eoLogger::outbuf::overflow(int_type c)
 
 namespace eo
 {
-    /*file::file(const std::string f)
-        : _f(f)
-    {}*/
-
     setlevel::setlevel(const std::string v)
         : _v(v), _lvl((Levels)-1)
     {}
