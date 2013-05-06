@@ -191,11 +191,11 @@ private:
     {
     public:
         outbuf(const eo::Levels& contexlvl, const eo::Levels& selectedlvl);
-        std::ostream * outStream;
+        std::ostream * _outStream;
+        std::ofstream * _ownedFileStream;
     protected:
         virtual int overflow(int_type c);
     private:
-        //std::ofstream * ownedFileStream;
         const eo::Levels& _contextLevel;
         const eo::Levels& _selectedLevel;
     };
@@ -212,12 +212,6 @@ public:
      */
     //! in order to use stream style to define the context verbose level where the following logs will be saved
     friend eoLogger& operator<<(eoLogger&, const eo::Levels);
-
-    /**
-     * operator<< used there to set a filename through the class file.
-     */
-    //! in order to use stream style to define a file to dump instead the standart output
-    //friend eoLogger& operator<<(eoLogger&, eo::file);
 
     /**
      * operator<< used there to set a verbose level through the class setlevel.
@@ -238,8 +232,14 @@ public:
      * Redirects the logger to a given output stream. Closing the stream and returning its memory is at the charge of the caller,
      * but should not be done while the log is still redirected to it.
      */
-    void redirectTo(std::ostream&);
+    void redirect(std::ostream&);
 
+    /**
+     * Redirects the logger to a file using a filename.
+     * Closing the file will be done automatically when the logger is redirected again or destroyed.
+     */
+    void redirect(const char * filename);
+    void redirect(const std::string& filename);
 
 private:
     friend void make_verbose(eoParser&);
