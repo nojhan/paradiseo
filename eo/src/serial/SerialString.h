@@ -62,7 +62,7 @@ namespace eoserial
              * @param value The value in which we're writing.
              */
             template<class T>
-                inline void deserialize( T & value );
+                inline void deserialize( T & value ) const;
 
         protected:
             // Copy and reaffectation are forbidden
@@ -80,7 +80,7 @@ namespace eoserial
      * invoking.
      */
     template<class T>
-        inline void String::deserialize( T & value )
+        inline void String::deserialize( T & value ) const
         {
             std::stringstream ss;
             ss.precision(std::numeric_limits<double>::digits10 + 1);
@@ -93,7 +93,7 @@ namespace eoserial
      * a stringstream.
      */
     template<>
-        inline void String::deserialize( std::string & value )
+        inline void String::deserialize( std::string & value ) const
         {
             value = *this;
         }
