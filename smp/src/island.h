@@ -132,7 +132,7 @@ public:
      */
     virtual void receive(void);
     
-    AIsland<bEOT> clone() const;
+    //AIsland<bEOT> clone() const;
     
 protected:
 
