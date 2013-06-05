@@ -88,6 +88,8 @@ Authors:
 #include "utils/edoFileSnapshot.h"
 #include "utils/edoPopStat.h"
 
+#include "edoTransform.h"
+
 #endif // !_edo_
 
 // Local Variables:

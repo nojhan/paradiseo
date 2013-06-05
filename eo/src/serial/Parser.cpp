@@ -23,9 +23,9 @@ Authors:
 
 # include "Parser.h"
 
-# include "Array.h"
-# include "Object.h"
-# include "String.h"
+# include "SerialArray.h"
+# include "SerialObject.h"
+# include "SerialString.h"
 
 // in debug mode only
 // # define DEBUG(x) std::cout << x << std::endl;

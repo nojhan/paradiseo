@@ -26,7 +26,7 @@ Authors:
 
 # include "Entity.h"
 # include "Serializable.h"
-# include "Object.h"
+# include "SerialObject.h"
 
 namespace eoserial
 {

@@ -136,27 +136,36 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
      * @param _set1 the vector contains all objective Vector of the first pareto front
      * @param _set2 the vector contains all objective Vector of the second pareto front
      */
-    void setup(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2){
-    	if(_set1.size() < 1 || _set2.size() < 1)
-    		throw("Error in moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0");
-    	else{
-	        double min, max;
-	        unsigned int nbObj=ObjectiveVector::Traits::nObjectives();
-	        bounds.resize(nbObj);
-	        for (unsigned int i=0; i<nbObj; i++){
-	            min = _set1[0][i];
-	            max = _set1[0][i];
-	            for (unsigned int j=1; j<_set1.size(); j++){
-	                min = std::min(min, _set1[j][i]);
-	                max = std::max(max, _set1[j][i]);
-	            }
-	            for (unsigned int j=0; j<_set2.size(); j++){
-	                min = std::min(min, _set2[j][i]);
-	                max = std::max(max, _set2[j][i]);
-	            }
-	            bounds[i] = eoRealInterval(min, max);
-	        }
-    	}
+    void setup(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
+    {
+        if(_set1.size() < 1 || _set2.size() < 1) {
+            throw("Error in moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0");
+        } else {
+#ifndef NDEBUG
+            if( _set1.size() == 1 || _set2.size() == 1 ) {
+                eo::log << eo::warnings << "Warning in moeoHyperVolumeUnaryMetric::setup one of the pareto set contains only one point (set1.size="
+                    << _set1.size() << ", set2.size=" << _set2.size() << ")"
+                    << std::endl;
+            }
+#endif
+
+            double min, max;
+            unsigned int nbObj=ObjectiveVector::Traits::nObjectives();
+            bounds.resize(nbObj);
+            for (unsigned int i=0; i<nbObj; i++){
+                min = _set1[0][i];
+                max = _set1[0][i];
+                for (unsigned int j=1; j<_set1.size(); j++){
+                    min = std::min(min, _set1[j][i]);
+                    max = std::max(max, _set1[j][i]);
+                }
+                for (unsigned int j=0; j<_set2.size(); j++){
+                    min = std::min(min, _set2[j][i]);
+                    max = std::max(max, _set2[j][i]);
+                }
+                bounds[i] = eoRealInterval(min, max);
+            }
+        }
     }
 
   	private:
