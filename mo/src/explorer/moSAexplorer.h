@@ -96,7 +96,7 @@ public:
      * @param _solution unused solution
      */
     virtual void updateParam(EOT & _solution) {
-        coolingSchedule.update(temperature, this->moveApplied());
+        coolingSchedule.update(temperature, this->moveApplied(), _solution);
     };
 
     /**

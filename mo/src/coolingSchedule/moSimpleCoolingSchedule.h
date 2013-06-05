@@ -52,7 +52,8 @@ public:
      * @param _span number of iteration with equal temperature
      * @param _finalT final temperature, threshold of the stopping criteria
      */
-    moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT) : initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {}
+    moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT)
+	: initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {}
 
     /**
      * Getter on the initial temperature
@@ -70,8 +71,9 @@ public:
      * update the temperature by a factor
      * @param _temp current temperature to update
      * @param _acceptedMove true when the move is accepted, false otherwise
+     * @param _currentSolution the current solution
      */
-    virtual void update(double& _temp, bool _acceptedMove) {
+    virtual void update(double& _temp, bool _acceptedMove, EOT & _currentSolution) {
         if (step >= span) {
             _temp *= alpha;
             step = 0;
