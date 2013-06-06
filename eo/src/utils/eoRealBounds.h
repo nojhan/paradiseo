@@ -234,7 +234,7 @@ public :
         assert( repRange >= 0 );
 #ifndef NDEBUG
         if( repRange == 0 ) {
-            eo::log << eo::warnings << "Null range in eoRealBounds (min=" << _min << ", max=" << _max << ")" << std::endl;
+            eo::log << eo::warnings << "Warning: null range in eoRealBounds (min=" << _min << ", max=" << _max << ")" << std::endl;
         }
 #endif
     }
