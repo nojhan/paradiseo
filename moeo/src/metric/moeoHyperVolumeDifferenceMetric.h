@@ -163,12 +163,26 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
                     min = std::min(min, _set2[j][i]);
                     max = std::max(max, _set2[j][i]);
                 }
-                bounds[i] = eoRealInterval(min, max);
+                if( min == max ) {
+                    bounds[i] = eoRealInterval(min-tiny(), max+tiny());
+                } else {
+                    bounds[i] = eoRealInterval(min, max);
+                }
             }
         }
     }
 
-  	private:
+    protected:
+
+    /**
+     * Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound)
+     */
+    static double tiny()
+    {
+      return 1e-6;
+    }
+
+    private:
 
     /*boolean indicates if data must be normalized or not*/
     bool normalize;
