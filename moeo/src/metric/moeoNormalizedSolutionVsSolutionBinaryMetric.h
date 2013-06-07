@@ -52,6 +52,8 @@ class moeoNormalizedSolutionVsSolutionBinaryMetric : public moeoSolutionVsSoluti
   {
   public:
 
+      typedef typename ObjectiveVector::Type Type;
+
     /**
      * Default ctr for any moeoNormalizedSolutionVsSolutionBinaryMetric object
      */
@@ -72,7 +74,7 @@ class moeoNormalizedSolutionVsSolutionBinaryMetric : public moeoSolutionVsSoluti
      * @param _max upper bound
      * @param _obj the objective index
      */
-    void setup(double _min, double _max, unsigned int _obj)
+    void setup( Type _min, Type _max, unsigned int _obj)
     {
       if (_min == _max)
         {
