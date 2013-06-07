@@ -43,9 +43,9 @@ class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVe
 
     public:
 
-        moeoDualRealObjectiveVector(double value=0.0) 
+        moeoDualRealObjectiveVector(double value=0.0, bool feasible = false)
             : moeoScalarObjectiveVector<ObjectiveVectorTraits, eoMinimizingDualFitness >
-              ( T(value, false) ) {}
+              ( T(value, feasible) ) {}
 
         bool is_feasible() const
         {
@@ -111,6 +111,38 @@ class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVe
             }
         }
 };
+
+
+
+/**
+ * Output for a moeoDualRealObjectiveVector object
+ * @param _os output stream
+ * @param _objectiveVector the objective vector to write
+ */
+template < class ObjectiveVectorTraits >
+std::ostream & operator<<(std::ostream & _os, const moeoDualRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
+{
+  for (unsigned int i=0; i<_objectiveVector.size()-1; i++)
+      _os << _objectiveVector[i] << " ";
+  _os << _objectiveVector[_objectiveVector.size()-1];
+  return _os;
+}
+
+/**
+ * Input for a moeoDualRealObjectiveVector object
+ * @param _is input stream
+ * @param _objectiveVector the objective vector to read
+ */
+template < class ObjectiveVectorTraits >
+std::istream & operator>>(std::istream & _is, moeoDualRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
+{
+  _objectiveVector = moeoDualRealObjectiveVector < ObjectiveVectorTraits > ();
+  for (unsigned int i=0; i<_objectiveVector.size(); i++)
+    {
+      _is >> _objectiveVector[i];
+    }
+  return _is;
+}
 
 
 #endif /*_DUALREALOBJECTIVEVECTOR_H_*/

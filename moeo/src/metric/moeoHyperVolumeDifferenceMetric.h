@@ -56,7 +56,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
      * @param _normalize allow to normalize data (default true)
      * @param _rho coefficient to determine the reference point.
      */
-    moeoHyperVolumeDifferenceMetric(bool _normalize=true, double _rho=1.1): normalize(_normalize), rho(_rho), ref_point(NULL){
+    moeoHyperVolumeDifferenceMetric(bool _normalize=true, double _rho=1.1): normalize(_normalize), rho(_rho), ref_point(/*NULL*/){
         bounds.resize(ObjectiveVector::Traits::nObjectives());
         // initialize bounds in case someone does not want to use them
         for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
@@ -70,7 +70,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
      * @param _normalize allow to normalize data (default true)
      * @param _ref_point the reference point
      */
-    moeoHyperVolumeDifferenceMetric(bool _normalize=true, ObjectiveVector& _ref_point=NULL): normalize(_normalize), rho(0.0), ref_point(_ref_point){
+    moeoHyperVolumeDifferenceMetric(bool _normalize/*=true*/, ObjectiveVector& _ref_point/*=NULL*/): normalize(_normalize), rho(0.0), ref_point(_ref_point){
         bounds.resize(ObjectiveVector::Traits::nObjectives());
         // initialize bounds in case someone does not want to use them
         for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
@@ -149,7 +149,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
             }
 #endif
 
-            double min, max;
+            typename ObjectiveVector::Type min, max;
             unsigned int nbObj=ObjectiveVector::Traits::nObjectives();
             bounds.resize(nbObj);
             for (unsigned int i=0; i<nbObj; i++){
