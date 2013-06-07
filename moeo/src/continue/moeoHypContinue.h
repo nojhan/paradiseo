@@ -56,15 +56,16 @@ class moeoHypContinue: public eoContinue<MOEOT>
 public:
 
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+    typedef typename ObjectiveVector::Type AtomType;
 
     /// Ctor
-    moeoHypContinue(  const std::vector<double> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, double _rho=1.1)
+    moeoHypContinue(  const std::vector<AtomType> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, AtomType _rho=1.1)
         : eoContinue<MOEOT>(), arch(_archive), metric(_normalize,_rho)
     {
         vectorToParetoSet(_OptimVec);
     }
 
-    moeoHypContinue( const std::vector<double> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, ObjectiveVector& _ref_point=NULL)
+    moeoHypContinue( const std::vector<AtomType> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, ObjectiveVector& _ref_point=NULL)
         : eoContinue<MOEOT> (), arch(_archive), metric(_normalize,_ref_point)
     {
         vectorToParetoSet(_OptimVec);
@@ -79,7 +80,7 @@ public:
             bestCurrentParetoSet.push_back(arch[i].objectiveVector());
         }
 
-        double hypervolume= metric(bestCurrentParetoSet,OptimSet );
+        AtomType hypervolume= metric(bestCurrentParetoSet,OptimSet );
 
         if (hypervolume==0) {
             eo::log << eo::logging << "STOP in moeoHypContinue: Best ParetoSet has been reached "
@@ -90,7 +91,7 @@ public:
     }
 
     /** Translate a vector given as param to the ParetoSet that should be reached. */
-    void vectorToParetoSet(const std::vector<double> & _OptimVec)
+    void vectorToParetoSet(const std::vector<AtomType> & _OptimVec)
     {
         unsigned dim = (unsigned)(_OptimVec.size()/ObjectiveVector::Traits::nObjectives());
         OptimSet.resize(dim);
