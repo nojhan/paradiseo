@@ -151,8 +151,8 @@ class moeoScalarObjectiveVector : public moeoObjectiveVector < ObjectiveVectorTr
  * @param _os output stream
  * @param _objectiveVector the objective vector to write
  */
-template < class ObjectiveVectorTraits >
-std::ostream & operator<<(std::ostream & _os, const moeoScalarObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
+template < class ObjectiveVectorTraits, class T >
+std::ostream & operator<<(std::ostream & _os, const moeoScalarObjectiveVector < ObjectiveVectorTraits, T > & _objectiveVector)
 {
   for (unsigned int i=0; i<_objectiveVector.size()-1; i++)
       _os << _objectiveVector[i] << " ";
@@ -165,10 +165,10 @@ std::ostream & operator<<(std::ostream & _os, const moeoScalarObjectiveVector < 
  * @param _is input stream
  * @param _objectiveVector the objective vector to read
  */
-template < class ObjectiveVectorTraits >
-std::istream & operator>>(std::istream & _is, moeoScalarObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
+template < class ObjectiveVectorTraits, class T >
+std::istream & operator>>(std::istream & _is, moeoScalarObjectiveVector < ObjectiveVectorTraits, T > & _objectiveVector)
 {
-  _objectiveVector = moeoScalarObjectiveVector < ObjectiveVectorTraits > ();
+  _objectiveVector = moeoScalarObjectiveVector < ObjectiveVectorTraits, T > ();
   for (unsigned int i=0; i<_objectiveVector.size(); i++)
     {
       _is >> _objectiveVector[i];

@@ -59,7 +59,7 @@ public:
     typedef typename ObjectiveVector::Type AtomType;
 
     /// Ctor
-    moeoHypContinue(  const std::vector<AtomType> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, AtomType _rho=1.1)
+    moeoHypContinue(  const std::vector<AtomType> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, double _rho=1.1)
         : eoContinue<MOEOT>(), arch(_archive), metric(_normalize,_rho)
     {
         vectorToParetoSet(_OptimVec);

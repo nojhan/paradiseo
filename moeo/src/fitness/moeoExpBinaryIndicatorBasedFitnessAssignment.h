@@ -154,7 +154,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      */
     void setup(const eoPop < MOEOT > & _pop)
     {
-      double min, max;
+      typename MOEOT::ObjectiveVector::Type min, max;
       for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
         {
           min = _pop[0].objectiveVector()[i];
