@@ -80,7 +80,20 @@ public:
       * @param _kappa scaling factor kappa
       */
     moeoIBEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select (2), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), genBreed (select, defaultSGAGenOp), breed (genBreed), fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, diversityAssignment)
+            defaultGenContinuator(_maxGen),
+            continuator(defaultGenContinuator),
+            eval(_eval),
+            defaultPopEval(_eval),
+            popEval(defaultPopEval),
+            select (2),
+            selectMany(select,0.0),
+            selectTransform(defaultSelect, defaultTransform),
+            defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut),
+            genBreed (select, defaultSGAGenOp),
+            breed (genBreed),
+            default_fitnessAssignment( new moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>(_metric, _kappa) ),
+            fitnessAssignment(*default_fitnessAssignment),
+            replace(fitnessAssignment, diversityAssignment)
     {}
 
 
@@ -94,7 +107,7 @@ public:
      */
     moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(2),
-            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, diversityAssignment)
+            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), default_fitnessAssignment( new moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>(_metric, _kappa)), fitnessAssignment(*default_fitnessAssignment), replace (fitnessAssignment, diversityAssignment)
     {}
 
 
@@ -108,7 +121,7 @@ public:
      */
     moeoIBEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
             defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(2),
-            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, diversityAssignment)
+            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), default_fitnessAssignment( new moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>(_metric, _kappa)), fitnessAssignment(*default_fitnessAssignment), replace (fitnessAssignment, diversityAssignment)
     {}
 
 
@@ -122,7 +135,7 @@ public:
      */
     moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _transform, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval),
-            select(2),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, diversityAssignment)
+            select(2),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), default_fitnessAssignment( new moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>(_metric, _kappa)), fitnessAssignment(*default_fitnessAssignment), replace(fitnessAssignment, diversityAssignment)
     {}
 
 
@@ -136,9 +149,42 @@ public:
      */
     moeoIBEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoTransform < MOEOT > & _transform, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
             defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval),
-            select(2),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, diversityAssignment)
+            select(2),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), default_fitnessAssignment( new moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>(_metric, _kappa)), fitnessAssignment(*default_fitnessAssignment), replace(fitnessAssignment, diversityAssignment)
     {}
 
+
+    /**
+     * Ctor with a eoContinue, a eoPopEval, a eoGenOp and an explicit fitnessAssignment
+     * @param _continuator stopping criteria
+     * @param _popEval population evaluation function
+     * @param _op variation operators
+     * @param _fitnessAssignment fitness assignment
+     */
+    moeoIBEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op, moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >& _fitnessAssignment) :
+            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(2),
+            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), default_fitnessAssignment(NULL), fitnessAssignment(_fitnessAssignment), replace(fitnessAssignment, diversityAssignment)
+    {}
+
+
+    /**
+     * Ctor with a eoContinue, a eoGenOp and an explicit fitnessAssignment
+     * @param _continuator stopping criteria
+     * @param _eval evaluation function
+     * @param _op variation operators
+     * @param _fitnessAssignment fitness assignment
+     */
+    moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >& _fitnessAssignment) :
+            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(2),
+            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), default_fitnessAssignment(NULL), fitnessAssignment(_fitnessAssignment), replace(fitnessAssignment, diversityAssignment)
+    {}
+
+
+    ~moeoIBEA()
+    {
+        if( default_fitnessAssignment != NULL ) {
+            delete default_fitnessAssignment;
+        }
+    }
 
     /**
      * Apply the algorithm to the population _pop until the stopping criteria is satified.
@@ -214,7 +260,8 @@ protected:
     /** breeder */
     eoBreed < MOEOT > & breed;
     /** fitness assignment used in IBEA */
-    moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > fitnessAssignment;
+    moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >& fitnessAssignment;
+    moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >* default_fitnessAssignment;
     /** dummy diversity assignment */
     moeoDummyDiversityAssignment < MOEOT > diversityAssignment;
     /** environmental replacement */
