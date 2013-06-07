@@ -81,9 +81,22 @@ public:
      * Unfeasible by default
      */
     eoDualFitness() :
-        _value(),
+        _value(0.0),
         _is_feasible(false)
     {}
+
+    //! Empty initialization
+    /*!
+     * Unfeasible by default
+     */
+    template<class T>
+    eoDualFitness( T value ) :
+        _value(value),
+        _is_feasible(false)
+    {
+        assert( _value == 0 );
+    }
+
 
     //! Copy constructor
     eoDualFitness(const eoDualFitness& other) :
@@ -126,8 +139,8 @@ public:
     //! Copy operator from a std::pair
     eoDualFitness& operator=(const std::pair<BaseType,bool>& v)
     {
-        _value = v.first;
-        _is_feasible = v.second;
+        this->_value = v.first;
+        this->_is_feasible = v.second;
         return *this;
     }
 
@@ -142,13 +155,16 @@ public:
         return *this;
     }
 
-    //! Copy operator from a std::pair
+    /*
+    //! Copy operator from a scalar
     template<class T>
     eoDualFitness& operator=(const T v)
     {
-        _value = v;
+        this->_value = v;
+        this->_is_feasible = false;
         return *this;
     }
+    */
 
     //! Comparison that separate feasible individuals from unfeasible ones. Feasible are always better
     /*!
@@ -195,55 +211,74 @@ public:
      * (like eoStat), both for separating feasibility and for aggregating them.
      */
 
+    // NOTE: we cannot declare this set of operator classes as friend, because there is two differerent templated classes declared later
+    // (for minimizing and maximizing)
+
     //! Add a given fitness to the current one
     template <class F, class Cmp>
-    friend
-    eoDualFitness<F,Cmp> & operator+=( eoDualFitness<F,Cmp> & from, const eoDualFitness<F,Cmp> & that )
+    // friend
+    eoDualFitness<F,Cmp> & operator+=( /*eoDualFitness<F,Cmp> & from,*/ const eoDualFitness<F,Cmp> & that )
     {
-        from._value += that._value;
+        // from._value += that._value;
+        this->_value += that._value;
 
         // true only if the two are feasible, else false
-        from._is_feasible = from._is_feasible && that._is_feasible;
+        // from._is_feasible = from._is_feasible && that._is_feasible;
+        this->_is_feasible = this->_is_feasible && that._is_feasible;
 
-        return from;
+        return *this;
     }
 
     //! Substract a given fitness to the current one
     template <class F, class Cmp>
-    friend
-    eoDualFitness<F,Cmp> & operator-=( eoDualFitness<F,Cmp> & from, const eoDualFitness<F,Cmp> & that )
+    eoDualFitness<F,Cmp> & operator-=( const eoDualFitness<F,Cmp> & that )
     {
-        from._value -= that._value;
+        this->_value -= that._value;
 
         // true only if the two are feasible, else false
-        from._is_feasible = from._is_feasible && that._is_feasible;
+        this->_is_feasible = this->_is_feasible && that._is_feasible;
 
-        return from;
+        return *this;
     }
+
+    //! Add a given fitness to the current one
+    template <class T, class F, class Cmp>
+    eoDualFitness<F,Cmp> & operator+=( const T that )
+    {
+        this->_value += that;
+        return *this;
+    }
+
+    //! Substract a given fitness to the current one
+    template <class T, class F, class Cmp>
+    eoDualFitness<F,Cmp> & operator-=( const T that )
+    {
+        this->_value -= that;
+        return *this;
+    }
+
 
 
     //! Add a given fitness to the current one
     template <class F, class Cmp>
-    friend
-    eoDualFitness<F,Cmp> & operator/=( eoDualFitness<F,Cmp> & from, const eoDualFitness<F,Cmp> & that )
+    eoDualFitness<F,Cmp> & operator/=( const eoDualFitness<F,Cmp> & that )
     {
-        from._value /= that._value;
+        this->_value /= that._value;
 
         // true only if the two are feasible, else false
-        from._is_feasible = from._is_feasible && that._is_feasible;
+        this->_is_feasible = this->_is_feasible && that._is_feasible;
 
-        return from;
+        return *this;
     }
 
 
     //! Add a given fitness to the current one
     template <class T, class F, class Cmp>
-    friend
-    eoDualFitness<F,Cmp> & operator/=( eoDualFitness<F,Cmp> & from, T that )
+    eoDualFitness<F,Cmp> & operator/=( T that )
     {
-        from._value /= that;
+        this->_value /= that;
 
-        return from;
+        return *this;
     }
 
     // Add this fitness's value to that other, and return a _new_ instance with the result.
@@ -273,17 +308,15 @@ public:
 
     //! Print an eoDualFitness instance as a pair of numbers, separated by a space
     template <class F, class Cmp>
-    friend
-    std::ostream& operator<<(std::ostream& os, const eoDualFitness<F, Cmp>& f)
+    std::ostream& operator<<(std::ostream& os)
     {
-        os << f._value << " " << f._is_feasible;
+        os << this->_value << " " << this->_is_feasible;
         return os;
     }
 
     //! Read an eoDualFitness instance as a pair of numbers, separated by a space
     template <class F, class Cmp>
-    friend
-    std::istream& operator>>(std::istream& is, eoDualFitness<F, Cmp>& f)
+    std::istream& operator>>(std::istream& is)
     {
         F value;
         is >> value;
@@ -291,7 +324,8 @@ public:
         bool feasible;
         is >> feasible;
 
-        f = std::make_pair<F,bool>( value, feasible );
+        this->_value = value;
+        this->_is_feasible = feasible;
         return is;
     }
 };
