@@ -108,12 +108,11 @@ public:
      * type, if needed. For example, this is possible:
      *     eoDualFitness<double,std::less<double> > fit;
      *     double val = 1.0;
-     *     fit = val;
      *     val = fit;
      */
-    operator BaseType(void) const { return _value; }
+     operator BaseType(void) const { return _value; }
 
-    
+
     inline bool is_feasible() const
     {
         return _is_feasible;
@@ -140,6 +139,14 @@ public:
             this->_value = other._value;
             this->_is_feasible = other._is_feasible;
         }
+        return *this;
+    }
+
+    //! Copy operator from a std::pair
+    template<class T>
+    eoDualFitness& operator=(const T v)
+    {
+        _value = v;
         return *this;
     }
 
@@ -183,6 +190,11 @@ public:
 
 public:
 
+    /* FIXME it would be better to raise errors (or warnings) if one try to apply arithmetics operators between feasible
+     * and unfeasible fitnesses. This necessitates to add wrappers for operators that aggregates sets of dual fitnesses
+     * (like eoStat), both for separating feasibility and for aggregating them.
+     */
+
     //! Add a given fitness to the current one
     template <class F, class Cmp>
     friend
@@ -209,6 +221,31 @@ public:
         return from;
     }
 
+
+    //! Add a given fitness to the current one
+    template <class F, class Cmp>
+    friend
+    eoDualFitness<F,Cmp> & operator/=( eoDualFitness<F,Cmp> & from, const eoDualFitness<F,Cmp> & that )
+    {
+        from._value /= that._value;
+
+        // true only if the two are feasible, else false
+        from._is_feasible = from._is_feasible && that._is_feasible;
+
+        return from;
+    }
+
+
+    //! Add a given fitness to the current one
+    template <class T, class F, class Cmp>
+    friend
+    eoDualFitness<F,Cmp> & operator/=( eoDualFitness<F,Cmp> & from, T that )
+    {
+        from._value /= that;
+
+        return from;
+    }
+
     // Add this fitness's value to that other, and return a _new_ instance with the result.
     template <class F, class Cmp>
     eoDualFitness<F,Cmp> operator+(const eoDualFitness<F,Cmp> & that)
@@ -223,6 +260,15 @@ public:
     {
         eoDualFitness<F,Cmp> from( *this );
         return from -= that;
+    }
+
+
+    // Add this fitness's value to that other, and return a _new_ instance with the result.
+    template <class F, class Cmp>
+    eoDualFitness<F,Cmp> operator/(const eoDualFitness<F,Cmp> & that)
+    {
+        eoDualFitness<F,Cmp> from( *this );
+        return from /= that;
     }
 
     //! Print an eoDualFitness instance as a pair of numbers, separated by a space
