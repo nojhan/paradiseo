@@ -88,7 +88,9 @@
 #include <core/moeoIntVector.h>
 #include <core/moeoObjectiveVector.h>
 #include <core/moeoObjectiveVectorTraits.h>
+#include <core/moeoScalarObjectiveVector.h>
 #include <core/moeoRealObjectiveVector.h>
+#include <core/moeoDualRealObjectiveVector.h>
 #include <core/moeoRealVector.h>
 #include <core/moeoVector.h>
 
