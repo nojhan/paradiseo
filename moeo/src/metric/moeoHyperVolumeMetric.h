@@ -152,7 +152,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     	if(_set.size() < 1)
     		throw("Error in moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0");
     	else{
-	        double min, max;
+	        typename ObjectiveVector::Type min, max;
 	        unsigned int nbObj=ObjectiveVector::Traits::nObjectives();
 	        bounds.resize(nbObj);
 	        for (unsigned int i=0; i<nbObj; i++){

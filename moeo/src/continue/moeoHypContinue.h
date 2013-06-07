@@ -80,7 +80,7 @@ public:
             bestCurrentParetoSet.push_back(arch[i].objectiveVector());
         }
 
-        AtomType hypervolume= metric(bestCurrentParetoSet,OptimSet );
+        double hypervolume= metric(bestCurrentParetoSet,OptimSet );
 
         if (hypervolume==0) {
             eo::log << eo::logging << "STOP in moeoHypContinue: Best ParetoSet has been reached "
