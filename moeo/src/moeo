@@ -127,6 +127,7 @@
 #include <fitness/moeoDominanceRankFitnessAssignment.h>
 #include <fitness/moeoDummyFitnessAssignment.h>
 #include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoExpBinaryIndicatorBasedDualFitnessAssignment.h>
 #include <fitness/moeoFitnessAssignment.h>
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoReferencePointIndicatorBasedFitnessAssignment.h>
