@@ -58,6 +58,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
+    typedef typename ObjectiveVector::Type Type;
 
     /**
      * Ctor.
@@ -72,7 +73,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      * Sets the fitness values for every solution contained in the population _pop
      * @param _pop the population
      */
-    void operator()(eoPop < MOEOT > & _pop)
+    virtual void operator()(eoPop < MOEOT > & _pop)
     {
       // 1 - setting of the bounds
       setup(_pop);
@@ -145,7 +146,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
     /** the scaling factor */
     double kappa;
     /** the computed indicator values */
-    std::vector < std::vector<double> > values;
+    std::vector < std::vector<Type> > values;
 
 
     /**
@@ -181,6 +182,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
       for (unsigned int i=0; i<_pop.size(); i++)
         {
           values[i].resize(_pop.size());
+          // the metric may not be symetric, thus neither is the matrix
           for (unsigned int j=0; j<_pop.size(); j++)
             {
               if (i != j)
@@ -193,10 +195,10 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
 
 
     /**
-     * Sets the fitness value of the whple population
+     * Sets the fitness value of the whole population
      * @param _pop the population
      */
-    void setFitnesses(eoPop < MOEOT > & _pop)
+    virtual void setFitnesses(eoPop < MOEOT > & _pop)
     {
       for (unsigned int i=0; i<_pop.size(); i++)
         {
@@ -209,9 +211,9 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      * Returns the fitness value of the _idx th individual of the population
      * @param _idx the index
      */
-    double computeFitness(const unsigned int _idx)
+    Type computeFitness(const unsigned int _idx)
     {
-      double result = 0;
+      Type result(0.0);
       for (unsigned int i=0; i<values.size(); i++)
         {
           if (i != _idx)
