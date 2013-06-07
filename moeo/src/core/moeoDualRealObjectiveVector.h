@@ -33,17 +33,19 @@ Authors:
 
 #include <comparator/moeoObjectiveObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
-#include <core/moeoRealObjectiveVector.h>
+#include <core/moeoScalarObjectiveVector.h>
 
-template < class ObjectiveVectorTraits >
-class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVectorTraits, eoMinimizingDualFitness >
+template < class ObjectiveVectorTraits, class T = eoMinimizingDualFitness /* can be an eoMaximizingDualFitness */>
+class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVectorTraits, T >
 {
     protected:
         bool _is_feasible;
 
     public:
 
-        moeoDualRealObjectiveVector(double value=0.0) : moeoScalarObjectiveVector<ObjectiveVectorTraits, eoMinimizingDualFitness >(value, false) {}
+        moeoDualRealObjectiveVector(double value=0.0) 
+            : moeoScalarObjectiveVector<ObjectiveVectorTraits, eoMinimizingDualFitness >
+              ( T(value, false) ) {}
 
         bool is_feasible() const
         {
