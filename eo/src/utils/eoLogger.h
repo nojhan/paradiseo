@@ -91,6 +91,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include <vector>
 #include <string>
 #include <iosfwd>
+#include <fstream>
 
 #include "eoObject.h"
 #include "eoParser.h"
@@ -113,12 +114,12 @@ namespace eo
     /**
      * file
      * this structure combined with the friend operator<< below is an easy way to select a file as output.
-     */
+     *
     struct file
     {
         explicit file(const std::string f);
         const std::string _f;
-    };
+    };*/
 
     /**
      * setlevel
@@ -146,7 +147,7 @@ public:
     eoLogger();
 
     //! overidded ctor in order to instanciate a logger with a file define in parameter
-    eoLogger(eo::file file);
+    //eoLogger(eo::file file);
 
     //! dtor
     ~eoLogger();
@@ -189,11 +190,12 @@ private:
     class outbuf : public std::streambuf
     {
     public:
-        outbuf(const int& fd, const eo::Levels& contexlvl, const eo::Levels& selectedlvl);
+        outbuf(const eo::Levels& contexlvl, const eo::Levels& selectedlvl);
+        std::ostream * _outStream;
+        std::ofstream * _ownedFileStream;
     protected:
         virtual int overflow(int_type c);
     private:
-        const int& _fd;
         const eo::Levels& _contextLevel;
         const eo::Levels& _selectedLevel;
     };
@@ -212,23 +214,32 @@ public:
     friend eoLogger& operator<<(eoLogger&, const eo::Levels);
 
     /**
-     * operator<< used there to set a filename through the class file.
-     */
-    //! in order to use stream style to define a file to dump instead the standart output
-    friend eoLogger& operator<<(eoLogger&, eo::file);
-
-    /**
      * operator<< used there to set a verbose level through the class setlevel.
      */
     //! in order to use stream style to define manually the verbose level instead using options
     friend eoLogger& operator<<(eoLogger&, eo::setlevel);
 
     /**
+     * DEPRECATED: Use instead the redirectTo method
      * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to a standard output.
      */
     //! in order to use stream style to go back to a standart output defined by STL
     //! and to get retro-compatibility
+#warning deprecated
     friend eoLogger& operator<<(eoLogger&, std::ostream&);
+
+    /**
+     * Redirects the logger to a given output stream. Closing the stream and returning its memory is at the charge of the caller,
+     * but should not be done while the log is still redirected to it.
+     */
+    void redirect(std::ostream&);
+
+    /**
+     * Redirects the logger to a file using a filename.
+     * Closing the file will be done automatically when the logger is redirected again or destroyed.
+     */
+    void redirect(const char * filename);
+    void redirect(const std::string& filename);
 
 private:
     friend void make_verbose(eoParser&);
@@ -244,13 +255,7 @@ private:
     eo::Levels _contextLevel;
 
     /**
-     * _fd in storing the file descriptor at this place we can disable easily the buffer in
-     * changing the value at -1. It is used by operator <<.
-     */
-    int _fd;
-
-    /**
-     * _obuf std::ostream mandates to use a buffer. _obuf is a outbuf inheriting of std::streambuf.
+     * _obuf std::ostream mandates to use a buffer. _obuf is a outbuf inheriting from std::streambuf.
      */
     outbuf _obuf;
 
