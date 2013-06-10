@@ -29,10 +29,7 @@ int main(int ac, char** av)
 
     eo::log << "We are writing on the default output stream" << std::endl;
 
-    //eo::log << eo::file("test.txt") << "In FILE" << std::endl;
-
     std::ofstream ofs("logtest.txt");
-    //eo::log << ofs << "In FILE" << std::endl;
     eo::log.redirect(ofs);
     eo::log << "In FILE" << std::endl;
     
@@ -40,14 +37,11 @@ int main(int ac, char** av)
     eo::log << "In FILE 2" << std::endl;
 
     std::ostringstream oss;
-    //eo::log << oss << "In STRINGSTREAM";
     eo::log.redirect(oss);
     eo::log << oss << "In STRINGSTREAM";
     
-    //ofs << oss;
     std::cout << "Content of ostringstream: " << oss.str() << std::endl;
 
-    //eo::log << std::cout << "on COUT" << std::endl;
     eo::log.redirect(std::cout);
     eo::log << "on COUT" << std::endl;
 

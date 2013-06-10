@@ -30,56 +30,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 
  Global logger for EO.
 
- Here's an example explaning how to use eoLogger:
-\code
-    #include <eo>
-
-    int	main(int ac, char** av)
-    {
-    // We are declaring the usual eoParser class
-    eoParser parser(ac, av);
-
-    // This call is important to allow -v parameter to change user level.
-    make_verbose(parser);
-
-    // At this time we are switching to warning message and messages
-    // which are going to follow it are going to be warnings message too.
-    // These messages can be displayed only if the user level (sets with
-    // eo::setlevel function) is set to eo::warnings.
-    eo::log << eo::warnings;
-
-    // With the following eo::file function we are defining that
-    // all future logs are going to this new file resource which is
-    // test.txt
-    eo::log << eo::file("test.txt") << "In FILE" << std::endl;
-
-    // Now we are changing again the resources destination to cout which
-    // is the standard output.
-    eo::log << std::cout << "In COUT" << std::endl;
-
-    // Here are 2 differents examples of how to set the errors user level
-    // in using either a string or an identifier.
-    eo::log << eo::setlevel("errors");
-    eo::log << eo::setlevel(eo::errors);
-
-    // Now we are writting a message, that will be displayed only if we are above the "quiet" level
-    eo::log << eo::quiet << "1) Must be in quiet mode to see that" << std::endl;
-
-    // And so on...
-    eo::log << eo::setlevel(eo::warnings) << eo::warnings << "2) Must be in warnings mode to see that" << std::endl;
-
-    eo::log << eo::setlevel(eo::logging);
-
-    eo::log << eo::errors;
-    eo::log << "3) Must be in errors mode to see that";
-    eo::log << std::endl;
-
-    eo::log << eo::debug << 4 << ')'
-    << " Must be in debug mode to see that\n";
-
-    return 0;
-    }
-\endcode
+ For an example explaning of how to use eoLogger, see paradiseo/eo/test/t-eoLogger.cpp
 
 @{
 */
@@ -220,7 +171,7 @@ public:
     friend eoLogger& operator<<(eoLogger&, eo::setlevel);
 
     /**
-     * DEPRECATED: Use instead the redirectTo method
+     * DEPRECATED: Use instead the redirect method
      * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to a standard output.
      */
     //! in order to use stream style to go back to a standart output defined by STL
@@ -230,7 +181,7 @@ public:
 
     /**
      * Redirects the logger to a given output stream. Closing the stream and returning its memory is at the charge of the caller,
-     * but should not be done while the log is still redirected to it.
+     * but should not be done while the logger is still redirected to it.
      */
     void redirect(std::ostream&);
 
@@ -249,7 +200,7 @@ private:
     eoValueParam<std::string> _output;
 
     /**
-     * _selectedLevel is the member storing verbose level setted by the user thanks to operator()
+     * _selectedLevel is the member storing verbose level set by the user thanks to operator()
      */
     eo::Levels _selectedLevel;
     eo::Levels _contextLevel;

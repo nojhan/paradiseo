@@ -41,8 +41,8 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include "eoLogger.h"
 
 /* TODO?
-- changer oprateurs
-- virer la structure "file"
+add a possibility to redirect to several streams
+add_redirect/remove_redirect
 */
 
 void eoLogger::_init()
