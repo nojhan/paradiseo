@@ -85,8 +85,9 @@ public:
         _is_feasible(false)
     {}
 
-    //! Empty initialization
+    //! Initialization with only the value, the fitness will be unfeasible.
     /*!
+     * WARNING: this is what is used when you initialize a new fitness from a double.
      * Unfeasible by default
      */
     template<class T>
@@ -137,7 +138,7 @@ public:
     }
 
     //! Copy operator from a std::pair
-    eoDualFitness& operator=(const std::pair<BaseType,bool>& v)
+    eoDualFitness& operator=( const std::pair<BaseType, bool>& v )
     {
         this->_value = v.first;
         this->_is_feasible = v.second;
@@ -146,7 +147,7 @@ public:
 
     //! Copy operator from another eoDualFitness
     template <class F, class Cmp>
-    eoDualFitness<BaseType,Compare> & operator=(const eoDualFitness<BaseType, Compare>& other )
+    eoDualFitness<BaseType,Compare> & operator=( const eoDualFitness<BaseType, Compare>& other )
     {
         if (this != &other) {
             this->_value = other._value;
