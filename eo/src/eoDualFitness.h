@@ -146,7 +146,7 @@ public:
 
     //! Copy operator from another eoDualFitness
     template <class F, class Cmp>
-    eoDualFitness<F,Cmp> & operator=(const eoDualFitness<BaseType, Compare>& other )
+    eoDualFitness<BaseType,Compare> & operator=(const eoDualFitness<BaseType, Compare>& other )
     {
         if (this != &other) {
             this->_value = other._value;
@@ -215,9 +215,15 @@ public:
     // (for minimizing and maximizing)
 
     //! Add a given fitness to the current one
-    template <class F, class Cmp>
-    // friend
-    eoDualFitness<F,Cmp> & operator+=( /*eoDualFitness<F,Cmp> & from,*/ const eoDualFitness<F,Cmp> & that )
+    template<class T>
+    eoDualFitness<BaseType,Compare> & operator+=( const T that )
+    {
+        this->_value += that;
+        return *this;
+    }
+
+    //! Add a given fitness to the current one
+    eoDualFitness<BaseType,Compare> & operator+=( const eoDualFitness<BaseType,Compare> & that )
     {
         // from._value += that._value;
         this->_value += that._value;
@@ -230,8 +236,15 @@ public:
     }
 
     //! Substract a given fitness to the current one
-    template <class F, class Cmp>
-    eoDualFitness<F,Cmp> & operator-=( const eoDualFitness<F,Cmp> & that )
+    template<class T>
+    eoDualFitness<BaseType,Compare> & operator-=( const T that )
+    {
+        this->_value -= that;
+        return *this;
+    }
+
+    //! Substract a given fitness to the current one
+    eoDualFitness<BaseType,Compare> & operator-=( const eoDualFitness<BaseType,Compare> & that )
     {
         this->_value -= that._value;
 
@@ -241,27 +254,17 @@ public:
         return *this;
     }
 
+
     //! Add a given fitness to the current one
-    template <class T, class F, class Cmp>
-    eoDualFitness<F,Cmp> & operator+=( const T that )
+    template<class T>
+    eoDualFitness<BaseType,Compare> & operator/=( T that )
     {
-        this->_value += that;
+        this->_value /= that;
         return *this;
     }
 
-    //! Substract a given fitness to the current one
-    template <class T, class F, class Cmp>
-    eoDualFitness<F,Cmp> & operator-=( const T that )
-    {
-        this->_value -= that;
-        return *this;
-    }
-
-
-
     //! Add a given fitness to the current one
-    template <class F, class Cmp>
-    eoDualFitness<F,Cmp> & operator/=( const eoDualFitness<F,Cmp> & that )
+    eoDualFitness<BaseType,Compare> & operator/=( const eoDualFitness<BaseType,Compare> & that )
     {
         this->_value /= that._value;
 
@@ -271,61 +274,69 @@ public:
         return *this;
     }
 
-
-    //! Add a given fitness to the current one
-    template <class T, class F, class Cmp>
-    eoDualFitness<F,Cmp> & operator/=( T that )
+    template<class T>
+    eoDualFitness<BaseType,Compare> operator+( T that )
     {
-        this->_value /= that;
-
+        this->_value += that;
         return *this;
     }
 
     // Add this fitness's value to that other, and return a _new_ instance with the result.
-    template <class F, class Cmp>
-    eoDualFitness<F,Cmp> operator+(const eoDualFitness<F,Cmp> & that)
+    eoDualFitness<BaseType,Compare> operator+( const eoDualFitness<BaseType,Compare> & that )
     {
-        eoDualFitness<F,Cmp> from( *this );
+        eoDualFitness<BaseType,Compare> from( *this );
         return from += that;
     }
 
-    // Add this fitness's value to that other, and return a _new_ instance with the result.
-    template <class F, class Cmp>
-    eoDualFitness<F,Cmp> operator-(const eoDualFitness<F,Cmp> & that)
+    template<class T>
+    eoDualFitness<BaseType,Compare> operator-( T that )
     {
-        eoDualFitness<F,Cmp> from( *this );
+        this->_value -= that;
+        return *this;
+    }
+
+    // Add this fitness's value to that other, and return a _new_ instance with the result.
+    eoDualFitness<BaseType,Compare> operator-( const eoDualFitness<BaseType,Compare> & that )
+    {
+        eoDualFitness<BaseType,Compare> from( *this );
         return from -= that;
     }
 
 
-    // Add this fitness's value to that other, and return a _new_ instance with the result.
-    template <class F, class Cmp>
-    eoDualFitness<F,Cmp> operator/(const eoDualFitness<F,Cmp> & that)
+    template<class T>
+    eoDualFitness<BaseType,Compare> operator/( T that )
     {
-        eoDualFitness<F,Cmp> from( *this );
+        this->_value /= that;
+        return *this;
+    }
+
+    // Add this fitness's value to that other, and return a _new_ instance with the result.
+    eoDualFitness<BaseType,Compare> operator/( const eoDualFitness<BaseType,Compare> & that )
+    {
+        eoDualFitness<BaseType,Compare> from( *this );
         return from /= that;
     }
 
     //! Print an eoDualFitness instance as a pair of numbers, separated by a space
-    template <class F, class Cmp>
-    std::ostream& operator<<(std::ostream& os)
+    friend
+    std::ostream& operator<<( std::ostream& os, const eoDualFitness<BaseType,Compare> & fitness )
     {
-        os << this->_value << " " << this->_is_feasible;
+        os << fitness._value << " " << fitness._is_feasible;
         return os;
     }
 
     //! Read an eoDualFitness instance as a pair of numbers, separated by a space
-    template <class F, class Cmp>
-    std::istream& operator>>(std::istream& is)
+    friend
+    std::istream& operator>>( std::istream& is, eoDualFitness<BaseType,Compare> & fitness )
     {
-        F value;
+        BaseType value;
         is >> value;
 
         bool feasible;
         is >> feasible;
 
-        this->_value = value;
-        this->_is_feasible = feasible;
+        fitness._value = value;
+        fitness._is_feasible = feasible;
         return is;
     }
 };
