@@ -1,6 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 /*
+
 (c) Thales group, 2010
 
     This library is free software; you can redistribute it and/or
@@ -46,6 +47,14 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 #include "eoObject.h"
 #include "eoParser.h"
+
+#define USE_SET
+#undef USE_SET
+
+#ifdef USE_SET
+#include <set>
+#endif
+
 
 namespace eo
 {
@@ -133,6 +142,12 @@ private:
     //! used by the set of ctors to initiate some useful variables
     void _init();
 
+    //! helper function regrouping redirection operations; takes a pointer because can be given NULL
+    void doRedirect(std::ostream*);
+
+    //! helper function searching for a stream and removing it, returning true if successful, false otherwise
+    bool tryRemoveRedirect(std::ostream*);
+
 private:
     /**
      * outbuf
@@ -142,7 +157,14 @@ private:
     {
     public:
         outbuf(const eo::Levels& contexlvl, const eo::Levels& selectedlvl);
-        std::ostream * _outStream;
+        //std::ostream * _outStream;
+    
+    #ifdef USE_SET
+        std::set<std::ostream*> _outStreams;
+    #else
+        std::vector<std::ostream*> _outStreams;
+    #endif
+    
         std::ofstream * _ownedFileStream;
     protected:
         virtual int overflow(int_type c);
@@ -171,12 +193,8 @@ public:
     friend eoLogger& operator<<(eoLogger&, eo::setlevel);
 
     /**
-     * DEPRECATED: Use instead the redirectTo method
-     * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to a standard output.
+     * DEPRECATED: Use instead the redirect or addRedirect method; has the same effect as addRedirect
      */
-    //! in order to use stream style to go back to a standart output defined by STL
-    //! and to get retro-compatibility
-#warning deprecated
     friend eoLogger& operator<<(eoLogger&, std::ostream&);
 
     /**

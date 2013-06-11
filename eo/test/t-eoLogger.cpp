@@ -13,6 +13,19 @@
 
 //-----------------------------------------------------------------------------
 
+static void test();
+
+static void test2()
+{
+    #define NB 100
+    std::ostream* os = (std::ostream*) 1;
+    eo::log.redirect(*os);
+    for (int i = 0; i < NB; i++)
+        eo::log.addRedirect(*(++os));
+    for (int i = 0; i < NB; i++)
+        eo::log.removeRedirect(*(os--));
+}
+
 int main(int ac, char** av)
 {
     eoParser parser(ac, av);
@@ -26,6 +39,15 @@ int main(int ac, char** av)
     make_help(parser);
     make_verbose(parser);
 
+    for (int i = 0; i < 10000; i++)
+        //test();
+        test2();
+
+    return 0;
+}
+
+static void test()
+{
     eo::log << eo::setlevel(eo::debug);
 
     eo::log << eo::warnings;
@@ -33,39 +55,51 @@ int main(int ac, char** av)
     eo::log << "We are writing on the default output stream" << std::endl;
 
     {
-        std::ofstream ofs("logtest.txt");
+        /*std::ofstream ofs("logtest.txt");
         eo::log.redirect(ofs);
         eo::log << "In FILE" << std::endl;
         eo::log.redirect("logtest2.txt");
+        eo::log << "In FILE 2" << std::endl;*/
+        eo::log.redirect("logtest.txt");
+        eo::log << "In FILE" << std::endl;
+        std::ofstream ofs("logtest2.txt");
+        eo::log.addRedirect(ofs);
         eo::log << "In FILE 2" << std::endl;
+        eo::log.removeRedirect(ofs);
     }
 
-    std::ifstream ifs("logtest.txt");
+    std::ifstream ifs("logtest2.txt");
     //ifs >> str;
     std::string line;
     assert(std::getline(ifs, line));
-    assert(line == "In FILE");
+    //std::cout << line << std::endl;
+    assert(line == "In FILE 2");
     //std::cout << (line == "In FILE") << std::endl;
     assert(!std::getline(ifs, line));
 
     std::ostringstream oss;
-    eo::log.redirect(oss);
+    eo::log.addRedirect(oss);
     //eo::log << oss << "In STRINGSTREAM";
     eo::log << "In STRINGSTREAM";
     
     std::cout << "Content of ostringstream: " << oss.str() << std::endl;
     assert(oss.str() == "In STRINGSTREAM");
 
+    eo::log.redirect(std::cout);
+    eo::log << "on COUT" << std::endl;
+
+
     ifs.close();
-    ifs.open("logtest2.txt");
+    ifs.open("logtest.txt");
+    assert(std::getline(ifs, line));
+    assert(line == "In FILE");
     assert(std::getline(ifs, line));
     assert(line == "In FILE 2");
+    assert(std::getline(ifs, line));
+    assert(line == "In STRINGSTREAM");
     assert(!std::getline(ifs, line));
     //assert(false);
 
-
-    eo::log.redirect(std::cout);
-    eo::log << "on COUT" << std::endl;
 
     eo::log << eo::setlevel("errors");
     eo::log << eo::setlevel(eo::errors);
@@ -82,8 +116,7 @@ int main(int ac, char** av)
 
     eo::log << eo::debug << 4 << ')'
         << "4) in debug mode\n";
-
-    return 0;
+    
 }
 
 //-----------------------------------------------------------------------------
