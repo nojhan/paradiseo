@@ -10,6 +10,9 @@ protected:
 
 public:
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+    typedef typename ObjectiveVector::Type Type;
+
+    using moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>::values;
 
     moeoExpBinaryIndicatorBasedDualFitnessAssignment(
             moeoNormalizedSolutionVsSolutionBinaryMetric<ObjectiveVector,double> & metric,
@@ -54,11 +57,33 @@ public:
         this->setFitnesses(*ppop);
     }
 
+    /**
+     * Compute every indicator value in values (values[i] = I(_v[i], _o))
+     * @param _pop the population
+     */
+    void computeValues(const eoPop < MOEOT > & _pop)
+    {
+      values.clear();
+      values.resize(_pop.size());
+      for (unsigned int i=0; i<_pop.size(); i++)
+        {
+          values[i].resize(_pop.size());
+          // the metric may not be symetric, thus neither is the matrix
+          for (unsigned int j=0; j<_pop.size(); j++)
+            {
+              if (i != j)
+                {
+                  values[i][j] = Type( metric(_pop[i].objectiveVector(), _pop[j].objectiveVector()), _pop[i].objectiveVector().is_feasible() );
+                }
+            }
+        }
+    }
+
     virtual void setFitnesses(eoPop < MOEOT > & pop)
     {
         for (unsigned int i=0; i<pop.size(); i++) {
             // We should maintain the feasibility of the fitness across computations
-            pop[i].fitness( this->computeFitness(i), pop[i].is_feasible() );
+            pop[i].fitness( this->computeFitness(i), pop[i].fitness().is_feasible() );
         }
     }
 

@@ -187,7 +187,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
             {
               if (i != j)
                 {
-                  values[i][j] = metric(_pop[i].objectiveVector(), _pop[j].objectiveVector());
+                  values[i][j] = Type( metric(_pop[i].objectiveVector(), _pop[j].objectiveVector()) );
                 }
             }
         }
