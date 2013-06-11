@@ -22,8 +22,12 @@ static void test2()
     eo::log.redirect(*os);
     for (int i = 0; i < NB; i++)
         eo::log.addRedirect(*(++os));
+    /*
     for (int i = 0; i < NB; i++)
-        eo::log.removeRedirect(*(os--));
+        eo::log.removeRedirect(*(os--));*/
+    os = (std::ostream*) 1;
+    for (int i = 0; i < NB; i++)
+        eo::log.removeRedirect(*(++os));
 }
 
 int main(int ac, char** av)

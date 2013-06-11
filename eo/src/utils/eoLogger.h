@@ -49,7 +49,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include "eoParser.h"
 
 #define USE_SET
-#undef USE_SET
+//#undef USE_SET
 
 #ifdef USE_SET
 #include <set>
