@@ -35,7 +35,7 @@ Authors:
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <core/moeoScalarObjectiveVector.h>
 
-template < class ObjectiveVectorTraits, class T = eoMinimizingDualFitness /* can be an eoMaximizingDualFitness */>
+template < class ObjectiveVectorTraits, class T = eoMaximizingDualFitness /* can be an eoMinimizingDualFitness */>
 class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVectorTraits, T >
 {
     protected:
@@ -43,14 +43,17 @@ class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVe
 
     public:
 
+        using moeoScalarObjectiveVector < ObjectiveVectorTraits, T >::size;
+        using moeoScalarObjectiveVector < ObjectiveVectorTraits, T >::operator[];
+
         moeoDualRealObjectiveVector(double value=0.0, bool feasible = false)
-            : moeoScalarObjectiveVector<ObjectiveVectorTraits, eoMinimizingDualFitness >
+            : moeoScalarObjectiveVector<ObjectiveVectorTraits,T>
               ( T(value, feasible) ) {}
 
         bool is_feasible() const
         {
 #ifndef NDEBUG
-            // if the feasibility is correctly assigned, 
+            // if the feasibility is correctly assigned,
             // every scalar's feasibility should be equal to the objective vector
             for( typename moeoDualRealObjectiveVector::const_iterator it = this->begin(), end = this->end(); it != end; ++it ) {
                 assert( it->is_feasible() == _is_feasible );
@@ -119,13 +122,14 @@ class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVe
  * @param _os output stream
  * @param _objectiveVector the objective vector to write
  */
-template < class ObjectiveVectorTraits >
-std::ostream & operator<<(std::ostream & _os, const moeoDualRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
+template<class ObjectiveVectorTraits, class T>
+std::ostream & operator<<( std::ostream & _os, const moeoDualRealObjectiveVector<ObjectiveVectorTraits,T> & _objectiveVector )
 {
-  for (unsigned int i=0; i<_objectiveVector.size()-1; i++)
-      _os << _objectiveVector[i] << " ";
-  _os << _objectiveVector[_objectiveVector.size()-1];
-  return _os;
+    for( unsigned int i=0; i<_objectiveVector.size()-1; i++ ) {
+        _os << _objectiveVector[i] << " ";
+    }
+    _os << _objectiveVector[_objectiveVector.size()-1];
+    return _os;
 }
 
 /**
@@ -133,15 +137,14 @@ std::ostream & operator<<(std::ostream & _os, const moeoDualRealObjectiveVector 
  * @param _is input stream
  * @param _objectiveVector the objective vector to read
  */
-template < class ObjectiveVectorTraits >
-std::istream & operator>>(std::istream & _is, moeoDualRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
+template<class ObjectiveVectorTraits, class T>
+std::istream & operator>>( std::istream & _is, moeoDualRealObjectiveVector<ObjectiveVectorTraits,T> & _objectiveVector )
 {
-  _objectiveVector = moeoDualRealObjectiveVector < ObjectiveVectorTraits > ();
-  for (unsigned int i=0; i<_objectiveVector.size(); i++)
-    {
-      _is >> _objectiveVector[i];
+    _objectiveVector = moeoDualRealObjectiveVector<ObjectiveVectorTraits,T> ();
+    for( unsigned int i=0; i<_objectiveVector.size(); i++ ) {
+        _is >> _objectiveVector[i];
     }
-  return _is;
+    return _is;
 }
 
 
