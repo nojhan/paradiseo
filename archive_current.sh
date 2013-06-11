@@ -1,3 +1,5 @@
 today=`date --iso-8601`
-git archive --format zip master > paradisEO-${today}.zip
+name=paradiseo_$today
+git archive --prefix=$name/ --format zip master > $name.zip
+echo $name.zip
 

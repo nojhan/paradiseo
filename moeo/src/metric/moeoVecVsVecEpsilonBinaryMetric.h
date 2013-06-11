@@ -109,7 +109,7 @@ public:
      * @param _set2 the second vector of objective vectors
      */
     void setup(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2){
-        double min, max;
+        typename ObjectiveVector::Type min, max;
         unsigned int nbObj=ObjectiveVector::Traits::nObjectives();
         bounds.resize(nbObj);
         for (unsigned int i=0; i<nbObj; i++){

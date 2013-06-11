@@ -27,9 +27,12 @@
 #ifndef _eoRealBounds_h
 #define _eoRealBounds_h
 
+#include <cassert>
 #include <sstream>
 #include <stdexcept>               // std::exceptions!
+
 #include <utils/eoRNG.h>
+#include "eoLogger.h"
 
 /**
 \defgroup Real Vector of reals
@@ -231,7 +234,7 @@ public :
         assert( repRange >= 0 );
 #ifndef NDEBUG
         if( repRange == 0 ) {
-            eo::log << eo::warnings << "Null range in eoRealBounds (min=" << _min << ", max=" << _max << ")" << std::endl;
+            eo::log << eo::warnings << "Warning: null range in eoRealBounds (min=" << _min << ", max=" << _max << ")" << std::endl;
         }
 #endif
     }

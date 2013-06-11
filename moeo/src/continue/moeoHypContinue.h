@@ -46,32 +46,45 @@
 #include <archive/moeoUnboundedArchive.h>
 
 /**
-  Continues until the optimum ParetoSet level is reached.
+  Continues until the given ParetoSet level is reached.
 
   @ingroup Continuators
   */
-template< class MOEOT>
+template< class MOEOT, class MetricT = moeoHyperVolumeDifferenceMetric<typename MOEOT::ObjectiveVector> >
 class moeoHypContinue: public eoContinue<MOEOT>
 {
 public:
 
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+    typedef typename ObjectiveVector::Type AtomType;
 
     /// Ctor
-    moeoHypContinue(  const std::vector<double> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, double _rho=1.1)
+    moeoHypContinue(  const std::vector<AtomType> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, double _rho=1.1)
         : eoContinue<MOEOT>(), arch(_archive), metric(_normalize,_rho)
     {
         vectorToParetoSet(_OptimVec);
     }
 
-    moeoHypContinue( const std::vector<double> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, ObjectiveVector& _ref_point=NULL)
+    moeoHypContinue( const std::vector<AtomType> & _OptimVec, moeoArchive < MOEOT > & _archive,  bool _normalize=true, ObjectiveVector& _ref_point=NULL)
         : eoContinue<MOEOT> (), arch(_archive), metric(_normalize,_ref_point)
     {
         vectorToParetoSet(_OptimVec);
     }
 
+
     /** Returns false when a ParetoSet is reached. */
     virtual bool operator() ( const eoPop<MOEOT>& _pop )
+    {
+        std::vector<ObjectiveVector> bestCurrentParetoSet = pareto( arch );
+
+        return is_null_hypervolume( bestCurrentParetoSet );
+    }
+
+    virtual std::string className(void) const { return "moeoHypContinue"; }
+
+protected:
+
+    std::vector<ObjectiveVector> pareto( moeoArchive<MOEOT> & _archive )
     {
         std::vector < ObjectiveVector > bestCurrentParetoSet;
 
@@ -79,7 +92,12 @@ public:
             bestCurrentParetoSet.push_back(arch[i].objectiveVector());
         }
 
-        double hypervolume= metric(bestCurrentParetoSet,OptimSet );
+        return bestCurrentParetoSet;
+    }
+
+    bool is_null_hypervolume( std::vector<ObjectiveVector>& bestCurrentParetoSet )
+    {
+        double hypervolume= metric( bestCurrentParetoSet, OptimSet );
 
         if (hypervolume==0) {
             eo::log << eo::logging << "STOP in moeoHypContinue: Best ParetoSet has been reached "
@@ -90,7 +108,7 @@ public:
     }
 
     /** Translate a vector given as param to the ParetoSet that should be reached. */
-    void vectorToParetoSet(const std::vector<double> & _OptimVec)
+    virtual void vectorToParetoSet(const std::vector<AtomType> & _OptimVec)
     {
         unsigned dim = (unsigned)(_OptimVec.size()/ObjectiveVector::Traits::nObjectives());
         OptimSet.resize(dim);
@@ -103,12 +121,98 @@ public:
         }
     }
 
-    virtual std::string className(void) const { return "moeoHypContinue"; }
-
-private:
+protected:
     moeoArchive <MOEOT> & arch;
-    moeoHyperVolumeDifferenceMetric <ObjectiveVector> metric;
+    MetricT metric;
     std::vector <ObjectiveVector> OptimSet;
+};
+
+
+/**
+  Continues until the (feasible or unfeasible) given Pareto set is reached.
+
+
+  @ingroup Continuators
+  */
+template< class MOEOT, class MetricT = moeoDualHyperVolumeDifferenceMetric<typename MOEOT::ObjectiveVector> >
+class moeoDualHypContinue: public moeoHypContinue<MOEOT, MetricT >
+{
+protected:
+    bool is_feasible;
+
+    using moeoHypContinue<MOEOT, MetricT>::arch;
+    using moeoHypContinue<MOEOT, MetricT>::OptimSet;
+
+public:
+    typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+    typedef typename ObjectiveVector::Type AtomType;
+
+    /** A continuator that stops once a given Pareto front has been reached
+     *
+     * You should specify the feasibility of the targeted front.
+     * NOTE: the MOEOT::ObjectiveVector is supposed to implement the moeoDualRealObjectiveVector interface.
+     *
+     */
+    moeoDualHypContinue<MOEOT, MetricT>( const std::vector<AtomType> & _OptimVec, bool _is_feasible, moeoArchive < MOEOT > & _archive,  bool _normalize=true, double _rho=1.1 )
+        : moeoHypContinue<MOEOT, MetricT>( _OptimVec, _archive, _normalize, _rho ), is_feasible(_is_feasible)
+    {
+        assert( _OptimVec.size() > 0);
+        vectorToParetoSet(_OptimVec);
+    }
+
+    /** A continuator that stops once a given Pareto front has been reached
+     *
+     * You should specify the feasibility of the targeted front.
+     * NOTE: the MOEOT::ObjectiveVector is supposed to implement the moeoDualRealObjectiveVector interface.
+     *
+     */
+    moeoDualHypContinue<MOEOT, MetricT>( const std::vector<AtomType> & _OptimVec, bool _is_feasible, moeoArchive < MOEOT > & _archive,  bool _normalize=true, ObjectiveVector& _ref_point=NULL )
+        : moeoHypContinue<MOEOT, MetricT>( _OptimVec, _archive, _normalize, _ref_point ), is_feasible(_is_feasible)
+    {
+        assert( _OptimVec.size() > 0);
+        vectorToParetoSet(_OptimVec);
+    }
+
+    /** Returns false when a ParetoSet is reached. */
+    virtual bool operator() ( const eoPop<MOEOT>& _pop )
+    {
+        std::vector<ObjectiveVector> bestCurrentParetoSet = pareto( arch );
+
+#ifndef NDEBUG
+        assert( bestCurrentParetoSet.size() > 0 );
+        for( unsigned int i=1; i<bestCurrentParetoSet.size(); ++i ) {
+            assert( bestCurrentParetoSet[i].is_feasible() == bestCurrentParetoSet[0].is_feasible() );
+        }
+#endif
+
+        // The current Pareto front is either feasible or unfeasible.
+        // It could not contains both kind of objective vectors, because a feasible solution always dominates an unfeasible front.
+        if( bestCurrentParetoSet[0].is_feasible() != OptimSet[0].is_feasible() ) {
+            return false;
+        }
+
+        return is_null_hypervolume( bestCurrentParetoSet );
+    }
+
+protected:
+
+    using moeoHypContinue<MOEOT, MetricT>::pareto;
+    using moeoHypContinue<MOEOT, MetricT>::is_null_hypervolume;
+
+    /** Translate a vector given as param to the ParetoSet that should be reached. */
+    virtual void vectorToParetoSet(const std::vector<AtomType> & _OptimVec)
+    {
+        unsigned dim = (unsigned)(_OptimVec.size()/ObjectiveVector::Traits::nObjectives());
+        OptimSet.resize(dim);
+
+        unsigned k=0;
+        for(size_t i=0; i < dim; i++) {
+            for (size_t j=0; j < ObjectiveVector::Traits::nObjectives(); j++) {
+                // Use the feasibility declaration of an eoDualFitness
+                OptimSet[i][j] = AtomType(_OptimVec[k++], is_feasible);
+            }
+        }
+    }
 };
 
 #endif
