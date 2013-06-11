@@ -30,7 +30,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 
  Global logger for EO.
 
- For an example explaning of how to use eoLogger, see paradiseo/eo/test/t-eoLogger.cpp
+ For an example explaning how to use eoLogger, please refer to paradiseo/eo/test/t-eoLogger.cpp
 
 @{
 */
@@ -171,7 +171,7 @@ public:
     friend eoLogger& operator<<(eoLogger&, eo::setlevel);
 
     /**
-     * DEPRECATED: Use instead the redirect method
+     * DEPRECATED: Use instead the redirectTo method
      * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to a standard output.
      */
     //! in order to use stream style to go back to a standart output defined by STL
@@ -180,10 +180,26 @@ public:
     friend eoLogger& operator<<(eoLogger&, std::ostream&);
 
     /**
-     * Redirects the logger to a given output stream. Closing the stream and returning its memory is at the charge of the caller,
-     * but should not be done while the logger is still redirected to it.
+     * Redirects the logger to a given output stream.
+     * Closing the stream and returning its memory is at the charge of the caller,
+     * but should not be done while the log is still redirected to it.
+     * This resets all previous redirections set up with redirect and add_redirect.
      */
     void redirect(std::ostream&);
+
+    /**
+     * Adds a redirection from the logger to a given output stream.
+     * Closing the stream and returning its memory is at the charge of the caller,
+     * but should not be done while the log is still redirected to it.
+     * This does not reset previous redirections, which remain active.
+     */
+    void addRedirect(std::ostream&);
+
+    /**
+     * Removes a redirection from the logger to the given output stream.
+     * This only resets the redirection to the stream passed in argument.
+     */
+    void removeRedirect(std::ostream&);
 
     /**
      * Redirects the logger to a file using a filename.
@@ -200,7 +216,7 @@ private:
     eoValueParam<std::string> _output;
 
     /**
-     * _selectedLevel is the member storing verbose level set by the user thanks to operator()
+     * _selectedLevel is the member storing verbose level setted by the user thanks to operator()
      */
     eo::Levels _selectedLevel;
     eo::Levels _contextLevel;
