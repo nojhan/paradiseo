@@ -24,11 +24,48 @@ Lionel Parreaux <lionel.parreaux@gmail.com>
 
 */
 
-/** @defgroup Logging Logging
- * @ingroup Utilities
+/**
+
+A utility class for wrapping non-const references and use them as default arguments in functions.
+
+For example, this is not valid C++98 code:
+
+\code
+struct MyClass {
+	MyClass(T& my_T = default_T)
+	: actual_T(my_T)
+	{ }
+private:
+	T default_T;
+	T& actual_T;
+}
+\endcode
+
+This is the same code using eoOptional, which is valid:
+
+\code
+struct MyClass {
+	MyClass(eoOptional<T> my_T = NULL)
+	: actual_T(my_T.getOr(default_T))
+	{ }
+private:
+	T default_T;
+	T& actual_T;
+}
+\endcode
+
+And from the point of view of the user, it is transparent:
+
+\code
+// Three ways of using MyClass:
+MyClass mc1;
+MyClass mc2(NULL);
+T t;
+MyClass mc3(t);
+\endcode
 
 
-
+@ingroup Utilities
 @{
 */
 
@@ -45,6 +82,11 @@ public:
 	
 	eoOptional (T& init)
 	: _val(&init)
+	{ }
+
+	// used mainly for converting NULL to this
+	eoOptional (T* init)
+	: _val(init)
 	{ }
 	
 	bool hasValue() const
