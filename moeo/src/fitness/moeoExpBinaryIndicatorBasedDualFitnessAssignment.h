@@ -45,6 +45,8 @@ public:
 
 protected:
 
+    using moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>::kappa;
+
     //! Split up the population in two: in one pop the feasible individual, in the other the feasible ones
     virtual void split( eoPop<MOEOT> & pop )
     {
@@ -92,6 +94,19 @@ protected:
             // We should maintain the feasibility of the fitness across computations
             pop[i].fitness( this->computeFitness(i), pop[i].fitness().is_feasible() );
         }
+    }
+
+    virtual Type computeFitness(const unsigned int _idx)
+    {
+      Type result( 0.0, values[_idx][_idx].is_feasible() );
+      for (unsigned int i=0; i<values.size(); i++)
+        {
+          if (i != _idx)
+            {
+              result -= exp(-values[i][_idx]/kappa);
+            }
+        }
+      return result;
     }
 
 
