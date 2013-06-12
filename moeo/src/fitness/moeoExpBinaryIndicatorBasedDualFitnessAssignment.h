@@ -19,27 +19,12 @@ public:
             const double kappa = 0.05
         ) : moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>( metric, kappa ) {}
 
-    //! Split up the population in two: in one pop the feasible individual, in the other the feasible ones
-    virtual void split( eoPop<MOEOT> & pop )
-    {
-          _feasible_pop.reserve(pop.size());
-        _unfeasible_pop.reserve(pop.size());
-
-        for( typename eoPop<MOEOT>::iterator it=pop.begin(), end=pop.end(); it != end; ++it ) {
-            // The ObjectiveVector should implement "is_feasible"
-            if( it->objectiveVector().is_feasible() ) {
-                  _feasible_pop.push_back( *it );
-            } else {
-                _unfeasible_pop.push_back( *it );
-            }
-        }
-    }
 
     /*! If the population is homogeneous (only composed of feasible individuals or unfeasible ones),
      * then apply the operators on the whole population.
      * But, if there is at least one feasible individual, then apply them only on the feasible individuals.
      */
-    virtual void operator()(eoPop < MOEOT > & pop)
+    virtual void operator()( eoPop<MOEOT>& pop )
     {
         // separate the pop in the members
         split( pop );
@@ -57,26 +42,48 @@ public:
         this->setFitnesses(*ppop);
     }
 
+
+protected:
+
+    //! Split up the population in two: in one pop the feasible individual, in the other the feasible ones
+    virtual void split( eoPop<MOEOT> & pop )
+    {
+        // clear previously used populations
+          _feasible_pop.clear();
+        _unfeasible_pop.clear();
+          _feasible_pop.reserve(pop.size());
+        _unfeasible_pop.reserve(pop.size());
+
+        for( typename eoPop<MOEOT>::iterator it=pop.begin(), end=pop.end(); it != end; ++it ) {
+            // The ObjectiveVector should implement "is_feasible"
+            if( it->objectiveVector().is_feasible() ) {
+                  _feasible_pop.push_back( *it );
+            } else {
+                _unfeasible_pop.push_back( *it );
+            }
+        }
+    }
+
     /**
      * Compute every indicator value in values (values[i] = I(_v[i], _o))
      * @param _pop the population
      */
-    void computeValues(const eoPop < MOEOT > & _pop)
+    virtual void computeValues(const eoPop < MOEOT > & pop)
     {
-      values.clear();
-      values.resize(_pop.size());
-      for (unsigned int i=0; i<_pop.size(); i++)
-        {
-          values[i].resize(_pop.size());
-          // the metric may not be symetric, thus neither is the matrix
-          for (unsigned int j=0; j<_pop.size(); j++)
-            {
-              if (i != j)
-                {
-                  values[i][j] = Type( metric(_pop[i].objectiveVector(), _pop[j].objectiveVector()), _pop[i].objectiveVector().is_feasible() );
-                }
-            }
-        }
+        values.clear();
+        values.resize(pop.size());
+        for (unsigned int i=0; i<pop.size(); i++) {
+            values[i].resize(pop.size());
+            // the metric may not be symetric, thus neither is the matrix
+            for (unsigned int j=0; j<pop.size(); j++) {
+                if (i != j) {
+                    values[i][j] = Type(
+                            metric( pop[i].objectiveVector(), pop[j].objectiveVector() ),
+                            pop[i].objectiveVector().is_feasible()
+                        );
+                } // if i != j
+            } // for j in pop
+        } // for i in pop
     }
 
     virtual void setFitnesses(eoPop < MOEOT > & pop)
