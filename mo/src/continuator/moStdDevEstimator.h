@@ -28,7 +28,7 @@ public:
 			eoEvalFunc<EOT>& fullEval,
 			
 			/* The following should be read:
-			moEval<Neighbor> >& eval = _default_eval
+			moEval<Neighbor>& eval = _default_eval
 			* (which is not possible to achieve as is in C++) */
 			const eoOptional< moEval<Neighbor> >& eval = eoOptional< moEval<Neighbor> >::null,
 			
