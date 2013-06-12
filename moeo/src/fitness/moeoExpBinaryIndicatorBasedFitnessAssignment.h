@@ -175,7 +175,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      * Compute every indicator value in values (values[i] = I(_v[i], _o))
      * @param _pop the population
      */
-    void computeValues(const eoPop < MOEOT > & _pop)
+    virtual void computeValues(const eoPop < MOEOT > & _pop)
     {
       values.clear();
       values.resize(_pop.size());
@@ -211,7 +211,7 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      * Returns the fitness value of the _idx th individual of the population
      * @param _idx the index
      */
-    Type computeFitness(const unsigned int _idx)
+    virtual Type computeFitness(const unsigned int _idx)
     {
       Type result(0.0);
       for (unsigned int i=0; i<values.size(); i++)
