@@ -73,7 +73,7 @@ public:
 
 
     /** Returns false when a ParetoSet is reached. */
-    virtual bool operator() ( const eoPop<MOEOT>& _pop )
+    virtual bool operator() ( const eoPop<MOEOT>& /*_pop*/ )
     {
         std::vector<ObjectiveVector> bestCurrentParetoSet = pareto( arch );
 
@@ -143,6 +143,9 @@ protected:
     using moeoHypContinue<MOEOT, MetricT>::arch;
     using moeoHypContinue<MOEOT, MetricT>::OptimSet;
 
+    using moeoHypContinue<MOEOT, MetricT>::pareto;
+    using moeoHypContinue<MOEOT, MetricT>::is_null_hypervolume;
+
 public:
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
     typedef typename ObjectiveVector::Type AtomType;
@@ -174,7 +177,7 @@ public:
     }
 
     /** Returns false when a ParetoSet is reached. */
-    virtual bool operator() ( const eoPop<MOEOT>& _pop )
+    virtual bool operator() ( const eoPop<MOEOT>& /*_pop*/ )
     {
         std::vector<ObjectiveVector> bestCurrentParetoSet = pareto( arch );
 
@@ -195,9 +198,6 @@ public:
     }
 
 protected:
-
-    using moeoHypContinue<MOEOT, MetricT>::pareto;
-    using moeoHypContinue<MOEOT, MetricT>::is_null_hypervolume;
 
     /** Translate a vector given as param to the ParetoSet that should be reached. */
     virtual void vectorToParetoSet(const std::vector<AtomType> & _OptimVec)
