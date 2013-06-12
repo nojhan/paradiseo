@@ -41,10 +41,6 @@ Caner Candan <caner.candan@thalesgroup.com>
 
 #include "eoLogger.h"
 
-/* TODO?
-add a possibility to redirect to several streams
-add_redirect/remove_redirect
-*/
 
 #ifdef USE_SET
 typedef std::set<std::ostream*>::iterator StreamIter;
@@ -85,7 +81,6 @@ eoLogger::eoLogger() :
 
 eoLogger::~eoLogger()
 {
-    //redirect(NULL);
     if (_obuf._ownedFileStream != NULL) {
     	delete _obuf._ownedFileStream;
     }
@@ -187,7 +182,6 @@ void eoLogger::doRedirect(std::ostream* os)
     }
     _obuf._outStreams.clear();
     if (os != NULL)
-        //_obuf._outStreams.push_back(os);
     #ifdef USE_SET
         _obuf._outStreams.insert(os);
     #else
@@ -197,13 +191,7 @@ void eoLogger::doRedirect(std::ostream* os)
 
 void eoLogger::addRedirect(std::ostream& os)
 {
-    /*
-    if (tryRemoveRedirect(&os))
-        //throw eoWrongParamTypeException("Cannot redirect the logger to a stream it is already redirected to");
-        //eo::log << eo::warnings << "Cannot redirect the logger to a stream it is already redirected to.";
-    { eo::log << eo::warnings << "Cannot redirect the logger to a stream it is already redirected to."; std::cout << "OK!!!" << std::endl; }*/
     bool already_there = tryRemoveRedirect(&os);
-    //_obuf._outStreams.push_back(&os);
 #ifdef USE_SET
     _obuf._outStreams.insert(&os);
 #else
@@ -216,33 +204,11 @@ void eoLogger::addRedirect(std::ostream& os)
 void eoLogger::removeRedirect(std::ostream& os)
 {
     if (!tryRemoveRedirect(&os))
-        //throw eoWrongParamTypeException("Cannot remove from the logger a stream it was not redirected to");
-        //throw eoWrongParamTypeException(std::string("Cannot remove from the logger a stream it was not redirected to"));
         eo::log << eo::warnings << "Cannot remove from the logger a stream it was not redirected to.";
 }
 
 bool eoLogger::tryRemoveRedirect(std::ostream* os)
 {
-    /*
-    std::vector<std::ostream*>::iterator it = find(_obuf._outStreams.begin(), _obuf._outStreams.end(), os);
-    //std::cout << _obuf._outStreams.size() << "  " << (void*)&*_obuf._outStreams.begin() << "  " << (void*)&*_obuf._outStreams.end() << std::endl;
-    //std::cout << "it: " << (void*)&*it << "  " << (void*)os << std::endl;
-    if (it == _obuf._outStreams.end())
-        return false;
-    _obuf._outStreams.erase(it);
-    return true;*/
-    /*
-#ifdef USE_SET
-    std::set<std::ostream*>::iterator it = find(_obuf._outStreams.begin(), _obuf._outStreams.end(), os);
-    if (it == _obuf._outStreams.end())
-        return false;
-    _obuf._outStreams.erase(it);
-#else
-    std::vector<std::ostream*>::iterator it = find(_obuf._outStreams.begin(), _obuf._outStreams.end(), os);
-    if (it == _obuf._outStreams.end())
-        return false;
-    _obuf._outStreams.erase(it);
-#endif*/
     StreamIter it = find(_obuf._outStreams.begin(), _obuf._outStreams.end(), os);
     if (it == _obuf._outStreams.end())
         return false;

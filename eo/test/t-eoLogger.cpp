@@ -9,26 +9,9 @@
 #include <string>
 #include <cassert>
 
-// TODO test multiple redirection
-
 //-----------------------------------------------------------------------------
 
 static void test();
-
-static void test2()
-{
-    #define NB 100
-    std::ostream* os = (std::ostream*) 1;
-    eo::log.redirect(*os);
-    for (int i = 0; i < NB; i++)
-        eo::log.addRedirect(*(++os));
-    /*
-    for (int i = 0; i < NB; i++)
-        eo::log.removeRedirect(*(os--));*/
-    os = (std::ostream*) 1;
-    for (int i = 0; i < NB; i++)
-        eo::log.removeRedirect(*(++os));
-}
 
 int main(int ac, char** av)
 {
@@ -43,9 +26,7 @@ int main(int ac, char** av)
     make_help(parser);
     make_verbose(parser);
 
-    for (int i = 0; i < 10000; i++)
-        //test();
-        test2();
+    test();
 
     return 0;
 }
@@ -59,37 +40,28 @@ static void test()
     eo::log << "We are writing on the default output stream" << std::endl;
 
     {
-        /*std::ofstream ofs("logtest.txt");
-        eo::log.redirect(ofs);
-        eo::log << "In FILE" << std::endl;
-        eo::log.redirect("logtest2.txt");
-        eo::log << "In FILE 2" << std::endl;*/
         eo::log.redirect("logtest.txt");
         eo::log << "In FILE" << std::endl;
-        std::ofstream ofs("logtest2.txt");
+        std::ofstream ofs("logtest2.txt"); // closed and destroyed at the en of the scope
         eo::log.addRedirect(ofs);
         eo::log << "In FILE 2" << std::endl;
-        eo::log.removeRedirect(ofs);
+        eo::log.removeRedirect(ofs);       // must be removed because the associated stream is closed
     }
 
-    std::ifstream ifs("logtest2.txt");
-    //ifs >> str;
+    std::ifstream ifs("logtest2.txt");     // stream to logtest2.txt is closed, we can start reading
     std::string line;
     assert(std::getline(ifs, line));
-    //std::cout << line << std::endl;
     assert(line == "In FILE 2");
-    //std::cout << (line == "In FILE") << std::endl;
     assert(!std::getline(ifs, line));
 
     std::ostringstream oss;
     eo::log.addRedirect(oss);
-    //eo::log << oss << "In STRINGSTREAM";
     eo::log << "In STRINGSTREAM";
     
     std::cout << "Content of ostringstream: " << oss.str() << std::endl;
     assert(oss.str() == "In STRINGSTREAM");
 
-    eo::log.redirect(std::cout);
+    eo::log.redirect(std::cout);           // removes all previously redirected streams; closes the file logtest.txt
     eo::log << "on COUT" << std::endl;
 
 
@@ -102,7 +74,6 @@ static void test()
     assert(std::getline(ifs, line));
     assert(line == "In STRINGSTREAM");
     assert(!std::getline(ifs, line));
-    //assert(false);
 
 
     eo::log << eo::setlevel("errors");

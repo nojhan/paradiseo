@@ -48,8 +48,12 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include "eoObject.h"
 #include "eoParser.h"
 
-#define USE_SET
-//#undef USE_SET
+#define USE_SET // defines if a set is to be used instead of a vector for storing streams the logger is redirected to
+#undef USE_SET
+/* expriments have shown that here a vector is by far faster than a set even if O(n),
+ * because it needs less dynamic allocations, uses less memory and less instructions
+ */
+
 
 #ifdef USE_SET
 #include <set>
@@ -70,16 +74,6 @@ namespace eo
                  logging,
                  debug,
                  xdebug};
-
-    /**
-     * file
-     * this structure combined with the friend operator<< below is an easy way to select a file as output.
-     *
-    struct file
-    {
-        explicit file(const std::string f);
-        const std::string _f;
-    };*/
 
     /**
      * setlevel
