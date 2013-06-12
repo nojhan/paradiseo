@@ -27,6 +27,7 @@ Lionel Parreaux <lionel.parreaux@gmail.com>
 /**
 
 A utility class for wrapping non-const references and use them as default arguments in functions.
+This especially is useful for avoiding constructor multiplication.
 
 For example, this is not valid C++98 code:
 
@@ -72,7 +73,9 @@ MyClass mc3(t);
 #ifndef _EOOPTIONAL_H
 #define _EOOPTIONAL_H
 
+#include <stdexcept>
 #include <eoObject.h>
+//#include <eoExceptions.h>
 
 
 template< class T >
@@ -98,12 +101,13 @@ public:
     {
         if (!hasValue())
             throw std::runtime_error("Cannot get a reference from a eoOptional wrapper with no value");
+            //throw eoEx;
         return *_val;
     }
 
-    T& getOr (T& default) const
+    T& getOr (T& defaultValue) const
     {
-        return hasValue()? *_val: default;
+        return hasValue()? *_val: defaultValue;
     }
     
 protected:
