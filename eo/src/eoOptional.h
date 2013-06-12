@@ -32,26 +32,26 @@ For example, this is not valid C++98 code:
 
 \code
 struct MyClass {
-	MyClass(T& my_T = default_T)
-	: actual_T(my_T)
-	{ }
+    MyClass(T& my_T = default_T)
+    : actual_T(my_T)
+    { }
 private:
-	T default_T;
-	T& actual_T;
-}
+    T default_T;
+    T& actual_T;
+};
 \endcode
 
 This is the same code using eoOptional, which is valid:
 
 \code
 struct MyClass {
-	MyClass(eoOptional<T> my_T = NULL)
-	: actual_T(my_T.getOr(default_T))
-	{ }
+    MyClass(eoOptional<T> my_T = NULL)
+    : actual_T(my_T.getOr(default_T))
+    { }
 private:
-	T default_T;
-	T& actual_T;
-}
+    T default_T;
+    T& actual_T;
+};
 \endcode
 
 And from the point of view of the user, it is transparent:
@@ -78,36 +78,41 @@ MyClass mc3(t);
 template< class T >
 class eoOptional {
 public:
-	static const eoOptional<T> null; // = eoOptional<T>();
-	
-	eoOptional (T& init)
-	: _val(&init)
-	{ }
+    static const eoOptional<T> null; // = eoOptional<T>();
+    
+    eoOptional (T& init)
+    : _val(&init)
+    { }
 
-	// used mainly for converting NULL to this
-	eoOptional (T* init)
-	: _val(init)
-	{ }
-	
-	bool hasValue() const
-	{
-		return _val != NULL;
-	}
-	
-	T& get () const
-	{
-		if (!hasValue())
-			throw std::runtime_error("Cannot get a reference from a eoOptional wrapper with no value");
-		return *_val;
-	}
-	
+    // used mainly for converting NULL to this class
+    eoOptional (T* init)
+    : _val(init)
+    { }
+    
+    bool hasValue() const
+    {
+        return _val != NULL;
+    }
+    
+    T& get () const
+    {
+        if (!hasValue())
+            throw std::runtime_error("Cannot get a reference from a eoOptional wrapper with no value");
+        return *_val;
+    }
+
+    T& getOr (T& default) const
+    {
+        return hasValue()? *_val: default;
+    }
+    
 protected:
-	eoOptional ()
-	: _val(NULL)
-	{ }
-	
+    eoOptional ()
+    : _val(NULL)
+    { }
+    
 private:
-	T* _val;
+    T* _val;
 };
 
 template< class T >
