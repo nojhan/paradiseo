@@ -260,8 +260,8 @@ protected:
     /** breeder */
     eoBreed < MOEOT > & breed;
     /** fitness assignment used in IBEA */
-    moeoBinaryIndicatorBasedFitnessAssignment < MOEOT >& fitnessAssignment;
     moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >* default_fitnessAssignment;
+    moeoBinaryIndicatorBasedFitnessAssignment < MOEOT >& fitnessAssignment;
     /** dummy diversity assignment */
     moeoDummyDiversityAssignment < MOEOT > diversityAssignment;
     /** environmental replacement */
