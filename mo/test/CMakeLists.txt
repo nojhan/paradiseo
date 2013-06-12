@@ -94,7 +94,11 @@ set (TEST_LIST
 		t-moStatistics
 		t-moIndexedVectorTabuList
 #		t-moRndIndexedVectorTabuList
+		t-moStdFitnessNeighborStat
+		t-moStdDevEstimator.cpp
 		t-moDynSpanCoolingSchedule
+		t-moTriki.cpp
+		t-moTrikiReal.cpp
 		)
 
 ######################################################################################
