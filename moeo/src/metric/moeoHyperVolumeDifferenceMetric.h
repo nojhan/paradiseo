@@ -84,7 +84,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
      * @param _set1 the vector contains all objective Vector of the first pareto front
      * @param _set2 the vector contains all objective Vector of the second pareto front
      */
-    double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
+    virtual double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
     {
 
         double hypervolume_set1;
@@ -228,7 +228,7 @@ public:
      * @param _set1 the vector contains all objective Vector of the first pareto front
      * @param _set2 the vector contains all objective Vector of the second pareto front
      */
-    double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
+    virtual double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
     {
 #ifndef NDEBUG
         // the two sets must be homogeneous in feasibility
