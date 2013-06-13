@@ -469,11 +469,22 @@ public:
         // create two separated pop in this operator
         _pop_split( pop );
 
-          _stat_feasible( _pop_split.feasible() );
-        _stat_unfeasible( _pop_split.unfeasible() );
-
         std::ostringstream out;
-        out << _stat_feasible.value() << _sep << _stat_unfeasible.value();
+        // do not call stat if the pop is empty
+        // and it can be, because of the split
+        if( _pop_split.feasible().size() > 0 ) {
+            _stat_feasible( _pop_split.feasible() );
+            out << _stat_feasible.value();
+        } else {
+            out << "?";
+        }
+        out << _sep;
+        if( _pop_split.unfeasible().size() > 0 ) {
+            _stat_unfeasible( _pop_split.unfeasible() );
+            out << _stat_unfeasible.value();
+        } else {
+            out << "?";
+        }
 
         value() = out.str();
     }
