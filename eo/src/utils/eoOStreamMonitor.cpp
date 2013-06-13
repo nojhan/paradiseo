@@ -47,8 +47,10 @@ eoMonitor& eoOStreamMonitor::operator()(void)
     */
 
     for (iterator it = vec.begin (); it != vec.end (); ++it) {
-        // value only
-        out << (*it)->getValue ();
+        if( print_names ) {
+            out << (*it)->longName() << name_sep;
+        }
+        out << (*it)->getValue();
         out << delim << std::left << std::setfill(fill) << std::setw(width);
     } // for it in vec
 
