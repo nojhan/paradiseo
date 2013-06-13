@@ -37,13 +37,17 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include <cstdio> // used to define EOF
 
 #include <iostream>
+#include <algorithm>    // std::find
 
 #include "eoLogger.h"
 
-/* TODO?
-- changer oprateurs
-- virer la structure "file"
-*/
+
+#ifdef USE_SET
+typedef std::set<std::ostream*>::iterator StreamIter;
+#else
+typedef std::vector<std::ostream*>::iterator StreamIter;
+#endif
+
 
 void eoLogger::_init()
 {
@@ -77,10 +81,9 @@ eoLogger::eoLogger() :
 
 eoLogger::~eoLogger()
 {
-	//redirect(NULL);
-	if (_obuf._ownedFileStream != NULL) {
-		delete _obuf._ownedFileStream;
-	}
+    if (_obuf._ownedFileStream != NULL) {
+    	delete _obuf._ownedFileStream;
+    }
 }
 
 void eoLogger::_createParameters( eoParser& parser )
@@ -161,29 +164,68 @@ eoLogger& operator<<(eoLogger& l, eo::setlevel v)
 
 eoLogger& operator<<(eoLogger& l, std::ostream& os)
 {
-    l._obuf._outStream = &os;
+#warning deprecated
+    l.addRedirect(os);
     return l;
 }
 
 void eoLogger::redirect(std::ostream& os)
 {
-	if (_obuf._ownedFileStream != NULL) {
-		delete _obuf._ownedFileStream;
-		_obuf._ownedFileStream = NULL;
-	}
-    _obuf._outStream = &os;
+    doRedirect(&os);
+}
+
+void eoLogger::doRedirect(std::ostream* os)
+{
+    if (_obuf._ownedFileStream != NULL) {
+        delete _obuf._ownedFileStream;
+        _obuf._ownedFileStream = NULL;
+    }
+    _obuf._outStreams.clear();
+    if (os != NULL)
+    #ifdef USE_SET
+        _obuf._outStreams.insert(os);
+    #else
+        _obuf._outStreams.push_back(os);
+    #endif
+}
+
+void eoLogger::addRedirect(std::ostream& os)
+{
+    bool already_there = tryRemoveRedirect(&os);
+#ifdef USE_SET
+    _obuf._outStreams.insert(&os);
+#else
+    _obuf._outStreams.push_back(&os);
+#endif
+    if (already_there)
+        eo::log << eo::warnings << "Cannot redirect the logger to a stream it is already redirected to." << std::endl;
+}
+
+void eoLogger::removeRedirect(std::ostream& os)
+{
+    if (!tryRemoveRedirect(&os))
+        eo::log << eo::warnings << "Cannot remove from the logger a stream it was not redirected to.";
+}
+
+bool eoLogger::tryRemoveRedirect(std::ostream* os)
+{
+    StreamIter it = find(_obuf._outStreams.begin(), _obuf._outStreams.end(), os);
+    if (it == _obuf._outStreams.end())
+        return false;
+    _obuf._outStreams.erase(it);
+    return true;
 }
 
 void eoLogger::redirect(const char * filename)
 {
-	std::ofstream * os;
-	if (filename == NULL) {
-		os = NULL;
-	} else {
-		os = new std::ofstream(filename);
-	}
-	redirect(*os);
-	_obuf._ownedFileStream = os;
+    std::ofstream * os;
+    if (filename == NULL) {
+    	os = NULL;
+    } else {
+    	os = new std::ofstream(filename);
+    }
+    doRedirect(os);
+    _obuf._ownedFileStream = os;
 }
 
 void eoLogger::redirect(const std::string& filename)
@@ -194,18 +236,29 @@ void eoLogger::redirect(const std::string& filename)
 
 eoLogger::outbuf::outbuf(const eo::Levels& contexlvl,
                          const eo::Levels& selectedlvl)
-    : _outStream(&std::cout), _ownedFileStream(NULL), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
-{}
+    :
+#ifndef USE_SET
+      _outStreams(1, &std::cout),
+#endif
+      _ownedFileStream(NULL), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
+{
+#ifdef USE_SET
+    _outStreams.insert(&std::cout);
+#endif
+}
 
 int eoLogger::outbuf::overflow(int_type c)
 {
     if (_selectedLevel >= _contextLevel)
-      {
-        if (_outStream && c != EOF)
-          {
-              (*_outStream) << (char) c;
-          }
-      }
+    {
+        for (StreamIter it = _outStreams.begin(); it != _outStreams.end(); it++)
+        {
+            if (c != EOF)
+              {
+                  (**it) << (char) c;
+              }
+        }
+    }
     return c;
 }
 
