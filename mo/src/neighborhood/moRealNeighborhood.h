@@ -4,7 +4,7 @@
 
 #include <mo>
 #include <eoFunctor.h> // FIXME: Why don't we use eoFunctorBase on the mother classes
-#include "moRealNeighbor.h"
+#include "neighbor/moRealNeighbor.h"
 
 template<class Distrib, class Neighbor>
 class moRealNeighborhood : public moRndNeighborhood< Neighbor >, public eoFunctorBase

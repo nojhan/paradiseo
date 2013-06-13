@@ -4,6 +4,7 @@
 
 include_directories(${EO_SRC_DIR}/src)
 include_directories(${MO_SRC_DIR}/src)
+include_directories(${EDO_SRC_DIR}/src)
 include_directories(${PROBLEMS_SRC_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -95,10 +96,10 @@ set (TEST_LIST
 		t-moIndexedVectorTabuList
 #		t-moRndIndexedVectorTabuList
 		t-moStdFitnessNeighborStat
-		t-moStdDevEstimator.cpp
+		t-moStdDevEstimator
 		t-moDynSpanCoolingSchedule
-		t-moTriki.cpp
-		t-moTrikiReal.cpp
+		t-moTriki
+		t-moTrikiReal
 		)
 
 ######################################################################################
