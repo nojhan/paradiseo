@@ -438,22 +438,24 @@ public:
  * the second one on the unfeasible ones, merge the two resulting value in
  * a string, separated by a given marker.
  */
-template<class EOT, class EOSTAT>
-class eoDualStatSwitch : public eoStat< EOT, std::string >
+template<class EOSTAT>
+class eoDualStatSwitch : public eoStat< typename EOSTAT::EOType, std::string >
 {
+public:
+    typedef typename EOSTAT::EOType EOType;
 protected:
     EOSTAT & _stat_feasible;
     EOSTAT & _stat_unfeasible;
 
     std::string _sep;
 
-    eoDualPopSplit<EOT> _pop_split;
+    eoDualPopSplit<EOType> _pop_split;
 
 public:
-    using eoStat<EOT,std::string>::value;
+    using eoStat<EOType,std::string>::value;
 
     eoDualStatSwitch( EOSTAT & stat_feasible,  EOSTAT & stat_unfeasible, std::string sep=" "  ) :
-        eoStat<EOT,std::string>(
+        eoStat<EOType,std::string>(
                 "?"+sep+"?",
                 stat_feasible.longName()+sep+stat_unfeasible.longName()
                                 ),
@@ -462,7 +464,7 @@ public:
         _sep(sep)
     { }
 
-    virtual void operator()( const eoPop<EOT> & pop )
+    virtual void operator()( const eoPop<EOType> & pop )
     {
         // create two separated pop in this operator
         _pop_split( pop );
