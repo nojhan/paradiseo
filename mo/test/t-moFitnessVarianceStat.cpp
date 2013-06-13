@@ -19,6 +19,7 @@ double objective_function(const EOT & sol)
 
     for ( size_t i = 0; i < sol.size(); ++i )
 	{
+		//std::cout << sol[i] << std::endl;
 	    sum += sol[i] * sol[i];
 	}
 
@@ -33,6 +34,11 @@ int main(int ac, char** av)
     EOT solution(2, 5);
     eval(solution);
     stat(solution);
+    solution[0] = solution[1] = 0;
+    solution.invalidate();
+    eval(solution);
+    stat(solution);
     //assert(stat.value() == 1);
-    std::cout << "ok " << stat.value() << std::endl;
+    std::cout << "var: " << stat.value() << std::endl;
+    assert(stat.value() == 625);
 }
