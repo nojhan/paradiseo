@@ -1,3 +1,31 @@
+/*
+
+(c) 2013 Thales group
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; version 2
+    of the License.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+Contact: http://eodev.sourceforge.net
+
+Authors:
+    Johann Dréo <johann.dreo@thalesgroup.com>
+
+*/
+
+
+#ifndef MOEOEXPBINARYINDICATORBASEDDUALFITNESSASSIGNMENT_H_
+#define MOEOEXPBINARYINDICATORBASEDDUALFITNESSASSIGNMENT_H_
 
 #include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
 
@@ -5,8 +33,7 @@ template<class MOEOT>
 class moeoExpBinaryIndicatorBasedDualFitnessAssignment : public moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>
 {
 protected:
-    eoPop<MOEOT> _feasible_pop;
-    eoPop<MOEOT> _unfeasible_pop;
+    eoDualPopSplit<MOEOT> _pop_split;
 
 public:
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -19,64 +46,58 @@ public:
             const double kappa = 0.05
         ) : moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>( metric, kappa ) {}
 
-    //! Split up the population in two: in one pop the feasible individual, in the other the feasible ones
-    virtual void split( eoPop<MOEOT> & pop )
-    {
-          _feasible_pop.reserve(pop.size());
-        _unfeasible_pop.reserve(pop.size());
-
-        for( typename eoPop<MOEOT>::iterator it=pop.begin(), end=pop.end(); it != end; ++it ) {
-            // The ObjectiveVector should implement "is_feasible"
-            if( it->objectiveVector().is_feasible() ) {
-                  _feasible_pop.push_back( *it );
-            } else {
-                _unfeasible_pop.push_back( *it );
-            }
-        }
-    }
 
     /*! If the population is homogeneous (only composed of feasible individuals or unfeasible ones),
      * then apply the operators on the whole population.
      * But, if there is at least one feasible individual, then apply them only on the feasible individuals.
      */
-    virtual void operator()(eoPop < MOEOT > & pop)
+    virtual void operator()( eoPop<MOEOT>& pop )
     {
-        // separate the pop in the members
-        split( pop );
+        // separate the pop in feasible/unfeasible
+        _pop_split( pop );
 
         eoPop<MOEOT>* ppop;
-        // if there is at least one feasible individual, it will supersede all the unfeasible ones
-        if( _feasible_pop.size() == 0 ) {
-            ppop = & _unfeasible_pop;
+        // if there is at least one feasible individual,
+        // it will supersede all the unfeasible ones
+        if( _pop_split.feasible().size() == 0 ) {
+            ppop = & _pop_split.unfeasible();
         } else {
-            ppop = & _feasible_pop;
+            ppop = & _pop_split.feasible();
         }
 
         this->setup(*ppop);
         this->computeValues(*ppop);
-        this->setFitnesses(*ppop);
+        this->setFitnesses(*ppop); // NOTE: this alter individuals
+
+        // bring back altered individuals in the pop
+        pop = _pop_split.merge();
     }
+
+
+protected:
+
+    using moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>::kappa;
 
     /**
      * Compute every indicator value in values (values[i] = I(_v[i], _o))
      * @param _pop the population
      */
-    void computeValues(const eoPop < MOEOT > & _pop)
+    virtual void computeValues(const eoPop < MOEOT > & pop)
     {
-      values.clear();
-      values.resize(_pop.size());
-      for (unsigned int i=0; i<_pop.size(); i++)
-        {
-          values[i].resize(_pop.size());
-          // the metric may not be symetric, thus neither is the matrix
-          for (unsigned int j=0; j<_pop.size(); j++)
-            {
-              if (i != j)
-                {
-                  values[i][j] = Type( metric(_pop[i].objectiveVector(), _pop[j].objectiveVector()), _pop[i].objectiveVector().is_feasible() );
-                }
-            }
-        }
+        values.clear();
+        values.resize(pop.size());
+        for (unsigned int i=0; i<pop.size(); i++) {
+            values[i].resize(pop.size());
+            // the metric may not be symetric, thus neither is the matrix
+            for (unsigned int j=0; j<pop.size(); j++) {
+                if (i != j) {
+                    values[i][j] = Type(
+                            metric( pop[i].objectiveVector(), pop[j].objectiveVector() ),
+                            pop[i].objectiveVector().is_feasible()
+                        );
+                } // if i != j
+            } // for j in pop
+        } // for i in pop
     }
 
     virtual void setFitnesses(eoPop < MOEOT > & pop)
@@ -87,6 +108,20 @@ public:
         }
     }
 
+    virtual Type computeFitness(const unsigned int _idx)
+    {
+      Type result( 0.0, values[_idx][_idx].is_feasible() );
+      for (unsigned int i=0; i<values.size(); i++)
+        {
+          if (i != _idx)
+            {
+              result -= exp(-values[i][_idx]/kappa);
+            }
+        }
+      return result;
+    }
+
 
 };
 
+#endif // MOEOEXPBINARYINDICATORBASEDDUALFITNESSASSIGNMENT_H_

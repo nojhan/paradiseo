@@ -160,7 +160,7 @@ public:
      * @param _op variation operators
      * @param _fitnessAssignment fitness assignment
      */
-    moeoIBEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op, moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >& _fitnessAssignment) :
+    moeoIBEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op, moeoBinaryIndicatorBasedFitnessAssignment < MOEOT >& _fitnessAssignment) :
             defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(2),
             selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), default_fitnessAssignment(NULL), fitnessAssignment(_fitnessAssignment), replace(fitnessAssignment, diversityAssignment)
     {}
@@ -173,7 +173,7 @@ public:
      * @param _op variation operators
      * @param _fitnessAssignment fitness assignment
      */
-    moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >& _fitnessAssignment) :
+    moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoBinaryIndicatorBasedFitnessAssignment < MOEOT >& _fitnessAssignment) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(2),
             selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), default_fitnessAssignment(NULL), fitnessAssignment(_fitnessAssignment), replace(fitnessAssignment, diversityAssignment)
     {}
@@ -190,7 +190,7 @@ public:
      * Apply the algorithm to the population _pop until the stopping criteria is satified.
      * @param _pop the population
      */
-    virtual void operator () (eoPop < MOEOT > &_pop)
+    virtual void operator() (eoPop < MOEOT > &_pop)
     {
         eoPop < MOEOT > offspring, empty_pop;
         popEval (empty_pop, _pop);	// a first eval of _pop
@@ -260,8 +260,8 @@ protected:
     /** breeder */
     eoBreed < MOEOT > & breed;
     /** fitness assignment used in IBEA */
-    moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >& fitnessAssignment;
     moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT >* default_fitnessAssignment;
+    moeoBinaryIndicatorBasedFitnessAssignment < MOEOT >& fitnessAssignment;
     /** dummy diversity assignment */
     moeoDummyDiversityAssignment < MOEOT > diversityAssignment;
     /** environmental replacement */

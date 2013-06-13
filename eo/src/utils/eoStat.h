@@ -40,6 +40,7 @@ Contact: http://eodev.sourceforge.net
 #include <eoPop.h>
 #include <utils/eoMonitor.h>
 //#include <utils/eoCheckPoint.h>
+#include <utils/eoLogger.h>
 
 /** @defgroup Stats Statistics computation
  *
@@ -84,6 +85,7 @@ template <class EOT, class T>
 class eoStat : public eoValueParam<T>, public eoStatBase<EOT>
 {
 public:
+    typedef EOT EOType;
 
     eoStat(T _value, std::string _description)
         : eoValueParam<T>(_value, _description)
@@ -120,6 +122,7 @@ template <class EOT, class ParamType>
 class eoSortedStat : public eoSortedStatBase<EOT>, public eoValueParam<ParamType>
 {
 public :
+  typedef EOT EOType;
   eoSortedStat(ParamType _value, std::string _desc) : eoValueParam<ParamType>(_value, _desc) {}
   virtual std::string className(void) const { return "eoSortedStat"; }
 
@@ -472,6 +475,51 @@ public :
 };
 */
 
+//! A robust measure of the mass (generally used to compute the median). Do not alter the given pop.
+template<class EOT>
+class eoNthElementStat : public eoStat< EOT, typename EOT::Fitness >
+{
+protected:
+    int _nth;
+    double _ratio;
+
+public:
+    using eoStat<EOT, typename EOT::Fitness>::value;
+
+    eoNthElementStat( int nth = 0, std::string description = "NthElement")
+        : eoStat<EOT,typename EOT::Fitness>( 0.0, description ), _nth(nth), _ratio(-1.0)
+    {}
+
+    eoNthElementStat( double ratio = 0.5, std::string description = "Median" )
+        : eoStat<EOT,typename EOT::Fitness>( 0.0, description ), _nth(-1), _ratio(ratio)
+    {}
+
+    virtual void operator()( const eoPop<EOT> & _pop )
+    {
+        if( _nth == -1 ) { // asked for a ratio
+            _nth = static_cast<int>( std::floor(_pop.size() * _ratio) );
+        } else {
+            assert( _ratio == -1 ); // asked for a position
+        }
+
+        if( _pop.size() == 0 ) {
+            //FIXME how to implement value() = 0 ?
+            eo::log << eo::warnings << "Called " << className() << " on an empty pop, value unchanged" << std::endl;
+
+        } else {
+            eoPop<EOT> pop = _pop; // copy, thus no sorting of the original pop
+
+            std::nth_element( pop.begin(), pop.begin()+_nth, pop.end() );
+            value() = pop[_nth].fitness();
+        }
+    }
+
+    virtual std::string className(void) const { return "eoNthElementStat"; }
+};
+/** @example t-eoIQRStat.cpp
+ */
+
+
 
 //! A robust measure of dispersion (also called midspread or middle fifty) that is the difference between the third and the first quartile.
 template<class EOT>
@@ -480,12 +528,13 @@ class eoInterquartileRangeStat : public eoStat< EOT, typename EOT::Fitness >
 public:
     using eoStat<EOT, typename EOT::Fitness>::value;
 
-    eoInterquartileRangeStat( typename EOT::Fitness start, std::string description = "IQR" ) : eoStat<EOT,typename EOT::Fitness>( start, description ) {}
+    eoInterquartileRangeStat( std::string description = "IQR" ) : eoStat<EOT,typename EOT::Fitness>( 0.0, description ) {}
 
     virtual void operator()( const eoPop<EOT> & _pop )
     {
         if( _pop.size() == 0 ) {
-            // how to implement value() = 0 ?
+            //FIXME how to implement value() = 0 ?
+            eo::log << eo::warnings << "Called " << className() << " on an empty pop, value unchanged" << std::endl;
 
         } else {
             eoPop<EOT> pop = _pop;
