@@ -85,6 +85,7 @@ template <class EOT, class T>
 class eoStat : public eoValueParam<T>, public eoStatBase<EOT>
 {
 public:
+    typedef EOT EOType;
 
     eoStat(T _value, std::string _description)
         : eoValueParam<T>(_value, _description)
@@ -121,6 +122,7 @@ template <class EOT, class ParamType>
 class eoSortedStat : public eoSortedStatBase<EOT>, public eoValueParam<ParamType>
 {
 public :
+  typedef EOT EOType;
   eoSortedStat(ParamType _value, std::string _desc) : eoValueParam<ParamType>(_value, _desc) {}
   virtual std::string className(void) const { return "eoSortedStat"; }
 
