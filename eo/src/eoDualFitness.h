@@ -74,6 +74,25 @@ protected:
     //! Flag that marks if the individual is feasible
     bool _is_feasible;
 
+    /** Flag to prevent partial initialization
+     *
+     * The reason behind the use of this flag is a bit complicated.
+     * Normally, we would not want to allow initialization on a scalar.
+     * But in MOEO, this would necessitate to re-implement most of the
+     * operator computing metrics, as they expect generic scalars.
+     *
+     * As this would be too much work, we use derived metric classes and
+     * overload them so that they initialize dual fitnesses with the
+     * feasibility flag. But the compiler still must compile the base
+     * methods, that use the scalar interface.
+     *
+     * Thus, eoDualFitness has a scalar interface, but this flag add a
+     * security against partial initialization. In DEBUG mode, asserts
+     * will fail if the feasibility has not been explicitly initialized
+     * at runtime.
+     */
+    bool _feasible_init;
+
 public:
 
     //! Empty initialization
@@ -82,58 +101,71 @@ public:
      */
     eoDualFitness() :
         _value(0.0),
-        _is_feasible(false)
+        _is_feasible(false),
+        _feasible_init(false)
     {}
 
     //! Initialization with only the value, the fitness will be unfeasible.
     /*!
      * WARNING: this is what is used when you initialize a new fitness from a double.
-     * Unfeasible by default
+     * If you use this interface, you MUST set the feasibility BEFORE
+     * asking for it or the value. Or else, an assert will fail in debug mode.
      */
     template<class T>
     eoDualFitness( T value ) :
         _value(value),
-        _is_feasible(false)
+        _is_feasible(false),
+        _feasible_init(false)
     {
-        assert( _value == 0 );
     }
 
 
     //! Copy constructor
     eoDualFitness(const eoDualFitness& other) :
         _value(other._value),
-        _is_feasible(other._is_feasible)
+        _is_feasible(other._is_feasible),
+        _feasible_init(true)
     {}
 
     //! Constructor from explicit value/feasibility
     eoDualFitness(const BaseType& v, const bool& is_feasible) :
         _value(v),
-        _is_feasible(is_feasible)
+        _is_feasible(is_feasible),
+        _feasible_init(true)
     {}
 
     //! From a std::pair (first element is the value, second is the feasibility)
     eoDualFitness(const std::pair<BaseType,bool>& dual) :
         _value(dual.first),
-        _is_feasible(dual.second)
+        _is_feasible(dual.second),
+        _feasible_init(true)
     {}
 
-    // FIXME is it a good idea to include implicit conversion here?
     /** Conversion operator: it permits to use a fitness instance as  its  scalar
      * type, if needed. For example, this is possible:
      *     eoDualFitness<double,std::less<double> > fit;
      *     double val = 1.0;
      *     val = fit;
      */
-     operator BaseType(void) const { return _value; }
+    operator BaseType(void) const { return _value; }
 
 
     inline bool is_feasible() const
     {
+        assert( _feasible_init );
         return _is_feasible;
+    }
+
+    //! Explicitly set the feasibility. Useful if you have used previously the instantiation on a single scalar.
+    inline void is_feasible( bool feasible )
+    {
+        this->is_feasible( feasible );
+        this->_feasible_init = true;
     }
 
     inline BaseType value() const
     {
+        assert( _feasible_init );
         return _value;
     }
 
@@ -141,7 +173,7 @@ public:
     eoDualFitness& operator=( const std::pair<BaseType, bool>& v )
     {
         this->_value = v.first;
-        this->_is_feasible = v.second;
+        this->is_feasible( v.second );
         return *this;
     }
 
@@ -151,21 +183,20 @@ public:
     {
         if (this != &other) {
             this->_value = other._value;
-            this->_is_feasible = other._is_feasible;
+            this->is_feasible( other.is_feasible() );
         }
         return *this;
     }
 
-    /*
     //! Copy operator from a scalar
     template<class T>
     eoDualFitness& operator=(const T v)
     {
         this->_value = v;
         this->_is_feasible = false;
+        this->_feasible_init = false;
         return *this;
     }
-    */
 
     //! Comparison that separate feasible individuals from unfeasible ones. Feasible are always better
     /*!
@@ -178,11 +209,11 @@ public:
         // am I better (less, by default) than the other ?
 
         // if I'm feasible and the other is not
-        if( this->_is_feasible && !other._is_feasible ) {
+        if( this->is_feasible() && !other.is_feasible() ) {
             // no, the other has a better fitness
             return false;
 
-        } else if( !this->_is_feasible && other._is_feasible ) {
+        } else if( !this->is_feasible() && other.is_feasible() ) {
             // yes, a feasible fitness is always better than an unfeasible one
             return true;
 
@@ -322,7 +353,7 @@ public:
     friend
     std::ostream& operator<<( std::ostream& os, const eoDualFitness<BaseType,Compare> & fitness )
     {
-        os << fitness._value << " " << fitness._is_feasible;
+        os << fitness._value << " " << fitness.is_feasible();
         return os;
     }
 
@@ -337,7 +368,7 @@ public:
         is >> feasible;
 
         fitness._value = value;
-        fitness._is_feasible = feasible;
+        fitness.is_feasible( feasible );
         return is;
     }
 };
@@ -355,18 +386,72 @@ template< class EOT>
 bool eoIsFeasible ( const EOT & sol ) { return sol.fitness().is_feasible(); }
 
 
+/** Separate the population into two: one with only feasible individuals, the other with unfeasible ones.
+ */
+template<class EOT>
+class eoDualPopSplit : public eoUF<const eoPop<EOT>&, void>
+{
+protected:
+    eoPop<EOT> _pop_feasible;
+    eoPop<EOT> _pop_unfeasible;
+
+public:
+    //! Split the pop and keep them in members
+    void operator()( const eoPop<EOT>& pop )
+    {
+        _pop_feasible.clear();
+        _pop_feasible.reserve(pop.size());
+
+        _pop_unfeasible.clear();
+        _pop_unfeasible.reserve(pop.size());
+
+        for( typename eoPop<EOT>::const_iterator ieot=pop.begin(), iend=pop.end(); ieot!=iend; ++ieot ) {
+            /*
+            if( ieot->invalid() ) {
+                eo::log << eo::errors << "ERROR: trying to access to an invalid fitness" << std::endl;
+            }
+            */
+            if( ieot->fitness().is_feasible() ) {
+                _pop_feasible.push_back( *ieot );
+            } else {
+                _pop_unfeasible.push_back( *ieot );
+            }
+        }
+    }
+
+    //! Merge feasible and unfeasible populations into a new one
+    eoPop<EOT> merge() const
+    {
+        eoPop<EOT> merged;
+        merged.reserve( _pop_feasible.size() + _pop_unfeasible.size() );
+        std::copy(   _pop_feasible.begin(),   _pop_feasible.end(), std::back_inserter<eoPop<EOT> >(merged) );
+        std::copy( _pop_unfeasible.begin(), _pop_unfeasible.end(), std::back_inserter<eoPop<EOT> >(merged) );
+        return merged;
+    }
+
+    eoPop<EOT>&   feasible() { return   _pop_feasible; }
+    eoPop<EOT>& unfeasible() { return _pop_unfeasible; }
+};
+
+
 /** Embed two eoStat and call the first one on the feasible individuals and
  * the second one on the unfeasible ones, merge the two resulting value in
  * a string, separated by a given marker.
  */
-//template<class EOT, class T>
 template<class EOT, class EOSTAT>
 class eoDualStatSwitch : public eoStat< EOT, std::string >
 {
+protected:
+    EOSTAT & _stat_feasible;
+    EOSTAT & _stat_unfeasible;
+
+    std::string _sep;
+
+    eoDualPopSplit<EOT> _pop_split;
+
 public:
     using eoStat<EOT,std::string>::value;
 
-//    eoDualStatSwitch( eoStat<EOT,T> & stat_feasible,  eoStat<EOT,T> & stat_unfeasible, std::string sep=" "  ) :
     eoDualStatSwitch( EOSTAT & stat_feasible,  EOSTAT & stat_unfeasible, std::string sep=" "  ) :
         eoStat<EOT,std::string>(
                 "?"+sep+"?",
@@ -379,41 +464,17 @@ public:
 
     virtual void operator()( const eoPop<EOT> & pop )
     {
-        eoPop<EOT> pop_feasible;
-        pop_feasible.reserve(pop.size());
+        // create two separated pop in this operator
+        _pop_split( pop );
 
-        eoPop<EOT> pop_unfeasible;
-        pop_unfeasible.reserve(pop.size());
-
-        for( typename eoPop<EOT>::const_iterator ieot=pop.begin(), iend=pop.end(); ieot!=iend; ++ieot ) {
-            /*
-            if( ieot->invalid() ) {
-                eo::log << eo::errors << "ERROR: trying to access to an invalid fitness" << std::endl;
-            }
-            */
-            if( ieot->fitness().is_feasible() ) {
-                pop_feasible.push_back( *ieot );
-            } else {
-                pop_unfeasible.push_back( *ieot );
-            }
-        }
-
-        _stat_feasible( pop_feasible );
-        _stat_unfeasible( pop_unfeasible );
+          _stat_feasible( _pop_split.feasible() );
+        _stat_unfeasible( _pop_split.unfeasible() );
 
         std::ostringstream out;
         out << _stat_feasible.value() << _sep << _stat_unfeasible.value();
 
         value() = out.str();
     }
-
-protected:
-//    eoStat<EOT,T> & _stat_feasible;
-//    eoStat<EOT,T> & _stat_unfeasible;
-    EOSTAT & _stat_feasible;
-    EOSTAT & _stat_unfeasible;
-
-    std::string _sep;
 };
 
 /** @} */
