@@ -40,6 +40,7 @@ Contact: http://eodev.sourceforge.net
 #include <eoPop.h>
 #include <utils/eoMonitor.h>
 //#include <utils/eoCheckPoint.h>
+#include <utils/eoLogger.h>
 
 /** @defgroup Stats Statistics computation
  *
@@ -485,7 +486,8 @@ public:
     virtual void operator()( const eoPop<EOT> & _pop )
     {
         if( _pop.size() == 0 ) {
-            // how to implement value() = 0 ?
+            //FIXME how to implement value() = 0 ?
+            eo::log << eo::warnings << "Called " << className() << " on an empty pop, value unchanged" << std::endl;
 
         } else {
             eoPop<EOT> pop = _pop;
