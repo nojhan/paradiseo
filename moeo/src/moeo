@@ -144,6 +144,7 @@
 #include <metric/moeoEntropyMetric.h>
 #include <metric/moeoHypervolumeBinaryMetric.h>
 #include <metric/moeoHyperVolumeDifferenceMetric.h>
+#include <metric/moeoDualHyperVolumeDifferenceMetric.h>
 #include <metric/moeoHyperVolumeMetric.h>
 #include <metric/moeoMetric.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
@@ -217,5 +218,6 @@
 #include <utils/moeoObjVecStat.h>
 
 #include <continue/moeoHypContinue.h>
+#include <continue/moeoDualHypContinue.h>
 
 #endif /*MOEO_*/
