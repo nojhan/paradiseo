@@ -68,11 +68,6 @@ public :
             nbSolutionsEncountered = currentAvg = currentVar = 0;
             firstTime = false;
         }
-        /*else if (firstTime)
-        {
-          value() = 0.0;
-          firstTime = false;
-        }*/
     	  operator()(_sol);
     }
 
@@ -85,13 +80,9 @@ public :
       double x = _sol.fitness();
       double oldAvg = currentAvg;
       currentAvg = oldAvg + (x - oldAvg)/nbSolutionsEncountered;
-      if (nbSolutionsEncountered > 1) // <- not really necessary
-      {
-        //value() = (value()/nbSolutionsEncountered + _sol.fitness())/(nbSolutionsEncountered+1);
-        double oldVar = currentVar;
-        currentVar = oldVar + (x - oldAvg) * (x - currentAvg);
-        value() = currentVar/nbSolutionsEncountered;
-      }
+      double oldVar = currentVar;
+      currentVar = oldVar + (x - oldAvg) * (x - currentAvg);
+      value() = currentVar/nbSolutionsEncountered;
   }
 
     /**

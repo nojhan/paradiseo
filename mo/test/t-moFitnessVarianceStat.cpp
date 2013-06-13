@@ -19,7 +19,6 @@ double objective_function(const EOT & sol)
 
     for ( size_t i = 0; i < sol.size(); ++i )
 	{
-		//std::cout << sol[i] << std::endl;
 	    sum += sol[i] * sol[i];
 	}
 
@@ -28,7 +27,6 @@ double objective_function(const EOT & sol)
 
 int main(int ac, char** av)
 {
-    //moNeighborhoodStat<Neighbor> nhStat
     moFitnessVarianceStat<EOT> stat;
     eoEvalFuncPtr< EOT, double > eval( objective_function );
     EOT solution(2, 5);
@@ -38,7 +36,6 @@ int main(int ac, char** av)
     solution.invalidate();
     eval(solution);
     stat(solution);
-    //assert(stat.value() == 1);
     std::cout << "var: " << stat.value() << std::endl;
     assert(stat.value() == 625);
 }
