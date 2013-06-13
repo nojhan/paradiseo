@@ -74,7 +74,7 @@ class moeoDummyDiversityAssignment : public moeoDiversityAssignment < MOEOT >
      * @param _pop the population
      * @param _objVec the objective vector
      */
-    void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+    void updateByDeleting(eoPop < MOEOT > & /*_pop*/, ObjectiveVector & /*_objVec*/)
     {
       // nothing to do...  ;-)
     }
