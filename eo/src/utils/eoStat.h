@@ -483,7 +483,7 @@ class eoInterquartileRangeStat : public eoStat< EOT, typename EOT::Fitness >
 public:
     using eoStat<EOT, typename EOT::Fitness>::value;
 
-    eoInterquartileRangeStat( typename EOT::Fitness start, std::string description = "IQR" ) : eoStat<EOT,typename EOT::Fitness>( start, description ) {}
+    eoInterquartileRangeStat( std::string description = "IQR" ) : eoStat<EOT,typename EOT::Fitness>( 0.0, description ) {}
 
     virtual void operator()( const eoPop<EOT> & _pop )
     {
