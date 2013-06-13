@@ -81,7 +81,7 @@ public:
 
 protected:
     /** binary metric comparing two Pareto sets */
-    moeoVectorVsVectorBinaryMetric<ObjectiveVector, double> & _metric;
+    moeoVectorVsVectorBinaryMetric<ObjectiveVector, T> & _metric;
 
     /** (n-1) population */
     eoPop<MOEOT> _prev_pop;
