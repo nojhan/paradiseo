@@ -488,19 +488,27 @@ public:
 
     eoNthElementStat( int nth = 0, std::string description = "NthElement")
         : eoStat<EOT,typename EOT::Fitness>( 0.0, description ), _nth(nth), _ratio(-1.0)
-    {}
+    {
+            assert( _nth >= 0 );
+    }
 
     eoNthElementStat( double ratio = 0.5, std::string description = "Median" )
         : eoStat<EOT,typename EOT::Fitness>( 0.0, description ), _nth(-1), _ratio(ratio)
-    {}
+    {
+            assert( _ratio >= 0 );
+    }
 
     virtual void operator()( const eoPop<EOT> & _pop )
     {
+        unsigned int nth;
         if( _nth == -1 ) { // asked for a ratio
-            _nth = static_cast<int>( std::floor(_pop.size() * _ratio) );
+            nth = static_cast<unsigned int>( std::floor(_pop.size() * _ratio) );
         } else {
             assert( _ratio == -1 ); // asked for a position
+            nth = static_cast<unsigned int>(_nth);
         }
+        assert( nth >= 0 );
+        assert( nth < _pop.size() );
 
         if( _pop.size() == 0 ) {
             //FIXME how to implement value() = 0 ?
@@ -509,8 +517,8 @@ public:
         } else {
             eoPop<EOT> pop = _pop; // copy, thus no sorting of the original pop
 
-            std::nth_element( pop.begin(), pop.begin()+_nth, pop.end() );
-            value() = pop[_nth].fitness();
+            std::nth_element( pop.begin(), pop.begin()+nth, pop.end() );
+            value() = pop[nth].fitness();
         }
     }
 
