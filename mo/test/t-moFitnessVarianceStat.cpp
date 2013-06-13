@@ -4,7 +4,7 @@
 
 #include <eo>
 //#include "eoReal.h"
-#include "continuator/moStdFitnessNeighborStat.h"
+#include "continuator/moFitnessVarianceStat.h"
 #include "neighborhood/moRealNeighbor.h"
 #include "neighborhood/moRealNeighborhood.h"
 
@@ -15,8 +15,8 @@ typedef moRealNeighbor< EOT > Neighbor;
 
 int main(int ac, char** av)
 {
-    moNeighborhoodStat<Neighbor> nhStat
-    moStdFitnessNeighborStat<Neighbor> stat(nhStat);
+    //moNeighborhoodStat<Neighbor> nhStat
+    moFitnessVarianceStat<Neighbor> stat();
     EOT solution(2, 5);
     stat(solution);
     //assert(stat.value() == 1);

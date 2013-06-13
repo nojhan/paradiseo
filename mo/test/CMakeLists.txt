@@ -95,7 +95,7 @@ set (TEST_LIST
 		t-moStatistics
 		t-moIndexedVectorTabuList
 #		t-moRndIndexedVectorTabuList
-		t-moStdFitnessNeighborStat
+		t-moFitnessVarianceStat
 		t-moStdDevEstimator
 		t-moDynSpanCoolingSchedule
 		t-moTriki
