@@ -4,7 +4,7 @@
 #include <eo>
 #include <mo>
 
-#include <moFitnessVarianceStat.h> // TODO rm
+#include <continuator/moFitnessVarianceStat.h> // TODO rm
 #include <iostream> // TODO rm
  // TODO make tests
 

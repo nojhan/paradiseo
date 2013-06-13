@@ -35,6 +35,7 @@
 // general purpose
 #include <utils/eoData.h>
 #include <eoObject.h>
+#include <eoOptional.h>
 #include <eoPrintable.h>
 #include <eoPersistent.h>
 #include <eoScalarFitness.h>
