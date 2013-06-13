@@ -502,12 +502,13 @@ public:
     {
         unsigned int nth;
         if( _nth == -1 ) { // asked for a ratio
+            assert( _ratio >= 0 && _ratio <= 1 );
             nth = static_cast<unsigned int>( std::floor(_pop.size() * _ratio) );
         } else {
             assert( _ratio == -1 ); // asked for a position
+            assert( _nth >= 0 );
             nth = static_cast<unsigned int>(_nth);
         }
-        assert( nth >= 0 );
         assert( nth < _pop.size() );
 
         if( _pop.size() == 0 ) {
