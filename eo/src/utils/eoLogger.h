@@ -23,6 +23,7 @@ Contact: http://eodev.sourceforge.net
 Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 Caner Candan <caner.candan@thalesgroup.com>
+Lionel Parreaux <lionel.parreaux@gmail.com>
 
 */
 
