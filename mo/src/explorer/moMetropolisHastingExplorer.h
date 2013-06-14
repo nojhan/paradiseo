@@ -68,7 +68,17 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _nbStep maximum number of step to do
      */
-    moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
+    moMetropolisHastingExplorer(
+        Neighborhood& _neighborhood,
+        moEval<Neighbor>& _eval,
+        moNeighborComparator<Neighbor>& _neighborComparator,
+        moSolNeighborComparator<Neighbor>& _solNeighborComparator,
+        unsigned int _nbStep
+    ): moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),
+       neighborComparator(_neighborComparator),
+       solNeighborComparator(_solNeighborComparator),
+       nbStep(_nbStep)
+    {
         isAccept = false;
         if (!neighborhood.isRandom()) {
             std::cout << "moMetropolisHastingExplorer::Warning -> the neighborhood used is not random" << std::endl;
@@ -140,7 +150,7 @@ public:
     virtual bool accept(EOT & _solution) {
         double alpha=0.0;
         if (neighborhood.hasNeighbor(_solution)) {
-	  if (solNeighborComparator(_solution, selectedNeighbor))
+            if (solNeighborComparator(_solution, selectedNeighbor))
                 isAccept = true;
             else {
                 if (_solution.fitness() != 0) {
