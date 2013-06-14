@@ -1,3 +1,27 @@
+/*
+
+(c) Thales group, 2010
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation;
+    version 2 of the License.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+Contact: http://eodev.sourceforge.net
+
+Authors:
+Lionel Parreaux <lionel.parreaux@gmail.com>
+
+*/
 
 #ifndef __moRealNeighborhood_h__
 #define __moRealNeighborhood_h__
@@ -7,7 +31,7 @@
 #include "neighborhood/moRealNeighbor.h"
 
 template<class Distrib, class Neighbor>
-class moRealNeighborhood : public moRndNeighborhood< Neighbor >, public eoFunctorBase
+class moRealNeighborhood : public moRndNeighborhood< Neighbor >
 {
 public:
     typedef typename Distrib::EOType EOT;
@@ -19,7 +43,14 @@ protected:
 
 public:
 
-    moRealNeighborhood( Distrib & distrib, edoSampler<Distrib> & sampler, edoBounder<EOT> & bounder ) : _distrib(distrib), _sampler(sampler), _bounder(bounder) {}
+    moRealNeighborhood(
+        Distrib& distrib,
+        edoSampler<Distrib>& sampler,
+        edoBounder<EOT>& bounder
+    ): _distrib(distrib),
+       _sampler(sampler),
+       _bounder(bounder)
+    { }
 
     /**
      * It alway remains at least a solution in an infinite neighborhood
