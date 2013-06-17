@@ -32,7 +32,7 @@ Lionel Parreaux <lionel.parreaux@gmail.com>
 #include <continuator/moStdFitnessNeighborStat.h>
 #include <neighborhood/moNeighborhood.h>
 #include <continuator/moStat.h>
-#include <moFitnessMomentsStat.h>
+#include <continuator/moFitnessMomentsStat.h>
 
 
 /*

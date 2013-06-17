@@ -49,7 +49,7 @@ public:
      */
 	moStdDevEstimator<EOT,Neighbor> (
 			moContinuator<Neighbor>& continuator,
-			moNeighborhood < Neighbor > & neighborhood,
+			moNeighborhood<Neighbor>& neighborhood,
 			eoEvalFunc<EOT>& fullEval,
 			
 			/* The following should be read:
