@@ -174,6 +174,7 @@ public:
     {
         this->_value = v.first;
         this->is_feasible( v.second );
+        this->_feasible_init = true;
         return *this;
     }
 
@@ -184,6 +185,7 @@ public:
         if (this != &other) {
             this->_value = other._value;
             this->is_feasible( other.is_feasible() );
+            this->_feasible_init = other._feasible_init;
         }
         return *this;
     }
