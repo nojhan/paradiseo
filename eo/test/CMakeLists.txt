@@ -69,6 +69,7 @@ set (TEST_LIST
   #t-openmp # does not work anymore since functions used in this test were removed from EO
   #t-eoDualFitness
   t-eoParser
+  t-eoOptional
   )
 
 

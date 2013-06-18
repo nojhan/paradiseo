@@ -1,6 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 /*
+
 (c) Thales group, 2010
 
     This library is free software; you can redistribute it and/or
@@ -30,56 +31,7 @@ Caner Candan <caner.candan@thalesgroup.com>
 
  Global logger for EO.
 
- Here's an example explaning how to use eoLogger:
-\code
-    #include <eo>
-
-    int	main(int ac, char** av)
-    {
-    // We are declaring the usual eoParser class
-    eoParser parser(ac, av);
-
-    // This call is important to allow -v parameter to change user level.
-    make_verbose(parser);
-
-    // At this time we are switching to warning message and messages
-    // which are going to follow it are going to be warnings message too.
-    // These messages can be displayed only if the user level (sets with
-    // eo::setlevel function) is set to eo::warnings.
-    eo::log << eo::warnings;
-
-    // With the following eo::file function we are defining that
-    // all future logs are going to this new file resource which is
-    // test.txt
-    eo::log << eo::file("test.txt") << "In FILE" << std::endl;
-
-    // Now we are changing again the resources destination to cout which
-    // is the standard output.
-    eo::log << std::cout << "In COUT" << std::endl;
-
-    // Here are 2 differents examples of how to set the errors user level
-    // in using either a string or an identifier.
-    eo::log << eo::setlevel("errors");
-    eo::log << eo::setlevel(eo::errors);
-
-    // Now we are writting a message, that will be displayed only if we are above the "quiet" level
-    eo::log << eo::quiet << "1) Must be in quiet mode to see that" << std::endl;
-
-    // And so on...
-    eo::log << eo::setlevel(eo::warnings) << eo::warnings << "2) Must be in warnings mode to see that" << std::endl;
-
-    eo::log << eo::setlevel(eo::logging);
-
-    eo::log << eo::errors;
-    eo::log << "3) Must be in errors mode to see that";
-    eo::log << std::endl;
-
-    eo::log << eo::debug << 4 << ')'
-    << " Must be in debug mode to see that\n";
-
-    return 0;
-    }
-\endcode
+ For an example explaning how to use eoLogger, please refer to paradiseo/eo/test/t-eoLogger.cpp
 
 @{
 */
@@ -91,9 +43,22 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include <vector>
 #include <string>
 #include <iosfwd>
+#include <fstream>
 
 #include "eoObject.h"
 #include "eoParser.h"
+
+#define USE_SET // defines if a set is to be used instead of a vector for storing streams the logger is redirected to
+#undef USE_SET
+/* expriments have shown that here a vector is by far faster than a set even if O(n),
+ * because it needs less dynamic allocations, uses less memory and less instructions
+ */
+
+
+#ifdef USE_SET
+#include <set>
+#endif
+
 
 namespace eo
 {
@@ -109,16 +74,6 @@ namespace eo
                  logging,
                  debug,
                  xdebug};
-
-    /**
-     * file
-     * this structure combined with the friend operator<< below is an easy way to select a file as output.
-     */
-    struct file
-    {
-        explicit file(const std::string f);
-        const std::string _f;
-    };
 
     /**
      * setlevel
@@ -146,7 +101,7 @@ public:
     eoLogger();
 
     //! overidded ctor in order to instanciate a logger with a file define in parameter
-    eoLogger(eo::file file);
+    //eoLogger(eo::file file);
 
     //! dtor
     ~eoLogger();
@@ -181,6 +136,12 @@ private:
     //! used by the set of ctors to initiate some useful variables
     void _init();
 
+    //! helper function regrouping redirection operations; takes a pointer because can be given NULL
+    void doRedirect(std::ostream*);
+
+    //! helper function searching for a stream and removing it, returning true if successful, false otherwise
+    bool tryRemoveRedirect(std::ostream*);
+
 private:
     /**
      * outbuf
@@ -189,11 +150,19 @@ private:
     class outbuf : public std::streambuf
     {
     public:
-        outbuf(const int& fd, const eo::Levels& contexlvl, const eo::Levels& selectedlvl);
+        outbuf(const eo::Levels& contexlvl, const eo::Levels& selectedlvl);
+        //std::ostream * _outStream;
+    
+    #ifdef USE_SET
+        std::set<std::ostream*> _outStreams;
+    #else
+        std::vector<std::ostream*> _outStreams;
+    #endif
+    
+        std::ofstream * _ownedFileStream;
     protected:
         virtual int overflow(int_type c);
     private:
-        const int& _fd;
         const eo::Levels& _contextLevel;
         const eo::Levels& _selectedLevel;
     };
@@ -212,23 +181,44 @@ public:
     friend eoLogger& operator<<(eoLogger&, const eo::Levels);
 
     /**
-     * operator<< used there to set a filename through the class file.
-     */
-    //! in order to use stream style to define a file to dump instead the standart output
-    friend eoLogger& operator<<(eoLogger&, eo::file);
-
-    /**
      * operator<< used there to set a verbose level through the class setlevel.
      */
     //! in order to use stream style to define manually the verbose level instead using options
     friend eoLogger& operator<<(eoLogger&, eo::setlevel);
 
     /**
-     * operator<< used there to be able to use std::cout to say that we wish to redirect back the buffer to a standard output.
+     * DEPRECATED: Use instead the redirect or addRedirect method; has the same effect as addRedirect
      */
-    //! in order to use stream style to go back to a standart output defined by STL
-    //! and to get retro-compatibility
     friend eoLogger& operator<<(eoLogger&, std::ostream&);
+
+    /**
+     * Redirects the logger to a given output stream.
+     * Closing the stream and returning its memory is at the charge of the caller,
+     * but should not be done while the log is still redirected to it.
+     * This resets all previous redirections set up with redirect and add_redirect.
+     */
+    void redirect(std::ostream&);
+
+    /**
+     * Adds a redirection from the logger to a given output stream.
+     * Closing the stream and returning its memory is at the charge of the caller,
+     * but should not be done while the log is still redirected to it.
+     * This does not reset previous redirections, which remain active.
+     */
+    void addRedirect(std::ostream&);
+
+    /**
+     * Removes a redirection from the logger to the given output stream.
+     * This only resets the redirection to the stream passed in argument.
+     */
+    void removeRedirect(std::ostream&);
+
+    /**
+     * Redirects the logger to a file using a filename.
+     * Closing the file will be done automatically when the logger is redirected again or destroyed.
+     */
+    void redirect(const char * filename);
+    void redirect(const std::string& filename);
 
 private:
     friend void make_verbose(eoParser&);
@@ -244,13 +234,7 @@ private:
     eo::Levels _contextLevel;
 
     /**
-     * _fd in storing the file descriptor at this place we can disable easily the buffer in
-     * changing the value at -1. It is used by operator <<.
-     */
-    int _fd;
-
-    /**
-     * _obuf std::ostream mandates to use a buffer. _obuf is a outbuf inheriting of std::streambuf.
+     * _obuf std::ostream mandates to use a buffer. _obuf is a outbuf inheriting from std::streambuf.
      */
     outbuf _obuf;
 
