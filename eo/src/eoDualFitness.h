@@ -111,20 +111,17 @@ public:
      * If you use this interface, you MUST set the feasibility BEFORE
      * asking for it or the value. Or else, an assert will fail in debug mode.
      */
-    template<class T>
-    eoDualFitness( T value ) :
+    eoDualFitness( const double value ) :
         _value(value),
         _is_feasible(false),
         _feasible_init(false)
-    {
-    }
-
+    {}
 
     //! Copy constructor
     eoDualFitness(const eoDualFitness& other) :
         _value(other._value),
         _is_feasible(other._is_feasible),
-        _feasible_init(true)
+        _feasible_init(other._feasible_init)
     {}
 
     //! Constructor from explicit value/feasibility
@@ -159,7 +156,7 @@ public:
     //! Explicitly set the feasibility. Useful if you have used previously the instantiation on a single scalar.
     inline void is_feasible( bool feasible )
     {
-        this->is_feasible( feasible );
+        this->_is_feasible = feasible;
         this->_feasible_init = true;
     }
 
@@ -167,37 +164,6 @@ public:
     {
         assert( _feasible_init );
         return _value;
-    }
-
-    //! Copy operator from a std::pair
-    eoDualFitness& operator=( const std::pair<BaseType, bool>& v )
-    {
-        this->_value = v.first;
-        this->is_feasible( v.second );
-        this->_feasible_init = true;
-        return *this;
-    }
-
-    //! Copy operator from another eoDualFitness
-    template <class F, class Cmp>
-    eoDualFitness<BaseType,Compare> & operator=( const eoDualFitness<BaseType, Compare>& other )
-    {
-        if (this != &other) {
-            this->_value = other._value;
-            this->is_feasible( other.is_feasible() );
-            this->_feasible_init = other._feasible_init;
-        }
-        return *this;
-    }
-
-    //! Copy operator from a scalar
-    template<class T>
-    eoDualFitness& operator=(const T v)
-    {
-        this->_value = v;
-        this->_is_feasible = false;
-        this->_feasible_init = false;
-        return *this;
     }
 
     //! Comparison that separate feasible individuals from unfeasible ones. Feasible are always better
@@ -236,7 +202,7 @@ public:
     bool operator>=(const eoDualFitness& other ) const { return !(*this < other); }
 
     //! Equal: if the other is equal to me
-    bool operator==(const eoDualFitness& other) const { return ( _is_feasible == other._is_feasible ) && ( _value == other._value ); }
+    bool operator==(const eoDualFitness& other) const { return ( this->is_feasible() == other.is_feasible() ) && ( _value == other._value ); }
 
 public:
 
@@ -263,8 +229,10 @@ public:
         this->_value += that._value;
 
         // true only if the two are feasible, else false
-        // from._is_feasible = from._is_feasible && that._is_feasible;
         this->_is_feasible = this->_is_feasible && that._is_feasible;
+
+        // If the other was not correctly initialized
+        this->_feasible_init = that._feasible_init;
 
         return *this;
     }
@@ -282,8 +250,12 @@ public:
     {
         this->_value -= that._value;
 
+
         // true only if the two are feasible, else false
         this->_is_feasible = this->_is_feasible && that._is_feasible;
+
+        // If the other was not correctly initialized
+        this->_feasible_init = that._feasible_init;
 
         return *this;
     }
@@ -304,6 +276,9 @@ public:
 
         // true only if the two are feasible, else false
         this->_is_feasible = this->_is_feasible && that._is_feasible;
+
+        // If the other was not correctly initialized
+        this->_feasible_init = that._feasible_init;
 
         return *this;
     }
@@ -355,7 +330,11 @@ public:
     friend
     std::ostream& operator<<( std::ostream& os, const eoDualFitness<BaseType,Compare> & fitness )
     {
-        os << fitness._value << " " << fitness.is_feasible();
+        if( fitness._feasible_init ) {
+            os << fitness._value << " " << fitness.is_feasible();
+        } else {
+            os << fitness._value << " ?";
+        }
         return os;
     }
 
