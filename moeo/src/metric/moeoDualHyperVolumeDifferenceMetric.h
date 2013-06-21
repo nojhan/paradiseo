@@ -34,6 +34,7 @@ class moeoDualHyperVolumeDifferenceMetric : public moeoHyperVolumeDifferenceMetr
 {
 protected:
     using moeoHyperVolumeDifferenceMetric<ObjectiveVector>::rho;
+    using moeoHyperVolumeDifferenceMetric<ObjectiveVector>::tiny;
     using moeoHyperVolumeDifferenceMetric<ObjectiveVector>::normalize;
     using moeoHyperVolumeDifferenceMetric<ObjectiveVector>::ref_point;
     using moeoHyperVolumeDifferenceMetric<ObjectiveVector>::bounds;
@@ -52,6 +53,60 @@ public:
         : moeoHyperVolumeDifferenceMetric<ObjectiveVector>( _normalize, _ref_point )
     {
 
+    }
+
+
+    /**
+     * method calculate bounds for the normalization
+     * @param _set1 the vector contains all objective Vector of the first pareto front
+     * @param _set2 the vector contains all objective Vector of the second pareto front
+     */
+    void setup(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
+    {
+        typename ObjectiveVector::Type::Compare cmp;
+
+        if(_set1.size() < 1 || _set2.size() < 1) {
+            throw("Error in moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0");
+        } else {
+#ifndef NDEBUG
+            if( _set1.size() == 1 || _set2.size() == 1 ) {
+                eo::log << eo::warnings << "Warning in moeoHyperVolumeUnaryMetric::setup one of the pareto set contains only one point (set1.size="
+                    << _set1.size() << ", set2.size=" << _set2.size() << ")"
+                    << std::endl;
+            }
+#endif
+
+            typename ObjectiveVector::Type  worst,  best;
+            unsigned int nbObj=ObjectiveVector::Traits::nObjectives();
+            bounds.resize(nbObj);
+            for (unsigned int i=0; i<nbObj; i++){
+                worst = _set1[0][i];
+                best = _set1[0][i];
+                for (unsigned int j=1; j<_set1.size(); j++){
+                    worst = std::min( worst, _set1[j][i], cmp );
+                    best = std::max( best, _set1[j][i], cmp );
+                }
+                for (unsigned int j=0; j<_set2.size(); j++){
+                    worst = std::min( worst, _set2[j][i], cmp );
+                    best = std::max( best, _set2[j][i], cmp );
+                }
+
+                // Get real min/max
+                double min = std::min(worst.value(), best.value());
+                double max = std::max(worst.value(), best.value());
+
+                // Build a fitness with them
+                assert( best.is_feasible() == worst.is_feasible() ); // we are supposed to work on homogeneous pop
+                Type fmin( min, best.is_feasible() );
+                Type fmax( max, best.is_feasible() );
+
+                if(  fmin ==  fmax ) {
+                    bounds[i] = eoRealInterval( fmin-tiny(),  fmax+tiny() );
+                } else {
+                    bounds[i] = eoRealInterval( fmin, fmax );
+                }
+            } // for i in nbObj
+        } // if sizes >= 1
     }
 
     /**
