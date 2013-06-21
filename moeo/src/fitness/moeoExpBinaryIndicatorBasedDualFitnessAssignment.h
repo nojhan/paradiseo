@@ -130,7 +130,10 @@ protected:
                             metric( pop[i].objectiveVector(), pop[j].objectiveVector() ),
                             pop[i].objectiveVector().is_feasible()
                         );
-                } // if i != j
+                } else { // if i != j
+                    assert( i == j );
+                    values[i][j] = Type( 0.0, pop[i].objectiveVector().is_feasible() );
+                }
             } // for j in pop
         } // for i in pop
     }
@@ -145,15 +148,14 @@ protected:
 
     virtual Type computeFitness(const unsigned int _idx)
     {
-      Type result( 0.0, values[_idx][_idx].is_feasible() );
-      for (unsigned int i=0; i<values.size(); i++)
-        {
-          if (i != _idx)
-            {
-              result -= exp(-values[i][_idx]/kappa);
+        // Type result( 0.0, values[_idx][_idx].is_feasible() );
+        Type result( 0.0, values[_idx][_idx].is_feasible() );
+        for (unsigned int i=0; i<values.size(); i++) {
+            if (i != _idx) {
+                result -= exp(-values[i][_idx]/kappa);
             }
         }
-      return result;
+        return result;
     }
 
 
