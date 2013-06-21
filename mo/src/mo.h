@@ -105,6 +105,7 @@
 #include <coolingSchedule/moDynSpanCoolingSchedule.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 #include <coolingSchedule/moDynSpanCoolingSchedule.h>
+#include <coolingSchedule/moTrikiCoolingSchedule.h>
 
 #include <eval/moDummyEval.h>
 #include <eval/moEval.h>
@@ -112,6 +113,7 @@
 #include <eval/moFullEvalByCopy.h>
 #include <eval/moFullEvalByModif.h>
 #include <eval/moDoubleIncrNeighborhoodEval.h>
+#include <eval/queenEval.h>
 
 #include <explorer/moDummyExplorer.h>
 #include <explorer/moFirstImprHCexplorer.h>
@@ -207,5 +209,6 @@
 #include <sampling/moRndRndFitnessCloudSampling.h>
 #include <sampling/moSampling.h>
 #include <sampling/moStatistics.h>
+#include <sampling/moStdDevEstimator.h>
 
 #endif

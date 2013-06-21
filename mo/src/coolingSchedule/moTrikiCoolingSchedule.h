@@ -141,10 +141,10 @@ public:
 			//costs_sum += _solution.fitness();
 			//varStat(_solution);
 			if (statIsInitialized)
-				 momStat(_solution);
-			else momStat.init(_solution), statIsInitialized = true;
+				 momentStat(_solution);
+			else momentStat.init(_solution), statIsInitialized = true;
 			
-			//cout << _solution.fitness() << "  avgCost=" << momStat.value().first << endl;
+			//cout << _solution.fitness() << "  avgCost=" << momentStat.value().first << endl;
 		}
 		
 		
@@ -167,21 +167,20 @@ public:
 			//double avgCost = costs_sum/(double)accepted;
 			//double stdDev = sqrt(varStat.value()); // WARNING: IT'S NO MORE THE AVG COST, NOW IT'S THE STD DEV!
 			//double variance = varStat.value();
-			double avgCost = momStat.value().first;
-			double variance = momStat.value().second;
+			double avgCost = momentStat.value().first;
+			double variance = momentStat.value().second;
 			double stdDev = sqrt(variance);
 			double sigma = stdDev;
 			double delta = sigma/mu2;
 			
 			
 			//outf << avgCost << endl;
-			//outf << _temp << endl;
-			outf << prevAvgCost-delta << endl;
+			outf << _temp << endl;
+			//outf << prevAvgCost-delta << endl;
 			
 			
 			accepted = generated = costs_sum = 0;
-			//varStat.init(_solution);//TODON use next chain's first sol
-			//momStat.init(_solution);//TODONE use next chain's first sol
+			//momentStat.init(_solution);//TODONE use next chain's first sol
 			statIsInitialized = false;
 			
 			///
@@ -342,7 +341,7 @@ private:
 	bool reinitializing, terminated;
 	
 	//moFitnessVarianceStat<EOT> varStat;
-	moFitnessMomentsStat<EOT> momStat;
+	moFitnessMomentsStat<EOT> momentStat;
 	bool statIsInitialized;
 	
 	ofstream outf;

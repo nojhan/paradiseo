@@ -68,7 +68,16 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _coolingSchedule the cooling schedule
      */
-  moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
+    moSAexplorer (
+        Neighborhood& _neighborhood,
+        moEval<Neighbor>& _eval,
+        moSolNeighborComparator<Neighbor>& _solNeighborComparator,
+        moCoolingSchedule<EOT>& _coolingSchedule
+    )
+    : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),
+      solNeighborComparator(_solNeighborComparator),
+      coolingSchedule(_coolingSchedule)
+    {
         isAccept = false;
 
         if (!neighborhood.isRandom()) {
