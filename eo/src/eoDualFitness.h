@@ -64,12 +64,12 @@ Authors:
  * (i.e. when adding or substracting dual fitness, the only case when the result will be
  *  a feasible fitness is when both are feasible, else the result is an unfeasibe fitness)
 */
-template <class BaseType, class Compare >
+template <class BaseT, class Cmp >
 class eoDualFitness
 {
 protected:
     //! Scalar type of the fitness (generally a double)
-    BaseType _value;
+    BaseT _value;
 
     //! Flag that marks if the individual is feasible
     bool _is_feasible;
@@ -94,6 +94,8 @@ protected:
     bool _feasible_init;
 
 public:
+    typedef BaseT Base;
+    typedef Cmp Compare;
 
     //! Empty initialization
     /*!
@@ -125,14 +127,14 @@ public:
     {}
 
     //! Constructor from explicit value/feasibility
-    eoDualFitness(const BaseType& v, const bool& is_feasible) :
+    eoDualFitness(const BaseT& v, const bool& is_feasible) :
         _value(v),
         _is_feasible(is_feasible),
         _feasible_init(true)
     {}
 
     //! From a std::pair (first element is the value, second is the feasibility)
-    eoDualFitness(const std::pair<BaseType,bool>& dual) :
+    eoDualFitness(const std::pair<BaseT,bool>& dual) :
         _value(dual.first),
         _is_feasible(dual.second),
         _feasible_init(true)
@@ -144,7 +146,7 @@ public:
      *     double val = 1.0;
      *     val = fit;
      */
-    operator BaseType(void) const { return _value; }
+    operator BaseT(void) const { return _value; }
 
 
     inline bool is_feasible() const
@@ -160,7 +162,7 @@ public:
         this->_feasible_init = true;
     }
 
-    inline BaseType value() const
+    inline BaseT value() const
     {
         assert( _feasible_init );
         return _value;
@@ -169,7 +171,7 @@ public:
     //! Comparison that separate feasible individuals from unfeasible ones. Feasible are always better
     /*!
      * Use less as a default comparison operator
-     * (see the "Compare" template of the class to change this behaviour,
+     * (see the "Cmp" template of the class to change this behaviour,
      * @see eoMinimizingDualFitness for an example).
      */
     bool operator<(const eoDualFitness& other) const
@@ -188,7 +190,7 @@ public:
         } else {
             // the two fitness are of the same type
             // lets rely on the comparator
-            return Compare()(_value, other._value);
+            return Cmp()(_value, other._value);
         }
     }
 
@@ -216,14 +218,14 @@ public:
 
     //! Add a given fitness to the current one
     template<class T>
-    eoDualFitness<BaseType,Compare> & operator+=( const T that )
+    eoDualFitness<BaseT,Cmp> & operator+=( const T that )
     {
         this->_value += that;
         return *this;
     }
 
     //! Add a given fitness to the current one
-    eoDualFitness<BaseType,Compare> & operator+=( const eoDualFitness<BaseType,Compare> & that )
+    eoDualFitness<BaseT,Cmp> & operator+=( const eoDualFitness<BaseT,Cmp> & that )
     {
         // from._value += that._value;
         this->_value += that._value;
@@ -239,14 +241,14 @@ public:
 
     //! Substract a given fitness to the current one
     template<class T>
-    eoDualFitness<BaseType,Compare> & operator-=( const T that )
+    eoDualFitness<BaseT,Cmp> & operator-=( const T that )
     {
         this->_value -= that;
         return *this;
     }
 
     //! Substract a given fitness to the current one
-    eoDualFitness<BaseType,Compare> & operator-=( const eoDualFitness<BaseType,Compare> & that )
+    eoDualFitness<BaseT,Cmp> & operator-=( const eoDualFitness<BaseT,Cmp> & that )
     {
         this->_value -= that._value;
 
@@ -263,14 +265,14 @@ public:
 
     //! Add a given fitness to the current one
     template<class T>
-    eoDualFitness<BaseType,Compare> & operator/=( T that )
+    eoDualFitness<BaseT,Cmp> & operator/=( T that )
     {
         this->_value /= that;
         return *this;
     }
 
     //! Add a given fitness to the current one
-    eoDualFitness<BaseType,Compare> & operator/=( const eoDualFitness<BaseType,Compare> & that )
+    eoDualFitness<BaseT,Cmp> & operator/=( const eoDualFitness<BaseT,Cmp> & that )
     {
         this->_value /= that._value;
 
@@ -284,51 +286,51 @@ public:
     }
 
     template<class T>
-    eoDualFitness<BaseType,Compare> operator+( T that )
+    eoDualFitness<BaseT,Cmp> operator+( T that )
     {
         this->_value += that;
         return *this;
     }
 
     // Add this fitness's value to that other, and return a _new_ instance with the result.
-    eoDualFitness<BaseType,Compare> operator+( const eoDualFitness<BaseType,Compare> & that )
+    eoDualFitness<BaseT,Cmp> operator+( const eoDualFitness<BaseT,Cmp> & that )
     {
-        eoDualFitness<BaseType,Compare> from( *this );
+        eoDualFitness<BaseT,Cmp> from( *this );
         return from += that;
     }
 
     template<class T>
-    eoDualFitness<BaseType,Compare> operator-( T that )
+    eoDualFitness<BaseT,Cmp> operator-( T that )
     {
         this->_value -= that;
         return *this;
     }
 
     // Add this fitness's value to that other, and return a _new_ instance with the result.
-    eoDualFitness<BaseType,Compare> operator-( const eoDualFitness<BaseType,Compare> & that )
+    eoDualFitness<BaseT,Cmp> operator-( const eoDualFitness<BaseT,Cmp> & that )
     {
-        eoDualFitness<BaseType,Compare> from( *this );
+        eoDualFitness<BaseT,Cmp> from( *this );
         return from -= that;
     }
 
 
     template<class T>
-    eoDualFitness<BaseType,Compare> operator/( T that )
+    eoDualFitness<BaseT,Cmp> operator/( T that )
     {
         this->_value /= that;
         return *this;
     }
 
     // Add this fitness's value to that other, and return a _new_ instance with the result.
-    eoDualFitness<BaseType,Compare> operator/( const eoDualFitness<BaseType,Compare> & that )
+    eoDualFitness<BaseT,Cmp> operator/( const eoDualFitness<BaseT,Cmp> & that )
     {
-        eoDualFitness<BaseType,Compare> from( *this );
+        eoDualFitness<BaseT,Cmp> from( *this );
         return from /= that;
     }
 
     //! Print an eoDualFitness instance as a pair of numbers, separated by a space
     friend
-    std::ostream& operator<<( std::ostream& os, const eoDualFitness<BaseType,Compare> & fitness )
+    std::ostream& operator<<( std::ostream& os, const eoDualFitness<BaseT,Cmp> & fitness )
     {
         if( fitness._feasible_init ) {
             os << fitness._value << " " << fitness.is_feasible();
@@ -340,9 +342,9 @@ public:
 
     //! Read an eoDualFitness instance as a pair of numbers, separated by a space
     friend
-    std::istream& operator>>( std::istream& is, eoDualFitness<BaseType,Compare> & fitness )
+    std::istream& operator>>( std::istream& is, eoDualFitness<BaseT,Cmp> & fitness )
     {
-        BaseType value;
+        BaseT value;
         is >> value;
 
         bool feasible;
