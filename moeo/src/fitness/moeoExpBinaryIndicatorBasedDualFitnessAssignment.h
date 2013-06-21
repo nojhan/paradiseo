@@ -77,6 +77,41 @@ public:
 protected:
 
     using moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>::kappa;
+    using moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>::metric;
+
+
+    /**
+     * Sets the bounds for every objective using the min and the max value for every objective vector of _pop
+     * @param _pop the population
+     */
+    void setup(const eoPop < MOEOT > & _pop)
+    {
+        Type worst, best;
+        typename MOEOT::ObjectiveVector::Type::Compare cmp;
+
+        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+        {
+            worst = _pop[0].objectiveVector()[i];
+            best = _pop[0].objectiveVector()[i];
+            for (unsigned int j=1; j<_pop.size(); j++)
+            {
+                // use the overloaded comparison operators
+                worst = std::min(worst, _pop[j].objectiveVector()[i], cmp );
+                best = std::max(best, _pop[j].objectiveVector()[i], cmp );
+            }
+            // Get real min/max
+            double min = std::min(worst.value(), best.value());
+            double max = std::max(worst.value(), best.value());
+
+            // Build a fitness with them
+            assert( best.is_feasible() == worst.is_feasible() ); // we are supposed to work on homogeneous pop
+            Type fmin( min, best.is_feasible() );
+            Type fmax( max, best.is_feasible() );
+
+            // setting of the bounds for the objective i
+            metric.setup( fmin, fmax, i);
+        }
+    }
 
     /**
      * Compute every indicator value in values (values[i] = I(_v[i], _o))
