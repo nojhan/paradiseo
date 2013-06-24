@@ -41,6 +41,8 @@
 #include <comparator/moSolNeighborComparator.h>
 #include <coolingSchedule/moCoolingSchedule.h>
 #include <neighborhood/moNeighborhood.h>
+#include <eoOptional.h>
+#include <eval/moFullEvalByCopy.h>
 
 #include <utils/eoRNG.h>
 
@@ -68,6 +70,7 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _coolingSchedule the cooling schedule
      */
+    /*
     moSAexplorer (
         Neighborhood& _neighborhood,
         moEval<Neighbor>& _eval,
@@ -83,12 +86,34 @@ public:
         if (!neighborhood.isRandom()) {
             std::cout << "moSAexplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
+    }*/
+    moSAexplorer (
+        Neighborhood& _neighborhood,
+        moCoolingSchedule<EOT>& _cool,
+        eoOptional< moEval<Neighbor> > _eval                  = NULL,
+        eoOptional< moSolNeighborComparator<Neighbor> > _comp = NULL
+    )
+    : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval.hasValue()? _eval.get(): *(default_eval = new moFullEvalByCopy<Neighbor>(_fullEval))),
+      default_eval(NULL),             // removed in C++11 with unique_ptr
+      defaultSolNeighborComp(NULL),             // removed in C++11 with unique_ptr
+      solNeighborComparator(_comp.hasValue()? _comp.get(): *(defaultSolNeighborComp = new moSolNeighborComparator<Neighbor>())),
+      coolingSchedule(_coolingSchedule)
+    {
+        isAccept = false;
+
+        if (!neighborhood.isRandom()) {
+            std::cout << "moSAexplorer::Warning -> the neighborhood used is not random" << std::endl;
+        }
     }
 
     /**
      * Destructor
      */
     ~moSAexplorer() {
+        if (defaultSolNeighborComp != NULL)
+            delete defaultSolNeighborComp;
+        if (default_eval != NULL)
+            delete default_eval;
     }
 
     /**
@@ -175,6 +200,10 @@ public:
     }
 
 private:
+    
+    moFullEvalByCopy<Neighbor>* default_eval;
+    moSolNeighborComparator<Neighbor>* defaultSolNeighborComp;
+    
     // comparator betwenn solution and neighbor
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
