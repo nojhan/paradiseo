@@ -57,8 +57,8 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
 
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-
     typedef typename ObjectiveVector::Type Type;
+    typedef typename MOEOT::Fitness Fitness;
 
     /**
      * Ctor.
@@ -211,9 +211,9 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      * Returns the fitness value of the _idx th individual of the population
      * @param _idx the index
      */
-    virtual Type computeFitness(const unsigned int _idx)
+    virtual Fitness computeFitness(const unsigned int _idx)
     {
-      Type result(0.0);
+      Fitness result(0.0);
       for (unsigned int i=0; i<values.size(); i++)
         {
           if (i != _idx)

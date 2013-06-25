@@ -38,6 +38,7 @@ protected:
 public:
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
     typedef typename ObjectiveVector::Type Type;
+    typedef typename MOEOT::Fitness Fitness;
 
     using moeoExpBinaryIndicatorBasedFitnessAssignment<MOEOT>::values;
 
@@ -146,10 +147,10 @@ protected:
         }
     }
 
-    virtual Type computeFitness(const unsigned int _idx)
+    virtual Fitness computeFitness(const unsigned int _idx)
     {
-        // Type result( 0.0, values[_idx][_idx].is_feasible() );
-        Type result( 0.0, values[_idx][_idx].is_feasible() );
+        // Fitness result( 0.0, values[_idx][_idx].is_feasible() );
+        Fitness result( 0.0, values[_idx][_idx].is_feasible() );
         for (unsigned int i=0; i<values.size(); i++) {
             if (i != _idx) {
                 result -= exp(-values[i][_idx]/kappa);
