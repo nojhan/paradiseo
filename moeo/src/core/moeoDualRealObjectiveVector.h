@@ -42,6 +42,8 @@ class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVe
         bool _is_feasible;
 
     public:
+        typedef ObjectiveVectorTraits Traits;
+        typedef T Base;
 
         using moeoScalarObjectiveVector < ObjectiveVectorTraits, T >::size;
         using moeoScalarObjectiveVector < ObjectiveVectorTraits, T >::operator[];
@@ -73,28 +75,16 @@ class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVe
             _is_feasible = value;
         }
 
+        /**
+         * Returns true if the current objective vector dominates _other according to the Pareto dominance relation
+         */
         bool dominates(const moeoRealObjectiveVector < ObjectiveVectorTraits > & other) const
         {
-            // am I better than the other ?
-
-            // if I'm feasible and the other is not
-            if( this->is_feasible() && !other.is_feasible() ) {
-                // no, the other has a better objective
-                return true;
-
-            } else if( !this->is_feasible() && other.is_feasible() ) {
-                // yes, a feasible objective is always better than an unfeasible one
-                return false;
-
-            } else {
-                // the two objective are of the same type
-                // lets rely on the comparator
-                moeoParetoObjectiveVectorComparator< moeoDualRealObjectiveVector<ObjectiveVectorTraits> > comparator;
-                return comparator(other, *this);
-            }
+            moeoParetoDualObjectiveVectorComparator<moeoDualRealObjectiveVector> cmp;
+            return cmp( other, *this );
         }
 
-        //! Use when maximizing an 
+        //! True if this is smaller than other
         bool operator<(const moeoDualRealObjectiveVector < ObjectiveVectorTraits > & other) const
         {
             // am I better than the other ?
@@ -102,14 +92,15 @@ class moeoDualRealObjectiveVector : public moeoScalarObjectiveVector<ObjectiveVe
             // if I'm feasible and the other is not
             if( this->is_feasible() && !other.is_feasible() ) {
                 // no, the other has a better objective
-                return true;
+                return false;
 
             } else if( !this->is_feasible() && other.is_feasible() ) {
                 // yes, a feasible objective is always better than an unfeasible one
-                return false;
+                return true;
 
             } else {
                 moeoObjectiveObjectiveVectorComparator < moeoDualRealObjectiveVector < ObjectiveVectorTraits > > cmp;
+                // Returns true if this is smaller than other
                 return cmp(*this, other);
             }
         }
