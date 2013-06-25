@@ -81,8 +81,8 @@ int main()
     obj3[1] = 5;
     obj4[0] = 5;
     obj4[1] = 1;
-    obj5[0] = 3;
-    obj5[1] = 3;
+    obj5[0] = 4;
+    obj5[1] = 4;
 
     // population
     eoPop < Solution > pop;
@@ -97,6 +97,10 @@ int main()
     // fitness assignment
     moeoDominanceDepthFitnessAssignment< Solution > fitnessAssignment;
     fitnessAssignment(pop);
+    
+    for (unsigned int fun=0; fun<pop.size(); fun++) {
+        std::cout << pop[fun].fitness() << std::endl;
+    }
 
     // pop[0]
     if (pop[0].fitness() != 2.0)
@@ -129,7 +133,7 @@ int main()
         return EXIT_FAILURE;
     }
     // pop[5]
-    if (pop[5].fitness() != 2.0)
+    if (pop[5].fitness() != 1.0)
     {
         std::cout << "ERROR (bad fitness for pop[5])" << std::endl;
         return EXIT_FAILURE;

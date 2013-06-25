@@ -155,7 +155,10 @@ private:
          */
         bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
-            return cmp(_moeo2.objectiveVector(), _moeo1.objectiveVector());
+            if (MOEOT::ObjectiveVector::maximizing(0))
+                return cmp(_moeo2.objectiveVector(), _moeo1.objectiveVector());
+            else
+                return cmp(_moeo1.objectiveVector(), _moeo2.objectiveVector());
         }
     private:
         /** the corresponding comparator for objective vectors */
@@ -206,6 +209,17 @@ private:
         }
         moeoPtrComparator<MOEOT> cmp(objComparator);
         std::sort(sortedptrpop.begin(), sortedptrpop.end(), cmp);
+        
+        
+        //
+        std::cout << std::endl << "sorted pop" << std::endl;
+        std::cout << "====================" << std::endl;
+        for(unsigned int i=0; i<_pop.size(); i++)
+        {
+            std::cout << i << " : " << (*sortedptrpop[i]) << std::endl;
+        }
+        std::cout << "====================" << std::endl;
+        //
         
         // compute an upper bound on the second objective (1)
         double max_obj1 = std::numeric_limits<double>::min();
