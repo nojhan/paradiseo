@@ -67,9 +67,13 @@ public:
       moLocalSearch<Neighbor>(explorer, trueCont, _fullEval)
     { }*/
     moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, double _initT=10, double _alpha=0.9, unsigned _span=100, double _finalT=0.01)
-    : moLocalSearch<Neighbor>(explorer = *(defaultExplorer = new moSAexplorer<Neighbor>(_neighborhood, _eval, *defaultSolNeighborComp, *defaultCool)), *(trueCont = new moTrueContinuator<Neighbor>()), _fullEval),
-      defaultCool(new moSimpleCoolingSchedule<EOT>(_initT, _alpha, _span, _finalT))
-      //default_eval(NULL),             // removed in C++11 with unique_ptr
+    : moLocalSearch<Neighbor> (
+        explorer_ptr = defaultExplorer = new moSAexplorer<Neighbor>(_neighborhood, _eval, NULL, *(defaultCool = new moSimpleCoolingSchedule<EOT>(_initT, _alpha, _span, _finalT))),
+        *(trueCont = new moTrueContinuator<Neighbor>()),
+        _fullEval ),
+      explorer(*explorer_ptr),
+      //defaultCool(),
+      default_eval(NULL)             // removed in C++11 with unique_ptr
       //defaultSolNeighborComp(new moSolNeighborComparator<Neighbor>())
       //explorer(_neighborhood, _eval, *defaultSolNeighborComp, *defaultCool)
     { }
@@ -146,46 +150,76 @@ public:
           _cool )
     { }*/
     : moLocalSearch<Neighbor>  (
-        explorer = *(defaultExplorer = new moSAexplorer<Neighbor> (
+        explorer_ptr = defaultExplorer = new moSAexplorer<Neighbor> (
             _neighborhood,
-            _eval, //_eval.hasValue()? _eval.get(): *(default_eval = new moFullEvalByCopy<Neighbor>(_fullEval)),
+            //_eval, //_eval.hasValue()? _eval.get(): *(default_eval = new moFullEvalByCopy<Neighbor>(_fullEval)),
+            _eval.hasValue()? default_eval = NULL, _eval.get(): *(default_eval = new moFullEvalByCopy<Neighbor>(_fullEval)),
             // C++11: _eval.hasValue()? _eval.get(): default_eval = new moFullEvalByCopy<Neighbor>(),
             _comp, //_comp.hasValue()? _comp.get(): *(defaultSolNeighborComp = new moSolNeighborComparator<Neighbor>()),
-            _cool )),
-        _cont.hasValue()? _cont.get(): *(trueCont = new moTrueContinuator<Neighbor>()),
+            _cool ),
+        _cont.hasValue()? trueCont = NULL, _cont.get(): *(trueCont = new moTrueContinuator<Neighbor>()),
         _fullEval  ),
+      explorer(*explorer_ptr),
+      defaultCool(NULL)              // removed in C++11 with unique_ptr
+      //default_eval(NULL),             // removed in C++11 with unique_ptr
+      //trueCont(NULL)                 // removed in C++11 with unique_ptr
+      //defaultSolNeighborComp(NULL)    // removed in C++11 with unique_ptr
+    { }
+    
+    
+    moSA (
+        eoEvalFunc<EOT>& _fullEval,
+        moSAexplorer<Neighbor>& _explorer,
+        eoOptional< moContinuator<Neighbor> > _cont = NULL
+    )
+    : moLocalSearch<Neighbor>  (
+        *(explorer_ptr = &_explorer),
+        _cont.hasValue()? _cont.get(): *(trueCont = new moTrueContinuator<Neighbor>()), _fullEval  ),
+      defaultExplorer(NULL),              // removed in C++11 with unique_ptr
+      explorer(*explorer_ptr),
       defaultCool(NULL),              // removed in C++11 with unique_ptr
       //default_eval(NULL),             // removed in C++11 with unique_ptr
       trueCont(NULL)                 // removed in C++11 with unique_ptr
       //defaultSolNeighborComp(NULL)    // removed in C++11 with unique_ptr
     { }
     
+    /*
     moSA (
+        eoEvalFunc<EOT>& _fullEval,
         moSAexplorer<Neighbor>& _explorer,
-        eoOptional< moContinuator<Neighbor> > _cont = NULL
+        moContinuator<Neighbor> _cont
     )
     : moLocalSearch<Neighbor>  (
         *(explorer = &_explorer),
-        _cont.hasValue()? _cont.get(): *(trueCont = new moTrueContinuator<Neighbor>()), _fullEval  ),
+        _cont, _fullEval  ),
       defaultExplorer(NULL),              // removed in C++11 with unique_ptr
       defaultCool(NULL),              // removed in C++11 with unique_ptr
       //default_eval(NULL),             // removed in C++11 with unique_ptr
       trueCont(NULL)                 // removed in C++11 with unique_ptr
       //defaultSolNeighborComp(NULL)    // removed in C++11 with unique_ptr
     { }
+    */
+    
+    
+    
+    
     
     virtual ~moSA ()
     {
         // Note: using unique_ptr would allow us to remove this explicit destructor, but they were only introduced in C++11
         if (trueCont != NULL)
             delete trueCont;
-        if (explorer != NULL)
-            delete explorer;
+        if (defaultExplorer != NULL)
+            delete defaultExplorer;
+        if (default_eval != NULL)
+            delete default_eval;
     }
 
 private:
+    moFullEvalByCopy<Neighbor>* default_eval;
     moSAexplorer<Neighbor>* defaultExplorer;
-    moSAexplorer<Neighbor>& explorer; // Not NULL (ref)
+    moSAexplorer<Neighbor>* explorer_ptr; // Not NULL
+    moSAexplorer<Neighbor>& explorer;
     moSimpleCoolingSchedule<EOT>* defaultCool; // C++11: const std::unique_ptr<moSimpleCoolingSchedule<EOT>>
     //moFullEvalByCopy<Neighbor>* default_eval;
     moTrueContinuator<Neighbor>* trueCont;
