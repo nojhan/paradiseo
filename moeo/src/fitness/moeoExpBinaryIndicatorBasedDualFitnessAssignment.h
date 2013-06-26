@@ -57,21 +57,28 @@ public:
         // separate the pop in feasible/unfeasible
         _pop_split( pop );
 
-        eoPop<MOEOT>* ppop;
         // if there is at least one feasible individual,
         // it will supersede all the unfeasible ones
-        if( _pop_split.feasible().size() == 0 ) {
-            ppop = & _pop_split.unfeasible();
-        } else {
-            ppop = & _pop_split.feasible();
+        if( _pop_split.unfeasible().size() != 0 ) {
+            this->setup(_pop_split.unfeasible());
+            this->computeValues(_pop_split.unfeasible());
+            this->setFitnesses(_pop_split.unfeasible()); // NOTE: this alter individuals
         }
 
-        this->setup(*ppop);
-        this->computeValues(*ppop);
-        this->setFitnesses(*ppop); // NOTE: this alter individuals
+        if( _pop_split.feasible().size() != 0 ) {
+            this->setup(_pop_split.feasible());
+            this->computeValues(_pop_split.feasible());
+            this->setFitnesses(_pop_split.feasible()); // NOTE: this alter individuals
+        }
 
         // bring back altered individuals in the pop
-        pop = _pop_split.merge();
+        // pop = _pop_split.merge();
+
+        eoPop<MOEOT> merged = _pop_split.merge();
+        assert( pop.size() == merged.size());
+        for( unsigned int i=0; i<pop.size(); ++i ) {
+            pop[i] = merged[i];
+        }
     }
 
 
@@ -131,7 +138,7 @@ protected:
                             metric( pop[i].objectiveVector(), pop[j].objectiveVector() ),
                             pop[i].objectiveVector().is_feasible()
                         );
-                } else { // if i != j
+                } else { // if i == j
                     assert( i == j );
                     values[i][j] = Type( 0.0, pop[i].objectiveVector().is_feasible() );
                 }
@@ -151,14 +158,72 @@ protected:
     {
         // Fitness result( 0.0, values[_idx][_idx].is_feasible() );
         Fitness result( 0.0, values[_idx][_idx].is_feasible() );
-        for (unsigned int i=0; i<values.size(); i++) {
+        for (unsigned int i=0; i<values.size(); i++) { // i in pop.size()
             if (i != _idx) {
                 result -= exp(-values[i][_idx]/kappa);
+                // result += values[i][_idx];
             }
         }
-        return result;
+        return confine(result);
     }
 
+    /**
+     * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector objVec into account.
+     * @param _pop the population
+     * @param objVec the objective vector
+     */
+    void updateByDeleting(eoPop < MOEOT > & pop, ObjectiveVector & objVec)
+    {
+        _pop_split(pop);
+
+        if( objVec.is_feasible() ) {
+            setup(_pop_split.feasible());
+            updateFitnessByDeleting( _pop_split.feasible(), objVec);
+        } else {
+            setup(_pop_split.unfeasible());
+            updateFitnessByDeleting( _pop_split.unfeasible(), objVec );
+        }
+        // pop = _pop_split.merge();
+        eoPop<MOEOT> merged = _pop_split.merge();
+        assert( pop.size() == merged.size());
+        for( unsigned int i=0; i<pop.size(); ++i ) {
+            pop[i] = merged[i];
+        }
+
+    }
+
+protected:
+    void updateFitnessByDeleting( eoPop < MOEOT > & pop, ObjectiveVector & objVec )
+    {
+        std::vector < double > v;
+        v.resize(pop.size());
+        for (unsigned int i=0; i<pop.size(); i++)
+        {
+            v[i] = metric(objVec, pop[i].objectiveVector());
+        }
+        for (unsigned int i=0; i<pop.size(); i++)
+        {
+            pop[i].fitness( confine( pop[i].fitness() + exp(-v[i]/kappa) ), pop[i].is_feasible() );
+        }
+    }
+
+    template<class T>
+    T confine( T n )
+    {
+        T tmax = std::numeric_limits<typename T::Base>::max();
+        T tmin = -1 * tmax;
+
+        tmin.is_feasible( n.is_feasible() );
+        tmax.is_feasible( n.is_feasible() );
+
+        if( n < tmin ) {
+            return tmin;
+        } else if( n > tmax ) {
+            return tmax;
+        } else {
+            return n;
+        }
+    }
 
 };
 
