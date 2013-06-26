@@ -72,8 +72,7 @@ class moeoHypervolumeBinaryMetric : public moeoNormalizedSolutionVsSolutionBinar
       // consistency check
       if (rho < 1)
         {
-          std::cout << "Warning, value used to compute the reference point rho for the hypervolume calculation must not be smaller than 1" << std::endl;
-          std::cout << "Adjusted to 1" << std::endl;
+            eo::log << eo::warnings << "Warning, value used to compute the reference point rho for the hypervolume calculation must not be smaller than 1, adjusted to 1" << std::endl;
           rho = 1;
         }
     }
@@ -123,6 +122,7 @@ class moeoHypervolumeBinaryMetric : public moeoNormalizedSolutionVsSolutionBinar
       double result;
       double range = rho * bounds[_obj].range();
       double max = bounds[_obj].minimum() + range;
+
       // value of _1 for the objective _obj
       double v1 = _o1[_obj];
       // value of _2 for the objective _obj (if _flag=true, v2=max)
