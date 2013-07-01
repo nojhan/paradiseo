@@ -132,6 +132,7 @@ public:
     void update(double& _temp, bool _acceptedMove, EOT & _solution) {
         
         //cout << _temp << "  g " << generated << endl;
+        prevTemp = _temp;
         
         generated++;
         
@@ -147,8 +148,11 @@ public:
             //cout << _solution.fitness() << "  avgCost=" << momentStat.value().first << endl;
         }
         
+        markovChainEnded = false;
         
         if (accepted > max_accepted || generated > max_generated) {
+            
+            markovChainEnded = true;
             
             if (accepted == 0) // ADDED! Otherwise the computed std dev is null; we're probably at equilibrium
             {
@@ -301,9 +305,24 @@ public:
         return frozen < theta
                 && !terminated ; // ADDED! because 'frozen' doesn't terminate anything
     }
+    
+    
+    bool markovChainJustEnded()
+    {
+        return markovChainEnded;
+    }
 
-//private:
-public://FIXME add friend
+    MarkovChainStats& getMarkovChainStats()
+    {
+        return markovChainStats;
+    }
+    
+    
+    
+    
+
+private:
+//public://FIXME add friend
     //moNeighborhoodStat<Neighbor> nhStat;
     //moStdFitnessNeighborStat<Neighbor> stdDevStat;
     const double
@@ -325,7 +344,8 @@ public://FIXME add friend
         stdDev,
         prevAvgCost,
         expectedDecreaseInCost, // delta
-        costs_sum
+        costs_sum,
+        prevTemp
     ;
     const int
         max_accepted,
@@ -339,7 +359,7 @@ public://FIXME add friend
         negative_temp,
         frozen
     ;
-    bool reinitializing, terminated;
+    bool reinitializing, terminated, markovChainEnded;
     
     //moFitnessVarianceStat<EOT> varStat;
     moFitnessMomentsStat<EOT> momentStat;
@@ -347,7 +367,48 @@ public://FIXME add friend
     
     ofstream outf;
     
+    
+protected:
+    
+    class Monitor {
+    public:
+        
+        Monitor(moTrikiCoolingSchedule& _cooling)
+        : cooling(_cooling)
+        { }
+        
+        /*void setTemperatureOstream(ostream& os)
+        {
+            
+        }*/
+        void getLatestTemperature()
+        {
+            return cooling.prevTemp;
+        }
+        
+        void printCurrentStatus(ostream& os)
+        {
+            if (accepted >= max_accepted || generated >= max_generated)
+            {
+                os << "Markov chain finished. Temp was " << getLatestTemperature(); // chain number
+                
+            }
+        }
+        
+    private:
+        moTrikiCoolingSchedule& cooling;
+    };
+    
 };
 
 #endif
+
+
+
+
+
+
+
+
+
 

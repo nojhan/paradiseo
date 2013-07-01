@@ -65,15 +65,19 @@ public:
     typedef typename Neighbor::EOT EOT;
     typedef typename EOT::Fitness Fitness ;
 
-    moNeighborhoodExplorer():neighborhood(dummyNeighborhood), eval(dummyEval), isMoved(false) {}
+    moNeighborhoodExplorer()
+    : neighborhood(dummyNeighborhood), eval(dummyEval), isMoved(false)
+    { }
 
     /**
      * Constructor with a Neighborhood and evaluation function
      * @param _neighborhood the neighborhood
      * @param _eval the evaluation function
      */
-    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):neighborhood(_neighborhood), eval(_eval), isMoved(false) {}
-
+    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval)
+    : neighborhood(_neighborhood), eval(_eval), isMoved(false)
+    { }
+    
     /**
      * Init Search parameters
      * @param _solution the solution to explore

@@ -38,7 +38,7 @@ set (TEST_LIST
 		t-moNeutralHCexplorer
 		t-moFirstImprHCexplorer
 		t-moRandomWalkExplorer
-		t-moMetropolisHastingExplorer
+		t-moMetropolisHastingsExplorer
 		t-moRandomNeutralWalkExplorer
 		t-moTSexplorer
 		t-moSolComparator
@@ -52,7 +52,7 @@ set (TEST_LIST
 		t-moMonOpPerturb
 		t-moRestartPerturb
 		t-moNeighborhoodPerturb
-		t-moSAexplorer
+		t-moSAExplorer
 		t-moSA
 		t-moLocalSearch
 		t-moILSexplorer
@@ -65,7 +65,7 @@ set (TEST_LIST
 		t-moILS
 		t-moDummyLS
 		t-moRandomSearch
-		t-moMetropolisHasting
+		t-moMetropolisHastings
 		t-moNeutralHC
 		t-moRandomWalk
 		t-moRandomNeutralWalk

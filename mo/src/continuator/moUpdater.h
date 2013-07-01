@@ -39,9 +39,8 @@
 #include <utils/eoParam.h>
 
 /**
- * Base class for to update what ever you want
- * similar to eoUpdater
- * But there is an init method !
+ * Base class for updating whatever you want.
+ * Similar to eoUpdater, but there is an "init" method !
 */
 class moUpdater : public eoF<void>
 {
