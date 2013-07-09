@@ -82,25 +82,25 @@ public:
    * @param _acceptedMove true when the move is accepted, false otherwise
    * @param _currentSolution the current solution
    */
-	virtual void update(double& _temp, bool _acceptedMove, EOT & _currentSolution) {
-		spanTries++;
-		
-		if (_acceptedMove) 
-			spanMove++;
-		
-		if (spanTries >= spanTriesMax || spanMove >= spanMoveMax) {
-			_temp *= alpha;
-			
-			if (spanMove == 0) // no move during this span ?
-				nbSpan++;
-			else
-				nbSpan = 0;
-			
-			spanTries = 0;
-			spanMove = 0;
-		}
-	}
-	
+    virtual void update(double& _temp, bool _acceptedMove, EOT & _currentSolution) {
+        spanTries++;
+        
+        if (_acceptedMove) 
+            spanMove++;
+        
+        if (spanTries >= spanTriesMax || spanMove >= spanMoveMax) {
+            _temp *= alpha;
+            
+            if (spanMove == 0) // no move during this span ?
+                nbSpan++;
+            else
+                nbSpan = 0;
+            
+            spanTries = 0;
+            spanMove = 0;
+        }
+    }
+    
     /**
      * compare the number of span with no move
      * @param _temp current temperature

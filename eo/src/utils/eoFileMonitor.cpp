@@ -73,16 +73,18 @@ eoMonitor& eoFileMonitor::operator()(void)
 
 eoMonitor& eoFileMonitor::operator()(std::ostream& os)
 {
-
-    iterator it = vec.begin();
-
-    os << (*it)->getValue();
-
-    for(++it; it != vec.end(); ++it)
+    if (vec.size() > 0)
     {
-        os << delim.c_str() << (*it)->getValue();
+        iterator it = vec.begin();
+    
+        os << (*it)->getValue();
+    
+        for(++it; it != vec.end(); ++it)
+        {
+            os << delim.c_str() << (*it)->getValue();
+        }
     }
-
+    
     os << std::endl;
 
     return *this;

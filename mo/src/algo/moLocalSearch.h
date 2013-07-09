@@ -57,9 +57,8 @@ public:
      * @param _cont an external continuator (can be a checkpoint!)
      * @param _fullEval a full evaluation function
      */
-    moLocalSearch(NeighborhoodExplorer& _searchExpl,
-            moContinuator<Neighbor> & _cont, eoEvalFunc<EOT>& _fullEval)
-    : searchExplorer(_searchExpl), cont(&_cont), fullEval(_fullEval)
+    moLocalSearch(NeighborhoodExplorer& _searchExpl, moContinuator<Neighbor> & _cont, eoEvalFunc<EOT>& _fullEval)
+    : searchExplorer(_searchExpl), cont(&_cont), fullEval(_fullEval), currentSolutionFitness(0)
     { }
 
     /**
@@ -70,15 +69,19 @@ public:
 
         if (_solution.invalid())
             fullEval(_solution);
-
+        
         // initialization of the parameter of the search (for example fill empty the tabu list)
         searchExplorer.initParam(_solution);
-
+        
         // initialization of the external continuator (for example the time, or the number of generations)
         cont->init(_solution);
-
+        
         bool b;
         do {
+            currentSolutionFitness = _solution.fitness();
+            //std::cout << currentSolutionFitness << std::endl;
+            //std::cin.get();
+            
             // explore the neighborhood of the solution
             searchExplorer(_solution);
             // if a solution in the neighborhood can be accepted
@@ -128,6 +131,11 @@ public:
     moNeighborhoodExplorer<Neighbor> & getNeighborhoodExplorer() const {
         return searchExplorer;
     }
+    
+    // TODO doc
+    double getCurrentSolutionFitness() const {
+        return currentSolutionFitness;
+    }
 
 protected:
     // make the exploration of the neighborhood according to a local search heuristic
@@ -138,6 +146,10 @@ protected:
 
     //full evaluation function
     eoEvalFunc<EOT>& fullEval;
+    
+private:
+    double currentSolutionFitness;
+    
 };
 
 #endif

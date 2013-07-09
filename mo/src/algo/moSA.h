@@ -68,7 +68,7 @@ public:
     { }*/
     moSA(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, double _initT=10, double _alpha=0.9, unsigned _span=100, double _finalT=0.01)
     : moLocalSearch<Neighbor> (
-        explorer_ptr = defaultExplorer = new moSAExplorer<Neighbor>(_neighborhood, _eval, /*NULL,*/ *(defaultCool = new moSimpleCoolingSchedule<EOT>(_initT, _alpha, _span, _finalT)), NULL),
+        *(explorer_ptr = defaultExplorer = new moSAExplorer<Neighbor>(_neighborhood, _eval, /*NULL,*/ *(defaultCool = new moSimpleCoolingSchedule<EOT>(_initT, _alpha, _span, _finalT)), NULL)),
         *(defaultContinuator = new moTrueContinuator<Neighbor>()),
         _fullEval ),
       explorer(*explorer_ptr),
@@ -150,7 +150,7 @@ public:
           _cool )
     { }*/
     : moLocalSearch<Neighbor>  (
-        explorer_ptr = defaultExplorer = new moSAExplorer<Neighbor> (
+        *(explorer_ptr = defaultExplorer = new moSAExplorer<Neighbor> (
             _neighborhood,
             //_eval, //_eval.hasValue()? _eval.get(): *(defaultEval = new moFullEvalByCopy<Neighbor>(_fullEval)),
             _eval.hasValue()? defaultEval = NULL, _eval.get(): *(defaultEval = new moFullEvalByCopy<Neighbor>(_fullEval)),
@@ -158,7 +158,7 @@ public:
             //_comp, //_comp.hasValue()? _comp.get(): *(defaultSolNeighborComp = new moSolNeighborComparator<Neighbor>()),
             //_cool ),
             _cool,
-            _comp ),
+            _comp )),
                         // ),
         _cont.hasValue()? defaultContinuator = NULL, _cont.get(): *(defaultContinuator = new moTrueContinuator<Neighbor>()),
         _fullEval  ),
@@ -177,12 +177,13 @@ public:
     )
     : moLocalSearch<Neighbor>  (
         *(explorer_ptr = &_explorer),
-        _cont.hasValue()? _cont.get(): *(defaultContinuator = new moTrueContinuator<Neighbor>()), _fullEval  ),
+        _cont.hasValue()? defaultContinuator = NULL, _cont.get(): *(defaultContinuator = new moTrueContinuator<Neighbor>()), _fullEval  ),
+      defaultEval(NULL),              // removed in C++11 with unique_ptr
       defaultExplorer(NULL),              // removed in C++11 with unique_ptr
       explorer(*explorer_ptr),
-      defaultCool(NULL),              // removed in C++11 with unique_ptr
-      //defaultEval(NULL),             // removed in C++11 with unique_ptr
-      defaultContinuator(NULL)                 // removed in C++11 with unique_ptr
+      defaultCool(NULL)              // removed in C++11 with unique_ptr
+      //defaultEval(NULL)             // removed in C++11 with unique_ptr
+      //defaultContinuator(NULL)                 // removed in C++11 with unique_ptr
       //defaultSolNeighborComp(NULL)    // removed in C++11 with unique_ptr
     { }
     

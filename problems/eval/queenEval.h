@@ -40,17 +40,17 @@ class queenEval : public eoEvalFunc<EOT>
 {
 public:
 
-	/**
-	 * Count number of threat
-	 * @param _queen a solution
-	 */
+    /**
+     * Count number of threat
+     * @param _queen a solution
+     */
     void operator()(EOT& _queen){
-    	  unsigned int fit=0;
-    	  for(unsigned int i=0; i<_queen.size()-1; i++)
-    		  for(unsigned int j=i+1; j< _queen.size(); j++)
-    			  if(((unsigned int)_queen[i]+j-i == (unsigned int)_queen[j]) || ((unsigned int)_queen[i]+i-j == (unsigned int)_queen[j]))
-    				  fit++;
-    	  _queen.fitness(fit);
+          unsigned int fit=0;
+          for(unsigned int i=0; i<_queen.size()-1; i++)
+              for(unsigned int j=i+1; j< _queen.size(); j++)
+                  if(((unsigned int)_queen[i]+j-i == (unsigned int)_queen[j]) || ((unsigned int)_queen[i]+i-j == (unsigned int)_queen[j]))
+                      fit++;
+          _queen.fitness(fit);
     }
 };
 
