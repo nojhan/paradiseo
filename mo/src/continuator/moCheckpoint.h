@@ -109,14 +109,16 @@ public :
             stats[i]->init(_sol);
         counter = 1;
         
+        for (unsigned i = 0; i < moupdaters.size(); ++i)
+            moupdaters[i]->init();
+        
         //for (unsigned i = 0; i < updaters.size(); ++i)
         //    updaters[i]->init();
         
-        for (unsigned i = 0; i < moupdaters.size(); ++i)
-            moupdaters[i]->init();
         /*
-         * Removed because there was no reason for it to be done here.
-         * It caused premature monitoring of eoParams with undefined values
+         * Removed because there was no reason for it to be done here
+         * It caused premature monitoring of eoParams with uninitialized values
+         * (eoUpdater's don't have a init function)
          * 
         for (unsigned int i = 0; i < monitors.size(); ++i)
             (*monitors[i])();

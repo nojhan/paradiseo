@@ -27,7 +27,6 @@ Lionel Parreaux <lionel.parreaux@gmail.com>
 #define __moRealNeighborhood_h__
 
 #include <mo>
-#include <eoFunctor.h> // FIXME: Why don't we use eoFunctorBase on the mother classes
 #include "neighborhood/moRealNeighbor.h"
 
 template<class Distrib, class Neighbor>

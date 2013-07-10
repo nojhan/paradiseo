@@ -187,7 +187,7 @@ public:
         chainStat.acceptedSolutions = accepted;
         
         generated++;
-        cout << "gen " << generated << endl;
+        //cout << "gen " << generated << endl;
         
         
         if (_acceptedMove)
@@ -263,7 +263,7 @@ public:
                     ///
                     
                     if (avgFitness/(prevAvgFitness-delta) > xi)
-                         equilibrium_not_reached++;
+                         equilibrium_not_reached++, chainStat.equilibriumNotReached = true;
                     else equilibrium_not_reached = 0;
                 }
                 if (equilibrium_not_reached > K1)
@@ -274,7 +274,7 @@ public:
 
                     //chainStat.reinitializing = true;
                     reinitializing = true;
-                    chainStat.equilibriumNotReached = true;
+                    //chainStat.equilibriumNotReached = true;
                     
                     alpha = lambda1;
                     delta = sigma/mu1;
