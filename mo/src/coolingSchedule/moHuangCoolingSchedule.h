@@ -35,8 +35,11 @@ Lionel Parreaux <lionel.parreaux@gmail.com>
 #include <continuator/moFitnessMomentsStat.h>
 
 
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
+
+#include <limits>
+
 
 //!
 /*!
@@ -51,23 +54,30 @@ public:
     //! Constructor
     /*!
      */
-    
-    moHuangCoolingSchedule (double _initTemp, double _stdDevEstimation, double _lambda = .7, double _finalTemp = .01)
-    : initTemp(_initTemp),
-      stdDevEstimation(_stdDevEstimation),
-      lambda(_lambda),
-      finalTemp(_finalTemp)
-    { }
 
+//    moHuangCoolingSchedule (double _initTemp, int _spanSize, double _lambda = .7, double _finalTemp = .01)
+//    moHuangCoolingSchedule (double _initTemp, int _spanSize, double _lambda = .7, double _finalStdDev = .01)
+    moHuangCoolingSchedule (double _initTemp, int _spanSize, double _lambda = .7, double _finalTempDecrease = .995)
+    : initTemp(_initTemp)
+    , spanSize(_spanSize)
+    , lambda(_lambda)
+//    , finalTemp(_finalTemp)
+    , finalStdDev(_finalTempDecrease)
+//    , statIsInitialized(false)
+//    , step(0)
+//    , currentStdDevEstimation(std::numeric_limits<double>::max())
+    { }
+    
     /**
      * Initial temperature
      * @param _solution initial solution
      */
     double init(EOT & _solution) {
-        
+        statIsInitialized = terminated = false;
+        step = 0;
         return initTemp;
     }
-
+    
     /**
      * update the temperature by a factor
      * @param _temp current temperature to update
@@ -75,8 +85,30 @@ public:
      */
     void update(double& _temp, bool _acceptedMove, EOT & _solution) {
         
-        _temp *= exp ( -lambda*_temp / stdDevEstimation ) ;
+        if (_acceptedMove)
+        {
+            if (statIsInitialized)
+                 momentStat(_solution);
+            else momentStat.init(_solution), statIsInitialized = true;
+            
+        }
         
+        if (step >= spanSize)
+        {
+            step = 0;
+            /*
+            //double avgFitness = momentStat.value().first;
+            double variance = momentStat.value().second;
+            //double stdDevEstimation = sqrt(variance);
+            double currentStdDevEstimation = sqrt(variance);
+            _temp *= exp( -lambda*_temp / currentStdDevEstimation );*/
+            double alpha = exp( -lambda*_temp / sqrt(momentStat.value().second) );
+            _temp *= alpha;
+            //std::cout << alpha << std::endl;
+            terminated = alpha > finalStdDev;
+        }
+        
+        step++;
     }
 
     //! Function which proceeds to the cooling
@@ -84,8 +116,9 @@ public:
      */
     bool operator() (double temperature)
     {
-        return temperature > finalTemp;
-        
+        //return temperature > finalTemp;
+        //return currentStdDevEstimation > finalStdDev;
+        return !terminated;
     }
     
     
@@ -93,11 +126,19 @@ private:
     
     const double
     // parameters of the algorithm
-        initTemp,
-        stdDevEstimation,
-        lambda,
-        finalTemp
+       initTemp
+//     , stdDevEstimation
+     , lambda
+//     , finalTemp
+     , finalStdDev
     ;
+    const int spanSize;
+    int step;
+    
+    //double currentStdDevEstimation;
+    
+    moFitnessMomentsStat<EOT> momentStat;
+    bool statIsInitialized, terminated;
     
 };
 

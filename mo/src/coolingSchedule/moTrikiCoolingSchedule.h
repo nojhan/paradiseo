@@ -144,6 +144,8 @@ public:
         
         negative_temp = equilibrium_not_reached = frozen = 0;
         
+        chainStat.delta = initTemp/mu2;
+        
         //cout << "acc " << max_accepted << " " << max_generated << endl;
         
         /*
@@ -230,7 +232,9 @@ public:
             //double stdDev = sqrt(variance);
             chainStat.stdDev = sqrt(variance);
             double sigma = chainStat.stdDev;
-            double delta = sigma/mu2;
+            ///////////////
+            //double delta = sigma/mu2;
+            ///////////////
             
             
             //outf << avgFitness << endl;
@@ -262,7 +266,7 @@ public:
                     //if (avgFitness/(chainStat.prevAvgFitness-delta) > xi) cout << "/!\\ eq not reached!" << endl;
                     ///
                     
-                    if (avgFitness/(prevAvgFitness-delta) > xi)
+                    if (avgFitness/(prevAvgFitness-chainStat.delta) > xi)
                          equilibrium_not_reached++, chainStat.equilibriumNotReached = true;
                     else equilibrium_not_reached = 0;
                 }
@@ -277,10 +281,10 @@ public:
                     //chainStat.equilibriumNotReached = true;
                     
                     alpha = lambda1;
-                    delta = sigma/mu1;
+                    chainStat.delta = sigma/mu1;
                     equilibrium_not_reached = 0; // ADDED! Otherwise the algo gets trapped here!
                 }
-                else if (_temp*delta/(sigma*sigma) >= 1)
+                else if (_temp*chainStat.delta/(sigma*sigma) >= 1)
                 {
                     ///
                     //cout << "/!\\ neg temp!" << endl;
@@ -293,7 +297,7 @@ public:
                     if (negative_temp < K2)
                     {
                         alpha = lambda1;
-                        delta = sigma/mu1;
+                        chainStat.delta = sigma/mu1;
                     } else
                         alpha = lambda2;
                 }
@@ -320,7 +324,7 @@ public:
                     reinitializing = false;
                     //chainStat.avgFitness = avgFitness;
                     //alpha = 1-_temp*delta/(sigma*sigma);
-                    alpha = 1-_temp*delta/variance;
+                    alpha = 1-_temp*chainStat.delta/variance;
                     
                     //alpha = (sigma==0? 1: 1-_temp*delta/(sigma*sigma)); // ADDED! but removed
                     
@@ -338,12 +342,12 @@ public:
 
             chainStat.currentFitness = _solution.fitness(); // FIXME here?
             chainStat.alpha = alpha;
-            chainStat.delta = delta;
+            //chainStat.delta = delta;
             chainStat.avgFitness = avgFitness;
             
             
             // Never seems to be used
-            if (avgFitness == prevAvgFitness) // use a neighborhood to approximate double equality?
+            if (avgFitness == prevAvgFitness) // use a neighborhood to approximate double floating equality?
                  frozen++;
             else frozen = 0;
             
