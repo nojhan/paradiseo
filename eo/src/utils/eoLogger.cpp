@@ -37,14 +37,20 @@ Caner Candan <caner.candan@thalesgroup.com>
 #include <cstdio> // used to define EOF
 
 #include <iostream>
+#include <algorithm>    // std::find
 
 #include "eoLogger.h"
 
+
+#ifdef USE_SET
+typedef std::set<std::ostream*>::iterator StreamIter;
+#else
+typedef std::vector<std::ostream*>::iterator StreamIter;
+#endif
+
+
 void eoLogger::_init()
 {
-    _standard_io_streams[&std::cout] = 1;
-    _standard_io_streams[&std::clog] = 2;
-    _standard_io_streams[&std::cerr] = 2;
 
     // /!\ If you want to add a level dont forget to add it at the header file in the enumerator Levels
 
@@ -55,6 +61,7 @@ void eoLogger::_init()
     addLevel("logging", eo::logging);
     addLevel("debug", eo::debug);
     addLevel("xdebug", eo::xdebug);
+
 }
 
 eoLogger::eoLogger() :
@@ -66,33 +73,17 @@ eoLogger::eoLogger() :
 
     _selectedLevel(eo::progress),
     _contextLevel(eo::quiet),
-    _fd(2),
-    _obuf(_fd, _contextLevel, _selectedLevel)
+    _obuf(_contextLevel, _selectedLevel)
 {
     std::ostream::init(&_obuf);
     _init();
-}
-
-eoLogger::eoLogger(eo::file file) :
-    std::ostream(NULL),
-
-    _verbose("quiet", "verbose", "Set the verbose level", 'v'),
-    _printVerboseLevels(false, "print-verbose-levels", "Print verbose levels", 'l'),
-    _output("", "output", "Redirect a standard output to a file", 'o'),
-
-    _selectedLevel(eo::progress),
-    _contextLevel(eo::quiet),
-    _fd(2),
-    _obuf(_fd, _contextLevel, _selectedLevel)
-{
-    std::ostream::init(&_obuf);
-    _init();
-    *this << file;
 }
 
 eoLogger::~eoLogger()
 {
-    if (_fd > 2) { ::close(_fd); }
+    if (_obuf._ownedFileStream != NULL) {
+    	delete _obuf._ownedFileStream;
+    }
 }
 
 void eoLogger::_createParameters( eoParser& parser )
@@ -110,19 +101,21 @@ void eoLogger::_createParameters( eoParser& parser )
 
 
     //------------------------------------------------------------------
-    // we're gonna redirect the log to the given filename if -o is used.
+    // we redirect the log to the given filename if -o is used.
     //------------------------------------------------------------------
 
     if ( ! _output.value().empty() )
         {
-            eo::log << eo::file( _output.value() );
+    		redirect(_output.value());
         }
 
+
+
     //------------------------------------------------------------------
 
 
     //------------------------------------------------------------------
-    // we're gonna print the list of levels if -l parameter is used.
+    // we print the list of levels if -l parameter is used.
     //------------------------------------------------------------------
 
     if ( _printVerboseLevels.value() )
@@ -163,12 +156,6 @@ eoLogger& operator<<(eoLogger& l, const eo::Levels lvl)
     return l;
 }
 
-eoLogger& operator<<(eoLogger& l, eo::file f)
-{
-    l._fd = ::open(f._f.c_str(), O_WRONLY | O_APPEND | O_CREAT, 0644);
-    return l;
-}
-
 eoLogger& operator<<(eoLogger& l, eo::setlevel v)
 {
     l._selectedLevel = (v._lvl < 0 ? l._levels[v._v] : v._lvl);
@@ -177,37 +164,106 @@ eoLogger& operator<<(eoLogger& l, eo::setlevel v)
 
 eoLogger& operator<<(eoLogger& l, std::ostream& os)
 {
-    if (l._standard_io_streams.find(&os) != l._standard_io_streams.end())
-        {
-            l._fd = l._standard_io_streams[&os];
-        }
+#warning deprecated
+    l.addRedirect(os);
     return l;
 }
 
-eoLogger::outbuf::outbuf(const int& fd,
-                         const eo::Levels& contexlvl,
+void eoLogger::redirect(std::ostream& os)
+{
+    doRedirect(&os);
+}
+
+void eoLogger::doRedirect(std::ostream* os)
+{
+    if (_obuf._ownedFileStream != NULL) {
+        delete _obuf._ownedFileStream;
+        _obuf._ownedFileStream = NULL;
+    }
+    _obuf._outStreams.clear();
+    if (os != NULL)
+    #ifdef USE_SET
+        _obuf._outStreams.insert(os);
+    #else
+        _obuf._outStreams.push_back(os);
+    #endif
+}
+
+void eoLogger::addRedirect(std::ostream& os)
+{
+    bool already_there = tryRemoveRedirect(&os);
+#ifdef USE_SET
+    _obuf._outStreams.insert(&os);
+#else
+    _obuf._outStreams.push_back(&os);
+#endif
+    if (already_there)
+        eo::log << eo::warnings << "Cannot redirect the logger to a stream it is already redirected to." << std::endl;
+}
+
+void eoLogger::removeRedirect(std::ostream& os)
+{
+    if (!tryRemoveRedirect(&os))
+        eo::log << eo::warnings << "Cannot remove from the logger a stream it was not redirected to.";
+}
+
+bool eoLogger::tryRemoveRedirect(std::ostream* os)
+{
+    StreamIter it = find(_obuf._outStreams.begin(), _obuf._outStreams.end(), os);
+    if (it == _obuf._outStreams.end())
+        return false;
+    _obuf._outStreams.erase(it);
+    return true;
+}
+
+void eoLogger::redirect(const char * filename)
+{
+    std::ofstream * os;
+    if (filename == NULL) {
+    	os = NULL;
+    } else {
+    	os = new std::ofstream(filename);
+    }
+    doRedirect(os);
+    _obuf._ownedFileStream = os;
+}
+
+void eoLogger::redirect(const std::string& filename)
+{
+	redirect(filename.c_str());
+}
+
+
+eoLogger::outbuf::outbuf(const eo::Levels& contexlvl,
                          const eo::Levels& selectedlvl)
-    : _fd(fd), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
-{}
+    :
+#ifndef USE_SET
+      _outStreams(1, &std::cout),
+#endif
+      _ownedFileStream(NULL), _contextLevel(contexlvl), _selectedLevel(selectedlvl)
+{
+#ifdef USE_SET
+    _outStreams.insert(&std::cout);
+#endif
+}
 
 int eoLogger::outbuf::overflow(int_type c)
 {
     if (_selectedLevel >= _contextLevel)
-      {
-        if (_fd >= 0 && c != EOF)
-          {
-              ::write(_fd, &c, 1);
-          }
-      }
+    {
+        for (StreamIter it = _outStreams.begin(); it != _outStreams.end(); it++)
+        {
+            if (c != EOF)
+              {
+                  (**it) << (char) c;
+              }
+        }
+    }
     return c;
 }
 
 namespace eo
 {
-    file::file(const std::string f)
-        : _f(f)
-    {}
-
     setlevel::setlevel(const std::string v)
         : _v(v), _lvl((Levels)-1)
     {}

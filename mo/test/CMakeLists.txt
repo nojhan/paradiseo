@@ -4,6 +4,7 @@
 
 include_directories(${EO_SRC_DIR}/src)
 include_directories(${MO_SRC_DIR}/src)
+include_directories(${EDO_SRC_DIR}/src)
 include_directories(${PROBLEMS_SRC_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -37,7 +38,7 @@ set (TEST_LIST
 		t-moNeutralHCexplorer
 		t-moFirstImprHCexplorer
 		t-moRandomWalkExplorer
-		t-moMetropolisHastingExplorer
+		t-moMetropolisHastingsExplorer
 		t-moRandomNeutralWalkExplorer
 		t-moTSexplorer
 		t-moSolComparator
@@ -51,7 +52,7 @@ set (TEST_LIST
 		t-moMonOpPerturb
 		t-moRestartPerturb
 		t-moNeighborhoodPerturb
-		t-moSAexplorer
+		t-moSAExplorer
 		t-moSA
 		t-moLocalSearch
 		t-moILSexplorer
@@ -64,7 +65,7 @@ set (TEST_LIST
 		t-moILS
 		t-moDummyLS
 		t-moRandomSearch
-		t-moMetropolisHasting
+		t-moMetropolisHastings
 		t-moNeutralHC
 		t-moRandomWalk
 		t-moRandomNeutralWalk
@@ -94,7 +95,11 @@ set (TEST_LIST
 		t-moStatistics
 		t-moIndexedVectorTabuList
 #		t-moRndIndexedVectorTabuList
+		t-moFitnessVarianceStat
+		t-moStdDevEstimator
 		t-moDynSpanCoolingSchedule
+		t-moTriki
+		t-moTrikiReal
 		)
 
 ######################################################################################

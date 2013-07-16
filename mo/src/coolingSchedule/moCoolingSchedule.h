@@ -55,8 +55,9 @@ public:
      * update the temperature
      * @param _temp current temperature to update
      * @param _acceptedMove true when the move is accepted, false otherwise
+     * @param _currentSolution the current solution
      */
-    virtual void update(double& _temp, bool _acceptedMove) = 0;
+    virtual void update(double& _temp, bool _acceptedMove, EOT & _currentSolution) = 0;
 
 };
 

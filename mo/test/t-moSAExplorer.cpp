@@ -1,5 +1,5 @@
 /*
-<t-moMetropolisHastingExplorer.cpp>
+<t-moSAExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,70 +27,60 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <explorer/moMetropolisHastingExplorer.h>
-#include "moTestClass.h"
-
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
+#include "moTestClass.h"
+#include <explorer/moSAExplorer.h>
+#include <coolingSchedule/moSimpleCoolingSchedule.h>
+
 int main() {
 
-    std::cout << "[t-moMetropolisHastingExplorer] => START" << std::endl;
+    std::cout << "[t-moSAExplorer] => START" << std::endl;
 
-    //Instanciation
     eoBit<eoMinimizingFitness> sol(4, true);
     sol.fitness(4);
     bitNeighborhood nh(4);
+    bitNeighborhood emptyNH(0);
     evalOneMax eval(4);
-    moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
+    moSimpleCoolingSchedule<bitVector> cool(10,0.1,2,0.1);
 
-    moMetropolisHastingExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp, 3);
+    moSAExplorer<bitNeighbor> test1(emptyNH, eval, cool, sncomp);
+    moSAExplorer<bitNeighbor> test2(nh, eval, cool, sncomp);
 
-    //test de l'acceptation d'un voisin améliorant
-    test.initParam(sol);
-    test(sol);
-    assert(test.accept(sol));
-    test.move(sol);
+    //test d'un voisinage vide
+    test1.initParam(sol);
+    test1(sol);
+    assert(!test1.accept(sol));
+    assert(test1.getTemperature()==10.0);
+
+    //test d'un voisinage "normal"
+    test2.initParam(sol);
+    test2(sol);
+    assert(test2.accept(sol));
+    test2.updateParam(sol);
+    assert(test2.isContinue(sol));
+    test2.move(sol);
     assert(sol.fitness()==3);
-    test.updateParam(sol);
-    assert(test.isContinue(sol));
-
-    unsigned int oui=0, non=0;
-
-    //test de l'acceptation d'un voisin non améliorant
+    unsigned int ok=0;
+    unsigned int ko=0;
     for (unsigned int i=0; i<1000; i++) {
-        test(sol);
-        if (test.accept(sol))
-            oui++;
+        test2(sol);
+        if (test2.isContinue(sol))
+            test2.updateParam(sol);
+        if (test2.accept(sol))
+            ok++;
         else
-            non++;
+            ko++;
+        test2.move(sol);
     }
-    std::cout << "Attention test en fonction d'une proba \"p\" uniforme dans [0,1] , oui si p < 3/4, non sinon -> resultat sur 1000 essai" << std::endl;
-    std::cout << "oui: " << oui << std::endl;
-    std::cout << "non: " << non << std::endl;
+    assert((ok>0) && (ko>0));
 
-    assert(oui > 700 && oui < 800); //verification grossiere
 
-    //test du critere d'arret
-    test.updateParam(sol);
-    assert(test.isContinue(sol));
-    test.updateParam(sol);
-    assert(!test.isContinue(sol));
 
-    //test de l'acceptation d'un voisin
-    sol[0]=false;
-    sol[1]=false;
-    sol[2]=false;
-    sol[3]=false;
-    sol.fitness(0);
-
-    test.initParam(sol);
-    test(sol);
-    assert(!test.accept(sol));
-
-    std::cout << "[t-moMetropolisHastingExplorer] => OK" << std::endl;
+    std::cout << "[t-moSAExplorer] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

@@ -1,4 +1,6 @@
 * current release:
+    - added an EOT& parameter to the moCoolingSchedule::update interface method because some cooling schedules need it
+    - eoMonitor's are no more executed in moCheckpoint::init to prevent access to uninitialized data
 
 * release 1.3.1 (2012-07-27)
     - the eo::mpi modules is no longer dependent from boost::mpi

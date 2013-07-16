@@ -39,7 +39,7 @@
 #include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
-#include <algo/moMetropolisHasting.h>
+#include <algo/moMetropolisHastings.h>
 #include <continuator/moNeighborBestStat.h>
 #include <sampling/moFitnessCloudSampling.h>
 
@@ -87,7 +87,7 @@ public:
         delete localSearch;
 
         // Metropolis-Hasting sampling
-        localSearch = new moMetropolisHasting<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep);
+        localSearch = new moMetropolisHastings<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep);
 
         // delete the checkpoint with the wrong continuator
         delete checkpoint;

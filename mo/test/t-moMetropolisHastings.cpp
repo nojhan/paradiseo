@@ -1,5 +1,5 @@
 /*
-<t-moSAexplorer.cpp>
+<t-moMetropolisHastings.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -31,56 +31,34 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
+#include <algo/moMetropolisHastings.h>
 #include "moTestClass.h"
-#include <explorer/moSAexplorer.h>
-#include <coolingSchedule/moSimpleCoolingSchedule.h>
+#include <eval/oneMaxEval.h>
+#include <continuator/moTrueContinuator.h>
+#include <comparator/moSolNeighborComparator.h>
+#include <comparator/moNeighborComparator.h>
 
 int main() {
 
-    std::cout << "[t-moSAexplorer] => START" << std::endl;
+    std::cout << "[t-moMetropolisHastings] => START" << std::endl;
 
-    eoBit<eoMinimizingFitness> sol(4, true);
-    sol.fitness(4);
     bitNeighborhood nh(4);
-    bitNeighborhood emptyNH(0);
+    oneMaxEval<bitVector> fullEval;
     evalOneMax eval(4);
+    moTrueContinuator<bitNeighbor> cont;
     moSolNeighborComparator<bitNeighbor> sncomp;
-    moSimpleCoolingSchedule<bitVector> cool(10,0.1,2,0.1);
+    moNeighborComparator<bitNeighbor> ncomp;
 
-    moSAexplorer<bitNeighbor> test1(emptyNH, eval, sncomp, cool);
-    moSAexplorer<bitNeighbor> test2(nh, eval, sncomp, cool);
+    //test du 1er constructeur
+    moMetropolisHastings<bitNeighbor> test1(nh, fullEval, eval, 3);
 
-    //test d'un voisinage vide
-    test1.initParam(sol);
-    test1(sol);
-    assert(!test1.accept(sol));
-    assert(test1.getTemperature()==10.0);
+    //test du 2eme constructeur
+    moMetropolisHastings<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
 
-    //test d'un voisinage "normal"
-    test2.initParam(sol);
-    test2(sol);
-    assert(test2.accept(sol));
-    test2.updateParam(sol);
-    assert(test2.isContinue(sol));
-    test2.move(sol);
-    assert(sol.fitness()==3);
-    unsigned int ok=0;
-    unsigned int ko=0;
-    for (unsigned int i=0; i<1000; i++) {
-        test2(sol);
-        if (test2.isContinue(sol))
-            test2.updateParam(sol);
-        if (test2.accept(sol))
-            ok++;
-        else
-            ko++;
-        test2.move(sol);
-    }
-    assert((ok>0) && (ko>0));
+    //test du 3eme constructeur
+    moMetropolisHastings<bitNeighbor> test3(nh, fullEval, eval, 3, cont, ncomp, sncomp);
 
-
-
-    std::cout << "[t-moSAexplorer] => OK" << std::endl;
+    std::cout << "[t-moMetropolisHastings] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

@@ -1,8 +1,8 @@
 /*
-  <moUpdater.h>
+  <moFunctionContinuator.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
+  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -32,35 +32,33 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moUpdater_h
-#define moUpdater_h
+#ifndef _moFunctionContinuator_h
+#define _moFunctionContinuator_h
 
 #include <eoFunctor.h>
-#include <utils/eoParam.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
- * Base class for updating whatever you want.
- * Similar to eoUpdater, but there is an "init" method !
-*/
-class moUpdater : public eoF<void>
+ * To make specific continuator from a solution
+ */
+template< class Neighbor >
+class moFunctionContinuator : public moContinuator<Neighbor>
 {
 public:
-  /**
-   * first call of the updater
-   */
-  virtual void init() {}
-  
-  /**
-   * last call of the updater 
-   */
-  virtual void lastCall() {}
-  
-  /**
-   * class name
-   */
-  virtual std::string className(void) const 
-  { return "moUpdater"; }
 
+    typedef typename Neighbor::EOT EOT ;
+
+    /**
+     * Init Continuator parameters
+     * @param _solution the related solution
+     */
+    virtual void init(EOT& _solution) {};
+
+    /**
+     * Last Call to terminate the checkpoint
+     * @param _solution the related solution
+     */
+    virtual void lastCall(EOT& _solution) {};
 };
 
 #endif

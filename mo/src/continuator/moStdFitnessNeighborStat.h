@@ -42,7 +42,7 @@
  * From moNeighborhoodStat, to compute the average and the standard deviation of fitness in the neighborhood
  */
 template< class Neighbor >
-class moStdFitnessNeighborStat : public moStat<typename Neighbor::EOT, double >
+class moStdFitnessNeighborStat : public moStat<typename Neighbor::EOT, double>
 {
 public :
     typedef typename Neighbor::EOT EOT ;
