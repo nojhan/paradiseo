@@ -51,6 +51,32 @@ public:
 };
 
 /**
+   An eoUpdater that simply calls a function with no arguments
+
+    @ingroup Utilities
+*/
+class eoFunctionCaller : public eoUpdater
+{
+public :
+    
+    /** Default Ctor - requires a pointer to the function to call */
+    eoFunctionCaller(void (*_fct)())
+    : fct(_fct)
+    { }
+    
+    /** Simply call the function */
+    virtual void operator()()
+    {
+        (*fct)();
+    }
+
+  virtual std::string className(void) const { return "eoFunctionCaller"; }
+  
+private:
+    void (*fct)();
+};
+
+/**
    an eoUpdater that simply increments a counter
 
     @ingroup Utilities
