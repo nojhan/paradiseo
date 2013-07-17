@@ -1,35 +1,26 @@
 /*
-  <moBestFitnessStat.h>
-  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
+(c) Thales group, 2010
 
-  This software is governed by the CeCILL license under French law and
-  abiding by the rules of distribution of free software.  You can  use,
-  modify and/ or redistribute the software under the terms of the CeCILL
-  license as circulated by CEA, CNRS and INRIA at the following URL
-  "http://www.cecill.info".
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation;
+    version 2 of the License.
 
-  As a counterpart to the access to the source code and  rights to copy,
-  modify and redistribute granted by the license, users are provided only
-  with a limited warranty  and the software's author,  the holder of the
-  economic rights,  and the successive licensors  have only  limited liability.
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
 
-  In this respect, the user's attention is drawn to the risks associated
-  with loading,  using,  modifying and/or developing or reproducing the
-  software by the user in light of its specific status of free software,
-  that may mean  that it is complicated to manipulate,  and  that  also
-  therefore means  that it is reserved for developers  and  experienced
-  professionals having in-depth computer knowledge. Users are therefore
-  encouraged to load and test the software's suitability as regards their
-  requirements in conditions enabling the security of their systems and/or
-  data to be ensured and,  more generally, to use and operate it in the
-  same conditions as regards security.
-  The fact that you are presently reading this means that you have had
-  knowledge of the CeCILL license and that you accept its terms.
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-  ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-  Contact: paradiseo-help@lists.gforge.inria.fr
+Contact: http://eodev.sourceforge.net
+
+Authors:
+Lionel Parreaux <lionel.parreaux@gmail.com>
+
 */
 
 #ifndef moFitnessMomentsStat_h
@@ -39,7 +30,7 @@
 #include <continuator/moStat.h>
 
 /**
- * Statistic that saves the standard deviation of the fitness of the solutions during the search
+ * Statistic that saves the average and variance of the fitness of the solutions during the search
  */
 template <class EOT>
 //class moFitnessMomentsStat : public moStat<EOT, std::pair<typename EOT::Fitness,typename EOT::Fitness> >
@@ -50,7 +41,7 @@ public :
     //typedef std::pair<typename EOT::Fitness,typename EOT::Fitness> Pair;
     typedef std::pair<double, double> Pair;
     using moStat<EOT, Pair >::value;
-
+    
     /**
      * Default Constructor
      * @param _reInitSol when true the best so far is reinitialized
@@ -66,38 +57,33 @@ public :
      * @param _sol the first solution
      */
     virtual void init(EOT & _sol) {
-    	if (reInitSol || firstTime)
-    	{
-    		value() = Pair(0.0,0.0);
-    		nbSolutionsEncountered = currentAvg = currentVar = 0;
-			firstTime = false;
-    	}
-    	/*else if (firstTime)
-		{
-			value() = 0.0;
-			firstTime = false;
-		}*/
-    	operator()(_sol);
+        if (reInitSol || firstTime)
+        {
+            value() = Pair(0.0,0.0);
+            nbSolutionsEncountered = currentAvg = currentVar = 0;
+            firstTime = false;
+        }
+        operator()(_sol);
     }
     
-	/**
-	 * Update the best solution
-	 * @param _sol the current solution
-	 */
-	virtual void operator()(EOT & _sol) {
-		++nbSolutionsEncountered;
-		double x = _sol.fitness();
-		double oldAvg = currentAvg;
-		currentAvg = oldAvg + (x - oldAvg)/nbSolutionsEncountered;
-		if (nbSolutionsEncountered > 1) // <- not really necessary
-		{
-			//value() = (value()/nbSolutionsEncountered + _sol.fitness())/(nbSolutionsEncountered+1);
-			double oldVar = currentVar;
-			currentVar = oldVar + (x - oldAvg) * (x - currentAvg);
-			value() = Pair(currentAvg, currentVar/nbSolutionsEncountered);
-		}
-	}
-
+    /**
+     * Update the best solution
+     * @param _sol the current solution
+     */
+    virtual void operator()(EOT & _sol) {
+        ++nbSolutionsEncountered;
+        double x = _sol.fitness();
+        double oldAvg = currentAvg;
+        currentAvg = oldAvg + (x - oldAvg)/nbSolutionsEncountered;
+        if (nbSolutionsEncountered > 1) // <- not really necessary
+        {
+            //value() = (value()/nbSolutionsEncountered + _sol.fitness())/(nbSolutionsEncountered+1);
+            double oldVar = currentVar;
+            currentVar = oldVar + (x - oldAvg) * (x - currentAvg);
+            value() = Pair(currentAvg, currentVar/nbSolutionsEncountered);
+        }
+    }
+    
     /**
      * @return name of the class
      */
@@ -113,7 +99,7 @@ protected:
     , currentAvg
     , currentVar // actually the var * n
     ;
-
+    
 };
 
 #endif // moFitnessMomentsStat_h

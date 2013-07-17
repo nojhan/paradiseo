@@ -52,7 +52,11 @@ public :
     moCounterMonitorSaver(unsigned _interval, eoMonitor& _mon) : interval(_interval), counter(0) {
         monitors.push_back(&_mon);
     }
-
+    
+    moCounterMonitorSaver(unsigned _interval)
+    : interval(_interval), counter(0)
+    { }
+    
     /**
      * call monitors if interval is reach by a counter
      */
