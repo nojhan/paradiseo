@@ -43,7 +43,7 @@
 #include <algo/moFirstImprHC.h>
 #include <algo/moILS.h>
 #include <algo/moLocalSearch.h>
-#include <algo/moMetropolisHasting.h>
+#include <algo/moMetropolisHastings.h>
 #include <algo/moNeutralHC.h>
 #include <algo/moRandomBestHC.h>
 #include <algo/moRandomNeutralWalk.h>
@@ -100,11 +100,14 @@
 #include <continuator/moTimeContinuator.h>
 #include <continuator/moTrueContinuator.h>
 #include <continuator/moVectorMonitor.h>
+#include <continuator/moFitnessVarianceStat.h>
 
 #include <coolingSchedule/moCoolingSchedule.h>
 #include <coolingSchedule/moDynSpanCoolingSchedule.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 #include <coolingSchedule/moDynSpanCoolingSchedule.h>
+#include <coolingSchedule/moTrikiCoolingSchedule.h>
+#include <coolingSchedule/moHuangCoolingSchedule.h>
 
 #include <eval/moDummyEval.h>
 #include <eval/moEval.h>
@@ -116,14 +119,14 @@
 #include <explorer/moDummyExplorer.h>
 #include <explorer/moFirstImprHCexplorer.h>
 #include <explorer/moILSexplorer.h>
-#include <explorer/moMetropolisHastingExplorer.h>
+#include <explorer/moMetropolisHastingsExplorer.h>
 #include <explorer/moNeighborhoodExplorer.h>
 #include <explorer/moNeutralHCexplorer.h>
 #include <explorer/moRandomBestHCexplorer.h>
 #include <explorer/moRandomNeutralWalkExplorer.h>
 #include <explorer/moRandomSearchExplorer.h>
 #include <explorer/moRandomWalkExplorer.h>
-#include <explorer/moSAexplorer.h>
+#include <explorer/moSAExplorer.h>
 #include <explorer/moSimpleHCexplorer.h>
 #include <explorer/moTSexplorer.h>
 #include <explorer/moVNSexplorer.h>
@@ -162,6 +165,8 @@
 #include <neighborhood/moVariableNeighborhoodSelection.h>
 #include <neighborhood/moVectorVNSelection.h>
 #include <neighborhood/moEvaluatedNeighborhood.h>
+#include <neighborhood/moRealNeighbor.h>
+#include <neighborhood/moRealNeighborhood.h>
 
 #include <perturb/moLocalSearchInit.h>
 #include <perturb/moMonOpPerturb.h>
@@ -207,5 +212,6 @@
 #include <sampling/moRndRndFitnessCloudSampling.h>
 #include <sampling/moSampling.h>
 #include <sampling/moStatistics.h>
+#include <sampling/moStdDevEstimator.h>
 
 #endif
