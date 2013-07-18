@@ -224,7 +224,9 @@ public :
     void setValue(const std::string& _value)
     {
         std::istringstream is(_value);
-        is >> repValue;
+        bool read = (is >> repValue);
+        if (!read)
+            throw std::runtime_error("Could not read value passed in eoValueParam::setValue");
     }
 
 protected:
