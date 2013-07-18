@@ -2,7 +2,7 @@
 <moMetropolisHasting.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
+Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau, Lionel Parreaux
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,11 +27,12 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moMetropolisHasting_h
-#define _moMetropolisHasting_h
+#ifndef _moMetropolisHastings_h
+#define _moMetropolisHastings_h
 
 #include <algo/moLocalSearch.h>
-#include <explorer/moMetropolisHastingExplorer.h>
+#include <explorer/moMetropolisHastingsExplorer.h>
+#include <explorer/moSimpleMetropolisHastingsExplorer.h>
 #include <continuator/moTrueContinuator.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
@@ -50,61 +51,50 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  *   the algorithm stops when the number of iterations is too large
  */
 template<class Neighbor>
-class moMetropolisHasting: public moLocalSearch<Neighbor>
+class moMetropolisHastings: public moLocalSearch<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT;
     typedef moNeighborhood<Neighbor> Neighborhood ;
-
+    
     /**
-     * Basic constructor of the Metropolis-Hasting
-     * @param _neighborhood the neighborhood
-     * @param _fullEval the full evaluation function
-     * @param _eval neighbor's evaluation function
-     * @param _nbStep maximum step to do
-     */
-    moMetropolisHasting(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep):
-            moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
-    {}
-
-    /**
-     * Simple constructor of the Metropolis-Hasting
+     * General constructor of the Metropolis-Hastings algotrithm
      * @param _neighborhood the neighborhood
      * @param _fullEval the full evaluation function
      * @param _eval neighbor's evaluation function
      * @param _nbStep maximum step to do
      * @param _cont an external continuator
-     */
-    moMetropolisHasting(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont):
-            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-            explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
-    {}
-
-    /**
-     * General constructor of the Metropolis-Hasting
-     * @param _neighborhood the neighborhood
-     * @param _fullEval the full evaluation function
-     * @param _eval neighbor's evaluation function
-     * @param _nbStep maximum step to do
-     * @param _cont an external continuator
-     * @param _compN  a neighbor vs neighbor comparator
      * @param _compSN a solution vs neighbor comparator
      */
-    moMetropolisHasting(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
-            moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-            explorer(_neighborhood, _eval, _compN, _compSN, _nbStep)
-    {}
-
+    moMetropolisHastings(
+        Neighborhood& _neighborhood
+      , eoEvalFunc<EOT>& _fullEval
+      , moEval<Neighbor>& _eval
+      , unsigned int _nbStep
+      , eoOptional< moContinuator<Neighbor> > _cont = NULL
+      , eoOptional< moSolNeighborComparator<Neighbor> > _compSN = NULL
+    )
+    : moLocalSearch<Neighbor>(explorer, _cont.getOr(trueCont), _fullEval)
+    , explorer(_neighborhood, _eval, _nbStep, _compSN)
+    { }
+    
 private:
+    
     // always true continuator
     moTrueContinuator<Neighbor> trueCont;
-    // compare the fitness values of neighbors
-    moNeighborComparator<Neighbor> defaultNeighborComp;
-    // compare the fitness values of the solution and the neighbor
-    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-    // MetropolisHasting explorer
-    moMetropolisHastingExplorer<Neighbor> explorer;
+    
+    // Default Metropolis-Hasting explorer
+    moSimpleMetropolisHastingsExplorer<Neighbor> explorer;
+    
 };
 
 #endif
+
+
+
+
+
+
+
+
+

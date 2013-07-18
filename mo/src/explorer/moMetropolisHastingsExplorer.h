@@ -1,8 +1,8 @@
 /*
-  <moMetropolisHastingExplorer.h>
+  <moMetropolisHastingsExplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
+  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau, Lionel Parreaux
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -32,25 +32,31 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moMetropolisHastingExplorer_h
-#define _moMetropolisHastingExplorer_h
+#ifndef _moMetropolisHastingsExplorer_h
+#define _moMetropolisHastingsExplorer_h
 
 #include <cstdlib>
 
+#include <eoOptional.h>
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <neighborhood/moNeighborhood.h>
 
+#include <utils/eoLogger.h>
 #include <utils/eoRNG.h>
 
 /**
  * Explorer for the Metropolis-Hasting Sampling.
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
  * Fitness must be > 0
+ * 
+ * Class Derived passed in template parameter should define an "alpha" function
+ * returning a real between 0 and 1 representing the probability of accepting
+ * a worse solution
  */
-template< class Neighbor >
-class moMetropolisHastingExplorer : public moNeighborhoodExplorer<Neighbor>
+template< class Neighbor, class Derived >
+class moMetropolisHastingsExplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
@@ -64,116 +70,84 @@ public:
      * Constructor
      * @param _neighborhood the neighborhood
      * @param _eval the evaluation function
-     * @param _neighborComparator a neighbor comparator
-     * @param _solNeighborComparator a solution vs neighbor comparator
-     * @param _nbStep maximum number of step to do
+     * @param _comp a neighbor comparator
      */
-    moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
-        isAccept = false;
+    moMetropolisHastingsExplorer(
+        Neighborhood& _neighborhood,
+        moEval<Neighbor>& _eval,
+        eoOptional< moSolNeighborComparator<Neighbor> > _comp = NULL
+    )
+    : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval)
+    , defaultSolNeighborComp(NULL)
+    , solNeighborComparator(_comp.hasValue()? _comp.get(): *(defaultSolNeighborComp = new moSolNeighborComparator<Neighbor>()))
+    {
         if (!neighborhood.isRandom()) {
-            std::cout << "moMetropolisHastingExplorer::Warning -> the neighborhood used is not random" << std::endl;
+            eo::log << eo::warnings << "moMetropolisHastingsExplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
     }
 
     /**
      * Destructor
      */
-    ~moMetropolisHastingExplorer() {
+    ~moMetropolisHastingsExplorer() {
+        if (defaultSolNeighborComp != NULL)
+            delete defaultSolNeighborComp;
     }
-
+    
     /**
-     * initialization of the number of step to be done
-     * @param _solution unused solution
+     * Init Search parameters: Nothing to do
+     * @param _solution the solution to explore
      */
-    virtual void initParam(EOT & _solution) {
-        step     = 0;
-        isAccept = true;
-    };
-
+    virtual void initParam(EOT & _solution) {};
+    
     /**
-     * increase the number of step
-     * @param _solution unused solution
-     */
-    virtual void updateParam(EOT & _solution) {
-        step++;
-    };
-
-    /**
-     * terminate: NOTHING TO DO
-     * @param _solution unused solution
+     * terminate: Nothing to do
+     * @param _solution the solution to explore
      */
     virtual void terminate(EOT & _solution) {};
-
+    
     /**
      * Explore the neighborhood of a solution
      * @param _solution
      */
-    virtual void operator()(EOT & _solution) {
+    virtual void operator()(EOT & _solution)
+    {
         //Test if _solution has a Neighbor
-        if (neighborhood.hasNeighbor(_solution)) {
+        if (neighborhood.hasNeighbor(_solution))
+        {
             //init the first neighbor
             neighborhood.init(_solution, selectedNeighbor);
-
-            //eval the _solution moved with the neighbor and stock the result in the neighbor
+            
+            //eval the _solution moved with the neighbor and stores the result in the neighbor
             eval(_solution, selectedNeighbor);
         }
-        else {
-            //if _solution hasn't neighbor,
-            isAccept=false;
-        }
     };
-
+    
     /**
-     * continue if there is a neighbor and it is remainds some steps to do
+     * accept chooses whether to accept or reject the selected neighbor
      * @param _solution the solution
-     * @return true there is some steps to do
+     * @return true if the selected neighbor is accepted
      */
-    virtual bool isContinue(EOT & _solution) {
-        return (step < nbStep) ;
-    };
-
-    /**
-     * accept test if an ameliorated neighbor was found
-     * @param _solution the solution
-     * @return true if the best neighbor ameliorate the fitness
-     */
-    virtual bool accept(EOT & _solution) {
-        double alpha=0.0;
+    virtual bool accept(EOT & _solution)
+    {
+        bool isMoveAccepted = false;
         if (neighborhood.hasNeighbor(_solution)) {
-	  if (solNeighborComparator(_solution, selectedNeighbor))
-                isAccept = true;
-            else {
-                if (_solution.fitness() != 0) {
-                    if ( (double)selectedNeighbor.fitness() < (double)_solution.fitness()) // maximizing
-                        alpha = (double) selectedNeighbor.fitness() / (double) _solution.fitness();
-                    else //minimizing
-                        alpha = (double) _solution.fitness() / (double) selectedNeighbor.fitness();
-                    isAccept = (rng.uniform() < alpha) ;
-                }
-                else {
-                    if ( (double) selectedNeighbor.fitness() < (double) _solution.fitness()) // maximizing
-                        isAccept = true;
-                    else
-                        isAccept = false;
-                }
-            }
+            if (solNeighborComparator(_solution, selectedNeighbor))
+                // accept if the current neighbor is better than the solution
+                 isMoveAccepted = true;
+            else isMoveAccepted = rng.uniform() < static_cast<Derived*>(this)->alpha(_solution);
         }
-        return isAccept;
+        return isMoveAccepted;
     };
-
+    
 private:
-    // comparator betwenn solution and neighbor or between neighbors
-    moNeighborComparator<Neighbor>& neighborComparator;
+    
+    // default comparator betwenn solution and neighbor
+    moSolNeighborComparator<Neighbor>* defaultSolNeighborComp;
+    
+    // comparator betwenn solution and neighbor
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
-
-    // current number of step
-    unsigned int step;
-
-    // maximum number of steps to do
-    unsigned int nbStep;
-
-    // true if the move is accepted
-    bool isAccept ;
+    
 };
 
 

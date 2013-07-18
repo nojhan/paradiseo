@@ -1,5 +1,5 @@
 /*
-  <moSAExplorer.h>
+  <moSimpleMetropolisHastingsExplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau, Lionel Parreaux
@@ -32,137 +32,98 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSAExplorer_h
-#define _moSAExplorer_h
-
+#ifndef _moSimpleMetropolisHastingsExplorer_h
+#define _moSimpleMetropolisHastingsExplorer_h
+/*
 #include <cstdlib>
 
-//#include <explorer/moNeighborhoodExplorer.h>
-#include <explorer/moMetropolisHastingsExplorer.h>
+#include <explorer/moNeighborhoodExplorer.h>
+#include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
-#include <coolingSchedule/moCoolingSchedule.h>
 #include <neighborhood/moNeighborhood.h>
-#include <eoOptional.h>
-#include <eval/moFullEvalByCopy.h>
 
-#include <utils/eoRNG.h>
+#include <utils/eoRNG.h>*/
+#include <explorer/moMetropolisHastingsExplorer.h>
+
 
 /**
- * Explorer for the Simulated Annealing
+ * Explorer for the Metropolis-Hasting Sampling.
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
  * Fitness must be > 0
- *
  */
 template< class Neighbor >
-class moSAExplorer : public moMetropolisHastingsExplorer< Neighbor, moSAExplorer<Neighbor> >
+class moSimpleMetropolisHastingsExplorer
+: public moMetropolisHastingsExplorer< Neighbor, moSimpleMetropolisHastingsExplorer<Neighbor> >
 {
 public:
     typedef typename Neighbor::EOT EOT ;
     typedef moNeighborhood<Neighbor> Neighborhood ;
     
-    using moNeighborhoodExplorer<Neighbor>::neighborhood;
-    using moNeighborhoodExplorer<Neighbor>::eval;
     using moNeighborhoodExplorer<Neighbor>::selectedNeighbor;
-
+    
     /**
      * Constructor for the simple MH explorer
      * @param _neighborhood the neighborhood
      * @param _eval the evaluation function
-     * @param _cool the cooling schedule
+     * @param _maxSteps maximum number of currentStepNb to do
      * @param _solNeighborComparator a solution vs neighbor comparator
      */
-    moSAExplorer (
+    moSimpleMetropolisHastingsExplorer (
         Neighborhood& _neighborhood,
         moEval<Neighbor>& _eval,
-        moCoolingSchedule<EOT>& _cool,
+        unsigned int _maxSteps,
         eoOptional< moSolNeighborComparator<Neighbor> > _comp = NULL
     )
-    : moMetropolisHastingsExplorer< Neighbor, moSAExplorer<Neighbor> >(_neighborhood, _eval, _comp)
-    , coolingSchedule(_cool)
+    : moMetropolisHastingsExplorer< Neighbor, moSimpleMetropolisHastingsExplorer<Neighbor> >(_neighborhood, _eval, _comp)
+    , maxSteps(_maxSteps)
     { }
     
     /**
-     * Destructor
-     */
-    ~moSAExplorer() {
-    }
-
-    /**
-     * initialization of the initial temperature
-     * @param _solution the solution
+     * initialization of currentStepNb to be done here
+     * @param _solution unused
      */
     virtual void initParam(EOT & _solution) {
-      temperature = coolingSchedule.init(_solution);
-      //isMoveAccepted = false;
+        currentStepNb = 0;
+        //isAccept = true;
     };
-
+    
     /**
-     * decrease the temperature if necessary
-     * @param _solution unused solution
+     * increment currentStepNb
+     * @param _solution unused
      */
     virtual void updateParam(EOT & _solution) {
-        coolingSchedule.update(temperature, this->moveApplied(), _solution);
+        currentStepNb++;
     };
-
+    
     /**
-     * terminate: Nothing to do
-     * @param _solution unused solution
-     */
-    virtual void terminate(EOT & _solution) {};
-
-    /**
-     * Explore one random solution in the neighborhood
+     * continue if there is a neighbor and it is remainds some steps to do
      * @param _solution the solution
-     */
-    virtual void operator()(EOT & _solution) {
-        //Test if _solution has a Neighbor
-        if (neighborhood.hasNeighbor(_solution))
-        {
-            //init on the first neighbor: supposed to be random solution in the neighborhood
-            neighborhood.init(_solution, selectedNeighbor);
-
-            //eval the _solution moved with the neighbor and stock the result in the neighbor
-            eval(_solution, selectedNeighbor);
-        }
-    };
-
-    /**
-     * continue if the temperature is not too low
-     * @param _solution the solution
-     * @return true if the criteria from the cooling schedule is true
+     * @return true if there is still some steps to perform
      */
     virtual bool isContinue(EOT & _solution) {
-        return coolingSchedule(temperature);
+        return currentStepNb < maxSteps;
     };
     
     /**
-     * getTemperature getter function
-     * @return the temperature
-     */
-    double getTemperature() const {
-        return temperature;
-    }
-    
-    /**
-     * alpha required by moMetropolisHastingsExplorer, using the Boltzman distribution e^(-delta/T)
+     * alpha required by moMetropolisHastingsExplorer
      * @param _solution the solution
      * @return a real between 0 and 1 representing the probability of accepting a worse solution
      */
     double alpha(EOT & _solution) {
-        return exp( - fabs((double) selectedNeighbor.fitness() - (double) _solution.fitness()) / temperature );
+        if (selectedNeighbor.fitness() == 0)
+            return selectedNeighbor.fitness() < (double) _solution.fitness() ? 1: 0;
+        return (double) _solution.fitness() / (double) selectedNeighbor.fitness();
     }
-    
     
 private:
     
-    // The cooling schedule
-    moCoolingSchedule<EOT>& coolingSchedule;
+    // current number of steps
+    unsigned int currentStepNb;
     
-    // current temperatur of the process
-    double temperature;
+    // maximum number of steps to perform
+    unsigned int maxSteps;
     
 };
 
 
 #endif
-
