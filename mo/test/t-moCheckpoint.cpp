@@ -78,14 +78,14 @@ int main() {
 
     test1.init(s);
     test1(s);
-    assert(a==3 && b==16 && c==12 && d==49);
+    assert(a==3 && b==16 && c==11 && d==48);
     assert(stat.value()[0]);
     assert(stat.value()[1]);
     assert(!stat.value()[2]);
     assert(stat.value().fitness()==17);
 
     test1(s);
-    assert(a==4 && b==17 && c==13 && d==50);
+    assert(a==4 && b==17 && c==12 && d==49);
     assert(stat.value()[0]);
     assert(stat.value()[1]);
     assert(!stat.value()[2]);
@@ -95,7 +95,7 @@ int main() {
 
     test2.init(s);
     test2(s);
-    assert(a==5 && b==18 && c==15 && d==52);
+    assert(a==5 && b==18 && c==13 && d==50);
     assert(stat.value()[0]);
     assert(stat.value()[1]);
     assert(!stat.value()[2]);
@@ -110,9 +110,9 @@ int main() {
     assert(stat.value().fitness()==6);
 
     test1.lastCall(s);
-    assert(a==9 && b==22 && c==19 && d==56);
+    assert(a==9 && b==22 && c==17 && d==54);
     test2.lastCall(s);
-    assert(a==10 && b==23 && c==20 && d==57);
+    assert(a==10 && b==23 && c==18 && d==55);
 
     assert(test1.className()=="moCheckpoint");
     std::cout << "[t-moCheckpoint] => OK" << std::endl;
