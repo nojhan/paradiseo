@@ -27,3 +27,4 @@ int main(int ac, char** av)
     T t(666);
     MyClass mc3(t);
 }
+
