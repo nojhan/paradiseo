@@ -1,5 +1,5 @@
 /*
-<t-moSAexplorer.cpp>
+<t-moSAExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,12 +32,12 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 #include "moTestClass.h"
-#include <explorer/moSAexplorer.h>
+#include <explorer/moSAExplorer.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 
 int main() {
 
-    std::cout << "[t-moSAexplorer] => START" << std::endl;
+    std::cout << "[t-moSAExplorer] => START" << std::endl;
 
     eoBit<eoMinimizingFitness> sol(4, true);
     sol.fitness(4);
@@ -47,8 +47,8 @@ int main() {
     moSolNeighborComparator<bitNeighbor> sncomp;
     moSimpleCoolingSchedule<bitVector> cool(10,0.1,2,0.1);
 
-    moSAexplorer<bitNeighbor> test1(emptyNH, eval, sncomp, cool);
-    moSAexplorer<bitNeighbor> test2(nh, eval, sncomp, cool);
+    moSAExplorer<bitNeighbor> test1(emptyNH, eval, cool, sncomp);
+    moSAExplorer<bitNeighbor> test2(nh, eval, cool, sncomp);
 
     //test d'un voisinage vide
     test1.initParam(sol);
@@ -80,7 +80,7 @@ int main() {
 
 
 
-    std::cout << "[t-moSAexplorer] => OK" << std::endl;
+    std::cout << "[t-moSAExplorer] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

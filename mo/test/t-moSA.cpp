@@ -51,12 +51,12 @@ int main() {
 
     //test second constructor
     moSimpleCoolingSchedule<bitVector> cool(10, 0.9, 100, 0.01);
-    moSA<bitNeighbor> test2(nh, fullEval, eval, cool);
+    moSA<bitNeighbor> test2(nh, fullEval, cool, eval);
 
     //test third constructor
     moTrueContinuator<bitNeighbor> cont;
     moSolNeighborComparator<bitNeighbor> comp;
-    moSA<bitNeighbor> test3(nh, fullEval, eval, cool, comp, cont);
+    moSA<bitNeighbor> test3(nh, fullEval, cool, eval, cont, comp);
 
     std::cout << "[t-moSA] => OK" << std::endl;
 

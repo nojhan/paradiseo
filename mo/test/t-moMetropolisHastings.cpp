@@ -1,5 +1,5 @@
 /*
-<t-moMetropolisHasting.cpp>
+<t-moMetropolisHastings.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,11 +27,15 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+//-----------------------------------------------------------------------------
+// t-moMetropolisHastings.cpp
+//-----------------------------------------------------------------------------
+
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
-#include <algo/moMetropolisHasting.h>
+#include <algo/moMetropolisHastings.h>
 #include "moTestClass.h"
 #include <eval/oneMaxEval.h>
 #include <continuator/moTrueContinuator.h>
@@ -40,25 +44,24 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 int main() {
 
-    std::cout << "[t-moMetropolisHasting] => START" << std::endl;
+    std::cout << "[t-moMetropolisHastings] => START" << std::endl;
 
     bitNeighborhood nh(4);
     oneMaxEval<bitVector> fullEval;
     evalOneMax eval(4);
     moTrueContinuator<bitNeighbor> cont;
     moSolNeighborComparator<bitNeighbor> sncomp;
-    moNeighborComparator<bitNeighbor> ncomp;
 
     //test du 1er constructeur
-    moMetropolisHasting<bitNeighbor> test1(nh, fullEval, eval, 3);
+    moMetropolisHastings<bitNeighbor> test1(nh, fullEval, eval, 3);
 
     //test du 2eme constructeur
-    moMetropolisHasting<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
+    moMetropolisHastings<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
 
     //test du 3eme constructeur
-    moMetropolisHasting<bitNeighbor> test3(nh, fullEval, eval, 3, cont, ncomp, sncomp);
+    moMetropolisHastings<bitNeighbor> test3(nh, fullEval, eval, 3, cont, sncomp);
 
-    std::cout << "[t-moMetropolisHasting] => OK" << std::endl;
+    std::cout << "[t-moMetropolisHastings] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

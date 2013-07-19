@@ -1,5 +1,5 @@
 /*
-<t-moMetropolisHastingExplorer.cpp>
+<t-moMetropolisHastingsExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,7 +27,11 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <explorer/moMetropolisHastingExplorer.h>
+//-----------------------------------------------------------------------------
+// t-moSimpleMetropolisHastingsExplorer.cpp
+//-----------------------------------------------------------------------------
+
+#include <explorer/moSimpleMetropolisHastingsExplorer.h>
 #include "moTestClass.h"
 
 #include <iostream>
@@ -36,7 +40,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 int main() {
 
-    std::cout << "[t-moMetropolisHastingExplorer] => START" << std::endl;
+    std::cout << "[t-moMetropolisHastingsExplorer] => START" << std::endl;
 
     //Instanciation
     eoBit<eoMinimizingFitness> sol(4, true);
@@ -45,8 +49,8 @@ int main() {
     evalOneMax eval(4);
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
-
-    moMetropolisHastingExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp, 3);
+    
+    moSimpleMetropolisHastingsExplorer<bitNeighbor> test(nh, eval, 3, sncomp);
 
     //test de l'acceptation d'un voisin améliorant
     test.initParam(sol);
@@ -90,7 +94,7 @@ int main() {
     test(sol);
     assert(!test.accept(sol));
 
-    std::cout << "[t-moMetropolisHastingExplorer] => OK" << std::endl;
+    std::cout << "[t-moMetropolisHastingsExplorer] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }
