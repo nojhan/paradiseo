@@ -1,4 +1,8 @@
 * current release:
+    - added an EOT& parameter to the moCoolingSchedule::update interface method because some cooling schedules need it
+    - eoMonitor's are no more executed in moCheckpoint::init to prevent access to uninitialized data
+    - renamed classes moSAexplorer->moSAExplorer, MetropolisHasting->MetropolisHastings and MetropolisHastingExplorer -> MetropolisHastingsExplorer
+    - reordered param order in moSA's 2nd constructor ('cool' is now before 'eval' because 'eval' now has a default value)
 
 * release 1.3.1 (2012-07-27)
     - the eo::mpi modules is no longer dependent from boost::mpi
