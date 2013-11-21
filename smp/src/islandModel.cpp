@@ -56,7 +56,7 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
 
     // Launching threads
     unsigned i = 0;
-    for(auto it : islands)
+    for(auto& it : islands)
     {
         it.first->setRunning();
         threads[i] = std::thread(&AIsland<EOT>::operator(), it.first);
@@ -104,18 +104,21 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
     sentMessages.clear();
         
     // Force last integration
+    while(!listEmigrants.empty())
+        send();
     i = 0;
-    for(auto it : islands)
+    for(auto& it : islands)
     {
         threads[i] = std::thread(&AIsland<EOT>::receive, it.first);
         i++;
     }
-    
+
     // Wait the end of the last integration
     for(auto& thread : threads)
         thread.join();
         
     running = false;
+    std::cout << "hhhhhhh" << listEmigrants.size() << std::endl;
 }
 
 template<class EOT>  
