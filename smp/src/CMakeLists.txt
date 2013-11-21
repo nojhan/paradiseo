@@ -32,6 +32,7 @@ set (SMP_FILE
     topology/customStochasticTopology.cpp
     notifier.cpp
     islandModelWrapper.h
+    sharedFitContinue.h
     )
 
 add_library(smp STATIC ${SMP_FILE})

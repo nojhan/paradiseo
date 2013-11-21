@@ -21,6 +21,7 @@ set (TEST_LIST
         t-smpMI_Heterogeneous
         t-smpMI_Wrapper
         t-smpCustomTopo
+        t-smpSharedFitContinue
 		)
 
 ######################################################################################

@@ -1,8 +1,8 @@
 /*
-<smp.h>
+<sharedFitContinue.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
-Alexandre Quemy
+Alexandre Quemy - INSA Rouen
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,32 +27,52 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef SMP_H
-#define SMP_H
+#ifndef SMP_SHARED_FIT_CONTINUE_H_
+#define SMP_SHARED_FIT_CONTINUE_H_
 
-#include <MWModel.h>
-#include <scheduler.h>
-#include <islandModel.h>
-#include <islandModelWrapper.h>
-#include <island.h>
-#include <abstractIsland.h>
-#include <migPolicy.h>
-#include <intPolicy.h>
-#include <policyElement.h>
-#include <islandNotifier.h>
-#include <notifier.h>
+#include <atomic>
 
-// Topologies
-#include <topology/topology.h>
-#include <topology/complete.h>
-#include <topology/ring.h>
-#include <topology/star.h>
-#include <topology/hypercubic.h>
-#include <topology/mesh.h>
-#include <topology/customBooleanTopology.h>
-#include <topology/customBooleanTopology.h>
+#include <eoContinue.h>
+#include <eoFitContinue.h>
 
-// Continuators
-#include <sharedFitContinue.h>
+namespace paradiseo
+{
+namespace smp
+{
+
+/** SharedFitContinue
+
+Wrapper on the eoFitContinue in order to allow the island model to stop as soon as an island found a good solution.
+
+@see smp::Island, eoFitContinue
+*/
+
+template<class EOT>
+class SharedFitContinue : public eoContinue<EOT>
+{
+public:
+    
+    typedef typename EOT::Fitness Fitness;
+    
+    SharedFitContinue(const Fitness _optimum) : 
+        fit(_optimum),
+        found(false)
+    {}; 
+ 
+    virtual bool operator() ( const eoPop<EOT>& _pop );
+
+    virtual std::string className(void) const;
+
+protected:
+    eoFitContinue<EOT> fit;
+    std::atomic<bool> found;
+
+};
+
+#include <sharedFitContinue.cpp>
+
+}
+
+}
 
 #endif

@@ -20,10 +20,10 @@ set(EOSERIAL_SOURCES
   )
 
 add_library(eoserial STATIC ${EOSERIAL_SOURCES})
-install(TARGETS eoserial ARCHIVE DESTINATION lib COMPONENT libraries)
+install(TARGETS eoserial ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 file(GLOB HDRS *.h)
-install(FILES ${HDRS} DESTINATION include/eo/serial COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo/serial COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal
