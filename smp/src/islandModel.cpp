@@ -118,7 +118,6 @@ void paradiseo::smp::IslandModel<EOT>::operator()()
         thread.join();
         
     running = false;
-    std::cout << "hhhhhhh" << listEmigrants.size() << std::endl;
 }
 
 template<class EOT>  

@@ -140,7 +140,6 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
     std::lock_guard<std::mutex> lock(this->m);
     while (!listImigrants.empty())
     { 
-        //std::cout << "On reçoit dans l'île : " << listImigrants.size() << std::endl;
         eoPop<bEOT> base_offspring = std::move(listImigrants.front());
         
         // Convert objects from base to our objects type
@@ -149,8 +148,12 @@ void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::receive(void)
             offspring.push_back(std::move(convertFromBase(indi)));
         
         // Evaluate objects to integrate
+        // We first invalidate the individuals in order to explicitly force the evaluation
         for(auto& indi : offspring)
+        {
+            indi.invalidate();
             eval(indi);
+        }
         
         intPolicy(pop, offspring);
         listImigrants.pop();
