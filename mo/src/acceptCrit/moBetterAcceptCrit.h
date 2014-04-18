@@ -46,7 +46,7 @@ public:
   /*
     constructor with a specific comparator
 
-    @param _comparator the comparaison method of two solutions
+    @param _comparator the comparison method of two solutions
   */
     moBetterAcceptCrit(moSolComparator<EOT>& _comparator):comparator(_comparator) {}
 
