@@ -255,7 +255,7 @@ protected:
     eoQuadCloneOp < MOEOT > defaultQuadOp;
     /** an object for genetic operators (used as default) */
     eoSGAGenOp < MOEOT > defaultSGAGenOp;
-    /** fitness assignment used in NSGA-II */
+    /** fitness assignment used in SPEA2 */
     moeoDominanceCountRankingFitnessAssignment < MOEOT > fitnessAssignment;
     /** general breeder */
     eoGeneralBreeder < MOEOT > genBreed;
@@ -265,7 +265,7 @@ protected:
     eoSelectTransform <MOEOT> selectTransform;
     /** breeder */
     eoBreed < MOEOT > & breed;
-    /** diversity assignment used in NSGA-II */
+    /** diversity assignment used in SPEA2 */
     moeoNearestNeighborDiversityAssignment  < MOEOT > diversityAssignment;
     /** elitist replacement */
     moeoGenerationalReplacement < MOEOT > replace;
