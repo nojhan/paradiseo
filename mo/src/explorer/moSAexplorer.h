@@ -166,7 +166,7 @@ public:
     }
 
 private:
-    // comparator betwenn solution and neighbor
+    // comparator between solution and neighbor
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
     moCoolingSchedule<EOT>& coolingSchedule;

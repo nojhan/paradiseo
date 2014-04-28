@@ -158,7 +158,7 @@ public:
     };
 
 private:
-    // comparator betwenn solution and neighbor or between neighbors
+    // comparator between solution and neighbor or between neighbors
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
     // current number of step

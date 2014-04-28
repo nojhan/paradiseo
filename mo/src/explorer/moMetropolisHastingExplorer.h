@@ -162,7 +162,7 @@ public:
     };
 
 private:
-    // comparator betwenn solution and neighbor or between neighbors
+    // comparator between solution and neighbor or between neighbors
     moNeighborComparator<Neighbor>& neighborComparator;
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
