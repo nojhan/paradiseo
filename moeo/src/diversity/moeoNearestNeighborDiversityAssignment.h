@@ -46,7 +46,14 @@
 #include <archive/moeoArchive.h>
 
 /**
- * moeoNearestNeighborDiversityAssignment is a moeoDiversityAssignment using distance between individuals to assign diversity.
+ * moeoNearestNeighborDiversityAssignment is a moeoDiversityAssignment
+ * using distance between individuals to assign diversity. Proposed in:
+ * E. Zitzler, M. Laumanns, and L. Thiele. SPEA2: Improving the
+ * Strength Pareto Evolutionary Algorithm. Technical Report 103,
+ * Computer Engineering and Networks Laboratory (TIK), ETH Zurich,
+ * Zurich, Switzerland, 2001.
+
+ * It is used in moeoSPEA2.
  */
 template < class MOEOT >
 class moeoNearestNeighborDiversityAssignment : public moeoDiversityAssignment < MOEOT >

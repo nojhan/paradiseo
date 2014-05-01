@@ -44,9 +44,9 @@
 
 
 /**
- * Diversity assignment sheme based on crowding proposed in:
+ * Diversity assignment scheme based on crowding proposed in:
  * K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, "A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II", IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002).
- * Tis strategy assigns diversity values FRONT BY FRONT. It is, for instance, used in NSGA-II.
+ * This strategy assigns diversity values FRONT BY FRONT. It is, for instance, used in NSGA-II.
  */
 template < class MOEOT >
 class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversityAssignment < MOEOT >
