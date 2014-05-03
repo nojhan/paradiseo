@@ -273,7 +273,7 @@ private :
     {
       unsigned i;
 
-      typedef typename EOT::Fitness::fitness_traits traits;
+      //typedef typename EOT::Fitness::fitness_traits traits;
 
       std::vector<std::vector<unsigned> > S(_pop.size()); // which individuals does guy i dominate
       std::vector<unsigned> n(_pop.size(), 0); // how many individuals dominate guy i
