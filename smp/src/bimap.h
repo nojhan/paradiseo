@@ -50,8 +50,8 @@ class Bimap
 public:
     /**
      * Add a relation 
-     * @param A right key
-     * @param B left key
+     * @param a Right key
+     * @param b Left key
      */
     void add(A& a, B& b);
     
@@ -69,13 +69,13 @@ public:
     
     /**
      * Remove an association from a right key.
-     * @param Right key of the association to be removed.
+     * @param a Right key of the association to be removed.
      */
     void removeFromRight(const A& a);
     
     /**
      * Remove an association from a left key.
-     * @param Left key of the association to be removed.
+     * @param b Left key of the association to be removed.
      */
     void removeFromLeft(const B& b);
 

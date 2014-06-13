@@ -77,7 +77,7 @@ public:
      * @param args Parameters to construct the algorithm.
      */
     template<class... Args>
-    Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
+    Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
     /**
      * Constructor
      * @param _pop Population of the island
@@ -86,7 +86,7 @@ public:
      * @param args Parameters to construct the algorithm.
      */
     template<class... Args>
-    Island(eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
+    Island(eoPop<EOT>& _pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
     
     /**
      * Start the island.

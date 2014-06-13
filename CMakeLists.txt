@@ -79,7 +79,7 @@ set( MPI_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MPI  binary dir
 set(EO_ONLY "false" CACHE BOOL "Only build EO and not the other modules")
 set(ENABLE_OPENMP "false" CACHE BOOL "Build EO with the OpenMP support (shared-memory parallel evaluators on multi-core)")
 set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-time convergence plotting)")
-set(EDO "false" CACHE BOOL "Build the EDO module")
+#set(EDO "false" CACHE BOOL "Build the EDO module")
 set(EDO_USE_LIB "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
 set(SMP "false" CACHE BOOL "Build the SMP module")
 set(MPI "false" CACHE BOOL "Build the MPI module")
@@ -96,11 +96,11 @@ if(NOT EO_ONLY)
     add_subdirectory(${MO_SRC_DIR})
 
     ## EDO Module
-    if(EDO)
+    #if(EDO)
         set(EDO_MODULE_NAME "Evolving Distribution Objects")
         set(CMAKE_SOURCE_DIR ${EDO_SRC_DIR})
         add_subdirectory(${EDO_SRC_DIR})
-    endif()
+    #endif()
 
     ## MOEO Module
     set(MOEO_MODULE_NAME "Multi-Objectives EO")

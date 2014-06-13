@@ -59,14 +59,14 @@ public:
     /**
      * Constructor
      * @param workersNb the number of workers
-     * @param args... list of parameters according to the constructor of your algorithm
+     * @param args list of parameters according to the constructor of your algorithm
      */
     template<class... Args>
     MWModel(unsigned workersNb, Args&... args);
 
     /**
      * Constructor
-     * @param args... list of parameters according to the constructor of your algorithm
+     * @param args list of parameters according to the constructor of your algorithm
      */
     template<class... Args>
     MWModel(Args&... args);
