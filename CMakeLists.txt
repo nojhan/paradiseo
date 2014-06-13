@@ -96,11 +96,11 @@ if(NOT EO_ONLY)
     add_subdirectory(${MO_SRC_DIR})
 
     ## EDO Module
-    if(EDO)
+    #if(EDO)
         set(EDO_MODULE_NAME "Evolving Distribution Objects")
         set(CMAKE_SOURCE_DIR ${EDO_SRC_DIR})
         add_subdirectory(${EDO_SRC_DIR})
-    endif()
+    #endif()
 
     ## MOEO Module
     set(MOEO_MODULE_NAME "Multi-Objectives EO")
