@@ -9,7 +9,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 ### 2) Define the eoserial target
 ######################################################################################
 
-set(EOSERIAL_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
+set(EOSERIAL_LIB_OUTPUT_PATH ${EOSERIAL_BIN_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH ${EOSERIAL_LIB_OUTPUT_PATH})
 
 set(EOSERIAL_SOURCES
@@ -20,13 +20,17 @@ set(EOSERIAL_SOURCES
   )
 
 add_library(eoserial STATIC ${EOSERIAL_SOURCES})
-install(TARGETS eoserial ARCHIVE DESTINATION lib COMPONENT libraries)
-
-file(GLOB HDRS *.h)
-install(FILES ${HDRS} DESTINATION include/eo/serial COMPONENT headers)
+install(TARGETS eoserial ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
-### 3) Optionnal
+### 4) Look for headers
+######################################################################################
+
+file(GLOB HDRS *.h)
+install(FILES ${HDRS} DESTINATION ${INSTALL_SUB_DIR}/eoserial COMPONENT headers)
+
+######################################################################################
+### 5) Optionnal
 ######################################################################################
 
 set(EOSERIAL_VERSION ${GLOBAL_VERSION})
