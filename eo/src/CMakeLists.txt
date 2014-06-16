@@ -47,7 +47,7 @@ install(DIRECTORY do es ga gp other utils
 add_subdirectory(es)
 add_subdirectory(ga)
 add_subdirectory(utils)
-add_subdirectory(serial)
+#add_subdirectory(serial)
 
 if(ENABLE_PYEO)
   add_subdirectory(pyeo)
