@@ -30,7 +30,7 @@ Authors:
 
 # include "utils/eoParallel.h" // eo::parallel
 
-# include "serial/eoSerial.h" // eo::Persistent
+# include "eoSerial.h" // eo::Persistent
 
 /**
  * @brief Timer allowing to measure time between a start point and a stop point.

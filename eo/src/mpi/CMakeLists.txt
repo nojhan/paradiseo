@@ -3,6 +3,7 @@
 ######################################################################################
 
 include_directories(${EO_SRC_DIR}/src)
+include_directories(${EOSERIAL_SRC_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################

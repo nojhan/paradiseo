@@ -23,7 +23,7 @@ Authors:
 # define __EO_IMPL_MPI_HPP__
 
 # include <mpi.h>
-# include <serial/eoSerial.h>
+# include <eoSerial.h>
 
 /**
  * This namespace contains reimplementations of some parts of the Boost::MPI API in C++, so as to be used in
