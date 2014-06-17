@@ -21,6 +21,7 @@
 # - moeo
 # - smp
 # - peo
+# - eoserial
 # You can use find_package(Paradiseo COMPONENTS ... ) to enable one or several components. If you not specifie component, all components will be load except SMP for compatibility reasons.
 #
 # Output
@@ -70,6 +71,10 @@ find_path(MO_INCLUDE_DIR mo
 
 find_path(MOEO_INCLUDE_DIR moeo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/moeo moeo/src
+          PATHS ${PARADISEO_SRC_PATHS})
+
+find_path(EOSERIAL_INCLUDE_DIR eoserial
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/eoserial eoserial/src
           PATHS ${PARADISEO_SRC_PATHS})
 
 # Specific for SMP and PEO
@@ -127,6 +132,7 @@ set(PARADISEO_LIB_PATHS_SUFFIXES
         moeo/tutorial/examples/flowshop/lib #For flowshop library
         smp/lib
         peo/lib
+        eoserial/lib
         lib 
         lib32 
         lib64
@@ -158,6 +164,7 @@ if(PARADISEO_FOUND)
     message(${EDO_INCLUDE_DIR})
     message(${MO_INCLUDE_DIR})
     message(${MOEO_INCLUDE_DIR})
+    message(${EOSERIAL_INCLUDE_DIR})
     if(SMP_FOUND)
         message(${SMP_INCLUDE_DIR})
     endif()
