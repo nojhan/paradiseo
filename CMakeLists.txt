@@ -61,7 +61,7 @@ set(     EDO_SRC_DIR "${CMAKE_SOURCE_DIR}/edo"        CACHE INTERNAL "ParadisEO-
 set(      MO_SRC_DIR "${CMAKE_SOURCE_DIR}/mo"         CACHE INTERNAL "ParadisEO-MO       source directory" FORCE)
 set(    MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/moeo"       CACHE INTERNAL "ParadisEO-MOEO     source directory" FORCE)
 set(     SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp"        CACHE INTERNAL "ParadisEO-SMP      source directory" FORCE)
-set(     MPI_SRC_DIR "${CMAKE_SOURCE_DIR}/eo/src/mpi" CACHE INTERNAL "ParadisEO-MPI      source directory" FORCE)
+set(   EOMPI_SRC_DIR "${CMAKE_SOURCE_DIR}/eompi"      CACHE INTERNAL "ParadisEO-EOMPI    source directory" FORCE)
 set(EOSERIAL_SRC_DIR "${CMAKE_SOURCE_DIR}/eoserial"   CACHE INTERNAL "ParadisEO-EOSERIAL source directory" FORCE)
 
 set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dependant source directory" FORCE)
@@ -74,9 +74,8 @@ set(     EDO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EDO      bi
 set(      MO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MO       binary directory" FORCE)
 set(    MOEO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MOEO     binary directory" FORCE)
 set(     SMP_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-SMP      binary directory" FORCE)
-set(     MPI_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MPI      binary directory" FORCE)
+set(   EOMPI_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EOMPI    binary directory" FORCE)
 set(EOSERIAL_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EOSERIAL binary directory" FORCE)
-
 
 set(EO_ONLY "false" CACHE BOOL "Only build EO and not the other modules")
 set(ENABLE_OPENMP "false" CACHE BOOL "Build EO with the OpenMP support (shared-memory parallel evaluators on multi-core)")
@@ -84,7 +83,7 @@ set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-t
 set(EDO "false" CACHE BOOL "Build the EDO module")
 set(EDO_USE_LIB "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
 set(SMP "false" CACHE BOOL "Build the SMP module")
-set(MPI "false" CACHE BOOL "Build the MPI module")
+set(EOMPI "false" CACHE BOOL "Build the MPI module")
 
 ## EO Module
 set(EO_MODULE_NAME "Evolving Object")
@@ -116,14 +115,14 @@ if(NOT EO_ONLY)
         add_subdirectory(${SMP_SRC_DIR})
     endif()
 
-    ## MPI Module
-    if(MPI)
+    ## EOMPI Module
+    if(EOMPI)
         find_package(MPI REQUIRED)
         add_definitions(-DWITH_MPI)
         set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
         set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
-        include_directories(${MPI_INCLUDE_PATH})
-        add_subdirectory(${MPI_SRC_DIR})
+        include_directories(${EOMPI_INCLUDE_PATH})
+        add_subdirectory(${EOMPI_SRC_DIR})
     endif()
 
     ## EOSERIAL Module

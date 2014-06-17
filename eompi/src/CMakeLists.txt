@@ -10,7 +10,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 ### 2) Define the eompi target
 ######################################################################################
 
-set(EOMPI_LIB_OUTPUT_PATH ${EO_BIN_DIR}/lib)
+set(EOMPI_LIB_OUTPUT_PATH ${EOMPI_BIN_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH ${EOMPI_LIB_OUTPUT_PATH})
 
 set(EOMPI_SOURCES
@@ -24,7 +24,7 @@ add_library(eompi STATIC ${EOMPI_SOURCES})
 install(TARGETS eompi ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 file(GLOB HDRS *.h)
-install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo/mpi COMPONENT headers)
+install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eompi COMPONENT headers)
 
 ######################################################################################
 ### 3) Optionnal

@@ -22,6 +22,7 @@
 # - smp
 # - peo
 # - eoserial
+# - eompi
 # You can use find_package(Paradiseo COMPONENTS ... ) to enable one or several components. If you not specifie component, all components will be load except SMP for compatibility reasons.
 #
 # Output
@@ -86,14 +87,19 @@ foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
               PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "peo")
         set(PEO_FOUND true)
-        find_path(EDO_INCLUDE_DIR edo
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/edo edo/src
+        find_path(EDO_INCLUDE_DIR peo
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/peo peo/src
           PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "edo")
         set(EDO_FOUND true)
-        find_path(EDO_INCLUDE_DIR peo
-              PATH_SUFFIXES include${INSTALL_SUB_DIR}/peo peo/src
+        find_path(EDO_INCLUDE_DIR edo
+              PATH_SUFFIXES include${INSTALL_SUB_DIR}/edo edo/src
               PATHS ${PARADISEO_SRC_PATHS})
+    elseif(${COMP} STREQUAL "eompi")
+        set(EOMPI_FOUND true)
+        find_path(EOMPI_INCLUDE_DIR eompi
+          PATH_SUFFIXES include${INSTALL_SUB_DIR}/eompi eompi/src
+          PATHS ${PARADISEO_SRC_PATHS})
     endif()
 endforeach()
 
@@ -105,6 +111,10 @@ endif()
 
 if(PEO_FOUND)
     set(PARADISEO_INCLUDE_DIR ${PARADISEO_INCLUDE_DIR} ${PEO_INCLUDE_DIR})
+endif()
+
+if(EOMPI_FOUND)
+    set(PARADISEO_INCLUDE_DIR ${PARADISEO_INCLUDE_DIR} ${EOMPI_INCLUDE_DIR})
 endif()
 
 # find the requested modules
@@ -133,6 +143,7 @@ set(PARADISEO_LIB_PATHS_SUFFIXES
         smp/lib
         peo/lib
         eoserial/lib
+        eompi/lib
         lib 
         lib32 
         lib64
@@ -170,6 +181,9 @@ if(PARADISEO_FOUND)
     endif()
     if(PEO_FOUND)
         message(${PEO_INCLUDE_DIR})
+    endif()
+    if(EOMPI_FOUND)
+        message(${EOMPI_INCLUDE_DIR})
     endif()
 else()
     # include directory or library not found
