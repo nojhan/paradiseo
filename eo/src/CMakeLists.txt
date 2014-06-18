@@ -2,6 +2,8 @@
 ### 1) Include the sources
 ######################################################################################
 
+include_directories(${EOMPI_SRC_DIR}/src)
+include_directories(${EOSERIAL_SRC_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
