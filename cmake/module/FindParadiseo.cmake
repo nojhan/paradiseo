@@ -87,7 +87,7 @@ foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
               PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "peo")
         set(PEO_FOUND true)
-        find_path(EDO_INCLUDE_DIR peo
+        find_path(PEO_INCLUDE_DIR peo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/peo peo/src
           PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "edo")
