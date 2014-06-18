@@ -39,9 +39,9 @@ Authors:
  * beginning;
  */
 
-# include <mpi/eoMpi.h>
-# include <mpi/eoParallelApply.h>
-# include <mpi/eoTerminateJob.h>
+# include <eoMpi.h>
+# include <eoParallelApply.h>
+# include <eoTerminateJob.h>
 
 # include "t-mpi-common.h"
 

@@ -39,7 +39,7 @@
 
 # include <eo>
 
-# include <mpi/eoMpi.h>
+# include <eoMpi.h>
 # include "t-mpi-common.h"
 
 using namespace eo::mpi;

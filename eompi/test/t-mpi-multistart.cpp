@@ -1,4 +1,4 @@
-# include <mpi/eoMultiStart.h>
+# include <eoMultiStart.h>
 using namespace eo::mpi;
 
 #include <stdexcept>
