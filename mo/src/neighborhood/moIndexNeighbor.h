@@ -109,9 +109,9 @@ public:
 	 * @param _solution solution from which the neighborhood is visited
 	 * @param _key index of the IndexNeighbor
 	 */
-  virtual void index(EOT & _solution, unsigned int _key) {
-    key = _key;
-  }
+         virtual void index(EOT & _solution, unsigned int _key) {
+           key = _key;
+         }
 
 	/**
 	 * @param _neighbor a neighbor
@@ -120,6 +120,22 @@ public:
 	virtual bool equals(moIndexNeighbor<EOT>& _neighbor) {
 		return (key == _neighbor.index());
 	}
+
+  /**
+   * Write object with its index
+   * @param _os A std::ostream.
+   */
+  virtual void printOn(std::ostream& _os) const {
+    if (this->invalid()) {
+        _os << "INVALID ";
+    }
+    else
+    {
+      _os << this->fitness() << ' ';
+    }
+
+    _os << key ;
+  }
 
 protected:
 	// key allowing to describe the neighbor

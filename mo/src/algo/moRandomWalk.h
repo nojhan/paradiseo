@@ -60,7 +60,7 @@ public:
      */
     moRandomWalk(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned _nbStepMax):
       moLocalSearch<Neighbor>(explorer, iterCont, _fullEval),
-      iterCont(_nbStepMax),
+      iterCont(_nbStepMax, false),
       explorer(_neighborhood, _eval)
     {}
 

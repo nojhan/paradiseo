@@ -53,7 +53,7 @@ public:
 	 * Constructor
 	 * @param _param the parameter of type double to save in the vector
 	 */
-	moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL), eotParam(NULL)
+	moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL), intLongParam(NULL), eotParam(NULL)
 	{ 
 		// precision of the output by default
 		precisionOutput = std::cout.precision();
@@ -63,7 +63,17 @@ public:
 	 * Default Constructor
 	 * @param _param the parameter of type unsigned int to save in the vector
 	 */
-	moVectorMonitor(eoValueParam<unsigned int> & _param) : doubleParam(NULL), intParam(&_param), eotParam(NULL)
+	moVectorMonitor(eoValueParam<unsigned int> & _param) : doubleParam(NULL), intParam(&_param), intLongParam(NULL), eotParam(NULL)
+	{ 
+		// precision of the output by default
+		precisionOutput = std::cout.precision();
+	}
+
+	/**
+	 * Default Constructor
+	 * @param _param the parameter of type unsigned int to save in the vector
+	 */
+	moVectorMonitor(eoValueParam<unsigned long> & _param) : doubleParam(NULL), intParam(NULL), intLongParam(&_param), eotParam(NULL)
 	{ 
 		// precision of the output by default
 		precisionOutput = std::cout.precision();
@@ -73,7 +83,7 @@ public:
 	 * Default Constructor
 	 * @param _param the parameter of type EOT to save in the vector
 	 */
-	moVectorMonitor(eoValueParam<EOT> & _param) : doubleParam(NULL), intParam(NULL), eotParam(&_param)
+	moVectorMonitor(eoValueParam<EOT> & _param) : doubleParam(NULL), intParam(NULL), intLongParam(NULL), eotParam(&_param)
 	{ 
 		// precision of the output by default
 		precisionOutput = std::cout.precision();
@@ -84,7 +94,7 @@ public:
 	 * @param _param the parameter of type eoScalarFitness to save in the vector
 	 */
 	template <class ScalarType, class Compare>
-	moVectorMonitor(eoValueParam<eoScalarFitness<ScalarType, Compare> > & _param) : doubleParam( & (eoValueParam<double>&)_param), intParam(NULL), eotParam(NULL)
+	moVectorMonitor(eoValueParam<eoScalarFitness<ScalarType, Compare> > & _param) : doubleParam( & (eoValueParam<double>&)_param), intParam(NULL), intLongParam(NULL), eotParam(NULL)
 	{ 
 		// precision of the output by default
 		precisionOutput = std::cout.precision();
@@ -95,7 +105,7 @@ public:
 	 * @param _param unvalid Parameter
 	 */
 	template <class T>
-	moVectorMonitor(eoValueParam<T> & _param) : doubleParam(NULL), intParam(NULL), eotParam(NULL)
+	moVectorMonitor(eoValueParam<T> & _param) : doubleParam(NULL), intParam(NULL), intLongParam(NULL), eotParam(NULL)
 	{
 		std::cerr << "Sorry the type can not be in a vector of moVectorMonitor" << std::endl;
 	}
@@ -120,8 +130,11 @@ public:
 	  else
 	    if (intParam != NULL)
 	      valueVec.push_back((double) intParam->value());
-	    else 
-	      eotVec.push_back(eotParam->value());
+	    else
+	      if (intLongParam != NULL)
+		valueVec.push_back((double) intLongParam->value());
+	      else 
+		eotVec.push_back(eotParam->value());
 	  return *this ;
 	}
 
@@ -227,6 +240,7 @@ public:
 protected:
 	eoValueParam<double> * doubleParam ;
 	eoValueParam<unsigned int> * intParam ;
+	eoValueParam<unsigned long> * intLongParam ;
 	eoValueParam<EOT> * eotParam ;
 
 	std::vector<double> valueVec;

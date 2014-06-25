@@ -83,7 +83,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
      * @param _ref_point the reference point
      * @param _bounds bounds value
      */
-    moeoHyperVolumeMetric(ObjectiveVector& _ref_point=NULL, std::vector < eoRealInterval >& _bounds=NULL): normalize(false), rho(0.0), ref_point(_ref_point), bounds(_bounds){}
+    moeoHyperVolumeMetric(ObjectiveVector& _ref_point, std::vector < eoRealInterval >& _bounds): normalize(false), rho(0.0), ref_point(_ref_point), bounds(_bounds){}
 
     /**
      * calculates and returns the HyperVolume value of a pareto front

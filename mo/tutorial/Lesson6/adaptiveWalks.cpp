@@ -85,6 +85,7 @@ void main_function(int argc, char **argv)
     string str_out = "out.dat"; // default value
     eoValueParam<string> outParam(str_out.c_str(), "out", "Output file of the sampling", 'o');
     parser.processParam(outParam, "Persistence" );
+    str_out = outParam.value();
 
     // the name of the "status" file where all actual parameter values will be saved
     string str_status = parser.ProgramName() + ".status"; // default value
