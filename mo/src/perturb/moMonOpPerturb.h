@@ -70,7 +70,7 @@ public:
       bool res = false;
 
       if (rndPerturb)
-	nbPerturbation = nbPerturbationMin + rng.random(nbPerturbationMax);
+	nbPerturbation = nbPerturbationMin + rng.random(nbPerturbationMax - nbPerturbationMin);
 
       for(unsigned int i = 0; i < nbPerturbation; i++) 
 	res = monOp(_solution) || res;

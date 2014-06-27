@@ -35,8 +35,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 
 /**
+ *
  * Tabu List of indexed neighbors save in a vector
  * each neighbor can not used during howlong iterations
+ *
+ * The tabu tenure could be random between two bounds 
+ * such as in robust tabu search
+ *
  */
 template<class Neighbor >
 class moIndexedVectorTabuList : public moTabuList<Neighbor>
@@ -49,7 +54,17 @@ public:
      * @param _maxSize maximum size of the tabu list
      * @param _howlong how many iteration a move is tabu
      */
-    moIndexedVectorTabuList(unsigned int _maxSize, unsigned int _howlong) : maxSize(_maxSize), howlong(_howlong) {
+    moIndexedVectorTabuList(unsigned int _maxSize, unsigned int _howlong) : maxSize(_maxSize), howlong(_howlong), robust(false) {
+        tabuList.resize(_maxSize);
+    }
+
+    /**
+     * Constructor
+     * @param _maxSize maximum size of the tabu list
+     * @param _howlongMin minimal number of iterations during a move is tabu
+     * @param _howlongMax maximal number of iterations during a move is tabu
+     */
+ moIndexedVectorTabuList(unsigned int _maxSize, unsigned int _howlongMin, unsigned int _howlongMax) : maxSize(_maxSize), howlongMin(_howlongMin), howlongMax(_howlongMax), robust(true) {
         tabuList.resize(_maxSize);
     }
 
@@ -68,8 +83,13 @@ public:
      * @param _neighbor the current neighbor
      */
     virtual void add(EOT & _sol, Neighbor & _neighbor) {
-      if (_neighbor.index() < maxSize) 
+      if (_neighbor.index() < maxSize) {
+	if (robust)
+	  // random value between min and max
+	  howlong = howlongMin + rng.random(howlongMax - howlongMin);
+
 	tabuList[_neighbor.index()] = howlong;
+      }
     }
 
     /**
@@ -115,7 +135,12 @@ protected:
     unsigned int maxSize;
     //how many iteration a move is tabu
     unsigned int howlong;
-
+    // Minimum number of iterations during a move is tabu
+    unsigned int howlongMin;
+    // Maximum number of iterations during a move is tabu
+    unsigned int howlongMax;
+    // true: robust tabu search way
+    bool robust;
 };
 
 #endif
