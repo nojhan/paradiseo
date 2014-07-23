@@ -30,7 +30,7 @@ Authors:
 #include <eoPopEvalFunc.h>
 
 #include <es/make_real.h>
-#include "../real_value.h"
+#include "../../eo/test/real_value.h"
 
 #include <eoMpi.h>
 
