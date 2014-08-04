@@ -8,10 +8,10 @@
 ### 1) Include the sources
 ######################################################################################
 
-message("EO SOURCE DIR: ${EO_SRC_DIR}")
-message("OMPI: ${MPI_DIR}")
+message("EOMPI: ${EOMPI_DIR}")
 
-include_directories(${MPI_DIR}/include)
+include_directories(${EOMPI_SRC_DIR}/src)
+include_directories(${EOSERIAL_SRC_DIR}/src)
 include_directories(${EO_SRC_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -20,7 +20,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 ######################################################################################
 
 link_directories(${EO_BIN_DIR}/lib)
-link_directories(${MPI_DIR}/lib)
+link_directories(${EOMPI_BIN_DIR}/lib)
+link_directories(${EOSERIAL_BIN_DIR}/lib)
 
 ######################################################################################
 ### 3) Define your targets and link the librairies

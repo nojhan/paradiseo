@@ -30,9 +30,9 @@ Authors:
 #include <eoPopEvalFunc.h>
 
 #include <es/make_real.h>
-#include "../real_value.h"
+#include "../../eo/test/real_value.h"
 
-#include <mpi/eoMpi.h>
+#include <eoMpi.h>
 
 #include <vector>
 using namespace std;

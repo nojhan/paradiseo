@@ -2,6 +2,8 @@
 ### 1) Include the sources
 ######################################################################################
 
+include_directories(${EOMPI_SRC_DIR}/src)
+include_directories(${EOSERIAL_SRC_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
@@ -47,7 +49,7 @@ install(DIRECTORY do es ga gp other utils
 add_subdirectory(es)
 add_subdirectory(ga)
 add_subdirectory(utils)
-add_subdirectory(serial)
+#add_subdirectory(serial)
 
 if(ENABLE_PYEO)
   add_subdirectory(pyeo)

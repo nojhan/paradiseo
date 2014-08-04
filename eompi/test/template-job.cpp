@@ -1,4 +1,4 @@
-# include <mpi/eoMpi.h>
+# include <eoMpi.h>
 
 using namespace eo::mpi;
 

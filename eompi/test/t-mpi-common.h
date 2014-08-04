@@ -1,7 +1,7 @@
 # ifndef __T_MPI_COMMON_H__
 # define __T_MPI_COMMON_H__
 
-#include <serial/eoSerial.h>
+#include <eoSerial.h>
 
 /**
  * @file t-mpi-common.h
