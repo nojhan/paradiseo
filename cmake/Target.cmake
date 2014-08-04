@@ -11,27 +11,27 @@ endif(UNIX)
 ######################################################################################
 
 if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
+    add_custom_target(doc
+        COMMAND make doc-eo)
     if(NOT EO_ONLY)
+        if(EDO)
+            add_dependencies(doc
+                COMMAND make doc-edo)
+        endif(EDO)
+        if(MO)
+            add_dependencies(doc
+                COMMAND make doc-mo)
+        endif(MO)
+        if(MOEO)
+            add_dependencies(doc
+                COMMAND make doc-moeo)
+        endif(MOEO)
         if(SMP)
-            add_custom_target(doc
-                COMMAND make doc-eo
-                COMMAND make doc-edo
-                COMMAND make doc-mo
-                COMMAND make doc-moeo
-                COMMAND make doc-smp
-            )
-        else()
-            add_custom_target(doc
-                COMMAND make doc-eo
-                COMMAND make doc-edo
-                COMMAND make doc-mo
-                COMMAND make doc-moeo
-            )
+            add_dependencies(doc
+                COMMAND make doc-smp)
         endif(SMP)
-    else()
-        add_custom_target(doc
-            COMMAND make doc-eo
-        )
+        # no independent documentations for eompi, eoserial modules for the moment 
+        # maybe go check the eo module documentation 
     endif(NOT EO_ONLY)
 endif(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
 

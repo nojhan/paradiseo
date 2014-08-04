@@ -68,7 +68,7 @@ endif(PROFILING)
 ######################################################################################
 ### 3) Testing part
 ######################################################################################
-
+ 
 if(ENABLE_CMAKE_TESTING)
     enable_testing()
     include(CTest REQUIRED)
@@ -85,8 +85,13 @@ set(ENABLE_CMAKE_EXAMPLE "true" CACHE BOOL "ParadisEO examples")
 ######################################################################################
 
 if(UNIX)
-    set(INSTALL_SUB_DIR /paradiseo)
+    set(PROJECT_TAG "paradiseo" CACHE STRING "Project name as installation prefix")
+
+    # Define the path where the project headers have to be installed and where they can be found (linker) 
+    set(PROJECT_HDRS_INSTALL_SUBPATH /include CACHE PATH "Install subpath towards the project header")
+    set(PROJECT_HDRS_INSTALL_SUBPATH ${CMAKE_INSTALL_PREFIX}${PROJECT_HDRS_INSTALL_SUBPATH})
 endif()
 
-
-
+if (ENABLE_CMAKE_TESTING OR ENABLE_CMAKE_EXAMPLE)
+    message("Warning: Please ensure that you have executed the 'sudo make install' command before asking the compilation of the tests or examples.")
+endif ()

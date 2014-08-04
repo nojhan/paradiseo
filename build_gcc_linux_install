@@ -1,0 +1,250 @@
+#!/usr/bin/env sh
+
+color() {
+	echo $(tput bold)$(tput setaf $1)$2$(tput sgr0)
+}
+
+##################################################################################
+# This script allows you to compile and install the sources, tests, tutorials,   #
+# and documentation of the framework depending on what you want to do!           #
+#                                                                                #
+# Launch this script on your terminal and let it be your guide !                 #
+##################################################################################
+
+mkdir -pv build
+cd build
+
+color 5 '\nDefine CMAKE cache values.\n'
+
+##################################
+# choose modules for compilation #
+# default modules: only EO       #
+##################################
+
+FLAG="-DEO_ONLY=false" #default
+
+color 1 'Do you want to compile the EO module only (false by default)?(y/n)' 
+read res
+
+if [ "$res" = "y" ]; then
+	FLAG="-DEO_ONLY=true"
+else
+	color 1 'Do you want to compile the EDO module (no by default)?(y/n)'
+	read res
+
+	if [ "$res" = "y" ]; then
+		FLAG=$FLAG' '" -DEDO=true"
+
+		##################################
+		# choose the library used by EDO #
+		# default library: Eigen3        #
+		##################################
+
+		color 1 'Compile EDO module with uBLAS (Eigen3 by default)?(y/n)' 
+		read res
+
+		if [ "$res" = "y" ]; then
+			FLAG=$FLAG' '" -DEDO_USE_LIB=uBLAS"
+		else
+			FLAG=$FLAG' '" -DEDO_USE_LIB=Eigen3"
+		fi #EDO_USE_LIB
+	else
+		FLAG=$FLAG' '" -DEDO=false" #default
+	fi #EDO 
+
+	color 1 'Do you want to compile the SMP module (no by default)?(y/n)'
+	read res
+
+	if [ "$res" = "y" ]; then
+		FLAG=$FLAG' '" -DSMP=true"
+	else
+		FLAG=$FLAG' '" -DSMP=false"
+	fi #SMP
+
+	color 1 'Do you want to compile the MOEO module (no by default)?(y/n)'
+	read res
+
+	if [ "$res" = "y" ]; then
+		FLAG=$FLAG' '" -DMOEO=true"
+	else
+		FLAG=$FLAG' '" -DMOEO=false"
+	fi #MOEO
+
+	color 1 'Do you want to compile the MO module (no by default)?(y/n)'
+	read res
+
+	if [ "$res" = "y" ]; then
+		FLAG=$FLAG' '" -DMO=true"
+	else
+		FLAG=$FLAG' '" -DMO=false"
+	fi #MO
+
+	color 1 'Do you want to compile the EOSERIAL module (no by default)?(y/n)'
+	read res
+
+	if [ "$res" = "y" ]; then
+		FLAG=$FLAG' '" -DEOSERIAL=true"
+	else
+		FLAG=$FLAG' '" -DEOSERIAL=false"
+	fi #EOSERIAL
+
+	color 1 'Do you want to compile the EOMPI module (no by default)?(y/n)'
+	read res
+
+	if [ "$res" = "y" ]; then
+		FLAG=$FLAG' '" -DEOMPI=true"
+	else
+		FLAG=$FLAG' '" -DEOMPI=false"
+	fi #EOMPI
+
+fi #EO_ONLY
+
+##################
+# Other settings #
+##################
+
+color 1 'Do you want to enable GNUPLOT (no by default)?(y/n)'
+read res
+
+if [ "$res" = "y" ]; then
+	FLAG=$FLAG' '" -DENABLE_GNUPLOT=true"
+else
+	FLAG=$FLAG' '" -DENABLE_GNUPLOT=false"
+fi #ENABLE_GNUPLOT
+
+color 1 'Do you want to enable OPENMP (no by default)?(y/n)'
+read res
+
+if [ "$res" = "y" ]; then
+	FLAG=$FLAG' '" -DENABLE_OPENMP=true"
+else
+	FLAG=$FLAG' '" -DENABLE_OPENMP=false"
+fi #ENABLE_OPENMP
+
+color 5 "\nset $FLAG\n"
+
+cmake $FLAG ..
+
+###############
+# compile doc #
+# default: no #
+###############
+
+color 1 '\nDo you want to compile the documentation (be patient it can be a bit long)?(y/n)'
+read res
+
+if [ "$res" = "y" ]; then
+
+	make doc
+fi
+
+##############################################
+# install sources on your laptop             #
+# default path: /usr/local/include/paradiseo #
+##############################################
+
+color 1 '\nDo you want to install the sources on your laptop?(y/n)
+If "no" you will not be able to compile tests or tutorials 
+which require the project library installation on your laptop.' 
+read res
+
+if [ "$res" = "y" ]; then
+
+	color 5 '\nOk. For your information we let you the possibility
+to change the install path on your laptop but also to
+personalize the project name in order to avoid some 
+name conflicts with headers.
+Go see the script line 166-170 to see what it looks like.'
+
+	color 1 'Continue the installation?(y/n)'
+	read res
+
+	if [ "$res" = "n" ]; then
+		exit
+	fi
+
+	#cmake -DCMAKE_INSTALL_PREFIX=new_path .. #default
+	#cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. 
+
+	#cmake -DPROJECT_HDRS_INSTALL_SUBPATH=/include .. #default
+	#cmake -DPROJECT_TAG=paradiseo .. #default
+
+	sudo make install
+	
+	#################
+	# compile tests #
+	# default: no   #
+	#################
+
+	color 1 '\nDo you want to compile tests?(y/n)'
+	read test_compile
+
+	if [ "$test_compile" = "y" ]; then
+
+		FLAG=$FLAG' '" -DENABLE_CMAKE_TESTING=true"
+
+	else
+
+		FLAG=$FLAG' '" -DENABLE_CMAKE_TESTING=false" 
+
+	fi
+
+    #####################
+	# compile tutorials #
+	# default: no       #
+	#####################
+
+	color 1 'Do you want to compile tutorials?(y/n)'
+	read tutorial_compile
+
+	if [ "$tutorial_compile" = "y" ]; then
+
+		FLAG=$FLAG' '" -DENABLE_CMAKE_EXAMPLE=true"
+
+	else
+
+		FLAG=$FLAG' '" -DENABLE_CMAKE_EXAMPLE=false"
+
+	fi
+
+	color 5 "\nset $FLAG\n"
+	cmake $FLAG .. 
+
+	if [ "$test_compile" = "y" ] || [ "$tutorial_compile" = "y" ]; then
+
+		color 1 'And do you want to install tests or tutorials?(y/n)'
+		read install
+
+
+		if [ "$install" = "y" ]; then
+
+			sudo make install
+
+		else
+
+			make
+
+		fi
+
+	fi
+
+    #################
+	# execute tests #
+    #################
+
+	if [ "$test_compile" = "y" ] && [ "$install" = "y" ]; then
+
+			color 1 'Do you want to execute the tests?(y/n)'
+			read test_execute
+
+			if [ "$test_execute" = "y" ]; then
+
+				ctest ..
+			fi
+	fi
+
+else
+
+	make
+
+fi 

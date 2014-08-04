@@ -35,7 +35,7 @@
 #   target_link_libraries(examplep ${PARADISEO_LIBRARIES})
 
 if(UNIX)
-    set(INSTALL_SUB_DIR /paradiseo)
+    set(PROJECT_TAG /paradiseo)
 endif()
 
 # enabled components
@@ -63,19 +63,19 @@ set(PARADISEO_SRC_PATHS
 )
 
 find_path(EO_INCLUDE_DIR eo
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/eo eo/src
+          PATH_SUFFIXES include/${PROJECT_TAG}/eo eo/src
           PATHS ${PARADISEO_SRC_PATHS})
 
 find_path(MO_INCLUDE_DIR mo
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/mo mo/src
+          PATH_SUFFIXES include/${PROJECT_TAG}/mo mo/src
           PATHS ${PARADISEO_SRC_PATHS})
 
 find_path(MOEO_INCLUDE_DIR moeo
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/moeo moeo/src
+          PATH_SUFFIXES include/${PROJECT_TAG}/moeo moeo/src
           PATHS ${PARADISEO_SRC_PATHS})
 
 find_path(EOSERIAL_INCLUDE_DIR eoserial
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/eoserial eoserial/src
+          PATH_SUFFIXES include/${PROJECT_TAG}/eoserial eoserial/src
           PATHS ${PARADISEO_SRC_PATHS})
 
 # Specific for SMP and PEO
@@ -83,22 +83,22 @@ foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
     if(${COMP} STREQUAL "smp")
         set(SMP_FOUND true)
         find_path(SMP_INCLUDE_DIR smp
-              PATH_SUFFIXES include${INSTALL_SUB_DIR}/smp smp/src
+              PATH_SUFFIXES include/${PROJECT_TAG}/smp smp/src
               PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "peo")
         set(PEO_FOUND true)
         find_path(PEO_INCLUDE_DIR peo
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/peo peo/src
+          PATH_SUFFIXES include/${PROJECT_TAG}/peo peo/src
           PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "edo")
         set(EDO_FOUND true)
         find_path(EDO_INCLUDE_DIR edo
-              PATH_SUFFIXES include${INSTALL_SUB_DIR}/edo edo/src
+              PATH_SUFFIXES include/${PROJECT_TAG}/edo edo/src
               PATHS ${PARADISEO_SRC_PATHS})
     elseif(${COMP} STREQUAL "eompi")
         set(EOMPI_FOUND true)
         find_path(EOMPI_INCLUDE_DIR eompi
-          PATH_SUFFIXES include${INSTALL_SUB_DIR}/eompi eompi/src
+          PATH_SUFFIXES include/${PROJECT_TAG}/eompi eompi/src
           PATHS ${PARADISEO_SRC_PATHS})
     endif()
 endforeach()

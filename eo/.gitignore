@@ -1,5 +1,0 @@
-*.swp
-debug/
-release/
-*CMakeFiles*
-*Makefile

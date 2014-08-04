@@ -57,8 +57,8 @@ TARGET_LINK_LIBRARIES(exercise1.3 ga eo eoutils)
 ### 6) Configure project installation paths
 ######################################################################################
 
-INSTALL(TARGETS FirstBitGA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson1 COMPONENT examples)
-INSTALL(TARGETS FirstRealGA RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson1 COMPONENT examples)
-INSTALL(TARGETS exercise1.3 RUNTIME DESTINATION local/share${INSTALL_SUB_DIR}/eo/examples/Lesson1 COMPONENT examples)
+INSTALL(TARGETS FirstBitGA RUNTIME DESTINATION local/share/${PROJECT_TAG}/eo/examples/Lesson1 COMPONENT examples)
+INSTALL(TARGETS FirstRealGA RUNTIME DESTINATION local/share/${PROJECT_TAG}/eo/examples/Lesson1 COMPONENT examples)
+INSTALL(TARGETS exercise1.3 RUNTIME DESTINATION local/share/${PROJECT_TAG}/eo/examples/Lesson1 COMPONENT examples)
 
 ######################################################################################
