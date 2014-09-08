@@ -36,7 +36,7 @@ install(FILES moeo.h DESTINATION ${PROJECT_HDRS_INSTALL_SUBPATH}/${PROJECT_TAG} 
 ### 4) Install directories
 ######################################################################################
 
-install(DIRECTORY acceptCrit algo archive comparator continue core distance diversity do explorer fitness hybridization metric replacement scalarStuffs selection utils
+install(DIRECTORY algo archive comparator continue core distance diversity do explorer fitness hybridization metric replacement scalarStuffs selection utils
         DESTINATION ${PROJECT_HDRS_INSTALL_SUBPATH}/${PROJECT_TAG}/moeo
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h"
