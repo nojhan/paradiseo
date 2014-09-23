@@ -50,7 +50,16 @@ public:
      * @param _fullEval a full evaluation function
      * @param _nbPerturbation number of operator executions for perturbation
      */
-  moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval, unsigned int _nbPerturbation = 1):monOp(_monOp), fullEval(_fullEval), nbPerturbation(_nbPerturbation) {}
+ moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval, unsigned int _nbPerturbation = 1):monOp(_monOp), fullEval(_fullEval), nbPerturbation(_nbPerturbation), rndPerturb(false) {}
+
+    /**
+     * Constructor with random value at each iteration of the number of perturbation moves
+     * @param _monOp an eoMonOp (pertubation operator)
+     * @param _fullEval a full evaluation function
+     * @param _nbPerturbationMin minimum number of operator executions for perturbation
+     * @param _nbPerturbationMax maximum number of operator executions for perturbation
+     */
+ moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval, unsigned int _nbPerturbationMin, unsigned int _nbPerturbationMax):monOp(_monOp), fullEval(_fullEval), nbPerturbationMin(_nbPerturbationMin), nbPerturbationMax(_nbPerturbationMax), rndPerturb(true) { }
 
     /**
      * Apply monOp on the solution
@@ -59,6 +68,9 @@ public:
      */
     bool operator()(EOT& _solution) {
       bool res = false;
+
+      if (rndPerturb)
+	nbPerturbation = nbPerturbationMin + rng.random(nbPerturbationMax - nbPerturbationMin);
 
       for(unsigned int i = 0; i < nbPerturbation; i++) 
 	res = monOp(_solution) || res;
@@ -74,6 +86,9 @@ private:
   eoMonOp<EOT>& monOp;
   eoEvalFunc<EOT>& fullEval;
   unsigned int nbPerturbation;
+  unsigned int nbPerturbationMin;
+  unsigned int nbPerturbationMax;
+  bool rndPerturb;
 };
 
 #endif

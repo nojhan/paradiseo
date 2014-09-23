@@ -130,7 +130,7 @@ public:
         return "moRndWithoutReplNeighborhood";
     }
 
-private:
+protected:
     unsigned int maxIndex;
     std::vector<unsigned int> indexVector;
 };

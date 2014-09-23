@@ -46,6 +46,33 @@ public:
   using moIndexNeighbor<EOT>::index;
   
   /**
+   * Default Constructor
+   */
+  moIndexedSwapNeighbor() : moIndexNeighbor<EOT, Fitness>() {
+  }
+
+  /**
+   * Copy Constructor
+   * @param _n the neighbor to copy
+   */
+  moIndexedSwapNeighbor(const moIndexedSwapNeighbor<EOT, Fitness> & _n) : moIndexNeighbor<EOT, Fitness>(_n)
+  {
+    indices.first = _n.first();
+    indices.second = _n.second();
+  }
+
+  /**
+   * Assignment operator
+   * @param _source the source neighbor
+   */
+  moIndexedSwapNeighbor<EOT, Fitness> & operator=(const moIndexedSwapNeighbor<EOT, Fitness> & _source) {
+    moIndexNeighbor<EOT, Fitness>::operator=(_source);
+    indices.first = _source.first();
+    indices.second = _source.second();
+    return *this;
+  }
+
+ /**
    * Apply the swap
    * @param _solution the solution to move
    */
@@ -111,7 +138,7 @@ public:
    * Getter of the firt location
    * @return first indice
    */
-  unsigned int first() {
+  unsigned int first() const {
     return indices.first;
   }
 
@@ -119,11 +146,11 @@ public:
    * Getter of the second location
    * @return second indice
    */
-  unsigned int second() {
+  unsigned int second() const {
     return indices.second;
   }
 
-private:
+protected:
   std::pair<unsigned int, unsigned int> indices;    
 
 };

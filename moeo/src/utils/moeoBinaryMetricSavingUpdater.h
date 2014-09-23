@@ -65,7 +65,7 @@ class moeoBinaryMetricSavingUpdater : public eoUpdater
      * @param _filename the target filename
      */
     moeoBinaryMetricSavingUpdater (moeoVectorVsVectorBinaryMetric < ObjectiveVector, double > & _metric, const eoPop < MOEOT > & _pop, std::string _filename) :
-        metric(_metric), pop(_pop), filename(_filename), counter(1), firstGen(true)
+        metric(_metric), pop(_pop), filename(_filename), firstGen(true), counter(1)
     {}
 
 

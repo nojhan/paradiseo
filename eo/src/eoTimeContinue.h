@@ -56,6 +56,7 @@ public:
      */
     virtual bool operator() (const eoPop < EOT > & _pop)
     {
+        (void)_pop;
         time_t elapsed = (time_t) difftime(time(NULL), start);
         if (elapsed >= max)
         {

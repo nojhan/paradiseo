@@ -31,6 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define __nkLandscapesEval_H
 
 #include <eoEvalFunc.h>
+#include <fstream>
 
 template< class EOT >
 class nkLandscapesEval : public eoEvalFunc<EOT> {
@@ -79,7 +80,7 @@ public:
    */
   nkLandscapesEval(const char * _fileName)
   { 
-    string fname(_fileName);
+    std::string fname(_fileName);
     load(fname);
   };
 
@@ -132,16 +133,16 @@ public:
    *
    * @param _fileName file name of the instance
    */
-  virtual void load(const string _fileName)
+  virtual void load(const std::string _fileName)
   {
-    fstream file;
-    file.open(_fileName.c_str(), ios::in);
+    std::fstream file;
+    file.open(_fileName.c_str(), std::fstream::in);
 
     if (file.is_open()) {
-      string s;
+      std::string s;
 
       // Read the commentairies
-      string line;
+      std::string line;
       file >> s;
       while (s[0] == 'c') {
 	getline(file,line,'\n');
@@ -150,14 +151,14 @@ public:
 
       // Read the parameters
       if (s[0] != 'p') {
-	string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] at the begining." ;
-	throw runtime_error(str);
+	std::string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] at the begining." ;
+	throw std::runtime_error(str);
       }
 
       file >> s;
       if (s != "NK") {
-	string str = "nkLandscapesEval.load: -- NK -- expected in [" + _fileName + "] at the begining." ;
-	throw runtime_error(str);
+	std::string str = "nkLandscapesEval.load: -- NK -- expected in [" + _fileName + "] at the begining." ;
+	throw std::runtime_error(str);
       }
 
       // read parameters N and K
@@ -166,22 +167,22 @@ public:
 
       // read the links
       if (s[0] != 'p') {
-	string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the parameters N and K." ;
-	throw runtime_error(str);
+	std::string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the parameters N and K." ;
+	throw std::runtime_error(str);
       }
 
       file >> s;
       if (s == "links") {
 	loadLinks(file);
       } else {
-	string str = "nkLandscapesEval.load: -- links -- expected in [" + _fileName + "] after the parameters N and K." ;
-	throw runtime_error(str);
+	std::string str = "nkLandscapesEval.load: -- links -- expected in [" + _fileName + "] after the parameters N and K." ;
+	throw std::runtime_error(str);
       }
 
       // lecture des tables
       if (s[0] != 'p') {
-	string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the links." ;
-	throw runtime_error(str);
+	std::string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the links." ;
+	throw std::runtime_error(str);
      }
 
       file >> s;
@@ -189,14 +190,14 @@ public:
       if (s == "tables") {
 	loadTables(file);
       } else {
-	string str = "nkLandscapesEval.load: -- tables -- expected in [" + _fileName + "] after the links." ;
-	throw runtime_error(str);
+	std::string str = "nkLandscapesEval.load: -- tables -- expected in [" + _fileName + "] after the links." ;
+	throw std::runtime_error(str);
       }
 
       file.close();
     } else {
-	string str = "nkLandscapesEval.load: Could not open file [" + _fileName + "]." ;
-	throw runtime_error(str);
+	std::string str = "nkLandscapesEval.load: Could not open file [" + _fileName + "]." ;
+	throw std::runtime_error(str);
     }
 
   };
@@ -206,7 +207,7 @@ public:
    *
    * @param file the file to read 
    */
-  void loadLinks(fstream & file) {
+  void loadLinks(std::fstream & file) {
     for(int j = 0; j < K+1; j++)
       for(int i = 0; i < N; i++) {
 	file >> links[i][j];
@@ -218,7 +219,7 @@ public:
    *
    * @param file the file to read 
    */
-  void loadTables(fstream & file) {
+  void loadTables(std::fstream & file) {
     for(int j = 0; j < (1<<(K+1)); j++)
       for(int i = 0; i < N; i++)
 	file >> tables[i][j];
@@ -230,29 +231,29 @@ public:
    * @param _fileName the file name of instance
    */
   virtual void save(const char * _fileName) {
-    fstream file;
-    file.open(_fileName, ios::out);
+    std::fstream file;
+    file.open(_fileName, std::fstream::out);
 
     if (file.is_open()) {
-      file << "c name of the file : " << _fileName << endl;
-      file << "p NK " << N << " " << K <<endl;
+      file << "c name of the file : " << _fileName << std::endl;
+      file << "p NK " << N << " " << K <<std::endl;
 
-      file << "p links" << endl;
+      file << "p links" << std::endl;
       for(int j=0; j<K+1; j++)
 	for(int i=0; i<N; i++)
-	  file << links[i][j] << endl;
+	  file << links[i][j] << std::endl;
 
-      file << "p tables" << endl;
+      file << "p tables" << std::endl;
       for(int j=0; j<(1<<(K+1)); j++) {
 	for(int i=0; i<N; i++)
 	  file << tables[i][j] << " ";
-	file << endl;
+	file << std::endl;
       }
       file.close();
     } else {
-      string fname(_fileName);
-      string str = "nkLandscapesEval.save: Could not open file [" + fname + "]." ;
-      throw runtime_error(str);
+      std::string fname(_fileName);
+      std::string str = "nkLandscapesEval.save: Could not open file [" + fname + "]." ;
+      throw std::runtime_error(str);
     }
   };
 

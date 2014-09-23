@@ -183,9 +183,9 @@ Easy, isn't it ?
 
 By performing tests, you can check your installation. 
 Testing is disable by default, except if you build with the full install type.
-To enable testing, define -DENABLE_TESTING when you launch cmake.
+To enable testing, define -DENABLE_CMAKE_TESTING=true when you launch cmake.
 
-To perform tests simply type ctest ou make test.
+To perform tests simply type ctest or make test.
 
 ------------------------------------------------------------------------------------------
 5.2 REPORTING

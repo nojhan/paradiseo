@@ -67,17 +67,21 @@ void paradiseo::smp::Scheduler<EOT,Policy>::operator()(eoUF<EOT&, void>& func, e
             indice = i*nbIndi+j;
         }
     }
-
-    for(unsigned i = 0; i < remaining; i++)
-        popPackages[i].push_back(&pop[indice+i+1]); 
+    
+    if(nbIndi != 0) // Handle the offset if there is less individuals than workers
+        indice++;
+    for(unsigned i = 0; i < remaining; i++) 
+        popPackages[i].push_back(&pop[indice+i]); 
         
     // Starting threads
     for(unsigned i = 0; i < workers.size(); i++)
-        workers[i] = std::thread(&Scheduler<EOT,Policy>::applyLinearPolicy, this,  std::ref(func), std::ref(popPackages[i]));
-        
+        if(!popPackages[i].empty())
+            workers[i] = std::thread(&Scheduler<EOT,Policy>::applyLinearPolicy, this,  std::ref(func), std::ref(popPackages[i]));
+   
     // Wait the end of tasks
     for(unsigned i = 0; i < workers.size(); i++)
-        workers[i].join();
+        if(!popPackages[i].empty() && workers[i].joinable())
+            workers[i].join();
 }
 
 template<class EOT, class Policy>
@@ -117,7 +121,7 @@ void paradiseo::smp::Scheduler<EOT,Policy>::operator()(eoUF<EOT&, void>& func, e
     }
       
     done = true;
-
+    
     for(unsigned i = 0; i < workers.size(); i++)
         workers[i].join();
 }

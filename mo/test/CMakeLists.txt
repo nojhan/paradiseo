@@ -18,6 +18,7 @@ set (TEST_LIST
 		t-moOrderNeighborhood
 		t-moFullEvalByCopy
 		t-moFullEvalByModif
+		t-moNKlandscapesIncrEval
 		t-moNeighborComparator
 		t-moSolNeighborComparator
 		t-moTrueContinuator

@@ -62,13 +62,15 @@ public:
 };
 
 /**
+   SV: from eoHammingDistance, it is in fact the L1 distance
+   
     This is a generic class for L1 distance computation:
     assumes the 2 things are std::vectors of something
     that is double-castable
     For bitstrings, this is the Hamming distance
 */
 template< class EOT >
-class eoHammingDistance : public eoDistance<EOT>
+class eoL1Distance : public eoDistance<EOT>
 {
 public:
   double operator()(const EOT & _v1, const EOT & _v2)
@@ -78,6 +80,27 @@ public:
       {
         double r = static_cast<double> (_v1[i]) - static_cast<double> (_v2[i]);
         sum += fabs(r);
+      }
+    return sum;
+  }
+};
+
+/**
+   SV: change to have the Hamming (number of differences)
+
+   For bitstrings, this is the Hamming distance
+*/
+template< class EOT >
+class eoHammingDistance : public eoDistance<EOT>
+{
+public:
+  double operator()(const EOT & _v1, const EOT & _v2)
+  {
+    double sum=0.0;
+    for (unsigned i=0; i<_v1.size(); i++)
+      {
+	if (_v1[i] != _v2[i])
+	  sum++;
       }
     return sum;
   }
