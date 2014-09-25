@@ -1,0 +1,28 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --seed=1238424544                        # -S : Random number seed
+
+######    Evolution Engine        ######
+# --popSize=20                             # -P : Population Size
+
+######    Output                  ######
+--outputFile=IBEA.out                    # -o : Path of the output file
+
+######    Param                   ######
+# --maxGen=10000                           # -G : Maximum number of generations
+--pCross=1                               # -C : Crossover probability
+--extPMut=1                              # -E : External Mutation probability
+--intPMut=0.083333                       # -I : Internal Mutation probability
+--vecSize=30                             # -V : Genotype Size
+--nbObj=3                                # -N : Number of Objective
+--eval=1                                 # -F : Number of the DTLZ evaluation fonction
+--dtlz4_param=100                        # -P : Parameter of the DTLZ4 evaluation fonction
+--nbEval=500                             # -P : Number of evaluation before Stop
+--time=0                                 # -T : Time(seconds) before Stop
+
+######    Persistence             ######
+# --Load=                                  # -L : A save file to restart from
+# --recomputeFitness=0                     # -r : Recompute the fitness after re-loading the pop.?
+# --status=./build/application/DTLZ_IBEA.status # Status file
