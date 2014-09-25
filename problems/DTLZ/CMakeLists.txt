@@ -94,7 +94,7 @@ IF(CMAKE_BUILD_TYPE MATCHES Debug)
 ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 
 ######################################################################################
-### 3) Link the librairies for your executable
+### 3) Link the libraries for your executable
 ######################################################################################
 
 ADD_SUBDIRECTORY(doc)

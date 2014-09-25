@@ -21,6 +21,7 @@ INCLUDE_DIRECTORIES(${PARADISEO_EO_SRC_DIR}/src
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
+LINK_DIRECTORIES(${PARADISEO_DIR}/build/lib)
 LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib)
 LINK_DIRECTORIES(${PARADISEO_MOEO_BIN_DIR}/lib)
 LINK_DIRECTORIES(${DTLZ_BINARY_DIR}/lib)
