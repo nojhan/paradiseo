@@ -48,7 +48,7 @@ void DTLZ7Eval::operator() (DTLZ & _element)
         int nbVar= _element.size();
         int k;
         double f, g, h;
-        DTLZObjectiveVector objVec(nbVar);
+        DTLZObjectiveVector objVec;
 
         k = nbVar - nbFun + 1;
         g = 0.0;
