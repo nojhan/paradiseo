@@ -6,6 +6,12 @@
 /* gnuplot graphical display */
 #cmakedefine HAVE_GNUPLOT
 
+/* Enable C++11 random library */
+#cmakedefine HAVE_RANDOM
+
+/* Enable 64-bit random numbers using C++11 random library */
+#cmakedefine WITH_64_BIT_RNG_NUMBERS 
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #cmakedefine HAVE_INTTYPES_H
 

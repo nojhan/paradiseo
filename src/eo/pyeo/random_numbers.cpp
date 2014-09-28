@@ -28,10 +28,12 @@ using namespace boost::python;
 
 using namespace boost::python;
 
-// initialize static constants
-const uint32_t eoRng::K(0x9908B0DFU);
-const int eoRng::M(397);
-const int eoRng::N(624);
+#ifndef HAVE_RANDOM 
+    // initialize static constants
+    const uint32_t eoRng::K(0x9908B0DFU);
+    const int eoRng::M(397);
+    const int eoRng::N(624);
+#endif HAVE_RANDOM 
 
 namespace eo
 {

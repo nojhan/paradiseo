@@ -14,7 +14,7 @@ color() {
 mkdir -pv build
 cd build
 
-color 5 '\nDefine CMAKE cache values.\n'
+color 5 'Define CMAKE cache values.'
 
 ##################################
 # choose modules for compilation #
@@ -121,16 +121,38 @@ else
 	FLAG=$FLAG' '" -DENABLE_OPENMP=false"
 fi #ENABLE_OPENMP
 
-color 5 "\nset $FLAG\n"
+color 1 'Do you want to enable C++11 random numbers (no by default)?(y/n)'
+read res
 
-cmake $FLAG ..
+if [ "$res" = "y" ]; then
+	FLAG=$FLAG' '" -DENABLE_CXX11_RANDOM=true"
+
+	color 1 'Do you want to enable 64-bit random numbers (no by default)?(y/n)'
+	read res
+
+	if [ "$res" = "y" ]; then
+		FLAG=$FLAG' '" -DENABLE_64_BIT_RNG_NUMBERS=true"
+	else
+		FLAG=$FLAG' '" -DENABLE_64_BIT_RNG_NUMBERS=false"
+	fi #ENABLE_64_BIT_RNG_NUMBERS
+
+else
+	FLAG=$FLAG' '" -DENABLE_CXX11_RANDOM=false"
+fi #ENABLE_CXX11_RANDOM
+
+color 5 "set $FLAG"
+
+FLAG2="-DENABLE_CMAKE_TESTING=false"
+FLAG2=$FLAG2' '" -DENABLE_CMAKE_EXAMPLE=false"
+
+cmake $FLAG $FLAG2 ..
 
 ###############
 # compile doc #
 # default: no #
 ###############
 
-color 1 '\nDo you want to compile the documentation (be patient it can be a bit long)?(y/n)'
+color 1 'Do you want to compile the documentation (be patient it can be a bit long)?(y/n)'
 read res
 
 if [ "$res" = "y" ]; then
@@ -143,14 +165,14 @@ fi
 # default path: /usr/local/include/paradiseo #
 ##############################################
 
-color 1 '\nDo you want to install the sources on your laptop?(y/n)
+color 1 'Do you want to install the sources on your laptop?(y/n)
 If "no" you will not be able to compile tests or tutorials 
 which require the project library installation on your laptop.' 
 read res
 
 if [ "$res" = "y" ]; then
 
-	color 5 '\nOk. For your information we let you the possibility
+	color 5 'Ok. For your information we let you the possibility
 to change the install path on your laptop but also to
 personalize the project name in order to avoid some 
 name conflicts with headers.
@@ -176,7 +198,7 @@ Go see the script line 166-170 to see what it looks like.'
 	# default: no   #
 	#################
 
-	color 1 '\nDo you want to compile tests?(y/n)'
+	color 1 'Do you want to compile tests?(y/n)'
 	read test_compile
 
 	if [ "$test_compile" = "y" ]; then
@@ -207,7 +229,7 @@ Go see the script line 166-170 to see what it looks like.'
 
 	fi
 
-	color 5 "\nset $FLAG\n"
+	color 5 "set $FLAG"
 	cmake $FLAG .. 
 
 	if [ "$test_compile" = "y" ] || [ "$tutorial_compile" = "y" ]; then
@@ -248,3 +270,5 @@ else
 	make
 
 fi 
+
+cd ..

@@ -27,9 +27,9 @@ Old contact information: todos@geneura.ugr.es, http://geneura.ugr.es
 
 /** @addtogroup Random
  * @{
- * */
+ * */ 
 
-# if (defined _MSC_VER)
+#if (defined _MSC_VER)
 /** uint32_t is an unsigned integer type capable of holding 32 bits.
 
  In the applicatione here exactly 32 are used.
@@ -37,21 +37,47 @@ Old contact information: todos@geneura.ugr.es, http://geneura.ugr.es
  optimization levels so feel free to try your options and see what's best for
  you.
 */
-typedef unsigned long uint32_t;
+    typedef unsigned long uint32_t;
 #else
-#if (! defined __sun)
-// The C99-standard defines uint32_t to be declared in stdint.h, but some
-// systems don't have that and implement it in inttypes.h.
-#include <stdint.h>
-#else
-#include <inttypes.h>
-#endif
+    #if (! defined __sun)
+        // The C99-standard defines uint32_t to be declared in stdint.h, but some
+        // systems don't have that and implement it in inttypes.h.
+        #include <stdint.h>
+    #else
+        #include <inttypes.h>
+    #endif
 #endif
 
 #include <cmath>
 #include <vector>
+#include <numeric> // std::accumulate (see roulette_wheel())
+
 #include "../eoPersistent.h"
 #include "../eoObject.h"
+
+#ifdef HAVE_RANDOM 
+  #include <random> // Mersenne Twister available since C++11 ! About random library : 
+                    // "this library allows to produce random numbers using combinations of generators and distributions".
+                    // (see www.cplusplus.com/reference/random/)
+#endif
+
+#if (UINT_MAX == 0xFFFFFFFFU) // Compile time check (32-bit vs. 64-bit environment)
+    #define ENV32BIT
+#endif
+
+#ifdef HAVE_RANDOM // If set to true (see CMake cache values)
+    #ifndef ENV32BIT // Only on 64-bit environment
+        #ifdef WITH_64_BIT_RNG_NUMBERS // If set to true (see CMake cache values)
+            typedef uint64_t uint_t; // The C++11 Mersenne Twister pseudo-random generator can generate 64-bits numbers !
+        #else
+            typedef uint32_t uint_t; 
+        #endif    
+    #else
+        typedef uint32_t uint_t; 
+    #endif
+#else
+    typedef uint32_t uint_t;
+#endif
 
 
 /** Random Number Generator
@@ -122,18 +148,25 @@ public :
 
     @see reseed for details on usage of the seeding value.
     */
-    eoRng(uint32_t s)
-        : state(0), next(0), left(-1), cached(false)
-        {
-            state = new uint32_t[N+1];
-            initialize(2*s);
-        }
+    eoRng(uint_t s)
+        #ifdef HAVE_RANDOM 
+            : seed(s), position(0)
+            {
+                generator.seed(s); // initialize the internal state value
+            }
+        #else
+            : state(0), next(0), left(-1), cached(false) 
+            {
+               state = new uint_t[N+1];
+               initialize(2*s);
+            }
 
-    /** Destructor */
-    ~eoRng()
-        {
-            delete [] state;
-        }
+            /** Destructor */
+            ~eoRng()
+            {
+                delete [] state;
+            }
+        #endif
 
     /** Re-initializes the Random Number Generator.
 
@@ -143,11 +176,17 @@ public :
 
     Manually divide the seed by 2 if you want to re-run old runs
 
-    @version MS. 5 Oct. 2001
+    @version MS. 5 Oct. 2001eoRNG
     */
-    void reseed(uint32_t s)
+    void reseed(uint_t s)
         {
-            initialize(2*s);
+            #ifdef HAVE_RANDOM 
+                seed = s;
+                position = 0;
+                generator.seed(s); // re-initialize the internal state value
+            #else
+                initialize(2*s);
+            #endif
         }
 
     /* FIXME remove in next release
@@ -174,7 +213,11 @@ public :
     */
     double uniform(double m = 1.0)
         { // random number between [0, m]
-            return m * double(rand()) / double(1.0 + rand_max());
+            #ifdef HAVE_RANDOM
+                return uniform(0.0, m);
+            #else
+                return m * double(rand()) / double(1.0 + rand_max());
+            #endif
         }
 
     /** Random number from unifom distribution
@@ -185,7 +228,13 @@ public :
     */
     double uniform(double min, double max)
         { // random number between [min, max]
-            return min + uniform(max - min);
+            #ifdef HAVE_RANDOM
+                increment_position();
+                std::uniform_real_distribution<double> distribution(min, max);
+                return distribution(generator);
+            #else
+                return min + uniform(max - min);
+            #endif
         }
 
     /** Random integer number from unifom distribution
@@ -193,14 +242,14 @@ public :
     @param m Define interval for random number to [0, m)
     @return random integer in the range [0, m)
     */
-    uint32_t random(uint32_t m)
+    uint_t random(uint_t m)
         {
             // C++ Standard (4.9 Floatingintegral conversions [conv.fpint])
             // defines floating point to integer conversion as truncation
             // ("rounding towards zero"): "An rvalue of a floating point type
             // can be converted to an rvalue of an integer type. The conversion
             // truncates; that is, the fractional part is discarded"
-            return uint32_t(uniform() * double(m));
+            return uint_t(uniform() * double(m));
         }
 
     /** Biased coin toss
@@ -232,7 +281,13 @@ public :
     @return Random Gaussian deviate
     */
     double normal(double stdev)
-        { return stdev * normal(); }
+        { 
+            #ifdef HAVE_RANDOM 
+                return normal(0.0, stdev); 
+            #else
+                return stdev * normal();
+            #endif
+        }
 
     /** Gaussian deviate
 
@@ -243,19 +298,21 @@ public :
     @return Random Gaussian deviate
     */
     double normal(double mean, double stdev)
-        { return mean + normal(stdev); }
-
-    /**
-     * @brief Forgets the last cached value of normal(), so as to be able to perform some repeatable calls to normal().
-     *
-     * As normal() stores a cached value for performance purposes, sequences of pseudo random numbers can't be repeated
-     * when reseeding, since the cached value can be yield before a number is generated. To avoid that, this method
-     * allows one to clean the cache and force to regenerate a new pseudo random number.
-     */
-    void clearCache()
-    {
-        cached = false;
-    }
+        {
+            #ifdef HAVE_RANDOM 
+                // Don't increment the position here ...
+                std::normal_distribution<double> distribution(mean, stdev); 
+                double ret = distribution(generator);
+                // ... but reseed the generator and call discard() to go further into the state sequence.
+                generator.seed(seed);
+                generator.discard(position); // According to the C++11 random library documentation
+                                             // the function complexity will be linear in the 
+                                             // number of equivalent advances
+                return ret;
+            #else
+                return mean + normal(stdev);
+            #endif
+        }
 
     /** Random numbers using a negative exponential distribution
 
@@ -264,18 +321,14 @@ public :
     */
     double negexp(double mean)
         {
-            return -mean*log(double(rand()) / rand_max());
+            #ifdef HAVE_RANDOM     
+                increment_position();
+                std::exponential_distribution<double> distribution(mean);
+                return distribution(generator);
+            #else
+                return -mean*log(double(rand()) / rand_max());
+            #endif
         }
-
-    /**
-    rand() returns a random number in the range [0, rand_max)
-    */
-    uint32_t rand();
-
-    /**
-    rand_max() the maximum returned by rand()
-    */
-    uint32_t rand_max() const { return uint32_t(0xffffffff); }
 
     /** Roulette wheel selection
 
@@ -287,10 +340,8 @@ public :
     int roulette_wheel(const std::vector<TYPE>& vec, TYPE total = 0)
         {
             if (total == 0)
-            { // count
-                for (unsigned    i = 0; i < vec.size(); ++i)
-                    total += vec[i];
-            }
+                total = std::accumulate(vec.begin(), vec.end(), total); // count
+
             double fortune = uniform() * total;
             int i = 0;
             while (fortune >= 0)
@@ -299,7 +350,6 @@ public :
             }
             return --i;
         }
-
 
     /** Randomly select element from vector.
 
@@ -330,121 +380,98 @@ public :
     */
     void printOn(std::ostream& _os) const
         {
-            for (int i = 0; i < N; ++i)
-            {
-                _os << state[i] << ' ';
-            }
-            _os << int(next - state) << ' ';
-            _os << left << ' ' << cached << ' ' << cacheValue;
+            #ifdef HAVE_RANDOM 
+                // print the two requested parameters on the stream
+                _os << seed << ' ';
+                _os << position << ' ';
+            #else
+                for (int i = 0; i < N; ++i)
+                {
+                    _os << state[i] << ' ';
+                }
+                _os << int(next - state) << ' ';
+                _os << left << ' ' << cached << ' ' << cacheValue;
+            #endif
         }
 
-    /** @brief Read RNG
-
-    @param _is Stream to read RNG from
+    /** @brief Read RNG. 
+               If the C++11 random library is used the complexity 
+               will be "linear in the number of equivalent advances".
+        @param _is Stream to read RNG from
     */
-    void readFrom(std::istream& _is)
+    void readFrom(std::istream& _is) 
         {
-            for (int i = 0; i < N; ++i)
-            {
-                _is >> state[i];
-            }
+            #ifdef HAVE_RANDOM 
+                _is >> seed;
+                _is >> position;
+                generator.seed(seed);
+                generator.discard(position); // According to the C++11 random library documentation
+                                             // the function complexity will be linear in the 
+                                             // number of equivalent advances
+            #else
+                for (int i = 0; i < N; ++i)
+                {
+                    _is >> state[i];
+                }
+                int n;
+                _is >> n;
+                next = state + n;
 
-            int n;
-            _is >> n;
-            next = state + n;
-
-            _is >> left;
-            _is >> cached;
-            _is >> cacheValue;
+                _is >> left;
+                _is >> cached;
+                _is >> cacheValue;
+            #endif
         }
+
+    /**
+        rand() returns a random number in the range [0, rand_max)
+    */
+    uint_t rand();
+
+    /**
+        rand_max() the maximum returned by rand()
+    */
+    uint_t rand_max() const 
+        { 
+            #ifdef HAVE_RANDOM 
+                return generator.max();
+            #else
+                return uint_t(0xffffffff); 
+            #endif
+        }
+
+    #ifdef HAVE_RANDOM 
+
+        /**
+         * @brief Increment the position of the last generated number into the state sequence
+         */
+        void increment_position()
+        {
+            if (position >= generator.state_size) 
+                position = 1;
+            else
+                ++position;
+        }
+
+    #else
+        /**
+         * @brief Forgets the last cached value of normal(), so as to be able to perform some repeatable calls to normal().
+         *
+         * As normal() stores a cached value for performance purposes, sequences of pseudo random numbers can't be repeated
+         * when reseeding, since the cached value can be yield before a number is generated. To avoid that, this method
+         * allows one to clean the cache and force to regenerate a new pseudo random number.
+         */
+        void clearCache()
+        {
+            cached = false;
+        }
+
+    #endif
 
     std::string className() const { return "Mersenne-Twister"; }
 
 private:
 
-    uint32_t restart();
-
-    /* @brief Initialize state
-
-    We initialize state[0..(N-1)] via the generator
-
-    <tt>x_new = (69069 * x_old) mod 2^32</tt>
-
-    from Line 15 of Table 1, p. 106, Sec. 3.3.4 of Knuth's _The Art of Computer
-    Programming_, Volume 2, 3rd ed.
-
-    Notes (SJC): I do not know what the initial state requirements of the
-    Mersenne Twister are, but it seems this seeding generator could be better.
-    It achieves the maximum period for its modulus (2^30) iff x_initial is odd
-    (p. 20-21, Sec. 3.2.1.2, Knuth); if x_initial can be even, you have
-    sequences like 0, 0, 0, ...; 2^31, 2^31, 2^31, ...; 2^30, 2^30, 2^30, ...;
-    2^29, 2^29 + 2^31, 2^29, 2^29 + 2^31, ..., etc. so I force seed to be odd
-    below.
-
-    Even if x_initial is odd, if x_initial is 1 mod 4 then
-
-    the          lowest bit of x is always 1,
-    the  next-to-lowest bit of x is always 0,
-    the 2nd-from-lowest bit of x alternates      ... 0 1 0 1 0 1 0 1 ... ,
-    the 3rd-from-lowest bit of x 4-cycles        ... 0 1 1 0 0 1 1 0 ... ,
-    the 4th-from-lowest bit of x has the 8-cycle ... 0 0 0 1 1 1 1 0 ... ,
-    ...
-
-    and if x_initial is 3 mod 4 then
-
-    the          lowest bit of x is always 1,
-    the  next-to-lowest bit of x is always 1,
-    the 2nd-from-lowest bit of x alternates      ... 0 1 0 1 0 1 0 1 ... ,
-    the 3rd-from-lowest bit of x 4-cycles        ... 0 0 1 1 0 0 1 1 ... ,
-    the 4th-from-lowest bit of x has the 8-cycle ... 0 0 1 1 1 1 0 0 ... ,
-    ...
-
-    The generator's potency (min. s>=0 with (69069-1)^s = 0 mod 2^32) is 16,
-    which seems to be alright by p. 25, Sec. 3.2.1.3 of Knuth. It also does well
-    in the dimension 2..5 spectral tests, but it could be better in dimension 6
-    (Line 15, Table 1, p. 106, Sec. 3.3.4, Knuth).
-
-    Note that the random number user does not see the values generated here
-    directly since restart() will always munge them first, so maybe none of all
-    of this matters. In fact, the seed values made here could even be
-    extra-special desirable if the Mersenne Twister theory says so-- that's why
-    the only change I made is to restrict to odd seeds.
-    */
-    void initialize(uint32_t seed);
-
-    /** @brief Array for the state */
-    uint32_t *state;
-
-    /** Pointer to next available random number */
-    uint32_t *next;
-
-    /** Number of random numbers currently left */
-    int left;
-
-    /** @brief Is there a valid cached value for the normal distribution? */
-    bool cached;
-
-    /** @brief Cached value for normal distribution? */
-    double cacheValue;
-
-    /** @brief Size of the state-vector */
-    static const int N;
-
-    /** Internal constant */
-    static const int M;
-
-    /** @brief Magic constant */
-    static const uint32_t K;
-
-
-    /** @brief Copy constructor
-
-    Private copy ctor and assignment operator to make sure that nobody
-    accidentally copies the random number generator. If you want similar RNG's,
-    make two RNG's and initialize them with the same seed.
-
-    As it cannot be called, we do not provide an implementation.
-    */
     eoRng(const eoRng&);
 
     /** @brief Assignment operator
@@ -452,11 +479,115 @@ private:
     @see Copy constructor eoRng(const eoRng&).
     */
     eoRng& operator=(const eoRng&);
+
+    #ifdef HAVE_RANDOM // If set to true (see CMake cache values)
+        #ifndef ENV32BIT // Only on 64-bit environment
+            #ifdef WITH_64_BIT_RNG_NUMBERS // If set to true (see CMake cache values)
+                std::mt19937_64 generator; // Mersenne Twister pseudo-random generator of 64-bits numbers with a state of 19937 bits
+                                           // 312 elements in the state sequence
+            #else
+                std::mt19937 generator;
+            #endif
+        #else
+            std::mt19937 generator; // Mersenne Twister pseudo-random generator of 32-bits numbers with a state of 19937 bits
+                                    // 624 elements in the state sequence
+        #endif
+
+        uint_t seed; // Last value which was used to initialize the internal state value of the generator
+                     // (one of the two requested parameters for the serialization)
+
+        unsigned position; // Position of the last generated number into the state sequence
+                           // (one of the two requested parameters for the serialization)                      
+   
+    #else
+    
+        uint_t restart();
+
+        /* @brief Initialize state
+
+        We initialize state[0..(N-1)] via the generator
+
+        <tt>x_new = (69069 * x_old) mod 2^32</tt>
+
+        from Line 15 of Table 1, p. 106, Sec. 3.3.4 of Knuth's _The Art of Computer
+        Programming_, Volume 2, 3rd ed.
+
+        Notes (SJC): I do not know what the initial state requirements of the
+        Mersenne Twister are, but it seems this seeding generator could be better.
+        It achieves the maximum period for its modulus (2^30) iff x_initial is odd
+        (p. 20-21, Sec. 3.2.1.2, Knuth); if x_initial can be even, you have
+        sequences like 0, 0, 0, ...; 2^31, 2^31, 2^31, ...; 2^30, 2^30, 2^30, ...;
+        2^29, 2^29 + 2^31, 2^29, 2^29 + 2^31, ..., etc. so I force seed to be odd
+        below.
+
+        Even if x_initial is odd, if x_initial is 1 mod 4 then
+
+        the          lowest bit of x is always 1,
+        the  next-to-lowest bit of x is always 0,
+        the 2nd-from-lowest bit of x alternates      ... 0 1 0 1 0 1 0 1 ... ,
+        the 3rd-from-lowest bit of x 4-cycles        ... 0 1 1 0 0 1 1 0 ... ,
+        the 4th-from-lowest bit of x has the 8-cycle ... 0 0 0 1 1 1 1 0 ... ,
+        ...
+
+        and if x_initial is 3 mod 4 then
+
+        the          lowest bit of x is always 1,
+        the  next-to-lowest bit of x is always 1,
+        the 2nd-from-lowest bit of x alternates      ... 0 1 0 1 0 1 0 1 ... ,
+        the 3rd-from-lowest bit of x 4-cycles        ... 0 0 1 1 0 0 1 1 ... ,
+        the 4th-from-lowest bit of x has the 8-cycle ... 0 0 1 1 1 1 0 0 ... ,
+        ...
+
+        The generator's potency (min. s>=0 with (69069-1)^s = 0 mod 2^32) is 16,
+        which seems to be alright by p. 25, Sec. 3.2.1.3 of Knuth. It also does well
+        in the dimension 2..5 spectral tests, but it could be better in dimension 6
+        (Line 15, Table 1, p. 106, Sec. 3.3.4, Knuth).
+
+        Note that the random number user does not see the values generated here
+        directly since restart() will always munge them first, so maybe none of all
+        of this matters. In fact, the seed values made here could even be
+        extra-special desirable if the Mersenne Twister theory says so-- that's why
+        the only change I made is to restrict to odd seeds.
+        */
+        void initialize(uint_t seed);
+
+        /** @brief Array for the state */
+        uint_t *state;
+
+        /** Pointer to next available random number */
+        uint_t *next;
+
+        /** Number of random numbers currently left */
+        int left;
+
+        /** @brief Is there a valid cached value for the normal distribution? */
+        bool cached;
+
+        /** @brief Cached value for normal distribution? */
+        double cacheValue;
+
+        /** @brief Size of the state-vector */
+        static const int N;
+
+        /** Internal constant */
+        static const int M;
+
+        /** @brief Magic constant */
+        static const uint_t K;
+
+
+        /** @brief Copy constructor
+
+        Private copy ctor and assignment operator to make sure that nobody
+        accidentally copies the random number generator. If you want similar RNG's,
+        make two RNG's and initialize them with the same seed.
+
+        As it cannot be called, we do not provide an implementation.
+        */
+    #endif
 };
 /** @example t-eoRNG.cpp
  */
-
-
 
 namespace eo
 {
@@ -468,83 +599,87 @@ using eo::rng;
 /** @} */
 
 
+#ifndef HAVE_RANDOM 
+
+    // Implementation of some eoRng members.... Don't mind the mess, it does work.
+
+    #define hiBit(u)       ((u) & 0x80000000U)   // mask all but highest   bit of u
+    #define loBit(u)       ((u) & 0x00000001U)   // mask all but lowest    bit of u
+    #define loBits(u)      ((u) & 0x7FFFFFFFU)   // mask     the highest   bit of u
+    #define mixBits(u, v)  (hiBit(u)|loBits(v))  // move hi bit of u to hi bit of v
 
 
-// Implementation of some eoRng members.... Don't mind the mess, it does work.
+    inline void eoRng::initialize(uint_t seed)
+    {
+        left = -1;
 
-#define hiBit(u)       ((u) & 0x80000000U)   // mask all but highest   bit of u
-#define loBit(u)       ((u) & 0x00000001U)   // mask all but lowest    bit of u
-#define loBits(u)      ((u) & 0x7FFFFFFFU)   // mask     the highest   bit of u
-#define mixBits(u, v)  (hiBit(u)|loBits(v))  // move hi bit of u to hi bit of v
+        register uint_t x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
+        register int j;
+
+        for(left=0, *s++=x, j=N; --j;
+            *s++ = (x*=69069U) & 0xFFFFFFFFU) ;
+    }
 
 
-inline void eoRng::initialize(uint32_t seed)
+    inline uint_t eoRng::restart()
+        {
+            register uint_t *p0=state, *p2=state+2, *pM=state+M, s0, s1;
+            register int j;
+
+            left=N-1, next=state+1;
+
+            for(s0=state[0], s1=state[1], j=N-M+1; --j; s0=s1, s1=*p2++)
+                *p0++ = *pM++ ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
+
+            for(pM=state, j=M; --j; s0=s1, s1=*p2++)
+                *p0++ = *pM++ ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
+
+            s1=state[0], *p0 = *pM ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
+            s1 ^= (s1 >> 11);
+            s1 ^= (s1 <<  7) & 0x9D2C5680U;
+            s1 ^= (s1 << 15) & 0xEFC60000U;
+            return(s1 ^ (s1 >> 18));
+        }
+
+#endif
+
+inline uint_t eoRng::rand()
 {
-    left = -1;
-
-    register uint32_t x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
-    register int j;
-
-    for(left=0, *s++=x, j=N; --j;
-        *s++ = (x*=69069U) & 0xFFFFFFFFU) ;
+    #ifdef HAVE_RANDOM 
+        increment_position();
+        return generator();
+    #else
+        if(--left < 0)
+            return(restart());
+        uint_t y  = *next++;
+        y ^= (y >> 11);
+        y ^= (y <<  7) & 0x9D2C5680U;
+        y ^= (y << 15) & 0xEFC60000U;
+        return(y ^ (y >> 18));
+    #endif
 }
-
-
-
-inline uint32_t eoRng::restart()
-{
-    register uint32_t *p0=state, *p2=state+2, *pM=state+M, s0, s1;
-    register int j;
-
-    left=N-1, next=state+1;
-
-    for(s0=state[0], s1=state[1], j=N-M+1; --j; s0=s1, s1=*p2++)
-        *p0++ = *pM++ ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
-
-    for(pM=state, j=M; --j; s0=s1, s1=*p2++)
-        *p0++ = *pM++ ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
-
-    s1=state[0], *p0 = *pM ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
-    s1 ^= (s1 >> 11);
-    s1 ^= (s1 <<  7) & 0x9D2C5680U;
-    s1 ^= (s1 << 15) & 0xEFC60000U;
-    return(s1 ^ (s1 >> 18));
-}
-
-
-
-inline uint32_t eoRng::rand()
-{
-    if(--left < 0)
-        return(restart());
-    uint32_t y  = *next++;
-    y ^= (y >> 11);
-    y ^= (y <<  7) & 0x9D2C5680U;
-    y ^= (y << 15) & 0xEFC60000U;
-    return(y ^ (y >> 18));
-}
-
-
 
 inline double eoRng::normal()
-{
-    if (cached) {
-        cached = false;
-        return cacheValue;
+    {
+        #ifdef HAVE_RANDOM 
+            return eoRng::normal(0.0, 1.0);
+        #else
+            if (cached) {
+                cached = false;
+                return cacheValue;
+            }
+            double rSquare, var1, var2;
+            do {
+                var1 = 2.0 * uniform() - 1.0;
+                var2 = 2.0 * uniform() - 1.0;
+                rSquare = var1 * var1 + var2 * var2;
+            } while (rSquare >= 1.0 || rSquare == 0.0);
+            double factor = sqrt(-2.0 * log(rSquare) / rSquare);
+            cacheValue = var1 * factor;
+            cached = true;
+            return (var2 * factor);
+        #endif
     }
-    double rSquare, var1, var2;
-    do {
-        var1 = 2.0 * uniform() - 1.0;
-        var2 = 2.0 * uniform() - 1.0;
-        rSquare = var1 * var1 + var2 * var2;
-    } while (rSquare >= 1.0 || rSquare == 0.0);
-    double factor = sqrt(-2.0 * log(rSquare) / rSquare);
-    cacheValue = var1 * factor;
-    cached = true;
-    return (var2 * factor);
-}
-
-
 
 namespace eo
 {
@@ -598,7 +733,6 @@ namespace eo
     */
     inline double normal() { return rng.normal(); }
 }
-
 
 #endif
 

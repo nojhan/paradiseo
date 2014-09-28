@@ -54,7 +54,6 @@ elseif(INSTALL_TYPE STREQUAL min OR NOT DEFINED INSTALL_TYPE)
     set(ENABLE_CMAKE_TESTING "false" CACHE BOOL "ParadisEO tests")
 endif()
 
-
 ######################################################################################
 ### 2) Define profiling flags
 ######################################################################################
@@ -75,10 +74,36 @@ if(ENABLE_CMAKE_TESTING)
 endif(ENABLE_CMAKE_TESTING)
 
 ######################################################################################
-### 5) Build examples ?
+### 4) Build examples ?
 ######################################################################################
 
 set(ENABLE_CMAKE_EXAMPLE "true" CACHE BOOL "ParadisEO examples")
+
+######################################################################################
+### 5) Random numbers
+######################################################################################
+
+set(ENABLE_CXX11_RANDOM "false" CACHE BOOL "For C++11 random numbers")
+set(ENABLE_64_BIT_RNG_NUMBERS "false" CACHE BOOL "For 64-bit random numbers")
+
+# For C++11 random numbers
+if(ENABLE_CXX11_RANDOM)
+
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAVE_RANDOM") 
+
+    if (UNIX OR CMAKE_COMPILER_IS_GNUCXX) 
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11") 
+    endif (UNIX OR CMAKE_COMPILER_IS_GNUCXX)
+    if (APPLE)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmacosx-version-min=10.7")
+    endif (APPLE)
+
+    # For 64-bit random numbers
+    if(ENABLE_64_BIT_RNG_NUMBERS)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DWITH_64_BIT_RNG_NUMBERS")
+    endif(ENABLE_64_BIT_RNG_NUMBERS)
+
+endif(ENABLE_CXX11_RANDOM)
 
 ######################################################################################
 ### 6) Determine prefix for installation

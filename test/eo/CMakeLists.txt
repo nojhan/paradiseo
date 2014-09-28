@@ -71,11 +71,17 @@ set (TEST_LIST
   t-eoParser
   )
 
+# For C++11 random numbers
+if(ENABLE_CXX11_RANDOM)  
+  set (TEST_LIST ${TEST_LIST} t-eoRNGcxx11) # tests the eoRng class update (thanks to the new C++11 random library) 
+
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I /usr/include/python2.7 -lpython2.7") # Install developpement package for Python and add Python library link
+   
+endif(ENABLE_CXX11_RANDOM)
 
 foreach (test ${TEST_LIST})
   set ("T_${test}_SOURCES" "${test}.cpp")
 endforeach (test)
-
 
 if(ENABLE_MINIMAL_CMAKE_TESTING)
 
