@@ -53,7 +53,7 @@ foreach(current ${SOURCES})
   add_executable(${current} ${current}.cpp)
   add_test(${current} ${current})
   target_link_libraries(${current} eo eoutils edoutils)
-  install(TARGETS ${current} RUNTIME DESTINATION share/edo/test COMPONENT test)
+  install(TARGETS ${current} RUNTIME DESTINATION share/${PROJECT_TAG}/edo/test COMPONENT test)
 endforeach()
 
 ######################################################################################

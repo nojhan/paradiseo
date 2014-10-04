@@ -46,7 +46,7 @@ if(ENABLE_CMAKE_TESTING)
     add_executable(${test} ${T_${test}_SOURCES})
     add_test(${test} ${test})
     target_link_libraries(${test} eoutils eompi eoserial eo)
-    install(TARGETS ${test} RUNTIME DESTINATION share/eo/test COMPONENT test)
+    install(TARGETS ${test} RUNTIME DESTINATION share/${PROJECT_TAG}/eompi/test COMPONENT test)
     endforeach (test)
 endif()
 
