@@ -41,12 +41,13 @@ void basic_tests()
 void test_function(const unsigned N, uint_t(eoRng::*ptr)())
 {
     std::stringstream ss;
-    ss << rng; // Print eoRNG on stream
-    uint_t r1 = (rng.*ptr)();
+    rng.rand(); 
     for (unsigned i = 0; i < N; i++)
         (rng.*ptr)();
+    ss << rng; // Print eoRNG on stream
+    uint_t r1 = rng.rand();
     ss >> rng; // Read eoRNG from stream
-    uint_t r2 = (rng.*ptr)();    
+    uint_t r2 = rng.rand();    
 
     assert(r1 == r2);
 }
@@ -54,12 +55,13 @@ void test_function(const unsigned N, uint_t(eoRng::*ptr)())
 void test_function(const unsigned N, double(eoRng::*ptr)(double), const double m)
 {
     std::stringstream ss;
-    ss << rng; // Print eoRNG on stream
-    uint_t r1 = (rng.*ptr)(m);
+    rng.rand(); 
     for (unsigned i = 0; i < N; i++)
         (rng.*ptr)(m);
+    ss << rng; // Print eoRNG on stream
+    uint_t r1 = rng.rand();
     ss >> rng; // Read eoRNG from stream
-    uint_t r2 = (rng.*ptr)(m);    
+    uint_t r2 = rng.rand();    
 
     assert(r1 == r2);
 }
@@ -81,16 +83,16 @@ void serialization_tests(const unsigned N, const double d)
     uint_t s = static_cast<uint_t>(time(0));
 
     rng.reseed(s);
-    test_function(N, ptr_rand);
+    test_function(N, ptr_rand); 
    
     rng.reseed(s); 
-    test_function(N, ptr_uniform, double(1.0));
+    test_function(N, ptr_uniform, double(1.0)); 
 
     rng.reseed(s);
-    test_function(N, ptr_normal, d);
+    test_function(N, ptr_normal, d); 
     
     rng.reseed(s);
-    test_function(N, ptr_negexp, d);
+    test_function(N, ptr_negexp, d); 
 
     std::cout << "ok" << std::endl;
 }
@@ -145,7 +147,7 @@ void stat_tests(const unsigned N)
     {
         // Important : don't forget to reseed the generator
         s = static_cast<uint_t>(time(0) + i-1); // Chosen method to reseed generator (contestable):
-                                                  // Add i-1 seconds to the current time based on the current system
+                                                // Add i-1 seconds to the current time based on the current system
         rng.reseed(s);
 
         x[i] = rng.normal();
@@ -176,7 +178,7 @@ void stat_tests(const unsigned N)
         double p_value = PyFloat_AsDouble(PyTuple_GetItem(pResult, 1));
         std::cout << "Shapiro-Wilk test statistic:" << W << std::endl;
         std::cout << "p-value of the Shapiro-Wilk test (strong if < 0.05):" << p_value << std::endl;
-        //Py_DECREF(pResult);
+        Py_DECREF(pResult);
     }
 
     // Free allocated memory
@@ -206,10 +208,10 @@ void stat_tests(const unsigned N)
     
     for (unsigned i = 0; i < N; i++)
     {
-        // Important : don't forget to reseed the generator
-        s = static_cast<uint_t>(time(0) + i-1); // Chosen method to reseed generator (contestable):
-                                                  // Add i-1 seconds to the current time based on the current system
-        rng.reseed(s);
+        // // Important : don't forget to reseed the generator
+        // s = static_cast<uint_t>(time(0) + i-1); // Chosen method to reseed generator (contestable):
+        //                                         // Add i-1 seconds to the current time based on the current system
+        // rng.reseed(s);
 
         // Observed frequencies
         obs_freq[i] = rng.uniform();

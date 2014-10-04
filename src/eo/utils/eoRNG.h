@@ -55,17 +55,15 @@ Old contact information: todos@geneura.ugr.es, http://geneura.ugr.es
 #include "../eoPersistent.h"
 #include "../eoObject.h"
 
-#ifdef HAVE_RANDOM 
-  #include <random> // Mersenne Twister available since C++11 ! About random library : 
-                    // "this library allows to produce random numbers using combinations of generators and distributions".
-                    // (see www.cplusplus.com/reference/random/)
-#endif
-
 #if (UINT_MAX == 0xFFFFFFFFU) // Compile time check (32-bit vs. 64-bit environment)
     #define ENV32BIT
 #endif
 
 #ifdef HAVE_RANDOM // If set to true (see CMake cache values)
+    #include <random> // Mersenne Twister available since C++11 ! About random library : 
+                      // "this library allows to produce random numbers using combinations of generators and distributions".
+                      // (see www.cplusplus.com/reference/random/)
+
     #ifndef ENV32BIT // Only on 64-bit environment
         #ifdef WITH_64_BIT_RNG_NUMBERS // If set to true (see CMake cache values)
             typedef uint64_t uint_t; // The C++11 Mersenne Twister pseudo-random generator can generate 64-bits numbers !
@@ -150,7 +148,7 @@ public :
     */
     eoRng(uint_t s)
         #ifdef HAVE_RANDOM 
-            : seed(s), position(0)
+            : seed(s), position(0), discard (false)
             {
                 generator.seed(s); // initialize the internal state value
             }
@@ -181,9 +179,10 @@ public :
     void reseed(uint_t s)
         {
             #ifdef HAVE_RANDOM 
-                seed = s;
+                seed = 2*s;
                 position = 0;
-                generator.seed(s); // re-initialize the internal state value
+                discard = false;
+                generator.seed(seed); // re-initialize the internal state value
             #else
                 initialize(2*s);
             #endif
@@ -229,7 +228,7 @@ public :
     double uniform(double min, double max)
         { // random number between [min, max]
             #ifdef HAVE_RANDOM
-                increment_position();
+                discard = true;
                 std::uniform_real_distribution<double> distribution(min, max);
                 return distribution(generator);
             #else
@@ -300,15 +299,9 @@ public :
     double normal(double mean, double stdev)
         {
             #ifdef HAVE_RANDOM 
-                // Don't increment the position here ...
+                discard = true;
                 std::normal_distribution<double> distribution(mean, stdev); 
-                double ret = distribution(generator);
-                // ... but reseed the generator and call discard() to go further into the state sequence.
-                generator.seed(seed);
-                generator.discard(position); // According to the C++11 random library documentation
-                                             // the function complexity will be linear in the 
-                                             // number of equivalent advances
-                return ret;
+                return distribution(generator);
             #else
                 return mean + normal(stdev);
             #endif
@@ -322,7 +315,7 @@ public :
     double negexp(double mean)
         {
             #ifdef HAVE_RANDOM     
-                increment_position();
+                discard = true;
                 std::exponential_distribution<double> distribution(mean);
                 return distribution(generator);
             #else
@@ -404,10 +397,7 @@ public :
             #ifdef HAVE_RANDOM 
                 _is >> seed;
                 _is >> position;
-                generator.seed(seed);
-                generator.discard(position); // According to the C++11 random library documentation
-                                             // the function complexity will be linear in the 
-                                             // number of equivalent advances
+                discard = true;
             #else
                 for (int i = 0; i < N; ++i)
                 {
@@ -448,9 +438,19 @@ public :
         void increment_position()
         {
             if (position >= generator.state_size) 
+            {
+                generator.seed(seed);
                 position = 1;
-            else
-                ++position;
+                discard = false;
+                return;
+            }
+            if (discard)
+            {
+                generator.seed(seed);
+                generator.discard(position); // linear complexity
+                discard = false;
+            }
+            ++position;
         }
 
     #else
@@ -497,7 +497,9 @@ private:
                      // (one of the two requested parameters for the serialization)
 
         unsigned position; // Position of the last generated number into the state sequence
-                           // (one of the two requested parameters for the serialization)                      
+                           // (one of the two requested parameters for the serialization)       
+
+        bool discard; // Call discard() after using a distribution
    
     #else
     

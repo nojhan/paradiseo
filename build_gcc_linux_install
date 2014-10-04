@@ -137,7 +137,7 @@ if [ "$res" = "y" ]; then
 	fi #ENABLE_64_BIT_RNG_NUMBERS
 
 else
-	FLAG=$FLAG' '" -DENABLE_CXX11_RANDOM=false"
+	FLAG=$FLAG' '" -DENABLE_CXX11_RANDOM=false -DENABLE_64_BIT_RNG_NUMBERS=false"
 fi #ENABLE_CXX11_RANDOM
 
 color 5 "set $FLAG"
