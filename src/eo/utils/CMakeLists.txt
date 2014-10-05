@@ -33,6 +33,13 @@ set(EOUTILS_SOURCES
   eoSignal.cpp
   )
 
+if(Boost_FOUND)
+    message("add eoParserBoost.cpp to EOUTILS_SOURCES (see: /src/eo/utils/CMakeLists.txt)")
+    set(EOUTILS_SOURCES ${EOUTILS_SOURCES} eoParserBoost.cpp) # new parser using Boost 
+else(Boost_FOUND)
+    message("Boost not found. WARNING: eoParserBoost can not be used. (Warning message from /eo/src/utils/CMakeLists.txt)")
+endif(Boost_FOUND)
+
 add_library(eoutils STATIC ${EOUTILS_SOURCES})
 install(TARGETS eoutils ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 

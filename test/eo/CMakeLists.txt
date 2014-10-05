@@ -79,6 +79,11 @@ if(ENABLE_CXX11_RANDOM)
    
 endif(ENABLE_CXX11_RANDOM)
 
+if(Boost_FOUND) 
+    message("add t-eoParserBoost to TEST_LIST (see: /test/eo/CMakeLists.txt)")
+    set (TEST_LIST ${TEST_LIST} t-eoParserBoost) # test the new parser with Boost
+endif(Boost_FOUND)
+
 foreach (test ${TEST_LIST})
   set ("T_${test}_SOURCES" "${test}.cpp")
 endforeach (test)

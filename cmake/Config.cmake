@@ -73,6 +73,19 @@ if(ENABLE_CMAKE_TESTING)
     include(CTest REQUIRED)
 endif(ENABLE_CMAKE_TESTING)
 
+# required by t-eoParserBoost.cpp
+find_package( Boost 1.36.0 )
+if(Boost_FOUND)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_DEBUG} -L ${Boost_INCLUDE_DIRS} -lboost_program_options -Wreorder")
+
+    if (UNIX OR CMAKE_COMPILER_IS_GNUCXX) 
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11") 
+    endif (UNIX OR CMAKE_COMPILER_IS_GNUCXX)
+    if (APPLE)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmacosx-version-min=10.7")
+    endif (APPLE) 
+endif(Boost_FOUND)
+
 ######################################################################################
 ### 4) Build examples ?
 ######################################################################################
