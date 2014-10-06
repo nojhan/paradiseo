@@ -44,6 +44,7 @@ set(TEST_LIST
 		t-moeoDominanceMatrix
 		t-moeoVecVsVecAdditiveEpsilonBinaryMetric
 		t-moeoVecVsVecMultiplicativeEpsilonBinaryMetric
+		t-moeoHypervolumeBinaryMetric
 		t-moeoHyperVolumeMetric
 		t-moeoHyperVolumeDifferenceMetric
 		t-moeoIntVector

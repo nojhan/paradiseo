@@ -3,7 +3,8 @@
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Arnaud Liefooghe
+* July 2013: Bug fix in the recursive call of hypervolume (corrected thanks to Yann Semet and Dimo Brockhoff)
+*
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -46,9 +47,13 @@
  * Hypervolume binary metric allowing to compare two objective vectors as proposed in
  * Zitzler E., Künzli S.: Indicator-Based Selection in Multiobjective Search. In Parallel Problem Solving from Nature (PPSN VIII).
  * Lecture Notes in Computer Science 3242, Springer, Birmingham, UK pp.832–842 (2004).
+ *
  * This indicator is based on the hypervolume concept introduced in
  * Zitzler, E., Thiele, L.: Multiobjective Optimization Using Evolutionary Algorithms - A Comparative Case Study.
  * Parallel Problem Solving from Nature (PPSN-V), pp.292-301 (1998).
+ *
+ * This code is adapted from the PISA implementation of IBEA (http://www.tik.ee.ethz.ch/sop/pisa/)
+ *
  */
 template < class ObjectiveVector >
 class moeoHypervolumeBinaryMetric : public moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double >
@@ -155,7 +160,7 @@ class moeoHypervolumeBinaryMetric : public moeoNormalizedSolutionVsSolutionBinar
             }
           else
             {
-              result = hypervolume(_o1, _o2, _obj-1) * (max - v2) / range;
+              result = hypervolume(_o1, _o2, _obj-1) * (max - v1) / range;
             }
         }
       return result;
