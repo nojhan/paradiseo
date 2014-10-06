@@ -41,6 +41,8 @@
 #include <moeo>
 #include <cassert>
 
+#include<archive/moeo2DMinHyperVolumeArchive.h>
+
 //-----------------------------------------------------------------------------
 
 class ObjectiveVectorTraits : public moeoObjectiveVectorTraits

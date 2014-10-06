@@ -138,7 +138,7 @@ public:
    * @param _p_change the probability to change a given coordinate
    */
   eoNormalMutation(eoRealVectorBounds & _bounds,
-                    double _sigma, const double& _p_change = 1.0):
+                    double & _sigma, const double& _p_change = 1.0):
     sigma(_sigma), bounds(_bounds), p_change(_p_change) {}
 
   /** The class name */

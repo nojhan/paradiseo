@@ -42,8 +42,8 @@
 #include <metric/moeoMetric.h>
 
 /**
- * The contribution metric evaluates the proportion of non-dominated solutions given by a Pareto set relatively to another Pareto set
- * (Meunier, Talbi, Reininger: 'A multiobjective genetic algorithm for radio network optimization', in Proc. of the 2000 Congress on Evolutionary Computation, IEEE Press, pp. 317-324)
+ * The hypervolume metric evaluates the multi-dimensional area (hypervolume) enclosed by set of objective vectors and a reference point
+ * (E. Zitzler and L. Thiele. Multiobjective evolutionary algorithms: A comparative case study and the strength pareto approach. IEEE Transactions on Evolutionary Computation, 3(4):257–271, 1999)
  */
 template < class ObjectiveVector >
 class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , double >

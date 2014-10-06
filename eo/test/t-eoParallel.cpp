@@ -2,7 +2,9 @@
 // t-eoParallel.cpp
 //-----------------------------------------------------------------------------
 
+#ifdef ENABLE_OPENMP
 #include <omp.h>
+#endif
 
 #include <eo>
 #include <es/make_real.h>

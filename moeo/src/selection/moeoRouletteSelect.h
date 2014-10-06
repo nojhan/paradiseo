@@ -80,7 +80,7 @@ class moeoRouletteSelect:public moeoSelectOne < MOEOT >
   protected:
 
     /** size */
-    unsigned int & tSize;
+    unsigned int tSize;
 
   };
 
