@@ -1,38 +1,43 @@
 /*
-* <moeoExpBinaryIndicatorBasedFitnessAssignment.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
-*
-* Arnaud Liefooghe
-*
-* This software is governed by the CeCILL license under French law and
-* abiding by the rules of distribution of free software.  You can  use,
-* modify and/ or redistribute the software under the terms of the CeCILL
-* license as circulated by CEA, CNRS and INRIA at the following URL
-* "http://www.cecill.info".
-*
-* As a counterpart to the access to the source code and  rights to copy,
-* modify and redistribute granted by the license, users are provided only
-* with a limited warranty  and the software's author,  the holder of the
-* economic rights,  and the successive licensors  have only  limited liability.
-*
-* In this respect, the user's attention is drawn to the risks associated
-* with loading,  using,  modifying and/or developing or reproducing the
-* software by the user in light of its specific status of free software,
-* that may mean  that it is complicated to manipulate,  and  that  also
-* therefore means  that it is reserved for developers  and  experienced
-* professionals having in-depth computer knowledge. Users are therefore
-* encouraged to load and test the software's suitability as regards their
-* requirements in conditions enabling the security of their systems and/or
-* data to be ensured and,  more generally, to use and operate it in the
-* same conditions as regards security.
-* The fact that you are presently reading this means that you have had
-* knowledge of the CeCILL license and that you accept its terms.
-*
-* ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: paradiseo-help@lists.gforge.inria.fr
-*
-*/
+ * <moeoExpBinaryIndicatorBasedFitnessAssignment.h>
+ * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2014
+ * (C) OPAC Team, LIFL, 2002-2014
+ *
+ * Arnaud Liefooghe
+ *
+ * Oct 17, 2014  -   Arnaud Liefooghe
+ *   Modifications on the handling of the internal data structure (values)
+ *   in order to avoid (too much/bad) memory consumptions, in particular
+ *   when a very large population size is used
+ *
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ *
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited liability.
+ *
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
+ * Contact: paradiseo-help@lists.gforge.inria.fr
+ *
+ */
 //-----------------------------------------------------------------------------
 
 #ifndef MOEOEXPBINARYINDICATORBASEDFITNESSASSIGNMENT_H_
@@ -52,38 +57,49 @@
  */
 template < class MOEOT >
 class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorBasedFitnessAssignment < MOEOT >
-  {
-  public:
-
+{
+public:
+    
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
     typedef typename ObjectiveVector::Type Type;
     typedef typename MOEOT::Fitness Fitness;
-
+    
+    
     /**
      * Ctor.
      * @param _metric the quality indicator
      * @param _kappa the scaling factor
      */
-    moeoExpBinaryIndicatorBasedFitnessAssignment(moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa = 0.05) : metric(_metric), kappa(_kappa)
-    {}
-
-
+    moeoExpBinaryIndicatorBasedFitnessAssignment(moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa = 0.05) : metric(_metric), kappa(_kappa), values(0) {}
+    
+    
+    /**
+     * Dtor.
+     */
+    ~moeoExpBinaryIndicatorBasedFitnessAssignment()
+    {
+        // clear "values"
+        for (unsigned int i=0; i<values.size(); i++) values[i].clear();
+        values.clear();
+    }
+    
+    
     /**
      * Sets the fitness values for every solution contained in the population _pop
      * @param _pop the population
      */
     virtual void operator()(eoPop < MOEOT > & _pop)
     {
-      // 1 - setting of the bounds
-      setup(_pop);
-      // 2 - computing every indicator values
-      computeValues(_pop);
-      // 3 - setting fitnesses
-      setFitnesses(_pop);
+        // 1 - setting of the bounds
+        setup(_pop);
+        // 2 - computing every indicator values
+        computeValues(_pop);
+        // 3 - setting fitnesses
+        setFitnesses(_pop);
     }
-
-
+    
+    
     /**
      * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
      * @param _pop the population
@@ -91,19 +107,20 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-      std::vector < double > v;
-      v.resize(_pop.size());
-      for (unsigned int i=0; i<_pop.size(); i++)
+        std::vector < double > v;
+        v.resize(_pop.size());
+        for (unsigned int i=0; i<_pop.size(); i++)
         {
-          v[i] = metric(_objVec, _pop[i].objectiveVector());
+            v[i] = metric(_objVec, _pop[i].objectiveVector());
         }
-      for (unsigned int i=0; i<_pop.size(); i++)
+        for (unsigned int i=0; i<_pop.size(); i++)
         {
-          _pop[i].fitness( _pop[i].fitness() + exp(-v[i]/kappa) );
+            _pop[i].fitness( _pop[i].fitness() + exp(-v[i]/kappa) );
         }
+        v.clear();
     }
-
-
+    
+    
     /**
      * Updates the fitness values of the whole population _pop by taking the adding of the objective vector _objVec into account
      * and returns the fitness value of _objVec.
@@ -112,118 +129,125 @@ class moeoExpBinaryIndicatorBasedFitnessAssignment : public moeoBinaryIndicatorB
      */
     double updateByAdding(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-      std::vector < double > v;
-      // update every fitness values to take the new individual into account
-      v.resize(_pop.size());
-      for (unsigned int i=0; i<_pop.size(); i++)
+        std::vector < double > v;
+        // update every fitness values to take the new individual into account
+        v.resize(_pop.size());
+        for (unsigned int i=0; i<_pop.size(); i++)
         {
-          v[i] = metric(_objVec, _pop[i].objectiveVector());
+            v[i] = metric(_objVec, _pop[i].objectiveVector());
         }
-      for (unsigned int i=0; i<_pop.size(); i++)
+        for (unsigned int i=0; i<_pop.size(); i++)
         {
-          _pop[i].fitness( _pop[i].fitness() - exp(-v[i]/kappa) );
+            _pop[i].fitness( _pop[i].fitness() - exp(-v[i]/kappa) );
         }
-      // compute the fitness of the new individual
-      v.clear();
-      v.resize(_pop.size());
-      for (unsigned int i=0; i<_pop.size(); i++)
+        // compute the fitness of the new individual
+        for (unsigned int i=0; i<_pop.size(); i++)
         {
-          v[i] = metric(_pop[i].objectiveVector(), _objVec);
+            v[i] = metric(_pop[i].objectiveVector(), _objVec);
         }
-      double result = 0;
-      for (unsigned int i=0; i<v.size(); i++)
+        double result = 0;
+        for (unsigned int i=0; i<v.size(); i++)
         {
-          result -= exp(-v[i]/kappa);
+            result -= exp(-v[i]/kappa);
         }
-      return result;
+        v.clear();
+        return result;
     }
-
-
-  protected:
-
+    
+    
+protected:
+    
     /** the quality indicator */
     moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & metric;
     /** the scaling factor */
     double kappa;
     /** the computed indicator values */
     std::vector < std::vector<Type> > values;
-
-
+    
+    
     /**
      * Sets the bounds for every objective using the min and the max value for every objective vector of _pop
      * @param _pop the population
      */
     void setup(const eoPop < MOEOT > & _pop)
     {
-      typename MOEOT::ObjectiveVector::Type min, max;
-      for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+        typename MOEOT::ObjectiveVector::Type min, max;
+        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
         {
-          min = _pop[0].objectiveVector()[i];
-          max = _pop[0].objectiveVector()[i];
-          for (unsigned int j=1; j<_pop.size(); j++)
+            min = _pop[0].objectiveVector()[i];
+            max = _pop[0].objectiveVector()[i];
+            for (unsigned int j=1; j<_pop.size(); j++)
             {
-              min = std::min(min, _pop[j].objectiveVector()[i]);
-              max = std::max(max, _pop[j].objectiveVector()[i]);
+                min = std::min(min, _pop[j].objectiveVector()[i]);
+                max = std::max(max, _pop[j].objectiveVector()[i]);
             }
-          // setting of the bounds for the objective i
-          metric.setup(min, max, i);
+            // setting of the bounds for the objective i
+            metric.setup(min, max, i);
         }
     }
-
-
+    
+    
     /**
      * Compute every indicator value in values (values[i] = I(_v[i], _o))
      * @param _pop the population
      */
     virtual void computeValues(const eoPop < MOEOT > & _pop)
     {
-      values.clear();
-      values.resize(_pop.size());
-      for (unsigned int i=0; i<_pop.size(); i++)
+        // initialize the values structure (if it is used for the first time with such a population size)
+        if (values.size() < _pop.size())
         {
-          values[i].resize(_pop.size());
-          // the metric may not be symetric, thus neither is the matrix
-          for (unsigned int j=0; j<_pop.size(); j++)
+            values.resize(_pop.size());
+            for (unsigned int i=0; i<values.size(); i++)
             {
-              if (i != j)
+                values[i].resize(_pop.size());
+            }
+        }
+        // go
+        for (unsigned int i=0; i<_pop.size(); i++)
+        {
+            // the metric may not be symetric, thus neither is the matrix
+            for (unsigned int j=0; j<_pop.size(); j++)
+            {
+                if (i != j)
                 {
-                  values[i][j] = Type( metric(_pop[i].objectiveVector(), _pop[j].objectiveVector()) );
+                    values[i][j] = Type( metric(_pop[i].objectiveVector(), _pop[j].objectiveVector()) );
                 }
             }
         }
     }
-
-
+    
+    
     /**
      * Sets the fitness value of the whole population
      * @param _pop the population
      */
     virtual void setFitnesses(eoPop < MOEOT > & _pop)
     {
-      for (unsigned int i=0; i<_pop.size(); i++)
+        for (unsigned int i=0; i<_pop.size(); i++)
         {
-          _pop[i].fitness(computeFitness(i));
+            _pop[i].fitness(computeFitness(_pop, i));
         }
     }
-
-
+    
+    
     /**
      * Returns the fitness value of the _idx th individual of the population
+     * @param _pop the population (only useful for its size here)
      * @param _idx the index
      */
-    virtual Fitness computeFitness(const unsigned int _idx)
+    virtual Fitness computeFitness(const eoPop < MOEOT > & _pop, const unsigned int _idx)
     {
-      Fitness result(0.0);
-      for (unsigned int i=0; i<values.size(); i++)
+        Fitness result(0.0);
+        for (unsigned int i=0; i<_pop.size(); i++)
         {
-          if (i != _idx)
+            if (i != _idx)
             {
-              result -= exp(-values[i][_idx]/kappa);
+                result -= exp(-values[i][_idx]/kappa);
             }
         }
-      return result;
+        return result;
     }
-
-  };
+    
+};
 
 #endif /*MOEOEXPBINARYINDICATORBASEDFITNESSASSIGNMENT_H_*/
