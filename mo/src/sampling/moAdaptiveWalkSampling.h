@@ -46,12 +46,19 @@
 #include <continuator/moMinusOneCounterStat.h>
 #include <continuator/moStatFromStat.h>
 #include <sampling/moSampling.h>
+#include <eval/moEvalCounter.h>
+#include <eoEvalFuncCounter.h>
+#include <continuator/moValueStat.h>
 
 /**
  * To compute the length and final solution of an adaptive walk:
  *   Perform a first improvement Hill-climber based on the neighborhood (adaptive walk),
- *   The lengths of HC are collected and the final solution which are local optima
- *   The adaptive walk is repeated several times
+ *   The adaptive walk is repeated several times (defined by a parameter)
+ *
+ *   Statistics are:
+ *    - the length of the adaptive walk
+ *    - the number of neighbor evaluaitons
+ *    - the final solution which are local optimum
  *
  */
 template <class Neighbor>
@@ -64,11 +71,12 @@ public:
 
     /**
      * Constructor
+     *
      * @param _init initialisation method of the solution
      * @param _neighborhood neighborhood giving neighbor in random order
      * @param _fullEval a full evaluation function
      * @param _eval an incremental evaluation of neighbors
-     * @param _nbAdaptWalk Number of adaptive walks
+     * @param _nbAdaptWalk Number of adaptive walks (minimum value = 2)
      */
     moAdaptiveWalkSampling(eoInit<EOT> & _init,
                           moNeighborhood<Neighbor> & _neighborhood,
@@ -76,15 +84,22 @@ public:
                           moEval<Neighbor>& _eval,
                           unsigned int _nbAdaptWalk) :
             moSampling<Neighbor>(initHC, * new moRandomSearch<Neighbor>(initHC, _fullEval, _nbAdaptWalk), copyStat),
-            copyStat(lengthStat),
+	    neighborEvalCount(_eval),
+	    nEvalStat(neighborEvalCount, true),
+            copyStat(lengthStat),  // copy is used to report the statistic of the first walk
+            copyEvalStat(nEvalStat),
             checkpoint(trueCont),
-	    hc(_neighborhood, _fullEval, _eval, checkpoint),
+            hc(_neighborhood, _fullEval, neighborEvalCount, checkpoint),
             initHC(_init, hc)
     {
         // to count the number of step in the HC
         checkpoint.add(lengthStat);
 
+	// to count the number of evaluations
+        checkpoint.add(nEvalStat);
+	
         // add the solution into statistics
+        this->add(copyEvalStat);
         this->add(solStat);
     }
 
@@ -97,6 +112,11 @@ public:
     }
 
 protected:
+  /* count the number of evaluations */
+  moEvalCounter<Neighbor> neighborEvalCount;
+  moValueStat<EOT, unsigned long> nEvalStat;
+  moStatFromStat<EOT, double> copyEvalStat;
+
     moSolutionStat<EOT> solStat;
     moMinusOneCounterStat<EOT> lengthStat;
     moTrueContinuator<Neighbor> trueCont;
@@ -104,6 +124,7 @@ protected:
     moCheckpoint<Neighbor> checkpoint;
     moFirstImprHC<Neighbor> hc;
     moLocalSearchInit<Neighbor> initHC;
+
 };
 
 
