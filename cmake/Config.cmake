@@ -54,7 +54,6 @@ elseif(INSTALL_TYPE STREQUAL min OR NOT DEFINED INSTALL_TYPE)
     set(ENABLE_CMAKE_TESTING "false" CACHE BOOL "ParadisEO tests")
 endif()
 
-
 ######################################################################################
 ### 2) Define profiling flags
 ######################################################################################
@@ -68,25 +67,69 @@ endif(PROFILING)
 ######################################################################################
 ### 3) Testing part
 ######################################################################################
-
+ 
 if(ENABLE_CMAKE_TESTING)
     enable_testing()
     include(CTest REQUIRED)
 endif(ENABLE_CMAKE_TESTING)
 
+# required by t-eoParserBoost.cpp
+find_package( Boost 1.36.0 )
+if(Boost_FOUND)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_DEBUG} -L ${Boost_INCLUDE_DIRS} -lboost_program_options -Wreorder")
+
+    if (UNIX OR CMAKE_COMPILER_IS_GNUCXX) 
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11") 
+    endif (UNIX OR CMAKE_COMPILER_IS_GNUCXX)
+    if (APPLE)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmacosx-version-min=10.7")
+    endif (APPLE) 
+endif(Boost_FOUND)
+
 ######################################################################################
-### 5) Build examples ?
+### 4) Build examples ?
 ######################################################################################
 
 set(ENABLE_CMAKE_EXAMPLE "true" CACHE BOOL "ParadisEO examples")
+
+######################################################################################
+### 5) Random numbers
+######################################################################################
+
+set(ENABLE_CXX11_RANDOM "false" CACHE BOOL "For C++11 random numbers")
+set(ENABLE_64_BIT_RNG_NUMBERS "false" CACHE BOOL "For 64-bit random numbers")
+
+# For C++11 random numbers
+if(ENABLE_CXX11_RANDOM)
+
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAVE_RANDOM") 
+
+    if (UNIX OR CMAKE_COMPILER_IS_GNUCXX) 
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11") 
+    endif (UNIX OR CMAKE_COMPILER_IS_GNUCXX)
+    if (APPLE)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmacosx-version-min=10.7")
+    endif (APPLE)
+
+    # For 64-bit random numbers
+    if(ENABLE_64_BIT_RNG_NUMBERS)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DWITH_64_BIT_RNG_NUMBERS")
+    endif(ENABLE_64_BIT_RNG_NUMBERS)
+
+endif(ENABLE_CXX11_RANDOM)
 
 ######################################################################################
 ### 6) Determine prefix for installation
 ######################################################################################
 
 if(UNIX)
-    set(INSTALL_SUB_DIR /paradiseo)
+    set(PROJECT_TAG "paradiseo" CACHE STRING "Project name as installation prefix")
+
+    # Define the path where the project headers have to be installed and where they can be found (linker) 
+    set(PROJECT_HDRS_INSTALL_SUBPATH /include CACHE PATH "Install subpath towards the project header")
+    set(PROJECT_HDRS_INSTALL_SUBPATH ${CMAKE_INSTALL_PREFIX}${PROJECT_HDRS_INSTALL_SUBPATH})
 endif()
 
-
-
+if (ENABLE_CMAKE_TESTING OR ENABLE_CMAKE_EXAMPLE)
+    message("Warning: Please ensure that you have executed the 'sudo make install' command before asking the compilation of the tests or examples.")
+endif ()

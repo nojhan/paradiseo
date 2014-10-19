@@ -50,83 +50,67 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Macro.cmake)
 
 ## Custom Targets file
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Target.cmake)
-
-######################################################################################
-### 4) Define and add module paths : EO, MO, MOEO
-######################################################################################
-
-## Paths to sources of modules
-set(  EO_SRC_DIR "${CMAKE_SOURCE_DIR}/eo"   CACHE INTERNAL "ParadisEO-EO   source directory" FORCE)
-set( EDO_SRC_DIR "${CMAKE_SOURCE_DIR}/edo"  CACHE INTERNAL "ParadisEO-EDO  source directory" FORCE)
-set(  MO_SRC_DIR "${CMAKE_SOURCE_DIR}/mo"   CACHE INTERNAL "ParadisEO-MO   source directory" FORCE)
-set(MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/moeo" CACHE INTERNAL "ParadisEO-MOEO source directory" FORCE)
-set( SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP  source directory" FORCE)
-set( MPI_SRC_DIR "${CMAKE_SOURCE_DIR}/eo/src/mpi"  CACHE INTERNAL "ParadisEO-MPI source directory" FORCE)
-
-set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dependant source directory" FORCE)
-
+ 
 set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
 
 # All libraries are built in <build_dir>/lib/
-set(  EO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EO   binary directory" FORCE)
-set( EDO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EDO  binary directory" FORCE)
-set(  MO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MO   binary directory" FORCE)
-set(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MOEO binary directory" FORCE)
-set( SMP_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-SMP  binary directory" FORCE)
-set( MPI_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MPI  binary directory" FORCE)
-
-
-set(EO_ONLY "false" CACHE BOOL "Only build EO and not the other modules")
-set(ENABLE_OPENMP "false" CACHE BOOL "Build EO with the OpenMP support (shared-memory parallel evaluators on multi-core)")
-set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-time convergence plotting)")
-set(EDO "false" CACHE BOOL "Build the EDO module")
-set(EDO_USE_LIB "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
-set(SMP "false" CACHE BOOL "Build the SMP module")
-set(MPI "false" CACHE BOOL "Build the MPI module")
-
-## EO Module
-set(EO_MODULE_NAME "Evolving Object")
-set(CMAKE_SOURCE_DIR ${EO_SRC_DIR})
-add_subdirectory(${EO_SRC_DIR})
-
-if(NOT EO_ONLY)
-    ## MO Module
-    set(MO_MODULE_NAME "Moving objects")
-    set(CMAKE_SOURCE_DIR ${MO_SRC_DIR})
-    add_subdirectory(${MO_SRC_DIR})
-
-    ## EDO Module
-    if(EDO)
-        set(EDO_MODULE_NAME "Evolving Distribution Objects")
-        set(CMAKE_SOURCE_DIR ${EDO_SRC_DIR})
-        add_subdirectory(${EDO_SRC_DIR})
-    endif()
-
-    ## MOEO Module
-    set(MOEO_MODULE_NAME "Multi-Objectives EO")
-    set(CMAKE_SOURCE_DIR ${MOEO_SRC_DIR})
-    add_subdirectory(${MOEO_SRC_DIR})
-
-    ## SMP Module
-    if(SMP)
-        set(SMP_MODULE_NAME "Symmetric Multi-Processing")
-        set(CMAKE_SOURCE_DIR ${SMP_SRC_DIR})
-        add_subdirectory(${SMP_SRC_DIR})
-    endif()
-
-    ## MPI Module
-    if(MPI)
-        find_package(MPI REQUIRED)
-        add_definitions(-DWITH_MPI)
-        set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
-        set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
-        include_directories(${MPI_INCLUDE_PATH})
-        add_subdirectory(${MPI_SRC_DIR})
-    endif()
-endif()
+set(      EO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EO       binary directory" FORCE)
+set(     EDO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EDO      binary directory" FORCE)
+set(      MO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MO       binary directory" FORCE)
+set(    MOEO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-MOEO     binary directory" FORCE)
+set(     SMP_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-SMP      binary directory" FORCE)
+set(   EOMPI_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EOMPI    binary directory" FORCE)
+set(EOSERIAL_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EOSERIAL binary directory" FORCE)
 
 ######################################################################################
-### 5) Packaging : only in release !
+### 4) Choose module(s) 
+######################################################################################
+
+set(EO_ONLY  "false" CACHE BOOL "Only build EO and not the other modules")
+set(MO       "false" CACHE BOOL "Build the MO module")
+set(EDO      "false" CACHE BOOL "Build the EDO module")
+set(MOEO     "false" CACHE BOOL "Build the MOEO module")
+set(SMP      "false" CACHE BOOL "Build the SMP module")
+set(EOMPI    "false" CACHE BOOL "Build the EOMPI module")
+set(EOSERIAL "false" CACHE BOOL "Build the EOSERIAL module")
+
+set(ENABLE_OPENMP  "false" CACHE BOOL "Build EO with the OpenMP support (shared-memory parallel evaluators on multi-core)")
+set(ENABLE_GNUPLOT "false" CACHE BOOL "Build EO with the GNUplot support (real-time convergence plotting)")
+set(EDO_USE_LIB    "Eigen3" CACHE STRING "Which linear algebra library to use to build EDO ('UBlas' or 'Eigen3', Eigen3 is recommended)")
+
+set(      EO_TEST_DIR "${CMAKE_SOURCE_DIR}/test/eo"         CACHE INTERNAL "ParadisEO-EO       test directory" FORCE)
+set(     EDO_TEST_DIR "${CMAKE_SOURCE_DIR}/test/edo"        CACHE INTERNAL "ParadisEO-EDO      test directory" FORCE)
+set(      MO_TEST_DIR "${CMAKE_SOURCE_DIR}/test/mo"         CACHE INTERNAL "ParadisEO-MO       test directory" FORCE)
+set(    MOEO_TEST_DIR "${CMAKE_SOURCE_DIR}/test/moeo"       CACHE INTERNAL "ParadisEO-MOEO     test directory" FORCE)
+set(     SMP_TEST_DIR "${CMAKE_SOURCE_DIR}/test/smp"        CACHE INTERNAL "ParadisEO-SMP      test directory" FORCE)
+set(   EOMPI_TEST_DIR "${CMAKE_SOURCE_DIR}/test/eompi"      CACHE INTERNAL "ParadisEO-EOMPI    test directory" FORCE)
+set(EOSERIAL_TEST_DIR "${CMAKE_SOURCE_DIR}/test/eoserial"   CACHE INTERNAL "ParadisEO-EOSERIAL test directory" FORCE)
+
+set(      EO_TUTORIAL_DIR "${CMAKE_SOURCE_DIR}/tutorial/eo"         CACHE INTERNAL "ParadisEO-EO       tutorial directory" FORCE)
+set(     EDO_TUTORIAL_DIR "${CMAKE_SOURCE_DIR}/tutorial/edo"        CACHE INTERNAL "ParadisEO-EDO      tutorial directory" FORCE)
+set(      MO_TUTORIAL_DIR "${CMAKE_SOURCE_DIR}/tutorial/mo"         CACHE INTERNAL "ParadisEO-MO       tutorial directory" FORCE)
+set(    MOEO_TUTORIAL_DIR "${CMAKE_SOURCE_DIR}/tutorial/moeo"       CACHE INTERNAL "ParadisEO-MOEO     tutorial directory" FORCE)
+set(     SMP_TUTORIAL_DIR "${CMAKE_SOURCE_DIR}/tutorial/smp"        CACHE INTERNAL "ParadisEO-SMP      tutorial directory" FORCE)
+set(   EOMPI_TUTORIAL_DIR "${CMAKE_SOURCE_DIR}/tutorial/eompi"      CACHE INTERNAL "ParadisEO-EOMPI    tutorial directory" FORCE)
+set(EOSERIAL_TUTORIAL_DIR "${CMAKE_SOURCE_DIR}/tutorial/eoserial"   CACHE INTERNAL "ParadisEO-EOSERIAL tutorial directory" FORCE)
+
+######################################################################################
+### 5) Add sources
+######################################################################################
+
+add_subdirectory(src)
+add_subdirectory(doc)
+
+if(ENABLE_CMAKE_EXAMPLE)
+    add_subdirectory(tutorial)
+endif(ENABLE_CMAKE_EXAMPLE)
+
+if(ENABLE_CMAKE_TESTING)
+    add_subdirectory(test)
+endif(ENABLE_CMAKE_TESTING)
+
+######################################################################################
+### 6) Packaging : only in release !
 ######################################################################################
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Release")

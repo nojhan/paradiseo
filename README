@@ -8,6 +8,7 @@ The current release is paradisEO-2.0
 ==========================================================================================
                       INSTALLATION
 ==========================================================================================
+
 The basic installation procedure must be done in a separatly folder in order to keep
 your file tree clean.
 
@@ -22,8 +23,9 @@ Please refer to paradisEO website or INSTALL file for further information about
 installation types and options.
 
 ==========================================================================================
-                       DIRECTORY STRUCTURE
+                       DIRECTORY OLD STRUCTURE
 ==========================================================================================
+
 After unpacking the archive file, you should end up with the following
 structure:
 
@@ -36,31 +38,82 @@ structure:
    +-- cmake/				      CMake dir
    |
    |
-   +-- CMakeLists.txt			  For building process
+   +-- CMakeLists.txt			For building process
    |
    |
-   +-- CTestConfig.cmake		  For testing process
+   +-- CTestConfig.cmake	   For testing process
    |
    |
-   +-- INSTALL                    INSTALL file
+   +-- INSTALL                INSTALL file
    |
    |
    +-- LICENCE				      Licence contents
    |
    |
-   +-- paradiseo-eo 			  paradiseo-eo dir
+   +-- paradiseo-eo 			   paradiseo-eo dir
    |
    |
-   +-- paradiseo-mo               paradiseo-mo dir 
+   +-- paradiseo-mo           paradiseo-mo dir 
    |
    |
-   +-- paradiseo-moeo             paradiseo-moeo  dir
+   +-- paradiseo-moeo         paradiseo-moeo  dir
    |
    |
-   +-- problems                    classical problems evaluation functions
+   +-- problems               classical problems evaluation functions
    |
    |
    +-- README				       README file
+
+==========================================================================================
+                       DIRECTORY NEW STRUCTURE
+==========================================================================================
+
+After unpacking the archive file, you should end up with the following
+structure:
+
+.../                        
+   |
+   |
+   +-- AUTHORS             Author list 
+   |
+   |
+   +-- cmake/              CMake dir
+   |
+   |
+   +-- CMakeLists.txt      For building process
+   |
+   |
+   +-- CTestConfig.cmake   For testing process
+   |
+   |
+   +-- INSTALL             INSTALL file
+   |
+   |
+   +-- LICENCE             Licence contents
+   |
+   |
+   +-- src                 src dir
+   |
+   |
+   +-- test                tests dir 
+   |
+   |
+   +-- tutorial            tutorials dir
+   |
+   |
+   +-- doc                 documentation src
+   |
+   |
+   +-- deprecated          deprecated module
+   |
+   |
+   +-- websites            index of the paradiseo-website
+   |
+   |
+   +-- ForRelease          how to create a new release 
+   |
+   |
+   +-- README              README file
 
 ==========================================================================================
               NOTES
@@ -78,6 +131,7 @@ problems for the installation.
 ==========================================================================================
               CONTACT
 ==========================================================================================
+
 For further information about ParadisEO, help or to report any
 problem : paradiseo-help@lists.gforge.inria.fr
 

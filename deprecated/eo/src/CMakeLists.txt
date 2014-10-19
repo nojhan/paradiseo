@@ -24,10 +24,10 @@ ADD_LIBRARY(eo STATIC ${EO_SOURCES})
 INSTALL(TARGETS eo ARCHIVE DESTINATION local/${LIB} COMPONENT libraries)
 
 FILE(GLOB HDRS *.h eo)
-INSTALL(FILES ${HDRS} DESTINATION local/include${INSTALL_SUB_DIR}/eo COMPONENT headers)
+INSTALL(FILES ${HDRS} DESTINATION local/include/${PROJECT_TAG}/eo COMPONENT headers)
 
 INSTALL(DIRECTORY do es ga gp other utils 
-        DESTINATION local/include${INSTALL_SUB_DIR}/eo 
+        DESTINATION local/include/${PROJECT_TAG}/eo 
         COMPONENT headers
         FILES_MATCHING PATTERN "*.h" PATTERN "checkpointing" PATTERN external_eo
         )
