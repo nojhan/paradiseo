@@ -76,71 +76,112 @@ template <class Neighbor>
 class moNeutralWalkSampling : public moSampling<Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT ;
+  typedef typename Neighbor::EOT EOT ;
 
-    using moSampling<Neighbor>::localSearch;
+  using moSampling<Neighbor>::localSearch;
 
-    /**
-     * Constructor
-     * @param _initSol the first solution of the walk
-     * @param _neighborhood neighborhood giving neighbor in random order
-     * @param _fullEval Fitness function, full evaluation function
-     * @param _eval neighbor evaluation, incremental evaluation function
-     * @param _distance component to measure the distance from the initial solution
-     * @param _nbStep Number of steps of the random walk
-     */
-    moNeutralWalkSampling(EOT & _initSol,
-                          moNeighborhood<Neighbor> & _neighborhood,
-                          eoEvalFunc<EOT>& _fullEval,
-                          moEval<Neighbor>& _eval,
-                          eoDistance<EOT> & _distance,
-                          unsigned int _nbStep) :
-            moSampling<Neighbor>(init, * new moRandomNeutralWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), solutionStat),
-            init(_initSol),
-            distStat(_distance, _initSol),
-            neighborhoodStat(_neighborhood, _eval),
-            minStat(neighborhoodStat),
-            averageStat(neighborhoodStat),
-            stdStat(neighborhoodStat),
-            maxStat(neighborhoodStat),
-            nbSupStat(neighborhoodStat),
-            nbInfStat(neighborhoodStat),
-            sizeStat(neighborhoodStat),
-            ndStat(neighborhoodStat)
-    {
-        this->add(neighborhoodStat, false);
-        this->add(distStat);
-        this->add(minStat);
-        this->add(averageStat);
-        this->add(stdStat);
-        this->add(maxStat);
-        this->add(sizeStat);
-        this->add(nbInfStat);
-        this->add(ndStat);
-        this->add(nbSupStat);
-    }
+  /**
+   * Constructor
+   * @param _initSol the first solution of the walk
+   * @param _neighborhood neighborhood giving neighbor in random order
+   * @param _fullEval Fitness function, full evaluation function
+   * @param _eval neighbor evaluation, incremental evaluation function
+   * @param _distance component to measure the distance from the initial solution
+   * @param _nbStep Number of steps of the random walk
+   */
+  moNeutralWalkSampling(EOT & _initSol,
+			moNeighborhood<Neighbor> & _neighborhood,
+			eoEvalFunc<EOT>& _fullEval,
+			moEval<Neighbor>& _eval,
+			eoDistance<EOT> & _distance,
+			unsigned int _nbStep) :
+    moSampling<Neighbor>(init, * new moRandomNeutralWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), solutionStat),
+    init(_initSol),
+    distStat(_distance, _initSol),
+    neighborhoodStat(_neighborhood, _eval),
+    minStat(neighborhoodStat),
+    averageStat(neighborhoodStat),
+    stdStat(neighborhoodStat),
+    maxStat(neighborhoodStat),
+    nbSupStat(neighborhoodStat),
+    nbInfStat(neighborhoodStat),
+    sizeStat(neighborhoodStat),
+    ndStat(neighborhoodStat)
+  {
+    this->add(neighborhoodStat, false);
+    this->add(distStat);
+    this->add(minStat);
+    this->add(averageStat);
+    this->add(stdStat);
+    this->add(maxStat);
+    this->add(sizeStat);
+    this->add(nbInfStat);
+    this->add(ndStat);
+    this->add(nbSupStat);
+  }
 
-    /**
-     * default destructor
-     */
-    ~moNeutralWalkSampling() {
-        // delete the pointer on the local search which has been constructed in the constructor
-        delete localSearch;
-    }
+  /**
+   * Constructor
+   * @param _initSol the first solution of the walk
+   * @param _neighborhood neighborhood giving neighbor in random order
+   * @param _fullEval Fitness function, full evaluation function
+   * @param _eval neighbor evaluation, incremental evaluation function
+   * @param _distance component to measure the distance from the initial solution
+   * @param _nbStep Number of steps of the random walk
+   */
+  moNeutralWalkSampling(eoInit<EOT> & _init,
+			moNeighborhood<Neighbor> & _neighborhood,
+			eoEvalFunc<EOT>& _fullEval,
+			moEval<Neighbor>& _eval,
+			unsigned int _nbStep) :
+    moSampling<Neighbor>(_init, * new moRandomNeutralWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), solutionStat),
+    init(initialSol),
+    distStat(dummyDistance, initialSol),
+    neighborhoodStat(_neighborhood, _eval),
+    minStat(neighborhoodStat),
+    averageStat(neighborhoodStat),
+    stdStat(neighborhoodStat),
+    maxStat(neighborhoodStat),
+    nbSupStat(neighborhoodStat),
+    nbInfStat(neighborhoodStat),
+    sizeStat(neighborhoodStat),
+    ndStat(neighborhoodStat)
+  {
+    this->add(neighborhoodStat, false);
+    //    this->add(distStat);
+    this->add(minStat);
+    this->add(averageStat);
+    this->add(stdStat);
+    this->add(maxStat);
+    this->add(sizeStat);
+    this->add(nbInfStat);
+    this->add(ndStat);
+    this->add(nbSupStat);
+  }
+
+  /**
+   * default destructor
+   */
+  ~moNeutralWalkSampling() {
+    // delete the pointer on the local search which has been constructed in the constructor
+    delete localSearch;
+  }
 
 protected:
-    moSolInit<EOT> init;
-    moSolutionStat<EOT> solutionStat;
-    moDistanceStat<EOT> distStat;
-    moNeighborhoodStat< Neighbor > neighborhoodStat;
-    moMinNeighborStat< Neighbor > minStat;
-    moAverageFitnessNeighborStat< Neighbor > averageStat;
-    moStdFitnessNeighborStat< Neighbor > stdStat;
-    moMaxNeighborStat< Neighbor > maxStat;
-    moNbSupNeighborStat< Neighbor > nbSupStat;
-    moNbInfNeighborStat< Neighbor > nbInfStat;
-    moSizeNeighborStat< Neighbor > sizeStat;
-    moNeutralDegreeNeighborStat< Neighbor > ndStat;
+  EOT initialSol;
+  eoHammingDistance<EOT> dummyDistance;
+  moSolInit<EOT> init;
+  moSolutionStat<EOT> solutionStat;
+  moDistanceStat<EOT> distStat;
+  moNeighborhoodStat< Neighbor > neighborhoodStat;
+  moMinNeighborStat< Neighbor > minStat;
+  moAverageFitnessNeighborStat< Neighbor > averageStat;
+  moStdFitnessNeighborStat< Neighbor > stdStat;
+  moMaxNeighborStat< Neighbor > maxStat;
+  moNbSupNeighborStat< Neighbor > nbSupStat;
+  moNbInfNeighborStat< Neighbor > nbInfStat;
+  moSizeNeighborStat< Neighbor > sizeStat;
+  moNeutralDegreeNeighborStat< Neighbor > ndStat;
 
 };
 

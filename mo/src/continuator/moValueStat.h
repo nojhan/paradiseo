@@ -45,12 +45,15 @@ template <class EOT, class ValueType>
 class moValueStat : public moStat<EOT, double>
 {
 public :
-    using moStat< EOT, double>::value;
+    using moStat<EOT, double>::value;
 
     /**
      * Default Constructor
+     *
+     * @param _valueParam the value to report in the statistic
+     * @param _restart if true, the value is initialized at 0 for each init (restart)
      */
-  moValueStat(eoValueParam<ValueType> & _valueParam): moStat<EOT, double>(0, "value"), valueParam(_valueParam) {
+  moValueStat(eoValueParam<ValueType> & _valueParam, bool _restart = false): moStat<EOT, double>(0, "value"), valueParam(_valueParam), restart(_restart) {
   }
 
     /**
@@ -58,7 +61,12 @@ public :
      * @param _sol a solution
      */
     virtual void init(EOT & _sol) {
-      value() = (double) valueParam.value();
+      if (restart)
+        value_start = valueParam.value();
+      else
+	value_start = 0;
+
+      value() = (double) (valueParam.value() - value_start);
     }
 
     /**
@@ -66,7 +74,7 @@ public :
      * @param _sol a solution
      */
     virtual void operator()(EOT & _sol) {
-      value() = (double) valueParam.value() ;
+      value() = (double) (valueParam.value() - value_start);
     }
 
     /**
@@ -78,6 +86,9 @@ public :
 
 private:
   eoValueParam<ValueType> & valueParam;
+
+  bool restart;
+  ValueType value_start ;
 
 };
 

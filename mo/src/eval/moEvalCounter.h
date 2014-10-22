@@ -34,8 +34,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <utils/eoParam.h>
 
 /**
-    Counts the number of neighbor evaluations actually performed, thus checks first
-    if it has to evaluate.. etc.
+    Counts the number of neighbor evaluations actually performed, 
+    thus checks first if it has to be evaluated.. etc.
 */
 template<class Neighbor>
 class moEvalCounter : public moEval<Neighbor>, public eoValueParam<unsigned long>

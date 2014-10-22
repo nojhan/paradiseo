@@ -45,12 +45,12 @@ public:
    *
    * @param _fileData the file name which contains the instance of QAP from QAPlib
    */
-  QAPeval(string & _fileData) {
-    fstream file(_fileData.c_str(), ios::in);
+  QAPeval(std::string _fileData) {
+    std::fstream file(_fileData.c_str(), std::ios::in);
 
     if (!file) {
-      string str = "QAPeval: Could not open file [" + _fileData + "]." ;
-      throw runtime_error(str);
+      std::string str = "QAPeval: Could not open file [" + _fileData + "]." ;
+      throw std::runtime_error(str);
     }
     
     unsigned i, j;
