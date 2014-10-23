@@ -56,7 +56,7 @@ public :
      * @param _nhStat a neighborhoodStat
      */
     moMaxNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
-            moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat) {}
+            moStat<EOT, Fitness>(Fitness(), "max"), nhStat(_nhStat) {}
 
     /**
      * Set the max fitness in the neighborhood

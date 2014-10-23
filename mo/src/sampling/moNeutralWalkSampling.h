@@ -47,6 +47,9 @@
 #include <continuator/moNeighborhoodStat.h>
 #include <continuator/moMaxNeighborStat.h>
 #include <continuator/moMinNeighborStat.h>
+#include <continuator/moQ1NeighborStat.h>
+#include <continuator/moQ3NeighborStat.h>
+#include <continuator/moMedianNeighborStat.h>
 #include <continuator/moAverageFitnessNeighborStat.h>
 #include <continuator/moStdFitnessNeighborStat.h>
 #include <continuator/moSizeNeighborStat.h>
@@ -63,9 +66,12 @@
  *    Informations collected:
  *         - the current solution of the walk
  *         - the distance from the starting solution
- *         - the minimal fitness in the neighborhood
  *         - the average fitness
  *         - the standard deviation of the fitness
+ *         - the minimal fitness in the neighborhood
+ *         - the first quartile of fitness in the neighborhood
+ *         - the median fitness in the neighborhood
+ *         - the third quartile of fitness in the neighborhood
  *         - the maximal fitness
  *         - the size of the neighborhood
  *         - the number of neighbors with lower fitness
@@ -99,20 +105,26 @@ public:
     init(_initSol),
     distStat(_distance, _initSol),
     neighborhoodStat(_neighborhood, _eval),
-    minStat(neighborhoodStat),
     averageStat(neighborhoodStat),
     stdStat(neighborhoodStat),
+    minStat(neighborhoodStat),
     maxStat(neighborhoodStat),
     nbSupStat(neighborhoodStat),
     nbInfStat(neighborhoodStat),
     sizeStat(neighborhoodStat),
-    ndStat(neighborhoodStat)
+      ndStat(neighborhoodStat),
+      q1Stat(neighborhoodStat),
+      medianStat(neighborhoodStat),
+      q3Stat(neighborhoodStat)
   {
     this->add(neighborhoodStat, false);
     this->add(distStat);
-    this->add(minStat);
     this->add(averageStat);
     this->add(stdStat);
+    this->add(minStat);
+    this->add(q1Stat);
+    this->add(medianStat);
+    this->add(q3Stat);
     this->add(maxStat);
     this->add(sizeStat);
     this->add(nbInfStat);
@@ -145,13 +157,19 @@ public:
     nbSupStat(neighborhoodStat),
     nbInfStat(neighborhoodStat),
     sizeStat(neighborhoodStat),
-    ndStat(neighborhoodStat)
+      ndStat(neighborhoodStat),
+      q1Stat(neighborhoodStat),
+      medianStat(neighborhoodStat),
+      q3Stat(neighborhoodStat)
   {
     this->add(neighborhoodStat, false);
     //    this->add(distStat);
-    this->add(minStat);
     this->add(averageStat);
     this->add(stdStat);
+    this->add(minStat);
+    this->add(q1Stat);
+    this->add(medianStat);
+    this->add(q3Stat);
     this->add(maxStat);
     this->add(sizeStat);
     this->add(nbInfStat);
@@ -182,6 +200,9 @@ protected:
   moNbInfNeighborStat< Neighbor > nbInfStat;
   moSizeNeighborStat< Neighbor > sizeStat;
   moNeutralDegreeNeighborStat< Neighbor > ndStat;
+  moQ1NeighborStat< Neighbor > q1Stat;
+  moMedianNeighborStat< Neighbor > medianStat;
+  moQ3NeighborStat< Neighbor > q3Stat;
 
 };
 

@@ -57,7 +57,7 @@ public :
      * @param _nhStat a neighborhoodStat
      */
     moNbSupNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
-            moStat<EOT, unsigned>(0, "nb sup"), nhStat(_nhStat) {}
+            moStat<EOT, unsigned>(0, "sup"), nhStat(_nhStat) {}
 
     /**
      * Set the number of solutions in the neighborhood with better fitness than the current solution

@@ -1,5 +1,5 @@
 /*
-  <moSizeNeighborStat.h>
+  <moMedianNeighborStat.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,53 +32,54 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moSizeNeighborStat_h
-#define moSizeNeighborStat_h
+#ifndef moMedianNeighborStat_h
+#define moMedianNeighborStat_h
 
 #include <continuator/moStat.h>
 #include <continuator/moNeighborhoodStat.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
- * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
- *
+ * From moNeighborhoodStat, 
+ * to compute the meadian fitness in the neighborhood
  */
 template< class Neighbor >
-class moSizeNeighborStat : public moStat<typename Neighbor::EOT, unsigned>
+class moMedianNeighborStat : public moStat<typename Neighbor::EOT, typename Neighbor::EOT::Fitness>
 {
 public :
     typedef typename Neighbor::EOT EOT ;
     typedef typename EOT::Fitness Fitness ;
 
-    using moStat< EOT, unsigned >::value;
+    using moStat< EOT, Fitness >::value;
 
     /**
      * Constructor
      * @param _nhStat a neighborhoodStat
      */
-    moSizeNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
-            moStat<EOT, unsigned>(0, "nghsize"), nhStat(_nhStat) {}
+    moMedianNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
+            moStat<EOT, Fitness>(Fitness(), "median"), nhStat(_nhStat) {}
 
     /**
-     * Set the number of solutions in the neighborhood
+     * Set the median fitness in the neighborhood
      * @param _sol the first solution
      */
     virtual void init(EOT & _sol) {
-        value() = nhStat.getSize();
+        value() = nhStat.getMedian();
     }
 
     /**
-     * Set the number of solutions in the neighborhood
+     * Set the median fitness in the neighborhood
      * @param _sol the corresponding solution
      */
     virtual void operator()(EOT & _sol) {
-        value() = nhStat.getSize();
+        value() = nhStat.getMedian();
     }
 
     /**
      * @return the class name
      */
     virtual std::string className(void) const {
-        return "moSizeNeighborStat";
+        return "moMedianNeighborStat";
     }
 
 private:

@@ -55,7 +55,7 @@ public :
      * @param _nhStat a neighborhoodStat
      */
     moSecondMomentNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
-            moStat<EOT, std::pair<double, double> >(std::make_pair(0.0,0.0), "average and stdev"), nhStat(_nhStat) {}
+            moStat<EOT, std::pair<double, double> >(std::make_pair(0.0,0.0), "mean sd"), nhStat(_nhStat) {}
 
     /**
      * Set the average and the standard deviation of fitness in the neighborhood

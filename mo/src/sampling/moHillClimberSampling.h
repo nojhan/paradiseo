@@ -84,6 +84,9 @@ public:
         // to count the number of step in the HC
         checkpoint.add(lengthStat);
 
+	// set the long name of this statistic which is the length of the walk
+	copyStat.setLongName("length");
+
         // add the solution into statistics
         this->add(solStat);
     }

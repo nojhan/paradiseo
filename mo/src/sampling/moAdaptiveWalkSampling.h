@@ -95,8 +95,14 @@ public:
         // to count the number of step in the HC
         checkpoint.add(lengthStat);
 
+	// set the long name of this statistic which is the length of the walk
+	copyStat.setLongName("length");
+
 	// to count the number of evaluations
         checkpoint.add(nEvalStat);
+
+	// set the long name of this statistic which is the number of neighbor evaluation
+	copyEvalStat.setLongName("ngheval");
 	
         // add the solution into statistics
         this->add(copyEvalStat);

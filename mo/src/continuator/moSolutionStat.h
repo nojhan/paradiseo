@@ -53,7 +53,7 @@ public :
      * @param _description a description of the parameter
      */
     moSolutionStat(std::string _description = "solution"):
-      moStat<EOT, EOT>(EOT(), _description) {  }
+      moStat<EOT, EOT>(EOT(), "fitness solution") {  }
 
     /**
      * Initialization the solution by copy

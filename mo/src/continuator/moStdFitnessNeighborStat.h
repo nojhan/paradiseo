@@ -55,7 +55,7 @@ public :
      * @param _nhStat a neighborhoodStat
      */
     moStdFitnessNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
-            moStat<EOT, double >(0.0, "stdev"), nhStat(_nhStat) {}
+            moStat<EOT, double >(0.0, "sd"), nhStat(_nhStat) {}
 
     /**
      * Set the average and the standard deviation of fitness in the neighborhood

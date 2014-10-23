@@ -1,5 +1,5 @@
 /*
-  <moSizeNeighborStat.h>
+  <moQuartilesNeighborStat.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,53 +32,55 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moSizeNeighborStat_h
-#define moSizeNeighborStat_h
+#ifndef moQuartilesNeighborStat_h
+#define moQuartilesNeighborStat_h
 
 #include <continuator/moStat.h>
 #include <continuator/moNeighborhoodStat.h>
 
 /**
- * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
- *
+ * From moNeighborhoodStat, 
+ * to compute the first and the third quartile of fitness in the neighborhood
  */
 template< class Neighbor >
-class moSizeNeighborStat : public moStat<typename Neighbor::EOT, unsigned>
+class moQuartilesNeighborStat : public moStat<typename Neighbor::EOT, std::pair<double, double> >
 {
 public :
     typedef typename Neighbor::EOT EOT ;
     typedef typename EOT::Fitness Fitness ;
 
-    using moStat< EOT, unsigned >::value;
+    using moStat< EOT, std::pair<double, double> >::value;
 
     /**
      * Constructor
      * @param _nhStat a neighborhoodStat
      */
-    moSizeNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
-            moStat<EOT, unsigned>(0, "nghsize"), nhStat(_nhStat) {}
+    moQuartilesNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
+            moStat<EOT, std::pair<double, double> >(std::make_pair(0.0,0.0), "first and third quartile"), nhStat(_nhStat) {}
 
     /**
-     * Set the number of solutions in the neighborhood
+     * Set the first and the third quartile of fitness in the neighborhood
      * @param _sol the first solution
      */
     virtual void init(EOT & _sol) {
-        value() = nhStat.getSize();
+        value().first  = nhStat.getQ1();
+        value().second = nhStat.getQ3();
     }
 
     /**
-     * Set the number of solutions in the neighborhood
+     * Set the first and the third quartile fitness in the neighborhood
      * @param _sol the corresponding solution
      */
     virtual void operator()(EOT & _sol) {
-        value() = nhStat.getSize();
+        value().first  = nhStat.getQ1();
+        value().second = nhStat.getQ3();
     }
 
     /**
      * @return the class name
      */
     virtual std::string className(void) const {
-        return "moSizeNeighborStat";
+        return "moQuartilesNeighborStat";
     }
 
 private:
