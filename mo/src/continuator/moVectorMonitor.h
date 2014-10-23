@@ -175,6 +175,24 @@ public:
 	}
 
 	/**
+	 * Returns the long name of the statistic (which is a eoParam) 
+	 *
+	 * @return longName of the statistic
+	 */
+	const std::string& longName() const { 
+	  if (doubleParam != NULL) 
+	    return doubleParam->longName(); 
+	  else
+	    if (intParam != NULL)
+	      return intParam->longName();
+	    else
+	      if (intLongParam != NULL)
+		return intLongParam->longName();
+	      else 
+		return eotParam->longName();
+	}
+
+	/**
 	 * clear the vector
 	 */
 	void clear() {

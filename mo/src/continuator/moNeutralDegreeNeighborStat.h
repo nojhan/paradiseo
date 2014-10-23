@@ -57,7 +57,7 @@ public :
      * @param _nhStat a neighborhoodStat
      */
     moNeutralDegreeNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
-            moStat<EOT, unsigned>(0, "neutral degree"), nhStat(_nhStat) {}
+            moStat<EOT, unsigned>(0, "nd"), nhStat(_nhStat) {}
 
     /**
      * Set the neutral degree of the solution which is the number of solutions in the neighborhood with equals fitness

@@ -57,7 +57,7 @@ int main() {
 
     std::vector<double> res;
     std::vector<bitVector> res2;
-    res = test.getValues(1);
+    res = test.getValues(2);
     res2= test.getSolutions(0);
 
     for (unsigned int i=0; i<res2.size(); i++)

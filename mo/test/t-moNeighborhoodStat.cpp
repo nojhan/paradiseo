@@ -39,6 +39,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moStdFitnessNeighborStat.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <continuator/moQuartilesNeighborStat.h>
+#include <continuator/moQ1NeighborStat.h>
+#include <continuator/moQ3NeighborStat.h>
+#include <continuator/moMedianNeighborStat.h>
 
 #include "moTestClass.h"
 
@@ -85,6 +89,9 @@ int main() {
     assert(test.getMean()==6.6);
     double sd=test.getSD();
     assert(sd>0.966 && sd<0.967);
+    assert(test.getMedian()==6);
+    assert(test.getQ1()==6);
+    assert(test.getQ3()==8);
     assert(test.getSize()==10);
     assert(test.getNbSup()==7);
     assert(test.getNbInf()==3);
@@ -166,6 +173,40 @@ int main() {
     assert(test10.value()> 0.966 && test10.value() < 0.967);
     assert(test10.className()=="moStdFitnessNeighborStat");
     std::cout << "[t-moStdFitnessNeighborStat] => OK" << std::endl;
+
+    //test of moQuartilesNeighborStat.h
+    std::cout << "[t-moQuartilesNeighborStat] => START" << std::endl;
+    moQuartilesNeighborStat<bitNeighbor> test11(test);
+    test11.init(sol);
+    test11(sol);
+    assert(test11.value().first==6);
+    assert(test11.value().second==8);
+    assert(test11.className()=="moQuartilesNeighborStat");
+    std::cout << "[t-moQuartilesNeighborStat] => OK" << std::endl;
+
+    //test of moMedianNeighborStat.h
+    std::cout << "[t-moMedianNeighborStat] => START" << std::endl;
+    moMedianNeighborStat<bitNeighbor> test12(test);
+    test12(sol);
+    assert(test12.value()==6);
+    assert(test12.className()=="moMedianNeighborStat");
+    std::cout << "[t-moMedianNeighborStat] => OK" << std::endl;
+
+    //test of moQ1NeighborStat.h
+    std::cout << "[t-moQ1NeighborStat] => START" << std::endl;
+    moQ1NeighborStat<bitNeighbor> test13(test);
+    test13(sol);
+    assert(test13.value()==6);
+    assert(test13.className()=="moQ1NeighborStat");
+    std::cout << "[t-moQ1NeighborStat] => OK" << std::endl;
+
+    //test of moQ3NeighborStat.h
+    std::cout << "[t-moQ3NeighborStat] => START" << std::endl;
+    moQ3NeighborStat<bitNeighbor> test14(test);
+    test14(sol);
+    assert(test14.value()==8);
+    assert(test14.className()=="moQ3NeighborStat");
+    std::cout << "[t-moQ3NeighborStat] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

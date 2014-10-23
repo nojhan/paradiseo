@@ -140,19 +140,20 @@ public:
 
 	/**
 	 * to export the vectors of values into one file
+	 *
 	 * @param _filename file name
 	 * @param _delim delimiter between statistics
 	 * @param _openFile to specify if it writes at the following of the file
+	 * @param _header if true, print the headers which are the name of the statistic
 	 */
-	void fileExport(std::string _filename, std::string _delim = " ", bool _openFile=false) {
+	  void fileExport(std::string _filename, std::string _delim = " ", bool _openFile = false, bool _header = false) {
 		// create file
 		std::ofstream os;
 
 		if(! _openFile)
 			os.open(_filename.c_str());
-
 		else
-			os.open(_filename.c_str(),std::ios::app);
+			os.open(_filename.c_str(), std::ios::app);
 
 		if (!os) {
 			std::string str = "moSampling: Could not open " + _filename;
@@ -163,6 +164,16 @@ public:
 		os.precision(precisionOutput);
 		for (unsigned int j = 0; j < monitorVec.size(); j++) 
 		  monitorVec[j]->precision(precisionOutput);
+
+		if (!_openFile && _header) {
+		  os << monitorVec[0]->longName();
+
+		  for (unsigned int j = 1; j < monitorVec.size(); j++) {
+		    os << _delim.c_str() << monitorVec[j]->longName();
+		  }
+
+		  os << std::endl ;
+		}
 
 		// all vector have the same size
 		unsigned vecSize = monitorVec[0]->size();

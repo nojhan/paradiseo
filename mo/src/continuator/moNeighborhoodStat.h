@@ -41,6 +41,8 @@
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <neighborhood/moNeighborhood.h>
+#include <vector>
+#include <algorithm>   // std::sort
 
 /**
  * All possible statitic on the neighborhood fitness
@@ -102,8 +104,11 @@ public :
         Neighbor lowest ;
 
         if (neighborhood.hasNeighbor(_solution)) {
-            //init the first neighbor
-            neighborhood.init(_solution, current);
+	  // to save the fitness values of the neighbors
+	  std::vector<double> neighborFitness;
+
+	  //init the first neighbor
+	  neighborhood.init(_solution, current);
 
             //eval the _solution moved with the neighbor and stock the result in the neighbor
             eval(_solution, current);
@@ -112,7 +117,7 @@ public :
             value() = true;
 
             mean = current.fitness();
-            sd   = mean * mean;
+	    neighborFitness.push_back( (double) current.fitness() );
             nb      = 1;
             nbInf   = 0;
             nbEqual = 0;
@@ -137,7 +142,7 @@ public :
                 eval(_solution, current);
 
                 mean += current.fitness();
-                sd += current.fitness() * current.fitness();
+		neighborFitness.push_back( (double) current.fitness() );
                 nb++;
 
                 if (solNeighborComparator.equals(_solution, current))
@@ -159,10 +164,24 @@ public :
             min = lowest.fitness();
 
             mean /= nb;
-            if (nb > 1)
-                sd = sqrt( (sd - nb * mean * mean) / (nb - 1.0) );
-            else
+
+            if (nb > 1) {
+	      sd = 0;
+	      for(int i = 0; i < nb; i++) 
+		sd += (neighborFitness[i] - mean) * (neighborFitness[i] - mean) ;  
+	      sd = sqrt( sd / (nb - 1.0) ); // becareful: could be infinite when large values
+	      //sd = sqrt( (sd - nb * mean * mean) / (nb - 1.0) );  // becareful: could be negative due to approximation of large values 
+
+	      std::sort(neighborFitness.begin(), neighborFitness.end());  // to compute the quartiles
+	      q1 = neighborFitness[nb / 4];
+	      q2 = neighborFitness[nb / 2];
+	      q3 = neighborFitness[3 * nb / 4];
+            } else {
                 sd = 0.0;
+		q1 = max;
+		q2 = q1;
+		q3 = q1;
+	    }
         }
         else {
             //if _solution hasn't neighbor,
@@ -196,6 +215,27 @@ public :
      */
     double getSD() {
         return sd;
+    }
+
+    /**
+     * @return the first quartile of fitness in the neighborhood 
+     */
+    Fitness getQ1() {
+        return q1;
+    }
+
+    /**
+     * @return the third quartile of fitness in the neighborhood 
+     */
+    Fitness getQ3() {
+        return q3;
+    }
+
+    /**
+     * @return the median fitness value of the neighborhood 
+     */
+    Fitness getMedian() {
+        return q2;
     }
 
     /**
@@ -251,8 +291,12 @@ protected:
 
     // the stastics of the fitness
     Fitness max, min;
-    //mean and standard deviation
+
+    // mean and standard deviation
     double mean, sd ;
+
+  // quartiles
+  Fitness q1, q2, q3;
 
     // number of neighbors in the neighborhood;
     unsigned int nb;
