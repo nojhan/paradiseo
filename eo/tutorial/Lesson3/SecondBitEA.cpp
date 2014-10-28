@@ -273,7 +273,7 @@ void main_function(int argc, char **argv)
     checkpoint.add(SecondStat);
 
     // The Stdout monitor will print parameters to the screen ...
-    eoStdoutMonitor monitor(false);
+    eoStdoutMonitor monitor;
 
     // when called by the checkpoint (i.e. at every generation)
     checkpoint.add(monitor);
