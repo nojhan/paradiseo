@@ -67,13 +67,12 @@ eoMonitor& eoFileMonitor::operator()(void)
         printHeader();
         firstcall = false;
     }
-
+    
     return operator()(os);
 }
 
 eoMonitor& eoFileMonitor::operator()(std::ostream& os)
 {
-
     iterator it = vec.begin();
 
     os << (*it)->getValue();

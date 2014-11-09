@@ -167,6 +167,8 @@ public :
           repValue(_defaultValue)
         {
             eoParam::defValue(getValue());
+            // default precision
+            numOfDigits = std::cout.precision();
         }
 
     /** Get a reference on the parameter value
@@ -203,6 +205,7 @@ public :
     std::string getValue(void) const
     {
         std::ostringstream os;
+        os.precision(numOfDigits);
         os << repValue;
         return os.str();
     }
@@ -227,9 +230,21 @@ public :
         is >> repValue;
     }
 
+    /**
+     set the precision of the output
+     
+     @param _numOfDigits the precision of the output
+     */
+    void setPrecision(unsigned _numOfDigits) {
+        numOfDigits = _numOfDigits;
+    }
+    
 protected:
 
     ValueType repValue;
+
+    //! precision of the output
+    unsigned numOfDigits;
 };
 
 /*

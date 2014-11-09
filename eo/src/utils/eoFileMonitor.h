@@ -96,6 +96,7 @@ public :
     virtual void printHeader(std::ostream& os);
 
     virtual std::string getFileName() { return filename;}
+    
 
 private :
 
@@ -116,6 +117,7 @@ private :
 
     //! erase the entire file prior to writing in it (mode eos_base::
     bool overwrite;
+    
 };
 
 #endif

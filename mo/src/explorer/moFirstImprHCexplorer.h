@@ -162,7 +162,7 @@ private:
     // true if the move is accepted
     bool isAccept ;
 
-  // if true the HC stop when to improving solution is found
+  // if true  : the HC stop when no improving solution is found
   // if false : never stop, always continue (external continuator)
   bool stop ;
 };
