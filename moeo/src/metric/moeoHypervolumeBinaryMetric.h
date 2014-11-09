@@ -98,11 +98,11 @@ public:
         // if _o2 is dominated by _o1
         if ( paretoComparator(_o2,_o1) )
         {
-            result = - hypervolume(_o1, _o2, ObjectiveVector::Traits::nObjectives()-1);
+            result = - hypervolume(o1, o2, ObjectiveVector::Traits::nObjectives()-1);
         }
         else
         {
-            result = hypervolume(_o2, _o1, ObjectiveVector::Traits::nObjectives()-1);
+            result = hypervolume(o2, o1, ObjectiveVector::Traits::nObjectives()-1);
         }
         return result;
     }
