@@ -166,9 +166,9 @@ public :
         : eoParam(_longName, "", _description, _shortHand, _required),
           repValue(_defaultValue)
         {
-            eoParam::defValue(getValue());
             // default precision
             numOfDigits = std::cout.precision();
+            eoParam::defValue(getValue());
         }
 
     /** Get a reference on the parameter value
