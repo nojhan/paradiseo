@@ -35,8 +35,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 /**
  * Incremental evaluation Function for the QAP problem
+ *
+ * ElemType is the type of elements in the matrix. This type must be signed and not unsigned.
  */
-template< class Neighbor >
+template< class Neighbor, typename ElemType = long int >
 class moQAPIncrEval : public moEval<Neighbor>
 {
 public:
@@ -46,7 +48,7 @@ public:
    * default constructor
    * @param _qapEval full evaluation of the QAP problem
    */
-  moQAPIncrEval(QAPeval<EOT> & _qapEval) {
+  moQAPIncrEval(QAPeval<EOT, ElemType> & _qapEval) {
     n = _qapEval.getNbVar();
     A = _qapEval.getA();
     B = _qapEval.getB();
@@ -58,7 +60,7 @@ public:
    * @param _neighbor the neighbor to consider (of type moSwapNeigbor)
    */
   virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-    int d; 
+    ElemType d;  
     int k;
     
     unsigned i = _neighbor.first();
@@ -81,10 +83,10 @@ private:
   int n;
   
   // matrix A
-  int ** A;
+  ElemType ** A;
   
   // matrix B
-  int ** B;
+  ElemType ** B;
   
 };
 

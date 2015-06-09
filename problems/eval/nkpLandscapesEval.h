@@ -53,6 +53,7 @@ public:
   using nkLandscapesEval<EOT>::loadTables;
   using nkLandscapesEval<EOT>::consecutiveTables;
   using nkLandscapesEval<EOT>::randomTables;
+  using nkLandscapesEval<EOT>::generateTables;
 
   // parameter p : probability to have the contribution to zero, otherwise random number from [0,1)
   double p;
@@ -79,6 +80,8 @@ public:
       consecutiveTables();
     else
       randomTables();
+
+    generateTables();
   }
 
   /**

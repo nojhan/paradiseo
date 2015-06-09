@@ -34,11 +34,14 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 /**
  * Full evaluation Function for QAP problem
+ *
+ * ElemType is the type of elements in the matrix. This type must be signed and not unsigned.
  */
-template< class EOT >
+template< class EOT, typename ElemType = long int >
 class QAPeval : public eoEvalFunc<EOT>
 {
 public:
+  //typedef typename EOT::Fitness ElemType ;
 
   /*
    * Constructor from instance file
@@ -56,18 +59,18 @@ public:
     unsigned i, j;
 
     file >> n;
-    A = new int *[n];
-    B = new int *[n];
+    A = new ElemType *[n];
+    B = new ElemType *[n];
     
     for(i = 0; i < n; i++) {
-      A[i] = new int[n];
+      A[i] = new ElemType[n];
       for(j = 0; j < n; j++) {
 	file >> A[i][j];
       }
     }
     
     for(i = 0; i < n; i++) {
-      B[i] = new int[n];
+      B[i] = new ElemType[n];
       for(j = 0; j < n; j++) 
 	file >> B[i][j];
     }
@@ -100,7 +103,7 @@ public:
    * @param _solution the solution to evaluate
    */
   void operator()(EOT & _solution) { 
-    int cost = 0;
+    ElemType cost = 0;
     
     for (int i = 0; i < n; i++)
       for (int j = 0; j < n; j++)
@@ -114,7 +117,7 @@ public:
    *
    * @return matrix A
    */
-  int** getA() {
+  ElemType** getA() {
     return A;
   }
 
@@ -123,7 +126,7 @@ public:
    *
    * @return matrix B
    */
-  int** getB() {
+  ElemType** getB() {
     return B;
   }
 
@@ -141,10 +144,10 @@ private:
     int n;
 
     // matrix A
-    int ** A;
+    ElemType ** A;
 
     // matrix B
-    int ** B;
+    ElemType ** B;
 
 };
 

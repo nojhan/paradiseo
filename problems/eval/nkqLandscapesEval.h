@@ -53,6 +53,7 @@ public:
   using nkLandscapesEval<EOT>::loadTables;
   using nkLandscapesEval<EOT>::consecutiveTables;
   using nkLandscapesEval<EOT>::randomTables;
+  using nkLandscapesEval<EOT>::generateTables;
 
   // parameter q : number of different integer values in the table: [0..q[
   unsigned q;
@@ -78,6 +79,8 @@ public:
       consecutiveTables();
     else
       randomTables();
+
+    generateTables();
   }
 
   /**

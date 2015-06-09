@@ -71,6 +71,8 @@ public:
       consecutiveTables();
     else
       randomTables();
+
+    generateTables();
   };
 
   /**
@@ -366,6 +368,20 @@ protected:
   }
 
   /**
+   * To generate the tables:
+   * The component function is random 
+   * each contribution is independent from the others ones
+   * and drawn from the distribution given by contribution()
+   *
+   */
+  virtual void generateTables() {
+    for(int i = 0; i < N; i++) {
+      for(int j = 0; j < (1<<(K+1)); j++) 
+	tables[i][j] = contribution();
+    }
+  }
+
+  /**
    * To generate a contribution in the table f_i 
    *
    */
@@ -386,10 +402,6 @@ protected:
     for(int i = 0; i < N; i++) {
       // random links to the bit
       choose(i, tabTirage);  
-      
-      // table of contribution with random numbers from [0,1)
-      for(int j = 0; j < (1<<(K+1)); j++) 
-	tables[i][j] = contribution();
     }
   }
  
@@ -403,10 +415,6 @@ protected:
     for(int i = 0; i < N; i++) {
       // consecutive link to bit i
       consecutiveLinks(i);  
-      
-      // table of contribution with random numbers from [0,1)
-      for(int j = 0; j < (1<<(K+1)); j++) 
-	tables[i][j] = contribution();
     }
   }
  
