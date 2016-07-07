@@ -151,6 +151,14 @@ public:
   void print() {
     std::cout << key << ": [" << indices.first << ", " << indices.second << "] -> " << (*this).fitness() << std::endl;
   }
+    
+    /**
+     * Return the class Name
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const {
+        return "moShiftNeighbor";
+    }
 
 private:
   std::pair<unsigned int, unsigned int> indices;    

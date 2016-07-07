@@ -37,13 +37,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Indexed Swap Neighbor: the position of the swap are computed according to the index
  */
 template <class EOT, class Fitness=typename EOT::Fitness>
-class moIndexedSwapNeighbor: public moBackableNeighbor<EOT, Fitness>, public moIndexNeighbor<EOT>
+class moIndexedSwapNeighbor: public moBackableNeighbor<EOT, Fitness>, public moIndexNeighbor<EOT, Fitness>
 {
 public:
 
-  using moBackableNeighbor<EOT>::fitness;
-  using moIndexNeighbor<EOT>::key;
-  using moIndexNeighbor<EOT>::index;
+  using moBackableNeighbor<EOT, Fitness>::fitness;
+  using moIndexNeighbor<EOT, Fitness>::key;
+  using moIndexNeighbor<EOT, Fitness>::index;
   
   /**
    * Default Constructor
@@ -78,11 +78,12 @@ public:
    */
   virtual void move(EOT& _solution) {
     // bof utiliser plutot le template du vector : to do
-    EOT tmp(1);
-    
-    tmp[0] = _solution[indices.first];
-    _solution[indices.first] = _solution[indices.second];
-    _solution[indices.second] = tmp[0];
+//    EOT tmp(1);
+//    
+//    tmp[0] = _solution[indices.first];
+//    _solution[indices.first] = _solution[indices.second];
+//    _solution[indices.second] = tmp[0];
+      std::swap(_solution[indices.first], _solution[indices.second]);
     _solution.invalidate();
   }
   
