@@ -16,12 +16,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <math.h>
 #include <distance/moeoObjSpaceDistance.h>
-#include "ObjectiveVectorNormalizer.h"
+#include <utils/moeoFuzzyObjectiveVectorNormalizer.h>
 
 /**
- * A class allowing to compute an Bert distance between two fuzzy solutions in the objective space 
- with normalized objective values (i.e. between 0 and 1).
- * A distance value then lies between 0 and sqrt(nObjectives).
+ * A class allowing to compute the bertoluzza distance between two fuzzy solutions in the objective space with normalized objective values.
+ * A distance value lies between 0 and sqrt(nObjectives).
  */
 template < class MOEOT>
 class moeoBertDistance : public moeoObjSpaceDistance < MOEOT >
@@ -86,7 +85,7 @@ const Fitness operator()(const ObjectiveVector & _obj1, const ObjectiveVector & 
 
 
   private:
-	  ObjectiveVectorNormalizer<MOEOT> Normalizer;
+	  moeoFuzzyObjectiveVectorNormalizer<MOEOT> Normalizer;
 
 
 
