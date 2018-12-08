@@ -26,8 +26,8 @@ endif()
 ### Include subdirectories
 ######################################################################################
 
-add_subdirectory(doc)
 add_subdirectory(src)
+add_subdirectory(doc)
 
 if(ENABLE_CMAKE_TESTING AND EIGEN3_FOUND)  # see edoNormalAdaptive
     add_subdirectory(test)

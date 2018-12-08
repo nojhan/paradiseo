@@ -11,22 +11,119 @@ endif(UNIX)
 ######################################################################################
 
 if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
-    if(SMP)
+    # FIXME this would work in cmake 3.13
+    # set(DOC_EO "make doc-eo")
+    # if(NOT EO_ONLY)
+    #     set(DOC_MO "make doc-mo")
+    #     set(DOC_MOEO "make doc-moeo")
+    #     if(EDO)
+    #         set(DOC_EDO "make doc-edo")
+    #     else()
+    #         set(DOC_EDO "")
+    #     endif()
+    #     if(SMP)
+    #         set(DOC_SMP "make doc-smp")
+    #     else()
+    #         set(DOC_SMP "")
+    #     endif()
+    #     if(MPI)
+    #         set(DOC_MPI "make doc-mpi")
+    #     else()
+    #         set(DOC_MPI "")
+    #     endif()
+    # endif()
+    #
+    # add_custom_target(doc
+    #     COMMAND ${DOC_EO}
+    #     COMMAND ${DOC_MO}
+    #     COMMAND ${DOC_MOEO}
+    #     COMMAND ${DOC_EDO}
+    #     COMMAND ${DOC_SMP}
+    #     COMMAND ${DOC_MPI}
+    # )
+    # FIXME in the meantime, we must enumerate...
+    if(EO_ONLY)
         add_custom_target(doc
             COMMAND make doc-eo
-            COMMAND make doc-edo
-            COMMAND make doc-mo
-            COMMAND make doc-moeo
-            COMMAND make doc-smp
         )
     else()
-        add_custom_target(doc
-            COMMAND make doc-eo
-            COMMAND make doc-edo
-            COMMAND make doc-mo
-            COMMAND make doc-moeo
-        )
-    endif()
+        # No optional module.
+        if(NOT EDO AND NOT SMP AND NOT MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+            )
+        endif()
+
+        # One optional module.
+        if(EDO AND NOT SMP AND NOT MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+                COMMAND make doc-edo
+            )
+        endif()
+        if(NOT EDO AND SMP AND NOT MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+                COMMAND make doc-smp
+            )
+        endif()
+        if(NOT EDO AND NOT SMP AND MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+                COMMAND make doc-mpi
+            )
+        endif()
+
+        # Two optional modules.
+        if(NOT EDO AND SMP AND MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+                COMMAND make doc-smp
+                COMMAND make doc-mpi
+            )
+        endif()
+        if(EDO AND NOT SMP AND MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+                COMMAND make doc-edo
+                COMMAND make doc-mpi
+            )
+        endif()
+        if(EDO AND SMP AND NOT MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+                COMMAND make doc-edo
+                COMMAND make doc-smp
+            )
+        endif()
+
+        # Three optional modules
+        if(EDO AND SMP AND MPI)
+            add_custom_target(doc
+                COMMAND make doc-eo
+                COMMAND make doc-mo
+                COMMAND make doc-moeo
+                COMMAND make doc-edo
+                COMMAND make doc-smp
+                COMMAND make doc-mpi
+            )
+        endif()
+
+    endif(EO_ONLY)
 endif(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
 
 ######################################################################################

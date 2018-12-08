@@ -37,6 +37,11 @@ SET(GLOBAL_VERSION "${VERSION}")
 ## Optional
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/module" CACHE INTERNAL "Cmake module" FORCE)
 include(FindDoxygen OPTIONAL)
+if(NOT DOXYGEN_FOUND)
+    message(WARNING "Doxygen was not found, install it if you want to generate the documentation.")
+else()
+    message(STATUS "Doxygen found, use the target `doc` to generate the documentation.")
+endif()
 
 ######################################################################################
 ### 3) Include CMake files
