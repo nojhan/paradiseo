@@ -48,4 +48,22 @@ Please refer to paradisEO website or INSTALL file for further information about 
 
 * __moeo__: Specific directory of the MOEO (Multi-Objective Optimization) module;
 
-* __problems__: classical problems evaluation functions;
+* __problems__: classical problems evaluation functions.
+
+---
+## Notes
+
+ParadisEO uses EO, a templates-based, ANSI-C++ compliant evolutionary computation library. It contains classes for almost any kind of evolutionary computation you might come up to - at least for the ones we could think of. 
+
+EO Website: http://eodev.sourceforge.net/.
+
+ParadisEO Website: http://paradiseo.gforge.inria.fr/
+
+EO is distributed under the GNU Lesser General Public License: http://www.gnu.org/copyleft/lesser.html
+
+Please read README file of each extracted directory if you have problems for the installation.
+
+---
+<font size=3>**Contact**</font>
+
+<font size=2>For further information about ParadisEO, help or to report any problem : paradiseo-help@lists.gforge.inria.fr</font>
