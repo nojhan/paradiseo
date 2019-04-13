@@ -30,3 +30,22 @@ Please refer to paradisEO website or INSTALL file for further information about 
 
 ## Directory Structure
 
+* __AUTHORS__:    Authors list;
+
+* __cmake__:  Directory of cmake files;
+
+* __CMakeLists.txt__: Definitions for building process;
+
+* __CTestConfig.cmake__:  Definitions for testing process;
+
+* __INSTALL__:    Steps and options of the installation process;
+
+* __LICENSE__: License contents;
+
+* __eo__: Specific directory of the EO (Evolving Objects) module;
+
+* __mo__: Specific directory of the MO (Moving Objects) module;
+
+* __moeo__: Specific directory of the MOEO (Multi-Objective Optimization) module;
+
+* __problems__: classical problems evaluation functions;
