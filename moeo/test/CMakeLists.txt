@@ -71,7 +71,7 @@ set(TEST_LIST
 		t-moeoNumberUnvisitedSelect
 		t-moeoDMLSMonOp
 		t-moeoDMLSGenUpdater
-		t-moeo2DMinHypervolumeArchive
+		# t-moeo2DMinHypervolumeArchive
 )
 
 ######################################################################################
