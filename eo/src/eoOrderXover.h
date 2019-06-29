@@ -9,8 +9,8 @@
 //-----------------------------------------------------------------------------
 
 #include <algorithm>
-#include <utils/eoRNG.h>
-#include <eoInit.h>
+#include "utils/eoRNG.h"
+#include "eoInit.h"
 
 /**
  * apply orderXover on two chromosomes.

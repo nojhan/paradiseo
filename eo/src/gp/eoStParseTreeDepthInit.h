@@ -27,10 +27,10 @@
 #ifndef eoStParseTreeDepthInit_h
 #define eoStParseTreeDepthInit_h
 
-#include <EO.h>
-#include <gp/eoParseTree.h>
-#include <eoInit.h>
-#include <eoOp.h>
+#include "../EO.h"
+#include "eoParseTree.h"
+#include "../eoInit.h"
+#include "../eoOp.h"
 
 #include <map>
 

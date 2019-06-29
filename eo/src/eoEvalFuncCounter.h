@@ -27,8 +27,8 @@
 #ifndef eoEvalFuncCounter_H
 #define eoEvalFuncCounter_H
 
-#include <eoEvalFunc.h>
-#include <utils/eoParam.h>
+#include "eoEvalFunc.h"
+#include "utils/eoParam.h"
 
 /**
 Counts the number of evaluations actually performed.

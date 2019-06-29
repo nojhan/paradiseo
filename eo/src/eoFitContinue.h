@@ -25,8 +25,8 @@
 #ifndef _eoFitContinue_h
 #define _eoFitContinue_h
 
-#include <eoContinue.h>
-#include <utils/eoLogger.h>
+#include "eoContinue.h"
+#include "utils/eoLogger.h"
 
 /**
 Continues until the optimum fitness level is reached.

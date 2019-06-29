@@ -27,10 +27,10 @@
 #define _make_PBILdistrib_h
 
 #include <ctime>                   // for time(0) for random seeding
-#include <ga/eoPBILOrg.h>
-#include <utils/eoRNG.h>
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "eoPBILOrg.h"
+#include "../utils/eoRNG.h"
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 //////////////////////////DISTRIB CONSTRUCTION ///////////////////////////////

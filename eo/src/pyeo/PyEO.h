@@ -26,7 +26,7 @@
 #include <exception>
 #include <boost/python.hpp>
 
-#include <EO.h>
+#include "../EO.h"
 
 struct index_error : public std::exception
 {

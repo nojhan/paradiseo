@@ -11,8 +11,8 @@
 #include <sstream>
 
 #include "eoState.h"
-#include "eoObject.h"
-#include "eoPersistent.h"
+#include "../eoObject.h"
+#include "../eoPersistent.h"
 
 using namespace std;
 

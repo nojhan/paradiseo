@@ -41,7 +41,7 @@
  */
 
 // the templatized code
-#include <ga/make_genotype_ga.h>
+#include "make_genotype_ga.h"
 
 /// The following function merely call the templatized do_* functions above
 

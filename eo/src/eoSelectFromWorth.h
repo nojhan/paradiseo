@@ -28,9 +28,9 @@
 
 #include <iostream>
 //-----------------------------------------------------------------------------
-#include <eoSelectOne.h>
-#include <eoPerf2Worth.h>
-#include <utils/selectors.h>
+#include "eoSelectOne.h"
+#include "eoPerf2Worth.h"
+#include "utils/selectors.h"
 //-----------------------------------------------------------------------------
 
 /** selects one element from a population (is an eoSelectOne)

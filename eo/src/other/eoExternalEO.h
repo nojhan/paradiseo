@@ -26,7 +26,7 @@
 #ifndef eoExternalEO_h
 #define eoExternalEO_h
 
-#include <EO.h> // EO
+#include "../EO.h" // EO
 
 /**
  * Definition of an object that allows an external struct

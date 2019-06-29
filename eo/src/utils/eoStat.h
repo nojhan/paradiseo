@@ -35,12 +35,12 @@ Contact: http://eodev.sourceforge.net
 #include <iostream>
 #include <numeric> // accumulate
 
-#include <eoFunctor.h>
-#include <utils/eoParam.h>
-#include <eoPop.h>
-#include <utils/eoMonitor.h>
-//#include <utils/eoCheckPoint.h>
-#include <utils/eoLogger.h>
+#include "../eoFunctor.h"
+#include "eoParam.h"
+#include "../eoPop.h"
+#include "eoMonitor.h"
+//#include "eoCheckPoint.h"
+#include "eoLogger.h"
 
 /** @defgroup Stats Statistics computation
  *

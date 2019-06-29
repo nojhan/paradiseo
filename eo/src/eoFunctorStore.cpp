@@ -5,8 +5,8 @@
 
 #include <cstddef>
 
-#include <eoFunctorStore.h>
-#include <eoFunctor.h>
+#include "eoFunctorStore.h"
+#include "eoFunctor.h"
 
 
 /// clears the memory

@@ -29,11 +29,11 @@
 //-----------------------------------------------------------------------------
 
 #include <algorithm>    // swap_ranges
-#include <utils/eoRNG.h>
-#include <utils/eoUpdatable.h>
-#include <eoEvalFunc.h>
-#include <es/eoReal.h>
-#include <utils/eoRealBounds.h>
+#include "../utils/eoRNG.h"
+#include "../utils/eoUpdatable.h"
+#include "../eoEvalFunc.h"
+#include "eoReal.h"
+#include "../utils/eoRealBounds.h"
 //-----------------------------------------------------------------------------
 
 /** Simple normal mutation of a std::vector of real values.

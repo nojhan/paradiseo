@@ -25,8 +25,8 @@ Old contact: todos@geneura.ugr.es, http://geneura.ugr.es
 
 #include <vector>
 #include <iterator>
-#include <EO.h>
-#include <utils/eoLogger.h>
+#include "EO.h"
+#include "utils/eoLogger.h"
 
 
 /**

@@ -29,7 +29,7 @@
 #include <iostream>    // std::ostream, std::istream
 #include <string>      // std::string
 
-#include <eoVector.h>
+#include "eoVector.h"
 
 /** eoInt: implementation of simple integer-valued chromosome.
   * based on eoVector class

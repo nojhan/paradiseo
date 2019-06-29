@@ -33,7 +33,7 @@
 #include <vector>
 #include <assert.h>
 
-#include <eoFunctorStore.h>
+#include "../eoFunctorStore.h"
 
 class eoObject;
 class eoPersistent;

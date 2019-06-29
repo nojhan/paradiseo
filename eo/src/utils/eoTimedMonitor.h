@@ -30,8 +30,8 @@
 #include <ctime>
 #include <string>
 
-#include <utils/eoMonitor.h>
-#include <eoObject.h>
+#include "eoMonitor.h"
+#include "../eoObject.h"
 
 /**
     Holds a collection of monitors and only fires them when a time limit

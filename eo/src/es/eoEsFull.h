@@ -27,7 +27,7 @@
 #ifndef _eoEsFull_h
 #define _eoEsFull_h
 
-#include <eoVector.h>
+#include "../eoVector.h"
 
 /**
 \ingroup Real

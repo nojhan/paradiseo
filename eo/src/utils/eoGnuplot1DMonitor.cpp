@@ -29,8 +29,8 @@
 
 #include <sstream>
 
-#include "utils/eoGnuplot1DMonitor.h"
-#include "utils/eoParam.h"
+#include "eoGnuplot1DMonitor.h"
+#include "eoParam.h"
 
 
 eoMonitor& eoGnuplot1DMonitor::operator() (void)

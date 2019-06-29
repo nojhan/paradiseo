@@ -32,8 +32,8 @@ Authors:
 
 #include <string>
 
-#include <utils/eoOStreamMonitor.h>
-#include <eoObject.h>
+#include "eoOStreamMonitor.h"
+#include "../eoObject.h"
 
 /**
     Prints statistics to stdout

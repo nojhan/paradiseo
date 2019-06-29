@@ -30,7 +30,7 @@
 #include <fstream>
 #include <stdexcept>
 
-#include <utils/eoParser.h>
+#include "eoParser.h"
 
 using namespace std;
 

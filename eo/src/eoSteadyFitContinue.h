@@ -25,8 +25,8 @@
 #ifndef _eoSteadyFitContinue_h
 #define _eoSteadyFitContinue_h
 
-#include <eoContinue.h>
-#include <utils/eoLogger.h>
+#include "eoContinue.h"
+#include "utils/eoLogger.h"
 
 /**
     A continuator:  does a minimum number of generations, then

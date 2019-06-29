@@ -26,8 +26,8 @@
 #ifndef _eoFlOrQuadOp_h
 #define _eoFlOrQuadOp_h
 
-#include <eoFunctor.h>
-#include <eoOp.h>
+#include "eoFunctor.h"
+#include "eoOp.h"
 
 /** @addtogroup Variators
  * @{

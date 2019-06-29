@@ -25,9 +25,9 @@
 #ifndef _eoGenContinue_h
 #define _eoGenContinue_h
 
-#include <eoContinue.h>
-#include <utils/eoParam.h>
-#include <utils/eoLogger.h>
+#include "eoContinue.h"
+#include "utils/eoParam.h"
+#include "utils/eoLogger.h"
 
 /**
     Generational continuator: continues until a number of generations is reached

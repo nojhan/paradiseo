@@ -28,21 +28,21 @@
 #define _make_op_h
 
 // the operators
-#include <eoOp.h>
-#include <eoGenOp.h>
-#include <eoCloneOps.h>
-#include <eoOpContainer.h>
+#include "../eoOp.h"
+#include "../eoGenOp.h"
+#include "../eoCloneOps.h"
+#include "../eoOpContainer.h"
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
-#include <eoProportionalCombinedOp.h>
+#include "../eoProportionalCombinedOp.h"
 
 // the specialized Real stuff
-#include <es/eoReal.h>
-#include <es/eoEsChromInit.h>
-#include <es/eoRealOp.h>
-#include <es/eoNormalMutation.h>
+#include "../es/eoReal.h"
+#include "../es/eoEsChromInit.h"
+#include "../es/eoRealOp.h"
+#include "../es/eoNormalMutation.h"
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 /** @addtogroup Builders

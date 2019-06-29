@@ -24,12 +24,12 @@
 #ifndef eoCellularEasyEA_h
 #define eoCellularEasyEA_h
 
-#include <eoContinue.h>
-#include <eoEvalFunc.h>
-#include <eoSelectOne.h>
-#include <eoPopEvalFunc.h>
-#include <eoAlgo.h>
-#include <eoOp.h>
+#include "eoContinue.h"
+#include "eoEvalFunc.h"
+#include "eoSelectOne.h"
+#include "eoPopEvalFunc.h"
+#include "eoAlgo.h"
+#include "eoOp.h"
 
 /**
    The abstract cellular easy algorithm.

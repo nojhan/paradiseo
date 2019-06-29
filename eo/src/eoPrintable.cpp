@@ -7,7 +7,7 @@
 // eoPrintable.cpp
 //-----------------------------------------------------------------------------
 
-#include <eoPrintable.h>
+#include "eoPrintable.h"
 
 //-----------------------------------------------------------------------------
 //Implementation of these objects

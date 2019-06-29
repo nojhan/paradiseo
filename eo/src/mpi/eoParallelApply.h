@@ -24,7 +24,7 @@ Authors:
 
 # include "eoMpi.h"
 
-# include <eoFunctor.h> // eoUF
+# include "../eoFunctor.h" // eoUF
 # include <vector> // std::vector population
 
 /**

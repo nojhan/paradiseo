@@ -29,11 +29,11 @@
 
 #include <climits>
 
-#include <eoScalarFitness.h>
-#include <utils/selectors.h> // for minimizing_fitness()
-#include <EO.h>
-#include <eoEvalFuncCounter.h>
-#include <utils/checkpointing>
+#include "../eoScalarFitness.h"
+#include "../utils/selectors.h" // for minimizing_fitness()
+#include "../EO.h"
+#include "../eoEvalFuncCounter.h"
+#include "../utils/checkpointing"
 
 // at the moment, in utils/make_help.cpp
 // this should become some eoUtils.cpp with corresponding eoUtils.h

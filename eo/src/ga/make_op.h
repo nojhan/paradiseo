@@ -28,19 +28,19 @@
 #define _make_op_h
 
 // the operators
-#include <eoOp.h>
-#include <eoGenOp.h>
-#include <eoCloneOps.h>
-#include <eoOpContainer.h>
+#include "../eoOp.h"
+#include "../eoGenOp.h"
+#include "../eoCloneOps.h"
+#include "../eoOpContainer.h"
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
-#include <eoProportionalCombinedOp.h>
+#include "../eoProportionalCombinedOp.h"
 
 // the specialized GA stuff
-#include <ga/eoBit.h>
-#include <ga/eoBitOp.h>
+#include "eoBit.h"
+#include "eoBitOp.h"
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 /////////////////// bitstring operators ///////////////

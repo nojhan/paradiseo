@@ -27,8 +27,8 @@
 
 #include <functional>
 #include <numeric>           // accumulate
-#include <eoSelectOne.h>     // eoSelectOne
-#include <utils/selectors.h> // stochastic_tournament
+#include "eoSelectOne.h"     // eoSelectOne
+#include "utils/selectors.h" // stochastic_tournament
 
 /** eoStochTournamentSelect: a selection method that selects ONE individual by
  binary stochastic tournament

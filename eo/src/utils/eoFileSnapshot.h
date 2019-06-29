@@ -29,9 +29,9 @@
 #include <fstream>
 #include <string>
 
-#include <utils/eoParam.h>
-#include <utils/eoMonitor.h>
-#include <eoObject.h>
+#include "eoParam.h"
+#include "eoMonitor.h"
+#include "../eoObject.h"
 
 
 /**

@@ -24,11 +24,11 @@
 //-----------------------------------------------------------------------------
 
 #include <algorithm>    // swap_ranges
-#include <utils/eoParser.h>
-#include <utils/eoRNG.h>
-#include <es/eoReal.h>
-#include <utils/eoRealBounds.h>
-#include <utils/eoRealVectorBounds.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoRNG.h"
+#include "eoReal.h"
+#include "../utils/eoRealBounds.h"
+#include "../utils/eoRealVectorBounds.h"
 
 
 

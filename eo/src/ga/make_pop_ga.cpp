@@ -42,9 +42,9 @@
  */
 
 // The templatized code
-#include <do/make_pop.h>
+#include "../do/make_pop.h"
 // the instanciating EOType
-#include <ga/eoBit.h>
+#include "eoBit.h"
 
 /// The following function merely call the templatized do_* functions above
 

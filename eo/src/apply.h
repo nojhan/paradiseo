@@ -26,10 +26,10 @@
 #ifndef _apply_h
 #define _apply_h
 
-#include <utils/eoParallel.h>
-#include <utils/eoParser.h>
-#include <utils/eoLogger.h>
-#include <eoFunctor.h>
+#include "utils/eoParallel.h"
+#include "utils/eoParser.h"
+#include "utils/eoLogger.h"
+#include "eoFunctor.h"
 #include <vector>
 
 #ifdef _OPENMP

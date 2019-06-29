@@ -44,18 +44,18 @@
 #ifndef real_h
 #define real_h
 
-#include <eoAlgo.h>
-#include <eoScalarFitness.h>
-#include <utils/eoParser.h>
-#include <eoEvalFuncPtr.h>
-#include <eoEvalFuncCounter.h>
-#include <utils/eoCheckPoint.h>
-#include <eoGenOp.h>
-#include <eoPop.h>
-#include <utils/eoDistance.h>
+#include "../eoAlgo.h"
+#include "../eoScalarFitness.h"
+#include "../utils/eoParser.h"
+#include "../eoEvalFuncPtr.h"
+#include "../eoEvalFuncCounter.h"
+#include "../utils/eoCheckPoint.h"
+#include "../eoGenOp.h"
+#include "../eoPop.h"
+#include "../utils/eoDistance.h"
 
-#include <es/eoRealInitBounded.h>
-#include <es/eoReal.h>
+#include "eoRealInitBounded.h"
+#include "eoReal.h"
 
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////

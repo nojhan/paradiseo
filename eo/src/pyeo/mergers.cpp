@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoMerge.h>
+#include "../eoMerge.h"
 #include "PyEO.h"
 #include "def_abstract_functor.h"
 

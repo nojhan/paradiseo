@@ -26,8 +26,8 @@
 #ifndef eoSharing_h
 #define eoSharing_h
 
-#include <eoPerf2Worth.h>
-#include <utils/eoDistance.h>
+#include "eoPerf2Worth.h"
+#include "utils/eoDistance.h"
 
 /** Sharing is a perf2worth class that implements
  *  Goldberg and Richardson's basic sharing

@@ -26,9 +26,9 @@
 #ifndef _eoVariableLengthMutation_h
 #define _eoVariableLengthMutation_h
 
-#include <eoFunctor.h>
-#include <eoOp.h>
-#include <eoInit.h>
+#include "eoFunctor.h"
+#include "eoOp.h"
+#include "eoInit.h"
 
 /**
   Base classes for generic mutations on variable length chromosomes.

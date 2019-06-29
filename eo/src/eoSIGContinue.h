@@ -33,7 +33,7 @@
 #define eoSIGContinue_h
 
 #include <signal.h>
-#include <eoContinue.h>
+#include "eoContinue.h"
 
 /** @addtogroup Continuators
  * @{

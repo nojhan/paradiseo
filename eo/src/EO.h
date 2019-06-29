@@ -28,8 +28,8 @@
 //-----------------------------------------------------------------------------
 
 #include <stdexcept>       // std::runtime_error
-#include <eoObject.h>      // eoObject
-#include <eoPersistent.h>  // eoPersistent
+#include "eoObject.h"      // eoObject
+#include "eoPersistent.h"  // eoPersistent
 
 /**
     @defgroup Core Core components

@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <utils/eoRNG.h>
+#include "../utils/eoRNG.h"
 #include <boost/python.hpp>
 
 using namespace boost::python;

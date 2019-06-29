@@ -18,11 +18,11 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoGenOp.h>
-#include <eoOp.h>
-#include <eoCloneOps.h>
-#include <eoPopulator.h>
-#include <eoOpContainer.h>
+#include "../eoGenOp.h"
+#include "../eoOp.h"
+#include "../eoCloneOps.h"
+#include "../eoPopulator.h"
+#include "../eoOpContainer.h"
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"

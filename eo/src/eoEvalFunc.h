@@ -25,7 +25,7 @@
 #ifndef eoEvalFunc_H
 #define eoEvalFunc_H
 
-#include <eoFunctor.h>
+#include "eoFunctor.h"
 
 /** @defgroup Evaluation Evaluation
  * @ingroup Operators

@@ -26,10 +26,10 @@
 #ifndef _make_PBILupdate_h
 #define _make_PBILupdate_h
 
-#include <ga/eoPBILOrg.h>
-#include <utils/eoRNG.h>
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "eoPBILOrg.h"
+#include "../utils/eoRNG.h"
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 ///////CONSTRUCTION of PBIL distribution updaters/////////////////

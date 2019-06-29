@@ -53,7 +53,7 @@
 */
 
 // the templatized code
-#include <es/make_genotype_real.h>
+#include "make_genotype_real.h"
 
 /// The following functions merely call the templatized do_* functions
 eoRealInitBounded<eoReal<double> > & make_genotype(eoParser& _parser,

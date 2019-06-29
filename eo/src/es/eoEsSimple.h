@@ -23,10 +23,10 @@ Contact: http://eodev.sourceforge.net
 #ifndef _eoEsSimple_h
 #define _eoEsSimple_h
 
-#include <EO.h>
+#include "../EO.h"
 #include <vector>
 
-#include <eoVector.h>
+#include "../eoVector.h"
 
 /** Simple Evolution Strategy
 

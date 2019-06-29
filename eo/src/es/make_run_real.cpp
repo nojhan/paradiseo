@@ -41,11 +41,11 @@
  */
 
 // The templatized code
-#include <do/make_run.h>
+#include "../do/make_run.h"
 // the instanciating EOType
-#include <es/eoReal.h>
+#include "eoReal.h"
 // the instanciating fitnesses
-#include <eoScalarFitness.h>
+#include "../eoScalarFitness.h"
 
 /// The following function merely call the templatized do_* functions above
 

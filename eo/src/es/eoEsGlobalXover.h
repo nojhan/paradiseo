@@ -26,15 +26,15 @@
 #ifndef _eoEsGlobalXover_H
 #define _eoEsGlobalXover_H
 
-#include <utils/eoRNG.h>
+#include "../utils/eoRNG.h"
 
-#include <es/eoEsSimple.h>
-#include <es/eoEsStdev.h>
-#include <es/eoEsFull.h>
+#include "eoEsSimple.h"
+#include "eoEsStdev.h"
+#include "eoEsFull.h"
 
-#include <eoGenOp.h>
+#include "../eoGenOp.h"
 // needs a selector - here random
-#include <eoRandomSelect.h>
+#include "../eoRandomSelect.h"
 
 /** Global crossover operator for ES genotypes.
   *  Uses some Atom crossovers to handle both the object variables

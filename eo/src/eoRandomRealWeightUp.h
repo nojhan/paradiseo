@@ -26,8 +26,8 @@
 #define EORANDOMREALWEIGHTUP_H
 
 //-----------------------------------------------------------------------------
-#include <eoWeightUpdater.h>
-#include <utils/eoRNG.h>
+#include "eoWeightUpdater.h"
+#include "utils/eoRNG.h"
 //-----------------------------------------------------------------------------
 
 /**

@@ -27,8 +27,8 @@
 #ifndef _eoScalarFitnessStat_h
 #define _eoScalarFitnessStat_h
 
-#include <utils/eoRealVectorBounds.h>
-#include <utils/eoStat.h>
+#include "eoRealVectorBounds.h"
+#include "eoStat.h"
 
 /**
     The fitnesses of a whole population, as a std::vector

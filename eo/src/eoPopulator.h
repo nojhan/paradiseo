@@ -26,8 +26,8 @@
 #ifndef _eoPopulator_H
 #define _eoPopulator_H
 
-#include <eoPop.h>
-#include <eoSelectOne.h>
+#include "eoPop.h"
+#include "eoSelectOne.h"
 
 /** eoPopulator is a helper class for general operators eoGenOp
     It is an eoPop but also behaves like an eoPop::iterator

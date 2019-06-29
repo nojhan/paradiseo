@@ -33,8 +33,8 @@
 #ifndef _eoAssembledFitnessStat_h
 #define _eoAssembledFitnessStat_h
 
-#include <utils/eoStat.h>
-#include <eoScalarFitnessAssembled.h>
+#include "eoStat.h"
+#include "../eoScalarFitnessAssembled.h"
 
 /** @addtogroup Stats
  * @{

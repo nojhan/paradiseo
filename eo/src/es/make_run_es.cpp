@@ -41,13 +41,13 @@
  */
 
 // The templatized code
-#include <do/make_run.h>
+#include"../do/make_run.h"
 // the instanciating EOType(s)
-#include <es/eoEsSimple.h>         // one Sigma per individual
-#include <es/eoEsStdev.h>          // one sigmal per object variable
-#include <es/eoEsFull.h>           // full correlation matrix per indi
+#include "eoEsSimple.h"         // one Sigma per individual
+#include "eoEsStdev.h"          // one sigmal per object variable
+#include "eoEsFull.h"           // full correlation matrix per indi
 // the instanciating fitnesses
-#include <eoScalarFitness.h>
+#include "eoScalarFitness.h"
 
 /// The following function merely call the templatized do_* functions above
 

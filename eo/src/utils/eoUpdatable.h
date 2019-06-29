@@ -27,7 +27,7 @@
 #ifndef _eoUpdatable_h
 #define _eoUpdatable_h
 
-#include <utils/eoUpdater.h>
+#include "eoUpdater.h"
 
 /**
     eoUpdatable is a generic class for adding updatation to an existing class

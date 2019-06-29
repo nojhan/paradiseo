@@ -38,16 +38,16 @@
 #ifndef ga_h
 #define ga_h
 
-#include <eoAlgo.h>
-#include <eoScalarFitness.h>
-#include <utils/eoParser.h>
-#include <eoEvalFuncCounter.h>
-#include <utils/eoCheckPoint.h>
-#include <eoGenOp.h>
-#include <eoPop.h>
-#include <utils/eoDistance.h>
+#include "../eoAlgo.h"
+#include "../eoScalarFitness.h"
+#include "../utils/eoParser.h"
+#include "../eoEvalFuncCounter.h"
+#include "../utils/eoCheckPoint.h"
+#include "../eoGenOp.h"
+#include "../eoPop.h"
+#include "../utils/eoDistance.h"
 
-#include <ga/eoBit.h>
+#include "eoBit.h"
 
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////

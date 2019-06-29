@@ -27,14 +27,14 @@
 #ifndef _eoSGA_h
 #define _eoSGA_h
 
-#include <eoInvalidateOps.h>
-#include <eoContinue.h>
-#include <eoPop.h>
-#include <eoSelectOne.h>
-#include <eoSelectPerc.h>
-#include <eoEvalFunc.h>
-#include <eoAlgo.h>
-#include <apply.h>
+#include "eoInvalidateOps.h"
+#include "eoContinue.h"
+#include "eoPop.h"
+#include "eoSelectOne.h"
+#include "eoSelectPerc.h"
+#include "eoEvalFunc.h"
+#include "eoAlgo.h"
+#include "apply.h"
 
 /** The Simple Genetic Algorithm, following Holland and Goldberg
  *

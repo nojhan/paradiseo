@@ -25,7 +25,7 @@
 #ifndef _eoBoolFlip_h
 #define _eoBoolFlip_h
 
-#include <eoOp.h>
+#include "../eoOp.h"
 
 /** a simple boolean mutation - to be used in generic eoOp's
  *

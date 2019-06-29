@@ -27,10 +27,10 @@
 
 
 //-----------------------------------------------------------------------------
-#include <eoPop.h>
-#include <eoFunctor.h>
-#include <eoSelect.h>
-#include <eoTransform.h>
+#include "eoPop.h"
+#include "eoFunctor.h"
+#include "eoSelect.h"
+#include "eoTransform.h"
 //-----------------------------------------------------------------------------
 
 /** Breeding: combination of selecting and transforming a population

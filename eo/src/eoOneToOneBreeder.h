@@ -28,15 +28,15 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoOp.h>
-#include <eoGenOp.h>
-#include <eoPopulator.h>
-#include <eoSelectOne.h>
-#include <eoSequentialSelect.h>
-#include <eoBreed.h>
-#include <eoEvalFunc.h>
-#include <eoPopulator.h>
-#include <utils/eoHowMany.h>
+#include "eoOp.h"
+#include "eoGenOp.h"
+#include "eoPopulator.h"
+#include "eoSelectOne.h"
+#include "eoSequentialSelect.h"
+#include "eoBreed.h"
+#include "eoEvalFunc.h"
+#include "eoPopulator.h"
+#include "utils/eoHowMany.h"
 
 /** eoOneToOneBreeder: transforms a population using
  *   - an operator that MODIFIES only one parent from the populator

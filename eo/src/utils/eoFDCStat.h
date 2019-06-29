@@ -27,9 +27,9 @@
 #ifndef _eoFDCStat_h
 #define _eoFDCStat_h
 
-#include <utils/eoStat.h>
-#include <utils/eoDistance.h>
-#include <utils/eoFileSnapshot.h>
+#include "eoStat.h"
+#include "eoDistance.h"
+#include "eoFileSnapshot.h"
 
 /**
     The Fitness Distance Correlation computation.

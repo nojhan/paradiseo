@@ -26,10 +26,10 @@
 #define _EOEASYPSO_H
 
 //-----------------------------------------------------------------------------
-#include <eoContinue.h>
-#include <eoPSO.h>
-#include <eoVelocity.h>
-#include <eoFlight.h>
+#include "eoContinue.h"
+#include "eoPSO.h"
+#include "eoVelocity.h"
+#include "eoFlight.h"
 //-----------------------------------------------------------------------------
 
 /** An easy-to-use particle swarm algorithm.

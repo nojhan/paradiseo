@@ -27,11 +27,11 @@
 #ifndef _eoInitializer_H
 #define _eoInitializer_H
 
-#include <utils/eoRealVectorBounds.h>
-#include <eoVelocityInit.h>
-#include <eoPop.h>
-#include <eoParticleBestInit.h>
-#include <eoTopology.h>
+#include "utils/eoRealVectorBounds.h"
+#include "eoVelocityInit.h"
+#include "eoPop.h"
+#include "eoParticleBestInit.h"
+#include "eoTopology.h"
 
 /**
  @addtogroup Initializators

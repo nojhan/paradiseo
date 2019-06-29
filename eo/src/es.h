@@ -36,28 +36,28 @@
 //-----------------------------------------------------------------------------
 
 // the genotypes - from plain std::vector<double> to full correlated mutation
-#include <es/eoReal.h>
-#include <es/eoEsSimple.h>
-#include <es/eoEsStdev.h>
-#include <es/eoEsFull.h>
+#include "eoReal.h"
+#include "eoEsSimple.h"
+#include "eoEsStdev.h"
+#include "eoEsFull.h"
 
 // the initialization
-#include <es/eoEsChromInit.h>
+#include "eoEsChromInit.h"
 
 // general operators
-#include <es/eoRealOp.h>
-#include <es/eoNormalMutation.h>
-#include <es/eoRealAtomXover.h>	// for generic operators
+#include "eoRealOp.h"
+#include "eoNormalMutation.h"
+#include "eoRealAtomXover.h"	// for generic operators
 
 // SBX crossover (following Deb)
-#include <es/eoSBXcross.h>
+#include "eoSBXcross.h"
 
 // ES specific operators
-#include <es/eoEsGlobalXover.h> // Global ES Xover
-#include <es/eoEsStandardXover.h> // 2-parents ES Xover
+#include "eoEsGlobalXover.h" // Global ES Xover
+#include "eoEsStandardXover.h" // 2-parents ES Xover
 
 // the ES-mutations
-#include <es/eoEsMutationInit.h>
-#include <es/eoEsMutate.h>
+#include "eoEsMutationInit.h"
+#include "eoEsMutate.h"
 
 #endif

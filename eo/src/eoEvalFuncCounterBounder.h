@@ -1,8 +1,8 @@
 #ifndef eoEvalFuncCounterBounder_H
 #define eoEvalFuncCounterBounder_H
 
-#include <eoEvalFunc.h>
-#include <utils/eoParam.h>
+#include "eoEvalFunc.h"
+#include "utils/eoParam.h"
 
 /** @addtogroup Evaluation
  * @{

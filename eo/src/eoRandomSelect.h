@@ -32,8 +32,8 @@
  * eoSequentialSelect      returns all individuals in turn
  */
 
-#include <utils/eoRNG.h>
-#include <eoSelectOne.h>
+#include "utils/eoRNG.h"
+#include "eoSelectOne.h"
 
 /** eoRandomSelect: a selection method that selects ONE individual randomly
  *
