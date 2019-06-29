@@ -44,7 +44,7 @@
  */
 
 // Templatized code
-#include <ga/make_op.h>
+#include "../make_op.h"
 
 /// The following function merely call the templatized do_* functions above
 

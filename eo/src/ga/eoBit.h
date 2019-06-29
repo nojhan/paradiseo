@@ -40,7 +40,7 @@
 #include <iostream>
 #include <string>
 
-#include "eoVector.h"
+#include "../eoVector.h"
 
 /** @defgroup bitstring Bit strings
 

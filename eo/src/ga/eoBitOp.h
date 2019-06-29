@@ -30,10 +30,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <algorithm>    // swap_ranges
-#include <utils/eoRNG.h>
-#include <eoInit.h>       // eoMonOp
-#include <ga/eoBit.h>
+#include <algorithm>     // swap_ranges
+#include "../utils/eoRNG.h"
+#include "../eoInit.h"   // eoMonOp
+#include "eoBit.h"
 
 
 /** eoOneBitFlip --> changes 1 bit

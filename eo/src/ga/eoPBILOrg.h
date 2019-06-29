@@ -26,8 +26,8 @@
 #ifndef _eoPBILOrg_H
 #define _eoPBILOrg_H
 
-#include <eoDistribUpdater.h>
-#include <ga/eoPBILDistrib.h>
+#include "eoDistribUpdater.h"
+#include "../eoPBILDistrib.h"
 
 /**
  * Distribution Class for PBIL algorithm

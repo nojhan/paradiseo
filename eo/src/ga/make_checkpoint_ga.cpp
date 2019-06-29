@@ -44,9 +44,9 @@
  */
 
 // The templatized code
-#include <do/make_checkpoint.h>
+#include "../do/make_checkpoint.h"
 // the instanciating EOType
-#include <ga/eoBit.h>
+#include "eoBit.h"
 
 /// The following function merely call the templatized do_* functions
 

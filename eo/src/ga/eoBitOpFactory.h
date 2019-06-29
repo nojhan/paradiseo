@@ -26,8 +26,8 @@
 #ifndef _EOBITOPFACTORY_H
 #define _EOBITOPFACTORY_H
 
-#include <eoFactory.h>
-#include <ga/eoBitOp.h>
+#include "../eoFactory.h"
+#include "eoBitOp.h"
 
 //-----------------------------------------------------------------------------
 

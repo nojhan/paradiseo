@@ -44,9 +44,9 @@
  */
 
 // The templatized code
-#include <do/make_algo_scalar.h>
+#include "../do/make_algo_scalar.h"
 // the instanciating EOType
-#include <ga/eoBit.h>
+#include "eoBit.h"
 
 /// The following function merely call the templatized do_* functions above
 
