@@ -27,35 +27,35 @@
 #ifndef _make_algo_easea_h
 #define _make_algo_easea_h
 
-#include <utils/eoData.h>     // for eo_is_a_rate
+#include "../utils/eoData.h"     // for eo_is_a_rate
 // everything tha's needed for the algorithms - SCALAR fitness
 
 // Selection
 // the eoSelectOne's
-#include <eoRandomSelect.h>
-#include <eoSequentialSelect.h>
-#include <eoDetTournamentSelect.h>
-#include <eoProportionalSelect.h>
-#include <eoFitnessScalingSelect.h>
-#include <eoRankingSelect.h>
-#include <eoStochTournamentSelect.h>
+#include "../eoRandomSelect.h"
+#include "../eoSequentialSelect.h"
+#include "../eoDetTournamentSelect.h"
+#include "../eoProportionalSelect.h"
+#include "../eoFitnessScalingSelect.h"
+#include "../eoRankingSelect.h"
+#include "../eoStochTournamentSelect.h"
 // #include <eoSelect.h>    included in all others
 
 // Breeders
-#include <eoGeneralBreeder.h>
+#include "../eoGeneralBreeder.h"
 
 // Replacement
 #include "make_general_replacement.h"
-#include "eoMGGReplacement.h"
-#include "eoG3Replacement.h"
+#include "../eoMGGReplacement.h"
+#include "../eoG3Replacement.h"
 
 
 // Algorithm (only this one needed)
-#include <eoEasyEA.h>
+#include "../eoEasyEA.h"
 
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 /*
  * This function builds the algorithm (i.e. selection and replacement)

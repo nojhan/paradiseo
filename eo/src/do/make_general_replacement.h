@@ -27,14 +27,14 @@
 #ifndef _make_general_replacement_h
 #define _make_general_replacement_h
 
-#include <utils/eoData.h>     // for eo_is_a_rate
+#include "../utils/eoData.h"     // for eo_is_a_rate
 
 // Replacement
-#include <eoReduceMergeReduce.h>
+#include "../eoReduceMergeReduce.h"
 
 // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 /** a helper function that decodes a parameter read by the parser into an

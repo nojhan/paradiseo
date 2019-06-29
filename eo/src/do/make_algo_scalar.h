@@ -27,39 +27,39 @@
 #ifndef _make_algo_scalar_h
 #define _make_algo_scalar_h
 
-#include <utils/eoData.h>     // for eo_is_a_rate
+#include "../utils/eoData.h"     // for eo_is_a_rate
 // everything tha's needed for the algorithms - SCALAR fitness
 
 // Selection
 // the eoSelectOne's
-#include <eoRandomSelect.h>
-#include <eoSequentialSelect.h>
-#include <eoDetTournamentSelect.h>
-#include <eoProportionalSelect.h>
-#include <eoFitnessScalingSelect.h>
-#include <eoRankingSelect.h>
-#include <eoStochTournamentSelect.h>
-#include <eoSharingSelect.h>
-#include <utils/eoDistance.h>
+#include "../eoRandomSelect.h"
+#include "../eoSequentialSelect.h"
+#include "../eoDetTournamentSelect.h"
+#include "../eoProportionalSelect.h"
+#include "../eoFitnessScalingSelect.h"
+#include "../eoRankingSelect.h"
+#include "../eoStochTournamentSelect.h"
+#include "../eoSharingSelect.h"
+#include "../utils/eoDistance.h"
 
 // Breeders
-#include <eoGeneralBreeder.h>
+#include "../eoGeneralBreeder.h"
 
 // Replacement
 // #include <eoReplacement.h>
-#include <eoMergeReduce.h>
-#include <eoReduceMerge.h>
-#include <eoSurviveAndDie.h>
+#include "../eoMergeReduce.h"
+#include "../eoReduceMerge.h"
+#include "../eoSurviveAndDie.h"
 
 // distance
-#include <utils/eoDistance.h>
+#include "../utils/eoDistance.h"
 
 // Algorithm (only this one needed)
-#include <eoEasyEA.h>
+#include "../eoEasyEA.h"
 
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 /*

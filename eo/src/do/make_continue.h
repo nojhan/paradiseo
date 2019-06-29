@@ -34,18 +34,18 @@ It can then be instantiated, and compiled on its own for a given EOType
 */
 
 // Continuators - all include eoContinue.h
-#include <eoCombinedContinue.h>
-#include <eoGenContinue.h>
-#include <eoSteadyFitContinue.h>
-#include <eoEvalContinue.h>
-#include <eoFitContinue.h>
+#include "../eoCombinedContinue.h"
+#include "../eoGenContinue.h"
+#include "../eoSteadyFitContinue.h"
+#include "../eoEvalContinue.h"
+#include "../eoFitContinue.h"
 #ifndef _MSC_VER
-#include <eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)
+#include "../eoCtrlCContinue.h"  // CtrlC handling (using 2 global variables!)
 #endif
 
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 /////////////////// the stopping criterion ////////////////

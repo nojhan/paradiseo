@@ -28,11 +28,11 @@
 #define _make_pop_h
 
 #include <ctime>  // for time(0) for random seeding
-#include <eoPop.h>
-#include <eoInit.h>
-#include <utils/eoRNG.h>
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../eoPop.h"
+#include "../eoInit.h"
+#include "../utils/eoRNG.h"
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 /** @defgroup Builders Automatic builders
  *
