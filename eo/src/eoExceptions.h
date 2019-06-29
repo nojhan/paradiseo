@@ -26,6 +26,7 @@ Johann Dréo <johann.dreo@thalesgroup.com>
 
 #include <ctime>
 #include <stdexcept>
+#include <sstream>
 
 class eoMaxException : public std::exception {};
 
