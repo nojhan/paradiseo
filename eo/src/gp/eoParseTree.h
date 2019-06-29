@@ -30,10 +30,10 @@
 #include <iterator>
 #include <list>
 
-#include <EO.h>
-#include <eoInit.h>
-#include <eoOp.h>
-#include <gp/parse_tree.h>
+#include "../EO.h"
+#include "../eoInit.h"
+#include "../eoOp.h"
+#include "parse_tree.h"
 
 using namespace gp_parse_tree;
 
