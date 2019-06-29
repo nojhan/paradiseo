@@ -27,7 +27,7 @@
 #ifndef _eoInvalidateOps_h
 #define _eoInvalidateOps_h
 
-#include <eoOp.h>
+#include "eoOp.h"
 
 /** @addtogroup Utilities
 

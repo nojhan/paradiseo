@@ -29,12 +29,12 @@
 
 
 //-----------------------------------------------------------------------------
-#include <eoPop.h>
-#include <eoFunctor.h>
-#include <eoMerge.h>
-#include <eoReduce.h>
-#include <eoReplacement.h>
-#include <utils/eoHowMany.h>
+#include "eoPop.h"
+#include "eoFunctor.h"
+#include "eoMerge.h"
+#include "eoReduce.h"
+#include "eoReplacement.h"
+#include "utils/eoHowMany.h"
 //-----------------------------------------------------------------------------
 
 /** @addtogroup Replacors

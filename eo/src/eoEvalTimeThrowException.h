@@ -23,7 +23,7 @@ Johann Dréo <johann.dreo@thalesgroup.com>
 
 #include <ctime>
 
-#include <eoExceptions.h>
+#include "eoExceptions.h"
 
 /** Check at each evaluation if a given tie contract has been reached.
  *

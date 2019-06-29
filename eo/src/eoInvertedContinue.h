@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _eoInvertedContinue_h
 #define _eoInvertedContinue_h
 
-#include <eoContinue.h>
+#include "eoContinue.h"
 
 /**
  * Return the opposite of the wrapped continuator

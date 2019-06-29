@@ -27,7 +27,7 @@
 #ifndef eoRanking_h
 #define eoRanking_h
 
-#include <eoPerf2Worth.h>
+#include "eoPerf2Worth.h"
 
 /** An instance of eoPerfFromWorth
  *  COmputes the ranked fitness: fitnesses range in [m,M]

@@ -28,7 +28,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoDistribution.h>
+#include "eoDistribution.h"
 
 /** The abstract class for estimation of disribution algorithms.
  * This design evolve a probability distribution

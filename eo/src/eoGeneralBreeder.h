@@ -32,12 +32,12 @@
  * eoGeneralBreeder: transforms a population using the generalOp construct.
  *****************************************************************************/
 
-#include <eoOp.h>
-#include <eoGenOp.h>
-#include <eoPopulator.h>
-#include <eoSelectOne.h>
-#include <eoBreed.h>
-#include <utils/eoHowMany.h>
+#include "eoOp.h"
+#include "eoGenOp.h"
+#include "eoPopulator.h"
+#include "eoSelectOne.h"
+#include "eoBreed.h"
+#include "utils/eoHowMany.h"
 
 /**
   Base class for breeders using generalized operators.

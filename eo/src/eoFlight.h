@@ -26,8 +26,8 @@
 #define EOFLIGHT_H
 
 //-----------------------------------------------------------------------------
-#include <eoFunctor.h>
-#include <utils/eoRealVectorBounds.h>
+#include "eoFunctor.h"
+#include "utils/eoRealVectorBounds.h"
 //-----------------------------------------------------------------------------
 
 /** Abstract class for particle swarm optimization flight.

@@ -26,8 +26,8 @@
 #ifndef _eoVariableLengthCrossover_h
 #define _eoVariableLengthCrossover_h
 
-#include <eoFunctor.h>
-#include <eoOp.h>
+#include "eoFunctor.h"
+#include "eoOp.h"
 
 /**
   Base classes for generic crossovers on variable length chromosomes.

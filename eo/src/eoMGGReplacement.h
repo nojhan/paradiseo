@@ -28,12 +28,12 @@
 
 
 //-----------------------------------------------------------------------------
-#include <eoPop.h>
-#include <eoFunctor.h>
-#include <eoMerge.h>
-#include <eoReduce.h>
-#include <utils/eoHowMany.h>
-#include <eoReduceSplit.h>
+#include "eoPop.h"
+#include "eoFunctor.h"
+#include "eoMerge.h"
+#include "eoReduce.h"
+#include "utils/eoHowMany.h"
+#include "eoReduceSplit.h"
 //-----------------------------------------------------------------------------
 
 /**

@@ -25,10 +25,10 @@
 #ifndef _eoOp_H
 #define _eoOp_H
 
-#include <eoObject.h>
-#include <eoPrintable.h>
-#include <eoFunctor.h>
-#include <utils/eoRNG.h>
+#include "eoObject.h"
+#include "eoPrintable.h"
+#include "eoFunctor.h"
+#include "utils/eoRNG.h"
 
 /**
 @defgroup Operators Evolutionary Operators

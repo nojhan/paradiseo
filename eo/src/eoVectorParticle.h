@@ -25,7 +25,7 @@
 #ifndef _EOVECTORPARTICLE_H
 #define _EOVECTORPARTICLE_H
 
-#include <PO.h>
+#include "PO.h"
 
 
 /**

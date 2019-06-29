@@ -26,10 +26,10 @@
 #define EOVELOCITY_H
 
 //-----------------------------------------------------------------------------
-#include <eoFunctor.h>
-#include <utils/eoRNG.h>
-#include <eoPop.h>
-#include <eoTopology.h>
+#include "eoFunctor.h"
+#include "utils/eoRNG.h"
+#include "eoPop.h"
+#include "eoTopology.h"
 //-----------------------------------------------------------------------------
 
 /**

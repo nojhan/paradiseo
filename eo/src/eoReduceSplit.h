@@ -31,9 +31,9 @@
 #include <iostream>
 
 // EO includes
-#include <eoPop.h>     // eoPop
-#include <eoFunctor.h>  // eoReduce
-#include <utils/selectors.h>
+#include "eoPop.h"     // eoPop
+#include "eoFunctor.h"  // eoReduce
+#include "utils/selectors.h"
 
 /** @addtogroup Replacors
  * @{

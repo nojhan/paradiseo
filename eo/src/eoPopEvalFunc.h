@@ -27,8 +27,8 @@
 #ifndef eoPopEvalFunc_H
 #define eoPopEvalFunc_H
 
-#include <eoEvalFunc.h>
-#include <apply.h>
+#include "eoEvalFunc.h"
+#include "apply.h"
 
 # ifdef WITH_MPI
 #include <mpi/eoMpi.h>

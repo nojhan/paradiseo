@@ -31,10 +31,10 @@
 #include <functional>  //
 #include <numeric>     // accumulate
 
-#include <eoFunctor.h>
-#include <eoPop.h>
-#include <utils/eoLogger.h>
-#include <utils/selectors.h>
+#include "eoFunctor.h"
+#include "eoPop.h"
+#include "utils/eoLogger.h"
+#include "utils/selectors.h"
 
 /** eoDetTournamentSelect: a selection method that selects ONE individual by
  deterministic tournament

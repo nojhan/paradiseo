@@ -26,11 +26,11 @@
 #define _EOSYNCEASYPSO_H
 
 //-----------------------------------------------------------------------------
-#include <eoContinue.h>
-#include <eoPopEvalFunc.h>
-#include <eoPSO.h>
-#include <eoVelocity.h>
-#include <eoFlight.h>
+#include "eoContinue.h"
+#include "eoPopEvalFunc.h"
+#include "eoPSO.h"
+#include "eoVelocity.h"
+#include "eoFlight.h"
 //-----------------------------------------------------------------------------
 
 /** An easy-to-use synchronous particle swarm algorithm; you can use any particle,

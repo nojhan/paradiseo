@@ -26,9 +26,9 @@
 #ifndef _EOSELECTFACTORY_H
 #define _EOSELECTFACTORY_H
 
-#include <eoFactory.h>
-#include <eoRandomSelect.h>
-#include <eoTournament.h>
+#include "eoFactory.h"
+#include "eoRandomSelect.h"
+#include "eoTournament.h"
 
 //-----------------------------------------------------------------------------
 

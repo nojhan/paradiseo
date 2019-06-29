@@ -24,8 +24,8 @@
 #ifndef EOREALBOUNDMODIFIER_H
 #define EOREALBOUNDMODIFIER_H
 
-#include <eoFunctor.h>
-#include <utils/eoRealVectorBounds.h>
+#include "eoFunctor.h"
+#include "utils/eoRealVectorBounds.h"
 
 /** @defgroup Bounds Bounds management
  *

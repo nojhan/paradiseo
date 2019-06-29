@@ -27,9 +27,9 @@
 #ifndef eoPerf2Worth_h
 #define eoPerf2Worth_h
 
-#include <utils/eoParam.h>
-#include <eoPop.h>
-#include <eoFunctor.h>
+#include "utils/eoParam.h"
+#include "eoPop.h"
+#include "eoFunctor.h"
 
 #include <algorithm>
 #include <vector>

@@ -25,8 +25,8 @@
 
 #include <fstream>
 
-#include <eoEvalFunc.h>
-#include <utils/eoParam.h>
+#include "eoEvalFunc.h"
+#include "utils/eoParam.h"
 
 /**
   Evaluate with the given evaluator and keep the best individual found so far.

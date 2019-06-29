@@ -29,10 +29,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <utils/eoRNG.h>
-#include <eoSelectOne.h>
-#include <utils/selectors.h>
-#include <eoPop.h>
+#include "utils/eoRNG.h"
+#include "eoSelectOne.h"
+#include "utils/selectors.h"
+#include "eoPop.h"
 
 /** eoStochasticUniversalSelect: select an individual proportional to her stored fitness
     value, but in contrast with eoStochasticUniversalSelect, get rid of most finite sampling effects

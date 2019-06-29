@@ -22,15 +22,15 @@
 Authors :
     todos@geneura.ugr.es
     Marc Schoenauer
-    Ramón Casero Cañas
-    Johann Dréo
+    Ramï¿½n Casero Caï¿½as
+    Johann Drï¿½o
  */
 //-----------------------------------------------------------------------------
 
 #ifndef _eoCombinedContinue_h
 #define _eoCombinedContinue_h
 
-#include <eoContinue.h>
+#include "eoContinue.h"
 
 /**
     Combined continuators - logical AND:
@@ -40,7 +40,7 @@ Authors :
              to be consistent with other Combined constructs
              and allow to easily handle more than 2 continuators
 
-02/2003 Ramón Casero Cañas - added the removeLast() method
+02/2003 Ramï¿½n Casero Caï¿½as - added the removeLast() method
 
 @ingroup Combination
 */

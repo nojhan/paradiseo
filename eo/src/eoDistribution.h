@@ -28,8 +28,8 @@
 
 #include <algorithm>
 
-#include <eoInit.h>
-#include <eoPop.h>
+#include "eoInit.h"
+#include "eoPop.h"
 
 /**
  * Abstract class for Distribution Evolution Algorithms within EO:

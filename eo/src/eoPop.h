@@ -41,10 +41,10 @@ Authors:
 #include <assert.h>
 
 // EO includes
-#include <eoOp.h> // for eoInit
-#include <eoPersistent.h>
-#include <eoInit.h>
-#include <utils/rnd_generators.h>  // for shuffle method
+#include "eoOp.h" // for eoInit
+#include "eoPersistent.h"
+#include "eoInit.h"
+#include "utils/rnd_generators.h"  // for shuffle method
 
 /** A std::vector of EO object, to be used in all algorithms
  *      (selectors, operators, replacements, ...).

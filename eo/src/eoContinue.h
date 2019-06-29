@@ -25,9 +25,9 @@
 #ifndef _eoContinue_h
 #define _eoContinue_h
 
-#include <eoFunctor.h>
-#include <eoPop.h>
-#include <eoPersistent.h>
+#include "eoFunctor.h"
+#include "eoPop.h"
+#include "eoPersistent.h"
 
 /** @defgroup Continuators Stopping criteria
  *

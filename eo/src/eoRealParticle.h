@@ -26,7 +26,7 @@
 #define _EOREALPARTICLE_H
 
 
-#include <eoVectorParticle.h>
+#include "eoVectorParticle.h"
 
 
 /** eoRealParticle: Implementation of a real-coded particle for

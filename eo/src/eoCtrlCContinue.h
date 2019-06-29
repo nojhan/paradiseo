@@ -31,7 +31,7 @@
 #define eoCtrlCContinue_h
 
 #include <csignal>
-#include <eoContinue.h>
+#include "eoContinue.h"
 
 /**
  * @addtogroup Continuators

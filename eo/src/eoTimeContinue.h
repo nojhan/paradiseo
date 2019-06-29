@@ -27,8 +27,8 @@
 
 #include <ctime>
 
-#include <eoContinue.h>
-#include <utils/eoLogger.h>
+#include "eoContinue.h"
+#include "utils/eoLogger.h"
 
 /**
  * Termination condition until a running time is reached.

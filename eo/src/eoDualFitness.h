@@ -31,8 +31,8 @@ Authors:
 #include <utility> // for std::pair
 #include <string>
 
-#include <utils/eoStat.h>
-#include <utils/eoLogger.h>
+#include "utils/eoStat.h"
+#include "utils/eoLogger.h"
 
 /** @addtogroup Evaluation
  * @{

@@ -27,11 +27,11 @@
 
 //-----------------------------------------------------------------------------
 
-#include <utils/eoData.h>	// For limits definition
+#include "utils/eoData.h"	// For limits definition
 #include <iostream>		// std::istream, std::ostream
 #include <string>		// std::string
 
-#include <utils/compatibility.h>
+#include "utils/compatibility.h"
 
 /*
 eoObject used to be the base class for the whole hierarchy, but this has
@@ -39,7 +39,7 @@ changed. eoObject is used to define a name (#className#)
 that is used when loading or saving the state.
 
 Previously, this object also defined a print and read
-interface, but it´s been moved to eoPrintable and eoPersistent.
+interface, but itï¿½s been moved to eoPrintable and eoPersistent.
 */
 
 /** Defines a name (#className#), used when loading or saving a state.

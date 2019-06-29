@@ -27,8 +27,8 @@
 #ifndef _eoSGATransform_h
 #define _eoSGATransform_h
 
-#include <eoInvalidateOps.h>
-#include <eoPop.h>
+#include "eoInvalidateOps.h"
+#include "eoPop.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // class eoSGATransform
