@@ -28,9 +28,9 @@
 #define _eoUpdater_h
 
 #include <string>
-#include <eoFunctor.h>
-#include <utils/eoState.h>
-#include <utils/eoParam.h>
+#include "../eoFunctor.h"
+#include "eoState.h"
+#include "eoParam.h"
 
 template <class EOT> class eoCheckPoint;
 

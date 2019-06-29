@@ -8,8 +8,8 @@
 
 #include <sstream>
 
-#include <utils/eoState.h>
-#include <utils/eoUpdater.h>
+#include "eoState.h"
+#include "eoUpdater.h"
 
 using namespace std;
 

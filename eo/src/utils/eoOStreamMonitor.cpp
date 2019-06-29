@@ -9,10 +9,10 @@
 #include <iomanip>
 #include <ios>
 
-#include <utils/eoOStreamMonitor.h>
-#include <utils/compatibility.h>
-#include <utils/eoParam.h>
-#include <eoLogger.h>
+#include "eoOStreamMonitor.h"
+#include "compatibility.h"
+#include "eoParam.h"
+#include "eoLogger.h"
 
 //using namespace std;
 

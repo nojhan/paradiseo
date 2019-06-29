@@ -1,8 +1,8 @@
 #ifndef eoFuncPtrStat_h
 #define eoFuncPtrStat_h
 
-#include <eoFunctorStore.h>
-#include <utils/eoStat.h>
+#include "../eoFunctorStore.h"
+#include "eoStat.h"
 
 
 

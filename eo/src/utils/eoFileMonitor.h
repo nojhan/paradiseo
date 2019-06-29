@@ -31,8 +31,8 @@
 #include <fstream>
 #include <stdexcept>
 
-#include "utils/eoMonitor.h"
-#include "eoObject.h"
+#include "eoMonitor.h"
+#include "../eoObject.h"
 
 
 /** Prints statistics to file

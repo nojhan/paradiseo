@@ -37,9 +37,9 @@ Authors:
 #include <iomanip>
 #include <cctype>
 
-#include <utils/compatibility.h>
-#include <utils/eoParser.h>
-#include <utils/eoLogger.h>
+#include "compatibility.h"
+#include "eoParser.h"
+#include "eoLogger.h"
 
 
 using namespace std;

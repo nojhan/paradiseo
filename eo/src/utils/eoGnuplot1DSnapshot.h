@@ -32,11 +32,11 @@
 #include <sstream>
 #include <string>
 
-#include <eoObject.h>
+#include "../eoObject.h"
 #include "eoRealVectorBounds.h"
-#include <utils/pipecom.h>
-#include <utils/eoFileSnapshot.h>
-#include <utils/eoGnuplot.h>
+#include "pipecom.h"
+#include "eoFileSnapshot.h"
+#include "eoGnuplot.h"
 
 /** Plot stats through gnuplot
 

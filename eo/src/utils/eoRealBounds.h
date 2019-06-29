@@ -31,7 +31,7 @@
 #include <sstream>
 #include <stdexcept>               // std::exceptions!
 
-#include <utils/eoRNG.h>
+#include "eoRNG.h"
 #include "eoLogger.h"
 
 /**

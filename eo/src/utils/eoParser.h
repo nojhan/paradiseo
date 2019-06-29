@@ -30,9 +30,9 @@ Authors:
 #include <string>
 
 #include "eoParam.h"
-#include "eoObject.h"
-#include "eoPersistent.h"
-#include "eoExceptions.h"
+#include "../eoObject.h"
+#include "../eoPersistent.h"
+#include "../eoExceptions.h"
 
 /** Parameter saving and loading
 

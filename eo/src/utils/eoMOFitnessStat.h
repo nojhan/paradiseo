@@ -27,7 +27,7 @@
 #ifndef _eoFitnessStat_h
 #define _eoFitnessStat_h
 
-#include <utils/eoStat.h>
+#include "eoStat.h"
 
 /**
     The fitnesses of a whole population, as a vector

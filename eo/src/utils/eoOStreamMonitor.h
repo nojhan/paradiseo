@@ -30,9 +30,9 @@ Authors:
 #include <string>
 #include <iostream>
 
-#include <utils/eoMonitor.h>
-#include <utils/eoLogger.h>
-#include <eoObject.h>
+#include "eoMonitor.h"
+#include "eoLogger.h"
+#include "../eoObject.h"
 
 /**
     Prints statistics to a given ostream.

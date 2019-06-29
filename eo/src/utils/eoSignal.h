@@ -27,8 +27,8 @@
 #define _eoSignal_h
 
 #include <csignal>
-#include <utils/eoCheckPoint.h>
-#include <utils/eoLogger.h>
+#include "eoCheckPoint.h"
+#include "eoLogger.h"
 
 #include <map>
 #include <vector>

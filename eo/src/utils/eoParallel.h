@@ -31,7 +31,7 @@ Authors:
 #ifndef eoParallel_h
 #define eoParallel_h
 
-#include "eoObject.h"
+#include "../eoObject.h"
 #include "eoParser.h"
 
 /**

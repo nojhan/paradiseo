@@ -31,7 +31,7 @@ Contact: http://eodev.sourceforge.net
 
 #include <sstream>
 
-#include <utils/eoLogger.h>
+#include "eoLogger.h"
 
 
 /** A helper class, to determine a number of individuals from another one

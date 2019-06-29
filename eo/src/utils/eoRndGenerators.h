@@ -30,7 +30,7 @@
 #define eoRndGenerators_h
 
 #include "eoRNG.h"
-#include <eoFunctor.h>
+#include "../eoFunctor.h"
 #include <stdexcept>
 
 /** @defgroup Random Random number generation

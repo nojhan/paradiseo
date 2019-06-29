@@ -35,7 +35,7 @@ that can be used to dump to the screen
 #ifndef _eoPopStat_h
 #define _eoPopStat_h
 
-#include <utils/eoStat.h>
+#include "eoStat.h"
 
 
 /** Thanks to MS/VC++, eoParam mechanism is unable to handle std::vectors of stats.
