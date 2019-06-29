@@ -36,6 +36,7 @@
 #include <eoAlgo.h>
 #include <apply.h>
 
+
 /** The Simple Genetic Algorithm, following Holland and Goldberg
  *
  * Needs a selector (class eoSelectOne) a crossover (eoQuad, i.e. a
@@ -105,7 +106,7 @@ public :
       } while (cont(_pop));
   }
 
-private :
+protected:
 
   eoContinue<EOT>& cont;
   /// eoInvalidateMonOp invalidates the embedded operator
@@ -116,6 +117,74 @@ private :
   float crossoverRate;
   eoSelectPerc<EOT> select;
   eoEvalFunc<EOT>& eval;
+};
+
+
+template <class EOT>
+class eoSGAVerbose : protected eoSGA<EOT>
+{
+public :
+
+  using eoSGA<EOT>::select;
+  using eoSGA<EOT>::cross;
+  using eoSGA<EOT>::crossoverRate;
+  using eoSGA<EOT>::mutate;
+  using eoSGA<EOT>::mutationRate;
+  using eoSGA<EOT>::eval;
+  using eoSGA<EOT>::cont;
+
+  // added this second ctor as I didn't like the ordering of the parameters
+  // in the one above. Any objection :-) MS
+  eoSGAVerbose(
+        eoSelectOne<EOT>& _select,
+        eoQuadOp<EOT>& _cross, float _crate,
+        eoMonOp<EOT>& _mutate, float _mrate,
+        eoEvalFunc<EOT>& _eval,
+        eoContinue<EOT>& _cont)
+    : eoSGA<EOT>(_select, _cross, _crate, _mutate, _mrate, _eval, _cont) {}
+
+  void operator()(eoPop<EOT>& _pop)
+  {
+    eoPop<EOT> offspring;
+    unsigned gen=0;
+
+    do
+      {
+        _pop.sort();
+        std::cout << "G" << ++gen << " --> ";
+        std::cout << _pop[0] << std::endl;
+
+        select(_pop, offspring);
+
+        unsigned i;
+
+        for (i=0; i<_pop.size()/2; i++)
+          {
+            if ( rng.flip(crossoverRate) )
+            {
+                    // this crossover generates 2 offspring from two parents
+                    if (cross(offspring[2*i], offspring[2*i+1]))
+        {
+          offspring[2*i].invalidate();
+          offspring[2*i+1].invalidate();
+        }
+      }
+          }
+
+        for (i=0; i < offspring.size(); i++)
+          {
+            if (rng.flip(mutationRate) )
+            {
+                     if (mutate(offspring[i]))
+          offspring[i].invalidate();
+            }
+          }
+
+        _pop.swap(offspring);
+        apply<EOT>(eval, _pop);
+
+      } while (cont(_pop));
+  }
 };
 
 #endif
