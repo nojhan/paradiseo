@@ -24,27 +24,27 @@
 #ifndef _CHECKPOINTING_
 #define _CHECKPOINTING_
 
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
-#include <utils/eoUpdater.h>
-#include <utils/eoMonitor.h>
-#include <utils/eoFileMonitor.h>
-#include <utils/eoStdoutMonitor.h>
-#include <utils/eoOStreamMonitor.h>
+#include <paradiseo/eo/utils/eoParser.h>
+#include <paradiseo/eo/utils/eoState.h>
+#include <paradiseo/eo/utils/eoUpdater.h>
+#include <paradiseo/eo/utils/eoMonitor.h>
+#include <paradiseo/eo/utils/eoFileMonitor.h>
+#include <paradiseo/eo/utils/eoStdoutMonitor.h>
+#include <paradiseo/eo/utils/eoOStreamMonitor.h>
 #ifndef _MSC_VER
-#include <utils/eoGnuplot1DMonitor.h>
-#include <utils/eoGnuplot1DSnapshot.h>
+#include <paradiseo/eo/utils/eoGnuplot1DMonitor.h>
+#include <paradiseo/eo/utils/eoGnuplot1DSnapshot.h>
 #endif
-#include <utils/eoCheckPoint.h>
-#include <utils/eoSignal.h>
-#include <utils/eoStat.h>
-#include <utils/eoScalarFitnessStat.h>
-#include <utils/eoAssembledFitnessStat.h>
-#include <utils/eoFDCStat.h>
-#include <utils/eoMOFitnessStat.h>
-#include <utils/eoPopStat.h>
-#include <utils/eoTimeCounter.h>
-#include <utils/eoGenCounter.h>
+#include <paradiseo/eo/utils/eoCheckPoint.h>
+#include <paradiseo/eo/utils/eoSignal.h>
+#include <paradiseo/eo/utils/eoStat.h>
+#include <paradiseo/eo/utils/eoScalarFitnessStat.h>
+#include <paradiseo/eo/utils/eoAssembledFitnessStat.h>
+#include <paradiseo/eo/utils/eoFDCStat.h>
+#include <paradiseo/eo/utils/eoMOFitnessStat.h>
+#include <paradiseo/eo/utils/eoPopStat.h>
+#include <paradiseo/eo/utils/eoTimeCounter.h>
+#include <paradiseo/eo/utils/eoGenCounter.h>
 
 // and make_help - any better suggestion to include it?
 void make_help(eoParser & _parser);
