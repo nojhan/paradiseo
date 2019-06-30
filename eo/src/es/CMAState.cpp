@@ -56,12 +56,11 @@
 #include <iostream>
 #include <cassert>
 
-#include <utils/eoRNG.h>
-
-#include <es/CMAState.h>
-#include <es/CMAParams.h>
-#include <es/matrices.h>
-#include <es/eig.h>
+#include "../utils/eoRNG.h"
+#include "CMAState.h"
+#include "CMAParams.h"
+#include "matrices.h"
+#include "eig.h"
 
 using namespace std;
 

@@ -28,11 +28,11 @@ Contact: http://eodev.sourceforge.net
 #include <sstream>
 #include <vector>
 
-#include "es/eoReal.h"
-#include "es/eoEsChromInit.h"
-#include "utils/eoParser.h"
-#include "utils/eoRealVectorBounds.h"
-#include "utils/eoState.h"
+#include "eoReal.h"
+#include "eoEsChromInit.h"
+#include "../utils/eoParser.h"
+#include "../utils/eoRealVectorBounds.h"
+#include "../utils/eoState.h"
 
 
 /** @addtogroup Builders

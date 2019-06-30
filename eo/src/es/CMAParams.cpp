@@ -43,8 +43,8 @@
  *   Version 2.23.
  *                               */
 
-#include <es/CMAParams.h>
-#include <utils/eoParser.h>
+#include "CMAParams.h"
+#include "../utils/eoParser.h"
 
 #include <string>
 

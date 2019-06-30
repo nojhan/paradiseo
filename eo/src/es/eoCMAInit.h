@@ -28,9 +28,9 @@
 #ifndef _EOCMAINIT_H
 #define _EOCMAINIT_H
 
-#include <eoInit.h>
-#include <eoVector.h>
-#include <es/CMAState.h>
+#include "../eoInit.h"
+#include "../eoVector.h"
+#include "CMAState.h"
 
 /// @todo handle bounds
 template <class FitT>

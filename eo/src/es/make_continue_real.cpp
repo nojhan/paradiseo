@@ -41,9 +41,9 @@
  */
 
 // The templatized code
-#include <do/make_continue.h>
+#include "../do/make_continue.h"
 // the instanciating EOType
-#include <es/eoReal.h>
+#include "eoReal.h"
 
 /// The following function merely call the templatized do_* functions
 

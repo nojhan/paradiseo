@@ -23,7 +23,7 @@ Contact: http://eodev.sourceforge.net
 #ifndef _eoEsStdev_h
 #define _eoEsStdev_h
 
-#include <eoVector.h>
+#include "../eoVector.h"
 
 
 /** Evolutionary Strategy with a standard deviation per parameter

@@ -54,7 +54,7 @@ the default ctor of EOT, resulting in most cases in an EOT that is
 */
 
 // the templatized code (same for real and es here)
-#include <es/make_genotype_real.h>
+#include "make_genotype_real.h"
 
 
 /// The following function merely call the templatized do_* functions

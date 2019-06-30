@@ -27,7 +27,7 @@
 #ifndef _eoEsMutationInit_h
 #define _eoEsMutationInit_h
 
-#include <utils/eoParser.h>
+#include "../utils/eoParser.h"
 
 /** Initialize Mutation operator
 

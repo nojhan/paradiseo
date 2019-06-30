@@ -25,9 +25,9 @@
 #ifndef _EOCMABREED_H
 #define _EOCMABREED_H
 
-#include <eoBreed.h>
-#include <eoVector.h>
-#include <es/CMAState.h>
+#include "../eoBreed.h"
+#include "../eoVector.h"
+#include "CMAState.h"
 
 #include <algorithm>
 
