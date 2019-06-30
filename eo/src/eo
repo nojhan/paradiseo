@@ -33,120 +33,120 @@
 #endif
 
 // general purpose
-#include <paradiseo/eo/utils/eoData.h>
-#include <paradiseo/eo/eoObject.h>
-#include <paradiseo/eo/eoPrintable.h>
-#include <paradiseo/eo/eoPersistent.h>
-#include <paradiseo/eo/eoScalarFitness.h>
-#include <paradiseo/eo/eoDualFitness.h>
-#include <paradiseo/eo/EO.h>
+#include "utils/eoData.h"
+#include "eoObject.h"
+#include "eoPrintable.h"
+#include "eoPersistent.h"
+#include "eoScalarFitness.h"
+#include "eoDualFitness.h"
+#include "EO.h"
 
-#include <paradiseo/eo/utils/rnd_generators.h>
-#include <paradiseo/eo/eoFunctor.h>
-#include <paradiseo/eo/apply.h>
+#include "utils/rnd_generators.h"
+#include "eoFunctor.h"
+#include "apply.h"
 
 // eo's
-#include <paradiseo/eo/eoVector.h>
+#include "eoVector.h"
 
-#include <paradiseo/eo/other/eoString.h>
+#include "other/eoString.h"
 
-#include <paradiseo/eo/utils/eoRndGenerators.h>
-#include <paradiseo/eo/eoInit.h>
-#include <paradiseo/eo/utils/eoUniformInit.h>
+#include "utils/eoRndGenerators.h"
+#include "eoInit.h"
+#include "utils/eoUniformInit.h"
 
 // the variation operators
-#include <paradiseo/eo/eoOp.h>
-#include <paradiseo/eo/eoGenOp.h>
-#include <paradiseo/eo/eoCloneOps.h>
-#include <paradiseo/eo/eoOpContainer.h>
+#include "eoOp.h"
+#include "eoGenOp.h"
+#include "eoCloneOps.h"
+#include "eoOpContainer.h"
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
-#include <paradiseo/eo/eoProportionalCombinedOp.h>
+#include "eoProportionalCombinedOp.h>
 // didactic (mimics SGA-like variation into an eoGenOp)
 // calls crossover and mutation sequentially,
 // with their respective mutation rates
-#include <paradiseo/eo/eoSGAGenOp.h>
+#include "eoSGAGenOp.h>
 // its dual: crossover, mutation (and copy) - proportional choice
 // w.r.t. given relative weights
-#include <paradiseo/eo/eoPropGAGenOp.h>
+#include "eoPropGAGenOp.h"
 
 // population
-#include <paradiseo/eo/eoPop.h>
+#include "eoPop.h"
 
 // Evaluation functions (all include eoEvalFunc.h)
-#include <paradiseo/eo/eoPopEvalFunc.h>
-#include <paradiseo/eo/eoEvalFuncPtr.h>
-#include <paradiseo/eo/eoEvalCounterThrowException.h>
-#include <paradiseo/eo/eoEvalTimeThrowException.h>
-#include <paradiseo/eo/eoEvalUserTimeThrowException.h>
+#include "eoPopEvalFunc.h"
+#include "eoEvalFuncPtr.h"
+#include "eoEvalCounterThrowException.h"
+#include "eoEvalTimeThrowException.h"
+#include "eoEvalUserTimeThrowException.h"
 
 // Continuators - all include eoContinue.h
-#include <paradiseo/eo/eoCombinedContinue.h>
-#include <paradiseo/eo/eoGenContinue.h>
-#include <paradiseo/eo/eoSteadyFitContinue.h>
-#include <paradiseo/eo/eoEvalContinue.h>
-#include <paradiseo/eo/eoFitContinue.h>
-#include <paradiseo/eo/eoPeriodicContinue.h>
-#include <paradiseo/eo/eoTimeContinue.h> // added th T.Legrand
+#include "eoCombinedContinue.h"
+#include "eoGenContinue.h"
+#include "eoSteadyFitContinue.h"
+#include "eoEvalContinue.h"
+#include "eoFitContinue.h"
+#include "eoPeriodicContinue.h"
+#include "eoTimeContinue.h" // added th T.Legrand
 #ifndef _MSC_VER
-#include <paradiseo/eo/eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)
+#include "eoCtrlCContinue.h"  // CtrlC handling (using 2 global variables!)
 #endif
 
 // Selection
 // the eoSelectOne's
-#include <paradiseo/eo/eoRandomSelect.h>
-#include <paradiseo/eo/eoSequentialSelect.h>
-#include <paradiseo/eo/eoDetTournamentSelect.h>
-#include <paradiseo/eo/eoProportionalSelect.h>
-#include <paradiseo/eo/eoFitnessScalingSelect.h> // also contains eoLinearFitScaling.h
-#include <paradiseo/eo/eoRankingSelect.h>
-#include <paradiseo/eo/eoStochTournamentSelect.h>
-#include <paradiseo/eo/eoSharingSelect.h>
+#include "eoRandomSelect.h"
+#include "eoSequentialSelect.h"
+#include "eoDetTournamentSelect.h"
+#include "eoProportionalSelect.h"
+#include "eoFitnessScalingSelect.h" // also contains eoLinearFitScaling.h
+#include "eoRankingSelect.h"
+#include "eoStochTournamentSelect.h"
+#include "eoSharingSelect.h"
 
 // Embedding truncation selection
-#include <paradiseo/eo/eoTruncatedSelectOne.h>
+#include "eoTruncatedSelectOne.h"
 
 // the batch selection - from an eoSelectOne
-#include <paradiseo/eo/eoSelectPerc.h>
-#include <paradiseo/eo/eoSelectNumber.h>
-#include <paradiseo/eo/eoSelectMany.h>
-#include <paradiseo/eo/eoTruncatedSelectMany.h>
+#include "eoSelectPerc.h"
+#include "eoSelectNumber.h"
+#include "eoSelectMany.h"
+#include "eoTruncatedSelectMany.h"
 
 // other batch selections
 // DetSelect can also be obtained as eoSequentialSelect, an eoSelectOne
 // (using setup and an index)
-#include <paradiseo/eo/eoDetSelect.h>
-#include <paradiseo/eo/eoRankMuSelect.h>
+#include "eoDetSelect.h"
+#include "eoRankMuSelect.h"
 
 // Breeders
-#include <paradiseo/eo/eoGeneralBreeder.h>	// applies one eoGenOp, stop on offspring count
-// #include <paradiseo/eo/eoOneToOneBreeder.h>	// parent + SINGLE offspring compete (e.g. DE) - not ready yet...
+#include "eoGeneralBreeder.h"	// applies one eoGenOp, stop on offspring count
+// #include "eoOneToOneBreeder.h"	// parent + SINGLE offspring compete (e.g. DE) - not ready yet...
 
 // Replacement
-// #include <paradiseo/eo/eoReplacement.h>
-#include <paradiseo/eo/eoMergeReduce.h>
-#include <paradiseo/eo/eoReduceMerge.h>
-#include <paradiseo/eo/eoSurviveAndDie.h>
+// #include "eoReplacement.h"
+#include "eoMergeReduce.h"
+#include "eoReduceMerge.h"
+#include "eoSurviveAndDie.h"
 
 // a simple transformer
-#include <paradiseo/eo/eoSGATransform.h>
+#include "eoSGATransform.h"
 
 // Perf2Worth stuff - includes eoSelectFromWorth.h
-#include <paradiseo/eo/eoNDSorting.h>
+#include "eoNDSorting.h"
 
 
 // Algorithms
-#include <paradiseo/eo/eoEasyEA.h>
-#include <paradiseo/eo/eoSGA.h>
-// #include <paradiseo/eo/eoEvolutionStrategy.h>   removed for a while - until eoGenOp is done
+#include "eoEasyEA.h"
+#include "eoSGA.h"
+// #include "eoEvolutionStrategy.h"   removed for a while - until eoGenOp is done
 
 // Utils
-#include <paradiseo/eo/utils/checkpointing>
-#include <paradiseo/eo/utils/eoRealVectorBounds.h> // includes eoRealBounds.h
-#include <paradiseo/eo/utils/eoIntBounds.h>        // no eoIntVectorBounds
+#include "utils/checkpointing"
+#include "utils/eoRealVectorBounds.h" // includes eoRealBounds.h
+#include "utils/eoIntBounds.h"        // no eoIntVectorBounds
 
 // aliens
-#include <paradiseo/eo/other/external_eo>
-#include <paradiseo/eo/eoCounter.h>
+#include "other/external_eo"
+#include "eoCounter.h"
 
 
 //-----------------------------------------------------------------------------
@@ -156,54 +156,54 @@
 /*** Particle Swarm Optimization stuff ***/
 
 // basic particle definitions
-#include <paradiseo/eo/PO.h>
-#include <paradiseo/eo/eoVectorParticle.h>
-#include <paradiseo/eo/eoBitParticle.h>
-#include <paradiseo/eo/eoRealParticle.h>
+#include "PO.h"
+#include "eoVectorParticle.h"
+#include "eoBitParticle.h"
+#include "eoRealParticle.h"
 
 // initialization
-#include <paradiseo/eo/eoParticleBestInit.h>
-#include <paradiseo/eo/eoInitializer.h>
+#include "eoParticleBestInit.h"
+#include "eoInitializer.h"
 
 // velocities
-#include <paradiseo/eo/eoVelocity.h>
-#include <paradiseo/eo/eoStandardVelocity.h>
-#include <paradiseo/eo/eoExtendedVelocity.h>
-#include <paradiseo/eo/eoIntegerVelocity.h>
-#include <paradiseo/eo/eoConstrictedVelocity.h>
-#include <paradiseo/eo/eoFixedInertiaWeightedVelocity.h>
-#include <paradiseo/eo/eoVariableInertiaWeightedVelocity.h>
-#include <paradiseo/eo/eoConstrictedVariableWeightVelocity.h>
+#include "eoVelocity.h"
+#include "eoStandardVelocity.h"
+#include "eoExtendedVelocity.h"
+#include "eoIntegerVelocity.h"
+#include "eoConstrictedVelocity.h"
+#include "eoFixedInertiaWeightedVelocity.h"
+#include "eoVariableInertiaWeightedVelocity.h"
+#include "eoConstrictedVariableWeightVelocity.h"
 
 // flights
-#include <paradiseo/eo/eoFlight.h>
-#include <paradiseo/eo/eoStandardFlight.h>
-#include <paradiseo/eo/eoVelocityInit.h>
-#include <paradiseo/eo/eoBinaryFlight.h>
-#include <paradiseo/eo/eoSigBinaryFlight.h>
+#include "eoFlight.h"
+#include "eoStandardFlight.h"
+#include "eoVelocityInit.h"
+#include "eoBinaryFlight.h"
+#include "eoSigBinaryFlight.h"
 
 // topologies
-#include <paradiseo/eo/eoTopology.h>
-#include <paradiseo/eo/eoStarTopology.h>
-#include <paradiseo/eo/eoLinearTopology.h>
-#include <paradiseo/eo/eoRingTopology.h>
-#include <paradiseo/eo/eoNeighborhood.h>
-#include <paradiseo/eo/eoSocialNeighborhood.h>
+#include "eoTopology.h"
+#include "eoStarTopology.h"
+#include "eoLinearTopology.h"
+#include "eoRingTopology.h"
+#include "eoNeighborhood.h"
+#include "eoSocialNeighborhood.h"
 
 // PS algorithms
-#include <paradiseo/eo/eoPSO.h>
-#include <paradiseo/eo/eoEasyPSO.h>
-#include <paradiseo/eo/eoSyncEasyPSO.h>
+#include "eoPSO.h"
+#include "eoEasyPSO.h"
+#include "eoSyncEasyPSO.h"
 
 // utils
-#include <paradiseo/eo/eoRealBoundModifier.h>
-#include <paradiseo/eo/eoRandomRealWeightUp.h>
-#include <paradiseo/eo/eoWeightUpdater.h>
-#include <paradiseo/eo/eoLinearDecreasingWeightUp.h>
-#include <paradiseo/eo/eoGaussRealWeightUp.h>
+#include "eoRealBoundModifier.h"
+#include "eoRandomRealWeightUp.h"
+#include "eoWeightUpdater.h"
+#include "eoLinearDecreasingWeightUp.h"
+#include "eoGaussRealWeightUp.h"
 
-#include <paradiseo/eo/utils/eoLogger.h>
-#include <paradiseo/eo/utils/eoParallel.h>
+#include "utils/eoLogger.h"
+#include "utils/eoParallel.h"
 
 #endif
 
