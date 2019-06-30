@@ -18,11 +18,11 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoEvalFunc.h>
-#include <eoInit.h>
-#include <eoTransform.h>
-#include <eoSGATransform.h>
-#include <eoPopEvalFunc.h>
+#include "../eoEvalFunc.h"
+#include "../eoInit.h"
+#include "../eoTransform.h"
+#include "../eoSGATransform.h"
+#include "../eoPopEvalFunc.h"
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"

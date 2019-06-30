@@ -18,13 +18,13 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoGenContinue.h>
-#include <eoCombinedContinue.h>
-#include <eoEvalContinue.h>
-#include <eoFitContinue.h>
-#include <eoSteadyFitContinue.h>
-#include <utils/eoCheckPoint.h>
-#include <utils/eoStat.h>
+#include "../eoGenContinue.h"
+#include "../eoCombinedContinue.h"
+#include "../eoEvalContinue.h"
+#include "../eoFitContinue.h"
+#include "../eoSteadyFitContinue.h"
+#include "../utils/eoCheckPoint.h"
+#include "../utils/eoStat.h"
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"

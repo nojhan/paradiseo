@@ -18,11 +18,11 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoReplacement.h>
-#include <eoMergeReduce.h>
-#include <eoReduceMerge.h>
-#include <eoReduceMergeReduce.h>
-#include <eoMGGReplacement.h>
+#include "../eoReplacement.h"
+#include "../eoMergeReduce.h"
+#include "../eoReduceMerge.h"
+#include "../eoReduceMergeReduce.h"
+#include "../eoMGGReplacement.h"
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"

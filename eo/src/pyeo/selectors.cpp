@@ -18,13 +18,13 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoSelect.h>
-#include <eoDetSelect.h>
-#include <eoSelectMany.h>
-#include <eoSelectNumber.h>
-#include <eoSelectPerc.h>
-#include <eoTruncSelect.h>
-#include <eoTruncatedSelectMany.h>
+#include "../eoSelect.h"
+#include "../eoDetSelect.h"
+#include "../eoSelectMany.h"
+#include "../eoSelectNumber.h"
+#include "../eoSelectPerc.h"
+#include "../eoTruncSelect.h"
+#include "../eoTruncatedSelectMany.h"
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"

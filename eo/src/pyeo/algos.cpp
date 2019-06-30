@@ -18,10 +18,10 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoSGA.h>
-#include <eoEasyEA.h>
-#include <eoDetSelect.h>
-#include <eoCellularEasyEA.h>
+#include "../eoSGA.h"
+#include "../eoEasyEA.h"
+#include "../eoDetSelect.h"
+#include "../eoCellularEasyEA.h"
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"

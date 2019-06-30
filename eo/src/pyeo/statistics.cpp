@@ -1,4 +1,4 @@
-#include <utils/eoStat.h>
+#include "../utils/eoStat.h"
 
 #include "PyEO.h"
 #include "valueParam.h"

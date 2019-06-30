@@ -18,9 +18,9 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoBreed.h>
-#include <eoGeneralBreeder.h>
-#include <eoOneToOneBreeder.h>
+#include "../eoBreed.h"
+#include "../eoGeneralBreeder.h"
+#include "../eoOneToOneBreeder.h"
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"
