@@ -19,10 +19,10 @@ Contact: http://eodev.sourceforge.net
 Authors:
     Benjamin Bouvier <benjamin.bouvier@gmail.com>
 */
-# ifndef __EO_TERMINATE_H__
-# define __EO_TERMINATE_H__
+#ifndef __EO_TERMINATE_H__
+#define __EO_TERMINATE_H__
 
-# include "eoMpi.h"
+#include "eoMpi.h"
 
 namespace eo
 {

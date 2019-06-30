@@ -19,7 +19,7 @@ Contact: http://eodev.sourceforge.net
 Authors:
     Benjamin Bouvier <benjamin.bouvier@gmail.com>
 */
-# include "implMpi.h"
+#include "implMpi.h"
 
 namespace mpi
 {
