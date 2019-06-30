@@ -3,7 +3,7 @@
 #pragma warning(disable:4786)
 #endif
 
-#include <paradiseo/eo/eoPersistent.h>
+#include "eoPersistent.h"
 
 //Implementation of these objects
 

@@ -27,7 +27,7 @@
 #ifndef _eoCheckPoint_h
 #define _eoCheckPoint_h
 
-#include "..eoContinue.h"
+#include "../eoContinue.h"
 #include "eoUpdater.h"
 #include "eoMonitor.h"
 #include "eoStat.h"

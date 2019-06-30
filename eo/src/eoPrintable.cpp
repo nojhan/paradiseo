@@ -7,7 +7,7 @@
 // eoPrintable.cpp
 //-----------------------------------------------------------------------------
 
-#include <paradiseo/eo/eoPrintable.h>
+#include "eoPrintable.h"
 
 //-----------------------------------------------------------------------------
 //Implementation of these objects

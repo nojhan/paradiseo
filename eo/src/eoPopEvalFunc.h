@@ -31,11 +31,11 @@
 #include "apply.h"
 
 # ifdef WITH_MPI
-#include <mpi/eoMpi.h>
-#include <mpi/eoTerminateJob.h>
-#include <mpi/eoMpiAssignmentAlgorithm.h>
-#include <mpi/eoParallelApply.h>
-#include <utils/eoParallel.h>
+#include "mpi/eoMpi.h"
+#include "mpi/eoTerminateJob.h"
+#include "mpi/eoMpiAssignmentAlgorithm.h"
+#include "mpi/eoParallelApply.h"
+#include "utils/eoParallel.h"
 
 #include <cmath> // ceil
 # endif // WITH_MPI

@@ -31,7 +31,7 @@
 #pragma warning(disable:4786)
 #endif
 
-#include <paradiseo/eo/eoScalarFitnessAssembled.h>
+#include "eoScalarFitnessAssembled.h"
 
 
 // need to allocate the static variables of class eoScalarFitnessAssembledTraits
