@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moAlwaysAcceptCrit_h
 #define _moAlwaysAcceptCrit_h
 
-#include <acceptCrit/moAcceptanceCriterion.h>
-#include <memory/moDummyMemory.h>
+#include "moAcceptanceCriterion.h"
+#include "../memory/moDummyMemory.h"
 
 /**
  * Acceptance Criterion for extreme diversification : always accept new solution

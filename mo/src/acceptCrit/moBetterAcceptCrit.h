@@ -30,9 +30,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moBetterAcceptCrit_h
 #define _moBetterAcceptCrit_h
 
-#include <acceptCrit/moAcceptanceCriterion.h>
-#include <memory/moDummyMemory.h>
-#include <comparator/moSolComparator.h>
+#include "moAcceptanceCriterion.h"
+#include "../memory/moDummyMemory.h"
+#include "../comparator/moSolComparator.h"
 
 /**
  * Acceptance Criterion for extreme intensification : accept if the new solution is better than previous one
