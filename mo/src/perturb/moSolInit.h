@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moSolInit_h
 #define _moSolInit_h
 
-#include <eoInit.h>
+#include <paradiseo/eo/eoInit.h>
 
 /**
  * Initialization of the solution with the external solution

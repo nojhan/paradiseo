@@ -30,10 +30,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moMonOpPerturb_h
 #define _moMonOpPerturb_h
 
-#include <eoEvalFunc.h>
-#include <eoOp.h>
-#include <perturb/moPerturbation.h>
-#include <memory/moDummyMemory.h>
+#include "../../eo/eoEvalFunc.h"
+#include "../../eo/eoOp.h"
+#include "moPerturbation.h"
+#include "../memory/moDummyMemory.h"
 
 /**
  * Perturbation operator using only a eoMonOp
