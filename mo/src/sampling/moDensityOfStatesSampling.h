@@ -35,11 +35,11 @@
 #ifndef moDensityOfStatesSampling_h
 #define moDensityOfStatesSampling_h
 
-#include <eoInit.h>
-#include <eoEvalFunc.h>
-#include <algo/moRandomSearch.h>
-#include <continuator/moFitnessStat.h>
-#include <sampling/moSampling.h>
+#include <paradiseo/eo/eoInit.h>
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "../algo/moRandomSearch.h"
+#include "../continuator/moFitnessStat.h"
+#include "moSampling.h"
 
 /**
  * To compute the density of states:

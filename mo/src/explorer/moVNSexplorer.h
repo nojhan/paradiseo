@@ -30,10 +30,10 @@
 #ifndef _moVNSexplorer_h
 #define _moVNSexplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <neighborhood/moVariableNeighborhoodSelection.h>
-#include <eoOp.h>
-#include <acceptCrit/moAcceptanceCriterion.h>
+#include "moNeighborhoodExplorer.h"
+#include "../neighborhood/moVariableNeighborhoodSelection.h"
+#include <paradiseo/eo/eoOp.h>
+#include "../acceptCrit/moAcceptanceCriterion.h"
 
 /**
  * Explorer for the "Variable Neighborhood Search" metaheuristic

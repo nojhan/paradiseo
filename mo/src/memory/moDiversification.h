@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moDiversification_h
 #define _moDiversification_h
 
-#include <memory/moMemory.h>
-#include <eoFunctor.h>
+#include "moMemory.h"
+#include <paradiseo/eo/eoFunctor.h>
 
 /**
  * Abstract class for diversification strategy

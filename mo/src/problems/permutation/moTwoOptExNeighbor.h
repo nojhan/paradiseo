@@ -30,7 +30,7 @@
 #ifndef _moTwoOptExNeighbor_h
 #define _moTwoOptExNeighbor_h
 
-#include <neighborhood/moBackableNeighbor.h>
+#include "../../neighborhood/moBackableNeighbor.h"
 
 /**
  * Two-opt exchange neighbor

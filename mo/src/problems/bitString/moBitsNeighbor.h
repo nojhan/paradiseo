@@ -35,7 +35,7 @@
 #ifndef _moBitsNeighbor_h
 #define _moBitsNeighbor_h
 
-#include <neighborhood/moNeighbor.h>
+#include "../../neighborhood/moNeighbor.h"
 #include <vector>
 
 /**

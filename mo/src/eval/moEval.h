@@ -35,7 +35,7 @@
 #ifndef moEval_H
 #define moEval_H
 
-#include <eoFunctor.h>
+#include <paradiseo/eo/eoFunctor.h>
 
 /**
  * Abstract class for the evaluation

@@ -30,10 +30,9 @@
 #ifndef _moTwoOptExNeighborhood_h
 #define _moTwoOptExNeighborhood_h
 
-#include <problems/permutation/moTwoOptExNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
-
-#include <neighborhood/moIndexNeighborhood.h>
+#include "moTwoOptExNeighbor.h"
+#include "../../neighborhood/moNeighborhood.h"
+#include "../../neighborhood/moIndexNeighborhood.h"
 
 /**
  * Two-opt exchange neighborhood

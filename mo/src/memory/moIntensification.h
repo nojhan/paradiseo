@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moIntensification_h
 #define _moIntensification_h
 
-#include <memory/moMemory.h>
-#include <eoFunctor.h>
+#include "moMemory.h"
+#include <paradiseo/eo/eoFunctor.h>
 
 /**
  * Abstract class for intensification strategy

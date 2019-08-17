@@ -35,8 +35,8 @@
 #ifndef moDoubleIncrNeighborhoodEval_H
 #define moDoubleIncrNeighborhoodEval_H
 
-#include <eval/moEval.h>
-#include <eval/moDoubleIncrEvaluation.h>
+#include "moEval.h"
+#include "moDoubleIncrEvaluation.h"
 
 /**
  * Evaluation of a neighbor from the full evaluation f the neighborhood

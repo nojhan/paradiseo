@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moCountMoveMemory_h
 #define _moCountMoveMemory_h
 
-#include <memory/moMemory.h>
+#include "moMemory.h"
 
 /**
  * Count the number of move, no move and  the successive stagnation since the last Move

@@ -35,12 +35,12 @@
 #ifndef _moRandomBestHCexplorer_h
 #define _moRandomBestHCexplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moNeighborhoodExplorer.h"
+#include "../comparator/moNeighborComparator.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../neighborhood/moNeighborhood.h"
 #include <vector>
-#include <utils/eoRNG.h>
+#include <paradiseo/eo/utils/eoRNG.h>
 
 /**
  * Explorer for Hill-Climbing

@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moDummyIntensification_h
 #define _moDummyIntensification_h
 
-#include <memory/moIntensification.h>
-#include <memory/moDummyMemory.h>
+#include "moIntensification.h"
+#include "moDummyMemory.h"
 
 /**
  * Dummy intensification strategy

@@ -40,13 +40,16 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
-#include <eoFunctor.h>
-#include <utils/eoMonitor.h>
-#include <continuator/moStat.h>
-#include <continuator/moCheckpoint.h>
-#include <continuator/moVectorMonitor.h>
-#include <algo/moLocalSearch.h>
-#include <eoInit.h>
+
+#include <paradiseo/eo/eoFunctor.h>
+#include <paradiseo/eo/utils/eoMonitor.h>
+
+#include "../continuator/moStat.h"
+#include "../continuator/moCheckpoint.h"
+#include "../continuator/moVectorMonitor.h"
+#include "../algo/moLocalSearch.h"
+
+#include <paradiseo/eo/eoInit.h>
 
 
 /**

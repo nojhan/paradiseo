@@ -35,8 +35,8 @@
 #ifndef moFullEvalByModif_H
 #define moFullEvalByModif_H
 
-#include <eoEvalFunc.h>
-#include <eval/moEval.h>
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "moEval.h"
 
 /**
  * Full evaluation to use with a moBackableNeighbor

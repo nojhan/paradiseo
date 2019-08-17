@@ -35,9 +35,9 @@
 #ifndef moUBQPdoubleIncrEvaluation_H
 #define moUBQPdoubleIncrEvaluation_H
 
-#include <eval/moDoubleIncrEvaluation.h>
-#include <explorer/moNeighborhoodExplorer.h>
-#include <eval/moEval.h>
+#include "../../eval/moDoubleIncrEvaluation.h"
+#include "../../explorer/moNeighborhoodExplorer.h"
+#include "../../eval/moEval.h"
 
 /**
  * The neighborhood evaluation for the UBQP

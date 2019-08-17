@@ -35,27 +35,30 @@
 #ifndef moNeutralWalkSampling_h
 #define moNeutralWalkSampling_h
 
-#include <eoInit.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
-#include <algo/moRandomNeutralWalk.h>
-#include <sampling/moSampling.h>
-#include <perturb/moSolInit.h>
-#include <continuator/moSolutionStat.h>
-#include <utils/eoDistance.h>
-#include <continuator/moDistanceStat.h>
-#include <continuator/moNeighborhoodStat.h>
-#include <continuator/moMaxNeighborStat.h>
-#include <continuator/moMinNeighborStat.h>
-#include <continuator/moQ1NeighborStat.h>
-#include <continuator/moQ3NeighborStat.h>
-#include <continuator/moMedianNeighborStat.h>
-#include <continuator/moAverageFitnessNeighborStat.h>
-#include <continuator/moStdFitnessNeighborStat.h>
-#include <continuator/moSizeNeighborStat.h>
-#include <continuator/moNbInfNeighborStat.h>
-#include <continuator/moNbSupNeighborStat.h>
-#include <continuator/moNeutralDegreeNeighborStat.h>
+#include <paradiseo/eo/eoInit.h>
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
+
+#include "../algo/moRandomNeutralWalk.h"
+#include "moSampling.h"
+#include "../perturb/moSolInit.h"
+#include "../continuator/moSolutionStat.h"
+
+#include <paradiseo/eo/utils/eoDistance.h>
+
+#include "../continuator/moDistanceStat.h"
+#include "../continuator/moNeighborhoodStat.h"
+#include "../continuator/moMaxNeighborStat.h"
+#include "../continuator/moMinNeighborStat.h"
+#include "../continuator/moQ1NeighborStat.h"
+#include "../continuator/moQ3NeighborStat.h"
+#include "../continuator/moMedianNeighborStat.h"
+#include "../continuator/moAverageFitnessNeighborStat.h"
+#include "../continuator/moStdFitnessNeighborStat.h"
+#include "../continuator/moSizeNeighborStat.h"
+#include "../continuator/moNbInfNeighborStat.h"
+#include "../continuator/moNbSupNeighborStat.h"
+#include "../continuator/moNeutralDegreeNeighborStat.h"
 
 /**
  * To explore the evolvability of solutions in a neutral networks:

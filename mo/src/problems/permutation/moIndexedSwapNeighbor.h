@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moIndexedSwapNeighbor_h
 #define _moIndexedSwapNeighbor_h
 
-#include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moIndexNeighbor.h>
+#include "../../neighborhood/moBackableNeighbor.h"
+#include "../../neighborhood/moIndexNeighbor.h"
 
 /**
  * Indexed Swap Neighbor: the position of the swap are computed according to the index

@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moDummyEval_h
 #define _moDummyEval_h
 
-#include <eval/moEval.h>
+#include "moEval.h"
 
 /**
  * Dummy Evaluation function

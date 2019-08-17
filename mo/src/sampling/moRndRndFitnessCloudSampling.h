@@ -35,13 +35,13 @@
 #ifndef moRndRndFitnessCloudSampling_h
 #define moRndRndFitnessCloudSampling_h
 
-#include <eoInit.h>
-#include <neighborhood/moNeighborhood.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
-#include <algo/moRandomSearch.h>
-#include <continuator/moNeighborFitnessStat.h>
-#include <sampling/moFitnessCloudSampling.h>
+#include <paradiseo/eo/eoInit.h>
+#include "../neighborhood/moNeighborhood.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "../algo/moRandomSearch.h"
+#include "../continuator/moNeighborFitnessStat.h"
+#include "moFitnessCloudSampling.h"
 
 /**
  * To compute an estimation of the fitness cloud,

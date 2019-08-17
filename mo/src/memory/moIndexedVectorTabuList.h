@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moIndexedVectorTabuList_h
 #define _moIndexedVectorTabuList_h
 
-#include <utils/eoRndGenerators.h>
-#include <memory/moTabuList.h>
+#include <paradiseo/eo/utils/eoRndGenerators.h>
+#include "moTabuList.h"
 #include <vector>
 #include <iostream>
 

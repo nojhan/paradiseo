@@ -35,8 +35,8 @@
 #ifndef _moBitFlipNeighborhood_h
 #define _moBitFlipNeighborhood_h
 
-#include <neighborhood/moNeighborhood.h>
-#include <utils/eoRNG.h>
+#include "../../neighborhood/moNeighborhood.h"
+#include <paradiseo/eo/utils/eoRNG.h>
 #include <vector>
 
 /**

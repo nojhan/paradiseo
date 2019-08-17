@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moEvalCounter_h
 #define _moEvalCounter_h
 
-#include <eval/moEval.h>
-#include <utils/eoParam.h>
+#include "moEval.h"
+#include <paradiseo/eo/utils/eoParam.h>
 
 /**
     Counts the number of neighbor evaluations actually performed, 

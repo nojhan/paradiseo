@@ -30,8 +30,8 @@
 #ifndef _moRndIndexedVectorTabuList_h
 #define _moRndIndexedVectorTabuList_h
 
-#include <memory/moIndexedVectorTabuList.h>
-#include <utils/eoRndGenerators.h>
+#include "moIndexedVectorTabuList.h"
+#include <paradiseo/eo/utils/eoRndGenerators.h>
 
 
 /**
