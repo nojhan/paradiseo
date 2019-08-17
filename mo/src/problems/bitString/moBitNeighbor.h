@@ -36,8 +36,8 @@
 #define _bitNeighbor_h
 
 #include <paradiseo/eo/ga/eoBit.h>
-#include "../../neighborhood/moBackableNeighbor.h>
-#include "../../neighborhood/moIndexNeighbor.h>
+#include "../../neighborhood/moBackableNeighbor.h"
+#include "../../neighborhood/moIndexNeighbor.h"
 
 /**
  * Neighbor related to a vector of Bit
