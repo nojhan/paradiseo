@@ -35,7 +35,7 @@
 #ifndef _moDynSpanCoolingSchedule_h
 #define _moDynSpanCoolingSchedule_h
 
-#include <coolingSchedule/moCoolingSchedule.h>
+#include "moCoolingSchedule.h"
 
 /**
  * Cooling Schedule of the temperature in the simulated algorithm

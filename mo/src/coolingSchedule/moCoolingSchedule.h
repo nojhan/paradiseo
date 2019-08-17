@@ -35,7 +35,7 @@
 #ifndef _moCoolingSchedule_h
 #define _moCoolingSchedule_h
 
-#include <eoFunctor.h>
+#include <paradiseo/eo/eoFunctor.h>
 
 /**
  * Cooling Schedule of the temperature in the simulated algorithm
