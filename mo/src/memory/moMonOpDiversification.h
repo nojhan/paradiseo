@@ -31,10 +31,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moMonOpDiversification_h
 
 
-#include <eoEvalFunc.h>
-#include <eoOp.h>
-#include <memory/moDiversification.h>
-#include <memory/moDummyMemory.h>
+#include <paradiseo/eo/eoEvalFunc.h>
+#include <paradiseo/eo/eoOp.h>
+#include "moDiversification.h"
+#include "moDummyMemory.h"
 
 /**
  * Diversification strategy applies a "monOp" operator

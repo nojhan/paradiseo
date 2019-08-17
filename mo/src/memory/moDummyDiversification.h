@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moDummyDiversification_h
 #define _moDummyDiversification_h
 
-#include <memory/moDiversification.h>
-#include <memory/moDummyMemory.h>
+#include "moDiversification.h"
+#include "moDummyMemory.h"
 
 /**
  * Dummy diversification strategy

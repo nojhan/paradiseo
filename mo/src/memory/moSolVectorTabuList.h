@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moSolVectorTabuList_h
 #define _moSolVectorTabuList_h
 
-#include <memory/moTabuList.h>
+#include "moTabuList.h"
 #include <vector>
 #include <iostream>
 

@@ -31,7 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moAspiration_h
 #define _moAspiration_h
 
-#include <eoFunctor.h>
+#include <paradiseo/eo/eoFunctor.h>
 
 /**
  * Abstract class for Aspiration Criteria

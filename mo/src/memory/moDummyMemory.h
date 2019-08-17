@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moDummyMemory_h
 #define _moDummyMemory_h
 
-#include <memory/moMemory.h>
+#include "moMemory.h"
 
 /**
  * Dummy memory to make an empty memory

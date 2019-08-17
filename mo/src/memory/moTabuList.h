@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moTabuList_h
 #define _moTabuList_h
 
-#include <memory/moMemory.h>
+#include "moMemory.h"
 
 /**
  * Abstract class for the Tabu List

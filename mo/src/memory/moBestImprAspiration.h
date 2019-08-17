@@ -31,7 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moBestImprAspiration_h
 #define _moBestImprAspiration_h
 
-#include <memory/moAspiration.h>
+#include "moAspiration.h"
 
 /**
  * Aspiration criteria accepts a solution better than the best so far
