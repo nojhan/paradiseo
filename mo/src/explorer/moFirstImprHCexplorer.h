@@ -35,10 +35,10 @@
 #ifndef _moFirstImprHCexplorer_h
 #define _moFirstImprHCexplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moNeighborhoodExplorer.h"
+#include "../comparator/moNeighborComparator.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Explorer for a first improvement heuristic

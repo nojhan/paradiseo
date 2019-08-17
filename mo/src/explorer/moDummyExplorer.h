@@ -35,7 +35,7 @@
 #ifndef _moDummyExplorer_h
 #define _moDummyExplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
+#include "moNeighborhoodExplorer.h"
 
 /**
  * Dummy Explorer the neighborhood: nothing is explored

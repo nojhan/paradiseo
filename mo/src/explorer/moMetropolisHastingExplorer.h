@@ -37,12 +37,12 @@
 
 #include <cstdlib>
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moNeighborhoodExplorer.h"
+#include "comparator/moNeighborComparator.h"
+#include "comparator/moSolNeighborComparator.h"
+#include "neighborhood/moNeighborhood.h"
 
-#include <utils/eoRNG.h>
+#include <paradiseo/eo/utils/eoRNG.h>
 
 /**
  * Explorer for the Metropolis-Hasting Sampling.

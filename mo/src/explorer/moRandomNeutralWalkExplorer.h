@@ -35,9 +35,9 @@
 #ifndef _moRandomNeutralWalkexplorer_h
 #define _moRandomNeutralWalkexplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moNeighborhoodExplorer.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Explorer for a random neutral walk

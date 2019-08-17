@@ -34,14 +34,14 @@
 #ifndef _moTSexplorer_h
 #define _moTSexplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <memory/moAspiration.h>
-#include <memory/moTabuList.h>
-#include <memory/moIntensification.h>
-#include <memory/moDiversification.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moNeighborhoodExplorer.h"
+#include "../comparator/moNeighborComparator.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../memory/moAspiration.h"
+#include "../memory/moTabuList.h"
+#include "../memory/moIntensification.h"
+#include "../memory/moDiversification.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Explorer for a Tabu Search

@@ -35,10 +35,10 @@
 #ifndef _moRandomSearchexplorer_h
 #define _moRandomSearchexplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <neighborhood/moNeighborhood.h>
-#include <eoEvalFunc.h>
-#include <eoInit.h>
+#include "moNeighborhoodExplorer.h"
+#include "../neighborhood/moNeighborhood.h"
+#include <paradiseo/eo/eoEvalFunc.h>
+#include <paradiseo/eo/eoInit.h>
 
 /**
  * Explorer for a pure random search:

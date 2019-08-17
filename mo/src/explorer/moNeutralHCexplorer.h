@@ -35,10 +35,10 @@
 #ifndef _moNeutralHCexplorer_h
 #define _moNeutralHCexplorer_h
 
-#include <explorer/moRandomBestHCexplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moRandomBestHCexplorer.h"
+#include "../comparator/moNeighborComparator.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Explorer for a neutral Hill-climbing

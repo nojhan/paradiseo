@@ -36,12 +36,12 @@
 #define _neighborhoodExplorer_h
 
 //EO inclusion
-#include <eoFunctor.h>
+#include <paradiseo/eo/eoFunctor.h>
 
-#include <neighborhood/moNeighborhood.h>
-#include <eval/moEval.h>
-#include <neighborhood/moDummyNeighborhood.h>
-#include <eval/moDummyEval.h>
+#include "../neighborhood/moNeighborhood.h"
+#include "../eval/moEval.h"
+#include "../neighborhood/moDummyNeighborhood.h"
+#include "../eval/moDummyEval.h"
 
 /**
  * Explore the neighborhood according to the local search algorithm 

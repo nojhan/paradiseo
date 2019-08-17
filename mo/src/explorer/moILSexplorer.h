@@ -35,12 +35,12 @@
 #ifndef _moILSexplorer_h
 #define _moILSexplorer_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <algo/moLocalSearch.h>
-#include <perturb/moPerturbation.h>
-#include <acceptCrit/moAcceptanceCriterion.h>
+#include "moNeighborhoodExplorer.h"
+#include "../comparator/moNeighborComparator.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../algo/moLocalSearch.h"
+#include "../perturb/moPerturbation.h"
+#include "../acceptCrit/moAcceptanceCriterion.h"
 //#include <neighborhood/moDummyNeighborhood.h>
 //#include <neighborhood/moDummyNeighbor.h>
 
