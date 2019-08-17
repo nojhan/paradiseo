@@ -35,7 +35,7 @@
 #ifndef _moSimpleCoolingSchedule_h
 #define _moSimpleCoolingSchedule_h
 
-#include <coolingSchedule/moCoolingSchedule.h>
+#include "moCoolingSchedule.h"
 
 /**
  * Classical cooling Schedule of the temperature in the simulated algorithm with initial and final temperature and a factor of decrease

@@ -32,7 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <ctime>
 
-#include <continuator/moContinuator.h>
+#include "moContinuator.h"
 
 /**
  * Termination condition until a running time is reached.

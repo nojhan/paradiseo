@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moRndNeighborhood_h
 #define _moRndNeighborhood_h
 
-#include <neighborhood/moNeighborhood.h>
+#include "moNeighborhood.h"
 
 /**
  * Class used to specify a neighborhood is random

@@ -35,8 +35,8 @@
 #ifndef moAverageFitnessNeighborStat_h
 #define moAverageFitnessNeighborStat_h
 
-#include <continuator/moStat.h>
-#include <continuator/moNeighborhoodStat.h>
+#include "moStat.h"
+#include "moNeighborhoodStat.h"
 
 /**
  * From moNeighborhoodStat, to compute the average of fitness in the neighborhood

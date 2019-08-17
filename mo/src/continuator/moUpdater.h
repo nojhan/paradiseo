@@ -35,8 +35,8 @@
 #ifndef moUpdater_h
 #define moUpdater_h
 
-#include <eoFunctor.h>
-#include <utils/eoParam.h>
+#include <paradiseo/eo/eoFunctor.h>
+#include <paradiseo/eo/utils/eoParam.h>
 
 /**
  * Base class for to update what ever you want

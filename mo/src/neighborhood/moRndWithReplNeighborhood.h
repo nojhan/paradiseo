@@ -35,9 +35,9 @@
 #ifndef _moRndWithReplNeighborhood_h
 #define _moRndWithReplNeighborhood_h
 
-#include <neighborhood/moIndexNeighborhood.h>
-#include <neighborhood/moRndNeighborhood.h>
-#include <utils/eoRNG.h>
+#include "moIndexNeighborhood.h"
+#include "moRndNeighborhood.h"
+#include <paradiseo/eo/utils/eoRNG.h>
 
 /**
  * A Random With replacement Neighborhood

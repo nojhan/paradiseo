@@ -35,11 +35,11 @@
 #ifndef _moEqualSolNeighborComparator_h
 #define _moEqualSolNeighborComparator_h
 
-#include <EO.h>
-#include <eoFunctor.h>
+#include <paradiseo/eo/EO.h>
+#include <paradiseo/eo/eoFunctor.h>
 
-#include <neighborhood/moNeighbor.h>
-#include <comparator/moSolNeighborComparator.h>
+#include "../neighborhood/moNeighbor.h"
+#include "../comparator/moSolNeighborComparator.h"
 
 
 /**

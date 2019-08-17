@@ -30,11 +30,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moRandomSearch_h
 #define _moRandomSearch_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moRandomSearchExplorer.h>
-#include <continuator/moTrueContinuator.h>
-#include <eoInit.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moRandomSearchExplorer.h"
+#include "../continuator/moTrueContinuator.h"
+#include <paradiseo/eo/eoInit.h>
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Random Search:

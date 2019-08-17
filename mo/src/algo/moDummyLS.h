@@ -30,9 +30,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moDummyLS_h
 #define _moDummyLS_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moDummyExplorer.h>
-#include <continuator/moTrueContinuator.h>
+#include "moLocalSearch.h"
+#include "../explorer/moDummyExplorer.h"
+#include "../continuator/moTrueContinuator.h"
 
 /**
  * Dummy Local Search:

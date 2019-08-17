@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moPertubation_h
 #define _moPertubation_h
 
-#include <eoOp.h>
-#include <memory/moMemory.h>
+#include <paradiseo/eo/eoOp.h>
+#include "../memory/moMemory.h"
 
 /**
  * Abstract class for Perturbation operator

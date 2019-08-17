@@ -30,11 +30,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moNeutralHC_h
 #define _moNeutralHC_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moNeutralHCexplorer.h>
-#include <continuator/moTrueContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moNeutralHCexplorer.h"
+#include "../continuator/moTrueContinuator.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Hill-Climbing local search

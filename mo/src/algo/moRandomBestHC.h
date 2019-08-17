@@ -30,11 +30,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moRandomBestHC_h
 #define _moRandomBestHC_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moRandomBestHCexplorer.h>
-#include <continuator/moTrueContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moRandomBestHCexplorer.h"
+#include "../continuator/moTrueContinuator.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Random Best HC:

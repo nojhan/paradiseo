@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moAcceptanceCriterion_h
 #define _moAcceptanceCriterion_h
 
-#include <eoFunctor.h>
-#include <memory/moMemory.h>
+#include "../../eo/eoFunctor.h"
+#include "../memory/moMemory.h"
 
 /**
  * Abstract class for Acceptance criteria

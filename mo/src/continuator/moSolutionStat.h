@@ -35,7 +35,7 @@
 #ifndef moSolutionStat_h
 #define moSolutionStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
 /**
  * The statistic which only give the current solution.

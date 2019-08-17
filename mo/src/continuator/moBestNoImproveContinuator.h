@@ -30,9 +30,9 @@
 #ifndef _moBestNoImproveContinuator_h
 #define _moBestNoImproveContinuator_h
 
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
-#include <comparator/moSolComparator.h>
+#include "moContinuator.h"
+#include "../neighborhood/moNeighborhood.h"
+#include "../comparator/moSolComparator.h"
 
 /**
  * Stop when the best solution cannot be improved 

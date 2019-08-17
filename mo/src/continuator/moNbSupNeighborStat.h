@@ -35,9 +35,9 @@
 #ifndef moNbSupNeighborStat_h
 #define moNbSupNeighborStat_h
 
-#include <continuator/moStat.h>
-#include <continuator/moNeighborhoodStat.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moStat.h"
+#include "moNeighborhoodStat.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * From moNeighborhoodStat, to compute the number of solutions in the neighborhood

@@ -30,8 +30,8 @@
 #ifndef _moVectorVNSelection_h
 #define _moVectorVNSelection_h
 
-#include <neighborhood/moVariableNeighborhoodSelection.h>
-#include <eoOp.h>
+#include "moVariableNeighborhoodSelection.h"
+#include <paradiseo/eo/eoOp.h>
 
 /**
  *  This class is used for the Variable Neighborhood Search explorer inherits from moVariableNeighborhoodSelection

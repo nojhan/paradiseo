@@ -30,18 +30,18 @@
 #ifndef _moTS_h
 #define _moTS_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moTSexplorer.h>
-#include <memory/moNeighborVectorTabuList.h>
-#include <memory/moIntensification.h>
-#include <memory/moDummyIntensification.h>
-#include <memory/moDiversification.h>
-#include <memory/moDummyDiversification.h>
-#include <memory/moAspiration.h>
-#include <memory/moBestImprAspiration.h>
-#include <continuator/moTimeContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moTSexplorer.h"
+#include "../memory/moNeighborVectorTabuList.h"
+#include "../memory/moIntensification.h"
+#include "../memory/moDummyIntensification.h"
+#include "../memory/moDiversification.h"
+#include "../memory/moDummyDiversification.h"
+#include "../memory/moAspiration.h"
+#include "../memory/moBestImprAspiration.h"
+#include "../continuator/moTimeContinuator.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Tabu Search

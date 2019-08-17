@@ -36,8 +36,8 @@
 #define moVectorMonitor_h
 
 #include <fstream>
-#include <utils/eoMonitor.h>
-#include <utils/eoParam.h>
+#include <paradiseo/eo/utils/eoMonitor.h>
+#include <paradiseo/eo/utils/eoParam.h>
 
 /**
  * To save the values of the same type (double, unsigned int, or EOT) in a vector

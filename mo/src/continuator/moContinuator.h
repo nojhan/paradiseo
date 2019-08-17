@@ -35,8 +35,8 @@
 #ifndef _moContinuator_h
 #define _moContinuator_h
 
-#include <eoFunctor.h>
-#include <neighborhood/moNeighborhood.h>
+#include <paradiseo/eo/eoFunctor.h>
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * To make specific continuator from a solution

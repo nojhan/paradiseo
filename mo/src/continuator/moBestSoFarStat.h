@@ -35,7 +35,7 @@
 #ifndef moBestSoFarStat_h
 #define moBestSoFarStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
 /**
  * The statistic which save the best solution found during the search

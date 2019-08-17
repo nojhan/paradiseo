@@ -35,7 +35,7 @@
 #ifndef moStatFromStat_h
 #define moStatFromStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
 /**
  * The statistic which copy another statistic

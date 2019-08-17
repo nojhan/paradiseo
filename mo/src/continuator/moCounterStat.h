@@ -35,7 +35,7 @@
 #ifndef moCounterStat_h
 #define moCounterStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
 /**
  * The statistic gives the number of iteration

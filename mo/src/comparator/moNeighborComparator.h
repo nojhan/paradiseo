@@ -35,8 +35,8 @@
 #ifndef _moNeighborComparator_h
 #define _moNeighborComparator_h
 
-#include <neighborhood/moNeighbor.h>
-#include <comparator/moComparator.h>
+#include "../neighborhood/moNeighbor.h"
+#include "moComparator.h"
 
 /**
  * Comparator of two neighbors

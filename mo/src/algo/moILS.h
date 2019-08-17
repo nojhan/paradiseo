@@ -30,16 +30,16 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moILS_h
 #define _moILS_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moILSexplorer.h>
-#include <continuator/moIterContinuator.h>
-#include <eoOp.h>
-#include <neighborhood/moDummyNeighbor.h>
-#include <perturb/moMonOpPerturb.h>
-#include <perturb/moPerturbation.h>
-#include <acceptCrit/moAlwaysAcceptCrit.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moILSexplorer.h"
+#include "../continuator/moIterContinuator.h"
+#include <paradiseo/eo/eoOp.h>
+#include "../neighborhood/moDummyNeighbor.h"
+#include "../perturb/moMonOpPerturb.h"
+#include "../perturb/moPerturbation.h"
+#include "../acceptCrit/moAlwaysAcceptCrit.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 
 /**

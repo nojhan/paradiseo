@@ -35,12 +35,12 @@
 #ifndef moCheckpoint_h
 #define moCheckpoint_h
 
-#include <continuator/moContinuator.h>
-#include <utils/eoMonitor.h>
-#include <continuator/moStatBase.h>
-#include <utils/eoUpdater.h>
-#include <continuator/moUpdater.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moContinuator.h"
+#include <paradiseo/eo/utils/eoMonitor.h>
+#include "moStatBase.h"
+#include <paradiseo/eo/utils/eoUpdater.h>
+#include "moUpdater.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Continuator allowing to add others (continuators, stats, monitors or updaters)

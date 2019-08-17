@@ -35,8 +35,8 @@
 #ifndef moSizeNeighborStat_h
 #define moSizeNeighborStat_h
 
-#include <continuator/moStat.h>
-#include <continuator/moNeighborhoodStat.h>
+#include "moStat.h"
+#include "moNeighborhoodStat.h"
 
 /**
  * From moNeighborhoodStat, to compute the number of solutions in the neighborhood

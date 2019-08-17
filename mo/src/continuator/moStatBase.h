@@ -35,8 +35,8 @@
 #ifndef moStatBase_h
 #define moStatBase_h
 
-#include <eoFunctor.h>
-#include <utils/eoParam.h>
+#include <paradiseo/eo/eoFunctor.h>
+#include <paradiseo/eo/utils/eoParam.h>
 
 /**
  * Base class for all statistics that need to be calculated

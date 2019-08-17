@@ -35,7 +35,7 @@
 #ifndef _moNeighborhood_h
 #define _moNeighborhood_h
 
-#include <eoObject.h>
+#include <paradiseo/eo/eoObject.h>
 
 /**
  * A Neighborhood

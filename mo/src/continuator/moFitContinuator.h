@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moFitContinuator_h
 #define _moFitContinuator_h
 
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moContinuator.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Continue until a maximum fitness is reached

@@ -30,11 +30,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moSimpleHC_h
 #define _moSimpleHC_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moSimpleHCexplorer.h>
-#include <continuator/moTrueContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moSimpleHCexplorer.h"
+#include "../continuator/moTrueContinuator.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Simple HC:

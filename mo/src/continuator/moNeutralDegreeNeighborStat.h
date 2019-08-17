@@ -35,8 +35,8 @@
 #ifndef moNeutralDegreeNeighborStat_h
 #define moNeutralDegreeNeighborStat_h
 
-#include <continuator/moStat.h>
-#include <continuator/moNeighborhoodStat.h>
+#include "moStat.h"
+#include "moNeighborhoodStat.h"
 
 /**
  * From moNeighborhoodStat, to compute the neutral degree of the solution

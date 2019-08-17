@@ -35,8 +35,8 @@
 #ifndef moDistanceStat_h
 #define moDistanceStat_h
 
-#include <utils/eoDistance.h>
-#include <continuator/moStat.h>
+#include <paradiseo/eo/utils/eoDistance.h>
+#include "moStat.h"
 
 /**
  * The statistic gives the distance to a reference solution

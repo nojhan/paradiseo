@@ -35,7 +35,7 @@
 #ifndef _moEqualSolComparator_h
 #define _moEqualSolComparator_h
 
-#include <comparator/moSolComparator.h>
+#include "moSolComparator.h"
 
 /**
  * Comparator of two solutions : a neighbor is better if the fitness is higher or equal

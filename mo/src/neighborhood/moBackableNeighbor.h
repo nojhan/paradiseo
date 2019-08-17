@@ -35,7 +35,7 @@
 #ifndef _BackableNeighbor_h
 #define _BackableNeighbor_h
 
-#include <neighborhood/moNeighbor.h>
+#include "moNeighbor.h"
 
 /**
  * Neighbor with a move back function to use in a moFullEvalByModif

@@ -30,9 +30,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moNeighborhoodPerturb_h
 #define _moNeighborhoodPerturb_h
 
-#include <eval/moEval.h>
-#include <perturb/moPerturbation.h>
-#include <neighborhood/moNeighborhood.h>
+#include "../eval/moEval.h"
+#include "moPerturbation.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Neighborhood Perturbation: explore the neighborhood to perturb the solution (the neighborhood could be different as the one used in the Local Search)

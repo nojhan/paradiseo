@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moSolComparator_h
 #define _moSolComparator_h
 
-#include <comparator/moComparator.h>
+#include "moComparator.h"
 
 /**
  * Comparator of two solutions

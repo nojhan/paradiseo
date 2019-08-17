@@ -35,7 +35,7 @@
 #ifndef moMinusOneCounterStat_h
 #define moMinusOneCounterStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
 /**
  * The statistic gives the number of iteration minus 1

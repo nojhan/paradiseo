@@ -30,9 +30,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moNeighborEvalContinuator_h
 #define _moNeighborEvalContinuator_h
 
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
-#include <eval/moEvalCounter.h>
+#include "moContinuator.h"
+#include "../neighborhood/moNeighborhood.h"
+#include "../eval/moEvalCounter.h"
 
 /**
  * Continue until a maximum fixed number of neighbor evaluation is reached

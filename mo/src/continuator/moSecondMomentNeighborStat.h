@@ -35,8 +35,8 @@
 #ifndef moSecondMomentNeighborStat_h
 #define moSecondMomentNeighborStat_h
 
-#include <continuator/moStat.h>
-#include <continuator/moNeighborhoodStat.h>
+#include "moStat.h"
+#include "moNeighborhoodStat.h"
 
 /**
  * From moNeighborhoodStat, to compute the average and the standard deviation of fitness in the neighborhood

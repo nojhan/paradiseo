@@ -30,7 +30,7 @@
 #ifndef _moBackwardVectorVNSelection_h
 #define _moBackwardVectorVNSelection_h
 
-#include <neighborhood/moVectorVNSelection.h>
+#include "moVectorVNSelection.h"
 
 /**
  *  This class is used for the Variable Neighborhood Search explorer inherits from moVectorVNSelection

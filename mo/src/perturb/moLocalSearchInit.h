@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moLocalSearchInit_h
 #define _moLocalSearchInit_h
 
-#include <eoInit.h>
-#include <algo/moLocalSearch.h>
+#include "../../eo/eoInit.h"
+#include "../algo/moLocalSearch.h"
 
 /**
  * Initialization of the solution with a local search

@@ -35,8 +35,8 @@
 #ifndef _moEqualNeighborComparator_h
 #define _moEqualNeighborComparator_h
 
-#include <neighborhood/moNeighbor.h>
-#include <comparator/moNeighborComparator.h>
+#include "../neighborhood/moNeighbor.h"
+#include "moNeighborComparator.h"
 
 /**
  * Comparator of two neighbors : a neighbor is better if the fitness is higher or equal

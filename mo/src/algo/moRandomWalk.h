@@ -30,11 +30,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moRandomWalk_h
 #define _moRandomWalk_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moRandomWalkExplorer.h>
-#include <continuator/moIterContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moRandomWalkExplorer.h"
+#include "../continuator/moIterContinuator.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Random Walk:

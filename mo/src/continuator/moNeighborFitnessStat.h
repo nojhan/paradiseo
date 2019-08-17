@@ -35,9 +35,9 @@
 #ifndef moNeighborFitnessStat_h
 #define moNeighborFitnessStat_h
 
-#include <continuator/moStat.h>
-#include <neighborhood/moNeighborhood.h>
-#include <eval/moEval.h>
+#include "moStat.h"
+#include "../neighborhood/moNeighborhood.h"
+#include "../eval/moEval.h"
 
 /**
  * Compute the fitness of one random neighbor

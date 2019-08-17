@@ -31,10 +31,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moRestartPerturb_h
 
 
-#include <eoEvalFunc.h>
-#include <eoInit.h>
-#include <perturb/moPerturbation.h>
-#include <memory/moCountMoveMemory.h>
+#include <paradiseo/eo/eoEvalFunc.h>
+#include <paradiseo/eo/eoInit.h>
+#include "moPerturbation.h"
+#include "../memory/moCountMoveMemory.h"
 
 /**
  * Restart Perturbation : restart when maximum number of iteration with no improvement is reached

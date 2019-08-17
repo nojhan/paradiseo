@@ -30,7 +30,7 @@
 #ifndef _moVariableNeighborhoodSelection_h
 #define _moVariableNeighborhoodSelection_h
 
-#include <eoOp.h>
+#include <paradiseo/eo/eoOp.h>
 #include <vector>
 
 /**

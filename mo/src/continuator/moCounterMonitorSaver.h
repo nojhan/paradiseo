@@ -35,8 +35,8 @@
 #ifndef moCounterMonitorSaver_h
 #define moCounterMonitorSaver_h
 
-#include <utils/eoUpdater.h>
-#include <utils/eoMonitor.h>
+#include <paradiseo/eo/utils/eoUpdater.h>
+#include <paradiseo/eo/utils/eoMonitor.h>
 
 /**
  * Class calling monitors with a given frequency

@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moIterContinuator_h
 #define _moIterContinuator_h
 
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moContinuator.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Continue until a maximum fixed number of iterations is reached
