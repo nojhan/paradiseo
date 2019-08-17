@@ -30,7 +30,7 @@
 #ifndef _moSwapNeighbor_h
 #define _moSwapNeighbor_h
 
-#include <neighborhood/moBackableNeighbor.h>
+#include "../neighborhood/moBackableNeighbor.h"
 
 /**
  * Swap Neighbor

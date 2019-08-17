@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moSwapNeighborhood_h
 #define _moSwapNeighborhood_h
 
-#include <problems/permutation/moSwapNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moSwapNeighbor.h"
+#include "../../neighborhood/moNeighborhood.h"
 
 /**
  * Swap Neighborhood

@@ -30,8 +30,8 @@
 #ifndef _moShiftNeighbor_h
 #define _moShiftNeighbor_h
 
-#include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moIndexNeighbor.h>
+#include "../neighborhood/moBackableNeighbor.h"
+#include "../neighborhood/moIndexNeighbor.h"
 
 /**
  * Indexed Shift Neighbor

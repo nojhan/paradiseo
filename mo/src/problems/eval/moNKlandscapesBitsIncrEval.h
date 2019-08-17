@@ -30,8 +30,8 @@
 #ifndef _moNKlandscapesBitsIncrEval_H
 #define _moNKlandscapesBitsIncrEval_H
 
-#include <eval/moEval.h>
-#include <eval/nkLandscapesEval.h>
+#include "../../eval/moEval.h"
+#include "../../../problems/eval/nkLandscapesEval.h"
 #include <vector>
 
 /**

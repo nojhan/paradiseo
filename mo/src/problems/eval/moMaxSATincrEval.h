@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moMaxSATincrEval_h
 #define _moMaxSATincrEval_h
 
-#include <eval/moEval.h>
-#include <eval/maxSATeval.h>
+#include "../../eval/moEval.h"
+#include "../../../problems/eval/maxSATeval.h"
 
 /**
  * Incremental evaluation Function for the max SAT problem

@@ -35,9 +35,9 @@
 #ifndef _moBitsWithReplNeighborhood_h
 #define _moBitsWithReplNeighborhood_h
 
-#include <neighborhood/moNeighborhood.h>
-#include <problems/bitString/moBitsNeighborhood.h>
-#include <utils/eoRNG.h>
+#include "../../neighborhood/moNeighborhood.h"
+#include "moBitsNeighborhood.h"
+#include <paradiseo/eo/utils/eoRNG.h>
 #include <vector>
 
 /**

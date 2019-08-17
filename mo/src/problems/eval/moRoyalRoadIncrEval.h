@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moRoyalRoadIncrEval_H
 #define _moRoyalRoadIncrEval_H
 
-#include <eval/moEval.h>
-#include <eval/royalRoadEval.h>
+#include "../../eval/moEval.h"
+#include "../../../problems/eval/royalRoadEval.h"
 
 /**
  * Incremental evaluation Function for the Royal Road problem

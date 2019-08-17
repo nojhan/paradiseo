@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moUBQPSimpleIncrEval_H
 #define _moUBQPSimpleIncrEval_H
 
-#include <eval/moEval.h>
-#include <eval/ubqpEval.h>
+#include "../eval/moEval.h"
+#include "../../../problems/eval/ubqpEval.h"
 
 /**
  * Incremental evaluation Function for the UBQPSimple problem

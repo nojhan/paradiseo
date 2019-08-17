@@ -30,8 +30,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moNKlandscapesIncrEval_H
 #define _moNKlandscapesIncrEval_H
 
-#include <eval/moEval.h>
-#include <eval/nkLandscapesEval.h>
+#include "../../eval/moEval.h"
+#include "../../../problems/eval/nkLandscapesEval.h"
+
 #include <vector>
 
 /**

@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moOneMaxBitsIncrEval_H
 #define _moOneMaxBitsIncrEval_H
 
-#include <eval/moEval.h>
+#include "../../eval/moEval.h"
 
 /**
  * Incremental evaluation Function for the OneMax problem
