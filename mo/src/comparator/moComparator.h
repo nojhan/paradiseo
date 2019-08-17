@@ -35,8 +35,8 @@
 #ifndef _moComparator_h
 #define _moComparator_h
 
-#include <EO.h>
-#include <eoFunctor.h>
+#include <paradiseo/eo/EO.h>
+#include <paradiseo/eo/eoFunctor.h>
 
 
 /**
