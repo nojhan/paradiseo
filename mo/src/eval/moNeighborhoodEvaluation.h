@@ -35,7 +35,7 @@
 #ifndef moNeighborhoodEvaluation_H
 #define moNeighborhoodEvaluation_H
 
-#include <eoFunctor.h>
+#include <paradiseo/eo/eoFunctor.h>
 
 /**
  * Abstract class for the evaluation 

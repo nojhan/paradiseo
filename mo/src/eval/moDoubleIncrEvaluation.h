@@ -35,8 +35,8 @@
 #ifndef moDoubleIncrEvaluation_H
 #define moDoubleIncrEvaluation_H
 
-#include <eval/moNeighborhoodEvaluation.h>
-#include <continuator/moUpdater.h>
+#include "moNeighborhoodEvaluation.h"
+#include "../continuator/moUpdater.h"
 
 /**
  * Base class for the double incremental evaluation of the neighborhood

@@ -35,8 +35,8 @@
 #ifndef moFullEvalByCopy_H
 #define moFullEvalByCopy_H
 
-#include <eoEvalFunc.h>
-#include <eval/moEval.h>
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "moEval.h"
 
 /**
  * Evaluation by copy
