@@ -35,7 +35,7 @@
 #ifndef _moTrueContinuator_h
 #define _moTrueContinuator_h
 
-#include <continuator/moContinuator.h>
+#include "moContinuator.h"
 
 /**
  * Continuator always return True

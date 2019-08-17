@@ -35,7 +35,7 @@
 #ifndef moUnsignedStat_h
 #define moUnsignedStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
 /**
  * The statistic gives from a boolean variable

@@ -30,8 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moCombinedContinuator_h
 #define _moCombinedContinuator_h
 
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moContinuator.h"
+#include "../neighborhood/moNeighborhood.h"
 #include <vector>
 
 /**

@@ -35,9 +35,9 @@
 #ifndef moMaxNeighborStat_h
 #define moMaxNeighborStat_h
 
-#include <continuator/moStat.h>
-#include <continuator/moNeighborhoodStat.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moStat.h"
+#include "moNeighborhoodStat.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * From moNeighborhoodStat, to compute the max fitness in the neighborhood

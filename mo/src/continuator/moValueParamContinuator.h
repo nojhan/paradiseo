@@ -30,9 +30,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moValueParamContinuator_h
 #define _moValueParamContinuator_h
 
-#include <continuator/moContinuator.h>
+#include "moContinuator.h"
 //#include <neighborhood/moNeighborhood.h>
-#include <utils/eoParam.h>
+#include <paradiseo/eo/utils/eoParam.h>
 
 /**
  * Continue until a maximum fixed number of full evaluation is reached

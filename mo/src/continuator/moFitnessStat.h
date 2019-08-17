@@ -35,7 +35,7 @@
 #ifndef moFitnessStat_h
 #define moFitnessStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
 /**
  * Stat given the fitness of the current solution

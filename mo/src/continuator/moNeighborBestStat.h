@@ -35,12 +35,12 @@
 #ifndef moNeighborBestStat_h
 #define moNeighborBestStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "../explorer/moNeighborhoodExplorer.h"
+#include "../comparator/moNeighborComparator.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * Compute the fitness of the best solution among k neighbor or all neighbors

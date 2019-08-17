@@ -35,8 +35,8 @@
 #ifndef moValueStat_h
 #define moValueStat_h
 
-#include <continuator/moStat.h>
-#include <utils/eoParam.h>
+#include "moStat.h"
+#include <paradiseo/eo/utils/eoParam.h>
 
 /**
  * The statistic gives the number of iteration

@@ -30,10 +30,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moEvalsContinuator_h
 #define _moEvalsContinuator_h
 
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
-#include <eoEvalFuncCounter.h>
-#include <eval/moEvalCounter.h>
+#include "moContinuator.h"
+#include "../neighborhood/moNeighborhood.h"
+#include <paradiseo/eo/eoEvalFuncCounter.h>
+#include "../eval/moEvalCounter.h"
 
 /**
  * Continue until a maximum fixed number of full evaluation and neighbor evaluation is reached (total number of evaluation = full evaluation + incremental evaluation)

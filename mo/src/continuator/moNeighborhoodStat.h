@@ -35,12 +35,13 @@
 #ifndef moNeighborhoodStat_h
 #define moNeighborhoodStat_h
 
-#include <continuator/moStat.h>
+#include "moStat.h"
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <neighborhood/moNeighborhood.h>
+#include "../explorer/moNeighborhoodExplorer.h"
+#include "../comparator/moNeighborComparator.h"
+#include "../comparator/moSolNeighborComparator.h"
+#include "../neighborhood/moNeighborhood.h"
+
 #include <vector>
 #include <algorithm>   // std::sort
 

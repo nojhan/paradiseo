@@ -35,7 +35,7 @@
 #ifndef moStat_h
 #define moStat_h
 
-#include <continuator/moStatBase.h>
+#include "moStatBase.h"
 
 /**
  * The actual class that will be used as base for all statistics

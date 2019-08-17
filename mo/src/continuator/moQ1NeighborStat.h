@@ -35,9 +35,9 @@
 #ifndef moQ1NeighborStat_h
 #define moQ1NeighborStat_h
 
-#include <continuator/moStat.h>
-#include <continuator/moNeighborhoodStat.h>
-#include <neighborhood/moNeighborhood.h>
+#include "moStat.h"
+#include "moNeighborhoodStat.h"
+#include "../neighborhood/moNeighborhood.h"
 
 /**
  * From moNeighborhoodStat, 
