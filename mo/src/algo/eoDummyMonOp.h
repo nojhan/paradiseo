@@ -35,7 +35,7 @@
 #ifndef _moDummyMonOp_h
 #define _moDummyMonOp_h
 
-#include <eoOp.h>
+#include "../../eo/eoOp.h"
 
 /**
  * The mutation operator that does nothing at all !

@@ -30,11 +30,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moMetropolisHasting_h
 #define _moMetropolisHasting_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moMetropolisHastingExplorer.h>
-#include <continuator/moTrueContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moMetropolisHastingExplorer.h"
+#include "../continuator/moTrueContinuator.h"
+#include "../eval/moEval.h"
+#include "../../eo/eoEvalFunc.h"
 
 /**
  * Metropolis-Hasting local search

@@ -30,11 +30,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moRandomNeutralWalk_h
 #define _moRandomNeutralWalk_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moRandomNeutralWalkExplorer.h>
-#include <continuator/moTrueContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moRandomNeutralWalkExplorer.h"
+#include "../continuator/moTrueContinuator.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Random Neutral Walk:

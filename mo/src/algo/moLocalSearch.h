@@ -35,11 +35,11 @@
 #ifndef _moLocalSearch_h
 #define _moLocalSearch_h
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
-#include <eoEvalFunc.h>
-#include <eoOp.h>
+#include "../explorer/moNeighborhoodExplorer.h"
+#include "../continuator/moContinuator.h"
+#include "../neighborhood/moNeighborhood.h"
+#include "../../eo/eoEvalFunc.h"
+#include "../../eo/eoOp.h"
 
 /**
  * the main algorithm of the local search

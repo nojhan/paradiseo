@@ -30,13 +30,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moSA_h
 #define _moSA_h
 
-#include <algo/moLocalSearch.h>
-#include <explorer/moSAexplorer.h>
-#include <coolingSchedule/moCoolingSchedule.h>
-#include <coolingSchedule/moSimpleCoolingSchedule.h>
-#include <continuator/moTrueContinuator.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
+#include "moLocalSearch.h"
+#include "../explorer/moSAexplorer.h"
+#include "../coolingSchedule/moCoolingSchedule.h"
+#include "../coolingSchedule/moSimpleCoolingSchedule.h"
+#include "../continuator/moTrueContinuator.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
 
 /**
  * Simulated Annealing

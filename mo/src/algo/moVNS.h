@@ -30,14 +30,14 @@
 #ifndef _moVNS_h
 #define _moVNS_h
 
-#include <algo/moLocalSearch.h>
-#include <eoOp.h>
-#include <comparator/moSolComparator.h>
-#include <continuator/moContinuator.h>
+#include "moLocalSearch.h"
+#include <paeadiseo/eo/eoOp.h>
+#include "../comparator/moSolComparator.h"
+#include "../continuator/moContinuator.h"
 
-#include <explorer/moVNSexplorer.h>
-#include <neighborhood/moVariableNeighborhoodSelection.h>
-#include <acceptCrit/moAcceptanceCriterion.h>
+#include "../explorer/moVNSexplorer.h"
+#include "../neighborhood/moVariableNeighborhoodSelection.h"
+#include "../acceptCrit/moAcceptanceCriterion.h"
 
 
 /**
