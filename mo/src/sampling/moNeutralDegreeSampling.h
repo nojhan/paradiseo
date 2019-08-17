@@ -35,15 +35,15 @@
 #ifndef moNeutralDegreeSampling_h
 #define moNeutralDegreeSampling_h
 
-#include <eoInit.h>
-#include <neighborhood/moNeighborhood.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
-#include <algo/moRandomSearch.h>
-#include <continuator/moFitnessStat.h>
-#include <continuator/moNeighborhoodStat.h>
-#include <continuator/moNeutralDegreeNeighborStat.h>
-#include <sampling/moSampling.h>
+#include <paradiseo/eo/eoInit.h>
+#include "../neighborhood/moNeighborhood.h"
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "../algo/moRandomSearch.h"
+#include "../continuator/moFitnessStat.h"
+#include "../continuator/moNeighborhoodStat.h"
+#include "../continuator/moNeutralDegreeNeighborStat.h"
+#include "moSampling.h"
 
 /**
  * To compute the neutral degree:

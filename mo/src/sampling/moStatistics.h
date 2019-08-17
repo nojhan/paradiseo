@@ -37,7 +37,7 @@
 
 #include <vector>
 #include <cmath>
-#include <utils/eoDistance.h>
+#include <paradiseo/eo/utils/eoDistance.h>
 
 /**
  * Tools to compute some basic statistics

@@ -35,14 +35,14 @@
 #ifndef moFDCsampling_h
 #define moFDCsampling_h
 
-#include <eoInit.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
-#include <algo/moRandomSearch.h>
-#include <continuator/moFitnessStat.h>
-#include <utils/eoDistance.h>
-#include <continuator/moDistanceStat.h>
-#include <sampling/moSampling.h>
+#include <paradiseo/eo/eoInit.h>
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "../algo/moRandomSearch.h"
+#include "../continuator/moFitnessStat.h"
+#include <paradiseo/eo/utils/eoDistance.h>
+#include "../continuator/moDistanceStat.h"
+#include "moSampling.h"
 
 /**
  * To compute the fitness distance correlation:

@@ -35,12 +35,12 @@
 #ifndef moAutocorrelationSampling_h
 #define moAutocorrelationSampling_h
 
-#include <eoInit.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
-#include <algo/moRandomWalk.h>
-#include <continuator/moFitnessStat.h>
-#include <sampling/moSampling.h>
+#include <paradiseo/eo/eoInit.h>
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "../algo/moRandomWalk.h"
+#include "../continuator/moFitnessStat.h"
+#include "moSampling.h"
 
 /**
  * To compute the autocorrelation function:

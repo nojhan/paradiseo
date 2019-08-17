@@ -35,20 +35,20 @@
 #ifndef moAdaptiveWalkSampling_h
 #define moAdaptiveWalkSampling_h
 
-#include <eoInit.h>
-#include <eval/moEval.h>
-#include <eoEvalFunc.h>
-#include <continuator/moCheckpoint.h>
-#include <perturb/moLocalSearchInit.h>
-#include <algo/moRandomSearch.h>
-#include <algo/moFirstImprHC.h>
-#include <continuator/moSolutionStat.h>
-#include <continuator/moMinusOneCounterStat.h>
-#include <continuator/moStatFromStat.h>
-#include <sampling/moSampling.h>
-#include <eval/moEvalCounter.h>
-#include <eoEvalFuncCounter.h>
-#include <continuator/moValueStat.h>
+#include <paradiseo/eo/eoInit.h>
+#include "../eval/moEval.h"
+#include <paradiseo/eo/eoEvalFunc.h>
+#include "../continuator/moCheckpoint.h"
+#include "../perturb/moLocalSearchInit.h"
+#include "../algo/moRandomSearch.h"
+#include "../algo/moFirstImprHC.h"
+#include "../continuator/moSolutionStat.h"
+#include "../continuator/moMinusOneCounterStat.h"
+#include "../continuator/moStatFromStat.h"
+#include "moSampling.h"
+#include "../eval/moEvalCounter.h"
+#include <paradiseo/eo/eoEvalFuncCounter.h>
+#include "../continuator/moValueStat.h"
 
 /**
  * To compute the length and final solution of an adaptive walk:
