@@ -36,9 +36,9 @@
 #define _moNeighbor_h
 
 //EO inclusion
-#include <EO.h>
-#include <eoObject.h>
-#include <eoPersistent.h>
+#include <paradiseo/eo/EO.h>
+#include <paradiseo/eo/eoObject.h>
+#include <paradiseo/eo/eoPersistent.h>
 
 /**
  * Container of the neighbor informations

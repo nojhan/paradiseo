@@ -35,8 +35,8 @@
 #ifndef _moEvaluatedNeighborhood_h
 #define _moEvaluatedNeighborhood_h
 
-#include <neighborhood/moNeighborhood.h>
-#include <eval/moNeighborhoodEvaluation.h>
+#include "moNeighborhood.h"
+#include "../eval/moNeighborhoodEvaluation.h"
 
 /**
  * A Neighborhood for the evaluation of all neighbors

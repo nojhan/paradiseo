@@ -30,7 +30,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moDummyNeighbor_h
 #define _moDummyNeighbor_h
 
-#include <neighborhood/moNeighbor.h>
+#include "moNeighbor.h"
 
 /**
  * Dummy Neighborhood

@@ -35,7 +35,7 @@
 #ifndef _moIndexNeighborhood_h
 #define _moIndexNeighborhood_h
 
-#include <neighborhood/moNeighborhood.h>
+#include "moNeighborhood.h"
 
 /**
  * A Indexed Neighborhood

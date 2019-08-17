@@ -30,10 +30,10 @@
 #ifndef _moRndVectorVNSelection_h
 #define _moRndVectorVNSelection_h
 
-#include <utils/eoRndGenerators.h>
-#include <utils/rnd_generators.h>
+#include "../utils/eoRndGenerators.h"
+#include "../utils/rnd_generators.h"
 
-#include <neighborhood/moVectorVNSelection.h>
+#include "moVectorVNSelection.h"
 
 /**
  *  This class is used for the Variable Neighborhood Search explorer inherits from moVectorVNSelection

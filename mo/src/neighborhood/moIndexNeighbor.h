@@ -35,7 +35,7 @@
 #ifndef _IndexNeighbor_h
 #define _IndexNeighbor_h
 
-#include <neighborhood/moNeighbor.h>
+#include "moNeighbor.h"
 
 /**
  * Index Neighbor

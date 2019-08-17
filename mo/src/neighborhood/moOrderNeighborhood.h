@@ -35,7 +35,7 @@
 #ifndef _moOrderNeighborhood_h
 #define _moOrderNeighborhood_h
 
-#include <neighborhood/moIndexNeighborhood.h>
+#include "moIndexNeighborhood.h"
 
 /**
  * An ordered Neighborhood
