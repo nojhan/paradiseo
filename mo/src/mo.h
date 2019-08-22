@@ -183,6 +183,7 @@
 #include "problems/permutation/moTwoOptExNeighbor.h"
 #include "problems/permutation/moTwoOptExNeighborhood.h"
 
+
 //#include "problems/eval/moMaxSATincrEval.h"
 //#include "problems/eval/moOneMaxIncrEval.h"
 //#include "problems/eval/moQAPIncrEval.h"
@@ -193,20 +194,20 @@
 //#include "problems/eval/moNKlandscapesIncrEval.h"
 
 
-#include <sampling/moAdaptiveWalkSampling.h>
-#include <sampling/moAutocorrelationSampling.h>
-#include <sampling/moDensityOfStatesSampling.h>
-#include <sampling/moFDCsampling.h>
-#include <sampling/moFitnessCloudSampling.h>
-#include <sampling/moHillClimberSampling.h>
-#include <sampling/moAdaptiveWalkSampling.h>
-#include <sampling/moMHBestFitnessCloudSampling.h>
-#include <sampling/moMHRndFitnessCloudSampling.h>
-#include <sampling/moNeutralDegreeSampling.h>
-#include <sampling/moNeutralWalkSampling.h>
-#include <sampling/moRndBestFitnessCloudSampling.h>
-#include <sampling/moRndRndFitnessCloudSampling.h>
-#include <sampling/moSampling.h>
-#include <sampling/moStatistics.h>
+#include "sampling/moAdaptiveWalkSampling.h"
+#include "sampling/moAutocorrelationSampling.h"
+#include "sampling/moDensityOfStatesSampling.h"
+#include "sampling/moFDCsampling.h"
+#include "sampling/moFitnessCloudSampling.h"
+#include "sampling/moHillClimberSampling.h"
+#include "sampling/moAdaptiveWalkSampling.h"
+#include "sampling/moMHBestFitnessCloudSampling.h"
+#include "sampling/moMHRndFitnessCloudSampling.h"
+#include "sampling/moNeutralDegreeSampling.h"
+#include "sampling/moNeutralWalkSampling.h"
+#include "sampling/moRndBestFitnessCloudSampling.h"
+#include "sampling/moRndRndFitnessCloudSampling.h"
+#include "sampling/moSampling.h"
+#include "sampling/moStatistics.h"
 
 #endif
