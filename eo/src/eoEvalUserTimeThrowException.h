@@ -38,7 +38,7 @@ Johann Dréo <johann.dreo@thalesgroup.com>
  * @ingroup Evaluation
  */
 
-#include <eoExceptions.h>
+#include "eoExceptions.h"
 
 #ifdef __unix__
 

@@ -28,11 +28,11 @@
 
 //-----------------------------------------------------------------------------
 
-#include <apply.h>
-#include <eoEDA.h>
-#include <eoContinue.h>
-#include <eoDistribUpdater.h>
-#include <eoEvalFunc.h>
+#include "apply.h"
+#include "eoEDA.h"
+#include "eoContinue.h"
+#include "eoDistribUpdater.h"
+#include "eoEvalFunc.h"
 
 /** A very simple Estimation of Distribution Algorithm
  *

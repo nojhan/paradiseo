@@ -33,7 +33,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <eoScalarFitness.h>
+#include "../eoScalarFitness.h"
 
 /** @defgroup Parameters Parameters management
  *

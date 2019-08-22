@@ -1,4 +1,8 @@
-2007-08-21  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+2019-06-29  Ronaldd Pinho  <ronaldppinho@gmail.com>
+
+	* all files: Change from absolute to relative include.
+
+2007-08-21  Jochen Kï¿½pper  <jochen@fhi-berlin.mpg.de>
 
 	* eoBitOp.h (eoNPtsBitXover::operator()): Make sure bit is within
 	allocated length of vector points: [0, max_size).

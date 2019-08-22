@@ -39,7 +39,7 @@
 #define eoUniformInit_h
 
 #include "eoRNG.h"
-#include "eoInit.h"
+#include "../eoInit.h"
 #include "eoRealBounds.h"
 #include <stdexcept>
 

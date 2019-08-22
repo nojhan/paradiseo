@@ -27,7 +27,7 @@
 
 #include <vector>
 #include <iostream>
-#include <eoFunctor.h>
+#include "../eoFunctor.h"
 
 /** @defgroup Monitors Monitoring
  *

@@ -27,10 +27,10 @@
 #include <fstream>
 #include <string>
 
-#include "eoObject.h"
-#include "utils/eoFileMonitor.h"
-#include "utils/eoGnuplot.h"
-#include "utils/pipecom.h"
+#include "../eoObject.h"
+#include "eoFileMonitor.h"
+#include "eoGnuplot.h"
+#include "pipecom.h"
 
 /** Plot eoStat
 

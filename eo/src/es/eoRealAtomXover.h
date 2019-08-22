@@ -31,9 +31,9 @@
 #ifndef _eoRealAtomXover_H
 #define _eoRealAtomXover_H
 
-#include <utils/eoRNG.h>
+#include "../utils/eoRNG.h"
 
-#include <eoOp.h>
+#include "../eoOp.h"
 
 /**
   Discrete crossover == exchange of values

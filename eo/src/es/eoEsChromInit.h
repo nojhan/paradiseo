@@ -29,10 +29,10 @@ Contact: http://eodev.sourceforge.net
 #include <cmath>
 #include <vector>
 
-#include <es/eoRealInitBounded.h>
-#include <es/eoEsSimple.h>
-#include <es/eoEsStdev.h>
-#include <es/eoEsFull.h>
+#include "eoRealInitBounded.h"
+#include "eoEsSimple.h"
+#include "eoEsStdev.h"
+#include "eoEsFull.h"
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795

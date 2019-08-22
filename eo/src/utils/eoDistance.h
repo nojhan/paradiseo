@@ -26,7 +26,7 @@
 #ifndef _eoDistance_H
 #define _eoDistance_H
 
-#include <eoFunctor.h>
+#include "../eoFunctor.h"
 
 /** @addtogroup Stats
  * @{

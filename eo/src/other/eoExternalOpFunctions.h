@@ -28,10 +28,10 @@
 #ifndef eoExternalOpFunc_h
 #define eoExternalOpFunc_h
 
-#include <other/eoExternalEO.h>
-#include <eoOp.h>
-#include <eoInit.h>
-#include <eoEvalFunc.h>
+#include "eoExternalEO.h"
+#include "../eoOp.h"
+#include "../eoInit.h"
+#include "../eoEvalFunc.h"
 
 /**
     Initialization of external struct, ctor expects a function of the following

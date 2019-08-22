@@ -28,9 +28,9 @@ Authors:
 # include <vector> // std::vector
 # include <map> // std::map
 
-# include "utils/eoParallel.h" // eo::parallel
+# include "eoParallel.h" // eo::parallel
 
-# include "serial/eoSerial.h" // eo::Persistent
+# include "../serial/eoSerial.h" // eo::Persistent
 
 /**
  * @brief Timer allowing to measure time between a start point and a stop point.

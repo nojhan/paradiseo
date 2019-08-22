@@ -26,11 +26,11 @@
 #define EOFIXEDINERTIAWEIGHTEDVELOCITY_H
 
 //-----------------------------------------------------------------------------
-#include <eoFunctor.h>
-#include <utils/eoRNG.h>
-#include <eoPop.h>
-#include <utils/eoRealVectorBounds.h>
-#include <eoTopology.h>
+#include "eoFunctor.h"
+#include "utils/eoRNG.h"
+#include "eoPop.h"
+#include "utils/eoRealVectorBounds.h"
+#include "eoTopology.h"
 //-----------------------------------------------------------------------------
 
 

@@ -1,2 +1,2 @@
-#include <other/eoExternalEO.h>
-#include <other/eoExternalOpFunctions.h>
+#include "eoExternalEO.h"
+#include "eoExternalOpFunctions.h"

@@ -26,9 +26,9 @@
 #ifndef _eoGenOp_H
 #define _eoGenOp_H
 
-#include <eoOp.h>
-#include <eoPopulator.h>
-#include <eoFunctorStore.h>
+#include "eoOp.h"
+#include "eoPopulator.h"
+#include "eoFunctorStore.h"
 #include <assert.h>
 
 /** @name General variation operators

@@ -26,8 +26,8 @@
 #ifndef _eoEvalContinue_h
 #define _eoEvalContinue_h
 
-#include <eoContinue.h>
-#include <eoEvalFuncCounter.h>
+#include "eoContinue.h"
+#include "eoEvalFuncCounter.h"
 
 /**
  * Continues until a number of evaluations has been made

@@ -26,9 +26,9 @@
 #ifndef _eoCounter_h
 #define _eoCounter_h
 
-#include <eoFunctor.h>
-#include <eoFunctorStore.h>
-#include <utils/eoParam.h>
+#include "eoFunctor.h"
+#include "eoFunctorStore.h"
+#include "utils/eoParam.h"
 
 /**
         Generic counter class that counts the number of times

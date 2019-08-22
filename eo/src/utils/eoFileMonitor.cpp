@@ -7,9 +7,9 @@
 #include <fstream>
 #include <stdexcept>
 
-#include <utils/eoFileMonitor.h>
-#include <utils/compatibility.h>
-#include <utils/eoParam.h>
+#include "eoFileMonitor.h"
+#include "compatibility.h"
+#include "eoParam.h"
 
 using namespace std;
 

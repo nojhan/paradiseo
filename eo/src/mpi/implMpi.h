@@ -19,11 +19,11 @@ Contact: http://eodev.sourceforge.net
 Authors:
     Benjamin Bouvier <benjamin.bouvier@gmail.com>
 */
-# ifndef __EO_IMPL_MPI_HPP__
-# define __EO_IMPL_MPI_HPP__
+#ifndef __EO_IMPL_MPI_HPP__
+#define __EO_IMPL_MPI_HPP__
 
-# include <mpi.h>
-# include <serial/eoSerial.h>
+#include "eoMpi.h"
+#include "../serial/eoSerial.h"
 
 /**
  * This namespace contains reimplementations of some parts of the Boost::MPI API in C++, so as to be used in

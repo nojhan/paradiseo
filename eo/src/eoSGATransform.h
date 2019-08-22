@@ -27,15 +27,15 @@
 #ifndef _eoSGATransform_h
 #define _eoSGATransform_h
 
-#include <eoInvalidateOps.h>
-#include <eoPop.h>
+#include "eoInvalidateOps.h"
+#include "eoPop.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // class eoSGATransform
 ///////////////////////////////////////////////////////////////////////////////
 #include <vector>          // std::vector
-#include <utils/eoRNG.h>
-#include <eoTransform.h>
+#include "utils/eoRNG.h"
+#include "eoTransform.h"
 
 /** eoSGATransform: transforms a population using genetic operators.
  * It does it exactly as class eoSGA, i.e. only accepts

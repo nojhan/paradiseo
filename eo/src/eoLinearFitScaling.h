@@ -27,8 +27,8 @@
 #ifndef eoLinearFitScaling_h
 #define eoLinearFitScaling_h
 
-#include <eoSelectFromWorth.h>
-#include <eoPerf2Worth.h>
+#include "eoSelectFromWorth.h"
+#include "eoPerf2Worth.h"
 
 /** An instance of eoPerf2Worth
  *  COmputes the linearly scaled fitnesses

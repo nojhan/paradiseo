@@ -25,8 +25,8 @@
 #ifndef _EOALGO_H
 #define _EOALGO_H
 
-#include <eoPop.h>                   // for population
-#include <eoFunctor.h>
+#include "eoPop.h"     // for population
+#include "eoFunctor.h"
 
 /**
   @defgroup Algorithms Algorithms

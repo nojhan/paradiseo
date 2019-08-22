@@ -26,8 +26,8 @@
 #ifndef _eoFlOrBinOp_h
 #define _eoFlOrBinOp_h
 
-#include <eoFunctor.h>
-#include <eoOp.h>
+#include "eoFunctor.h"
+#include "eoOp.h"
 
 /** @addtogroup Variators
  * @{

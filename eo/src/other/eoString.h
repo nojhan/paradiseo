@@ -30,8 +30,7 @@
 #include <string>
 #include <stdexcept>
 
-
-#include <EO.h>
+#include "../EO.h"
 
 //-----------------------------------------------------------------------------
 // eoString

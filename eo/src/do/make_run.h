@@ -28,7 +28,7 @@
 #define _make_run_h
 
 // Algorithm (only this one needed)
-#include <eoAlgo.h>
+#include "../eoAlgo.h"
 
 /*
  * A trivial function - only here to allow instanciation with a give EOType

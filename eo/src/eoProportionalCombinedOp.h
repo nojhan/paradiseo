@@ -24,12 +24,12 @@
 #ifndef _eoCombinedOp_H
 #define _eoCombinedOp_H
 
-#include <eoObject.h>
-#include <eoPrintable.h>
-#include <eoFunctor.h>
-#include <eoOp.h>
-#include <utils/eoRNG.h>
-#include <utils/eoLogger.h>
+#include "eoObject.h"
+#include "eoPrintable.h"
+#include "eoFunctor.h"
+#include "eoOp.h"
+#include "utils/eoRNG.h"
+#include "utils/eoLogger.h"
 
 /**
 \defgroup Utilities Utilities

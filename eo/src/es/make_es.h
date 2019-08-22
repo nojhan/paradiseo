@@ -44,23 +44,23 @@
 #ifndef es_h
 #define es_h
 
-#include <eoAlgo.h>
-#include <eoScalarFitness.h>
-#include <utils/eoParser.h>
-#include <eoEvalFuncPtr.h>
-#include <eoEvalFuncCounter.h>
-#include <utils/eoCheckPoint.h>
-#include <eoGenOp.h>
-#include <eoPop.h>
-#include <utils/eoDistance.h>
+#include "../eoAlgo.h"
+#include "../eoScalarFitness.h"
+#include "../utils/eoParser.h"
+#include "../eoEvalFuncPtr.h"
+#include "../eoEvalFuncCounter.h"
+#include "../utils/eoCheckPoint.h"
+#include "../eoGenOp.h"
+#include "../eoPop.h"
+#include "../utils/eoDistance.h"
 
-#include <es/eoEsSimple.h>         // one Sigma per individual
-#include <es/eoEsStdev.h>          // one sigmal per object variable
-#include <es/eoEsFull.h>           // full correlation matrix per indi
+#include "eoEsSimple.h"         // one Sigma per individual
+#include "eoEsStdev.h"          // one sigmal per object variable
+#include "eoEsFull.h"           // full correlation matrix per indi
 
 // include all similar declaration for eoReal - i.e. real-valued genotyes
 // without self-adaptation
-#include <es/make_real.h>
+#include "make_real.h"
 
 /** @addtogroup Builders
  * @{

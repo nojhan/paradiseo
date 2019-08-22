@@ -29,10 +29,10 @@
 
 #include <algorithm>
 
-#include <eoOp.h>
-#include <eoSTLFunctor.h>
-#include <utils/eoRndGenerators.h>
-#include <utils/rnd_generators.h>  // for shuffle method
+#include "eoOp.h"
+#include "eoSTLFunctor.h"
+#include "utils/eoRndGenerators.h"
+#include "utils/rnd_generators.h"  // for shuffle method
 
 
 /**

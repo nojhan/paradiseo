@@ -22,7 +22,7 @@
 #define _eoGenCounter_h
 
 #include <string>
-#include <utils/eoStat.h>
+#include "eoStat.h"
 
 /**
     An eoStat that simply gives the current generation index

@@ -29,9 +29,9 @@
 //-----------------------------------------------------------------------------
 
 #include <algorithm>    // swap_ranges
-#include <utils/eoRNG.h>
-#include <es/eoReal.h>
-#include <utils/eoRealVectorBounds.h>
+#include "../utils/eoRNG.h"
+#include "eoReal.h"
+#include "../utils/eoRealVectorBounds.h"
 
 //-----------------------------------------------------------------------------
 

@@ -28,8 +28,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoSelectFromWorth.h>
-#include <eoRanking.h>
+#include "eoSelectFromWorth.h"
+#include "eoRanking.h"
 
 /** eoRankingSelect: select an individual by roulette wheel on its rank
  *  is an eoRouletteWorthSelect, i.e. a selector using a std::vector of worthes

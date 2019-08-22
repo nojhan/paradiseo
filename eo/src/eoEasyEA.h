@@ -27,15 +27,15 @@
 
 //-----------------------------------------------------------------------------
 
-#include <apply.h>
-#include <eoAlgo.h>
-#include <eoPopEvalFunc.h>
-#include <eoContinue.h>
-#include <eoSelect.h>
-#include <eoTransform.h>
-#include <eoBreed.h>
-#include <eoMergeReduce.h>
-#include <eoReplacement.h>
+#include "apply.h"
+#include "eoAlgo.h"
+#include "eoPopEvalFunc.h"
+#include "eoContinue.h"
+#include "eoSelect.h"
+#include "eoTransform.h"
+#include "eoBreed.h"
+#include "eoMergeReduce.h"
+#include "eoReplacement.h"
 
 
 

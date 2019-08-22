@@ -27,9 +27,9 @@
 #define EOLINEARTOPOLOGY_H_
 
 //-----------------------------------------------------------------------------
-#include <eoPop.h>
-#include <eoTopology.h>
-#include <eoSocialNeighborhood.h>
+#include "eoPop.h"
+#include "eoTopology.h"
+#include "eoSocialNeighborhood.h"
 //-----------------------------------------------------------------------------
 
 

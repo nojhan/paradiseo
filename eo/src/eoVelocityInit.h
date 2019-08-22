@@ -28,9 +28,9 @@
 
 #include <algorithm>
 
-#include <eoOp.h>
-#include <eoSTLFunctor.h>
-#include <utils/eoRndGenerators.h>
+#include "eoOp.h"
+#include "eoSTLFunctor.h"
+#include "utils/eoRndGenerators.h"
 
 /**
  @addtogroup Initializators

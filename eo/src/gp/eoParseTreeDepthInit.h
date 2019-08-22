@@ -28,11 +28,11 @@
 #ifndef eoParseTreeDepthInit_h
 #define eoParseTreeDepthInit_h
 
-#include <EO.h>
-#include <gp/eoParseTree.h>
-#include <eoInit.h>
-#include <eoOp.h>
-#include <eoPop.h>
+#include "../EO.h"
+#include "eoParseTree.h"
+#include "eoInit.h"
+#include "eoOp.h"
+#include "eoPop.h"
 
 using namespace gp_parse_tree;
 

@@ -28,7 +28,7 @@
 #define _eoIntBounds_h
 
 #include <stdexcept>               // std::exceptions!
-#include <utils/eoRNG.h>
+#include "eoRNG.h"
 
 /**
 \class eoIntBounds eoIntBounds.h es/eoIntBounds.h

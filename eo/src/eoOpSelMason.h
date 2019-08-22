@@ -24,7 +24,7 @@
 #ifndef _EOOPSELMASON_H
 #define _EOOPSELMASON_H
 
-#include <eoOpFactory.h>	// for eoFactory and eoOpFactory
+#include "eoFactory.h"	// for eoFactory and eoOpFactory
 
 #include <map>
 
@@ -58,7 +58,7 @@ public:
         ...\\
         Stores all operators built in a database (#allocMap#), so that somebody
         can destroy them later. The Mason is in charge or destroying the operators,
-        since the built object can´t do it itself. The objects built must be destroyed
+        since the built object canï¿½t do it itself. The objects built must be destroyed
         from outside, using the "destroy" method
         */
         virtual eoOpSelector<eoClass>* make(std::istream& _is) {
@@ -79,7 +79,7 @@ public:
                         _is >> rate;
                         if ( _is ) {
                                 eoOp<eoClass>* op = operatorFactory.make( _is );	// This reads the rest of the line
-                                // Add the operators to the selector, don´t pay attention to the IDs
+                                // Add the operators to the selector, donï¿½t pay attention to the IDs
                                 opSelectorP->addOp( *op, rate );
                                 // Keep it in the store, to destroy later
                                 tmpPVec.push_back( op );

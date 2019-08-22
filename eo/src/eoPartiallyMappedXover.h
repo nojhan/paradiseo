@@ -32,7 +32,7 @@
 //-----------------------------------------------------------------------------
 
 #include <algorithm>
-#include <utils/eoRNG.h>
+#include "utils/eoRNG.h"
 
 /**
  *

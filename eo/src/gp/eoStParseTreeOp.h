@@ -28,13 +28,13 @@
 #ifndef eoStParseTreeOp_h
 #define eoStParseTreeOp_h
 
-#include <EO.h>
-#include <eoOp.h>
+#include "../EO.h"
+#include "../eoOp.h"
 #include <map.h>
 #include <iostream>
 #include <set>
 
-#include <gp/eoParseTree.h>
+#include "eoParseTree.h"
 
 // a help function
 template <class EOT>

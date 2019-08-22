@@ -22,8 +22,8 @@
 #ifndef __eoPeriodicContinue_h
 #define __eoPeriodicContinue_h
 
-#include <eoContinue.h>
-#include <eoPop.h>
+#include "eoContinue.h"
+#include "eoPop.h"
 
 /** A continue that becomes true periodically.
  */

@@ -27,8 +27,8 @@
 
 
 //-----------------------------------------------------------------------------
-#include <eoPop.h>
-#include <eoFunctor.h>
+#include "eoPop.h"
+#include "eoFunctor.h"
 //-----------------------------------------------------------------------------
 
 /** eoSelectOne selects only one element from a whole population.

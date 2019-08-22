@@ -28,8 +28,8 @@
 #define _eoRealVectorBounds_h
 
 #include <stdexcept>               // std::exceptions!
-#include <utils/eoRNG.h>
-#include <utils/eoRealBounds.h>
+#include "eoRNG.h"
+#include "eoRealBounds.h"
 
 /**
 Vector type for bounds (see eoRealBounds.h for scalar types)

@@ -28,8 +28,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoSelectFromWorth.h>
-#include <eoSharing.h>
+#include "eoSelectFromWorth.h"
+#include "eoSharing.h"
 
 /** eoSharingSelect: select an individual by roulette wheel
  * on its SHARED fitness. It is an eoRouletteWorthSelect,

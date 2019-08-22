@@ -28,7 +28,7 @@
 #define _eoFunctorStore_h
 
 #include <vector>
-#include<algorithm>
+#include <algorithm>
 
 #include "utils/eoLogger.h"
 

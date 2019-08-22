@@ -29,10 +29,10 @@
 #ifndef eoParseTreeOp_h
 #define eoParseTreeOp_h
 
-#include <EO.h>
-#include <eoOp.h>
+#include "../EO.h"
+#include "../eoOp.h"
 
-#include <gp/eoParseTree.h>
+#include "eoParseTree.h"
 
 /** eoSubtreeXOver --> subtree xover
 \class eoSubtreeXOver eoParseTreeOp.h gp/eoParseTreeOp.h

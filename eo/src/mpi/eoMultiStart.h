@@ -1,7 +1,7 @@
 # ifndef __EO_MULTISTART_H__
 # define __EO_MULTISTART_H__
 
-# include <eo>
+# include "../eo"
 # include "eoMpi.h"
 
 /**

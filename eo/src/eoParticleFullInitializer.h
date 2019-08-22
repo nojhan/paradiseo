@@ -27,11 +27,11 @@
 #ifndef _eoParticleFullInitializer_H
 #define _eoParticleFullInitializer_H
 
-#include <utils/eoRealVectorBounds.h>
-#include <eoVelocityInit.h>
-#include <eoPop.h>
-#include <eoParticleBestInit.h>
-#include <eoTopology.h>
+#include "utils/eoRealVectorBounds.h"
+#include "eoVelocityInit.h"
+#include "eoPop.h"
+#include "eoParticleBestInit.h"
+#include "eoTopology.h"
 
 /**
  @addtogroup Initializators

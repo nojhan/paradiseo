@@ -29,8 +29,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoSelectFromWorth.h>
-#include <eoLinearFitScaling.h>
+#include "eoSelectFromWorth.h"
+#include "eoLinearFitScaling.h"
 
 /** eoFitnessScalingSelect: select an individual proportional to the
  *  linearly scaled fitness that is computed by the private

@@ -38,11 +38,11 @@
 #include <vector>
 #include <string>
 
-#include <eoScalarFitnessAssembled.h>
-#include <utils/selectors.h>
-#include <EO.h>
-#include <eoEvalFuncCounter.h>
-#include <utils/checkpointing>
+#include "../eoScalarFitnessAssembled.h"
+#include "../utils/selectors.h"
+#include "../EO.h"
+#include "../eoEvalFuncCounter.h"
+#include "../utils/checkpointing"
 
 // at the moment, in utils/make_help.cpp
 // this should become some eoUtils.cpp with corresponding eoUtils.h

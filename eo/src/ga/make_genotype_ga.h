@@ -27,11 +27,11 @@
 #ifndef _make_genotype_h
 #define _make_genotype_h
 
-#include <ga/eoBit.h>
-#include <eoInit.h>
+#include "eoBit.h"
+#include "../eoInit.h"
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 /////////////////// the bitstring ////////////////

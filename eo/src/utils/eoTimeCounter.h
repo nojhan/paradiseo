@@ -28,7 +28,8 @@
 #define _eoTimeCounter_h
 
 #include <time.h>
-#include <utils/eoStat.h>
+#include "eoStat.h"
+#include "eoUpdater.h"
 
 
 /**

@@ -24,10 +24,10 @@ Authors:
 
 # include <vector>  // std::vector
 
-# include <utils/eoLogger.h>
-# include <utils/eoTimer.h>
-# include <eoFunctor.h>
-# include <eoExceptions.h>
+# include "../utils/eoLogger.h"
+# include "../utils/eoTimer.h"
+# include "../eoFunctor.h"
+# include "../eoExceptions.h"
 
 # include "eoMpiNode.h"
 # include "eoMpiAssignmentAlgorithm.h"

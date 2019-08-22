@@ -28,7 +28,7 @@
 #ifndef EOEVALFUNCPTR_H
 #define EOEVALFUNCPTR_H
 
-#include <eoEvalFunc.h>
+#include "eoEvalFunc.h"
 
 /** EOEvalFuncPtr: This class
  * takes an existing function pointer and converts it into a evaluation

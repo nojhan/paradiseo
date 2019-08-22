@@ -24,24 +24,24 @@ Contact: http://eodev.sourceforge.net
 #define EO_make_op_h
 
 // the operators
-#include <eoOp.h>
-#include <eoGenOp.h>
-#include <eoCloneOps.h>
-#include <eoOpContainer.h>
+#include "../eoOp.h"
+#include "../eoGenOp.h"
+#include "../eoCloneOps.h"
+#include "../eoOpContainer.h"
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
-#include <eoProportionalCombinedOp.h>
+#include "../eoProportionalCombinedOp.h"
 
 // the specialized Real stuff
-#include <es/eoReal.h>
-#include <es/eoRealAtomXover.h>
-#include <es/eoEsChromInit.h>
-#include <es/eoEsMutationInit.h>
-#include <es/eoEsMutate.h>
-#include <es/eoEsGlobalXover.h>
-#include <es/eoEsStandardXover.h>
+#include "eoReal.h"
+#include "eoRealAtomXover.h"
+#include "eoEsChromInit.h"
+#include "eoEsMutationInit.h"
+#include "eoEsMutate.h"
+#include "eoEsGlobalXover.h"
+#include "eoEsStandardXover.h"
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "../utils/eoParser.h"
+#include "../utils/eoState.h"
 
 
 /** @addtogroup Builders

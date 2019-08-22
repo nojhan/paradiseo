@@ -24,27 +24,27 @@
 #ifndef _CHECKPOINTING_
 #define _CHECKPOINTING_
 
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
-#include <utils/eoUpdater.h>
-#include <utils/eoMonitor.h>
-#include <utils/eoFileMonitor.h>
-#include <utils/eoStdoutMonitor.h>
-#include <utils/eoOStreamMonitor.h>
+#include "eoParser.h"
+#include "eoState.h"
+#include "eoUpdater.h"
+#include "eoMonitor.h"
+#include "eoFileMonitor.h"
+#include "eoStdoutMonitor.h"
+#include "eoOStreamMonitor.h"
 #ifndef _MSC_VER
-#include <utils/eoGnuplot1DMonitor.h>
-#include <utils/eoGnuplot1DSnapshot.h>
+#include "eoGnuplot1DMonitor.h"
+#include "eoGnuplot1DSnapshot.h"
 #endif
-#include <utils/eoCheckPoint.h>
-#include <utils/eoSignal.h>
-#include <utils/eoStat.h>
-#include <utils/eoScalarFitnessStat.h>
-#include <utils/eoAssembledFitnessStat.h>
-#include <utils/eoFDCStat.h>
-#include <utils/eoMOFitnessStat.h>
-#include <utils/eoPopStat.h>
-#include <utils/eoTimeCounter.h>
-#include <utils/eoGenCounter.h>
+#include "eoCheckPoint.h"
+#include "eoSignal.h"
+#include "eoStat.h"
+#include "eoScalarFitnessStat.h"
+#include "eoAssembledFitnessStat.h"
+#include "eoFDCStat.h"
+#include "eoMOFitnessStat.h"
+#include "eoPopStat.h"
+#include "eoTimeCounter.h"
+#include "eoGenCounter.h"
 
 // and make_help - any better suggestion to include it?
 void make_help(eoParser & _parser);

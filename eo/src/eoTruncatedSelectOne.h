@@ -29,9 +29,9 @@
 
 
 //-----------------------------------------------------------------------------
-#include <eoSelect.h>
-#include <eoSelectOne.h>
-#include <utils/eoHowMany.h>
+#include "eoSelect.h"
+#include "eoSelectOne.h"
+#include "utils/eoHowMany.h"
 #include <math.h>
 //-----------------------------------------------------------------------------
 

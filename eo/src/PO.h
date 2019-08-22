@@ -27,7 +27,7 @@
 
 //-----------------------------------------------------------------------------
 #include <stdexcept>
-#include <EO.h>
+#include "EO.h"
 //-----------------------------------------------------------------------------
 
 /** PO inheriting from EO is specially designed for particle swarm optimization particle.POs have got a fitness,

@@ -26,11 +26,11 @@
 #define EOVARIABLEINERTIAWEIGHTEDVELOCITY_H
 
 //-----------------------------------------------------------------------------
-#include <eoVelocity.h>
-#include <eoTopology.h>
-#include <eoWeightUpdater.h>
-#include <utils/eoRealVectorBounds.h>
-#include <eoRealBoundModifier.h>
+#include "eoVelocity.h"
+#include "eoTopology.h"
+#include "eoWeightUpdater.h"
+#include "utils/eoRealVectorBounds.h"
+#include "eoRealBoundModifier.h"
 //-----------------------------------------------------------------------------
 
 

@@ -25,7 +25,7 @@
 #ifndef _eoCombinedInit_h
 #define _eoCombinedInit_h
 
-#include <eoInit.h>
+#include "eoInit.h"
 
 /**
     Combined INIT: a proportional recombination of eoInit objects

@@ -21,7 +21,7 @@
 #ifndef MAKE_ABSTRACT_FUNCTOR_H
 #define MAKE_ABSTRACT_FUNCTOR_H
 
-#include <eoFunctor.h>
+#include "../eoFunctor.h"
 
 // DEFINES for call
 #define WC1 boost::python::with_custodian_and_ward<1,2>()

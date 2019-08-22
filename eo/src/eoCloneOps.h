@@ -25,7 +25,7 @@
 #ifndef _eoCloneOps_H
 #define _eoCloneOps_H
 
-#include <eoOp.h>
+#include "eoOp.h"
 
 /**
  * The different null-variation operators (i.e. they do nothing)

@@ -25,7 +25,7 @@
 
 #include <fstream>
 
-#include <eoEvalFunc.h>
+#include "eoEvalFunc.h"
 
 /**
 Dump an evaluated individual to a given file.

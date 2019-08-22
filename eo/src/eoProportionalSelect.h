@@ -29,10 +29,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <utils/eoRNG.h>
-#include <utils/selectors.h>
-#include <eoSelectOne.h>
-#include <eoPop.h>
+#include "utils/eoRNG.h"
+#include "utils/selectors.h"
+#include "eoSelectOne.h"
+#include "eoPop.h"
 
 /** eoProportionalSelect: select an individual proportional to her stored fitness
     value

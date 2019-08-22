@@ -26,7 +26,7 @@
 #ifndef _eoOpContainer_H
 #define _eoOpContainer_H
 
-#include <eoGenOp.h>
+#include "eoGenOp.h"
 
 /** eoOpContainer is a base class for the sequential and proportional selectors
  *  It takes care of wrapping the other operators,

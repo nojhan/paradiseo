@@ -18,12 +18,12 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <eoSelectOne.h>
-#include <eoDetTournamentSelect.h>
-#include <eoRandomSelect.h>
-#include <eoStochTournamentSelect.h>
-#include <eoTruncatedSelectOne.h>
-#include <eoSequentialSelect.h>
+#include "../eoSelectOne.h"
+#include "../eoDetTournamentSelect.h"
+#include "../eoRandomSelect.h"
+#include "../eoStochTournamentSelect.h"
+#include "../eoTruncatedSelectOne.h"
+#include "../eoSequentialSelect.h"
 
 #include "PyEO.h"
 #include "pickle.h"

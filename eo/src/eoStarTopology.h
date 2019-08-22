@@ -27,8 +27,8 @@
 #define EOSTARTOPOLOGY_H_
 
 //-----------------------------------------------------------------------------
-#include <eoTopology.h>
-#include <eoSocialNeighborhood.h>
+#include "eoTopology.h"
+#include "eoSocialNeighborhood.h"
 //-----------------------------------------------------------------------------
 
 

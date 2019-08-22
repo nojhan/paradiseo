@@ -28,10 +28,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <utils/eoRNG.h>
-#include <eoInit.h>
-#include <es/eoReal.h>
-#include <utils/eoRealVectorBounds.h>
+#include "../utils/eoRNG.h"
+#include "../eoInit.h"
+#include "eoReal.h"
+#include "../utils/eoRealVectorBounds.h"
 
 /** Simple initialization for any EOT that derives from std::vector<double>
  *    uniformly in some bounds

@@ -25,7 +25,7 @@
 #ifndef _eoSecondsElapsedContinue_h
 #define _eoSecondsElapsedContinue_h
 
-#include <eoContinue.h>
+#include "eoContinue.h"
 
 /**
     Timed continuator: continues until a number of seconds is used

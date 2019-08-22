@@ -23,7 +23,7 @@
 	   Caner.Candan@univ-angers.fr
 */
 
-#include <utils/eoSignal.h>
+#include "eoSignal.h"
 
 /**
  * @addtogroup Continuators

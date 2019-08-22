@@ -26,7 +26,7 @@
 #define _EOBITPARTICLE_H
 
 
-#include <eoVectorParticle.h>
+#include "eoVectorParticle.h"
 
 
 /** eoBitParticle: Implementation of a bit-coded particle (swarm optimization).
