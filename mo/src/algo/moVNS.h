@@ -31,7 +31,7 @@
 #define _moVNS_h
 
 #include "moLocalSearch.h"
-#include <paeadiseo/eo/eoOp.h>
+#include <paradiseo/eo/eoOp.h>
 #include "../comparator/moSolComparator.h"
 #include "../continuator/moContinuator.h"
 
