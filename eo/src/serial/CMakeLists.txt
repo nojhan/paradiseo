@@ -20,7 +20,7 @@ set(EOSERIAL_SOURCES
   )
 
 add_library(eoserial STATIC ${EOSERIAL_SOURCES})
-install(TARGETS eoserial ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
+install(TARGETS eoserial EXPORT paradiseo-targets ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 file(GLOB HDRS *.h)
 install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo/serial COMPONENT headers)

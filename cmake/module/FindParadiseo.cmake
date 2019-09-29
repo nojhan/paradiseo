@@ -1,3 +1,6 @@
+# The script use the following variables as search paths, if they are defined:
+# - PARADISEO_ROOT : the project root
+# - PARADISEO_DIR : the build/install directory with libraries binaries
 #
 # The following variables are filled out:
 # - PARADISEO_INCLUDE_DIR : EO, MO and MOEO source dir
@@ -36,15 +39,21 @@ if(UNIX)
     set(INSTALL_SUB_DIR /paradiseo)
 endif()
 
+if(PARADISEO_DIR)
+    # CMake config module is case sensitive
+    set(Paradiseo_DIR ${PARADISEO_DIR})
+endif()
+
 # enabled components
-if ("${Paradiseo_FIND_COMPONENTS}" STREQUAL "")
+if (Paradiseo_FIND_COMPONENTS STREQUAL "")
     set(PARADISEO_LIBRARIES_TO_FIND eo eoutils cma es flowshop ga moeo)
 else()
     set(PARADISEO_LIBRARIES_TO_FIND ${Paradiseo_FIND_COMPONENTS})
 endif()
+message(STATUS "${PARADISEO_LIBRARIES_TO_FIND}")
 
 #set the build directory
-set(BUILD_DIR build)
+#set(BUILD_DIR build)
 
 # Path
 set(PARADISEO_SRC_PATHS
@@ -72,30 +81,34 @@ find_path(MOEO_INCLUDE_DIR moeo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/moeo moeo/src
           PATHS ${PARADISEO_SRC_PATHS})
 
-# Specific for SMP and PEO
+set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
+
+# Specific for SMP, EDO and PEO
 foreach(COMP ${PARADISEO_LIBRARIES_TO_FIND})
     if(${COMP} STREQUAL "smp")
         set(SMP_FOUND true)
         find_path(SMP_INCLUDE_DIR smp
               PATH_SUFFIXES include${INSTALL_SUB_DIR}/smp smp/src
               PATHS ${PARADISEO_SRC_PATHS})
-    elseif(${COMP} STREQUAL "peo")
-        set(PEO_FOUND true)
+    elseif(${COMP} STREQUAL "edo")
+        set(EDO_FOUND true)
         find_path(EDO_INCLUDE_DIR edo
           PATH_SUFFIXES include${INSTALL_SUB_DIR}/edo edo/src
           PATHS ${PARADISEO_SRC_PATHS})
-    elseif(${COMP} STREQUAL "edo")
-        set(EDO_FOUND true)
-        find_path(EDO_INCLUDE_DIR peo
+    elseif(${COMP} STREQUAL "peo")
+        set(PEO_FOUND true)
+        find_path(PEO_INCLUDE_DIR peo
               PATH_SUFFIXES include${INSTALL_SUB_DIR}/peo peo/src
               PATHS ${PARADISEO_SRC_PATHS})
     endif()
 endforeach()
 
-set(PARADISEO_INCLUDE_DIR ${EO_INCLUDE_DIR} ${EDO_INCLUDE_DIR} ${MO_INCLUDE_DIR} ${MOEO_INCLUDE_DIR})
-
 if(SMP_FOUND)
     set(PARADISEO_INCLUDE_DIR ${PARADISEO_INCLUDE_DIR} ${SMP_INCLUDE_DIR})
+endif()
+
+if(EDO_FOUND)
+    set(PARADISEO_INCLUDE_DIR ${PARADISEO_INCLUDE_DIR} ${EDO_INCLUDE_DIR})
 endif()
 
 if(PEO_FOUND)
@@ -106,8 +119,14 @@ endif()
 set(PARADISEO_FOUND true) # will be set to false if one of the required modules is not found
 
 set(FIND_PARADISEO_LIB_PATHS
-        ${PARADISEO_ROOT}/${BUILD_DIR}
-        $ENV{PARADISEO_ROOT}
+        # ${PARADISEO_ROOT}/${BUILD_DIR}
+        ${Paradiseo_DIR}
+        $ENV{PARADISEO_ROOT}/build
+        $ENV{PARADISEO_ROOT}/release
+        $ENV{PARADISEO_ROOT}/debug
+        ${PARADISEO_ROOT}/build
+        ${PARADISEO_ROOT}/release
+        ${PARADISEO_ROOT}/debug
         /usr/local/
         /usr/
         /sw # Fink
@@ -153,18 +172,20 @@ endforeach()
 
 # handle result
 if(PARADISEO_FOUND)
-    message(STATUS "Found ParadisEO includes :")
-    message(${EO_INCLUDE_DIR})
-    message(${EDO_INCLUDE_DIR})
-    message(${MO_INCLUDE_DIR})
-    message(${MOEO_INCLUDE_DIR})
+    message(STATUS "Found the following ParadisEO include directories:")
+    message(STATUS "\tEO\t: " ${EO_INCLUDE_DIR})
+    message(STATUS "\tMO\t: " ${MO_INCLUDE_DIR})
+    message(STATUS "\tMOEO\t: " ${MOEO_INCLUDE_DIR})
     if(SMP_FOUND)
-        message(${SMP_INCLUDE_DIR})
+        message(STATUS "\tSMP\t: " ${SMP_INCLUDE_DIR})
+    endif()
+    if(EDO_FOUND)
+        message(STATUS "\tEDO\t: " ${EDO_INCLUDE_DIR})
     endif()
     if(PEO_FOUND)
-        message(${PEO_INCLUDE_DIR})
+        message(STATUS "\tPEO\t: " ${PEO_INCLUDE_DIR})
     endif()
 else()
     # include directory or library not found
-    message(FATAL_ERROR "Could NOT find ParadisEO (missing : ${FIND_PARADISEO_MISSING})")
+    message(FATAL_ERROR "Could NOT find ParadisEO (missing \t: ${FIND_PARADISEO_MISSING})")
 endif()

@@ -29,7 +29,7 @@ add_library(eo STATIC ${EO_SOURCES})
 set(EO_VERSION ${GLOBAL_VERSION})
 set_target_properties(eo PROPERTIES VERSION "${EO_VERSION}")
 
-install(TARGETS eo ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
+install(TARGETS eo EXPORT paradiseo-targets ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 file(GLOB HDRS *.h eo)
 install(FILES ${HDRS} DESTINATION include${INSTALL_SUB_DIR}/eo COMPONENT headers)

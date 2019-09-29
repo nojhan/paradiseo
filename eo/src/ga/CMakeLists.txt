@@ -23,7 +23,7 @@ set(GA_SOURCES
   )
 
 add_library(ga STATIC ${GA_SOURCES})
-install(TARGETS ga ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
+install(TARGETS ga EXPORT paradiseo-targets ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Optionnal

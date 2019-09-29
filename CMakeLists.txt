@@ -137,3 +137,12 @@ endif()
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Package.cmake)
 endif()
+
+
+# Add all targets to the build-tree export set
+export(TARGETS eo FILE "${PROJECT_BINARY_DIR}/paradiseo-config.cmake")
+
+# Export the package for use from the build-tree
+# (this registers the build-tree with a global CMake-registry)
+export(PACKAGE paradiseo)
+

@@ -23,7 +23,7 @@ add_library(moeo STATIC ${MOEO_CORE})
 set(MOEO_VERSION ${GLOBAL_VERSION})
 set_target_properties(moeo PROPERTIES VERSION "${MOEO_VERSION}")
 
-install(TARGETS moeo ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
+install(TARGETS moeo EXPORT paradiseo-targets ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Look for headers

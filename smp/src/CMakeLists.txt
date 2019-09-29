@@ -37,7 +37,7 @@ set (SMP_FILE
 
 add_library(smp STATIC ${SMP_FILE})
 
-install(TARGETS smp ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
+install(TARGETS smp EXPORT paradiseo-targets ARCHIVE DESTINATION ${LIB} COMPONENT libraries)
 
 ######################################################################################
 ### 3) Look for headers
