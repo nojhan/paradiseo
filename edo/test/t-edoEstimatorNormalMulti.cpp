@@ -33,8 +33,8 @@ Authors:
 
 #include <edo>
 
-#include "Rosenbrock.h"
-#include "Sphere.h"
+#include "../application/common/Rosenbrock.h"
+#include "../application/common/Sphere.h"
 
 typedef eoReal< eoMinimizingFitness > EOT;
 typedef edoNormalMulti< EOT > Distrib;

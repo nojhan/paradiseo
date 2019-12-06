@@ -79,7 +79,7 @@ public:
                         _is >> rate;
                         if ( _is ) {
                                 eoOp<eoClass>* op = operatorFactory.make( _is );	// This reads the rest of the line
-                                // Add the operators to the selector, don�t pay attention to the IDs
+                                // Add the operators to the selector, don't pay attention to the IDs
                                 opSelectorP->addOp( *op, rate );
                                 // Keep it in the store, to destroy later
                                 tmpPVec.push_back( op );

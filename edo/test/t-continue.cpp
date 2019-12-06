@@ -28,7 +28,7 @@ Authors:
 #include <eo>
 #include <edo>
 
-#include "Rosenbrock.h"
+#include "../application/common/Rosenbrock.h"
 
 typedef eoReal< eoMinimizingFitness > EOT;
 typedef edoUniform< EOT > Distrib;

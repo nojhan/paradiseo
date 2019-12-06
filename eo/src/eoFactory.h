@@ -31,7 +31,7 @@
 //-----------------------------------------------------------------------------
 
 /** EO Factory. A factory is used to create other objects. In particular,
-it can be used so that objects of that kind can�t be created in any other
+it can be used so that objects of that kind can't be created in any other
 way. It should be instantiated with anything that needs a factory, like selectors
 or whatever; but the instance class should be the parent class from which all the
 object that are going to be created descend. This class basically defines an interface,

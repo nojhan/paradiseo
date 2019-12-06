@@ -45,7 +45,7 @@ set (TEST_LIST
   t-eoReal
   t-eoVector
   t-eoESAll
-  t-eoPBIL
+  # t-eoPBIL # deprecated, see EDO module.
   t-eoFitnessAssembled
   t-eoFitnessAssembledEA
   t-eoRoulette

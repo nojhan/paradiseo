@@ -39,7 +39,7 @@ changed. eoObject is used to define a name (#className#)
 that is used when loading or saving the state.
 
 Previously, this object also defined a print and read
-interface, but it�s been moved to eoPrintable and eoPersistent.
+interface, but it's been moved to eoPrintable and eoPersistent.
 */
 
 /** Defines a name (#className#), used when loading or saving a state.

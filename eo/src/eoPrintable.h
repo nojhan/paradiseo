@@ -27,8 +27,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include "iostream"  // std::istream, std::ostream
-#include "string" // para std::string
+#include <iostream>  // std::istream, std::ostream
+#include <string> // para std::string
 
 /*
 This functionality was separated from eoObject, since it makes no sense to print
