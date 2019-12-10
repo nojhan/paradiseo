@@ -32,6 +32,8 @@
  * eoGeneralBreeder: transforms a population using the generalOp construct.
  *****************************************************************************/
 
+#include <tuple>
+
 #include "eoOp.h"
 #include "eoGenOp.h"
 #include "eoPopulator.h"
@@ -58,9 +60,12 @@ class eoGeneralBreeder: public eoBreed<EOT>
   eoGeneralBreeder(
           eoSelectOne<EOT>& _select,
           eoGenOp<EOT>& _op,
-                double  _rate=1.0,
+          double  _rate=1.0,
           bool _interpret_as_rate = true) :
-      select( _select ), op(_op),  howMany(_rate, _interpret_as_rate) {}
+      select( _select ), op(_op),
+      local_howMany(_rate, _interpret_as_rate),
+      howMany(local_howMany)
+    {}
 
   /** Ctor:
    *
@@ -71,8 +76,8 @@ class eoGeneralBreeder: public eoBreed<EOT>
   eoGeneralBreeder(
           eoSelectOne<EOT>& _select,
           eoGenOp<EOT>& _op,
-          eoHowMany _howMany ) :
-      select( _select ), op(_op),  howMany(_howMany) {}
+          eoHowMany& _howMany ) :
+      select( _select ), op(_op), howMany(_howMany) {}
 
   /** The breeder: simply calls the genOp on a selective populator!
    *
@@ -82,7 +87,6 @@ class eoGeneralBreeder: public eoBreed<EOT>
   void operator()(const eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
     {
       unsigned target = howMany(_parents.size());
-
       _offspring.clear();
       eoSelectivePopulator<EOT> it(_parents, _offspring, select);
 
@@ -98,10 +102,20 @@ class eoGeneralBreeder: public eoBreed<EOT>
   /// The class name.
   virtual std::string className() const { return "eoGeneralBreeder"; }
 
- private:
+  virtual std::tuple
+      <eoSelectOne<EOT>&,eoGenOp<EOT>&,eoHowMany&>
+      operators()
+  {
+      return std::forward_as_tuple
+          <eoSelectOne<EOT>&,eoGenOp<EOT>&,eoHowMany&>
+          (select, op, howMany);
+  }
+
+ protected:
   eoSelectOne<EOT>& select;
   eoGenOp<EOT>& op;
-  eoHowMany howMany;
+  eoHowMany local_howMany;
+  eoHowMany& howMany;
 };
 
 #endif

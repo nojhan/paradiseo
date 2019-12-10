@@ -15,6 +15,7 @@ project("ParadisEO")
 
 ## Language
 enable_language(CXX)
+set(CMAKE_CXX_STANDARD 11)
 
 ## Test the presence of a compiler
 if("${CMAKE_CXX_COMPILER}" STREQUAL "" OR "${CMAKE_C_COMPILER}" STREQUAL "")
