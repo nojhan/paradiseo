@@ -29,10 +29,10 @@ Authors:
 #include <sstream>
 #include <string>
 
-#include "eoParam.h"
 #include "../eoObject.h"
 #include "../eoPersistent.h"
 #include "../eoExceptions.h"
+#include "eoParam.h"
 
 /** Parameter saving and loading
 
@@ -195,13 +195,28 @@ public:
      */
     eoParam * getParam(const std::string& _name) const;
 
+    /**
+     * Get a eoValueParam handle on a param from its long name
+     * If not found, raise an eoMissingParamException
+     */
+    template<class ValueType>
+    eoValueParam<ValueType>& getValueParam(const std::string& _name)
+    {
+        eoParam* p = getParamWithLongName( _name );
+        if( p == NULL ) {
+            throw eoMissingParamException(_name );
+        } else {
+            return dynamic_cast< eoValueParam<ValueType>& >(*p);
+        }
+    }
+
 
     /**
      * Get the value of a param from its long name
      * If not found, raise an eoMissingParamException
      *
      * Remember to specify the expected return type with a templated call:
-     * unsigned int popSize = eoparser.value<unsigned int>("popSize");
+     * unsigned int popSize = eoparser.valueOf<unsigned int>("popSize");
      *
      * If the template type is not the good one, an eoWrongParamTypeException is raised.
      */
