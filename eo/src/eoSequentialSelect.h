@@ -51,7 +51,8 @@ always returns individuals from best to worst
 
 @ingroup Selectors
 */
-template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
+template <class EOT>
+class eoSequentialSelect: public eoSelectOne<EOT>
 {
  public:
   /** Ctor: sets the current pter to numeric_limits<unsigned>::max() so init will take place first time
@@ -60,7 +61,7 @@ template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
   eoSequentialSelect(bool _ordered = true)
         : ordered(_ordered), current(std::numeric_limits<unsigned>::max()) {}
 
-  void setup(const eoPop<EOT>& _pop)
+  virtual void setup(const eoPop<EOT>& _pop)
   {
     eoPters.resize(_pop.size());
     if (ordered)    // probably we could have a marker to avoid re-sorting
@@ -86,6 +87,24 @@ private:
 };
 
 
+/** An eoSelectOne that returns the best individual each time it's called.
+
+@ingroup Selectors
+*/
+template <class EOT>
+class eoEliteSelect: public eoSequentialSelect<EOT>
+{
+    public:
+        eoEliteSelect() :
+            eoSequentialSelect<EOT>(true)
+        {}
+
+        virtual const EOT& operator()(const eoPop<EOT>& pop)
+        {
+            this->setup(pop);
+            return pop[0]; // the best one
+        }
+};
 
 /** All Individuals in order
 
