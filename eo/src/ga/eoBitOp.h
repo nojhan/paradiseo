@@ -30,9 +30,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <algorithm>     // swap_ranges
+#include <algorithm>    // swap_ranges
+
 #include "../utils/eoRNG.h"
-#include "../eoInit.h"   // eoMonOp
+#include "../eoInit.h"       // eoMonOp
 #include "eoBit.h"
 
 
@@ -187,7 +188,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
         return changed_something;
     }
 
- private:
+ protected:
   double rate;
   bool normalize;                  // divide rate by chromSize
 };
@@ -330,7 +331,7 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
 {
  public:
   /// (Default) Constructor.
-  eoUBitXover(const float& _preference = 0.5): preference(_preference)
+  eoUBitXover(const double& _preference = 0.5): preference(_preference)
     {
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
         std::runtime_error("UxOver --> invalid preference");
@@ -353,16 +354,17 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
         {
           if (chrom1[i] != chrom2[i] && eo::rng.flip(preference))
             {
-              bool tmp = chrom1[i];
-              chrom1[i]=chrom2[i];
-              chrom2[i] = tmp;
+              // bool tmp = chrom1[i];
+              // chrom1[i]=chrom2[i];
+              // chrom2[i] = tmp;
+              std::swap(chrom1[i], chrom2[i]);
               changed = true;
             }
         }
     return changed;
   }
-    private:
-      float preference;
+    protected:
+      double preference;
 };
 
 
