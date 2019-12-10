@@ -184,6 +184,50 @@ private:
   eoQuadOp<EOT> & quadOp;
 };
 
+/** Wrap eoMonOp into an eoQuadOp: simply don't touch the second arg.
+ */
+template <class EOT>
+class eoMon2QuadOp1: public eoQuadOp<EOT>
+{
+public:
+  /** Ctor
+   * @param _monOp the eoMonOp to be transformed
+   */
+  eoMon2QuadOp1(eoMonOp<EOT> & _monOp) : monOp(_monOp) {}
+
+  /** Call the eoMonOp on the first argument only.
+   */
+  bool operator()(EOT & _eo1, EOT & /*_eo2*/)
+  {
+      return monOp(_eo1);
+  }
+
+private:
+  eoMonOp<EOT> & monOp;
+};
+
+/** Wrap eoMonOp into an eoQuadOp: simply don't touch the first arg.
+ */
+template <class EOT>
+class eoMon2QuadOp2: public eoQuadOp<EOT>
+{
+public:
+  /** Ctor
+   * @param _monOp the eoMonOp to be transformed
+   */
+  eoMon2QuadOp2(eoMonOp<EOT> & _monOp) : monOp(_monOp) {}
+
+  /** Call the eoMonOp on the second argument only.
+   */
+  bool operator()(EOT & /*_eo1*/, EOT & _eo2)
+  {
+      return monOp(_eo2);
+  }
+
+private:
+  eoMonOp<EOT> & monOp;
+};
+
 #endif
 
 //@}
