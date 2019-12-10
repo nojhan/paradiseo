@@ -83,22 +83,7 @@ public:
   eoHowMany(double  _rate = 0.0, bool _interpret_as_rate = true):
     rate(_rate), count(0)
   {
-    if (_interpret_as_rate)
-      {
-        if (_rate<0)
-          {
-            rate = 1.0+_rate;
-            if (rate < 0)           // was < -1
-              throw std::logic_error("rate<-1 in eoHowMany!");
-          }
-      }
-    else
-      {
-        rate = 0.0;                   // just in case, but shoud be unused
-        count = int(_rate);           // negative values are allowed here
-        if (count != _rate)
-          eo::log << eo::warnings << "Number was rounded in eoHowMany";
-      }
+      this->value(_rate, _interpret_as_rate);
   }
 
   /** Ctor from an int - both from int and unsigned int are needed
@@ -193,6 +178,26 @@ public:
     else
       count = -count;
     return (*this);
+  }
+
+  void value(double _rate, bool _interpret_as_rate)
+  {
+    if (_interpret_as_rate)
+      {
+        if (_rate<0)
+          {
+            rate = 1.0+_rate;
+            if (rate < 0)           // was < -1
+              throw std::logic_error("rate < -1 in eoHowMany!");
+          }
+      }
+    else
+      {
+        rate = 0.0;                   // just in case, but shoud be unused
+        count = int(_rate);           // negative values are allowed here
+        if (count != _rate)
+          eo::log << eo::warnings << "Number was rounded in eoHowMany";
+      }
   }
 
 private :
