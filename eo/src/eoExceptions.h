@@ -52,7 +52,7 @@ public:
     }
 
 private:
-    time_t _elapsed;
+    const time_t _elapsed;
 };
 
 
@@ -76,7 +76,7 @@ public:
     }
 
 private:
-    unsigned long _threshold;
+    const unsigned long _threshold;
 };
 
 
@@ -102,7 +102,7 @@ public:
     ~eoMissingParamException() throw() {}
 
 private:
-    std::string _name;
+    const std::string _name;
 };
 
 /*!
@@ -127,7 +127,40 @@ public:
     ~eoWrongParamTypeException() throw() {}
 
 private:
-    std::string _name;
+    const std::string _name;
+};
+
+
+class eoSystemError : public std::exception
+{
+public:
+    eoSystemError(std::string cmd)
+        : _cmd(cmd), _has_pipe(false), _err_code(-1), _output("")
+    {}
+
+    eoSystemError(std::string cmd, int err_code, std::string output)
+        : _cmd(cmd), _has_pipe(true), _err_code(err_code), _output(output)
+    {}
+
+    virtual const char* what() const throw()
+    {
+        std::ostringstream ss;
+        ss << "System call: `" << _cmd << "` error";
+        if(_has_pipe) {
+            ss << " code #" << _err_code
+               << " with the following output:" << std::endl << _output;
+        }
+        return ss.str().c_str();
+    }
+
+    ~eoSystemError() throw() {}
+
+private:
+    const std::string _cmd;
+    const bool _has_pipe;
+    const int _err_code;
+    const std::string _output;
+
 };
 
 #endif // __eoExceptions_h__
