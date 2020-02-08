@@ -70,6 +70,7 @@ set (TEST_LIST
   #t-eoDualFitness
   t-eoParser
   t-eoPartiallyMappedXover
+  t-eoEvalCmd
   )
 
 
