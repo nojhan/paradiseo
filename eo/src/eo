@@ -74,11 +74,16 @@
 
 // Evaluation functions (all include eoEvalFunc.h)
 #include "eoPopEvalFunc.h"
-#include "eoEvalFuncPtr.h"
+#include "eoEvalCmd.h"
 #include "eoEvalCounterThrowException.h"
+#include "eoEvalDump.h"
+#include "eoEvalFuncCounterBounder.h"
+#include "eoEvalFuncCounter.h"
+#include "eoEvalFunc.h"
+#include "eoEvalFuncPtr.h"
+#include "eoEvalKeepBest.h"
 #include "eoEvalTimeThrowException.h"
 #include "eoEvalUserTimeThrowException.h"
-#include "eoEvalCmd.h"
 
 // Continuators - all include eoContinue.h
 #include "eoCombinedContinue.h"
