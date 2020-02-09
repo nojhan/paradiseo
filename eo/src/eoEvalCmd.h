@@ -108,32 +108,35 @@ private:
 
     Fitness call( EOT& sol )
     {
-        std::array<char, BUFFER_SIZE> buffer;
-        std::string result;
-
         std::ostringstream cmd;
-
         cmd << _prefix << " " << _cmd << " "
             << _infix  << " " <<  sol << " " << _suffix;
 
         // Keep track of the built command for debugging purpose.
         _last_call = cmd.str();
 
+        // Run the command and read its output.
+        std::array<char, BUFFER_SIZE> buffer;
+        std::string output;
         FILE* pipe = popen(cmd.str().c_str(), "r");
         if(not pipe) {
             throw eoSystemError(cmd.str());
         }
         while(fgets(buffer.data(), BUFFER_SIZE, pipe) != NULL) {
-            result += buffer.data();
+            output += buffer.data();
         }
         auto return_code = pclose(pipe);
 
+        // We want the evaluation to fail if the command failed
+        // (you can still catch the exception if you do not want your program to exit).
         if(return_code != 0) {
-            throw eoSystemError(cmd.str(), return_code, result);
+            throw eoSystemError(cmd.str(), return_code, output);
         }
 
-        // FIXME Use serialized input for the fitness instead of atof.
-        Fitness f = std::atof(result.c_str());
+        // Convert the output string in a valid fitness object.
+        Fitness f;
+        std::istringstream result(output);
+        result >> f;
 
         return f;
     }
