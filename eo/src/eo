@@ -74,6 +74,7 @@
 
 // Evaluation functions (all include eoEvalFunc.h)
 #include "eoPopEvalFunc.h"
+#include "eoEvalNamedPipe.h"
 #include "eoEvalCmd.h"
 #include "eoEvalCounterThrowException.h"
 #include "eoEvalDump.h"

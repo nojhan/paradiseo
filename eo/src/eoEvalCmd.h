@@ -38,9 +38,7 @@ Johann Dréo <johann.dreo@thalesgroup.com>
  * Use the default string serialization of the EOT
  * and pass it as command line arguments of the command.
  * The command is expected to output on stdout a string
- * that can be interpreted as a float by `atof`.
- *
- * @todo Use the serialization of fitness instead of atof.
+ * that can be deserialized as a fitness.
  *
  * For example, an eoReal would lead to a call like:
  * ```>&2 cmd INVALID 3 1.0 2.1 3.2```
