@@ -48,18 +48,19 @@
  * Suitable constructors and assignments and casts are defined to work
  * with this quantity as if it were a ScalarType.
 */
-template <class ScalarType, class Compare >
+template <class SCALAR, class CMP>
 class eoScalarFitness
 {
     public :
+    using ScalarType = SCALAR;
 
     eoScalarFitness() : value() {}
     eoScalarFitness(const eoScalarFitness& other) : value(other.value) {}
-    eoScalarFitness(const ScalarType& v) : value(v) {}
+    eoScalarFitness(const SCALAR& v) : value(v) {}
 
     eoScalarFitness& operator=(const eoScalarFitness& other)
     { value = other.value; return *this; }
-    eoScalarFitness& operator=(const ScalarType& v)
+    eoScalarFitness& operator=(const SCALAR& v)
     { value = v; return *this; }
 
     /** Conversion operator: it permits to use a fitness instance as  its  scalar
@@ -69,27 +70,27 @@ class eoScalarFitness
      *     fit = val;
      *     val = fit;
      */
-    operator ScalarType(void) const { return value; }
+    operator SCALAR(void) const { return value; }
 
     /// Comparison, using less by default
     bool operator<(const eoScalarFitness& other) const
-    { return Compare()(value, other.value); }
+    { return CMP()(value, other.value); }
 
         /// Comparison, using less by default
         //  needed for MSVC 8 (MSVC 2005) added by J.Eggermont 20-11-2006
-    bool operator<(const ScalarType& other) const
-    { return Compare()(value, other); }
+    bool operator<(const SCALAR& other) const
+    { return CMP()(value, other); }
 
     // implementation of the other operators
-    bool operator>( const eoScalarFitness<ScalarType, Compare>& y ) const  { return y < *this; }
+    bool operator>( const eoScalarFitness<SCALAR, CMP>& y ) const  { return y < *this; }
     // implementation of the other operators
-    bool operator<=( const eoScalarFitness<ScalarType, Compare>& y ) const { return !(*this > y); }
+    bool operator<=( const eoScalarFitness<SCALAR, CMP>& y ) const { return !(*this > y); }
     // implementation of the other operators
-    bool operator>=(const eoScalarFitness<ScalarType, Compare>& y ) const { return !(*this < y); }
+    bool operator>=(const eoScalarFitness<SCALAR, CMP>& y ) const { return !(*this < y); }
 
 
     private :
-        ScalarType value;
+        SCALAR value;
 };
 /** @example t-eofitness.cpp
  *
