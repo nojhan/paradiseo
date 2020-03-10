@@ -483,9 +483,14 @@ inline void eoRng::initialize(uint32_t seed)
 {
     left = -1;
 
+    // ISO C++17 does not allow 'register' storage class specifier
+#if __cplusplus < 201703L
     register uint32_t x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
     register int j;
-
+#else
+    uint32_t x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
+    int j;
+#endif
     for(left=0, *s++=x, j=N; --j;
         *s++ = (x*=69069U) & 0xFFFFFFFFU) ;
 }
@@ -494,8 +499,14 @@ inline void eoRng::initialize(uint32_t seed)
 
 inline uint32_t eoRng::restart()
 {
+    // ISO C++17 does not allow 'register' storage class specifier
+#if __cplusplus < 201703L
     register uint32_t *p0=state, *p2=state+2, *pM=state+M, s0, s1;
     register int j;
+#else
+    uint32_t *p0=state, *p2=state+2, *pM=state+M, s0, s1;
+    int j;
+#endif
 
     left=N-1, next=state+1;
 
