@@ -44,7 +44,7 @@ using namespace std;
  * It is declared in all make_xxx.h files in representation-dependent dirs
  * but it is NOT representation-dependent itself - that's why it's in utils
  */
-void make_help(eoParser & _parser)
+void make_help(eoParser & _parser, bool exit_after)
 {
     // name of the "status" file where all actual parameter values will be saved
     string str_status = _parser.ProgramName() + ".status"; // default value
@@ -65,7 +65,9 @@ void make_help(eoParser & _parser)
         _parser.printHelp(cout);
         cout << "You can use an edited copy of file " << statusParam.value()
              << " as parameter file" << endl;
-        exit(1);
+        if(exit_after) {
+            exit(0);
+        }
       }
 }
 

@@ -101,7 +101,7 @@ void run_ea(eoAlgo<eoReal<eoMinimizingFitness> >& _ga, eoPop<eoReal<eoMinimizing
 // end of parameter input (+ .status + help)
 // that one is not templatized
 // Because of that, the source is in src/utils dir
-void make_help(eoParser & _parser);
+void make_help(eoParser & _parser, bool exit_after = true);
 
 /** @} */
 #endif

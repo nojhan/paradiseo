@@ -145,7 +145,7 @@ void run_ea(eoAlgo<eoEsFull<eoMinimizingFitness> >& _ga, eoPop<eoEsFull<eoMinimi
 
 // end of parameter input (+ .status + help)
 // that one is not templatized, but is here for completeness
-void make_help(eoParser & _parser);
+void make_help(eoParser & _parser, bool exit_after = true);
 
 /** @} */
 /** @} */
