@@ -194,14 +194,14 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
     // The monitors
     ///////////////
 
-    // do we want an eoStdoutMonitor?
-    bool needStdoutMonitor = printBestParam.value()
+    // do we want an eoOStreamMonitor?
+    bool needOutMonitor = printBestParam.value()
         || printPopParam.value() ;
 
-    // The Stdout monitor will print parameters to the screen ...
-    if ( needStdoutMonitor )
+    // The monitor will print parameters to the screen ...
+    if ( needOutMonitor )
 	{
-	    eoStdoutMonitor *monitor = new eoStdoutMonitor(/*false FIXME remove this deprecated prototype*/);
+	    eoMonitor *monitor = new eoOStreamMonitor(std::clog);
 	    _state.storeFunctor(monitor);
 
 	    // when called by the checkpoint (i.e. at every generation)

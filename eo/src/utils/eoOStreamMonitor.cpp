@@ -19,7 +19,7 @@
 eoMonitor& eoOStreamMonitor::operator()(void)
 {
     if (!out) {
-        std::string str = "eoOStreamMonitor: Could not write to the ooutput stream";
+        std::string str = "eoOStreamMonitor: Could not write to the output stream";
       throw std::runtime_error(str);
     }
 
