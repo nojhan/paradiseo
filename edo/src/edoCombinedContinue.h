@@ -17,48 +17,58 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-Copyright (C) 2010 Thales group
+Copyright (C) 2020 Thales group
 */
 /*
 Authors:
     Johann Dréo <johann.dreo@thalesgroup.com>
-    Caner Candan <caner.candan@thalesgroup.com>
 */
 
-#ifndef _edoContinue_h
-#define _edoContinue_h
+#ifndef _edoCombinedContinue_h
+#define _edoCombinedContinue_h
 
 #include <eoFunctor.h>
 #include <eoPersistent.h>
 
-/** A continuator that check the state of an edoDistrib
+/** Combine several EDO continuators in a single one.
  *
- * @see eoContinue
+ * Return true if any of the managed continuator ask for a stop.
+ *
+ * @see edoContinue
  *
  * @ingroup Continuators
  * @ingroup Core
  */
-template < typename D >
-class edoContinue : public eoUF< const D&, bool >, public eoPersistent
+template<class D>
+class edoCombinedContinue : public edoContinue<D>, public std::vector<edoContinue<D>*>
 {
 public:
-    virtual std::string className(void) const { return "edoContinue"; }
-
-    // May be implemented by subclasses if persistent interface needed
-    virtual void readFrom(std::istream&)
+    edoCombinedContinue( edoContinue<D>& cont ) :
+        edoContinue<D>(),
+        std::vector<edoContinue<D>*>(1,&cont)
     { }
 
-    virtual void printOn(std::ostream&) const
+    edoCombinedContinue( std::vector<edoContinue<D>*> conts ) :
+        edoContinue<D>(),
+        std::vector<edoContinue<D>*>(conts)
     { }
+
+    void add( edoContinue<D>& cont)
+    {
+        this->push_back(&cont);
+    }
+
+    bool operator()(const D& distrib)
+    {
+        for(const auto cont : *this) {
+            if( not (*cont)(distrib)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    virtual std::string className() const { return "edoCombinedContinue"; }
 };
 
-template < typename D >
-class edoDummyContinue : public edoContinue< D >
-{
-public:
-    bool operator()(const D&){ return true; }
-
-    virtual std::string className() const { return "edoDummyContinue"; }
-};
-
-#endif // !_edoContinue_h
+#endif // !_edoCombinedContinue_h
