@@ -37,6 +37,10 @@ algorithm have reached a maximum number of evaluations.
 This may be useful if you want to check this kind of stopping criterion
 at each _evaluation_, instead of using continuators at each _iteration_.
 
+This eval counter permits to stop a search during a generation, without waiting for a continue to be
+checked at the end of the loop. Useful if you have 10 individuals and 10 generations,
+but want to stop after 95 evaluations.
+
 The class first call the evaluation function, then check the number of
 times it has been called. If the maximum number of evaluation has been
 reached, it throw an eoMaxEvalException. You can catch this exception
@@ -72,7 +76,7 @@ public :
             }
 
             // evaluate
-            func(eo);
+            this->eoEvalFuncCounter<EOT>::operator()(eo);
 
         } // if invalid
     }
