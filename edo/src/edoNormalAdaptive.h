@@ -153,6 +153,17 @@ public:
     void path_covar( Vector p ) { _p_c = p;   assert( p.size() == _dim ); }
     void path_sigma( Vector p ) { _p_s = p;   assert( p.size() == _dim ); }
 
+    void reset()
+    {
+        _mean = Vector::Zero(_dim);
+        _C = Matrix::Identity(_dim,_dim);
+        _B = Matrix::Identity(_dim,_dim);
+        _D = Vector::Constant( _dim, 1);
+        _sigma = 1.0;
+        _p_c = Vector::Zero(_dim);
+        _p_s = Vector::Zero(_dim);
+    }
+
 private:
     unsigned int _dim;
     Vector _mean; // mean vector
