@@ -47,24 +47,43 @@ public:
 
     bool operator()(const D& d)
     {
-        // Try to finite_check in most probably ill-conditioned order.
-        return finite_check(d.covar())
-           and finite_check(d.path_covar())
-           and finite_check(d.coord_sys())
-           and finite_check(d.scaling())
-           and finite_check(d.path_sigma())
-           and finite_check(d.sigma())
-           ;
+        bool fin_sigma      = is_finite(d.sigma()     );
+        bool fin_path_sigma = is_finite(d.path_sigma());
+        bool fin_scaling    = is_finite(d.scaling()   );
+        bool fin_coord_sys  = is_finite(d.coord_sys() );
+        bool fin_path_covar = is_finite(d.path_covar());
+        bool fin_covar      = is_finite(d.covar()     );
+
+        bool all_finite = fin_covar
+           and fin_path_covar
+           and fin_coord_sys
+           and fin_scaling
+           and fin_path_sigma
+           and fin_sigma;
+
+        if( not all_finite ) {
+            eo::log << eo::progress << "STOP because parameters are not finite: ";
+            if( not fin_covar      ) { eo::log << eo::errors << "covar, "; }
+            if( not fin_path_covar ) { eo::log << eo::errors << "path_covar, "; }
+            if( not fin_coord_sys  ) { eo::log << eo::errors << "coord_sys, "; }
+            if( not fin_scaling    ) { eo::log << eo::errors << "scaling, "; }
+            if( not fin_path_sigma ) { eo::log << eo::errors << "path_sigma, "; }
+            if( not fin_sigma      ) { eo::log << eo::errors << "sigma"; }
+            eo::log << eo::errors << std::endl;
+        }
+        return all_finite;
     }
 
     virtual std::string className() const { return "edoContAdaptiveFinite"; }
 
 protected:
-    bool finite_check(const Matrix& mat) const
+    bool is_finite(const Matrix& mat) const
     {
         for(long i=0; i<mat.rows(); ++i) {
             for(long j=0; j<mat.cols(); ++j) {
-                if(not finite_check(mat(i,j))) {
+                // Double negation because one want to escape
+                // as soon as one element is not finite.
+                if(not is_finite(mat(i,j))) {
                     return false;
                 }
             }
@@ -72,22 +91,22 @@ protected:
         return true;
     }
 
-    bool finite_check(const Vector& vec) const
+    bool is_finite(const Vector& vec) const
     {
         for(long i=0; i<vec.size(); ++i) {
-            if(not finite_check(vec[i])) {
+            if(not is_finite(vec[i])) {
                 return false;
             }
         }
         return true;
     }
 
-    bool finite_check(const typename EOType::AtomType& x) const
+    bool is_finite(const typename EOType::AtomType& x) const
     {
-        if(not std::isfinite(x)) {
-            return false;
-        } else {
+        if(std::isfinite(x)) {
             return true;
+        } else {
+            return false;
         }
     }
 };

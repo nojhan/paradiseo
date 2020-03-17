@@ -79,7 +79,7 @@ Authors:
 
 #include "edoContinue.h"
 #include "edoCombinedContinue.h"
-#include "edoContAdaptiveIllCond.h"
+#include "edoContAdaptiveIllCovar.h"
 #include "edoContAdaptiveFinite.h"
 #include "utils/edoCheckPoint.h"
 

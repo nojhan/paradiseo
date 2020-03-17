@@ -72,10 +72,31 @@ public:
         // mean(N,1) + sigma * B(N,N) * ( D(N,1) .* T(N,1) )
         Vector sol = distrib.mean()
             + distrib.sigma()
-            * distrib.coord_sys() * (distrib.scaling().cwiseProduct(T) ); // C * T = B * (D .* T)
+            * distrib.coord_sys()
+            * (distrib.scaling().cwiseProduct(T) ); // C * T = B * (D .* T)
         assert( sol.size() == N );
         /*Vector sol = distrib.mean() + distrib.sigma()
             * distrib.coord_sys().dot( distrib.scaling().dot( T ) );*/
+
+#ifndef NDEBUG
+                bool is_finite = true;
+                for(long i=0; i<sol.size(); ++i) {
+                    if(not std::isfinite(sol(i))) {
+                        is_finite = false;
+                    }
+                }
+                if(not is_finite) {
+                    eo::log << eo::warnings << "WARNING: sampled solution is not finite"
+                       << " (the search should stop after this warning)" << std::endl;
+                    eo::log << eo::debug << sol << std::endl;
+                    eo::log << eo::xdebug
+                        << "mean:\n" << distrib.mean() << std::endl
+                        << "sigma:" << distrib.sigma() << std::endl
+                        << "coord_sys:\n" << distrib.coord_sys() << std::endl
+                        << "scaling:\n" << distrib.scaling() << std::endl;
+                }
+                // assert(is_finite);
+#endif
 
         // copy in the EOT structure (more probably a vector)
         EOT solution( N );

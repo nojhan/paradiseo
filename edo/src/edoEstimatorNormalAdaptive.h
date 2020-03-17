@@ -227,14 +227,15 @@ public:
             // Matrix CS = C.triangularView<Eigen::Upper>() + C.triangularView<Eigen::StrictlyUpper>().transpose();
             d.covar( C );
 
-            Eigen::SelfAdjointEigenSolver<Matrix> eigensolver( d.covar() ); // FIXME use JacobiSVD?
-            d.coord_sys( eigensolver.eigenvectors() );
+            Eigen::SelfAdjointEigenSolver<Matrix> eigensolver( d.covar() );
+
             Matrix mD = eigensolver.eigenvalues().asDiagonal();
-            assert( mD.innerSize() == N && mD.outerSize() == N );
 
             // from variance to standard deviations
             mD.cwiseSqrt();
             d.scaling( mD.diagonal() );
+
+            d.coord_sys( eigensolver.eigenvectors() );
         }
 
         return d;
