@@ -160,13 +160,26 @@ public:
             // (2) Estimation of the distribution parameters
             _distrib = _estimator(selected_pop);
 
+            // TODO modularization: the estimator and the continuator perform
+            // the same decomposition twice, see how to decompose those operators
+
+            // Call the continuator right after the distribution update,
+            // because we may have generated an ill-conditioned distribution,
+            // which would lead to bad solution sampling.
+            if(not _distribution_continuator(_distrib)) {
+                break;
+            }
+
             // (3) sampling
             // The sampler produces feasible solutions (@see edoSampler that
             // encapsulate an edoBounder)
-            current_pop.clear();
+            current_pop.clear(); current_pop.reserve(pop.size());
             for( unsigned int i = 0; i < pop.size(); ++i ) {
                 current_pop.push_back( _sampler(_distrib) );
             }
+            // TODO modluraziation: the sampler may generate solution that are
+            // not finite. See how to stop right from there instead of
+            // performing useless evaluations.
 
             // (4) Evaluate new solutions
             _evaluator( pop, current_pop );
@@ -174,7 +187,7 @@ public:
             // (5) Replace old solutions by new ones
             _replacor(pop, current_pop); // e.g. copy current_pop in pop
 
-        } while( _distribution_continuator( _distrib ) && _pop_continuator( pop ) );
+        } while( _pop_continuator( pop ) );
     } // operator()
 
 
