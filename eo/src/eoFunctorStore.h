@@ -54,20 +54,36 @@ public:
     /// Add an eoFunctorBase to the store
     template <class Functor>
     Functor& storeFunctor(Functor* r)
-        {
+    {
 #ifndef NDEBUG
-        unsigned int existing = std::count( vec.begin(), vec.end(), r );
-        if( existing > 0 ) {
-             eo::log << eo::warnings << "WARNING: you asked eoFunctorStore to store the functor " << r << " " 
-                     << existing + 1 << " times, a segmentation fault may occur in the destructor." << std::endl;
-        }
+    unsigned int existing = std::count( vec.begin(), vec.end(), r );
+    if( existing > 0 ) {
+         eo::log << eo::warnings << "WARNING: you asked eoFunctorStore to store the functor " << r << " " 
+                 << existing + 1 << " times, a segmentation fault may occur in the destructor." << std::endl;
+    }
 #endif
-            // If the compiler complains about the following line,
-            // check if you really are giving it a pointer to an
-            // eoFunctorBase derived object
-            vec.push_back(r);
-            return *r;
-        }
+        // If the compiler complains about the following line,
+        // check if you really are giving it a pointer to an
+        // eoFunctorBase derived object
+        vec.push_back(r);
+        return *r;
+    }
+
+    /** Allocate the given functor, store it and return its reference.
+     *
+     * Indicate the class to instanciate as template paramater,
+     * and pass its constructor arguments.
+     *
+     * @code
+     * eoSelect<EOT>& selector = state.pack< eoRankMuSelect<EOT> >( mu );
+     * @endcode
+     */
+    template<class Functor, class... Args>
+    Functor& pack( Args&&... args )
+    {
+        Functor* f = new Functor(args...);
+        return this->storeFunctor(f);
+    }
 
 private :
 
