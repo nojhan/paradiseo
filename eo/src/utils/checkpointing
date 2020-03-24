@@ -27,6 +27,7 @@
 #include "eoParser.h"
 #include "eoState.h"
 #include "eoUpdater.h"
+#include "eoLogMessage.h"
 #include "eoMonitor.h"
 #include "eoFileMonitor.h"
 #include "eoTimedMonitor.h"

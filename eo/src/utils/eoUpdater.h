@@ -168,5 +168,4 @@ private :
     const std::string extension;
 };
 
-
 #endif
