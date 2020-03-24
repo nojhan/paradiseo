@@ -85,6 +85,14 @@ public:
         return this->storeFunctor(f);
     }
 
+    // Allow to pass initializer lists of pointers, for example for edoCombinedContinue.
+    template<class Functor, class Args>
+    Functor& pack( std::initializer_list<Args> args )
+    {
+        Functor* f = new Functor(args);
+        return this->storeFunctor(f);
+    }
+
 private :
 
     /** no copying allowed */
