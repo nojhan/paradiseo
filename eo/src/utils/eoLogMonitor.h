@@ -32,9 +32,9 @@ Authors:
 #include "eoLogger.h"
 
 /**
-    Prints statistics to a given ostream.
+    Prints statistics to the given eoLogger.
 
-    You can pass any instance of an ostream to the constructor, like, for example, std::clog.
+    You can configure the log level.
 
     @ingroup Monitors
 */
