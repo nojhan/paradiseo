@@ -67,6 +67,17 @@ public:
   }
 };
 
+/** A continue that always return true.
+ *
+ * @ingroup Continuators
+ */
+template< class EOT >
+class eoDummyContinue : public eoContinue< EOT >
+{
+    public:
+        bool operator()(const eoPop<EOT>&) {return true;}
+};
+
 /**
  * Termination condition with a count condition (totalGenerations). This continuator contains
  * a count of cycles, which can be retrieved or set.
