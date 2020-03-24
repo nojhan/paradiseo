@@ -138,8 +138,7 @@ namespace eo
  * Class providing a verbose management through EO
  * Use of a global variable eo::log to easily use the logger like std::cout
  */
-class eoLogger : public eoObject,
-		 public std::ostream
+class eoLogger : public eoObject, public std::ostream
 {
 public:
     //! default ctor

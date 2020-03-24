@@ -29,8 +29,10 @@
 #include "eoUpdater.h"
 #include "eoMonitor.h"
 #include "eoFileMonitor.h"
+#include "eoTimedMonitor.h"
 #include "eoStdoutMonitor.h"
 #include "eoOStreamMonitor.h"
+#include "eoLogMonitor.h"
 #ifndef _MSC_VER
 #include "eoGnuplot1DMonitor.h"
 #include "eoGnuplot1DSnapshot.h"
