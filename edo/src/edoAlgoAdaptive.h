@@ -34,7 +34,7 @@ Authors:
 
 #include "edoAlgo.h"
 #include "edoEstimator.h"
-#include "edoModifierMass.h"
+// #include "edoModifierMass.h"
 #include "edoSampler.h"
 #include "edoContinue.h"
 
@@ -67,7 +67,44 @@ public:
 public:
 
     /*!
-      Takes algo operators, all are mandatory
+      Takes all operators.
+
+      \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
+      \param evaluator Evaluate a population
+      \param selector Selection of the best candidate solutions in the population
+      \param estimator Estimation of the distribution parameters
+      \param estimator_init Estimation of the distribution parameters, called before the main loop.
+      \param sampler Generate feasible solutions using the distribution
+      \param replacor Replace old solutions by new ones
+      \param pop_continuator Stopping criterion based on the population features
+      \param distribution_continuator Stopping criterion based on the distribution features
+    */
+    edoAlgoAdaptive(
+        D & distrib,
+        eoPopEvalFunc < EOType > & evaluator,
+        eoSelect< EOType > & selector,
+        edoEstimator< D > & estimator,
+        edoEstimator< D > & estimator_init,
+        edoSampler< D > & sampler,
+        eoReplacement< EOType > & replacor,
+        eoContinue< EOType > & pop_continuator,
+        edoContinue< D > & distribution_continuator
+    ) :
+        _distrib(distrib),
+        _evaluator(evaluator),
+        _selector(selector),
+        _estimator(estimator),
+        _estimator_init(estimator_init),
+        _sampler(sampler),
+        _replacor(replacor),
+        _pop_continuator(pop_continuator),
+        _dummy_continue(),
+        _distribution_continuator(distribution_continuator)
+    {}
+
+
+    /*!
+      Without the initialization estimator (set the same estimator everywhere).
 
       \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
       \param evaluator Evaluate a population
@@ -92,6 +129,7 @@ public:
         _evaluator(evaluator),
         _selector(selector),
         _estimator(estimator),
+        _estimator_init(estimator),
         _sampler(sampler),
         _replacor(replacor),
         _pop_continuator(pop_continuator),
@@ -125,6 +163,7 @@ public:
         _evaluator(evaluator),
         _selector(selector),
         _estimator(estimator),
+        _estimator_init(estimator),
         _sampler(sampler),
         _replacor(replacor),
         _pop_continuator(pop_continuator),
@@ -141,18 +180,18 @@ public:
     {
         assert(pop.size() > 0);
 
-        eoPop< EOType > current_pop;
-        eoPop< EOType > selected_pop;
-
         // update the extern distribution passed to the estimator (cf. CMA-ES)
         // OR replace the dummy distribution for estimators that do not need extern distributions (cf. EDA)
-        _distrib = _estimator(pop);
+        _distrib = _estimator_init(pop);
 
         // Evaluating a first time the candidate solutions
         // The first pop is not supposed to be evaluated (@see eoPopLoopEval).
         // _evaluator( current_pop, pop );
 
         do {
+            eoPop< EOType > current_pop;
+            eoPop< EOType > selected_pop;
+
             // (1) Selection of the best points in the population
             _selector(pop, selected_pop);
             assert( selected_pop.size() > 0 );
@@ -204,6 +243,9 @@ protected:
 
     //! A EOType estimator. It is going to estimate distribution parameters.
     edoEstimator<D> & _estimator;
+
+    //! A EOType estimator. Called before the main loop.
+    edoEstimator<D> & _estimator_init;
 
     //! A D sampler
     edoSampler<D> & _sampler;
