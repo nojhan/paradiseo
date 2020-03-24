@@ -46,9 +46,12 @@ Authors:
 #include "edoEstimatorNormalMono.h"
 #include "edoEstimatorNormalMulti.h"
 #include "edoEstimatorAdaptive.h"
+#include "edoEstimatorAdaptiveReset.h"
+#include "edoEstimatorAdaptiveEdit.h"
 #include "edoEstimatorNormalAdaptive.h"
 #include "edoEstimatorBinomial.h"
 #include "edoEstimatorBinomialMulti.h"
+#include "edoEstimatorCombined.h"
 
 #include "edoModifier.h"
 #include "edoModifierDispersion.h"
