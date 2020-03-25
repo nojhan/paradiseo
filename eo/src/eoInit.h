@@ -90,20 +90,22 @@ class eoInitFixedLength: public eoInit<EOT>
 {
     public:
 
-    typedef typename EOT::AtomType AtomType;
+        typedef typename EOT::AtomType AtomType;
 
-        eoInitFixedLength(unsigned _combien, eoRndGenerator<AtomType>& _generator)
-            : combien(_combien), generator(_generator) {}
+        eoInitFixedLength(unsigned _dimension, eoRndGenerator<AtomType>& _generator)
+            : dim(_dimension), generator(_generator) {}
 
         virtual void operator()(EOT& chrom)
         {
-            chrom.resize(combien);
+            chrom.resize(dim);
             std::generate(chrom.begin(), chrom.end(), generator);
             chrom.invalidate();
         }
 
+        unsigned dimension() const {return dim;}
+
     private :
-        unsigned combien;
+        unsigned dim;
         /// generic wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics
         eoSTLF<AtomType> generator;
 };
