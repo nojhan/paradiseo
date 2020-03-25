@@ -64,7 +64,7 @@ public:
         _setter(setter)
     {}
 
-    virtual D operator()( eoPop<EOType>& pop )
+    virtual D operator()( eoPop<EOType>& )
     {
         _setter( _getter() );
         return this->_distrib;

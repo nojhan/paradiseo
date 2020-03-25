@@ -51,13 +51,13 @@ public:
      * The default implementation is to push back a true boolean.
      * If you have a more complex data structure, you can just overload this.
      */
-    virtual void make_true( AtomType & atom, unsigned int i, unsigned int j )
+    virtual void make_true( AtomType & atom, unsigned int, unsigned int )
     {
         atom.push_back( 1 );
     }
 
     /** @see make_true */
-    virtual void make_false( AtomType & atom, unsigned int i, unsigned int j )
+    virtual void make_false( AtomType & atom, unsigned int, unsigned int )
     {
         atom.push_back( 0 );
     }

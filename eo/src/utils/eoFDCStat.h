@@ -134,7 +134,7 @@ public:
 
   /** just to be sure the add method is not called further
    */
-  virtual void add(const eoParam& _param)
+  virtual void add(const eoParam& )
     { throw std::runtime_error("eoFDCFileSnapshot::add(). Trying to add stats to an eoFDCFileSnapshot"); }
 
 private:

@@ -74,9 +74,9 @@ public:
                const std::string suffix = ""
         ) :
         _cmd(cmd),
-        _suffix(suffix),
-        _infix(infix),
         _prefix(prefix),
+        _infix(infix),
+        _suffix(suffix),
         _last_call("")
     {}
 

@@ -93,10 +93,10 @@ public:
   /**
      The implementation selects an individual from the fertile pop
 
-     @param _pop the source population
+     @param unused
      @return the selected guy
   */
-  const EOT& operator()(const eoPop<EOT>& _pop)
+  const EOT& operator()(const eoPop<EOT>& )
   {
     return select(actualPop);
   }

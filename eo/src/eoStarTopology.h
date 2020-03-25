@@ -86,7 +86,7 @@ public:
      * @param _po - The particle to update
      * @param _indice - The indice of the given particle in the population
      */
-    void updateNeighborhood(POT & _po,unsigned _indice)
+    void updateNeighborhood(POT & _po, unsigned)
     {
         // update the best fitness of the particle
         if (_po.fitness() > _po.best())
@@ -108,13 +108,13 @@ public:
      * @param _indice - The indice of a particle in the population
      * @return POT & - The best particle in the neighborhood of the particle whose indice is _indice
      */
-    POT & best (unsigned  _indice) {return (neighborhood.best());}
+    POT & best (unsigned) {return (neighborhood.best());}
 
     /*
          * Return the global best of the topology
          */
 
-         virtual POT & globalBest(const eoPop<POT>& _pop)
+    virtual POT & globalBest(const eoPop<POT>&)
     {
         return neighborhood.best();
     }

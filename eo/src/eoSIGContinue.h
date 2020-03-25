@@ -71,7 +71,7 @@ public:
   }
 
   /** Returns false when the signal has been typed in reached */
-  virtual bool operator() ( const eoPop<EOT>& _vEO )
+  virtual bool operator() ( const eoPop<EOT>& )
   {
     if (call_func)
       {

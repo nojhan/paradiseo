@@ -120,7 +120,7 @@ protected:
 protected:
     class DummyEval : public eoEvalFunc<EOT>
     {
-        void operator()(EOT& sol) {/*empty*/}
+        void operator()(EOT&) {/*empty*/}
     };
     DummyEval _dummy_eval;
     eoEvalFunc<EOT>& _func;

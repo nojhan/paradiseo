@@ -142,7 +142,7 @@ template<class EOT> class eoEvalKeepBest : public eoEvalFunc<EOT>, public eoValu
 
     class DummyEval : public eoEvalFunc<EOT>
     {
-        void operator()(EOT& sol) {/*empty*/}
+        void operator()(EOT&) {/*empty*/}
     };
 
     protected :

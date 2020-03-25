@@ -72,6 +72,8 @@ public:
         return *this;
     }
 
+    using eoMonitor::add;
+
     void add(eoMonitor& mon) { monitors.push_back(&mon); }
 
   virtual std::string className(void) const { return "eoTimedMonitor"; }

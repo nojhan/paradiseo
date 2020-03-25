@@ -41,7 +41,7 @@ public:
 
   eoSecondsElapsedContinue(int nSeconds) : start(time(0)), seconds(nSeconds) {}
 
-  virtual bool operator() ( const eoPop<EOT>& _vEO ) {
+  virtual bool operator() ( const eoPop<EOT>& ) {
         time_t now = time(0);
         time_t diff = now - start;
 
