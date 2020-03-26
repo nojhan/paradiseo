@@ -28,8 +28,63 @@ Johann Dréo <johann.dreo@thalesgroup.com>
 #include <stdexcept>
 #include <sstream>
 
-class eoMaxException : public std::exception {};
+//! You can catch this base exception if you want to catch anything thrown by ParadisEO. @ingroup Core
+class eoException : public std::runtime_error
+{
+public:
+    eoException(std::string msg = "") :
+        std::runtime_error(msg)
+    {
+        _msg << msg;
+    }
 
+    const char* what() const throw()
+    {
+        return _msg.str().c_str();
+    }
+
+    ~eoException() throw() {}
+
+protected:
+    std::ostringstream _msg;
+};
+
+/** Base class for exceptions which need to stop the algorithm to be handled
+ * 
+ * (like stopping criterion or numerical errors).
+ */
+class eoStopException : public eoException
+{
+public:
+    eoStopException(std::string msg = "") : eoException(msg) {}
+    ~eoStopException() throw() {}
+};
+
+
+//! Base class for limit-based exceptions (see eoMaxTimeException and eoMaxEvalException.
+class eoMaxException : public eoStopException
+{
+public:
+    eoMaxException(std::string msg = "") : eoStopException(msg) {}
+     ~eoMaxException() throw() {}
+};
+
+
+/*!
+An error that signals that some bad data have been returned.
+
+Thrown by @see eoEvalNanThrowException
+
+@ingroup Evaluation
+*/
+class eoNanException : public eoStopException
+{
+public:
+    eoNanException() :
+        eoStopException("The objective function returned a bad value (nan or inf)")
+    { }
+    ~eoNanException() throw() {}
+};
 
 
 /*!
@@ -42,107 +97,103 @@ Thrown by @see eoEvalTimeThrowException
 class eoMaxTimeException : public eoMaxException
 {
 public:
-    eoMaxTimeException( time_t elapsed) : _elapsed(elapsed) {}
-
-    virtual const char* what() const throw()
+    eoMaxTimeException( time_t elapsed) :
+        eoMaxException("STOP")
     {
-        std::ostringstream ss;
-        ss << "STOP in eoMaxTimeException: the maximum number of allowed seconds has been reached (" << _elapsed << ").";
-        return ss.str().c_str();
+        _msg << " the maximum number of allowed seconds has been reached ("
+             << elapsed << ")";
     }
-
-private:
-    const time_t _elapsed;
+    ~eoMaxTimeException() throw() {}
 };
 
 
 /*!
 An error that signals that a maximum number of evaluations has been reached.
 
-Thrown by @see eoEvalEvalThrowException
+Thrown by @see eoEvalThrowException
 
 @ingroup Evaluation
 */
 class eoMaxEvalException : public eoMaxException
 {
 public:
-    eoMaxEvalException(unsigned long threshold) : _threshold(threshold){}
-
-    virtual const char* what() const throw()
+    eoMaxEvalException(unsigned long threshold) :
+        eoMaxException("STOP")
     {
-        std::ostringstream ss;
-        ss << "STOP in eoMaxEvalException: the maximum number of evaluation has been reached (" << _threshold << ").";
-        return ss.str().c_str();
+        _msg << " the maximum number of evaluation has been reached ("
+             << threshold << ").";
     }
-
-private:
-    const unsigned long _threshold;
+    ~eoMaxEvalException() throw() {}
 };
 
+//! Base class for exceptions related to eoParam management. @ingroup Parameters
+class eoParamException : public eoException
+{
+public:
+    eoParamException(std::string msg = "") : eoException(msg) {}
+};
 
 /*!
  * An error that signals a missing parameter
  *
  * Thrown by eoParser::getParam
  *
- * @ingroup Parameters 
+ * @ingroup Parameters
  */
-class eoMissingParamException : public std::exception
+class eoMissingParamException : public eoParamException
 {
 public:
-    eoMissingParamException(std::string name) : _name(name){}
-
-    virtual const char* what() const throw()
+    eoMissingParamException(std::string name) :
+        eoParamException()
     {
-        std::ostringstream ss;
-        ss << "The command parameter " << _name << " has not been declared";
-        return ss.str().c_str();
+        _msg << "The command parameter " << name << " has not been declared";
     }
-
     ~eoMissingParamException() throw() {}
-
-private:
-    const std::string _name;
 };
+
 
 /*!
  * An error that signals a bad parameter type
  *
  * Thrown by eoParser::valueOf
  *
- * @ingroup Parameters 
+ * @ingroup Parameters
  */
-class eoWrongParamTypeException : public std::exception
+class eoWrongParamTypeException : public eoParamException
 {
 public:
-    eoWrongParamTypeException(std::string name) : _name(name){}
-
-    virtual const char* what() const throw()
+    eoWrongParamTypeException(std::string name) :
+        eoParamException()
     {
-        std::ostringstream ss;
-        ss << "You asked for the parameter " << _name << " but it has not been declared under this type";
-        return ss.str().c_str();
+        _msg << "You asked for the parameter " << name
+             << " but it has not been declared under this type";
     }
-
     ~eoWrongParamTypeException() throw() {}
-
-private:
-    const std::string _name;
 };
 
 
-class eoSystemError : public std::exception
+//! Exception related to a system call.
+class eoSystemError : public eoException
 {
 public:
-    eoSystemError(std::string cmd)
-        : _cmd(cmd), _has_pipe(false), _err_code(-1), _output("")
-    {}
+    eoSystemError(std::string cmd) :
+        eoException(),
+        _cmd(cmd), _has_pipe(false), _err_code(-1), _output("")
+    {
+        _msg << msg();
+    }
 
-    eoSystemError(std::string cmd, int err_code, std::string output)
-        : _cmd(cmd), _has_pipe(true), _err_code(err_code), _output(output)
-    {}
+    eoSystemError(std::string cmd, int err_code, std::string output) :
+        eoException(),
+        _cmd(cmd), _has_pipe(true), _err_code(err_code), _output(output)
+    {
+        _msg << msg();
+    }
 
-    virtual const char* what() const throw()
+    ~eoSystemError() throw() {}
+
+protected:
+    const std::string msg() const throw()
     {
         std::ostringstream ss;
         ss << "System call: `" << _cmd << "` error";
@@ -150,17 +201,13 @@ public:
             ss << " code #" << _err_code
                << " with the following output:" << std::endl << _output;
         }
-        return ss.str().c_str();
+        return ss.str();
     }
 
-    ~eoSystemError() throw() {}
-
-private:
     const std::string _cmd;
     const bool _has_pipe;
     const int _err_code;
     const std::string _output;
-
 };
 
 #endif // __eoExceptions_h__

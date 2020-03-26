@@ -122,9 +122,9 @@ public :
     /**
     * Loading error thrown when nothing seems to work.
     */
-    struct loading_error : public std::runtime_error
+    struct loading_error : public eoException
     {
-        loading_error(std::string huh = "Error while loading") : std::runtime_error(huh) {}
+        loading_error(std::string huh = "Error while loading") : eoException(huh) {}
     };
 
     std::string getCommentString(void) const { return "#"; }
