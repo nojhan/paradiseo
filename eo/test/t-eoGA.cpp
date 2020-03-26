@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include <utils/checkpointing>
 #include <ga/make_ga.h>
 #include <eoEvalFuncPtr.h>
 #include "binary_value.h"

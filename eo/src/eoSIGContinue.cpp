@@ -36,3 +36,9 @@
 // --- Global variables - but don't know what else to do - MS ---
 bool     existSIGContinue = false;
 bool     call_func = false;
+
+void set_bool(int)
+{
+  call_func = true;
+}
+

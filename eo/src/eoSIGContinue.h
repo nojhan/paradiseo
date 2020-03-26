@@ -42,10 +42,7 @@
 extern bool existSIGContinue;
 extern bool call_func;
 
-void	set_bool(int)
-{
-  call_func = true;
-}
+void set_bool(int);
 
 /**
   A continuator that stops if a given signal is received during the execution

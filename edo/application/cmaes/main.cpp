@@ -28,7 +28,7 @@ Authors:
 #include <eo>
 //#include <mo>
 
-#include <eoEvalFuncCounterBounder.h>
+#include <eoEvalCounterThrowException.h>
 
 #include <do/make_pop.h>
 #include <do/make_run.h>
@@ -67,7 +67,7 @@ int main(int ac, char** av)
     eoEvalFunc< RealVec >* plainEval = new Rosenbrock< RealVec >();
     state.storeFunctor(plainEval);
 
-    eoEvalFuncCounterBounder< RealVec > eval(*plainEval, max_eval);
+    eoEvalCounterThrowException< RealVec > eval(*plainEval, max_eval);
 
     eoRndGenerator< double >* gen = new eoUniformGenerator< double >(-5, 5);
     state.storeFunctor(gen);
@@ -145,7 +145,7 @@ int main(int ac, char** av)
         eo::log << eo::progress << "Best solution after random init: " << pop.best_element().fitness() << std::endl;
         do_run(*algo, pop);
 
-    } catch (eoEvalFuncCounterBounderException& e) {
+    } catch (eoMaxEvalException& e) {
             eo::log << eo::warnings << "warning: " << e.what() << std::endl;
     }
 

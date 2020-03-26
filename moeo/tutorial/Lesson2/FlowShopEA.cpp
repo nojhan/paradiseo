@@ -47,7 +47,7 @@
 // how to initialize the population
 #include <do/make_pop.h>
 // checks for help demand, and writes the status file and make_help; in libutils
-void make_help(eoParser & _parser);
+// void make_help(eoParser & _parser);
 // definition of the representation
 #include <FlowShop.h>
 

@@ -55,7 +55,7 @@
 // simple call to the algo
 #include <do/make_run.h>
 // checks for help demand, and writes the status file and make_help; in libutils
-void make_help(eoParser & _parser);
+// void make_help(eoParser & _parser);
 // definition of the representation
 #include <FlowShop.h>
 

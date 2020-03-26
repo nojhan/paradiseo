@@ -28,7 +28,7 @@ Authors:
 #include <eo>
 // #include <mo>
 
-#include <eoEvalFuncCounterBounder.h>
+#include <eoEvalCounterThrowException.h>
 
 #include <do/make_pop.h>
 #include <do/make_run.h>
@@ -69,7 +69,7 @@ int main(int ac, char** av)
     state.storeFunctor(plainEval);
 
     unsigned long max_eval = parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion").value(); // E
-    eoEvalFuncCounterBounder< EOT > eval(*plainEval, max_eval);
+    eoEvalCounterThrowException< EOT > eval(*plainEval, max_eval);
 
     eoRndGenerator< double >* gen = new eoUniformGenerator< double >(-5, 5);
     state.storeFunctor(gen);
@@ -169,7 +169,7 @@ int main(int ac, char** av)
     try {
         do_run(*algo, pop);
 
-    } catch (eoEvalFuncCounterBounderException& e) {
+    } catch (eoMaxEvalException& e) {
             eo::log << eo::warnings << "warning: " << e.what() << std::endl;
 
     } catch (std::exception& e) {

@@ -116,7 +116,7 @@ void run_ea(eoAlgo<Indi>& _ga, eoPop<Indi>& _pop)
 
 // checks for help demand, and writes the status file
 // and make_help; in libutils
-void make_help(eoParser & _parser);
+// void make_help(eoParser & _parser);
 
 // now use all of the above, + representation dependent things
 int main(int argc, char* argv[])

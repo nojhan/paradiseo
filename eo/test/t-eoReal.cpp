@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include <utils/checkpointing>
 #include <es/make_real.h>
 #include "real_value.h"
 #include <apply.h>
