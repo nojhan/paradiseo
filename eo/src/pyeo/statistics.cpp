@@ -35,7 +35,7 @@ const PyEO& popview_getitem(const std::vector<const PyEO*>& pop, int it)
 {
     unsigned item = unsigned(it);
     if (item > pop.size())
-	throw index_error("too much");
+	throw eoException("too much");
 
     return *pop[item];
 }

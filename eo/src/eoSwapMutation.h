@@ -46,7 +46,7 @@ template<class Chrom> class eoSwapMutation: public eoMonOp<Chrom>
   {
         // consistency check
         if(howManySwaps < 1)
-                throw std::runtime_error("Invalid number of swaps in eoSwapMutation");
+                throw eoException("Invalid number of swaps in eoSwapMutation");
   }
 
   /// The class name.

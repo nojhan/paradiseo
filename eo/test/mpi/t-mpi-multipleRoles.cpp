@@ -130,7 +130,7 @@ int main(int argc, char** argv)
     // eo::log << eo::setlevel( eo::debug );
     Node::init( argc, argv );
     if( Node::comm().size() != 7 ) {
-        throw std::runtime_error("World size should be 7.");
+        throw eoException("World size should be 7.");
     }
 
     SerializableVector< SerializableBase<int> > v;

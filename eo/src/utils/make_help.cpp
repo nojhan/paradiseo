@@ -85,8 +85,8 @@ bool testDirRes(std::string _dirName, bool _erase=true)
   // test for (unlikely) errors
   if ( (res==-1) || (res==127) )
     {
-      s = "Problem executing test of dir " + _dirName;
-      throw runtime_error(s);
+      // s = "Problem executing test of dir " + _dirName;
+      throw eoSystemError(s,res);
     }
   // now make sure there is a dir without any file in it - or quit
   if (res)                    // no dir present
@@ -108,7 +108,7 @@ bool testDirRes(std::string _dirName, bool _erase=true)
   // WARNING: bug if dir exists and is empty; this says it is not!
   // shoudl use scandir instead - no time now :-(((    MS Aug. 01
   s = "Dir " + _dirName + " is not empty";
-  throw runtime_error(s);
+  throw eoException(s);
   return true;
 }
 

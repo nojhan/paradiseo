@@ -261,8 +261,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 
       do
         {
-          try
-            {
+          // try
+          //   {
               unsigned pSize = _pop.size();
               offspring.clear(); // new offspring
 
@@ -273,17 +273,17 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
               replace(_pop, offspring); // after replace, the new pop. is in _pop
 
               if (pSize > _pop.size())
-                throw std::runtime_error("Population shrinking!");
+                throw eoException("Population shrinking!");
               else if (pSize < _pop.size())
-                throw std::runtime_error("Population growing!");
+                throw eoException("Population growing!");
 
-            }
-          catch (std::exception& e)
-            {
-              std::string s = e.what();
-              s.append( " in eoEasyEA");
-              throw std::runtime_error( s );
-            }
+            // }
+          // catch (std::exception& e)
+          //   {
+          //     std::string s = e.what();
+          //     s.append( " in eoEasyEA");
+          //     throw std::runtime_error( s );
+          //   }
         }
       while ( continuator( _pop ) );
     }

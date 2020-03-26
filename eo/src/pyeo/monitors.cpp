@@ -42,7 +42,7 @@ public:
     {
         if (static_cast<unsigned>(i) >= vec.size())
             {
-                throw index_error("Index out of bounds");
+                throw eoException("Index out of bounds");
             }
 
         return vec[i]->getValue();

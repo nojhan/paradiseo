@@ -32,7 +32,7 @@ bool check_permutation(const Chrom & _chrom)
 						 std::cout << " Error: Wrong permutation !" << std::endl;
 						 std::string s;
 						 s.append( " Wrong permutation in t-eoInitPermutation");
-	    				 throw std::runtime_error( s );
+	    				 throw eoException( s );
 				}
 	return true;
 }

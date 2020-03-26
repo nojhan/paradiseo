@@ -71,7 +71,7 @@ public:
       unsigned toKeep = temp.size(); // how many to keep from merged populations
       // minimal check
       if (toKeep < 2)
-        throw std::runtime_error("Not enough parents killed in eoMGGReplacement");
+        throw eoException("Not enough parents killed in eoMGGReplacement");
 
       // select best offspring
       typename eoPop<EOT>::iterator it = _offspring.it_best_element();

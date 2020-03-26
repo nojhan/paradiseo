@@ -94,7 +94,7 @@ class moeoTSMoveLoopExpl:public moMoveLoopExpl < M >
 
     if( _old_solution.invalidFitness() || _old_solution.invalid() )
       {
-	throw std::runtime_error("[moTSMoveLoopExpl.h]: The current solution has not been evaluated.");
+	throw eoInvalidFitnessError("[moTSMoveLoopExpl.h]: The current solution has not been evaluated.");
       }
     
     //At the begining, the new solution is equivalent to the old one.

@@ -121,7 +121,7 @@ eoContinue<MOEOT> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eo
 #endif
   // now check that there is at least one!
   if (!continuator)
-    throw std::runtime_error("You MUST provide a stopping criterion");
+    throw eoException("You MUST provide a stopping criterion");
   // OK, it's there: store in the eoState
   _state.storeFunctor(continuator);
   // and return

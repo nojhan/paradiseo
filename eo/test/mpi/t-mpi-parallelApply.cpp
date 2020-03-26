@@ -105,7 +105,7 @@ int main(int argc, char** argv)
 
     const int ALL = Node::comm().size();
     if( ALL < 3 ) {
-        throw std::runtime_error("Needs at least 3 processes to be launched!");
+        throw eoException("Needs at least 3 processes to be launched!");
     }
 
     // Tests are auto described thanks to member "description"

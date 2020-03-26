@@ -29,6 +29,7 @@
 #ifndef eoRndGenerators_h
 #define eoRndGenerators_h
 
+#include "../eoExceptions.h"
 #include "eoRNG.h"
 #include "../eoFunctor.h"
 #include <stdexcept>
@@ -80,7 +81,7 @@ template <class T = double> class eoUniformGenerator : public eoRndGenerator<T>
       minim(_min), range(_max-_min), uniform(_rng)
   {
     if (_min>_max)
-      throw std::logic_error("Min is greater than Max in uniform_generator");
+      throw eoException("Min is greater than Max in uniform_generator");
   }
 
   /**

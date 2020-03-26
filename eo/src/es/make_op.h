@@ -107,7 +107,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
       if (v.size() == 2) // a min and a max for all variables
         ptBounds = new eoRealVectorBounds(vecSize, v[0], v[1]);
       else                                 // no time now
-        throw std::runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
+        throw eoException("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
       // we need to give ownership of this pointer to somebody
       /////////// end of temporary code
     }
@@ -125,7 +125,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                   'o', "Genetic Operators");
 
   if (operatorParam.value() != std::string("SGA"))
-    throw std::runtime_error("Sorry, only SGA-like operator available right now\n");
+    throw eoException("Sorry, only SGA-like operator available right now\n");
 
     // now we read Pcross and Pmut,
     // the relative weights for all crossovers -> proportional choice
@@ -138,14 +138,14 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                  'C', "Genetic Operators" );
   // minimum check
   if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-    throw std::runtime_error("Invalid pCross");
+    throw eoParamException("Invalid pCross");
 
   eoValueParam<double>& pMutParam
       = _parser.getORcreateParam(0.1, "pMut", "Probability of Mutation",
                                  'M', "Genetic Operators" );
   // minimum check
   if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-    throw std::runtime_error("Invalid pMut");
+    throw eoParamException("Invalid pMut");
 
     // the crossovers
     /////////////////
@@ -156,7 +156,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                  's', "Genetic Operators" );
   // minimum check
   if ( (segmentRateParam.value() < 0) )
-    throw std::runtime_error("Invalid segmentRate");
+    throw eoParamException("Invalid segmentRate");
 
   eoValueParam<double>& arithmeticRateParam
       = _parser.getORcreateParam(double(2.0), "arithmeticRate",
@@ -164,7 +164,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                  'A', "Genetic Operators" );
   // minimum check
   if ( (arithmeticRateParam.value() < 0) )
-    throw std::runtime_error("Invalid arithmeticRate");
+    throw eoParamException("Invalid arithmeticRate");
 
     // minimum check
   bool bCross = true;
@@ -202,14 +202,14 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                  'e', "Genetic Operators" );
   // minimum check
   if ( (epsilonParam.value() < 0) )
-    throw std::runtime_error("Invalid epsilon");
+    throw eoParamException("Invalid epsilon");
 
   eoValueParam<double> & uniformMutRateParam
       = _parser.getORcreateParam(1.0, "uniformMutRate",
                                  "Relative rate for uniform mutation", 'u', "Genetic Operators" );
   // minimum check
   if ( (uniformMutRateParam.value() < 0) )
-    throw std::runtime_error("Invalid uniformMutRate");
+    throw eoParamException("Invalid uniformMutRate");
 
   eoValueParam<double> & detMutRateParam
       = _parser.getORcreateParam(1.0, "detMutRate",
@@ -217,7 +217,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                  'd', "Genetic Operators" );
   // minimum check
   if ( (detMutRateParam.value() < 0) )
-    throw std::runtime_error("Invalid detMutRate");
+    throw eoParamException("Invalid detMutRate");
 
   eoValueParam<double> & normalMutRateParam
       = _parser.getORcreateParam(1.0, "normalMutRate",
@@ -225,7 +225,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                  'd', "Genetic Operators" );
   // minimum check
   if ( (normalMutRateParam.value() < 0) )
-    throw std::runtime_error("Invalid normalMutRate");
+    throw eoParamException("Invalid normalMutRate");
   // and the sigma
   eoValueParam<double> & sigmaParam
       = _parser.getORcreateParam(1.0, "sigma",
@@ -233,7 +233,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
                                  'S', "Genetic Operators" );
   // minimum check
   if ( (sigmaParam.value() < 0) )
-    throw std::runtime_error("Invalid sigma");
+    throw eoParamException("Invalid sigma");
 
     // minimum check
   bool bMut = true;
@@ -243,7 +243,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
       bMut = false;
     }
   if (!bCross && !bMut)
-    throw std::runtime_error("No operator called in SGA operator definition!!!");
+    throw eoException("No operator called in SGA operator definition!!!");
 
     // Create the CombinedMonOp
   eoPropCombinedMonOp<EOT> *ptCombinedMonOp = NULL;

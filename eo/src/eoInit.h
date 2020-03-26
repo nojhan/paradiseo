@@ -33,6 +33,7 @@
 #include "eoSTLFunctor.h"
 #include "utils/eoRndGenerators.h"
 #include "utils/rnd_generators.h"  // for shuffle method
+#include "eoExceptions.h"
 
 
 /**
@@ -134,7 +135,7 @@ typedef typename EOT::AtomType AtomType;
     : offset(_minSize), extent(_maxSize - _minSize), init(_init)
   {
     if (_minSize >= _maxSize)
-      throw std::logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
+      throw eoException("eoInitVariableLength: minSize larger or equal to maxSize");
   }
 
 

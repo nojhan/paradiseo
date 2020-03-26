@@ -107,7 +107,7 @@ public:
         // carefull, we can have a rate of 1 if we want to kill all remaining
         unsigned nbDie = std::min(howmanyDie(pSize), pSize-nbSurvive);
         if (nbDie > nbRemaining)
-            throw std::logic_error("eoDeterministicSurviveAndDie: Too many to kill!\n");
+            throw eoException("eoDeterministicSurviveAndDie: Too many to kill!\n");
 
         if (!nbDie)
           {
@@ -169,7 +169,7 @@ public:
 
         unsigned survivorSize = luckyOffspring.size() + luckyParents.size();
         if (survivorSize > pSize)
-            throw std::logic_error("eoGeneralReplacement: More survivors than parents!\n");
+            throw eoPopSizeChangeException(survivorSize, pSize, "more survivors than parents!");
 
         plus(_parents, _offspring); // all that remain in _offspring
 

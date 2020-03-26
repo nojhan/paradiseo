@@ -206,12 +206,12 @@ try
     double pCross = parser.createParam(0.6, "pCross", "Probability of Crossover", 'C', "Variation Operators" ).value();
     // minimum check
     if ( (pCross < 0) || (pCross > 1) )
-      throw runtime_error("Invalid pCross");
+      throw eoParamException("Invalid pCross");
 
     double pMut = parser.createParam(0.1, "pMut", "Probability of Mutation", 'M', "Variation Operators" ).value();
     // minimum check
     if ( (pMut < 0) || (pMut > 1) )
-      throw runtime_error("Invalid pMut");
+      throw eoParamException("Invalid pMut");
 
     // now create the generalOp
     eoSGAGenOp<Indi> op(cross, pCross, mut, pMut);
@@ -278,7 +278,7 @@ try
   // first check the directory (and creates it if not exists already):
   if (fileMyStructStat || plotMyStructStat)
       if (! testDirRes(dirName, true) )
-	throw runtime_error("Problem with resDir");
+	throw eoParamException("Problem with resDir");
 
   // should we write it to a file ?
   if (fileMyStructStat)

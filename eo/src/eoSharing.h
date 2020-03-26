@@ -26,6 +26,7 @@
 #ifndef eoSharing_h
 #define eoSharing_h
 
+#include "eoExceptions.h"
 #include "eoPerf2Worth.h"
 #include "utils/eoDistance.h"
 
@@ -100,7 +101,7 @@ public:
       unsigned i, j,
         pSize=_pop.size();
       if (pSize <= 1)
-        throw std::runtime_error("Apptempt to do sharing with population of size 1");
+        throw eoPopSizeException(pSize, "attempt to do sharing with population of size 1");
       value().resize(pSize);
       std::vector<double> sim(pSize);      // to hold the similarities
       dMatrix distMatrix(pSize); // to hold the distances

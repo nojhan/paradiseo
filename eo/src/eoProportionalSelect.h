@@ -49,7 +49,7 @@ public:
   eoProportionalSelect(const eoPop<EOT>& /*pop*/ = eoPop<EOT>())
   {
     if (minimizing_fitness<EOT>())
-      throw std::logic_error("eoProportionalSelect: minimizing fitness");
+      throw eoException("eoProportionalSelect: minimizing fitness");
   }
 
   void setup(const eoPop<EOT>& _pop)

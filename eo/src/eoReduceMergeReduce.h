@@ -90,7 +90,7 @@ public:
       // then the offspring
       unsigned reducedOffspringSize = howManyReducedOffspring(offSize);
       if (!reducedOffspringSize)
-        throw std::runtime_error("No offspring left after reduction!");
+        throw eoPopSizeException(reducedOffspringSize,"no offspring left after reduction!");
       if (reducedOffspringSize != offSize) // need reduction
         reduceOffspring(_offspring, reducedOffspringSize);
 

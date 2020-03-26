@@ -47,7 +47,7 @@ public:
   eoStochasticUniversalSelect(const eoPop<EOT>& pop = eoPop<EOT>())
   {
     if (minimizing_fitness<EOT>())
-      throw std::logic_error("eoStochasticUniversalSelect: minimizing fitness");
+      throw eoException("eoStochasticUniversalSelect: minimizing fitness");
   }
 
   void setup(const eoPop<EOT>& _pop)

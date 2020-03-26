@@ -64,7 +64,7 @@ class eoReduceMerge : public eoReplacement<EOT>
         void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
         {
           if (_parents.size() < _offspring.size())
-            throw std::logic_error("eoReduceMerge: More offspring than parents!\n");
+            throw eoPopSizeChangeException(_parents.size(), _offspring.size(),"more offspring than parents!");
           reduce(_parents, _parents.size() - _offspring.size());
           merge(_offspring, _parents);
         }

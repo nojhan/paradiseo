@@ -1,8 +1,8 @@
 template<template <class> class EOAlgo, class EOT, class Policy>
 void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& _pop, const eoEasyPSO_tag&) 
 {
-    try
-    {
+    // try
+    // {
         // initializes the topology, velocity, best particle(s)
         this->init();
         do
@@ -25,11 +25,11 @@ void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& _pop, co
                 this->velocity.updateNeighborhood(_pop[idx],idx);
 
         } while (this->continuator (_pop));
-    }
-    catch (std::exception & e)
-    {
-        std::string s = e.what ();
-        s.append (" in eoEasyPSO");
-        throw std::runtime_error (s);
-    }
+    // }
+    // catch (std::exception & e)
+    // {
+    //     std::string s = e.what ();
+    //     s.append (" in eoEasyPSO");
+    //     throw std::runtime_error (s);
+    // }
 }

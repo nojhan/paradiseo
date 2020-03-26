@@ -120,7 +120,7 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
 
     if (lambda_rate.value() < 1.0f)
     {
-	throw logic_error("lambda_rate must be larger than 1 in a comma strategy");
+        throw eoParamException("lambda_rate must be larger than 1 in a comma strategy");
     }
 
     // Initialization

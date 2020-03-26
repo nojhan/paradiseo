@@ -56,7 +56,7 @@ public:
         {
             std::string s;
             s.append (" min > max in eoRandomRealWeightUp");
-            throw std::runtime_error (s);
+            throw eoException(s);
         }
     }
 

@@ -89,7 +89,7 @@ class moeoVector : public MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity
             }
           else
             {
-              throw std::runtime_error("Size not initialized in moeoVector");
+              throw eoException("Size not initialized in moeoVector");
             }
         }
       std::copy(_v.begin(), _v.end(), begin());

@@ -96,8 +96,8 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
             ifs.peek(); // check if it exists
             if (!ifs)
             {
-                string msg = string("Could not open response file: ") + pts;
-                throw runtime_error(msg);
+                // string msg = string("Could not open response file: ") + pts;
+                throw eoFileError(pts);
             }
             // read  - will be overwritten by command-line
             readFrom(ifs);

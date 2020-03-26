@@ -69,7 +69,7 @@ void eoState::registerObject(eoPersistent& registrant)
     }
     else
     {
-        throw logic_error("Interval error: object already present in the state");
+        throw eoException("Interval error: object already present in the state");
     }
 }
 
@@ -79,8 +79,8 @@ void eoState::load(const string& _filename)
 
     if (!is)
     {
-        string str = "Could not open file " + _filename;
-        throw runtime_error(str);
+        // string str = "Could not open file " + _filename;
+        throw eoFileError(_filename);
     }
 
     load(is);
@@ -96,8 +96,8 @@ void eoState::load(std::istream& is)
 
     if (is.fail())
     {
-        string str = "Error while reading stream";
-        throw runtime_error(str);
+        // string str = "Error while reading stream";
+        throw eoFileError("stream");
     }
 
     while(! is.eof())
@@ -127,7 +127,7 @@ void eoState::load(std::istream& is)
                 while (getline(is, str))
                 {
                   if (is.eof())
-                    throw runtime_error("No section in load file");
+                    throw eoException("No section in load file");
                   if (is_section(str, name))
                     break;
 
@@ -154,8 +154,8 @@ void eoState::save(const string& filename) const
 
     if (!os)
     {
-        string msg = "Could not open file: " + filename + " for writing!";
-        throw runtime_error(msg);
+        // string msg = "Could not open file: " + filename + " for writing!";
+        throw eoFileError(filename);
     }
 
     save(os);

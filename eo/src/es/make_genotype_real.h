@@ -98,7 +98,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
     is >> sigma;
     // minimum check
     if(sigma < 0)
-        throw std::runtime_error("Negative sigma in make_genotype");
+        throw eoException("Negative sigma in make_genotype");
     if(to_scale)
         init = new eoEsChromInit<EOT>(boundsParam.value(), sigma, to_scale);
     else {

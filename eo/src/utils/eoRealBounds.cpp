@@ -101,7 +101,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
 
       size_t posFin = _value.find_first_of(std::string(closeChar));
       if (posFin >= _value.size())
-        throw std::runtime_error("Syntax error when reading bounds");
+        throw eoException("Syntax error when reading bounds");
 
   // y a-t-il un nbre devant
       unsigned count = 1;
@@ -110,7 +110,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
           std::string sCount = _value.substr(0, posDeb);
           count = read_int(sCount);
           if (count <= 0)
-            throw std::runtime_error("Syntax error when reading bounds");
+            throw eoException("Syntax error when reading bounds");
         }
 
       // the bounds
@@ -121,7 +121,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
       remove_leading(sBounds, delim);
       size_t posDelim = sBounds.find_first_of(delim);
       if (posDelim >= sBounds.size())
-        throw std::runtime_error("Syntax error when reading bounds");
+        throw eoException("Syntax error when reading bounds");
 
       bool minBounded=false, maxBounded=false;
       double minBound=0, maxBound=0;
@@ -192,17 +192,17 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
   std::string delim(",; ");
   std::string beginOrClose("[(])");
   if (!remove_leading(_value, delim)) // only delimiters were left
-    throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
+    throw eoException("Syntax error in eoGeneralRealBounds Ctor");
 
   // look for opening char
   size_t posDeb = _value.find_first_of(beginOrClose);	// allow ]a,b]
   if (posDeb >= _value.size())	// nothing left to read
-    throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
+    throw eoException("Syntax error in eoGeneralRealBounds Ctor");
 
   // ending char: next {}() after posDeb
   size_t posFin = _value.find_first_of(beginOrClose,posDeb+1);
   if (posFin >= _value.size())	// not found
-    throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
+    throw eoException("Syntax error in eoGeneralRealBounds Ctor");
 
   // the bounds
   std::string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
@@ -212,7 +212,7 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
   remove_leading(sBounds, delim);
   size_t posDelim = sBounds.find_first_of(delim);
   if (posDelim >= sBounds.size())
-    throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
+    throw eoException("Syntax error in eoGeneralRealBounds Ctor");
 
       bool minBounded=false, maxBounded=false;
       double minBound=0, maxBound=0;
@@ -246,7 +246,7 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
       if (minBounded && maxBounded)
         {
           if (maxBound <= minBound)
-            throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
+            throw eoException("Syntax error in eoGeneralRealBounds Ctor");
           locBound = new eoRealInterval(minBound, maxBound);
         }
       else if (!minBounded && !maxBounded)	// no bound at all

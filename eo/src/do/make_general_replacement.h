@@ -97,7 +97,7 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
         {
           p = atof(_ppReduce.second[0].c_str());
           if ( (p<=0.5) || (p>1) )
-            throw std::runtime_error("Stochastic tournament size should be in [0.5,1]");
+            throw eoException("Stochastic tournament size should be in [0.5,1]");
         }
 
       ptReduce = new eoStochTournamentTruncate<EOT>(p);
@@ -110,7 +110,7 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
     }
   else // no known reduction entered
     {
-      throw std::runtime_error("Unknown reducer: " + _ppReduce.first);
+      throw eoException("Unknown reducer: " + _ppReduce.first);
     }
   // all done, stores and return a reference
   _state.storeFunctor(ptReduce);

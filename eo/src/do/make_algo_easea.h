@@ -183,7 +183,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   else
     {
       std::string stmp = std::string("Invalid selection: ") + ppSelect.first;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
 
   _state.storeFunctor(select);
@@ -260,7 +260,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
           }
         else
           {
-            throw std::runtime_error("Sorry, only deterministic tournament available at the moment");
+            throw eoException("Sorry, only deterministic tournament available at the moment");
           }
       }
     ptReplace = new eoMGGReplacement<EOT>(-surviveParents, tSize);
@@ -341,7 +341,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalF
   }
   else                 // no replacement recognized
     {
-      throw std::runtime_error("Invalid replacement type " + replacementParam.first);
+      throw eoException("Invalid replacement type " + replacementParam.first);
     }
 
   ptReplace = & make_general_replacement<EOT>(

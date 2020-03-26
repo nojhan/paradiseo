@@ -54,6 +54,69 @@ protected:
     const std::string _msg;
 };
 
+
+class eoInvalidFitnessError : public eoException
+{
+public:
+    eoInvalidFitnessError(std::string msg = "Invalid fitness") : eoException(msg) {}
+    ~eoInvalidFitnessError() throw() {}
+};
+
+
+class eoPopSizeException : public eoException
+{
+public:
+    eoPopSizeException(size_t size, std::string msg = "") :
+        eoException(),
+        _size(size),
+        _msg(msg)
+    {}
+
+    virtual std::string message() const throw()
+    {
+        std::ostringstream oss;
+        oss << "Bad population size: " << _size;
+        if(_msg != "") {
+            oss << ", " << _msg;
+        }
+        return oss.str();
+    }
+
+    ~eoPopSizeException() throw() {}
+protected:
+    const size_t _size;
+    const std::string _msg;
+};
+
+
+class eoPopSizeChangeException : public eoPopSizeException
+{
+public:
+    eoPopSizeChangeException(size_t size_from, size_t size_to, std::string msg="") :
+        eoPopSizeException(0),
+        _size_from(size_from),
+        _size_to(size_to),
+        _msg(msg)
+    {}
+
+    virtual std::string message() const throw()
+    {
+        std::ostringstream oss;
+        oss << "Population size changed from " << _size_from << " to " << _size_to;
+        if(_msg != "") {
+            oss << ", " << _msg;
+        }
+        return oss.str();
+    }
+
+    ~eoPopSizeChangeException() throw() {}
+protected:
+    const size_t _size_from;
+    const size_t _size_to;
+    const std::string _msg;
+};
+
+
 /** Base class for exceptions which need to stop the algorithm to be handled
  * 
  * (like stopping criterion or numerical errors).
@@ -110,7 +173,7 @@ public:
     virtual std::string message() const throw()
     {
         std::ostringstream msg;
-        msg << "STOP because the maximum number of allowed seconds has been reached ("
+        msg << "The maximum number of allowed seconds has been reached ("
              << _elapsed << ")";
         return msg.str();
     }
@@ -140,7 +203,7 @@ public:
     virtual std::string message() const throw()
     {
         std::ostringstream msg;
-        msg << " the maximum number of evaluation has been reached ("
+        msg << "The maximum number of evaluation has been reached ("
              << _threshold << ").";
         return msg.str();
     }
@@ -226,7 +289,7 @@ public:
         _cmd(cmd), _has_pipe(false), _err_code(-1), _output("")
     { }
 
-    eoSystemError(std::string cmd, int err_code, std::string output) :
+    eoSystemError(std::string cmd, int err_code, std::string output = "") :
         eoException(),
         _cmd(cmd), _has_pipe(true), _err_code(err_code), _output(output)
     { }
@@ -234,10 +297,12 @@ public:
     virtual std::string message() const throw()
     {
         std::ostringstream ss;
-        ss << "System call: `" << _cmd << "` error";
+        ss << "System call: `" << _cmd << "` ended with error";
         if(_has_pipe) {
-            ss << " code #" << _err_code
-               << " with the following output:" << std::endl << _output;
+            ss << " code #" << _err_code;
+            if(_output != "") {
+               ss << " with the following output:" << std::endl << _output;
+            }
         }
         return ss.str();
     }
@@ -249,6 +314,26 @@ protected:
     const bool _has_pipe;
     const int _err_code;
     const std::string _output;
+};
+
+
+class eoFileError : public eoSystemError
+{
+public:
+    eoFileError(std::string filename) :
+        eoSystemError(""),
+        _filename(filename)
+    { }
+
+    virtual std::string message() const throw()
+    {
+        std::ostringstream oss;
+        oss << "Could not open file: " << _filename;
+        return oss.str();
+    }
+
+protected:
+    std::string _filename;
 };
 
 #endif // __eoExceptions_h__

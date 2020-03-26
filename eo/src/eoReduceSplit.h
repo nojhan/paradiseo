@@ -66,7 +66,7 @@ public:
       return ;
     unsigned newsize = popSize - eliminated;
     if (newsize < 0)
-      throw std::logic_error("eoTruncateSplit: Cannot truncate to a larger size!\n");
+      throw eoException("eoTruncateSplit: Cannot truncate to a larger size!\n");
 
     _newgen.nth_element(newsize);
 
@@ -106,7 +106,7 @@ public:
       return ;
     long newsize = static_cast<long>(popSize) - static_cast<long>(eliminated);
     if (newsize < 0)
-      throw std::logic_error("eoLinearTruncateSplit: Cannot truncate to a larger size!\n");
+      throw eoException("eoLinearTruncateSplit: Cannot truncate to a larger size!\n");
 
     _eliminated.reserve(_eliminated.size()+eliminated); //in case not empty?
     for (unsigned i=0; i<eliminated; i++)
@@ -143,7 +143,7 @@ public:
       return ;
     unsigned newsize = popSize - eliminated;
     if (newsize < 0)
-      throw std::logic_error("eoRandomSplit: Cannot truncate to a larger size!\n");
+      throw eoException("eoRandomSplit: Cannot truncate to a larger size!\n");
 
     _newgen.shuffle();
 
@@ -182,7 +182,7 @@ public:
       return ;
     unsigned newsize = popSize - eliminated;
     if (newsize < 0)
-      throw std::logic_error("eoLinearRandomSplit: Cannot truncate to a larger size!\n");
+      throw eoException("eoLinearRandomSplit: Cannot truncate to a larger size!\n");
 
     _eliminated.reserve(_eliminated.size()+eliminated); //in case not empty?
     for (unsigned i=0; i<eliminated; i++)
@@ -234,7 +234,7 @@ public:
       return ;
     unsigned newsize = popSize - eliminated;
     if (newsize < 0)
-      throw std::logic_error("eoDetTournamentTruncateSplit: Cannot truncate to a larger size!\n");
+      throw eoException("eoDetTournamentTruncateSplit: Cannot truncate to a larger size!\n");
 
 
     _eliminated.reserve(_eliminated.size()+eliminated); //in case not empty?
@@ -291,7 +291,7 @@ public:
     unsigned newSize = oldSize - _eliminated.size();
     unsigned eliminated = howMany(popSize);
     if (newSize < 0)
-      throw std::logic_error("eoStochTournamentTruncateSplit: Cannot truncate to a larger size!\n");
+      throw eoException("eoStochTournamentTruncateSplit: Cannot truncate to a larger size!\n");
 
 end of old version    */
 
@@ -301,7 +301,7 @@ end of old version    */
       return ;
     unsigned newsize = popSize - eliminated;
     if (newsize < 0)
-      throw std::logic_error("eoDetTournamentTruncateSplit: Cannot truncate to a larger size!\n");
+      throw eoException("eoDetTournamentTruncateSplit: Cannot truncate to a larger size!\n");
 
 
 

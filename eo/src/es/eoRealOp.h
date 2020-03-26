@@ -111,7 +111,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
         {
           // sanity check ?
           if (_eo.size() != bounds.size())
-            throw std::runtime_error("Invalid size of indi in eoUniformMutation");
+            throw eoException("Invalid size of indi in eoUniformMutation");
 
           for (unsigned lieu=0; lieu<_eo.size(); lieu++)
             if (rng.flip(p_change[lieu]))
@@ -213,7 +213,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
         {
           // sanity check ?
           if (_eo.size() != bounds.size())
-            throw std::runtime_error("Invalid size of indi in eoDetUniformMutation");
+            throw eoException("Invalid size of indi in eoDetUniformMutation");
           for (unsigned i=0; i<no; i++)
             {
               unsigned lieu = rng.random(_eo.size());
@@ -357,7 +357,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
     bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha)
   {
     if (_alpha < 0)
-      throw std::runtime_error("BLX coefficient should be positive");
+      throw eoParamException("BLX coefficient should be positive");
   }
 
   /**
@@ -373,7 +373,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha)
   {
     if (_alpha < 0)
-      throw std::runtime_error("BLX coefficient should be positive");
+      throw eoParamException("BLX coefficient should be positive");
   }
 
   /// The class name.

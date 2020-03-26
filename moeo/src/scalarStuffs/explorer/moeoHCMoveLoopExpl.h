@@ -89,7 +89,7 @@ class moeoHCMoveLoopExpl:public moMoveLoopExpl < M >
 
 		if( _old_solution.invalid() )
 		{
-			throw std::runtime_error("[moHCMoveLoopExpl.h]: The current solution has not been evaluated.");
+			throw eoInvalidFitnessError("[moHCMoveLoopExpl.h]: The current solution has not been evaluated.");
 		}
 
 		/*

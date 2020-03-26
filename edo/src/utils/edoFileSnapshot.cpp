@@ -59,7 +59,7 @@ edoFileSnapshot::edoFileSnapshot(std::string dirname,
 
     if ( (res == -1) || (res == 127) )
 	{
-	    throw std::runtime_error("Problem executing test of dir in eoFileSnapshot");
+	    throw eoSystemError(s, res);
 	}
 
     // now make sure there is a dir without any genXXX file in it
@@ -112,8 +112,8 @@ eoMonitor& edoFileSnapshot::operator()(void)
 
     if (!os)
 	{
-	    std::string str = "edoFileSnapshot: Could not open " + _currentFileName;
-	    throw std::runtime_error(str);
+	    // std::string str = "edoFileSnapshot: Could not open " + _currentFileName;
+	    throw eoFileError(_currentFileName);
 	}
 
     if ( _saveFilenames )

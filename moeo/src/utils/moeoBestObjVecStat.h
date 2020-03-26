@@ -65,7 +65,7 @@ public:
 	*/
 	const MOEOT & bestindividuals(unsigned int which) {
 		typedef typename moeoObjVecStat<MOEOT>::Traits traits;
-		if(which > traits::nObjectives() ) throw std::logic_error("which is larger than the number of objectives");
+		if(which > traits::nObjectives() ) throw eoException("which is larger than the number of objectives");
 		return *(best_individuals[which]);
 	}
 

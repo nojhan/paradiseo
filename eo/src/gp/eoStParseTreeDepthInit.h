@@ -87,7 +87,7 @@ class eoStParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     {
       if(_node.empty())
       {
-        throw std::logic_error("eoStParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
+        throw eoException("eoStParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
       }
 
 

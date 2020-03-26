@@ -88,7 +88,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
                                  'o', "Variation Operators");
 
   if (operatorParam.value() != std::string("SGA"))
-    throw std::runtime_error("Sorry, only SGA-like operator available right now\n");
+    throw eoException("Sorry, only SGA-like operator available right now\n");
 
     // now we read Pcross and Pmut,
     // and create the eoGenOp that is exactly
@@ -99,14 +99,14 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
                                  'C', "Variation Operators" );
   // minimum check
   if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-    throw std::runtime_error("Invalid pCross");
+    throw eoParamException("Invalid pCross");
 
   eoValueParam<double>& pMutParam
       = _parser.getORcreateParam(1.0, "pMut", "Probability of Mutation",
                                  'M', "Variation Operators" );
   // minimum check
   if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-    throw std::runtime_error("Invalid pMut");
+    throw eoParamException("Invalid pMut");
 
 
   // crossover
@@ -140,7 +140,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
     ptObjAtomCross = new eoDoubleIntermediate;
   else if (crossObjParam.value() == std::string("none"))
     ptObjAtomCross = new eoBinCloneOp<double>;
-  else throw std::runtime_error("Invalid Object variable crossover type");
+  else throw eoException("Invalid Object variable crossover type");
 
   if (crossStdevParam.value() == std::string("discrete"))
     ptStdevAtomCross = new eoDoubleExchange;
@@ -148,7 +148,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
     ptStdevAtomCross = new eoDoubleIntermediate;
   else if (crossStdevParam.value() == std::string("none"))
     ptStdevAtomCross = new eoBinCloneOp<double>;
-  else throw std::runtime_error("Invalid mutation strategy parameter crossover type");
+  else throw eoException("Invalid mutation strategy parameter crossover type");
 
   // and build the indi Xover
   if (crossTypeParam.value() == std::string("global"))
@@ -160,7 +160,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
              );
       ptCross = new eoBinGenOp<EOT>(crossTmp);
     }
-  else throw std::runtime_error("Invalide Object variable crossover type");
+  else throw eoException("Invalide Object variable crossover type");
 
   // now that everything is OK, DON'T FORGET TO STORE MEMORY
   _state.storeFunctor(ptObjAtomCross);

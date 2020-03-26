@@ -156,8 +156,8 @@ public:
 			os.open(_filename.c_str(), std::ios::app);
 
 		if (!os) {
-			std::string str = "moSampling: Could not open " + _filename;
-			throw std::runtime_error(str);
+			// std::string str = "moSampling: Could not open " + _filename;
+			throw eoFileError(_filename);
 		}
 
 		// set the precision of the output
@@ -199,7 +199,7 @@ public:
 	void fileExport(unsigned int _col, std::string _filename, bool _openFile=false) {
 		if (_col >= monitorVec.size()) {
 			std::string str = "moSampling: Could not export into file the vector. The index does not exists (too large)";
-			throw std::runtime_error(str);
+			throw eoException(str);
 		}
 
 		monitorVec[_col]->precision(precisionOutput);

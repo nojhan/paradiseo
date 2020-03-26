@@ -33,6 +33,7 @@
 
 #include "eoMonitor.h"
 #include "../eoObject.h"
+#include "../eoExceptions.h"
 
 
 /** Prints statistics to file
@@ -75,8 +76,8 @@ public :
             std::ofstream os (filename.c_str ());
 
             if (!os) {
-                std::string str = "Error, eoFileMonitor could not open: " + filename;
-                throw std::runtime_error (str);
+                // std::string str = "Error, eoFileMonitor could not open: " + filename;
+                throw eoFileError(filename);
             }
         } // if ! keep
     }

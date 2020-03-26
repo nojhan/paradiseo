@@ -207,7 +207,7 @@ public:
   {
     // minimal check
     if (updateFactor>=1)
-      throw std::runtime_error("Update factor must be < 1 in eoOneFifthMutation");
+      throw eoParamException("Update factor must be < 1 in eoOneFifthMutation");
   }
 
   /** The class name */

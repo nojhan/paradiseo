@@ -181,8 +181,8 @@ public:
     virtual void operator  () (eoPop < POT > &_pop)
     {
 
-        try
-        {
+        // try
+        // {
             // initializes the topology, velocity, best particle(s)
             init();
 
@@ -206,13 +206,13 @@ public:
             }
             while (continuator (_pop));
 
-        }
-        catch (std::exception & e)
-        {
-            std::string s = e.what ();
-            s.append (" in eoSyncEasyPSO");
-            throw std::runtime_error (s);
-        }
+        // }
+        // catch (std::exception & e)
+        // {
+        //     std::string s = e.what ();
+        //     s.append (" in eoSyncEasyPSO");
+        //     throw std::runtime_error (s);
+        // }
 
     }
 

@@ -42,6 +42,8 @@
 #include <stdexcept>
 #include <vector>
 
+#include <eoExceptions.h>
+
 /**
  * A traits class for moeoObjectiveVector to specify the number of objectives and which ones have to be minimized or maximized.
  */
@@ -70,7 +72,7 @@ class moeoObjectiveVectorTraits
       bObj = _bObjectives;
       // in case the number of objectives and the min/max vector size don't match
       if (nObj != bObj.size())
-        throw std::runtime_error("Number of objectives and min/max size don't match in moeoObjectiveVectorTraits::setup");
+        throw eoException("Number of objectives and min/max size don't match in moeoObjectiveVectorTraits::setup");
     }
 
 
@@ -81,7 +83,7 @@ class moeoObjectiveVectorTraits
     {
       // in case the number of objectives would not be assigned yet
       if (! nObj)
-        throw std::runtime_error("Number of objectives not assigned in moeoObjectiveVectorTraits");
+        throw eoException("Number of objectives not assigned in moeoObjectiveVectorTraits");
       return nObj;
     }
 
@@ -94,7 +96,7 @@ class moeoObjectiveVectorTraits
     {
       // in case there would be a wrong index
       if (_i >= bObj.size())
-        throw std::runtime_error("Wrong index in moeoObjectiveVectorTraits");
+        throw eoException("Wrong index in moeoObjectiveVectorTraits");
       return bObj[_i];
     }
 

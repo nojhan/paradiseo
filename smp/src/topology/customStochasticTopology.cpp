@@ -38,6 +38,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <stdexcept>
 #include <iostream>
 
+#include <eo>
+
 paradiseo::smp::CustomStochasticTopology::CustomStochasticTopology(std::string filename)
 {
     std::ifstream f(filename);
@@ -78,7 +80,7 @@ paradiseo::smp::CustomStochasticTopology::CustomStochasticTopology(std::string f
             
             // For each vector non empty, if the size is not equal to the others, error
             if(lineVector.size() != size && !lineVector.empty())
-                throw std::runtime_error("Mistake in the topology, line "+ std::to_string(_matrix.size()+1) );
+                throw eoException("Mistake in the topology, line "+ std::to_string(_matrix.size()+1) );
                 
             if(!lineVector.empty())
                 _matrix.push_back(lineVector);
@@ -87,13 +89,13 @@ paradiseo::smp::CustomStochasticTopology::CustomStochasticTopology(std::string f
         // For each vector, verify if the size is equal to the size of the final matrix
         for(auto& line : _matrix)
             if(line.size() != _matrix.size())
-                throw std::runtime_error("Mistake in the topology, matrix is not square" );
+                throw eoException("Mistake in the topology, matrix is not square" );
 
         f.close () ;
     }   
     else
     {
-        throw std::runtime_error("Error occured while reading the topology file " + filename);
+        throw eoFileError(filename);
     }
 }
 

@@ -59,7 +59,7 @@ public:
           if (_eo == &(*it))
             return it-_pop.begin();
         }
-      throw std::runtime_error("Not found in eoLinearRanking");
+      throw eoException("Not found in eoLinearRanking");
     }
 
   /* COmputes the ranked fitness: fitnesses range in [m,M]
@@ -74,7 +74,7 @@ public:
       unsigned int pSizeMinusOne = pSize-1;
 
       if (pSize <= 1)
-        throw std::runtime_error("Cannot do ranking with population of size <= 1");
+        throw eoPopSizeException(pSize,"cannot do ranking with population of size <= 1");
 
       // value() refers to the std::vector of worthes (we're in an eoParamvalue)
       value().resize(pSize);

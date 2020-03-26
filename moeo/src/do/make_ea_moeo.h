@@ -127,14 +127,14 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
       else
         {
           std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
-          throw std::runtime_error(stmp.c_str());
+          throw eoException(stmp.c_str());
         }
       fitnessAssignment = new moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > (*metric, kappa);
     }
   else
     {
       std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
   _state.storeFunctor(fitnessAssignment);
 
@@ -170,7 +170,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
   else
     {
       std::string stmp = std::string("Invalid diversity assignment strategy: ") + diversityParamValue.first;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
   _state.storeFunctor(diversityAssignment);
 
@@ -194,7 +194,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
   else
     {
       std::string stmp = std::string("Invalid comparator strategy: ") + comparatorParam;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
   _state.storeFunctor(comparator);
 
@@ -250,7 +250,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
   else
     {
       std::string stmp = std::string("Invalid selection strategy: ") + ppSelect.first;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
   _state.storeFunctor(select);
 
@@ -274,7 +274,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
   else
     {
       std::string stmp = std::string("Invalid replacement strategy: ") + replacementParam;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
   _state.storeFunctor(replace);
 

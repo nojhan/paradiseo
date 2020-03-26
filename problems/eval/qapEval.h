@@ -52,8 +52,8 @@ public:
     std::fstream file(_fileData.c_str(), std::ios::in);
 
     if (!file) {
-      std::string str = "QAPeval: Could not open file [" + _fileData + "]." ;
-      throw std::runtime_error(str);
+      // std::string str = "QAPeval: Could not open file [" + _fileData + "]." ;
+      throw eoFileError(_fileData);
     }
     
     unsigned i, j;

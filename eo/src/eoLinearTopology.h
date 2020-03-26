@@ -67,7 +67,7 @@ public:
             if (neighborhoodSize >= _pop.size()){
                 std::string s;
                 s.append (" Invalid neighborhood size in eoLinearTopology ");
-                throw std::runtime_error (s);
+                throw eoException(s);
             }
 
             unsigned howManyNeighborhood=_pop.size()/ neighborhoodSize;

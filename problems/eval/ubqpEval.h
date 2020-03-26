@@ -65,8 +65,8 @@ public:
     std::fstream file(_fileName.c_str(), std::ios::in);
 
     if (!file) {
-      std::string str = "UbqpEval: Could not open file [" + _fileName + "]." ;
-      throw std::runtime_error(str);
+      // std::string str = "UbqpEval: Could not open file [" + _fileName + "]." ;
+      throw eoFileError(_fileName);
     }
 
     unsigned int nbInstances;
@@ -119,7 +119,7 @@ public:
 	  Q[i - 1][j - 1] = v;
 	else {
 	  std::string str = "UbqpEval: some indices are 0 in the instance file (in format 0), please check." ;
-	  throw std::runtime_error(str);
+	  throw eoException(str);
 	}
       }
     } else {

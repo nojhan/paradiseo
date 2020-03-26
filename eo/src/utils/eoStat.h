@@ -251,7 +251,7 @@ public :
     virtual void operator()(const std::vector<const EOT*>& _pop)
     {
         if (whichElement > _pop.size())
-            throw std::logic_error("fitness requested of element outside of pop");
+            throw eoException("fitness requested of element outside of pop");
 
         doit(_pop, Fitness());
     }

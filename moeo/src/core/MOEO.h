@@ -133,7 +133,7 @@ class MOEO : public EO < MOEOObjectiveVector >
       {
         if ( invalidObjectiveVector() )
           {
-            throw std::runtime_error("invalid objective vector in MOEO");
+            throw eoInvalidFitnessError("invalid objective vector in MOEO");
           }
         return objectiveVectorValue;
       }
@@ -197,7 +197,7 @@ class MOEO : public EO < MOEOObjectiveVector >
       {
         if ( invalidFitness() )
           {
-            throw std::runtime_error("invalid fitness in MOEO");
+            throw eoInvalidFitnessError("invalid fitness in MOEO");
           }
 //         const_cast< Fitness& >( fitnessValue ).embededDataEx = objectiveVectorValue;
 
@@ -241,7 +241,7 @@ class MOEO : public EO < MOEOObjectiveVector >
       {
         if ( invalidDiversity() )
           {
-            throw std::runtime_error("invalid diversity in MOEO");
+            throw eoInvalidFitnessError("invalid diversity in MOEO");
           }
         return diversityValue;
       }

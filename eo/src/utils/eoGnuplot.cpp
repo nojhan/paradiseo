@@ -29,6 +29,7 @@
 #include <stdexcept>
 
 #include "eoGnuplot.h"
+#include "../eoExceptions.h"
 
 
 unsigned eoGnuplot::numWindow=0;
@@ -82,7 +83,7 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
     args[5] = 0;
     gpCom = PipeComOpenArgv( GNUPLOT_PROGRAM, args );
     if(! gpCom )
-        throw std::runtime_error("Cannot spawn gnuplot\n");
+        throw eoSystemError(GNUPLOT_PROGRAM);
     else {
         PipeComSend( gpCom, "set grid\n" );
         PipeComSend( gpCom, _extra.c_str() );

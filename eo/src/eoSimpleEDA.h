@@ -73,21 +73,21 @@ template<class EOT> class eoSimpleEDA: public eoEDA<EOT>
     eoPop<EOT> pop(popSize, _distrib);
     do
     {
-      try
-      {
+      // try
+      // {
         apply<EOT>(_distrib, pop); // re-init. of _pop from distrib
 
         apply<EOT>(eval, pop);     // eval of current population
 
         update(_distrib, pop);     // updates distrib from _pop
 
-      }
-      catch (std::exception& e)
-      {
-            std::string s = e.what();
-            s.append( " in eoSimpleEDA");
-            throw std::runtime_error( s );
-      }
+      // }
+      // catch (std::exception& e)
+      // {
+      //       std::string s = e.what();
+      //       s.append( " in eoSimpleEDA");
+      //       throw std::runtime_error( s );
+      // }
     } while ( continuator( pop ) );
   }
 

@@ -73,7 +73,7 @@ public:
                         if ( objectTypeStr == "eoRandomSelect" ) {
                                 selectPtr = new eoRandomSelect<EOT>( rate );
                         } else {
-                                                throw std::runtime_error( "Incorrect selector type" );
+                            throw eoException( "Incorrect selector type" );
                         }
                 }
                 return selectPtr;

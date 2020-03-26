@@ -67,13 +67,13 @@ public :
     if (_interpret_as_rate)
       {
         if ( (_rate<0) || (_rate>1) )
-          throw std::logic_error("eoElitism: rate shoud be in [0,1]");
+          throw eoParamException("eoElitism: rate shoud be in [0,1]");
         rate = _rate;
       }
     else
       {
         if (_rate<0)
-          throw std::logic_error("Negative number of offspring in eoElitism!");
+          throw eoParamException("Negative number of offspring in eoElitism!");
         combien = (unsigned int)_rate;
         if (combien != _rate)
           eo::log << eo::warnings << "Warning: Number of guys to merge in eoElitism was rounded" << std::endl;
@@ -91,7 +91,7 @@ public :
       combienLocal = combien;
 
     if (combienLocal > _pop.size())
-      throw std::logic_error("Elite larger than population");
+      throw eoException("Elite larger than population");
 
     std::vector<const EOT*> result;
     _pop.nth_element(combienLocal, result);

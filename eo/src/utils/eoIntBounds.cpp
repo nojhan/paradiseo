@@ -31,17 +31,17 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
   std::string delim(",; ");
   std::string beginOrClose("[(])");
   if (!remove_leading(_value, delim)) // only delimiters were left
-    throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
+    throw eoException("Syntax error in eoGeneralIntBounds Ctor");
 
   // look for opening char
   size_t posDeb = _value.find_first_of(beginOrClose);	// allow ]a,b]
   if (posDeb >= _value.size())	// nothing left to read
-    throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
+    throw eoException("Syntax error in eoGeneralIntBounds Ctor");
 
   // ending char: next {}() after posDeb
   size_t posFin = _value.find_first_of(beginOrClose,posDeb+1);
   if (posFin >= _value.size())	// not found
-    throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
+    throw eoException("Syntax error in eoGeneralIntBounds Ctor");
 
   // the bounds
   std::string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
@@ -51,7 +51,7 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
   remove_leading(sBounds, delim);
   size_t posDelim = sBounds.find_first_of(delim);
   if (posDelim >= sBounds.size())
-    throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
+    throw eoException("Syntax error in eoGeneralIntBounds Ctor");
 
       bool minBounded=false, maxBounded=false;
       long int minBound=0, maxBound=0;
@@ -85,7 +85,7 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
       if (minBounded && maxBounded)
         {
           if (maxBound <= minBound)
-            throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
+            throw eoException("Syntax error in eoGeneralIntBounds Ctor");
           locBound = new eoIntInterval(minBound, maxBound);
         }
       else if (!minBounded && !maxBounded)	// no bound at all

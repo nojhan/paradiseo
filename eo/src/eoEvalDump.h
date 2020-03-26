@@ -105,8 +105,8 @@ protected:
          }
 #ifndef NDEBUG
         if ( !_of.is_open() ) {
-            std::string str = "Error, eoEvalDump could not open: " + _filename;
-            throw std::runtime_error( str );
+            // std::string str = "Error, eoEvalDump could not open: " + _filename;
+            throw eoFileError( _filename );
         }
 #endif
         // here, in release mode, we assume that the file could be opened

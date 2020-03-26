@@ -120,7 +120,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc
     else          // parameter passed by user as DetTour(T)
       nicheSize = atof(ppSelect.second[0].c_str());
     if (_dist == NULL)             // no distance
-          throw std::runtime_error("You didn't specify a distance when calling make_algo_scalar and using sharing");
+          throw eoException("You didn't specify a distance when calling make_algo_scalar and using sharing");
     select = new eoSharingSelect<EOT>(nicheSize, *_dist);
   }
   else if (ppSelect.first == std::string("StochTour"))
@@ -206,7 +206,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc
   else
     {
       std::string stmp = std::string("Invalid selection: ") + ppSelect.first;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
 
   _state.storeFunctor(select);
@@ -282,7 +282,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc
   else
     {
       std::string stmp = std::string("Invalid replacement: ") + ppReplace.first;
-      throw std::runtime_error(stmp.c_str());
+      throw eoException(stmp.c_str());
     }
 
   _state.storeFunctor(replace);

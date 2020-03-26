@@ -104,12 +104,12 @@ eoGenOp<FlowShop> & do_make_op(eoParameterLoader& _parser, eoState& _state)
   eoValueParam<double>& pCrossParam = _parser.createParam(0.25, "pCross", "Probability of Crossover", 'c', "Variation Operators" );
   // minimum check
   if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-    throw std::runtime_error("Invalid pCross");
+    throw eoParamException("Invalid pCross");
 
   eoValueParam<double>& pMutParam = _parser.createParam(0.35, "pMut", "Probability of Mutation", 'm', "Variation Operators" );
   // minimum check
   if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-    throw std::runtime_error("Invalid pMut");
+    throw eoParamException("Invalid pMut");
 
   // the crossover - with probability pCross
   eoProportionalOp<FlowShop> * propOp = new eoProportionalOp<FlowShop> ;

@@ -55,7 +55,7 @@ public :
     {
         if (which >= objective_info.size())
             {
-                throw index_error("Too few elements allocated, resize objectives first");
+                throw eoException("Too few elements allocated, resize objectives first");
             }
 
         objective_info[which] = value;
@@ -70,7 +70,7 @@ public :
         boost::python::extract<double> x(object::operator[](i));
 
         if (!x.check())
-            throw std::runtime_error("PyFitness: does not contain doubles");
+            throw eoException("PyFitness: does not contain doubles");
         return x();
     }
 

@@ -34,6 +34,7 @@
 #include <string>
 #include <vector>
 #include "../eoScalarFitness.h"
+#include "../eoExceptions.h"
 
 /** @defgroup Parameters Parameters management
  *
@@ -385,14 +386,14 @@ inline void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(const std:
 template <>
 inline std::string eoValueParam<std::vector<void*> >::getValue(void) const
 {
-    throw std::runtime_error("I cannot getValue for a std::vector<EOT*>");
+    throw eoException("I cannot getValue for a std::vector<EOT*>");
     return std::string("");
 }
 
 template <>
 inline void eoValueParam<std::vector<void*> >::setValue(const std::string&)
 {
-    throw std::runtime_error("I cannot setValue for a std::vector<EOT*>");
+    throw eoException("I cannot setValue for a std::vector<EOT*>");
     return;
 }
 

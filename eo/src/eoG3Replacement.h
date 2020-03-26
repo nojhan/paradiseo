@@ -71,7 +71,7 @@ public:
       if (_offspring.size() != toKeep)
         {
           std::cerr << "Les tailles " << _offspring.size() << " " << toKeep << std::endl;
-        throw std::runtime_error("eoG3Replacement: wrong number of remaining offspring");
+        throw eoException("eoG3Replacement: wrong number of remaining offspring");
         }
       // and put back into _parents
       plus(_offspring, _parents);

@@ -29,6 +29,7 @@
 
 #include <stdexcept>               // std::exceptions!
 #include "eoRNG.h"
+#include "../eoExceptions.h"
 
 /**
 \class eoIntBounds eoIntBounds.h es/eoIntBounds.h
@@ -163,29 +164,29 @@ public:
 
   virtual long int minimum() const
   {
-    throw std::logic_error("Trying to get minimum of unbounded eoIntBounds");
+    throw eoException("Trying to get minimum of unbounded eoIntBounds");
   }
   virtual long int maximum() const
   {
-    throw std::logic_error("Trying to get maximum of unbounded eoIntBounds");
+    throw eoException("Trying to get maximum of unbounded eoIntBounds");
   }
   virtual long int range() const
   {
-    throw std::logic_error("Trying to get range of unbounded eoIntBounds");
+    throw eoException("Trying to get range of unbounded eoIntBounds");
   }
 
   virtual double uniform(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in unbounded eoIntBounds");
+    throw eoException("Trying to generate uniform values in unbounded eoIntBounds");
   }
 
   virtual long int random(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in unbounded eoIntBounds");
+    throw eoException("Trying to generate uniform values in unbounded eoIntBounds");
   }
 
   // methods from eoPersistent
@@ -199,7 +200,7 @@ public:
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoIntBounds::readFrom");
+    throw eoException("Should not use eoIntBounds::readFrom");
   }
 
   /**
@@ -244,7 +245,7 @@ public :
     repMinimum(_min), repMaximum(_max), repRange(_max-_min)
   {
     if (repRange<=0)
-      throw std::logic_error("Void range in eoIntBounds");
+      throw eoException("Void range in eoIntBounds");
   }
 
   // accessors
@@ -328,7 +329,7 @@ public :
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoIntInterval::readFrom");
+    throw eoException("Should not use eoIntInterval::readFrom");
   }
 
   /**
@@ -374,25 +375,25 @@ public :
 
   virtual long int maximum() const
   {
-    throw std::logic_error("Trying to get maximum of eoIntBelowBound");
+    throw eoException("Trying to get maximum of eoIntBelowBound");
   }
   virtual long int range() const
   {
-    throw std::logic_error("Trying to get range of eoIntBelowBound");
+    throw eoException("Trying to get range of eoIntBelowBound");
   }
 
   virtual double uniform(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in eoIntBelowBound");
+    throw eoException("Trying to generate uniform values in eoIntBelowBound");
   }
 
   virtual long int random(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in eoIntBelowBound");
+    throw eoException("Trying to generate uniform values in eoIntBelowBound");
   }
 
   // description
@@ -437,7 +438,7 @@ public :
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoIntBelowBound::readFrom");
+    throw eoException("Should not use eoIntBelowBound::readFrom");
   }
 
   /**
@@ -482,25 +483,25 @@ public :
 
   virtual long int minimum() const
   {
-    throw std::logic_error("Trying to get minimum of eoIntAboveBound");
+    throw eoException("Trying to get minimum of eoIntAboveBound");
   }
   virtual long int range() const
   {
-    throw std::logic_error("Trying to get range of eoIntAboveBound");
+    throw eoException("Trying to get range of eoIntAboveBound");
   }
 
   virtual double uniform(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in eoIntAboveBound");
+    throw eoException("Trying to generate uniform values in eoIntAboveBound");
   }
 
   virtual long int random(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in eoIntAboveBound");
+    throw eoException("Trying to generate uniform values in eoIntAboveBound");
   }
 
   // description
@@ -545,7 +546,7 @@ public :
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoIntAboveBound::readFrom");
+    throw eoException("Should not use eoIntAboveBound::readFrom");
   }
 
   /**

@@ -263,8 +263,8 @@ public:
 
 
 		if (!os) {
-			std::string str = "moVectorMonitor: Could not open " + _filename;
-			throw std::runtime_error(str);
+			// std::string str = "moVectorMonitor: Could not open " + _filename;
+			throw eoFileError(_filename);;
 		}
 
 		for (unsigned int i = 0; i < size(); i++) {

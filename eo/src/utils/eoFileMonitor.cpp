@@ -10,6 +10,7 @@
 #include "eoFileMonitor.h"
 #include "compatibility.h"
 #include "eoParam.h"
+#include "../eoExceptions.h"
 
 using namespace std;
 
@@ -36,8 +37,8 @@ void eoFileMonitor::printHeader()
 
     if (!os)
     {
-        string str = "eoFileMonitor could not open: " + filename;
-        throw runtime_error(str);
+        // string str = "eoFileMonitor could not open: " + filename;
+        throw eoFileError(filename);
     }
 
     printHeader(os);
@@ -54,8 +55,8 @@ eoMonitor& eoFileMonitor::operator()(void)
 
     if (!os)
     {
-        string str = "eoFileMonitor could not write to: " + filename;
-        throw runtime_error(str);
+        // string str = "eoFileMonitor could not write to: " + filename;
+        throw eoFileError(filename);
     }
 
     if (

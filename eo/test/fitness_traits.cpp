@@ -133,7 +133,7 @@ public :
 
   performance_type performance(void) const
   {
-    if(!valid_performance) throw runtime_error("no performance");
+    if(!valid_performance) throw eoException("no performance");
     return Traits::get_performance(rep_fitness);
   }
 
@@ -145,8 +145,8 @@ public :
 
   worth_type worth(void) const
   {
-    if(!valid_worth)  throw runtime_error("no worth");
-    if(!Traits::needs_mapping)  throw runtime_error("no mapping");
+    if(!valid_worth)  throw eoException("no worth");
+    if(!Traits::needs_mapping)  throw eoException("no mapping");
     return Traits::get_worth(rep_fitness);
   }
 
@@ -236,14 +236,14 @@ public :
     {
       if (!fitness_traits::needs_mapping)
       {
-	throw runtime_error("eoPop: no scaling needed, yet a scaling function is defined");
+          throw eoException("eoPop: no scaling needed, yet a scaling function is defined");
       }
 
       (*p2w)(*this);
     }
     else if (fitness_traits::needs_mapping)
     {
-      throw runtime_error("eoPop: no scaling function attached to the population, while one was certainly called for");
+        throw eoException("eoPop: no scaling function attached to the population, while one was certainly called for");
     }
   }
 

@@ -60,7 +60,7 @@ public:
     Fitness fitness () const
     {
         if (invalid ())
-            throw std::runtime_error ("invalid fitness in PO.h");
+            throw eoInvalidFitnessError("invalid fitness in PO.h");
         return repFitness;
     }
 
@@ -80,7 +80,7 @@ public:
     Fitness best () const
     {
         if (invalid ())
-            throw std::runtime_error ("invalid best fitness in PO.h");
+            throw eoInvalidFitnessError("invalid best fitness in PO.h");
         return bestFitness;
     }
 

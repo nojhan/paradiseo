@@ -57,7 +57,7 @@ public:
   {
     // First checks that no other eoSIGContinue does exist
     if (existSIGContinue)
-      throw std::runtime_error("A signal handler is already defined!\n");
+      throw eoParamException("A signal handler is already defined!\n");
 
     #ifndef _WINDOWS
       #ifdef SIGQUIT

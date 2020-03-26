@@ -182,12 +182,12 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     eoValueParam<double>& pCrossParam = _parser.createParam(0.6, "pCross", "Probability of Crossover", 'C', "Variation Operators" );
     // minimum check
     if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-      throw runtime_error("Invalid pCross");
+      throw eoParamException("Invalid pCross");
 
     eoValueParam<double>& pMutParam = _parser.createParam(0.1, "pMut", "Probability of Mutation", 'M', "Variation Operators" );
     // minimum check
     if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-      throw runtime_error("Invalid pMut");
+      throw eoParamException("Invalid pMut");
 
 
   // the crossover - with probability pCross

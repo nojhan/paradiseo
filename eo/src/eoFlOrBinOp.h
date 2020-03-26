@@ -66,7 +66,7 @@ public :
     if (_eo1.size() != _eo2.size())
       {
         string s = "Operand size don't match in " + className();
-        throw runtime_error(s);
+        throw eoException(s);
       }
     bool changed = false;
     for ( unsigned i = 0; i < _eo1.size(); i++ ) {
@@ -109,7 +109,7 @@ public :
     if (_eo1.size() != _eo2.size())
       {
         string s = "Operand size don't match in " + className();
-        throw runtime_error(s);
+        throw eoException(s);
       }
 
     bool changed = false;
@@ -155,7 +155,7 @@ public :
     if (_eo1.size() != _eo2.size())
       {
         string s = "Operand size don't match in " + className();
-        throw runtime_error(s);
+        throw eoException(s);
   }
     bool hasChanged = false;
     for (unsigned i=0; i<_eo1.size(); i++)
@@ -199,7 +199,7 @@ public :
     if (_eo1.size() != _eo2.size())
       {
         string s = "Operand size don't match in " + className();
-        throw runtime_error(s);
+        throw eoException(s);
   }
     bool hasChanged = false;
     unsigned where = eo::rng.random(_eo1.size()-1);

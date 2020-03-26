@@ -102,7 +102,7 @@ namespace eo
             {
                 if ( _packetSize <= 0 )
                 {
-                    throw std::runtime_error("Packet size should not be negative.");
+                    throw eoException("Packet size should not be negative.");
                 }
 
                 if( table )

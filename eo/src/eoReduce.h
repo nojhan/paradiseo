@@ -57,7 +57,7 @@ template <class EOT> class eoTruncate : public eoReduce<EOT>
         if (_newgen.size() == _newsize)
             return;
         if (_newgen.size() < _newsize)
-          throw std::logic_error("eoTruncate: Cannot truncate to a larger size!\n");
+          throw eoException("eoTruncate: Cannot truncate to a larger size!\n");
 
         _newgen.sort();
         _newgen.resize(_newsize);
@@ -74,7 +74,7 @@ template <class EOT> class eoRandomReduce : public eoReduce<EOT>
         if (_newgen.size() == _newsize)
             return;
         if (_newgen.size() < _newsize)
-          throw std::logic_error("eoRandomReduce: Cannot truncate to a larger size!\n");
+          throw eoException("eoRandomReduce: Cannot truncate to a larger size!\n");
 
         // shuffle the population, then trucate
         _newgen.shuffle();
@@ -123,7 +123,7 @@ public:
 	if (presentSize == _newsize)
             return;
         if (presentSize < _newsize)
-	    throw std::logic_error("eoTruncate: Cannot truncate to a larger size!\n");
+	    throw eoException("eoTruncate: Cannot truncate to a larger size!\n");
         std::vector<EPpair> scores(presentSize);
         for (unsigned i=0; i<presentSize; i++)
 	    {
@@ -186,7 +186,7 @@ class eoLinearTruncate : public eoReduce<EOT>
     if (oldSize == _newsize)
       return;
     if (oldSize < _newsize)
-      throw std::logic_error("eoLinearTruncate: Cannot truncate to a larger size!\n");
+      throw eoException("eoLinearTruncate: Cannot truncate to a larger size!\n");
     for (unsigned i=0; i<oldSize - _newsize; i++)
       {
         typename eoPop<EOT>::iterator it = _newgen.it_worse_element();
@@ -224,7 +224,7 @@ public:
     if (oldSize == _newsize)
       return;
     if (oldSize < _newsize)
-      throw std::logic_error("eoDetTournamentTruncate: Cannot truncate to a larger size!\n");
+      throw eoException("eoDetTournamentTruncate: Cannot truncate to a larger size!\n");
 
 
     // Now OK to erase some losers
@@ -280,7 +280,7 @@ public:
     if (oldSize == _newsize)
       return;
     if (oldSize < _newsize)
-      throw std::logic_error("eoStochTournamentTruncate: Cannot truncate to a larger size!\n");
+      throw eoException("eoStochTournamentTruncate: Cannot truncate to a larger size!\n");
     // Now OK to erase some losers
     for (unsigned i=0; i<oldSize - _newsize; i++)
       {

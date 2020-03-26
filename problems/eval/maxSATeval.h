@@ -111,8 +111,8 @@ public:
     std::fstream file(_fileName.c_str(), std::ios::in);
 
     if (!file) {
-      std::string str = "MaxSATeval: Could not open file [" + _fileName + "]." ;
-      throw std::runtime_error(str);
+      // std::string str = "MaxSATeval: Could not open file [" + _fileName + "]." ;
+      throw eoFileError(_fileName);
     }
     
     std::string s;
@@ -128,12 +128,12 @@ public:
     // parameters
     if (s[0] != 'p') {
       std::string str = "MaxSATeval: could not read the parameters of the instance from file [" + _fileName + "]." ;
-      throw std::runtime_error(str);
+      throw eoException(_fileName);
     }
     file >> s;
     if (s != "cnf") {
       std::string str = "MaxSATeval: " + _fileName + " is not a file in cnf format.";
-      throw std::runtime_error(str);
+      throw eoException(_fileName);
     }
 
     file >> nbVar >> nbClauses;
@@ -187,7 +187,7 @@ public:
 
     if (!file) {
       std::string str = "MaxSATeval: Could not open " + _fileName;
-      throw std::runtime_error(str);
+      throw eoFileError(_fileName);
     }
     
     // write some commentaries

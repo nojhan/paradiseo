@@ -31,6 +31,7 @@
 #ifndef eoRND_GENERATORS_H
 #define eoRND_GENERATORS_H
 
+#include "../eoExceptions.h"
 #include "eoRNG.h"
 #include <stdexcept>
 
@@ -56,7 +57,7 @@ template <class T = double> class uniform_generator
       minim(_min), range(_max-_min), uniform(_rng)
   {
     if (_min>_max)
-      throw std::logic_error("Min is greater than Max in uniform_generator");
+      throw eoParamException("Min is greater than Max in uniform_generator");
   }
 
   T operator()(void) { return minim+static_cast<T>(uniform.uniform(range)); }
@@ -99,7 +100,7 @@ template <class T = uint32_t> class random_generator
       minim(_min), range(_max-_min), random(_rng)
   {
     if (_min>_max)
-      throw std::logic_error("Min is greater than Max in random_generator");
+      throw eoParamException("Min is greater than Max in random_generator");
   }
 
   T operator()(void) { return (T) (minim + random.random(range)); }

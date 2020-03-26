@@ -94,7 +94,7 @@ public:
         else{
             std::string s;
             s.append (" Invalid indice in eoSocialNeighborhood ");
-            throw std::runtime_error (s);
+            throw eoException(s);
         }
     }
 

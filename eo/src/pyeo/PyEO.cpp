@@ -115,13 +115,13 @@ PyEO& pop_getitem(eoPop<PyEO>& pop, boost::python::object key)
 {
     boost::python::extract<int> x(key);
     if (!x.check())
-        throw index_error("Slicing not allowed");
+        throw eoException("Slicing not allowed");
 
     int i = x();
 
     if (static_cast<unsigned>(i) >= pop.size())
         {
-            throw index_error("Index out of bounds");
+            throw eoException("Index out of bounds");
         }
     return pop[i];
 }
@@ -130,13 +130,13 @@ void pop_setitem(eoPop<PyEO>& pop, boost::python::object key, PyEO& value)
 {
     boost::python::extract<int> x(key);
     if (!x.check())
-        throw index_error("Slicing not allowed");
+        throw eoException("Slicing not allowed");
 
     int i = x();
 
     if (static_cast<unsigned>(i) >= pop.size())
         {
-            throw index_error("Index out of bounds");
+            throw eoException("Index out of bounds");
         }
 
     pop[i] = value;

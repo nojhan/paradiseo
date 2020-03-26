@@ -79,7 +79,7 @@ protected:
     std::vector<typename EOT::Fitness> fitness;
     void check_sync(unsigned index, const EOT& _eo) {
         if (fitness[index] != _eo.fitness()) {
-            throw std::runtime_error("eoSelectFromWorth: fitnesses are not in sync");
+            throw eoException("eoSelectFromWorth: fitnesses are not in sync");
         }
     }
 #endif

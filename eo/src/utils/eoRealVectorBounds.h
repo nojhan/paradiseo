@@ -250,7 +250,7 @@ public:
     eoRealBaseVectorBounds(), factor(1, _dim), ownedBounds(0)
   {
     if (_max-_min<=0)
-      throw std::logic_error("Void range in eoRealVectorBounds");
+      throw eoException("Void range in eoRealVectorBounds");
     eoRealBounds *ptBounds = new eoRealInterval(_min, _max);
     // handle memory once
     ownedBounds.push_back(ptBounds);
@@ -265,7 +265,7 @@ public:
     factor(_min.size(), 1), ownedBounds(0)
   {
     if (_max.size() != _min.size())
-      throw std::logic_error("Dimensions don't match in eoRealVectorBounds");
+      throw eoException("Dimensions don't match in eoRealVectorBounds");
     // the bounds
     eoRealBounds *ptBounds;
     for (unsigned i=0; i<_min.size(); i++)
@@ -386,20 +386,20 @@ public:
   // accessors
   virtual double minimum(unsigned)
   {
-    throw std::logic_error("Trying to get minimum of eoRealVectorNoBounds");
+    throw eoException("Trying to get minimum of eoRealVectorNoBounds");
   }
   virtual double maximum(unsigned)
   {
-    throw std::logic_error("Trying to get maximum of eoRealVectorNoBounds");
+    throw eoException("Trying to get maximum of eoRealVectorNoBounds");
   }
   virtual double range(unsigned)
   {
-    throw std::logic_error("Trying to get range of eoRealVectorNoBounds");
+    throw eoException("Trying to get range of eoRealVectorNoBounds");
   }
 
   virtual double averageRange()
   {
-    throw std::logic_error("Trying to get average range of eoRealVectorNoBounds");
+    throw eoException("Trying to get average range of eoRealVectorNoBounds");
   }
 
   // random generators
@@ -407,7 +407,7 @@ public:
   {
     (void)_rng;
 
-    throw std::logic_error("No uniform distribution on eoRealVectorNoBounds");
+    throw eoException("No uniform distribution on eoRealVectorNoBounds");
   }
 
   // fills a std::vector with uniformly chosen variables in bounds
@@ -415,7 +415,7 @@ public:
   {
     (void)_rng;
 
-    throw std::logic_error("No uniform distribution on eoRealVectorNoBounds");
+    throw eoException("No uniform distribution on eoRealVectorNoBounds");
   }
 
 };

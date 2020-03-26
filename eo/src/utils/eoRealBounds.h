@@ -161,22 +161,22 @@ public:
 
   virtual double minimum() const
   {
-    throw std::logic_error("Trying to get minimum of unbounded eoRealBounds");
+    throw eoException("Trying to get minimum of unbounded eoRealBounds");
   }
   virtual double maximum() const
   {
-    throw std::logic_error("Trying to get maximum of unbounded eoRealBounds");
+    throw eoException("Trying to get maximum of unbounded eoRealBounds");
   }
   virtual double range() const
   {
-    throw std::logic_error("Trying to get range of unbounded eoRealBounds");
+    throw eoException("Trying to get range of unbounded eoRealBounds");
   }
 
   virtual double uniform(eoRng & _rng = eo::rng) const
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in unbounded eoRealBounds");
+    throw eoException("Trying to generate uniform values in unbounded eoRealBounds");
   }
 
   // methods from eoPersistent
@@ -190,7 +190,7 @@ public:
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoRealBounds::readFrom");
+    throw eoException("Should not use eoRealBounds::readFrom");
   }
 
   /**
@@ -315,7 +315,7 @@ public :
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoRealInterval::readFrom");
+    throw eoException("Should not use eoRealInterval::readFrom");
   }
 
   /**
@@ -360,11 +360,11 @@ public :
 
   virtual double maximum() const
   {
-    throw std::logic_error("Trying to get maximum of eoRealBelowBound");
+    throw eoException("Trying to get maximum of eoRealBelowBound");
   }
   virtual double range() const
   {
-    throw std::logic_error("Trying to get range of eoRealBelowBound");
+    throw eoException("Trying to get range of eoRealBelowBound");
   }
 
   // random generators
@@ -372,7 +372,7 @@ public :
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in eoRealBelowBound");
+    throw eoException("Trying to generate uniform values in eoRealBelowBound");
   }
 
   // description
@@ -417,7 +417,7 @@ public :
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoRealBelowBound::readFrom");
+    throw eoException("Should not use eoRealBelowBound::readFrom");
   }
 
   /**
@@ -459,11 +459,11 @@ public :
 
   virtual double minimum() const
   {
-    throw std::logic_error("Trying to get minimum of eoRealAboveBound");
+    throw eoException("Trying to get minimum of eoRealAboveBound");
   }
   virtual double range() const
   {
-    throw std::logic_error("Trying to get range of eoRealAboveBound");
+    throw eoException("Trying to get range of eoRealAboveBound");
   }
 
   // random generators
@@ -471,7 +471,7 @@ public :
   {
     (void)_rng;
 
-    throw std::logic_error("Trying to generate uniform values in eoRealAboveBound");
+    throw eoException("Trying to generate uniform values in eoRealAboveBound");
   }
 
   // description
@@ -516,7 +516,7 @@ public :
   {
     (void)_is;
 
-    throw std::runtime_error("Should not use eoRealAboveBound::readFrom");
+    throw eoException("Should not use eoRealAboveBound::readFrom");
   }
 
   /**

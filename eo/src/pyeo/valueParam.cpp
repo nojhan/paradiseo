@@ -109,7 +109,7 @@ void setv< std::vector<double>, numeric::array >
 	{
 	    extract<double> x(val[i]);
 	    if (!x.check())
-		throw std::runtime_error("double expected");
+		throw eoException("double expected");
 
 	    v[i] = x();
 	}
@@ -130,9 +130,9 @@ void setv< std::pair<double, double>, tuple >
     extract<double> second(val[1]);
 
     if (!first.check())
-	throw std::runtime_error("doubles expected");
+	throw eoException("doubles expected");
     if (!second.check())
-	throw std::runtime_error("doubles expected");
+	throw eoException("doubles expected");
 
     p.value().first = first();
     p.value().second = second();

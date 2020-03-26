@@ -63,7 +63,7 @@ public :
 
     virtual void operator()(const eoPop<EOT>& _pop) {
         if( whichFitnessTerm >= _pop[0].fitness().size() )
-            throw std::logic_error("Fitness term requested out of range");
+            throw eoException("Fitness term requested out of range");
 
     double result =0.0;
     unsigned count = 0;
@@ -102,7 +102,7 @@ public:
 
     virtual void operator()(const eoPop<EOT>& _pop) {
         if( whichFitnessTerm >= _pop[0].fitness().size() )
-            throw std::logic_error("Fitness term requested out of range");
+            throw eoException("Fitness term requested out of range");
 
         value() = _pop.best_element().fitness()[whichFitnessTerm];
     }

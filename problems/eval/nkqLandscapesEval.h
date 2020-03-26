@@ -114,13 +114,13 @@ public:
       // Read the parameters
       if (s[0] != 'p') {
 	string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] at the begining." ;
-	throw runtime_error(str);
+	throw eoException(str);
       }
 
       file >> s;
       if (s != "NKq") {
 	string str = "nkqLandscapesEval.load: -- NKq -- expected in [" + _fileName + "] at the begining." ;
-	throw runtime_error(str);
+	throw eoException(str);
       }
 
       // read parameters N, K and q
@@ -130,7 +130,7 @@ public:
       // read the links
       if (s[0] != 'p') {
 	string str = "nkqLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the parameters N, K, and q." ;
-	throw runtime_error(str);
+	throw eoException(str);
       }
 
       file >> s;
@@ -138,13 +138,13 @@ public:
 	loadLinks(file);
       } else {
 	string str = "nkqLandscapesEval.load: -- links -- expected in [" + _fileName + "] after the parameters N, K, and q." ;
-	throw runtime_error(str);
+	throw eoException(str);
       }
 
       // lecture des tables
       if (s[0] != 'p') {
 	string str = "nkqLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the links." ;
-	throw runtime_error(str);
+	throw eoException(str);
      }
 
       file >> s;
@@ -153,13 +153,13 @@ public:
 	loadTables(file);
       } else {
 	string str = "nkqLandscapesEval.load: -- tables -- expected in [" + _fileName + "] after the links." ;
-	throw runtime_error(str);
+	throw eoException(str);
       }
 
       file.close();
     } else {
-	string str = "nkqLandscapesEval.load: Could not open file [" + _fileName + "]." ;
-	throw runtime_error(str);
+	// string str = "nkqLandscapesEval.load: Could not open file [" + _fileName + "]." ;
+	throw eoFileError(_fileName);
     }
 
   };
@@ -192,7 +192,7 @@ public:
     } else {
       string fname(_fileName);
       string str = "nkqLandscapesEval.save: Could not open file [" + fname + "]." ;
-      throw runtime_error(str);
+      throw eoFileError(fname);
     }
   };
 

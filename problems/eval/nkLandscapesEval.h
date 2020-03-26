@@ -154,13 +154,13 @@ public:
       // Read the parameters
       if (s[0] != 'p') {
 	std::string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] at the begining." ;
-	throw std::runtime_error(str);
+	throw eoException(str);
       }
 
       file >> s;
       if (s != "NK") {
 	std::string str = "nkLandscapesEval.load: -- NK -- expected in [" + _fileName + "] at the begining." ;
-	throw std::runtime_error(str);
+	throw eoException(str);
       }
 
       // read parameters N and K
@@ -170,7 +170,7 @@ public:
       // read the links
       if (s[0] != 'p') {
 	std::string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the parameters N and K." ;
-	throw std::runtime_error(str);
+	throw eoException(str);
       }
 
       file >> s;
@@ -178,13 +178,13 @@ public:
 	loadLinks(file);
       } else {
 	std::string str = "nkLandscapesEval.load: -- links -- expected in [" + _fileName + "] after the parameters N and K." ;
-	throw std::runtime_error(str);
+	throw eoException(str);
       }
 
       // lecture des tables
       if (s[0] != 'p') {
 	std::string str = "nkLandscapesEval.load: -- p -- expected in [" + _fileName + "] after the links." ;
-	throw std::runtime_error(str);
+	throw eoException(str);
      }
 
       file >> s;
@@ -193,13 +193,13 @@ public:
 	loadTables(file);
       } else {
 	std::string str = "nkLandscapesEval.load: -- tables -- expected in [" + _fileName + "] after the links." ;
-	throw std::runtime_error(str);
+	throw eoException(str);
       }
 
       file.close();
     } else {
-	std::string str = "nkLandscapesEval.load: Could not open file [" + _fileName + "]." ;
-	throw std::runtime_error(str);
+	// std::string str = "nkLandscapesEval.load: Could not open file [" + _fileName + "]." ;
+	throw eoFileError(_fileName);
     }
 
   };

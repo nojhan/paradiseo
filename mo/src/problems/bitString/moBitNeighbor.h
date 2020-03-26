@@ -89,7 +89,7 @@ public:
 		int pos = _is.tellg();
 		_is >> fitness_str;
 		if (fitness_str == "INVALID") {
-			throw std::runtime_error("invalid fitness");
+			throw eoInvalidFitnessError("invalid fitness");
 		} else {
 			Fitness repFit;
 			_is.seekg(pos);

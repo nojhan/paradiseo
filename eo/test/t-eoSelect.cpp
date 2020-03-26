@@ -64,7 +64,7 @@ void testSelectMany(eoSelect<EOT> & _select, std::string _name)
       {
 	unsigned trouve = isInPop<Dummy>(offspring[i], parents);
 	if (trouve == parents.size()) // pas trouve
-	  throw std::runtime_error("Pas trouve ds parents");
+	  throw eoException("Pas trouve ds parents");
 	nb[trouve]++;
        }
     // dump to file so you can plot using gnuplot - dir name is hardcoded!
@@ -149,7 +149,7 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
 	parentsOrg[pSize-1].fitness(10*pSize);
       }
     else
-      throw std::runtime_error("Invalid fitness Type"+fitnessType);
+      throw eoInvalidFitnessError("Invalid fitness Type"+fitnessType);
 
     std::cout << "Initial parents (odd)\n" << parentsOrg << std::endl;
 

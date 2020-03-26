@@ -56,7 +56,7 @@ class moeoOneObjectiveComparator : public moeoComparator < MOEOT >
     {
       if (obj > MOEOT::ObjectiveVector::nObjectives())
         {
-          throw std::runtime_error("Problem with the index of objective in moeoOneObjectiveComparator");
+          throw eoException("Problem with the index of objective in moeoOneObjectiveComparator");
         }
     }
 

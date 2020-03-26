@@ -129,8 +129,8 @@ public:
     /// Apply a few iteration of flight to the population (=swarm).
     virtual void operator  () (eoPop < POT > &_pop)
     {
-        try
-        {
+        // try
+        // {
             // initializes the topology, velocity, best particle(s)
             init();
             do
@@ -154,13 +154,13 @@ public:
             }
             while (continuator (_pop));
 
-        }
-        catch (std::exception & e)
-        {
-            std::string s = e.what ();
-            s.append (" in eoEasyPSO");
-            throw std::runtime_error (s);
-        }
+        // }
+        // catch (std::exception & e)
+        // {
+        //     std::string s = e.what ();
+        //     s.append (" in eoEasyPSO");
+        //     throw std::runtime_error (s);
+        // }
 
     }
 

@@ -61,7 +61,7 @@ void eoGnuplot1DMonitor::FirstPlot()
 {
     if (this->vec.size() < 2)
     {
-        throw std::runtime_error("Must have some stats to plot!\n");
+        throw eoException("Must have some stats to plot!\n");
     }
 #ifdef HAVE_GNUPLOT
     std::ostringstream os;

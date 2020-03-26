@@ -174,7 +174,7 @@ void init(eoPop<Dummy> & _pop, unsigned _pSize)
     }
   else
     {
-      throw std::runtime_error("init pop with 0 size");
+      throw eoPopSizeException(_pSize,"init pop with 0 size");
     }
   for (unsigned i=0; i<_pSize; i++)
     {

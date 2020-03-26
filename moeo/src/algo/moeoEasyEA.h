@@ -132,8 +132,8 @@ public:
         bool firstTime = true;
         do
         {
-            try
-            {
+            // try
+            // {
                 unsigned int pSize = _pop.size();
                 offspring.clear(); // new offspring
                 // fitness and diversity assignment (if you want to or if it is the first generation)
@@ -150,19 +150,19 @@ public:
                 replace(_pop, offspring); // after replace, the new pop. is in _pop
                 if (pSize > _pop.size())
                 {
-                    throw std::runtime_error("Population shrinking!");
+                    throw eoPopSizeChangeException(_pop.size(), pSize,"Population shrinking!");
                 }
                 else if (pSize < _pop.size())
                 {
-                    throw std::runtime_error("Population growing!");
+                    throw eoPopSizeChangeException(_pop.size(), pSize,"Population growing!");
                 }
-            }
-            catch (std::exception& e)
-            {
-                std::string s = e.what();
-                s.append( " in moeoEasyEA");
-                throw std::runtime_error( s );
-            }
+            // }
+            // catch (std::exception& e)
+            // {
+            //     std::string s = e.what();
+            //     s.append( " in moeoEasyEA");
+            //     throw std::runtime_error( s );
+            // }
         }
         while (continuator(_pop));
     }

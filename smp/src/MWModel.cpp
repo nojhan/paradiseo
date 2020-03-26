@@ -68,6 +68,6 @@ void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& pop)
 template<template <class> class EOAlgo, class EOT, class Policy>
 void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& pop, const error_tag&) 
 {
-    throw std::runtime_error("This is not a valid algorithm");
+    throw eoException("This is not a valid algorithm");
 }
 

@@ -56,7 +56,7 @@ public:
   {
     // First checks that no other eoCtrlCContinue does exist
     if (existCtrlCContinue)
-      throw std::runtime_error("A signal handler for Ctrl C is already defined!\n");
+      throw eoParamException("A signal handler for Ctrl C is already defined!\n");
 
     #ifndef _WINDOWS
       #ifdef SIGQUIT

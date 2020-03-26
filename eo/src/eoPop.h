@@ -45,6 +45,7 @@ Authors:
 #include "eoPersistent.h"
 #include "eoInit.h"
 #include "utils/rnd_generators.h"  // for shuffle method
+#include "eoExceptions.h"
 
 /** A std::vector of EO object, to be used in all algorithms
  *      (selectors, operators, replacements, ...).
@@ -108,7 +109,7 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
             unsigned oldSize = size();
             if (_newPopSize < oldSize)
             {
-                throw std::runtime_error("New size smaller than old size in pop.append");
+                throw eoPopSizeChangeException(oldSize, _newPopSize);
                 return;
             }
             if (_newPopSize == oldSize)
@@ -222,7 +223,7 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
             typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
 #endif
             if( it == end() )
-                throw std::runtime_error("eoPop<EOT>: Empty population, when calling best_element().");
+                throw eoPopSizeException(this->size());
             return (*it);
         }
 

@@ -103,7 +103,7 @@ public:
         else
         {
             // problem with the number of objectives
-            throw std::runtime_error("Problem with the number of objectives in moeoDominanceDepthFitnessAssignment");
+            throw eoInvalidFitnessError("Problem with the number of objectives in moeoDominanceDepthFitnessAssignment");
         }
         // a higher fitness is better, so the values need to be inverted
         double max = _pop[0].fitness();

@@ -36,6 +36,7 @@
 //-----------------------------------------------------------------------------
 #include <iostream>
 #include <stdexcept>
+#include <eo>
 #include "FlowShopBenchmarkParser.h"
 
 FlowShopBenchmarkParser::FlowShopBenchmarkParser(const std::string _benchmarkFileName)
@@ -96,7 +97,7 @@ void FlowShopBenchmarkParser::init(const std::string _benchmarkFileName)
     std::ifstream inputFile(_benchmarkFileName.data(), std::ios::in);
     // opening of the benchmark file
     if (! inputFile)
-        throw std::runtime_error("*** ERROR : Unable to open the benchmark file");
+        throw eoFileError(_benchmarkFileName);
     // number of jobs (N)
     getline(inputFile, buffer, '\n');
     N = atoi(buffer.data());

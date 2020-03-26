@@ -30,6 +30,7 @@
 #include <stdexcept>       // std::runtime_error
 #include "eoObject.h"      // eoObject
 #include "eoPersistent.h"  // eoPersistent
+#include "eoExceptions.h"
 
 /**
     @defgroup Core Core components
@@ -73,13 +74,14 @@ public:
   /// Return fitness value.
   const Fitness& fitness() const {
     if (invalid())
-      throw std::runtime_error("invalid fitness");
+        throw eoInvalidFitnessError("Cannot retrieve unevaluated fitness");
     return repFitness;
   }
 
   /// Get fitness as reference, useful when fitness is set in a multi-stage way, e.g., MOFitness gets performance information, is subsequently ranked
   Fitness& fitnessReference() {
-    if (invalid()) throw std::runtime_error("invalid fitness");
+    if (invalid())
+        throw eoInvalidFitnessError("Cannot retrieve unevaluated fitness reference");
     return repFitness;
   }
 
@@ -120,7 +122,7 @@ public:
    * The read and print methods should be compatible and have the same format.
    * In principle, format is "plain": they just print a number
    * @param _is a std::istream.
-   * @throw runtime_std::exception If a valid object can't be read.
+   * @throw eoInvalidFitnessError If a valid object can't be read.
    */
   virtual void readFrom(std::istream& _is) {
 

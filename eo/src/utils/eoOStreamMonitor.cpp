@@ -19,8 +19,8 @@
 eoMonitor& eoOStreamMonitor::operator()(void)
 {
     if (!out) {
-        std::string str = "eoOStreamMonitor: Could not write to the output stream";
-      throw std::runtime_error(str);
+        // std::string str = "eoOStreamMonitor: Could not write to the output stream";
+      throw eoFileError("output stream");
     }
 
     if (firsttime) {

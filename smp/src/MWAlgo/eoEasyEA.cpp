@@ -1,3 +1,5 @@
+#include "eoExceptions.h"
+
 template<template <class> class EOAlgo, class EOT, class Policy>
 void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& _pop, const eoEasyEA_tag&) 
 {
@@ -16,8 +18,8 @@ void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& _pop, co
 
       do
         {
-          try
-            {
+          // try
+          //   {
               unsigned pSize = _pop.size();
               this->offspring.clear(); // new offspring
               this->breed(_pop, this->offspring);
@@ -27,17 +29,17 @@ void paradiseo::smp::MWModel<EOAlgo,EOT,Policy>::operator()(eoPop<EOT>& _pop, co
               this->replace(_pop, this->offspring); // after replace, the new pop. is in _pop
 
               if (pSize > _pop.size())
-                throw std::runtime_error("Population shrinking!");
+                throw eoPopSizeChangeException(_pop.size(), pSize, "Population shrinking!");
               else if (pSize < _pop.size())
-                throw std::runtime_error("Population growing!");
+                throw eoPopSizeChangeException(_pop.size(), pSize, "Population growing!");
 
-            }
-          catch (std::exception& e)
-            {
-              std::string s = e.what();
-              s.append( " in eoEasyEA");
-              throw std::runtime_error( s );
-            }
+          //   }
+          // catch (std::exception& e)
+          //   {
+          //     std::string s = e.what();
+          //     s.append( " in eoEasyEA");
+          //     throw std::runtime_error( s );
+          //   }
         }
       while (this->continuator( _pop ) );
 }

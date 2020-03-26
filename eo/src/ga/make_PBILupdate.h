@@ -69,7 +69,7 @@ eoDistribUpdater<EOT> &  do_make_PBILupdate(eoParser & _parser, eoState& _state,
       ptUpdate = new eoPBILAdditive<EOT>(LRBest, nbBest, tolerance, LRWorst, nbWorst);
     }
   else
-    throw std::runtime_error("Only PBIL additive update rule available at the moment");
+    throw eoException("Only PBIL additive update rule available at the moment");
 
   // done: don't forget to store the allocated pointers
   _state.storeFunctor(ptUpdate);

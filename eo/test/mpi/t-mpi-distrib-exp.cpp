@@ -374,7 +374,7 @@ class Experiment : public eoserial::Persistent
         } else if( distribName == "exponential" ) {
             _distribution = & exponentialDistribution;
         } else {
-            throw std::runtime_error("When unpacking experience, no distribution found.");
+            throw eoException("When unpacking experience, no distribution found.");
         }
 
         eoserial::unpackObject( *obj, "distribution", *_distribution );
@@ -503,7 +503,7 @@ int main( int argc, char** argv )
             {
                 if( isChosenDistrib )
                 {
-                    throw std::runtime_error("Only one distribution can be chosen during a launch!");
+                    throw eoException("Only one distribution can be chosen during a launch!");
                 } else
                 {
                     isChosenDistrib = true;
@@ -517,7 +517,7 @@ int main( int argc, char** argv )
 
         if( !isChosenDistrib )
         {
-            throw std::runtime_error("No distribution chosen. One distribution should be chosen.");
+            throw eoException("No distribution chosen. One distribution should be chosen.");
         }
 
         Experiment e( pdistrib, size, packet_size, worker_print_waiting_time, seed, fileName );

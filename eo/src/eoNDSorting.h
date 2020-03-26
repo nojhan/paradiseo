@@ -222,7 +222,7 @@ private :
             // Check whether the derived class was nice
             if (niche_count.size() != fronts[i].size())
             {
-              throw std::logic_error("eoNDSorting: niche and front should have the same size");
+              throw eoException("eoNDSorting: niche and front should have the same size");
             }
 
             double max_niche = *std::max_element(niche_count.begin(), niche_count.end());
@@ -322,7 +322,7 @@ private :
         // Check whether the derived class was nice
         if (niche_count.size() != current_front.size())
         {
-          throw std::logic_error("eoNDSorting: niche and front should have the same size");
+          throw eoException("eoNDSorting: niche and front should have the same size");
         }
 
         double max_niche = *std::max_element(niche_count.begin(), niche_count.end());

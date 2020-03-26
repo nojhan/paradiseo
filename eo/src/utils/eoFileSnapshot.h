@@ -67,7 +67,7 @@ public :
     int res = system(s.c_str());
     // test for (unlikely) errors
     if ( (res==-1) || (res==127) )
-      throw std::runtime_error("Problem executing test of dir in eoFileSnapshot");
+      throw eoSystemError(s, res);
     // now make sure there is a dir without any genXXX file in it
     if (res)                    // no dir present
       {
@@ -122,8 +122,8 @@ public :
 
     if (!os)
       {
-        std::string str = "eoFileSnapshot: Could not open " + currentFileName;
-        throw std::runtime_error(str);
+        // std::string str = "eoFileSnapshot: Could not open " + currentFileName;
+        throw eoFileError(currentFileName);;
       }
 
     return operator()(os);
@@ -151,7 +151,7 @@ public :
             ptParam = static_cast<const eoValueParam<std::vector<double> >* >(vec[1]);
             vv[i] = ptParam->value();
             if (vv[i].size() != v.size())
-              throw std::runtime_error("Dimension error in eoSnapshotMonitor");
+              throw eoException("Dimension error in eoSnapshotMonitor");
           }
         for (unsigned k=0; k<v.size(); k++)
           {
@@ -173,7 +173,7 @@ public :
   {
     if (!dynamic_cast<const eoValueParam<std::vector<double> >*>(&_param))
     {
-      throw std::logic_error(std::string("eoFileSnapshot: I can only monitor std::vectors of doubles, sorry. The offending parameter name = ") + _param.longName());
+      throw eoException(std::string("eoFileSnapshot: I can only monitor std::vectors of doubles, sorry. The offending parameter name = ") + _param.longName());
     }
     eoMonitor::add(_param);
   }

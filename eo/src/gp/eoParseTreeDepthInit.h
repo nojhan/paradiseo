@@ -81,7 +81,7 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     {
       if(initializor.empty())
       {
-        throw std::logic_error("eoParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
+        throw eoException("eoParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
       }
       // lets sort the initializor std::vector according to  arity (so we can be sure the terminals are in front)
       // we use stable_sort so that if element i was in front of element j and they have the same arity i remains in front of j

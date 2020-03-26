@@ -134,7 +134,7 @@ template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
     unsigned int ibest = 0;
     const EOT * best = eoPters[0];
     if (_pop.size() == 1)
-      throw std::runtime_error("Trying eoEliteSequentialSelect with only one individual!");
+      throw eoException("Trying eoEliteSequentialSelect with only one individual!");
     for (unsigned i=1; i<_pop.size(); i++)
       if (*eoPters[i]>*best)
         {

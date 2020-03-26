@@ -119,7 +119,7 @@ public:
       {
         unsigned int combloc = -count;
         if (_size<combloc)
-          throw std::runtime_error("Negative result in eoHowMany");
+          throw eoException("Negative result in eoHowMany");
         return _size-combloc;
       }
     return unsigned(count);
@@ -167,7 +167,7 @@ public:
 
     // minimal check
     if ( rate < 0.0 )
-      throw std::runtime_error("Negative rate read in eoHowMany::readFrom");
+      throw eoException("Negative rate read in eoHowMany::readFrom");
   }
 
   /** The unary - operator: reverses the computation */
@@ -188,7 +188,7 @@ public:
           {
             rate = 1.0+_rate;
             if (rate < 0)           // was < -1
-              throw std::logic_error("rate < -1 in eoHowMany!");
+              throw eoException("rate < -1 in eoHowMany!");
           }
       }
     else

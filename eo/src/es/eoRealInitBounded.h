@@ -47,7 +47,7 @@ class eoRealInitBounded : public eoInit<EOT>
   eoRealInitBounded(eoRealVectorBounds & _bounds):bounds(_bounds)
   {
         if (!bounds.isBounded())
-      throw std::runtime_error("Needs bounded bounds to initialize a std::vector<double>");
+      throw eoException("Needs bounded bounds to initialize a std::vector<double>");
   }
 
   /** simply passes the argument to the uniform method of the bounds */
