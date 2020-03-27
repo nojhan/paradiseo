@@ -42,7 +42,8 @@
 
  @ingroup Selectors
  */
-template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
+template <class EOT>
+class eoDetTournamentSelect: public eoSelectOne<EOT>
 {
  public:
   /* (Default) Constructor -
@@ -66,6 +67,8 @@ template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
 
  private:
   unsigned tSize;
+ public:
+  virtual std::string className() const {return "eoDetTournamentSelect";}
 };
 
 //-----------------------------------------------------------------------------

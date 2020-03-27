@@ -71,6 +71,8 @@ set (TEST_LIST
   t-eoParser
   t-eoPartiallyMappedXover
   t-eoEvalCmd
+  t-operator-forge
+  t-forge-algo
   )
 
 

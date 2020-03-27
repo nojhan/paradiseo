@@ -59,6 +59,8 @@ public :
     struct unary_function_tag {};
     /// tag to identify a binary function in compile time function selection @see functor_category
     struct binary_function_tag {};
+
+    virtual std::string className() const { return "unknown";}
 };
 /** @example t-eoFunctor.cpp
  */

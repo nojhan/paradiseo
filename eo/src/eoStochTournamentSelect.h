@@ -36,7 +36,8 @@
 
  @ingroup Selectors
  */
-template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
+template <class EOT>
+class eoStochTournamentSelect: public eoSelectOne<EOT>
 {
  public:
 
@@ -62,6 +63,8 @@ template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
 
 private:
   double Trate;
+public:
+  virtual std::string className() const {return "eoStochTournamentSelect";}
 };
 
 #endif

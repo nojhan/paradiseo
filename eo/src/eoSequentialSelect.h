@@ -84,6 +84,8 @@ private:
   bool ordered;
   unsigned current;
   std::vector<const EOT*> eoPters;
+public:
+  virtual std::string className() const {return "eoSequentialSelect";}
 };
 
 

@@ -6,6 +6,7 @@
 
 # ignore object and archive files
 *.[oa]
+tags
 
 # ignore auto-saved files
 *~

@@ -89,6 +89,8 @@ class eoGenerationalReplacement : public eoReplacement<EOT>
   {
     _parents.swap(_offspring);
   }
+public:
+  virtual std::string className() const {return "eoGenerationalReplacement ";}
 };
 
 /**
@@ -123,6 +125,8 @@ public :
   }
 private:
   eoReplacement<EOT> & replace;
+public:
+    virtual std::string className() const {return "eoWeakElitistReplacement ";}
 };
 
 #endif

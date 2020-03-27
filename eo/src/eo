@@ -158,6 +158,8 @@
 #include "other/external_eo"
 #include "eoCounter.h"
 
+#include "eoForge.h"
+
 
 //-----------------------------------------------------------------------------
 // to be continued ...

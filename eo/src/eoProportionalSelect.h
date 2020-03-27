@@ -42,7 +42,8 @@
 
     @ingroup Selectors
 */
-template <class EOT> class eoProportionalSelect: public eoSelectOne<EOT>
+template <class EOT>
+class eoProportionalSelect: public eoSelectOne<EOT>
 {
 public:
   /// Sanity check
@@ -80,6 +81,8 @@ private :
 
   typedef std::vector<typename EOT::Fitness> FitVec;
   FitVec cumulative;
+public:
+  virtual std::string className() const {return "eoProportionalSelect";}
 };
 /** @example t-eoRoulette.cpp
  */

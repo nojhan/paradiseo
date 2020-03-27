@@ -86,6 +86,8 @@ class eoSSGAWorseReplacement : public eoReduceMerge<EOT>
     private :
         eoLinearTruncate<EOT> truncate;
         eoPlus<EOT> plus;
+    public:
+        virtual std::string className() const {return "eoSSGAWorseReplacement";}
 };
 
 /**
@@ -101,6 +103,8 @@ class eoSSGADetTournamentReplacement : public eoReduceMerge<EOT>
     private :
         eoDetTournamentTruncate<EOT> truncate;
         eoPlus<EOT> plus;
+    public:
+        virtual std::string className() const {return "eoSSGADetTournamentReplacement";}
 };
 
 /** SSGA stochastic tournament replacement. Is an eoReduceMerge.
@@ -118,6 +122,8 @@ class eoSSGAStochTournamentReplacement : public eoReduceMerge<EOT>
     private :
         eoStochTournamentTruncate<EOT> truncate;
         eoPlus<EOT> plus;
+    public:
+        virtual std::string className() const {return "eoSSGAStochTournamentReplacement";}
 };
 
 /** @} */

@@ -80,6 +80,8 @@ class eoPlusReplacement : public eoMergeReduce<EOT>
     private :
         eoPlus<EOT> plus;
         eoTruncate<EOT> truncate;
+    public:
+        virtual std::string className() const {return "eoPlusReplacement";}
 };
 
 /**
@@ -103,6 +105,8 @@ class eoCommaReplacement : public eoMergeReduce<EOT>
     private :
         eoNoElitism<EOT> no_elite;
         eoTruncate<EOT> truncate;
+    public:
+        virtual std::string className() const {return "eoCommaReplacement";}
 };
 
 /**
