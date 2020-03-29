@@ -45,7 +45,7 @@ bool     existCtrlCContinue = false;
 //
 // The signal handler - installed in the eoCtrlCContinue Ctor
 //
-void signal_handler( int sig )
+void signal_handler( int /*sig*/ )
 // ---------------------------
 {
     // --- On veut la paix, jusqu'a la fin ---
