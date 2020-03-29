@@ -47,8 +47,8 @@ set(CPACK_COMPONENT_DOC_INSTALL_TYPES Full)
 # For more details: http://www.cmake.org/Wiki/CMake:Component_Install_With_CPack
 
 #cpack package information
-set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README")
-set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README")
+set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 set(CPACK_PACKAGE_DESCRIPTION "ParadisEO is a white-box object-oriented framework dedicated to the flexible design of metaheuristics. This template-based, ANSI-C++ compliant computation library is portable across both Windows system and sequential platforms (Unix, Linux, Mac OS X, etc.). ParadisEO is distributed under the CeCill license and can be used under several environments.")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A Software Framework for Metaheuristics")
