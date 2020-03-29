@@ -73,6 +73,7 @@ set (TEST_LIST
   t-eoEvalCmd
   t-operator-forge
   t-forge-algo
+  t-algo-forged
   )
 
 

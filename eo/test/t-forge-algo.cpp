@@ -19,6 +19,8 @@ int main(int /*argc*/, char** /*argv*/)
     eoBooleanGenerator gen(0.5);
     eoInitFixedLength<EOT> init(dim, gen);
 
+    eoGenContinue<EOT> common_cont(100);
+
     eoForgeVector< eoContinue<EOT> > continuators;
     continuators.add< eoSteadyFitContinue<EOT> >(10,10);
     continuators.add< eoGenContinue<EOT> >(100);
@@ -46,7 +48,7 @@ int main(int /*argc*/, char** /*argv*/)
     replacors.add< eoSSGAStochTournamentReplacement<EOT> >(0.51);
 
     std::clog << continuators.size() * crossovers.size() * mutations.size() * selectors.size() * replacors.size()
-              << " algorithm instances to test." << std::endl;
+              << " possible algorithms instances." << std::endl;
 
     EOT best_sol;
     std::string best_algo = "";
@@ -82,7 +84,10 @@ int main(int /*argc*/, char** /*argv*/)
 
                         eoGeneralBreeder<EOT> breeder(selector, variator, 1.0);
 
-                        eoEasyEA<EOT> algo(continuator, eval, breeder, replacor);
+                        eoCombinedContinue<EOT> gen_cont(common_cont);
+                        gen_cont.add(continuator);
+
+                        eoEasyEA<EOT> algo(gen_cont, eval, breeder, replacor);
 
                         eoPop<EOT> pop;
                         pop.append(pop_size, init);

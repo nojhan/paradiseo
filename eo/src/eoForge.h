@@ -70,15 +70,22 @@ class eoForgeOperator : public eoForgeInterface<Itf>
 {
     public:
         eoForgeOperator(Args&&... args) :
-            _args(std::forward<Args>(args)...)
+            _args(std::forward<Args>(args)...),
+            _instanciated(nullptr)
         { }
 
         Itf& instanciate()
         {
-            return *(constructor(_args));
+            if(not _instanciated) {
+                _instanciated = constructor(_args);
+            }
+            return *_instanciated;
         }
 
-        virtual ~eoForgeOperator() {}
+        virtual ~eoForgeOperator()
+        {
+            delete _instanciated;
+        }
 
     protected:
         std::tuple<Args...> _args;
@@ -97,6 +104,7 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         Op* constructor(std::tuple<Ts...>& args, index<Idx...>)
         {
             Op* p_op = new Op(std::get<Idx>(args)...);
+            _instanciated = p_op;
             return p_op;
         }
 
@@ -106,50 +114,33 @@ class eoForgeOperator : public eoForgeInterface<Itf>
             return constructor(args, gen_seq<sizeof...(Ts)>{});
         }
 
+    protected:
+        Itf* _instanciated;
 };
 
-/** A map holding an operator with deferred instanciation at a given key.
- *
- * @note You can actually store several instances of the same class,
- * with different parametrization (or not).
- *
- * @code
-    eoForgeMap<eoSelect<EOT>> named_factories;
-
-    // Capture constructor's parameters and defer instanciation.
-    named_factories.add<eoRankMuSelect<EOT>>("RMS", 1);
-    named_factories.setup<eoRankMuSelect<EOT>>("RMS", 5); // Edit
-
-    // Actually instanciate.
-    eoSelect<EOT>& op  = named_factories.instanciate("RMS");
-
-    // Call.
-    op();
- * @endcode
- *
- * @ingroup Forge
- */
-template<class Itf>
-class eoForgeMap : public std::map<std::string, std::shared_ptr<eoForgeInterface<Itf>> >
+template<class Itf, class Op>
+class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
 {
     public:
-        template<class Op, typename... Args>
-        void setup(std::string key, Args&&... args)
+        eoForgeOperator() :
+            _instanciated(nullptr)
+        { }
+
+        Itf& instanciate()
         {
-            auto opf = std::make_shared< eoForgeOperator<Itf,Op,Args...> >(std::forward<Args>(args)...);
-            (*this)[key] = opf;
+            if(not _instanciated) {
+                _instanciated = new Op;
+            }
+            return *_instanciated;
         }
 
-        template<class Op, typename... Args>
-        void add(std::string key, Args&&... args)
+        virtual ~eoForgeOperator()
         {
-            setup<Op>(key, std::forward<Args>(args)...);
+            delete _instanciated;
         }
 
-        Itf& instanciate(std::string key)
-        {
-            return this->at(key)->instanciate();
-        }
+    protected:
+        Itf* _instanciated;
 };
 
 /** A vector holding an operator with deferred instanciation at a given index.
@@ -174,27 +165,44 @@ class eoForgeMap : public std::map<std::string, std::shared_ptr<eoForgeInterface
  * @ingroup Forge
  */
 template<class Itf>
-class eoForgeVector : public std::vector<std::shared_ptr<eoForgeInterface<Itf>> >
+class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 {
     public:
         template<class Op, typename... Args>
         void add(Args&&... args)
         {
-            auto opf = std::make_shared< eoForgeOperator<Itf,Op,Args...> >(std::forward<Args>(args)...);
-            this->push_back(opf);
+            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
+            this->push_back(pfo);
+        }
+
+        template<class Op>
+        void add()
+        {
+            eoForgeInterface<Itf>* pfo = new eoForgeOperator<Itf,Op>;
+            this->push_back(pfo);
         }
 
         template<class Op, typename... Args>
         void setup(size_t index, Args&&... args)
         {
-            auto opf = std::make_shared< eoForgeOperator<Itf,Op,Args...> >(std::forward<Args>(args)...);
-            this->at(index) = opf;
+            assert(this->at(index) != nullptr);
+            delete this->at(index);
+            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
+            this->at(index) = pfo;
         }
 
         Itf& instanciate(size_t index)
         {
             return this->at(index)->instanciate();
         }
+
+        virtual ~eoForgeVector()
+        {
+            for(auto p : *this) {
+                delete p;
+            }
+        }
+
 };
 
 #endif // _eoForge_H_

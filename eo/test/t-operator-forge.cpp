@@ -24,27 +24,6 @@ struct OpB : public OpInterface
 
 int main(int /*argc*/, char** /*argv*/)
 {
-    // Forge container using names.
-    eoForgeMap<OpInterface> named_factories;
-
-    // Capture constructor's parameters and defer instanciation.
-    named_factories.add<OpA>("OpA", "I'm A");
-    named_factories.setup<OpA>("OpA", "I'm actually A"); // Edit
-    named_factories.add<OpB>("OpB1", "I'm B", " prime");
-    named_factories.add<OpB>("OpB2", "I'm a B", " junior");
-
-    // Actually instanciante.
-    OpInterface& opa  = named_factories.instanciate("OpA");
-    OpInterface& opb1 = named_factories.instanciate("OpB1");
-
-    // Call.
-    opa();
-    opb1();
-
-    // Instanciate and call.
-    named_factories.instanciate("OpB2")();
-
-
     // Forge container using indices.
     eoForgeVector<OpInterface> indexed_factories;
 
