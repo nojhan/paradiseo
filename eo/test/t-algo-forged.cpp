@@ -5,119 +5,6 @@
 #include <ga.h>
 #include "../../problems/eval/oneMaxEval.h"
 
-template<class EOT>
-class eoFoundryEA : public eoAlgo<EOT>
-{
-    public:
-        static const size_t dim = 5;
-
-    protected:
-        std::array<size_t, dim> _encoding;
-
-        struct Indices
-        {
-            static const size_t continuators = 0;
-            static const size_t crossovers = 1;
-            static const size_t mutations = 2;
-            static const size_t selectors = 3;
-            static const size_t replacements = 4;
-        };
-
-    public:
-        const Indices index_of;
-
-        eoFoundryEA( eoEvalFunc<EOT>& eval ) :
-            index_of(),
-            _eval(eval)
-        {
-            _encoding = { 0 }; // dim * 0
-        }
-
-        size_t& at(size_t i)
-        {
-            return _encoding.at(i);
-        }
-
-        void operator=( std::array<size_t,dim> a)
-        {
-            _encoding = a;
-        }
-
-        eoForgeVector< eoContinue<EOT>    > continuators;
-        eoForgeVector< eoQuadOp<EOT>      > crossovers;
-        eoForgeVector< eoMonOp<EOT>       > mutations;
-        eoForgeVector< eoSelectOne<EOT>   > selectors;
-        eoForgeVector< eoReplacement<EOT> > replacements;
-
-        void operator()(eoPop<EOT>& pop)
-        {
-            assert(continuators.size() > 0); assert(_encoding.at(index_of.continuators) < continuators.size());
-            assert(  crossovers.size() > 0); assert(_encoding.at(index_of.crossovers)   <   crossovers.size());
-            assert(   mutations.size() > 0); assert(_encoding.at(index_of.mutations)    <    mutations.size());
-            assert(   selectors.size() > 0); assert(_encoding.at(index_of.selectors)    <    selectors.size());
-            assert(replacements.size() > 0); assert(_encoding.at(index_of.replacements) < replacements.size());
-
-            eoSequentialOp<EOT> variator;
-            variator.add(this->crossover(), 1.0);
-            variator.add(this->mutation(), 1.0);
-
-            eoGeneralBreeder<EOT> breeder(this->selector(), variator, 1.0);
-
-            eoGenContinue<EOT> common_cont(100);
-            eoCombinedContinue<EOT> gen_cont(common_cont);
-            gen_cont.add(this->continuator());
-
-            eoEasyEA<EOT> algo = eoEasyEA<EOT>(gen_cont, _eval, breeder, this->replacement());
-
-            algo(pop);
-        }
-
-        std::string name()
-        {
-            std::ostringstream name;
-            name << _encoding.at(index_of.continuators) << " (" << this->continuator().className() << ") + ";
-            name << _encoding.at(index_of.crossovers)   << " (" << this->crossover().className()   << ") + ";
-            name << _encoding.at(index_of.mutations)    << " (" << this->mutation().className()    << ") + ";
-            name << _encoding.at(index_of.selectors)    << " (" << this->selector().className()    << ") + ";
-            name << _encoding.at(index_of.replacements) << " (" << this->replacement().className() << ")";
-            return name.str();
-        }
-
-    protected:
-        eoEvalFunc<EOT>& _eval;
-
-        eoContinue<EOT>& continuator()
-        {
-            assert(_encoding.at(index_of.continuators) < continuators.size());
-            return continuators.instanciate(_encoding.at(index_of.continuators));
-        }
-
-        eoQuadOp<EOT>& crossover()
-        {
-            assert(_encoding.at(index_of.crossovers) < crossovers.size());
-            return crossovers.instanciate(_encoding.at(index_of.crossovers));
-        }
-
-        eoMonOp<EOT>& mutation()
-        {
-            assert(_encoding.at(index_of.mutations) < mutations.size());
-            return mutations.instanciate(_encoding.at(index_of.mutations));
-        }
-
-        eoSelectOne<EOT>& selector()
-        {
-            assert(_encoding.at(index_of.selectors) < selectors.size());
-            return selectors.instanciate(_encoding.at(index_of.selectors));
-        }
-
-        eoReplacement<EOT>& replacement()
-        {
-            assert(_encoding.at(index_of.replacements) < replacements.size());
-            return replacements.instanciate(_encoding.at(index_of.replacements));
-        }
-
-};
-
 
 int main(int /*argc*/, char** /*argv*/)
 {
@@ -128,12 +15,13 @@ int main(int /*argc*/, char** /*argv*/)
 
     using EOT = eoBit<double>;
 
-    oneMaxEval<EOT> eval;
+    oneMaxEval<EOT> evalfunc;
+    eoPopLoopEval<EOT> eval(evalfunc);
 
     eoBooleanGenerator gen(0.5);
     eoInitFixedLength<EOT> init(dim, gen);
 
-    eoFoundryEA<EOT> foundry(eval);
+    eoAlgoFoundryEA<EOT> foundry(eval);
 
     /***** Continuators ****/
     for(size_t i=10; i < 30; i+=10 ) {
@@ -143,7 +31,6 @@ int main(int /*argc*/, char** /*argv*/)
     /***** Crossovers ****/
     foundry.crossovers.add< eo1PtBitXover<EOT> >();
     foundry.crossovers.add< eoUBitXover<EOT> >(0.5); // preference over 1
-
     for(size_t i=1; i < 11; i+=4) {
         foundry.crossovers.add< eoNPtsBitXover<EOT> >(i); // nb of points
     }
@@ -154,6 +41,7 @@ int main(int /*argc*/, char** /*argv*/)
         foundry.mutations.add< eoDetBitFlip<EOT> >(i); // mutate k bits
     }
 
+    /***** Selectors *****/
     foundry.selectors.add< eoStochTournamentSelect<EOT> >(0.5);
     foundry.selectors.add< eoSequentialSelect<EOT> >();
     foundry.selectors.add< eoProportionalSelect<EOT> >();
@@ -165,10 +53,10 @@ int main(int /*argc*/, char** /*argv*/)
     foundry.replacements.add< eoCommaReplacement<EOT> >();
     foundry.replacements.add< eoPlusReplacement<EOT> >();
     foundry.replacements.add< eoSSGAWorseReplacement<EOT> >();
+    foundry.replacements.add< eoSSGAStochTournamentReplacement<EOT> >(0.51);
     for(size_t i=2; i < 10; i+=4) {
         foundry.replacements.add< eoSSGADetTournamentReplacement<EOT> >(i);
     }
-    foundry.replacements.add< eoSSGAStochTournamentReplacement<EOT> >(0.51);
 
 
     size_t n = foundry.continuators.size() * foundry.crossovers.size() * foundry.mutations.size() * foundry.selectors.size() * foundry.replacements.size();
@@ -187,7 +75,7 @@ int main(int /*argc*/, char** /*argv*/)
 
                         eoPop<EOT> pop;
                         pop.append(pop_size, init);
-                        apply(eval,pop);
+                        eval(pop,pop);
 
                         foundry.at(foundry.index_of.continuators) = i_cont;
                         foundry.at(foundry.index_of.crossovers) = i_cross;

@@ -159,6 +159,7 @@
 #include "eoCounter.h"
 
 #include "eoForge.h"
+#include "eoAlgoFoundryEA.h"
 
 
 //-----------------------------------------------------------------------------

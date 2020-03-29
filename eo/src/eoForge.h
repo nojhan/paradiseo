@@ -23,11 +23,12 @@
 #ifndef _eoForge_H_
 #define _eoForge_H_
 
-#include <memory>
-#include <map>
-#include <any>
 #include <string>
 #include <tuple>
+
+/**
+ * @defgroup Foundry Tools for automatic algorithms assembling, selection and search.
+ */
 
 /** Interface for a "Forge": a class that can defer instanciation of EO's operator.
  *
@@ -35,8 +36,7 @@
  * in order to be able to make containers of factories (@see eoForgeOperator).
  *
  * @ingroup Core
- * @defgroup Forge Wrap and defer operators' instanciations.
- * @ingroup Forge
+ * @ingroup Foundry
  */
 template<class Itf>
 class eoForgeInterface
@@ -63,7 +63,7 @@ class eoForgeInterface
    eoSelect<EOT>& select = forge.instanciate();
  * @endcode
  *
- * @ingroup Forge
+ * @ingroup Foundry
  */
 template<class Itf, class Op, typename... Args>
 class eoForgeOperator : public eoForgeInterface<Itf>
@@ -162,7 +162,7 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
     op();
  * @endcode
  *
- * @ingroup Forge
+ * @ingroup Foundry
  */
 template<class Itf>
 class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
