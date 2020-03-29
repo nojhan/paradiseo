@@ -198,7 +198,7 @@ EOT& roulette_wheel(eoPop<EOT>& _pop, double total, eoRng& _gen = rng)
 template <class It>
 It deterministic_tournament(It _begin, It _end, unsigned _t_size, eoRng& _gen = rng)
 {
-    It best = _begin + _gen.random(_end - _begin);
+    It best = _begin + _gen.random(std::distance(_begin,_end));
 
     for (unsigned i = 0; i < _t_size - 1; ++i)
     {
