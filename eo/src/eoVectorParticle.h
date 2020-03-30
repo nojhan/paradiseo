@@ -39,9 +39,8 @@
  * tree templates arguments are required: the fitness type (which is also the type of the
  * particle's best fitness), the position type and the velocity type.
  */
-template < class FitT, class PositionType, class VelocityType > class eoVectorParticle:public PO < FitT >,
-            public std::vector <
-            PositionType >
+template < class FitT, class PositionType, class VelocityType >
+class eoVectorParticle : public PO < FitT >, public std::vector < PositionType >
 {
 
 public:

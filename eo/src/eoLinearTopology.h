@@ -40,8 +40,8 @@
  *
  *  @ingroup Selectors
  */
-template < class POT > class eoLinearTopology:public eoTopology <
-            POT >
+template<class POT>
+class eoLinearTopology : public eoTopology<POT>
 {
 
 public:

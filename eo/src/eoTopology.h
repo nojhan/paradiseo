@@ -39,7 +39,8 @@
  * @ingroup Selectors
  * @ingroup Core
  */
-template < class POT > class eoTopology:public eoPop < POT >
+template<class POT>
+class eoTopology : public eoPop<POT>
 {
 public:
 
