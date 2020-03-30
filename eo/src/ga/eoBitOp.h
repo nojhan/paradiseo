@@ -75,7 +75,7 @@ template<class Chrom> class eoDetBitFlip: public eoMonOp<Chrom>
    * @param _num_bit The number of bits to change
    * default is one - equivalent to eoOneBitFlip then
    */
-  eoDetBitFlip(const unsigned& _num_bit = 1): num_bit(_num_bit) {}
+  eoDetBitFlip(const unsigned/*&*/ _num_bit = 1): num_bit(_num_bit) {}
 
   /// The class name.
   virtual std::string className() const { return "eoDetBitFlip"; }

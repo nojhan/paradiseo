@@ -160,7 +160,7 @@
 
 #include "eoForge.h"
 #include "eoAlgoFoundryEA.h"
-
+#include "eoEvalFoundryEA.h"
 
 //-----------------------------------------------------------------------------
 // to be continued ...

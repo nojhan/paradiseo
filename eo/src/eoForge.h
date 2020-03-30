@@ -25,6 +25,31 @@
 
 #include <string>
 #include <tuple>
+template<typename Type, unsigned N, unsigned Last>
+struct tuple_printer {
+
+    static void print(std::ostream& out, const Type& value) {
+        out << std::get<N>(value) << ", ";
+        tuple_printer<Type, N + 1, Last>::print(out, value);
+    }
+};
+
+template<typename Type, unsigned N>
+struct tuple_printer<Type, N, N> {
+
+    static void print(std::ostream& out, const Type& value) {
+        out << std::get<N>(value);
+    }
+
+};
+
+template<typename... Types>
+std::ostream& operator<<(std::ostream& out, const std::tuple<Types...>& value) {
+    out << "(";
+    tuple_printer<std::tuple<Types...>, 0, sizeof...(Types) - 1>::print(out, value);
+    out << ")";
+    return out;
+}
 
 /**
  * @defgroup Foundry Tools for automatic algorithms assembling, selection and search.
@@ -56,9 +81,8 @@ class eoForgeInterface
  *
  * @code
    eoForgeOperator<eoselect<EOT>,eoRankMuSelect<EOT>> forge(mu);
-   //                ^ desired     ^ to-be-instanciated         ^ operator's
-   //                  interface     operator                     parameters
-
+   //                ^ desired     ^ to-be-instanciated     ^ operator's
+   //                  interface     operator                 parameters
    // Actual instanciation:
    eoSelect<EOT>& select = forge.instanciate();
  * @endcode
@@ -69,8 +93,8 @@ template<class Itf, class Op, typename... Args>
 class eoForgeOperator : public eoForgeInterface<Itf>
 {
     public:
-        eoForgeOperator(Args&&... args) :
-            _args(std::forward<Args>(args)...),
+        eoForgeOperator(Args... args) :
+            _args(args...),
             _instanciated(nullptr)
         { }
 
@@ -118,8 +142,9 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         Itf* _instanciated;
 };
 
+//! Partial specialization for constructors without any argument.
 template<class Itf, class Op>
-class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
+class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
 {
     public:
         eoForgeOperator() :
@@ -149,14 +174,14 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
  * with different parametrization (or not).
  *
  * @code
-    eoForgeVector<eoSelect<EOT>> named_factories;
+    eoForgeVector<eoSelect<EOT>> factories;
 
     // Capture constructor's parameters and defer instanciation.
-    named_factories.add<eoRankMuSelect<EOT>>(1);
-    named_factories.setup<eoRankMuSelect<EOT>>(0, 5); // Edit
+    factories.add<eoRankMuSelect<EOT>>(1);
+    factories.setup<eoRankMuSelect<EOT>>(0, 5); // Edit
 
     // Actually instanciate.
-    eoSelect<EOT>& op  = named_factories.instanciate("RMS");
+    eoSelect<EOT>& op  = factories.instanciate(0);
 
     // Call.
     op();
@@ -169,9 +194,9 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 {
     public:
         template<class Op, typename... Args>
-        void add(Args&&... args)
+        void add(Args... args)
         {
-            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
+            auto pfo = new eoForgeOperator<Itf,Op,Args...>(args...);
             this->push_back(pfo);
         }
 
@@ -183,11 +208,11 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
         }
 
         template<class Op, typename... Args>
-        void setup(size_t index, Args&&... args)
+        void setup(size_t index, Args... args)
         {
             assert(this->at(index) != nullptr);
             delete this->at(index);
-            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
+            auto pfo = new eoForgeOperator<Itf,Op,Args...>(args...);
             this->at(index) = pfo;
         }
 

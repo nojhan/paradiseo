@@ -74,6 +74,7 @@ set (TEST_LIST
   t-operator-forge
   t-forge-algo
   t-algo-forged
+  t-algo-forged-search
   )
 
 

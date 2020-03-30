@@ -21,7 +21,7 @@ int main(int /*argc*/, char** /*argv*/)
     eoBooleanGenerator gen(0.5);
     eoInitFixedLength<EOT> init(dim, gen);
 
-    eoAlgoFoundryEA<EOT> foundry(eval);
+    eoAlgoFoundryEA<EOT> foundry(eval, 10);
 
     /***** Continuators ****/
     for(size_t i=10; i < 30; i+=10 ) {
