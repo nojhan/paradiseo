@@ -23,12 +23,12 @@ class eoEvalIOH : public eoEvalFunc<EOT>
         using ScalarType = typename Fitness::ScalarType;
 
         eoEvalIOH( IOHprofiler_problem<ScalarType> & pb) :
-                _ioh_pb(pb),
+                _ioh_pb(&pb),
                 _has_log(false)
         { }
 
         eoEvalIOH( IOHprofiler_problem<ScalarType> & pb, IOHprofiler_csv_logger & log ) :
-                _ioh_pb(pb),
+                _ioh_pb(&pb),
                 _has_log(true),
                 _ioh_log(log)
        { }
@@ -42,16 +42,29 @@ class eoEvalIOH : public eoEvalFunc<EOT>
             sol.fitness( call( sol ) );
         }
 
+        /** Update the problem pointer for a new one.
+         *
+         * This is useful if you assembled a ParadisEO algorithm
+         * and call it several time in an IOHexperimenter's suite loop.
+         * Instead of re-assembling your algorithm,
+         * just update the problem pointer.
+         */
+        void problem( IOHprofiler_problem<ScalarType> & pb )
+        {
+            assert(_ioh_pb != nullptr );
+            _ioh_pb = &pb;
+        }
+
     protected:
-        IOHprofiler_problem<ScalarType> & _ioh_pb;
+        IOHprofiler_problem<ScalarType> * _ioh_pb;
         bool _has_log;
         IOHprofiler_csv_logger & _ioh_log;
 
         virtual Fitness call(EOT& sol)
         {
-            Fitness f = _ioh_pb.evaluate(sol);
+            Fitness f = _ioh_pb->evaluate(sol);
             if(_has_log) {
-                _ioh_log.write_line(_ioh_pb.loggerInfo());
+                _ioh_log.write_line(_ioh_pb->loggerInfo());
             }
             return f;
         }
