@@ -89,7 +89,7 @@ public:
         size_t sele = static_cast<size_t>(std::ceil( sol[i_sele] * _foundry.selectors   .size() ));
         size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements.size() ));
 
-        return {cont, cros, muta, repl};
+        return {cont, cros, muta, sele, repl};
     }
 
     /** Perform a sub-problem search with the configuration encoded in the given solution
