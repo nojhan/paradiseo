@@ -69,7 +69,7 @@ public:
     /*!
       Takes all operators.
 
-      \param distrib A distribution to use, if you want to update this parameter (e.gMA-ES) instead of replacing it (e.g. an EDA)
+      \param distrib A distribution to use, if you want to update this parameter (e.g. CMA-ES) instead of replacing it (e.g. an EDA)
       \param evaluator Evaluate a population
       \param selector Selection of the best candidate solutions in the population
       \param estimator Estimation of the distribution parameters
