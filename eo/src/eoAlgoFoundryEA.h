@@ -76,10 +76,10 @@
  * @ingroup Algorithms
  */
 template<class EOT>
-class eoAlgoFoundryEA : public eoAlgo<EOT>
+class eoAlgoFoundryEA : public eoAlgoFoundry<EOT,5>
 {
     public:
-        static const size_t dim = 5;
+        using eoAlgoFoundry<EOT,5>::dim;
 
         struct Indices
         {
@@ -102,20 +102,6 @@ class eoAlgoFoundryEA : public eoAlgo<EOT>
             _max_gen(max_gen)
         {
             _encoding = { 0 }; // dim * 0
-        }
-
-        /** Access to the index of the currently selected operator.
-         */
-        size_t& at(size_t i)
-        {
-            return _encoding.at(i);
-        }
-
-        /** Select indices of all the operators.
-         */
-        void operator=( std::array<size_t,dim> a)
-        {
-            _encoding = a;
         }
 
         /* Operators containers @{ */
