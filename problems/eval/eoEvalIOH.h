@@ -3,7 +3,7 @@
 #define _eoEvalIOH_h
 
 #include <IOHprofiler_problem.hpp>
-#include <IOHprofiler_csv_logger.h>
+#include <IOHprofiler_observer.hpp>
 
 /** Wrap an IOHexperimenter's problem class within an eoEvalFunc.
  *
@@ -11,27 +11,31 @@
  *
  * Handle only fitnesses that inherits from eoScalarFitness.
  *
- * @note: You're responsible of matching the fitness' scalar type (IOH handle double and int, as of 2020-03-09).
+ * @note: You're responsible of matching the fitness' encoding scalar type (IOH handle double and int, as of 2020-03-09).
+ * @note: You're responsible of calling `activate_logger` (if necessary), but it will call `target_problem` for you.
  *
  * You will need to pass the IOH include directory to your compiler (e.g. IOHexperimenter/build/Cpp/src/).
  */
 template<class EOT>
-class eoEvalIOH : public eoEvalFunc<EOT>
+class eoEvalIOHproblem : public eoEvalFunc<EOT>
 {
     public:
         using Fitness = typename EOT::Fitness;
         using ScalarType = typename Fitness::ScalarType;
 
-        eoEvalIOH( IOHprofiler_problem<ScalarType> & pb) :
+        eoEvalIOHproblem(IOHprofiler_problem<ScalarType> & pb) :
                 _ioh_pb(&pb),
-                _has_log(false)
+                _has_log(false),
+                _ioh_log(nullptr)
         { }
 
-        eoEvalIOH( IOHprofiler_problem<ScalarType> & pb, IOHprofiler_csv_logger & log ) :
+        eoEvalIOHproblem(IOHprofiler_problem<ScalarType> & pb, IOHprofiler_observer<ScalarType> & log ) :
                 _ioh_pb(&pb),
                 _has_log(true),
-                _ioh_log(log)
-       { }
+                _ioh_log(&log)
+       {
+           _ioh_log->target_problem(*_ioh_pb);
+       }
 
         virtual void operator()(EOT& sol)
         {
@@ -49,26 +53,31 @@ class eoEvalIOH : public eoEvalFunc<EOT>
          * Instead of re-assembling your algorithm,
          * just update the problem pointer.
          */
-        void problem( IOHprofiler_problem<ScalarType> & pb )
+        void problem(IOHprofiler_problem<ScalarType> & pb )
         {
-            assert(_ioh_pb != nullptr );
             _ioh_pb = &pb;
+            _ioh_log->target_problem(pb);
         }
+
+        bool has_logger() const {return _has_log;}
+
+        IOHprofiler_observer<ScalarType> & observer() {return *_ioh_log;}
 
     protected:
         IOHprofiler_problem<ScalarType> * _ioh_pb;
+
         bool _has_log;
-        IOHprofiler_csv_logger & _ioh_log;
+        IOHprofiler_observer<ScalarType> * _ioh_log;
 
         virtual Fitness call(EOT& sol)
         {
             Fitness f = _ioh_pb->evaluate(sol);
             if(_has_log) {
-                _ioh_log.write_line(_ioh_pb->loggerInfo());
+                _ioh_log->write_line(_ioh_pb->loggerInfo());
             }
             return f;
         }
-
 };
 
 #endif // _eoEvalIOH_h
+
