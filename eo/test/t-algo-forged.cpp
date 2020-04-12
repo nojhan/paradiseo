@@ -84,7 +84,7 @@ int main(int /*argc*/, char** /*argv*/)
                         foundry.at(foundry.index_of.replacements) = i_rep;
 
                         // Or, if you know the order.
-                        foundry = {i_cont, i_cross, i_mut, i_sel, i_rep};
+                        foundry.select({i_cont, i_cross, i_mut, i_sel, i_rep});
 
                         // Actually perform a search
                         foundry(pop);

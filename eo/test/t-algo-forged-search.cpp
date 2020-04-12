@@ -65,10 +65,8 @@ eoAlgoFoundryEA<Bits>& make_foundry(eoFunctorStore& store, eoPopEvalFunc<Bits>& 
 
 // A basic PSO algorithm.
 std::pair< eoAlgo<Particle>*, eoPop<Particle>* >
-    make_pso(eoFunctorStore& store, eoEvalFunc<Particle>& eval_foundry)
+    make_pso(eoFunctorStore& store, eoEvalFoundryEA<Particle,Bits>& eval_foundry, size_t dim)
 {
-    const size_t dim = eoAlgoFoundryEA<Bits>::dim;
-
     auto& gen_pos = store.pack< eoUniformGenerator<double> >(0.1,0.9);
     auto& random_pos = store.pack< eoInitFixedLength<Particle> >(dim, gen_pos);
 
@@ -133,13 +131,13 @@ int main(int /*argc*/, char** /*argv*/)
 
     eoAlgo<Particle>* pso;
     eoPop<Particle>* pop_foundry;
-    std::tie(pso, pop_foundry) = make_pso(store, eval_foundry);
+    std::tie(pso, pop_foundry) = make_pso(store, eval_foundry, foundry.size());
 
     // Perform the best algorithm configuration search.
     (*pso)(*pop_foundry);
 
     // Print a glimpse of the best algorithm found.
-    foundry = eval_foundry.decode(pop_foundry->best_element());
+    foundry.select(eval_foundry.decode(pop_foundry->best_element()));
     std::cout << "Best algorithm: " << foundry.name() << std::endl;
 
 }

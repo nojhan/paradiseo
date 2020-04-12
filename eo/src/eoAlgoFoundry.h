@@ -23,8 +23,7 @@
 #ifndef _eoAlgoFoundry_H_
 #define _eoAlgoFoundry_H_
 
-#include <array>
-#include <tuple>
+#include <vector>
 
 /**
  *
@@ -32,18 +31,23 @@
  * @ingroup Foundry
  * @ingroup Algorithms
  */
-template<class EOT, unsigned NBOP>
+template<class EOT>
 class eoAlgoFoundry : public eoAlgo<EOT>
 {
     public:
-        static const size_t dim = NBOP;
-
-        /** The constructon only take an eval, because all other operators
-         * are stored in the public containers.
+        /** 
          */
-        eoAlgoFoundry()
+        eoAlgoFoundry( size_t nb_operators ) :
+            _size(nb_operators),
+            _encoding(_size,0)
+        { }
+
+        /** Select indices of all the operators.
+         */
+        void select( std::vector<size_t> encoding )
         {
-            _encoding = { 0 }; // dim * 0
+            assert(encoding.size() == _encoding.size());
+            _encoding = encoding;
         }
 
         /** Access to the index of the currently selected operator.
@@ -53,15 +57,14 @@ class eoAlgoFoundry : public eoAlgo<EOT>
             return _encoding.at(i);
         }
 
-        /** Select indices of all the operators.
-         */
-        void operator=( std::array<size_t,dim> a)
+        size_t size() const
         {
-            _encoding = a;
+            return _size;
         }
 
     protected:
-        std::array<size_t, dim> _encoding;
+        const size_t _size;
+        std::vector<size_t> _encoding;
 
 };
 

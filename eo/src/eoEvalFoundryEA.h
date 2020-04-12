@@ -73,6 +73,8 @@ public:
 
     /** Decode the high-level problem encoding as an array of indices.
      *
+     * @note: If the EOT is an eoInt, this will be optimized out.
+     *
      * May be useful for getting a solution back into an eoAlgoFoundryEA.
      * @code
      * foundry = eval.decode(pop.best_element());
@@ -80,7 +82,7 @@ public:
      * auto& cont = foundry.continuator(); // Get the configured operator
      * @encode
      */
-    std::array<size_t,eoAlgoFoundryEA<SUB>::dim> decode( const EOT& sol )
+    std::vector<size_t> decode( const EOT& sol ) const
     {
         // Denormalize
         size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() ));
@@ -121,7 +123,7 @@ public:
            and 0 <= sele and sele < _foundry.selectors   .size()
            and 0 <= repl and repl < _foundry.replacements.size()
         ) {
-            _foundry = config;
+            _foundry.select(config);
 
             // Actually perform a search
             _foundry(pop);

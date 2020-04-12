@@ -76,10 +76,20 @@
  * @ingroup Algorithms
  */
 template<class EOT>
-class eoAlgoFoundryEA : public eoAlgoFoundry<EOT,5>
+class eoAlgoFoundryEA : public eoAlgoFoundry<EOT>
 {
     public:
-        using eoAlgoFoundry<EOT,5>::dim;
+        /** The constructon only take an eval, because all other operators
+         * are stored in the public containers.
+         */
+        eoAlgoFoundryEA( eoPopEvalFunc<EOT>& eval, size_t max_gen ) :
+            eoAlgoFoundry<EOT>(5),
+            index_of(),
+            _eval(eval),
+            _max_gen(max_gen)
+        { }
+
+    public:
 
         struct Indices
         {
@@ -93,17 +103,6 @@ class eoAlgoFoundryEA : public eoAlgoFoundry<EOT,5>
         /** Helper for keeping track of the indices of the underlying encoding. */
         const Indices index_of;
 
-        /** The constructon only take an eval, because all other operators
-         * are stored in the public containers.
-         */
-        eoAlgoFoundryEA( eoPopEvalFunc<EOT>& eval, size_t max_gen ) :
-            index_of(),
-            _eval(eval),
-            _max_gen(max_gen)
-        {
-            _encoding = { 0 }; // dim * 0
-        }
-
         /* Operators containers @{ */
         eoForgeVector< eoContinue<EOT>    > continuators;
         eoForgeVector< eoQuadOp<EOT>      > crossovers;
@@ -116,11 +115,11 @@ class eoAlgoFoundryEA : public eoAlgoFoundry<EOT,5>
          */
         void operator()(eoPop<EOT>& pop)
         {
-            assert(continuators.size() > 0); assert(_encoding.at(index_of.continuators) < continuators.size());
-            assert(  crossovers.size() > 0); assert(_encoding.at(index_of.crossovers)   <   crossovers.size());
-            assert(   mutations.size() > 0); assert(_encoding.at(index_of.mutations)    <    mutations.size());
-            assert(   selectors.size() > 0); assert(_encoding.at(index_of.selectors)    <    selectors.size());
-            assert(replacements.size() > 0); assert(_encoding.at(index_of.replacements) < replacements.size());
+            assert(continuators.size() > 0); assert(this->at(index_of.continuators) < continuators.size());
+            assert(  crossovers.size() > 0); assert(this->at(index_of.crossovers)   <   crossovers.size());
+            assert(   mutations.size() > 0); assert(this->at(index_of.mutations)    <    mutations.size());
+            assert(   selectors.size() > 0); assert(this->at(index_of.selectors)    <    selectors.size());
+            assert(replacements.size() > 0); assert(this->at(index_of.replacements) < replacements.size());
 
             eoSequentialOp<EOT> variator;
             variator.add(this->crossover(), 1.0);
@@ -145,48 +144,47 @@ class eoAlgoFoundryEA : public eoAlgoFoundry<EOT,5>
         std::string name()
         {
             std::ostringstream name;
-            name << _encoding.at(index_of.continuators) << " (" << this->continuator().className() << ") + ";
-            name << _encoding.at(index_of.crossovers)   << " (" << this->crossover().className()   << ") + ";
-            name << _encoding.at(index_of.mutations)    << " (" << this->mutation().className()    << ") + ";
-            name << _encoding.at(index_of.selectors)    << " (" << this->selector().className()    << ") + ";
-            name << _encoding.at(index_of.replacements) << " (" << this->replacement().className() << ")";
+            name << this->at(index_of.continuators) << " (" << this->continuator().className() << ") + ";
+            name << this->at(index_of.crossovers)   << " (" << this->crossover().className()   << ") + ";
+            name << this->at(index_of.mutations)    << " (" << this->mutation().className()    << ") + ";
+            name << this->at(index_of.selectors)    << " (" << this->selector().className()    << ") + ";
+            name << this->at(index_of.replacements) << " (" << this->replacement().className() << ")";
             return name.str();
         }
 
     protected:
         eoPopEvalFunc<EOT>& _eval;
         const size_t _max_gen;
-        std::array<size_t, dim> _encoding;
 
     public:
         eoContinue<EOT>& continuator()
         {
-            assert(_encoding.at(index_of.continuators) < continuators.size());
-            return continuators.instanciate(_encoding.at(index_of.continuators));
+            assert(this->at(index_of.continuators) < continuators.size());
+            return continuators.instanciate(this->at(index_of.continuators));
         }
 
         eoQuadOp<EOT>& crossover()
         {
-            assert(_encoding.at(index_of.crossovers) < crossovers.size());
-            return crossovers.instanciate(_encoding.at(index_of.crossovers));
+            assert(this->at(index_of.crossovers) < crossovers.size());
+            return crossovers.instanciate(this->at(index_of.crossovers));
         }
 
         eoMonOp<EOT>& mutation()
         {
-            assert(_encoding.at(index_of.mutations) < mutations.size());
-            return mutations.instanciate(_encoding.at(index_of.mutations));
+            assert(this->at(index_of.mutations) < mutations.size());
+            return mutations.instanciate(this->at(index_of.mutations));
         }
 
         eoSelectOne<EOT>& selector()
         {
-            assert(_encoding.at(index_of.selectors) < selectors.size());
-            return selectors.instanciate(_encoding.at(index_of.selectors));
+            assert(this->at(index_of.selectors) < selectors.size());
+            return selectors.instanciate(this->at(index_of.selectors));
         }
 
         eoReplacement<EOT>& replacement()
         {
-            assert(_encoding.at(index_of.replacements) < replacements.size());
-            return replacements.instanciate(_encoding.at(index_of.replacements));
+            assert(this->at(index_of.replacements) < replacements.size());
+            return replacements.instanciate(this->at(index_of.replacements));
         }
 
 };
