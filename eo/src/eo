@@ -147,6 +147,7 @@
 #include "eoEasyEA.h"
 #include "eoSGA.h"
 // #include "eoEvolutionStrategy.h"   removed for a while - until eoGenOp is done
+#include "eoAlgoReset.h"
 #include "eoAlgoRestart.h"
 
 // Utils
@@ -159,6 +160,7 @@
 #include "eoCounter.h"
 
 #include "eoForge.h"
+#include "eoAlgoFoundry.h"
 #include "eoAlgoFoundryEA.h"
 #include "eoEvalFoundryEA.h"
 

@@ -96,6 +96,8 @@ Authors:
 
 #include "edoTransform.h"
 
+#include "edoDistribReset.h"
+
 #endif // !_edo_
 
 // Local Variables:
