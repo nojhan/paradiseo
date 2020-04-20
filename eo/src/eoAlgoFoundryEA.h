@@ -85,6 +85,11 @@ class eoAlgoFoundryEA : public eoAlgoFoundry<EOT>
         eoAlgoFoundryEA( eoPopEvalFunc<EOT>& eval, size_t max_gen ) :
             eoAlgoFoundry<EOT>(5),
             index_of(),
+            continuators(true), // Always re-instanciate continuators, because they hold a state.
+            crossovers(false),
+            mutations(false),
+            selectors(false),
+            replacements(false),
             _eval(eval),
             _max_gen(max_gen)
         { }

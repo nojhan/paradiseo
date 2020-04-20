@@ -54,7 +54,9 @@
 // }
 
 /**
- * @defgroup Foundry Tools for automatic algorithms assembling, selection and search.
+ * @defgroup Foundry
+ *
+ * Tools for automatic algorithms assembling, selection and search.
  */
 
 /** Interface for a "Forge": a class that can defer instanciation of EO's operator.
@@ -69,7 +71,7 @@ template<class Itf>
 class eoForgeInterface
 {
     public:
-        virtual Itf& instanciate() = 0;
+        virtual Itf& instanciate(bool no_cache = true) = 0;
         virtual ~eoForgeInterface() {}
 };
 
@@ -79,7 +81,7 @@ class eoForgeInterface
  * You can declare a parametrized operator at a given time,
  * then actually instanciate it (with the given interface) at another time.
  *
- * This allows for creating containers of pre-parametrized operators (@see eoForgeMap or @see eoForgeVector).
+ * This allows for creating containers of pre-parametrized operators (@see eoForgeVector).
  *
  * @code
    eoForgeOperator<eoselect<EOT>,eoRankMuSelect<EOT>> forge(mu);
@@ -88,6 +90,10 @@ class eoForgeInterface
    // Actual instanciation:
    eoSelect<EOT>& select = forge.instanciate();
  * @endcode
+ *
+ * @warning You may want to enable instanciation cache to grab some performances.
+ * The default is set to disable the cache, because its use with operators
+ * which hold a state will lead to unwanted behaviour.
  *
  * @ingroup Foundry
  */
@@ -100,9 +106,20 @@ class eoForgeOperator : public eoForgeInterface<Itf>
             _instanciated(nullptr)
         { }
 
-        Itf& instanciate()
+        /** Instanciate the managed operator class.
+         *
+         * That is call its constructor with the set up arguments.
+         *
+         * @warning Do not enable cache with operators which hold a state.
+         *
+         * @param no_cache If false, will enable caching previous instances.
+         */
+        Itf& instanciate(bool no_cache = true)
         {
-            if(not _instanciated) {
+            if(no_cache or not _instanciated) {
+                if(_instanciated) {
+                    delete _instanciated;
+                }
                 _instanciated = constructor(_args);
             }
             return *_instanciated;
@@ -117,6 +134,7 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         std::tuple<Args...> _args;
 
     private:
+        /** Metaprogramming machinery which deals with arguments lists @{ */
         template <int... Idx>
         struct index {};
 
@@ -139,12 +157,14 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         {
             return constructor(args, gen_seq<sizeof...(Ts)>{});
         }
+        /** @} */
 
     protected:
         Itf* _instanciated;
 };
 
-//! Partial specialization for constructors without any argument.
+/** Partial specialization for constructors without any argument.
+ */
 template<class Itf, class Op>
 class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
 {
@@ -153,9 +173,12 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
             _instanciated(nullptr)
         { }
 
-        Itf& instanciate()
+        Itf& instanciate( bool no_cache = true )
         {
-            if(not _instanciated) {
+            if(no_cache or not _instanciated) {
+                if(_instanciated) {
+                    delete _instanciated;
+                }
                 _instanciated = new Op;
             }
             return *_instanciated;
@@ -175,8 +198,12 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
  * @note You can actually store several instances of the same class,
  * with different parametrization (or not).
  *
+ * @warning You may want to enable instanciation cache to grab some performances.
+ * The default is set to disable the cache, because its use with operators
+ * which hold a state will lead to unwanted behaviour.
+ *
  * @code
-    eoForgeVector<eoSelect<EOT>> factories;
+    eoForgeVector<eoSelect<EOT>> factories(false);
 
     // Capture constructor's parameters and defer instanciation.
     factories.add<eoRankMuSelect<EOT>>(1);
@@ -195,6 +222,26 @@ template<class Itf>
 class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 {
     public:
+        /** Default constructor do not cache instanciations.
+         *
+         * @warning
+         * You most probably want to disable caching for operators that hold a state.
+         * If you enable the cache, the last used instanciation will be used,
+         * at its last state.
+         * For example, continuators should most probably not be cached,
+         * as they very often hold a state in the form of a counter.
+         * At the end of a search, the continuator will be in the end state,
+         * and thus always ask for a stop.
+         * Reusing an instance in this state will de facto disable further searches.
+         *
+         * @param always_reinstanciate If false, will enable cache for the forges in this container.
+         */
+        eoForgeVector( bool always_reinstanciate = true ) :
+            _no_cache(always_reinstanciate)
+        { }
+
+        /** Add an operator to the list.
+         */
         template<class Op, typename... Args>
         void add(Args... args)
         {
@@ -202,6 +249,8 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
             this->push_back(pfo);
         }
 
+        /** Specialization for operators with empty constructors.
+         */
         template<class Op>
         void add()
         {
@@ -209,6 +258,10 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
             this->push_back(pfo);
         }
 
+        /** Change the set up arguments to the constructor.
+         *
+         * @warning The operator at `index` should have been added with eoForgeVector::add already..
+         */
         template<class Op, typename... Args>
         void setup(size_t index, Args... args)
         {
@@ -218,9 +271,11 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
             this->at(index) = pfo;
         }
 
+        /** Instanciate the operator managed at the given index.
+         */
         Itf& instanciate(size_t index)
         {
-            return this->at(index)->instanciate();
+            return this->at(index)->instanciate(_no_cache);
         }
 
         virtual ~eoForgeVector()
@@ -230,6 +285,8 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
             }
         }
 
+    protected:
+        bool _no_cache;
 };
 
 #endif // _eoForge_H_
