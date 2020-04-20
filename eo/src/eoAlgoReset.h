@@ -104,7 +104,7 @@ class eoAlgoResetCombine : public eoAlgoReset<EOT>
 {
     public:
         eoAlgoResetCombine( eoAlgoReset<EOT>& reseter ) :
-            _reseters(1, reseter)
+            _reseters(1, &reseter)
         { }
 
         eoAlgoResetCombine( std::vector<eoAlgoReset<EOT>*> reseters ) :
@@ -113,18 +113,18 @@ class eoAlgoResetCombine : public eoAlgoReset<EOT>
 
         void add( eoAlgoReset<EOT>& reseter )
         {
-            _reseters.push_back(reseter);
+            _reseters.push_back(&reseter);
         }
 
         virtual void operator()(eoPop<EOT>& pop)
         {
             for(auto& reseter : _reseters) {
-                reseter(pop);
+                (*reseter)(pop);
             }
         }
 
     protected:
-        std::vector<EOT*> _reseters;
+        std::vector<eoAlgoReset<EOT>*> _reseters;
 };
 
 #endif // _EOALGORESET_H_
