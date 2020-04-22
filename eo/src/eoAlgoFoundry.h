@@ -62,6 +62,11 @@ class eoAlgoFoundry : public eoAlgo<EOT>
             return _size;
         }
 
+        std::vector<size_t> encoding() const
+        {
+            return _encoding;
+        }
+
     protected:
         const size_t _size;
         std::vector<size_t> _encoding;

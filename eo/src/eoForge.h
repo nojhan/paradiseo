@@ -265,9 +265,20 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
         template<class Op, typename... Args>
         void setup(size_t index, Args... args)
         {
-            assert(this->at(index) != nullptr);
-            delete this->at(index);
+            assert(index < this->size());
+            delete this->at(index); // Silent on nullptr.
             auto pfo = new eoForgeOperator<Itf,Op,Args...>(args...);
+            this->at(index) = pfo;
+        }
+
+        /** Specialization for empty constructors.
+         */
+        template<class Op>
+        void setup(size_t index)
+        {
+            assert(index < this->size());
+            delete this->at(index);
+            auto pfo = new eoForgeOperator<Itf,Op>;
             this->at(index) = pfo;
         }
 
