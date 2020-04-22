@@ -45,8 +45,15 @@ template <class FitT> class eoInt: public eoVector<FitT, int>
    * @param size Size of the std::vector
    * @param value fill the vector with this value
    */
-  eoInt(unsigned size = 0, int value = 0):
-    eoVector<FitT, int>(size, value) {}
+  eoInt(unsigned size = 0, int value = 0) :
+    eoVector<FitT, int>(size, value)
+  {}
+
+  /** Constructor copying from a vector (or an initialization list).
+   */
+  eoInt(std::vector<int> vec) :
+    eoVector<FitT, int>(vec)
+  {}
 
   /// My class name.
   virtual std::string className() const

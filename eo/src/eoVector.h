@@ -73,6 +73,12 @@ public:
         : EO<FitT>(), std::vector<GeneType>(_size, _value)
         {}
 
+    /** Constructor copying from a vector (or an initialization list).
+     */
+    eoVector( std::vector<GeneType> vec )
+        : EO<FitT>(), std::vector<GeneType>(vec)
+        {}
+
     /// copy ctor abstracting from the FitT
     template <class OtherFitnessType>
     eoVector(const eoVector<OtherFitnessType, GeneType>& _vec) : std::vector<GeneType>(_vec)
