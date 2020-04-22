@@ -29,7 +29,11 @@ Authors:
 
 #include "eoContinue.h"
 
-/** @defgroup Reset Algorithms operating a reset of some sort (e.g. on the population). */
+/** @defgroup Reset 
+ *
+ * Algorithms operating a reset of some sort.
+ * (e.g. on the population).
+ */
 
 /** A semantic layer indicating that the derived operator operates a reset of some sort.
  *

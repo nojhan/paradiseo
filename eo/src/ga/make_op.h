@@ -69,7 +69,7 @@
 */
 
 template <class EOT>
-eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init)
+eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& /*_init*/)
 {
   // this is a temporary version, while Maarten codes the full tree-structured
   // general operator input

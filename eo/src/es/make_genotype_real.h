@@ -65,7 +65,7 @@ template <class EOT>
 eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 {
     // the fitness type
-    typedef typename EOT::Fitness FitT;
+    // typedef typename EOT::Fitness FitT;
     eoEsChromInit<EOT> *init;
 
     // for eoReal, only thing needed is the size - but might have been created elswhere ...
