@@ -101,8 +101,8 @@ template<class Itf, class Op, typename... Args>
 class eoForgeOperator : public eoForgeInterface<Itf>
 {
     public:
-        eoForgeOperator(Args... args) :
-            _args(args...),
+        eoForgeOperator(Args&&... args) :
+            _args(std::forward<Args>(args)...),
             _instanciated(nullptr)
         { }
 
@@ -120,7 +120,7 @@ class eoForgeOperator : public eoForgeInterface<Itf>
                 if(_instanciated) {
                     delete _instanciated;
                 }
-                _instanciated = constructor(_args);
+                _instanciated = op_constructor(_args);
             }
             return *_instanciated;
         }
@@ -131,31 +131,15 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         }
 
     protected:
-        std::tuple<Args...> _args;
+        std::tuple<Args&&...> _args;
 
     private:
         /** Metaprogramming machinery which deals with arguments lists @{ */
-        template <int... Idx>
-        struct index {};
-
-        template <int N, int... Idx>
-        struct gen_seq : gen_seq<N - 1, N - 1, Idx...> {};
-
-        template <int... Idx>
-        struct gen_seq<0, Idx...> : index<Idx...> {};
-
-        template <typename... Ts, int... Idx>
-        Op* constructor(std::tuple<Ts...>& args, index<Idx...>)
+        template<class T>
+        Op* op_constructor(T& args)
         {
-            Op* p_op = new Op(std::get<Idx>(args)...);
-            _instanciated = p_op;
-            return p_op;
-        }
-
-        template <typename... Ts>
-        Op* constructor(std::tuple<Ts...>& args)
-        {
-            return constructor(args, gen_seq<sizeof...(Ts)>{});
+            // FIXME double-check that the copy-constructor is a good idea to make_from_tuple with dynamic storage duration.
+            return new Op(std::make_from_tuple<Op>(args));
         }
         /** @} */
 
@@ -243,9 +227,9 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
         /** Add an operator to the list.
          */
         template<class Op, typename... Args>
-        void add(Args... args)
+        void add(Args&&... args)
         {
-            auto pfo = new eoForgeOperator<Itf,Op,Args...>(args...);
+            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
             this->push_back(pfo);
         }
 
@@ -263,11 +247,11 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
          * @warning The operator at `index` should have been added with eoForgeVector::add already..
          */
         template<class Op, typename... Args>
-        void setup(size_t index, Args... args)
+        void setup(size_t index, Args&&... args)
         {
             assert(index < this->size());
             delete this->at(index); // Silent on nullptr.
-            auto pfo = new eoForgeOperator<Itf,Op,Args...>(args...);
+            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
             this->at(index) = pfo;
         }
 
