@@ -49,10 +49,10 @@ public:
 
     // virtual D operator() ( eoPop< EOT >& )=0 (provided by eoUF< A1, R >)
 
-    D & distribution() const { return _distrib; }
+    D& distribution() { return _distrib; }
 
 protected:
-    D & _distrib;
+    D& _distrib;
 };
 
 #endif // !_edoEstimatorAdaptive_h
