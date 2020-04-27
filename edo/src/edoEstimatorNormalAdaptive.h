@@ -90,7 +90,8 @@ public:
          * INITIALIZATION
          *********************************************************************/
 
-        unsigned int N = pop[0].size(); // FIXME expliciter la dimension du pb ?
+        unsigned int N = this->distribution().size();
+        assert(this->distribution().size() == pop[0].size());
         unsigned int lambda = pop.size();
 
         // number of calls to the operator == number of generations

@@ -119,7 +119,13 @@ public:
 
     unsigned int size()
     {
-        return _mean.innerSize();
+        assert( _mean.innerSize() == _dim );
+        assert( _C.innerSize() == _dim && _C.outerSize() == _dim );
+        assert( _B.innerSize() == _dim && _B.outerSize() == _dim );
+        assert( _D.innerSize() == _dim );
+        assert( _p_c.innerSize() == _dim );
+        assert( _p_s.innerSize() == _dim );
+        return _dim;
     }
 
     Vector mean()       const {return _mean;}
@@ -139,6 +145,7 @@ public:
      */
     void mean(       EOT m )
     {
+        assert(m.size() == _dim);
         Vector center( m.size() );
         for( unsigned int i=0, end=m.size(); i<end; ++i) {
             center[i] = m[i];
@@ -153,8 +160,17 @@ public:
     void path_covar( Vector p ) { _p_c = p;   assert( p.size() == _dim ); }
     void path_sigma( Vector p ) { _p_s = p;   assert( p.size() == _dim ); }
 
-    void reset()
+    /** Reset the distribution, like it was just instanciated.
+     *
+     * @param dim Dimension of the space, if set to 0 (the default), use the dimension that was lastly set.
+     */
+    void reset(size_t dim = 0)
     {
+        if(dim == 0) {
+            dim = _dim;
+        }
+        _dim = dim;
+
         _mean = Vector::Zero(_dim);
         _C = Matrix::Identity(_dim,_dim);
         _B = Matrix::Identity(_dim,_dim);

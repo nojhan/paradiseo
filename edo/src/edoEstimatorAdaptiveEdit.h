@@ -31,7 +31,7 @@ Authors:
 
 #include "edoEstimatorAdaptive.h"
 
-/** An estimator that calls `reset` on the managed distribution.
+/** An estimator that change the parameters on the managed distribution.
  *
  * @ingroup Estimators
  */

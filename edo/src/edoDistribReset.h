@@ -39,16 +39,31 @@ class edoDistribReset : public eoAlgoReset<typename D::EOType>
 {
     public:
         using EOType = typename D::EOType;
+
         edoDistribReset( D& distrib ) :
+            _has_dim(false),
+            _dim(0),
+            _distrib(distrib)
+        { }
+
+        edoDistribReset( D& distrib, size_t dim ) :
+            _has_dim(true),
+            _dim(dim),
             _distrib(distrib)
         { }
 
         virtual void operator()( eoPop<EOType>& pop )
         {
-            _distrib.reset();
+            if(_has_dim) {
+                _distrib.reset(_dim);
+            } else {
+                _distrib.reset();
+            }
         }
 
     protected:
+        bool _has_dim;
+        size_t _dim;
         D& _distrib;
 };
 
