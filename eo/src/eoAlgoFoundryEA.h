@@ -39,15 +39,19 @@
  * foundry.selectors.add< eoStochTournamentSelect<EOT> >( 0.5 );
  * @endcode
  *
+ * @warning If the constructor takes a reference YOU SHOULD ABSOLUTELY wrap it
+ * in a `std::ref`, or it will silently be passed as a copy,
+ * which would effectively disable any link between operators.
+ *
  * In a second step, the operators to be used should be selected
  * by indicating their index, just like the foundry was a array of five elements:
  * @code
  * foundry = {0, 1, 2, 0, 3};
- * //         ^ continue
- * //            ^ crossover
- * //               ^ mutation
- * //                  ^ selection
- * //                     ^ replacement
+ * //         ^  ^  ^  ^  ^ replacement
+ * //         |  |  |  + selection
+ * //         |  |  + mutation
+ * //         |  + crossover
+ * //         + continue
  * @endcode
  *
  * @note: by default, the firsts of the five operators are selected.

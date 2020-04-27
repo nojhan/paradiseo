@@ -83,6 +83,11 @@ class eoForgeInterface
  *
  * This allows for creating containers of pre-parametrized operators (@see eoForgeVector).
  *
+ * @warning When passing a reference (as it is often the case within ParadisEO),
+ * it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+ * This is is a source of bug which your compiler will to detect and that would
+ * disable any link between operators.
+ *
  * @code
    eoForgeOperator<eoselect<EOT>,eoRankMuSelect<EOT>> forge(mu);
    //                ^ desired     ^ to-be-instanciated     ^ operator's
@@ -101,8 +106,10 @@ template<class Itf, class Op, typename... Args>
 class eoForgeOperator : public eoForgeInterface<Itf>
 {
     public:
-        eoForgeOperator(Args&&... args) :
-            _args(std::forward<Args>(args)...),
+        // Use an additional template to avoid redundant copies of decayed Args variadic.
+        template<class ...Args2>
+        eoForgeOperator(Args2... args) :
+            _args(std::forward<Args2>(args)...),
             _instanciated(nullptr)
         { }
 
@@ -131,7 +138,7 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         }
 
     protected:
-        std::tuple<Args&&...> _args;
+        std::tuple<Args...> _args;
 
     private:
         /** Metaprogramming machinery which deals with arguments lists @{ */
@@ -182,6 +189,11 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
  * @note You can actually store several instances of the same class,
  * with different parametrization (or not).
  *
+ * @warning When passing a reference (as it is often the case within ParadisEO),
+ * it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+ * This is is a source of bug which your compiler will to detect and that would
+ * disable any link between operators.
+ *
  * @warning You may want to enable instanciation cache to grab some performances.
  * The default is set to disable the cache, because its use with operators
  * which hold a state will lead to unwanted behaviour.
@@ -225,11 +237,20 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
         { }
 
         /** Add an operator to the list.
+         *
+         * @warning When passing a reference (as it is often the case within ParadisEO),
+         * it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+         * This is is a source of bug which your compiler will to detect and that would
+         * disable any link between operators.
+         *
          */
         template<class Op, typename... Args>
-        void add(Args&&... args)
+        void add(Args... args)
         {
-            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
+            // We decay all args to ensure storing everything by value within the forge.
+            // The references should thus be wrapped in a std::ref.
+            auto pfo = new eoForgeOperator<Itf,Op,std::decay_t<Args>...>(
+                    std::forward<Args>(args)...);
             this->push_back(pfo);
         }
 
@@ -244,14 +265,20 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 
         /** Change the set up arguments to the constructor.
          *
+         * @warning When passing a reference (as it is often the case within ParadisEO),
+         * it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+         * This is is a source of bug which your compiler will to detect and that would
+         * disable any link between operators.
+         *
          * @warning The operator at `index` should have been added with eoForgeVector::add already..
          */
         template<class Op, typename... Args>
-        void setup(size_t index, Args&&... args)
+        void setup(size_t index, Args... args)
         {
             assert(index < this->size());
             delete this->at(index); // Silent on nullptr.
-            auto pfo = new eoForgeOperator<Itf,Op,Args...>(std::forward<Args>(args)...);
+            auto pfo = new eoForgeOperator<Itf,Op,std::decay_t<Args>...>(
+                    std::forward<Args>(args)...);
             this->at(index) = pfo;
         }
 
