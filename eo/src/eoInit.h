@@ -28,6 +28,7 @@
 #define _eoInit_H
 
 #include <algorithm>
+#include <cassert>
 
 #include "eoOp.h"
 #include "eoSTLFunctor.h"
@@ -83,32 +84,50 @@ private:
   eoInit<EOT> & init;
 };
 
+template<class EOT>
+class eoInitWithDim : public eoInit<EOT>
+{
+    public:
+        //! Sets the default dimension.
+        eoInitWithDim(unsigned dimension = 0) :
+            _dimension(dimension)
+        { }
+
+        //! Get the current dimension.
+        unsigned dimension() const {return _dimension;}
+
+        //! Set the current dimension.
+        void dimension(unsigned dimension) {assert(dimension > 0);_dimension = dimension;}
+
+    protected:
+        unsigned _dimension;
+};
+
 /**
     Initializer for fixed length representations with a single type
 */
 template <class EOT>
-class eoInitFixedLength: public eoInit<EOT>
+class eoInitFixedLength: public eoInitWithDim<EOT>
 {
     public:
 
         typedef typename EOT::AtomType AtomType;
 
-        eoInitFixedLength(unsigned _dimension, eoRndGenerator<AtomType>& _generator)
-            : dim(_dimension), generator(_generator) {}
+        eoInitFixedLength(unsigned dimension, eoRndGenerator<AtomType>& generator) :
+            eoInitWithDim<EOT>(dimension),
+            _generator(generator)
+        { }
 
         virtual void operator()(EOT& chrom)
         {
-            chrom.resize(dim);
-            std::generate(chrom.begin(), chrom.end(), generator);
+            chrom.resize(this->_dimension);
+            std::generate(chrom.begin(), chrom.end(), _generator);
             chrom.invalidate();
         }
 
-        unsigned dimension() const {return dim;}
-
     private :
-        unsigned dim;
         /// generic wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics
-        eoSTLF<AtomType> generator;
+        eoSTLF<AtomType> _generator;
 };
 
 /**
@@ -162,7 +181,7 @@ private :
     Initializer for permutation (integer-based) representations.
 */
 template <class EOT>
-class eoInitPermutation: public eoInit<EOT>
+class eoInitPermutation: public eoInit<EOT> // FIXME inherit from eoInitWithDim
 {
     public:
 
