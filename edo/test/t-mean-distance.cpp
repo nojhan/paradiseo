@@ -65,9 +65,9 @@ int main(int ac, char** av)
 
     std::string        section("Algorithm parameters");
 
-    unsigned int r_max = parser.createParam((unsigned int)100, "run-number", "Number of run", 'r', section).value(); // r
+    unsigned int r_max = parser.createParam((unsigned int)10, "run-number", "Number of run", 'r', section).value(); // r
     unsigned int p_min = parser.createParam((unsigned int)10, "population-min", "Population min", 'p', section).value(); // p
-    unsigned int p_max = parser.createParam((unsigned int)1000, "population-max", "Population max", 'P', section).value(); // P
+    unsigned int p_max = parser.createParam((unsigned int)100, "population-max", "Population max", 'P', section).value(); // P
     unsigned int p_step = parser.createParam((unsigned int)50, "population-step", "Population step", 't', section).value(); // t
     unsigned int s_size = parser.createParam((unsigned int)2, "dimension-size", "Dimension size", 'd', section).value(); // d
 

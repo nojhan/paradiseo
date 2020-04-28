@@ -28,11 +28,12 @@
 
 #ifndef eoRndGenerators_h
 #define eoRndGenerators_h
+#include <stdexcept>
+#include <cassert>
 
 #include "../eoExceptions.h"
 #include "eoRNG.h"
 #include "../eoFunctor.h"
-#include <stdexcept>
 
 /** @defgroup Random Random number generation
  *
@@ -80,7 +81,8 @@ template <class T = double> class eoUniformGenerator : public eoRndGenerator<T>
     eoUniformGenerator(T _min, T _max, eoRng& _rng = rng) :
       minim(_min), range(_max-_min), uniform(_rng)
   {
-    if (_min>_max)
+    assert(_min < _max);
+    if (_min > _max)
       throw eoException("Min is greater than Max in uniform_generator");
   }
 

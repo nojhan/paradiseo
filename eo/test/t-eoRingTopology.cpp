@@ -40,7 +40,7 @@ int main_function(int /*argc*/, char **/*argv*/)
     topology.setup(pop);
     std::cout<<"\n\n\nPopulation :\n\n"<<pop;
     std::cout<<"\n\nNeighborhood :\n\n";
-    topology.printOn();
+    topology.printOn(std::cout);
     int k = NEIGHBORHOOD_SIZE/2;
     for(unsigned i=0;i<pop.size();i++)
     {

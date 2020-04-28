@@ -38,11 +38,11 @@ public:
 
     virtual void put(unsigned _oneIndice)=0;
 
-    virtual bool contains(unsigned _oneIndice)=0;
+    virtual bool contains(unsigned _oneIndice) const =0;
 
-    virtual unsigned size()=0;
+    virtual unsigned size() const =0;
 
-    virtual unsigned get(unsigned _index)=0;
+    virtual unsigned get(unsigned _index) const =0;
 
     virtual POT & best()=0;
 

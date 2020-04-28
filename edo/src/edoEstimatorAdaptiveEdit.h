@@ -54,7 +54,7 @@ public:
      * distrib.mean, pop.best_element);
      * @endcode
      */
-    edoEstimatorAdaptiveEdit<D>(
+    edoEstimatorAdaptiveEdit(
         D& distrib,
         std::function<P()> getter,
         std::function<void(P)> setter

@@ -131,8 +131,8 @@ void eoState::load(std::istream& is)
                   if (is_section(str, name))
                     break;
 
-                    removeComment(str, getCommentString());
-                    fullstring += str + "\n";
+                  removeComment(str, getCommentString());
+                  fullstring += str + "\n";
                 }
                 std::istringstream the_stream(fullstring);
                 object->readFrom(the_stream);

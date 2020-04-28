@@ -42,15 +42,16 @@ int main() {
   eoUniformGenerator<double> u2(0.003, 0.05 );
   eoUniformGenerator<unsigned long> u3( 10000U, 10000000U);
 
-  try
-  { // throws an error
-    eoUniformGenerator<unsigned long> utest( 10000000U, 10000U);
-    throw; // if this succeeds something is wrong, make sure that that is noticed
-  }
-  catch (std::logic_error& e)
-  {
-    std::cout << e.what() << std::endl;
-  }
+  // Test replaced by an assert
+  // try
+  // { // throws an error
+  //   eoUniformGenerator<unsigned long> utest( 10000000U, 10000U);
+  //   throw; // if this succeeds something is wrong, make sure that that is noticed
+  // }
+  // catch (std::logic_error& e)
+  // {
+  //   std::cout << e.what() << std::endl;
+  // }
 
   std::ofstream os("t-eoRandom.out");
 

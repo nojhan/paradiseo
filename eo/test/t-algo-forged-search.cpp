@@ -71,7 +71,7 @@ std::pair< eoAlgo<Particle>*, eoPop<Particle>* >
     auto& random_pos = store.pack< eoInitFixedLength<Particle> >(dim, gen_pos);
 
     auto pop = new eoPop<Particle>();
-    pop->append(100, random_pos); // pop size
+    pop->append(10, random_pos); // pop size
 
     auto& gen_minus = store.pack< eoUniformGenerator<double> >(-0.05, 0.05);
     auto& random_velo = store.pack< eoVelocityInitFixedLength<Particle> >(dim, gen_minus);
@@ -89,7 +89,7 @@ std::pair< eoAlgo<Particle>*, eoPop<Particle>* >
 
     auto& flight = store.pack< eoStandardFlight<Particle> >();
 
-    auto& cont_gen = store.pack< eoGenContinue<Particle> >(50);
+    auto& cont_gen = store.pack< eoGenContinue<Particle> >(10);
     auto& cont = store.pack< eoCombinedContinue<Particle> >(cont_gen);
 
     auto& checkpoint = store.pack< eoCheckPoint<Particle> >(cont);
@@ -122,7 +122,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     // Evaluation of a forged algo on the sub-problem
     eoBooleanGenerator gen(0.5);
-    eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/500, gen);
+    eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/50, gen);
     eoEvalFoundryEA<Particle,Bits> eval_foundry(foundry,
             onemax_init, /*pop_size=*/ 10,
             onemax_eval, /*penalization=*/ 0);

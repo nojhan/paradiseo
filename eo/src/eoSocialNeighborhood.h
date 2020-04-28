@@ -56,7 +56,7 @@ public:
      * particle whose indice is _oneIndice")
      * @param _oneIndice - The indice of the particle in its population.
      */
-    bool contains(unsigned _oneIndice)
+    bool contains(unsigned _oneIndice) const
     {
         for (unsigned i=0;i< indicesList.size();i++)
         {
@@ -77,7 +77,7 @@ public:
     /**
      * Return the size of the neighborhood.
      */
-    unsigned size()
+    unsigned size() const
     {
         return indicesList.size();
 
@@ -87,7 +87,7 @@ public:
      * Return the "_index-th" particle of the neighborhood.
      * Throw an exception if its not contained in the neighborhood.
      */
-    unsigned get(unsigned _index)
+    unsigned get(unsigned _index) const
     {
         if (_index < size())
             return indicesList[_index];
