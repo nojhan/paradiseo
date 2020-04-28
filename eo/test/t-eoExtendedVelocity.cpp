@@ -16,7 +16,7 @@ double f (const Particle & _particle)
     return (-sum);
 }
 
-int main_function(int argc, char **argv)
+int main_function(int /*argc*/, char **/*argv*/)
 {
 	const unsigned POP_SIZE = 6, VEC_SIZE = 2, NEIGHBORHOOD_SIZE=2;
 

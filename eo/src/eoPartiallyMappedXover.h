@@ -53,23 +53,23 @@ public:
   bool operator()(EOT & _solution1, EOT & _solution2) {
     if (_solution1.size() > 1) {
       // random indexes such that i1 < i2
-      int i1 = rng.random(_solution1.size());
-      int i2 = rng.random(_solution1.size());
+      size_t i1 = rng.random(_solution1.size());
+      size_t i2 = rng.random(_solution1.size());
 
       while (i1 == i2)
 	i2 = rng.random(_solution1.size());
       
       if (i1 > i2) {
-	int tmp = i1;
+	size_t tmp = i1;
 	i1 = i2;
 	i2 = tmp;
       }
       
       // the permutations between s1 and s2 
-      int * p1 = new int[_solution1.size()];
-      int * p2 = new int[_solution1.size()];
+      size_t * p1 = new size_t[_solution1.size()];
+      size_t * p2 = new size_t[_solution1.size()];
       
-      int i;
+      size_t i;
       for(i = 0; i < _solution1.size(); i++) {
 	p1[i] = -1;
 	p2[i] = -1;

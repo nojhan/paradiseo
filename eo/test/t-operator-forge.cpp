@@ -8,6 +8,7 @@ struct OpInterface
     std::string _name;
     OpInterface(std::string name) : _name(name) {}
     virtual void operator()() = 0;
+    virtual ~OpInterface() {}
 };
 
 struct OpA : public OpInterface

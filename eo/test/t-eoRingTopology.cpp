@@ -16,7 +16,7 @@ double f (const Indi & _indi)
     return (-sum);
 }
 
-int main_function(int argc, char **argv)
+int main_function(int /*argc*/, char **/*argv*/)
 {
 	//Parameters
     const unsigned int VEC_SIZE = 2;

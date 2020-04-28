@@ -143,16 +143,16 @@ public:
     /**
      * Print the structure of the topology on the standard output.
      */
-    void printOn()
+    void printOn(std::ostream& out) const
     {
         for (unsigned i=0;i< neighborhoods.size();i++)
         {
-            std::cout << "{ " ;
+            out << "{ " ;
             for (unsigned j=0;j< neighborhoods[i].size();j++)
             {
-                std::cout << neighborhoods[i].get(j) << " ";
+                out << neighborhoods[i].get(j) << " ";
             }
-            std::cout << "}" << std::endl;
+            out << "}" << std::endl;
         }
     }
 

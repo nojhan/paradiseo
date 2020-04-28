@@ -22,7 +22,7 @@ int main() {
   sol1.resize(9);
   sol2.resize(9);
 
-  for(int i = 0; i < sol1.size(); i++)
+  for(size_t i = 0; i < sol1.size(); i++)
     sol1[i] = i;
 
   sol2[0] = 3;
@@ -46,23 +46,23 @@ int main() {
   std::cout << sol2 << std::endl;
 
   int verif[9];
-  for(int i = 0; i < sol1.size(); i++)
+  for(size_t i = 0; i < sol1.size(); i++)
     verif[i] = -1;
 
-  for(int i = 0; i < sol1.size(); i++)
+  for(size_t i = 0; i < sol1.size(); i++)
     verif[ sol1[i] ] = 1;
 
-  for(int i = 0; i < sol1.size(); i++)
+  for(size_t i = 0; i < sol1.size(); i++)
     assert(verif[i] != -1);
 
 
-  for(int i = 0; i < sol2.size(); i++)
+  for(size_t i = 0; i < sol2.size(); i++)
     verif[i] = -1;
 
-  for(int i = 0; i < sol2.size(); i++)
+  for(size_t i = 0; i < sol2.size(); i++)
     verif[ sol2[i] ] = 1;
 
-  for(int i = 0; i < sol2.size(); i++)
+  for(size_t i = 0; i < sol2.size(); i++)
     assert(verif[i] != -1);
 
   std::cout << "[t-eoPartiallyMappedXover] => OK" << std::endl;

@@ -34,7 +34,7 @@ double binary_value (const Particle & _particle)
 
 
 
-void main_function(int argc, char **argv)
+void main_function(int /*argc*/, char **/*argv*/)
 {
 // PARAMETRES
  // all parameters are hard-coded!
