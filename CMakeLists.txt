@@ -4,32 +4,21 @@
 ### 0) Check the CMake version
 ######################################################################################
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 ######################################################################################
 ### 1) Define the project
 ######################################################################################
 
 ## Name
-project("ParadisEO")
+project("ParadisEO"
+    VERSION 3.0.0
+    DESCRIPTION "Evolutionary optimization framework"
+    LANGUAGES C CXX)
 
 ## Language
-enable_language(CXX)
 set(CMAKE_CXX_STANDARD 17)
 
-## Test the presence of a compiler
-if("${CMAKE_CXX_COMPILER}" STREQUAL "" OR "${CMAKE_C_COMPILER}" STREQUAL "")
-    message(FATAL_ERROR "No compiler found!")
-endif()
-
-## Versioning
-set(VERSION_MAJOR 2 CACHE STRING "Major version number" )
-set(VERSION_MINOR 1 CACHE STRING "Minor version number" )
-set(VERSION_PATCH 0 CACHE STRING "Patch version number" )
-
-SET(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}" CACHE INTERNAL "Package version" FORCE)
-SET(VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}${PROJECT_VERSION_MISC}" CACHE INTERNAL "Global version" FORCE)
-SET(GLOBAL_VERSION "${VERSION}")
 
 ######################################################################################
 ### 2) Check dependencies
