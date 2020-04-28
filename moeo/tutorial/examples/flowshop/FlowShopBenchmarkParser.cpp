@@ -45,25 +45,25 @@ FlowShopBenchmarkParser::FlowShopBenchmarkParser(const std::string _benchmarkFil
 }
 
 
-const unsigned int FlowShopBenchmarkParser::getM()
+unsigned int FlowShopBenchmarkParser::getM()
 {
     return M;
 }
 
 
-const unsigned int FlowShopBenchmarkParser::getN()
+unsigned int FlowShopBenchmarkParser::getN()
 {
     return N;
 }
 
 
-const std::vector< std::vector<unsigned int> > FlowShopBenchmarkParser::getP()
+std::vector< std::vector<unsigned int> > FlowShopBenchmarkParser::getP()
 {
     return p;
 }
 
 
-const std::vector<unsigned int> FlowShopBenchmarkParser::getD()
+std::vector<unsigned int> FlowShopBenchmarkParser::getD()
 {
     return d;
 }

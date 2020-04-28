@@ -33,9 +33,9 @@ int main_function(int argc, char **argv)
     eoFirstIsBestInit < Indi > localInit;
     eoPop < Indi > pop;
     pop.append (POP_SIZE, random);
-    apply(eval, pop);
-    apply < Indi > (veloRandom, pop);
-    apply < Indi > (localInit, pop);
+    ::apply(eval, pop);
+    ::apply < Indi > (veloRandom, pop);
+    ::apply < Indi > (localInit, pop);
     eoRingTopology<Indi> topology(NEIGHBORHOOD_SIZE);
     topology.setup(pop);
     std::cout<<"\n\n\nPopulation :\n\n"<<pop;

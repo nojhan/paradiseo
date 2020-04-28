@@ -36,7 +36,7 @@ using namespace std;
 // GENERAL
 //-----------------------------------------------------------------------------
 
-void main_function(int argc, char **argv)
+void main_function(int /*argc*/, char **/*argv*/)
 {
 // PARAMETRES
   const unsigned int SEED = 42;	// seed for random number generator

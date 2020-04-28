@@ -38,7 +38,7 @@ double real_value(const Indi & _indi)
 }
 // GENERAL
 //-----------------------------------------------------------------------------
-void main_function(int argc, char **argv)
+void main_function(int /*argc*/, char **/*argv*/)
 {
 // PARAMETRES
   // all parameters are hard-coded!

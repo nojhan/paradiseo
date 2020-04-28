@@ -38,13 +38,13 @@
 #include <FlowShopObjectiveVectorTraits.h>
 
 
-bool FlowShopObjectiveVectorTraits::minimizing (int _i)
+bool FlowShopObjectiveVectorTraits::minimizing (int /*_i*/)
 {
   // minimizing both
   return true;
 }
 
-bool FlowShopObjectiveVectorTraits::maximizing (int _i)
+bool FlowShopObjectiveVectorTraits::maximizing (int /*_i*/)
 {
   // minimizing both
   return false;

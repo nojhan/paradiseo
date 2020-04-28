@@ -12,7 +12,7 @@
 #include <eo>
 
 // Use functions from namespace std
-using namespace std;
+// using namespace std; // Do not do this, this shadows EO's `apply` function.
 
 //-----------------------------------------------------------------------------
 typedef eoMinimizingFitness FitT;
@@ -33,7 +33,7 @@ FitT real_value (const Particle & _particle)
 
 
 
-void main_function(int argc, char **argv)
+void main_function(int /*argc*/, char **/*argv*/)
 {
 // PARAMETRES
  // all parameters are hard-coded!
@@ -114,9 +114,9 @@ void main_function(int argc, char **argv)
   	pop.sort();
 
   	// Print (sorted) the initial population (raw printout)
-    cout << "INITIAL POPULATION:" << endl;
+    std::cout << "INITIAL POPULATION:" << std::endl;
     for (unsigned i = 0; i < pop.size(); ++i)
-	 cout <<  "\t best fit=" <<  pop[i] <<  endl;
+	 std::cout <<  "\t best fit=" <<  pop[i] <<  std::endl;
 
 
 ///////////////
@@ -158,9 +158,9 @@ void main_function(int argc, char **argv)
 // OUTPUT
   // Print (sorted) intial population
 	 pop.sort();
-	 cout << "FINAL POPULATION:" << endl;
+     std::clog << "FINAL POPULATION:" << std::endl;
   	 for (unsigned i = 0; i < pop.size(); ++i)
-	cout <<  "\t best fit=" <<  pop[i] <<  endl;
+     std::clog <<  "\t best fit=" <<  pop[i] << std::endl;
 
 }
 
@@ -173,9 +173,9 @@ int main(int argc, char **argv)
     {
 	main_function(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-	cout << "Exception: " << e.what() << '\n';
+        std::cerr << "Exception: " << e.what() << '\n';
     }
 
     return 1;

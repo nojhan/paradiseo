@@ -91,7 +91,7 @@ int main(int /*argc*/, char** /*argv*/)
 
                         eoPop<EOT> pop;
                         pop.append(pop_size, init);
-                        apply(eval,pop);
+                        ::apply(eval,pop);
 
                         algo(pop);
 

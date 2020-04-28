@@ -60,25 +60,25 @@ class FlowShopBenchmarkParser
     /**
      * the number of machines
      */
-    const unsigned int getM();
+    unsigned int getM();
 
 
     /**
      * the number of jobs
      */
-    const unsigned int getN();
+    unsigned int getN();
 
 
     /**
      * the processing times
      */
-    const std::vector < std::vector < unsigned int > > getP();
+    std::vector < std::vector < unsigned int > > getP();
 
 
     /**
      * the due-dates
      */
-    const std::vector < unsigned int > getD();
+    std::vector < unsigned int > getD();
 
 
     /**

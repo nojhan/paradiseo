@@ -81,7 +81,7 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
         }
 
       // now create the embedded eoIntBounds object
-      eoIntBounds * locBound;
+      eoIntBounds * locBound = nullptr;
       if (minBounded && maxBounded)
         {
           if (maxBound <= minBound)

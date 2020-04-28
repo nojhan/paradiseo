@@ -12,7 +12,7 @@
 #include "eoParam.h"
 #include "../eoExceptions.h"
 
-using namespace std;
+// using namespace std;
 
 void eoFileMonitor::printHeader(std::ostream& os)
 {
@@ -33,7 +33,7 @@ void eoFileMonitor::printHeader(std::ostream& os)
 void eoFileMonitor::printHeader()
 {
     // create file
-    ofstream os(filename.c_str());
+    std::ofstream os(filename.c_str());
 
     if (!os)
     {
@@ -46,11 +46,11 @@ void eoFileMonitor::printHeader()
 
 eoMonitor& eoFileMonitor::operator()(void)
 {
-    ofstream os(filename.c_str(),
+    std::ofstream os(filename.c_str(),
         overwrite ?
-            ios_base::out|ios_base::trunc // truncate
+            std::ios_base::out|std::ios_base::trunc // truncate
             :
-            ios_base::out|ios_base::app   // append
+            std::ios_base::out|std::ios_base::app   // append
         );
 
     if (!os)

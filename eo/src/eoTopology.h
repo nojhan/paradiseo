@@ -80,7 +80,7 @@ public:
     /**
      * Prints the neighborhoods contained in the topology.
      */
-    virtual void printOn() = 0;
+    // virtual void printOn() = 0; // Already defined in eoPop
 };
 
 

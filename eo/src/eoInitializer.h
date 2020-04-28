@@ -105,10 +105,10 @@ public:
     virtual void operator() ()
     {
         eoPop<POT> empty_pop;
-        apply(proc, pop);
+        ::apply(proc, pop);
         procPara(empty_pop, pop);
-        apply < POT > (initVelo, pop);
-        apply < POT > (initBest, pop);
+        ::apply < POT > (initVelo, pop);
+        ::apply < POT > (initBest, pop);
         topology.setup(pop);
     }
 

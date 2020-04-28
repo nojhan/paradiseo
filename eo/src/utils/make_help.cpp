@@ -32,7 +32,7 @@
 
 #include "eoParser.h"
 
-using namespace std;
+// using namespace std;
 
 /** Generation of the status file, and output of the help message if needed
  *
@@ -47,24 +47,24 @@ using namespace std;
 void make_help(eoParser & _parser, bool exit_after)
 {
     // name of the "status" file where all actual parameter values will be saved
-    string str_status = _parser.ProgramName() + ".status"; // default value
-    eoValueParam<string>& statusParam = _parser.createParam(str_status, "status","Status file",'\0', "Persistence" );
+    std::string str_status = _parser.ProgramName() + ".status"; // default value
+    eoValueParam<std::string>& statusParam = _parser.createParam(str_status, "status","Status file",'\0', "Persistence" );
 
     // dump status file BEFORE help, so the user gets a chance to use it:
     // it's probably the case where she/he needs it most!!!
     // Only help parameter will not be in status file - but who cares???
     if (statusParam.value() != "")
       {
-        ofstream os(statusParam.value().c_str());
+        std::ofstream os(statusParam.value().c_str());
         os << _parser;		// and you can use that file as parameter file
       }
    // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
    // i.e. in case you need parameters somewhere else, postpone these
     if (_parser.userNeedsHelp())
       {
-        _parser.printHelp(cout);
-        cout << "You can use an edited copy of file " << statusParam.value()
-             << " as parameter file" << endl;
+        _parser.printHelp(std::cout);
+        std::cout << "You can use an edited copy of file " << statusParam.value()
+             << " as parameter file" << std::endl;
         if(exit_after) {
             exit(0);
         }
@@ -80,7 +80,7 @@ void make_help(eoParser & _parser, bool exit_after)
  */
 bool testDirRes(std::string _dirName, bool _erase=true)
 {
-  string s = "test -d " + _dirName;
+  std::string s = "test -d " + _dirName;
   int res = system(s.c_str());
   // test for (unlikely) errors
   if ( (res==-1) || (res==127) )
@@ -91,7 +91,7 @@ bool testDirRes(std::string _dirName, bool _erase=true)
   // now make sure there is a dir without any file in it - or quit
   if (res)                    // no dir present
     {
-      s = string("mkdir ")+ _dirName;
+      s = std::string("mkdir ")+ _dirName;
       int res = system(s.c_str());
       (void)res;
       return true;
@@ -99,7 +99,7 @@ bool testDirRes(std::string _dirName, bool _erase=true)
   //  else
   if (_erase)                      // OK to erase
     {
-      s = string("/bin/rm ")+ _dirName + "/*";
+      s = std::string("/bin/rm ")+ _dirName + "/*";
       int res = system(s.c_str());
       (void)res;
       return true;

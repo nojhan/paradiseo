@@ -44,7 +44,7 @@ public:
      * modifies the parent
      * @param _genotype The parent genotype (will be modified)
      */
-    bool operator()(GenotypeT & _genotype)
+    bool operator()(GenotypeT & /*_genotype*/)
 	{
 	    bool isModified(true);
 	    // START code for mutation of the _genotype object

@@ -84,7 +84,7 @@ int main(int ac, char** av)
     eoPop< RealVec >& pop = do_make_pop(parser, state, *init);
 
     // (2) First evaluation before starting the research algorithm
-    apply(eval, pop);
+    ::apply(eval, pop);
 
     // Prepare bounder class to set bounds of sampling.
     // This is used by edoSampler.

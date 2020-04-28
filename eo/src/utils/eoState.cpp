@@ -14,31 +14,31 @@
 #include "../eoObject.h"
 #include "../eoPersistent.h"
 
-using namespace std;
+// using namespace std;
 
 
 
-void eoState::removeComment(string& str, string comment)
+void eoState::removeComment(std::string& str, std::string comment)
 {
-    string::size_type pos = str.find(comment);
+    std::string::size_type pos = str.find(comment);
 
-    if (pos != string::npos)
+    if (pos != std::string::npos)
     {
         str.erase(pos, str.size());
     }
 }
 
-bool eoState::is_section(const string& str, string& name)
+bool eoState::is_section(const std::string& str, std::string& name)
 {
-    string::size_type pos = str.find(_tag_section_so);
+    std::string::size_type pos = str.find(_tag_section_so);
 
-    if (pos == string::npos)
+    if (pos == std::string::npos)
         return false;
     //else
 
-    string::size_type end = str.find(_tag_section_sc);
+    std::string::size_type end = str.find(_tag_section_sc);
 
-    if (end == string::npos)
+    if (end == std::string::npos)
         return false;
     // else
 
@@ -59,9 +59,9 @@ eoState::~eoState(void)
 
 void eoState::registerObject(eoPersistent& registrant)
 {
-    string name = createObjectName(dynamic_cast<eoObject*>(&registrant));
+    std::string name = createObjectName(dynamic_cast<eoObject*>(&registrant));
 
-    pair<ObjectMap::iterator,bool> res = objectMap.insert(make_pair(name, &registrant));
+    std::pair<ObjectMap::iterator,bool> res = objectMap.insert(make_pair(name, &registrant));
 
     if (res.second == true)
     {
@@ -73,13 +73,13 @@ void eoState::registerObject(eoPersistent& registrant)
     }
 }
 
-void eoState::load(const string& _filename)
+void eoState::load(const std::string& _filename)
 {
-    ifstream is (_filename.c_str());
+    std::ifstream is (_filename.c_str());
 
     if (!is)
     {
-        // string str = "Could not open file " + _filename;
+        // std::string str = "Could not open file " + _filename;
         throw eoFileError(_filename);
     }
 
@@ -89,14 +89,14 @@ void eoState::load(const string& _filename)
 // FIXME implement parsing and loading of other formats
 void eoState::load(std::istream& is)
 {
-    string str;
-    string name;
+    std::string str;
+    std::string name;
 
     getline(is, str);
 
     if (is.fail())
     {
-        // string str = "Error while reading stream";
+        // std::string str = "Error while reading stream";
         throw eoFileError("stream");
     }
 
@@ -104,7 +104,7 @@ void eoState::load(std::istream& is)
     { // parse section header
         if (is_section(str, name))
         {
-            string fullString;
+            std::string fullString;
             ObjectMap::iterator it = objectMap.find(name);
 
             if (it == objectMap.end())
@@ -122,7 +122,7 @@ void eoState::load(std::istream& is)
 
                 // now we have the object, get lines, remove comments etc.
 
-                string fullstring;
+                std::string fullstring;
 
                 while (getline(is, str))
                 {
@@ -134,7 +134,7 @@ void eoState::load(std::istream& is)
                     removeComment(str, getCommentString());
                     fullstring += str + "\n";
                 }
-                istringstream the_stream(fullstring);
+                std::istringstream the_stream(fullstring);
                 object->readFrom(the_stream);
             }
         }
@@ -148,13 +148,13 @@ void eoState::load(std::istream& is)
 
 }
 
-void eoState::save(const string& filename) const
+void eoState::save(const std::string& filename) const
 { // saves in order of insertion
-    ofstream os(filename.c_str());
+    std::ofstream os(filename.c_str());
 
     if (!os)
     {
-        // string msg = "Could not open file: " + filename + " for writing!";
+        // std::string msg = "Could not open file: " + filename + " for writing!";
         throw eoFileError(filename);
     }
 
@@ -163,7 +163,7 @@ void eoState::save(const string& filename) const
 
 //void eoState::save(std::ostream& os) const
 //{ // saves in order of insertion
-//    for (vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
+//    for (std::vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
 //    {
 //        os << "\\section{" << (*it)->first << "}\n";
 //        (*it)->second->printOn(os);
@@ -171,7 +171,7 @@ void eoState::save(const string& filename) const
 //    }
 //}
 
-void eoState::saveSection( std::ostream& os, vector<ObjectMap::iterator>::const_iterator it) const
+void eoState::saveSection( std::ostream& os, std::vector<ObjectMap::iterator>::const_iterator it) const
 {
     os << _tag_section_so << (*it)->first << _tag_section_sc;
 
@@ -190,7 +190,7 @@ void eoState::save(std::ostream& os) const
     // save the first section
     assert( creationOrder.size() > 0 );
     // saves in order of insertion
-    vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin();
+    std::vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin();
     saveSection(os,it);
     it++;
 
@@ -204,23 +204,23 @@ void eoState::save(std::ostream& os) const
 }
 
 
-string eoState::createObjectName(eoObject* obj)
+std::string eoState::createObjectName(eoObject* obj)
 {
     if (obj == 0)
     {
-        ostringstream os;
+        std::ostringstream os;
         os << objectMap.size();
         return os.str();
     }
     // else
 
-    string name = obj->className();
+    std::string name = obj->className();
     ObjectMap::const_iterator it = objectMap.find(name);
 
     unsigned count = 1;
     while (it != objectMap.end())
     {
-        ostringstream os;
+        std::ostringstream os;
         os << obj->className().c_str() << count++;
         name = os.str();
         it = objectMap.find(name);

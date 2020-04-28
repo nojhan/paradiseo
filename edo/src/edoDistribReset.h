@@ -52,7 +52,7 @@ class edoDistribReset : public eoAlgoReset<typename D::EOType>
             _distrib(distrib)
         { }
 
-        virtual void operator()( eoPop<EOType>& pop )
+        virtual void operator()( eoPop<EOType>& /*pop*/ )
         {
             if(_has_dim) {
                 _distrib.reset(_dim);

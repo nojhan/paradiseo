@@ -46,7 +46,7 @@ public:
      * @param _genotype1 The first parent
      * @param _genotype2 The second parent
      */
-    bool operator()(GenotypeT& _genotype1, GenotypeT & _genotype2)
+    bool operator()(GenotypeT& /*_genotype1*/, GenotypeT & /*_genotype2*/)
 	{
 	    bool oneAtLeastIsModified(true);
 	    // START code for crossover of _genotype1 and _genotype2 objects

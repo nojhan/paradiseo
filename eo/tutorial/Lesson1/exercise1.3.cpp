@@ -39,7 +39,7 @@ double binary_value(const Indi & _indi)
 
 //-----------------------------------------------------------------------------
 
-void main_function(int argc, char **argv)
+void main_function(int /*argc*/, char **/*argv*/)
 {
   const unsigned int SEED = 42;	// seed for random number generator
   const unsigned int VEC_SIZE = 8; // Number of bits in genotypes

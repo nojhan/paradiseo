@@ -42,7 +42,7 @@ Authors:
 #include "eoLogger.h"
 
 
-using namespace std;
+// using namespace std;
 
 std::ostream& printSectionHeader(std::ostream& os, std::string section)
 {
@@ -76,8 +76,8 @@ eoParameterLoader::~eoParameterLoader()
     }
 }
 
-eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
-                     string /*_lFileParamName*/, char /*_shortHand*/) :
+eoParser::eoParser ( unsigned _argc, char **_argv , std::string _programDescription,
+                     std::string /*_lFileParamName*/, char /*_shortHand*/) :
     programName(_argv[0]),
     programDescription( _programDescription),
     needHelpMessage( false ),
@@ -92,11 +92,11 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
         if(_argv[i][0] == '@')
         { // read response file
             char *pts = _argv[i]+1; // yes a char*, sorry :-)
-            ifstream ifs (pts);
+            std::ifstream ifs (pts);
             ifs.peek(); // check if it exists
             if (!ifs)
             {
-                // string msg = string("Could not open response file: ") + pts;
+                // std::string msg = std::string("Could not open response file: ") + pts;
                 throw eoFileError(pts);
             }
             // read  - will be overwritten by command-line
@@ -105,7 +105,7 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
         }
     }
     // now read arguments on command-line
-    stringstream stream;
+    std::stringstream stream;
     for (i = 1; i < _argc; ++i)
     {
         stream << _argv[i] << '\n';
@@ -159,24 +159,24 @@ void eoParser::doRegisterParam(eoParam& param)
 {
     if (param.required() && !isItThere(param))
     {
-        string msg = "Required parameter: " + param.longName() + " missing";
+        std::string msg = "Required parameter: " + param.longName() + " missing";
         needHelpMessage = true;
         messages.push_back(msg);
     }
-    pair<bool, string> value = getValue(param);
+    std::pair<bool, std::string> value = getValue(param);
     if (value.first)
     {
         param.setValue(value.second);
     }
 }
 
-pair<bool, string> eoParser::getValue(eoParam& _param) const
+std::pair<bool, std::string> eoParser::getValue(eoParam& _param) const
 {
-    pair<bool, string> result(false, "");
+    std::pair<bool, std::string> result(false, "");
 
     if (_param.shortName() != 0)
     {
-        map<char, string>::const_iterator it = shortNameMap.find(_param.shortName());
+        std::map<char, std::string>::const_iterator it = shortNameMap.find(_param.shortName());
         if (it != shortNameMap.end())
         {
             result.second = it->second;
@@ -184,7 +184,7 @@ pair<bool, string> eoParser::getValue(eoParam& _param) const
             return result;
         }
     }
-    map<string, string>::const_iterator it = longNameMap.find(_param.longName());
+    std::map<std::string, std::string>::const_iterator it = longNameMap.find(_param.longName());
     if (it != longNameMap.end())
     {
         result.second = it->second;
@@ -205,21 +205,21 @@ void eoParser::updateParameters()
   }
 }
 
-void eoParser::readFrom(istream& is)
+void eoParser::readFrom(std::istream& is)
 {
-    string str;
+    std::string str;
     // we must avoid processing \section{xxx} if xxx is NOT "Parser"
     bool processing = true;
     while (is >> str)
     {
-        if (str.find(string("\\section{"))==0) // found section begin
-            processing = (str.find(string("Parser"))<str.size());
+        if (str.find(std::string("\\section{"))==0) // found section begin
+            processing = (str.find(std::string("Parser"))<str.size());
 
         if (processing)		// right \section (or no \section at all)
         {
             if (str[0] == '#')
             { // skip the rest of the line
-                string tempStr;
+                std::string tempStr;
                 getline(is, tempStr);
             }
             if (str[0] == '-')
@@ -233,35 +233,35 @@ void eoParser::readFrom(istream& is)
 
                 if (str[1] == '-') // two consecutive dashes
                 {
-                    string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
-                    string value;
+                    std::string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
+                    std::string value;
 
                     if (equalLocation == str.end())
-                    { //! @todo it should be the next string
+                    { //! @todo it should be the next std::string
                         value = "";
                     }
                     else
                     {
-                        value = string(equalLocation + 1, str.end());
+                        value = std::string(equalLocation + 1, str.end());
                     }
 
-                    string name(str.begin() + 2, equalLocation);
+                    std::string name(str.begin() + 2, equalLocation);
                     longNameMap[name] = value;
                 }
                 else // it should be a char
                 {
-                    string value = "1"; // flags do not need a special
+                    std::string value = "1"; // flags do not need a special
 
                     if (str.size() >= 2)
                     {
                         if (str[2] == '=')
                         {
                             if (str.size() >= 3)
-                                value = string(str.begin() + 3, str.end());
+                                value = std::string(str.begin() + 3, str.end());
                         }
                         else
                         {
-                            value = string(str.begin() + 2, str.end());
+                            value = std::string(str.begin() + 2, str.end());
                         }
                     }
 
@@ -274,7 +274,7 @@ void eoParser::readFrom(istream& is)
     updateParameters();
 }
 
-void eoParser::printOn(ostream& os) const
+void eoParser::printOn(std::ostream& os) const
 {
     typedef MultiMapType::const_iterator It;
 
@@ -299,12 +299,12 @@ void eoParser::printOn(ostream& os) const
         if (!isItThere(*param))  // comment out the ones not set by the user
           os << "# ";
 
-        string str = "--" + param->longName() + "=" + param->getValue();
+        std::string str = "--" + param->longName() + "=" + param->getValue();
 
-        os.setf(ios_base::left, ios_base::adjustfield);
-        os << setfill(' ') << setw(40) << str;
+        os.setf(std::ios_base::left, std::ios_base::adjustfield);
+        os << std::setfill(' ') << std::setw(40) << str;
 
-        os << setw(0) << " # ";
+        os << std::setw(0) << " # ";
         if (param->shortName())
             os << '-' << param->shortName() << " : ";
         os << param->description();
@@ -318,11 +318,11 @@ void eoParser::printOn(ostream& os) const
     }
 }
 
-void eoParser::printHelp(ostream& os)
+void eoParser::printHelp(std::ostream& os)
 {
     if (needHelp.value() == false && !messages.empty())
     {
-        std::copy(messages.begin(), messages.end(), ostream_iterator<string>(os, "\n"));
+        std::copy(messages.begin(), messages.end(), std::ostream_iterator<std::string>(os, "\n"));
         messages.clear();
         return;
     }
@@ -333,9 +333,9 @@ void eoParser::printHelp(ostream& os)
     // print the usage when calling the program from the command line
     os << "Usage: "<< programName<<" [Options]\n";
     // only short usage!
-    os << "Options of the form \"-f[=Value]\" or \"--Name[=value]\"" << endl;
+    os << "Options of the form \"-f[=Value]\" or \"--Name[=value]\"" << std::endl;
 
-    os << "Where:"<<endl;
+    os << "Where:"<< std::endl;
 
     typedef MultiMapType::const_iterator It;
 
@@ -383,7 +383,7 @@ bool eoParser::userNeedsHelp(void)
       // search for unknown long names
       for (LongNameMapType::const_iterator lIt = longNameMap.begin(); lIt != longNameMap.end(); ++lIt)
         {
-          string entry = lIt->first;
+          std::string entry = lIt->first;
 
           MultiMapType::const_iterator it;
 
@@ -397,7 +397,7 @@ bool eoParser::userNeedsHelp(void)
 
           if (it == params.end())
             {
-              string msg = "Unknown parameter: --" + entry + " entered";
+              std::string msg = "Unknown parameter: --" + entry + " entered";
               needHelpMessage = true;
               messages.push_back(msg);
             }
@@ -420,15 +420,15 @@ bool eoParser::userNeedsHelp(void)
 
           if (it == params.end())
             {
-              string entryString(1, entry);
-              string msg = "Unknown parameter: -" + entryString + " entered";
+              std::string entryString(1, entry);
+              std::string msg = "Unknown parameter: -" + entryString + " entered";
               needHelpMessage = true;
               messages.push_back(msg);
             }
         } // for sIt
 
         if( needHelpMessage ) {
-            string msg = "Use -h or --help to get help about available parameters";
+            std::string msg = "Use -h or --help to get help about available parameters";
             messages.push_back( msg );
         }
 
@@ -438,13 +438,13 @@ bool eoParser::userNeedsHelp(void)
 }
 
 ///////////////// I put these here at the moment
-ostream & operator<<(ostream & _os, const eoParamParamType & _rate)
+std::ostream & operator<<(std::ostream & _os, const eoParamParamType & _rate)
 {
   _rate.printOn(_os);
   return _os;
 }
 
-istream & operator>>(istream & _is,  eoParamParamType & _rate)
+std::istream & operator>>(std::istream & _is,  eoParamParamType & _rate)
 {
   _rate.readFrom(_is);
   return _is;
