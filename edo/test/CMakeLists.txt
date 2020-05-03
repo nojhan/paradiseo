@@ -42,6 +42,7 @@ set(SOURCES
   t-repairer-modulo
   t-binomial
   t-binomialmulti
+  t-minimal-cmaes
   )
 
 foreach(current ${SOURCES})
