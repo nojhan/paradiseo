@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="lightblue.css" title="Default" />
 
-        <title>ParadisEO: Evolutionary Computation Framework</title>
+        <title>ParadisEO: Fast & full featured optimization heuristics framework</title>
 
     </head>
 
@@ -28,7 +28,6 @@
          alt="ParadisEO logo" />
     <p id="slogan">Fast &amp; full featured optimization heuristics framework</p>
     <nav id="menu">
-        <script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_thin_badge.js"></script>
 
         <div id="shortcuts">
             <p>Shortcuts:</p>
@@ -147,13 +146,7 @@
     <p>Download the <a href="https://gforge.inria.fr/frs/download.php/31755/QuickStart.zip">quick start project template</a>, edit the <pre>CMakeLists.txt</pre> file to indicate where to find <em class="logo">Paradis<span class="logo_eo">eo</span></em> and start developing your own solver.</p>
 
     <p>To show you how does a <em class="logo">Paradis<span class="logo_eo">eo</span></em> code look, you will find below a minimal implementation of the popular CMA-ES algorithm.</p>
-    <iframe
-        style="width:95%;
-               height:35em;
-               resize: vertical;
-               overflow: scroll scroll;"
-        src="t-minimal-cmaes.cpp.html">
-    </iframe>
+    <iframe class="code" src="t-minimal-cmaes.cpp.html"></iframe>
     <p>The code is presented without comments, to keep it short, but it is yet full-featured, as you will see if you compile it and run <pre class="command">./cmaes --help</pre></p>
 
     <h2><a name="Gethelp"></a>Get help</h2>
@@ -231,7 +224,7 @@
              srcset="Evolutionary_algorithm.svg"
              width="100%"
              style="max-width:512px;"
-             title="A typical Evolutionary Algorithm, as seen from the <em class="logo">Paradis<span class="logo_eo">eo</span></em> point of vue − Johann Dréo − CC-BY-SA" />
+             title="A typical Evolutionary Algorithm, as seen from the ParadisEO point of vue − Johann Dréo − CC-BY-SA" />
         <figcaption>Example of the operators "slots" for designing an Evolutionary Algorithm. The red "Evaluation" is where you plug your objective function, the yellow slots are the ones that depends on your choice of encoding (if you do not use generic ones). The green slots can be used by any algorithm. Tens of alternative operators may exists for each slot.</figcaption>
     </figure>
 
@@ -256,7 +249,7 @@
              srcset="paradiseo_modules.svg"
              width="100%"
              style="max-width:512px;"
-             title="<em class="logo">Paradis<span class="logo_eo">eo</span></em> is organized in several modules − Johann Dréo − CC-BY-SA" />
+             title="ParadisEO is organized in several modules − Johann Dréo − CC-BY-SA" />
         <figcaption>The modules of <em class="logo">Paradis<span class="logo_eo">eo</span></em>.</figcaption>
     </figure>
 
@@ -679,7 +672,7 @@ undiscovered knowledge.
 
     <h2><a name="Downloads"></a>Downloads</h2>
 
-    <p>The current stable release is version 2.0.1: <a href="https://gforge.inria.fr/frs/download.php/31733/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-2.0.1.ziph"><em class="logo">Paradis<span class="logo_eo">eo</span></em> 2.0.1</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/releases">GitHub/paradiseo/releases</a>.</p>
+    <p>The current stable release is version 2.0.1: <a href="https://gforge.inria.fr/frs/download.php/31733/Paradiseo-2.0.1.ziph">ParadisEO 2.0.1</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/releases">GitHub/paradiseo/releases</a>.</p>
 
     <p> You can obtain the latest stable and beta version directly via the official Git repository:
     <pre class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</pre>.
@@ -757,8 +750,9 @@ undiscovered knowledge.
 
     <h2><a name="Contribute"></a>Contribute</h2>
 
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> development is open and contributions are welcomed.</p>
     <p>The official bug tracker is available on the <a href="https://gforge.inria.fr/projects/paradiseo/">project page</a>. But you may be more confortable using the <a href="https://github.com/nojhan/paradiseo/issues">issue tracker of Johann Dreo's project page on GitHub</a>.</p>
-
+    <p>If you have any question about contributing: subscribe to our <a href='http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users' rel='nofollow'>(low traffic) mailing-list</a>.</p>
 
     <!-- HISTORY -->
     <h1><a name="History"></a>History <a href="#Plan">⤒</a></h1>

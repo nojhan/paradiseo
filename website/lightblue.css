@@ -394,6 +394,12 @@ figcaption {
     margin-left:5%;
 }
 
+.code {
+    width:95%;
+    height:35em;
+    resize:vertical;
+    overflow-y:scroll;
+}
 
 @media only screen and (max-width: 800px) {
     #alt {
