@@ -5,227 +5,266 @@
     <head>
         <meta http-equiv="Content-Type" content="text/HTML; charset=utf-8"  />
         <meta name=" robot" content="follow, index, all" />
-        <meta name="author" content="EO development team" />
-        <meta name="keywords" content="Class libraries, evolutionary computation, evolution strategies, genetic algorithms, genetic programming, simulated annealing, C++" />
+        <meta name="author" content="ParadisEO development team" />
+        <meta name="keywords" content="Class libraries, evolutionary computation, evolution strategies, genetic algorithms, genetic programming, simulated annealing, particle swarm optimization, C++" />
         <meta name="resource-type" content="document" />
         <meta name="distribution" content="Global" />
 
         <link rel="icon" type="image/png" href="eo_ico.png" />
-
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="lightblue.css" title="Default" />
 
-        <title>Evolving Objects (EO): Evolutionary Computation Framework</title>
+        <title>ParadisEO: Evolutionary Computation Framework</title>
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-        <script type="text/javascript" src="https://static.jappix.com/php/get.php?l=fr&amp;t=js&amp;g=mini.xml"></script>
-
-        <!--
-        <script type="text/javascript">
-            jQuery(document).ready(function() {
-                    MINI_GROUPCHATS = ["eo@chat.jabberfr.org"];
-                    MINI_ANIMATE = true;
-                    launchMini(false, true, "anonymous.jappix.com");
-                    });
-        </script>
-        -->
     </head>
 
 <body>
 
 <div id="alt">
-    <img style="clear:left;" src="eo_logo.png" alt="Evolving Objects logo" />
-    <div id="menu">
-        <p>C++ evolutionary computation components framework</p>
+    <img style="clear:left;"
+         src="paradiseo_logo_200px.png"
+         srcset="paradiseo_logo.svg"
+         width="100%"
+         alt="ParadisEO logo" />
+    <p id="slogan">Fast &amp; full featured optimization heuristics framework</p>
+    <nav id="menu">
         <script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_thin_badge.js"></script>
 
-        <div class="shortcuts">
+        <div id="shortcuts">
             <p>Shortcuts:</p>
             <ul>
-                <li><a href="http://sourceforge.net/project/showfiles.php?group_id=9775">Download</a></li>
-                <li><a href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">Tutorial</a></li>
-                <li><a href="https://sourceforge.net/apps/trac/eodev/wiki/faq">FAQ</a></li>
-                <li><a href="http://eodev.sourceforge.net/eo/doc/html/index.html">EO documentation</a></li>
-                <li><a href="http://eodev.sourceforge.net/edo/doc/html/index.html">EDO documentation</a></li>
-                <li><a href="http://sourceforge.net/project/?group_id=9775">Project page</a></li>
-                <li><a href="https://lists.sourceforge.net/lists/listinfo/eodev-main">Contact us</a></li>
-                <!--<li><a href="http://chat.jabberfr.org/muckl_int/index.php?room=eo">Chat with us</a></li>-->
-                <li><a href="https://sourceforge.net/apps/trac/eodev/wiki/WikiStart">Submit a bug</a></li>
-                <li>see also <a href="http://paradiseo.gforge.inria.fr/">ParadisEO</a></li>
+                <li><a href="#Why">Why choosing <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</a></li>
+                <li><a href="https://gforge.inria.fr/frs/?group_id=145">Downloads</a></li>
+                <li><a href="https://gforge.inria.fr/scm/?group_id=145">Git repository</a></li>
+                <li><a href="http://irc.lc/freenode/paradiseo">Chat with us</a></li>
             </ul>
         </div>
 
-        <div class="shortcuts">
+        <div id="toc">
+            <p id="toc_header">Jump to section:</p>
             <ol>
-                <lh>Jump to section:</lh>
-                <li>
-                <ol>
-                    <lh><a href="#Features">Features</a></lh>
-                    <li><a href="#Component-based">Component-based</a></li>
-                    <li><a href="#Main-Features">Main Features</a></li>
-                    <li><a href="#Portability">Portability</a></li>
-                    <li><a href="#Presentations">Presentations</a></li>
-                </ol>
+                <!-- <th id="toc_header">Jump to section:</th> -->
+                <li class="toc_section" id="toc_section_1">
+                    <ol>
+                        <lh><a href="#Quickstart">Quickstart</a></lh>
+                        <li><a href="#Download">Download</a></li>
+                        <li><a href="#Build">Build</a></li>
+                        <li><a href="#Develop">Develop</a></li>
+                        <li><a href="#Gethelp">Get help</a></li>
+                    </ol>
                 </li>
-                <li>
-                <ol>
-                    <lh><a href="#Code">Code</a></lh>
-                    <li><a href="#Download">Download</a></li>
-                    <li><a href="#Facts">Facts</a></li>
-                    <li><a href="#License">License</a></li>
-                    <li><a href="#Documentation">Documentation</a></li>
-                </ol>
+                <li class="toc_section" id="toc_section_2">
+                    <ol>
+                        <lh><a href="#Rationale">Rationale</a></lh>
+                        <li><a href="#Optimization">Optimization Problems</a></li>
+                        <li><a href="#Metaheuristics">Metaheuristics</a></li>
+                        <li><a href="#Why">Why choosing <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</a></li>
+                    </ol>
                 </li>
-                <li>
-                <ol>
-                    <lh><a href="#Development">Development</a></lh>
-                    <li><a href="#Mailing-lists">Mailing-lists</a></li>
-                    <li><a href="#Get-involved">Get involved</a></li>
-                    <li><a href="#Related-software">Related software</a></li>
-                    <li><a href="#Authors">Authors</a></li>
-                    <li><a href="#Links">Links</a></li>
-                </ol>
+                <li class="toc_section" id="toc_section_3">
+                    <ol>
+                        <lh><a href="#Features">Features</a></lh>
+                        <li><a href="#Component-based">Composable design</a></li>
+                        <li><a href="#LargeChoice">Lot of Components</a></li>
+                        <li><a href="#Portability">Portability</a></li>
+                    </ol>
+                </li>
+                <li class="toc_section" id="toc_section_4">
+                    <ol>
+                        <lh><a href="#Documentation">Documentation</a></lh>
+                        <li><a href="#Articles">Articles</a></li>
+                        <li><a href="#Presentations">Slides</a></li>
+                        <li><a href="#Tutorials">Tutorials</a></li>
+                        <li><a href="#API">API doc</a></li>
+                        <li><a href="#Examples">Examples</a></li>
+                    </ol>
+                </li>
+                <li class="toc_section" id="toc_section_5">
+                    <ol>
+                        <lh><a href="#Code">Code</a></lh>
+                        <li><a href="#Downloads">Downloads</a></li>
+                        <li><a href="#Builds">Builds</a></li>
+                        <li><a href="#Licenses">Licenses</a></li>
+                        <li><a href="#Contribute">Contribute</a></li>
+                    </ol>
+                </li>
+                <li class="toc_section" id="toc_section_6">
+                    <ol>
+                        <lh><a href="#History">History &amp; Authors</a></lh>
+                        <li><a href="#Institutions">Institutional support</a></li>
+                        <li><a href="#Authors">Authors</a></li>
+                    </ol>
                 </li>
             </ol>
         </div><!-- class=shortcuts -->
 
         <ul class="badges">
-            <li>
-                <!-- ++Begin Dynamic Feed Wizard Generated Code++ -->
-                <!--
-                // Created with a Google AJAX Search and Feed Wizard
-                // http://code.google.com/apis/ajaxsearch/wizards.html
-                -->
-
-                <!--
-                // The Following div element will end up holding the actual feed control.
-                // You can place this anywhere on your page.
-                -->
-                <div id="feed-control">
-                    <span style="color:#676767;font-size:11px;margin:10px;padding:4px;">Loading...</span>
-                </div>
-
-                <!-- Google Ajax Api
-                -->
-                <script src="http://www.google.com/jsapi?key=notsupplied-wizard"
-                    type="text/javascript"></script>
-
-                <!-- Dynamic Feed Control and Stylesheet -->
-                <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js"
-                    type="text/javascript"></script>
-                <style type="text/css">
-                    @import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");
-                </style>
-
-                <script type="text/javascript">
-                    function LoadDynamicFeedControl() {
-                        var feeds = [
-                        {title: 'Activity',
-                            url: 'http://sourceforge.net/export/rss2_keepsake.php?group_id=9775'
-                        },
-                        {title: 'User\'s reviews',
-                            url: 'https://sourceforge.net/projects/eodev/reviews_feed.rss'
-                        }];
-                        var options = {
-                            stacked : true,
-                            horizontal : false,
-                            title : "Latest news from EO",
-                            numResults : 20
-                        }
-
-                        new GFdynamicFeedControl(feeds, 'feed-control', options);
-                    }
-                    // Load the feeds API and set the onload callback.
-                    google.load('feeds', '1');
-                    google.setOnLoadCallback(LoadDynamicFeedControl);
-                </script>
-                <!-- ++End Dynamic Feed Control Wizard Generated Code++ -->
-            </li>
-            <li> <a href="http://sourceforge.net/projects/eodev"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=9775&amp;type=8" width="80" height="15" alt="Get Evolving Objects at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></li>
         </ul>
 
-    </div> <!-- id=menu -->
+    </nav> <!-- id=menu -->
 </div> <!-- id=alt -->
 
 
 <div id="main">
 
-    <h1><a name="Plan"></a>Evolving Objects (EO): an Evolutionary Computation Framework</h1>
+    <h1><a name="Plan"></a><em class="logo">Paradis<span class="logo_eo">eo</span></em>: a Heuristic Optimization Framework</h1>
 
-    <p>EO is <em>a template-based, ANSI-C++ evolutionary computation library</em> which helps you to write your own stochastic optimization algorithms insanely fast.</p>
+    <div class="excerpt">
+        <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is an open-source <em>full-featured evolutionary computation framework</em> which main purpose is to help you <em>write your own stochastic optimization algorithms</em>, insanely fast.</p>
+    <p>It focus on the efficiency of the implementation of solvers, by providing:</p>
+    <ul>
+        <li>a <em>modular design</em> for several types of paradigms,</li>
+        <li>the <em>largest codebase</em> of existing components,</li>
+        <li>tools for <em>automated design and selection</em> of algorithms,</li>
+        <li>a focus on <em>speed</em> and several <em>parallelization</em> options.</li>
+    </ul>
+    </div> <!-- class="excerpt" -->
 
-    <!--
-    <div style="font-size:1.5em;color:red;border:thin solid red; background-color:#fee;margin:1em;padding:2em;text-align:center;">We have lost all the mailing-list subscriptions in a crash, please subscribe again on the <a href="https://lists.sourceforge.net/lists/listinfo/eodev-main">eodev-main subscription page</a>.</div>
-    -->
 
-    <p>Evolutionary algorithms forms a family of algorithms inspired by the theory of evolution, that solve various problems.
-    They evolve a set of solutions to a given problem, in order to produce the best results.
-    These are stochastic algorithms, because they iteratively use random processes.
-    The vast majority of these methods are used to solve optimization problems, and may be also called "metaheuristics".
-    They are also ranked among <em>computational intelligence</em> methods, a domain close to artificial intelligence.
-    </p>
+    <!-- QUICKSTART -->
+    <h1><a name="Quickstart"></a>Quick start <a href="#Plan">⤒</a></h1>
 
-    <p>With the help of EO, you can easily design evolutionary algorithms that will find solutions to virtually all kind of hard optimization problems, from continuous to combinatorial ones.</p>
+    <h2><a name="Download"></a>Download</h2>
 
-    <div style="font-size:1.5em;color:red;border:thin solid blue; background-color:#eef;margin:1em;padding:0.5em;text-align:center;-moz-border-radius:1em;"><a href="http://sourceforge.net/projects/eodev/files/">Download</a></div>
+    Download the <a href="https://gforge.inria.fr/frs/download.php/31733/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-2.0.1.zip">latest stable release</a>.
+
+    <p>Or clone the latest version: <pre class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</pre></p>
+
+    <h2><a name="Build"></a>Build</h2>
+
+    <p>As <em class="logo">Paradis<span class="logo_eo">eo</span></em> is a development framework, you do not really need to install it on all your systems. Just put it somewhere on your development computer, compile it from here and indicate where to find it to your favorite build system.</p>
+
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is mainly developed for Linux, on which it is straightforward to install a C++ build chain.
+    For example, on Ubuntu 18.04: <pre class="command">sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</pre></p>
+
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> use the CMake build system, so building it should be as simple as:
+    <pre class="command">mkdir build ; cd build ; cmake .. && make -j</pre></p>
+
+    <p>For more details, see the <a href="#Builds">building <em class="logo">Paradis<span class="logo_eo">eo</span></em></a> section.</p>
+
+    <h2><a name="Develop"></a>Develop</h2>
+
+    <p>Download the <a href="https://gforge.inria.fr/frs/download.php/31755/QuickStart.zip">quick start project template</a>, edit the <pre>CMakeLists.txt</pre> file to indicate where to find <em class="logo">Paradis<span class="logo_eo">eo</span></em> and start developing your own solver.</p>
+
+    <p>To show you how does a <em class="logo">Paradis<span class="logo_eo">eo</span></em> code look, you will find below a minimal implementation of the popular CMA-ES algorithm.</p>
+    <iframe
+        style="width:95%;
+               height:35em;
+               resize: vertical;
+               overflow: scroll scroll;"
+        src="t-minimal-cmaes.cpp.html">
+    </iframe>
+    <p>The code is presented without comments, to keep it short, but it is yet full-featured, as you will see if you compile it and run <pre class="command">./cmaes --help</pre></p>
+
+    <h2><a name="Gethelp"></a>Get help</h2>
 
     <p>If you need <em>immediate support or have any question</em>, the best way to get
-    answers is to <a href="https://lists.sourceforge.net/lists/listinfo/eodev-main">subscribe to the mailing list</a> and send your email to <a href="mailto:eodev-main@lists.sourceforge.net">eodev-main@lists.sourceforge.net</a></p>
+    answers is to send an email to <a href='mailto:paradiseo-help@lists.gforge.inria.fr' rel='nofollow'>paradiseo-help@lists.gforge.inria.fr</a>. You can also <a href='http://lists.gforge.inria.fr/pipermail/paradiseo-help/' rel='nofollow'>consult the help archives</a>, subscribe to our <a href='http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users' rel='nofollow'>(low traffic) mailing-list</a> or <a class='urllink' href='http://lists.gforge.inria.fr/pipermail/paradiseo-users/' rel='nofollow'>consult its archives</a>.
+    </p>
 
     <p>Alternatively, you can join us on the official chatroom. You can try our <a href="http://irc.lc/freenode/paradiseo">webchat interface</a>, or if you already use IRC, you can directly connect to the <a href="irc://irc.freenode.org/#paradiseo">irc.freenode.org/#paradiseo</a> multi-user chatroom with your favorite client.</p>
 
-    <!--
-    <p>If you want to know how to help us to improve EO, the easiest way is to click on the following button:
 
-    <form method="POST" action="http://openhatch.org/+do/project.views.wanna_help_do">
-        <input type="hidden" name="from_offsite" value="True" />
-        <input type="hidden" value="6519" name="project"/>
-        <input type="submit" value="I want to help" rel="tipsy-south" id="openhatch-wannahelp-button" original-title="Click to add yourself to the list of people who want to contribute. People of all levels are welcome!"/>
-    </form>
+    <!-- RATIONALE -->
+    <h1><a name="Rationale"></a>Rationale <a href="#Plan">⤒</a></h1>
 
-    <style>
-        @import url('http://openhatch.org/static/css/tipsy.css');
-    </style>
+    <h2><a name="Optimization"></a>Black-box and Gray-box Optimization Problems</h2>
 
-    <style type="text/css">
-        #openhatch-wannahelp-button:hover, #openhatch-wannahelp-button:focus { background-image:url('http://openhatch.org/static/images/wannahelp-button-bg-hover.png'); color:#222; text-decoration:none; }
-        #openhatch-wannahelp-button { background: #C8E29D url('http://openhatch.org/static/images/wannahelp-button-bg.png') repeat-x scroll center top; border:3px solid #fff;  cursor:pointer; cursor: hand; font-family: Helvetica, sans-serif; font-size:13pt; font-weight:normal; text-align:center; text-shadow:0 1px 0 #fff; white-space:normal; }
-        #openhatch-wannahelp-button { -moz-border-radius: 8px; color: #444; float:left; padding:10px 20px; display:block; padding:2px 8px; }
-        #openhatch-wannahelp-button:focus { outline-color:-moz-use-text-color; outline-style:none; outline-width:medium; }
-    </style>
-    -->
-    <!--<script type="text/javascript" src="http://openhatch.org/static/packed/selections_for_widget.js?1271800811"></script>-->
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> targets the development of solvers for mathematical optimization problems for which you cannot compute gradients. The classical use case is the automated design or configuration of some system which is simulated.</p>
+    <button class="collapsible">More details…</button>
+    <div class="details">
+        <p>It supports mono-objective and multi-objective functions, partial evaluation, several generic way to represent solutions and have all the tools for using your own representation.</p>
+        <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> does not provides tools for modelling your problem, but makes it easy to find the best algorithm to solve it.</p>
+    </div>
 
-    <br />
-    <br />
-    </p>
+    <h2><a name="Metaheuristics"></a>Metaheuristics / Evolutionary Algorithms</h2>
 
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> targets the design of <em>metaheuristics</em> solvers using <em>computational intelligence</em> methods, a subdomain of artificial intelligence.</p>
+    <button class="collapsible">More details…</button>
+    <div class="details">
+    <p>It was originally designed for Evolutionary Algorithms, but rapidly evolved to provide abstractions for several "grammars" for other metaheuristics (or search heuristics, or whatever you call them). As of today, it provides: evolutionary algorithms (evolution strategies, genetic algorithms, etc.), particle swarm optimization, local searches (greedy search, simulated annealing, etc.), estimation of distribution algorithms (covariance-matrix adaptation, etc.).
+    </div>
+
+    <h2><a name="Why"></a>Why choosing <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</h2>
+
+    <p>Learning a full-featured framework like <em class="logo">Paradis<span class="logo_eo">eo</span></em> very often seems overkill. However, we would like to stress out that you may forget some points while jumping to this conclusion.</p>
+
+    <p class="excerpt"><em class="logo">Paradis<span class="logo_eo">eo</span></em> provides the <em>largest mature codebase</em> of state-of-the-art algorithms, and is focused on (automatically) find the <em>most efficient solvers</em>.</p>
+
+    <button class="collapsible">Why is it important?</button>
+    <div class="details">
+        <p>The most classical impediment to the use of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that you just want to check <em>if your problem can actually be solved</em> with heuristics. You feel that it would be a loss of time to learn complex stuff if it ends being useless.</p>
+        <p>However, you should keep in mind that:
+            <ul>
+                <li>Metaheuristics do seem very easy to implement in textbooks, but the state-of-the art versions of efficient algorithms can be a lot more complex.</li>
+                <li>It is usually easy to get something to actually run, but it is far more difficult to get an <em>efficient</em> solver.</li>
+                <li>Metaheuristics performances on a given problem are very sensitive to small variations in the parameter setting or the choice of some operators. Which render large experimental plans and algorithm selection compulsory to attain peak efficiency.</p>
+            </ul>
+            Fortunately, <em class="logo">Paradis<span class="logo_eo">eo</span></em> have the <em>largest codebase of the market</em>, hardened along 20 years of development of tens of solvers. Additionally, it provides the tools to rapidly search for the best combination of algorithms to solve your problem, even searching for this combination <em>automatically</em>.
+        </p>
+    </div>
+
+    <p class="excerpt"><em class="logo">Paradis<span class="logo_eo">eo</span></em> is <em>the fastest</em> framework on the market, which is a crucial feature for modern and robust approach to solver <em>design and validation</em>.</p>
+    <button class="collapsible">Why is it important?</button>
+    <div class="details">
+        <p>Another classical criticism against <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that C++ is hard and that a fast language is useless because speed is not a concern when your objective function is dominating all the runtime.</p>
+        <p>However, we argue that:
+            <ul>
+                <li>During the design phase of your solver, you will need to estimate its performance against synthetic benchmarks that are fast to compute. In that case, fast computation means fast design iterations. And it's even more true if you plan to use automated design to find the best solver for your problem.</li>
+                <li>Modern C++ makes use of the very same high-level abstractions you would find in more accepted languages like Python. Sure, the syntax is cumbersome, but you will not see it after a while, given that you will work at the algorithm level.</li>
+                <li>C++ provides full type checking and the largest set of tooling for any modern language, which are your first line of defense against long-term bugs. Sure, it sometimes gives you the impression that you fight against the compiler, but chasing subtle interface bugs across a complex Python code is even harder.</li>
+            </ul>
+        </p>
+    </div>
+
+
+    <!-- FEATURES -->
     <h1><a name="Features"></a>Features <a href="#Plan">⤒</a></h1>
 
-    <h2><a name="Component-based"></a>Component-based framework</h2>
+    <h2><a name="Component-based"></a>Component-based Design</h2>
 
-    <p>Designing an algorithm with EO consists in choosing what components you want to use for your specific needs, just as building a structure with Lego blocks.</p>
-    <p>If you have a classical problem for which available code exists (for example if you have a black-box problem with real-valued variables), you will just choose components to form an algorithm and connect it to your <em>fitness function</em> (which computes the quality of a given solution).</p>
-    <p>If your problem is a bit more exotic, you will have to code a class that represents how your <em>individuals</em> (a solution to your problem) are represented, and perhaps some <em>variations operators</em>, but most of the other operators (selection, replacement, stopping criteria, command-line interface, etc.) are already available in EO.</p>
-    <p><img src="Evolutionary_algorithm.png" title="A typical Evolutionary Algorithm, as seen from the EO point of vue − Johann Dréo − CC-BY-SA" /></p>
+    <p>Designing an algorithm with <em class="logo">Paradis<span class="logo_eo">eo</span></em> consists in choosing what components (called <em>operators</em>) you want to use for your specific needs, just as building a structure with Lego blocks.</p>
+    <p>If you have a classical problem for which available code exists (for example if you have a black-box problem with real-valued variables), you will just choose operators to form an algorithm and connect it to your <em>evaluation function</em> (which computes the quality of a given solution).</p>
 
-    <h2><a name="Main-Features"></a>Main Features</h2>
+    <figure>
+        <img src="Evolutionary_algorithm.png"
+             srcset="Evolutionary_algorithm.svg"
+             width="100%"
+             style="max-width:512px;"
+             title="A typical Evolutionary Algorithm, as seen from the <em class="logo">Paradis<span class="logo_eo">eo</span></em> point of vue − Johann Dréo − CC-BY-SA" />
+        <figcaption>Example of the operators "slots" for designing an Evolutionary Algorithm. The red "Evaluation" is where you plug your objective function, the yellow slots are the ones that depends on your choice of encoding (if you do not use generic ones). The green slots can be used by any algorithm. Tens of alternative operators may exists for each slot.</figcaption>
+    </figure>
 
-    <!-- <img src="http://upload.wikimedia.org/wikipedia/en/timeline/3f507249a36a4a38020e7fc0a5f448df.png" title="Metaheuristics that can be implemented with EO and ParadisEO, ordered by date of invention − Johann Dréo/Wikipédia − CC-BY-SA" style="float:right;" /> --> <!-- http://en.wikipedia.org/wiki/Metaheuristic -->
-
-    <table style="float:right;" class="examples">
-        <caption>Examples of problems that you can solve with the help of EO:</caption>
-        <tr><td>
-                <img src="Gallagher_Gaussian_BBOB_f21.png" title="Continuous problems (here Gallagher's Gaussian 101-me Peaks function, Black Box Optimization Benchmark, f21 − COCO team)" /> <!-- http://coco.lri.fr/BBOB-downloads/download10.2/bbobdocfunctions.pdf -->
-        </tr></td>
-        <tr><td>
-                <img src="200px-Graph_betweenness.svg.png" title="Graph problems (here a Hue scale representing node betweenness on a graph − Claudio Rocchini − CC-BY)" /><!-- http://commons.wikimedia.org/wiki/File:Graph_betweenness.svg -->
-        </tr></td>
-        <tr><td>
-                <img src="BatchGantt1.png" title="Planning problems (here a Gantt Chart for a Batch Process − Casilett − DP)" /><!-- http://en.wikipedia.org/wiki/File:BatchGantt1.png -->
-        </tr></td>
-    </table>
+    <p>If your problem is a bit more exotic, you will have to code a class that encodes how solutions to your problem are represented, and perhaps a few more. For instance, you may want ad-hoc <em>variations operators</em>, but most of the other operators (selection, replacement, stopping criteria, command-line interface, etc.) are already available in <em class="logo">Paradis<span class="logo_eo">eo</span></em>.</p>
 
 
+    <button class="collapsible">Combination of operators…</button>
+    <div class="details">
+        <p>One of the very powerful feature of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that its design targets easy combination of operators. Is is, for instance, straightforward to plug several different <em>continuation operators</em> in the <em>stopping criterion</em> slot of algorithms.</p>
+        <p>Popular combination of operators are provided as pre-defined functions, with automatic command line argument control.</p>
+        <p>Additionally, this design allows for all kind of hybridizations between algorithms. For instance, it's easy to plug a local search algorithm as a variation operator of an evolutionary algorithm.</p>
+        <p>Another advantage is that you can very easily try alternative algorithms. With tens of operators available for popular slots, the number of different algorithms increase very rapidly. For instance, just using basic genetic algorithm operators with set parameters, <em class="logo">Paradis<span class="logo_eo">eo</span></em> can provide up to 5 millions different bitstrings algorithms. Given that metaheuristics are very sensitive to the interactions between operators, this approach allows for vital degrees of freedom.</p>
+    </div>
+
+
+    <h2><a name="LargeChoice"></a>Large Choice of Components</h2>
+
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is organized in several modules, either providing different "grammars" for different algorithms, either providing high-level features. All modules follows the same architecture design and are interoperable with the others, so that you can easily choose the subset of features you need.</p>
+
+    <figure>
+        <img src="paradiseo_modules.png"
+             srcset="paradiseo_modules.svg"
+             width="100%"
+             style="max-width:512px;"
+             title="<em class="logo">Paradis<span class="logo_eo">eo</span></em> is organized in several modules − Johann Dréo − CC-BY-SA" />
+        <figcaption>The modules of <em class="logo">Paradis<span class="logo_eo">eo</span></em>.</figcaption>
+    </figure>
+
+    <p>It is, for instance, easy to start with a simple local search, then add multi-objective capabilities, then shared-memory parallelization, then hybridization with an evolutionary algorithm and finally plug everything in an objective function so as to optimize the parameters with a particle swarm optimizer.</p>
+
+    <button class="collapsible">Some components for the EO modules…</button>
+    <div class="details">
+    <p>Below is an abridged list of components available in the EO module (only):</p>
     <ul>
         <li>Flexible design that permits to easily create virtually any algorithm</li>
         <li>Solution representation for continuous and combinatorial problems:
@@ -275,7 +314,7 @@
             <li>Shared memory loops unrolling (with <a href="http://openmp.org">OpenMP</a>)</li>
             <li>Message passing parallelization (with <a href="http://www.open-mpi.org/">openMPI</a>):
             <ul>
-                <li>map/reduce-like design, with operators choice, as in EO</li>
+                <li>map/reduce-like design, with operators choice, as in <em class="logo">Paradis<span class="logo_eo">eo</span></em></li>
                 <li>useful existing operators (parallel dynamic multi-start, static evaluations, …)</li>
             </ul>
             </li>
@@ -294,19 +333,20 @@
         </li>
         <li>Mersenne Twister random number generator (and various distributions)</li>
         <li>No useless computation (sparing fitness call, functor-based calls)</li>
-        <li>Fast running speed, thanks to C++</li>
         <li><em>And more!</em></li>
     </ul>
+    </div>
 
 
     <h2><a name="Portability"></a>Portability</h2>
 
-    <p> EO should work on Windows and any Un*x-like operating system with a
-    standard-conforming C++ development system. </p>
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is mainly developed under Linux operating systems, where its dependencies and the C++ toolchain are easy to install. Recent versions have been tested with gcc and clang compilers.</p>
 
-    <p>Recent versions of EO have been tested on the following platforms:
-    </p>
+    <p>Stable versions should however work on Windows and any Unix-like operating system with a standard-conforming C++ development system. </p>
 
+    <button class="collapsible">More details…</button>
+    <div class="details">
+    <p>Previous versions of <em class="logo">Paradis<span class="logo_eo">eo</span></em> have been tested on the following platforms:
     <ul>
         <li>Linux x86 with GCC 3.x and 4.x</li>
         <li>Linux x86_64 with GCC 3.x and GCC 4.x</li>
@@ -318,258 +358,516 @@
         <li>Solaris SPARC with GCC 3.x</li>
         <li>Solaris x86 with GCC 3.x</li>
     </ul>
+    </p>
 
-    <p>Recent versions of EO uses the <a href="http://www.cmake.org">CMake</a> portable build system, that permits to easily generate a build chain for your environment.</p>
+    <p>Recent versions of <em class="logo">Paradis<span class="logo_eo">eo</span></em> uses the <a href="http://www.cmake.org">CMake</a> portable build system, that permits to easily generate a build script for your environment.</p>
 
-    <p> If you have tested EO on a system not listed here, please <a href="mailto:eodev-main@lists.sourceforge.net?subject=test-report">let
+    <p> If you have tested <em class="logo">Paradis<span class="logo_eo">eo</span></em> on a system not listed here, please <a href="mailto:eodev-main@lists.sourceforge.net?subject=test-report">let
         us know</a>. </p>
+    </div>
 
-    <p> If you are working on a system with an older C++ compiler there
-    is a good chance that eo-0.9.3z.1 works. It is tested on Linux
-    with gcc-2.9x and several systems (IRIX, Solaris) with egcs. </p>
+    <!-- <p> If you are working on a system with an older C++ compiler there -->
+    <!-- is a good chance that eo-0.9.3z.1 works. It is tested on Linux -->
+    <!-- with gcc-2.9x and several systems (IRIX, Solaris) with egcs. </p> -->
 
 
-    <h2><a name="Presentations"></a>Presentations</h2>
+    <!-- DOCUMENTATION -->
+    <h1><a name="Documentation"></a>Documentation <a href="#Documentation">⤒</a></h1>
 
-    <p> A functional and "philosophical" overview of EO was presented at <a href="http://www.cmap.polytechnique.fr/%7Eea01/">EA'01 conference</a>.
-    You can download <a href="http://eodev.sourceforge.net/eo/doc/EO_EA2001.pdf">the paper</a>
-    or <a href="http://eodev.sourceforge.net/eo/doc/LeCreusot.pdf">the
-        slides</a>, or browse them right here:</p>
+    <h2><a name="Articles"></a>Academic Articles about <em class="logo">Paradis<span class="logo_eo">eo</span></em></h2>
 
-    <div style="text-align:center;" id="__ss_4878872"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/nojhan/evolving-objects-yet-another-evolutionary-computation-library" title="Evolving Objects: Yet Another Evolutionary Computation Library?">Evolving Objects: Yet Another Evolutionary Computation Library?</a></strong><object id="__sse4878872" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=lecreusot-100731121355-phpapp01&stripped_title=evolving-objects-yet-another-evolutionary-computation-library" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse4878872" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=lecreusot-100731121355-phpapp01&stripped_title=evolving-objects-yet-another-evolutionary-computation-library" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object></div>
+    <ul>
+        <li>
+            <p>The core EO module is described in the following scientific article:
+            <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
+                <a href= "http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz">Evolving
+                    objects: A general purpose evolutionary computation
+                    library</a>, <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
+            </p>
 
-    <p>You can also read this <a href="http://geneura.ugr.es/~jmerelo/GAPPT/index.html">
-        PowerPoint presentation</a>, that shows the EO philosophy.
-    It includes a Visual Basic macro for evolving objects in Visual Basic
-    for Applications. </p>
+            <button class="collapsible">BiBTeX entry for citing EO…</button>
+            <div class="details">
+                <p>If you used EO in a study, please cite it. As of today, it has been <a href="https://scholar.google.com/scholar?cites=900770489172177244&as_sdt=2005&sciodt=0,5&hl=fr">cited more than 250 times.</a></p>
+                <figure style="text-align:left;">
+                    <p>
+                    <font face="monospace">
+                        @<font color="#0000ff">Article</font>{<font color="#ff00ff">Keijzer2001</font>,<br/>
+                        &nbsp;&nbsp;<font color="#a52a2a">title</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Evolving Objects: A General Purpose Evolutionary Computation Library &quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a52a2a">author</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;Maarten Keijzer and J. J. Merelo and G. Romero and M. Schoenauer&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a52a2a">journal</font>&nbsp;=&nbsp;&nbsp;&nbsp;&quot;Artificial Evolution&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a52a2a">year</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;2002&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a52a2a">volume</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;2310&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a52a2a">pages</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;829--888&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a020f0">keywords</font>&nbsp;=&nbsp; &quot;genetic algorithms, genetic programming, evolutionary computation, metaheuristic, computational intelligence, optimization&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz">http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz</a>&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#ff00ff">size</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;12 pages&quot;,<br/>
+                        <!-- &nbsp;&nbsp;<font color="#a020f0">abstract</font>&nbsp;=&nbsp; &quot;This paper presents the evolving objects library<br/> -->
+                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (EOlib), an object-oriented framework for evolutionary<br/> -->
+                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; computation (EC)&nbsp;that aims to provide a flexible set of<br/> -->
+                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; classes to build EC applications. EOlib design<br/> -->
+                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objective is to be able to evolve any object in which<br/> -->
+                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fitness makes sense.&quot;,<br/> -->
+                        }<br/>
+                        <br/>
+                    </font>
+                    </p>
+                    <figcaption></figcaption>
+                </figure>
+            </div>
+        </li>
 
-    <p>EO is described in the following scientific article:<br />
-    <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
-        <a href= "http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">"Evolving
-            objects: A general purpose evolutionary computation
-            library",</a> <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
-    </p>
+        <!-- <li> -->
+        <!--     <p>The parallelization modules have been described in: -->
+        <!--     <blockquote>S. Cahon, N. Melab and E-G. Talbi, <a href="http://www.springerlink.com/content/up02m74726v1526u/"><em class="logo">Paradis<span class="logo_eo">eo</span></em>: A Framework for the Reusable Design of Parallel and Distributed Metaheuristics</a>, Journal of Heuristics, vol. 10(3), pp.357-380, May 2004.</blockquote> -->
+        <!--     </p> -->
+        <!-- </li> -->
 
-    <p>
-    <font face="monospace">
-        @<font color="#0000ff">Article</font>{<font color="#ff00ff">Keijzer2001</font>,<br/>
-        &nbsp;&nbsp;<font color="#a52a2a">title</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Evolving Objects: A General Purpose Evolutionary Computation Library &quot;,<br/>
-        &nbsp;&nbsp;<font color="#a52a2a">author</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;Maarten Keijzer and J. J. Merelo and G. Romero and M. Schoenauer&quot;,<br/>
-        &nbsp;&nbsp;<font color="#a52a2a">journal</font>&nbsp;=&nbsp;&nbsp;&nbsp;&quot;Artificial Evolution&quot;,<br/>
-        &nbsp;&nbsp;<font color="#a52a2a">year</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;2002&quot;,<br/>
-        &nbsp;&nbsp;<font color="#a52a2a">volume</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;2310&quot;,<br/>
-        &nbsp;&nbsp;<font color="#a52a2a">pages</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;829--888&quot;,<br/>
-        &nbsp;&nbsp;<font color="#a020f0">keywords</font>&nbsp;=&nbsp; &quot;genetic algorithms, genetic programming, evolutionary computation, metaheuristic, computational intelligence, optimization&quot;,<br/>
-        &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">http://www.lri.fr/~marc/EO/EO-EA01.ps.gz</a>&quot;,<br/>
-        &nbsp;&nbsp;<font color="#ff00ff">size</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;12 pages&quot;,<br/>
-        &nbsp;&nbsp;<font color="#a020f0">abstract</font>&nbsp;=&nbsp; &quot;This paper presents the evolving objects library<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (EOlib), an object-oriented framework for evolutionary<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; computation (EC)&nbsp;that aims to provide a flexible set of<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; classes to build EC applications. EOlib design<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objective is to be able to evolve any object in which<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fitness makes sense.&quot;,<br/>
-        }<br/>
-        <br/>
-    </font>
-    </p>
+        <li>
+            <p>The multi-objective module (MOEO) is described in:
+            <blockquote>A. Liefooghe, M. Basseur, L. Jourdan, E.-G. Talbi, <a href="http://www2.lifl.fr/~jourdan/publi/jourdan_EMO07_A.pdf"><em class="logo">Paradis<span class="logo_eo">eo</span></em>-MOEO: A Framework for Evolutionary Multi-objective Optimization</a>, EMO 2007, LNCS Vol. 4403, pp. 386-400, Matsushima, Japan.</blockquote>
+            </p>
+        </li>
 
-    <p>If you want to understand the message-passing parallelization module, check the <a href="http://eodev.sourceforge.net/eo/tutorial/Parallelization/eompi.html">introduction to eo::MPI</a> by Benjamin Bouvier.</p>
+        <li>
+            <p>The local search module (MO) is explained in:
+            <blockquote>J. Humeau, A. Liefooghe, E-G. Talbi, S. Verel, <a href="http://hal.inria.fr/hal-00665421/"><em class="logo">Paradis<span class="logo_eo">eo</span></em>-MO: From Fitness Landscape Analysis to Efficient Local Search Algorithms</a>, Research Report RR-7871, INRIA, 2012.</blockquote>
+            </p>
+        </li>
 
-    <p>Here is a list of some known publications that used EO:</p>
+        <li>
+            <p>A book about metaheuristics use <em class="logo">Paradis<span class="logo_eo">eo</span></em> as its framework of choice and explains in details several of its concepts, along with algorithmics content:
+            <blockquote>El-Ghazali Talbi, <a href="http://eu.wiley.com/WileyCDA/WileyTitle/productCd-0470278587.html">Metaheuristics: from design to implementation</a>, Wiley, 2009.
+(624pp),
+ISBN: 978-0-470-27858-1</blockquote>
+            </p>
+        </li>
+    </ul>
+
+    <button class="collapsible">More publications <em>about</em> <em class="logo">Paradis<span class="logo_eo">eo</span></em>…</button>
+    <div class="details">
+<div> 
+<p><strong>Research Reports</strong>
+</p></div>
+<div></div><ul><li>J. Humeau, A. Liefooghe, E-G. Talbi, S. Verel <a class='urllink' href='http://hal.inria.fr/hal-00665421/' rel='nofollow'><em class="logo">Paradis<span class="logo_eo">eo</span></em>-MO: From Fitness Landscape Analysis to Efficient Local Search Algorithms</a>, Research Report RR-7871, INRIA, 2012.
+<div></div></li><li>A. Liefooghe, L. Jourdan, E.-G. Talbi, <a class='urllink' href='http://hal.inria.fr/inria-00376770/' rel='nofollow'>A Unified Model for Evolutionary Multiobjective Optimization and its Implementation in a General Purpose Software Framework: <em class="logo">Paradis<span class="logo_eo">eo</span></em>-MOEO</a>, Research Report RR-6906, INRIA, 2009.
+</li></ul><div></div><div  style='color: black; font-size: 10pt; background-color: #EEE;' > 
+<p><strong>Journal papers</strong>
+</p></div>
+<div></div><ul><li>S. Cahon, N. Melab and E-G. Talbi, <a class='urllink' href='http://www.springerlink.com/content/up02m74726v1526u/' rel='nofollow'>"<em class="logo">Paradis<span class="logo_eo">eo</span></em>: A Framework for the Reusable Design of Parallel and Distributed Metaheuristics"</a>, Journal of Heuristics, vol. 10(3), pp.357-380, May 2004.
+<div></div></li><li> N. Melab, S. Cahon, E-G. Talbi.Grid computing for parallel bioinspired algorithms. <a class='urllink' href='http://top25.sciencedirect.com/index.php?cat_id=9&amp;subject_area_id=7&amp;journal_id=07437315' rel='nofollow'>Journal of Parallel and Distributed Computing (JPDC), Elsevier Science, Vol. 66(8), Pages 1052-1061, Aug. 2006.</a>
+<div></div></li><li>E-G. Talbi, S. Cahon and N. Melab. Designing cellular networks using a parallel hybrid metaheuristic. <a class='urllink' href='http://dx.doi.org/10.1016/j.comcom.2006.08.017' rel='nofollow'>Journal of Computer Communications, Elsevier Science, Vol. 30(4), Pages 698-713, 2007</a>
+<div></div></li><li>S. Cahon, N. Melab and E-G. Talbi, "Building with <em class="logo">Paradis<span class="logo_eo">eo</span></em> reusible parallel and distributed evolutionary algorithms", Parallel Computing, vol.30(5-6), pp.677-697, June 2004.
+</li></ul><div></div><div  style='color: black; font-size: 10pt; background-color: #EEE;' > 
+<p><strong>Conference papers</strong>
+</p></div>
+<div></div><ul><li>A. Liefooghe, M. Basseur,  L. Jourdan, E.-G. Talbi,   <a class='urllink' href='http://www2.lifl.fr/~jourdan/publi/jourdan_EMO07_A.pdf' rel='nofollow'>"<em class="logo">Paradis<span class="logo_eo">eo</span></em>-MOEO: A Framework for Evolutionary Multi-objective Optimization"</a>, EMO 2007, LNCS Vol. 4403, pp. 386-400, Matsushima, Japan. 
+<div></div></li><li>S. Cahon, N. Melab and E-G. Talbi, "<em class="logo">Paradis<span class="logo_eo">eo</span></em>: a framework for metaheuristics", International Workshop on Optimization Frameworks for Industrial Applications (ICOPI 2005), Paris, France, October 19-21, 2005.
+<div></div></li><li>S. Cahon, N. Melab and E-G. Talbi, "An Enabling Framework for Parallel Optimization on the Computational Grid", In Proceedings of the fifth IEEE/ACM International Symposium on Cluster Computing and the Grid (CCGRID'2005), Cardiff, UK, May, 2005.
+<div></div></li><li> S. Cahon, N. Melab, E-G. Talbi and M. Schoenauer, "PARADISEO based design of parallel and distributed evolutionary algorithms", Evolutionary Algorithms EA'2003, Marseille, France, LNCS, October 2003.
+</li></ul><p><br />
+    </div>
+
+    <button class="collapsible">Selection of publications <em>using</em> <em class="logo">Paradis<span class="logo_eo">eo</span></em>…</button>
+    <div class="details">
+
+<p><em class="logo">Paradis<span class="logo_eo">eo</span></em> has been experimented on different academic and industrial problems. In this section, we present different applications that show the wide range of potential of this framework as it has been applied to scheduling problems, continuous optimization, data-mining applications, bioinformatic applications, telecommunication problem, etc.  </p>
+
+    <p>Here is a list of some known publications that used <em class="logo">Paradis<span class="logo_eo">eo</span></em>:</p>
     <ul class="publications">
+    </ul>
+
+<h3>Automated Planning</h3>
+<ul>
+    <li>Jacques Bibaï, Pierre Savéant, Marc Schoenauer, Vincent Vidal, <a href="http://www.aaai.org/ocs/index.php/ICAPS/ICAPS10/paper/view/1414">An Evolutionary Metaheuristic Based on State Decomposition for Domain-Independent Satisficing Planning</a>, <i>Twentieth International Conference on Automated Planning and Scheduling </i> (2010). <strong>Winner of the International Planning Competition</strong></li>
+        <li>Jacques Bibaï, Pierre Savéant, Marc Schoenauer, Vincent Vidal, <a href="">An Evolutionary Metaheuristic for Domain-Independent Satisficing Planning</a>, <i>Genetic and Evolutionary Computation Conference</i> (2010). <strong>Silver Medal at the Human-Competitive Competition</strong></li>
+
+</ul>
+
+<h3>Telecommunications</h3>
+<p>Cellular network design is a major issue in mobile telecommunication systems. A model of the problem in its full practical complexity, based on multiobjective constrained combinatorial optimization, has been investigated. We adopted the Pareto approach at resolution in order to compute a set of diversified non-dominated networks, thus removing the need for the designer to rank or weight objectives a priori.
+</p>
+<p>Ref:
+</p><ul><li>E-G. Talbi, S. Cahon and N. Melab. "Designing cellular networks using a parallel hybrid metaheuristic". Journal of Computer Communications, Elsevier Science, To appear in 2006.
+</li></ul>
+
+<h3>Bi-objective flow-shop scheduling problem.</h3>
+<p>The flow-shop is one of the most widely investigated scheduling problem of the literature. But, the majority of studies considers it on a single-criterion form. However, other objectives than minimizing the makespan can be taken into account, like, e.g., minimizing the total tardiness.
+</p>
+<p>Ref: 
+</p><ul><li>Arnaud Liefooghe, Matthieu Basseur, Laetitia Jourdan, El-Ghazali Talbi. "Combinatorial Optimization of Stochastic Multi-objective Problems: an Application to the Flow-shop Scheduling Problem". In S. Obayashi et al. (Eds.): Evolutionary Multi-Criterion Optimization (<a class='urllink' href='http://www.is.doshisha.ac.jp/emo2007/' rel='nofollow'>EMO 2007</a>), LNCS vol. 4403, pp. 457-471, Matsushima, Japan (2007)
+</li></ul>
+
+<h3>Electromagnetic properties of conducting polymer composites in the microwave band.</h3>
+<p>Due to the proliferation of electromagnetic interferences, designing protecting material for high frequencies equipments has become an important problem.
+A new multi-objective model is proposed to design the different layers
+of a conducting polymer. To solve this model, a multi-objective continuous
+genetic algorithm is used. This algorithm offers several solutions with different
+physical properties and different costs.
+</p>
+<p>Ref:
+</p><ul><li>Oliver Schuetze,  Laetitia Jourdan, Thomas Legrand, El-Ghazali Talbi, Jean Luc Wojkiewicz, "A Multi-Objective Approach to the Design of Conducting Polymer Composites for Electromagnetic Shielding", EMO 2007, LNCS Vol. XX, pp. XX-XX, Matsushima, Japan.  
+</li></ul>
+
+<h3>Knowledge discovery in biological data from microarray experiments.</h3>
+<p>The problem of analyzing microarray data is actually a major issue in genomics. Often used techniques are clustering and classification. The authors propose to analyze those data through association rules. The problem is modeled as a multi-objective rule mining problem and a genetic algorithm is used to explore
+the large search space associated. Thence, MOGA permitted to present previously
+undiscovered knowledge. 
+</p>
+<p>Ref:
+</p>
+<ul><li>M. Khabzaoui, C. Dhaenens and E-G. Talbi, "A Cooperative Genetic Algorithm for Knowledge Discovery in MicroArray Experiments", In Parallel Computing for Bioinformatics and Computational Biology, Edited by Albert Y. Zomaya, ISBN: 0-471-71848-3, Chapter 13, pp 305-326, April 2006.
+</li><li>L. Jourdan, M. Khabzaoui, C. Dhaenens and E-G. Talbi, "A hybrid metaheuristic for knowledge discovery in microarray experiments", In Handbook of Bioinspired Algorithms and Applications, Edited by S. Olariu and A.Y. Zomaya, CRC Press, USA, ISBN: 1-58488-475-4, October 2005.
+</li></ul>
+
+<h3>Molecular Docking and Protein Structure Prediction</h3>
+<p>Ref:
+</p>
+<ul><li>Alexandru-Adrian Tantar, Nouredine Melab, El-Ghazali Talbi, "A Comparative Study of Parallel Metaheuristics for Protein Structure Prediction on the Computational Grid", IEEE International Parallel &amp; Distributed Processing Symposium(IPDPS 2007), pp. 1-10, 26-30 March 2007, Long Beach, California, USA.
+</li><li>A-A. Tantar, N. Melab, E-G. Talbi, O. Dragos and B. Parent, "A Parallel Hybrid Genetic Algorithm for Protein Structure Prediction on the Computational Grid", In Future Generation Computer Systems, Elsevier Science, vol. 23(3), pp. 398-409, 2007.
+</li><li>Alexandru-Adrian Tantar, Nouredine Melab, El-Ghazali Talbi and Bernard Toursel,"Solving the Protein Folding Problem with a Bicriterion Genetic Algorithm on the Grid", Fourth International Workshop on Biomedical Computations on the Grid(BioGrid'06), May 16-19, 2006, Singapore.
+</li></ul>
+
+<h3>Protein identification.</h3>
+<p>Ref:
+</p>
+<ul><li>J-C Boisson,  L. Jourdan, E-G. Talbi and C. Rolando "Protein Sequencing with an Adaptive Genetic Algorithm from Tandem Mass Spectrometry", CEC 2006, 0-7803-9489-5, July 16-21 2006, pp 1412-1419, Vancouver, Canada. 
+</li><li>J-C. Boisson, L. Jourdan, E-G. Talbi and C. Rolando, "A Preliminary Work on Evolutionary Identification of Protein Variants and New Proteins on Grids", Second IEEE Workshop on High Performance Computing in Medicine and Biology (HiPComb 2006). Proccedings of the 20th International Conference on Advance Information Networking and Application, vol. 2, pp. 583-587. Vienne, Austria, April 18-20, 2006.
+</li></ul>
+
+<h3>Engineering</h3>
+<ul>
         <li>J.J. Gilijamse, J. Küpper, S. Hoekstra, S.Y.T. van de Meerakker, G. Meijer,
-        <a href= "http://dx.doi.org/10.1103/PhysRevA.73.063410">Optimizing the Stark-decelerator beamline for the trapping of
-            cold molecules using evolutionary strategies</a>,
+        <a href= "http://dx.doi.org/10.1103/PhysRevA.73.063410">Optimizing the Stark-decelerator beamline for the trapping of cold molecules using evolutionary strategies</a>,
         <i> Physical Review</i>, A <b>73</b>, 063410 (2006). <br/>
         Also available at <a href= "http://arxiv.org/abs/physics/0603108"><i>arXiv</i>
             physics/0603108 (2006)</a>.</li>
+</ul>
+
+<h3>Metaheuristics Design</h3>
+<ul>
         <li>Johann Dreo, <a href="http://www.nojhan.net/pro/spip.php?article31">Using Performance Fronts for Parameter Setting of Stochastic Metaheuristics</a>, <i>Genetic and Evolutionary Computation Conference</i>, (2009).</li>
-        <li>Jacques Bibaï, Pierre Savéant, Marc Schoenauer, Vincent Vidal, <a href="http://www.aaai.org/ocs/index.php/ICAPS/ICAPS10/paper/view/1414">An Evolutionary Metaheuristic Based on State Decomposition for Domain-Independent Satisficing Planning</a>, <i>Twentieth International Conference on Automated Planning and Scheduling </i> (2010).</li>
-        <li>Jacques Bibaï, Pierre Savéant, Marc Schoenauer, Vincent Vidal, <a href="">An Evolutionary Metaheuristic for Domain-Independent Satisficing Planning</a>, <i>Genetic and Evolutionary Computation Conference</i> (2010). <em>Silver Medal at the Human-Competitive Competition</em></li>
+</ul>
+
+    </div>
+
+
+    <h2><a name="Presentations"></a>Presentations Slides</h2>
+
+<p>The following documents aim to provide general overviews of the different <em class="logo">Paradis<span class="logo_eo">eo</span></em>'s modules. They are based on different pdf files which offer complementary view on both theoritical aspects and pratical use.</p>
+
+<h3>Paradiseo-EO</h3>
+
+<ul>
+    <li> A functional and "philosophical" overview of the EO module was presented at <a href="http://www.cmap.polytechnique.fr/%7Eea01/">EA'01 conference</a>.
+    You can download <a href="http://eodev.sourceforge.net/eo/doc/EO_EA2001.pdf">the paper</a>
+    or <a href="http://eodev.sourceforge.net/eo/doc/LeCreusot.pdf">the
+        slides</a>.</li>
+<li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-eo/concepts/paradiseo-eo-design.pdf' rel='nofollow'>Metaheuristics for Combinatorial Optimization</a></strong> [pdf] by E-G. Talbi and S.Cahon: provides general concept on metaheuristics for combinatorial optimization.
+</li><li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-eo/concepts/paradiseo-eo-implem.pdf' rel='nofollow'>Reusable Design of Metaheuristics</a></strong> [pdf] by S.Cahon, E-G. Talbi and N. Melab: explains how to use Paradiseo-EO with a simple example.
+</li></ul>
+
+<h3>Paradiseo-MO</h3>
+
+<ul><li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-mo/concepts/paradiseo-newmo-design.pdf' rel='nofollow'>Reusable Design of Local Searches and Tools for Landscape Analysis</a></strong> [pdf] by S.Verel, A.Liefooghe and J.Humeau: explains the new design of Paradiseo-MO.
+</li><li><strong><a class='urllink' href='https://dl.dropboxusercontent.com/u/3098761/dolphin/paradiseo_roadef2012.pdf' rel='nofollow'><em class="logo">Paradis<span class="logo_eo">eo</span></em>-MO: From fitness landscape analysis to efficient local search algorithms</a></strong> [pdf] by J.Humeau, A.Liefooghe, E-G. Talbi, and S.Verel (presented at ROADEF 2012).
+</li></ul>
+
+<h3>Paradiseo-MOEO</h3>
+
+<ul><li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-moeo/concepts/paradiseo-moeo-design.pdf' rel='nofollow'>Metaheuristics for Multi-objective Optimization</a></strong> [pdf] by E.-G. Talbi and the <em class="logo">Paradis<span class="logo_eo">eo</span></em> group: presents multi-objective optimization concepts, a taxonomy of resolution methods and gives performance evaluation examples.
+</li><li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-moeo/concepts/paradiseo-moeo-implem.pdf' rel='nofollow'>Reusable Design of Metaheuristics for Multi-objective Optimization</a></strong> [pdf] by E.-G. Talbi and the <em class="logo">Paradis<span class="logo_eo">eo</span></em> group: explains how to implement metaheuristics for multi-objective optimization using Paradiseo-MOEO through a simple example.
+</li></ul>
+
+<!-- <h3>Paradiseo-PEO</h3> -->
+<!--  -->
+<!-- <ul> -->
+<!--     <li>If you want to understand the message-passing parallelization module, check the <a href="http://eodev.sourceforge.net/eo/tutorial/Parallelization/eompi.html">introduction to eo::MPI</a> by Benjamin Bouvier.</li> -->
+<!--     <li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-peo/concepts/paradiseo-peo-design.pdf' rel='nofollow'>Parallel and Hybrid Metaheuristics</a></strong> [pdf] by E-G. Talbi, S.Cahon and N. Melab: defines metaheuristics parallelization and hybridation and presents implementation models threatened with Paradiseo-PEO to solve a industrial problem. -->
+<!-- </li><li><strong> <a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-peo/concepts/paradiseo-peo-implem.pdf' rel='nofollow'>Reusable Design of Parallel and Distributed Evolving Object</a></strong> [pdf] by N. Melab, E.-G. Talbi, S. Cahon and A. Tantar: explains how to implement metaheuristics for parallel and distributed optimization using Paradiseo-PEO through a few simple examples. -->
+<!-- </li></ul> -->
+
+<!-- <h3>Paradiseo-OLD-MO</h3> -->
+<!--  -->
+<!-- <ul><li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-oldmo/concepts/paradiseo-mo-design.pdf' rel='nofollow'>Single Solution-based Metaheuristics</a></strong> [pdf] by E-G. Talbi and S.Cahon: describes the general concept of solution-based metaheuristics and provides examples applied to TSP problem -->
+<!-- </li><li><strong><a class='urllink' href='http://paradiseo.gforge.inria.fr/addon/paradiseo-oldmo/concepts/paradiseo-mo-implem.pdf' rel='nofollow'>Reusable Design of Solution-based Metaheuristics</a></strong> [pdf] by S.Cahon, E-G. Talbi and N. Melab: explains how to implement metaheuristics thanks to Paradiseo-MO through a TSP example -->
+<!-- </li></ul> -->
+
+    <h2><a name="Tutorials"></a>Tutorials</h2>
+
+<p>Examples on the differents metaheuristics are available in "tutorials" directory of each module of <em class="logo">Paradis<span class="logo_eo">eo</span></em>. Here you can find the corresponding explications.</p>
+
+<h3>Tutorials on EO (evolutionary algorithms module)</h3>
+
+<ul><li><a class='urllink' href='http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html' rel='nofollow'>EO Lesson1-5</a> <strong>Implement a GA</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part1'>EO Lesson6 first part</a> <strong>Implement a real PSO algorithm</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part2'>EO Lesson6 second part</a> <strong>Implement a binary PSO algorithm</strong>
+</li></ul>
+
+<h3>Tutorials MO (local search module)</h3>
+
+</p><ul><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson1'>MO Lesson1</a> <strong>Hill Climber</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson2'>MO Lesson2</a> <strong>Neighborhoods</strong> (classical and indexed)
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson3'>MO Lesson3</a> <strong>Simulated Annealing</strong> and <strong>Checkpointing</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson4'>MO Lesson4</a> <strong>Tabu Search</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson5'>MO Lesson5</a> <strong>Iterated Local Search</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson6'>MO Lesson6</a> <strong>Fitness Landscapes Analysis</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson7'>MO Lesson7</a> <strong>Hybrid Lesson</strong>
+</li></ul>
+
+<h3>Tutorials MOEO (multi-objective module)</h3>
+
+</p><ul><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson1'>MOEO Lesson1</a> <strong>Implement NSGA, NSGA-II and IBEA for the SCH1 problem</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson2'>MOEO Lesson2</a> <strong>Evolutionary Algorithms for the flow-shop scheduling problem</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson3'>MOEO Lesson3</a> <strong>Evolutionary Algorithms with a user-friendly parameter file</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson4'>MOEO Lesson4</a> <strong>Dominance-based Local Search for the flow-shop scheduling problem</strong>
+</li></ul><p><strong>Tutorials SMP:</strong> <span  style='color: red;'> <strong> new</strong></span>
+</p><ul><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoSMPLesson1'>SMP Lesson1</a> <strong>Algorithm wrapping with Master / Workers model</strong>
+</li></ul>
+
+<!-- <h3>Tutorials PEO (one of the parallelization modules)</h3> -->
+<!-- </p><ul><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOIntro'>PEO Intro</a> <strong>Technical introduction</strong> -->
+<!-- </li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson1'>PEO Lesson1</a> <strong>Multistart over a MO, Packing and Unpacking </strong> (use old-mo) -->
+<!-- </li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson2'>PEO Lesson2</a> <strong>Multistart over an evolutionary algorithm</strong> -->
+<!-- </li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson3'>PEO Lesson3</a> <strong>Parallel evaluation </strong> -->
+<!-- </li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson4'>PEO Lesson4</a> <strong>Parallel transformation</strong> (use old-mo) -->
+<!-- </li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson5'>PEO Lesson5</a> <strong>Island model</strong> -->
+<!-- </li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson6'>PEO Lesson6</a> <strong>Hybridization</strong> (use old-mo) -->
+<!-- </li></ul><p><span  style='display: none;'><strong>GPU tutorials:</strong> </span> -->
+<!-- <span  style='display: none;'>*<a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson1'>GPU Lesson1</a> <strong>CUDA installation and configuration</strong></span> -->
+<!-- <span  style='display: none;'>*<a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson2'>GPU Lesson2</a> <strong>Prerequisites: How to configure Paradiseo-GPU</strong></span> -->
+<!-- <span  style='display: none;'>*<a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson3'>GPU Lesson3</a> <strong>Prerequisites: How to define solution on GPU</strong></span> -->
+<!-- <span  style='display: none;'>*<a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson4'>GPU Lesson4</a> <strong>Prerequisites: How to define neighbor &amp; neighborhood on GPU</strong></span> -->
+<!-- <span  style='display: none;'>*<a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson5'>GPU Lesson5</a> <strong>Prerequisites: How to evaluate solution &amp; neighbor on GPU</strong></span> -->
+<!-- <span  style='display: none;'>*<a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson6'>GPU Lesson6</a> <strong>Hill Climbing and Tabu Search on GPU</strong></span> -->
+<!-- </p> -->
+
+<h3>Utilities</h3>
+
+</p><ul><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsParamFiles'>Utils Lesson1</a> <strong>Using configuration files</strong>
+</li><li><a class='wikilink' href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsStats'>Utils Lesson2</a> <strong>Using statistics</strong>
+</li></ul>
+
+    <h2><a name="API"></a>API documentation</h2>
+
+    <p>The heart of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is a set of classes implementing operators. Each module has a separate API documentation. If you want to browse the features and find which class to use, this is the right entry point</p>
+
+    <p>For your convenience, you can browse an online API doc for <em class="logo">Paradis<span class="logo_eo">eo</span></em> version 2.0:
+    <ul>
+        <li><a href='http://paradiseo.gforge.inria.fr/addon/eo/doc/index.html' rel='nofollow'>doc-eo</a> </li>
+        <li>doc-edo (missing link)</li>
+        <li><a href='http://paradiseo.gforge.inria.fr/addon/mo/doc/index.html' rel='nofollow'>doc-mo</a> </li>
+        <li><a href='http://paradiseo.gforge.inria.fr/addon/moeo/doc/index.html' rel='nofollow'>doc-moeo</a> </li>
+        <li><a href='http://paradiseo.gforge.inria.fr/addon/smp/doc/index.html' rel='nofollow'>doc-smp</a> </li>
+    </ul>
+    </p>
+
+    <p>Note that if you want to find the API documentation for the version you have at hand, just build the <pre class="command">make doc</pre> target and open <pre>paradiseo/&lt;build&gt;/&lt;module&gt;/doc/html/index.html</pre> in your web browser.</p>
+
+    <h2><a name="Examples"></a>Examples of real solvers</h2>
+
+    <p>If you want to see examples of real solvers:
+    <ul>
+        <li>The <a href="http://paradiseo.gforge.inria.fr/index.php?n=Problems.Problems">examples page</a> on INRIA <em class="logo">Paradis<span class="logo_eo">eo</span></em> pages (with explanations).</li>
+        <li>The <a href="https://gforge.inria.fr/frs/?group_id=145">contributed code</a> on the project page.</li>
+        <li>The <a href="https://github.com/nojhan/descarwin">Descarwin</a> project hold the "DaE" planning solver,
+        which is implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em> and won the International Planning Competition.</li>
     </ul>
 
 
+    <!-- CODE -->
     <h1><a name="Code"></a>Code <a href="#Plan">⤒</a></h1>
 
-    <h2><a name="Download"></a>Download</h2>
+    <h2><a name="Downloads"></a>Downloads</h2>
 
-    <p> The current stable release is <a
-        href="http://sourceforge.net/project/showfiles.php?group_id=9775">EO 1.0</a>.
-    It supports any standard-compliant C++ compiler. </p>
+    <p>The current stable release is version 2.0.1: <a href="https://gforge.inria.fr/frs/download.php/31733/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-2.0.1.ziph"><em class="logo">Paradis<span class="logo_eo">eo</span></em> 2.0.1</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/releases">GitHub/paradiseo/releases</a>.</p>
 
-    <p> You can obtain the latest version directly via <a
-        href="https://sourceforge.net/scm/?type=git&group_id=9775">GIT</a>
-    or <a href="http://eodev.git.sourceforge.net/git/gitweb.cgi?p=eodev/eodev;a=tree;f=eo;h=d93666f049104f360ffdff3af0bf54902e2feae1;hb=HEAD">browse the repository online</a>.
-    <!-- or download a daily snapshot from <a
-        href="http://www.lri.fr/%7Emarc/EO/snapshot">LRI</a> -->
+    <p> You can obtain the latest stable and beta version directly via the official Git repository:
+    <pre class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</pre>.
+    The release are on the "master" branch.
     </p>
 
-    <p> All releases can be obtained from the SourceForge <a
-        href="http://sourceforge.net/project/showfiles.php?group_id=9775">download
-        area</a>. </p>
+    <p>Or you can use (at your own risks) the development repositories of the developers:
+        <ul>
+            <li>Johann Dreo's: <a href="https://github.com/nojhan/paradiseo">on GitHub</b>.</li>
+        </ul>
+    </p>
 
-    <h2><a name="Facts"></a>Facts</h2>
+    <h2><a name="Builds"></a>Builds</h2>
 
-    <p>Those statistics are automatically generated by <a href="https://www.ohloh.net/p/eodev">ohloh.net</a>, directly from the EO source code.</p>
+    <h3>Dependencies</h3>
 
-    <table>
-        <tr>
-            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_languages.js"></script></td>
-            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_basic_stats.js"></script></td>
-        </tr>
-        <tr>
-            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_factoids.js"></script></td>
-            <td><script type="text/javascript" src="http://www.ohloh.net/p/16924/widgets/project_cocomo.js"></script></td>
-        </tr>
-    </table>
+    <p>In order to build the latest version of <em class="logo">Paradis<span class="logo_eo">eo</span></em>, you will need a C++ compiler supporting C++17.
+    So far, GCC and CLANG gave good results under Linux. You will also need the CMake and make build tools.</p>
 
+    <p>A free working build chain under Windows seems always difficult to find.
+    <em class="logo">Paradis<span class="logo_eo">eo</span></em> 2.0.1 was successfully tested with MinGW (minus the PEO module),
+    but it's unsure if it still work for recent versions.
+    If you managed to build under Windows, your feedback would be appreciated.</p>
 
-    <h2><a name="License"></a>License</h2>
+    <p>Some features are only available if some dependencies are installed:
+        <ul>
+            <li>Most of the EDO module depends on either uBlas or Eigen3.
+                The recommended package is Eigen3, which enables the adaptive algorithms.</li>
+            <li>Doxygen is needed to build the API documentation,
+                and you should also install graphviz if you want the class relationship diagrams.</li>
+            <li>GNUplot is needed to have the… GNUplot graphs at checkpoints.</li>
+        </ul>
+    </p>
 
-    <p>EO is distributed under the
+    <p class="excerpt">To install all those dependencies at once under Ubuntu (18.04), just type: <em>sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</em>.  </p>
+
+    <h3>Compilation</h3>
+
+    <p>The build chain uses the classical workflow of CMake.
+    The recommended method is to build in a specific, separated directory
+    and call <pre class="command">cmake ..</pre> from here.
+    CMake will prepare the compilation script for your system of choice which you can change with the <pre class="command">-G &lt;generator-name&gt;</pre> option (see the CMake doc for the list of available generators).</p>
+
+    <p>Under Linux, the default is make, and a build command is straitghtforward:
+    <pre class="command">mkdir build ; cd build ; cmake .. && make -j</pre>
+    </p>
+
+    <p>There is, however, several build options which you may want to switch.
+    To see them, we recommend the use of a CMake gui, like <pre>ccmake</pre> or <pre>cmake-gui</pre>.
+    On the command line, you can see the available options with: <pre class="command">cmake -LH ..</pre>.
+    Those options can be set with the <pre>-D&lt;option&gt;=&lt;value&gt;</pre> argument to cmake.
+    </p>
+
+    <p class="excerpt">The first option to consider is <em>CMAKE_BUILD_TYPE</em>,
+    which you most probably want to set to "Debug" (during development/tests)
+    or "Release" (for production/validation).</p>
+
+    <button class="collapsible">Other options…</button>
+    <div class="details">
+    <p>Other important options are: <pre>EDO</pre> (which is false by default)
+    and parallelization options: <pre>ENABLE_OPENMP, MPI, SMP</pre>.</p>
+    <p>By default, the build script will build the <em class="logo">Paradis<span class="logo_eo">eo</span></em> libraries only.</p>
+    <p>If you ENABLE_CMAKE_TESTING and BUILD_TESTING, it will be the tests, which you can run with the "ctest" command.</p>
+    <p>If you ENABLE_CMAKE_EXAMPLE, it will also build the examples.</p>
+    </div>
+
+    <h2><a name="Licenses"></a>Licenses</h2>
+
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is distributed under the
     <a href="http://www.gnu.org/copyleft/lesser.html">
-        GNU Lesser General Public License</a>.</p>
+        GNU Lesser General Public License</a> and the CeCILL license (depending on the modules).</p>
 
-    <p>Note that this license places copyleft restrictions on a program created with EO, but does not apply these restrictions to other software that would links with the program.</p>
+    <p>Note that those licenses places copyleft restrictions on a program created with <em class="logo">Paradis<span class="logo_eo">eo</span></em>, but does not apply these restrictions to other software that would links with the program.</p>
 
 
-    <h2><a name="Documentation"></a>Documentation</h2>
+    <h2><a name="Contribute"></a>Contribute</h2>
 
-    <p>The tutorial demonstrates that writing an evolutionary algorithm
-    evolving your own structures is now <em>easy</em>, using ready-to-use
-    template files. Although the tutorial has not been upgraded for some
-    time now and refers to version 0.9.2 of EO, it nevertheless remains the
-    best way to dive into EO. You can start by trying it on-line at <a
-        href="http://www.lri.fr/%7Emarc/EO/eo/tutorial/html/eoTutorial.html">LRI</a>
-    or <a
-        href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">SourceForge</a>,
-    before <a href="http://www.lri.fr/%7Emarc/EO/">downloading it</a>. The
-    tutorial is also included in the <a
-        href="http://sourceforge.net/project/showfiles.php?group_id=9775">released
-        sources</a>. </p>
+    <p>The official bug tracker is available on the <a href="https://gforge.inria.fr/projects/paradiseo/">project page</a>. But you may be more confortable using the <a href="https://github.com/nojhan/paradiseo/issues">issue tracker of Johann Dreo's project page on GitHub</a>.</p>
 
-    <p>The latest <a
-        href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">tutorial
-        release</a>.
+
+    <!-- HISTORY -->
+    <h1><a name="History"></a>History <a href="#Plan">⤒</a></h1>
+
+    <h2><a name="Institutions"></a>Institutional support</h2>
+
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> have been developed with the support of the following institutions:
+    <ul>
+        <li><a href="https://www.inria.fr">INRIA</a> (current maintainer)</li>
+        <li><a href="https://www.univ-littoral.fr/">University of the Littoral Opal Coast</a> (current maintainer)</li>
+        <li><a href="https://thalesgroup.com">Thales</a> (current maintainer)</li>
+        <li><a href="https://www.polytechnique.edu/">École Polytechnique</a></li>
+        <li><a href="https://www.ugr.es">University of Granada</a></li>
+        <li><a href="https://www.vu.nl">Vrije Universiteit Amsterdam</a></li>
+        <li><a href="https://www.universiteitleiden.nl">Leiden University</a></li>
+        <li>French <a href="https://www.cnrs.fr/">National Centre for Scientific Research</a> (CNRS)</li>
+        <li>French <a href="https://anr.fr/">National Agency for Research</a> (ANR)</li>
+        <li><a href="https://www.fhi.mpg.de/">Fritz Haber Institute of the Max Planck Society</a></li>
+        <li><a href="https://www.cfel.de/">Center for Free-Electron Laser Science</a></li>
+        <li><a href="http://www.univ-angers.fr/">University of Angers</a></li>
+        <li>French <a href="https://www.groupe-insa.fr/">National Institute of Applied Sciences</a></li>
+        <li><a href="https://www.ulb.be/">Free University of Brussels</a></li>
+    </ul>
     </p>
-
-    <p>The complete code is also well documented and you can look at the
-    generated <a
-        href="http://eodev.sourceforge.net/eo/doc/html/index.html">interface
-        documentation</a>. </p>
-
-    <p>The easiest way to create a complete new EO-project, even for new
-    genomes, is to use the script provided in tutorial/Templates/; see
-    the README in that directory and lesson 5 of the tutorial for
-    detail.</p>
-
-
-    <h1><a name="Development"></a>Development <a href="#Plan">⤒</a></h1>
-
-    <h2><a name="Mailing-lists"></a>Mailing-lists</h2>
-
-    <p>EO is an open development effort; that is why we have
-    created mailing lists to discuss future developments, solve technical
-    problems, announce releases, publish patches, and discuss evolutionary
-    computation in general. Browse the archives or join the <a
-        href="http://sourceforge.net/mail/?group_id=9775">EO mailing lists</a>.</p>
-
-
-    <h2><a name="Get-involved"></a>Get involved</h2>
-
-    <p>The following resources are available, thanks to sourceforge</p>
-    <ul>
-        <li> <a href="http://sourceforge.net/project/?group_id=9775">EO
-            SourceForge Project Page</a></li>
-        <li><a href="http://eodev.sourceforge.net/eo/doc/html/index.html">EO
-            automatic documentation page at SF</a><br/>
-        </li>
-        <li><a href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">EO
-            tutorial page at SF</a><br/>
-        </li>
-        <li> <a href="https://sourceforge.net/project/showfiles.php?group_id=9775">Releases</a></li>
-        <li> <a href="http://sourceforge.net/mail/?group_id=9775">Mailing Lists</a></li>
-        <li> <a href="http://sourceforge.net/forum/?group_id=9775">Message Forums</a></li>
-        <li> <a href="https://sourceforge.net/apps/trac/eodev/wiki/WikiStart">Bug Submission and Tracking</a></li>
-        <li> <a href="https://sourceforge.net/projects/eodev/support">Technical Support</a></li>
-        <li> <a href="https://sourceforge.net/scm/?type=git&group_id=9775">Code repository</a></li>
-    </ul>
-
-    <h2><a name="Related-software"></a>Related software</h2>
-
-    <p>The softwares listed here are using EO, but they are not maintained by the EO team.
-    They may not be free softwares or may even be outdated.</p>
-
-    <ul>
-        <li> <a href="http://paradiseo.gforge.inria.fr"
-            >ParadisEO</a> provides EO extensions for
-        the flexible design of <b>single solution-based metaheuristics</b>,
-        metaheuristics for <b>multi objective optimization</b> as well as <b>hybrid, parallel and distributed
-            metaheuristics</b>.</li>
-
-        <li> <a href="http://geneura.ugr.es/~jmerelo/DegaX/">DegaX</a>
-        is an ActiveX control which embeds EO 0.8.4.
-        </li>
-
-        <li><a href="https://lsiit.u-strasbg.fr/easea/index.php/EASEA_platform">EASEA</a> was a GUI that permits to build evolutionary algorithm with EO or the <a href="http://lancet.mit.edu/ga/">GAlib</a>.
-        It is now a platform that allows program evolutionary algorithms on massively parallel many-core architectures.</li>
-
-        <li><a href="https://gforge.inria.fr/projects/guide">GUIDE</a> is a GUI that allows the generation of evolutionary algorithms. It can use EO or <a href="http://cs.gmu.edu/~eclab/projects/ecj/">ECJ</a>.</li>
-    </ul>
-
 
     <h2><a name="Authors"></a>Authors</h2>
 
-    <p>EO was started by the <a href="http://geneura.ugr.es/">Geneura
+    <p>The EO module was started in 1999 by the <a href="http://geneura.ugr.es/">Geneura
         Team</a> at the University of Granada, headed by <a
         href="http://geneura.ugr.es/%7Ejmerelo/">Juan Julián Merelo</a>. The <a
-        href="http://geneura.ugr.es/~jmerelo/EO.orig.html"
+        href="http://geneura.ugr.es/~jmerelo/<em class="logo">Paradis<span class="logo_eo">eo</span></em>.orig.html"
         >original Web site</a> is also the only place where you
-    will find old releases of EO (up to 0.8.7), but beware that it is not
+    will find old releases of <em class="logo">Paradis<span class="logo_eo">eo</span></em> (up to 0.8.7), but beware that it is not
     compatible at all with the current version. </p>
+
+    <p>You can read this <a href="http://geneura.ugr.es/~jmerelo/GAPPT/index.html">
+        PowerPoint presentation</a>, that shows the EO philosophy back then.
+    It includes a Visual Basic (!) macro for evolving objects in Visual Basic
+    for Applications.</p>
 
     <p>The developement team has then been reinforced by <a
         href="http://www.cs.vu.nl/~mkeijzer">Maarten Keijzer</a>, the C++
-    wizzard, and <a href="http://www.lri.fr/%7Emarc">Marc Schoenauer</a>.
-    Later came <a href="http://www.liacs.nl/%7Ejeggermo/">Jeroen
-        Eggermont</a>, who, among other things, did a lot of work on GP,
-    INRIA Dolphin Team, <a
-        href="mailto:okoenig@users.sourceforge.net">Olivier König</a>, who did a
-    lot of useful additions and cleaning of the code and <a
-        href="http://www.jochen-kuepper.de">Jochen Küpper</a>, working on
+    wizard who designed the current neat architecture),
+    and <a href="http://www.lri.fr/%7Emarc">Marc Schoenauer</a>
+    (who became a prominent researcher in the evolutionary algorithm community).
+    Later came <a href="http://www.liacs.nl/%7Ejeggermo/">Jeroen Eggermont</a>,
+    who, among other things, did a lot of work on GP,
+    INRIA Dolphin Team, Olivier König, who did a
+    lot of useful additions and cleaning of the code
+    and <a href="http://www.jochen-kuepper.de">Jochen Küpper</a>, working on
     infrastructure maintenance. </p>
 
-    <p>The project is now maintained by <a href="http://johann.dreo.fr">Johann Dréo</a>,
-    working on it with the help of <a href="http://caner.candan.fr">Caner Candan</a>.
-    <a href="https://github.com/BenjBouv">Benjamin Bouvier</a> have designed a 
-    whole new MPI parallelization module.</p>
+    <p>El-Ghazali Talbi's INRIA team did a lot of contributions starting from around 2003,
+    on their own module collection called <em class="logo">Paradis<span class="logo_eo">eo</span></em>.
+    Thomas Legrand, S. Cahon and N.Melab worked on parallelization modules.
+    Arnaud Liefooghe worked a lot on the multi-objective module and
+    on the local-search one along with Sébastien Verel and Jeremy Humeau.
+    In the same team, Clive Canape and J. Boisson made significant contributions.
+    Karima Boufaras specifically worked on (now deprecated) GPU tools.</p>
+
+    <p>The (then) EO project was then taken over by <a href="http://johann.dreo.fr">Johann Dreo</a>,
+    who worked with the help of <a href="http://caner.candan.fr">Caner Candan</a> on adding the EDO module.
+    Johann and <a href="https://github.com/BenjBouv">Benjamin Bouvier</a> have also designed a
+    MPI parallelization module. Alexandre Quemy also worked on parallelization codes.</p>
+
+    <p>In 2012, the two project (EO and <em class="logo">Paradis<span class="logo_eo">eo</span></em>) were merged in a single one
+    by Johann Dreo, Sébastien Verel and Arnaud Liefooghe, who act as maintainers ever since.</p>
+
+    <p>In 2020, automated algorithm selection tools and binding toward the <a href="https://iohprofiler.github.io/">IOH profiler</a> validation tool were added.</p>
+
+    <p>Around 50 people contributed to <em class="logo">Paradis<span class="logo_eo">eo</span></em> so far and we cannot list them all,
+    so thanks also to those not listed here.</p>
 
 
-    <h2><a name="Links"></a>Links</h2>
-
+    <button class="collapsible">Some outdated historical softwares around <em class="logo">Paradis<span class="logo_eo">eo</span></em>…</button>
+    <div class="details">
+    <p>Some softwares listed here are using <em class="logo">Paradis<span class="logo_eo">eo</span></em>, but they are not maintained by the <em class="logo">Paradis<span class="logo_eo">eo</span></em> team.
+    They may not be free softwares.</p>
     <ul>
-        <li><a href="http://coco.gforge.inria.fr/">COCO (COmparing Continuous Optimisers)</a>, a platform for systematic and sound comparisons of real-parameter global optimisers. COCO provides benchmark function testbeds and tools for processing and visualizing data generated by one or several optimizers.</li>
-        <li><a href="http://www.aip.de/~ast/EvolCompFAQ" >The Hitch-Hiker's Guide to Evolutionary Computation</a>, FAQ for <a href="news:comp.ai.genetic">comp.ai.genetic</a>.</li>
-        <li>Wikipedia entries on <a href="http://en.wikipedia.org/wiki/Evolutionary_algorithm">Evolutionary algorithms</a>.</li>
-        <li>Charles Darwin: <a href="http://en.wikipedia.org/wiki/The_Origin_of_Species" >The Origin of Species</a>.</li>
+        <li> <a href="http://geneura.ugr.es/~jmerelo/DegaX/">DegaX</a>
+        is an ActiveX control which embeds <em class="logo">Paradis<span class="logo_eo">eo</span></em> 0.8.4.
+        </li>
+
+        <li><a href="https://lsiit.u-strasbg.fr/easea/index.php/EASEA_platform">EASEA</a> was a GUI that permits to build evolutionary algorithm with <em class="logo">Paradis<span class="logo_eo">eo</span></em> or the <a href="http://lancet.mit.edu/ga/">GAlib</a>.
+        It is now a platform that allows program evolutionary algorithms on massively parallel many-core architectures.</li>
+
+        <li><a href="https://gforge.inria.fr/projects/guide">GUIDE</a> is a GUI that allows the generation of evolutionary algorithms. It can use <em class="logo">Paradis<span class="logo_eo">eo</span></em> or <a href="http://cs.gmu.edu/~eclab/projects/ecj/">ECJ</a>.</li>
     </ul>
+    </div>
+
 
 </div> <!-- id=main -->
 
+        <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
 
-<!-- Piwik -->
-<script type="text/javascript">
-    var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/eodev/" : "http://sourceforge.net/apps/piwik/eodev/");
-    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-    </script><script type="text/javascript">
-    try {
-        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-        piwikTracker.trackPageView();
-        piwikTracker.enableLinkTracking();
-    } catch( err ) {}
-</script><noscript><p><img src="http://sourceforge.net/apps/piwik/eodev/piwik.php?idsite=1" style="border:0" alt=""/></p></noscript>
-<!-- End Piwik Tag -->
-
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            } 
+          });
+        }
+        </script>
 
   </body>
 </html>
