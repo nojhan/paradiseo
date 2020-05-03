@@ -39,6 +39,7 @@
 template <class FitT> class eoReal: public eoVector<FitT, double>
 {
  public:
+     using FitnessType = FitT;
 
   /**
    * (Default) Constructor.

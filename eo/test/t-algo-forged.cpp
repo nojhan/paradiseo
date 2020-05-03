@@ -77,11 +77,11 @@ int main(int /*argc*/, char** /*argv*/)
                         pop.append(pop_size, init);
                         eval(pop,pop);
 
-                        foundry.at(foundry.index_of.continuators) = i_cont;
-                        foundry.at(foundry.index_of.crossovers) = i_cross;
-                        foundry.at(foundry.index_of.mutations) = i_mut;
-                        foundry.at(foundry.index_of.selectors) = i_sel;
-                        foundry.at(foundry.index_of.replacements) = i_rep;
+                        foundry.at(foundry.continuators.index()) = i_cont;
+                        foundry.at(foundry.crossovers.index()) = i_cross;
+                        foundry.at(foundry.mutations.index()) = i_mut;
+                        foundry.at(foundry.selectors.index()) = i_sel;
+                        foundry.at(foundry.replacements.index()) = i_rep;
 
                         // Or, if you know the order.
                         foundry.select({i_cont, i_cross, i_mut, i_sel, i_rep});

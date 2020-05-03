@@ -62,14 +62,22 @@ public:
             _subpb_eval(subpb_eval),
             _foundry(foundry),
             _penalization(penalization),
-            _pop_size(pop_size)
+            _pop_size(pop_size),
+            i_cont(foundry.continuators.index()),
+            i_cros(foundry.crossovers.index()),
+            i_muta(foundry.mutations.index()),
+            i_sele(foundry.selectors.index()),
+            i_repl(foundry.replacements.index())
     { }
 
-    static const size_t i_cont = eoAlgoFoundryEA<SUB>::Indices::continuators;
-    static const size_t i_cros = eoAlgoFoundryEA<SUB>::Indices::crossovers  ;
-    static const size_t i_muta = eoAlgoFoundryEA<SUB>::Indices::mutations   ;
-    static const size_t i_sele = eoAlgoFoundryEA<SUB>::Indices::selectors   ;
-    static const size_t i_repl = eoAlgoFoundryEA<SUB>::Indices::replacements;
+protected:
+    const size_t i_cont;
+    const size_t i_cros;
+    const size_t i_muta;
+    const size_t i_sele;
+    const size_t i_repl;
+
+public:
 
     /** Decode the high-level problem encoding as an array of indices.
      *

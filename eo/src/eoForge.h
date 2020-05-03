@@ -60,9 +60,9 @@
  * Tools for automatic algorithms assembling, selection and search.
  */
 
-/** Interface for a "Forge": a class that can defer instanciation of EO's operator.
+/** Interface for a "Forge": a class that can defer instantiation of EO's operator.
  *
- * This interface only declares an `instanciate` method,
+ * This interface only declares an `instantiate` method,
  * in order to be able to make containers of factories (@see eoForgeOperator).
  *
  * @ingroup Core
@@ -72,15 +72,15 @@ template<class Itf>
 class eoForgeInterface
 {
     public:
-        virtual Itf& instanciate(bool no_cache = true) = 0;
+        virtual Itf& instantiate(bool no_cache = true) = 0;
         virtual ~eoForgeInterface() {}
 };
 
-/** This "Forge" can defer the instanciation of an EO's operator.
+/** This "Forge" can defer the instantiation of an EO's operator.
  *
  * It allows to decouple the constructor's parameters setup from its actual call.
  * You can declare a parametrized operator at a given time,
- * then actually instanciate it (with the given interface) at another time.
+ * then actually instantiate it (with the given interface) at another time.
  *
  * This allows for creating containers of pre-parametrized operators (@see eoForgeVector).
  *
@@ -91,13 +91,13 @@ class eoForgeInterface
  *
  * @code
    eoForgeOperator<eoselect<EOT>,eoRankMuSelect<EOT>> forge(mu);
-   //                ^ desired     ^ to-be-instanciated     ^ operator's
+   //                ^ desired     ^ to-be-instantiated     ^ operator's
    //                  interface     operator                 parameters
-   // Actual instanciation:
-   eoSelect<EOT>& select = forge.instanciate();
+   // Actual instantiation:
+   eoSelect<EOT>& select = forge.instantiate();
  * @endcode
  *
- * @warning You may want to enable instanciation cache to grab some performances.
+ * @warning You may want to enable instantiation cache to grab some performances.
  * The default is set to disable the cache, because its use with operators
  * which hold a state will lead to unwanted behaviour.
  *
@@ -111,10 +111,10 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         template<class ...Args2>
         eoForgeOperator(Args2... args) :
             _args(std::forward<Args2>(args)...),
-            _instanciated(nullptr)
+            _instantiated(nullptr)
         { }
 
-        /** Instanciate the managed operator class.
+        /** instantiate the managed operator class.
          *
          * That is call its constructor with the set up arguments.
          *
@@ -122,20 +122,20 @@ class eoForgeOperator : public eoForgeInterface<Itf>
          *
          * @param no_cache If false, will enable caching previous instances.
          */
-        Itf& instanciate(bool no_cache = true)
+        Itf& instantiate(bool no_cache = true)
         {
-            if(no_cache or not _instanciated) {
-                if(_instanciated) {
-                    delete _instanciated;
+            if(no_cache or not _instantiated) {
+                if(_instantiated) {
+                    delete _instantiated;
                 }
-                _instanciated = op_constructor(_args);
+                _instantiated = op_constructor(_args);
             }
-            return *_instanciated;
+            return *_instantiated;
         }
 
         virtual ~eoForgeOperator()
         {
-            delete _instanciated;
+            delete _instantiated;
         }
 
     protected:
@@ -152,7 +152,7 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         /** @} */
 
     protected:
-        Itf* _instanciated;
+        Itf* _instantiated;
 };
 
 /** Partial specialization for constructors without any argument.
@@ -162,30 +162,30 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
 {
     public:
         eoForgeOperator() :
-            _instanciated(nullptr)
+            _instantiated(nullptr)
         { }
 
-        Itf& instanciate( bool no_cache = true )
+        Itf& instantiate( bool no_cache = true )
         {
-            if(no_cache or not _instanciated) {
-                if(_instanciated) {
-                    delete _instanciated;
+            if(no_cache or not _instantiated) {
+                if(_instantiated) {
+                    delete _instantiated;
                 }
-                _instanciated = new Op;
+                _instantiated = new Op;
             }
-            return *_instanciated;
+            return *_instantiated;
         }
 
         virtual ~eoForgeOperator()
         {
-            delete _instanciated;
+            delete _instantiated;
         }
 
     protected:
-        Itf* _instanciated;
+        Itf* _instantiated;
 };
 
-/** A vector holding an operator with deferred instanciation at a given index.
+/** A vector holding an operator with deferred instantiation at a given index.
  *
  * @note You can actually store several instances of the same class,
  * with different parametrization (or not).
@@ -195,19 +195,19 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
  * This is is a source of bug which your compiler will to detect and that would
  * disable any link between operators.
  *
- * @warning You may want to enable instanciation cache to grab some performances.
+ * @warning You may want to enable instantiation cache to grab some performances.
  * The default is set to disable the cache, because its use with operators
  * which hold a state will lead to unwanted behaviour.
  *
  * @code
     eoForgeVector<eoSelect<EOT>> factories(false);
 
-    // Capture constructor's parameters and defer instanciation.
+    // Capture constructor's parameters and defer instantiation.
     factories.add<eoRankMuSelect<EOT>>(1);
     factories.setup<eoRankMuSelect<EOT>>(0, 5); // Edit
 
-    // Actually instanciate.
-    eoSelect<EOT>& op  = factories.instanciate(0);
+    // Actually instantiate.
+    eoSelect<EOT>& op  = factories.instantiate(0);
 
     // Call.
     op();
@@ -219,11 +219,11 @@ template<class Itf>
 class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 {
     public:
-        /** Default constructor do not cache instanciations.
+        /** Default constructor do not cache instantiations.
          *
          * @warning
          * You most probably want to disable caching for operators that hold a state.
-         * If you enable the cache, the last used instanciation will be used,
+         * If you enable the cache, the last used instantiation will be used,
          * at its last state.
          * For example, continuators should most probably not be cached,
          * as they very often hold a state in the form of a counter.
@@ -231,10 +231,10 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
          * and thus always ask for a stop.
          * Reusing an instance in this state will de facto disable further searches.
          *
-         * @param always_reinstanciate If false, will enable cache for the forges in this container.
+         * @param always_reinstantiate If false, will enable cache for the forges in this container.
          */
-        eoForgeVector( bool always_reinstanciate = true ) :
-            _no_cache(always_reinstanciate)
+        eoForgeVector( bool always_reinstantiate = true ) :
+            _no_cache(always_reinstantiate)
         { }
 
         /** Add an operator to the list.
@@ -294,11 +294,11 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
             this->at(index) = pfo;
         }
 
-        /** Instanciate the operator managed at the given index.
+        /** instantiate the operator managed at the given index.
          */
-        Itf& instanciate(size_t index)
+        Itf& instantiate(size_t index)
         {
-            return this->at(index)->instanciate(_no_cache);
+            return this->at(index)->instantiate(_no_cache);
         }
 
         virtual ~eoForgeVector()

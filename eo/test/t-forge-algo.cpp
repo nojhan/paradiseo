@@ -54,19 +54,19 @@ int main(int /*argc*/, char** /*argv*/)
     std::string best_algo = "";
 
     for(auto& forge_cont : continuators) {
-        auto& continuator = forge_cont->instanciate();
+        auto& continuator = forge_cont->instantiate();
 
         for(auto& forge_cross : crossovers) {
-            auto& crossover = forge_cross->instanciate();
+            auto& crossover = forge_cross->instantiate();
 
             for(auto& forge_mut : mutations ) {
-                auto& mutation = forge_mut->instanciate();
+                auto& mutation = forge_mut->instantiate();
 
                 for(auto& forge_sel : selectors) {
-                    auto& selector = forge_sel->instanciate();
+                    auto& selector = forge_sel->instantiate();
 
                     for(auto& forge_rep : replacors) {
-                        auto& replacor = forge_rep->instanciate();
+                        auto& replacor = forge_rep->instantiate();
 
                         std::ostringstream algo_name;
                         algo_name << continuator.className() << " + "
