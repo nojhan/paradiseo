@@ -10,6 +10,100 @@ It focus on the efficiency of the implementation of solvers, by providing:
 
 ![Paradiseo logo](https://github.com/nojhan/paradiseo/blob/master/website/paradiseo_logo_200px_dark.png)
 
+# Quick Start
+
+# Very Quick Start
+
+1. Use a recent Linux, like an Ubuntu.
+2. `sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev`
+3. From the Paradiseo directory: `mkdir build ; cd build ; cmake -D CMAKE_BUILD_TYPE=Release -DEDO=ON .. && make -j`
+4. Copy-paste this CMA-ES code in `cmaes.cpp`:
+```cpp
+#include <eo>
+#include <edo>
+#include <es.h>
+#include <do/make_pop.h>
+#include <do/make_run.h>
+#include <do/make_continue.h>
+#include <do/make_checkpoint.h>
+
+using R = eoReal<eoMinimizingFitness>;
+using CMA = edoNormalAdaptive<R>;
+
+R::FitnessType sphere(const R& sol) {
+    double sum = 0;
+    for(auto x : sol) { sum += x * x; }
+    return sum;
+}
+
+int main(int argc, char** argv) {
+    eoParser parser(argc, argv);
+    eoState state;
+
+    size_t dim = parser.createParam<size_t>(10,
+            "dimension", "Dimension", 'd',
+            "Problem").value();
+
+    size_t max_eval = parser.getORcreateParam<size_t>(100 * dim,
+            "maxEval", "Maximum number of evaluations", 'E',
+            "Stopping criterion").value();
+
+    edoNormalAdaptive<R> gaussian(dim);
+
+    auto& obj_func = state.pack< eoEvalFuncPtr<R> >(sphere);
+    auto& eval     = state.pack< eoEvalCounterThrowException<R> >(obj_func, max_eval);
+    auto& pop_eval = state.pack< eoPopLoopEval<R> >(eval);
+
+    auto& gen  = state.pack< eoUniformGenerator<R::AtomType> >(-5, 5);
+    auto& init = state.pack< eoInitFixedLength<R> >(dim, gen);
+    auto& pop = do_make_pop(parser, state, init);
+    pop_eval(pop,pop);
+
+    auto& eo_continue  = do_make_continue(  parser, state, eval);
+    auto& pop_continue = do_make_checkpoint(parser, state, eval, eo_continue);
+    auto& best = state.pack< eoBestIndividualStat<R> >();
+    pop_continue.add( best );
+    auto& distrib_continue = state.pack< edoContAdaptiveFinite<CMA> >();
+
+    auto& selector  = state.pack< eoRankMuSelect<R> >(dim/2);
+    auto& estimator = state.pack< edoEstimatorNormalAdaptive<R> >(gaussian);
+    auto& bounder   = state.pack< edoBounderRng<R> >(R(dim, -5), R(dim, 5), gen);
+    auto& sampler   = state.pack< edoSamplerNormalAdaptive<R> >(bounder);
+    auto& replacor  = state.pack< eoCommaReplacement<R> >();
+
+    make_verbose(parser);
+    make_help(parser);
+
+    auto& algo = state.pack< edoAlgoAdaptive<CMA> >(
+         gaussian , pop_eval, selector,
+         estimator, sampler , replacor,
+         pop_continue, distrib_continue);
+
+    try {
+        algo(pop);
+    } catch (eoMaxEvalException& e) {
+        eo::log << eo::progress << "STOP" << std::endl;
+    }
+
+    std::cout << best.value() << std::endl;
+    return 0;
+}
+```
+
+5. Compile it with: `c++ cmaes.cpp -I../eo/src -I../edo/src -DWITH_EIGEN=1 -I/usr/include/eigen3 -std=c++17 -L./lib/ -leo -leoutils -les -o cmaes`
+6. `./cmaes -h`
+
+
+## Not-so-quick Start
+
+1. Use your system of choice, as soon as you know how to operate a C++ buildchain on it.
+2. Dependencies are: `libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev` (or similar packagesnames, depending on your system)
+3. From the Paradiseo directory, within a `build` directory, call the equivalent of `cmake -D CMAKE_BUILD_TYPE=Release -DEDO=ON ..`, then call your system's favorite generator (see cmake's documentation for the `-G` option).
+4. Code your own algorithm, starting from one of the numerous examples (or tests) available around ParadisEO
+   (see the source code in `<module>/test/` or `<module>/tutorial/`, or see the website).
+5. Build it, indicating where to include the needed ParadisEO `<module>/src/` directories, and the `build/lib` directory for the library linker.
+
+
 # Rationale
 
 ## Black-box and Gray-box Optimization Problems
@@ -30,7 +124,7 @@ Learning a full-featured framework like Paradiseo very often seems overkill.
 However, we would like to stress out that you may forget some points
 while jumping to this conclusion.
 
-> **Paradiseo provides the *largest mature codebase* of state-of-the-art algorithms, and is focused on (automatically) find the *most efficient solvers*.**
+**Paradiseo provides the *largest mature codebase* of state-of-the-art algorithms, and is focused on (automatically) find the *most efficient solvers*.**
 
 The most classical impediment to the use of Paradiseo is that you just want to check if your problem can actually be solved with heuristics. You feel that it would be a loss of time to learn complex stuff if it ends being useless.
 
@@ -40,9 +134,9 @@ However, you should keep in mind that:
 - It is usually easy to get something to actually run, but it is far more difficult to get an efficient solver.
 - Metaheuristics performances on a given problem are very sensitive to small variations in the parameter setting or the choice of some operators. Which render large experimental plans and algorithm selection compulsory to attain peak efficiency.
 
-> **Fortunately, Paradiseo have the *largest codebase* of the market, hardened along 20 years of development of tens of solvers. Additionally, it provides the tools to rapidly search for the best combination of algorithms to solve your problem, even searching for this combination *automatically*.**
+**Fortunately, Paradiseo have the *largest codebase* of the market, hardened along 20 years of development of tens of solvers. Additionally, it provides the tools to rapidly search for the best combination of algorithms to solve your problem, even searching for this combination *automatically*.**
 
-> Paradiseo is the fastest framework on the market, which is a crucial feature for modern and robust approach to solver design and validation.
+Paradiseo is the fastest framework on the market, which is a crucial feature for modern and robust approach to solver design and validation.
 
 Another classical criticism against Paradiseo is that C++ is hard and that a fast language is useless because speed is not a concern when your objective function is dominating all the runtime.
 
@@ -91,7 +185,7 @@ Some features are only available if some dependencies are installed:
 - Doxygen is needed to build the API documentation, and you should also install graphviz if you want the class relationship diagrams.
 - GNUplot is needed to have the… GNUplot graphs at checkpoints.
 
-> To install all those dependencies at once under Ubuntu (18.04), just type: `sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev`.
+To install all those dependencies at once under Ubuntu (18.04), just type: `sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev`.
 
 ## Compilation
 
