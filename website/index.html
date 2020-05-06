@@ -224,7 +224,7 @@
              srcset="Evolutionary_algorithm.svg"
              width="100%"
              style="max-width:512px;"
-             title="A typical Evolutionary Algorithm, as seen from the ParadisEO point of vue − Johann Dréo − CC-BY-SA" />
+             title="Grammar for Evolutionary Algorithms, as seen from the ParadisEO point of vue − Johann Dréo − CC-BY-SA" />
         <figcaption>Example of the operators "slots" for designing an Evolutionary Algorithm. The red "Evaluation" is where you plug your objective function, the yellow slots are the ones that depends on your choice of encoding (if you do not use generic ones). The green slots can be used by any algorithm. Tens of alternative operators may exists for each slot.</figcaption>
     </figure>
 
@@ -237,6 +237,17 @@
         <p>Popular combination of operators are provided as pre-defined functions, with automatic command line argument control.</p>
         <p>Additionally, this design allows for all kind of hybridizations between algorithms. For instance, it's easy to plug a local search algorithm as a variation operator of an evolutionary algorithm.</p>
         <p>Another advantage is that you can very easily try alternative algorithms. With tens of operators available for popular slots, the number of different algorithms increase very rapidly. For instance, just using basic genetic algorithm operators with set parameters, <em class="logo">Paradis<span class="logo_eo">eo</span></em> can provide up to 5 millions different bitstrings algorithms. Given that metaheuristics are very sensitive to the interactions between operators, this approach allows for vital degrees of freedom.</p>
+        <p>Of course, it's also possible to add new algorithms "grammar". For instance, the grammar for estimation of distribution algorithms is an extension of the one for evolutionary algorithms. That way, you can re-use the operators already implemented for other algorithms.</p>
+
+    <figure>
+        <img src="edo_design.png"
+             srcset="edo_design.svg"
+             width="100%"
+             style="max-width:512px;"
+             title="Grammar for Estimation of Distribution Algorithms, as seen from the ParadisEO point of vue − Johann Dréo − CC-BY-SA" />
+        <figcaption>The grammar of EDAs is extending the grammar of EAs, by adding an intermediate "distribution" data structure and operators manipulating it.</figcaption>
+    </figure>
+
     </div>
 
 
