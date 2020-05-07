@@ -41,16 +41,6 @@ pre {
     margin:0.2em;
 }
 
-ul.badges {
-    list-style-type:none;
-    margin-top:2em;
-}
-
-ul.badges li {
-    margin-left:0px;
-    margin-top:0.5em;
-}
-
 #alt {
     font-size:small;
     float:left;
@@ -68,8 +58,6 @@ ul.badges li {
 }
 
 #toc {
-    /* background-color:#222; */
-    /* padding: 0.01em 0.5em 0.1em 0.5em; */
 }
 
 
@@ -84,9 +72,6 @@ ul.badges li {
     font-weight:normal;
     font-style:italic;
     padding:1em;
-    /* padding:18px 0px 0px 50px; */
-    /* float:left; */
-    /* margin:0px 0px 10px 0px; */
 }
 
 nav {
@@ -202,34 +187,6 @@ a:hover {
     text-decoration:underline;
 }
 
-#appendix {
-    background:url("Purine_Nucleoside_Phosphorylase_small.jpg");
-    background-repeat:no-repeat;
-    background-position:top right;
-}
-
-#title {
-    color:#3366CC;
-    /*background-color:#FFFFFF;*/
-    font-size:3em;
-    font-weight:bold;
-    margin:0px 0px 10px 0px;
-    float:left;
-}
-
-ul#login {
-    margin:0px;
-    padding:0px;
-    list-style: none;
-    position:absolute;
-    top:0px;
-    right:1em;
-}
-
-ul#login li {
-    display:inline;
-}
-
 ul#menu {
     clear:both;
     margin: 0;
@@ -260,72 +217,6 @@ ul#menu li a {
 ul#menu li a:hover { background: #3366CC; color: #FFFFFF; }
 ul#menu a.selected:link { background: #3366CC; color: #FFFFFF; }
 ul#menu a.selected:visited { background: #3366CC; color: #FFFFFF; }
-
-#page {
-    font-size:1.0em;
-    padding:1em;
-    margin:1em;
-    /*width:650px;
-      float:left;*/
-    clear:left;
-}
-
-
-#foot {
-    color:#000000;
-    background-color:#FFFFFF;
-    border-top:1px solid #0033CC;
-    font-size:80%;
-    /*line-height:1.5em;*/
-    /*width: 650px;*/
-    clear:both;
-}
-
-#foot a {
-    color:#3366CC;
-    background-color:#FFFFFF;
-    text-decoration: none;
-}
-
-#foot a:hover {
-    color:#0033CC;
-    background-color:#FFFFFF;
-    font-weight: normal;
-    text-decoration: underline;
-}
-
-#copyright {
-    color:#000000;
-    background-color:#FFFFFF;
-    padding:5px 20px 5px 0px;
-    float:left;
-}
-
-#contact {
-    color:#0033CC;
-    background-color:#FFFFFF;
-    padding:5px 0px 5px 0px;
-    float:right;
-}
-
-
-.table_form_title {
-    font-weight:bold;
-}
-
-.table_form_label {
-    text-align:right;
-    padding-right:1em;
-}
-
-.table_form_submit {
-    text-align:center;
-}
-
-.legend {
-    font-style:italic;
-    font-size:80%;
-}
 
 .collapsible {
     background-color: #eee;
