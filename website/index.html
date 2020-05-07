@@ -58,6 +58,7 @@
                         <li><a href="#Optimization">Optimization Problems</a></li>
                         <li><a href="#Metaheuristics">Metaheuristics</a></li>
                         <li><a href="#Why">Why choosing <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</a></li>
+                        <li><a href="#Fast">How Fast is <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</a></li>
                     </ol>
                 </li>
                 <li class="toc_section" id="toc_section_3">
@@ -66,6 +67,7 @@
                         <li><a href="#Component-based">Composable design</a></li>
                         <li><a href="#LargeChoice">Lot of Components</a></li>
                         <li><a href="#Portability">Portability</a></li>
+                        <li><a href="#VS">VS other Frameworks</a></li>
                     </ol>
                 </li>
                 <li class="toc_section" id="toc_section_4">
@@ -208,6 +210,23 @@
                 <li>C++ provides full type checking and the largest set of tooling for any modern language, which are your first line of defense against long-term bugs. Sure, it sometimes gives you the impression that you fight against the compiler, but chasing subtle interface bugs across a complex Python code is even harder.</li>
             </ul>
         </p>
+    </div>
+
+    <h2><a name="Fast"></a>How fast is <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</h2>
+
+    <p>To give an order of magnitude:
+    <ul>
+        <li>If you use the "official" <em>vanilla implementation of <a href="https://github.com/CMA-ES/pycma">CMA-ES in Python/Numpy</a></em> solving the BBOB problem suite through the <a href="https://github.com/numbbo/coco">COCO plateform</a>, running the whole benchmark will take approximately <em>10 minutes</em> on a single Intel Core i5 @ 2.50GHz with an solid state disk.</li>
+        <li>The same experiment, running <em>the <em class="logo">Paradis<span class="logo_eo">eo</span></em> implementation</em> using the seamless binding to the <a href="https://iohprofiler.github.io/">IOHprofiler</a> BBOB implementation, will take <em>1 minute</em>.</li>
+    </ul>
+    <em class="excerpt">Thus, you can expect that <em>an algorithm implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em></em> will be up to <strong>10 times faster</strong> than its (heavily optimized) Python counterpart.</em>
+    As indicated in the previous section, this speed is crucially useful for algorithm design and algorithm selection.
+    </p>
+
+    <button class="collapsible">Notes on this claim…</button>
+    <div class="details">
+        <p>CMA-ES solves numeric problems with quadratic complexity regarding the number of dimensions. If you target simpler algorithms, they will be faster but one can expect a similar behaviour.</p>
+        <p>The <em>pycma</em> used for the comparison rely on <em>numpy</em> for the heavy parts of the computations. If you use a pure Python implementation, the difference will be far greater.</p>
     </div>
 
 
@@ -374,6 +393,14 @@
     <!-- is a good chance that eo-0.9.3z.1 works. It is tested on Linux -->
     <!-- with gcc-2.9x and several systems (IRIX, Solaris) with egcs. </p> -->
 
+    <h2><a name="VS"></a>VS other Frameworks</h2>
+
+    <p>The following tables show how <em class="logo">Paradis<span class="logo_eo">eo</span></em> compares to other active open-source frameworks, to the best of our knowledge (updated on 2019-10-18).</p>
+    <iframe class="table"
+        style="height:50ch;"
+        src="frameworks_comparison.html"></iframe>
+    <p>Gathering and maintaining those information is not easy, so take them with a grain of salt, and if you see errors in those tables, please contact us.</p>
+
 
     <!-- DOCUMENTATION -->
     <h1><a name="Documentation"></a>Documentation <a href="#Documentation">⤒</a></h1>
@@ -384,7 +411,7 @@
         <li>
             <p>The core EO module is described in the following scientific article:
             <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
-                <a href= "http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz">Evolving
+                <a href= "http://www.lri.fr/~marc/Paradiseo/Paradiseo-EA01.ps.gz">Evolving
                     objects: A general purpose evolutionary computation
                     library</a>, <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
             </p>
@@ -403,7 +430,7 @@
                         &nbsp;&nbsp;<font color="#a52a2a">volume</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;2310&quot;,<br/>
                         &nbsp;&nbsp;<font color="#a52a2a">pages</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;829--888&quot;,<br/>
                         &nbsp;&nbsp;<font color="#a020f0">keywords</font>&nbsp;=&nbsp; &quot;genetic algorithms, genetic programming, evolutionary computation, metaheuristic, computational intelligence, optimization&quot;,<br/>
-                        &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz">http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz</a>&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/Paradiseo/Paradiseo-EA01.ps.gz">http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz</a>&quot;,<br/>
                         &nbsp;&nbsp;<font color="#ff00ff">size</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;12 pages&quot;,<br/>
                         <!-- &nbsp;&nbsp;<font color="#a020f0">abstract</font>&nbsp;=&nbsp; &quot;This paper presents the evolving objects library<br/> -->
                         <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (EOlib), an object-oriented framework for evolutionary<br/> -->
