@@ -126,27 +126,103 @@
 
     Download the <a href="https://gforge.inria.fr/frs/download.php/31733/Paradiseo-2.0.1.zip">latest stable release</a>.
 
-    <p>Or clone the latest version: <pre class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</pre></p>
+    <p>Or clone the latest version: <code class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</code></p>
 
     <h2><a name="Build"></a>Build</h2>
 
     <p>As <em class="logo">Paradis<span class="logo_eo">eo</span></em> is a development framework, you do not really need to install it on all your systems. Just put it somewhere on your development computer, compile it from here and indicate where to find it to your favorite build system.</p>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is mainly developed for Linux, on which it is straightforward to install a C++ build chain.
-    For example, on Ubuntu 18.04: <pre class="command">sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</pre></p>
+    For example, on Ubuntu 18.04: <code class="command">sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</code></p>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> use the CMake build system, so building it should be as simple as:
-    <pre class="command">mkdir build ; cd build ; cmake .. && make -j</pre></p>
+    <code class="command">mkdir build ; cd build ; cmake .. && make -j</code></p>
 
     <p>For more details, see the <a href="#Builds">building <em class="logo">Paradis<span class="logo_eo">eo</span></em></a> section.</p>
 
     <h2><a name="Develop"></a>Develop</h2>
 
-    <p>Download the <a href="https://gforge.inria.fr/frs/download.php/31755/QuickStart.zip">quick start project template</a>, edit the <pre>CMakeLists.txt</pre> file to indicate where to find <em class="logo">Paradis<span class="logo_eo">eo</span></em> and start developing your own solver.</p>
+    <p>Download the <a href="https://gforge.inria.fr/frs/download.php/31755/QuickStart.zip">quick start project template</a>, edit the <code>CMakeLists.txt</code> file to indicate where to find <em class="logo">Paradis<span class="logo_eo">eo</span></em> and start developing your own solver.</p>
 
     <p>To show you how does a <em class="logo">Paradis<span class="logo_eo">eo</span></em> code look, you will find below a minimal implementation of the popular CMA-ES algorithm.</p>
-    <iframe class="code" src="website/t-minimal-cmaes.cpp.html"></iframe>
-    <p>The code is presented without comments, to keep it short, but it is yet full-featured, as you will see if you compile it and run <pre class="command">./cmaes --help</pre></p>
+
+    <!-- <iframe class="code" src="website/t-minimal-cmaes.cpp.html"></iframe> -->
+<p class="code">
+<code class='vimCodeElement'>
+<span id="L1" class="LineNr"> 1 </span><span class="Include">#include </span><span class="String">&lt;eo&gt;</span>
+<span id="L2" class="LineNr"> 2 </span><span class="Include">#include </span><span class="String">&lt;edo&gt;</span>
+<span id="L3" class="LineNr"> 3 </span><span class="Include">#include </span><span class="String">&lt;es.h&gt;</span>
+<span id="L4" class="LineNr"> 4 </span><span class="Include">#include </span><span class="String">&lt;do/make_pop.h&gt;</span>
+<span id="L5" class="LineNr"> 5 </span><span class="Include">#include </span><span class="String">&lt;do/make_run.h&gt;</span>
+<span id="L6" class="LineNr"> 6 </span><span class="Include">#include </span><span class="String">&lt;do/make_continue.h&gt;</span>
+<span id="L7" class="LineNr"> 7 </span><span class="Include">#include </span><span class="String">&lt;do/make_checkpoint.h&gt;</span>
+<span id="L8" class="LineNr"> 8 </span>
+<span id="L9" class="LineNr"> 9 </span><span class="cppStatement">using</span> R <span class="cppOperator">=</span> eoReal<span class="cppOperator">&lt;</span>eoMinimizingFitness<span class="cppOperator">&gt;</span><span class="cppEndline">;</span>
+<span id="L10" class="LineNr">10 </span><span class="cppStatement">using</span> CMA <span class="cppOperator">=</span> edoNormalAdaptive<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span><span class="cppEndline">;</span>
+<span id="L11" class="LineNr">11 </span>
+<span id="L12" class="LineNr">12 </span>R<span class="cppOperator">::</span>FitnessType sphere<span class="cppBraces">(</span><span class="StorageClass">const</span> R<span class="cppOperator">&amp;</span> sol<span class="cppBraces">)</span> <span class="cppBraces">{</span>
+<span id="L13" class="LineNr">13 </span>    <span class="Type">double</span> sum <span class="cppOperator">=</span> <span class="Number">0</span><span class="cppEndline">;</span>
+<span id="L14" class="LineNr">14 </span>    <span class="Repeat">for</span><span class="cppBraces">(</span><span class="Type">auto</span> x <span class="cppOperator">:</span> sol<span class="cppBraces">)</span> <span class="cppBraces">{</span> sum <span class="cppOperator">+=</span> x <span class="cppOperator">*</span> x<span class="cppEndline">;</span> <span class="cppBraces">}</span>
+<span id="L15" class="LineNr">15 </span>    <span class="Statement">return</span> sum<span class="cppEndline">;</span>
+<span id="L16" class="LineNr">16 </span><span class="cppBraces">}</span>
+<span id="L17" class="LineNr">17 </span>
+<span id="L18" class="LineNr">18 </span><span class="Type">int</span> main<span class="cppBraces">(</span><span class="Type">int</span> argc<span class="cppOperator">,</span> <span class="Type">char</span><span class="cppOperator">**</span> argv<span class="cppBraces">)</span> <span class="cppBraces">{</span>
+<span id="L19" class="LineNr">19 </span>    eoParser parser<span class="cppBraces">(</span>argc<span class="cppOperator">,</span> argv<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L20" class="LineNr">20 </span>    eoState state<span class="cppEndline">;</span>
+<span id="L21" class="LineNr">21 </span>
+<span id="L22" class="LineNr">22 </span>    <span class="Type">size_t</span> dim <span class="cppOperator">=</span> parser<span class="cppOperator">.</span>createParam<span class="cppOperator">&lt;</span><span class="Type">size_t</span><span class="cppOperator">&gt;</span><span class="cppBraces">(</span><span class="Number">10</span><span class="cppOperator">,</span>
+<span id="L23" class="LineNr">23 </span>            <span class="String">&quot;dimension&quot;</span><span class="cppOperator">,</span> <span class="String">&quot;Dimension&quot;</span><span class="cppOperator">,</span> <span class="Character">'d'</span><span class="cppOperator">,</span>
+<span id="L24" class="LineNr">24 </span>            <span class="String">&quot;Problem&quot;</span><span class="cppBraces">)</span><span class="cppOperator">.</span>value<span class="cppBraces">()</span><span class="cppEndline">;</span>
+<span id="L25" class="LineNr">25 </span>
+<span id="L26" class="LineNr">26 </span>    <span class="Type">size_t</span> max_eval <span class="cppOperator">=</span> parser<span class="cppOperator">.</span>getORcreateParam<span class="cppOperator">&lt;</span><span class="Type">size_t</span><span class="cppOperator">&gt;</span><span class="cppBraces">(</span><span class="Number">100</span> <span class="cppOperator">*</span> dim<span class="cppOperator">,</span>
+<span id="L27" class="LineNr">27 </span>            <span class="String">&quot;maxEval&quot;</span><span class="cppOperator">,</span> <span class="String">&quot;Maximum number of evaluations&quot;</span><span class="cppOperator">,</span> <span class="Character">'E'</span><span class="cppOperator">,</span>
+<span id="L28" class="LineNr">28 </span>            <span class="String">&quot;Stopping criterion&quot;</span><span class="cppBraces">)</span><span class="cppOperator">.</span>value<span class="cppBraces">()</span><span class="cppEndline">;</span>
+<span id="L29" class="LineNr">29 </span>
+<span id="L30" class="LineNr">30 </span>    edoNormalAdaptive<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> gaussian<span class="cppBraces">(</span>dim<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L31" class="LineNr">31 </span>
+<span id="L32" class="LineNr">32 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> obj_func <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoEvalFuncPtr<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>sphere<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L33" class="LineNr">33 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> eval     <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoEvalCounterThrowException<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>obj_func<span class="cppOperator">,</span> max_eval<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L34" class="LineNr">34 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> pop_eval <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoPopLoopEval<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>eval<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L35" class="LineNr">35 </span>
+<span id="L36" class="LineNr">36 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> gen  <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoUniformGenerator<span class="cppOperator">&lt;</span>R<span class="cppOperator">::</span>AtomType<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span><span class="cppOperator">-</span><span class="Number">5</span><span class="cppOperator">,</span> <span class="Number">5</span><span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L37" class="LineNr">37 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> init <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoInitFixedLength<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>dim<span class="cppOperator">,</span> gen<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L38" class="LineNr">38 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> <span class="cppSTL">pop</span> <span class="cppOperator">=</span> do_make_pop<span class="cppBraces">(</span>parser<span class="cppOperator">,</span> state<span class="cppOperator">,</span> init<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L39" class="LineNr">39 </span>    pop_eval<span class="cppBraces">(</span><span class="cppSTL">pop</span><span class="cppOperator">,</span><span class="cppSTL">pop</span><span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L40" class="LineNr">40 </span>
+<span id="L41" class="LineNr">41 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> eo_continue  <span class="cppOperator">=</span> do_make_continue<span class="cppBraces">(</span>  parser<span class="cppOperator">,</span> state<span class="cppOperator">,</span> eval<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L42" class="LineNr">42 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> pop_continue <span class="cppOperator">=</span> do_make_checkpoint<span class="cppBraces">(</span>parser<span class="cppOperator">,</span> state<span class="cppOperator">,</span> eval<span class="cppOperator">,</span> eo_continue<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L43" class="LineNr">43 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> best <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoBestIndividualStat<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">()</span><span class="cppEndline">;</span>
+<span id="L44" class="LineNr">44 </span>    pop_continue<span class="cppOperator">.</span>add<span class="cppBraces">(</span> best <span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L45" class="LineNr">45 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> distrib_continue <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> edoContAdaptiveFinite<span class="cppOperator">&lt;</span>CMA<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">()</span><span class="cppEndline">;</span>
+<span id="L46" class="LineNr">46 </span>
+<span id="L47" class="LineNr">47 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> selector  <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoRankMuSelect<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>dim/<span class="Number">2</span><span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L48" class="LineNr">48 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> estimator <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> edoEstimatorNormalAdaptive<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>gaussian<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L49" class="LineNr">49 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> bounder   <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> edoBounderRng<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>R<span class="cppBraces">(</span>dim<span class="cppOperator">,</span> <span class="cppOperator">-</span><span class="Number">5</span><span class="cppBraces">)</span><span class="cppOperator">,</span> R<span class="cppBraces">(</span>dim<span class="cppOperator">,</span> <span class="Number">5</span><span class="cppBraces">)</span><span class="cppOperator">,</span> gen<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L50" class="LineNr">50 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> sampler   <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> edoSamplerNormalAdaptive<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>bounder<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L51" class="LineNr">51 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> replacor  <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> eoCommaReplacement<span class="cppOperator">&lt;</span>R<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">()</span><span class="cppEndline">;</span>
+<span id="L52" class="LineNr">52 </span>
+<span id="L53" class="LineNr">53 </span>    make_verbose<span class="cppBraces">(</span>parser<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L54" class="LineNr">54 </span>    make_help<span class="cppBraces">(</span>parser<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L55" class="LineNr">55 </span>
+<span id="L56" class="LineNr">56 </span>    <span class="Type">auto</span><span class="cppOperator">&amp;</span> algo <span class="cppOperator">=</span> state<span class="cppOperator">.</span>pack<span class="cppOperator">&lt;</span> edoAlgoAdaptive<span class="cppOperator">&lt;</span>CMA<span class="cppOperator">&gt;</span> <span class="cppOperator">&gt;</span><span class="cppBraces">(</span>
+<span id="L57" class="LineNr">57 </span>         gaussian <span class="cppOperator">,</span> pop_eval<span class="cppOperator">,</span> selector<span class="cppOperator">,</span>
+<span id="L58" class="LineNr">58 </span>         estimator<span class="cppOperator">,</span> sampler <span class="cppOperator">,</span> replacor<span class="cppOperator">,</span>
+<span id="L59" class="LineNr">59 </span>         pop_continue<span class="cppOperator">,</span> distrib_continue<span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L60" class="LineNr">60 </span>
+<span id="L61" class="LineNr">61 </span>    <span class="Exception">try</span> <span class="cppBraces">{</span>
+<span id="L62" class="LineNr">62 </span>        algo<span class="cppBraces">(</span><span class="cppSTL">pop</span><span class="cppBraces">)</span><span class="cppEndline">;</span>
+<span id="L63" class="LineNr">63 </span>    <span class="cppBraces">}</span> <span class="Exception">catch</span> <span class="cppBraces">(</span>eoMaxEvalException<span class="cppOperator">&amp;</span> e<span class="cppBraces">)</span> <span class="cppBraces">{</span>
+<span id="L64" class="LineNr">64 </span>        eo<span class="cppOperator">::</span><span class="cppSTL">log</span> <span class="cppOperator">&lt;&lt;</span> eo<span class="cppOperator">::</span>progress <span class="cppOperator">&lt;&lt;</span> <span class="String">&quot;STOP&quot;</span> <span class="cppOperator">&lt;&lt;</span> <span class="cppSTL">std</span><span class="cppOperator">::</span><span class="cppSTL">endl</span><span class="cppEndline">;</span>
+<span id="L65" class="LineNr">65 </span>    <span class="cppBraces">}</span>
+<span id="L66" class="LineNr">66 </span>
+<span id="L67" class="LineNr">67 </span>    <span class="cppSTL">std</span><span class="cppOperator">::</span><span class="cppSTL">cout</span> <span class="cppOperator">&lt;&lt;</span> best<span class="cppOperator">.</span>value<span class="cppBraces">()</span> <span class="cppOperator">&lt;&lt;</span> <span class="cppSTL">std</span><span class="cppOperator">::</span><span class="cppSTL">endl</span><span class="cppEndline">;</span>
+<span id="L68" class="LineNr">68 </span>    <span class="Statement">return</span> <span class="Number">0</span><span class="cppEndline">;</span>
+<span id="L69" class="LineNr">69 </span><span class="cppBraces">}</span>
+
+</code>
+</p><!-- END CODE -->
+
+    <p>The code is presented without comments, to keep it short, but it is yet full-featured, as you will see if you compile it and run <code class="command">./cmaes --help</code></p>
 
     <h2><a name="Gethelp"></a>Get help</h2>
 
@@ -250,7 +326,7 @@
     <button class="collapsible">Combination of operators…</button>
     <div class="details">
         <p>One of the very powerful feature of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that its design targets easy combination of operators. Is is, for instance, straightforward to plug several different <em>continuation operators</em> in the <em>stopping criterion</em> slot of algorithms.</p>
-        <p>Popular combination of operators are provided as pre-defined functions, with automatic command line argument control.</p>
+        <p>Popular combination of operators are provided as code-defined functions, with automatic command line argument control.</p>
         <p>Additionally, this design allows for all kind of hybridizations between algorithms. For instance, it's easy to plug a local search algorithm as a variation operator of an evolutionary algorithm.</p>
         <p>Another advantage is that you can very easily try alternative algorithms. With tens of operators available for popular slots, the number of different algorithms increase very rapidly. For instance, just using basic genetic algorithm operators with set parameters, <em class="logo">Paradis<span class="logo_eo">eo</span></em> can provide up to 5 millions different bitstrings algorithms. Given that metaheuristics are very sensitive to the interactions between operators, this approach allows for vital degrees of freedom.</p>
         <p>Of course, it's also possible to add new algorithms "grammar". For instance, the grammar for estimation of distribution algorithms is an extension of the one for evolutionary algorithms. That way, you can re-use the operators already implemented for other algorithms.</p>
@@ -393,10 +469,263 @@
     <h2><a name="VS"></a>VS other Frameworks</h2>
 
     <p>The following tables show how <em class="logo">Paradis<span class="logo_eo">eo</span></em> compares to other active open-source frameworks, to the best of our knowledge (updated on 2019-10-18).</p>
-    <iframe class="table"
-        style="height:50ch;"
-        src="website/frameworks_comparison.html"></iframe>
-    <p>Gathering and maintaining those information is not easy, so take them with a grain of salt, and if you see errors in those tables, please contact us.</p>
+    <!-- <iframe class="table" -->
+    <!--     style="height:50ch;" -->
+    <!--     src="website/frameworks_comparison.html"></iframe> -->
+
+    <figure class="table">
+<A NAME="table0">Projects</A>
+<table cellspacing="0" border="0">
+	<colgroup width="86"></colgroup>
+	<colgroup width="74"></colgroup>
+	<colgroup width="99"></colgroup>
+	<colgroup width="64"></colgroup>
+	<colgroup span="2" width="59"></colgroup>
+	<tr>
+		<td style="border-bottom: 1px solid #cccccc" height="17" align="left" bgcolor="#0066B3"><b><font color="#FFFFFF">Framework</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="left" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Colored by speed level</comment>
+		<b><font color="#FFFFFF">Language</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="left" bgcolor="#0066B3"><b><font color="#FFFFFF">License</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="left" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>If ‘Yes’, you have to disclose the sources of your solver when using this framework</comment>
+		<b><font color="#FFFFFF">Copyleft</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="left" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Number of contributors</comment>
+		<b><font color="#FFFFFF">Contrib.</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="right" bgcolor="#0066B3"><a class="comment-indicator"></a>
+	<comment>Number of lines of code ×1000</comment>
+	<b><font color="#FFFFFF">kloc</font></b></td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b><em class="logo">Paradis<span class="logo_eo">eo</span></em></b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">C++</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left">LGPLv2/CeCill</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">No</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="50" sdnum="1036;">50</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="82" sdnum="1036;">82</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>jMetal</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#FFFFCC"><font color="#996600">Java</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left">MIT</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">No</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="29" sdnum="1036;">29</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="60" sdnum="1036;">60</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>ECJ</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#FFFFCC"><font color="#996600">Java</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left">AFLv3</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#FFCCCC"><font color="#CC0000">Yes</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="33" sdnum="1036;">33</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="54" sdnum="1036;">54</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>OpenBeagle</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">C++</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left">LGPLv3</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">No</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="4" sdnum="1036;">4</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="48" sdnum="1036;">48</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>Jenetics</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#FFFFCC"><font color="#996600">Java</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left">Apachev2</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">No</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="10" sdnum="1036;">10</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="47" sdnum="1036;">47</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>ECF</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">C++</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left">MIT</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">No</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="19" sdnum="1036;">19</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="15" sdnum="1036;">15</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>DEAP</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#FFCCCC"><font color="#CC0000">Python</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left">LGPLv3</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">No</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="45" sdnum="1036;">45</td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="right" sdval="9" sdnum="1036;">9</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc" height="17" align="left"><b>Cllib</b></td>
+		<td style="border-top: 1px solid #cccccc" align="left" bgcolor="#FFCCCC"><font color="#CC0000">Scala</font></td>
+		<td style="border-top: 1px solid #cccccc" align="left">Apachev2</td>
+		<td style="border-top: 1px solid #cccccc" align="left" bgcolor="#CCFFCC"><font color="#006600">No</font></td>
+		<td style="border-top: 1px solid #cccccc" align="right" sdval="17" sdnum="1036;">17</td>
+		<td style="border-top: 1px solid #cccccc" align="right" sdval="4" sdnum="1036;">4</td>
+	</tr>
+</table>
+<!-- ************************************************************************** -->
+<hr>
+<A NAME="table1">Features</A>
+<table cellspacing="0" border="0">
+	<colgroup width="85"></colgroup>
+	<colgroup width="30"></colgroup>
+	<colgroup width="31"></colgroup>
+	<colgroup width="39"></colgroup>
+	<colgroup width="40"></colgroup>
+	<colgroup width="29"></colgroup>
+	<colgroup width="33"></colgroup>
+	<colgroup width="36"></colgroup>
+	<colgroup width="32"></colgroup>
+	<colgroup width="40"></colgroup>
+	<colgroup span="2" width="30"></colgroup>
+	<colgroup width="47"></colgroup>
+	<tr>
+		<td style="border-bottom: 1px solid #cccccc" height="17" align="left" bgcolor="#0066B3"><b><font color="#FFFFFF">Framework</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Evolutionary Algorithms</comment>
+		<b><font color="#FFFFFF">EA</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Genetic Programming	</comment>
+		<b><font color="#FFFFFF">GP</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Estimation of Distribution Algorithms</comment>
+		<b><font color="#FFFFFF">EDA</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Particle Swarm Opimization</comment>
+		<b><font color="#FFFFFF">PSO</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Local Search</comment>
+		<b><font color="#FFFFFF">LS</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Multi-Objective Optimization</comment>
+		<b><font color="#FFFFFF">MO</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Parallelization for Clusters</comment>
+		<b><font color="#FFFFFF">MPI</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Paralellization for Multicores</comment>
+		<b><font color="#FFFFFF">MC</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Parallelization on GPU</comment>
+		<b><font color="#FFFFFF">GPU</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Fitness Landscapes</comment>
+		<b><font color="#FFFFFF">FL</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><a class="comment-indicator"></a>
+		<comment>Algorithm Selection</comment>
+		<b><font color="#FFFFFF">AS</font></b></td>
+		<td style="border-bottom: 1px solid #cccccc" align="center" bgcolor="#0066B3"><font color="#FFFFFF">Score</font></td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b><em class="logo">Paradis<span class="logo_eo">eo</span></em></b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" sdval="10" sdnum="1036;">10</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>ECJ</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" sdval="7" sdnum="1036;">7</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>jMetal</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" sdval="4" sdnum="1036;">4</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>ECF</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" sdval="4" sdnum="1036;">4</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>DEAP</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" sdval="4" sdnum="1036;">4</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" height="17" align="left"><b>OpenBeagle</b></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc" align="center" sdval="3" sdnum="1036;">3</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #cccccc" height="17" align="left"><b>Jenetics</b></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#808080"><font color="#FFFFFF">?</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#CCFFCC"><font color="#006600">Y</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" bgcolor="#FFCCCC"><font color="#CC0000">N</font></td>
+		<td style="border-top: 1px solid #cccccc" align="center" sdval="2" sdnum="1036;">2</td>
+	</tr>
+</table>
+
+    </figure>
+
+
+    <p>Gathering and maintaining this information is not easy, so take them with a grain of salt, and if you see errors in those tables, please contact us.</p>
 
 
     <!-- DOCUMENTATION -->
@@ -631,7 +960,7 @@ undiscovered knowledge.
 </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part2'>EO Lesson6 second part</a> <strong>Implement a binary PSO algorithm</strong>
 </li></ul>
 
-<h3>Tutorials MO (local search module)</h3>
+<h3>Tutorials on MO (local search module)</h3>
 
 </p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson1'>MO Lesson1</a> <strong>Hill Climber</strong>
 </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson2'>MO Lesson2</a> <strong>Neighborhoods</strong> (classical and indexed)
@@ -642,7 +971,7 @@ undiscovered knowledge.
 </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson7'>MO Lesson7</a> <strong>Hybrid Lesson</strong>
 </li></ul>
 
-<h3>Tutorials MOEO (multi-objective module)</h3>
+<h3>Tutorials on MOEO (multi-objective module)</h3>
 
 </p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson1'>MOEO Lesson1</a> <strong>Implement NSGA, NSGA-II and IBEA for the SCH1 problem</strong>
 </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson2'>MOEO Lesson2</a> <strong>Evolutionary Algorithms for the flow-shop scheduling problem</strong>
@@ -652,22 +981,33 @@ undiscovered knowledge.
 </p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoSMPLesson1'>SMP Lesson1</a> <strong>Algorithm wrapping with Master / Workers model</strong>
 </li></ul>
 
-<!-- <h3>Tutorials PEO (one of the parallelization modules)</h3> -->
-<!-- </p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOIntro'>PEO Intro</a> <strong>Technical introduction</strong> -->
-<!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson1'>PEO Lesson1</a> <strong>Multistart over a MO, Packing and Unpacking </strong> (use old-mo) -->
-<!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson2'>PEO Lesson2</a> <strong>Multistart over an evolutionary algorithm</strong> -->
-<!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson3'>PEO Lesson3</a> <strong>Parallel evaluation </strong> -->
-<!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson4'>PEO Lesson4</a> <strong>Parallel transformation</strong> (use old-mo) -->
-<!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson5'>PEO Lesson5</a> <strong>Island model</strong> -->
-<!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson6'>PEO Lesson6</a> <strong>Hybridization</strong> (use old-mo) -->
-<!-- </li></ul><p><span  style='display: none;'><strong>GPU tutorials:</strong> </span> -->
-<!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson1'>GPU Lesson1</a> <strong>CUDA installation and configuration</strong></span> -->
-<!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson2'>GPU Lesson2</a> <strong>Prerequisites: How to configure Paradiseo-GPU</strong></span> -->
-<!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson3'>GPU Lesson3</a> <strong>Prerequisites: How to define solution on GPU</strong></span> -->
-<!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson4'>GPU Lesson4</a> <strong>Prerequisites: How to define neighbor &amp; neighborhood on GPU</strong></span> -->
-<!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson5'>GPU Lesson5</a> <strong>Prerequisites: How to evaluate solution &amp; neighbor on GPU</strong></span> -->
-<!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson6'>GPU Lesson6</a> <strong>Hill Climbing and Tabu Search on GPU</strong></span> -->
-<!-- </p> -->
+<h3>Tutorials on parallelization</h3>
+
+<p>
+    <ul>
+        <li>
+            Series on Island Model with <em class="logo">Paradis<span class="logo_eo">eo</span></em>, by Alexandre Quemy:
+            <a href="https://endomorphis.me/island-model-with-paradiseo-heterogeneous-island-model-en.html">1. heterogeneous island model</a>,
+            <a href="https://endomorphis.me/island-model-with-paradiseo-components-and-basics-en.html">2. components and basics</a>,
+            <a href="https://endomorphis.me/island-model-with-paradiseo-advanced-island-model-manipulations-en.html">3. advanced island model manipulations</a>.
+        </li>
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOIntro'>PEO Intro</a> <strong>Technical introduction</strong></li>
+        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson1'>PEO Lesson1</a> <strong>Multistart over a MO, Packing and Unpacking </strong> (use old-mo) -->
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson2'>PEO Lesson2</a> <strong>Multistart over an evolutionary algorithm</strong></li>
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson3'>PEO Lesson3</a> <strong>Parallel evaluation </strong></li>
+        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson4'>PEO Lesson4</a> <strong>Parallel transformation</strong> (use old-mo) -->
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson5'>PEO Lesson5</a> <strong>Island model</strong></li>
+        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson6'>PEO Lesson6</a> <strong>Hybridization</strong> (use old-mo) -->
+        <!-- </li></ul><p><span  style='display: none;'><strong>GPU tutorials:</strong> </span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson1'>GPU Lesson1</a> <strong>CUDA installation and configuration</strong></span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson2'>GPU Lesson2</a> <strong>Prerequisites: How to configure Paradiseo-GPU</strong></span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson3'>GPU Lesson3</a> <strong>Prerequisites: How to define solution on GPU</strong></span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson4'>GPU Lesson4</a> <strong>Prerequisites: How to define neighbor &amp; neighborhood on GPU</strong></span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson5'>GPU Lesson5</a> <strong>Prerequisites: How to evaluate solution &amp; neighbor on GPU</strong></span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson6'>GPU Lesson6</a> <strong>Hill Climbing and Tabu Search on GPU</strong></span> -->
+        <!-- </p> -->
+    </ul>
+</p>
 
 <h3>Utilities</h3>
 
@@ -681,15 +1021,14 @@ undiscovered knowledge.
 
     <p>For your convenience, you can browse an online API doc for <em class="logo">Paradis<span class="logo_eo">eo</span></em> version 2.0:
     <ul>
-        <li><a href='http://paradiseo.gforge.inria.fr/addon/eo/doc/index.html'>doc-eo</a> </li>
-        <li>doc-edo (missing link)</li>
+        <li><a href='http://paradiseo.gforge.inria.fr/addon/eo/doc/index.html'>doc-eo</a> (includes doc on EO, PSO and EDO)</li>
         <li><a href='http://paradiseo.gforge.inria.fr/addon/mo/doc/index.html'>doc-mo</a> </li>
         <li><a href='http://paradiseo.gforge.inria.fr/addon/moeo/doc/index.html'>doc-moeo</a> </li>
         <li><a href='http://paradiseo.gforge.inria.fr/addon/smp/doc/index.html'>doc-smp</a> </li>
     </ul>
     </p>
 
-    <p>Note that if you want to find the API documentation for the version you have at hand, just build the <pre class="command">make doc</pre> target and open <pre>paradiseo/&lt;build&gt;/&lt;module&gt;/doc/html/index.html</pre> in your web browser.</p>
+    <p>Note that if you want to find the API documentation for the version you have at hand, just build the <code class="command">make doc</code> target and open <code>paradiseo/&lt;build&gt;/&lt;module&gt;/doc/html/index.html</code> in your web browser.</p>
 
     <h2><a name="Examples"></a>Examples of real solvers</h2>
 
@@ -710,7 +1049,7 @@ undiscovered knowledge.
     <p>The current stable release is version 2.0.1: <a href="https://gforge.inria.fr/frs/download.php/31733/Paradiseo-2.0.1.ziph">ParadisEO 2.0.1</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/releases">GitHub/paradiseo/releases</a>.</p>
 
     <p> You can obtain the latest stable and beta version directly via the official Git repository:
-    <pre class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</pre>.
+    <code class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</code>.
     The release are on the "master" branch.
     </p>
 
@@ -748,17 +1087,17 @@ undiscovered knowledge.
 
     <p>The build chain uses the classical workflow of CMake.
     The recommended method is to build in a specific, separated directory
-    and call <pre class="command">cmake ..</pre> from here.
-    CMake will prepare the compilation script for your system of choice which you can change with the <pre class="command">-G &lt;generator-name&gt;</pre> option (see the CMake doc for the list of available generators).</p>
+    and call <code class="command">cmake ..</code> from here.
+    CMake will prepare the compilation script for your system of choice which you can change with the <code class="command">-G &lt;generator-name&gt;</code> option (see the CMake doc for the list of available generators).</p>
 
     <p>Under Linux, the default is make, and a build command is straitghtforward:
-    <pre class="command">mkdir build ; cd build ; cmake .. && make -j</pre>
+    <code class="command">mkdir build ; cd build ; cmake .. && make -j</code>
     </p>
 
     <p>There is, however, several build options which you may want to switch.
-    To see them, we recommend the use of a CMake gui, like <pre>ccmake</pre> or <pre>cmake-gui</pre>.
-    On the command line, you can see the available options with: <pre class="command">cmake -LH ..</pre>.
-    Those options can be set with the <pre>-D&lt;option&gt;=&lt;value&gt;</pre> argument to cmake.
+    To see them, we recommend the use of a CMake gui, like <code>ccmake</code> or <code>cmake-gui</code>.
+    On the command line, you can see the available options with: <code class="command">cmake -LH ..</code>.
+    Those options can be set with the <code>-D&lt;option&gt;=&lt;value&gt;</code> argument to cmake.
     </p>
 
     <p class="excerpt">The first option to consider is <em>CMAKE_BUILD_TYPE</em>,
@@ -767,8 +1106,8 @@ undiscovered knowledge.
 
     <button class="collapsible">Other options…</button>
     <div class="details">
-    <p>Other important options are: <pre>EDO</pre> (which is false by default)
-    and parallelization options: <pre>ENABLE_OPENMP, MPI, SMP</pre>.</p>
+    <p>Other important options are: <code>EDO</code> (which is false by default)
+    and parallelization options: <code>ENABLE_OPENMP, MPI, SMP</code>.</p>
     <p>By default, the build script will build the <em class="logo">Paradis<span class="logo_eo">eo</span></em> libraries only.</p>
     <p>If you ENABLE_CMAKE_TESTING and BUILD_TESTING, it will be the tests, which you can run with the "ctest" command.</p>
     <p>If you ENABLE_CMAKE_EXAMPLE, it will also build the examples.</p>
