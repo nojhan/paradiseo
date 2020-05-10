@@ -11,7 +11,6 @@
         <meta name="distribution" content="Global" />
 
         <link rel="icon" type="image/png" href="website/eo_ico.png" />
-        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="website/lightblue.css" title="Default" />
 
         <title>ParadisEO: Fast & full featured optimization heuristics framework</title>
@@ -289,7 +288,7 @@
 
     <p>To give an order of magnitude:
     <ul>
-        <li>If you use the "official" <em>vanilla implementation of <a href="https://github.com/CMA-ES/pycma">CMA-ES in Python/Numpy</a></em> solving the BBOB problem suite through the <a href="https://github.com/numbbo/coco">COCO plateform</a>, running the whole benchmark will take approximately <em>10 minutes</em> on a single Intel Core i5 @ 2.50GHz with an solid state disk.</li>
+        <li>If you use the "official" <em>vanilla implementation of <a href="https://github.com/CMA-ES/pycma">CMA-ES in Python/Numpy</a></em> solving the BBOB problem suite through the <a href="https://github.com/numbbo/coco">COCO plateform</a>, running the whole benchmark will take approximately <em>10 minutes</em> on a single Intel Core i5 @ 2.50GHz with a colid state disk.</li>
         <li>The same experiment, running <em>the <em class="logo">Paradis<span class="logo_eo">eo</span></em> implementation</em> using the seamless binding to the <a href="https://iohprofiler.github.io/">IOHprofiler</a> BBOB implementation, will take <em>1 minute</em>.</li>
     </ul>
     <em class="excerpt">Thus, you can expect that <em>an algorithm implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em></em> will be up to <strong>10 times faster</strong> than its (heavily optimized) Python counterpart.</em>
@@ -737,7 +736,7 @@
         <li>
             <p>The core EO module is described in the following scientific article:
             <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
-                <a href= "http://www.lri.fr/~marc/Paradiseo/Paradiseo-EA01.ps.gz">Evolving
+                <a href= "http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">Evolving
                     objects: A general purpose evolutionary computation
                     library</a>, <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
             </p>
@@ -756,7 +755,7 @@
                         &nbsp;&nbsp;<font color="#a52a2a">volume</font>&nbsp;=&nbsp;&nbsp;&nbsp; &quot;2310&quot;,<br/>
                         &nbsp;&nbsp;<font color="#a52a2a">pages</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;829--888&quot;,<br/>
                         &nbsp;&nbsp;<font color="#a020f0">keywords</font>&nbsp;=&nbsp; &quot;genetic algorithms, genetic programming, evolutionary computation, metaheuristic, computational intelligence, optimization&quot;,<br/>
-                        &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/Paradiseo/Paradiseo-EA01.ps.gz">http://www.lri.fr/~marc/<em class="logo">Paradis<span class="logo_eo">eo</span></em>/<em class="logo">Paradis<span class="logo_eo">eo</span></em>-EA01.ps.gz</a>&quot;,<br/>
+                        &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">http://www.lri.fr/~marc/EO/EO-EA01.ps.gz</a>&quot;,<br/>
                         &nbsp;&nbsp;<font color="#ff00ff">size</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;12 pages&quot;,<br/>
                         <!-- &nbsp;&nbsp;<font color="#a020f0">abstract</font>&nbsp;=&nbsp; &quot;This paper presents the evolving objects library<br/> -->
                         <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (EOlib), an object-oriented framework for evolutionary<br/> -->
@@ -1225,21 +1224,54 @@ undiscovered knowledge.
 
 </div> <!-- id=main -->
 
+        <!-- Foldable comments -->
         <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
 
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight){
-              content.style.maxHeight = null;
-            } else {
-              content.style.maxHeight = content.scrollHeight + "px";
-            } 
-          });
-        }
+            for(i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if(content.style.maxHeight){
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            }
+        </script>
+        <noscript>
+            <style>
+                .details {
+                    max-height:100%;
+                }
+            </style>
+        </noscript>
+
+        <!-- Asynchronous load of Google font for the ParadisEO logo -->
+        <!-- Instead of this line in the header:
+            <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet">
+        -->
+        <script src="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap"></script>
+        <script>
+            (function( w ){
+                // if the class is already set, we're good.
+                if( w.document.documentElement.className.indexOf( "fonts-loaded" ) > -1 ){
+                    return;
+                }
+                var fontA = new w.FontFaceObserver( "Comfortaa", {
+                    weight: 400
+                });
+                var fontB = new w.FontFaceObserver( "Comfortaa", {
+                    weight: 700
+                });
+                w.Promise
+                    .all([fontA.load(), fontB.load()])
+                    .then(function(){
+                        w.document.documentElement.className += " fonts-loaded";
+                    });
+            }( this ));
         </script>
 
   </body>

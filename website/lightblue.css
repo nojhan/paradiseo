@@ -7,6 +7,7 @@ html {
 }
 
 body {
+    font-size:1em;
     color: #333333;
     font-family:Arial, sans-serif;
 
@@ -42,7 +43,7 @@ pre {
 }
 
 #alt {
-    font-size:small;
+    font-size:0.75em;
     float:left;
     width:20%;
     max-width:40ch;
@@ -68,7 +69,6 @@ pre {
 
 #slogan {
     text-align:center;
-    font-size:small;
     font-weight:normal;
     font-style:italic;
     padding:1em;
@@ -205,7 +205,7 @@ ul#menu li {
 
 ul#menu li a {
     display: block;
-    font-size: small;
+    font-size: 0.75em;
     color: #FFFFFF;
     font-weight: bold;
     text-decoration: none;
@@ -223,12 +223,12 @@ ul#menu a.selected:visited { background: #3366CC; color: #FFFFFF; }
     color:#36C;
     cursor: pointer;
     padding: 0.2em;
-    /* width: 100%; */
     border: thin solid #ccc;
     text-align: left;
     outline: none;
-    font-size: small;
+    font-size: 0.75em;
     margin-left:2em;
+    max-width:50%;
 }
 
 .active, .collapsible:hover {
@@ -263,15 +263,14 @@ figure {
     padding:1em;
     border:thin solid lightgray;
     box-shadow: 5px 10px 18px #ddd;
+    /* min-width:400px; */
     max-width: 60%;
+    margin:1em;
     margin-left:20%
 }
 
-figure img {
-}
-
 figcaption {
-    font-size: small;
+    font-size: 0.75em;
     max-width: 90%;
     margin-left:5%;
 }
@@ -322,7 +321,16 @@ a.comment-indicator:hover + comment { background:#ffd; position:absolute; displa
 a.comment-indicator { background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em;  } 
 comment { display:none;  } 
 
-@media only screen and (max-width: 800px) {
+@media (min-resolution: 192dpi) {
+    body {
+        font-size:1.5em;
+    }
+    #alt {
+        font-size:1em;
+    }
+}
+
+@media only screen and (max-width: 50em), screen and (min-resolution: 192dpi) and (max-width: 75em)  {
     #alt {
         clear:left;
         width:100%;
@@ -372,11 +380,11 @@ comment { display:none;  }
     }
 
     figure {
-        max-width:80%;
+        max-width:90%;
         margin-left:5%;
     }
 
-    iframe.table {
+    .table {
         padding:1em;
         border:thin solid lightgray;
         box-shadow: 5px 10px 18px #ddd;
