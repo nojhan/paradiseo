@@ -18,13 +18,13 @@ body {
 }
 
 .logo {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa', monospace;
     font-style:normal;
     font-weight:400;
 }
 
 .logo_eo {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa', monospace;
     font-style:normal;
     font-weight:700;
 }
@@ -38,8 +38,9 @@ pre {
 .command {
     background-color:#333;
     color:lightgrey;
-    padding:0.3em;
+    padding:2px;
     margin:0.2em;
+    border:thin solid white;
 }
 
 #alt {
@@ -65,6 +66,8 @@ pre {
 #main {
     float:right;
     width:78%;
+    padding-right:1em;
+    padding-bottom:1em;
 }
 
 #slogan {
@@ -176,6 +179,7 @@ a:hover {
     border: thin solid black;
     display:block;
     margin:1em;
+    box-shadow: 10px 10px 15px #074198;
 }
 
 .excerpt em {
@@ -253,7 +257,7 @@ ul#menu a.selected:visited { background: #3366CC; color: #FFFFFF; }
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: #f5f5f5;
+    background-color: #fbfbfb;
     border: thin solid #ccc;
     margin-left:2em;
 }
@@ -277,10 +281,10 @@ figcaption {
 
 .code {
     width:95%;
-    height:35em;
+    height:70ch;
     resize:vertical;
     overflow-y:scroll;
-    box-shadow: 5px 10px 18px #aaa;
+    box-shadow: 10px 10px 10px #888;
     background-color:#2b2b2b;
     color: #d4cfc9; 
     border:thin solid black;
@@ -368,10 +372,8 @@ comment { display:none;  }
     #main {
         clear:left;
         width:95%;
-        margin-left:2%;
-        margin-right:2%;
-    }
-    #main > p {
+        padding-left:1em;
+        padding-right:1em;
         text-align:justify;
     }
 
@@ -394,3 +396,296 @@ comment { display:none;  }
     }
 }
 
+@media only screen and (min-width: 90em) {
+    #main {
+    }
+
+    .details {
+        font-size:0.80em;
+        color:gray;
+        box-shadow: inset 5px 5px 5px #ddd;
+    }
+
+    #Plan .excerpt {
+        width:80%;
+        margin-left:5%;
+    }
+
+    /* QUICKSTART */
+
+    #Quickstart {
+        text-align:justify;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-gap:2em;
+    }
+
+    #Quickstart h1 {
+        grid-row:1;
+        grid-column-start:1;
+        grid-column-end:3;
+    }
+
+    #Quickstart #Download {
+        grid-row:2;
+        grid-column:1;
+    }
+
+    #Quickstart #Build {
+        grid-row:3;
+        grid-column:1;
+    }
+
+    #Quickstart #Develop {
+        grid-row:4;
+        grid-column:1;
+    }
+
+    #Quickstart #Gethelp {
+        grid-row:5;
+        grid-column:1;
+    }
+
+    #Quickstart .code {
+        grid-row-start:2;
+        grid-row-end:6;
+        grid-column:2;
+        height:110ch;
+    }
+
+    /* RATIONALE */
+
+    #Rationale {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-gap:2em;
+        text-align:justify;
+    }
+
+    #Rationale .collapsible {
+        display:none;
+    }
+
+    #Rationale .details {
+        max-height:100%;
+        width:80%;
+    }
+
+    #Rationale h1 {
+        grid-row:1;
+        grid-column-start:1;
+        grid-column-end:3;
+    }
+
+    #Rationale #Optimization {
+        grid-row:2;
+        grid-column:1;
+    }
+
+    #Rationale #Optimization_details {
+        grid-row:2;
+        grid-column:2;
+    }
+
+    #Rationale #Metaheuristics {
+        grid-row:3;
+        grid-column:1;
+    }
+
+    #Rationale #Metaheuristics_details {
+        grid-row:3;
+        grid-column:2;
+    }
+
+    #Rationale #Why {
+        grid-row:4;
+        grid-column-start:1;
+        grid-column-end:3;
+    }
+
+    #Rationale #Why_fullfeatured {
+        grid-row:5;
+        grid-column:1;
+    }
+
+    #Rationale #Why_fullfeatured_details {
+        grid-row:5;
+        grid-column:2;
+    }
+
+    #Rationale #Why_efficiency {
+        grid-row:6;
+        grid-column:1;
+    }
+
+    #Rationale #Why_efficiency_details {
+        grid-row:6;
+        grid-column:2;
+    }
+
+    #Rationale #Fast {
+        grid-row:7;
+        grid-column:1;
+    }
+
+    #Rationale #Fast_details {
+        grid-row:7;
+        grid-column:2;
+        margin-top:15ch;
+    }
+
+    /* FEATURES */
+
+    #Features {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-gap:2em;
+        text-align:justify;
+    }
+
+    #Features .collapsible {
+        display:none;
+    }
+
+    #Features .details {
+        max-height:100%;
+        width:80%;
+    }
+
+    #Features figure {
+        max-width:100%;
+        margin-left:1em;
+    }
+
+    #Features h1 {
+        grid-row:1;
+        grid-column-start:1;
+        grid-column-end:3;
+    }
+
+    #Features #ComponentBased {
+        grid-row:2;
+        grid-column:1;
+    }
+
+    #Features #ComponentBased_details {
+        grid-row:2;
+        grid-column:2;
+    }
+
+    #Features #LargeChoice {
+        grid-row:3;
+        grid-column:1;
+    }
+
+    #Features #LargeChoice_details {
+        grid-row:3;
+        grid-column:2;
+    }
+
+    #Features #Portability {
+        grid-row:4;
+        grid-column:1;
+    }
+ 
+    #Features #Portability_details {
+        grid-row:4;
+        grid-column:2;
+    }
+
+    #Features #VS {
+        grid-row:5;
+        grid-column-start:1;
+        grid-column-end:3;
+    }
+
+    #Features #VS figure {
+        margin-left:15%;
+    }
+
+    /* DOCUMENTATION */
+
+    #Documentation {
+        display:flex;
+        flex-wrap: wrap;
+    }
+
+    #Documentation div {
+        margin:1em;
+    }
+
+    #Documentation #Articles {
+        flex: 1 1 25em;
+    }
+
+    #Documentation #Presentations {
+        flex: 1 1 25em;
+    }
+
+    #Documentation #Tutorials {
+        flex: 1 1 30em;
+    }
+
+    #Documentation #API {
+        flex: 1 1 25em;
+    }
+
+    #Documentation #Examples {
+        flex: 1 1 25em;
+    }
+
+    /* DOCUMENTATION */
+
+    #Code {
+        display:flex;
+        flex-wrap: wrap;
+    }
+
+    #Code div {
+        margin:1em;
+    }
+
+    #Code #Downloads {
+        flex: 1 1 20em;
+        text-align:justify;
+    }
+
+    #Code #Dependencies {
+        flex: 1 1 40em;
+        text-align:justify;
+    }
+
+    #Code #Compilation {
+        flex: 1 1 40em;
+        text-align:justify;
+    }
+
+    #Code #Licenses_Contribute {
+        flex: 1 1 20em;
+    }
+
+    /* HISTORY */
+
+    #History {
+        display:grid;
+        grid-template-columns:30% 70%;
+        grid-gap:2em;
+    }
+
+    #History h1 {
+        grid-row:1;
+        grid-column-start:1;
+        grid-column-end:3;
+    }
+
+    #History #Institution {
+        grid-row:2;
+        grid-column:1;
+    }
+
+    #History #Authors {
+        grid-row:2;
+        grid-column:2;
+    }
+
+}

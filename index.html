@@ -83,7 +83,8 @@
                     <ol>
                         <lh><a href="#Code">Code</a></lh>
                         <li><a href="#Downloads">Downloads</a></li>
-                        <li><a href="#Builds">Builds</a></li>
+                        <li><a href="#Dependencies">Dependencies</a></li>
+                        <li><a href="#Compilation">Compilation</a></li>
                         <li><a href="#Licenses">Licenses</a></li>
                         <li><a href="#Contribute">Contribute</a></li>
                     </ol>
@@ -104,6 +105,7 @@
 
 <div id="main">
 
+    <div id="Plan">
     <h1><a name="Plan"></a><em class="logo">Paradis<span class="logo_eo">eo</span></em>: a Heuristic Optimization Framework</h1>
 
     <div class="excerpt">
@@ -116,17 +118,22 @@
         <li>a focus on <em>speed</em> and several <em>parallelization</em> options.</li>
     </ul>
     </div> <!-- class="excerpt" -->
+    </div>
 
 
     <!-- QUICKSTART -->
+    <div id="Quickstart">
     <h1><a name="Quickstart"></a>Quick start <a href="#Plan">⤒</a></h1>
 
+    <div id="Download">
     <h2><a name="Download"></a>Download</h2>
 
     Download the <a href="https://gforge.inria.fr/frs/download.php/31733/Paradiseo-2.0.1.zip">latest stable release</a>.
 
     <p>Or clone the latest version: <code class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</code></p>
+    </div>
 
+    <div id="Build">
     <h2><a name="Build"></a>Build</h2>
 
     <p>As <em class="logo">Paradis<span class="logo_eo">eo</span></em> is a development framework, you do not really need to install it on all your systems. Just put it somewhere on your development computer, compile it from here and indicate where to find it to your favorite build system.</p>
@@ -138,12 +145,17 @@
     <code class="command">mkdir build ; cd build ; cmake .. && make -j</code></p>
 
     <p>For more details, see the <a href="#Builds">building <em class="logo">Paradis<span class="logo_eo">eo</span></em></a> section.</p>
+    </div>
 
+    <div id="Develop">
     <h2><a name="Develop"></a>Develop</h2>
 
     <p>Download the <a href="https://gforge.inria.fr/frs/download.php/31755/QuickStart.zip">quick start project template</a>, edit the <code>CMakeLists.txt</code> file to indicate where to find <em class="logo">Paradis<span class="logo_eo">eo</span></em> and start developing your own solver.</p>
 
-    <p>To show you how does a <em class="logo">Paradis<span class="logo_eo">eo</span></em> code look, you will find below a minimal implementation of the popular CMA-ES algorithm.</p>
+    <p>To show you how does a <em class="logo">Paradis<span class="logo_eo">eo</span></em> code look, you will find here a minimal implementation of the popular <a href="https://en.wikipedia.org/wiki/CMA-ES">CMA-ES algorithm</a>.</p>
+
+    <p>The code is presented without comments, to keep it short, but it is yet full-featured, as you will see if you compile it within the <code>build</code> directory, with <code class="command">c++ cmaes.cpp -I../eo/src -I../edo/src -DWITH_EIGEN=1 -I/usr/include/eigen3 -std=c++17 -L./lib/ -leo -leoutils -les -o cmaes</code> and run <code class="command">./cmaes --help</code></p>
+    </div>
 
     <!-- <iframe class="code" src="website/t-minimal-cmaes.cpp.html"></iframe> -->
 <p class="code">
@@ -221,8 +233,7 @@
 </code>
 </p><!-- END CODE -->
 
-    <p>The code is presented without comments, to keep it short, but it is yet full-featured, as you will see if you compile it and run <code class="command">./cmaes --help</code></p>
-
+    <div id="Gethelp">
     <h2><a name="Gethelp"></a>Get help</h2>
 
     <p>If you need <em>immediate support or have any question</em>, the best way to get
@@ -231,33 +242,52 @@
 
     <p>Alternatively, you can join us on the official chatroom. You can try our <a href="http://irc.lc/freenode/paradiseo">webchat interface</a>, or if you already use IRC, you can directly connect to the <a href="irc://irc.freenode.org/#paradiseo">irc.freenode.org/#paradiseo</a> multi-user chatroom with your favorite client.</p>
 
+    </div>
+    </div>
 
     <!-- RATIONALE -->
+    <div id="Rationale">
     <h1><a name="Rationale"></a>Rationale <a href="#Plan">⤒</a></h1>
 
+    <div id="Optimization">
     <h2><a name="Optimization"></a>Black-box and Gray-box Optimization Problems</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> targets the development of solvers for mathematical optimization problems for which you cannot compute gradients. The classical use case is the automated design or configuration of some system which is simulated.</p>
+    </div>
+
+    <div id="Optimization_details">
     <button class="collapsible">More details…</button>
     <div class="details">
         <p>It supports mono-objective and multi-objective functions, partial evaluation, several generic way to represent solutions and have all the tools for using your own representation.</p>
         <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> does not provides tools for modelling your problem, but makes it easy to find the best algorithm to solve it.</p>
     </div>
+    </div>
 
+    <div id="Metaheuristics">
     <h2><a name="Metaheuristics"></a>Metaheuristics / Evolutionary Algorithms</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> targets the design of <em>metaheuristics</em> solvers using <em>computational intelligence</em> methods, a subdomain of artificial intelligence.</p>
+    </div>
+
+    <div id="Metaheuristics_details">
     <button class="collapsible">More details…</button>
     <div class="details">
     <p>It was originally designed for Evolutionary Algorithms, but rapidly evolved to provide abstractions for several "grammars" for other metaheuristics (or search heuristics, or whatever you call them). As of today, it provides: evolutionary algorithms (evolution strategies, genetic algorithms, etc.), particle swarm optimization, local searches (greedy search, simulated annealing, etc.), estimation of distribution algorithms (covariance-matrix adaptation, etc.).
     </div>
+    </div>
 
+    <div id="Why">
     <h2><a name="Why"></a>Why choosing <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</h2>
 
     <p>Learning a full-featured framework like <em class="logo">Paradis<span class="logo_eo">eo</span></em> very often seems overkill. However, we would like to stress out that you may forget some points while jumping to this conclusion.</p>
+    </div>
 
+    <div id="Why_fullfeatured">
+    <h3>Full-featured</h3>
     <p class="excerpt"><em class="logo">Paradis<span class="logo_eo">eo</span></em> provides the <em>largest mature codebase</em> of state-of-the-art algorithms, and is focused on (automatically) find the <em>most efficient solvers</em>.</p>
+    </div>
 
+    <div id="Why_fullfeatured_details">
     <button class="collapsible">Why is it important?</button>
     <div class="details">
         <p>The most classical impediment to the use of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that you just want to check <em>if your problem can actually be solved</em> with heuristics. You feel that it would be a loss of time to learn complex stuff if it ends being useless.</p>
@@ -270,8 +300,14 @@
             Fortunately, <em class="logo">Paradis<span class="logo_eo">eo</span></em> have the <em>largest codebase of the market</em>, hardened along 20 years of development of tens of solvers. Additionally, it provides the tools to rapidly search for the best combination of algorithms to solve your problem, even searching for this combination <em>automatically</em>.
         </p>
     </div>
+    </div>
 
+    <div id="Why_efficiency">
+    <h3>Efficient</h3>
     <p class="excerpt"><em class="logo">Paradis<span class="logo_eo">eo</span></em> is <em>the fastest</em> framework on the market, which is a crucial feature for modern and robust approach to solver <em>design and validation</em>.</p>
+    </div>
+
+    <div id="Why_efficiency_details">
     <button class="collapsible">Why is it important?</button>
     <div class="details">
         <p>Another classical criticism against <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that C++ is hard and that a fast language is useless because speed is not a concern when your objective function is dominating all the runtime.</p>
@@ -283,28 +319,38 @@
             </ul>
         </p>
     </div>
+    </div>
 
+    <div id="Fast">
     <h2><a name="Fast"></a>How fast is <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</h2>
 
+    <p>As indicated in the previous section, this speed is crucially useful for algorithm design and algorithm selection.</p>
+
+    <p><em class="excerpt">You can expect that validating <em>an algorithm implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em></em> will be up to <strong>10 times faster</strong> than its (heavily optimized) Python counterpart.</em> </p>
     <p>To give an order of magnitude:
     <ul>
         <li>If you use the "official" <em>vanilla implementation of <a href="https://github.com/CMA-ES/pycma">CMA-ES in Python/Numpy</a></em> solving the BBOB problem suite through the <a href="https://github.com/numbbo/coco">COCO plateform</a>, running the whole benchmark will take approximately <em>10 minutes</em> on a single Intel Core i5 @ 2.50GHz with a colid state disk.</li>
         <li>The same experiment, running <em>the <em class="logo">Paradis<span class="logo_eo">eo</span></em> implementation</em> using the seamless binding to the <a href="https://iohprofiler.github.io/">IOHprofiler</a> BBOB implementation, will take <em>1 minute</em>.</li>
     </ul>
-    <em class="excerpt">Thus, you can expect that <em>an algorithm implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em></em> will be up to <strong>10 times faster</strong> than its (heavily optimized) Python counterpart.</em>
-    As indicated in the previous section, this speed is crucially useful for algorithm design and algorithm selection.
     </p>
+    </div>
 
+    <div id="Fast_details">
     <button class="collapsible">Notes on this claim…</button>
     <div class="details">
+        <p>Those measures are for a sequential execution, both implementation are able to run in parallel mode.</p>
         <p>CMA-ES solves numeric problems with quadratic complexity regarding the number of dimensions. If you target simpler algorithms, they will be faster but one can expect a similar behaviour.</p>
         <p>The <em>pycma</em> used for the comparison rely on <em>numpy</em> for the heavy parts of the computations. If you use a pure Python implementation, the difference will be far greater.</p>
     </div>
+    </div>
 
+    </div>
 
     <!-- FEATURES -->
+    <div id="Features">
     <h1><a name="Features"></a>Features <a href="#Plan">⤒</a></h1>
 
+    <div id="ComponentBased">
     <h2><a name="Component-based"></a>Component-based Design</h2>
 
     <p>Designing an algorithm with <em class="logo">Paradis<span class="logo_eo">eo</span></em> consists in choosing what components (called <em>operators</em>) you want to use for your specific needs, just as building a structure with Lego blocks.</p>
@@ -320,8 +366,9 @@
     </figure>
 
     <p>If your problem is a bit more exotic, you will have to code a class that encodes how solutions to your problem are represented, and perhaps a few more. For instance, you may want ad-hoc <em>variations operators</em>, but most of the other operators (selection, replacement, stopping criteria, command-line interface, etc.) are already available in <em class="logo">Paradis<span class="logo_eo">eo</span></em>.</p>
+    </div>
 
-
+    <div id="Componentbased_details">
     <button class="collapsible">Combination of operators…</button>
     <div class="details">
         <p>One of the very powerful feature of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that its design targets easy combination of operators. Is is, for instance, straightforward to plug several different <em>continuation operators</em> in the <em>stopping criterion</em> slot of algorithms.</p>
@@ -340,8 +387,9 @@
     </figure>
 
     </div>
+    </div>
 
-
+    <div id="LargeChoice">
     <h2><a name="LargeChoice"></a>Large Choice of Components</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is organized in several modules, either providing different "grammars" for different algorithms, either providing high-level features. All modules follows the same architecture design and are interoperable with the others, so that you can easily choose the subset of features you need.</p>
@@ -356,7 +404,9 @@
     </figure>
 
     <p>It is, for instance, easy to start with a simple local search, then add multi-objective capabilities, then shared-memory parallelization, then hybridization with an evolutionary algorithm and finally plug everything in an objective function so as to optimize the parameters with a particle swarm optimizer.</p>
+    </div>
 
+    <div id="LargeChoice_details">
     <button class="collapsible">Some components for the EO modules…</button>
     <div class="details">
     <p>Below is an abridged list of components available in the EO module (only):</p>
@@ -431,14 +481,17 @@
         <li><em>And more!</em></li>
     </ul>
     </div>
+    </div>
 
-
+    <div id="Portability">
     <h2><a name="Portability"></a>Portability</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is mainly developed under Linux operating systems, where its dependencies and the C++ toolchain are easy to install. Recent versions have been tested with gcc and clang compilers.</p>
 
     <p>Stable versions should however work on Windows and any Unix-like operating system with a standard-conforming C++ development system. </p>
+    </div>
 
+    <div id="Portability_details">
     <button class="collapsible">More details…</button>
     <div class="details">
     <p>Previous versions of <em class="logo">Paradis<span class="logo_eo">eo</span></em> have been tested on the following platforms:
@@ -464,7 +517,9 @@
     <!-- <p> If you are working on a system with an older C++ compiler there -->
     <!-- is a good chance that eo-0.9.3z.1 works. It is tested on Linux -->
     <!-- with gcc-2.9x and several systems (IRIX, Solaris) with egcs. </p> -->
+    </div>
 
+    <div id="VS">
     <h2><a name="VS"></a>VS other Frameworks</h2>
 
     <p>The following tables show how <em class="logo">Paradis<span class="logo_eo">eo</span></em> compares to other active open-source frameworks, to the best of our knowledge (updated on 2019-10-18).</p>
@@ -726,10 +781,14 @@
 
     <p>Gathering and maintaining this information is not easy, so take them with a grain of salt, and if you see errors in those tables, please contact us.</p>
 
+    </div>
+    </div>
 
     <!-- DOCUMENTATION -->
     <h1><a name="Documentation"></a>Documentation <a href="#Documentation">⤒</a></h1>
 
+    <div id="Documentation">
+    <div id="Articles">
     <h2><a name="Articles"></a>Academic Articles about <em class="logo">Paradis<span class="logo_eo">eo</span></em></h2>
 
     <ul>
@@ -905,8 +964,9 @@ undiscovered knowledge.
 </ul>
 
     </div>
+    </div>
 
-
+    <div id="Presentations">
     <h2><a name="Presentations"></a>Presentations Slides</h2>
 
 <p>The following documents aim to provide general overviews of the different <em class="logo">Paradis<span class="logo_eo">eo</span></em>'s modules. They are based on different pdf files which offer complementary view on both theoritical aspects and pratical use.</p>
@@ -947,37 +1007,39 @@ undiscovered knowledge.
 <!-- <ul><li><strong><a href='http://paradiseo.gforge.inria.fr/addon/paradiseo-oldmo/concepts/paradiseo-mo-design.pdf'>Single Solution-based Metaheuristics</a></strong> [pdf] by E-G. Talbi and S.Cahon: describes the general concept of solution-based metaheuristics and provides examples applied to TSP problem -->
 <!-- </li><li><strong><a href='http://paradiseo.gforge.inria.fr/addon/paradiseo-oldmo/concepts/paradiseo-mo-implem.pdf'>Reusable Design of Solution-based Metaheuristics</a></strong> [pdf] by S.Cahon, E-G. Talbi and N. Melab: explains how to implement metaheuristics thanks to Paradiseo-MO through a TSP example -->
 <!-- </li></ul> -->
+    </div>
 
+    <div id="Tutorials">
     <h2><a name="Tutorials"></a>Tutorials</h2>
 
 <p>Examples on the differents metaheuristics are available in "tutorials" directory of each module of <em class="logo">Paradis<span class="logo_eo">eo</span></em>. Here you can find the corresponding explications.</p>
 
 <h3>Tutorials on EO (evolutionary algorithms module)</h3>
 
-<ul><li><a href='http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html'>EO Lesson1-5</a> <strong>Implement a GA</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part1'>EO Lesson6 first part</a> <strong>Implement a real PSO algorithm</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part2'>EO Lesson6 second part</a> <strong>Implement a binary PSO algorithm</strong>
+<ul><li><a href='http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html'>EO Lesson1-5</a> Implement a GA
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part1'>EO Lesson6 first part</a> Implement a real PSO algorithm
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part2'>EO Lesson6 second part</a> Implement a binary PSO algorithm
 </li></ul>
 
 <h3>Tutorials on MO (local search module)</h3>
 
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson1'>MO Lesson1</a> <strong>Hill Climber</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson2'>MO Lesson2</a> <strong>Neighborhoods</strong> (classical and indexed)
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson3'>MO Lesson3</a> <strong>Simulated Annealing</strong> and <strong>Checkpointing</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson4'>MO Lesson4</a> <strong>Tabu Search</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson5'>MO Lesson5</a> <strong>Iterated Local Search</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson6'>MO Lesson6</a> <strong>Fitness Landscapes Analysis</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson7'>MO Lesson7</a> <strong>Hybrid Lesson</strong>
+</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson1'>MO Lesson1</a> Hill Climber
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson2'>MO Lesson2</a> Neighborhoods (classical and indexed)
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson3'>MO Lesson3</a> Simulated Annealing and Checkpointing
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson4'>MO Lesson4</a> Tabu Search
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson5'>MO Lesson5</a> Iterated Local Search
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson6'>MO Lesson6</a> Fitness Landscapes Analysis
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson7'>MO Lesson7</a> Hybrid Lesson
 </li></ul>
 
 <h3>Tutorials on MOEO (multi-objective module)</h3>
 
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson1'>MOEO Lesson1</a> <strong>Implement NSGA, NSGA-II and IBEA for the SCH1 problem</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson2'>MOEO Lesson2</a> <strong>Evolutionary Algorithms for the flow-shop scheduling problem</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson3'>MOEO Lesson3</a> <strong>Evolutionary Algorithms with a user-friendly parameter file</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson4'>MOEO Lesson4</a> <strong>Dominance-based Local Search for the flow-shop scheduling problem</strong>
-</li></ul><p><strong>Tutorials SMP:</strong> <span  style='color: red;'> <strong> new</strong></span>
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoSMPLesson1'>SMP Lesson1</a> <strong>Algorithm wrapping with Master / Workers model</strong>
+</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson1'>MOEO Lesson1</a> Implement NSGA, NSGA-II and IBEA for the SCH1 problem
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson2'>MOEO Lesson2</a> Evolutionary Algorithms for the flow-shop scheduling problem
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson3'>MOEO Lesson3</a> Evolutionary Algorithms with a user-friendly parameter file
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson4'>MOEO Lesson4</a> Dominance-based Local Search for the flow-shop scheduling problem
+</li></ul><p>Tutorials SMP: <span  style='color: red;'>  new</span>
+</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoSMPLesson1'>SMP Lesson1</a> Algorithm wrapping with Master / Workers model
 </li></ul>
 
 <h3>Tutorials on parallelization</h3>
@@ -990,30 +1052,32 @@ undiscovered knowledge.
             <a href="https://endomorphis.me/island-model-with-paradiseo-components-and-basics-en.html">2. components and basics</a>,
             <a href="https://endomorphis.me/island-model-with-paradiseo-advanced-island-model-manipulations-en.html">3. advanced island model manipulations</a>.
         </li>
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOIntro'>PEO Intro</a> <strong>Technical introduction</strong></li>
-        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson1'>PEO Lesson1</a> <strong>Multistart over a MO, Packing and Unpacking </strong> (use old-mo) -->
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson2'>PEO Lesson2</a> <strong>Multistart over an evolutionary algorithm</strong></li>
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson3'>PEO Lesson3</a> <strong>Parallel evaluation </strong></li>
-        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson4'>PEO Lesson4</a> <strong>Parallel transformation</strong> (use old-mo) -->
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson5'>PEO Lesson5</a> <strong>Island model</strong></li>
-        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson6'>PEO Lesson6</a> <strong>Hybridization</strong> (use old-mo) -->
-        <!-- </li></ul><p><span  style='display: none;'><strong>GPU tutorials:</strong> </span> -->
-        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson1'>GPU Lesson1</a> <strong>CUDA installation and configuration</strong></span> -->
-        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson2'>GPU Lesson2</a> <strong>Prerequisites: How to configure Paradiseo-GPU</strong></span> -->
-        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson3'>GPU Lesson3</a> <strong>Prerequisites: How to define solution on GPU</strong></span> -->
-        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson4'>GPU Lesson4</a> <strong>Prerequisites: How to define neighbor &amp; neighborhood on GPU</strong></span> -->
-        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson5'>GPU Lesson5</a> <strong>Prerequisites: How to evaluate solution &amp; neighbor on GPU</strong></span> -->
-        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson6'>GPU Lesson6</a> <strong>Hill Climbing and Tabu Search on GPU</strong></span> -->
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOIntro'>PEO Intro</a> Technical introduction</li>
+        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson1'>PEO Lesson1</a> Multistart over a MO, Packing and Unpacking  (use old-mo) -->
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson2'>PEO Lesson2</a> Multistart over an evolutionary algorithm</li>
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson3'>PEO Lesson3</a> Parallel evaluation </li>
+        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson4'>PEO Lesson4</a> Parallel transformation (use old-mo) -->
+        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson5'>PEO Lesson5</a> Island model</li>
+        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson6'>PEO Lesson6</a> Hybridization (use old-mo) -->
+        <!-- </li></ul><p><span  style='display: none;'>GPU tutorials: </span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson1'>GPU Lesson1</a> CUDA installation and configuration</span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson2'>GPU Lesson2</a> Prerequisites: How to configure Paradiseo-GPU</span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson3'>GPU Lesson3</a> Prerequisites: How to define solution on GPU</span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson4'>GPU Lesson4</a> Prerequisites: How to define neighbor &amp; neighborhood on GPU</span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson5'>GPU Lesson5</a> Prerequisites: How to evaluate solution &amp; neighbor on GPU</span> -->
+        <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson6'>GPU Lesson6</a> Hill Climbing and Tabu Search on GPU</span> -->
         <!-- </p> -->
     </ul>
 </p>
 
 <h3>Utilities</h3>
 
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsParamFiles'>Utils Lesson1</a> <strong>Using configuration files</strong>
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsStats'>Utils Lesson2</a> <strong>Using statistics</strong>
+</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsParamFiles'>Utils Lesson1</a> Using configuration files
+</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsStats'>Utils Lesson2</a> Using statistics
 </li></ul>
+    </div>
 
+    <div id="API">
     <h2><a name="API"></a>API documentation</h2>
 
     <p>The heart of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is a set of classes implementing operators. Each module has a separate API documentation. If you want to browse the features and find which class to use, this is the right entry point</p>
@@ -1028,7 +1092,9 @@ undiscovered knowledge.
     </p>
 
     <p>Note that if you want to find the API documentation for the version you have at hand, just build the <code class="command">make doc</code> target and open <code>paradiseo/&lt;build&gt;/&lt;module&gt;/doc/html/index.html</code> in your web browser.</p>
+    </div>
 
+    <div id="Examples">
     <h2><a name="Examples"></a>Examples of real solvers</h2>
 
     <p>If you want to see examples of real solvers:
@@ -1038,11 +1104,17 @@ undiscovered knowledge.
         <li>The <a href="https://github.com/nojhan/descarwin">Descarwin</a> project hold the "DaE" planning solver,
         which is implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em> and won the International Planning Competition.</li>
     </ul>
+    </p>
+    </div>
+
+    </div>
 
 
     <!-- CODE -->
     <h1><a name="Code"></a>Code <a href="#Plan">⤒</a></h1>
 
+    <div id="Code">
+    <div id="Downloads">
     <h2><a name="Downloads"></a>Downloads</h2>
 
     <p>The current stable release is version 2.0.1: <a href="https://gforge.inria.fr/frs/download.php/31733/Paradiseo-2.0.1.ziph">ParadisEO 2.0.1</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/releases">GitHub/paradiseo/releases</a>.</p>
@@ -1057,10 +1129,10 @@ undiscovered knowledge.
             <li>Johann Dreo's: <a href="https://github.com/nojhan/paradiseo">on GitHub</b>.</li>
         </ul>
     </p>
+    </div>
 
-    <h2><a name="Builds"></a>Builds</h2>
-
-    <h3>Dependencies</h3>
+    <div id="Dependencies">
+    <h2><a name="Dependencies"></a>Dependencies</h2>
 
     <p>In order to build the latest version of <em class="logo">Paradis<span class="logo_eo">eo</span></em>, you will need a C++ compiler supporting C++17.
     So far, GCC and CLANG gave good results under Linux. You will also need the CMake and make build tools.</p>
@@ -1081,8 +1153,10 @@ undiscovered knowledge.
     </p>
 
     <p class="excerpt">To install all those dependencies at once under Ubuntu (18.04), just type: <em>sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</em>.  </p>
+    </div>
 
-    <h3>Compilation</h3>
+    <div id="Compilation">
+    <h2><a name="Compilation"></a>Compilation</h2>
 
     <p>The build chain uses the classical workflow of CMake.
     The recommended method is to build in a specific, separated directory
@@ -1111,7 +1185,9 @@ undiscovered knowledge.
     <p>If you ENABLE_CMAKE_TESTING and BUILD_TESTING, it will be the tests, which you can run with the "ctest" command.</p>
     <p>If you ENABLE_CMAKE_EXAMPLE, it will also build the examples.</p>
     </div>
+    </div>
 
+    <div id="Licenses_Contribute">
     <h2><a name="Licenses"></a>Licenses</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is distributed under the
@@ -1120,16 +1196,20 @@ undiscovered knowledge.
 
     <p>Note that those licenses places copyleft restrictions on a program created with <em class="logo">Paradis<span class="logo_eo">eo</span></em>, but does not apply these restrictions to other software that would links with the program.</p>
 
-
     <h2><a name="Contribute"></a>Contribute</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> development is open and contributions are welcomed.</p>
     <p>The official bug tracker is available on the <a href="https://gforge.inria.fr/projects/paradiseo/">project page</a>. But you may be more confortable using the <a href="https://github.com/nojhan/paradiseo/issues">issue tracker of Johann Dreo's project page on GitHub</a>.</p>
     <p>If you have any question about contributing: subscribe to our <a href='http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users'>(low traffic) mailing-list</a>.</p>
 
+    </div>
+    </div>
+
     <!-- HISTORY -->
+    <div id="History">
     <h1><a name="History"></a>History <a href="#Plan">⤒</a></h1>
 
+    <div id="Institution">
     <h2><a name="Institutions"></a>Institutional support</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> have been developed with the support of the following institutions:
@@ -1150,7 +1230,9 @@ undiscovered knowledge.
         <li><a href="https://www.ulb.be/">Free University of Brussels</a></li>
     </ul>
     </p>
+    </div>
 
+    <div id="Authors">
     <h2><a name="Authors"></a>Authors</h2>
 
     <p>The EO module was started in 1999 by the <a href="http://geneura.ugr.es/">Geneura
@@ -1209,7 +1291,7 @@ undiscovered knowledge.
     <div class="details">
     <p>Some softwares listed here are using <em class="logo">Paradis<span class="logo_eo">eo</span></em>, but they are not maintained by the <em class="logo">Paradis<span class="logo_eo">eo</span></em> team.
     They may not be free softwares.</p>
-    <ul>
+    <p><ul>
         <li> <a href="http://geneura.ugr.es/~jmerelo/DegaX/">DegaX</a>
         is an ActiveX control which embeds <em class="logo">Paradis<span class="logo_eo">eo</span></em> 0.8.4.
         </li>
@@ -1219,6 +1301,10 @@ undiscovered knowledge.
 
         <li><a href="https://gforge.inria.fr/projects/guide">GUIDE</a> is a GUI that allows the generation of evolutionary algorithms. It can use <em class="logo">Paradis<span class="logo_eo">eo</span></em> or <a href="http://cs.gmu.edu/~eclab/projects/ecj/">ECJ</a>.</li>
     </ul>
+    </p>
+    </div>
+    </div>
+
     </div>
 
 
@@ -1248,31 +1334,6 @@ undiscovered knowledge.
                 }
             </style>
         </noscript>
-
-        <!-- Asynchronous load of Google font for the ParadisEO logo -->
-        <!-- Instead of this line in the header:
-            <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet">
-        -->
-        <script src="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap"></script>
-        <script>
-            (function( w ){
-                // if the class is already set, we're good.
-                if( w.document.documentElement.className.indexOf( "fonts-loaded" ) > -1 ){
-                    return;
-                }
-                var fontA = new w.FontFaceObserver( "Comfortaa", {
-                    weight: 400
-                });
-                var fontB = new w.FontFaceObserver( "Comfortaa", {
-                    weight: 700
-                });
-                w.Promise
-                    .all([fontA.load(), fontB.load()])
-                    .then(function(){
-                        w.document.documentElement.className += " fonts-loaded";
-                    });
-            }( this ));
-        </script>
 
   </body>
 </html>
