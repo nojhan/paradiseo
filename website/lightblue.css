@@ -689,3 +689,166 @@ comment { display:none;  }
     }
 
 }
+
+@media only print {
+
+    body {
+        background:none;
+        font-size:11pt;
+    }
+
+    a {
+        color:black;
+        font-style:italic;
+    }
+
+    #main a::after{
+        content: " [" attr(href) "] ";
+        color:#888;
+    }
+
+    h1 a {
+        display:none;
+    }
+
+    h2 a {
+        display:none;
+    }
+
+    h2 {
+        border-bottom:thin solid black;
+        margin-top:2ch;
+    }
+
+    h3 {
+        margin:2ch 0;
+    }
+
+    #alt {
+        clear:left;
+        width:100%;
+        max-width:100%;
+        height:auto;
+        text-align:left;
+        position:relative;
+        background-color:transparent;
+        color:black;
+    }
+
+    #alt * {
+        color:black;
+    }
+
+    #alt img {
+        width:50%;
+        margin-left:25%;
+        background-color:#3771c8;
+        border:thin solid black;
+        padding:1em;
+        border-radius:40px;
+    }
+
+    #shortcuts {
+        display:none;
+    }
+
+    #toc_header {
+        display:none;
+    }
+
+    #main {
+        counter-reset: heading;
+        clear:left;
+        width:95%;
+        padding-left:1em;
+        padding-right:1em;
+        text-align:justify;
+    }
+
+    h1:before {
+        content: counter(heading)". ";
+        counter-increment: heading;
+    }
+    h1 {
+        counter-reset: subheading;
+    }
+    h2:before {
+        content: counter(heading)"." counter(subheading)". ";
+        counter-increment: subheading;
+    }
+
+    .excerpt {
+        box-shadow:none;
+        border:2pt solid #3771c8;
+        background-color:white;
+        color: #3771c8;
+        page-break-inside:avoid;
+    }
+
+    .command {
+        background-color:white;
+        color:black;
+        border:none;
+    }
+
+    .collapsible {
+        color:gray;
+    }
+
+    .details {
+        background-color:white;
+        color:gray;
+        font-size:0.8em;
+        max-height:100%;
+    }
+
+    figure {
+        max-width:90%;
+        margin-left:5%;
+        box-shadow:none;
+    }
+
+    .table {
+        padding:1em;
+        border:thin solid lightgray;
+        box-shadow: 5px 10px 18px #ddd;
+        width:80%;
+        max-width: 30em;
+        margin-left:5%
+    }
+    
+    #cmaes * {
+        background-color:white;
+    }
+
+    .vimCodeElement {
+        background-color:white;
+        color:#444;
+    }
+
+    .code  {
+        background-color:white;
+        color:black;
+        height:100%;
+        overflow-y:auto;
+        white-space: pre-wrap;
+        box-shadow:none;
+    }
+
+    .cppSTL {color:black;}
+    .cppStatement {color:#dfa64d;}
+    .StorageClass {color:#dfa64d;}
+
+    .table {
+        margin-left:20%;
+        box-shadow:none;
+    }
+
+    .comment-indicator {
+        display:none;
+    }
+
+    comment {
+        display:none;
+    }
+}
