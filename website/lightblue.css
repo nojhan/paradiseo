@@ -11,7 +11,7 @@ body {
     color: #333333;
     font-family:Arial, sans-serif;
 
-    background:url("fronde.png");
+    /* background:url("fronde.png"); */
     background-image:url("eo_logo_fronde.svg");
     background-repeat:no-repeat;
     background-position:bottom right;
@@ -68,6 +68,20 @@ pre {
     width:78%;
     padding-right:1em;
     padding-bottom:1em;
+}
+
+#header_logo {
+    background-image:url("paradiseo_logo.svg");
+    height:30ch;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align:center;
+    vertical-align:text-bottom;
+}
+
+#header_logo em.logo {
+    display:none;
 }
 
 #slogan {
@@ -692,6 +706,15 @@ comment { display:none;  }
 
 @media only print {
 
+    #header_logo {
+        background-image:none;
+        height:100%;
+    }
+    #header_logo em.logo {
+        display:block;
+        font-size:5em;
+    }
+
     body {
         background:none;
         font-size:11pt;
@@ -737,15 +760,6 @@ comment { display:none;  }
 
     #alt * {
         color:black;
-    }
-
-    #alt img {
-        width:50%;
-        margin-left:25%;
-        background-color:#3771c8;
-        border:thin solid black;
-        padding:1em;
-        border-radius:40px;
     }
 
     #shortcuts {
@@ -816,7 +830,7 @@ comment { display:none;  }
         max-width: 30em;
         margin-left:5%
     }
-    
+
     #cmaes * {
         background-color:white;
     }
