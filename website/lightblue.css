@@ -465,6 +465,7 @@ comment { display:none;  }
         grid-row-end:6;
         grid-column:2;
         height:110ch;
+        max-height:95vh;
     }
 
     /* RATIONALE */
@@ -682,7 +683,7 @@ comment { display:none;  }
 
     #History {
         display:grid;
-        grid-template-columns:30% 70%;
+        grid-template-columns:1fr 2fr;
         grid-gap:2em;
     }
 
