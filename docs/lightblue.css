@@ -11,8 +11,7 @@ body {
     color: #333333;
     font-family:Arial, sans-serif;
 
-    /* background:url("fronde.png"); */
-    background-image:url("eo_logo_fronde.svg");
+    background-image:url("img/eo_logo_fronde.svg");
     background-repeat:no-repeat;
     background-position:bottom right;
 }
@@ -71,7 +70,7 @@ pre {
 }
 
 #header_logo {
-    background-image:url("paradiseo_logo.svg");
+    background-image:url("img/paradiseo_logo.svg");
     height:30ch;
     background-size: contain;
     background-repeat: no-repeat;

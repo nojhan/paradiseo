@@ -10,8 +10,8 @@
         <meta name="resource-type" content="document" />
         <meta name="distribution" content="Global" />
 
-        <link rel="icon" type="image/png" href="website/eo_ico.png" />
-        <link rel="stylesheet" type="text/css" href="website/lightblue.css" title="Default" />
+        <link rel="icon" type="image/png" href="img/eo_ico.png" />
+        <link rel="stylesheet" type="text/css" href="lightblue.css" title="Default" />
 
         <title>ParadisEO: Fast & full featured optimization heuristics framework</title>
 
@@ -153,7 +153,6 @@
     <p>The code is presented without comments, to keep it short, but it is yet full-featured, as you will see if you compile it within the <code>build</code> directory, with <code class="command">c++ cmaes.cpp -I../eo/src -I../edo/src -DWITH_EIGEN=1 -I/usr/include/eigen3 -std=c++17 -L./lib/ -leo -leoutils -les -o cmaes</code> and run <code class="command">./cmaes --help</code></p>
     </div>
 
-    <!-- <iframe class="code" src="website/t-minimal-cmaes.cpp.html"></iframe> -->
 <p class="code" id="cmaes">
 <code class='vimCodeElement'>
 <span id="L1" class="LineNr"> 1 </span><span class="Include">#include </span><span class="String">&lt;eo&gt;</span>
@@ -353,8 +352,8 @@
     <p>If you have a classical problem for which available code exists (for example if you have a black-box problem with real-valued variables), you will just choose operators to form an algorithm and connect it to your <em>evaluation function</em> (which computes the quality of a given solution).</p>
 
     <figure>
-        <img src="website/Evolutionary_algorithm.png"
-             srcset="website/Evolutionary_algorithm.svg"
+        <img src="img/Evolutionary_algorithm.png"
+             srcset="img/Evolutionary_algorithm.svg"
              width="100%"
              style="max-width:512px;"
              title="Grammar for Evolutionary Algorithms, as seen from the ParadisEO point of vue − Johann Dréo − CC-BY-SA" />
@@ -374,8 +373,8 @@
         <p>Of course, it's also possible to add new algorithms "grammar". For instance, the grammar for estimation of distribution algorithms is an extension of the one for evolutionary algorithms. That way, you can re-use the operators already implemented for other algorithms.</p>
 
     <figure>
-        <img src="website/edo_design.png"
-             srcset="website/edo_design.svg"
+        <img src="img/edo_design.png"
+             srcset="img/edo_design.svg"
              width="100%"
              style="max-width:512px;"
              title="Grammar for Estimation of Distribution Algorithms, as seen from the ParadisEO point of vue − Johann Dréo − CC-BY-SA" />
@@ -391,8 +390,8 @@
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is organized in several modules, either providing different "grammars" for different algorithms, either providing high-level features. All modules follows the same architecture design and are interoperable with the others, so that you can easily choose the subset of features you need.</p>
 
     <figure>
-        <img src="website/paradiseo_modules.png"
-             srcset="website/paradiseo_modules.svg"
+        <img src="img/paradiseo_modules.png"
+             srcset="img/paradiseo_modules.svg"
              width="100%"
              style="max-width:512px;"
              title="ParadisEO is organized in several modules − Johann Dréo − CC-BY-SA" />
@@ -519,9 +518,6 @@
     <h2><a name="VS"></a>VS other Frameworks</h2>
 
     <p>The following tables show how <em class="logo">Paradis<span class="logo_eo">eo</span></em> compares to other active open-source frameworks, to the best of our knowledge (updated on 2019-10-18).</p>
-    <!-- <iframe class="table" -->
-    <!--     style="height:50ch;" -->
-    <!--     src="website/frameworks_comparison.html"></iframe> -->
 
     <figure class="table">
 <A NAME="table0">Projects</A>
