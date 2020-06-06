@@ -28,6 +28,7 @@
 #define _eoFunctor_h
 
 #include <functional>
+#include <string>
 
 /** @addtogroup Core
  * @{
