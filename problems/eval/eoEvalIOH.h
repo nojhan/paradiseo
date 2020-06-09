@@ -2,9 +2,9 @@
 #ifndef _eoEvalIOH_h
 #define _eoEvalIOH_h
 
-#include <IOHprofiler_problem.hpp>
-#include <IOHprofiler_suite.hpp>
-#include <IOHprofiler_observer.hpp>
+#include <IOHprofiler_problem.h>
+#include <IOHprofiler_suite.h>
+#include <IOHprofiler_observer.h>
 #include <IOHprofiler_ecdf_logger.h>
 
 /** Wrap an IOHexperimenter's problem class within an eoEvalFunc.
@@ -36,7 +36,7 @@ class eoEvalIOHproblem : public eoEvalFunc<EOT>
                 _has_log(true),
                 _ioh_log(&log)
        {
-           _ioh_log->target_problem(*_ioh_pb);
+           _ioh_log->track_problem(*_ioh_pb);
        }
 
         virtual void operator()(EOT& sol)
@@ -58,7 +58,7 @@ class eoEvalIOHproblem : public eoEvalFunc<EOT>
         void problem(IOHprofiler_problem<ScalarType> & pb )
         {
             _ioh_pb = &pb;
-            _ioh_log->target_problem(pb);
+            _ioh_log->track_problem(pb);
         }
 
         bool has_logger() const {return _has_log;}
@@ -75,7 +75,7 @@ class eoEvalIOHproblem : public eoEvalFunc<EOT>
         {
             Fitness f = _ioh_pb->evaluate(sol);
             if(_has_log) {
-                _ioh_log->write_line(_ioh_pb->loggerInfo());
+                _ioh_log->do_log(_ioh_pb->loggerInfo());
             }
             return f;
         }
@@ -305,7 +305,7 @@ class eoEvalIOHsuite : public eoEvalFunc<EOT>
        {
            static_assert(std::is_convertible<STAT,Fitness>::value);
            assert(_eval.has_logger());
-           _ioh_log.target_suite(suite);
+           _ioh_log.track_suite(suite);
        }
 
         virtual void operator()(EOT& sol)
