@@ -4,7 +4,7 @@
 ### 0) Check the CMake version
 ######################################################################################
 
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
 ######################################################################################
 ### 1) Define the project
