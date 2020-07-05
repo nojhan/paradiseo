@@ -216,6 +216,19 @@ public :
             return uniform() < bias;
         }
 
+    /** Sample in a binomial dsitribution of size n and probability p.
+
+        FIXME most naive algorithm, one should really use a rejection algorithm.
+    */
+    unsigned binomial(unsigned n, double p)
+        {
+            unsigned x = 0;
+            for(unsigned i=0; i<n; ++i) {
+                x += flip(p);
+            }
+            return x;
+        }
+
     /** Gaussian deviate
 
     Zero mean Gaussian deviate with standard deviation 1.
