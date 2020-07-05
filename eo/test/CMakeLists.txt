@@ -75,6 +75,8 @@ set (TEST_LIST
   t-forge-algo
   t-algo-forged
   t-algo-forged-search
+  t-FastGA
+  t-eoFoundryFastGA
   )
 
 

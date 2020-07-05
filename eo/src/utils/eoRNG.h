@@ -216,7 +216,7 @@ public :
             return uniform() < bias;
         }
 
-    /** Sample in a binomial dsitribution of size n and probability p.
+    /** Sample in a binomial distribution of size n and probability p.
 
         FIXME most naive algorithm, one should really use a rejection algorithm.
     */
@@ -228,6 +228,18 @@ public :
             }
             return x;
         }
+
+    /** Sample in a power law distribution
+     */
+    double powerlaw(double min, double max, double gamma)
+       {
+            double x = uniform(min,max);
+            return std::pow(
+                     x * (std::pow(max,-gamma+1) - std::pow(min,-gamma+1))
+                       + std::pow(min,-gamma+1.0),
+                     1.0/(-gamma + 1.0)
+                   );
+       }
 
     /** Gaussian deviate
 

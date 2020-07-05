@@ -32,7 +32,7 @@
  * and hold the link to the encoding. @see eoAlgoFoundryEA
  *
  * As with eoForgeVector, adding a managed operator
- *is done through public member variable's `add` method,
+ * is done through public member variable's `add` method,
  * which takes the class name as template and its constructor's parameters
  * as arguments. For example:
  * @code
@@ -74,7 +74,7 @@ class eoOperatorFoundry : public eoForgeVector< Itf >
  * @endcode
  *
  * In a second step, the operators to be used should be selected
- * by indicating their index, just like if the foundry was a array:
+ * by indicating their index, just like if the foundry was an array:
  * @code
  * foundry = {0, 1, 2};
  * //         ^  ^  ^

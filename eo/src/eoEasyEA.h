@@ -272,6 +272,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 
               replace(_pop, offspring); // after replace, the new pop. is in _pop
 
+              std::cout << _pop << std::endl;
+
               if (pSize > _pop.size())
                 throw eoException("Population shrinking!");
               else if (pSize < _pop.size())

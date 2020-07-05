@@ -97,7 +97,8 @@ class eoCommaReplacement : public eoMergeReduce<EOT>
         virtual void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
         {
             // There must be more offsprings than parents, or else an exception will be raised
-            assert( _offspring.size() >= _parents.size() );
+            // Removed this assertion, which do not hold in some special case of singe indivudal algorithms.
+            //assert( _offspring.size() >= _parents.size() );
 
             eoMergeReduce<EOT>::operator()( _parents, _offspring );
         }

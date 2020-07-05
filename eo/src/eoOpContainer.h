@@ -106,6 +106,7 @@ public:
         for (size_t i = 0; i < rates.size(); ++i) {
             _pop.seekp(pos);
             do {
+            // std::clog << "Before:" << _pop.offspring().size() << " offsprings" << std::endl;
                 if (eo::rng.flip(rates[i])) {
                     //            try
                     //            {
@@ -126,6 +127,11 @@ public:
 
                 if (!_pop.exhausted())
                     ++_pop;
+
+            // std::clog << "After:" << _pop.offspring().size() << " offsprings" << std::endl;
+            // std::clog << _pop.offspring() << std::endl;
+            // std::clog << std::endl;
+
             }
             while (!_pop.exhausted());
         }
@@ -155,6 +161,7 @@ public:
 
       try
       {
+          // std::clog << "\t" << ops[i]->className() << std::endl;
         (*ops[i])(_pop);
         ++_pop;
       }

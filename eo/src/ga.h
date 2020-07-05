@@ -34,6 +34,7 @@
 
 // the operators
 #include "ga/eoBitOp.h"
+#include "ga/eoStandardBitMutation.h"
 
 // #include <ga/eoBitOpFactory.h> to be corrected - thanks someone!
 
