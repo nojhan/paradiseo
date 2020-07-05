@@ -99,18 +99,19 @@ template<class Chrom> class eoDetBitFlip: public eoMonOp<Chrom>
 };
 
 
-/** eoDetSingleBitFlip --> changes exactly k bits with checking for duplicate
-\class eoDetSingleBitFlip eoBitOp.h ga/eoBitOp.h
+/** Changes exactly k bits with checking for duplicate
 \ingroup bitstring
 */
-
-template<class Chrom> class eoDetSingleBitFlip: public eoMonOp<Chrom>
+template<class Chrom>
+class eoDetSingleBitFlip: public eoMonOp<Chrom>
 {
  public:
   /**
    * (Default) Constructor.
    * @param _num_bit The number of bits to change
    * default is one - equivalent to eoOneBitFlip then
+   *
+   * @note: use a reference for num_bit, thus you may change and recall without having to re-instantiate.
    */
   eoDetSingleBitFlip(const unsigned& _num_bit = 1): num_bit(_num_bit) {}
 
@@ -122,32 +123,34 @@ template<class Chrom> class eoDetSingleBitFlip: public eoMonOp<Chrom>
    * @param chrom The cromosome which one bit is going to be changed.
    */
   bool operator()(Chrom& chrom)
-    {
-      std::vector< unsigned > selected;
+  {
+      // All possible indices
+      std::vector< unsigned > indices;
+      indices.reserve(chrom.size());
+      for(unsigned i=0; i<chrom.size(); ++i) {
+          indices.push_back(i);
+      }
 
-      // check for duplicate
-      for (unsigned k=0; k<num_bit; k++)
-        {
-	    unsigned temp;
+      // Shuffle indices
+      for(unsigned i=0; i<indices.size(); ++i) {
+          unsigned other = eo::rng.random(indices.size());
+          std::swap(indices[i], indices[other]);
+      }
 
-	    do
-		{
-		    temp = eo::rng.random( chrom.size() );
-		}
-	    while ( find( selected.begin(), selected.end(), temp ) != selected.end() );
+      // Flip at first indices
+      for(unsigned i=0; i<num_bit; ++i) {
+        chrom[indices[i]] = !chrom[indices[i]];
+      }
 
-	    selected.push_back(temp);
-        }
+      if(num_bit > 0) {
+          return true;
+      } else {
+          return false;
+      }
+  }
 
-	for ( size_t i = 0; i < selected.size(); ++i )
-	    {
-		chrom[i] = !chrom[i];
-	    }
-
-      return true;
-    }
- private:
-  unsigned num_bit;
+ protected:
+  const unsigned& num_bit;
 };
 
 
