@@ -69,7 +69,15 @@ public:
     std::sort(indices.begin(), indices.end(), compare_worth(value()));
 
     eoPop<EOT>      tmp_pop;
-    tmp_pop.resize(_pop.size());
+    // tmp_pop.resize(_pop.size()); // NOPE
+    // Using resize to create a tmp pop would require empty constructors on EOT,
+    // which is a recipe for having out-of-bounds accesses on EOT which are containers
+    // and default-initialize at size of zero.
+    // Thus, we copy the existing pop instead, which should no be a problem
+    // as we later iterate over all the individuals anyway.
+    // -- JD
+    std::copy(_pop.begin(), _pop.end(), std::back_inserter(tmp_pop));
+
     std::vector<WorthT>  tmp_worths(value().size());
 
     for (i = 0; i < _pop.size(); ++i)

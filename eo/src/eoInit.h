@@ -120,7 +120,7 @@ class eoInitFixedLength: public eoInitWithDim<EOT>
 
         virtual void operator()(EOT& chrom)
         {
-            chrom.resize(this->_dimension);
+            chrom.resize(this->dimension());
             std::generate(chrom.begin(), chrom.end(), _generator);
             chrom.invalidate();
         }
