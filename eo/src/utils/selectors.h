@@ -41,16 +41,55 @@
 #include <stdexcept>
 
 #include "eoRNG.h"
+#include "../eoScalarFitness.h"
 #include "../eoPop.h"
 /**
 @addtogroup Selectors
 @{
 */
 
+// template <class EOT>
+// bool minimizing_fitness()
+// {
+//     EOT eo1; // Assuming people don't do anything fancy in the default constructor!
+//     EOT eo2;
+//
+//     /* Dear user, when the two line below do not compile you are most
+//        likely not working with scalar fitness values. In that case we're sorry
+//        but you cannot use lottery or roulette_wheel selection...
+//     */
+//
+// #ifdef _MSC_VER
+//     eo1.fitness( EOT::Fitness(0.0) );
+//     eo2.fitness( EOT::Fitness(1.0) );
+// #else
+//     eo1.fitness( typename EOT::Fitness(0.0) ); // tried to cast it to an EOT::Fitness, but for some reason GNU barfs on this
+//     eo2.fitness( typename EOT::Fitness(1.0) );
+// #endif
+//
+//     return eo2 < eo1; // check whether we have a minimizing fitness
+// }
+
+// Machinery for static type checking.
+namespace eo {
+    template<class ...>
+    using void_t = void;
+
+    template<class T, class = void>
+    struct is_fit_check : std::false_type{};
+
+    template<class T>
+    struct is_fit_check<T, void_t<typename T::Fitness::ScalarType> > : std::true_type{};
+
+    template<class T>
+    constexpr auto is_fit = is_fit_check<T>::value;
+}
+
+//! Dynamically check if an EOT is minimizing.
 template <class EOT>
-bool minimizing_fitness()
+bool minimizing_fitness_atomic()
 {
-    EOT eo1; // Assuming people don't do anything fancy in the default constructor!
+    EOT eo1; // Assuming EOT allow empty construction.
     EOT eo2;
 
     /* Dear user, when the two line below do not compile you are most
@@ -66,8 +105,43 @@ bool minimizing_fitness()
     eo2.fitness( typename EOT::Fitness(1.0) );
 #endif
 
-    return eo2 < eo1; // check whether we have a minimizing fitness
+    // Check whether we have a minimizing fitness.
+    // Note that EO defaults to maximization.
+    return eo2 < eo1;
 }
+
+//! Statically check if an eoScalarFitness is an eoMinimizingFitness.
+template<class EOT>
+bool minimizing_fitness_eo()
+{
+    if constexpr (std::is_same<
+                      typename EOT::Fitness,
+                      eoMinimizingFitness/*<typename EOT::Fitness::ScalarType>*/
+                  >::value) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/** Return true if the EOT targets a minimization problem.
+ *
+ * NOTE: if EOT has an atomic scalar fitness (e.g. double), it expects EOT to have an empty constructor.
+ */
+template <class EOT>
+bool minimizing_fitness()
+{
+    // Static bypass for eoScalarFitness classes which embedd a comparator.
+    if constexpr (eo::is_fit<EOT>) {
+        // Static case.
+        return minimizing_fitness_eo<EOT>();
+    } else {
+        // Dynamic case, expecting empty constructors.
+        return minimizing_fitness_atomic<EOT>();
+    }
+}
+
+
 
 inline double scale_fitness(const std::pair<double, double>& _minmax, double _value)
 {
