@@ -103,13 +103,18 @@ and minimizing fitness compares with greater. This because we want ordinary
 fitness values (doubles) to be equivalent with Maximizing Fitness, and
 comparing with less is the default behaviour.
 */
-#if defined(__CUDACC__)
-typedef eoScalarFitness<float, std::less<float> >    eoMaximizingFitness;
-typedef eoScalarFitness<float, std::greater<float> > eoMinimizingFitness;
-#else
-typedef eoScalarFitness<double, std::less<double> >    eoMaximizingFitness;
-typedef eoScalarFitness<double, std::greater<double> > eoMinimizingFitness;
-#endif
+// CUDACC is deprecated
+// #if defined(__CUDACC__)
+// typedef eoScalarFitness<float, std::less<float> >    eoMaximizingFitness;
+// typedef eoScalarFitness<float, std::greater<float> > eoMinimizingFitness;
+// #else
+// typedef eoScalarFitness<double, std::less<double> >    eoMaximizingFitness;
+// typedef eoScalarFitness<double, std::greater<double> > eoMinimizingFitness;
+// #endif
+
+using eoMaximizingFitness = eoScalarFitness<double, std::less<double> >;
+using eoMinimizingFitness = eoScalarFitness<double, std::greater<double> >;
+
 
 template <class F, class Cmp>
 std::ostream& operator<<(std::ostream& os, const eoScalarFitness<F, Cmp>& f)
