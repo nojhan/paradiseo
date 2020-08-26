@@ -59,22 +59,27 @@ Example of a complete test program that use various bitstrings operators:
 
 Based on STL's std::vector<bool> specialization.
 */
-template <class FitT> class eoBit: public eoVector<FitT, bool>
+
+template <class FitT, class ScalarT = bool> 
+
+class eoBit: public eoVector<FitT, ScalarT>
 {
 public:
+    using ScalarType = ScalarT; 
 
-    using eoVector< FitT, bool >::begin;
-    using eoVector< FitT, bool >::end;
-    using eoVector< FitT, bool >::resize;
-    using eoVector< FitT, bool >::size;
+    using eoVector< FitT, ScalarType >::begin;
+    using eoVector< FitT, ScalarType >::end;
+    using eoVector< FitT, ScalarType >::resize;
+    using eoVector< FitT, ScalarType >::size;
 
   /**
    * (Default) Constructor.
    * @param size Size of the binary std::string.
    * @param value Default value.
    */
-  eoBit(unsigned size = 0, bool value = false):
-    eoVector<FitT, bool>(size, value) {}
+  eoBit(unsigned size = 0, ScalarType value = false):
+  // eoBit(unsigned size, ScalarType value):
+    eoVector<FitT, ScalarType>(size, value) {}
 
   /// My class name.
   virtual std::string className() const
@@ -91,7 +96,7 @@ public:
       EO<FitT>::printOn(os);
       os << ' ';
       os << size() << ' ';
-      std::copy(begin(), end(), std::ostream_iterator<bool>(os));
+      std::copy(begin(), end(), std::ostream_iterator<ScalarType>(os));
     }
 
   /**
