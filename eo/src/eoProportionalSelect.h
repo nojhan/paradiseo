@@ -29,6 +29,9 @@
 
 //-----------------------------------------------------------------------------
 
+#include <iterator>
+#include <utility>
+
 #include "utils/eoRNG.h"
 #include "utils/selectors.h"
 #include "eoSelectOne.h"
@@ -49,21 +52,33 @@ public:
   /// Sanity check
   eoProportionalSelect(const eoPop<EOT>& /*pop*/ = eoPop<EOT>())
   {
-    if (minimizing_fitness<EOT>())
-      throw eoException("eoProportionalSelect: minimizing fitness");
+      if (minimizing_fitness<EOT>()) {
+          std::string msg = "eoProportionalSelect cannot be used with minimizing fitness";
+          eo::log << eo::errors << "ERROR: " << msg << std::endl;
+          throw eoException(msg);
+      }
   }
 
   void setup(const eoPop<EOT>& _pop)
   {
-      if (_pop.size() == 0) return;
-
-      cumulative.resize(_pop.size());
-      cumulative[0] = _pop[0].fitness();
-
-      for (unsigned i = 1; i < _pop.size(); ++i)
-      {
-          cumulative[i] = _pop[i].fitness() + cumulative[i-1];
+      if (_pop.size() == 0) {
+          eo::log << eo::warnings << "Warning: eoProportionalSelect setup called on an empty population." << std::endl;
+          return;
       }
+      assert(not _pop[0].invalid());
+
+      const typename EOT::Fitness min_fit
+          = std::min_element( std::begin(_pop), std::end(_pop) )
+              ->fitness();
+
+      cumulative.clear();
+      cumulative.push_back(_pop[0].fitness() - min_fit);
+
+      for (unsigned i = 1; i < _pop.size(); ++i) {
+          assert(not _pop[i].invalid());
+          cumulative.push_back(cumulative.back() + _pop[i].fitness() - min_fit);
+      }
+      assert(cumulative.size() == _pop.size());
   }
 
   /** do the selection,
@@ -72,9 +87,18 @@ public:
   {
       if (cumulative.size() == 0) setup(_pop);
 
-      double fortune = rng.uniform() * cumulative.back();
-      typename FitVec::iterator result = std::upper_bound(cumulative.begin(), cumulative.end(), fortune);
-      return _pop[result - cumulative.begin()];
+      double frac = rng.uniform();
+      double fortune = frac * cumulative.back();
+      typename FitVec::iterator result
+          = std::upper_bound(cumulative.begin(), cumulative.end(), fortune);
+
+      assert(fortune <= cumulative.back());
+
+      if(result - cumulative.begin() == _pop.size()) {
+            return _pop.back();
+      } else {
+          return _pop[result - cumulative.begin()];
+      }
   }
 
 private :
