@@ -105,7 +105,29 @@ int main(int argc, char* argv[])
     eoFunctorStore store;
 
     /***** Parameters managed by the caller. *****/
-    assert(argc == 11);
+    if(argc != 11) {
+        // Fake operators, just to be able to call make_foundry
+        // to get the configured operators slots.
+        eoEvalFuncPtr<Bits> fake_eval(fake_func);
+        eoUniformGenerator<int> fake_gen(0, 1);
+        eoInitFixedLength<Bits> fake_init(/*bitstring size=*/1, fake_gen);
+        auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1);
+
+        std::cerr << "Usage: " << argv[0] << std::endl;
+        std::cerr << "\t<pb_instance>    in [0,18]" << std::endl;
+        std::cerr << "\t<random_seed>    in [0,MAXULONG[" << std::endl;
+        std::cerr << "\t<continuator>    in [0," << fake_foundry.continuators   .size() << "[" << std::endl;
+        std::cerr << "\t<crossover_rate> in [0," << fake_foundry.crossover_rates.size() << "[" << std::endl;
+        std::cerr << "\t<crossover>      in [0," << fake_foundry.crossovers     .size() << "[" << std::endl;
+        std::cerr << "\t<mutation_rate>  in [0," << fake_foundry.mutation_rates .size() << "[" << std::endl;
+        std::cerr << "\t<mutation>       in [0," << fake_foundry.mutations      .size() << "[" << std::endl;
+        std::cerr << "\t<selector>       in [0," << fake_foundry.selectors      .size() << "[" << std::endl;
+        std::cerr << "\t<pop_size>       in [0," << fake_foundry.pop_sizes      .size() << "[" << std::endl;
+        std::cerr << "\t<replacement>    in [0," << fake_foundry.replacements   .size() << "[" << std::endl;
+
+        exit(ERROR_USAGE);
+    }
+
     const int pb_instance = std::atoi(argv[1]);
 
     std::string s(argv[2]);
@@ -188,8 +210,10 @@ int main(int argc, char* argv[])
     /***** IOH perf stats *****/
     IOHprofiler_ecdf_sum ecdf_sum;
     // iRace expects minimization
-    size_t perf = -1 * ecdf_sum(logger.data());
+    long perf = ecdf_sum(logger.data());
 
     // Output
-    std::cout << perf << std::endl;
+    std::cout << -1 * perf << std::endl;
+
+    assert(0 < perf and perf <= buckets*buckets);
 }
