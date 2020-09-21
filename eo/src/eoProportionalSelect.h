@@ -34,6 +34,7 @@
 
 #include "utils/eoRNG.h"
 #include "utils/selectors.h"
+#include "utils/eoLogger.h"
 #include "eoSelectOne.h"
 #include "eoPop.h"
 
