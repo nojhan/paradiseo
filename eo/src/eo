@@ -164,6 +164,7 @@
 #include "eoAlgoFoundryEA.h"
 #include "eoAlgoFoundryFastGA.h"
 #include "eoEvalFoundryEA.h"
+#include "eoEvalFoundryFastGA.h"
 
 //-----------------------------------------------------------------------------
 // to be continued ...

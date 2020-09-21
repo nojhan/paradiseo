@@ -92,12 +92,19 @@ public:
      */
     std::vector<size_t> decode( const EOT& sol ) const
     {
-        // Denormalize
-        size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() ));
-        size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] * _foundry.crossovers  .size() ));
-        size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] * _foundry.mutations   .size() ));
-        size_t sele = static_cast<size_t>(std::ceil( sol[i_sele] * _foundry.selectors   .size() ));
-        size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements.size() ));
+        // // Denormalize
+        // size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() ));
+        // size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] * _foundry.crossovers  .size() ));
+        // size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] * _foundry.mutations   .size() ));
+        // size_t sele = static_cast<size_t>(std::ceil( sol[i_sele] * _foundry.selectors   .size() ));
+        // size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements.size() ));
+
+        // Direct encoding
+        size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] ));
+        size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] ));
+        size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] ));
+        size_t sele = static_cast<size_t>(std::ceil( sol[i_sele] ));
+        size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] ));
 
         return {cont, cros, muta, sele, repl};
     }

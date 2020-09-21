@@ -82,7 +82,12 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
         /** The constructon only take an eval, because all other operators
          * are stored in the public containers.
          */
-        eoAlgoFoundryFastGA( eoInit<EOT> & init, eoEvalFunc<EOT>& eval, size_t max_evals = 10000, size_t max_restarts = std::numeric_limits<size_t>::max() ) :
+        eoAlgoFoundryFastGA(
+                eoInit<EOT> & init,
+                eoEvalFunc<EOT>& eval,
+                size_t max_evals = 10000,
+                size_t max_restarts = std::numeric_limits<size_t>::max()
+            ) :
             eoAlgoFoundry<EOT>(8),
             continuators(0, true), // Always re-instantiate continuators, because they hold a state.
             crossover_rates(1, false),
@@ -115,14 +120,14 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
          */
         void operator()(eoPop<EOT>& pop)
         {
-            assert(continuators.size() > 0); assert(this->at(continuators.index()) < continuators.size());
-            assert(  crossover_rates.size() > 0); assert(this->at(  crossover_rates.index()) <   crossover_rates.size());
-            assert(  crossovers.size() > 0); assert(this->at(  crossovers.index()) <   crossovers.size());
-            assert(   mutation_rates.size() > 0); assert(this->at(   mutation_rates.index()) <    mutation_rates.size());
-            assert(   mutations.size() > 0); assert(this->at(   mutations.index()) <    mutations.size());
-            assert(   selectors.size() > 0); assert(this->at(   selectors.index()) <    selectors.size());
-            assert(   pop_sizes.size() > 0); assert(this->at(   pop_sizes.index()) <    pop_sizes.size());
-            assert(replacements.size() > 0); assert(this->at(replacements.index()) < replacements.size());
+            assert(   continuators.size() > 0); assert(this->at(   continuators.index()) <    continuators.size());
+            assert(crossover_rates.size() > 0); assert(this->at(crossover_rates.index()) < crossover_rates.size());
+            assert(     crossovers.size() > 0); assert(this->at(     crossovers.index()) <      crossovers.size());
+            assert( mutation_rates.size() > 0); assert(this->at( mutation_rates.index()) <  mutation_rates.size());
+            assert(      mutations.size() > 0); assert(this->at(      mutations.index()) <       mutations.size());
+            assert(      selectors.size() > 0); assert(this->at(      selectors.index()) <       selectors.size());
+            assert(      pop_sizes.size() > 0); assert(this->at(      pop_sizes.index()) <       pop_sizes.size());
+            assert(   replacements.size() > 0); assert(this->at(   replacements.index()) <    replacements.size());
 
             // Crossover or clone
             double cross_rate = this->crossover_rate();
@@ -180,14 +185,14 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
         std::string name()
         {
             std::ostringstream name;
-            name << this->at(continuators.index()) << " (" << this->continuator().className() << ") + ";
-            name << this->at(crossover_rates.index())   << " (" << this->crossover_rate().className()   << ") + ";
-            name << this->at(crossovers.index())   << " (" << this->crossover().className()   << ") + ";
-            name << this->at(mutation_rates.index())    << " (" << this->mutation_rate().className()    << ") + ";
-            name << this->at(mutations.index())    << " (" << this->mutation().className()    << ") + ";
-            name << this->at(selectors.index())    << " (" << this->selector().className()    << ") + ";
-            name << this->at(pop_sizes.index()) << " (" << this->pop_size().className() << ")";
-            name << this->at(replacements.index()) << " (" << this->replacement().className() << ")";
+            name << this->at(   continuators.index()) << " (" << this->   continuator().className() << ") + ";
+            name << this->at(crossover_rates.index()) << " (" << this->crossover_rate()             << ") + ";
+            name << this->at(     crossovers.index()) << " (" << this->     crossover().className() << ") + ";
+            name << this->at( mutation_rates.index()) << " (" << this-> mutation_rate()             << ") + ";
+            name << this->at(      mutations.index()) << " (" << this->      mutation().className() << ") + ";
+            name << this->at(      selectors.index()) << " (" << this->      selector().className() << ") + ";
+            name << this->at(      pop_sizes.index()) << " (" << this->      pop_size()             << ")";
+            name << this->at(   replacements.index()) << " (" << this->   replacement().className() << ")";
             return name.str();
         }
 
