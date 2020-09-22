@@ -92,20 +92,97 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
 Bits::Fitness fake_func(const Bits&) { return 0; }
 
+void print_param_range(const eoParam& param, const size_t slot_size, std::ostream& out = std::cout)
+{
+    out << param.longName()
+        << "\t\"--" << param.longName() << "=\""
+        << "\ti"
+        << "\t(0," << slot_size << ")"
+        << std::endl;
+}
 
 int main(int argc, char* argv[])
 {
     /***** Global parameters. *****/
-    enum { ERROR_USAGE = 100 };
-
-    const size_t dimension = 1000;
-    const size_t max_evals = 2 * dimension;
-    const size_t buckets = 100;
+    enum { NO_ERROR = 0, ERROR_USAGE = 100 };
 
     eoFunctorStore store;
 
-    /***** Parameters managed by the caller. *****/
-    if(argc != 11) {
+    eoParser parser(argc, argv, "FastGA interface for iRace");
+
+    const size_t dimension = parser.getORcreateParam<size_t>(1000,
+            "dimension", "Dimension size",
+            'd', "Problem").value();
+
+    const size_t max_evals = parser.getORcreateParam<size_t>(2 * dimension,
+            "max-evals", "Maximum number of evaluations",
+            'e', "Stopping criterion").value();
+
+    const size_t buckets = parser.getORcreateParam<size_t>(100,
+            "buckets", "Number of buckets for discretizing the ECDF",
+            'b', "Performance estimation").value();
+
+    uint32_t seed =
+        parser.getORcreateParam<uint32_t>(0,
+            "seed", "Random number seed (0 = epoch)",
+            'S').value();
+    if(seed == 0) {
+        seed = time(0);
+    }
+    // rng is a global
+    rng.reseed(seed);
+
+    auto instance_p = parser.getORcreateParam<size_t>(1,
+            "instance", "Instance ID",
+            'i', "Problem", /*required=*/true);
+    const size_t instance = instance_p.value();
+
+    auto continuator_p = parser.getORcreateParam<size_t>(0,
+            "continuator", "",
+            'o', "Evolution Engine", /*required=*/true);
+    const size_t continuator = continuator_p.value();
+
+    auto crossover_rate_p = parser.getORcreateParam<size_t>(0,
+            "crossover-rate", "",
+            'C', "Evolution Engine", /*required=*/true);
+    const size_t crossover_rate = crossover_rate_p.value();
+
+    auto crossover_p = parser.getORcreateParam<size_t>(0,
+            "crossover", "",
+            'c', "Evolution Engine", /*required=*/true);
+    const size_t crossover = crossover_p.value();
+
+    auto mutation_rate_p = parser.getORcreateParam<size_t>(0,
+            "mutation-rate", "",
+            'M', "Evolution Engine", /*required=*/true);
+    const size_t mutation_rate = mutation_rate_p.value();
+
+    auto mutation_p = parser.getORcreateParam<size_t>(0,
+            "mutation", "",
+            'm', "Evolution Engine", /*required=*/true);
+    const size_t mutation = mutation_p.value();
+
+    auto selector_p = parser.getORcreateParam<size_t>(0,
+            "selector", "",
+            's', "Evolution Engine", /*required=*/true);
+    const size_t selector = selector_p.value();
+
+    auto pop_size_p = parser.getORcreateParam<size_t>(0,
+            "pop-size", "",
+            'P', "Evolution Engine", /*required=*/true);
+    const size_t pop_size = pop_size_p.value();
+
+    auto replacement_p = parser.getORcreateParam<size_t>(0,
+            "replacement", "",
+            'r', "Evolution Engine", /*required=*/true);
+    const size_t replacement = replacement_p.value();
+
+    // Help + Verbose routines
+    make_verbose(parser);
+    make_help(parser, /*exit_after*/false, std::clog);
+
+    if(parser.userNeedsHelp()) {
+
         // Fake operators, just to be able to call make_foundry
         // to get the configured operators slots.
         eoEvalFuncPtr<Bits> fake_eval(fake_func);
@@ -113,40 +190,44 @@ int main(int argc, char* argv[])
         eoInitFixedLength<Bits> fake_init(/*bitstring size=*/1, fake_gen);
         auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1);
 
-        std::cerr << "Usage: " << argv[0] << std::endl;
-        std::cerr << "\t<pb_instance>    in [0,18]" << std::endl;
-        std::cerr << "\t<random_seed>    in [0,MAXULONG[" << std::endl;
-        std::cerr << "\t<continuator>    in [0," << fake_foundry.continuators   .size() << "[" << std::endl;
-        std::cerr << "\t<crossover_rate> in [0," << fake_foundry.crossover_rates.size() << "[" << std::endl;
-        std::cerr << "\t<crossover>      in [0," << fake_foundry.crossovers     .size() << "[" << std::endl;
-        std::cerr << "\t<mutation_rate>  in [0," << fake_foundry.mutation_rates .size() << "[" << std::endl;
-        std::cerr << "\t<mutation>       in [0," << fake_foundry.mutations      .size() << "[" << std::endl;
-        std::cerr << "\t<selector>       in [0," << fake_foundry.selectors      .size() << "[" << std::endl;
-        std::cerr << "\t<pop_size>       in [0," << fake_foundry.pop_sizes      .size() << "[" << std::endl;
-        std::cerr << "\t<replacement>    in [0," << fake_foundry.replacements   .size() << "[" << std::endl;
+        size_t n = fake_foundry.continuators.size()
+                 * fake_foundry.crossovers.size()
+                 * fake_foundry.mutations.size()
+                 * fake_foundry.selectors.size()
+                 * fake_foundry.replacements.size();
+        std::clog << n << " possible algorithms instances." << std::endl;
 
-        exit(ERROR_USAGE);
+        std::clog << "Ranges of required parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
+
+        std::cout << "# name\tswitch\ttype\trange" << std::endl;
+        print_param_range(      instance_p, 18, std::cout);
+        print_param_range(   continuator_p, fake_foundry.continuators   .size(), std::cout);
+        print_param_range(     crossover_p, fake_foundry.crossovers     .size(), std::cout);
+        print_param_range(crossover_rate_p, fake_foundry.crossover_rates.size(), std::cout);
+        print_param_range(      mutation_p, fake_foundry.mutations      .size(), std::cout);
+        print_param_range( mutation_rate_p, fake_foundry.mutation_rates .size(), std::cout);
+        print_param_range(      selector_p, fake_foundry.selectors      .size(), std::cout);
+        print_param_range(      pop_size_p, fake_foundry.pop_sizes      .size(), std::cout);
+        print_param_range(   replacement_p, fake_foundry.replacements   .size(), std::cout);
+
+        // std::ofstream irace_param("fastga.params");
+        // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
+
+        exit(NO_ERROR);
     }
 
-    const int pb_instance = std::atoi(argv[1]);
-
-    std::string s(argv[2]);
-    eo::rng.reseed(std::stoull(s));
+    const size_t generations = static_cast<size_t>(std::floor(
+                static_cast<double>(max_evals) / static_cast<double>(pop_size)));
 
     Ints encoded_algo(8);
-    encoded_algo[0] = std::atoi(argv[3]); // continuator
-    encoded_algo[1] = std::atoi(argv[4]); // crossover_rate
-    encoded_algo[2] = std::atoi(argv[5]); // crossover
-    encoded_algo[3] = std::atoi(argv[6]); // mutation_rate
-    encoded_algo[4] = std::atoi(argv[7]); // mutation
-    encoded_algo[5] = std::atoi(argv[8]); // selection
-    encoded_algo[6] = std::atoi(argv[9]); // pop_size
-    encoded_algo[7] = std::atoi(argv[10]); // replacement
-
-    const size_t pop_size = encoded_algo[6];
-    const size_t generations = max_evals / pop_size;
-
-    eo::log << eo::setlevel(eo::warnings);
+    encoded_algo[0] = continuator;
+    encoded_algo[1] = crossover_rate;
+    encoded_algo[2] = crossover;
+    encoded_algo[3] = mutation_rate;
+    encoded_algo[4] = mutation;
+    encoded_algo[5] = selector;
+    encoded_algo[6] = pop_size;
+    encoded_algo[7] = replacement;
 
     /***** IOH logger *****/
     IOHprofiler_RangeLinear<size_t> target_range(0, dimension, buckets);
@@ -180,7 +261,7 @@ int main(int argc, char* argv[])
 
     /// Set problem_id as 1
     w_model_om.IOHprofiler_set_problem_id(1);
-    w_model_om.IOHprofiler_set_instance_id(pb_instance);
+    w_model_om.IOHprofiler_set_instance_id(instance);
 
     /// Set dimension.
     w_model_om.IOHprofiler_set_number_of_variables(dimension);
@@ -197,8 +278,16 @@ int main(int argc, char* argv[])
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, ugen);
     auto& foundry = make_foundry(store, onemax_init, onemax_eval, max_evals, generations);
 
-    size_t n = foundry.continuators.size() * foundry.crossovers.size() * foundry.mutations.size() * foundry.selectors.size() * foundry.replacements.size();
-    std::clog << n << " possible algorithms instances." << std::endl;
+    std::clog << "Encoded algorithm:" << std::endl;
+    foundry.select(encoded_algo);
+    std::clog << "\tcontinuator:\t"    << foundry.continuator   ().className() << std::endl;
+    std::clog << "\tcrossover:\t"      << foundry.crossover     ().className() << std::endl;
+    std::clog << "\tcrossover_rate:\t" << foundry.crossover_rate()             << std::endl;
+    std::clog << "\tmutation:\t"       << foundry.mutation      ().className() << std::endl;
+    std::clog << "\tmutation_rate:\t"  << foundry.mutation_rate ()             << std::endl;
+    std::clog << "\tselector:\t"       << foundry.selector      ().className() << std::endl;
+    std::clog << "\tpop_size:\t"       << foundry.pop_size      ()             << std::endl;
+    std::clog << "\treplacement:\t"    << foundry.replacement   ().className() << std::endl;
 
     // Evaluation of a forged encoded_algo on the sub-problem
     eoEvalFoundryFastGA<Ints, Bits> eval_foundry(
