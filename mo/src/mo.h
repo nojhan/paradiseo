@@ -65,6 +65,7 @@
 
 #include <continuator/moAverageFitnessNeighborStat.h>
 #include <continuator/moBestSoFarStat.h>
+#include <continuator/moBestNoImproveContinuator.h>
 #include <continuator/moBestFitnessStat.h>
 #include <continuator/moUnsignedStat.h>
 #include <continuator/moValueStat.h>
