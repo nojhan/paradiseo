@@ -55,31 +55,37 @@ public:
             eoAlgoFoundryFastGA<SUB>& foundry,
             eoInit<SUB>& subpb_init,
             eoPopEvalFunc<SUB>& subpb_eval,
-            const typename SUB::Fitness penalization
+            const typename SUB::Fitness penalization,
+            const bool normalized = false
         ) :
             _subpb_init(subpb_init),
             _subpb_eval(subpb_eval),
             _foundry(foundry),
             _penalization(penalization),
-            i_cont(foundry.continuators.index()),
+            _normalized(normalized),
             i_crat(foundry.crossover_rates.index()),
+            i_crsl(foundry.crossover_selectors.index()),
             i_cros(foundry.crossovers.index()),
+            i_afcr(foundry.aftercross_selectors.index()),
             i_mrat(foundry.mutation_rates.index()),
+            i_musl(foundry.mutation_selectors.index()),
             i_muta(foundry.mutations.index()),
-            i_sele(foundry.selectors.index()),
-            i_pops(foundry.pop_sizes.index()),
-            i_repl(foundry.replacements.index())
+            i_repl(foundry.replacements.index()),
+            i_cont(foundry.continuators.index()),
+            i_pops(foundry.pop_sizes.index())
     { }
 
 protected:
-    const size_t i_cont;
     const size_t i_crat;
+    const size_t i_crsl;
     const size_t i_cros;
+    const size_t i_afcr;
     const size_t i_mrat;
+    const size_t i_musl;
     const size_t i_muta;
-    const size_t i_sele;
-    const size_t i_pops;
     const size_t i_repl;
+    const size_t i_cont;
+    const size_t i_pops;
 
 public:
 
@@ -96,27 +102,32 @@ public:
      */
     std::vector<size_t> decode( const EOT& sol ) const
     {
-        // Denormalize
-        // size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators   .size() ));
-        // size_t crat = static_cast<size_t>(std::ceil( sol[i_crat] * _foundry.crossover_rates.size() ));
-        // size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] * _foundry.crossovers     .size() ));
-        // size_t mrat = static_cast<size_t>(std::ceil( sol[i_mrat] * _foundry.mutation_rates .size() ));
-        // size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] * _foundry.mutations      .size() ));
-        // size_t sele = static_cast<size_t>(std::ceil( sol[i_sele] * _foundry.selectors      .size() ));
-        // size_t pops = static_cast<size_t>(std::ceil( sol[i_pops] * _foundry.pop_sizes      .size() ));
-        // size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements   .size() ));
+        if(_normalized) {
+            size_t crat = static_cast<size_t>(std::ceil( sol[i_crat] * _foundry.crossover_rates.size() )),
+            size_t crsl = static_cast<size_t>(std::ceil( sol[i_crsl] * _foundry.crossover_selectors.size() )),
+            size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] * _foundry.crossovers.size() )),
+            size_t afcr = static_cast<size_t>(std::ceil( sol[i_afcr] * _foundry.aftercross_selectors.size() )),
+            size_t mrat = static_cast<size_t>(std::ceil( sol[i_mrat] * _foundry.mutation_rates.size() )),
+            size_t musl = static_cast<size_t>(std::ceil( sol[i_musl] * _foundry.mutation_selectors.size() )),
+            size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] * _foundry.mutations.size() )),
+            size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements.size() )),
+            size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() )),
+            size_t pops = static_cast<size_t>(std::ceil( sol[i_pops] * _foundry.pop_sizes.size() ))
 
-        // Direct encoding
-        size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] ));
-        size_t crat = static_cast<size_t>(std::ceil( sol[i_crat] ));
-        size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] ));
-        size_t mrat = static_cast<size_t>(std::ceil( sol[i_mrat] ));
-        size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] ));
-        size_t sele = static_cast<size_t>(std::ceil( sol[i_sele] ));
-        size_t pops = static_cast<size_t>(std::ceil( sol[i_pops] ));
-        size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] ));
+        } else {
+            size_t crat = static_cast<size_t>(std::ceil( sol[i_crat] ));
+            size_t crsl = static_cast<size_t>(std::ceil( sol[i_crsl] ));
+            size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] ));
+            size_t afcr = static_cast<size_t>(std::ceil( sol[i_afcr] ));
+            size_t mrat = static_cast<size_t>(std::ceil( sol[i_mrat] ));
+            size_t musl = static_cast<size_t>(std::ceil( sol[i_musl] ));
+            size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] ));
+            size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] ));
+            size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] ));
+            size_t pops = static_cast<size_t>(std::ceil( sol[i_pops] ));
 
-        return {cont, crat, cros, mrat, muta, sele, pops, repl};
+        }
+        return {crat, crsl, cros, afcr, mrat, musl, muta, repl, cont, pops};
     }
 
     /** Perform a sub-problem search with the configuration encoded in the given solution
@@ -129,27 +140,30 @@ public:
         if(not sol.invalid()) {
             return;
         }
-
         auto config = decode(sol);
-        double cont = config[i_cont];
         double crat = config[i_crat];
+        double crsl = config[i_crsl];
         double cros = config[i_cros];
+        double afcr = config[i_afcr];
         double mrat = config[i_mrat];
+        double musl = config[i_musl];
         double muta = config[i_muta];
-        double sele = config[i_sele];
-        double pops = config[i_pops];
         double repl = config[i_repl];
+        double cont = config[i_cont];
+        double pops = config[i_pops];
 
         if(
-               0 <= cont and cont < _foundry.continuators   .size()
-           and 0 <= crat and crat < _foundry.crossover_rates.size()
-           and 0 <= cros and cros < _foundry.crossovers     .size()
-           and 0 <= mrat and mrat < _foundry.mutation_rates .size()
-           and 0 <= muta and muta < _foundry.mutations      .size()
-           and 0 <= sele and sele < _foundry.selectors      .size()
-           and 0 <= pops and pops < _foundry.pop_sizes      .size()
-           and 0 <= repl and repl < _foundry.replacements   .size()
-        ) {
+                0 <= crat and crat < _foundry.crossover_rates.size()
+            and 0 <= crsl and crsl < _foundry.crossover_selectors.size()
+            and 0 <= cros and cros < _foundry.crossovers.size()
+            and 0 <= afcr and afcr < _foundry.aftercross_selectors.size()
+            and 0 <= mrat and mrat < _foundry.mutation_rates.size()
+            and 0 <= musl and musl < _foundry.mutation_selectors.size()
+            and 0 <= muta and muta < _foundry.mutations.size()
+            and 0 <= repl and repl < _foundry.replacements.size()
+            and 0 <= cont and cont < _foundry.continuators.size()
+            and 0 <= pops and pops < _foundry.pop_sizes.size()
+          ) {
             _foundry.select(config);
 
             // FIXME should pop_size belong to this eval and moved out from the foundry?
@@ -174,6 +188,7 @@ protected:
     eoPopEvalFunc<SUB>& _subpb_eval;
     eoAlgoFoundryFastGA<SUB>& _foundry;
     const typename EOT::Fitness _penalization;
+    const bool _normalized;
 };
 
 /** Helper function to instanciate an eoEvalFoundryFastGA without having to indicate the template for the sub-problem encoding.
@@ -187,9 +202,10 @@ eoEvalFoundryFastGA<EOT,SUB>&
         eoInit<SUB>& subpb_init,
         eoPopEvalFunc<SUB>& subpb_eval,
         eoAlgoFoundryFastGA<SUB>& foundry,
-        const typename SUB::Fitness penalization    )
+        const typename SUB::Fitness penalization,
+        const bool normalized = false )
 {
-    return *(new eoEvalFoundryFastGA<EOT,SUB>(subpb_init, subpb_eval, foundry, penalization));
+    return *(new eoEvalFoundryFastGA<EOT,SUB>(subpb_init, subpb_eval, foundry, penalization, normalized));
 }
 
 #endif // _eoEvalFoundryFastGA_H_
