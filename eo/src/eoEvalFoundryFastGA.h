@@ -102,30 +102,40 @@ public:
      */
     std::vector<size_t> decode( const EOT& sol ) const
     {
+        size_t crat;
+        size_t crsl;
+        size_t cros;
+        size_t afcr;
+        size_t mrat;
+        size_t musl;
+        size_t muta;
+        size_t repl;
+        size_t cont;
+        size_t pops;
+
         if(_normalized) {
-            size_t crat = static_cast<size_t>(std::ceil( sol[i_crat] * _foundry.crossover_rates.size() )),
-            size_t crsl = static_cast<size_t>(std::ceil( sol[i_crsl] * _foundry.crossover_selectors.size() )),
-            size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] * _foundry.crossovers.size() )),
-            size_t afcr = static_cast<size_t>(std::ceil( sol[i_afcr] * _foundry.aftercross_selectors.size() )),
-            size_t mrat = static_cast<size_t>(std::ceil( sol[i_mrat] * _foundry.mutation_rates.size() )),
-            size_t musl = static_cast<size_t>(std::ceil( sol[i_musl] * _foundry.mutation_selectors.size() )),
-            size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] * _foundry.mutations.size() )),
-            size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements.size() )),
-            size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() )),
-            size_t pops = static_cast<size_t>(std::ceil( sol[i_pops] * _foundry.pop_sizes.size() ))
+            crat = static_cast<size_t>(std::ceil( sol[i_crat] * _foundry.crossover_rates.size() ));
+            crsl = static_cast<size_t>(std::ceil( sol[i_crsl] * _foundry.crossover_selectors.size() ));
+            cros = static_cast<size_t>(std::ceil( sol[i_cros] * _foundry.crossovers.size() ));
+            afcr = static_cast<size_t>(std::ceil( sol[i_afcr] * _foundry.aftercross_selectors.size() ));
+            mrat = static_cast<size_t>(std::ceil( sol[i_mrat] * _foundry.mutation_rates.size() ));
+            musl = static_cast<size_t>(std::ceil( sol[i_musl] * _foundry.mutation_selectors.size() ));
+            muta = static_cast<size_t>(std::ceil( sol[i_muta] * _foundry.mutations.size() ));
+            repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements.size() ));
+            cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() ));
+            pops = static_cast<size_t>(std::ceil( sol[i_pops] * _foundry.pop_sizes.size() ));
 
         } else {
-            size_t crat = static_cast<size_t>(std::ceil( sol[i_crat] ));
-            size_t crsl = static_cast<size_t>(std::ceil( sol[i_crsl] ));
-            size_t cros = static_cast<size_t>(std::ceil( sol[i_cros] ));
-            size_t afcr = static_cast<size_t>(std::ceil( sol[i_afcr] ));
-            size_t mrat = static_cast<size_t>(std::ceil( sol[i_mrat] ));
-            size_t musl = static_cast<size_t>(std::ceil( sol[i_musl] ));
-            size_t muta = static_cast<size_t>(std::ceil( sol[i_muta] ));
-            size_t repl = static_cast<size_t>(std::ceil( sol[i_repl] ));
-            size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] ));
-            size_t pops = static_cast<size_t>(std::ceil( sol[i_pops] ));
-
+            crat = static_cast<size_t>(std::ceil( sol[i_crat] ));
+            crsl = static_cast<size_t>(std::ceil( sol[i_crsl] ));
+            cros = static_cast<size_t>(std::ceil( sol[i_cros] ));
+            afcr = static_cast<size_t>(std::ceil( sol[i_afcr] ));
+            mrat = static_cast<size_t>(std::ceil( sol[i_mrat] ));
+            musl = static_cast<size_t>(std::ceil( sol[i_musl] ));
+            muta = static_cast<size_t>(std::ceil( sol[i_muta] ));
+            repl = static_cast<size_t>(std::ceil( sol[i_repl] ));
+            cont = static_cast<size_t>(std::ceil( sol[i_cont] ));
+            pops = static_cast<size_t>(std::ceil( sol[i_pops] ));
         }
         return {crat, crsl, cros, afcr, mrat, musl, muta, repl, cont, pops};
     }

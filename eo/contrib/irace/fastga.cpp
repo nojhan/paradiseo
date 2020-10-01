@@ -40,9 +40,12 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
         foundry.mutation_rates.add<double>(i);
     }
 
-    for(size_t i=5; i<100; i+=10) {
-        foundry.pop_sizes.add<size_t>(i);
-    }
+    /***** Offsprings size *****/
+    // for(size_t i=5; i<100; i+=10) {
+    //     foundry.pop_sizes.add<size_t>(i);
+    // }
+
+    foundry.pop_sizes.add<size_t>(0); // 0 = use parents fixed pop size.
 
     /***** Crossovers ****/
     for(double i=0.1; i<0.9; i+=0.1) {
@@ -66,15 +69,21 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     }
 
     /***** Selectors *****/
-    foundry.selectors.add< eoRandomSelect<Bits> >();
-    foundry.selectors.add< eoSequentialSelect<Bits> >();
-    foundry.selectors.add< eoProportionalSelect<Bits> >();
-    for(size_t i=2; i < 10; i+=1) { // Tournament size.
-        foundry.selectors.add< eoDetTournamentSelect<Bits> >(i);
+    for(eoOperatorFoundry<eoSelectOne<Bits>>& ops :
+        {std::ref(foundry.crossover_selectors),
+         std::ref(foundry.mutation_selectors) }) {
+
+        ops.add< eoRandomSelect<Bits> >();
+        ops.add< eoStochTournamentSelect<Bits> >(0.5);
+        ops.add< eoSequentialSelect<Bits> >();
+        ops.add< eoProportionalSelect<Bits> >();
+        for(size_t i=2; i < 10; i+=4) {
+            ops.add< eoDetTournamentSelect<Bits> >(i);
+        }
     }
-    for(double i=0.51; i<0.91; i+=0.1) { // Tournament size as perc of pop.
-        foundry.selectors.add< eoStochTournamentSelect<Bits> >(i);
-    }
+
+    foundry.aftercross_selectors.add< eoRandomSelect<Bits> >();
+
 
     /***** Replacements ****/
     foundry.replacements.add< eoPlusReplacement<Bits> >();
@@ -94,11 +103,21 @@ Bits::Fitness fake_func(const Bits&) { return 0; }
 
 void print_param_range(const eoParam& param, const size_t slot_size, std::ostream& out = std::cout)
 {
+    // If there is no choice to be made on this operator, comment it out.
+    if(slot_size - 1 <= 0) {
+        out << "# ";
+    }
+
     out << param.longName()
         << "\t\"--" << param.longName() << "=\""
-        << "\ti"
-        << "\t(0," << slot_size << ")"
-        << std::endl;
+        << "\ti";
+
+    if(slot_size -1 <= 0) {
+        out << "\t(0)";
+    } else {
+        out << "\t(0," << slot_size-1 << ")";
+    }
+    out << std::endl;
 }
 
 int main(int argc, char* argv[])
@@ -138,44 +157,54 @@ int main(int argc, char* argv[])
     const size_t instance = instance_p.value();
 
     auto continuator_p = parser.getORcreateParam<size_t>(0,
-            "continuator", "",
-            'o', "Evolution Engine", /*required=*/true);
+            "continuator", "Stopping criterion",
+            'o', "Operator Choice", /*required=*/true);
     const size_t continuator = continuator_p.value();
 
     auto crossover_rate_p = parser.getORcreateParam<size_t>(0,
             "crossover-rate", "",
-            'C', "Evolution Engine", /*required=*/true);
+            'C', "Operator Choice", /*required=*/true);
     const size_t crossover_rate = crossover_rate_p.value();
+
+    auto crossover_selector_p = parser.getORcreateParam<size_t>(0,
+            "cross-selector", "How to selects candidates for cross-over",
+            's', "Operator Choice", /*required=*/true);
+    const size_t crossover_selector = crossover_selector_p.value();
 
     auto crossover_p = parser.getORcreateParam<size_t>(0,
             "crossover", "",
-            'c', "Evolution Engine", /*required=*/true);
+            'c', "Operator Choice", /*required=*/true);
     const size_t crossover = crossover_p.value();
+
+    auto aftercross_selector_p = parser.getORcreateParam<size_t>(0,
+            "aftercross-selector", "How to selects between the two individuals altered by cross-over which one will mutate",
+            'a', "Operator Choice", /*required=*/true);
+    const size_t aftercross_selector = aftercross_selector_p.value();
 
     auto mutation_rate_p = parser.getORcreateParam<size_t>(0,
             "mutation-rate", "",
-            'M', "Evolution Engine", /*required=*/true);
+            'M', "Operator Choice", /*required=*/true);
     const size_t mutation_rate = mutation_rate_p.value();
+
+    auto mutation_selector_p = parser.getORcreateParam<size_t>(0,
+            "mut-selector", "How to selects candidate for mutation",
+            'u', "Operator Choice", /*required=*/true);
+    const size_t mutation_selector = mutation_selector_p.value();
 
     auto mutation_p = parser.getORcreateParam<size_t>(0,
             "mutation", "",
-            'm', "Evolution Engine", /*required=*/true);
+            'm', "Operator Choice", /*required=*/true);
     const size_t mutation = mutation_p.value();
-
-    auto selector_p = parser.getORcreateParam<size_t>(0,
-            "selector", "",
-            's', "Evolution Engine", /*required=*/true);
-    const size_t selector = selector_p.value();
-
-    auto pop_size_p = parser.getORcreateParam<size_t>(0,
-            "pop-size", "",
-            'P', "Evolution Engine", /*required=*/true);
-    const size_t pop_size = pop_size_p.value();
 
     auto replacement_p = parser.getORcreateParam<size_t>(0,
             "replacement", "",
-            'r', "Evolution Engine", /*required=*/true);
+            'r', "Operator Choice", /*required=*/true);
     const size_t replacement = replacement_p.value();
+
+    auto pop_size_p = parser.getORcreateParam<size_t>(0,
+            "pop-size", "Offsprings pop size (0 = same size than the parents pop)",
+            'P', "Operator Choice", /*required=*/true);
+    const size_t pop_size = pop_size_p.value();
 
     // Help + Verbose routines
     make_verbose(parser);
@@ -190,25 +219,34 @@ int main(int argc, char* argv[])
         eoInitFixedLength<Bits> fake_init(/*bitstring size=*/1, fake_gen);
         auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1);
 
-        size_t n = fake_foundry.continuators.size()
-                 * fake_foundry.crossovers.size()
-                 * fake_foundry.mutations.size()
-                 * fake_foundry.selectors.size()
-                 * fake_foundry.replacements.size();
+        size_t n =
+              fake_foundry.crossover_rates.size()
+            * fake_foundry.crossover_selectors.size()
+            * fake_foundry.crossovers.size()
+            * fake_foundry.aftercross_selectors.size()
+            * fake_foundry.mutation_rates.size()
+            * fake_foundry.mutation_selectors.size()
+            * fake_foundry.mutations.size()
+            * fake_foundry.replacements.size()
+            * fake_foundry.continuators.size()
+            * fake_foundry.pop_sizes.size();
+        std::clog << std::endl;
         std::clog << n << " possible algorithms instances." << std::endl;
 
-        std::clog << "Ranges of required parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
+        std::clog << "Ranges of configurable parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
 
         std::cout << "# name\tswitch\ttype\trange" << std::endl;
-        print_param_range(      instance_p, 18, std::cout);
-        print_param_range(   continuator_p, fake_foundry.continuators   .size(), std::cout);
-        print_param_range(     crossover_p, fake_foundry.crossovers     .size(), std::cout);
-        print_param_range(crossover_rate_p, fake_foundry.crossover_rates.size(), std::cout);
-        print_param_range(      mutation_p, fake_foundry.mutations      .size(), std::cout);
-        print_param_range( mutation_rate_p, fake_foundry.mutation_rates .size(), std::cout);
-        print_param_range(      selector_p, fake_foundry.selectors      .size(), std::cout);
-        print_param_range(      pop_size_p, fake_foundry.pop_sizes      .size(), std::cout);
-        print_param_range(   replacement_p, fake_foundry.replacements   .size(), std::cout);
+        print_param_range(           instance_p, 18, std::cout);
+        print_param_range(        continuator_p, fake_foundry.continuators        .size(), std::cout);
+        print_param_range(     crossover_rate_p, fake_foundry.crossover_rates     .size(), std::cout);
+        print_param_range( crossover_selector_p, fake_foundry.crossover_selectors .size(), std::cout);
+        print_param_range(aftercross_selector_p, fake_foundry.aftercross_selectors.size(), std::cout);
+        print_param_range(          crossover_p, fake_foundry.crossovers          .size(), std::cout);
+        print_param_range(      mutation_rate_p, fake_foundry.mutation_rates      .size(), std::cout);
+        print_param_range(  mutation_selector_p, fake_foundry.mutation_selectors  .size(), std::cout);
+        print_param_range(           mutation_p, fake_foundry.mutations           .size(), std::cout);
+        print_param_range(        replacement_p, fake_foundry.replacements        .size(), std::cout);
+        print_param_range(           pop_size_p, fake_foundry.pop_sizes           .size(), std::cout);
 
         // std::ofstream irace_param("fastga.params");
         // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
@@ -218,16 +256,6 @@ int main(int argc, char* argv[])
 
     const size_t generations = static_cast<size_t>(std::floor(
                 static_cast<double>(max_evals) / static_cast<double>(pop_size)));
-
-    Ints encoded_algo(8);
-    encoded_algo[0] = continuator;
-    encoded_algo[1] = crossover_rate;
-    encoded_algo[2] = crossover;
-    encoded_algo[3] = mutation_rate;
-    encoded_algo[4] = mutation;
-    encoded_algo[5] = selector;
-    encoded_algo[6] = pop_size;
-    encoded_algo[7] = replacement;
 
     /***** IOH logger *****/
     IOHprofiler_RangeLinear<size_t> target_range(0, dimension, buckets);
@@ -278,16 +306,22 @@ int main(int argc, char* argv[])
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, ugen);
     auto& foundry = make_foundry(store, onemax_init, onemax_eval, max_evals, generations);
 
+    Ints encoded_algo(foundry.size());
+
+    encoded_algo[foundry.crossover_rates     .index()] = crossover_rate;
+    encoded_algo[foundry.crossover_selectors .index()] = crossover_selector;
+    encoded_algo[foundry.crossovers          .index()] = crossover;
+    encoded_algo[foundry.aftercross_selectors.index()] = aftercross_selector;
+    encoded_algo[foundry.mutation_rates      .index()] = mutation_rate;
+    encoded_algo[foundry.mutation_selectors  .index()] = mutation_selector;
+    encoded_algo[foundry.mutations           .index()] = mutation;
+    encoded_algo[foundry.replacements        .index()] = replacement;
+    encoded_algo[foundry.continuators        .index()] = continuator;
+    encoded_algo[foundry.pop_sizes           .index()] = pop_size;
+
     std::clog << "Encoded algorithm:" << std::endl;
     foundry.select(encoded_algo);
-    std::clog << "\tcontinuator:\t"    << foundry.continuator   ().className() << std::endl;
-    std::clog << "\tcrossover:\t"      << foundry.crossover     ().className() << std::endl;
-    std::clog << "\tcrossover_rate:\t" << foundry.crossover_rate()             << std::endl;
-    std::clog << "\tmutation:\t"       << foundry.mutation      ().className() << std::endl;
-    std::clog << "\tmutation_rate:\t"  << foundry.mutation_rate ()             << std::endl;
-    std::clog << "\tselector:\t"       << foundry.selector      ().className() << std::endl;
-    std::clog << "\tpop_size:\t"       << foundry.pop_size      ()             << std::endl;
-    std::clog << "\treplacement:\t"    << foundry.replacement   ().className() << std::endl;
+    std::clog << foundry.name() << std::endl;
 
     // Evaluation of a forged encoded_algo on the sub-problem
     eoEvalFoundryFastGA<Ints, Bits> eval_foundry(
