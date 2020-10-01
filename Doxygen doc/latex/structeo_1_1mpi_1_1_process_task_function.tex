@@ -1,0 +1,53 @@
+\hypertarget{structeo_1_1mpi_1_1_process_task_function}{}\doxysection{eo\+::mpi\+::Process\+Task\+Function$<$ Job\+Data $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_process_task_function}\index{eo::mpi::ProcessTaskFunction$<$ JobData $>$@{eo::mpi::ProcessTaskFunction$<$ JobData $>$}}
+
+
+Functor (worker side) implementing the processing to do.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Process\+Task\+Function$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_process_task_function__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Process\+Task\+Function$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_process_task_function__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_process_task_function_a3625a18f8f1279d6928608ad7c41ee0c}\label{structeo_1_1mpi_1_1_process_task_function_a3625a18f8f1279d6928608ad7c41ee0c}} 
+{\bfseries Process\+Task\+Function} (\mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{Process\+Task\+Function}}$<$ Job\+Data $>$ $\ast$w=0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Job\+Data$>$\newline
+struct eo\+::mpi\+::\+Process\+Task\+Function$<$ Job\+Data $>$}
+
+Functor (worker side) implementing the processing to do. 
+
+This is where the real computation happen. Whenever the master sends the command \char`\"{}\+Continue\char`\"{} to workers, which indicates the worker will receive a task, the worker calls this functor. The user has to explicitly retrieve the data, handle it and transmit it, processed, back to the master. Data sent back needs to be transmitted via channel (= M\+PI tag) eo\+::mpi\+::\+Channel\+::\+Messages, and no one else. If the worker does not send any data back to the master, the latter will consider the worker isn\textquotesingle{}t done and a deadlock could occur.
+
+This is a functor implementing void \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{operator()()}}, and also a shared data function, containing wrapper on its own type. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

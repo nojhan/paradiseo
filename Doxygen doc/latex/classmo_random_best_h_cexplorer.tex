@@ -1,0 +1,232 @@
+\hypertarget{classmo_random_best_h_cexplorer}{}\doxysection{mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_random_best_h_cexplorer}\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Random\+Best\+H\+Cexplorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_random_best_h_cexplorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_random_best_h_cexplorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_a053e203e5c7b92370f1e789becbbc29c}\label{classmo_random_best_h_cexplorer_a053e203e5c7b92370f1e789becbbc29c}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_ac44eeded5b6dda7a906dba7d4a7bc979}\label{classmo_random_best_h_cexplorer_ac44eeded5b6dda7a906dba7d4a7bc979}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_random_best_h_cexplorer_a13a128f8b8b204d35b45d3d81ba1597c}{mo\+Random\+Best\+H\+Cexplorer}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighbor\+Comparator, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator)
+\item 
+\mbox{\hyperlink{classmo_random_best_h_cexplorer_ab31e4d266b8bb45e2cc57f8c44b6662b}{$\sim$mo\+Random\+Best\+H\+Cexplorer}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer_aaa09dd383e66caf2cf2839a769b231ca}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer_a067edf978d68456719dd3693845f79aa}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer_ac02d2d967b6a7529dd6e31cfac363b53}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer_a7cba401da02e7f8c88b63bfa98793407}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_random_best_h_cexplorer_a3993431b31297559a7086054feaf8518}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_random_best_h_cexplorer_ae1e7fe467c501c476fd81f11f6ac49cc}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_a3360c3b580fa0c39666871dd73dcd1f9}\label{classmo_random_best_h_cexplorer_a3360c3b580fa0c39666871dd73dcd1f9}} 
+\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries neighbor\+Comparator}
+\item 
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_ac4e5da02642c88ce67ced9c4452402d1}\label{classmo_random_best_h_cexplorer_ac4e5da02642c88ce67ced9c4452402d1}} 
+\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries sol\+Neighbor\+Comparator}
+\item 
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_ae7ea128d7e5cd0be08eba394c4e83fc7}\label{classmo_random_best_h_cexplorer_ae7ea128d7e5cd0be08eba394c4e83fc7}} 
+std\+::vector$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries best\+Vector}
+\item 
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_a19ffc9352d4cdb21271ef935bef17bca}\label{classmo_random_best_h_cexplorer_a19ffc9352d4cdb21271ef935bef17bca}} 
+bool {\bfseries is\+Accept}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$}
+
+Explorer for Hill-\/\+Climbing which choose randomly one of the best solution in the neighborhood at each iteration 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_a13a128f8b8b204d35b45d3d81ba1597c}\label{classmo_random_best_h_cexplorer_a13a128f8b8b204d35b45d3d81ba1597c}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!moRandomBestHCexplorer@{moRandomBestHCexplorer}}
+\index{moRandomBestHCexplorer@{moRandomBestHCexplorer}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRandomBestHCexplorer()}{moRandomBestHCexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+eval} & the evaluation function \\
+\hline
+{\em \+\_\+neighbor\+Comparator} & a neighbor comparator \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & solution vs neighbor comparator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_ab31e4d266b8bb45e2cc57f8c44b6662b}\label{classmo_random_best_h_cexplorer_ab31e4d266b8bb45e2cc57f8c44b6662b}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!````~moRandomBestHCexplorer@{$\sim$moRandomBestHCexplorer}}
+\index{````~moRandomBestHCexplorer@{$\sim$moRandomBestHCexplorer}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moRandomBestHCexplorer()}{~moRandomBestHCexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_ae1e7fe467c501c476fd81f11f6ac49cc}\label{classmo_random_best_h_cexplorer_ae1e7fe467c501c476fd81f11f6ac49cc}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+move the solution with the best neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move accept test if an amelirated neighbor was found \\
+\hline
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the best neighbor ameliorate the fitness 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_neutral_h_cexplorer_a93ddf9629cb117a0f2447c096f48fe7c}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_neutral_h_cexplorer_a93ddf9629cb117a0f2447c096f48fe7c}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_aaa09dd383e66caf2cf2839a769b231ca}\label{classmo_random_best_h_cexplorer_aaa09dd383e66caf2cf2839a769b231ca}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+empty the vector of best solutions 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_neutral_h_cexplorer_a21c23de25aa404cd7cd6583245359efc}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_neutral_h_cexplorer_a21c23de25aa404cd7cd6583245359efc}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_a3993431b31297559a7086054feaf8518}\label{classmo_random_best_h_cexplorer_a3993431b31297559a7086054feaf8518}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+continue if a move is accepted 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if an ameliorated neighbor was be found 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3c8f82f330980941f8aab5734dc4629e}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3c8f82f330980941f8aab5734dc4629e}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_a7cba401da02e7f8c88b63bfa98793407}\label{classmo_random_best_h_cexplorer_a7cba401da02e7f8c88b63bfa98793407}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore the neighborhood of a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_ac02d2d967b6a7529dd6e31cfac363b53}\label{classmo_random_best_h_cexplorer_ac02d2d967b6a7529dd6e31cfac363b53}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+terminate\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_best_h_cexplorer_a067edf978d68456719dd3693845f79aa}\label{classmo_random_best_h_cexplorer_a067edf978d68456719dd3693845f79aa}} 
+\index{moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moRandomBestHCexplorer$<$ Neighbor $>$@{moRandomBestHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_best_h_cexplorer}{mo\+Random\+Best\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+empty the vector of best solutions 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3b807ab5e6bef67cffccf48d91829c8c}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3b807ab5e6bef67cffccf48d91829c8c}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+Random\+Best\+H\+Cexplorer.\+h\end{DoxyCompactItemize}

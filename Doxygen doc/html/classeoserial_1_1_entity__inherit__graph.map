@@ -1,0 +1,6 @@
+<map id="eoserial::Entity" name="eoserial::Entity">
+<area shape="rect" id="node1" title="JSON entity." alt="" coords="148,5,268,32"/>
+<area shape="rect" id="node2" href="$classeoserial_1_1_array.html" title="Represents a JSON array." alt="" coords="5,80,123,107"/>
+<area shape="rect" id="node3" href="$classeoserial_1_1_object.html" title="JSON Object." alt="" coords="146,80,270,107"/>
+<area shape="rect" id="node4" href="$classeoserial_1_1_string.html" title="JSON String." alt="" coords="295,80,415,107"/>
+</map>

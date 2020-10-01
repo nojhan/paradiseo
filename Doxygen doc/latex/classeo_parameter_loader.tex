@@ -1,0 +1,170 @@
+\hypertarget{classeo_parameter_loader}{}\doxysection{eo\+Parameter\+Loader Class Reference}
+\label{classeo_parameter_loader}\index{eoParameterLoader@{eoParameterLoader}}
+
+
+{\ttfamily \#include $<$eo\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Parameter\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{classeo_parameter_loader__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classeo_parameter_loader_a63d405323fec3347bbff3dc08fc143a5}{$\sim$eo\+Parameter\+Loader}} ()
+\item 
+virtual void \mbox{\hyperlink{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}{process\+Param}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&param, std\+::string section=\char`\"{}\char`\"{})=0
+\item 
+virtual bool \mbox{\hyperlink{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}{is\+It\+There}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param) const =0
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \& \mbox{\hyperlink{classeo_parameter_loader_a62f5297e11967f4e95660d3668e358f8}{create\+Param}} (Value\+Type \+\_\+default\+Value, std\+::string \+\_\+long\+Name, std\+::string \+\_\+description, char \+\_\+short\+Hand=0, std\+::string \+\_\+section=\char`\"{}\char`\"{}, bool \+\_\+required=false)
+\item 
+virtual \mbox{\hyperlink{classeo_parameter_loader_a93b5e4bf1de8d5715f613dbfa2d35847}{$\sim$eo\+Parameter\+Loader}} ()
+\item 
+virtual void \mbox{\hyperlink{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}{process\+Param}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&param, std\+::string section=\char`\"{}\char`\"{})=0
+\item 
+virtual bool \mbox{\hyperlink{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}{is\+It\+There}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param) const =0
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \& \mbox{\hyperlink{classeo_parameter_loader_a62f5297e11967f4e95660d3668e358f8}{create\+Param}} (Value\+Type \+\_\+default\+Value, std\+::string \+\_\+long\+Name, std\+::string \+\_\+description, char \+\_\+short\+Hand=0, std\+::string \+\_\+section=\char`\"{}\char`\"{}, bool \+\_\+required=false)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameter saving and loading
+
+\mbox{\hyperlink{classeo_parameter_loader}{eo\+Parameter\+Loader}} is an abstract class that can be used as a base for your own parameter loading and saving. The command line parser \mbox{\hyperlink{classeo_parser}{eo\+Parser}} is derived from this class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_parameter_loader_a63d405323fec3347bbff3dc08fc143a5}\label{classeo_parameter_loader_a63d405323fec3347bbff3dc08fc143a5}} 
+\index{eoParameterLoader@{eoParameterLoader}!````~eoParameterLoader@{$\sim$eoParameterLoader}}
+\index{````~eoParameterLoader@{$\sim$eoParameterLoader}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoParameterLoader()}{~eoParameterLoader()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Parameter\+Loader\+::$\sim$eo\+Parameter\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Need a virtual destructor \mbox{\Hypertarget{classeo_parameter_loader_a93b5e4bf1de8d5715f613dbfa2d35847}\label{classeo_parameter_loader_a93b5e4bf1de8d5715f613dbfa2d35847}} 
+\index{eoParameterLoader@{eoParameterLoader}!````~eoParameterLoader@{$\sim$eoParameterLoader}}
+\index{````~eoParameterLoader@{$\sim$eoParameterLoader}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoParameterLoader()}{~eoParameterLoader()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual eo\+Parameter\+Loader\+::$\sim$eo\+Parameter\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Need a virtual destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_parameter_loader_a62f5297e11967f4e95660d3668e358f8}\label{classeo_parameter_loader_a62f5297e11967f4e95660d3668e358f8}} 
+\index{eoParameterLoader@{eoParameterLoader}!createParam@{createParam}}
+\index{createParam@{createParam}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{createParam()}{createParam()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$Value\+Type$>$\& eo\+Parameter\+Loader\+::create\+Param (\begin{DoxyParamCaption}\item[{Value\+Type}]{\+\_\+default\+Value,  }\item[{std\+::string}]{\+\_\+long\+Name,  }\item[{std\+::string}]{\+\_\+description,  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+section = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{\+\_\+required = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a Param and sets its value. The loader will own the memory thus created
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+default\+Value} & The default value \\
+\hline
+{\em \+\_\+long\+Name} & Long name of the argument \\
+\hline
+{\em \+\_\+description} & Description of the parameter. What is useful for. \\
+\hline
+{\em \+\_\+short\+Hand} & Short name of the argument (Optional) \\
+\hline
+{\em \+\_\+section} & Name of the section where the parameter belongs \\
+\hline
+{\em \+\_\+required} & If it is a necessary parameter or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_parameter_loader_a62f5297e11967f4e95660d3668e358f8}\label{classeo_parameter_loader_a62f5297e11967f4e95660d3668e358f8}} 
+\index{eoParameterLoader@{eoParameterLoader}!createParam@{createParam}}
+\index{createParam@{createParam}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{createParam()}{createParam()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$Value\+Type$>$\& eo\+Parameter\+Loader\+::create\+Param (\begin{DoxyParamCaption}\item[{Value\+Type}]{\+\_\+default\+Value,  }\item[{std\+::string}]{\+\_\+long\+Name,  }\item[{std\+::string}]{\+\_\+description,  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+section = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{\+\_\+required = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a Param and sets its value. The loader will own the memory thus created
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+default\+Value} & The default value \\
+\hline
+{\em \+\_\+long\+Name} & Long name of the argument \\
+\hline
+{\em \+\_\+description} & Description of the parameter. What is useful for. \\
+\hline
+{\em \+\_\+short\+Hand} & Short name of the argument (Optional) \\
+\hline
+{\em \+\_\+section} & Name of the section where the parameter belongs \\
+\hline
+{\em \+\_\+required} & If it is a necessary parameter or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}\label{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}} 
+\index{eoParameterLoader@{eoParameterLoader}!isItThere@{isItThere}}
+\index{isItThere@{isItThere}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{isItThere()}{isItThere()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Parameter\+Loader\+::is\+It\+There (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{\+\_\+param }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+checks if \+\_\+param has been actually entered 
+
+Implemented in \mbox{\hyperlink{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}{eo\+Parser}}, and \mbox{\hyperlink{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}{eo\+Parser}}.
+
+\mbox{\Hypertarget{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}\label{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}} 
+\index{eoParameterLoader@{eoParameterLoader}!isItThere@{isItThere}}
+\index{isItThere@{isItThere}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{isItThere()}{isItThere()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Parameter\+Loader\+::is\+It\+There (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{\+\_\+param }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+checks if \+\_\+param has been actually entered 
+
+Implemented in \mbox{\hyperlink{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}{eo\+Parser}}, and \mbox{\hyperlink{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}{eo\+Parser}}.
+
+\mbox{\Hypertarget{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}\label{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}} 
+\index{eoParameterLoader@{eoParameterLoader}!processParam@{processParam}}
+\index{processParam@{processParam}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{processParam()}{processParam()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+Parameter\+Loader\+::process\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{param,  }\item[{std\+::string}]{section = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Register a parameter and set its value if it is known
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & the parameter to process \\
+\hline
+{\em section} & the section where this parameter belongs \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classeo_parser_a3e39518c3f01abbb776b8813a81598de}{eo\+Parser}}, and \mbox{\hyperlink{classeo_parser_a3e39518c3f01abbb776b8813a81598de}{eo\+Parser}}.
+
+\mbox{\Hypertarget{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}\label{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}} 
+\index{eoParameterLoader@{eoParameterLoader}!processParam@{processParam}}
+\index{processParam@{processParam}!eoParameterLoader@{eoParameterLoader}}
+\doxysubsubsection{\texorpdfstring{processParam()}{processParam()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+Parameter\+Loader\+::process\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{param,  }\item[{std\+::string}]{section = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Register a parameter and set its value if it is known
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & the parameter to process \\
+\hline
+{\em section} & the section where this parameter belongs \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classeo_parser_a3e39518c3f01abbb776b8813a81598de}{eo\+Parser}}, and \mbox{\hyperlink{classeo_parser_a3e39518c3f01abbb776b8813a81598de}{eo\+Parser}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Parser.\+h\item 
+deprecated/eo/src/utils/eo\+Parser.\+cpp\end{DoxyCompactItemize}

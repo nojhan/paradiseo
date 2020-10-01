@@ -1,0 +1,83 @@
+\hypertarget{classmo_local_search_init}{}\doxysection{mo\+Local\+Search\+Init$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_local_search_init}\index{moLocalSearchInit$<$ Neighbor $>$@{moLocalSearchInit$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Local\+Search\+Init.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Local\+Search\+Init$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_local_search_init__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Local\+Search\+Init$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_local_search_init__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_local_search_init_a04803e1af6125125f2e3264cdaefedf0}\label{classmo_local_search_init_a04803e1af6125125f2e3264cdaefedf0}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_local_search_init_a18848b42e0ac523bd7681eb3082da468}{mo\+Local\+Search\+Init}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+ls)
+\item 
+void \mbox{\hyperlink{classmo_local_search_init_a9b99841066f3082ba19c2f31a4a50e88}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Local\+Search\+Init$<$ Neighbor $>$}
+
+Initialization of the solution with a local search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_local_search_init_a18848b42e0ac523bd7681eb3082da468}\label{classmo_local_search_init_a18848b42e0ac523bd7681eb3082da468}} 
+\index{moLocalSearchInit$<$ Neighbor $>$@{moLocalSearchInit$<$ Neighbor $>$}!moLocalSearchInit@{moLocalSearchInit}}
+\index{moLocalSearchInit@{moLocalSearchInit}!moLocalSearchInit$<$ Neighbor $>$@{moLocalSearchInit$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moLocalSearchInit()}{moLocalSearchInit()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_local_search_init}{mo\+Local\+Search\+Init}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_local_search_init}{mo\+Local\+Search\+Init}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+ls }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialization of the solution before the local search \\
+\hline
+{\em \+\_\+ls} & the local search to apply to the solution \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_local_search_init_a9b99841066f3082ba19c2f31a4a50e88}\label{classmo_local_search_init_a9b99841066f3082ba19c2f31a4a50e88}} 
+\index{moLocalSearchInit$<$ Neighbor $>$@{moLocalSearchInit$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moLocalSearchInit$<$ Neighbor $>$@{moLocalSearchInit$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_local_search_init}{mo\+Local\+Search\+Init}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Apply the local search on the solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & to perturb \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/perturb/mo\+Local\+Search\+Init.\+h\end{DoxyCompactItemize}

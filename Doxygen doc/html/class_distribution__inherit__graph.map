@@ -1,0 +1,9 @@
+<map id="Distribution" name="Distribution">
+<area shape="rect" id="node1" title="Represents a distribution of processing times." alt="" coords="229,155,327,181"/>
+<area shape="rect" id="node5" href="$class_exponential_distribution.html" title="Exponential distribution." alt="" coords="5,229,180,256"/>
+<area shape="rect" id="node6" href="$class_normal_distribution.html" title="Normal (gaussian) distribution of times." alt="" coords="205,229,351,256"/>
+<area shape="rect" id="node7" href="$class_uniform_distribution.html" title="Uniform distribution." alt="" coords="376,229,527,256"/>
+<area shape="rect" id="node2" title=" " alt="" coords="116,80,267,107"/>
+<area shape="rect" id="node3" href="$classeoserial_1_1_persistent.html" title="Interface showing that object can be eoserialized (written and read from an input)." alt="" coords="291,80,438,107"/>
+<area shape="rect" id="node4" href="$classeoserial_1_1_printable.html" title="Interface showing that object can be written to a eoserial type (currently JSON)." alt="" coords="295,5,435,32"/>
+</map>

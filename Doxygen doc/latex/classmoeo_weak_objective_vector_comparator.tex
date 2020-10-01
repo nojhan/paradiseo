@@ -1,0 +1,64 @@
+\hypertarget{classmoeo_weak_objective_vector_comparator}{}\doxysection{moeo\+Weak\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_weak_objective_vector_comparator}\index{moeoWeakObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoWeakObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Weak\+Objective\+Vector\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Weak\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_weak_objective_vector_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Weak\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_weak_objective_vector_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classmoeo_weak_objective_vector_comparator_a536e1f5ac0d992dfc418a75e80a6404e}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Weak\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$}
+
+This functor class allows to compare 2 objective vectors according to weak dominance. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_weak_objective_vector_comparator_a536e1f5ac0d992dfc418a75e80a6404e}\label{classmoeo_weak_objective_vector_comparator_a536e1f5ac0d992dfc418a75e80a6404e}} 
+\index{moeoWeakObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoWeakObjectiveVectorComparator$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoWeakObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoWeakObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{classmoeo_weak_objective_vector_comparator}{moeo\+Weak\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns true if \+\_\+objective\+Vector1 is weakly dominated by \+\_\+objective\+Vector2 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector1} & the first objective vector \\
+\hline
+{\em \+\_\+objective\+Vector2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/comparator/moeo\+Weak\+Objective\+Vector\+Comparator.\+h\end{DoxyCompactItemize}

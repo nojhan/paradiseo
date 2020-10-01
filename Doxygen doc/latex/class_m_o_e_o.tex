@@ -1,0 +1,369 @@
+\hypertarget{class_m_o_e_o}{}\doxysection{M\+O\+EO$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$ Class Template Reference}
+\label{class_m_o_e_o}\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+
+
+{\ttfamily \#include $<$M\+O\+E\+O.\+h$>$}
+
+
+
+Inheritance diagram for M\+O\+EO$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{class_m_o_e_o__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for M\+O\+EO$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{class_m_o_e_o__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+Objective\+Vector \mbox{\hyperlink{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}{Objective\+Vector}}
+\item 
+typedef M\+O\+E\+O\+Fitness \mbox{\hyperlink{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}{Fitness}}
+\item 
+typedef M\+O\+E\+O\+Diversity \mbox{\hyperlink{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}{Diversity}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_o_e_o_acff537a68ecc80c753318d3e12f842f5}{M\+O\+EO}} ()
+\item 
+virtual \mbox{\hyperlink{class_m_o_e_o_a0215e9acab4ab57088175f9856e6c48c}{$\sim$\+M\+O\+EO}} ()
+\item 
+\mbox{\hyperlink{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}{Objective\+Vector}} \mbox{\hyperlink{class_m_o_e_o_af34036fdd02c5aef46d2a0f000d3a59e}{objective\+Vector}} () const
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_a6f10712f65c248e14c0cb5392b4fcc8c}{objective\+Vector}} (unsigned int \+\_\+dim, typename \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} \+\_\+value)
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} \mbox{\hyperlink{class_m_o_e_o_ac1115e727c12b621a013c0a5abe0a6f3}{objective\+Vector}} (unsigned int \+\_\+dim) const
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_ad4a765a76f9acc1bca36297ab55d7282}{objective\+Vector}} (const \mbox{\hyperlink{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}{Objective\+Vector}} \&\+\_\+objective\+Vector\+Value)
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_a6b75e7e84726cf4e2d50216a35cec70b}{invalidate\+Objective\+Vector}} ()
+\item 
+bool \mbox{\hyperlink{class_m_o_e_o_a1063475f98ef0c8afb8ebf299e5d3baa}{invalid\+Objective\+Vector}} () const
+\item 
+\mbox{\hyperlink{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}{Fitness}} \mbox{\hyperlink{class_m_o_e_o_ae41a75b01ca1899adec50729cd6a4e04}{fitness}} () const
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_a4dc05ded73bb60d1a51e282006c8942d}{fitness}} (const \mbox{\hyperlink{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}{Fitness}} \&\+\_\+fitness\+Value)
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_a55876e2e7cd537052fec1c7f46f37ffe}{invalidate\+Fitness}} ()
+\item 
+bool \mbox{\hyperlink{class_m_o_e_o_a4b5fb8c8c04e86aa039a42ffa2c8b327}{invalid\+Fitness}} () const
+\item 
+\mbox{\hyperlink{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}{Diversity}} \mbox{\hyperlink{class_m_o_e_o_a2242897d75e8849379b66b1e754ba65b}{diversity}} () const
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_a1f0a391984cd14bcf930d1d81dd4848e}{diversity}} (const \mbox{\hyperlink{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}{Diversity}} \&\+\_\+diversity\+Value)
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_a1283a27baab9728673445832e6d4301a}{invalidate\+Diversity}} ()
+\item 
+bool \mbox{\hyperlink{class_m_o_e_o_a580a4b2a92a3f8ca5e56431cf86bbd73}{invalid\+Diversity}} () const
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_a1069501a40e07071d78c067c46b696ee}{invalidate}} ()
+\item 
+bool \mbox{\hyperlink{class_m_o_e_o_a795f686497042d62fce2f87bd47017bc}{invalid}} () const
+\item 
+bool \mbox{\hyperlink{class_m_o_e_o_ad38eef435511ba3a5a310712a608f4ab}{operator$<$}} (const \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} \&\+\_\+other) const
+\item 
+virtual std\+::string \mbox{\hyperlink{class_m_o_e_o_aa020936acf61d8aef30983c2dd220a99}{class\+Name}} () const
+\item 
+virtual void \mbox{\hyperlink{class_m_o_e_o_a99e3dbc645fd2c23a82e9303683a05c5}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{class_m_o_e_o_a1bbd9cb1a7709592bf4bc29dff8c5273}{read\+From}} (std\+::istream \&\+\_\+is)
+\item 
+void \mbox{\hyperlink{class_m_o_e_o_af1d43446c8a552fd4d8a006778419e9d}{flag}} (int \+\_\+flag)
+\item 
+int \mbox{\hyperlink{class_m_o_e_o_af58eec279db269129659de3d05a93ae6}{flag}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+O\+Objective\+Vector, class M\+O\+E\+O\+Fitness = double, class M\+O\+E\+O\+Diversity = double$>$\newline
+class M\+O\+E\+O$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}
+
+Base class allowing to represent a solution (an individual) for multi-\/objective optimization. The template argument M\+O\+E\+O\+Objective\+Vector allows to represent the solution in the objective space (it can be a \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}} object). The template argument M\+O\+E\+O\+Fitness is an object reflecting the quality of the solution in term of convergence (the fitness of a solution is always to be maximized). The template argument M\+O\+E\+O\+Diversity is an object reflecting the quality of the solution in term of diversity (the diversity of a solution is always to be maximized). All template arguments must have a void and a copy constructor. Using some specific representations, you will have to define a copy constructor if the default one is not what you want. In the same cases, you will also have to define the affectation operator (operator=). Then, you will explicitly have to call the parent copy constructor and the parent affectation operator at the beginning of the corresponding implementation. Besides, note that, contrary to the mono-\/objective case (and to \mbox{\hyperlink{class_e_o}{EO}}) where the fitness value of a solution is confused with its objective value, the fitness value differs of the objectives values in the multi-\/objective case. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}\label{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!Diversity@{Diversity}}
+\index{Diversity@{Diversity}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{Diversity}{Diversity}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+typedef M\+O\+E\+O\+Diversity \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::\mbox{\hyperlink{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}{Diversity}}}
+
+the diversity type of a solution \mbox{\Hypertarget{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}\label{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!Fitness@{Fitness}}
+\index{Fitness@{Fitness}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{Fitness}{Fitness}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+typedef M\+O\+E\+O\+Fitness \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::\mbox{\hyperlink{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}{Fitness}}}
+
+the fitness type of a solution \mbox{\Hypertarget{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}\label{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+typedef M\+O\+E\+O\+Objective\+Vector \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::\mbox{\hyperlink{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}{Objective\+Vector}}}
+
+the objective vector type of a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_m_o_e_o_acff537a68ecc80c753318d3e12f842f5}\label{class_m_o_e_o_acff537a68ecc80c753318d3e12f842f5}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!MOEO@{MOEO}}
+\index{MOEO@{MOEO}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{MOEO()}{MOEO()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+\mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::\mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor \mbox{\Hypertarget{class_m_o_e_o_a0215e9acab4ab57088175f9856e6c48c}\label{class_m_o_e_o_a0215e9acab4ab57088175f9856e6c48c}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!````~MOEO@{$\sim$MOEO}}
+\index{````~MOEO@{$\sim$MOEO}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$MOEO()}{~MOEO()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+virtual \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::$\sim$\mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Virtual dtor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_m_o_e_o_aa020936acf61d8aef30983c2dd220a99}\label{class_m_o_e_o_aa020936acf61d8aef30983c2dd220a99}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!className@{className}}
+\index{className@{className}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+virtual std\+::string \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id (the class name as a std\+::string) 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_real_vector_aacfe5de2b5d9a515bd263e52f6cde560}{moeo\+Real\+Vector$<$ D\+T\+L\+Z\+Objective\+Vector, double, double $>$}}, \mbox{\hyperlink{classmoeo_real_vector_aacfe5de2b5d9a515bd263e52f6cde560}{moeo\+Real\+Vector$<$ Sch1\+Objective\+Vector $>$}}, and \mbox{\hyperlink{classmoeo_real_vector_aacfe5de2b5d9a515bd263e52f6cde560}{moeo\+Real\+Vector$<$ Objective\+Vector, double, double $>$}}.
+
+\mbox{\Hypertarget{class_m_o_e_o_a2242897d75e8849379b66b1e754ba65b}\label{class_m_o_e_o_a2242897d75e8849379b66b1e754ba65b}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!diversity@{diversity}}
+\index{diversity@{diversity}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{diversity()}{diversity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+\mbox{\hyperlink{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}{Diversity}} \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::diversity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the diversity value of the current solution \mbox{\Hypertarget{class_m_o_e_o_a1f0a391984cd14bcf930d1d81dd4848e}\label{class_m_o_e_o_a1f0a391984cd14bcf930d1d81dd4848e}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!diversity@{diversity}}
+\index{diversity@{diversity}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{diversity()}{diversity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::diversity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_m_o_e_o_a9682a883fedc6333e95906e02236d492}{Diversity}} \&}]{\+\_\+diversity\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the diversity value of the current solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+diversity\+Value} & the new diversity value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_o_e_o_ae41a75b01ca1899adec50729cd6a4e04}\label{class_m_o_e_o_ae41a75b01ca1899adec50729cd6a4e04}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!fitness@{fitness}}
+\index{fitness@{fitness}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{fitness()}{fitness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+\mbox{\hyperlink{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}{Fitness}} \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::fitness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the fitness value of the current solution \mbox{\Hypertarget{class_m_o_e_o_a4dc05ded73bb60d1a51e282006c8942d}\label{class_m_o_e_o_a4dc05ded73bb60d1a51e282006c8942d}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!fitness@{fitness}}
+\index{fitness@{fitness}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{fitness()}{fitness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::fitness (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_m_o_e_o_a03184b6c0b5c905e0ff5a790a3d55803}{Fitness}} \&}]{\+\_\+fitness\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the fitness value of the current solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fitness\+Value} & the new fitness value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_o_e_o_af58eec279db269129659de3d05a93ae6}\label{class_m_o_e_o_af58eec279db269129659de3d05a93ae6}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!flag@{flag}}
+\index{flag@{flag}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{flag()}{flag()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+int \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for \char`\"{}flag\char`\"{} \begin{DoxyReturn}{Returns}
+the flag value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_o_e_o_af1d43446c8a552fd4d8a006778419e9d}\label{class_m_o_e_o_af1d43446c8a552fd4d8a006778419e9d}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!flag@{flag}}
+\index{flag@{flag}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{flag()}{flag()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::flag (\begin{DoxyParamCaption}\item[{int}]{\+\_\+flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setter for \char`\"{}flag\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+flag} & the flag value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_o_e_o_a795f686497042d62fce2f87bd47017bc}\label{class_m_o_e_o_a795f686497042d62fce2f87bd47017bc}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalid@{invalid}}
+\index{invalid@{invalid}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalid()}{invalid()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+bool \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the objective values are invalid, false otherwise \mbox{\Hypertarget{class_m_o_e_o_a1069501a40e07071d78c067c46b696ee}\label{class_m_o_e_o_a1069501a40e07071d78c067c46b696ee}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the objective vector, the fitness value and the diversity value as invalid \mbox{\Hypertarget{class_m_o_e_o_a1283a27baab9728673445832e6d4301a}\label{class_m_o_e_o_a1283a27baab9728673445832e6d4301a}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalidateDiversity@{invalidateDiversity}}
+\index{invalidateDiversity@{invalidateDiversity}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalidateDiversity()}{invalidateDiversity()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalidate\+Diversity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the diversity value as invalid \mbox{\Hypertarget{class_m_o_e_o_a55876e2e7cd537052fec1c7f46f37ffe}\label{class_m_o_e_o_a55876e2e7cd537052fec1c7f46f37ffe}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalidateFitness@{invalidateFitness}}
+\index{invalidateFitness@{invalidateFitness}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalidateFitness()}{invalidateFitness()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalidate\+Fitness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the fitness value as invalid \mbox{\Hypertarget{class_m_o_e_o_a6b75e7e84726cf4e2d50216a35cec70b}\label{class_m_o_e_o_a6b75e7e84726cf4e2d50216a35cec70b}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalidateObjectiveVector@{invalidateObjectiveVector}}
+\index{invalidateObjectiveVector@{invalidateObjectiveVector}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalidateObjectiveVector()}{invalidateObjectiveVector()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalidate\+Objective\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the objective vector as invalid \mbox{\Hypertarget{class_m_o_e_o_a580a4b2a92a3f8ca5e56431cf86bbd73}\label{class_m_o_e_o_a580a4b2a92a3f8ca5e56431cf86bbd73}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalidDiversity@{invalidDiversity}}
+\index{invalidDiversity@{invalidDiversity}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalidDiversity()}{invalidDiversity()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+bool \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalid\+Diversity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the diversity value is invalid, false otherwise \mbox{\Hypertarget{class_m_o_e_o_a4b5fb8c8c04e86aa039a42ffa2c8b327}\label{class_m_o_e_o_a4b5fb8c8c04e86aa039a42ffa2c8b327}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalidFitness@{invalidFitness}}
+\index{invalidFitness@{invalidFitness}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalidFitness()}{invalidFitness()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+bool \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalid\+Fitness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the fitness value is invalid, false otherwise \mbox{\Hypertarget{class_m_o_e_o_a1063475f98ef0c8afb8ebf299e5d3baa}\label{class_m_o_e_o_a1063475f98ef0c8afb8ebf299e5d3baa}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!invalidObjectiveVector@{invalidObjectiveVector}}
+\index{invalidObjectiveVector@{invalidObjectiveVector}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{invalidObjectiveVector()}{invalidObjectiveVector()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+bool \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::invalid\+Objective\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the objective vector is invalid, false otherwise \mbox{\Hypertarget{class_m_o_e_o_af34036fdd02c5aef46d2a0f000d3a59e}\label{class_m_o_e_o_af34036fdd02c5aef46d2a0f000d3a59e}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!objectiveVector@{objectiveVector}}
+\index{objectiveVector@{objectiveVector}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{objectiveVector()}{objectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+\mbox{\hyperlink{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}{Objective\+Vector}} \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::objective\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the objective vector of the current solution \mbox{\Hypertarget{class_m_o_e_o_ad4a765a76f9acc1bca36297ab55d7282}\label{class_m_o_e_o_ad4a765a76f9acc1bca36297ab55d7282}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!objectiveVector@{objectiveVector}}
+\index{objectiveVector@{objectiveVector}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{objectiveVector()}{objectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::objective\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_m_o_e_o_a9fafca99234ef3cd9fdbaf05bde5a275}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the objective vector of the current solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector\+Value} & the new objective vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_o_e_o_ac1115e727c12b621a013c0a5abe0a6f3}\label{class_m_o_e_o_ac1115e727c12b621a013c0a5abe0a6f3}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!objectiveVector@{objectiveVector}}
+\index{objectiveVector@{objectiveVector}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{objectiveVector()}{objectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::objective\+Vector (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+dim }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets one dimension of the objective vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dim} & dimension of the objective vector to set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_o_e_o_a6f10712f65c248e14c0cb5392b4fcc8c}\label{class_m_o_e_o_a6f10712f65c248e14c0cb5392b4fcc8c}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!objectiveVector@{objectiveVector}}
+\index{objectiveVector@{objectiveVector}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{objectiveVector()}{objectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::objective\+Vector (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+dim,  }\item[{typename \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}}}]{\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets one dimension of the objective vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dim} & dimension of the objective vector to set \\
+\hline
+{\em \+\_\+value} & the new value of the corresponding objective \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_o_e_o_ad38eef435511ba3a5a310712a608f4ab}\label{class_m_o_e_o_ad38eef435511ba3a5a310712a608f4ab}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+bool \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the objective vector of the current solution is smaller than the objective vector of \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing). You should implement another function in the sub-\/class of \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} to have another sorting mecanism. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_o_e_o_a99e3dbc645fd2c23a82e9303683a05c5}\label{class_m_o_e_o_a99e3dbc645fd2c23a82e9303683a05c5}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+virtual void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Writing object 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & output stream \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_e_o_a3a022b10acf3d67e61c253caf1d76356}{E\+O$<$ M\+O\+E\+O\+Objective\+Vector $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}}, \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ D\+T\+L\+Z\+Objective\+Vector, double, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ Flow\+Shop\+Objective\+Vector, unsigned int $>$}}, \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, bool, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, double, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, int, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ Sch1\+Objective\+Vector, double, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{moeo\+Vector$<$ Objective\+Vector, double, double, double $>$}}, and \mbox{\hyperlink{classmoeo_bit_vector_ae54c36ce64b849a6846953a25247a861}{moeo\+Bit\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}}.
+
+\mbox{\Hypertarget{class_m_o_e_o_a1bbd9cb1a7709592bf4bc29dff8c5273}\label{class_m_o_e_o_a1bbd9cb1a7709592bf4bc29dff8c5273}} 
+\index{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$@{MOEO$<$ MOEOObjectiveVector, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+virtual void \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Reading object 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & input stream \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_e_o_a8d98b330d6a8c2b4e3371eae2b2d7e48}{E\+O$<$ M\+O\+E\+O\+Objective\+Vector $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}}, \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ D\+T\+L\+Z\+Objective\+Vector, double, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ Flow\+Shop\+Objective\+Vector, unsigned int $>$}}, \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, bool, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, double, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, int, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ Sch1\+Objective\+Vector, double, double, double $>$}}, \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{moeo\+Vector$<$ Objective\+Vector, double, double, double $>$}}, and \mbox{\hyperlink{classmoeo_bit_vector_a31cd3f894615d0a27dd116a5c8082521}{moeo\+Bit\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/core/M\+O\+E\+O.\+h\end{DoxyCompactItemize}

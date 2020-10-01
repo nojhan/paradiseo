@@ -1,0 +1,5 @@
+<map id="eoParamException" name="eoParamException">
+<area shape="rect" id="node1" title="Base class for exceptions related to eoParam management." alt="" coords="5,155,148,181"/>
+<area shape="rect" id="node2" href="$classeo_exception.html" title="You can catch this base exception if you want to catch anything thrown by ParadisEO." alt="" coords="25,80,128,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="21,5,132,32"/>
+</map>

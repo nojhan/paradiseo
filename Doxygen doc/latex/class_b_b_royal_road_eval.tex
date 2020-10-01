@@ -1,0 +1,135 @@
+\hypertarget{class_b_b_royal_road_eval}{}\doxysection{B\+B\+Royal\+Road\+Eval$<$ E\+OT $>$ Class Template Reference}
+\label{class_b_b_royal_road_eval}\index{BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$bb\+Royal\+Road\+Eval.\+h$>$}
+
+
+
+Inheritance diagram for B\+B\+Royal\+Road\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_b_b_royal_road_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for B\+B\+Royal\+Road\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_b_b_royal_road_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_b_b_royal_road_eval_a17e58af61138f8c4206dfb0664249aff}{B\+B\+Royal\+Road\+Eval}} (unsigned int \+\_\+b, unsigned int \+\_\+k)
+\item 
+void \mbox{\hyperlink{class_b_b_royal_road_eval_abe2b95752397b97f81ac2f7057bc7cc9}{add\+Target}} (vector$<$ bool $>$ \&target, double w)
+\item 
+void \mbox{\hyperlink{class_b_b_royal_road_eval_a8a31404fd68dc0624ccd682acee82352}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)
+\item 
+unsigned int \mbox{\hyperlink{class_b_b_royal_road_eval_ad8921596ebcdae2f8f58f4ea923a60ef}{block\+Size}} ()
+\item 
+unsigned int \mbox{\hyperlink{class_b_b_royal_road_eval_a67a208bbb1a87cbae1bd07a421f78653}{nb\+Blocks}} ()
+\item 
+vector$<$ vector$<$ bool $>$ $>$ \& \mbox{\hyperlink{class_b_b_royal_road_eval_aa06b84e4bb829afc87d3cc5f0c04a2b1}{get\+Targets}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class B\+B\+Royal\+Road\+Eval$<$ E\+O\+T $>$}
+
+Full evaluation \mbox{\hyperlink{struct_function}{Function}} for Building-\/\+Block Royal Road problem\+: Richard A. Watson \& Thomas Jansen, \char`\"{}\+A building-\/block royal road where crossover is provably essential\char`\"{}, G\+E\+C\+CO 07. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_b_b_royal_road_eval_a17e58af61138f8c4206dfb0664249aff}\label{class_b_b_royal_road_eval_a17e58af61138f8c4206dfb0664249aff}} 
+\index{BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}!BBRoyalRoadEval@{BBRoyalRoadEval}}
+\index{BBRoyalRoadEval@{BBRoyalRoadEval}!BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{BBRoyalRoadEval()}{BBRoyalRoadEval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_b_b_royal_road_eval}{B\+B\+Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{class_b_b_royal_road_eval}{B\+B\+Royal\+Road\+Eval}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+b,  }\item[{unsigned int}]{\+\_\+k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+b} & number of blocks \\
+\hline
+{\em \+\_\+k} & size of a block \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_b_b_royal_road_eval_abe2b95752397b97f81ac2f7057bc7cc9}\label{class_b_b_royal_road_eval_abe2b95752397b97f81ac2f7057bc7cc9}} 
+\index{BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}!addTarget@{addTarget}}
+\index{addTarget@{addTarget}!BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{addTarget()}{addTarget()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{class_b_b_royal_road_eval}{B\+B\+Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::add\+Target (\begin{DoxyParamCaption}\item[{vector$<$ bool $>$ \&}]{target,  }\item[{double}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+add a target to sub-\/objective functions
+
+
+\begin{DoxyParams}{Parameters}
+{\em target} & target vector of boolean (of size k) \\
+\hline
+{\em w} & weights of this target \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_b_b_royal_road_eval_ad8921596ebcdae2f8f58f4ea923a60ef}\label{class_b_b_royal_road_eval_ad8921596ebcdae2f8f58f4ea923a60ef}} 
+\index{BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}!blockSize@{blockSize}}
+\index{blockSize@{blockSize}!BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{blockSize()}{blockSize()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{class_b_b_royal_road_eval}{B\+B\+Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::block\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+get the size of a block \begin{DoxyReturn}{Returns}
+block size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_b_b_royal_road_eval_aa06b84e4bb829afc87d3cc5f0c04a2b1}\label{class_b_b_royal_road_eval_aa06b84e4bb829afc87d3cc5f0c04a2b1}} 
+\index{BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}!getTargets@{getTargets}}
+\index{getTargets@{getTargets}!BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{getTargets()}{getTargets()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+vector$<$vector$<$bool$>$ $>$\& \mbox{\hyperlink{class_b_b_royal_road_eval}{B\+B\+Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::get\+Targets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+get the targets \begin{DoxyReturn}{Returns}
+the vector of targets which is a boolean vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_b_b_royal_road_eval_a67a208bbb1a87cbae1bd07a421f78653}\label{class_b_b_royal_road_eval_a67a208bbb1a87cbae1bd07a421f78653}} 
+\index{BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}!nbBlocks@{nbBlocks}}
+\index{nbBlocks@{nbBlocks}!BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nbBlocks()}{nbBlocks()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{class_b_b_royal_road_eval}{B\+B\+Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nb\+Blocks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+get the number of blocks \begin{DoxyReturn}{Returns}
+the number of blocks 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_b_b_royal_road_eval_a8a31404fd68dc0624ccd682acee82352}\label{class_b_b_royal_road_eval_a8a31404fd68dc0624ccd682acee82352}} 
+\index{BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!BBRoyalRoadEval$<$ EOT $>$@{BBRoyalRoadEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{class_b_b_royal_road_eval}{B\+B\+Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Count the number of complete blocks in the bit string 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the solution to evaluate \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/bb\+Royal\+Road\+Eval.\+h\end{DoxyCompactItemize}

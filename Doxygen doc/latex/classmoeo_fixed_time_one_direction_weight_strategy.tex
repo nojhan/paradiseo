@@ -1,0 +1,80 @@
+\hypertarget{classmoeo_fixed_time_one_direction_weight_strategy}{}\doxysection{moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_fixed_time_one_direction_weight_strategy}\index{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$@{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classmoeo_fixed_time_one_direction_weight_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classmoeo_fixed_time_one_direction_weight_strategy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_fixed_time_one_direction_weight_strategy_a7c5da445e4cf109f5b1dcec099d2e308}{moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy}} (double \+\_\+step)
+\item 
+void \mbox{\hyperlink{classmoeo_fixed_time_one_direction_weight_strategy_a5d74fa3878e69e491a65322313589c88}{operator()}} (std\+::vector$<$ double $>$ \&\+\_\+weights, const M\+O\+E\+OT \&moeot)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy$<$ M\+O\+E\+O\+T $>$}
+
+Change all weights according to a simple strategy by adding a step every generation 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_fixed_time_one_direction_weight_strategy_a7c5da445e4cf109f5b1dcec099d2e308}\label{classmoeo_fixed_time_one_direction_weight_strategy_a7c5da445e4cf109f5b1dcec099d2e308}} 
+\index{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$@{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$}!moeoFixedTimeOneDirectionWeightStrategy@{moeoFixedTimeOneDirectionWeightStrategy}}
+\index{moeoFixedTimeOneDirectionWeightStrategy@{moeoFixedTimeOneDirectionWeightStrategy}!moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$@{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFixedTimeOneDirectionWeightStrategy()}{moeoFixedTimeOneDirectionWeightStrategy()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fixed_time_one_direction_weight_strategy}{moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fixed_time_one_direction_weight_strategy}{moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+step} & how much we want the weight to change every iteration \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_fixed_time_one_direction_weight_strategy_a5d74fa3878e69e491a65322313589c88}\label{classmoeo_fixed_time_one_direction_weight_strategy_a5d74fa3878e69e491a65322313589c88}} 
+\index{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$@{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$@{moeoFixedTimeOneDirectionWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_fixed_time_one_direction_weight_strategy}{moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weights,  }\item[{const M\+O\+E\+OT \&}]{moeot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+weights} & the weights to change \\
+\hline
+{\em moeot} & a moeot, not used \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/weighting/moeo\+Fixed\+Time\+One\+Direction\+Weight\+Strategy.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,49 @@
+\hypertarget{group___parameters}{}\doxysection{Parameters management}
+\label{group___parameters}\index{Parameters management@{Parameters management}}
+
+
+A parameter is basically an object that stores a value and that can read/print it from/on streams.  
+
+
+Collaboration diagram for Parameters management\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{group___parameters}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_missing_param_exception}{eo\+Missing\+Param\+Exception}}
+\item 
+class \mbox{\hyperlink{classeo_wrong_param_type_exception}{eo\+Wrong\+Param\+Type\+Exception}}
+\item 
+class \mbox{\hyperlink{classeo_param}{eo\+Param}}
+\item 
+class \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param$<$ Value\+Type $>$}}
+\item 
+class \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}}
+\item 
+class \mbox{\hyperlink{classeo_parameter_loader}{eo\+Parameter\+Loader}}
+\item 
+class \mbox{\hyperlink{classeo_parser}{eo\+Parser}}
+\item 
+class \mbox{\hyperlink{classeo_param_exception}{eo\+Param\+Exception}}
+\begin{DoxyCompactList}\small\item\em Base class for exceptions related to \mbox{\hyperlink{classeo_param}{eo\+Param}} management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___parameters_gae54041770be478820b985219147c544c}\label{group___parameters_gae54041770be478820b985219147c544c}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&\+\_\+os, const \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&\+\_\+rate)
+\item 
+\mbox{\Hypertarget{group___parameters_ga31e8d1ebd1234eb5326e06dca9361a59}\label{group___parameters_ga31e8d1ebd1234eb5326e06dca9361a59}} 
+std\+::istream \& {\bfseries operator$>$$>$} (std\+::istream \&\+\_\+is, \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&\+\_\+rate)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A parameter is basically an object that stores a value and that can read/print it from/on streams. 
+
+It is mainly used for command-\/line options (see \mbox{\hyperlink{classeo_parser}{eo\+Parser}}) and \mbox{\hyperlink{classeo_stat}{eo\+Stat}}. 

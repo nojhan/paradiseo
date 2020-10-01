@@ -1,0 +1,68 @@
+\hypertarget{classmoeo_additive_epsilon_binary_metric}{}\doxysection{moeo\+Additive\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_additive_epsilon_binary_metric}\index{moeoAdditiveEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoAdditiveEpsilonBinaryMetric$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Additive\+Epsilon\+Binary\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Additive\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_additive_epsilon_binary_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Additive\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_additive_epsilon_binary_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classmoeo_additive_epsilon_binary_metric_a545aa2c8e6dd93084276763c9d8a3709}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+o1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+o2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Additive\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$}
+
+Additive epsilon binary metric allowing to compare two objective vectors as proposed in Zitzler E., Thiele L., Laumanns M., Fonseca C. M., Grunert da Fonseca V.\+: Performance Assessment of Multiobjective Optimizers\+: An Analysis and Review. I\+E\+EE Transactions on Evolutionary Computation 7(2), pp.\+117–132 (2003). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_additive_epsilon_binary_metric_a545aa2c8e6dd93084276763c9d8a3709}\label{classmoeo_additive_epsilon_binary_metric_a545aa2c8e6dd93084276763c9d8a3709}} 
+\index{moeoAdditiveEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoAdditiveEpsilonBinaryMetric$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAdditiveEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoAdditiveEpsilonBinaryMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+double \mbox{\hyperlink{classmoeo_additive_epsilon_binary_metric}{moeo\+Additive\+Epsilon\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+o1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+o2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the minimal distance by which the objective vector \+\_\+o1 must be translated in all objectives so that it weakly dominates the objective vector \+\_\+o2 ~\newline
+ \begin{DoxyWarning}{Warning}
+don\textquotesingle{}t forget to set the bounds for every objective before the call of this function 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+o1} & the first objective vector \\
+\hline
+{\em \+\_\+o2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, double $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Additive\+Epsilon\+Binary\+Metric.\+h\end{DoxyCompactItemize}

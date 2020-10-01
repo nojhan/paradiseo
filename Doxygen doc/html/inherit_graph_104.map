@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structeoserial_1_1_push_algorithm.html" title="Functor which explains how to push the value into the eoserial::Array." alt="" coords="5,35,220,61"/>
+<area shape="rect" id="node2" href="$structeoserial_1_1_make_algorithm.html" title="Push algorithm for primitive variables." alt="" coords="268,5,487,32"/>
+<area shape="rect" id="node3" href="$structeoserial_1_1_serializable_push_algorithm.html" title="Push algorithm for eoserial::Persistent variables." alt="" coords="283,57,472,98"/>
+</map>

@@ -1,0 +1,133 @@
+\hypertarget{classedo_e_d_a_s_a}{}\doxysection{edo\+E\+D\+A\+SA$<$ D $>$ Class Template Reference}
+\label{classedo_e_d_a_s_a}\index{edoEDASA$<$ D $>$@{edoEDASA$<$ D $>$}}
+
+
+edo\+E\+D\+A\+S\+A$<$ D $>$  
+
+
+
+
+{\ttfamily \#include $<$edo\+E\+D\+A\+S\+A.\+h$>$}
+
+
+
+Inheritance diagram for edo\+E\+D\+A\+SA$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classedo_e_d_a_s_a__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+E\+D\+A\+SA$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classedo_e_d_a_s_a__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}\label{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}} 
+typedef D\+::\+E\+O\+Type \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}}
+\begin{DoxyCompactList}\small\item\em Alias for the type E\+OT. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classedo_e_d_a_s_a_abe71aaec36f2beea68a018d4115ede82}\label{classedo_e_d_a_s_a_abe71aaec36f2beea68a018d4115ede82}} 
+typedef E\+O\+Type\+::\+Atom\+Type \mbox{\hyperlink{classedo_e_d_a_s_a_abe71aaec36f2beea68a018d4115ede82}{Atom\+Type}}
+\begin{DoxyCompactList}\small\item\em Alias for the atom type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classedo_e_d_a_s_a_ab074fe07dcbc471b82b67c5ba060cae2}\label{classedo_e_d_a_s_a_ab074fe07dcbc471b82b67c5ba060cae2}} 
+typedef E\+O\+Type\+::\+Fitness \mbox{\hyperlink{classedo_e_d_a_s_a_ab074fe07dcbc471b82b67c5ba060cae2}{Fitness}}
+\begin{DoxyCompactList}\small\item\em Alias for the fitness. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classedo_e_d_a_s_a_a2b3bef25ba537fe30ee475f6de4edb47}{edo\+E\+D\+A\+SA}} (\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&selector, \mbox{\hyperlink{classedo_estimator}{edo\+Estimator}}$<$ D $>$ \&estimator, \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&selectone, \mbox{\hyperlink{classedo_modifier_mass}{edo\+Modifier\+Mass}}$<$ D $>$ \&modifier, \mbox{\hyperlink{classedo_sampler}{edo\+Sampler}}$<$ D $>$ \&sampler, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&pop\+\_\+continue, \mbox{\hyperlink{classedo_continue}{edo\+Continue}}$<$ D $>$ \&distribution\+\_\+continue, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&evaluation, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_dummy_neighbor}{mo\+Dummy\+Neighbor}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ $>$ \&sa\+\_\+continue, \mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&cooling\+\_\+schedule, double initial\+\_\+temperature, \mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&replacor)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classedo_e_d_a_s_a}{edo\+E\+D\+A\+SA}} constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classedo_e_d_a_s_a_a468eadee2ecbd2236339721ab5f186af}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&pop)
+\begin{DoxyCompactList}\small\item\em function that launches the E\+D\+A\+SA algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename D$>$\newline
+class edo\+E\+D\+A\+S\+A$<$ D $>$}
+
+edo\+E\+D\+A\+S\+A$<$ D $>$ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classedo_e_d_a_s_a_a2b3bef25ba537fe30ee475f6de4edb47}\label{classedo_e_d_a_s_a_a2b3bef25ba537fe30ee475f6de4edb47}} 
+\index{edoEDASA$<$ D $>$@{edoEDASA$<$ D $>$}!edoEDASA@{edoEDASA}}
+\index{edoEDASA@{edoEDASA}!edoEDASA$<$ D $>$@{edoEDASA$<$ D $>$}}
+\doxysubsubsection{\texorpdfstring{edoEDASA()}{edoEDASA()}}
+{\footnotesize\ttfamily template$<$typename D $>$ \\
+\mbox{\hyperlink{classedo_e_d_a_s_a}{edo\+E\+D\+A\+SA}}$<$ D $>$\+::\mbox{\hyperlink{classedo_e_d_a_s_a}{edo\+E\+D\+A\+SA}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&}]{selector,  }\item[{\mbox{\hyperlink{classedo_estimator}{edo\+Estimator}}$<$ D $>$ \&}]{estimator,  }\item[{\mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&}]{selectone,  }\item[{\mbox{\hyperlink{classedo_modifier_mass}{edo\+Modifier\+Mass}}$<$ D $>$ \&}]{modifier,  }\item[{\mbox{\hyperlink{classedo_sampler}{edo\+Sampler}}$<$ D $>$ \&}]{sampler,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&}]{pop\+\_\+continue,  }\item[{\mbox{\hyperlink{classedo_continue}{edo\+Continue}}$<$ D $>$ \&}]{distribution\+\_\+continue,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&}]{evaluation,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_dummy_neighbor}{mo\+Dummy\+Neighbor}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ $>$ \&}]{sa\+\_\+continue,  }\item[{\mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&}]{cooling\+\_\+schedule,  }\item[{double}]{initial\+\_\+temperature,  }\item[{\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&}]{replacor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{classedo_e_d_a_s_a}{edo\+E\+D\+A\+SA}} constructor 
+
+All the boxes used by a E\+D\+A\+SA need to be given.
+
+
+\begin{DoxyParams}{Parameters}
+{\em selector} & Population Selector \\
+\hline
+{\em estimator} & \mbox{\hyperlink{class_distribution}{Distribution}} Estimator \\
+\hline
+{\em selectone} & Select\+One \\
+\hline
+{\em modifier} & \mbox{\hyperlink{class_distribution}{Distribution}} Modifier \\
+\hline
+{\em sampler} & \mbox{\hyperlink{class_distribution}{Distribution}} Sampler \\
+\hline
+{\em pop\+\_\+continue} & Population Continuator \\
+\hline
+{\em distribution\+\_\+continue} & \mbox{\hyperlink{class_distribution}{Distribution}} Continuator \\
+\hline
+{\em evaluation} & Evaluation function. \\
+\hline
+{\em sa\+\_\+continue} & Stopping criterion. \\
+\hline
+{\em cooling\+\_\+schedule} & Cooling schedule, describes how the temperature is modified. \\
+\hline
+{\em initial\+\_\+temperature} & The initial temperature. \\
+\hline
+{\em replacor} & Population replacor \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classedo_e_d_a_s_a_a468eadee2ecbd2236339721ab5f186af}\label{classedo_e_d_a_s_a_a468eadee2ecbd2236339721ab5f186af}} 
+\index{edoEDASA$<$ D $>$@{edoEDASA$<$ D $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!edoEDASA$<$ D $>$@{edoEDASA$<$ D $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename D $>$ \\
+void \mbox{\hyperlink{classedo_e_d_a_s_a}{edo\+E\+D\+A\+SA}}$<$ D $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classedo_e_d_a_s_a_ad3a9e4229badf8517e3eb652583380fe}{E\+O\+Type}} $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+function that launches the E\+D\+A\+SA algorithm. 
+
+As a \mbox{\hyperlink{classmo_t_s}{mo\+TS}} or a mo\+HC, the E\+D\+A\+SA can be used for H\+Y\+B\+R\+I\+D\+A\+T\+I\+ON in an evolutionary algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pop} & A population to improve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ D\+::\+E\+O\+Type $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+E\+D\+A\+S\+A.\+h\end{DoxyCompactItemize}

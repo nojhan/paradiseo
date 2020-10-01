@@ -1,0 +1,100 @@
+\hypertarget{class_distribution}{}\doxysection{Distribution Class Reference}
+\label{class_distribution}\index{Distribution@{Distribution}}
+
+
+Represents a distribution of processing times.  
+
+
+
+
+Inheritance diagram for Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_distribution__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_distribution__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_distribution_a9e2aa9e78fcd62aabc2405ee575befb9}\label{class_distribution_a9e2aa9e78fcd62aabc2405ee575befb9}} 
+void \mbox{\hyperlink{class_distribution_a9e2aa9e78fcd62aabc2405ee575befb9}{fill}} (unsigned size)
+\begin{DoxyCompactList}\small\item\em Really fills the vector with the distribution values. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_distribution_a0478f4f3f3b4e72e163073b0dc7eb29c}{next\+\_\+element}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the next element of the distribution to put in the vector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_distribution_a3452bebe8b264677140f8216400fd85d}{make\+\_\+parser}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&parser)=0
+\begin{DoxyCompactList}\small\item\em Creates params and retrieves values from parser. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_distribution_affeac03c110a2e65af7ef22bc09d29f8}{is\+Active}} ()
+\begin{DoxyCompactList}\small\item\em Returns true if this distribution has been activated by the command line. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_distribution_ac6cdb3d5f178c78312923dc3acd50493}\label{class_distribution_ac6cdb3d5f178c78312923dc3acd50493}} 
+virtual std\+::string \mbox{\hyperlink{class_distribution_ac6cdb3d5f178c78312923dc3acd50493}{to\+String}} () const =0
+\begin{DoxyCompactList}\small\item\em Prints the name and the parameters of the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_distribution_a9a208501e0c03d3743af58e272e8979a}\label{class_distribution_a9a208501e0c03d3743af58e272e8979a}} 
+bool {\bfseries \+\_\+active}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a distribution of processing times. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_distribution_affeac03c110a2e65af7ef22bc09d29f8}\label{class_distribution_affeac03c110a2e65af7ef22bc09d29f8}} 
+\index{Distribution@{Distribution}!isActive@{isActive}}
+\index{isActive@{isActive}!Distribution@{Distribution}}
+\doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
+{\footnotesize\ttfamily bool Distribution\+::is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns true if this distribution has been activated by the command line. 
+
+Used by the main program so as to check if at least one distribution has been activated. \mbox{\Hypertarget{class_distribution_a3452bebe8b264677140f8216400fd85d}\label{class_distribution_a3452bebe8b264677140f8216400fd85d}} 
+\index{Distribution@{Distribution}!make\_parser@{make\_parser}}
+\index{make\_parser@{make\_parser}!Distribution@{Distribution}}
+\doxysubsubsection{\texorpdfstring{make\_parser()}{make\_parser()}}
+{\footnotesize\ttfamily virtual void Distribution\+::make\+\_\+parser (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{parser }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates params and retrieves values from parser. 
+
+Parser\textquotesingle{}s params should take milliseconds as inputs. 
+
+Implemented in \mbox{\hyperlink{class_exponential_distribution_a85a30cf445131c1671f13cf891e4ba39}{Exponential\+Distribution}}, \mbox{\hyperlink{class_normal_distribution_aa51682d19514eb1b9305898397dedc11}{Normal\+Distribution}}, and \mbox{\hyperlink{class_uniform_distribution_a2cbb154deb85c1345b1b5ff0e9d281ac}{Uniform\+Distribution}}.
+
+\mbox{\Hypertarget{class_distribution_a0478f4f3f3b4e72e163073b0dc7eb29c}\label{class_distribution_a0478f4f3f3b4e72e163073b0dc7eb29c}} 
+\index{Distribution@{Distribution}!next\_element@{next\_element}}
+\index{next\_element@{next\_element}!Distribution@{Distribution}}
+\doxysubsubsection{\texorpdfstring{next\_element()}{next\_element()}}
+{\footnotesize\ttfamily virtual int Distribution\+::next\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the next element of the distribution to put in the vector. 
+
+\begin{DoxyReturn}{Returns}
+Number of milliseconds to wait. Can be negative ; in this case, the number will be truncated to 0ms. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_exponential_distribution_a8fb4915fd57627f1081b0ea5cf0ec911}{Exponential\+Distribution}}, \mbox{\hyperlink{class_normal_distribution_a0decf2373d21bc282999cebcc5f02eff}{Normal\+Distribution}}, and \mbox{\hyperlink{class_uniform_distribution_afb67f02508a7086060011a8672da81fa}{Uniform\+Distribution}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/test/mpi/\mbox{\hyperlink{t-mpi-distrib-exp_8cpp}{t-\/mpi-\/distrib-\/exp.\+cpp}}\end{DoxyCompactItemize}

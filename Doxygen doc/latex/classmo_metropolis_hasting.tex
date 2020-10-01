@@ -1,0 +1,123 @@
+\hypertarget{classmo_metropolis_hasting}{}\doxysection{mo\+Metropolis\+Hasting$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_metropolis_hasting}\index{moMetropolisHasting$<$ Neighbor $>$@{moMetropolisHasting$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Metropolis\+Hasting.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Metropolis\+Hasting$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_metropolis_hasting__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Metropolis\+Hasting$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_metropolis_hasting__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_metropolis_hasting_a3854d1a23765bd49c7c42a77e6d076ab}\label{classmo_metropolis_hasting_a3854d1a23765bd49c7c42a77e6d076ab}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_metropolis_hasting_af044f3a043dd6a7b43ec1b7160794ef4}\label{classmo_metropolis_hasting_af044f3a043dd6a7b43ec1b7160794ef4}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_metropolis_hasting_a59fbfaf4e23fe7d8d7c87c5d97df2afd}{mo\+Metropolis\+Hasting}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Step)
+\item 
+\mbox{\hyperlink{classmo_metropolis_hasting_ac4a376c4f10819e92e3f7fb41c3b6586}{mo\+Metropolis\+Hasting}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Step, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+\mbox{\hyperlink{classmo_metropolis_hasting_a8507bb09339314327c9efff272c1afa9}{mo\+Metropolis\+Hasting}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Step, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+compN, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+comp\+SN)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Metropolis\+Hasting$<$ Neighbor $>$}
+
+Metropolis-\/\+Hasting local search Only the symetric case is considered when Q(x,y) = Q(y,x) Fitness must be $>$ 0
+
+At each iteration, one of the random solution in the neighborhood is selected if the selected neighbor have higher or equal fitness than the current solution then the solution is replaced by the selected neighbor if a random number from \mbox{[}0,1\mbox{]} is lower than fitness(neighbor) / fitness(solution) then the solution is replaced by the selected neighbor the algorithm stops when the number of iterations is too large 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_metropolis_hasting_a59fbfaf4e23fe7d8d7c87c5d97df2afd}\label{classmo_metropolis_hasting_a59fbfaf4e23fe7d8d7c87c5d97df2afd}} 
+\index{moMetropolisHasting$<$ Neighbor $>$@{moMetropolisHasting$<$ Neighbor $>$}!moMetropolisHasting@{moMetropolisHasting}}
+\index{moMetropolisHasting@{moMetropolisHasting}!moMetropolisHasting$<$ Neighbor $>$@{moMetropolisHasting$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMetropolisHasting()}{moMetropolisHasting()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_metropolis_hasting}{mo\+Metropolis\+Hasting}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_metropolis_hasting}{mo\+Metropolis\+Hasting}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Basic constructor of the Metropolis-\/\+Hasting 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & maximum step to do \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_metropolis_hasting_ac4a376c4f10819e92e3f7fb41c3b6586}\label{classmo_metropolis_hasting_ac4a376c4f10819e92e3f7fb41c3b6586}} 
+\index{moMetropolisHasting$<$ Neighbor $>$@{moMetropolisHasting$<$ Neighbor $>$}!moMetropolisHasting@{moMetropolisHasting}}
+\index{moMetropolisHasting@{moMetropolisHasting}!moMetropolisHasting$<$ Neighbor $>$@{moMetropolisHasting$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMetropolisHasting()}{moMetropolisHasting()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_metropolis_hasting}{mo\+Metropolis\+Hasting}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_metropolis_hasting}{mo\+Metropolis\+Hasting}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Step,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Simple constructor of the Metropolis-\/\+Hasting 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & maximum step to do \\
+\hline
+{\em \+\_\+cont} & an external continuator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_metropolis_hasting_a8507bb09339314327c9efff272c1afa9}\label{classmo_metropolis_hasting_a8507bb09339314327c9efff272c1afa9}} 
+\index{moMetropolisHasting$<$ Neighbor $>$@{moMetropolisHasting$<$ Neighbor $>$}!moMetropolisHasting@{moMetropolisHasting}}
+\index{moMetropolisHasting@{moMetropolisHasting}!moMetropolisHasting$<$ Neighbor $>$@{moMetropolisHasting$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMetropolisHasting()}{moMetropolisHasting()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_metropolis_hasting}{mo\+Metropolis\+Hasting}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_metropolis_hasting}{mo\+Metropolis\+Hasting}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Step,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+compN,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+comp\+SN }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+General constructor of the Metropolis-\/\+Hasting 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & maximum step to do \\
+\hline
+{\em \+\_\+cont} & an external continuator \\
+\hline
+{\em \+\_\+compN} & a neighbor vs neighbor comparator \\
+\hline
+{\em \+\_\+comp\+SN} & a solution vs neighbor comparator \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/algo/mo\+Metropolis\+Hasting.\+h\end{DoxyCompactItemize}

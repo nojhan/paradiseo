@@ -1,0 +1,266 @@
+\hypertarget{classeo_how_many}{}\doxysection{eo\+How\+Many Class Reference}
+\label{classeo_how_many}\index{eoHowMany@{eoHowMany}}
+
+
+{\ttfamily \#include $<$eo\+How\+Many.\+h$>$}
+
+
+
+Inheritance diagram for eo\+How\+Many\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classeo_how_many__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+How\+Many\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classeo_how_many__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_how_many_a9bf987a5b7cae0ec328d901b30dd4e0f}{eo\+How\+Many}} (double \+\_\+rate=0.\+0, bool \+\_\+interpret\+\_\+as\+\_\+rate=true)
+\item 
+\mbox{\hyperlink{classeo_how_many_a18f3e575102f3b3492f0ee4da8a29876}{eo\+How\+Many}} (int \+\_\+count)
+\item 
+\mbox{\hyperlink{classeo_how_many_a26ab4da37f7545777e723122e264f9e5}{eo\+How\+Many}} (unsigned int \+\_\+count)
+\item 
+\mbox{\Hypertarget{classeo_how_many_a8b8cdc90bd31ff539957b10c23b328f2}\label{classeo_how_many_a8b8cdc90bd31ff539957b10c23b328f2}} 
+virtual \mbox{\hyperlink{classeo_how_many_a8b8cdc90bd31ff539957b10c23b328f2}{$\sim$eo\+How\+Many}} ()
+\begin{DoxyCompactList}\small\item\em Virtual dtor. They are needed in virtual class hierarchies. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classeo_how_many_a8195ba4f3ff26bbd101dd7044cc9709f}{operator()}} (unsigned int \+\_\+size)
+\item 
+virtual void \mbox{\hyperlink{classeo_how_many_ad166d8309658f645591bd8d0c43932a2}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_how_many_a87af638855d48af31b0ed15a4297d131}{read\+From}} (std\+::istream \&\+\_\+is)
+\item 
+\mbox{\Hypertarget{classeo_how_many_a0705e868da69adaae05f7be8dd95a1ce}\label{classeo_how_many_a0705e868da69adaae05f7be8dd95a1ce}} 
+void {\bfseries read\+From} (std\+::string \+\_\+value)
+\item 
+\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \mbox{\hyperlink{classeo_how_many_a408d67356f2ed1f216d3da293826a2f9}{operator-\/}} ()
+\item 
+\mbox{\hyperlink{classeo_how_many_a9bf987a5b7cae0ec328d901b30dd4e0f}{eo\+How\+Many}} (double \+\_\+rate=0.\+0, bool \+\_\+interpret\+\_\+as\+\_\+rate=true)
+\item 
+\mbox{\hyperlink{classeo_how_many_a18f3e575102f3b3492f0ee4da8a29876}{eo\+How\+Many}} (int \+\_\+count)
+\item 
+\mbox{\hyperlink{classeo_how_many_a26ab4da37f7545777e723122e264f9e5}{eo\+How\+Many}} (unsigned int \+\_\+count)
+\item 
+\mbox{\Hypertarget{classeo_how_many_a8b8cdc90bd31ff539957b10c23b328f2}\label{classeo_how_many_a8b8cdc90bd31ff539957b10c23b328f2}} 
+virtual \mbox{\hyperlink{classeo_how_many_a8b8cdc90bd31ff539957b10c23b328f2}{$\sim$eo\+How\+Many}} ()
+\begin{DoxyCompactList}\small\item\em Virtual dtor. They are needed in virtual class hierarchies. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classeo_how_many_a8195ba4f3ff26bbd101dd7044cc9709f}{operator()}} (unsigned int \+\_\+size)
+\item 
+virtual void \mbox{\hyperlink{classeo_how_many_ad166d8309658f645591bd8d0c43932a2}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_how_many_a87af638855d48af31b0ed15a4297d131}{read\+From}} (std\+::istream \&\+\_\+is)
+\item 
+\mbox{\Hypertarget{classeo_how_many_a0705e868da69adaae05f7be8dd95a1ce}\label{classeo_how_many_a0705e868da69adaae05f7be8dd95a1ce}} 
+void {\bfseries read\+From} (std\+::string \+\_\+value)
+\item 
+\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \mbox{\hyperlink{classeo_how_many_a408d67356f2ed1f216d3da293826a2f9}{operator-\/}} ()
+\item 
+\mbox{\Hypertarget{classeo_how_many_aa5ff027d3b90534a3915d172a6e84e2a}\label{classeo_how_many_aa5ff027d3b90534a3915d172a6e84e2a}} 
+void {\bfseries value} (double \+\_\+rate, bool \+\_\+interpret\+\_\+as\+\_\+rate)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A helper class, to determine a number of individuals from another one Typically, is used in selection / replacement procedures, e.\+g. the number of offspring from the number of parents, or the number of survivors for an \mbox{\hyperlink{classeo_reduce}{eo\+Reduce}} functor, ...
+
+Such construct is very useful because in some cases you might not know the population size that will enter the replacement. For instance, you cannot simply have a pre-\/computed (double) rate of 1/pop\+Size if you want to select or kill just 1 guy. Using an \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} allows one to modify the population size without touching anything else.
+
+There are 4 possible way to compute the return value from the argument\+:
+\begin{DoxyItemize}
+\item an absolute P\+O\+S\+I\+T\+I\+VE integer -\/-\/$>$ return it (regardless of popsize)
+\item a P\+O\+S\+I\+T\+I\+VE rate -\/-\/$>$ return rate$\ast$pop\+Size
+\item an absolute N\+E\+G\+A\+T\+I\+VE integer -\/-\/$>$ return popsize-\/rate (if positive)
+\item a N\+E\+G\+A\+T\+I\+VE rate in \mbox{[}-\/1,0\mbox{]} -\/-\/$>$ store and use 1-\/$\vert$rate$\vert$ (positive) Note that a negative rate should be have been necessary because a rate is relative, but it is there for consistency reasons -\/ and because it is needed in \href{classeo_g3_replacement_h-source.html}{\texttt{ eo\+G3\+Replacement}}
+\end{DoxyItemize}
+
+It has 2 private members, a double and an integer to cover all cases
+
+Example use\+: in \href{class_eogeneralbreeder.html}{\texttt{ eo\+General\+Breeder.\+h}} Example reading from parser\+: in \href{make_algo_scalar_h-source.html}{\texttt{ do/make\+\_\+algo\+\_\+scalar.\+h line 141}}
+
+MS 10/04/2002\+: Added the possibility to have a negative number -\/ when treated as a number\+: returns then (size -\/ count) Should not modify anything when a positive number is passed in the ctor
+
+MS 20/06/2002\+: Added the negative rate and the \mbox{\hyperlink{classeo_how_many_a408d67356f2ed1f216d3da293826a2f9}{operator-\/()}} (for eo\+G3\+Repalcement)
+
+It is an \mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} because we need to be able to use eo\+Param\+Value$<$eo\+How\+Many$>$ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_how_many_a9bf987a5b7cae0ec328d901b30dd4e0f}\label{classeo_how_many_a9bf987a5b7cae0ec328d901b30dd4e0f}} 
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{eoHowMany()}{eoHowMany()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily eo\+How\+Many\+::eo\+How\+Many (\begin{DoxyParamCaption}\item[{double}]{\+\_\+rate = {\ttfamily 0.0},  }\item[{bool}]{\+\_\+interpret\+\_\+as\+\_\+rate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Original Ctor from direct rate + bool 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rate} & the rate, OR the integer to store, depending on 2nd arg. \\
+\hline
+{\em \+\_\+interpret\+\_\+as\+\_\+rate} & to tell whether the rate actually is a rate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_how_many_a18f3e575102f3b3492f0ee4da8a29876}\label{classeo_how_many_a18f3e575102f3b3492f0ee4da8a29876}} 
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{eoHowMany()}{eoHowMany()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily eo\+How\+Many\+::eo\+How\+Many (\begin{DoxyParamCaption}\item[{int}]{\+\_\+count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from an int -\/ both from int and unsigned int are needed to avoid ambiguity with the Ctor from a double \mbox{\Hypertarget{classeo_how_many_a26ab4da37f7545777e723122e264f9e5}\label{classeo_how_many_a26ab4da37f7545777e723122e264f9e5}} 
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{eoHowMany()}{eoHowMany()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily eo\+How\+Many\+::eo\+How\+Many (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from an unsigned int -\/ both from int and unsigned int are needed to avoid ambiguity with the Ctor from a double \mbox{\Hypertarget{classeo_how_many_a9bf987a5b7cae0ec328d901b30dd4e0f}\label{classeo_how_many_a9bf987a5b7cae0ec328d901b30dd4e0f}} 
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{eoHowMany()}{eoHowMany()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily eo\+How\+Many\+::eo\+How\+Many (\begin{DoxyParamCaption}\item[{double}]{\+\_\+rate = {\ttfamily 0.0},  }\item[{bool}]{\+\_\+interpret\+\_\+as\+\_\+rate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Original Ctor from direct rate + bool 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rate} & the rate, OR the integer to store, depending on 2nd arg. \\
+\hline
+{\em \+\_\+interpret\+\_\+as\+\_\+rate} & to tell whether the rate actually is a rate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_how_many_a18f3e575102f3b3492f0ee4da8a29876}\label{classeo_how_many_a18f3e575102f3b3492f0ee4da8a29876}} 
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{eoHowMany()}{eoHowMany()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily eo\+How\+Many\+::eo\+How\+Many (\begin{DoxyParamCaption}\item[{int}]{\+\_\+count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from an int -\/ both from int and unsigned int are needed to avoid ambiguity with the Ctor from a double \mbox{\Hypertarget{classeo_how_many_a26ab4da37f7545777e723122e264f9e5}\label{classeo_how_many_a26ab4da37f7545777e723122e264f9e5}} 
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\index{eoHowMany@{eoHowMany}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{eoHowMany()}{eoHowMany()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily eo\+How\+Many\+::eo\+How\+Many (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from an unsigned int -\/ both from int and unsigned int are needed to avoid ambiguity with the Ctor from a double 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_how_many_a8195ba4f3ff26bbd101dd7044cc9709f}\label{classeo_how_many_a8195ba4f3ff26bbd101dd7044cc9709f}} 
+\index{eoHowMany@{eoHowMany}!operator()@{operator()}}
+\index{operator()@{operator()}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily unsigned int eo\+How\+Many\+::operator() (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Does what it was designed for
+\begin{DoxyItemize}
+\item count==0 \+: return rate$\ast$\+\_\+size
+\item else
+\begin{DoxyItemize}
+\item count$>$0 \+: return count (regardless of \+\_\+size)
+\item count$<$0 \+: return \+\_\+size-\/$\vert$count$\vert$ 
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{classeo_how_many_a8195ba4f3ff26bbd101dd7044cc9709f}\label{classeo_how_many_a8195ba4f3ff26bbd101dd7044cc9709f}} 
+\index{eoHowMany@{eoHowMany}!operator()@{operator()}}
+\index{operator()@{operator()}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily unsigned int eo\+How\+Many\+::operator() (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Does what it was designed for
+\begin{DoxyItemize}
+\item count==0 \+: return rate$\ast$\+\_\+size
+\item else
+\begin{DoxyItemize}
+\item count$>$0 \+: return count (regardless of \+\_\+size)
+\item count$<$0 \+: return \+\_\+size-\/$\vert$count$\vert$ 
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{classeo_how_many_a408d67356f2ed1f216d3da293826a2f9}\label{classeo_how_many_a408d67356f2ed1f216d3da293826a2f9}} 
+\index{eoHowMany@{eoHowMany}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} eo\+How\+Many\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The unary -\/ operator\+: reverses the computation \mbox{\Hypertarget{classeo_how_many_a408d67356f2ed1f216d3da293826a2f9}\label{classeo_how_many_a408d67356f2ed1f216d3da293826a2f9}} 
+\index{eoHowMany@{eoHowMany}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} eo\+How\+Many\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The unary -\/ operator\+: reverses the computation \mbox{\Hypertarget{classeo_how_many_ad166d8309658f645591bd8d0c43932a2}\label{classeo_how_many_ad166d8309658f645591bd8d0c43932a2}} 
+\index{eoHowMany@{eoHowMany}!printOn@{printOn}}
+\index{printOn@{printOn}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+How\+Many\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. It\textquotesingle{}s called print\+On since it prints the object on a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_how_many_ad166d8309658f645591bd8d0c43932a2}\label{classeo_how_many_ad166d8309658f645591bd8d0c43932a2}} 
+\index{eoHowMany@{eoHowMany}!printOn@{printOn}}
+\index{printOn@{printOn}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+How\+Many\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. It\textquotesingle{}s called print\+On since it prints the object on a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_how_many_a87af638855d48af31b0ed15a4297d131}\label{classeo_how_many_a87af638855d48af31b0ed15a4297d131}} 
+\index{eoHowMany@{eoHowMany}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+How\+Many\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Read object. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & A std\+::istream. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+std\+::exception} & If a valid object can\textquotesingle{}t be read. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_how_many_a87af638855d48af31b0ed15a4297d131}\label{classeo_how_many_a87af638855d48af31b0ed15a4297d131}} 
+\index{eoHowMany@{eoHowMany}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoHowMany@{eoHowMany}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+How\+Many\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Read object. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & A std\+::istream. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+std\+::exception} & If a valid object can\textquotesingle{}t be read. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+How\+Many.\+h\end{DoxyCompactItemize}

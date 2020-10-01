@@ -1,0 +1,120 @@
+\hypertarget{classmo_combined_continuator}{}\doxysection{mo\+Combined\+Continuator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_combined_continuator}\index{moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Combined\+Continuator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Combined\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_combined_continuator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Combined\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_combined_continuator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_combined_continuator_aa5df660aec3d6880c5736e769dbda192}\label{classmo_combined_continuator_aa5df660aec3d6880c5736e769dbda192}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_combined_continuator_af948d59916be10f0548e7c937871b9df}{mo\+Combined\+Continuator}} (\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+void \mbox{\hyperlink{classmo_combined_continuator_a354d9b1cca1c3eb54a21668179eef2e3}{add}} (\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+virtual void \mbox{\hyperlink{classmo_combined_continuator_ac4059747e6cb4d039e8bcd8aa4b5bfc9}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_combined_continuator_aab59318014eb3d9663581a6ca490095d}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Combined\+Continuator$<$ Neighbor $>$}
+
+Combined several continuators. Continue until one of the continuators returns false 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_combined_continuator_af948d59916be10f0548e7c937871b9df}\label{classmo_combined_continuator_af948d59916be10f0548e7c937871b9df}} 
+\index{moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}!moCombinedContinuator@{moCombinedContinuator}}
+\index{moCombinedContinuator@{moCombinedContinuator}!moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moCombinedContinuator()}{moCombinedContinuator()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_combined_continuator}{mo\+Combined\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_combined_continuator}{mo\+Combined\+Continuator}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor (\mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}} must have at least one continuator) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+cont} & a continuator \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_combined_continuator_a354d9b1cca1c3eb54a21668179eef2e3}\label{classmo_combined_continuator_a354d9b1cca1c3eb54a21668179eef2e3}} 
+\index{moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_combined_continuator}{mo\+Combined\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+add a continuator to the combined continuator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+cont} & a continuator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_combined_continuator_ac4059747e6cb4d039e8bcd8aa4b5bfc9}\label{classmo_combined_continuator_ac4059747e6cb4d039e8bcd8aa4b5bfc9}} 
+\index{moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_combined_continuator}{mo\+Combined\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+init all continuators 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_continuator_a2e0feb9a6288cd6cba6b6817c9cdf481}{mo\+Continuator$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_combined_continuator_aab59318014eb3d9663581a6ca490095d}\label{classmo_combined_continuator_aab59318014eb3d9663581a6ca490095d}} 
+\index{moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moCombinedContinuator$<$ Neighbor $>$@{moCombinedContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_combined_continuator}{mo\+Combined\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true all the continuators are true 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Combined\+Continuator.\+h\end{DoxyCompactItemize}

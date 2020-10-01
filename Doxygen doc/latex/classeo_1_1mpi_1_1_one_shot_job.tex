@@ -1,0 +1,53 @@
+\hypertarget{classeo_1_1mpi_1_1_one_shot_job}{}\doxysection{eo\+::mpi\+::One\+Shot\+Job$<$ Job\+Data $>$ Class Template Reference}
+\label{classeo_1_1mpi_1_1_one_shot_job}\index{eo::mpi::OneShotJob$<$ JobData $>$@{eo::mpi::OneShotJob$<$ JobData $>$}}
+
+
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} that will be launched only once.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::One\+Shot\+Job$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{classeo_1_1mpi_1_1_one_shot_job__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::One\+Shot\+Job$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_one_shot_job__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_one_shot_job_ac797b045395ea4e00ef7b4fb679013e6}\label{classeo_1_1mpi_1_1_one_shot_job_ac797b045395ea4e00ef7b4fb679013e6}} 
+{\bfseries One\+Shot\+Job} (\mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \&algo, int master\+Rank, \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}}$<$ Job\+Data $>$ \&store)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Job\+Data$>$\newline
+class eo\+::mpi\+::\+One\+Shot\+Job$<$ Job\+Data $>$}
+
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} that will be launched only once. 
+
+As explained in \mbox{\hyperlink{namespaceeo_1_1mpi}{eo\+::mpi}} documentation, jobs can happen either a well known amount of times or an unknown amount of times. This class implements the general case when the job is launched a well known amount of times. The job will be terminated on both sides (master and worker) once the master would have said it.
+
+It uses the message Message\+::\+Finish as the termination message. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

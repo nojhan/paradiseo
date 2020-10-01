@@ -1,0 +1,90 @@
+\hypertarget{classeo_binary_functor_counter}{}\doxysection{eo\+Binary\+Functor\+Counter$<$ Binary\+Functor $>$ Class Template Reference}
+\label{classeo_binary_functor_counter}\index{eoBinaryFunctorCounter$<$ BinaryFunctor $>$@{eoBinaryFunctorCounter$<$ BinaryFunctor $>$}}
+
+
+{\ttfamily \#include $<$eo\+Counter.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Binary\+Functor\+Counter$<$ Binary\+Functor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classeo_binary_functor_counter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Binary\+Functor\+Counter$<$ Binary\+Functor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classeo_binary_functor_counter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_binary_functor_counter_a52ab13bfe9611456238c95684114848a}\label{classeo_binary_functor_counter_a52ab13bfe9611456238c95684114848a}} 
+{\bfseries eo\+Binary\+Functor\+Counter} (Binary\+Functor \&\+\_\+func, std\+::string \+\_\+name=\char`\"{}proc\+\_\+counter\char`\"{})
+\item 
+Binary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_binary_functor_counter_a0e4a936f99106a6c6e349fcc91353f3e}{operator()}} (typename Binary\+Functor\+::first\+\_\+argument\+\_\+type \+\_\+arg1, typename Binary\+Functor\+::second\+\_\+argument\+\_\+type \+\_\+arg2)
+\item 
+\mbox{\Hypertarget{classeo_binary_functor_counter_a52ab13bfe9611456238c95684114848a}\label{classeo_binary_functor_counter_a52ab13bfe9611456238c95684114848a}} 
+{\bfseries eo\+Binary\+Functor\+Counter} (Binary\+Functor \&\+\_\+func, std\+::string \+\_\+name=\char`\"{}proc\+\_\+counter\char`\"{})
+\item 
+Binary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_binary_functor_counter_a0e4a936f99106a6c6e349fcc91353f3e}{operator()}} (typename Binary\+Functor\+::first\+\_\+argument\+\_\+type \+\_\+arg1, typename Binary\+Functor\+::second\+\_\+argument\+\_\+type \+\_\+arg2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Binary\+Functor$>$\newline
+class eo\+Binary\+Functor\+Counter$<$ Binary\+Functor $>$}
+
+\begin{DoxyVerb}Generic counter class that counts the number of times
+a binary function is used. Add a binary function through its ctor and
+use this class instead of it.
+\end{DoxyVerb}
+
+
+It is derived from \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}} so you can add it to a monitor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_binary_functor_counter_a0e4a936f99106a6c6e349fcc91353f3e}\label{classeo_binary_functor_counter_a0e4a936f99106a6c6e349fcc91353f3e}} 
+\index{eoBinaryFunctorCounter$<$ BinaryFunctor $>$@{eoBinaryFunctorCounter$<$ BinaryFunctor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoBinaryFunctorCounter$<$ BinaryFunctor $>$@{eoBinaryFunctorCounter$<$ BinaryFunctor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Binary\+Functor $>$ \\
+Binary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_binary_functor_counter}{eo\+Binary\+Functor\+Counter}}$<$ Binary\+Functor $>$\+::operator() (\begin{DoxyParamCaption}\item[{typename Binary\+Functor\+::first\+\_\+argument\+\_\+type}]{\+\_\+arg1,  }\item[{typename Binary\+Functor\+::second\+\_\+argument\+\_\+type}]{\+\_\+arg2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calls the embedded function and increments the counter
+
+Note for M\+S\+VC users, if this code does not compile, you are quite likely trying to count a function that has a non-\/void return type. Don\textquotesingle{}t look at us, look at the M\+S\+VC builders. Code like \char`\"{}return void;\char`\"{} is perfectly legal according to the A\+N\+SI standard, but the guys at Microsoft didn\textquotesingle{}t get to implementing it yet.
+
+We had two choices\+: assuming (and compiling ) code that returns void or code that returns non-\/void. Given that in \mbox{\hyperlink{class_e_o}{EO}} most functors return void, it was chosen to support void.
+
+But also please let me know if you have a compiler that defines \+\_\+\+M\+S\+C\+\_\+\+V\+ER (lot\textquotesingle{}s of windows compilers do), but is quite capable of compiling return void; type of code. We\textquotesingle{}ll try to change the signature then.
+
+You happy G\+NU (and other compiler) users will not have a problem with this. \mbox{\Hypertarget{classeo_binary_functor_counter_a0e4a936f99106a6c6e349fcc91353f3e}\label{classeo_binary_functor_counter_a0e4a936f99106a6c6e349fcc91353f3e}} 
+\index{eoBinaryFunctorCounter$<$ BinaryFunctor $>$@{eoBinaryFunctorCounter$<$ BinaryFunctor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoBinaryFunctorCounter$<$ BinaryFunctor $>$@{eoBinaryFunctorCounter$<$ BinaryFunctor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Binary\+Functor $>$ \\
+Binary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_binary_functor_counter}{eo\+Binary\+Functor\+Counter}}$<$ Binary\+Functor $>$\+::operator() (\begin{DoxyParamCaption}\item[{typename Binary\+Functor\+::first\+\_\+argument\+\_\+type}]{\+\_\+arg1,  }\item[{typename Binary\+Functor\+::second\+\_\+argument\+\_\+type}]{\+\_\+arg2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calls the embedded function and increments the counter
+
+Note for M\+S\+VC users, if this code does not compile, you are quite likely trying to count a function that has a non-\/void return type. Don\textquotesingle{}t look at us, look at the M\+S\+VC builders. Code like \char`\"{}return void;\char`\"{} is perfectly legal according to the A\+N\+SI standard, but the guys at Microsoft didn\textquotesingle{}t get to implementing it yet.
+
+We had two choices\+: assuming (and compiling ) code that returns void or code that returns non-\/void. Given that in \mbox{\hyperlink{class_e_o}{EO}} most functors return void, it was chosen to support void.
+
+But also please let me know if you have a compiler that defines \+\_\+\+M\+S\+C\+\_\+\+V\+ER (lot\textquotesingle{}s of windows compilers do), but is quite capable of compiling return void; type of code. We\textquotesingle{}ll try to change the signature then.
+
+You happy G\+NU (and other compiler) users will not have a problem with this. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Counter.\+h\end{DoxyCompactItemize}

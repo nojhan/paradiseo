@@ -1,0 +1,77 @@
+\hypertarget{class_error_measure}{}\doxysection{Error\+Measure Class Reference}
+\label{class_error_measure}\index{ErrorMeasure@{ErrorMeasure}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_error_measure_1_1result}{result}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_error_measure_af9604ab5dcdb195a4526f452463c4a4d}\label{class_error_measure_af9604ab5dcdb195a4526f452463c4a4d}} 
+enum {\bfseries measure} \{ \newline
+{\bfseries absolute}, 
+{\bfseries mean\+\_\+squared}, 
+{\bfseries mean\+\_\+squared\+\_\+scaled}, 
+{\bfseries absolute}, 
+\newline
+{\bfseries mean\+\_\+squared}, 
+{\bfseries mean\+\_\+squared\+\_\+scaled}
+ \}
+\item 
+\mbox{\Hypertarget{class_error_measure_af9604ab5dcdb195a4526f452463c4a4d}\label{class_error_measure_af9604ab5dcdb195a4526f452463c4a4d}} 
+enum {\bfseries measure} \{ \newline
+{\bfseries absolute}, 
+{\bfseries mean\+\_\+squared}, 
+{\bfseries mean\+\_\+squared\+\_\+scaled}, 
+{\bfseries absolute}, 
+\newline
+{\bfseries mean\+\_\+squared}, 
+{\bfseries mean\+\_\+squared\+\_\+scaled}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_error_measure_aa540b0ad461beb47aee7d8e8159855b2}\label{class_error_measure_aa540b0ad461beb47aee7d8e8159855b2}} 
+{\bfseries Error\+Measure} (const \mbox{\hyperlink{class_dataset}{Dataset}} \&data, double train\+\_\+perc, measure meas=mean\+\_\+squared)
+\item 
+\mbox{\Hypertarget{class_error_measure_ac3c279f8a8f5b17ee8aa342e638954cf}\label{class_error_measure_ac3c279f8a8f5b17ee8aa342e638954cf}} 
+{\bfseries Error\+Measure} (const \mbox{\hyperlink{class_error_measure}{Error\+Measure}} \&that)
+\item 
+\mbox{\Hypertarget{class_error_measure_a19d7e39178c7074daa1630fd88342605}\label{class_error_measure_a19d7e39178c7074daa1630fd88342605}} 
+\mbox{\hyperlink{class_error_measure}{Error\+Measure}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_error_measure}{Error\+Measure}} \&that)
+\item 
+\mbox{\Hypertarget{class_error_measure_a55149714f3abc78c0d309c6e53d688c0}\label{class_error_measure_a55149714f3abc78c0d309c6e53d688c0}} 
+\mbox{\hyperlink{struct_error_measure_1_1result}{result}} {\bfseries calc\+\_\+error} (\mbox{\hyperlink{class_sym}{Sym}} sym)
+\item 
+\mbox{\Hypertarget{class_error_measure_ab47e1d8f69d28a6509c31d2fc5009f80}\label{class_error_measure_ab47e1d8f69d28a6509c31d2fc5009f80}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_error_measure_1_1result}{result}} $>$ {\bfseries calc\+\_\+error} (const std\+::vector$<$ \mbox{\hyperlink{class_sym}{Sym}} $>$ \&sym)
+\item 
+\mbox{\Hypertarget{class_error_measure_a024298876d5acd8875df993427cf8053}\label{class_error_measure_a024298876d5acd8875df993427cf8053}} 
+double {\bfseries worst\+\_\+performance} () const
+\item 
+\mbox{\Hypertarget{class_error_measure_aa540b0ad461beb47aee7d8e8159855b2}\label{class_error_measure_aa540b0ad461beb47aee7d8e8159855b2}} 
+{\bfseries Error\+Measure} (const \mbox{\hyperlink{class_dataset}{Dataset}} \&data, double train\+\_\+perc, measure meas=mean\+\_\+squared)
+\item 
+\mbox{\Hypertarget{class_error_measure_ac3c279f8a8f5b17ee8aa342e638954cf}\label{class_error_measure_ac3c279f8a8f5b17ee8aa342e638954cf}} 
+{\bfseries Error\+Measure} (const \mbox{\hyperlink{class_error_measure}{Error\+Measure}} \&that)
+\item 
+\mbox{\Hypertarget{class_error_measure_a19d7e39178c7074daa1630fd88342605}\label{class_error_measure_a19d7e39178c7074daa1630fd88342605}} 
+\mbox{\hyperlink{class_error_measure}{Error\+Measure}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_error_measure}{Error\+Measure}} \&that)
+\item 
+\mbox{\Hypertarget{class_error_measure_a8e17a6d1830f5a63c1898d70a687dcab}\label{class_error_measure_a8e17a6d1830f5a63c1898d70a687dcab}} 
+\mbox{\hyperlink{struct_error_measure_1_1result}{result}} {\bfseries calc\+\_\+error} (\mbox{\hyperlink{class_sym}{Sym}} sym)
+\item 
+\mbox{\Hypertarget{class_error_measure_afe140bde0f762efcee2cf089febc4356}\label{class_error_measure_afe140bde0f762efcee2cf089febc4356}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_error_measure_1_1result}{result}} $>$ {\bfseries calc\+\_\+error} (const std\+::vector$<$ \mbox{\hyperlink{class_sym}{Sym}} $>$ \&sym)
+\item 
+\mbox{\Hypertarget{class_error_measure_a024298876d5acd8875df993427cf8053}\label{class_error_measure_a024298876d5acd8875df993427cf8053}} 
+double {\bfseries worst\+\_\+performance} () const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/contrib/mathsym/regression/Error\+Measure.\+h\item 
+deprecated/eo/contrib/mathsym/regression/Error\+Measure.\+cpp\end{DoxyCompactItemize}

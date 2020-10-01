@@ -1,0 +1,71 @@
+\hypertarget{structeo_1_1mpi_1_1_reuse_same_pop_e_a}{}\doxysection{eo\+::mpi\+::Reuse\+Same\+Pop\+EA$<$ E\+OT $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_reuse_same_pop_e_a}\index{eo::mpi::ReuseSamePopEA$<$ EOT $>$@{eo::mpi::ReuseSamePopEA$<$ EOT $>$}}
+
+
+For a Genetic Algorithm, reuses the same population without modifying it after a run.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Multi\+Start.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Reuse\+Same\+Pop\+EA$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{structeo_1_1mpi_1_1_reuse_same_pop_e_a__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Reuse\+Same\+Pop\+EA$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_reuse_same_pop_e_a__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a85e64c5013931ceeae7900a6a638db5f}\label{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a85e64c5013931ceeae7900a6a638db5f}} 
+{\bfseries Reuse\+Same\+Pop\+EA} (\mbox{\hyperlink{classeo_count_continue}{eo\+Count\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&continuator, const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&original\+Pop, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&eval)
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_reuse_same_pop_e_a_ad94e24d0d18a6a79164a2b3c5c6a702b}\label{structeo_1_1mpi_1_1_reuse_same_pop_e_a_ad94e24d0d18a6a79164a2b3c5c6a702b}} 
+{\bfseries Reuse\+Same\+Pop\+EA} (\mbox{\hyperlink{classeo_count_continue}{eo\+Count\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&continuator, const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&original\+Pop, \mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop\+\_\+eval)
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a2e3f0bce30ed250524a0eb733545fcba}\label{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a2e3f0bce30ed250524a0eb733545fcba}} 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a2e3f0bce30ed250524a0eb733545fcba}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a958791271585886bd0c4732c9ed4b832}\label{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a958791271585886bd0c4732c9ed4b832}} 
+\mbox{\hyperlink{classeo_count_continue}{eo\+Count\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries \+\_\+continuator}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a129c4a3c40f714dbaaaf6f8d16e195aa}\label{structeo_1_1mpi_1_1_reuse_same_pop_e_a_a129c4a3c40f714dbaaaf6f8d16e195aa}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ {\bfseries \+\_\+original\+Pop}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_reuse_same_pop_e_a_ad5de315c3a7f9666f618668b13ee666c}\label{structeo_1_1mpi_1_1_reuse_same_pop_e_a_ad5de315c3a7f9666f618668b13ee666c}} 
+bool {\bfseries \+\_\+first\+Time}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+struct eo\+::mpi\+::\+Reuse\+Same\+Pop\+E\+A$<$ E\+O\+T $>$}
+
+For a Genetic Algorithm, reuses the same population without modifying it after a run. 
+
+This means, if you launch a run after another one, you\textquotesingle{}ll make evolve the same population.
+
+The evaluator should also be sent, as the population needs to be evaluated at the first time. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_multi_start_8h}{eo\+Multi\+Start.\+h}}\end{DoxyCompactItemize}

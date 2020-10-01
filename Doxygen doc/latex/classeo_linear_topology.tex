@@ -1,0 +1,247 @@
+\hypertarget{classeo_linear_topology}{}\doxysection{eo\+Linear\+Topology$<$ P\+OT $>$ Class Template Reference}
+\label{classeo_linear_topology}\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Linear\+Topology.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Linear\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_linear_topology__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Linear\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_linear_topology__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_linear_topology_a4c9dc4a562945cd36a351d22865d08a5}{eo\+Linear\+Topology}} (unsigned \+\_\+neighborhood\+Size)
+\item 
+void \mbox{\hyperlink{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+unsigned \mbox{\hyperlink{classeo_linear_topology_adf373efabc467661358612486b4d338a}{retrieve\+Neighborhood\+By\+Indice}} (unsigned \+\_\+indice)
+\item 
+void \mbox{\hyperlink{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}{update\+Neighborhood}} (P\+OT \&\+\_\+po, unsigned \+\_\+indice)
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}{best}} (unsigned \+\_\+indice)
+\item 
+\mbox{\Hypertarget{classeo_linear_topology_a17bc893c5c0818ef5a4e34382e7714d6}\label{classeo_linear_topology_a17bc893c5c0818ef5a4e34382e7714d6}} 
+virtual P\+OT \& {\bfseries global\+Best} ()
+\item 
+void \mbox{\hyperlink{classeo_linear_topology_a0e7b4b3a67d55827a66c33051145f47b}{print\+On}} ()
+\item 
+\mbox{\hyperlink{classeo_linear_topology_a4c9dc4a562945cd36a351d22865d08a5}{eo\+Linear\+Topology}} (unsigned \+\_\+neighborhood\+Size)
+\item 
+void \mbox{\hyperlink{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+unsigned \mbox{\hyperlink{classeo_linear_topology_adf373efabc467661358612486b4d338a}{retrieve\+Neighborhood\+By\+Indice}} (unsigned \+\_\+indice)
+\item 
+void \mbox{\hyperlink{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}{update\+Neighborhood}} (P\+OT \&\+\_\+po, unsigned \+\_\+indice)
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}{best}} (unsigned \+\_\+indice)
+\item 
+\mbox{\Hypertarget{classeo_linear_topology_a17bc893c5c0818ef5a4e34382e7714d6}\label{classeo_linear_topology_a17bc893c5c0818ef5a4e34382e7714d6}} 
+virtual P\+OT \& {\bfseries global\+Best} ()
+\item 
+void \mbox{\hyperlink{classeo_linear_topology_a4f847929fb8f1ac179c41151202cbfd4}{print\+On}} (std\+::ostream \&out) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_linear_topology_a135563341f5f751224450a8e521e262d}\label{classeo_linear_topology_a135563341f5f751224450a8e521e262d}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$ $>$ {\bfseries neighborhoods}
+\item 
+\mbox{\Hypertarget{classeo_linear_topology_aa0438c82b621b66b3fa88d56d681c9a1}\label{classeo_linear_topology_aa0438c82b621b66b3fa88d56d681c9a1}} 
+unsigned {\bfseries neighborhood\+Size}
+\item 
+\mbox{\Hypertarget{classeo_linear_topology_ae44362ad1179041bb2ac0346fbef6b80}\label{classeo_linear_topology_ae44362ad1179041bb2ac0346fbef6b80}} 
+bool {\bfseries is\+Setup}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class P\+OT$>$\newline
+class eo\+Linear\+Topology$<$ P\+O\+T $>$}
+
+One of the local best strategies for particle swarm optimization. Each particle has a fixed number of neighbours, ans the neighborhood is social. The topology is never modified during the flight. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_linear_topology_a4c9dc4a562945cd36a351d22865d08a5}\label{classeo_linear_topology_a4c9dc4a562945cd36a351d22865d08a5}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!eoLinearTopology@{eoLinearTopology}}
+\index{eoLinearTopology@{eoLinearTopology}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoLinearTopology()}{eoLinearTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+neighborhood\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Build the topology made of \+\_\+neighborhood\+Size neighborhoods. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood\+Size} & -\/ The size of each neighborhood. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_linear_topology_a4c9dc4a562945cd36a351d22865d08a5}\label{classeo_linear_topology_a4c9dc4a562945cd36a351d22865d08a5}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!eoLinearTopology@{eoLinearTopology}}
+\index{eoLinearTopology@{eoLinearTopology}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoLinearTopology()}{eoLinearTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+neighborhood\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Build the topology made of \+\_\+neighborhood\+Size neighborhoods. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood\+Size} & -\/ The size of each neighborhood. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}\label{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the best informative of a particle. Could be itself. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indice} & -\/ The indice of a particle in the population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+OT \& -\/ The best particle in the neighborhood of the particle whose indice is \+\_\+indice 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}\label{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the best informative of a particle. Could be itself. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indice} & -\/ The indice of a particle in the population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+OT \& -\/ The best particle in the neighborhood of the particle whose indice is \+\_\+indice 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_topology_a0e7b4b3a67d55827a66c33051145f47b}\label{classeo_linear_topology_a0e7b4b3a67d55827a66c33051145f47b}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::print\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print the structure of the topology on the standrad output. 
+
+Implements \mbox{\hyperlink{classeo_topology_a96f44377c7cf60ab8fede4ea0fa568a9}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_topology_a4f847929fb8f1ac179c41151202cbfd4}\label{classeo_linear_topology_a4f847929fb8f1ac179c41151202cbfd4}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print the structure of the topology on the standrad output. 
+
+Reimplemented from \mbox{\hyperlink{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}{eo\+Pop$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_topology_adf373efabc467661358612486b4d338a}\label{classeo_linear_topology_adf373efabc467661358612486b4d338a}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}}
+\index{retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{retrieveNeighborhoodByIndice()}{retrieveNeighborhoodByIndice()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::retrieve\+Neighborhood\+By\+Indice (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Retrieve the neighboorhood of a particle. \begin{DoxyReturn}{Returns}
+\+\_\+indice -\/ The particle indice (in the population) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_linear_topology_adf373efabc467661358612486b4d338a}\label{classeo_linear_topology_adf373efabc467661358612486b4d338a}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}}
+\index{retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{retrieveNeighborhoodByIndice()}{retrieveNeighborhoodByIndice()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::retrieve\+Neighborhood\+By\+Indice (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Retrieve the neighboorhood of a particle. \begin{DoxyReturn}{Returns}
+\+\_\+indice -\/ The particle indice (in the population) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}\label{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Build the neighborhoods contained in the topology. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & -\/ The population used to build the neighborhoods. If it remains several particle (because \+\_\+pop.\+size()neighborhood\+Size !=0), there are inserted in the last neighborhood. So it may be possible to have a bigger neighborhood. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}\label{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Build the neighborhoods contained in the topology. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & -\/ The population used to build the neighborhoods. If it remains several particle (because \+\_\+pop.\+size()neighborhood\+Size !=0), there are inserted in the last neighborhood. So it may be possible to have a bigger neighborhood. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}\label{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{\+\_\+po,  }\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the neighborhood\+: update the particle\textquotesingle{}s best fitness and the best particle of the corresponding neighborhood. 
+
+Implements \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}\label{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}} 
+\index{eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoLinearTopology$<$ POT $>$@{eoLinearTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_linear_topology}{eo\+Linear\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{\+\_\+po,  }\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the neighborhood\+: update the particle\textquotesingle{}s best fitness and the best particle of the corresponding neighborhood. 
+
+Implements \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Linear\+Topology.\+h\end{DoxyCompactItemize}

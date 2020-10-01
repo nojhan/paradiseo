@@ -1,0 +1,110 @@
+\hypertarget{classedo_algo_stateless}{}\doxysection{edo\+Algo\+Stateless$<$ D $>$ Class Template Reference}
+\label{classedo_algo_stateless}\index{edoAlgoStateless$<$ D $>$@{edoAlgoStateless$<$ D $>$}}
+
+
+{\ttfamily \#include $<$edo\+Algo\+Stateless.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Algo\+Stateless$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classedo_algo_stateless__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Algo\+Stateless$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_algo_stateless__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}\label{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}} 
+typedef D\+::\+E\+O\+Type \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}}
+\begin{DoxyCompactList}\small\item\em Alias for the type E\+OT. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classedo_algo_stateless_aa283faad525384ab4dab667169b8582b}\label{classedo_algo_stateless_aa283faad525384ab4dab667169b8582b}} 
+typedef E\+O\+Type\+::\+Atom\+Type \mbox{\hyperlink{classedo_algo_stateless_aa283faad525384ab4dab667169b8582b}{Atom\+Type}}
+\begin{DoxyCompactList}\small\item\em Alias for the atom type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classedo_algo_stateless_aa228b66b1bb4c8329a1b454aec438375}\label{classedo_algo_stateless_aa228b66b1bb4c8329a1b454aec438375}} 
+typedef E\+O\+Type\+::\+Fitness \mbox{\hyperlink{classedo_algo_stateless_aa228b66b1bb4c8329a1b454aec438375}{Fitness}}
+\begin{DoxyCompactList}\small\item\em Alias for the fitness. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classedo_algo_stateless_a1fa66a29b3f3800879ba032c997e1c45}{edo\+Algo\+Stateless}} (\mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&evaluator, \mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&selector, \mbox{\hyperlink{classedo_estimator}{edo\+Estimator}}$<$ D $>$ \&estimator, \mbox{\hyperlink{classedo_sampler}{edo\+Sampler}}$<$ D $>$ \&sampler, \mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&replacor, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&pop\+\_\+continuator, \mbox{\hyperlink{classedo_continue}{edo\+Continue}}$<$ D $>$ \&distribution\+\_\+continuator)
+\item 
+\mbox{\hyperlink{classedo_algo_stateless_aa1719b8899cfad637b35f9c0f6b5230a}{edo\+Algo\+Stateless}} (\mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&evaluator, \mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&selector, \mbox{\hyperlink{classedo_estimator}{edo\+Estimator}}$<$ D $>$ \&estimator, \mbox{\hyperlink{classedo_sampler}{edo\+Sampler}}$<$ D $>$ \&sampler, \mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&replacor, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&pop\+\_\+continuator)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename D$>$\newline
+class edo\+Algo\+Stateless$<$ D $>$}
+
+A generic stochastic search template for algorithms that need a distribution parameter but replace it rather than update it
+
+This use a default dummy distribution, for algorithms willing to replace it instead of updating Thus we can instanciate \+\_\+distrib on this and replace it at the first iteration with an estimator. This is why an \mbox{\hyperlink{classedo_distrib}{edo\+Distrib}} must have an empty constructor. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classedo_algo_stateless_a1fa66a29b3f3800879ba032c997e1c45}\label{classedo_algo_stateless_a1fa66a29b3f3800879ba032c997e1c45}} 
+\index{edoAlgoStateless$<$ D $>$@{edoAlgoStateless$<$ D $>$}!edoAlgoStateless@{edoAlgoStateless}}
+\index{edoAlgoStateless@{edoAlgoStateless}!edoAlgoStateless$<$ D $>$@{edoAlgoStateless$<$ D $>$}}
+\doxysubsubsection{\texorpdfstring{edoAlgoStateless()}{edoAlgoStateless()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename D $>$ \\
+\mbox{\hyperlink{classedo_algo_stateless}{edo\+Algo\+Stateless}}$<$ D $>$\+::\mbox{\hyperlink{classedo_algo_stateless}{edo\+Algo\+Stateless}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{evaluator,  }\item[{\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{selector,  }\item[{\mbox{\hyperlink{classedo_estimator}{edo\+Estimator}}$<$ D $>$ \&}]{estimator,  }\item[{\mbox{\hyperlink{classedo_sampler}{edo\+Sampler}}$<$ D $>$ \&}]{sampler,  }\item[{\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{replacor,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{pop\+\_\+continuator,  }\item[{\mbox{\hyperlink{classedo_continue}{edo\+Continue}}$<$ D $>$ \&}]{distribution\+\_\+continuator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Full constructor 
+\begin{DoxyParams}{Parameters}
+{\em evaluator} & Evaluate a population \\
+\hline
+{\em selector} & Selection of the best candidate solutions in the population \\
+\hline
+{\em estimator} & Estimation of the distribution parameters \\
+\hline
+{\em sampler} & Generate feasible solutions using the distribution \\
+\hline
+{\em replacor} & Replace old solutions by new ones \\
+\hline
+{\em pop\+\_\+continuator} & Stopping criterion based on the population features \\
+\hline
+{\em distribution\+\_\+continuator} & Stopping criterion based on the distribution features \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classedo_algo_stateless_aa1719b8899cfad637b35f9c0f6b5230a}\label{classedo_algo_stateless_aa1719b8899cfad637b35f9c0f6b5230a}} 
+\index{edoAlgoStateless$<$ D $>$@{edoAlgoStateless$<$ D $>$}!edoAlgoStateless@{edoAlgoStateless}}
+\index{edoAlgoStateless@{edoAlgoStateless}!edoAlgoStateless$<$ D $>$@{edoAlgoStateless$<$ D $>$}}
+\doxysubsubsection{\texorpdfstring{edoAlgoStateless()}{edoAlgoStateless()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename D $>$ \\
+\mbox{\hyperlink{classedo_algo_stateless}{edo\+Algo\+Stateless}}$<$ D $>$\+::\mbox{\hyperlink{classedo_algo_stateless}{edo\+Algo\+Stateless}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{evaluator,  }\item[{\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{selector,  }\item[{\mbox{\hyperlink{classedo_estimator}{edo\+Estimator}}$<$ D $>$ \&}]{estimator,  }\item[{\mbox{\hyperlink{classedo_sampler}{edo\+Sampler}}$<$ D $>$ \&}]{sampler,  }\item[{\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{replacor,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classedo_algo_stateless_abdcfb780b643320433a15ecbdfa0282d}{E\+O\+Type}} $>$ \&}]{pop\+\_\+continuator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor without an \mbox{\hyperlink{classedo_continue}{edo\+Continue}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em evaluator} & Evaluate a population \\
+\hline
+{\em selector} & Selection of the best candidate solutions in the population \\
+\hline
+{\em estimator} & Estimation of the distribution parameters \\
+\hline
+{\em sampler} & Generate feasible solutions using the distribution \\
+\hline
+{\em replacor} & Replace old solutions by new ones \\
+\hline
+{\em pop\+\_\+continuator} & Stopping criterion based on the population features \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Algo\+Stateless.\+h\end{DoxyCompactItemize}

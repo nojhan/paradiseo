@@ -1,0 +1,12 @@
+<map id="eoException" name="eoException">
+<area shape="rect" id="node1" title="You can catch this base exception if you want to catch anything thrown by ParadisEO." alt="" coords="164,107,267,133"/>
+<area shape="rect" id="node3" href="$classeo_invalid_fitness_error.html" title=" " alt="" coords="315,5,473,32"/>
+<area shape="rect" id="node4" href="$classeo_param_exception.html" title="Base class for exceptions related to eoParam management." alt="" coords="323,56,465,83"/>
+<area shape="rect" id="node5" href="$classeo_pop_size_exception.html" title=" " alt="" coords="317,107,471,133"/>
+<area shape="rect" id="node7" href="$classeo_stop_exception.html" title=" " alt="" coords="329,157,459,184"/>
+<area shape="rect" id="node9" href="$classeo_system_error.html" title="Exception related to a system call." alt="" coords="335,208,453,235"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,107,116,133"/>
+<area shape="rect" id="node6" href="$classeo_pop_size_change_exception.html" title=" " alt="" coords="521,107,724,133"/>
+<area shape="rect" id="node8" href="$classeo_nan_exception.html" title=" " alt="" coords="559,157,687,184"/>
+<area shape="rect" id="node10" href="$classeo_file_error.html" title=" " alt="" coords="577,208,669,235"/>
+</map>

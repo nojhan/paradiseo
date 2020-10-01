@@ -1,0 +1,123 @@
+\hypertarget{classmo_neutral_h_c}{}\doxysection{mo\+Neutral\+HC$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neutral_h_c}\index{moNeutralHC$<$ Neighbor $>$@{moNeutralHC$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neutral\+H\+C.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neutral\+HC$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neutral_h_c__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neutral\+HC$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neutral_h_c__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neutral_h_c_a45f59c672492bef5ddc2163d7f3847ac}\label{classmo_neutral_h_c_a45f59c672492bef5ddc2163d7f3847ac}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_neutral_h_c_a0b230bd8976cbad55cfebb4367498d84}\label{classmo_neutral_h_c_a0b230bd8976cbad55cfebb4367498d84}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neutral_h_c_a6e030f924ea2934a2c027bbd14d193ae}{mo\+Neutral\+HC}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Step)
+\item 
+\mbox{\hyperlink{classmo_neutral_h_c_aff26e9586a86fe020cd145a596019560}{mo\+Neutral\+HC}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Step, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+\mbox{\hyperlink{classmo_neutral_h_c_afb6802f4596113793e84f2ca91b145ee}{mo\+Neutral\+HC}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Step, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+compN, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+comp\+SN)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neutral\+H\+C$<$ Neighbor $>$}
+
+Hill-\/\+Climbing local search
+
+At each iteration, one of the random best solution in the neighborhood is selected if the selected neighbor have higher or equal fitness than the current solution then the solution is replaced by the selected neighbor the algorithm stops when there is no higher or equal neighbor, or if the number of iterations is too large 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neutral_h_c_a6e030f924ea2934a2c027bbd14d193ae}\label{classmo_neutral_h_c_a6e030f924ea2934a2c027bbd14d193ae}} 
+\index{moNeutralHC$<$ Neighbor $>$@{moNeutralHC$<$ Neighbor $>$}!moNeutralHC@{moNeutralHC}}
+\index{moNeutralHC@{moNeutralHC}!moNeutralHC$<$ Neighbor $>$@{moNeutralHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeutralHC()}{moNeutralHC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neutral_h_c}{mo\+Neutral\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neutral_h_c}{mo\+Neutral\+HC}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Basic constructor for a hill-\/climber 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & maximum step to do \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neutral_h_c_aff26e9586a86fe020cd145a596019560}\label{classmo_neutral_h_c_aff26e9586a86fe020cd145a596019560}} 
+\index{moNeutralHC$<$ Neighbor $>$@{moNeutralHC$<$ Neighbor $>$}!moNeutralHC@{moNeutralHC}}
+\index{moNeutralHC@{moNeutralHC}!moNeutralHC$<$ Neighbor $>$@{moNeutralHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeutralHC()}{moNeutralHC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neutral_h_c}{mo\+Neutral\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neutral_h_c}{mo\+Neutral\+HC}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Step,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Simple constructor for a hill-\/climber 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & maximum step to do \\
+\hline
+{\em \+\_\+cont} & an external continuator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neutral_h_c_afb6802f4596113793e84f2ca91b145ee}\label{classmo_neutral_h_c_afb6802f4596113793e84f2ca91b145ee}} 
+\index{moNeutralHC$<$ Neighbor $>$@{moNeutralHC$<$ Neighbor $>$}!moNeutralHC@{moNeutralHC}}
+\index{moNeutralHC@{moNeutralHC}!moNeutralHC$<$ Neighbor $>$@{moNeutralHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeutralHC()}{moNeutralHC()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neutral_h_c}{mo\+Neutral\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neutral_h_c}{mo\+Neutral\+HC}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Step,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+compN,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+comp\+SN }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+General constructor for a hill-\/climber 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & maximum step to do \\
+\hline
+{\em \+\_\+cont} & an external continuator \\
+\hline
+{\em \+\_\+compN} & a neighbor vs neighbor comparator \\
+\hline
+{\em \+\_\+comp\+SN} & a solution vs neighbor comparator \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/algo/mo\+Neutral\+H\+C.\+h\end{DoxyCompactItemize}

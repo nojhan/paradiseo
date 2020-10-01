@@ -1,0 +1,170 @@
+\hypertarget{classeo_standard_flight}{}\doxysection{eo\+Standard\+Flight$<$ P\+OT $>$ Class Template Reference}
+\label{classeo_standard_flight}\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Standard\+Flight.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Standard\+Flight$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_standard_flight__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Standard\+Flight$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_standard_flight__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_standard_flight_a7724c30f3bbc42e0ca626ee965561ccf}\label{classeo_standard_flight_a7724c30f3bbc42e0ca626ee965561ccf}} 
+typedef P\+O\+T\+::\+Atom\+Type {\bfseries Position\+Type}
+\item 
+\mbox{\Hypertarget{classeo_standard_flight_a7724c30f3bbc42e0ca626ee965561ccf}\label{classeo_standard_flight_a7724c30f3bbc42e0ca626ee965561ccf}} 
+typedef P\+O\+T\+::\+Atom\+Type {\bfseries Position\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_standard_flight_acee5ec64a815a53361a67df152d3bb5c}{eo\+Standard\+Flight}} ()
+\item 
+\mbox{\hyperlink{classeo_standard_flight_ac8b0f2166a7134d93c781b4948e1f8d0}{eo\+Standard\+Flight}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds)
+\item 
+\mbox{\hyperlink{classeo_standard_flight_a852f69df27dec9b99b9a4772f6bbfa1e}{eo\+Standard\+Flight}} (const unsigned \+\_\+dim, const double \&\+\_\+min, const double \&\+\_\+max)
+\item 
+void \mbox{\hyperlink{classeo_standard_flight_ae65f38d478ce29003b530b90ccaeb88c}{operator()}} (P\+OT \&\+\_\+po)
+\item 
+\mbox{\hyperlink{classeo_standard_flight_acee5ec64a815a53361a67df152d3bb5c}{eo\+Standard\+Flight}} ()
+\item 
+\mbox{\hyperlink{classeo_standard_flight_ac8b0f2166a7134d93c781b4948e1f8d0}{eo\+Standard\+Flight}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds)
+\item 
+\mbox{\hyperlink{classeo_standard_flight_a852f69df27dec9b99b9a4772f6bbfa1e}{eo\+Standard\+Flight}} (const unsigned \+\_\+dim, const double \&\+\_\+min, const double \&\+\_\+max)
+\item 
+void \mbox{\hyperlink{classeo_standard_flight_ae65f38d478ce29003b530b90ccaeb88c}{operator()}} (P\+OT \&\+\_\+po)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_standard_flight_a9078d46651e26aa5723f999eb9ffc942}\label{classeo_standard_flight_a9078d46651e26aa5723f999eb9ffc942}} 
+\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \& {\bfseries bnds}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class P\+OT$>$\newline
+class eo\+Standard\+Flight$<$ P\+O\+T $>$}
+
+Standard flight for particle swarm optimization. Derivated from abstract \mbox{\hyperlink{classeo_flight}{eo\+Flight}}, just adds the velocities to the current position of the particle and invalidates its fitness 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_standard_flight_acee5ec64a815a53361a67df152d3bb5c}\label{classeo_standard_flight_acee5ec64a815a53361a67df152d3bb5c}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!eoStandardFlight@{eoStandardFlight}}
+\index{eoStandardFlight@{eoStandardFlight}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStandardFlight()}{eoStandardFlight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor without bounds. \mbox{\Hypertarget{classeo_standard_flight_ac8b0f2166a7134d93c781b4948e1f8d0}\label{classeo_standard_flight_ac8b0f2166a7134d93c781b4948e1f8d0}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!eoStandardFlight@{eoStandardFlight}}
+\index{eoStandardFlight@{eoStandardFlight}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStandardFlight()}{eoStandardFlight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for continuous flight with real bounds\+: expects a \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} object for bound control. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & -\/ An \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_standard_flight_a852f69df27dec9b99b9a4772f6bbfa1e}\label{classeo_standard_flight_a852f69df27dec9b99b9a4772f6bbfa1e}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!eoStandardFlight@{eoStandardFlight}}
+\index{eoStandardFlight@{eoStandardFlight}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStandardFlight()}{eoStandardFlight()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}} (\begin{DoxyParamCaption}\item[{const unsigned}]{\+\_\+dim,  }\item[{const double \&}]{\+\_\+min,  }\item[{const double \&}]{\+\_\+max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for continuous flight with real bounds\+: expects a min and a max to build the same real bounds for all the positions. W\+A\+R\+N\+I\+NG\+: \+\_\+min and max M\+U\+ST be double as the position type 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dim} & -\/ The dimension of the bounds = the dimension of the position \\
+\hline
+{\em \+\_\+min} & -\/ The lower bound to use for all the positions \\
+\hline
+{\em \+\_\+max} & -\/ The upper bound to use for all the positions \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_standard_flight_acee5ec64a815a53361a67df152d3bb5c}\label{classeo_standard_flight_acee5ec64a815a53361a67df152d3bb5c}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!eoStandardFlight@{eoStandardFlight}}
+\index{eoStandardFlight@{eoStandardFlight}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStandardFlight()}{eoStandardFlight()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor without bounds. \mbox{\Hypertarget{classeo_standard_flight_ac8b0f2166a7134d93c781b4948e1f8d0}\label{classeo_standard_flight_ac8b0f2166a7134d93c781b4948e1f8d0}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!eoStandardFlight@{eoStandardFlight}}
+\index{eoStandardFlight@{eoStandardFlight}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStandardFlight()}{eoStandardFlight()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for continuous flight with real bounds\+: expects a \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} object for bound control. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & -\/ An \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_standard_flight_a852f69df27dec9b99b9a4772f6bbfa1e}\label{classeo_standard_flight_a852f69df27dec9b99b9a4772f6bbfa1e}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!eoStandardFlight@{eoStandardFlight}}
+\index{eoStandardFlight@{eoStandardFlight}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStandardFlight()}{eoStandardFlight()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}} (\begin{DoxyParamCaption}\item[{const unsigned}]{\+\_\+dim,  }\item[{const double \&}]{\+\_\+min,  }\item[{const double \&}]{\+\_\+max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for continuous flight with real bounds\+: expects a min and a max to build the same real bounds for all the positions. W\+A\+R\+N\+I\+NG\+: \+\_\+min and max M\+U\+ST be double as the position type 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dim} & -\/ The dimension of the bounds = the dimension of the position \\
+\hline
+{\em \+\_\+min} & -\/ The lower bound to use for all the positions \\
+\hline
+{\em \+\_\+max} & -\/ The upper bound to use for all the positions \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_standard_flight_ae65f38d478ce29003b530b90ccaeb88c}\label{classeo_standard_flight_ae65f38d478ce29003b530b90ccaeb88c}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{P\+OT \&}]{\+\_\+po }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the standard flight to a particle \+: position\+:=position + velocity and ... invalidates the particle\textquotesingle{}s fitness 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ P\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{classeo_standard_flight_ae65f38d478ce29003b530b90ccaeb88c}\label{classeo_standard_flight_ae65f38d478ce29003b530b90ccaeb88c}} 
+\index{eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoStandardFlight$<$ POT $>$@{eoStandardFlight$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_standard_flight}{eo\+Standard\+Flight}}$<$ P\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{P\+OT \&}]{\+\_\+po }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the standard flight to a particle \+: position\+:=position + velocity and ... invalidates the particle\textquotesingle{}s fitness 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ P\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Standard\+Flight.\+h\end{DoxyCompactItemize}

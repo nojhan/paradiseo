@@ -1,0 +1,25 @@
+\hypertarget{namespaceeo_1_1mpi_1_1_message}{}\doxysection{eo\+::mpi\+::Message Namespace Reference}
+\label{namespaceeo_1_1mpi_1_1_message}\index{eo::mpi::Message@{eo::mpi::Message}}
+
+
+Simple orders used by the framework.  
+
+
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespaceeo_1_1mpi_1_1_message_a6a0a3af17f5503ccad4834e3981aabd1}\label{namespaceeo_1_1mpi_1_1_message_a6a0a3af17f5503ccad4834e3981aabd1}} 
+const int {\bfseries Continue} = 0
+\item 
+\mbox{\Hypertarget{namespaceeo_1_1mpi_1_1_message_a7b26326d8a9c3f7591deb6bed5c8c859}\label{namespaceeo_1_1mpi_1_1_message_a7b26326d8a9c3f7591deb6bed5c8c859}} 
+const int {\bfseries Finish} = 1
+\item 
+\mbox{\Hypertarget{namespaceeo_1_1mpi_1_1_message_a08c405c65ee9e3b5b90d44d68fcbabc5}\label{namespaceeo_1_1mpi_1_1_message_a08c405c65ee9e3b5b90d44d68fcbabc5}} 
+const int {\bfseries Kill} = 2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple orders used by the framework. 
+
+These orders are sent by the master to the workers, to indicate to them if they should receive another task to do (Continue), if an one shot job is done (Finish) or if a multi job is done (Kill). 

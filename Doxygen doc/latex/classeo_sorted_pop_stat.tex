@@ -1,0 +1,95 @@
+\hypertarget{classeo_sorted_pop_stat}{}\doxysection{eo\+Sorted\+Pop\+Stat$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_sorted_pop_stat}\index{eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Pop\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Sorted\+Pop\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_sorted_pop_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Sorted\+Pop\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_sorted_pop_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_sorted_pop_stat_abf6392b8b8798af0eed59a27ee4ed97c}{eo\+Sorted\+Pop\+Stat}} (unsigned \+\_\+how\+Many=0, std\+::string \+\_\+desc=\char`\"{}\char`\"{})
+\item 
+void \mbox{\hyperlink{classeo_sorted_pop_stat_a106923b740d4c66d77652e19d5efbfa7}{operator()}} (const std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&\+\_\+pop)
+\item 
+\mbox{\hyperlink{classeo_sorted_pop_stat_abf6392b8b8798af0eed59a27ee4ed97c}{eo\+Sorted\+Pop\+Stat}} (unsigned \+\_\+how\+Many=0, std\+::string \+\_\+desc=\char`\"{}\char`\"{})
+\item 
+void \mbox{\hyperlink{classeo_sorted_pop_stat_a106923b740d4c66d77652e19d5efbfa7}{operator()}} (const std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Sorted\+Pop\+Stat$<$ E\+O\+T $>$}
+
+Thanks to M\+S/\+V\+C++, \mbox{\hyperlink{classeo_param}{eo\+Param}} mechanism is unable to handle std\+::vectors of stats. This snippet is a workaround\+: This class will \char`\"{}print\char`\"{} a whole population into a std\+::string -\/ that you can later send to any stream This is the Sorted version -\/ see eo\+Pop\+String for the plain version
+
+Note\+: this Stat should probably be used only within eo\+Std\+Out\+Monitor, and not inside an \mbox{\hyperlink{classeo_file_monitor}{eo\+File\+Monitor}}, as the \mbox{\hyperlink{classeo_state}{eo\+State}} construct will work much better there. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_sorted_pop_stat_abf6392b8b8798af0eed59a27ee4ed97c}\label{classeo_sorted_pop_stat_abf6392b8b8798af0eed59a27ee4ed97c}} 
+\index{eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}!eoSortedPopStat@{eoSortedPopStat}}
+\index{eoSortedPopStat@{eoSortedPopStat}!eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoSortedPopStat()}{eoSortedPopStat()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+how\+Many = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+desc = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default Ctor, void std\+::string by default, as it appears on the description line once at beginning of evolution. and is meaningless there \+\_\+how\+Many defaults to 0, that is, the whole population \mbox{\Hypertarget{classeo_sorted_pop_stat_abf6392b8b8798af0eed59a27ee4ed97c}\label{classeo_sorted_pop_stat_abf6392b8b8798af0eed59a27ee4ed97c}} 
+\index{eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}!eoSortedPopStat@{eoSortedPopStat}}
+\index{eoSortedPopStat@{eoSortedPopStat}!eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoSortedPopStat()}{eoSortedPopStat()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+how\+Many = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+desc = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default Ctor, void std\+::string by default, as it appears on the description line once at beginning of evolution. and is meaningless there \+\_\+how\+Many defaults to 0, that is, the whole population 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_sorted_pop_stat_a106923b740d4c66d77652e19d5efbfa7}\label{classeo_sorted_pop_stat_a106923b740d4c66d77652e19d5efbfa7}} 
+\index{eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Fills the \mbox{\hyperlink{classeo_value_param_ad0e91aa4f66711e52fca9be470ce21b7}{value()}} of the \mbox{\hyperlink{classeo_param}{eo\+Param}} with the dump of the population. Adds a ~\newline
+ before so it does not get mixed up with the rest of the stats that are written by the monitor it is probably used from. 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const std\+::vector$<$ const E\+O\+T $\ast$ $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classeo_sorted_pop_stat_a106923b740d4c66d77652e19d5efbfa7}\label{classeo_sorted_pop_stat_a106923b740d4c66d77652e19d5efbfa7}} 
+\index{eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoSortedPopStat$<$ EOT $>$@{eoSortedPopStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Fills the \mbox{\hyperlink{classeo_value_param_ad0e91aa4f66711e52fca9be470ce21b7}{value()}} of the \mbox{\hyperlink{classeo_param}{eo\+Param}} with the dump of the population. Adds a ~\newline
+ before so it does not get mixed up with the rest of the stats that are written by the monitor it is probably used from. 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const std\+::vector$<$ const E\+O\+T $\ast$ $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Pop\+Stat.\+h\end{DoxyCompactItemize}

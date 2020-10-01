@@ -1,0 +1,66 @@
+\hypertarget{classeo_functor_store}{}\doxysection{eo\+Functor\+Store Class Reference}
+\label{classeo_functor_store}\index{eoFunctorStore@{eoFunctorStore}}
+
+
+{\ttfamily \#include $<$eo\+Functor\+Store.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Functor\+Store\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classeo_functor_store__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_functor_store_aed1949e14a386636ae8e379e1501c790}\label{classeo_functor_store_aed1949e14a386636ae8e379e1501c790}} 
+\mbox{\hyperlink{classeo_functor_store_aed1949e14a386636ae8e379e1501c790}{eo\+Functor\+Store}} ()
+\begin{DoxyCompactList}\small\item\em Default Ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_functor_store_a38f9e505800ea48b68b3c29f43124614}\label{classeo_functor_store_a38f9e505800ea48b68b3c29f43124614}} 
+virtual \mbox{\hyperlink{classeo_functor_store_a38f9e505800ea48b68b3c29f43124614}{$\sim$eo\+Functor\+Store}} ()
+\begin{DoxyCompactList}\small\item\em clears the memory \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_functor_store_a889255c95af56ff61219a8d4716ad17c}\label{classeo_functor_store_a889255c95af56ff61219a8d4716ad17c}} 
+{\footnotesize template$<$class Functor $>$ }\\Functor \& \mbox{\hyperlink{classeo_functor_store_a889255c95af56ff61219a8d4716ad17c}{store\+Functor}} (Functor $\ast$r)
+\begin{DoxyCompactList}\small\item\em Add an \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}} to the store. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_functor_store_aed1949e14a386636ae8e379e1501c790}\label{classeo_functor_store_aed1949e14a386636ae8e379e1501c790}} 
+\mbox{\hyperlink{classeo_functor_store_aed1949e14a386636ae8e379e1501c790}{eo\+Functor\+Store}} ()
+\begin{DoxyCompactList}\small\item\em Default Ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_functor_store_a889255c95af56ff61219a8d4716ad17c}\label{classeo_functor_store_a889255c95af56ff61219a8d4716ad17c}} 
+{\footnotesize template$<$class Functor $>$ }\\Functor \& \mbox{\hyperlink{classeo_functor_store_a889255c95af56ff61219a8d4716ad17c}{store\+Functor}} (Functor $\ast$r)
+\begin{DoxyCompactList}\small\item\em Add an \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}} to the store. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Functor , class... Args$>$ }\\Functor \& \mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}} (Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classeo_functor_store_a48624b8511d5cc64d9b14eaf0ac6a674}\label{classeo_functor_store_a48624b8511d5cc64d9b14eaf0ac6a674}} 
+{\footnotesize template$<$class Functor , class Args $>$ }\\Functor \& {\bfseries pack} (std\+::initializer\+\_\+list$<$ Args $>$ args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classeo_functor_store}{eo\+Functor\+Store}} is a class that stores functors that are allocated on the heap. This class can be used in factories to store allocated memory for dynamically created functors. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}\label{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}} 
+\index{eoFunctorStore@{eoFunctorStore}!pack@{pack}}
+\index{pack@{pack}!eoFunctorStore@{eoFunctorStore}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily template$<$class Functor , class... Args$>$ \\
+Functor\& eo\+Functor\+Store\+::pack (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allocate the given functor, store it and return its reference.
+
+Indicate the class to instanciate as template paramater, and pass its constructor arguments.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_select}{eoSelect<EOT>}}\& selector = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_rank_mu_select}{eoRankMuSelect<EOT>}} >( mu );}
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Functor\+Store.\+h\item 
+deprecated/eo/src/eo\+Functor\+Store.\+cpp\end{DoxyCompactItemize}

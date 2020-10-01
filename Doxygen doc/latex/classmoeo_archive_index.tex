@@ -1,0 +1,109 @@
+\hypertarget{classmoeo_archive_index}{}\doxysection{moeo\+Archive\+Index$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_archive_index}\index{moeoArchiveIndex$<$ MOEOT $>$@{moeoArchiveIndex$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Archive\+Index.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Archive\+Index$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_archive_index__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_archive_index_a8c336583bc8bb4e64077c96cd539d827}\label{classmoeo_archive_index_a8c336583bc8bb4e64077c96cd539d827}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::pair$<$ bool, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ $>$ \mbox{\hyperlink{classmoeo_archive_index_a2116be26ea339f2529399fef888f35fe}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeot, bool \+\_\+insert=true)=0
+\item 
+virtual bool \mbox{\hyperlink{classmoeo_archive_index_acd5461f54caadb53754ff66fb37ef06e}{update}} (\mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} \&\+\_\+update)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} \mbox{\hyperlink{classmoeo_archive_index_a12eb233048c5caa7aa20cc56425b214b}{make\+\_\+modif}} (Objective\+Vector \&\+\_\+obj, int \+\_\+old\+Idx, int \+\_\+new\+Idx=-\/1)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Archive\+Index$<$ M\+O\+E\+O\+T $>$}
+
+Inteface for Archive Indexes 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_archive_index_a12eb233048c5caa7aa20cc56425b214b}\label{classmoeo_archive_index_a12eb233048c5caa7aa20cc56425b214b}} 
+\index{moeoArchiveIndex$<$ MOEOT $>$@{moeoArchiveIndex$<$ MOEOT $>$}!make\_modif@{make\_modif}}
+\index{make\_modif@{make\_modif}!moeoArchiveIndex$<$ MOEOT $>$@{moeoArchiveIndex$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{make\_modif()}{make\_modif()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} \mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$\+::make\+\_\+modif (\begin{DoxyParamCaption}\item[{Objective\+Vector \&}]{\+\_\+obj,  }\item[{int}]{\+\_\+old\+Idx,  }\item[{int}]{\+\_\+new\+Idx = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+creates a modif that move the item Objective\+Vector placed at idx old\+Idx in the archive to new\+Idx, or delete it if new\+Idx=-\/1 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+obj} & the objective\+Vector we want to move \\
+\hline
+{\em \+\_\+old\+Idx} & the index of the item we want to move in the vector \\
+\hline
+{\em \+\_\+new\+Idx} & the new index for the item, -\/1 if we want it deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_archive_index_a2116be26ea339f2529399fef888f35fe}\label{classmoeo_archive_index_a2116be26ea339f2529399fef888f35fe}} 
+\index{moeoArchiveIndex$<$ MOEOT $>$@{moeoArchiveIndex$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoArchiveIndex$<$ MOEOT $>$@{moeoArchiveIndex$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual std\+::pair$<$bool,std\+::vector$<$\mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}}$>$ $>$ \mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeot,  }\item[{bool}]{\+\_\+insert = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+principal method for the index, add a moeot to the index 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeot} & the M\+O\+E\+OT we try to insert \\
+\hline
+{\em \+\_\+insert} & should we really insert the moeot, or just check if we have to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pair, the first is a boolean indicating if the insertion can occur, the second a vector of modification 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classmoeo_quad_tree_a1e5d0c5069def3e2fe1303aea4f1e54b}{moeo\+Quad\+Tree$<$ M\+O\+E\+O\+T $>$}}, and \mbox{\hyperlink{classmoeo_quick_unbounded_archive_index_a427313cc26c9586713522ee496731beb}{moeo\+Quick\+Unbounded\+Archive\+Index$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_archive_index_acd5461f54caadb53754ff66fb37ef06e}\label{classmoeo_archive_index_acd5461f54caadb53754ff66fb37ef06e}} 
+\index{moeoArchiveIndex$<$ MOEOT $>$@{moeoArchiveIndex$<$ MOEOT $>$}!update@{update}}
+\index{update@{update}!moeoArchiveIndex$<$ MOEOT $>$@{moeoArchiveIndex$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual bool \mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} \&}]{\+\_\+update }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+when updates will be necessary to keep indexes of archive and index synced, the archive will launch this method 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+update} & the update to do, see modif documentation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if no problem occured 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classmoeo_quad_tree_a612e47d361333e42945985400cba1de6}{moeo\+Quad\+Tree$<$ M\+O\+E\+O\+T $>$}}, and \mbox{\hyperlink{classmoeo_quick_unbounded_archive_index_a5718f28a259d9a28a7476b97ac4e4f40}{moeo\+Quick\+Unbounded\+Archive\+Index$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/archive/moeo\+Archive\+Index.\+h\end{DoxyCompactItemize}

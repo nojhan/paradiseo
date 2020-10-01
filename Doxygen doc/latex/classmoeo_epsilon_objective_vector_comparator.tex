@@ -1,0 +1,81 @@
+\hypertarget{classmoeo_epsilon_objective_vector_comparator}{}\doxysection{moeo\+Epsilon\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_epsilon_objective_vector_comparator}\index{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Epsilon\+Objective\+Vector\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Epsilon\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_epsilon_objective_vector_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Epsilon\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_epsilon_objective_vector_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_epsilon_objective_vector_comparator_ad0f1b84eee8e959cffb2cad911c74d4c}{moeo\+Epsilon\+Objective\+Vector\+Comparator}} (double \+\_\+epsilon)
+\item 
+bool \mbox{\hyperlink{classmoeo_epsilon_objective_vector_comparator_a32e15d49cda8ddb0ddea6e0d42e5519c}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Epsilon\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$}
+
+This functor class allows to compare 2 objective vectors according to epsilon dominance. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_epsilon_objective_vector_comparator_ad0f1b84eee8e959cffb2cad911c74d4c}\label{classmoeo_epsilon_objective_vector_comparator_ad0f1b84eee8e959cffb2cad911c74d4c}} 
+\index{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$}!moeoEpsilonObjectiveVectorComparator@{moeoEpsilonObjectiveVectorComparator}}
+\index{moeoEpsilonObjectiveVectorComparator@{moeoEpsilonObjectiveVectorComparator}!moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEpsilonObjectiveVectorComparator()}{moeoEpsilonObjectiveVectorComparator()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_epsilon_objective_vector_comparator}{moeo\+Epsilon\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_epsilon_objective_vector_comparator}{moeo\+Epsilon\+Objective\+Vector\+Comparator}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+epsilon }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+epsilon} & the epsilon value \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_epsilon_objective_vector_comparator_a32e15d49cda8ddb0ddea6e0d42e5519c}\label{classmoeo_epsilon_objective_vector_comparator_a32e15d49cda8ddb0ddea6e0d42e5519c}} 
+\index{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoEpsilonObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{classmoeo_epsilon_objective_vector_comparator}{moeo\+Epsilon\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns true if \+\_\+objective\+Vector1 is epsilon-\/dominated by \+\_\+objective\+Vector2 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector1} & the first objective vector \\
+\hline
+{\em \+\_\+objective\+Vector2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/comparator/moeo\+Epsilon\+Objective\+Vector\+Comparator.\+h\end{DoxyCompactItemize}

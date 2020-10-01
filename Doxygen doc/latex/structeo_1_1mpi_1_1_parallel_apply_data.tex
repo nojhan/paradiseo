@@ -1,0 +1,106 @@
+\hypertarget{structeo_1_1mpi_1_1_parallel_apply_data}{}\doxysection{eo\+::mpi\+::Parallel\+Apply\+Data$<$ E\+OT $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_parallel_apply_data}\index{eo::mpi::ParallelApplyData$<$ EOT $>$@{eo::mpi::ParallelApplyData$<$ EOT $>$}}
+
+
+Data useful for a parallel apply (map).  
+
+
+
+
+{\ttfamily \#include $<$eo\+Parallel\+Apply.\+h$>$}
+
+
+
+Collaboration diagram for eo\+::mpi\+::Parallel\+Apply\+Data$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_parallel_apply_data__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data_aa9a36695e353d3a2f7c6bb9a6ab21a9b}{Parallel\+Apply\+Data}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&\+\_\+proc, int \+\_\+master\+Rank, int \+\_\+packet\+Size, std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$table=0)
+\begin{DoxyCompactList}\small\item\em Ctor for Parallel apply (map) data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_a2dc1d4578d47e85f8df93f115477642e}\label{structeo_1_1mpi_1_1_parallel_apply_data_a2dc1d4578d47e85f8df93f115477642e}} 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data_a2dc1d4578d47e85f8df93f115477642e}{init}} (std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&table)
+\begin{DoxyCompactList}\small\item\em Reinitializes the data for a new table to evaluate. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_a52349e8dff300ac67ac2e2771e0d71e9}\label{structeo_1_1mpi_1_1_parallel_apply_data_a52349e8dff300ac67ac2e2771e0d71e9}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries table} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_adedf59b61596a62debf73416e6bf20f0}\label{structeo_1_1mpi_1_1_parallel_apply_data_adedf59b61596a62debf73416e6bf20f0}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ {\bfseries \+\_\+table}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_ae32f538d6d626ddc94946ed476ef30f2}\label{structeo_1_1mpi_1_1_parallel_apply_data_ae32f538d6d626ddc94946ed476ef30f2}} 
+\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \& {\bfseries func}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_a20733d7e3930f1d7c30c721a5994e7a1}\label{structeo_1_1mpi_1_1_parallel_apply_data_a20733d7e3930f1d7c30c721a5994e7a1}} 
+int {\bfseries index}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_a762a27d9b681576c05b9e8d51d4e9fa8}\label{structeo_1_1mpi_1_1_parallel_apply_data_a762a27d9b681576c05b9e8d51d4e9fa8}} 
+int {\bfseries size}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_afd0c7a75b574242ed9451969d20f1659}\label{structeo_1_1mpi_1_1_parallel_apply_data_afd0c7a75b574242ed9451969d20f1659}} 
+std\+::map$<$ int, \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_assignment}{Parallel\+Apply\+Assignment}} $>$ {\bfseries assigned\+Tasks}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_ae64a78ecdbb2bd2d7e0571dadb5ebe90}\label{structeo_1_1mpi_1_1_parallel_apply_data_ae64a78ecdbb2bd2d7e0571dadb5ebe90}} 
+int {\bfseries packet\+Size}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_a98026a99769bcac9e1db4f6fa9b57883}\label{structeo_1_1mpi_1_1_parallel_apply_data_a98026a99769bcac9e1db4f6fa9b57883}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ {\bfseries temp\+Array}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_adc198c039f9efb0f42f3715b03dce38f}\label{structeo_1_1mpi_1_1_parallel_apply_data_adc198c039f9efb0f42f3715b03dce38f}} 
+int {\bfseries master\+Rank}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_a61b41c3b036df51d6e5e7e2cffb8850f}\label{structeo_1_1mpi_1_1_parallel_apply_data_a61b41c3b036df51d6e5e7e2cffb8850f}} 
+\mbox{\hyperlink{classmpi_1_1communicator}{bmpi\+::communicator}} \& {\bfseries comm}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+struct eo\+::mpi\+::\+Parallel\+Apply\+Data$<$ E\+O\+T $>$}
+
+Data useful for a parallel apply (map). 
+
+A parallel apply needs at least the functor to apply to every element of the table, and the table itself, whereas it can be set later with the function \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data_a2dc1d4578d47e85f8df93f115477642e}{init()}}. Master rank is also needed, to send it informations and receive informations from it, inside the functors (the job knows these values, but the functors don\textquotesingle{}t). The size of a packet can be tuned here.
+
+Internal attributes contain\+:
+\begin{DoxyItemize}
+\item (useful for master) the index of the next element to be evaluated.
+\item (useful for master) a map containing links between M\+PI ranks and slices of the table which the worker with this rank has evaluated. Without this map, when receiving results from a worker, the master couldn\textquotesingle{}t be able to replace the right elements in the table. 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_data_aa9a36695e353d3a2f7c6bb9a6ab21a9b}\label{structeo_1_1mpi_1_1_parallel_apply_data_aa9a36695e353d3a2f7c6bb9a6ab21a9b}} 
+\index{eo::mpi::ParallelApplyData$<$ EOT $>$@{eo::mpi::ParallelApplyData$<$ EOT $>$}!ParallelApplyData@{ParallelApplyData}}
+\index{ParallelApplyData@{ParallelApplyData}!eo::mpi::ParallelApplyData$<$ EOT $>$@{eo::mpi::ParallelApplyData$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{ParallelApplyData()}{ParallelApplyData()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data}{eo\+::mpi\+::\+Parallel\+Apply\+Data}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data}{Parallel\+Apply\+Data}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{\+\_\+proc,  }\item[{int}]{\+\_\+master\+Rank,  }\item[{int}]{\+\_\+packet\+Size,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$}]{table = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ctor for Parallel apply (map) data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+proc} & The functor to apply on each element in the table \\
+\hline
+{\em \+\_\+master\+Rank} & The M\+PI rank of the master \\
+\hline
+{\em \+\_\+packet\+Size} & The number of elements on which the function will be applied by the worker, at a time. \\
+\hline
+{\em table} & The table to apply. If this value is N\+U\+LL, user will have to call \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data_a2dc1d4578d47e85f8df93f115477642e}{init()}} before launching the job. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_parallel_apply_8h}{eo\+Parallel\+Apply.\+h}}\end{DoxyCompactItemize}

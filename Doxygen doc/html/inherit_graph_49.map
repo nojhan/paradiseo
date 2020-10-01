@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structeo_1_1mpi_1_1_assignment_algorithm.html" title="Contains informations on the available workers and allows to find assignees for jobs." alt="" coords="5,46,225,73"/>
+<area shape="rect" id="node2" href="$structeo_1_1mpi_1_1_dynamic_assignment_algorithm.html" title="Assignment (scheduling) algorithm which handles workers in a queue." alt="" coords="273,5,488,47"/>
+<area shape="rect" id="node3" href="$structeo_1_1mpi_1_1_static_assignment_algorithm.html" title="Assignment algorithm which gives to each worker a precise number of tasks to do, in a round robin fas..." alt="" coords="284,71,477,112"/>
+</map>

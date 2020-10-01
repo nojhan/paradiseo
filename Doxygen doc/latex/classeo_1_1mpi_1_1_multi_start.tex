@@ -1,0 +1,72 @@
+\hypertarget{classeo_1_1mpi_1_1_multi_start}{}\doxysection{eo\+::mpi\+::Multi\+Start$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_1_1mpi_1_1_multi_start}\index{eo::mpi::MultiStart$<$ EOT $>$@{eo::mpi::MultiStart$<$ EOT $>$}}
+
+
+\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start}{Multi\+Start}} job, created for convenience.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Multi\+Start.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Multi\+Start$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classeo_1_1mpi_1_1_multi_start__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Multi\+Start$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_multi_start__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_start_ad9f9cdf7f2dc9c374aaf024247a76d20}\label{classeo_1_1mpi_1_1_multi_start_ad9f9cdf7f2dc9c374aaf024247a76d20}} 
+{\bfseries Multi\+Start} (\mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \&algo, int master\+Rank, \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{Multi\+Start\+Store}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&store, int runs)
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_aa1a8676bfbc594ea1cfe9e8b57427242}{best\+\_\+individuals}} ()
+\begin{DoxyCompactList}\small\item\em Returns the best solution, at the end of the job. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+::mpi\+::\+Multi\+Start$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start}{Multi\+Start}} job, created for convenience. 
+
+This is an \mbox{\hyperlink{classeo_1_1mpi_1_1_one_shot_job}{One\+Shot\+Job}}, which means workers leave it along with the master. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_start_aa1a8676bfbc594ea1cfe9e8b57427242}\label{classeo_1_1mpi_1_1_multi_start_aa1a8676bfbc594ea1cfe9e8b57427242}} 
+\index{eo::mpi::MultiStart$<$ EOT $>$@{eo::mpi::MultiStart$<$ EOT $>$}!best\_individuals@{best\_individuals}}
+\index{best\_individuals@{best\_individuals}!eo::mpi::MultiStart$<$ EOT $>$@{eo::mpi::MultiStart$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{best\_individuals()}{best\_individuals()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\& \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start}{eo\+::mpi\+::\+Multi\+Start}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::best\+\_\+individuals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the best solution, at the end of the job. 
+
+Warning\+: if you call this function from a worker, or from the master before the launch of the job, you will only get an empty population!
+
+\begin{DoxyReturn}{Returns}
+Population of best individuals retrieved by the master. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_multi_start_8h}{eo\+Multi\+Start.\+h}}\end{DoxyCompactItemize}

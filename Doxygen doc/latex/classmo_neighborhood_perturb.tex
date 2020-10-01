@@ -1,0 +1,164 @@
+\hypertarget{classmo_neighborhood_perturb}{}\doxysection{mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$ Class Template Reference}
+\label{classmo_neighborhood_perturb}\index{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighborhood\+Perturb.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighborhood_perturb__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighborhood_perturb__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_perturb_ac3afff17c2c05f7cd5b12eec835f711b}\label{classmo_neighborhood_perturb_ac3afff17c2c05f7cd5b12eec835f711b}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_perturb_a4180cfed1ffee1bfd95a6753bc2e7e02}\label{classmo_neighborhood_perturb_a4180cfed1ffee1bfd95a6753bc2e7e02}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ Other\+Neighbor $>$ {\bfseries Other\+NH}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neighborhood_perturb_a6d79845e0096287c18de1cbc09ba5bf6}{mo\+Neighborhood\+Perturb}} (\mbox{\hyperlink{classmo_neighborhood}{Other\+NH}} \&\+\_\+other\+Neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ Other\+Neighbor $>$ \&\+\_\+eval)
+\item 
+virtual bool \mbox{\hyperlink{classmo_neighborhood_perturb_ace420bac13b264825bebf2a23c4b9657}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb_a08e0d5383a917b32d7cfeac81686a7b1}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb_a2e5db55a2181ae67d6af67ab530eba4f}{add}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb_afe1b09d56e827539d1641f4dcca49802}{update}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb_ae48eb040bf335ef159a96bea1ddfd532}{clear\+Memory}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor, class Other\+Neighbor$>$\newline
+class mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$}
+
+Neighborhood Perturbation\+: explore the neighborhood to perturb the solution (the neighborhood could be different as the one used in the Local Search) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neighborhood_perturb_a6d79845e0096287c18de1cbc09ba5bf6}\label{classmo_neighborhood_perturb_a6d79845e0096287c18de1cbc09ba5bf6}} 
+\index{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}!moNeighborhoodPerturb@{moNeighborhoodPerturb}}
+\index{moNeighborhoodPerturb@{moNeighborhoodPerturb}!moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborhoodPerturb()}{moNeighborhoodPerturb()}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Other\+Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighborhood_perturb}{mo\+Neighborhood\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Other\+Neighbor $>$\+::\mbox{\hyperlink{classmo_neighborhood_perturb}{mo\+Neighborhood\+Perturb}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Other\+NH}} \&}]{\+\_\+other\+Neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ Other\+Neighbor $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other\+Neighborhood} & a neighborhood \\
+\hline
+{\em \+\_\+eval} & an Evaluation \mbox{\hyperlink{struct_function}{Function}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighborhood_perturb_a2e5db55a2181ae67d6af67ab530eba4f}\label{classmo_neighborhood_perturb_a2e5db55a2181ae67d6af67ab530eba4f}} 
+\index{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}!add@{add}}
+\index{add@{add}!moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Other\+Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb}{mo\+Neighborhood\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Other\+Neighbor $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Re\+Init the neighborhood because a move was done 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & unused neighbor (always empty) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_acf319ce1a44dbf601c80bd5670dde853}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_perturb_ae48eb040bf335ef159a96bea1ddfd532}\label{classmo_neighborhood_perturb_ae48eb040bf335ef159a96bea1ddfd532}} 
+\index{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}!clearMemory@{clearMemory}}
+\index{clearMemory@{clearMemory}!moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{clearMemory()}{clearMemory()}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Other\+Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb}{mo\+Neighborhood\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Other\+Neighbor $>$\+::clear\+Memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+
+Implements \mbox{\hyperlink{classmo_memory_ab24822b7720f4434d355bb468cb43a66}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_perturb_a08e0d5383a917b32d7cfeac81686a7b1}\label{classmo_neighborhood_perturb_a08e0d5383a917b32d7cfeac81686a7b1}} 
+\index{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}!init@{init}}
+\index{init@{init}!moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Other\+Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb}{mo\+Neighborhood\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Other\+Neighbor $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Init the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_ab8dda5ba853c077d1713d27d6a0512cb}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_perturb_ace420bac13b264825bebf2a23c4b9657}\label{classmo_neighborhood_perturb_ace420bac13b264825bebf2a23c4b9657}} 
+\index{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Other\+Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_neighborhood_perturb}{mo\+Neighborhood\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Other\+Neighbor $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply move on the solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the current solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_perturb_afe1b09d56e827539d1641f4dcca49802}\label{classmo_neighborhood_perturb_afe1b09d56e827539d1641f4dcca49802}} 
+\index{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}!update@{update}}
+\index{update@{update}!moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$@{moNeighborhoodPerturb$<$ Neighbor, OtherNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Other\+Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_perturb}{mo\+Neighborhood\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Other\+Neighbor $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore another neighbor because no move was done 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & unused neighbor (always empty) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_a3db29eaee769fbf7fb5e80c653d74884}{mo\+Memory$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/perturb/mo\+Neighborhood\+Perturb.\+h\end{DoxyCompactItemize}

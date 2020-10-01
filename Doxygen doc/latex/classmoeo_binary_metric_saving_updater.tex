@@ -1,0 +1,93 @@
+\hypertarget{classmoeo_binary_metric_saving_updater}{}\doxysection{moeo\+Binary\+Metric\+Saving\+Updater$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_binary_metric_saving_updater}\index{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$@{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Binary\+Metric\+Saving\+Updater.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Binary\+Metric\+Saving\+Updater$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classmoeo_binary_metric_saving_updater__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Binary\+Metric\+Saving\+Updater$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classmoeo_binary_metric_saving_updater__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_binary_metric_saving_updater_a21c2b12ee8600d8550eff42bcba87fd2}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_binary_metric_saving_updater_ab7c3fb73caf759450367c76d4716bb62}{moeo\+Binary\+Metric\+Saving\+Updater}} (\mbox{\hyperlink{classmoeo_vector_vs_vector_binary_metric}{moeo\+Vector\+Vs\+Vector\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_binary_metric_saving_updater_a21c2b12ee8600d8550eff42bcba87fd2}{Objective\+Vector}}, double $>$ \&\+\_\+metric, const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, std\+::string \+\_\+filename)
+\item 
+void \mbox{\hyperlink{classmoeo_binary_metric_saving_updater_aa4f0a9e86b4a39ef88e7f8e1c1d6d229}{operator()}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Binary\+Metric\+Saving\+Updater$<$ M\+O\+E\+O\+T $>$}
+
+This class allows to save the progression of a binary metric comparing the objective vectors of the current population (or archive) with the objective vectors of the population (or archive) of the generation (n-\/1) into a file 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_binary_metric_saving_updater_a21c2b12ee8600d8550eff42bcba87fd2}\label{classmoeo_binary_metric_saving_updater_a21c2b12ee8600d8550eff42bcba87fd2}} 
+\index{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$@{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoBinaryMetricSavingUpdater$<$ MOEOT $>$@{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_binary_metric_saving_updater}{moeo\+Binary\+Metric\+Saving\+Updater}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_binary_metric_saving_updater_a21c2b12ee8600d8550eff42bcba87fd2}{Objective\+Vector}}}
+
+The objective vector type of a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_binary_metric_saving_updater_ab7c3fb73caf759450367c76d4716bb62}\label{classmoeo_binary_metric_saving_updater_ab7c3fb73caf759450367c76d4716bb62}} 
+\index{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$@{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$}!moeoBinaryMetricSavingUpdater@{moeoBinaryMetricSavingUpdater}}
+\index{moeoBinaryMetricSavingUpdater@{moeoBinaryMetricSavingUpdater}!moeoBinaryMetricSavingUpdater$<$ MOEOT $>$@{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoBinaryMetricSavingUpdater()}{moeoBinaryMetricSavingUpdater()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_binary_metric_saving_updater}{moeo\+Binary\+Metric\+Saving\+Updater}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_binary_metric_saving_updater}{moeo\+Binary\+Metric\+Saving\+Updater}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_vector_vs_vector_binary_metric}{moeo\+Vector\+Vs\+Vector\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_binary_metric_saving_updater_a21c2b12ee8600d8550eff42bcba87fd2}{Objective\+Vector}}, double $>$ \&}]{\+\_\+metric,  }\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{std\+::string}]{\+\_\+filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+metric} & the binary metric comparing two Pareto sets \\
+\hline
+{\em \+\_\+pop} & the main population \\
+\hline
+{\em \+\_\+filename} & the target filename \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_binary_metric_saving_updater_aa4f0a9e86b4a39ef88e7f8e1c1d6d229}\label{classmoeo_binary_metric_saving_updater_aa4f0a9e86b4a39ef88e7f8e1c1d6d229}} 
+\index{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$@{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoBinaryMetricSavingUpdater$<$ MOEOT $>$@{moeoBinaryMetricSavingUpdater$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_binary_metric_saving_updater}{moeo\+Binary\+Metric\+Saving\+Updater}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Saves the metric\textquotesingle{}s value for the current generation 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/utils/moeo\+Binary\+Metric\+Saving\+Updater.\+h\end{DoxyCompactItemize}

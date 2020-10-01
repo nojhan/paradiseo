@@ -1,0 +1,8 @@
+<map id="Estimators" name="Estimators">
+<area shape="rect" id="node1" href="$group___binomial.html" title="A binomial distribution that model marginal probabilities across boolean variables." alt="" coords="353,11,433,37"/>
+<area shape="rect" id="node2" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="325,69,461,94"/>
+<area shape="rect" id="node3" href="$group___mononormal.html" title="A normal (Gaussian) distribution that only model variances of variables." alt="" coords="357,118,428,143"/>
+<area shape="rect" id="node4" title="Estimators takes an eoPop and estimates the parameters of a distributions (defined as an hypothesis) ..." alt="" coords="5,118,97,143"/>
+<area shape="rect" id="node5" href="$group___multinormal.html" title="Distribution that model co&#45;variances between variables." alt="" coords="317,167,468,193"/>
+<area shape="rect" id="node6" href="$group___e_m_n_a.html" title="Estimation of Multivariate Normal Algorithm (EMNA) is a stochastic, derivative&#45;free methods for numer..." alt="" coords="362,217,423,242"/>
+</map>

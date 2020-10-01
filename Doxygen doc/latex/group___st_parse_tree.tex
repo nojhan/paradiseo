@@ -1,0 +1,36 @@
+\hypertarget{group___st_parse_tree}{}\doxysection{St\+Parse\+Tree}
+\label{group___st_parse_tree}\index{StParseTree@{StParseTree}}
+
+
+Various functions for strongly typed tree-\/based Genetic Programming. The St\+Parse\+Tree functions use the same \mbox{\hyperlink{classeo_parse_tree}{eo\+Parse\+Tree}} class for the individual but now each node class must have two additional functions.  
+
+
+Collaboration diagram for St\+Parse\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{group___st_parse_tree}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_st_parse_tree_depth_init}{eo\+St\+Parse\+Tree\+Depth\+Init$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_st_subtree_x_over}{eo\+St\+Subtree\+X\+Over$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_st_branch_mutation}{eo\+St\+Branch\+Mutation$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_st_point_mutation}{eo\+St\+Point\+Mutation$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_st_hoist_mutation}{eo\+St\+Hoist\+Mutation$<$ F\+Type, Node $>$}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Various functions for strongly typed tree-\/based Genetic Programming. The St\+Parse\+Tree functions use the same \mbox{\hyperlink{classeo_parse_tree}{eo\+Parse\+Tree}} class for the individual but now each node class must have two additional functions. 
+
+\begin{DoxyItemize}
+\item int type(void) which returns the return type of the node \item int type(int child) which returns the required type for child 0, 1 or 2\end{DoxyItemize}
+Pruning strongly typed trees is not possible at the moment. 

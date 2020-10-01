@@ -1,0 +1,109 @@
+\hypertarget{classmo_random_search}{}\doxysection{mo\+Random\+Search$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_random_search}\index{moRandomSearch$<$ Neighbor $>$@{moRandomSearch$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Random\+Search.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Random\+Search$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_random_search__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Random\+Search$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_random_search__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_random_search_a125acb51507ab4ee193e2b88894cef8b}\label{classmo_random_search_a125acb51507ab4ee193e2b88894cef8b}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_random_search_aa5ab57815094f5f1964e55849cd52b97}{mo\+Random\+Search}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, unsigned \+\_\+nb\+Sol\+Max)
+\item 
+\mbox{\hyperlink{classmo_random_search_aa5c26c48e08f9592aba4e7ef59a9ea4b}{mo\+Random\+Search}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, unsigned \+\_\+nb\+Sol\+Max, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_random_search_af598ee8f4afe90f011a6fa03a1895cd3}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Random\+Search$<$ Neighbor $>$}
+
+Random Search\+: Pure random search local search
+
+At each iteration, one random solution is selected and replace the current solution the algorithm stops when the number of solution is reached 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_random_search_aa5ab57815094f5f1964e55849cd52b97}\label{classmo_random_search_aa5ab57815094f5f1964e55849cd52b97}} 
+\index{moRandomSearch$<$ Neighbor $>$@{moRandomSearch$<$ Neighbor $>$}!moRandomSearch@{moRandomSearch}}
+\index{moRandomSearch@{moRandomSearch}!moRandomSearch$<$ Neighbor $>$@{moRandomSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRandomSearch()}{moRandomSearch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_search}{mo\+Random\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_random_search}{mo\+Random\+Search}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{unsigned}]{\+\_\+nb\+Sol\+Max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Simple constructor for a random search 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & the solution initializer, to explore at random the search space \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+nb\+Sol\+Max} & number of solutions \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_search_aa5c26c48e08f9592aba4e7ef59a9ea4b}\label{classmo_random_search_aa5c26c48e08f9592aba4e7ef59a9ea4b}} 
+\index{moRandomSearch$<$ Neighbor $>$@{moRandomSearch$<$ Neighbor $>$}!moRandomSearch@{moRandomSearch}}
+\index{moRandomSearch@{moRandomSearch}!moRandomSearch$<$ Neighbor $>$@{moRandomSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRandomSearch()}{moRandomSearch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_search}{mo\+Random\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_random_search}{mo\+Random\+Search}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{unsigned}]{\+\_\+nb\+Sol\+Max,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+General constructor for a random search 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & the solution initializer, to explore at random the search space \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+nb\+Sol\+Max} & number of solutions \\
+\hline
+{\em \+\_\+cont} & external continuator \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_random_search_af598ee8f4afe90f011a6fa03a1895cd3}\label{classmo_random_search_af598ee8f4afe90f011a6fa03a1895cd3}} 
+\index{moRandomSearch$<$ Neighbor $>$@{moRandomSearch$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moRandomSearch$<$ Neighbor $>$@{moRandomSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_random_search}{mo\+Random\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+name of the class 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/algo/mo\+Random\+Search.\+h\end{DoxyCompactItemize}

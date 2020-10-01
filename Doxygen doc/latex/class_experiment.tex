@@ -1,0 +1,93 @@
+\hypertarget{class_experiment}{}\doxysection{Experiment Class Reference}
+\label{class_experiment}\index{Experiment@{Experiment}}
+
+
+Serializable experiment.  
+
+
+
+
+Inheritance diagram for Experiment\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_experiment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Experiment\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_experiment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_experiment_ad787bd06cff0ac01b8305ef497b2aeae}\label{class_experiment_ad787bd06cff0ac01b8305ef497b2aeae}} 
+{\bfseries Experiment} (\mbox{\hyperlink{class_distribution}{Distribution}} $\ast$distrib, unsigned size, unsigned packet\+\_\+size, bool print\+\_\+waiting\+\_\+time, unsigned seed, const std\+::string \&file\+Name=\char`\"{}\char`\"{})
+\item 
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{class_experiment_a723ac2c4d96d22eb30754d390e1527a1}{pack}} (void) const
+\begin{DoxyCompactList}\small\item\em Serializes the object to J\+S\+ON format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_experiment_a91afe9a201947f1299bcf33681d7ddd1}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_experiment_ac3467eb067f8623c9cf3cd7c736a8c80}\label{class_experiment_ac3467eb067f8623c9cf3cd7c736a8c80}} 
+void {\bfseries run} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serializable experiment. 
+
+Allows an experiment to be saved and loaded via a file, using eoserial.
+
+Construct the experiment with the good parameters from the command line or load experiments from a file. Then call run() to launch the parallel job.
+
+If a filename is given to the constructor (or during the loading), the results of the experiments (time series) will be redirected to the file with the given file name. Otherwise (filename == \char`\"{}\char`\"{}), the output will just be shown on the standard output. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_experiment_a723ac2c4d96d22eb30754d390e1527a1}\label{class_experiment_a723ac2c4d96d22eb30754d390e1527a1}} 
+\index{Experiment@{Experiment}!pack@{pack}}
+\index{pack@{pack}!Experiment@{Experiment}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}$\ast$ Experiment\+::pack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the object to J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+A J\+S\+ON object created with new. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{eoserial\+::\+Printable}}.
+
+\mbox{\Hypertarget{class_experiment_a91afe9a201947f1299bcf33681d7ddd1}\label{class_experiment_a91afe9a201947f1299bcf33681d7ddd1}} 
+\index{Experiment@{Experiment}!unpack@{unpack}}
+\index{unpack@{unpack}!Experiment@{Experiment}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily void Experiment\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{eoserial\+::\+Persistent}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/test/mpi/\mbox{\hyperlink{t-mpi-distrib-exp_8cpp}{t-\/mpi-\/distrib-\/exp.\+cpp}}\end{DoxyCompactItemize}

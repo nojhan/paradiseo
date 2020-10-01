@@ -1,0 +1,137 @@
+\hypertarget{classeo_eval_i_o_hsuite}{}\doxysection{eo\+Eval\+I\+O\+Hsuite$<$ E\+OT, S\+U\+B\+E\+OT, S\+T\+AT $>$ Class Template Reference}
+\label{classeo_eval_i_o_hsuite}\index{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$@{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+I\+O\+H.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+I\+O\+Hsuite$<$ E\+OT, S\+U\+B\+E\+OT, S\+T\+AT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_eval_i_o_hsuite__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+I\+O\+Hsuite$<$ E\+OT, S\+U\+B\+E\+OT, S\+T\+AT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_i_o_hsuite__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a1be5a3694b7da071aaf40513ace2130d}\label{classeo_eval_i_o_hsuite_a1be5a3694b7da071aaf40513ace2130d}} 
+using {\bfseries Fitness} = typename E\+O\+T\+::\+Fitness
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a47c49b309b581c6cd349897748d86cc8}\label{classeo_eval_i_o_hsuite_a47c49b309b581c6cd349897748d86cc8}} 
+using {\bfseries Scalar\+Type} = typename Fitness\+::\+Scalar\+Type
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a34919d04c85839e934443b12ab3ebe44}\label{classeo_eval_i_o_hsuite_a34919d04c85839e934443b12ab3ebe44}} 
+using {\bfseries Sub\+Atom\+Type} = typename S\+U\+B\+E\+O\+T\+::\+Atom\+Type
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_eval_i_o_hsuite_ae025865e85f57f99f26736e8e871a7c6}{eo\+Eval\+I\+O\+Hsuite}} (\mbox{\hyperlink{classeo_eval_i_o_hproblem}{eo\+Eval\+I\+O\+Hproblem}}$<$ S\+U\+B\+E\+OT $>$ \&eval, \mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}$<$ S\+U\+B\+E\+OT $>$ \&foundry, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ S\+U\+B\+E\+OT $>$ \&pop, \mbox{\hyperlink{classeo_i_o_h_setup}{eo\+I\+O\+H\+Setup}}$<$ S\+U\+B\+E\+OT $>$ \&setup, I\+O\+Hprofiler\+\_\+suite$<$ Sub\+Atom\+Type $>$ \&\mbox{\hyperlink{classeo_eval_i_o_hsuite_adc459f579863644dea791b9013241ba7}{suite}}, I\+O\+Hprofiler\+\_\+ecdf\+\_\+logger$<$ Sub\+Atom\+Type $>$ \&log, I\+O\+Hprofiler\+\_\+ecdf\+\_\+stat$<$ S\+T\+AT $>$ \&stat)
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_ac427f0be8d654f01d175cf883453b6b6}\label{classeo_eval_i_o_hsuite_ac427f0be8d654f01d175cf883453b6b6}} 
+virtual void \mbox{\hyperlink{classeo_eval_i_o_hsuite_ac427f0be8d654f01d175cf883453b6b6}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_eval_i_o_hsuite_adc459f579863644dea791b9013241ba7}{suite}} (I\+O\+Hprofiler\+\_\+suite$<$ Sub\+Atom\+Type $>$ \&suite)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a2a55804ffe9b96e4e571f6ce1a17fd05}\label{classeo_eval_i_o_hsuite_a2a55804ffe9b96e4e571f6ce1a17fd05}} 
+virtual Fitness {\bfseries call} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_ad10b67bcf2bec8c5cce6688a0822a1a1}\label{classeo_eval_i_o_hsuite_ad10b67bcf2bec8c5cce6688a0822a1a1}} 
+\mbox{\hyperlink{classeo_eval_i_o_hproblem}{eo\+Eval\+I\+O\+Hproblem}}$<$ S\+U\+B\+E\+OT $>$ \& {\bfseries \+\_\+eval}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a25bc305baa5423e7c531a0cf844cdfc1}\label{classeo_eval_i_o_hsuite_a25bc305baa5423e7c531a0cf844cdfc1}} 
+\mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}$<$ S\+U\+B\+E\+OT $>$ \& {\bfseries \+\_\+foundry}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a29df4d1ac4b9143283380c1e822f9b45}\label{classeo_eval_i_o_hsuite_a29df4d1ac4b9143283380c1e822f9b45}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ S\+U\+B\+E\+OT $>$ \& {\bfseries \+\_\+pop}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_abe88c78df694e94309a74c9836f0d6ca}\label{classeo_eval_i_o_hsuite_abe88c78df694e94309a74c9836f0d6ca}} 
+\mbox{\hyperlink{classeo_i_o_h_setup}{eo\+I\+O\+H\+Setup}}$<$ S\+U\+B\+E\+OT $>$ \& {\bfseries \+\_\+setup}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_acd4adf15919cc671f5dcf3fe9a0aa23c}\label{classeo_eval_i_o_hsuite_acd4adf15919cc671f5dcf3fe9a0aa23c}} 
+I\+O\+Hprofiler\+\_\+suite$<$ Sub\+Atom\+Type $>$ $\ast$ {\bfseries \+\_\+ioh\+\_\+suite}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a9fca67cf0b0cf018385fb3ac3cefc190}\label{classeo_eval_i_o_hsuite_a9fca67cf0b0cf018385fb3ac3cefc190}} 
+I\+O\+Hprofiler\+\_\+ecdf\+\_\+logger$<$ Sub\+Atom\+Type $>$ \& {\bfseries \+\_\+ioh\+\_\+log}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_a6d2304eee9d8c09aa1de60103fbfe3d3}\label{classeo_eval_i_o_hsuite_a6d2304eee9d8c09aa1de60103fbfe3d3}} 
+I\+O\+Hprofiler\+\_\+ecdf\+\_\+stat$<$ S\+T\+AT $>$ \& {\bfseries \+\_\+ioh\+\_\+stat}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class S\+U\+B\+E\+OT, class S\+T\+AT$>$\newline
+class eo\+Eval\+I\+O\+Hsuite$<$ E\+O\+T, S\+U\+B\+E\+O\+T, S\+T\+A\+T $>$}
+
+Wrap an I\+O\+Hexperimenter\textquotesingle{}s suite class within an \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}. Useful for algorithm selection.
+
+The idea is to run the given algorithm on a whole suite of problems and output its aggregated performance.
+
+See \href{https://github.com/IOHprofiler/IOHexperimenter}{\texttt{ https\+://github.\+com/\+I\+O\+Hprofiler/\+I\+O\+Hexperimenter}}
+
+The main template E\+OT defines the interface of this functor, that is how the algorithm instance is encoded (e.\+g. an \mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}\textquotesingle{}s integer vector). The S\+U\+B\+E\+OT template defines the encoding of the sub-\/problem, which the encoded algorithm have to solve (e.\+g. a One\+Max problem).
+
+\begin{DoxyNote}{Note}
+\+: This will not reset the given pop between two calls of the given algorithm on new problems. You most probably want to wrap your algorithm in an \mbox{\hyperlink{classeo_algo_restart}{eo\+Algo\+Restart}} to do that for you.
+\end{DoxyNote}
+Handle only I\+O\+Hprofiler {\ttfamily stat} classes which template type S\+T\+AT is explicitely convertible to the given fitness. Any scalar is most probably already convertible, but compound classes (i.\+e. for multi-\/objective problems) are most probàbly not.
+
+\begin{DoxyNote}{Note}
+\+: You\textquotesingle{}re responsible of adding a conversion operator to the given S\+T\+AT type, if necessary (this is checked by a static assert in the constructor).
+
+\+: You\textquotesingle{}re also responsible of matching the fitness\textquotesingle{} encoding scalar type (I\+OH handle double and int, as of 2020-\/03-\/09).
+\end{DoxyNote}
+You will need to pass the I\+OH include directory to your compiler (e.\+g. I\+O\+Hexperimenter/build/\+Cpp/src/). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_ae025865e85f57f99f26736e8e871a7c6}\label{classeo_eval_i_o_hsuite_ae025865e85f57f99f26736e8e871a7c6}} 
+\index{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$@{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$}!eoEvalIOHsuite@{eoEvalIOHsuite}}
+\index{eoEvalIOHsuite@{eoEvalIOHsuite}!eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$@{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEvalIOHsuite()}{eoEvalIOHsuite()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class S\+U\+B\+E\+OT , class S\+T\+AT $>$ \\
+\mbox{\hyperlink{classeo_eval_i_o_hsuite}{eo\+Eval\+I\+O\+Hsuite}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, S\+U\+B\+E\+OT, S\+T\+AT $>$\+::\mbox{\hyperlink{classeo_eval_i_o_hsuite}{eo\+Eval\+I\+O\+Hsuite}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_i_o_hproblem}{eo\+Eval\+I\+O\+Hproblem}}$<$ S\+U\+B\+E\+OT $>$ \&}]{eval,  }\item[{\mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}$<$ S\+U\+B\+E\+OT $>$ \&}]{foundry,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ S\+U\+B\+E\+OT $>$ \&}]{pop,  }\item[{\mbox{\hyperlink{classeo_i_o_h_setup}{eo\+I\+O\+H\+Setup}}$<$ S\+U\+B\+E\+OT $>$ \&}]{setup,  }\item[{I\+O\+Hprofiler\+\_\+suite$<$ Sub\+Atom\+Type $>$ \&}]{suite,  }\item[{I\+O\+Hprofiler\+\_\+ecdf\+\_\+logger$<$ Sub\+Atom\+Type $>$ \&}]{log,  }\item[{I\+O\+Hprofiler\+\_\+ecdf\+\_\+stat$<$ S\+T\+AT $>$ \&}]{stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Takes an ecdf\+\_\+logger that computes the base data structure on which a ecdf\+\_\+stat will be called to compute an aggregated performance measure, which will be the evaluated fitness.
+
+As such, the logger and the stat are mandatory.
+
+\begin{DoxyNote}{Note}
+\+: The given logger should be at least embedded in the logger thas is bound with the given eval. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_eval_i_o_hsuite_adc459f579863644dea791b9013241ba7}\label{classeo_eval_i_o_hsuite_adc459f579863644dea791b9013241ba7}} 
+\index{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$@{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$}!suite@{suite}}
+\index{suite@{suite}!eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$@{eoEvalIOHsuite$<$ EOT, SUBEOT, STAT $>$}}
+\doxysubsubsection{\texorpdfstring{suite()}{suite()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class S\+U\+B\+E\+OT , class S\+T\+AT $>$ \\
+void \mbox{\hyperlink{classeo_eval_i_o_hsuite}{eo\+Eval\+I\+O\+Hsuite}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, S\+U\+B\+E\+OT, S\+T\+AT $>$\+::suite (\begin{DoxyParamCaption}\item[{I\+O\+Hprofiler\+\_\+suite$<$ Sub\+Atom\+Type $>$ \&}]{suite }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Update the suite pointer for a new one.
+
+This is useful if you assembled a Paradis\+EO algorithm and call it several time in an I\+O\+Hexperimenter\textquotesingle{}s loop across several suites. Instead of re-\/assembling your algorithm, just update the suite pointer. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/eo\+Eval\+I\+O\+H.\+h\end{DoxyCompactItemize}

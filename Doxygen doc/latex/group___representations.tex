@@ -1,0 +1,71 @@
+\hypertarget{group___representations}{}\doxysection{Representations}
+\label{group___representations}\index{Representations@{Representations}}
+
+
+\mbox{\hyperlink{class_solution}{Solution}} to a given optimization problem are using a given representation, and are called individuals.  
+
+
+Collaboration diagram for Representations\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{group___representations}
+\end{center}
+\end{figure}
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__bitstring}{Bit strings}}
+\begin{DoxyCompactList}\small\item\em Various functions for a bitstring representation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___parse_tree}{Parse\+Tree}}
+\begin{DoxyCompactList}\small\item\em Various functions for tree-\/based Genetic Programming. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___st_parse_tree}{St\+Parse\+Tree}}
+\begin{DoxyCompactList}\small\item\em Various functions for strongly typed tree-\/based Genetic Programming. The St\+Parse\+Tree functions use the same \mbox{\hyperlink{classeo_parse_tree}{eo\+Parse\+Tree}} class for the individual but now each node class must have two additional functions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___real}{Vector of reals}}
+\begin{DoxyCompactList}\small\item\em Set of classes related to continuous black-\/box optimization problems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_int}{eo\+Int$<$ Fit\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_vector}{eo\+Vector$<$ Fit\+T, Gene\+Type $>$}}
+\item 
+class \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle$<$ Fit\+T, Position\+Type, Velocity\+Type $>$}}
+\item 
+class \mbox{\hyperlink{classeo_string}{eo\+String$<$ fitness\+T $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class FitT , class Gene\+Type $>$ }\\bool \mbox{\hyperlink{group___representations_ga58a1284e71d918627631e57d784b2be7}{operator$<$}} (const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&\+\_\+eo1, const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&\+\_\+eo2)
+\item 
+{\footnotesize template$<$class FitT , class Gene\+Type $>$ }\\bool \mbox{\hyperlink{group___representations_gabf3a0ed8e37ed628e170b3e5d6b35687}{operator$>$}} (const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&\+\_\+eo1, const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&\+\_\+eo2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_solution}{Solution}} to a given optimization problem are using a given representation, and are called individuals. 
+
+Some of the most classical representations are proposed, but you can create your own one, providing that it inherits from the \mbox{\hyperlink{class_e_o}{EO}} base class. It will be used as a template parameter in almost all operators. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___representations_ga58a1284e71d918627631e57d784b2be7}\label{group___representations_ga58a1284e71d918627631e57d784b2be7}} 
+\index{Representations@{Representations}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Representations@{Representations}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$class FitT , class Gene\+Type $>$ \\
+bool operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&}]{\+\_\+eo1,  }\item[{const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&}]{\+\_\+eo2 }\end{DoxyParamCaption})}
+
+Less than
+
+This is impemented to avoid conflicts between \mbox{\hyperlink{class_e_o_a5ad609c4753a1f975b3d0fac2b221fbd}{E\+O\+::operator$<$}} and std\+::vector$<$\+Gene\+Type$>$\+::operator$<$ \mbox{\Hypertarget{group___representations_gabf3a0ed8e37ed628e170b3e5d6b35687}\label{group___representations_gabf3a0ed8e37ed628e170b3e5d6b35687}} 
+\index{Representations@{Representations}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Representations@{Representations}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily template$<$class FitT , class Gene\+Type $>$ \\
+bool operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&}]{\+\_\+eo1,  }\item[{const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&}]{\+\_\+eo2 }\end{DoxyParamCaption})}
+
+Greater than
+
+This is impemented to avoid conflicts between E\+O\+::operator$>$ and std\+::vector$<$\+Gene\+Type$>$\+::operator$>$ 

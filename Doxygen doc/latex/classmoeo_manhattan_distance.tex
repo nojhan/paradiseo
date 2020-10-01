@@ -1,0 +1,114 @@
+\hypertarget{classmoeo_manhattan_distance}{}\doxysection{moeo\+Manhattan\+Distance$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_manhattan_distance}\index{moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Manhattan\+Distance.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Manhattan\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_manhattan_distance__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Manhattan\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_manhattan_distance__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}{Objective\+Vector}}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_manhattan_distance_a3d86bc5204e5024b289386c43895700b}{Fitness}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_manhattan_distance_a2db2519c3377c01965cd1f396f1adaee}{moeo\+Manhattan\+Distance}} (\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&\+\_\+normalizer)
+\item 
+\mbox{\hyperlink{classmoeo_manhattan_distance_adf53977c93cd378eb49436c0899dfd54}{moeo\+Manhattan\+Distance}} ()
+\item 
+double \mbox{\hyperlink{classmoeo_manhattan_distance_a73e50f50f51af9640308a5267a0e6fdb}{operator()}} (const \mbox{\hyperlink{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}{Objective\+Vector}} \&\+\_\+obj1, const \mbox{\hyperlink{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}{Objective\+Vector}} \&\+\_\+obj2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Manhattan\+Distance$<$ M\+O\+E\+O\+T $>$}
+
+A class allowing to compute the Manhattan distance between two solutions in the objective space normalized objective values (i.\+e. between 0 and 1). A distance value then lies between 0 and n\+Objectives. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_manhattan_distance_a3d86bc5204e5024b289386c43895700b}\label{classmoeo_manhattan_distance_a3d86bc5204e5024b289386c43895700b}} 
+\index{moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}!Fitness@{Fitness}}
+\index{Fitness@{Fitness}!moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{Fitness}{Fitness}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_manhattan_distance}{moeo\+Manhattan\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_manhattan_distance_a3d86bc5204e5024b289386c43895700b}{Fitness}}}
+
+the fitness type of the solutions \mbox{\Hypertarget{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}\label{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}} 
+\index{moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_manhattan_distance}{moeo\+Manhattan\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_manhattan_distance_a2db2519c3377c01965cd1f396f1adaee}\label{classmoeo_manhattan_distance_a2db2519c3377c01965cd1f396f1adaee}} 
+\index{moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}!moeoManhattanDistance@{moeoManhattanDistance}}
+\index{moeoManhattanDistance@{moeoManhattanDistance}!moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoManhattanDistance()}{moeoManhattanDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_manhattan_distance}{moeo\+Manhattan\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_manhattan_distance}{moeo\+Manhattan\+Distance}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+normalizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+ctr with a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalizer} & the normalizer used for every Objective\+Vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_manhattan_distance_adf53977c93cd378eb49436c0899dfd54}\label{classmoeo_manhattan_distance_adf53977c93cd378eb49436c0899dfd54}} 
+\index{moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}!moeoManhattanDistance@{moeoManhattanDistance}}
+\index{moeoManhattanDistance@{moeoManhattanDistance}!moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoManhattanDistance()}{moeoManhattanDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_manhattan_distance}{moeo\+Manhattan\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_manhattan_distance}{moeo\+Manhattan\+Distance}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctr 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_manhattan_distance_a73e50f50f51af9640308a5267a0e6fdb}\label{classmoeo_manhattan_distance_a73e50f50f51af9640308a5267a0e6fdb}} 
+\index{moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoManhattanDistance$<$ MOEOT $>$@{moeoManhattanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_manhattan_distance}{moeo\+Manhattan\+Distance}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}{Objective\+Vector}} \&}]{\+\_\+obj1,  }\item[{const \mbox{\hyperlink{classmoeo_manhattan_distance_a44fa512b80d2eee94e876a95babc9913}{Objective\+Vector}} \&}]{\+\_\+obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the Manhattan distance between \+\_\+obj1 and \+\_\+obj2 in the objective space 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+obj1} & the first objective vector \\
+\hline
+{\em \+\_\+obj2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_obj_space_distance_a22e0058103f71b2ccdba0abbde391b77}{moeo\+Obj\+Space\+Distance$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/distance/moeo\+Manhattan\+Distance.\+h\end{DoxyCompactItemize}

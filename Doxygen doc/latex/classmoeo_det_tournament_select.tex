@@ -1,0 +1,129 @@
+\hypertarget{classmoeo_det_tournament_select}{}\doxysection{moeo\+Det\+Tournament\+Select$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_det_tournament_select}\index{moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Det\+Tournament\+Select.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Det\+Tournament\+Select$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_det_tournament_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Det\+Tournament\+Select$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_det_tournament_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_det_tournament_select_a106e44d01bbf2775b483104639c6556e}{moeo\+Det\+Tournament\+Select}} (\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+comparator, unsigned int \+\_\+t\+Size=2)
+\item 
+\mbox{\hyperlink{classmoeo_det_tournament_select_af17a16c1b0f688832e7143e55d0f767d}{moeo\+Det\+Tournament\+Select}} (unsigned int \+\_\+t\+Size=2)
+\item 
+const M\+O\+E\+OT \& \mbox{\hyperlink{classmoeo_det_tournament_select_a0d7051a48570e5dcbe9a19b90e4be3bf}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \& \mbox{\hyperlink{classmoeo_det_tournament_select_af31a46190da0fe561d748133456907c9}{comparator}}
+\item 
+\mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_det_tournament_select_adde5fc82ffff52056aab75632f779825}{default\+Comparator}}
+\item 
+unsigned int \mbox{\hyperlink{classmoeo_det_tournament_select_a061c191c2df365cf4325e0093aae2ae6}{t\+Size}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Det\+Tournament\+Select$<$ M\+O\+E\+O\+T $>$}
+
+Selection strategy that selects O\+NE individual by deterministic tournament. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_det_tournament_select_a106e44d01bbf2775b483104639c6556e}\label{classmoeo_det_tournament_select_a106e44d01bbf2775b483104639c6556e}} 
+\index{moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}!moeoDetTournamentSelect@{moeoDetTournamentSelect}}
+\index{moeoDetTournamentSelect@{moeoDetTournamentSelect}!moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDetTournamentSelect()}{moeoDetTournamentSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+comparator,  }\item[{unsigned int}]{\+\_\+t\+Size = {\ttfamily 2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Full Ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the comparator (used to compare 2 individuals) \\
+\hline
+{\em \+\_\+t\+Size} & the number of individuals in the tournament (default\+: 2) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_det_tournament_select_af17a16c1b0f688832e7143e55d0f767d}\label{classmoeo_det_tournament_select_af17a16c1b0f688832e7143e55d0f767d}} 
+\index{moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}!moeoDetTournamentSelect@{moeoDetTournamentSelect}}
+\index{moeoDetTournamentSelect@{moeoDetTournamentSelect}!moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDetTournamentSelect()}{moeoDetTournamentSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+t\+Size = {\ttfamily 2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor without comparator. A \mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}} is used as default. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+t\+Size} & the number of individuals in the tournament (default\+: 2) ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_det_tournament_select_a0d7051a48570e5dcbe9a19b90e4be3bf}\label{classmoeo_det_tournament_select_a0d7051a48570e5dcbe9a19b90e4be3bf}} 
+\index{moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+const M\+O\+E\+OT\& \mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the tournament to the given population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, const M\+O\+E\+O\+T \& $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_det_tournament_select_af31a46190da0fe561d748133456907c9}\label{classmoeo_det_tournament_select_af31a46190da0fe561d748133456907c9}} 
+\index{moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}!comparator@{comparator}}
+\index{comparator@{comparator}!moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{comparator}{comparator}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$\& \mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::comparator\hspace{0.3cm}{\ttfamily [protected]}}
+
+the comparator (used to compare 2 individuals) \mbox{\Hypertarget{classmoeo_det_tournament_select_adde5fc82ffff52056aab75632f779825}\label{classmoeo_det_tournament_select_adde5fc82ffff52056aab75632f779825}} 
+\index{moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}!defaultComparator@{defaultComparator}}
+\index{defaultComparator@{defaultComparator}!moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{defaultComparator}{defaultComparator}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::default\+Comparator\hspace{0.3cm}{\ttfamily [protected]}}
+
+a fitness then diversity comparator can be used as default \mbox{\Hypertarget{classmoeo_det_tournament_select_a061c191c2df365cf4325e0093aae2ae6}\label{classmoeo_det_tournament_select_a061c191c2df365cf4325e0093aae2ae6}} 
+\index{moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}!tSize@{tSize}}
+\index{tSize@{tSize}!moeoDetTournamentSelect$<$ MOEOT $>$@{moeoDetTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{tSize}{tSize}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo_det_tournament_select}{moeo\+Det\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::t\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+the number of individuals in the tournament 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/selection/moeo\+Det\+Tournament\+Select.\+h\end{DoxyCompactItemize}

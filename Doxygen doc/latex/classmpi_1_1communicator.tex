@@ -1,0 +1,179 @@
+\hypertarget{classmpi_1_1communicator}{}\doxysection{mpi\+::communicator Class Reference}
+\label{classmpi_1_1communicator}\index{mpi::communicator@{mpi::communicator}}
+
+
+Main object, used to send / receive messages, get informations about the rank and the size of the world, etc.  
+
+
+
+
+{\ttfamily \#include $<$impl\+Mpi.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmpi_1_1communicator_a0e17d90b784f078d3e22a488290cb6aa}{communicator}} ()
+\item 
+\mbox{\Hypertarget{classmpi_1_1communicator_abc438dc60bc424067cfc82b3b6eecbd6}\label{classmpi_1_1communicator_abc438dc60bc424067cfc82b3b6eecbd6}} 
+int \mbox{\hyperlink{classmpi_1_1communicator_abc438dc60bc424067cfc82b3b6eecbd6}{rank}} ()
+\begin{DoxyCompactList}\small\item\em Returns the M\+PI rank of the current process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1communicator_ad4b5063daa1c5ea994c619af9bce2470}\label{classmpi_1_1communicator_ad4b5063daa1c5ea994c619af9bce2470}} 
+int \mbox{\hyperlink{classmpi_1_1communicator_ad4b5063daa1c5ea994c619af9bce2470}{size}} ()
+\begin{DoxyCompactList}\small\item\em Returns the size of the M\+PI cluster. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmpi_1_1communicator_a754ec08b0baba5515ab1877720efcc32}{send}} (int dest, int tag, int n)
+\begin{DoxyCompactList}\small\item\em Sends an integer to dest on channel \char`\"{}tag\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1communicator_acd3145216115067746ceb72425bbb8bb}\label{classmpi_1_1communicator_acd3145216115067746ceb72425bbb8bb}} 
+void {\bfseries recv} (int src, int tag, int \&n)
+\item 
+void \mbox{\hyperlink{classmpi_1_1communicator_aefdfd31985d0078e4823e76bbd0ca71f}{send}} (int dest, int tag, const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Sends a string to dest on channel \char`\"{}tag\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1communicator_a9d358c04f6678b1d50bb1e4662a4a6b0}\label{classmpi_1_1communicator_a9d358c04f6678b1d50bb1e4662a4a6b0}} 
+void {\bfseries recv} (int src, int tag, std\+::string \&str)
+\item 
+void \mbox{\hyperlink{classmpi_1_1communicator_ad8c781d33476d0044411a95a93f6a093}{send}} (int dest, int tag, const \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} \&persistent)
+\begin{DoxyCompactList}\small\item\em Sends an \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} to dest on channel \char`\"{}tag\char`\"{}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classmpi_1_1communicator_a10e1845d471961e6f7360fb4c146a71e}{send}} (int dest, int tag, T $\ast$table, int \mbox{\hyperlink{classmpi_1_1communicator_ad4b5063daa1c5ea994c619af9bce2470}{size}})
+\begin{DoxyCompactList}\small\item\em Sends an array of \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} to dest on channel \char`\"{}tag\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1communicator_ac02b81071d3cf3743c1efc9f4ff8dceb}\label{classmpi_1_1communicator_ac02b81071d3cf3743c1efc9f4ff8dceb}} 
+void {\bfseries recv} (int src, int tag, \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} \&persistent)
+\item 
+\mbox{\Hypertarget{classmpi_1_1communicator_a4f70d212503450be1581aefb4db70733}\label{classmpi_1_1communicator_a4f70d212503450be1581aefb4db70733}} 
+{\footnotesize template$<$class T $>$ }\\void {\bfseries recv} (int src, int tag, T $\ast$table, int \mbox{\hyperlink{classmpi_1_1communicator_ad4b5063daa1c5ea994c619af9bce2470}{size}})
+\item 
+\mbox{\hyperlink{classmpi_1_1status}{status}} \mbox{\hyperlink{classmpi_1_1communicator_a55160c34352ce5df924e81c1fb3b3287}{probe}} (int src=\mbox{\hyperlink{group___parallel_ga9c4a827de4c8d1026de65fc91ed989e0}{any\+\_\+source}}, int tag=\mbox{\hyperlink{group___parallel_gaa60c80af67fe827d0338f4da95fcbd26}{any\+\_\+tag}})
+\begin{DoxyCompactList}\small\item\em Wrapper for M\+P\+I\+\_\+\+Probe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmpi_1_1communicator_a3ea5211743a9c25579511f78a48f1d05}{barrier}} ()
+\begin{DoxyCompactList}\small\item\em Wrapper for M\+P\+I\+\_\+\+Barrier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main object, used to send / receive messages, get informations about the rank and the size of the world, etc. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmpi_1_1communicator_a0e17d90b784f078d3e22a488290cb6aa}\label{classmpi_1_1communicator_a0e17d90b784f078d3e22a488290cb6aa}} 
+\index{mpi::communicator@{mpi::communicator}!communicator@{communicator}}
+\index{communicator@{communicator}!mpi::communicator@{mpi::communicator}}
+\doxysubsubsection{\texorpdfstring{communicator()}{communicator()}}
+{\footnotesize\ttfamily mpi\+::communicator\+::communicator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Creates the communicator, using the whole world as a M\+P\+I\+\_\+\+Comm.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000033}{Todo}}]Allow the user to precise which M\+P\+I\+\_\+\+Comm to use \end{DoxyRefDesc}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmpi_1_1communicator_a3ea5211743a9c25579511f78a48f1d05}\label{classmpi_1_1communicator_a3ea5211743a9c25579511f78a48f1d05}} 
+\index{mpi::communicator@{mpi::communicator}!barrier@{barrier}}
+\index{barrier@{barrier}!mpi::communicator@{mpi::communicator}}
+\doxysubsubsection{\texorpdfstring{barrier()}{barrier()}}
+{\footnotesize\ttfamily void mpi\+::communicator\+::barrier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Wrapper for M\+P\+I\+\_\+\+Barrier. 
+
+\mbox{\Hypertarget{classmpi_1_1communicator_a55160c34352ce5df924e81c1fb3b3287}\label{classmpi_1_1communicator_a55160c34352ce5df924e81c1fb3b3287}} 
+\index{mpi::communicator@{mpi::communicator}!probe@{probe}}
+\index{probe@{probe}!mpi::communicator@{mpi::communicator}}
+\doxysubsubsection{\texorpdfstring{probe()}{probe()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmpi_1_1status}{status}} mpi\+::communicator\+::probe (\begin{DoxyParamCaption}\item[{int}]{src = {\ttfamily \mbox{\hyperlink{group___parallel_ga9c4a827de4c8d1026de65fc91ed989e0}{any\+\_\+source}}},  }\item[{int}]{tag = {\ttfamily \mbox{\hyperlink{group___parallel_gaa60c80af67fe827d0338f4da95fcbd26}{any\+\_\+tag}}} }\end{DoxyParamCaption})}
+
+
+
+Wrapper for M\+P\+I\+\_\+\+Probe. 
+
+Waits for a message to come from process having rank src, on the channel tag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & M\+PI rank of the sender (any\+\_\+source if it can be any sender) \\
+\hline
+{\em tag} & M\+PI tag of the expected message (any\+\_\+tag if it can be any tag) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmpi_1_1communicator_ad8c781d33476d0044411a95a93f6a093}\label{classmpi_1_1communicator_ad8c781d33476d0044411a95a93f6a093}} 
+\index{mpi::communicator@{mpi::communicator}!send@{send}}
+\index{send@{send}!mpi::communicator@{mpi::communicator}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void mpi\+::communicator\+::send (\begin{DoxyParamCaption}\item[{int}]{dest,  }\item[{int}]{tag,  }\item[{const \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} \&}]{persistent }\end{DoxyParamCaption})}
+
+
+
+Sends an \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} to dest on channel \char`\"{}tag\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & M\+PI rank of the receiver \\
+\hline
+{\em tag} & M\+PI tag of message \\
+\hline
+{\em persistent} & The object to send (it must absolutely implement \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}}) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmpi_1_1communicator_aefdfd31985d0078e4823e76bbd0ca71f}\label{classmpi_1_1communicator_aefdfd31985d0078e4823e76bbd0ca71f}} 
+\index{mpi::communicator@{mpi::communicator}!send@{send}}
+\index{send@{send}!mpi::communicator@{mpi::communicator}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void mpi\+::communicator\+::send (\begin{DoxyParamCaption}\item[{int}]{dest,  }\item[{int}]{tag,  }\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+Sends a string to dest on channel \char`\"{}tag\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & M\+PI rank of the receiver \\
+\hline
+{\em tag} & M\+PI tag of message \\
+\hline
+{\em str} & The std\+::string to send \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmpi_1_1communicator_a754ec08b0baba5515ab1877720efcc32}\label{classmpi_1_1communicator_a754ec08b0baba5515ab1877720efcc32}} 
+\index{mpi::communicator@{mpi::communicator}!send@{send}}
+\index{send@{send}!mpi::communicator@{mpi::communicator}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void mpi\+::communicator\+::send (\begin{DoxyParamCaption}\item[{int}]{dest,  }\item[{int}]{tag,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Sends an integer to dest on channel \char`\"{}tag\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & M\+PI rank of the receiver \\
+\hline
+{\em tag} & M\+PI tag of message \\
+\hline
+{\em n} & The integer to send \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmpi_1_1communicator_a10e1845d471961e6f7360fb4c146a71e}\label{classmpi_1_1communicator_a10e1845d471961e6f7360fb4c146a71e}} 
+\index{mpi::communicator@{mpi::communicator}!send@{send}}
+\index{send@{send}!mpi::communicator@{mpi::communicator}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void mpi\+::communicator\+::send (\begin{DoxyParamCaption}\item[{int}]{dest,  }\item[{int}]{tag,  }\item[{T $\ast$}]{table,  }\item[{int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sends an array of \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} to dest on channel \char`\"{}tag\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & M\+PI rank of the receiver \\
+\hline
+{\em tag} & M\+PI tag of message \\
+\hline
+{\em table} & The array of \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects \\
+\hline
+{\em size} & The number of elements to send (no check is done, the user has to be sure that the size won\textquotesingle{}t overflow!) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/impl\+Mpi.\+h\item 
+eo/src/mpi/impl\+Mpi.\+cpp\end{DoxyCompactItemize}

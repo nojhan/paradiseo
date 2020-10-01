@@ -1,0 +1,128 @@
+\hypertarget{classeo_eval_keep_best}{}\doxysection{eo\+Eval\+Keep\+Best$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_eval_keep_best}\index{eoEvalKeepBest$<$ EOT $>$@{eoEvalKeepBest$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+Keep\+Best.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+Keep\+Best$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_keep_best__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+Keep\+Best$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_keep_best__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_eval_keep_best_1_1_dummy_eval}{Dummy\+Eval}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_eval_keep_best_acdb460ed43d801859486322bf051d2b1}{eo\+Eval\+Keep\+Best}} (std\+::string \+\_\+name=\char`\"{}Very\+Best. \char`\"{})
+\item 
+\mbox{\hyperlink{classeo_eval_keep_best_a496c5157ca84a5436e604f8060eec4c2}{eo\+Eval\+Keep\+Best}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+func, std\+::string \+\_\+name=\char`\"{}Very\+Best. \char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_eval_keep_best_a5700ba42c290a45b3f084477f4b8c716}\label{classeo_eval_keep_best_a5700ba42c290a45b3f084477f4b8c716}} 
+virtual void \mbox{\hyperlink{classeo_eval_keep_best_a5700ba42c290a45b3f084477f4b8c716}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_eval_keep_best_aae87258b606ec15e55d7139d977b743b}\label{classeo_eval_keep_best_aae87258b606ec15e55d7139d977b743b}} 
+\mbox{\hyperlink{struct_dummy}{E\+OT}} \mbox{\hyperlink{classeo_eval_keep_best_aae87258b606ec15e55d7139d977b743b}{best\+\_\+element}} ()
+\begin{DoxyCompactList}\small\item\em Return the best individual found so far. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_eval_keep_best_a2932d1ae767747c3d0512ccda4becc18}{reset}} (const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&new\+\_\+best=\mbox{\hyperlink{struct_dummy}{E\+OT}}())
+\item 
+\mbox{\Hypertarget{classeo_eval_keep_best_ac6e31739e9b7fba91964a0dd757708e4}\label{classeo_eval_keep_best_ac6e31739e9b7fba91964a0dd757708e4}} 
+bool \mbox{\hyperlink{classeo_eval_keep_best_ac6e31739e9b7fba91964a0dd757708e4}{found}} () const
+\begin{DoxyCompactList}\small\item\em Tell if a best individual has been found during the last call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_keep_best_a67ca0aae19ec94548a5ca4e835d91724}\label{classeo_eval_keep_best_a67ca0aae19ec94548a5ca4e835d91724}} 
+\mbox{\hyperlink{classeo_eval_keep_best_1_1_dummy_eval}{Dummy\+Eval}} {\bfseries dummy\+\_\+eval}
+\item 
+\mbox{\Hypertarget{classeo_eval_keep_best_a069bab7b19468646b1116d8d318cc1f8}\label{classeo_eval_keep_best_a069bab7b19468646b1116d8d318cc1f8}} 
+\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries func}
+\item 
+\mbox{\Hypertarget{classeo_eval_keep_best_a9ec352ab5aa391e446ae82accb9f7e6d}\label{classeo_eval_keep_best_a9ec352ab5aa391e446ae82accb9f7e6d}} 
+bool {\bfseries \+\_\+found}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Eval\+Keep\+Best$<$ E\+O\+T $>$}
+
+Evaluate with the given evaluator and keep the best individual found so far.
+
+This is useful if you use a non-\/monotonic algorithm, such as C\+M\+A-\/\+ES, where the population\textquotesingle{}s best fitness can decrease between two generations. This is sometime necessary and one can\textquotesingle{}t use elitist replacors, as one do not want to introduce a bias in the population.
+
+The eo\+Eval\+Best\+Keep can be used as a wrapper around a classical evaluator, that keep the best individual it has found since its instanciation.
+
+To get the best individual, you have to call \mbox{\hyperlink{classeo_eval_keep_best_aae87258b606ec15e55d7139d977b743b}{best\+\_\+element()}} on the \mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}} itself, and not on the population (or else you would get the best individual found at the last generation).
+
+Example\+:
+
+My\+Eval true\+\_\+eval; eo\+Eval\+Keep\+Best$<$\+T$>$ wrapped\+\_\+eval( true\+\_\+eval );
+
+as an interesting side effect, you will get the best individual since initalization. eo\+Pop$<$\+T$>$ pop( my\+\_\+init ); eo\+Pop\+Loop\+Eval$<$\+T$>$ loop\+\_\+eval( wrapped\+\_\+eval );
+
+loop\+\_\+eval( pop );
+
+\mbox{\hyperlink{classeo_easy_e_a}{eo\+Easy\+EA}} algo( …, wrapped\+\_\+eval, … );
+
+algo(pop);
+
+do not use pop.\+best\+\_\+element()! std\+::cout $<$$<$ wrapped\+\_\+eval.\+best\+\_\+element() $<$$<$ std\+::endl;
+
+You can also inherits from \mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}}, if you want to add its interface with your own one. But then, you will have to explicitely call the base class functor\+: class My\+Eval \+: public eo\+Eval\+Keep\+Best$<$\+E\+O\+T$>$ \{ My\+Eval() \+: \mbox{\hyperlink{classeo_eval_keep_best_acdb460ed43d801859486322bf051d2b1}{eo\+Eval\+Keep\+Best$<$\+E\+O\+T$>$()}} \{\} virtual void \mbox{\hyperlink{classeo_eval_keep_best_a5700ba42c290a45b3f084477f4b8c716}{operator()(\+E\+O\+T\& sol)}} \{ evaluate sol here ...
+
+keep the best eo\+Eval\+Keep\+Best$<$\+E\+O\+T$>$\+::operator()( sol ); \}; 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_eval_keep_best_acdb460ed43d801859486322bf051d2b1}\label{classeo_eval_keep_best_acdb460ed43d801859486322bf051d2b1}} 
+\index{eoEvalKeepBest$<$ EOT $>$@{eoEvalKeepBest$<$ EOT $>$}!eoEvalKeepBest@{eoEvalKeepBest}}
+\index{eoEvalKeepBest@{eoEvalKeepBest}!eoEvalKeepBest$<$ EOT $>$@{eoEvalKeepBest$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEvalKeepBest()}{eoEvalKeepBest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}} (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+name = {\ttfamily \char`\"{}VeryBest.~\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A constructor for inheritance\+: if you want to inherit from \mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}}.
+
+Keep in mind that you will have to call \mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}} in your own implementation of operator().
+
+This constructor uses a dummy evaluator. \mbox{\Hypertarget{classeo_eval_keep_best_a496c5157ca84a5436e604f8060eec4c2}\label{classeo_eval_keep_best_a496c5157ca84a5436e604f8060eec4c2}} 
+\index{eoEvalKeepBest$<$ EOT $>$@{eoEvalKeepBest$<$ EOT $>$}!eoEvalKeepBest@{eoEvalKeepBest}}
+\index{eoEvalKeepBest@{eoEvalKeepBest}!eoEvalKeepBest$<$ EOT $>$@{eoEvalKeepBest$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEvalKeepBest()}{eoEvalKeepBest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+func,  }\item[{std\+::string}]{\+\_\+name = {\ttfamily \char`\"{}VeryBest.~\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A constructor for wrapping your own evaluator in a \mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_eval_keep_best_a2932d1ae767747c3d0512ccda4becc18}\label{classeo_eval_keep_best_a2932d1ae767747c3d0512ccda4becc18}} 
+\index{eoEvalKeepBest$<$ EOT $>$@{eoEvalKeepBest$<$ EOT $>$}!reset@{reset}}
+\index{reset@{reset}!eoEvalKeepBest$<$ EOT $>$@{eoEvalKeepBest$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::reset (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{new\+\_\+best = {\ttfamily \mbox{\hyperlink{struct_dummy}{E\+OT}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reset the best individual to the given one. If no individual is provided, the next evaluated one will be taken as a reference. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Eval\+Keep\+Best.\+h\end{DoxyCompactItemize}

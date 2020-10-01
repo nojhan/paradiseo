@@ -1,0 +1,7 @@
+<map id="Multivariate normal" name="Multivariate normal">
+<area shape="rect" id="node1" href="$group___samplers.html" title="Functors that draw and repair individuals according to a given distribution." alt="" coords="385,5,467,31"/>
+<area shape="rect" id="node2" href="$group___estimators.html" title="Estimators takes an eoPop and estimates the parameters of a distributions (defined as an hypothesis) ..." alt="" coords="380,55,472,80"/>
+<area shape="rect" id="node3" title="Distribution that model co&#45;variances between variables." alt="" coords="5,100,156,125"/>
+<area shape="rect" id="node4" href="$group___distributions.html" title="A distribution is a data structure that holds sufficient informations to describe a probability densi..." alt="" coords="373,124,479,149"/>
+<area shape="rect" id="node5" href="$group___e_m_n_a.html" title="Estimation of Multivariate Normal Algorithm (EMNA) is a stochastic, derivative&#45;free methods for numer..." alt="" coords="395,208,457,233"/>
+</map>

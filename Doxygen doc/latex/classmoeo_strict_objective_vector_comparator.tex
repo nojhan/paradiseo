@@ -1,0 +1,64 @@
+\hypertarget{classmoeo_strict_objective_vector_comparator}{}\doxysection{moeo\+Strict\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_strict_objective_vector_comparator}\index{moeoStrictObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoStrictObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Strict\+Objective\+Vector\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Strict\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_strict_objective_vector_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Strict\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_strict_objective_vector_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classmoeo_strict_objective_vector_comparator_aa11bb44f0cf4bfdb87bb863803cd1bdf}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Strict\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$}
+
+This functor class allows to compare 2 objective vectors according to strict dominance. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_strict_objective_vector_comparator_aa11bb44f0cf4bfdb87bb863803cd1bdf}\label{classmoeo_strict_objective_vector_comparator_aa11bb44f0cf4bfdb87bb863803cd1bdf}} 
+\index{moeoStrictObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoStrictObjectiveVectorComparator$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoStrictObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoStrictObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{classmoeo_strict_objective_vector_comparator}{moeo\+Strict\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns true if \+\_\+objective\+Vector1 is strictly dominated by \+\_\+objective\+Vector2 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector1} & the first objective vector \\
+\hline
+{\em \+\_\+objective\+Vector2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/comparator/moeo\+Strict\+Objective\+Vector\+Comparator.\+h\end{DoxyCompactItemize}

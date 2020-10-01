@@ -1,0 +1,106 @@
+\hypertarget{classeo_linear_decreasing_weight_up}{}\doxysection{eo\+Linear\+Decreasing\+Weight\+Up$<$ Weight\+Type, Stop\+Criteria\+Type $>$ Class Template Reference}
+\label{classeo_linear_decreasing_weight_up}\index{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}}
+
+
+{\ttfamily \#include $<$eo\+Linear\+Decreasing\+Weight\+Up.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Linear\+Decreasing\+Weight\+Up$<$ Weight\+Type, Stop\+Criteria\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{classeo_linear_decreasing_weight_up__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Linear\+Decreasing\+Weight\+Up$<$ Weight\+Type, Stop\+Criteria\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_linear_decreasing_weight_up__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_linear_decreasing_weight_up_a8cc5bed6e7a59011aa291c4eda0f819e}{eo\+Linear\+Decreasing\+Weight\+Up}} (const Stop\+Criteria\+Type \&\+\_\+stop, const Weight\+Type \&\+\_\+initial\+Value, const Weight\+Type \&\+\_\+final\+Value, \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Stop\+Criteria\+Type $>$ \&\+\_\+counter)
+\item 
+void \mbox{\hyperlink{classeo_linear_decreasing_weight_up_a4a969c821c74a24d70c07581afc456a6}{operator()}} (Weight\+Type \&\+\_\+weight)
+\item 
+\mbox{\hyperlink{classeo_linear_decreasing_weight_up_a8cc5bed6e7a59011aa291c4eda0f819e}{eo\+Linear\+Decreasing\+Weight\+Up}} (const Stop\+Criteria\+Type \&\+\_\+stop, const Weight\+Type \&\+\_\+initial\+Value, const Weight\+Type \&\+\_\+final\+Value, \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Stop\+Criteria\+Type $>$ \&\+\_\+counter)
+\item 
+void \mbox{\hyperlink{classeo_linear_decreasing_weight_up_a4a969c821c74a24d70c07581afc456a6}{operator()}} (Weight\+Type \&\+\_\+weight)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_linear_decreasing_weight_up_a430c7a874b9109746d51d365a80186f7}\label{classeo_linear_decreasing_weight_up_a430c7a874b9109746d51d365a80186f7}} 
+const Stop\+Criteria\+Type \& {\bfseries stop}
+\item 
+\mbox{\Hypertarget{classeo_linear_decreasing_weight_up_ae58ad13570851d9559a80f7f6589aced}\label{classeo_linear_decreasing_weight_up_ae58ad13570851d9559a80f7f6589aced}} 
+const Weight\+Type \& {\bfseries initial\+Value}
+\item 
+\mbox{\Hypertarget{classeo_linear_decreasing_weight_up_ac3f92626344e154a7bc6d16f0c9e1938}\label{classeo_linear_decreasing_weight_up_ac3f92626344e154a7bc6d16f0c9e1938}} 
+const Weight\+Type {\bfseries final\+Value}
+\item 
+\mbox{\Hypertarget{classeo_linear_decreasing_weight_up_abd3301644fb5ef6b29c9f0cfb0b93b60}\label{classeo_linear_decreasing_weight_up_abd3301644fb5ef6b29c9f0cfb0b93b60}} 
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Stop\+Criteria\+Type $>$ \& {\bfseries counter}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Weight\+Type, class Stop\+Criteria\+Type$>$\newline
+class eo\+Linear\+Decreasing\+Weight\+Up$<$ Weight\+Type, Stop\+Criteria\+Type $>$}
+
+Linear (inertia) weight updater for particle swarm optimization. Update a weight according to\+: w(t)=(w(0)-\/w(\+Nt))$\ast$(Nt -\/t)/\+Nt + w(\+Nt) where t is the current generation/event Nt is the total number of generations/event w(0) is the initial weight w(\+Nt) is the last inertia weight 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_linear_decreasing_weight_up_a8cc5bed6e7a59011aa291c4eda0f819e}\label{classeo_linear_decreasing_weight_up_a8cc5bed6e7a59011aa291c4eda0f819e}} 
+\index{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}!eoLinearDecreasingWeightUp@{eoLinearDecreasingWeightUp}}
+\index{eoLinearDecreasingWeightUp@{eoLinearDecreasingWeightUp}!eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}}
+\doxysubsubsection{\texorpdfstring{eoLinearDecreasingWeightUp()}{eoLinearDecreasingWeightUp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Weight\+Type , class Stop\+Criteria\+Type $>$ \\
+\mbox{\hyperlink{classeo_linear_decreasing_weight_up}{eo\+Linear\+Decreasing\+Weight\+Up}}$<$ Weight\+Type, Stop\+Criteria\+Type $>$\+::\mbox{\hyperlink{classeo_linear_decreasing_weight_up}{eo\+Linear\+Decreasing\+Weight\+Up}} (\begin{DoxyParamCaption}\item[{const Stop\+Criteria\+Type \&}]{\+\_\+stop,  }\item[{const Weight\+Type \&}]{\+\_\+initial\+Value,  }\item[{const Weight\+Type \&}]{\+\_\+final\+Value,  }\item[{\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Stop\+Criteria\+Type $>$ \&}]{\+\_\+counter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor \mbox{\Hypertarget{classeo_linear_decreasing_weight_up_a8cc5bed6e7a59011aa291c4eda0f819e}\label{classeo_linear_decreasing_weight_up_a8cc5bed6e7a59011aa291c4eda0f819e}} 
+\index{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}!eoLinearDecreasingWeightUp@{eoLinearDecreasingWeightUp}}
+\index{eoLinearDecreasingWeightUp@{eoLinearDecreasingWeightUp}!eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}}
+\doxysubsubsection{\texorpdfstring{eoLinearDecreasingWeightUp()}{eoLinearDecreasingWeightUp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Weight\+Type , class Stop\+Criteria\+Type $>$ \\
+\mbox{\hyperlink{classeo_linear_decreasing_weight_up}{eo\+Linear\+Decreasing\+Weight\+Up}}$<$ Weight\+Type, Stop\+Criteria\+Type $>$\+::\mbox{\hyperlink{classeo_linear_decreasing_weight_up}{eo\+Linear\+Decreasing\+Weight\+Up}} (\begin{DoxyParamCaption}\item[{const Stop\+Criteria\+Type \&}]{\+\_\+stop,  }\item[{const Weight\+Type \&}]{\+\_\+initial\+Value,  }\item[{const Weight\+Type \&}]{\+\_\+final\+Value,  }\item[{\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Stop\+Criteria\+Type $>$ \&}]{\+\_\+counter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_linear_decreasing_weight_up_a4a969c821c74a24d70c07581afc456a6}\label{classeo_linear_decreasing_weight_up_a4a969c821c74a24d70c07581afc456a6}} 
+\index{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Weight\+Type , class Stop\+Criteria\+Type $>$ \\
+void \mbox{\hyperlink{classeo_linear_decreasing_weight_up}{eo\+Linear\+Decreasing\+Weight\+Up}}$<$ Weight\+Type, Stop\+Criteria\+Type $>$\+::operator() (\begin{DoxyParamCaption}\item[{Weight\+Type \&}]{\+\_\+weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the given weight 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Weight\+Type \&, void $>$}}.
+
+\mbox{\Hypertarget{classeo_linear_decreasing_weight_up_a4a969c821c74a24d70c07581afc456a6}\label{classeo_linear_decreasing_weight_up_a4a969c821c74a24d70c07581afc456a6}} 
+\index{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$@{eoLinearDecreasingWeightUp$<$ WeightType, StopCriteriaType $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Weight\+Type , class Stop\+Criteria\+Type $>$ \\
+void \mbox{\hyperlink{classeo_linear_decreasing_weight_up}{eo\+Linear\+Decreasing\+Weight\+Up}}$<$ Weight\+Type, Stop\+Criteria\+Type $>$\+::operator() (\begin{DoxyParamCaption}\item[{Weight\+Type \&}]{\+\_\+weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the given weight 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Weight\+Type \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Linear\+Decreasing\+Weight\+Up.\+h\end{DoxyCompactItemize}

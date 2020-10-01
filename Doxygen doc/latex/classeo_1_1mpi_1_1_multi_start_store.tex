@@ -1,0 +1,135 @@
+\hypertarget{classeo_1_1mpi_1_1_multi_start_store}{}\doxysection{eo\+::mpi\+::Multi\+Start\+Store$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_1_1mpi_1_1_multi_start_store}\index{eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}}
+
+
+Store for the Multi Start job.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Multi\+Start.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Multi\+Start\+Store$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classeo_1_1mpi_1_1_multi_start_store__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Multi\+Start\+Store$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_multi_start_store__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data}{Multi\+Start\+Data}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}{Reset\+Algo}} \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}{Reset\+Algo}}
+\begin{DoxyCompactList}\small\item\em Generic functor to reset an algorithm before it\textquotesingle{}s launched by the worker. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ int, std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a43adc841f393e4103ee483c6482b10b8}{Get\+Seeds}}
+\begin{DoxyCompactList}\small\item\em Generic functor which returns a vector of seeds for the workers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a7819fedb9c263d86fda5735f2eb30ac5}{Multi\+Start\+Store}} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&algo, int master\+Rank, \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}{Reset\+Algo}} \&reset\+Algo, \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a43adc841f393e4103ee483c6482b10b8}{Get\+Seeds}} \&get\+Seeds)
+\begin{DoxyCompactList}\small\item\em Default ctor for \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{Multi\+Start\+Store}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_ac70c93026a2ebad8f4c6efcedbc52260}{init}} (const std\+::vector$<$ int $>$ \&workers, int runs)
+\begin{DoxyCompactList}\small\item\em Send new seeds to the workers before a job. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_start_store_a01ee78955e76f5251472307f6bb9eda5}\label{classeo_1_1mpi_1_1_multi_start_store_a01ee78955e76f5251472307f6bb9eda5}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data}{Multi\+Start\+Data}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ {\bfseries data} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+::mpi\+::\+Multi\+Start\+Store$<$ E\+O\+T $>$}
+
+Store for the Multi Start job. 
+
+Contains the data used by the workers (algo,...) and functor to send the seeds. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_start_store_a43adc841f393e4103ee483c6482b10b8}\label{classeo_1_1mpi_1_1_multi_start_store_a43adc841f393e4103ee483c6482b10b8}} 
+\index{eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}!GetSeeds@{GetSeeds}}
+\index{GetSeeds@{GetSeeds}!eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{GetSeeds}{GetSeeds}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+typedef \mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ int, std\+::vector$<$int$>$ $>$ \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{eo\+::mpi\+::\+Multi\+Start\+Store}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a43adc841f393e4103ee483c6482b10b8}{Get\+Seeds}}}
+
+
+
+Generic functor which returns a vector of seeds for the workers. 
+
+If this vector hasn\textquotesingle{}t enough seeds to send, random ones are generated and sent to the workers. \mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}\label{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}} 
+\index{eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}!ResetAlgo@{ResetAlgo}}
+\index{ResetAlgo@{ResetAlgo}!eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{ResetAlgo}{ResetAlgo}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+typedef \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data}{Multi\+Start\+Data}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\+::\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}{Reset\+Algo}} \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{eo\+::mpi\+::\+Multi\+Start\+Store}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}{Reset\+Algo}}}
+
+
+
+Generic functor to reset an algorithm before it\textquotesingle{}s launched by the worker. 
+
+This reset algorithm should reinits population (if necessary), continuator, etc. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_start_store_a7819fedb9c263d86fda5735f2eb30ac5}\label{classeo_1_1mpi_1_1_multi_start_store_a7819fedb9c263d86fda5735f2eb30ac5}} 
+\index{eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}!MultiStartStore@{MultiStartStore}}
+\index{MultiStartStore@{MultiStartStore}!eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{MultiStartStore()}{MultiStartStore()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{eo\+::mpi\+::\+Multi\+Start\+Store}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{Multi\+Start\+Store}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{algo,  }\item[{int}]{master\+Rank,  }\item[{\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a72c5f38993a8dd29857fc2b20806e50e}{Reset\+Algo}} \&}]{reset\+Algo,  }\item[{\mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store_a43adc841f393e4103ee483c6482b10b8}{Get\+Seeds}} \&}]{get\+Seeds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default ctor for \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{Multi\+Start\+Store}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algo} & The algorithm to launch in parallel \\
+\hline
+{\em master\+Rank} & The M\+PI rank of the master \\
+\hline
+{\em reset\+Algo} & The Reset\+Algo functor \\
+\hline
+{\em get\+Seeds} & The Get\+Seeds functor \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_start_store_ac70c93026a2ebad8f4c6efcedbc52260}\label{classeo_1_1mpi_1_1_multi_start_store_ac70c93026a2ebad8f4c6efcedbc52260}} 
+\index{eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}!init@{init}}
+\index{init@{init}!eo::mpi::MultiStartStore$<$ EOT $>$@{eo::mpi::MultiStartStore$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_start_store}{eo\+::mpi\+::\+Multi\+Start\+Store}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::init (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{workers,  }\item[{int}]{runs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Send new seeds to the workers before a job. 
+
+Uses the Get\+Seeds functor given in constructor. If there\textquotesingle{}s not enough seeds to send, random seeds are sent to the workers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em workers} & Vector of M\+PI ranks of the workers \\
+\hline
+{\em runs} & The number of runs to perform \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_multi_start_8h}{eo\+Multi\+Start.\+h}}\end{DoxyCompactItemize}

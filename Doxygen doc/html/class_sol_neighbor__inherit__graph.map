@@ -1,0 +1,9 @@
+<map id="SolNeighbor" name="SolNeighbor">
+<area shape="rect" id="node1" title=" " alt="" coords="60,408,161,435"/>
+<area shape="rect" id="node2" href="$classmo_index_neighbor.html" title=" " alt="" coords="5,319,216,360"/>
+<area shape="rect" id="node3" href="$classmo_neighbor.html" title=" " alt="" coords="23,229,198,271"/>
+<area shape="rect" id="node4" href="$class_e_o.html" title=" " alt="" coords="24,155,197,181"/>
+<area shape="rect" id="node5" href="$classeo_object.html" title=" " alt="" coords="13,80,93,107"/>
+<area shape="rect" id="node6" href="$classeo_persistent.html" title=" " alt="" coords="118,80,221,107"/>
+<area shape="rect" id="node7" href="$classeo_printable.html" title=" " alt="" coords="121,5,217,32"/>
+</map>

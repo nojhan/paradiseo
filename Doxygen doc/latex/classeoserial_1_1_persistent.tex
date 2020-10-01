@@ -1,0 +1,68 @@
+\hypertarget{classeoserial_1_1_persistent}{}\doxysection{eoserial\+::Persistent Class Reference}
+\label{classeoserial_1_1_persistent}\index{eoserial::Persistent@{eoserial::Persistent}}
+
+
+Interface showing that object can be eoserialized (written and read from an input).  
+
+
+
+
+{\ttfamily \#include $<$Serializable.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::Persistent\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeoserial_1_1_persistent__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eoserial\+::Persistent\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classeoserial_1_1_persistent__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$json)=0
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface showing that object can be eoserialized (written and read from an input). 
+
+Note \+: \mbox{\hyperlink{classeoserial_1_1_persistent}{Persistent}} objects should have a default non-\/arguments constructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}\label{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}} 
+\index{eoserial::Persistent@{eoserial::Persistent}!unpack@{unpack}}
+\index{unpack@{unpack}!eoserial::Persistent@{eoserial::Persistent}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily virtual void eoserial\+::\+Persistent\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_experiment_a91afe9a201947f1299bcf33681d7ddd1}{Experiment}}, \mbox{\hyperlink{class_exponential_distribution_a6abd56086a4d8910e88356776549f5c3}{Exponential\+Distribution}}, \mbox{\hyperlink{classeo_timer_stat_afeb4005bfdd63b991b7b718913fae239}{eo\+Timer\+Stat}}, \mbox{\hyperlink{class_normal_distribution_a46f7fa75f81d134f6e2a06b4b954a1ea}{Normal\+Distribution}}, \mbox{\hyperlink{structeo_timer_stat_1_1_stat_a613ba9c8ad7db301282f6c008185ddce}{eo\+Timer\+Stat\+::\+Stat}}, \mbox{\hyperlink{class_uniform_distribution_ab88f8c1e95056f987037f0285d77f9e1}{Uniform\+Distribution}}, \mbox{\hyperlink{classeo_real_serializable_a706e447bc10eb6dbc7f9741891d74626}{eo\+Real\+Serializable}}, \mbox{\hyperlink{struct_serializable_vector_ab4f39310773741dcab78e1379aee961a}{Serializable\+Vector$<$ T $>$}}, \mbox{\hyperlink{class_serializable_e_o_real_af0a374915b344d9d64a98296edbe5af9}{Serializable\+E\+O\+Real}}, and \mbox{\hyperlink{struct_serializable_base_a6659d788bf7dddc5b19f4e297c8a0c64}{Serializable\+Base$<$ T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Serializable.\+h\end{DoxyCompactItemize}

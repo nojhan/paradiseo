@@ -1,0 +1,5 @@
+<map id="eo::mpi::AssignmentAlgorithm" name="eo::mpi::AssignmentAlgorithm">
+<area shape="rect" id="node1" title="Contains informations on the available workers and allows to find assignees for jobs." alt="" coords="116,5,336,32"/>
+<area shape="rect" id="node2" href="$structeo_1_1mpi_1_1_dynamic_assignment_algorithm.html" title="Assignment (scheduling) algorithm which handles workers in a queue." alt="" coords="5,80,220,121"/>
+<area shape="rect" id="node3" href="$structeo_1_1mpi_1_1_static_assignment_algorithm.html" title="Assignment algorithm which gives to each worker a precise number of tasks to do, in a round robin fas..." alt="" coords="244,80,437,121"/>
+</map>

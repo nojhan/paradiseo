@@ -1,0 +1,84 @@
+\hypertarget{classeo_replacement}{}\doxysection{eo\+Replacement$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_replacement}\index{eoReplacement$<$ EOT $>$@{eoReplacement$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Replacement.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Replacement$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_replacement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Replacement$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classeo_replacement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Replacement$<$ E\+O\+T $>$}
+
+The base class for all replacement functors.
+
+N\+O\+TE\+: two \mbox{\hyperlink{classeo_pop}{eo\+Pop}} as arguments the resulting population should be in the first argument (replace parents by offspring)! The second argument can contain any rubbish
+
+-\/$\ast$-\/ mode\+: c++; c-\/indent-\/level\+: 4; c++-\/member-\/init-\/indent\+: 8; comment-\/column\+: 35; -\/$\ast$-\/
+
+\DoxyHorRuler{0}
+ eo\+Replacement.\+h (c) Maarten Keijzer, Marc Schoenauer, Ge\+Neura Team, 2000
+
+This library is free software; you can redistribute it and/or modify it under the terms of the G\+NU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU Lesser General Public License for more details.
+
+You should have received a copy of the G\+NU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 U\+SA
+
+Contact\+: \href{mailto:todos@geneura.ugr.es}{\texttt{ todos@geneura.\+ugr.\+es}}, \href{http://geneura.ugr.es}{\texttt{ http\+://geneura.\+ugr.\+es}} \href{mailto:Marc.Schoenauer@polytechnique.fr}{\texttt{ Marc.\+Schoenauer@polytechnique.\+fr}} \href{mailto:mkeijzer@dhi.dk}{\texttt{ mkeijzer@dhi.\+dk}} \DoxyHorRuler{0}
+ The \mbox{\hyperlink{classeo_merge_reduce}{eo\+Merge\+Reduce}}, combination of \mbox{\hyperlink{classeo_merge}{eo\+Merge}} and \mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}, can be found in file eo\+Merge\+Reduce.\+h
+
+The \mbox{\hyperlink{classeo_reduce_merge_reduce}{eo\+Reduce\+Merge\+Reduce}} that reduces the parents and the offspring, merges the 2 reduced populations, and eventually reduces that final population, can be found in eo\+Reduce\+Merge\+Reduce.\+h\hypertarget{classeo_replacement_autotoc_md15}{}\doxysubsubsection{L\+OG}\label{classeo_replacement_autotoc_md15}
+Removed the const before first argument\+: though it makes too many classes with the same interface, it allows to minimize the number of actual copies by choosing the right destination I also removed the enforced \char`\"{}swap\char`\"{} in the eo\+Easy\+Algo and hence the generational replacement gets a class of its own that only does the swap (instead of the eo\+No\+Replacement that did nothing, relying on the algo to swap popualtions). MS 12/12/2000
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_merge}{eo\+Merge}}, \mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}, \mbox{\hyperlink{classeo_merge_reduce}{eo\+Merge\+Reduce}}, \mbox{\hyperlink{classeo_reduce_merge}{eo\+Reduce\+Merge}}
+\end{DoxySeeAlso}
+abstract) class
+
+-\/$\ast$-\/ mode\+: c++; c-\/indent-\/level\+: 4; c++-\/member-\/init-\/indent\+: 8; comment-\/column\+: 35; -\/$\ast$-\/
+
+\DoxyHorRuler{0}
+ eo\+Replacement.\+h (c) Maarten Keijzer, Marc Schoenauer, Ge\+Neura Team, 2000
+
+This library is free software; you can redistribute it and/or modify it under the terms of the G\+NU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU Lesser General Public License for more details.
+
+You should have received a copy of the G\+NU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 U\+SA
+
+Contact\+: \href{mailto:todos@geneura.ugr.es}{\texttt{ todos@geneura.\+ugr.\+es}}, \href{http://geneura.ugr.es}{\texttt{ http\+://geneura.\+ugr.\+es}} \href{mailto:Marc.Schoenauer@polytechnique.fr}{\texttt{ Marc.\+Schoenauer@polytechnique.\+fr}} \href{mailto:mkeijzer@dhi.dk}{\texttt{ mkeijzer@dhi.\+dk}} \DoxyHorRuler{0}
+ The \mbox{\hyperlink{classeo_merge_reduce}{eo\+Merge\+Reduce}}, combination of \mbox{\hyperlink{classeo_merge}{eo\+Merge}} and \mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}, can be found in file eo\+Merge\+Reduce.\+h
+
+The \mbox{\hyperlink{classeo_reduce_merge_reduce}{eo\+Reduce\+Merge\+Reduce}} that reduces the parents and the offspring, merges the 2 reduced populations, and eventually reduces that final population, can be found in eo\+Reduce\+Merge\+Reduce.\+h\hypertarget{classeo_replacement_autotoc_md50}{}\doxysubsubsection{L\+OG}\label{classeo_replacement_autotoc_md50}
+Removed the const before first argument\+: though it makes too many classes with the same interface, it allows to minimize the number of actual copies by choosing the right destination I also removed the enforced \char`\"{}swap\char`\"{} in the eo\+Easy\+Algo and hence the generational replacement gets a class of its own that only does the swap (instead of the eo\+No\+Replacement that did nothing, relying on the algo to swap popualtions). MS 12/12/2000
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_merge}{eo\+Merge}}, \mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}, \mbox{\hyperlink{classeo_merge_reduce}{eo\+Merge\+Reduce}}, \mbox{\hyperlink{classeo_reduce_merge}{eo\+Reduce\+Merge}}
+\end{DoxySeeAlso}
+abstract) class 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Replacement.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,111 @@
+\hypertarget{classmo_counter_monitor_saver}{}\doxysection{mo\+Counter\+Monitor\+Saver Class Reference}
+\label{classmo_counter_monitor_saver}\index{moCounterMonitorSaver@{moCounterMonitorSaver}}
+
+
+{\ttfamily \#include $<$mo\+Counter\+Monitor\+Saver.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Counter\+Monitor\+Saver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classmo_counter_monitor_saver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Counter\+Monitor\+Saver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classmo_counter_monitor_saver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_counter_monitor_saver_ae7f8cf86b0271ea870b7b480d254a028}{mo\+Counter\+Monitor\+Saver}} (unsigned \+\_\+interval, \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&\+\_\+mon)
+\item 
+void \mbox{\hyperlink{classmo_counter_monitor_saver_ac68043a8c122ce1e120d9ff25c903143}{operator()}} (void)
+\item 
+void \mbox{\hyperlink{classmo_counter_monitor_saver_a2eb15d024274366ecad54c41d6cc8754}{last\+Call}} (void)
+\item 
+void \mbox{\hyperlink{classmo_counter_monitor_saver_ab49d70d8afe9aca0f0616c40190fcfbe}{add}} (\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&\+\_\+mon)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_counter_monitor_saver_ae602a5b7694d6c32bee8d064d0ce20d3}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Class calling monitors with a given frequency 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_counter_monitor_saver_ae7f8cf86b0271ea870b7b480d254a028}\label{classmo_counter_monitor_saver_ae7f8cf86b0271ea870b7b480d254a028}} 
+\index{moCounterMonitorSaver@{moCounterMonitorSaver}!moCounterMonitorSaver@{moCounterMonitorSaver}}
+\index{moCounterMonitorSaver@{moCounterMonitorSaver}!moCounterMonitorSaver@{moCounterMonitorSaver}}
+\doxysubsubsection{\texorpdfstring{moCounterMonitorSaver()}{moCounterMonitorSaver()}}
+{\footnotesize\ttfamily mo\+Counter\+Monitor\+Saver\+::mo\+Counter\+Monitor\+Saver (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+interval,  }\item[{\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&}]{\+\_\+mon }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+interval} & frequency to call monitors \\
+\hline
+{\em \+\_\+mon} & a monitor \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_counter_monitor_saver_ab49d70d8afe9aca0f0616c40190fcfbe}\label{classmo_counter_monitor_saver_ab49d70d8afe9aca0f0616c40190fcfbe}} 
+\index{moCounterMonitorSaver@{moCounterMonitorSaver}!add@{add}}
+\index{add@{add}!moCounterMonitorSaver@{moCounterMonitorSaver}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void mo\+Counter\+Monitor\+Saver\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&}]{\+\_\+mon }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+attach another monitor to this class 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mon} & the monitor to attach \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_counter_monitor_saver_ae602a5b7694d6c32bee8d064d0ce20d3}\label{classmo_counter_monitor_saver_ae602a5b7694d6c32bee8d064d0ce20d3}} 
+\index{moCounterMonitorSaver@{moCounterMonitorSaver}!className@{className}}
+\index{className@{className}!moCounterMonitorSaver@{moCounterMonitorSaver}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual std\+::string mo\+Counter\+Monitor\+Saver\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+name of the class 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_updater}{eo\+Updater}}.
+
+\mbox{\Hypertarget{classmo_counter_monitor_saver_a2eb15d024274366ecad54c41d6cc8754}\label{classmo_counter_monitor_saver_a2eb15d024274366ecad54c41d6cc8754}} 
+\index{moCounterMonitorSaver@{moCounterMonitorSaver}!lastCall@{lastCall}}
+\index{lastCall@{lastCall}!moCounterMonitorSaver@{moCounterMonitorSaver}}
+\doxysubsubsection{\texorpdfstring{lastCall()}{lastCall()}}
+{\footnotesize\ttfamily void mo\+Counter\+Monitor\+Saver\+::last\+Call (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+last call of monitors 
+
+Reimplemented from \mbox{\hyperlink{classeo_updater}{eo\+Updater}}.
+
+\mbox{\Hypertarget{classmo_counter_monitor_saver_ac68043a8c122ce1e120d9ff25c903143}\label{classmo_counter_monitor_saver_ac68043a8c122ce1e120d9ff25c903143}} 
+\index{moCounterMonitorSaver@{moCounterMonitorSaver}!operator()@{operator()}}
+\index{operator()@{operator()}!moCounterMonitorSaver@{moCounterMonitorSaver}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void mo\+Counter\+Monitor\+Saver\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+call monitors if interval is reach by a counter 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Counter\+Monitor\+Saver.\+h\end{DoxyCompactItemize}

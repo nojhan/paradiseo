@@ -1,0 +1,150 @@
+\hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment}{}\doxysection{moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment}\index{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}}
+
+
+Inheritance diagram for moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_exp_binary_indicator_based_dual_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_exp_binary_indicator_based_dual_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a5b4d1946fb90dd53976a9b618b761d17}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a5b4d1946fb90dd53976a9b618b761d17}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a45450639c06dbb3212fbcacf7f533492}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a45450639c06dbb3212fbcacf7f533492}} 
+typedef \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} {\bfseries Type}
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_adf5ef49cf727e988e9b2909c28f2dae9}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_adf5ef49cf727e988e9b2909c28f2dae9}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a9f317f6d794c98875b4fddeb8592f46c}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a9f317f6d794c98875b4fddeb8592f46c}} 
+{\bfseries moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment} (\mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_binary_indicator_based_fitness_assignment_a30f87921ba85e2745f861c9b32e7be9a}{Objective\+Vector}}, double $>$ \&\mbox{\hyperlink{classmoeo_exp_binary_indicator_based_fitness_assignment_a98008d8346524381bee9c26a2e600f24}{metric}}, const double \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_fitness_assignment_a22d049e40f87f505259b69e7a55a8339}{kappa}}=0.\+05)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a53de039abd1b834a7324c9e08f900f15}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a07450d299e1ab3724891d4c8b078299d}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a7df23c8564844c954816d32b67155d04}{compute\+Values}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_af5ce46c81390d2746ecd1c6fe147e671}{set\+Fitnesses}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop)
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a6350c21a0b37c66278050e4a9765ec28}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a6350c21a0b37c66278050e4a9765ec28}} 
+virtual Fitness {\bfseries compute\+Fitness} (const unsigned int \+\_\+idx)
+\item 
+void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_aef2c067b150b4235cfdaa9da4fb02e91}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop, \mbox{\hyperlink{classmoeo_binary_indicator_based_fitness_assignment_a30f87921ba85e2745f861c9b32e7be9a}{Objective\+Vector}} \&obj\+Vec)
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_ad4f54e9f9e06e09a8a9b74f5e351f491}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_ad4f54e9f9e06e09a8a9b74f5e351f491}} 
+void {\bfseries update\+Fitness\+By\+Deleting} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop, \mbox{\hyperlink{classmoeo_binary_indicator_based_fitness_assignment_a30f87921ba85e2745f861c9b32e7be9a}{Objective\+Vector}} \&obj\+Vec)
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a23cb907af8dd398f2cbc01d02d251186}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a23cb907af8dd398f2cbc01d02d251186}} 
+{\footnotesize template$<$class T $>$ }\\T {\bfseries confine} (T n)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_aab7b0650058ea1e48d7c3b94d3cff471}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_aab7b0650058ea1e48d7c3b94d3cff471}} 
+\mbox{\hyperlink{classeo_dual_pop_split}{eo\+Dual\+Pop\+Split}}$<$ M\+O\+E\+OT $>$ {\bfseries \+\_\+pop\+\_\+split}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a7df23c8564844c954816d32b67155d04}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a7df23c8564844c954816d32b67155d04}} 
+\index{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}!computeValues@{computeValues}}
+\index{computeValues@{computeValues}!moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{computeValues()}{computeValues()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment}{moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::compute\+Values (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Compute every indicator value in values (values\mbox{[}i\mbox{]} = I(\+\_\+v\mbox{[}i\mbox{]}, \+\_\+o)) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_fitness_assignment_ad8304f2b48cf9b35488354a5132bf3ec}{moeo\+Exp\+Binary\+Indicator\+Based\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a53de039abd1b834a7324c9e08f900f15}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a53de039abd1b834a7324c9e08f900f15}} 
+\index{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment}{moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+If the population is homogeneous (only composed of feasible individuals or unfeasible ones), then apply the operators on the whole population. But, if there is at least one feasible individual, then apply them only on the feasible individuals. 
+
+Reimplemented from \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_fitness_assignment_ab6f81b4a3f2694eb0f08734d4f128c2f}{moeo\+Exp\+Binary\+Indicator\+Based\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_af5ce46c81390d2746ecd1c6fe147e671}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_af5ce46c81390d2746ecd1c6fe147e671}} 
+\index{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}!setFitnesses@{setFitnesses}}
+\index{setFitnesses@{setFitnesses}!moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setFitnesses()}{setFitnesses()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment}{moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::set\+Fitnesses (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Sets the fitness value of the whole population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_fitness_assignment_a7056e7c7b3a623f7452cd29580c60998}{moeo\+Exp\+Binary\+Indicator\+Based\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a07450d299e1ab3724891d4c8b078299d}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_a07450d299e1ab3724891d4c8b078299d}} 
+\index{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}!setup@{setup}}
+\index{setup@{setup}!moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment}{moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Sets the bounds for every objective using the min and the max value for every objective vector of \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_aef2c067b150b4235cfdaa9da4fb02e91}\label{classmoeo_exp_binary_indicator_based_dual_fitness_assignment_aef2c067b150b4235cfdaa9da4fb02e91}} 
+\index{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$@{moeoExpBinaryIndicatorBasedDualFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_exp_binary_indicator_based_dual_fitness_assignment}{moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{pop,  }\item[{\mbox{\hyperlink{classmoeo_binary_indicator_based_fitness_assignment_a30f87921ba85e2745f861c9b32e7be9a}{Objective\+Vector}} \&}]{obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Exp\+Binary\+Indicator\+Based\+Dual\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

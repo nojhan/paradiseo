@@ -1,0 +1,8 @@
+<map id="eoOStreamMonitor" name="eoOStreamMonitor">
+<area shape="rect" id="node1" title=" " alt="" coords="60,229,205,256"/>
+<area shape="rect" id="node5" href="$classeo_log_monitor.html" title=" " alt="" coords="5,304,116,331"/>
+<area shape="rect" id="node6" href="$classeo_stdout_monitor.html" title=" " alt="" coords="141,304,271,331"/>
+<area shape="rect" id="node2" href="$classeo_monitor.html" title=" " alt="" coords="89,155,177,181"/>
+<area shape="rect" id="node3" href="$classeo_f.html" title=" " alt="" coords="55,80,211,107"/>
+<area shape="rect" id="node4" href="$classeo_functor_base.html" title=" " alt="" coords="73,5,192,32"/>
+</map>

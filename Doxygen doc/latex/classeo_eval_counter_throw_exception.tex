@@ -1,0 +1,71 @@
+\hypertarget{classeo_eval_counter_throw_exception}{}\doxysection{eo\+Eval\+Counter\+Throw\+Exception$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_eval_counter_throw_exception}\index{eoEvalCounterThrowException$<$ EOT $>$@{eoEvalCounterThrowException$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+Counter\+Throw\+Exception.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+Counter\+Throw\+Exception$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_counter_throw_exception__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+Counter\+Throw\+Exception$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_counter_throw_exception__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_counter_throw_exception_a70b54bc095d9a065c925342ba92a73d9}\label{classeo_eval_counter_throw_exception_a70b54bc095d9a065c925342ba92a73d9}} 
+{\bfseries eo\+Eval\+Counter\+Throw\+Exception} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&func, unsigned long max\+\_\+evals, std\+::string name=\char`\"{}Eval. \char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_eval_counter_throw_exception_a9faa7bafb014c4dc0ff78cb8949730bf}\label{classeo_eval_counter_throw_exception_a9faa7bafb014c4dc0ff78cb8949730bf}} 
+virtual void \mbox{\hyperlink{classeo_eval_counter_throw_exception_a9faa7bafb014c4dc0ff78cb8949730bf}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&eo)
+\begin{DoxyCompactList}\small\item\em Evaluate the individual, then throw an exception if it exceed the max number of evals. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_eval_counter_throw_exception_a1e0b608f78b199b12db7149ac2fa3461}\label{classeo_eval_counter_throw_exception_a1e0b608f78b199b12db7149ac2fa3461}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\item 
+\mbox{\Hypertarget{classeo_eval_counter_throw_exception_a70b54bc095d9a065c925342ba92a73d9}\label{classeo_eval_counter_throw_exception_a70b54bc095d9a065c925342ba92a73d9}} 
+{\bfseries eo\+Eval\+Counter\+Throw\+Exception} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&func, unsigned long max\+\_\+evals, std\+::string name=\char`\"{}Eval. \char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_eval_counter_throw_exception_a9faa7bafb014c4dc0ff78cb8949730bf}\label{classeo_eval_counter_throw_exception_a9faa7bafb014c4dc0ff78cb8949730bf}} 
+virtual void \mbox{\hyperlink{classeo_eval_counter_throw_exception_a9faa7bafb014c4dc0ff78cb8949730bf}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&eo)
+\begin{DoxyCompactList}\small\item\em Evaluate the individual, then throw an exception if it exceed the max number of evals. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_eval_counter_throw_exception_a1e0b608f78b199b12db7149ac2fa3461}\label{classeo_eval_counter_throw_exception_a1e0b608f78b199b12db7149ac2fa3461}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename E\+OT$>$\newline
+class eo\+Eval\+Counter\+Throw\+Exception$<$ E\+O\+T $>$}
+
+Wrap an evaluation function so that an exception may be thrown when the algorithm have reached a maximum number of evaluations.
+
+This may be useful if you want to check this kind of stopping criterion at each {\itshape evaluation}, instead of using continuators at each {\itshape iteration}.
+
+The class first call the evaluation function, then check the number of times it has been called. If the maximum number of evaluation has been reached, it throw an \mbox{\hyperlink{classeo_max_eval_exception}{eo\+Max\+Eval\+Exception}}. You can catch this exception from your main function, so as to stop everything properly.
+
+Wrap an evaluation function so that an exception may be thrown when the algorithm have reached a maximum number of evaluations.
+
+This may be useful if you want to check this kind of stopping criterion at each {\itshape evaluation}, instead of using continuators at each {\itshape iteration}.
+
+This eval counter permits to stop a search during a generation, without waiting for a continue to be checked at the end of the loop. Useful if you have 10 individuals and 10 generations, but want to stop after 95 evaluations.
+
+The class first call the evaluation function, then check the number of times it has been called. If the maximum number of evaluation has been reached, it throw an \mbox{\hyperlink{classeo_max_eval_exception}{eo\+Max\+Eval\+Exception}}. You can catch this exception from your main function, so as to stop everything properly. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Eval\+Counter\+Throw\+Exception.\+h\end{DoxyCompactItemize}

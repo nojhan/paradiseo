@@ -1,0 +1,101 @@
+\hypertarget{structeo_timer_stat_1_1_stat}{}\doxysection{eo\+Timer\+Stat\+::Stat Struct Reference}
+\label{structeo_timer_stat_1_1_stat}\index{eoTimerStat::Stat@{eoTimerStat::Stat}}
+
+
+Statistic related to a key (name).  
+
+
+
+
+{\ttfamily \#include $<$eo\+Timer.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Timer\+Stat\+::Stat\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{structeo_timer_stat_1_1_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Timer\+Stat\+::Stat\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{structeo_timer_stat_1_1_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{structeo_timer_stat_1_1_stat_a613ba9c8ad7db301282f6c008185ddce}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{structeo_timer_stat_1_1_stat_a10eda44eb9f9398c025d40be1529eab1}{pack}} (void) const
+\begin{DoxyCompactList}\small\item\em Serializes the object to J\+S\+ON format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_timer_stat_1_1_stat_a791b35f412eb2abb7a2f55f4a58909b3}\label{structeo_timer_stat_1_1_stat_a791b35f412eb2abb7a2f55f4a58909b3}} 
+std\+::vector$<$ long int $>$ {\bfseries utime}
+\item 
+\mbox{\Hypertarget{structeo_timer_stat_1_1_stat_a2c71176918927c3bbb1e953f429415a6}\label{structeo_timer_stat_1_1_stat_a2c71176918927c3bbb1e953f429415a6}} 
+std\+::vector$<$ long int $>$ {\bfseries stime}
+\item 
+\mbox{\Hypertarget{structeo_timer_stat_1_1_stat_a954272d2bd002e2ee29950dd6d4210a4}\label{structeo_timer_stat_1_1_stat_a954272d2bd002e2ee29950dd6d4210a4}} 
+std\+::vector$<$ double $>$ {\bfseries wtime}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Statistic related to a key (name). 
+
+This structure is the value in the map saved in the \mbox{\hyperlink{classeo_timer_stat}{eo\+Timer\+Stat}}. It contains the statistic bound to a key, which are the user time distribution, the system time distribution and the wallclock time distribution, as std\+::vector s.
+
+It can readily be serialized with boost when compiling with mpi. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeo_timer_stat_1_1_stat_a10eda44eb9f9398c025d40be1529eab1}\label{structeo_timer_stat_1_1_stat_a10eda44eb9f9398c025d40be1529eab1}} 
+\index{eoTimerStat::Stat@{eoTimerStat::Stat}!pack@{pack}}
+\index{pack@{pack}!eoTimerStat::Stat@{eoTimerStat::Stat}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}$\ast$ eo\+Timer\+Stat\+::\+Stat\+::pack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the object to J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+A J\+S\+ON object created with new. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{eoserial\+::\+Printable}}.
+
+\mbox{\Hypertarget{structeo_timer_stat_1_1_stat_a613ba9c8ad7db301282f6c008185ddce}\label{structeo_timer_stat_1_1_stat_a613ba9c8ad7db301282f6c008185ddce}} 
+\index{eoTimerStat::Stat@{eoTimerStat::Stat}!unpack@{unpack}}
+\index{unpack@{unpack}!eoTimerStat::Stat@{eoTimerStat::Stat}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily void eo\+Timer\+Stat\+::\+Stat\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{eoserial\+::\+Persistent}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/utils/eo\+Timer.\+h\end{DoxyCompactItemize}

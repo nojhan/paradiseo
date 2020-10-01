@@ -1,0 +1,20 @@
+<map id="eoMonitor" name="eoMonitor">
+<area shape="rect" id="node1" title=" " alt="" coords="376,249,464,276"/>
+<area shape="rect" id="node4" href="$classedo_file_snapshot.html" title="edoFileSnapshot" alt="" coords="545,21,674,48"/>
+<area shape="rect" id="node5" href="$classeo_file_monitor.html" title=" " alt="" coords="554,72,665,99"/>
+<area shape="rect" id="node7" href="$classeo_file_snapshot.html" title=" " alt="" coords="549,123,670,149"/>
+<area shape="rect" id="node10" href="$classeo_o_stream_monitor.html" title=" " alt="" coords="537,173,682,200"/>
+<area shape="rect" id="node13" href="$classeo_timed_monitor.html" title=" " alt="" coords="545,224,674,251"/>
+<area shape="rect" id="node14" href="$classmonitor1.html" title=" " alt="" coords="569,275,650,301"/>
+<area shape="rect" id="node15" href="$classmonitor2.html" title=" " alt="" coords="569,325,650,352"/>
+<area shape="rect" id="node16" href="$class_monitor_wrapper.html" title=" " alt="" coords="546,376,673,403"/>
+<area shape="rect" id="node17" href="$classmo_vector_monitor.html" title=" " alt="" coords="514,427,705,453"/>
+<area shape="rect" id="node18" href="$class_py_e_o_1_1eo_gnuplot1_d_monitor.html" title=" " alt="" coords="512,477,707,504"/>
+<area shape="rect" id="node2" href="$classeo_f.html" title=" " alt="" coords="172,249,328,276"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="5,249,124,276"/>
+<area shape="rect" id="node6" href="$classeo_gnuplot1_d_monitor.html" title=" " alt="" coords="759,5,917,32"/>
+<area shape="rect" id="node8" href="$classeo_f_d_c_file_snapshot.html" title=" " alt="" coords="759,57,917,98"/>
+<area shape="rect" id="node9" href="$classeo_gnuplot1_d_snapshot.html" title=" " alt="" coords="755,123,921,149"/>
+<area shape="rect" id="node11" href="$classeo_log_monitor.html" title=" " alt="" coords="783,173,893,200"/>
+<area shape="rect" id="node12" href="$classeo_stdout_monitor.html" title=" " alt="" coords="773,224,903,251"/>
+</map>

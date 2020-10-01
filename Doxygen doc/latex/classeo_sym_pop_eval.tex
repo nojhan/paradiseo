@@ -1,0 +1,70 @@
+\hypertarget{classeo_sym_pop_eval}{}\doxysection{eo\+Sym\+Pop\+Eval$<$ Eo\+Type $>$ Class Template Reference}
+\label{classeo_sym_pop_eval}\index{eoSymPopEval$<$ EoType $>$@{eoSymPopEval$<$ EoType $>$}}
+
+
+Inheritance diagram for eo\+Sym\+Pop\+Eval$<$ Eo\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_sym_pop_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Sym\+Pop\+Eval$<$ Eo\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_sym_pop_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_sym_pop_eval_a1ca384852b4251b9ead4bc75b1f14b7d}\label{classeo_sym_pop_eval_a1ca384852b4251b9ead4bc75b1f14b7d}} 
+{\bfseries eo\+Sym\+Pop\+Eval} (\mbox{\hyperlink{class_bounds_check}{Bounds\+Check}} \&\+\_\+check, \mbox{\hyperlink{class_error_measure}{Error\+Measure}} \&\+\_\+measure, unsigned \+\_\+size\+\_\+cap)
+\item 
+void \mbox{\hyperlink{classeo_sym_pop_eval_a21fd6f4f1ee6a97be627526ed9068802}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&p1, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&p2)
+\item 
+\mbox{\Hypertarget{classeo_sym_pop_eval_a1ca384852b4251b9ead4bc75b1f14b7d}\label{classeo_sym_pop_eval_a1ca384852b4251b9ead4bc75b1f14b7d}} 
+{\bfseries eo\+Sym\+Pop\+Eval} (\mbox{\hyperlink{class_bounds_check}{Bounds\+Check}} \&\+\_\+check, \mbox{\hyperlink{class_error_measure}{Error\+Measure}} \&\+\_\+measure, unsigned \+\_\+size\+\_\+cap)
+\item 
+void \mbox{\hyperlink{classeo_sym_pop_eval_a21fd6f4f1ee6a97be627526ed9068802}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&p1, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&p2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_sym_pop_eval_a21fd6f4f1ee6a97be627526ed9068802}\label{classeo_sym_pop_eval_a21fd6f4f1ee6a97be627526ed9068802}} 
+\index{eoSymPopEval$<$ EoType $>$@{eoSymPopEval$<$ EoType $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoSymPopEval$<$ EoType $>$@{eoSymPopEval$<$ EoType $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Eo\+Type $>$ \\
+void \mbox{\hyperlink{classeo_sym_pop_eval}{eo\+Sym\+Pop\+Eval}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&}]{p1,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+apparently this thing works on two populations,
+
+In any case, currently only implemented the population wide evaluation version, as that one is much faster. This because the compile going on behind the scenes is much faster when done in one go (and using subtree similarity) then when done on a case by case basis. 
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ eo\+Pop$<$ Eo\+Type $>$ \&, eo\+Pop$<$ Eo\+Type $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classeo_sym_pop_eval_a21fd6f4f1ee6a97be627526ed9068802}\label{classeo_sym_pop_eval_a21fd6f4f1ee6a97be627526ed9068802}} 
+\index{eoSymPopEval$<$ EoType $>$@{eoSymPopEval$<$ EoType $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoSymPopEval$<$ EoType $>$@{eoSymPopEval$<$ EoType $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Eo\+Type $>$ \\
+void \mbox{\hyperlink{classeo_sym_pop_eval}{eo\+Sym\+Pop\+Eval}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&}]{p1,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{Eo\+Type}} $>$ \&}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+apparently this thing works on two populations,
+
+In any case, currently only implemented the population wide evaluation version, as that one is much faster. This because the compile going on behind the scenes is much faster when done in one go (and using subtree similarity) then when done on a case by case basis. 
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ eo\+Pop$<$ Eo\+Type $>$ \&, eo\+Pop$<$ Eo\+Type $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/contrib/mathsym/eo\+\_\+interface/eo\+Sym\+Eval.\+h\end{DoxyCompactItemize}

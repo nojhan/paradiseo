@@ -1,0 +1,164 @@
+\hypertarget{classmoeo_dominance_count_ranking_fitness_assignment}{}\doxysection{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_dominance_count_ranking_fitness_assignment}\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dominance_count_ranking_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dominance_count_ranking_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_a6bd0c159ff50fdf95652dde20afce332}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (bool \+\_\+nocopy=true)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afaeff16aad63c3963f7c61db14cb5f7b}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, bool \+\_\+nocopy=true)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_ac2a17f3e294b8107bbd1a1ab6681760e}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}} $>$ \&\+\_\+comparator, bool \+\_\+nocopy=true)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_a671639b776d820e48e94b774e5bbc713}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}} $>$ \&\+\_\+comparator, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, bool \+\_\+nocopy=true)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_ac970635b5db1ed108dd1a062d155b4a3}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_ac8f111ec6f673b6a3f187709c29143bd}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Fitness assignment sheme that sum-\/up the ranks of all solutions dominated by each solution. This strategy is used, for instance, in S\+P\+E\+A2. E. Zitzler, M. Laumanns, and L. Thiele. S\+P\+E\+A2\+: Improving the Strength Pareto Evolutionary Algorithm. Technical Report 103, Computer Engineering and Networks Laboratory (T\+IK), E\+TH Zurich, Zurich, Switzerland, 2001. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}\label{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}} 
+\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_count_ranking_fitness_assignment_a6bd0c159ff50fdf95652dde20afce332}\label{classmoeo_dominance_count_ranking_fitness_assignment_a6bd0c159ff50fdf95652dde20afce332}} 
+\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}!moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}}
+\index{moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}!moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceCountRankingFitnessAssignment()}{moeoDominanceCountRankingFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nocopy} & boolean to move away copies \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_dominance_count_ranking_fitness_assignment_afaeff16aad63c3963f7c61db14cb5f7b}\label{classmoeo_dominance_count_ranking_fitness_assignment_afaeff16aad63c3963f7c61db14cb5f7b}} 
+\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}!moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}}
+\index{moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}!moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceCountRankingFitnessAssignment()}{moeoDominanceCountRankingFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own archive 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+archive} & the archive used \\
+\hline
+{\em \+\_\+nocopy} & boolean to move away copies \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_dominance_count_ranking_fitness_assignment_ac2a17f3e294b8107bbd1a1ab6681760e}\label{classmoeo_dominance_count_ranking_fitness_assignment_ac2a17f3e294b8107bbd1a1ab6681760e}} 
+\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}!moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}}
+\index{moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}!moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceCountRankingFitnessAssignment()}{moeoDominanceCountRankingFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own way to compare objective vectors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+nocopy} & boolean to move away copies \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_dominance_count_ranking_fitness_assignment_a671639b776d820e48e94b774e5bbc713}\label{classmoeo_dominance_count_ranking_fitness_assignment_a671639b776d820e48e94b774e5bbc713}} 
+\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}!moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}}
+\index{moeoDominanceCountRankingFitnessAssignment@{moeoDominanceCountRankingFitnessAssignment}!moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceCountRankingFitnessAssignment()}{moeoDominanceCountRankingFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own archive and your own way to compare objective vectors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+archive} & the archive used \\
+\hline
+{\em \+\_\+nocopy} & boolean to move away copies \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_count_ranking_fitness_assignment_ac970635b5db1ed108dd1a062d155b4a3}\label{classmoeo_dominance_count_ranking_fitness_assignment_ac970635b5db1ed108dd1a062d155b4a3}} 
+\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop (and in the archive) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dominance_count_ranking_fitness_assignment_ac8f111ec6f673b6a3f187709c29143bd}\label{classmoeo_dominance_count_ranking_fitness_assignment_ac8f111ec6f673b6a3f187709c29143bd}} 
+\index{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$@{moeoDominanceCountRankingFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment}{moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_dominance_count_ranking_fitness_assignment_afbca37948828c3410b3e10f10e0e2eb6}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Dominance\+Count\+Ranking\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

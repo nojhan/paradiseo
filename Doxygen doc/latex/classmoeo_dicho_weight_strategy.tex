@@ -1,0 +1,89 @@
+\hypertarget{classmoeo_dicho_weight_strategy}{}\doxysection{moeo\+Dicho\+Weight\+Strategy$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_dicho_weight_strategy}\index{moeoDichoWeightStrategy$<$ MOEOT $>$@{moeoDichoWeightStrategy$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dicho\+Weight\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dicho\+Weight\+Strategy$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classmoeo_dicho_weight_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dicho\+Weight\+Strategy$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classmoeo_dicho_weight_strategy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_dicho_weight_strategy_a8a4e5c41bd9ca374bf3e3e4f8ea94e69}{moeo\+Dicho\+Weight\+Strategy}} ()
+\item 
+\mbox{\hyperlink{classmoeo_dicho_weight_strategy_ab5a43ca8ebc2819ab971222cf38f237f}{moeo\+Dicho\+Weight\+Strategy}} (\mbox{\hyperlink{class_u_f__random__generator}{U\+F\+\_\+random\+\_\+generator}}$<$ double $>$ \&\+\_\+random)
+\item 
+void \mbox{\hyperlink{classmoeo_dicho_weight_strategy_a87f0a41cdc5674190ffa16f5706636c3}{operator()}} (std\+::vector$<$ double $>$ \&\+\_\+weights, const M\+O\+E\+OT \&moeot)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Dicho\+Weight\+Strategy$<$ M\+O\+E\+O\+T $>$}
+
+Change all weights according to a pattern ressembling to a \char`\"{}double strategy\char`\"{} 2 to 1 then 1 to 2. Can only be applied to 2 objectives vector problem 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_dicho_weight_strategy_a8a4e5c41bd9ca374bf3e3e4f8ea94e69}\label{classmoeo_dicho_weight_strategy_a8a4e5c41bd9ca374bf3e3e4f8ea94e69}} 
+\index{moeoDichoWeightStrategy$<$ MOEOT $>$@{moeoDichoWeightStrategy$<$ MOEOT $>$}!moeoDichoWeightStrategy@{moeoDichoWeightStrategy}}
+\index{moeoDichoWeightStrategy@{moeoDichoWeightStrategy}!moeoDichoWeightStrategy$<$ MOEOT $>$@{moeoDichoWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDichoWeightStrategy()}{moeoDichoWeightStrategy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dicho_weight_strategy}{moeo\+Dicho\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dicho_weight_strategy}{moeo\+Dicho\+Weight\+Strategy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default constructor \mbox{\Hypertarget{classmoeo_dicho_weight_strategy_ab5a43ca8ebc2819ab971222cf38f237f}\label{classmoeo_dicho_weight_strategy_ab5a43ca8ebc2819ab971222cf38f237f}} 
+\index{moeoDichoWeightStrategy$<$ MOEOT $>$@{moeoDichoWeightStrategy$<$ MOEOT $>$}!moeoDichoWeightStrategy@{moeoDichoWeightStrategy}}
+\index{moeoDichoWeightStrategy@{moeoDichoWeightStrategy}!moeoDichoWeightStrategy$<$ MOEOT $>$@{moeoDichoWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDichoWeightStrategy()}{moeoDichoWeightStrategy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dicho_weight_strategy}{moeo\+Dicho\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dicho_weight_strategy}{moeo\+Dicho\+Weight\+Strategy}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_f__random__generator}{U\+F\+\_\+random\+\_\+generator}}$<$ double $>$ \&}]{\+\_\+random }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a given random generator, for algorithms wanting to keep the same generator for some reason 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+random} & an uniform random generator \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dicho_weight_strategy_a87f0a41cdc5674190ffa16f5706636c3}\label{classmoeo_dicho_weight_strategy_a87f0a41cdc5674190ffa16f5706636c3}} 
+\index{moeoDichoWeightStrategy$<$ MOEOT $>$@{moeoDichoWeightStrategy$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDichoWeightStrategy$<$ MOEOT $>$@{moeoDichoWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dicho_weight_strategy}{moeo\+Dicho\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weights,  }\item[{const M\+O\+E\+OT \&}]{moeot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+weights} & the weights to change \\
+\hline
+{\em moeot} & a moeot, will be kept in an archive in order to calculate weights later \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/weighting/moeo\+Dicho\+Weight\+Strategy.\+h\end{DoxyCompactItemize}

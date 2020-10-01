@@ -1,0 +1,199 @@
+\hypertarget{classmo_random_walk_explorer}{}\doxysection{mo\+Random\+Walk\+Explorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_random_walk_explorer}\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Random\+Walk\+Explorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Random\+Walk\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_random_walk_explorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Random\+Walk\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_random_walk_explorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_random_walk_explorer_ae4b0778abdfd0b3edad523ec1b4de7cb}\label{classmo_random_walk_explorer_ae4b0778abdfd0b3edad523ec1b4de7cb}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_random_walk_explorer_a9dc88f1aa298a8028f05c027a5f1c5bc}\label{classmo_random_walk_explorer_a9dc88f1aa298a8028f05c027a5f1c5bc}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_random_walk_explorer_a08038c97a029faca86c95bc7a2aa0387}{mo\+Random\+Walk\+Explorer}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval)
+\item 
+\mbox{\hyperlink{classmo_random_walk_explorer_a4c67f8f23cf8acdf86074429b4d302c6}{$\sim$mo\+Random\+Walk\+Explorer}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer_a4c083525de3500ea0a249aa523283746}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer_ab8c94a8d52366a7378ea5217230da67d}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer_a15d7419ba71d8f48d6967341e22e374e}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer_a312f3e1a6fcbdef4f6606ed39e41bbe0}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_random_walk_explorer_ae012b59431fdda37e96e5d0b4088147c}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_random_walk_explorer_af95f8ce3c97b74dd221a0ca085c69787}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Random\+Walk\+Explorer$<$ Neighbor $>$}
+
+Explorer for a random walk
+
+Choose at each step a random neighbor\textquotesingle{}s solution So the neighborhood have to be \char`\"{}random\char`\"{}
+
+The number of steps of the walk is not limited in the explorer 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_random_walk_explorer_a08038c97a029faca86c95bc7a2aa0387}\label{classmo_random_walk_explorer_a08038c97a029faca86c95bc7a2aa0387}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!moRandomWalkExplorer@{moRandomWalkExplorer}}
+\index{moRandomWalkExplorer@{moRandomWalkExplorer}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRandomWalkExplorer()}{moRandomWalkExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood (which have to be random) \\
+\hline
+{\em \+\_\+eval} & the evaluation function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_walk_explorer_a4c67f8f23cf8acdf86074429b4d302c6}\label{classmo_random_walk_explorer_a4c67f8f23cf8acdf86074429b4d302c6}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!````~moRandomWalkExplorer@{$\sim$moRandomWalkExplorer}}
+\index{````~moRandomWalkExplorer@{$\sim$moRandomWalkExplorer}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moRandomWalkExplorer()}{~moRandomWalkExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_random_walk_explorer_af95f8ce3c97b74dd221a0ca085c69787}\label{classmo_random_walk_explorer_af95f8ce3c97b74dd221a0ca085c69787}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+accept test if an amelirated neighbor was be found 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the best neighbor ameliorate the fitness 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_walk_explorer_a4c083525de3500ea0a249aa523283746}\label{classmo_random_walk_explorer_a4c083525de3500ea0a249aa523283746}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+initialization of the number of step to be done 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_walk_explorer_ae012b59431fdda37e96e5d0b4088147c}\label{classmo_random_walk_explorer_ae012b59431fdda37e96e5d0b4088147c}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+continue if there is a neighbor and it is remains some steps to do 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true there is some steps to do 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_walk_explorer_a312f3e1a6fcbdef4f6606ed39e41bbe0}\label{classmo_random_walk_explorer_a312f3e1a6fcbdef4f6606ed39e41bbe0}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore the neighborhood with only one random solution we supposed that the first neighbor is uniformly selected in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{classmo_random_walk_explorer_a15d7419ba71d8f48d6967341e22e374e}\label{classmo_random_walk_explorer_a15d7419ba71d8f48d6967341e22e374e}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+terminate\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_random_walk_explorer_ab8c94a8d52366a7378ea5217230da67d}\label{classmo_random_walk_explorer_ab8c94a8d52366a7378ea5217230da67d}} 
+\index{moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moRandomWalkExplorer$<$ Neighbor $>$@{moRandomWalkExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_walk_explorer}{mo\+Random\+Walk\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+increase the number of step 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+Random\+Walk\+Explorer.\+h\end{DoxyCompactItemize}

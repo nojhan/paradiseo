@@ -1,0 +1,128 @@
+\hypertarget{classmoeo_stoch_tournament_select}{}\doxysection{moeo\+Stoch\+Tournament\+Select$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_stoch_tournament_select}\index{moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Stoch\+Tournament\+Select.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Stoch\+Tournament\+Select$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_stoch_tournament_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Stoch\+Tournament\+Select$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_stoch_tournament_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_stoch_tournament_select_adfd4eb2c6d148fd3cab2fb670ae7f1d4}{moeo\+Stoch\+Tournament\+Select}} (\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+comparator, double \+\_\+t\+Rate=1.\+0)
+\item 
+\mbox{\hyperlink{classmoeo_stoch_tournament_select_aa7d9a735f65193a943ca2cdce780e80d}{moeo\+Stoch\+Tournament\+Select}} (double \+\_\+t\+Rate=1.\+0)
+\item 
+const M\+O\+E\+OT \& \mbox{\hyperlink{classmoeo_stoch_tournament_select_a2323cbf99554b37dc3724c8ea26e52c1}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \& \mbox{\hyperlink{classmoeo_stoch_tournament_select_aa8ae24cb50092cc77872a447b6602009}{comparator}}
+\item 
+\mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_stoch_tournament_select_aec34173496ad3dd0cd118b5233a53855}{default\+Comparator}}
+\item 
+double \mbox{\hyperlink{classmoeo_stoch_tournament_select_a659d064e1333ee9a3e9808a15a2f53f6}{t\+Rate}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Stoch\+Tournament\+Select$<$ M\+O\+E\+O\+T $>$}
+
+Selection strategy that selects O\+NE individual by stochastic tournament. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_stoch_tournament_select_adfd4eb2c6d148fd3cab2fb670ae7f1d4}\label{classmoeo_stoch_tournament_select_adfd4eb2c6d148fd3cab2fb670ae7f1d4}} 
+\index{moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}!moeoStochTournamentSelect@{moeoStochTournamentSelect}}
+\index{moeoStochTournamentSelect@{moeoStochTournamentSelect}!moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoStochTournamentSelect()}{moeoStochTournamentSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+comparator,  }\item[{double}]{\+\_\+t\+Rate = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Full Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the comparator (used to compare 2 individuals) \\
+\hline
+{\em \+\_\+t\+Rate} & the tournament rate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_stoch_tournament_select_aa7d9a735f65193a943ca2cdce780e80d}\label{classmoeo_stoch_tournament_select_aa7d9a735f65193a943ca2cdce780e80d}} 
+\index{moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}!moeoStochTournamentSelect@{moeoStochTournamentSelect}}
+\index{moeoStochTournamentSelect@{moeoStochTournamentSelect}!moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoStochTournamentSelect()}{moeoStochTournamentSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+t\+Rate = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor without comparator. A \mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}} is used as default. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+t\+Rate} & the tournament rate \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_stoch_tournament_select_a2323cbf99554b37dc3724c8ea26e52c1}\label{classmoeo_stoch_tournament_select_a2323cbf99554b37dc3724c8ea26e52c1}} 
+\index{moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+const M\+O\+E\+OT\& \mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the tournament to the given population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, const M\+O\+E\+O\+T \& $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_stoch_tournament_select_aa8ae24cb50092cc77872a447b6602009}\label{classmoeo_stoch_tournament_select_aa8ae24cb50092cc77872a447b6602009}} 
+\index{moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}!comparator@{comparator}}
+\index{comparator@{comparator}!moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{comparator}{comparator}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$\& \mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::comparator\hspace{0.3cm}{\ttfamily [protected]}}
+
+the comparator (used to compare 2 individuals) \mbox{\Hypertarget{classmoeo_stoch_tournament_select_aec34173496ad3dd0cd118b5233a53855}\label{classmoeo_stoch_tournament_select_aec34173496ad3dd0cd118b5233a53855}} 
+\index{moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}!defaultComparator@{defaultComparator}}
+\index{defaultComparator@{defaultComparator}!moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{defaultComparator}{defaultComparator}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::default\+Comparator\hspace{0.3cm}{\ttfamily [protected]}}
+
+a fitness then diversity comparator can be used as default \mbox{\Hypertarget{classmoeo_stoch_tournament_select_a659d064e1333ee9a3e9808a15a2f53f6}\label{classmoeo_stoch_tournament_select_a659d064e1333ee9a3e9808a15a2f53f6}} 
+\index{moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}!tRate@{tRate}}
+\index{tRate@{tRate}!moeoStochTournamentSelect$<$ MOEOT $>$@{moeoStochTournamentSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{tRate}{tRate}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_stoch_tournament_select}{moeo\+Stoch\+Tournament\+Select}}$<$ M\+O\+E\+OT $>$\+::t\+Rate\hspace{0.3cm}{\ttfamily [protected]}}
+
+the tournament rate 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/selection/moeo\+Stoch\+Tournament\+Select.\+h\end{DoxyCompactItemize}

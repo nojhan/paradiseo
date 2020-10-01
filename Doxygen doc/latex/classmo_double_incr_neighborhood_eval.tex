@@ -1,0 +1,85 @@
+\hypertarget{classmo_double_incr_neighborhood_eval}{}\doxysection{mo\+Double\+Incr\+Neighborhood\+Eval$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_double_incr_neighborhood_eval}\index{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$@{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Double\+Incr\+Neighborhood\+Eval.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Double\+Incr\+Neighborhood\+Eval$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_double_incr_neighborhood_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Double\+Incr\+Neighborhood\+Eval$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_double_incr_neighborhood_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_double_incr_neighborhood_eval_a609164977795504c2032971c841df8a0}\label{classmo_double_incr_neighborhood_eval_a609164977795504c2032971c841df8a0}} 
+typedef \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classeo_bit}{E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_double_incr_neighborhood_eval_a548435c13c6d0196426361e1784cd1a3}{mo\+Double\+Incr\+Neighborhood\+Eval}} (\mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+evaluation)
+\item 
+void \mbox{\hyperlink{classmo_double_incr_neighborhood_eval_af5b268586182d8e88316d85dbb1905a5}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Double\+Incr\+Neighborhood\+Eval$<$ Neighbor $>$}
+
+Evaluation of a neighbor from the full evaluation f the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_double_incr_neighborhood_eval_a548435c13c6d0196426361e1784cd1a3}\label{classmo_double_incr_neighborhood_eval_a548435c13c6d0196426361e1784cd1a3}} 
+\index{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$@{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$}!moDoubleIncrNeighborhoodEval@{moDoubleIncrNeighborhoodEval}}
+\index{moDoubleIncrNeighborhoodEval@{moDoubleIncrNeighborhoodEval}!moDoubleIncrNeighborhoodEval$<$ Neighbor $>$@{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moDoubleIncrNeighborhoodEval()}{moDoubleIncrNeighborhoodEval()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_double_incr_neighborhood_eval}{mo\+Double\+Incr\+Neighborhood\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_double_incr_neighborhood_eval}{mo\+Double\+Incr\+Neighborhood\+Eval}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+evaluation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+evaluation} & the double incremental evaluation of the neighborhood \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_double_incr_neighborhood_eval_af5b268586182d8e88316d85dbb1905a5}\label{classmo_double_incr_neighborhood_eval_af5b268586182d8e88316d85dbb1905a5}} 
+\index{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$@{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moDoubleIncrNeighborhoodEval$<$ Neighbor $>$@{moDoubleIncrNeighborhoodEval$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_double_incr_neighborhood_eval}{mo\+Double\+Incr\+Neighborhood\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+evaluation of a neighbor with the double incremental evaluation
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & current solution \\
+\hline
+{\em \+\_\+neighbor} & the neighbor to be evaluated \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/eval/mo\+Double\+Incr\+Neighborhood\+Eval.\+h\end{DoxyCompactItemize}

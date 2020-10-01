@@ -1,0 +1,98 @@
+\hypertarget{classeo_exp_decaying_bound_modifier}{}\doxysection{eo\+Exp\+Decaying\+Bound\+Modifier Class Reference}
+\label{classeo_exp_decaying_bound_modifier}\index{eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}}
+
+
+{\ttfamily \#include $<$eo\+Real\+Bound\+Modifier.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Exp\+Decaying\+Bound\+Modifier\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{classeo_exp_decaying_bound_modifier__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Exp\+Decaying\+Bound\+Modifier\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_exp_decaying_bound_modifier__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_exp_decaying_bound_modifier_a7c7ff23896f2edc65318603f1299ea13}{eo\+Exp\+Decaying\+Bound\+Modifier}} (unsigned \+\_\+stop\+Criteria, double \+\_\+alpha, \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ unsigned $>$ \&\+\_\+gen\+Counter)
+\item 
+\mbox{\Hypertarget{classeo_exp_decaying_bound_modifier_a429d2ae780427b8ad16c17758f79a0c0}\label{classeo_exp_decaying_bound_modifier_a429d2ae780427b8ad16c17758f79a0c0}} 
+void \mbox{\hyperlink{classeo_exp_decaying_bound_modifier_a429d2ae780427b8ad16c17758f79a0c0}{operator()}} (\mbox{\hyperlink{classeo_real_base_vector_bounds}{eo\+Real\+Base\+Vector\+Bounds}} \&\+\_\+bnds, unsigned \+\_\+i)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_exp_decaying_bound_modifier_a7c7ff23896f2edc65318603f1299ea13}{eo\+Exp\+Decaying\+Bound\+Modifier}} (unsigned \+\_\+stop\+Criteria, double \+\_\+alpha, \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ unsigned $>$ \&\+\_\+gen\+Counter)
+\item 
+\mbox{\Hypertarget{classeo_exp_decaying_bound_modifier_a429d2ae780427b8ad16c17758f79a0c0}\label{classeo_exp_decaying_bound_modifier_a429d2ae780427b8ad16c17758f79a0c0}} 
+void \mbox{\hyperlink{classeo_exp_decaying_bound_modifier_a429d2ae780427b8ad16c17758f79a0c0}{operator()}} (\mbox{\hyperlink{classeo_real_base_vector_bounds}{eo\+Real\+Base\+Vector\+Bounds}} \&\+\_\+bnds, unsigned \+\_\+i)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_exp_decaying_bound_modifier_acdbc3988cc3f9dc010d43bb31e934e37}\label{classeo_exp_decaying_bound_modifier_acdbc3988cc3f9dc010d43bb31e934e37}} 
+unsigned {\bfseries stop\+Criteria}
+\item 
+\mbox{\Hypertarget{classeo_exp_decaying_bound_modifier_a83114ecc896d47d72d1dff223c0c9fcb}\label{classeo_exp_decaying_bound_modifier_a83114ecc896d47d72d1dff223c0c9fcb}} 
+double {\bfseries alpha}
+\item 
+\mbox{\Hypertarget{classeo_exp_decaying_bound_modifier_aca70107b02049683ddefc10ecf0eba8b}\label{classeo_exp_decaying_bound_modifier_aca70107b02049683ddefc10ecf0eba8b}} 
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ unsigned $>$ \& {\bfseries gen\+Counter}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Modify an \mbox{\hyperlink{classeo_real}{eo\+Real(\+Base)}}Vector\+Bounds \+: At iteration t, the interval I(t)=\mbox{[}min,max\mbox{]} is updated as\+: I(t)=\mbox{[}min,(1-\/(t/\+Nt)$^\wedge$alpha)$\ast$max\mbox{]} where
+\begin{DoxyItemize}
+\item t, the current iteration, is given with an \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param$<$unsigned$>$}}
+\item Nt is the stopping criteria $<$=$>$ the total number of iterations
+\item alpha a coefficient 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_exp_decaying_bound_modifier_a7c7ff23896f2edc65318603f1299ea13}\label{classeo_exp_decaying_bound_modifier_a7c7ff23896f2edc65318603f1299ea13}} 
+\index{eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}!eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}}
+\index{eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}!eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}}
+\doxysubsubsection{\texorpdfstring{eoExpDecayingBoundModifier()}{eoExpDecayingBoundModifier()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Exp\+Decaying\+Bound\+Modifier\+::eo\+Exp\+Decaying\+Bound\+Modifier (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+stop\+Criteria,  }\item[{double}]{\+\_\+alpha,  }\item[{\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ unsigned $>$ \&}]{\+\_\+gen\+Counter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+stop\+Criteria} & -\/ The total number of iterations \\
+\hline
+{\em \+\_\+alpha} & \\
+\hline
+{\em \+\_\+gen\+Counter} & -\/ An \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param$<$unsigned$>$}} that gives the current iteration \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_exp_decaying_bound_modifier_a7c7ff23896f2edc65318603f1299ea13}\label{classeo_exp_decaying_bound_modifier_a7c7ff23896f2edc65318603f1299ea13}} 
+\index{eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}!eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}}
+\index{eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}!eoExpDecayingBoundModifier@{eoExpDecayingBoundModifier}}
+\doxysubsubsection{\texorpdfstring{eoExpDecayingBoundModifier()}{eoExpDecayingBoundModifier()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+Exp\+Decaying\+Bound\+Modifier\+::eo\+Exp\+Decaying\+Bound\+Modifier (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+stop\+Criteria,  }\item[{double}]{\+\_\+alpha,  }\item[{\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ unsigned $>$ \&}]{\+\_\+gen\+Counter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+stop\+Criteria} & -\/ The total number of iterations \\
+\hline
+{\em \+\_\+alpha} & \\
+\hline
+{\em \+\_\+gen\+Counter} & -\/ An \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param$<$unsigned$>$}} that gives the current iteration \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Real\+Bound\+Modifier.\+h\end{DoxyCompactItemize}

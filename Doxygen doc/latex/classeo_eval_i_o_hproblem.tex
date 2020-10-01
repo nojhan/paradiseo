@@ -1,0 +1,108 @@
+\hypertarget{classeo_eval_i_o_hproblem}{}\doxysection{eo\+Eval\+I\+O\+Hproblem$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_eval_i_o_hproblem}\index{eoEvalIOHproblem$<$ EOT $>$@{eoEvalIOHproblem$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+I\+O\+H.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+I\+O\+Hproblem$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_eval_i_o_hproblem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+I\+O\+Hproblem$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_eval_i_o_hproblem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a8d05cf3042132567c98853bb3f11dcfc}\label{classeo_eval_i_o_hproblem_a8d05cf3042132567c98853bb3f11dcfc}} 
+using {\bfseries Fitness} = typename E\+O\+T\+::\+Fitness
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_ac9233a0f5b9ed81b45233d6e425c7403}\label{classeo_eval_i_o_hproblem_ac9233a0f5b9ed81b45233d6e425c7403}} 
+using {\bfseries Scalar\+Type} = typename Fitness\+::\+Scalar\+Type
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_ae11cef82c0b90722a46c1064b901cc8f}\label{classeo_eval_i_o_hproblem_ae11cef82c0b90722a46c1064b901cc8f}} 
+{\bfseries eo\+Eval\+I\+O\+Hproblem} (I\+O\+Hprofiler\+\_\+problem$<$ Scalar\+Type $>$ \&pb)
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a7c173cca07210d7e6486a65055b0f1ea}\label{classeo_eval_i_o_hproblem_a7c173cca07210d7e6486a65055b0f1ea}} 
+{\bfseries eo\+Eval\+I\+O\+Hproblem} (I\+O\+Hprofiler\+\_\+problem$<$ Scalar\+Type $>$ \&pb, I\+O\+Hprofiler\+\_\+observer$<$ Scalar\+Type $>$ \&log)
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a030febd0307803a76c775b8f1a1ed2aa}\label{classeo_eval_i_o_hproblem_a030febd0307803a76c775b8f1a1ed2aa}} 
+virtual void \mbox{\hyperlink{classeo_eval_i_o_hproblem_a030febd0307803a76c775b8f1a1ed2aa}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_eval_i_o_hproblem_aed7331e850a301f0562781aa41cb0101}{problem}} (I\+O\+Hprofiler\+\_\+problem$<$ Scalar\+Type $>$ \&pb)
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a28ae97b413bfcc0d56d05e67ae4b402f}\label{classeo_eval_i_o_hproblem_a28ae97b413bfcc0d56d05e67ae4b402f}} 
+bool {\bfseries has\+\_\+logger} () const
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a21b12b0cd32fe154a6c15885820d1f4f}\label{classeo_eval_i_o_hproblem_a21b12b0cd32fe154a6c15885820d1f4f}} 
+I\+O\+Hprofiler\+\_\+observer$<$ Scalar\+Type $>$ \& {\bfseries observer} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a6119aaad8b24ba693feb4dc83bc32cc7}\label{classeo_eval_i_o_hproblem_a6119aaad8b24ba693feb4dc83bc32cc7}} 
+virtual Fitness {\bfseries call} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a10da37effb25ece326ca2caf59fd764a}\label{classeo_eval_i_o_hproblem_a10da37effb25ece326ca2caf59fd764a}} 
+I\+O\+Hprofiler\+\_\+problem$<$ Scalar\+Type $>$ $\ast$ {\bfseries \+\_\+ioh\+\_\+pb}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a5a8397b19933de7c03b22c2af486d3c2}\label{classeo_eval_i_o_hproblem_a5a8397b19933de7c03b22c2af486d3c2}} 
+bool {\bfseries \+\_\+has\+\_\+log}
+\item 
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_a8511cf1fcafbb8f23ed1e4fe5f35ecec}\label{classeo_eval_i_o_hproblem_a8511cf1fcafbb8f23ed1e4fe5f35ecec}} 
+I\+O\+Hprofiler\+\_\+observer$<$ Scalar\+Type $>$ $\ast$ {\bfseries \+\_\+ioh\+\_\+log}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Eval\+I\+O\+Hproblem$<$ E\+O\+T $>$}
+
+Wrap an I\+O\+Hexperimenter\textquotesingle{}s problem class within an \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}.
+
+See \href{https://github.com/IOHprofiler/IOHexperimenter}{\texttt{ https\+://github.\+com/\+I\+O\+Hprofiler/\+I\+O\+Hexperimenter}}
+
+Handle only fitnesses that inherits from \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}.
+
+\begin{DoxyNote}{Note}
+\+: You\textquotesingle{}re responsible of matching the fitness\textquotesingle{} encoding scalar type (I\+OH handle double and int, as of 2020-\/03-\/09). 
+
+\+: You\textquotesingle{}re responsible of calling {\ttfamily activate\+\_\+logger} (if necessary), but it will call {\ttfamily target\+\_\+problem} for you.
+\end{DoxyNote}
+You will need to pass the I\+OH include directory to your compiler (e.\+g. I\+O\+Hexperimenter/build/\+Cpp/src/). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_eval_i_o_hproblem_aed7331e850a301f0562781aa41cb0101}\label{classeo_eval_i_o_hproblem_aed7331e850a301f0562781aa41cb0101}} 
+\index{eoEvalIOHproblem$<$ EOT $>$@{eoEvalIOHproblem$<$ EOT $>$}!problem@{problem}}
+\index{problem@{problem}!eoEvalIOHproblem$<$ EOT $>$@{eoEvalIOHproblem$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{problem()}{problem()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_eval_i_o_hproblem}{eo\+Eval\+I\+O\+Hproblem}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::problem (\begin{DoxyParamCaption}\item[{I\+O\+Hprofiler\+\_\+problem$<$ Scalar\+Type $>$ \&}]{pb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Update the problem pointer for a new one.
+
+This is useful if you assembled a Paradis\+EO algorithm and call it several time in an I\+O\+Hexperimenter\textquotesingle{}s suite loop. Instead of re-\/assembling your algorithm, just update the problem pointer. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/eo\+Eval\+I\+O\+H.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,199 @@
+\hypertarget{classeo_p_b_i_l_distrib}{}\doxysection{eo\+P\+B\+I\+L\+Distrib$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_p_b_i_l_distrib}\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+P\+B\+I\+L\+Distrib.\+h$>$}
+
+
+
+Inheritance diagram for eo\+P\+B\+I\+L\+Distrib$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_p_b_i_l_distrib__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+P\+B\+I\+L\+Distrib$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_p_b_i_l_distrib__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_p_b_i_l_distrib_a7dd00d3ee45ff8a438856236f125d82f}{eo\+P\+B\+I\+L\+Distrib}} (unsigned \+\_\+genome\+Size)
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib_a341a6b47cc569bc5ef240294a8ccfeea}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+unsigned \mbox{\hyperlink{classeo_p_b_i_l_distrib_aefbefff85c260033f55f179e1f386e86}{Size}} ()
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib_a1c8af8c1c3854e3cf701a6ec134fd08e}{print\+On}} (std\+::ostream \&os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib_a68587180706a4cc9f7c0ea293ce9fb82}{read\+From}} (std\+::istream \&is)
+\item 
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_adce7c57a3b3725e1bbfc55cb631b987c}\label{classeo_p_b_i_l_distrib_adce7c57a3b3725e1bbfc55cb631b987c}} 
+unsigned int {\bfseries size} ()
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_p_b_i_l_distrib_a9b19c456246e1c7922320778f0f1bb76}{class\+Name}} () const
+\item 
+\mbox{\hyperlink{classeo_p_b_i_l_distrib_a7dd00d3ee45ff8a438856236f125d82f}{eo\+P\+B\+I\+L\+Distrib}} (unsigned \+\_\+genome\+Size)
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib_a341a6b47cc569bc5ef240294a8ccfeea}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+unsigned \mbox{\hyperlink{classeo_p_b_i_l_distrib_aefbefff85c260033f55f179e1f386e86}{Size}} ()
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib_a1c8af8c1c3854e3cf701a6ec134fd08e}{print\+On}} (std\+::ostream \&os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib_a68587180706a4cc9f7c0ea293ce9fb82}{read\+From}} (std\+::istream \&is)
+\item 
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_adce7c57a3b3725e1bbfc55cb631b987c}\label{classeo_p_b_i_l_distrib_adce7c57a3b3725e1bbfc55cb631b987c}} 
+unsigned int {\bfseries size} ()
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_p_b_i_l_distrib_a9b19c456246e1c7922320778f0f1bb76}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+P\+B\+I\+L\+Distrib$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{class_distribution}{Distribution}} Class for P\+B\+IL algorithm (Population-\/\+Based Incremental Learning, Baluja and Caruana 96)
+
+It encodes a univariate distribution on the space of bitstrings, i.\+e. one probability for each bit to be one
+
+It is an \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$std\+::vector$<$double$>$ $>$ \+: the std\+::vector$<$double$>$ stores the probabilities that each bit is 1
+
+It is still pure virtual, as the update method needs to be specified 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a7dd00d3ee45ff8a438856236f125d82f}\label{classeo_p_b_i_l_distrib_a7dd00d3ee45ff8a438856236f125d82f}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!eoPBILDistrib@{eoPBILDistrib}}
+\index{eoPBILDistrib@{eoPBILDistrib}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPBILDistrib()}{eoPBILDistrib()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+genome\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with size of genomes, and update parameters \mbox{\Hypertarget{classeo_p_b_i_l_distrib_a7dd00d3ee45ff8a438856236f125d82f}\label{classeo_p_b_i_l_distrib_a7dd00d3ee45ff8a438856236f125d82f}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!eoPBILDistrib@{eoPBILDistrib}}
+\index{eoPBILDistrib@{eoPBILDistrib}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPBILDistrib()}{eoPBILDistrib()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+genome\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with size of genomes, and update parameters 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a9b19c456246e1c7922320778f0f1bb76}\label{classeo_p_b_i_l_distrib_a9b19c456246e1c7922320778f0f1bb76}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+class\+Name\+: Mandatory because of \mbox{\hyperlink{classeo_combined_init}{eo\+Combined\+Init}}. S\+Hould be pure virtual, but then we should go over the whole code to write the method for all derived classes ... MS 16/7/04 
+
+Reimplemented from \mbox{\hyperlink{classeo_init_a30daeb4e68dfbb46c282ac90d591ab58}{eo\+Init$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a9b19c456246e1c7922320778f0f1bb76}\label{classeo_p_b_i_l_distrib_a9b19c456246e1c7922320778f0f1bb76}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+class\+Name\+: Mandatory because of \mbox{\hyperlink{classeo_combined_init}{eo\+Combined\+Init}}. S\+Hould be pure virtual, but then we should go over the whole code to write the method for all derived classes ... MS 16/7/04 
+
+Reimplemented from \mbox{\hyperlink{classeo_init_a30daeb4e68dfbb46c282ac90d591ab58}{eo\+Init$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a341a6b47cc569bc5ef240294a8ccfeea}\label{classeo_p_b_i_l_distrib_a341a6b47cc569bc5ef240294a8ccfeea}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+the randomizer of indis 
+
+Implements \mbox{\hyperlink{classeo_distribution_a3a7cd0a75e83deb9ada432c1fd1e13b6}{eo\+Distribution$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a341a6b47cc569bc5ef240294a8ccfeea}\label{classeo_p_b_i_l_distrib_a341a6b47cc569bc5ef240294a8ccfeea}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+the randomizer of indis 
+
+Implements \mbox{\hyperlink{classeo_distribution_a3a7cd0a75e83deb9ada432c1fd1e13b6}{eo\+Distribution$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a1c8af8c1c3854e3cf701a6ec134fd08e}\label{classeo_p_b_i_l_distrib_a1c8af8c1c3854e3cf701a6ec134fd08e}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+printing... 
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a1c8af8c1c3854e3cf701a6ec134fd08e}\label{classeo_p_b_i_l_distrib_a1c8af8c1c3854e3cf701a6ec134fd08e}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+printing... 
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a68587180706a4cc9f7c0ea293ce9fb82}\label{classeo_p_b_i_l_distrib_a68587180706a4cc9f7c0ea293ce9fb82}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+reading... 
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_a68587180706a4cc9f7c0ea293ce9fb82}\label{classeo_p_b_i_l_distrib_a68587180706a4cc9f7c0ea293ce9fb82}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+reading... 
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_distrib_aefbefff85c260033f55f179e1f386e86}\label{classeo_p_b_i_l_distrib_aefbefff85c260033f55f179e1f386e86}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!Size@{Size}}
+\index{Size@{Size}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{Size()}{Size()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Accessor to the genome size \mbox{\Hypertarget{classeo_p_b_i_l_distrib_aefbefff85c260033f55f179e1f386e86}\label{classeo_p_b_i_l_distrib_aefbefff85c260033f55f179e1f386e86}} 
+\index{eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}!Size@{Size}}
+\index{Size@{Size}!eoPBILDistrib$<$ EOT $>$@{eoPBILDistrib$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{Size()}{Size()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_p_b_i_l_distrib}{eo\+P\+B\+I\+L\+Distrib}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Accessor to the genome size 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/es/eo\+P\+B\+I\+L\+Distrib.\+h\end{DoxyCompactItemize}

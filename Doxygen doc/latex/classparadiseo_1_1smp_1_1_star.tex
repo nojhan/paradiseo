@@ -1,0 +1,61 @@
+\hypertarget{classparadiseo_1_1smp_1_1_star}{}\doxysection{paradiseo\+::smp\+::Star Class Reference}
+\label{classparadiseo_1_1smp_1_1_star}\index{paradiseo::smp::Star@{paradiseo::smp::Star}}
+
+
+{\ttfamily \#include $<$star.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Star\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_star__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Star\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_star__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_star_adf1b15759e567233a8cd830141235f9f}{operator()}} (unsigned nb\+Node, std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&matrix) const
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_star_aacbd9bc7b9da34b7f615566baa4cd64b}{set\+Center}} (unsigned c)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_star}{Star}}\+: Inherit from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder}{Topology\+Builder}}. Represents a builder for a star topology \+: each node excepted the center has every other node for neighor. The center node doesn\textquotesingle{}t have any neighbor. The center is the first node by default. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_star_adf1b15759e567233a8cd830141235f9f}\label{classparadiseo_1_1smp_1_1_star_adf1b15759e567233a8cd830141235f9f}} 
+\index{paradiseo::smp::Star@{paradiseo::smp::Star}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::Star@{paradiseo::smp::Star}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Star\+::operator() (\begin{DoxyParamCaption}\item[{unsigned}]{nb\+Node,  }\item[{std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&}]{matrix }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Fills the given matrix for a star topology with the specified number of nodes. 
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder_a502944a16d352f569d36983b58af02e0}{paradiseo\+::smp\+::\+Topology\+Builder}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_star_aacbd9bc7b9da34b7f615566baa4cd64b}\label{classparadiseo_1_1smp_1_1_star_aacbd9bc7b9da34b7f615566baa4cd64b}} 
+\index{paradiseo::smp::Star@{paradiseo::smp::Star}!setCenter@{setCenter}}
+\index{setCenter@{setCenter}!paradiseo::smp::Star@{paradiseo::smp::Star}}
+\doxysubsubsection{\texorpdfstring{setCenter()}{setCenter()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Star\+::set\+Center (\begin{DoxyParamCaption}\item[{unsigned}]{c }\end{DoxyParamCaption})}
+
+Setter for the variable \+\_\+center 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/star.\+h\item 
+smp/src/topology/star.\+cpp\end{DoxyCompactItemize}

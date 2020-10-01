@@ -1,0 +1,107 @@
+\hypertarget{class_ubqp_eval}{}\doxysection{Ubqp\+Eval$<$ E\+OT $>$ Class Template Reference}
+\label{class_ubqp_eval}\index{UbqpEval$<$ EOT $>$@{UbqpEval$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$ubqp\+Eval.\+h$>$}
+
+
+
+Inheritance diagram for Ubqp\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_ubqp_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ubqp\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_ubqp_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ubqp_eval_a0016a95d19ebe675295f437690aa214e}{Ubqp\+Eval}} (std\+::string \&\+\_\+file\+Name, unsigned format=0, unsigned int \+\_\+num\+Instance=0)
+\item 
+\mbox{\hyperlink{class_ubqp_eval_a4fcdb269fa249438d7f07c8f893caa11}{$\sim$\+Ubqp\+Eval}} ()
+\item 
+virtual void \mbox{\hyperlink{class_ubqp_eval_abf4f4037c189644111ccb50ddc484227}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)
+\item 
+\mbox{\Hypertarget{class_ubqp_eval_a6390e16614dcb72ab67062e72680d52f}\label{class_ubqp_eval_a6390e16614dcb72ab67062e72680d52f}} 
+int $\ast$$\ast$ {\bfseries getQ} ()
+\item 
+\mbox{\Hypertarget{class_ubqp_eval_aeb8820ca4c38a64d6be35097cf5bb268}\label{class_ubqp_eval_aeb8820ca4c38a64d6be35097cf5bb268}} 
+int {\bfseries get\+Nb\+Var} ()
+\item 
+\mbox{\Hypertarget{class_ubqp_eval_a137fce15e608924b74c7d2244038fe16}\label{class_ubqp_eval_a137fce15e608924b74c7d2244038fe16}} 
+void {\bfseries print} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class Ubqp\+Eval$<$ E\+O\+T $>$}
+
+Full evaluation \mbox{\hyperlink{struct_function}{Function}} for unconstrainted binary quadratic programming problem 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_ubqp_eval_a0016a95d19ebe675295f437690aa214e}\label{class_ubqp_eval_a0016a95d19ebe675295f437690aa214e}} 
+\index{UbqpEval$<$ EOT $>$@{UbqpEval$<$ EOT $>$}!UbqpEval@{UbqpEval}}
+\index{UbqpEval@{UbqpEval}!UbqpEval$<$ EOT $>$@{UbqpEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{UbqpEval()}{UbqpEval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_ubqp_eval}{Ubqp\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{class_ubqp_eval}{Ubqp\+Eval}} (\begin{DoxyParamCaption}\item[{std\+::string \&}]{\+\_\+file\+Name,  }\item[{unsigned}]{format = {\ttfamily 0},  }\item[{unsigned int}]{\+\_\+num\+Instance = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor instance is given in the O\+R\+L\+IB format (0) or matrix format (1)\+: The format of these data files is\+: number of test problem in the serie for each test problem in turn\+:
+\begin{DoxyItemize}
+\item Format 0\+: number of variables (n), number of non-\/zero elements in the q(i,j) matrix for each non-\/zero element in turn\+: i, j, q(i,j) \{=q(j,i) as the matrix is symmetric\}
+\item Format 1\+: number of variables (n) for each line i for each columm j q(i,j) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Name} & file name of the instance in O\+R\+L\+IB format \\
+\hline
+{\em format} & id of the file format (0 or 1) \\
+\hline
+{\em \+\_\+num\+Instance} & the number of the given instance to solve \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_ubqp_eval_a4fcdb269fa249438d7f07c8f893caa11}\label{class_ubqp_eval_a4fcdb269fa249438d7f07c8f893caa11}} 
+\index{UbqpEval$<$ EOT $>$@{UbqpEval$<$ EOT $>$}!````~UbqpEval@{$\sim$UbqpEval}}
+\index{````~UbqpEval@{$\sim$UbqpEval}!UbqpEval$<$ EOT $>$@{UbqpEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$UbqpEval()}{~UbqpEval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_ubqp_eval}{Ubqp\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::$\sim$\mbox{\hyperlink{class_ubqp_eval}{Ubqp\+Eval}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ubqp_eval_abf4f4037c189644111ccb50ddc484227}\label{class_ubqp_eval_abf4f4037c189644111ccb50ddc484227}} 
+\index{UbqpEval$<$ EOT $>$@{UbqpEval$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!UbqpEval$<$ EOT $>$@{UbqpEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{class_ubqp_eval}{Ubqp\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+fitness evaluation of the solution
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to evaluation \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/ubqp\+Eval.\+h\end{DoxyCompactItemize}

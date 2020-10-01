@@ -1,0 +1,93 @@
+\hypertarget{classeo_deterministic_sa_d_replacement}{}\doxysection{eo\+Deterministic\+Sa\+D\+Replacement$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_deterministic_sa_d_replacement}\index{eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Survive\+And\+Die.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Deterministic\+Sa\+D\+Replacement$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classeo_deterministic_sa_d_replacement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Deterministic\+Sa\+D\+Replacement$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classeo_deterministic_sa_d_replacement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement_abaf022fd0ab74e87b93d485edc096832}{eo\+Deterministic\+Sa\+D\+Replacement}} (\mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+reduce\+Global, double \+\_\+survive\+Parents, double \+\_\+die\+Parents=0, double \+\_\+survive\+Offspring=0, double \+\_\+die\+Offspring=0, bool \+\_\+interpret\+\_\+as\+\_\+rate=true)
+\item 
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement_a84b5538da052c9ab5bfe2d92cb971c70}{eo\+Deterministic\+Sa\+D\+Replacement}} (double \+\_\+survive\+Parents, double \+\_\+die\+Parents=0, double \+\_\+survive\+Offspring=0, double \+\_\+die\+Offspring=0, bool \+\_\+interpret\+\_\+as\+\_\+rate=true)
+\item 
+\mbox{\Hypertarget{classeo_deterministic_sa_d_replacement_a0c9059b0e308a5145cab24390b54ac79}\label{classeo_deterministic_sa_d_replacement_a0c9059b0e308a5145cab24390b54ac79}} 
+void \mbox{\hyperlink{classeo_deterministic_sa_d_replacement_a0c9059b0e308a5145cab24390b54ac79}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+parents, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+offspring)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement_abaf022fd0ab74e87b93d485edc096832}{eo\+Deterministic\+Sa\+D\+Replacement}} (\mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+reduce\+Global, double \+\_\+survive\+Parents, double \+\_\+die\+Parents=0, double \+\_\+survive\+Offspring=0, double \+\_\+die\+Offspring=0, bool \+\_\+interpret\+\_\+as\+\_\+rate=true)
+\item 
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement_a84b5538da052c9ab5bfe2d92cb971c70}{eo\+Deterministic\+Sa\+D\+Replacement}} (double \+\_\+survive\+Parents, double \+\_\+die\+Parents=0, double \+\_\+survive\+Offspring=0, double \+\_\+die\+Offspring=0, bool \+\_\+interpret\+\_\+as\+\_\+rate=true)
+\item 
+\mbox{\Hypertarget{classeo_deterministic_sa_d_replacement_a0c9059b0e308a5145cab24390b54ac79}\label{classeo_deterministic_sa_d_replacement_a0c9059b0e308a5145cab24390b54ac79}} 
+void \mbox{\hyperlink{classeo_deterministic_sa_d_replacement_a0c9059b0e308a5145cab24390b54ac79}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+parents, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+offspring)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Deterministic\+Sa\+D\+Replacement$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}}\+: replacement strategy that is just, in sequence saves best and kill worse from parents
+\begin{DoxyItemize}
+\item saves best and kill worse from offspring
+\item merge remaining (neither save nor killed) parents and offspring
+\item reduce that merged population = returns reduced pop + best parents + best offspring
+\end{DoxyItemize}
+
+An obvious use is as strong elitist strategy, i.\+e. preserving best parents, and reducing (either offspring or parents+offspring) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_deterministic_sa_d_replacement_abaf022fd0ab74e87b93d485edc096832}\label{classeo_deterministic_sa_d_replacement_abaf022fd0ab74e87b93d485edc096832}} 
+\index{eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}!eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}}
+\index{eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}!eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoDeterministicSaDReplacement()}{eoDeterministicSaDReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+reduce\+Global,  }\item[{double}]{\+\_\+survive\+Parents,  }\item[{double}]{\+\_\+die\+Parents = {\ttfamily 0},  }\item[{double}]{\+\_\+survive\+Offspring = {\ttfamily 0},  }\item[{double}]{\+\_\+die\+Offspring = {\ttfamily 0},  }\item[{bool}]{\+\_\+interpret\+\_\+as\+\_\+rate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with reduce \mbox{\Hypertarget{classeo_deterministic_sa_d_replacement_a84b5538da052c9ab5bfe2d92cb971c70}\label{classeo_deterministic_sa_d_replacement_a84b5538da052c9ab5bfe2d92cb971c70}} 
+\index{eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}!eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}}
+\index{eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}!eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoDeterministicSaDReplacement()}{eoDeterministicSaDReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+survive\+Parents,  }\item[{double}]{\+\_\+die\+Parents = {\ttfamily 0},  }\item[{double}]{\+\_\+survive\+Offspring = {\ttfamily 0},  }\item[{double}]{\+\_\+die\+Offspring = {\ttfamily 0},  }\item[{bool}]{\+\_\+interpret\+\_\+as\+\_\+rate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with default truncate used as reduce \mbox{\Hypertarget{classeo_deterministic_sa_d_replacement_abaf022fd0ab74e87b93d485edc096832}\label{classeo_deterministic_sa_d_replacement_abaf022fd0ab74e87b93d485edc096832}} 
+\index{eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}!eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}}
+\index{eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}!eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoDeterministicSaDReplacement()}{eoDeterministicSaDReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+reduce\+Global,  }\item[{double}]{\+\_\+survive\+Parents,  }\item[{double}]{\+\_\+die\+Parents = {\ttfamily 0},  }\item[{double}]{\+\_\+survive\+Offspring = {\ttfamily 0},  }\item[{double}]{\+\_\+die\+Offspring = {\ttfamily 0},  }\item[{bool}]{\+\_\+interpret\+\_\+as\+\_\+rate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with reduce \mbox{\Hypertarget{classeo_deterministic_sa_d_replacement_a84b5538da052c9ab5bfe2d92cb971c70}\label{classeo_deterministic_sa_d_replacement_a84b5538da052c9ab5bfe2d92cb971c70}} 
+\index{eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}!eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}}
+\index{eoDeterministicSaDReplacement@{eoDeterministicSaDReplacement}!eoDeterministicSaDReplacement$<$ EOT $>$@{eoDeterministicSaDReplacement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoDeterministicSaDReplacement()}{eoDeterministicSaDReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_deterministic_sa_d_replacement}{eo\+Deterministic\+Sa\+D\+Replacement}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+survive\+Parents,  }\item[{double}]{\+\_\+die\+Parents = {\ttfamily 0},  }\item[{double}]{\+\_\+survive\+Offspring = {\ttfamily 0},  }\item[{double}]{\+\_\+die\+Offspring = {\ttfamily 0},  }\item[{bool}]{\+\_\+interpret\+\_\+as\+\_\+rate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with default truncate used as reduce 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Survive\+And\+Die.\+h\end{DoxyCompactItemize}

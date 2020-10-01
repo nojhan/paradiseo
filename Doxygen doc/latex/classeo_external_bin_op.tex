@@ -1,0 +1,57 @@
+\hypertarget{classeo_external_bin_op}{}\doxysection{eo\+External\+Bin\+Op$<$ F, External, External\+EO $>$ Class Template Reference}
+\label{classeo_external_bin_op}\index{eoExternalBinOp$<$ F, External, ExternalEO $>$@{eoExternalBinOp$<$ F, External, ExternalEO $>$}}
+
+
+{\ttfamily \#include $<$eo\+External\+Op\+Functions.\+h$>$}
+
+
+
+Inheritance diagram for eo\+External\+Bin\+Op$<$ F, External, External\+EO $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_external_bin_op__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+External\+Bin\+Op$<$ F, External, External\+EO $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_external_bin_op__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_external_bin_op_a16536901fa39ab4c3662b5f10cede374}\label{classeo_external_bin_op_a16536901fa39ab4c3662b5f10cede374}} 
+{\bfseries eo\+External\+Bin\+Op} (bool($\ast$\+\_\+binop)(External \&, const External \&))
+\item 
+\mbox{\Hypertarget{classeo_external_bin_op_a68fa924d1695c55d941272ebc4e07155}\label{classeo_external_bin_op_a68fa924d1695c55d941272ebc4e07155}} 
+bool {\bfseries operator()} (External\+EO \&eo1, const External\+EO \&eo2)
+\item 
+\mbox{\Hypertarget{classeo_external_bin_op_a16536901fa39ab4c3662b5f10cede374}\label{classeo_external_bin_op_a16536901fa39ab4c3662b5f10cede374}} 
+{\bfseries eo\+External\+Bin\+Op} (bool($\ast$\+\_\+binop)(External \&, const External \&))
+\item 
+\mbox{\Hypertarget{classeo_external_bin_op_a68fa924d1695c55d941272ebc4e07155}\label{classeo_external_bin_op_a68fa924d1695c55d941272ebc4e07155}} 
+bool {\bfseries operator()} (External\+EO \&eo1, const External\+EO \&eo2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class F, class External, class External\+EO = eo\+External\+E\+O$<$\+F, External$>$$>$\newline
+class eo\+External\+Bin\+Op$<$ F, External, External\+E\+O $>$}
+
+Crossover of external struct, ctor expects a function of the following signature\+:
+
+bool func(\+External\&, const External\&);
+
+Where External is the user defined struct or class The function should return true when it changed something, false otherwise 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/other/eo\+External\+Op\+Functions.\+h\end{DoxyCompactItemize}

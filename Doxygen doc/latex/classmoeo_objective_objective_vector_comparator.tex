@@ -1,0 +1,64 @@
+\hypertarget{classmoeo_objective_objective_vector_comparator}{}\doxysection{moeo\+Objective\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_objective_objective_vector_comparator}\index{moeoObjectiveObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoObjectiveObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Objective\+Objective\+Vector\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Objective\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_objective_objective_vector_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Objective\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_objective_objective_vector_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classmoeo_objective_objective_vector_comparator_ac2b87d9379d3bb2f469761a763f924b3}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Objective\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$}
+
+Functor allowing to compare two objective vectors according to their first objective value, then their second, and so on. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_objective_objective_vector_comparator_ac2b87d9379d3bb2f469761a763f924b3}\label{classmoeo_objective_objective_vector_comparator_ac2b87d9379d3bb2f469761a763f924b3}} 
+\index{moeoObjectiveObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoObjectiveObjectiveVectorComparator$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoObjectiveObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoObjectiveObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{classmoeo_objective_objective_vector_comparator}{moeo\+Objective\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns true if \+\_\+objective\+Vector1 $<$ \+\_\+objective\+Vector2 on the first objective, then on the second, and so on 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector1} & the first objective vector \\
+\hline
+{\em \+\_\+objective\+Vector2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/comparator/moeo\+Objective\+Objective\+Vector\+Comparator.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,74 @@
+\hypertarget{classmoeo_fuzzy_crowding_diversity}{}\doxysection{moeo\+Fuzzy\+Crowding\+Diversity$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_fuzzy_crowding_diversity}\index{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$@{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fuzzy\+Crowding\+Diversity.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Fuzzy\+Crowding\+Diversity$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmoeo_fuzzy_crowding_diversity__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Fuzzy\+Crowding\+Diversity$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmoeo_fuzzy_crowding_diversity__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_crowding_diversity_a3b7242016e20a7b2ad793d7a3ea695cb}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmoeo_fuzzy_crowding_diversity_a11c7a8cdd06fa7337c00d8d696f988e1}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_fuzzy_crowding_diversity_a3b7242016e20a7b2ad793d7a3ea695cb}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Fuzzy\+Crowding\+Diversity$<$ M\+O\+E\+O\+T $>$}
+
+Diversity assignment sheme based on crowding proposed in\+: K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, \char`\"{}\+A Fast and Elitist Multi-\/\+Objective Genetic Algorithm\+: N\+S\+G\+A-\/\+I\+I\char`\"{}, I\+E\+EE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). Tis strategy assigns diversity values F\+R\+O\+NT BY F\+R\+O\+NT. It is, for instance, used in N\+S\+G\+A-\/\+II. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_crowding_diversity_a3b7242016e20a7b2ad793d7a3ea695cb}\label{classmoeo_fuzzy_crowding_diversity_a3b7242016e20a7b2ad793d7a3ea695cb}} 
+\index{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$@{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoFuzzyCrowdingDiversity$<$ MOEOT $>$@{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_crowding_diversity}{moeo\+Fuzzy\+Crowding\+Diversity}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fuzzy_crowding_diversity_a3b7242016e20a7b2ad793d7a3ea695cb}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_crowding_diversity_a11c7a8cdd06fa7337c00d8d696f988e1}\label{classmoeo_fuzzy_crowding_diversity_a11c7a8cdd06fa7337c00d8d696f988e1}} 
+\index{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$@{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoFuzzyCrowdingDiversity$<$ MOEOT $>$@{moeoFuzzyCrowdingDiversity$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_fuzzy_crowding_diversity}{moeo\+Fuzzy\+Crowding\+Diversity}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_fuzzy_crowding_diversity_a3b7242016e20a7b2ad793d7a3ea695cb}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/diversity/moeo\+Fuzzy\+Crowding\+Diversity.\+h\end{DoxyCompactItemize}

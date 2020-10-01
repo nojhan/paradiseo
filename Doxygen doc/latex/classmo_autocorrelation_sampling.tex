@@ -1,0 +1,87 @@
+\hypertarget{classmo_autocorrelation_sampling}{}\doxysection{mo\+Autocorrelation\+Sampling$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_autocorrelation_sampling}\index{moAutocorrelationSampling$<$ Neighbor $>$@{moAutocorrelationSampling$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Autocorrelation\+Sampling.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Autocorrelation\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classmo_autocorrelation_sampling__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Autocorrelation\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_autocorrelation_sampling__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_autocorrelation_sampling_a1a93cc5edf7daa7cd5d87cb45dabe235}\label{classmo_autocorrelation_sampling_a1a93cc5edf7daa7cd5d87cb45dabe235}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_autocorrelation_sampling_a998209295746725c9e2844572d65c3c6}{mo\+Autocorrelation\+Sampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Step)
+\item 
+\mbox{\hyperlink{classmo_autocorrelation_sampling_ae0caf426106482b0273df0280f85c40a}{$\sim$mo\+Autocorrelation\+Sampling}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_autocorrelation_sampling_ab9054f237474694663a8a135b875cee7}\label{classmo_autocorrelation_sampling_ab9054f237474694663a8a135b875cee7}} 
+\mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ {\bfseries fitness\+Stat}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Autocorrelation\+Sampling$<$ Neighbor $>$}
+
+To compute the autocorrelation function\+: Perform a random walk based on the neighborhood, The fitness values of solutions are collected during the random walk The autocorrelation can be computed from the serie of fitness values 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_autocorrelation_sampling_a998209295746725c9e2844572d65c3c6}\label{classmo_autocorrelation_sampling_a998209295746725c9e2844572d65c3c6}} 
+\index{moAutocorrelationSampling$<$ Neighbor $>$@{moAutocorrelationSampling$<$ Neighbor $>$}!moAutocorrelationSampling@{moAutocorrelationSampling}}
+\index{moAutocorrelationSampling@{moAutocorrelationSampling}!moAutocorrelationSampling$<$ Neighbor $>$@{moAutocorrelationSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moAutocorrelationSampling()}{moAutocorrelationSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_autocorrelation_sampling}{mo\+Autocorrelation\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_autocorrelation_sampling}{mo\+Autocorrelation\+Sampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+neighborhood} & neighborhood giving neighbor in random order \\
+\hline
+{\em \+\_\+full\+Eval} & Fitness function, full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor evaluation, incremental evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & Number of steps of the random walk \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_autocorrelation_sampling_ae0caf426106482b0273df0280f85c40a}\label{classmo_autocorrelation_sampling_ae0caf426106482b0273df0280f85c40a}} 
+\index{moAutocorrelationSampling$<$ Neighbor $>$@{moAutocorrelationSampling$<$ Neighbor $>$}!````~moAutocorrelationSampling@{$\sim$moAutocorrelationSampling}}
+\index{````~moAutocorrelationSampling@{$\sim$moAutocorrelationSampling}!moAutocorrelationSampling$<$ Neighbor $>$@{moAutocorrelationSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moAutocorrelationSampling()}{~moAutocorrelationSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_autocorrelation_sampling}{mo\+Autocorrelation\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_autocorrelation_sampling}{mo\+Autocorrelation\+Sampling}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+Autocorrelation\+Sampling.\+h\end{DoxyCompactItemize}

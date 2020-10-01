@@ -1,0 +1,158 @@
+\hypertarget{classmoeo_hyper_volume_difference_metric}{}\doxysection{moeo\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_hyper_volume_difference_metric}\index{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Hyper\+Volume\+Difference\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hyper_volume_difference_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hyper_volume_difference_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_hyper_volume_difference_metric_a4dc58cdfcfc9c9d58ddcf90c6b0889c4}{moeo\+Hyper\+Volume\+Difference\+Metric}} (bool \+\_\+normalize=true, double \+\_\+rho=1.\+1)
+\item 
+\mbox{\hyperlink{classmoeo_hyper_volume_difference_metric_a471d6c36d437be7827c5e53a3d351104}{moeo\+Hyper\+Volume\+Difference\+Metric}} (bool \+\_\+normalize, \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+ref\+\_\+point)
+\item 
+virtual double \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric_ae4af21e242dd4b69eadd89955cdb1fcd}{operator()}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set1, const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set2)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric_af70ae39369e72e574cbe4a024c1e1fac}{get\+Bounds}} ()
+\item 
+void \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric_aaa7bcfff3e5d0084ade56a1f851301de}{setup}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set1, const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric_af21dd6049e49b6857ef79eacb2adb43a}{tiny}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_a66053fe0475d096a61dacbf0a41198c7}\label{classmoeo_hyper_volume_difference_metric_a66053fe0475d096a61dacbf0a41198c7}} 
+bool {\bfseries normalize}
+\item 
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_a96b5f27cde7e8a3903290ef7bbcafdbe}\label{classmoeo_hyper_volume_difference_metric_a96b5f27cde7e8a3903290ef7bbcafdbe}} 
+double {\bfseries rho}
+\item 
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_aacc5fb7560ffa3194fe8507ce9a86875}\label{classmoeo_hyper_volume_difference_metric_aacc5fb7560ffa3194fe8507ce9a86875}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ {\bfseries bounds}
+\item 
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_a1d614462f4aba2602d2900dae2c40ba4}\label{classmoeo_hyper_volume_difference_metric_a1d614462f4aba2602d2900dae2c40ba4}} 
+\mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} {\bfseries ref\+\_\+point}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$}
+
+The contribution metric evaluates the proportion of non-\/dominated solutions given by a Pareto set relatively to another Pareto set (Meunier, Talbi, Reininger\+: \textquotesingle{}A multiobjective genetic algorithm for radio network optimization\textquotesingle{}, in Proc. of the 2000 Congress on Evolutionary Computation, I\+E\+EE Press, pp. 317-\/324) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_a4dc58cdfcfc9c9d58ddcf90c6b0889c4}\label{classmoeo_hyper_volume_difference_metric_a4dc58cdfcfc9c9d58ddcf90c6b0889c4}} 
+\index{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!moeoHyperVolumeDifferenceMetric@{moeoHyperVolumeDifferenceMetric}}
+\index{moeoHyperVolumeDifferenceMetric@{moeoHyperVolumeDifferenceMetric}!moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHyperVolumeDifferenceMetric()}{moeoHyperVolumeDifferenceMetric()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+normalize = {\ttfamily true},  }\item[{double}]{\+\_\+rho = {\ttfamily 1.1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with a coefficient (rho) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalize} & allow to normalize data (default true) \\
+\hline
+{\em \+\_\+rho} & coefficient to determine the reference point. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_a471d6c36d437be7827c5e53a3d351104}\label{classmoeo_hyper_volume_difference_metric_a471d6c36d437be7827c5e53a3d351104}} 
+\index{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!moeoHyperVolumeDifferenceMetric@{moeoHyperVolumeDifferenceMetric}}
+\index{moeoHyperVolumeDifferenceMetric@{moeoHyperVolumeDifferenceMetric}!moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHyperVolumeDifferenceMetric()}{moeoHyperVolumeDifferenceMetric()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+normalize,  }\item[{\mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+ref\+\_\+point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with a reference point 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalize} & allow to normalize data (default true) \\
+\hline
+{\em \+\_\+ref\+\_\+point} & the reference point \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_af70ae39369e72e574cbe4a024c1e1fac}\label{classmoeo_hyper_volume_difference_metric_af70ae39369e72e574cbe4a024c1e1fac}} 
+\index{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!getBounds@{getBounds}}
+\index{getBounds@{getBounds}!moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::get\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+getter on bounds \begin{DoxyReturn}{Returns}
+bounds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_ae4af21e242dd4b69eadd89955cdb1fcd}\label{classmoeo_hyper_volume_difference_metric_ae4af21e242dd4b69eadd89955cdb1fcd}} 
+\index{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+virtual double \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set1,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+calculates and returns the Hyper\+Volume value of a pareto front 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set1} & the vector contains all objective Vector of the first pareto front \\
+\hline
+{\em \+\_\+set2} & the vector contains all objective Vector of the second pareto front \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const std\+::vector$<$ Objective\+Vector $>$ \&, const std\+::vector$<$ Objective\+Vector $>$ \&, double $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_dual_hyper_volume_difference_metric_afd0587696eb8bf13c8f7fdb975c67640}{moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$ typename M\+O\+E\+O\+T\+::\+Objective\+Vector $>$}}, and \mbox{\hyperlink{classmoeo_dual_hyper_volume_difference_metric_afd0587696eb8bf13c8f7fdb975c67640}{moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$}}.
+
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_aaa7bcfff3e5d0084ade56a1f851301de}\label{classmoeo_hyper_volume_difference_metric_aaa7bcfff3e5d0084ade56a1f851301de}} 
+\index{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!setup@{setup}}
+\index{setup@{setup}!moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+void \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::setup (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set1,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+method calculate bounds for the normalization 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set1} & the vector contains all objective Vector of the first pareto front \\
+\hline
+{\em \+\_\+set2} & the vector contains all objective Vector of the second pareto front \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_hyper_volume_difference_metric_af21dd6049e49b6857ef79eacb2adb43a}\label{classmoeo_hyper_volume_difference_metric_af21dd6049e49b6857ef79eacb2adb43a}} 
+\index{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!tiny@{tiny}}
+\index{tiny@{tiny}!moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{tiny()}{tiny()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+static double \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric}{moeo\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::tiny (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Hyper\+Volume\+Difference\+Metric.\+h\end{DoxyCompactItemize}

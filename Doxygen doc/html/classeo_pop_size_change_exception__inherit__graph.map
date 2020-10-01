@@ -1,0 +1,6 @@
+<map id="eoPopSizeChangeException" name="eoPopSizeChangeException">
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,208,256"/>
+<area shape="rect" id="node2" href="$classeo_pop_size_exception.html" title=" " alt="" coords="30,155,183,181"/>
+<area shape="rect" id="node3" href="$classeo_exception.html" title="You can catch this base exception if you want to catch anything thrown by ParadisEO." alt="" coords="55,80,158,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="51,5,162,32"/>
+</map>

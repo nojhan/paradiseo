@@ -1,0 +1,92 @@
+\hypertarget{classmoeo_single_objectivization}{}\doxysection{moeo\+Single\+Objectivization$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_single_objectivization}\index{moeoSingleObjectivization$<$ MOEOT $>$@{moeoSingleObjectivization$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Single\+Objectivization.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Single\+Objectivization$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_single_objectivization__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Single\+Objectivization$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_single_objectivization__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmoeo_single_objectivization_a2751dcec9bc9bcc905852993b9041002}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)=0
+\item 
+virtual void \mbox{\hyperlink{classmoeo_single_objectivization_a38a7d53d743fb9cc32a3e0f66695f026}{operator()}} (M\+O\+E\+OT \&\+\_\+moeot)=0
+\item 
+\mbox{\Hypertarget{classmoeo_single_objectivization_a590b1ef592f40f8b6fc3828f21a3127c}\label{classmoeo_single_objectivization_a590b1ef592f40f8b6fc3828f21a3127c}} 
+virtual M\+O\+E\+O\+T\+::\+Fitness {\bfseries operator()} (const typename M\+O\+E\+O\+T\+::\+Objective\+Vector \&\+\_\+obj)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}
+
+Class to adapt multiobjective problems to single objective algorithms 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_single_objectivization_a2751dcec9bc9bcc905852993b9041002}\label{classmoeo_single_objectivization_a2751dcec9bc9bcc905852993b9041002}} 
+\index{moeoSingleObjectivization$<$ MOEOT $>$@{moeoSingleObjectivization$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSingleObjectivization$<$ MOEOT $>$@{moeoSingleObjectivization$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+herited from \mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+
+
+Implemented in \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_ae3937f63e64bded5f5c1791739eacd0a}{moeo\+Constraint\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_augmented_achievement_scalarizing_function_metric_fitness_assignment_a080a8793b9133cbbdab712afec045a2a}{moeo\+Augmented\+Achievement\+Scalarizing\+Function\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_weighted_chebychev_metric_fitness_assignment_a040961008223f35f696409eadfb49e1c}{moeo\+Weighted\+Chebychev\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_achievement_scalarizing_function_metric_fitness_assignment_a403d4ffd6f1dd30306281cc262ef2711}{moeo\+Achievement\+Scalarizing\+Function\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_metric_fitness_assignment_ac183fee78d105bc5199f39bab6e7bbbd}{moeo\+Augmented\+Weighted\+Chebychev\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_abd2614c0361c199e5a8bc8a81019fe1d}{moeo\+Aggregation\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_metric_fitness_assignment_a87c56a70cbd6e9ce8fb3ce4891e142a0}{moeo\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_aae1a770b1013f42175282cb3e1b1da72}{moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+O\+T, Move $>$}}, \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_aae1a770b1013f42175282cb3e1b1da72}{moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+O\+T, M $>$}}, and \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_aae1a770b1013f42175282cb3e1b1da72}{moeo\+Incr\+Eval\+Single\+Objectivizer$<$ E\+O\+T, M $>$}}.
+
+\mbox{\Hypertarget{classmoeo_single_objectivization_a38a7d53d743fb9cc32a3e0f66695f026}\label{classmoeo_single_objectivization_a38a7d53d743fb9cc32a3e0f66695f026}} 
+\index{moeoSingleObjectivization$<$ MOEOT $>$@{moeoSingleObjectivization$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSingleObjectivization$<$ MOEOT $>$@{moeoSingleObjectivization$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+moeot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+herited from \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}} ~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeot} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ M\+O\+E\+O\+T \&, void $>$}}.
+
+
+
+Implemented in \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_a1ce7bd4e11da500c6a655100b00a60df}{moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+O\+T, Move $>$}}, \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_a1ce7bd4e11da500c6a655100b00a60df}{moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+O\+T, M $>$}}, \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_a8e905634a758f4ad0b39794cab5ed0de}{moeo\+Aggregation\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_augmented_achievement_scalarizing_function_metric_fitness_assignment_afff3d64d352d802e474a5dad938c5cac}{moeo\+Augmented\+Achievement\+Scalarizing\+Function\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_weighted_chebychev_metric_fitness_assignment_ab56023979a33d1d150e80b50e1f4b5db}{moeo\+Weighted\+Chebychev\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_achievement_scalarizing_function_metric_fitness_assignment_a16a75d87ed76ff26921da015a59f17bc}{moeo\+Achievement\+Scalarizing\+Function\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_metric_fitness_assignment_a8f9d6a92b32f5ac75771bc9a15e809f0}{moeo\+Augmented\+Weighted\+Chebychev\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_metric_fitness_assignment_ac5161cda7871b13a2740a0033e92f1eb}{moeo\+Metric\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_add8bc02ad865c376005a885b22ae9ccd}{moeo\+Constraint\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}, and \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_a1ce7bd4e11da500c6a655100b00a60df}{moeo\+Incr\+Eval\+Single\+Objectivizer$<$ E\+O\+T, M $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Single\+Objectivization.\+h\end{DoxyCompactItemize}

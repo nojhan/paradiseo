@@ -1,0 +1,172 @@
+\hypertarget{classmoeo_dominance_rank_fitness_assignment}{}\doxysection{moeo\+Dominance\+Rank\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_dominance_rank_fitness_assignment}\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dominance\+Rank\+Fitness\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dominance\+Rank\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dominance_rank_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dominance\+Rank\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dominance_rank_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_a521fc938b54d83f2ffa20b2e0940446f}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (double \+\_\+start=1.\+0, bool \+\_\+nocopy=true)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_a3dca9ea7f0ec01e731a5f841563e39db}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, double \+\_\+start=1.\+0, bool \+\_\+nocopy=true)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_a1964c905d9e4904dd5194b276a82d883}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}} $>$ \&\+\_\+comparator, double \+\_\+start=1.\+0, bool \+\_\+nocopy=true)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_a62ae2bd7cc745d9eac6d4e58bf61c2f6}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}} $>$ \&\+\_\+comparator, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, double \+\_\+start=1.\+0, bool \+\_\+nocopy=true)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ab9d0b7b8e5e2a2e30f3d564d0a11e7b6}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_a7690f0286e86efe5b01eb347707e98a7}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Dominance\+Rank\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Fitness assignment sheme that computes how many solutions each solution is dominated by. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}\label{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}} 
+\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_rank_fitness_assignment_a521fc938b54d83f2ffa20b2e0940446f}\label{classmoeo_dominance_rank_fitness_assignment_a521fc938b54d83f2ffa20b2e0940446f}} 
+\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}!moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}}
+\index{moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}!moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceRankFitnessAssignment()}{moeoDominanceRankFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+start = {\ttfamily 1.0},  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+start} & a start value used to determine the fitness (default \+\_\+start = 1.\+0) \\
+\hline
+{\em \+\_\+nocopy} & boolean to penalize clone individuals (default = false) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_dominance_rank_fitness_assignment_a3dca9ea7f0ec01e731a5f841563e39db}\label{classmoeo_dominance_rank_fitness_assignment_a3dca9ea7f0ec01e731a5f841563e39db}} 
+\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}!moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}}
+\index{moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}!moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceRankFitnessAssignment()}{moeoDominanceRankFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{double}]{\+\_\+start = {\ttfamily 1.0},  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own archive 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+archive} & an archive to be included in the fitness assignment process \\
+\hline
+{\em \+\_\+start} & a start value used to determine the fitness (default \+\_\+start = 1.\+0) \\
+\hline
+{\em \+\_\+nocopy} & boolean to penalize clone individuals (default = false) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_dominance_rank_fitness_assignment_a1964c905d9e4904dd5194b276a82d883}\label{classmoeo_dominance_rank_fitness_assignment_a1964c905d9e4904dd5194b276a82d883}} 
+\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}!moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}}
+\index{moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}!moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceRankFitnessAssignment()}{moeoDominanceRankFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{double}]{\+\_\+start = {\ttfamily 1.0},  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own way to compare objective vectors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+start} & a start value used to determine the fitness (default \+\_\+start = 1.\+0) \\
+\hline
+{\em \+\_\+nocopy} & boolean to penalize clone individuals (default = false) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_dominance_rank_fitness_assignment_a62ae2bd7cc745d9eac6d4e58bf61c2f6}\label{classmoeo_dominance_rank_fitness_assignment_a62ae2bd7cc745d9eac6d4e58bf61c2f6}} 
+\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}!moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}}
+\index{moeoDominanceRankFitnessAssignment@{moeoDominanceRankFitnessAssignment}!moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceRankFitnessAssignment()}{moeoDominanceRankFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{double}]{\+\_\+start = {\ttfamily 1.0},  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own archive and your own way to compare objective vectors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+archive} & an archive to be included in the fitness assignment process \\
+\hline
+{\em \+\_\+start} & a start value used to determine the fitness (default \+\_\+start = 1.\+0) \\
+\hline
+{\em \+\_\+nocopy} & boolean to penalize clone individuals (default = false) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_rank_fitness_assignment_ab9d0b7b8e5e2a2e30f3d564d0a11e7b6}\label{classmoeo_dominance_rank_fitness_assignment_ab9d0b7b8e5e2a2e30f3d564d0a11e7b6}} 
+\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop (and in the archive) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dominance_rank_fitness_assignment_a7690f0286e86efe5b01eb347707e98a7}\label{classmoeo_dominance_rank_fitness_assignment_a7690f0286e86efe5b01eb347707e98a7}} 
+\index{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoDominanceRankFitnessAssignment$<$ MOEOT $>$@{moeoDominanceRankFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment}{moeo\+Dominance\+Rank\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_dominance_rank_fitness_assignment_ac1b4c44b755b1deae93553df100ae053}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Dominance\+Rank\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

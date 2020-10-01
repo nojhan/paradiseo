@@ -1,0 +1,108 @@
+\hypertarget{classmoeo_bounded_archive}{}\doxysection{moeo\+Bounded\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_bounded_archive}\index{moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Bounded\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Bounded\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_bounded_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Bounded\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_bounded_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_bounded_archive_a994da68cc8b8479c90bc8ed29746733c}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_bounded_archive_a9bdaf4a60f6cb539149172d1d28de194}{moeo\+Bounded\+Archive}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&\+\_\+comparator, unsigned int \+\_\+max\+Size=100, bool \+\_\+replace=true)
+\item 
+\mbox{\hyperlink{classmoeo_bounded_archive_a491667cc052ed2261fc064bb3f383cc6}{moeo\+Bounded\+Archive}} (unsigned int \+\_\+max\+Size=100, bool \+\_\+replace=true)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{classmoeo_bounded_archive_aaf9fabf4559233bcb170193a96854b29}{max\+Size}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Bounded\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+This class represents a bounded archive which different parameters to specify. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_bounded_archive_a994da68cc8b8479c90bc8ed29746733c}\label{classmoeo_bounded_archive_a994da68cc8b8479c90bc8ed29746733c}} 
+\index{moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_bounded_archive}{moeo\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_bounded_archive_a9bdaf4a60f6cb539149172d1d28de194}\label{classmoeo_bounded_archive_a9bdaf4a60f6cb539149172d1d28de194}} 
+\index{moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}!moeoBoundedArchive@{moeoBoundedArchive}}
+\index{moeoBoundedArchive@{moeoBoundedArchive}!moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoBoundedArchive()}{moeoBoundedArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_bounded_archive}{moeo\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_bounded_archive}{moeo\+Bounded\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100},  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} and archive size. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_bounded_archive_a491667cc052ed2261fc064bb3f383cc6}\label{classmoeo_bounded_archive_a491667cc052ed2261fc064bb3f383cc6}} 
+\index{moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}!moeoBoundedArchive@{moeoBoundedArchive}}
+\index{moeoBoundedArchive@{moeoBoundedArchive}!moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoBoundedArchive()}{moeoBoundedArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_bounded_archive}{moeo\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_bounded_archive}{moeo\+Bounded\+Archive}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100},  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with \mbox{\hyperlink{classmoeo_pareto_objective_vector_comparator}{moeo\+Pareto\+Objective\+Vector\+Comparator}} where you can choose your own archive size. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_bounded_archive_aaf9fabf4559233bcb170193a96854b29}\label{classmoeo_bounded_archive_aaf9fabf4559233bcb170193a96854b29}} 
+\index{moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}!maxSize@{maxSize}}
+\index{maxSize@{maxSize}!moeoBoundedArchive$<$ MOEOT $>$@{moeoBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{maxSize}{maxSize}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo_bounded_archive}{moeo\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::max\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+archive max size 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo\+Bounded\+Archive.\+h\end{DoxyCompactItemize}

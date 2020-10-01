@@ -1,0 +1,218 @@
+\hypertarget{classeo_file_snapshot}{}\doxysection{eo\+File\+Snapshot Class Reference}
+\label{classeo_file_snapshot}\index{eoFileSnapshot@{eoFileSnapshot}}
+
+
+{\ttfamily \#include $<$eo\+File\+Snapshot.\+h$>$}
+
+
+
+Inheritance diagram for eo\+File\+Snapshot\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_file_snapshot__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+File\+Snapshot\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_file_snapshot__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_ac47e8f3dd8c97303e55b1447594ba4c8}\label{classeo_file_snapshot_ac47e8f3dd8c97303e55b1447594ba4c8}} 
+typedef std\+::vector$<$ double $>$ {\bfseries v\+Double}
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a4f53de6a7fecd729564a414a05fe6fc9}\label{classeo_file_snapshot_a4f53de6a7fecd729564a414a05fe6fc9}} 
+typedef \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ std\+::vector$<$ double $>$ $>$ {\bfseries v\+Double\+Param}
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_ac47e8f3dd8c97303e55b1447594ba4c8}\label{classeo_file_snapshot_ac47e8f3dd8c97303e55b1447594ba4c8}} 
+typedef std\+::vector$<$ double $>$ {\bfseries v\+Double}
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a4f53de6a7fecd729564a414a05fe6fc9}\label{classeo_file_snapshot_a4f53de6a7fecd729564a414a05fe6fc9}} 
+typedef \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ std\+::vector$<$ double $>$ $>$ {\bfseries v\+Double\+Param}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a8eed4a5b6a8ba68b856633aca213fc89}\label{classeo_file_snapshot_a8eed4a5b6a8ba68b856633aca213fc89}} 
+{\bfseries eo\+File\+Snapshot} (std\+::string \+\_\+dirname, unsigned \+\_\+frequency=1, std\+::string \+\_\+filename=\char`\"{}gen\char`\"{}, std\+::string \+\_\+delim=\char`\"{} \char`\"{}, unsigned \+\_\+counter=0, bool \+\_\+rm\+Files=true)
+\item 
+virtual bool \mbox{\hyperlink{classeo_file_snapshot_a2a7f64ae204b82b012d63401781a0205}{has\+Changed}} ()
+\item 
+unsigned \mbox{\hyperlink{classeo_file_snapshot_ade0c21f302e4172b11d1736e6b308ddd}{get\+Counter}} ()
+\item 
+std\+::string \mbox{\hyperlink{classeo_file_snapshot_a86b974e9e1c1b5c9b2bc847003908636}{get\+File\+Name}} ()
+\item 
+void \mbox{\hyperlink{classeo_file_snapshot_a3dfde7804c4fedbbfa3ca57da63e43dc}{set\+Current\+File\+Name}} ()
+\item 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_snapshot_a6e20ca2865d4805b29580a962a9589d3}{operator()}} (void)
+\item 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_snapshot_a61057a71102f84fcc87a18ae55874c6a}{operator()}} (std\+::ostream \&\+\_\+os)
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a34399fda4f53a533a22f4677d51f5f7c}\label{classeo_file_snapshot_a34399fda4f53a533a22f4677d51f5f7c}} 
+virtual const std\+::string {\bfseries get\+Dir\+Name} ()
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a4eeab3912bc458e02a4c890846e8e05e}\label{classeo_file_snapshot_a4eeab3912bc458e02a4c890846e8e05e}} 
+virtual const std\+::string {\bfseries base\+File\+Name} ()
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}\label{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}} 
+void \mbox{\hyperlink{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param)
+\begin{DoxyCompactList}\small\item\em add checks whether it is a std\+::vector of doubles \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a8eed4a5b6a8ba68b856633aca213fc89}\label{classeo_file_snapshot_a8eed4a5b6a8ba68b856633aca213fc89}} 
+{\bfseries eo\+File\+Snapshot} (std\+::string \+\_\+dirname, unsigned \+\_\+frequency=1, std\+::string \+\_\+filename=\char`\"{}gen\char`\"{}, std\+::string \+\_\+delim=\char`\"{} \char`\"{}, unsigned \+\_\+counter=0, bool \+\_\+rm\+Files=true)
+\item 
+virtual bool \mbox{\hyperlink{classeo_file_snapshot_a2a7f64ae204b82b012d63401781a0205}{has\+Changed}} ()
+\item 
+unsigned \mbox{\hyperlink{classeo_file_snapshot_ade0c21f302e4172b11d1736e6b308ddd}{get\+Counter}} ()
+\item 
+std\+::string \mbox{\hyperlink{classeo_file_snapshot_a86b974e9e1c1b5c9b2bc847003908636}{get\+File\+Name}} ()
+\item 
+void \mbox{\hyperlink{classeo_file_snapshot_a3dfde7804c4fedbbfa3ca57da63e43dc}{set\+Current\+File\+Name}} ()
+\item 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_snapshot_a6e20ca2865d4805b29580a962a9589d3}{operator()}} (void)
+\item 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_snapshot_a61057a71102f84fcc87a18ae55874c6a}{operator()}} (std\+::ostream \&\+\_\+os)
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a34399fda4f53a533a22f4677d51f5f7c}\label{classeo_file_snapshot_a34399fda4f53a533a22f4677d51f5f7c}} 
+virtual const std\+::string {\bfseries get\+Dir\+Name} ()
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_a4eeab3912bc458e02a4c890846e8e05e}\label{classeo_file_snapshot_a4eeab3912bc458e02a4c890846e8e05e}} 
+virtual const std\+::string {\bfseries base\+File\+Name} ()
+\item 
+\mbox{\Hypertarget{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}\label{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}} 
+void \mbox{\hyperlink{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param)
+\begin{DoxyCompactList}\small\item\em add checks whether it is a std\+::vector of doubles \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Prints snapshots of fitnesses to a (new) file every N generations
+\end{DoxyVerb}
+
+
+Assumes that the parameters that are passed to the monitor (method add in eo\+Monitor.\+h) are \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$std\+::vector$<$double$>$ $>$ of same size.
+
+A dir is created and one file per snapshot is created there -\/ so you can later generate a movie!
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000013}{Todo}}]The counter is handled internally, but this should be changed so that you can pass e.\+g. an evalcounter (minor)\end{DoxyRefDesc}
+
+
+I failed to templatize everything so that it can handle \mbox{\hyperlink{classeo_param}{eo\+Param}}$<$std\+::vector$<$\+T$>$ $>$ for any type T, simply calling their get\+Value method ...
+
+\begin{DoxyVerb}Prints snapshots of fitnesses to a (new) file every N generations
+\end{DoxyVerb}
+
+
+Assumes that the parameters that are passed to the monitor (method add in eo\+Monitor.\+h) are \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$std\+::vector$<$double$>$ $>$ of same size.
+
+A dir is created and one file per snapshot is created there -\/ so you can later generate a movie!
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000035}{Todo}}]The counter is handled internally, but this should be changed so that you can pass e.\+g. an evalcounter (minor)\end{DoxyRefDesc}
+
+
+I failed to templatize everything so that it can handle \mbox{\hyperlink{classeo_param}{eo\+Param}}$<$std\+::vector$<$\+T$>$ $>$ for any type T, simply calling their get\+Value method ... 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_file_snapshot_ade0c21f302e4172b11d1736e6b308ddd}\label{classeo_file_snapshot_ade0c21f302e4172b11d1736e6b308ddd}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!getCounter@{getCounter}}
+\index{getCounter@{getCounter}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{getCounter()}{getCounter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily unsigned eo\+File\+Snapshot\+::get\+Counter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+accessor to the counter\+: needed by the gnuplot subclass \mbox{\Hypertarget{classeo_file_snapshot_ade0c21f302e4172b11d1736e6b308ddd}\label{classeo_file_snapshot_ade0c21f302e4172b11d1736e6b308ddd}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!getCounter@{getCounter}}
+\index{getCounter@{getCounter}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{getCounter()}{getCounter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily unsigned eo\+File\+Snapshot\+::get\+Counter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+accessor to the counter\+: needed by the gnuplot subclass \mbox{\Hypertarget{classeo_file_snapshot_a86b974e9e1c1b5c9b2bc847003908636}\label{classeo_file_snapshot_a86b974e9e1c1b5c9b2bc847003908636}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!getFileName@{getFileName}}
+\index{getFileName@{getFileName}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{getFileName()}{getFileName()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string eo\+File\+Snapshot\+::get\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+accessor to the current filename\+: needed by the gnuplot subclass \mbox{\Hypertarget{classeo_file_snapshot_a86b974e9e1c1b5c9b2bc847003908636}\label{classeo_file_snapshot_a86b974e9e1c1b5c9b2bc847003908636}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!getFileName@{getFileName}}
+\index{getFileName@{getFileName}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{getFileName()}{getFileName()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string eo\+File\+Snapshot\+::get\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+accessor to the current filename\+: needed by the gnuplot subclass \mbox{\Hypertarget{classeo_file_snapshot_a2a7f64ae204b82b012d63401781a0205}\label{classeo_file_snapshot_a2a7f64ae204b82b012d63401781a0205}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!hasChanged@{hasChanged}}
+\index{hasChanged@{hasChanged}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{hasChanged()}{hasChanged()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+File\+Snapshot\+::has\+Changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+accessor\+: has something changed (for gnuplot subclass) \mbox{\Hypertarget{classeo_file_snapshot_a2a7f64ae204b82b012d63401781a0205}\label{classeo_file_snapshot_a2a7f64ae204b82b012d63401781a0205}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!hasChanged@{hasChanged}}
+\index{hasChanged@{hasChanged}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{hasChanged()}{hasChanged()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+File\+Snapshot\+::has\+Changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+accessor\+: has something changed (for gnuplot subclass) \mbox{\Hypertarget{classeo_file_snapshot_a61057a71102f84fcc87a18ae55874c6a}\label{classeo_file_snapshot_a61057a71102f84fcc87a18ae55874c6a}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}}\& eo\+File\+Snapshot\+::operator() (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The operator()\+: write on an std\+::ostream \mbox{\Hypertarget{classeo_file_snapshot_a61057a71102f84fcc87a18ae55874c6a}\label{classeo_file_snapshot_a61057a71102f84fcc87a18ae55874c6a}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}}\& eo\+File\+Snapshot\+::operator() (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The operator()\+: write on an std\+::ostream \mbox{\Hypertarget{classeo_file_snapshot_a6e20ca2865d4805b29580a962a9589d3}\label{classeo_file_snapshot_a6e20ca2865d4805b29580a962a9589d3}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}}\& eo\+File\+Snapshot\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The operator(void)\+: opens the std\+::ostream and calls the write method 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ eo\+Monitor \& $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classeo_gnuplot1_d_snapshot_a56713bbadc322fe291cf9208028719ff}{eo\+Gnuplot1\+D\+Snapshot}}.
+
+\mbox{\Hypertarget{classeo_file_snapshot_a6e20ca2865d4805b29580a962a9589d3}\label{classeo_file_snapshot_a6e20ca2865d4805b29580a962a9589d3}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}}\& eo\+File\+Snapshot\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The operator(void)\+: opens the std\+::ostream and calls the write method 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ eo\+Monitor \& $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classeo_gnuplot1_d_snapshot_a822417270dcd5cfa502b2c680951ed7d}{eo\+Gnuplot1\+D\+Snapshot}}, and \mbox{\hyperlink{classeo_gnuplot1_d_snapshot_a56713bbadc322fe291cf9208028719ff}{eo\+Gnuplot1\+D\+Snapshot}}.
+
+\mbox{\Hypertarget{classeo_file_snapshot_a3dfde7804c4fedbbfa3ca57da63e43dc}\label{classeo_file_snapshot_a3dfde7804c4fedbbfa3ca57da63e43dc}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!setCurrentFileName@{setCurrentFileName}}
+\index{setCurrentFileName@{setCurrentFileName}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{setCurrentFileName()}{setCurrentFileName()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+File\+Snapshot\+::set\+Current\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+sets the current filename depending on the counter \mbox{\Hypertarget{classeo_file_snapshot_a3dfde7804c4fedbbfa3ca57da63e43dc}\label{classeo_file_snapshot_a3dfde7804c4fedbbfa3ca57da63e43dc}} 
+\index{eoFileSnapshot@{eoFileSnapshot}!setCurrentFileName@{setCurrentFileName}}
+\index{setCurrentFileName@{setCurrentFileName}!eoFileSnapshot@{eoFileSnapshot}}
+\doxysubsubsection{\texorpdfstring{setCurrentFileName()}{setCurrentFileName()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+File\+Snapshot\+::set\+Current\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+sets the current filename depending on the counter 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+File\+Snapshot.\+h\end{DoxyCompactItemize}

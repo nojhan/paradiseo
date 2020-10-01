@@ -1,0 +1,86 @@
+\hypertarget{classparadiseo_1_1smp_1_1_abstract_topology}{}\doxysection{paradiseo\+::smp\+::Abstract\+Topology Class Reference}
+\label{classparadiseo_1_1smp_1_1_abstract_topology}\index{paradiseo::smp::AbstractTopology@{paradiseo::smp::AbstractTopology}}
+
+
+{\ttfamily \#include $<$abstract\+Topology.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Abstract\+Topology\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_abstract_topology__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_af3b0d21baaf63d453f5e4a76d4f9c1d8}{get\+Id\+Neighbors}} (unsigned id\+Island) const =0
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_a8b5612f89e420f37c7fa0080e7d156d9}{construct}} (unsigned nb\+Node)=0
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_ac7f65400edefd676de8f5db26ad570dc}{isolate\+Node}} (unsigned id\+Node)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}}\+: The Abstract \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{Topology}} defines what is necessary to any topology. In order to know a topology, we just need to know how to construct it and what are the neighbors of each node, regardless of the type of topology (boolean or stochastic).
+
+\begin{DoxySeeAlso}{See also}
+smp\+::topology\+::\+Topology, smp\+::topology\+::\+Topology\+Builder 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_abstract_topology_a8b5612f89e420f37c7fa0080e7d156d9}\label{classparadiseo_1_1smp_1_1_abstract_topology_a8b5612f89e420f37c7fa0080e7d156d9}} 
+\index{paradiseo::smp::AbstractTopology@{paradiseo::smp::AbstractTopology}!construct@{construct}}
+\index{construct@{construct}!paradiseo::smp::AbstractTopology@{paradiseo::smp::AbstractTopology}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily virtual void paradiseo\+::smp\+::\+Abstract\+Topology\+::construct (\begin{DoxyParamCaption}\item[{unsigned}]{nb\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Construct or re-\/construct a topology with the given number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em nb\+Node} & number of nodes for the topology \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_ac28e45de413a0b1f76e63b336581c8fd}{paradiseo\+::smp\+::\+Topology$<$ Topology\+Type $>$}}, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a18d522abafeba7f21b507b375eb64c3e}{paradiseo\+::smp\+::\+Custom\+Stochastic\+Topology}}, and \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_boolean_topology_ae68670d92bb2dea8d7a7c251cab5aae7}{paradiseo\+::smp\+::\+Custom\+Boolean\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_abstract_topology_af3b0d21baaf63d453f5e4a76d4f9c1d8}\label{classparadiseo_1_1smp_1_1_abstract_topology_af3b0d21baaf63d453f5e4a76d4f9c1d8}} 
+\index{paradiseo::smp::AbstractTopology@{paradiseo::smp::AbstractTopology}!getIdNeighbors@{getIdNeighbors}}
+\index{getIdNeighbors@{getIdNeighbors}!paradiseo::smp::AbstractTopology@{paradiseo::smp::AbstractTopology}}
+\doxysubsubsection{\texorpdfstring{getIdNeighbors()}{getIdNeighbors()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$unsigned$>$ paradiseo\+::smp\+::\+Abstract\+Topology\+::get\+Id\+Neighbors (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Island }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Return a vector containing the index of nearby nodes according to the topology 
+\begin{DoxyParams}{Parameters}
+{\em id\+Node} & index of the node of which you want the neighbors. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_a498e368c0e0f84d61796194eaa7a7513}{paradiseo\+::smp\+::\+Topology$<$ Topology\+Type $>$}}, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a12f348e8b1b4657fd274f0da356a4310}{paradiseo\+::smp\+::\+Custom\+Stochastic\+Topology}}, and \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_boolean_topology_ab429ce3eedf95794a196622fabc37e39}{paradiseo\+::smp\+::\+Custom\+Boolean\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_abstract_topology_ac7f65400edefd676de8f5db26ad570dc}\label{classparadiseo_1_1smp_1_1_abstract_topology_ac7f65400edefd676de8f5db26ad570dc}} 
+\index{paradiseo::smp::AbstractTopology@{paradiseo::smp::AbstractTopology}!isolateNode@{isolateNode}}
+\index{isolateNode@{isolateNode}!paradiseo::smp::AbstractTopology@{paradiseo::smp::AbstractTopology}}
+\doxysubsubsection{\texorpdfstring{isolateNode()}{isolateNode()}}
+{\footnotesize\ttfamily virtual void paradiseo\+::smp\+::\+Abstract\+Topology\+::isolate\+Node (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Changes the topology \+: removes any connection from/to the given node. 
+\begin{DoxyParams}{Parameters}
+{\em id\+Node} & index of the node to be isolated \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_a4d44371b8fae058c8398066df907b682}{paradiseo\+::smp\+::\+Topology$<$ Topology\+Type $>$}}, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a77d27c4e07eb32c326fc810e4eb7085a}{paradiseo\+::smp\+::\+Custom\+Stochastic\+Topology}}, and \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_boolean_topology_a5b6c18ddd2b5023e342accadb6843591}{paradiseo\+::smp\+::\+Custom\+Boolean\+Topology}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/abstract\+Topology.\+h\end{DoxyCompactItemize}

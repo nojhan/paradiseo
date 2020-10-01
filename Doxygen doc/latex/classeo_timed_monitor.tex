@@ -1,0 +1,108 @@
+\hypertarget{classeo_timed_monitor}{}\doxysection{eo\+Timed\+Monitor Class Reference}
+\label{classeo_timed_monitor}\index{eoTimedMonitor@{eoTimedMonitor}}
+
+
+{\ttfamily \#include $<$eo\+Timed\+Monitor.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Timed\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_timed_monitor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Timed\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_timed_monitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_timed_monitor_ae8ec971001ccc5d6cdc676f1a3e3a59d}{eo\+Timed\+Monitor}} (unsigned seconds\+\_\+)
+\item 
+\mbox{\Hypertarget{classeo_timed_monitor_a6d5e05a49cb83edb6e71aab86cd7b65a}\label{classeo_timed_monitor_a6d5e05a49cb83edb6e71aab86cd7b65a}} 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_timed_monitor_a6d5e05a49cb83edb6e71aab86cd7b65a}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_timed_monitor_aaf697ae5af0a9df9ad54b19962ed8346}\label{classeo_timed_monitor_aaf697ae5af0a9df9ad54b19962ed8346}} 
+void {\bfseries add} (\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&mon)
+\item 
+\mbox{\Hypertarget{classeo_timed_monitor_ad94774cb2abffee86b56ec568e7aea1d}\label{classeo_timed_monitor_ad94774cb2abffee86b56ec568e7aea1d}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+\mbox{\hyperlink{classeo_timed_monitor_ae8ec971001ccc5d6cdc676f1a3e3a59d}{eo\+Timed\+Monitor}} (unsigned seconds\+\_\+)
+\item 
+\mbox{\Hypertarget{classeo_timed_monitor_a6d5e05a49cb83edb6e71aab86cd7b65a}\label{classeo_timed_monitor_a6d5e05a49cb83edb6e71aab86cd7b65a}} 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_timed_monitor_a6d5e05a49cb83edb6e71aab86cd7b65a}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_timed_monitor_aaf697ae5af0a9df9ad54b19962ed8346}\label{classeo_timed_monitor_aaf697ae5af0a9df9ad54b19962ed8346}} 
+void {\bfseries add} (\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&mon)
+\item 
+\mbox{\Hypertarget{classeo_timed_monitor_ad94774cb2abffee86b56ec568e7aea1d}\label{classeo_timed_monitor_ad94774cb2abffee86b56ec568e7aea1d}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+virtual void \mbox{\hyperlink{classeo_timed_monitor_a00b2754e710df16cd9e8592f47e64201}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param)
+\item 
+virtual void \mbox{\hyperlink{classeo_timed_monitor_a00b2754e710df16cd9e8592f47e64201}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Holds a collection of monitors and only fires them when a time limit has been reached 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_timed_monitor_ae8ec971001ccc5d6cdc676f1a3e3a59d}\label{classeo_timed_monitor_ae8ec971001ccc5d6cdc676f1a3e3a59d}} 
+\index{eoTimedMonitor@{eoTimedMonitor}!eoTimedMonitor@{eoTimedMonitor}}
+\index{eoTimedMonitor@{eoTimedMonitor}!eoTimedMonitor@{eoTimedMonitor}}
+\doxysubsubsection{\texorpdfstring{eoTimedMonitor()}{eoTimedMonitor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Timed\+Monitor\+::eo\+Timed\+Monitor (\begin{DoxyParamCaption}\item[{unsigned}]{seconds\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+No negative time can be specified, use 0 if you want it to fire \char`\"{}always\char`\"{}. 
+\begin{DoxyParams}{Parameters}
+{\em seconds\+\_\+} & Specify time limit (s). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_timed_monitor_ae8ec971001ccc5d6cdc676f1a3e3a59d}\label{classeo_timed_monitor_ae8ec971001ccc5d6cdc676f1a3e3a59d}} 
+\index{eoTimedMonitor@{eoTimedMonitor}!eoTimedMonitor@{eoTimedMonitor}}
+\index{eoTimedMonitor@{eoTimedMonitor}!eoTimedMonitor@{eoTimedMonitor}}
+\doxysubsubsection{\texorpdfstring{eoTimedMonitor()}{eoTimedMonitor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+Timed\+Monitor\+::eo\+Timed\+Monitor (\begin{DoxyParamCaption}\item[{unsigned}]{seconds\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+No negative time can be specified, use 0 if you want it to fire \char`\"{}always\char`\"{}. 
+\begin{DoxyParams}{Parameters}
+{\em seconds\+\_\+} & Specify time limit (s). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_timed_monitor_a00b2754e710df16cd9e8592f47e64201}\label{classeo_timed_monitor_a00b2754e710df16cd9e8592f47e64201}} 
+\index{eoTimedMonitor@{eoTimedMonitor}!add@{add}}
+\index{add@{add}!eoTimedMonitor@{eoTimedMonitor}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+Monitor\+::add\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds a parameter to the monitor. It is virtual so you can do some type checking in derived classes if you must. \mbox{\Hypertarget{classeo_timed_monitor_a00b2754e710df16cd9e8592f47e64201}\label{classeo_timed_monitor_a00b2754e710df16cd9e8592f47e64201}} 
+\index{eoTimedMonitor@{eoTimedMonitor}!add@{add}}
+\index{add@{add}!eoTimedMonitor@{eoTimedMonitor}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+Monitor\+::add\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds a parameter to the monitor. It is virtual so you can do some type checking in derived classes if you must. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Timed\+Monitor.\+h\end{DoxyCompactItemize}

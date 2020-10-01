@@ -1,0 +1,4 @@
+<map id="eo::mpi::StaticAssignmentAlgorithm" name="eo::mpi::StaticAssignmentAlgorithm">
+<area shape="rect" id="node1" title="Assignment algorithm which gives to each worker a precise number of tasks to do, in a round robin fas..." alt="" coords="19,80,212,121"/>
+<area shape="rect" id="node2" href="$structeo_1_1mpi_1_1_assignment_algorithm.html" title="Contains informations on the available workers and allows to find assignees for jobs." alt="" coords="5,5,225,32"/>
+</map>

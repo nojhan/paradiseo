@@ -1,0 +1,64 @@
+\hypertarget{classmoeo_pareto_dual_objective_vector_comparator}{}\doxysection{moeo\+Pareto\+Dual\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_pareto_dual_objective_vector_comparator}\index{moeoParetoDualObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoParetoDualObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Pareto\+Dual\+Objective\+Vector\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Pareto\+Dual\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_pareto_dual_objective_vector_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Pareto\+Dual\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_pareto_dual_objective_vector_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classmoeo_pareto_dual_objective_vector_comparator_a4f8fc8ba76d5926357cdcd34162748f7}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&ov1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&ov2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Pareto\+Dual\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$}
+
+This functor class allows to compare 2 objective vectors according to Pareto dominance. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_pareto_dual_objective_vector_comparator_a4f8fc8ba76d5926357cdcd34162748f7}\label{classmoeo_pareto_dual_objective_vector_comparator_a4f8fc8ba76d5926357cdcd34162748f7}} 
+\index{moeoParetoDualObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoParetoDualObjectiveVectorComparator$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoParetoDualObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoParetoDualObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{classmoeo_pareto_dual_objective_vector_comparator}{moeo\+Pareto\+Dual\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{ov1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{ov2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns true if ov1 is dominated by ov2 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ov1} & the first objective vector \\
+\hline
+{\em \+\_\+ov2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/comparator/moeo\+Pareto\+Dual\+Objective\+Vector\+Comparator.\+h\end{DoxyCompactItemize}

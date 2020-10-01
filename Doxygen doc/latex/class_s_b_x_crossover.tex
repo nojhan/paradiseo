@@ -1,0 +1,80 @@
+\hypertarget{class_s_b_x_crossover}{}\doxysection{S\+B\+X\+Crossover$<$ E\+OT $>$ Class Template Reference}
+\label{class_s_b_x_crossover}\index{SBXCrossover$<$ EOT $>$@{SBXCrossover$<$ EOT $>$}}
+
+
+Inheritance diagram for S\+B\+X\+Crossover$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_b_x_crossover__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for S\+B\+X\+Crossover$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_b_x_crossover__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_b_x_crossover_ac50af4021d73612d7d91af02f110e0cf}\label{class_s_b_x_crossover_ac50af4021d73612d7d91af02f110e0cf}} 
+{\bfseries S\+B\+X\+Crossover} (const double \&\+\_\+eta=1.\+0)
+\item 
+\mbox{\hyperlink{class_s_b_x_crossover_a8aff3c78f64cbba66fcf5fb3a940cf30}{S\+B\+X\+Crossover}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds, const double \&\+\_\+eta=1.\+0)
+\item 
+\mbox{\hyperlink{class_s_b_x_crossover_ab834131c0a6a11ea0af55e53b6d71e0f}{S\+B\+X\+Crossover}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser)
+\item 
+\mbox{\Hypertarget{class_s_b_x_crossover_a45d23b2dec03feab8ce9d71bc7fcec49}\label{class_s_b_x_crossover_a45d23b2dec03feab8ce9d71bc7fcec49}} 
+virtual std\+::string \mbox{\hyperlink{class_s_b_x_crossover_a45d23b2dec03feab8ce9d71bc7fcec49}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The class name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_b_x_crossover_a4d37811c3a6334ebc352fb8df35d6d58}\label{class_s_b_x_crossover_a4d37811c3a6334ebc352fb8df35d6d58}} 
+bool \mbox{\hyperlink{class_s_b_x_crossover_a4d37811c3a6334ebc352fb8df35d6d58}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo1, \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo2)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_b_x_crossover_af4cf06bed5dbda4a03324f0e73d9d90a}\label{class_s_b_x_crossover_af4cf06bed5dbda4a03324f0e73d9d90a}} 
+\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \& {\bfseries bounds}
+\item 
+\mbox{\Hypertarget{class_s_b_x_crossover_a5d43e000c4806fe528c92ec8ab1a9425}\label{class_s_b_x_crossover_a5d43e000c4806fe528c92ec8ab1a9425}} 
+double {\bfseries eta}
+\item 
+\mbox{\Hypertarget{class_s_b_x_crossover_a338407e6d001d40a34a9179198da0236}\label{class_s_b_x_crossover_a338407e6d001d40a34a9179198da0236}} 
+double {\bfseries range}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_s_b_x_crossover_a8aff3c78f64cbba66fcf5fb3a940cf30}\label{class_s_b_x_crossover_a8aff3c78f64cbba66fcf5fb3a940cf30}} 
+\index{SBXCrossover$<$ EOT $>$@{SBXCrossover$<$ EOT $>$}!SBXCrossover@{SBXCrossover}}
+\index{SBXCrossover@{SBXCrossover}!SBXCrossover$<$ EOT $>$@{SBXCrossover$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{SBXCrossover()}{SBXCrossover()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_s_b_x_crossover}{S\+B\+X\+Crossover}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{class_s_b_x_crossover}{S\+B\+X\+Crossover}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds,  }\item[{const double \&}]{\+\_\+eta = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with bounds 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & an \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} that contains the bounds \\
+\hline
+{\em \+\_\+alpha\+Min} & the amount of exploration O\+U\+T\+S\+I\+DE the parents as in B\+L\+X-\/alpha notation (Eshelman and Schaffer) 0 == contractive application Must be positive \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_b_x_crossover_ab834131c0a6a11ea0af55e53b6d71e0f}\label{class_s_b_x_crossover_ab834131c0a6a11ea0af55e53b6d71e0f}} 
+\index{SBXCrossover$<$ EOT $>$@{SBXCrossover$<$ EOT $>$}!SBXCrossover@{SBXCrossover}}
+\index{SBXCrossover@{SBXCrossover}!SBXCrossover$<$ EOT $>$@{SBXCrossover$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{SBXCrossover()}{SBXCrossover()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_s_b_x_crossover}{S\+B\+X\+Crossover}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{class_s_b_x_crossover}{S\+B\+X\+Crossover}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor from a parser. Will read from the argument parser \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} that contains the bounds eta, the S\+BX parameter 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/\+D\+T\+L\+Z/src/S\+B\+X\+Crossover.\+h\end{DoxyCompactItemize}

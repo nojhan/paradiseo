@@ -1,0 +1,56 @@
+\hypertarget{classeo_1_1mpi_1_1_send_task_parallel_apply}{}\doxysection{eo\+::mpi\+::Send\+Task\+Parallel\+Apply$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_1_1mpi_1_1_send_task_parallel_apply}\index{eo::mpi::SendTaskParallelApply$<$ EOT $>$@{eo::mpi::SendTaskParallelApply$<$ EOT $>$}}
+
+
+Send task functor implementation for the parallel apply (map) job.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Parallel\+Apply.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Send\+Task\+Parallel\+Apply$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_send_task_parallel_apply__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Send\+Task\+Parallel\+Apply$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_send_task_parallel_apply__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_send_task_parallel_apply_af05d4ebcedc1a1513861ab72ea56281e}\label{classeo_1_1mpi_1_1_send_task_parallel_apply_af05d4ebcedc1a1513861ab72ea56281e}} 
+{\bfseries Send\+Task\+Parallel\+Apply} (\mbox{\hyperlink{classeo_1_1mpi_1_1_send_task_parallel_apply}{Send\+Task\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$w=0)
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_send_task_parallel_apply_af08b346b09b1dc90c15ac1b8b0649fd4}\label{classeo_1_1mpi_1_1_send_task_parallel_apply_af08b346b09b1dc90c15ac1b8b0649fd4}} 
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_send_task_parallel_apply_af08b346b09b1dc90c15ac1b8b0649fd4}{operator()}} (int wrk\+Rank)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+::mpi\+::\+Send\+Task\+Parallel\+Apply$<$ E\+O\+T $>$}
+
+Send task functor implementation for the parallel apply (map) job. 
+
+Master side\+: Sends a slice of the table to evaluate to the worker.
+
+Implementation details\+: Finds the next slice of data to send to the worker, sends first the size and then the data, and memorizes that this slice has been distributed to the worker, then updates the next position of element to evaluate. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_parallel_apply_8h}{eo\+Parallel\+Apply.\+h}}\end{DoxyCompactItemize}

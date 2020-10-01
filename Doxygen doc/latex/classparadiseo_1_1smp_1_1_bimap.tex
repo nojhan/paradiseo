@@ -1,0 +1,127 @@
+\hypertarget{classparadiseo_1_1smp_1_1_bimap}{}\doxysection{paradiseo\+::smp\+::Bimap$<$ A, B $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_bimap}\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+
+
+{\ttfamily \#include $<$bimap.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap_ab118672fc2497e09a18f0dd5fdde8ed9}{add}} (A \&a, B \&b)
+\item 
+std\+::map$<$ A, B $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap_acdcccd859cedb1f7bf6e292b8542d9d1}{get\+Right}} () const
+\item 
+std\+::map$<$ B, A $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap_a058770b1594c01e6b2a3c976c2103543}{get\+Left}} () const
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap_aa742ae84781d968c4c665df5597e7352}{remove\+From\+Right}} (const A \&a)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap_aac53e7274c24868d96f28ed83f86b9ec}{remove\+From\+Left}} (const B \&b)
+\item 
+unsigned \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap_a2609aae4bd4e6c6645a57d5debd54efe}{size}} () const
+\item 
+bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap_a85db01ac45656f4d52f90751d77d0ab6}{empty}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_a01d1b6ad10ddedf0c1d1e187df714e80}\label{classparadiseo_1_1smp_1_1_bimap_a01d1b6ad10ddedf0c1d1e187df714e80}} 
+std\+::map$<$ A, B $>$ {\bfseries right\+Association}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_a7c9e2d13bca817d307bb3a22b0c952a4}\label{classparadiseo_1_1smp_1_1_bimap_a7c9e2d13bca817d307bb3a22b0c952a4}} 
+std\+::map$<$ B, A $>$ {\bfseries left\+Association}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class A, class B$>$\newline
+class paradiseo\+::smp\+::\+Bimap$<$ A, B $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{Bimap}}
+
+Bidirectional map in order to create a bijection between islands and vertices. A and B objects are stocked in two std\+::map, then if you would like to avoid instances duplications, template A and B with pointers. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_ab118672fc2497e09a18f0dd5fdde8ed9}\label{classparadiseo_1_1smp_1_1_bimap_ab118672fc2497e09a18f0dd5fdde8ed9}} 
+\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}!add@{add}}
+\index{add@{add}!paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class A , class B $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{paradiseo\+::smp\+::\+Bimap}}$<$ A, B $>$\+::add (\begin{DoxyParamCaption}\item[{A \&}]{a,  }\item[{B \&}]{b }\end{DoxyParamCaption})}
+
+Add a relation 
+\begin{DoxyParams}{Parameters}
+{\em A} & right key \\
+\hline
+{\em B} & left key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_a85db01ac45656f4d52f90751d77d0ab6}\label{classparadiseo_1_1smp_1_1_bimap_a85db01ac45656f4d52f90751d77d0ab6}} 
+\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}!empty@{empty}}
+\index{empty@{empty}!paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$class A , class B $>$ \\
+bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{paradiseo\+::smp\+::\+Bimap}}$<$ A, B $>$\+::empty}
+
+Check if the bimap is empty \begin{DoxyReturn}{Returns}
+true if the bimap is empty 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_a058770b1594c01e6b2a3c976c2103543}\label{classparadiseo_1_1smp_1_1_bimap_a058770b1594c01e6b2a3c976c2103543}} 
+\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}!getLeft@{getLeft}}
+\index{getLeft@{getLeft}!paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+\doxysubsubsection{\texorpdfstring{getLeft()}{getLeft()}}
+{\footnotesize\ttfamily template$<$class A , class B $>$ \\
+std\+::map$<$ B, A $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{paradiseo\+::smp\+::\+Bimap}}$<$ A, B $>$\+::get\+Left}
+
+Return a map which represents the left association. \begin{DoxyReturn}{Returns}
+left\+Association 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_acdcccd859cedb1f7bf6e292b8542d9d1}\label{classparadiseo_1_1smp_1_1_bimap_acdcccd859cedb1f7bf6e292b8542d9d1}} 
+\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}!getRight@{getRight}}
+\index{getRight@{getRight}!paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+\doxysubsubsection{\texorpdfstring{getRight()}{getRight()}}
+{\footnotesize\ttfamily template$<$class A , class B $>$ \\
+std\+::map$<$ A, B $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{paradiseo\+::smp\+::\+Bimap}}$<$ A, B $>$\+::get\+Right}
+
+Return a map which represents the right association. \begin{DoxyReturn}{Returns}
+right\+Association 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_aac53e7274c24868d96f28ed83f86b9ec}\label{classparadiseo_1_1smp_1_1_bimap_aac53e7274c24868d96f28ed83f86b9ec}} 
+\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}!removeFromLeft@{removeFromLeft}}
+\index{removeFromLeft@{removeFromLeft}!paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+\doxysubsubsection{\texorpdfstring{removeFromLeft()}{removeFromLeft()}}
+{\footnotesize\ttfamily template$<$class A , class B $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{paradiseo\+::smp\+::\+Bimap}}$<$ A, B $>$\+::remove\+From\+Left (\begin{DoxyParamCaption}\item[{const B \&}]{b }\end{DoxyParamCaption})}
+
+Remove an association from a left key. 
+\begin{DoxyParams}{Parameters}
+{\em Left} & key of the association to be removed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_aa742ae84781d968c4c665df5597e7352}\label{classparadiseo_1_1smp_1_1_bimap_aa742ae84781d968c4c665df5597e7352}} 
+\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}!removeFromRight@{removeFromRight}}
+\index{removeFromRight@{removeFromRight}!paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+\doxysubsubsection{\texorpdfstring{removeFromRight()}{removeFromRight()}}
+{\footnotesize\ttfamily template$<$class A , class B $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{paradiseo\+::smp\+::\+Bimap}}$<$ A, B $>$\+::remove\+From\+Right (\begin{DoxyParamCaption}\item[{const A \&}]{a }\end{DoxyParamCaption})}
+
+Remove an association from a right key. 
+\begin{DoxyParams}{Parameters}
+{\em Right} & key of the association to be removed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_bimap_a2609aae4bd4e6c6645a57d5debd54efe}\label{classparadiseo_1_1smp_1_1_bimap_a2609aae4bd4e6c6645a57d5debd54efe}} 
+\index{paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}!size@{size}}
+\index{size@{size}!paradiseo::smp::Bimap$<$ A, B $>$@{paradiseo::smp::Bimap$<$ A, B $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class A , class B $>$ \\
+unsigned \mbox{\hyperlink{classparadiseo_1_1smp_1_1_bimap}{paradiseo\+::smp\+::\+Bimap}}$<$ A, B $>$\+::size}
+
+Return the number of associations. \begin{DoxyReturn}{Returns}
+Size of bimap 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/bimap.\+h\item 
+smp/src/bimap.\+cpp\end{DoxyCompactItemize}

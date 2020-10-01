@@ -1,0 +1,91 @@
+\hypertarget{classmo_fit_continuator}{}\doxysection{mo\+Fit\+Continuator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_fit_continuator}\index{moFitContinuator$<$ Neighbor $>$@{moFitContinuator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Fit\+Continuator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Fit\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_fit_continuator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Fit\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_fit_continuator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_fit_continuator_a0d8c28115f148d18ebd70282141e8540}\label{classmo_fit_continuator_a0d8c28115f148d18ebd70282141e8540}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_fit_continuator_ab0ef042bc0b71c24d27df634293e1cee}\label{classmo_fit_continuator_ab0ef042bc0b71c24d27df634293e1cee}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_fit_continuator_ab9cbdd5475a548f19e52f889f715e498}{mo\+Fit\+Continuator}} (Fitness \+\_\+max\+Fit)
+\item 
+virtual bool \mbox{\hyperlink{classmo_fit_continuator_a3bb986a81dcbfd046752e08a26e28575}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Fit\+Continuator$<$ Neighbor $>$}
+
+Continue until a maximum fitness is reached 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_fit_continuator_ab9cbdd5475a548f19e52f889f715e498}\label{classmo_fit_continuator_ab9cbdd5475a548f19e52f889f715e498}} 
+\index{moFitContinuator$<$ Neighbor $>$@{moFitContinuator$<$ Neighbor $>$}!moFitContinuator@{moFitContinuator}}
+\index{moFitContinuator@{moFitContinuator}!moFitContinuator$<$ Neighbor $>$@{moFitContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFitContinuator()}{moFitContinuator()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_fit_continuator}{mo\+Fit\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_fit_continuator}{mo\+Fit\+Continuator}} (\begin{DoxyParamCaption}\item[{Fitness}]{\+\_\+max\+Fit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Fit} & maximum fitness to reach \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_fit_continuator_a3bb986a81dcbfd046752e08a26e28575}\label{classmo_fit_continuator_a3bb986a81dcbfd046752e08a26e28575}} 
+\index{moFitContinuator$<$ Neighbor $>$@{moFitContinuator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moFitContinuator$<$ Neighbor $>$@{moFitContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_fit_continuator}{mo\+Fit\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if counter $<$ max\+Fit 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Fit\+Continuator.\+h\end{DoxyCompactItemize}

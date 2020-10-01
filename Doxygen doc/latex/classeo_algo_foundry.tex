@@ -1,0 +1,133 @@
+\hypertarget{classeo_algo_foundry}{}\doxysection{eo\+Algo\+Foundry$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_algo_foundry}\index{eoAlgoFoundry$<$ EOT $>$@{eoAlgoFoundry$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Algo\+Foundry.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Algo\+Foundry$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_algo_foundry__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Algo\+Foundry$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{classeo_algo_foundry__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_a5eefbd94b16a4394e1af72a75d3d8fd7}\label{classeo_algo_foundry_a5eefbd94b16a4394e1af72a75d3d8fd7}} 
+{\bfseries eo\+Algo\+Foundry} (size\+\_\+t nb\+\_\+operators)
+\item 
+void \mbox{\hyperlink{classeo_algo_foundry_a58066b28eefc4e15efb7f55a18f90d2e}{select}} (std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classeo_algo_foundry_a4d09893b926c1d81fe22d60dbee57c79}{encoding}})
+\item 
+size\+\_\+t \& \mbox{\hyperlink{classeo_algo_foundry_a4330a983b77169d032a1d81702f70414}{at}} (size\+\_\+t i)
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_a1a1300901dfb0de546878e696468e571}\label{classeo_algo_foundry_a1a1300901dfb0de546878e696468e571}} 
+size\+\_\+t {\bfseries size} () const
+\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classeo_algo_foundry_a4d09893b926c1d81fe22d60dbee57c79}{encoding}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_a4df8bfe46e39efd81dadcba6e069246c}\label{classeo_algo_foundry_a4df8bfe46e39efd81dadcba6e069246c}} 
+const size\+\_\+t {\bfseries \+\_\+size}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_a059d99e2fc1013fb56ac4835681d5959}\label{classeo_algo_foundry_a059d99e2fc1013fb56ac4835681d5959}} 
+std\+::vector$<$ size\+\_\+t $>$ {\bfseries \+\_\+encoding}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Algo\+Foundry$<$ E\+O\+T $>$}
+
+Interface of a Foundry\+: a class that instantiate an \mbox{\hyperlink{classeo_algo}{eo\+Algo}} on-\/the-\/fly, given a choice of its operators.
+
+The chosen operators are encoded in a vector of indices.
+
+The foundry subclass should first be set up with sets of operators of the same interface, held within an \mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}} member. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_operator_foundry}{eoOperatorFoundry< eoSelectOne<EOT>}} > selectors;}
+\end{DoxyCode}
+
+
+In a second step, the operators to be used should be selected by indicating their index, just like if the foundry was an array\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{foundry.select(\{0, 1, 2\});}
+\DoxyCodeLine{\textcolor{comment}{//              \string^  \string^  \string^}}
+\DoxyCodeLine{\textcolor{comment}{//              |  |  |}}
+\DoxyCodeLine{\textcolor{comment}{//              |  |  + 3d operator}}
+\DoxyCodeLine{\textcolor{comment}{//              |  + 2d operator}}
+\DoxyCodeLine{\textcolor{comment}{//              + 1st operator}}
+\end{DoxyCode}
+
+
+If you don\textquotesingle{}t (want to) recall the order of the operators in the encoding, you can use the {\ttfamily index()} member of \mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}, for example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{foundry.at(foundry.continuators.index()) = 2; \textcolor{comment}{// select the third continuator}}
+\end{DoxyCode}
+
+
+Now, you must implement the foundry just like any \mbox{\hyperlink{classeo_algo}{eo\+Algo}}, by using the \mbox{\hyperlink{classeo_pop}{eo\+Pop}} interface\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{foundry(pop);}
+\DoxyCodeLine{@encode}
+\DoxyCodeLine{It will instantiate the needed operators (only) and the algorithm itself on-\/the-\/fly,}
+\DoxyCodeLine{and then run it.}
+\DoxyCodeLine{}
+\DoxyCodeLine{@note: Thanks to the underlying \mbox{\hyperlink{classeo_operator_foundry}{eoOperatorFoundry}}, not all the added operators are instantiated.}
+\DoxyCodeLine{Every instantiation is deferred upon actual use. That way, you can still reconfigure them}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_algo_foundry_a4330a983b77169d032a1d81702f70414}{at}} any time with `eoForgeOperator::setup`, \textcolor{keywordflow}{for} example:}
+\DoxyCodeLine{@code}
+\DoxyCodeLine{foundry.selector.at(0).setup(0.5); \textcolor{comment}{// using constructor's arguments}}
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Warning}
+If the managed constructor takes a reference Y\+OU S\+H\+O\+U\+LD A\+B\+S\+O\+L\+U\+T\+E\+LY wrap it in a {\ttfamily std\+::ref} when using {\ttfamily add} or {\ttfamily setup}, or it will silently be passed as a copy, which would effectively disable any link between operators. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_algo_foundry_a4330a983b77169d032a1d81702f70414}\label{classeo_algo_foundry_a4330a983b77169d032a1d81702f70414}} 
+\index{eoAlgoFoundry$<$ EOT $>$@{eoAlgoFoundry$<$ EOT $>$}!at@{at}}
+\index{at@{at}!eoAlgoFoundry$<$ EOT $>$@{eoAlgoFoundry$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+size\+\_\+t\& \mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::at (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Access to the index of the currently selected operator. \mbox{\Hypertarget{classeo_algo_foundry_a4d09893b926c1d81fe22d60dbee57c79}\label{classeo_algo_foundry_a4d09893b926c1d81fe22d60dbee57c79}} 
+\index{eoAlgoFoundry$<$ EOT $>$@{eoAlgoFoundry$<$ EOT $>$}!encoding@{encoding}}
+\index{encoding@{encoding}!eoAlgoFoundry$<$ EOT $>$@{eoAlgoFoundry$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{encoding()}{encoding()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+std\+::vector$<$size\+\_\+t$>$ \mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::encoding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the underlying encoding vector. \mbox{\Hypertarget{classeo_algo_foundry_a58066b28eefc4e15efb7f55a18f90d2e}\label{classeo_algo_foundry_a58066b28eefc4e15efb7f55a18f90d2e}} 
+\index{eoAlgoFoundry$<$ EOT $>$@{eoAlgoFoundry$<$ EOT $>$}!select@{select}}
+\index{select@{select}!eoAlgoFoundry$<$ EOT $>$@{eoAlgoFoundry$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::select (\begin{DoxyParamCaption}\item[{std\+::vector$<$ size\+\_\+t $>$}]{encoding }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Select indices of all the operators.
+
+i.\+e. Select an algorithm to instantiate. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Algo\+Foundry.\+h\end{DoxyCompactItemize}

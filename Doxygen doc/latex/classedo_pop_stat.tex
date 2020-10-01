@@ -1,0 +1,71 @@
+\hypertarget{classedo_pop_stat}{}\doxysection{edo\+Pop\+Stat$<$ E\+OT $>$ Class Template Reference}
+\label{classedo_pop_stat}\index{edoPopStat$<$ EOT $>$@{edoPopStat$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$edo\+Pop\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Pop\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_pop_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Pop\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_pop_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classedo_pop_stat_a37779140b2ddc1132440a524ad1d6de3}{edo\+Pop\+Stat}} (std\+::string \+\_\+desc=\char`\"{}\char`\"{})
+\item 
+void \mbox{\hyperlink{classedo_pop_stat_af914c0ab3dd636e142a5ea9870d274e7}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class edo\+Pop\+Stat$<$ E\+O\+T $>$}
+
+Thanks to M\+S/\+V\+C++, \mbox{\hyperlink{classeo_param}{eo\+Param}} mechanism is unable to handle std\+::vectors of stats. This snippet is a workaround\+: This class will \char`\"{}print\char`\"{} a whole population into a std\+::string -\/ that you can later send to any stream This is the plain version -\/ see eo\+Pop\+String for the Sorted version
+
+Note\+: this Stat should probably be used only within eo\+Std\+Out\+Monitor, and not inside an \mbox{\hyperlink{classeo_file_monitor}{eo\+File\+Monitor}}, as the \mbox{\hyperlink{classeo_state}{eo\+State}} construct will work much better there. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classedo_pop_stat_a37779140b2ddc1132440a524ad1d6de3}\label{classedo_pop_stat_a37779140b2ddc1132440a524ad1d6de3}} 
+\index{edoPopStat$<$ EOT $>$@{edoPopStat$<$ EOT $>$}!edoPopStat@{edoPopStat}}
+\index{edoPopStat@{edoPopStat}!edoPopStat$<$ EOT $>$@{edoPopStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{edoPopStat()}{edoPopStat()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classedo_pop_stat}{edo\+Pop\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classedo_pop_stat}{edo\+Pop\+Stat}} (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+desc = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default Ctor, void std\+::string by default, as it appears on the description line once at beginning of evolution. and is meaningless there. \+\_\+how\+Many defaults to 0, that is, the whole population 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classedo_pop_stat_af914c0ab3dd636e142a5ea9870d274e7}\label{classedo_pop_stat_af914c0ab3dd636e142a5ea9870d274e7}} 
+\index{edoPopStat$<$ EOT $>$@{edoPopStat$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!edoPopStat$<$ EOT $>$@{edoPopStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classedo_pop_stat}{edo\+Pop\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Fills the \mbox{\hyperlink{classeo_value_param_ad0e91aa4f66711e52fca9be470ce21b7}{value()}} of the \mbox{\hyperlink{classeo_param}{eo\+Param}} with the dump of the population. 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/utils/edo\+Pop\+Stat.\+h\end{DoxyCompactItemize}

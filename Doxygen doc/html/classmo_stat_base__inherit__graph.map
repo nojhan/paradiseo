@@ -1,0 +1,23 @@
+<map id="moStatBase&lt; EOT &gt;" name="moStatBase&lt; EOT &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="411,183,568,209"/>
+<area shape="rect" id="node5" href="$classmo_stat.html" title=" " alt="" coords="659,19,785,45"/>
+<area shape="rect" id="node7" href="$classmo_stat.html" title=" " alt="" coords="641,81,803,108"/>
+<area shape="rect" id="node9" href="$classmo_stat.html" title=" " alt="" coords="633,157,811,184"/>
+<area shape="rect" id="node12" href="$classmo_stat.html" title=" " alt="" coords="643,208,801,235"/>
+<area shape="rect" id="node15" href="$classmo_stat.html" title=" " alt="" coords="616,317,828,344"/>
+<area shape="rect" id="node18" href="$classmo_stat.html" title=" " alt="" coords="633,449,811,490"/>
+<area shape="rect" id="node2" href="$classeo_u_f.html" title=" " alt="" coords="200,183,363,209"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="19,153,138,180"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,205,152,246"/>
+<area shape="rect" id="node6" href="$classmo_stat_from_stat.html" title=" " alt="" coords="893,5,1093,32"/>
+<area shape="rect" id="node8" href="$classmo_boolean_stat.html" title=" " alt="" coords="904,56,1083,83"/>
+<area shape="rect" id="node10" href="$classmo_distance_stat.html" title=" " alt="" coords="894,107,1093,133"/>
+<area shape="rect" id="node11" href="$classmo_value_stat.html" title=" " alt="" coords="876,157,1111,184"/>
+<area shape="rect" id="node13" href="$classmo_best_so_far_stat.html" title=" " alt="" coords="899,208,1088,235"/>
+<area shape="rect" id="node14" href="$classmo_solution_stat.html" title=" " alt="" coords="904,259,1083,285"/>
+<area shape="rect" id="node16" href="$classmo_best_fitness_stat.html" title=" " alt="" coords="916,310,1071,351"/>
+<area shape="rect" id="node17" href="$classmo_fitness_stat.html" title=" " alt="" coords="908,376,1079,403"/>
+<area shape="rect" id="node19" href="$classmo_counter_stat.html" title=" " alt="" coords="905,427,1081,453"/>
+<area shape="rect" id="node20" href="$classmo_minus_one_counter_stat.html" title=" " alt="" coords="901,478,1086,519"/>
+<area shape="rect" id="node21" href="$classmo_unsigned_stat.html" title=" " alt="" coords="900,544,1087,571"/>
+</map>

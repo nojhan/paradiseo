@@ -1,0 +1,122 @@
+\hypertarget{classmo_median_neighbor_stat}{}\doxysection{mo\+Median\+Neighbor\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_median_neighbor_stat}\index{moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Median\+Neighbor\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Median\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_median_neighbor_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Median\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_median_neighbor_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_median_neighbor_stat_ab01a8e2e075f593b5c77a1cc19fc8131}\label{classmo_median_neighbor_stat_ab01a8e2e075f593b5c77a1cc19fc8131}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_median_neighbor_stat_ae8f9e9c7996298d0cef0a1994acdde7f}\label{classmo_median_neighbor_stat_ae8f9e9c7996298d0cef0a1994acdde7f}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_median_neighbor_stat_a806c6b84c03d11d1a1cd52c75e46864c}{mo\+Median\+Neighbor\+Stat}} (\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Stat)
+\item 
+virtual void \mbox{\hyperlink{classmo_median_neighbor_stat_af9870db5a6e30a32fd1e89ad08baa1af}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_median_neighbor_stat_a480877ac6c41e720936368491a00da15}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_median_neighbor_stat_a6d63016748f4effdf54c74f0e879034d}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Median\+Neighbor\+Stat$<$ Neighbor $>$}
+
+From \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}, to compute the meadian fitness in the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_median_neighbor_stat_a806c6b84c03d11d1a1cd52c75e46864c}\label{classmo_median_neighbor_stat_a806c6b84c03d11d1a1cd52c75e46864c}} 
+\index{moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}!moMedianNeighborStat@{moMedianNeighborStat}}
+\index{moMedianNeighborStat@{moMedianNeighborStat}!moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMedianNeighborStat()}{moMedianNeighborStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_median_neighbor_stat}{mo\+Median\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_median_neighbor_stat}{mo\+Median\+Neighbor\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nh\+Stat} & a neighborhood\+Stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_median_neighbor_stat_a6d63016748f4effdf54c74f0e879034d}\label{classmo_median_neighbor_stat_a6d63016748f4effdf54c74f0e879034d}} 
+\index{moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_median_neighbor_stat}{mo\+Median\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_median_neighbor_stat_af9870db5a6e30a32fd1e89ad08baa1af}\label{classmo_median_neighbor_stat_af9870db5a6e30a32fd1e89ad08baa1af}} 
+\index{moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_median_neighbor_stat}{mo\+Median\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the median fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_median_neighbor_stat_a480877ac6c41e720936368491a00da15}\label{classmo_median_neighbor_stat_a480877ac6c41e720936368491a00da15}} 
+\index{moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moMedianNeighborStat$<$ Neighbor $>$@{moMedianNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_median_neighbor_stat}{mo\+Median\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the median fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Median\+Neighbor\+Stat.\+h\end{DoxyCompactItemize}

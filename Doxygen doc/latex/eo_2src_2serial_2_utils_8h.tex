@@ -1,0 +1,319 @@
+\hypertarget{eo_2src_2serial_2_utils_8h}{}\doxysection{eo/src/serial/\+Utils.h File Reference}
+\label{eo_2src_2serial_2_utils_8h}\index{eo/src/serial/Utils.h@{eo/src/serial/Utils.h}}
+
+
+Contains utilities for simple serialization and deserialization.  
+
+
+{\ttfamily \#include \char`\"{}Serial\+Array.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Serial\+Object.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Serial\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Traits.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+Include dependency graph for Utils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eo_2src_2serial_2_utils_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eo_2src_2serial_2_utils_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeoserial_1_1_unpack_impl}{eoserial\+::\+Unpack\+Impl$<$ T, n $>$}}
+\begin{DoxyCompactList}\small\item\em Unpack implementation for non \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_unpack_impl_3_01_t_00_011_01_4}{eoserial\+::\+Unpack\+Impl$<$ T, 1 $>$}}
+\begin{DoxyCompactList}\small\item\em Unpack implementation for \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_pack_impl}{eoserial\+::\+Pack\+Impl$<$ T, n $>$}}
+\begin{DoxyCompactList}\small\item\em Pack implementation for non \mbox{\hyperlink{classeoserial_1_1_printable}{eoserial\+::\+Printable}} objects. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_pack_impl_3_01_t_00_011_01_4}{eoserial\+::\+Pack\+Impl$<$ T, 1 $>$}}
+\begin{DoxyCompactList}\small\item\em Pack implementation for \mbox{\hyperlink{classeoserial_1_1_printable}{eoserial\+::\+Printable}} objects. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_push_algorithm}{eoserial\+::\+Push\+Algorithm$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Functor which explains how to push the value into the \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_make_algorithm}{eoserial\+::\+Make\+Algorithm$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Push algorithm for primitive variables. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_serializable_push_algorithm}{eoserial\+::\+Serializable\+Push\+Algorithm$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Push algorithm for \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a59c39f7228138b47cd315e1ca4dc2a1a}\label{eo_2src_2serial_2_utils_8h_a59c39f7228138b47cd315e1ca4dc2a1a}} 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a59c39f7228138b47cd315e1ca4dc2a1a}{eoserial\+::unpack\+Base\+Push\+Back}} (const Entity $\ast$obj, T \&container)
+\begin{DoxyCompactList}\small\item\em Recursively unpack elements of an object which implements push\+\_\+back. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a3ee97d5e6ff544c0ce3f5aeabd5faedf}\label{eo_2src_2serial_2_utils_8h_a3ee97d5e6ff544c0ce3f5aeabd5faedf}} 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a3ee97d5e6ff544c0ce3f5aeabd5faedf}{eoserial\+::unpack\+Base}} (const Entity $\ast$obj, std\+::vector$<$ T $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Unpack method for std\+::vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a0b82d1bf518af7bc431ee1534cda89b9}\label{eo_2src_2serial_2_utils_8h_a0b82d1bf518af7bc431ee1534cda89b9}} 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a0b82d1bf518af7bc431ee1534cda89b9}{eoserial\+::unpack\+Base}} (const Entity $\ast$obj, std\+::list$<$ T $>$ \&l)
+\begin{DoxyCompactList}\small\item\em Unpack method for std\+::list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_acae7dfefb8c5697fdb6b25715352e374}\label{eo_2src_2serial_2_utils_8h_acae7dfefb8c5697fdb6b25715352e374}} 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_acae7dfefb8c5697fdb6b25715352e374}{eoserial\+::unpack\+Base}} (const Entity $\ast$entity, std\+::map$<$ std\+::string, T $>$ \&m)
+\begin{DoxyCompactList}\small\item\em Unpack method for std\+::map$<$ std\+::string, T $>$ \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_ab545927cbbbc68d3761043f784d54fda}{eoserial\+::unpack\+Base}} (const Entity $\ast$obj, T \&value)
+\begin{DoxyCompactList}\small\item\em Unpack helper for determining which implementation to use. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}{eoserial\+::unpack}} (const Object \&obj, const std\+::string \&key, T \&value)
+\begin{DoxyCompactList}\small\item\em Universal unpack method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\Entity $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a3429d6d4f0849c34cd3b6ecebc7c3b16}{eoserial\+::pack}} (const T \&value)
+\begin{DoxyCompactList}\small\item\em Universal pack method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a00cf5064a229952042f7252e3b9082c0}\label{eo_2src_2serial_2_utils_8h_a00cf5064a229952042f7252e3b9082c0}} 
+{\footnotesize template$<$class T $>$ }\\Entity $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a00cf5064a229952042f7252e3b9082c0}{eoserial\+::pack\+Iterable}} (const T \&container)
+\begin{DoxyCompactList}\small\item\em Pack method for iterable (begin, end) objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a1e9e3fab726757c3eac90be7e0504305}\label{eo_2src_2serial_2_utils_8h_a1e9e3fab726757c3eac90be7e0504305}} 
+{\footnotesize template$<$class T $>$ }\\Entity $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a1e9e3fab726757c3eac90be7e0504305}{eoserial\+::pack}} (const std\+::vector$<$ T $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Pack method for std\+::vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a57bc33f80dfe9b3a8fe18282ee10e108}\label{eo_2src_2serial_2_utils_8h_a57bc33f80dfe9b3a8fe18282ee10e108}} 
+{\footnotesize template$<$class T $>$ }\\Entity $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a57bc33f80dfe9b3a8fe18282ee10e108}{eoserial\+::pack}} (const std\+::list$<$ T $>$ \&l)
+\begin{DoxyCompactList}\small\item\em Pack method for std\+::list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}\label{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}} 
+{\footnotesize template$<$class T $>$ }\\Entity $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial\+::pack}} (const std\+::map$<$ std\+::string, T $>$ \&map)
+\begin{DoxyCompactList}\small\item\em Pack method for std\+::map$<$ std\+::string, T $>$ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_aec25b50b91e104044affc93f5f64e49b}{eoserial\+::unpack\+Object}} (const Object \&obj, const std\+::string \&key, Persistent \&value)
+\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_ac57a26b755d045ab0dc53743c80739a2}\label{eo_2src_2serial_2_utils_8h_ac57a26b755d045ab0dc53743c80739a2}} 
+{\footnotesize template$<$class Container , template$<$ class $>$ class Unpack\+Algorithm$>$ }\\void {\bfseries eoserial\+::unpack\+Array} (const Object \&obj, const std\+::string \&key, Container \&array)
+\item 
+\mbox{\Hypertarget{_serial_array_8h_a981979a3265c3fd24279d6e0d2c438bf}\label{_serial_array_8h_a981979a3265c3fd24279d6e0d2c438bf}} 
+{\footnotesize template$<$class T $>$ }\\void {\bfseries eoserial\+::unpack} (const Array \&array, unsigned int index, T \&value)
+\item 
+\mbox{\Hypertarget{_serial_array_8h_a65d9eb3863bb9e742182b63211838e06}\label{_serial_array_8h_a65d9eb3863bb9e742182b63211838e06}} 
+void {\bfseries eoserial\+::unpack\+Object} (const Array \&array, unsigned int index, Persistent \&value)
+\item 
+\mbox{\Hypertarget{_serial_array_8h_acb3c63b024ea6a257d036dfd80755616}\label{_serial_array_8h_acb3c63b024ea6a257d036dfd80755616}} 
+{\footnotesize template$<$class Container , template$<$ class $>$ class Unpack\+Algorithm$>$ }\\void {\bfseries eoserial\+::unpack\+Array} (const Array \&array, unsigned int index, Container \&container)
+\item 
+{\footnotesize template$<$typename T $>$ }\\String $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a83b5b97b72be39f6b4c4cf951481ebf9}{eoserial\+::make}} (const T \&value)
+\begin{DoxyCompactList}\small\item\em Casts a value of a stream-\/serializable type (i.\+e, which implements operator $<$$<$) into a Json\+String. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a1fefa3d019a056e88e27f1b57bf545cd}\label{eo_2src_2serial_2_utils_8h_a1fefa3d019a056e88e27f1b57bf545cd}} 
+template$<$$>$ String $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a1fefa3d019a056e88e27f1b57bf545cd}{eoserial\+::make}} (const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em Specialization for strings \+: no need to convert as they\textquotesingle{}re still usable as strings. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Container , template$<$ class $>$ class Push\+Algorithm$>$ }\\Array $\ast$ \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a9177fd9cae4093984fe409ca57d9893e}{eoserial\+::make\+Array}} (const Container \&array)
+\begin{DoxyCompactList}\small\item\em Casts a S\+TL container (vector$<$int$>$ or list$<$std\+::string$>$, for instance) into a \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains utilities for simple serialization and deserialization. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000034}{Todo}}]encapsulate implementations.\end{DoxyRefDesc}
+
+
+Example
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\# include <vector>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\# include <string>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\# include <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\# include "eoSerial.h"}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{struct }SimpleObject: \textcolor{keyword}{public} \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial::Persistent}}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{public}:}
+\DoxyCodeLine{}
+\DoxyCodeLine{    SimpleObject( \textcolor{keywordtype}{int} v ) : value(v)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{comment}{// empty}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \mbox{\hyperlink{classeoserial_1_1_object}{eoserial::Object}}* \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{pack}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{    }\{}
+\DoxyCodeLine{        \mbox{\hyperlink{classeoserial_1_1_object}{eoserial::Object}}* obj = \textcolor{keyword}{new} \mbox{\hyperlink{classeoserial_1_1_object}{eoserial::Object}};}
+\DoxyCodeLine{        (*obj)[\textcolor{stringliteral}{"value"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}( value );}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} obj;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{unpack}}( \textcolor{keyword}{const} \mbox{\hyperlink{classeoserial_1_1_object}{eoserial::Object}}* json )}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}{eoserial::unpack}}( *json, \textcolor{stringliteral}{"value"}, value );}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{int} value;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{classeoserial_1_1_object}{eoserial::Object}} o;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"packing..."} << std::endl;}
+\DoxyCodeLine{    \textcolor{comment}{// directly pack raw types}}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"long"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}(123456L);}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"bool"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"double"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}(3.141592653);}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"float"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}(3.141592653f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::string str = \textcolor{stringliteral}{"Hello, world!"};}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"str"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}( str );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// pack objects the same way}}
+\DoxyCodeLine{    SimpleObject obj(42);}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"obj"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}( obj );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// pack vector and list the same way}}
+\DoxyCodeLine{    std::vector<int> vec;}
+\DoxyCodeLine{    vec.push\_back(1);}
+\DoxyCodeLine{    vec.push\_back(3);}
+\DoxyCodeLine{    vec.push\_back(3);}
+\DoxyCodeLine{    vec.push\_back(7);}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"vec"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}( vec );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::map<std::string, int> str2int;}
+\DoxyCodeLine{    str2int[\textcolor{stringliteral}{"one"}] = 1;}
+\DoxyCodeLine{    str2int[\textcolor{stringliteral}{"two"}] = 2;}
+\DoxyCodeLine{    str2int[\textcolor{stringliteral}{"answer"}] = 42;}
+\DoxyCodeLine{    o[\textcolor{stringliteral}{"map"}] = \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_addaad7b3cdc486a1d8682c9dff7bd499}{eoserial::pack}}( str2int );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// print it}}
+\DoxyCodeLine{    o.\mbox{\hyperlink{classeoserial_1_1_object_a6b6c4abb10819f17c42baebbcdbf10df}{print}}( std::cout );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"unpacking..."} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// unpack as easily raw types}}
+\DoxyCodeLine{    \textcolor{keywordtype}{long} oneTwoThreeFourFiveSix = 0L;}
+\DoxyCodeLine{    \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}{eoserial::unpack}}( o, \textcolor{stringliteral}{"long"}, oneTwoThreeFourFiveSix);}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"the long: "} << oneTwoThreeFourFiveSix << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// since vec is encoded as an internal eoserial::Array, it can be}}
+\DoxyCodeLine{    \textcolor{comment}{// decoded into a std::vector or a std::list without difference.}}
+\DoxyCodeLine{    std::list<int> lis;}
+\DoxyCodeLine{    \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}{eoserial::unpack}}( o, \textcolor{stringliteral}{"vec"}, lis );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"the list: "};}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}( \textcolor{keyword}{auto} it = lis.begin(), end = lis.end(); it != end; ++it)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        std::cout << *it << \textcolor{charliteral}{';'};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    std::cout << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::map< std::string, int > readMap;}
+\DoxyCodeLine{    \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}{eoserial::unpack}}( o, \textcolor{stringliteral}{"map"}, readMap );}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"The answer is "} << readMap[\textcolor{stringliteral}{"answer"}] << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    obj.value = -\/1;}
+\DoxyCodeLine{    \textcolor{comment}{// unpack object the same way}}
+\DoxyCodeLine{    \mbox{\hyperlink{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}{eoserial::unpack}}( o, \textcolor{stringliteral}{"obj"}, obj );}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"obj.value = "} << obj.value << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+\begin{DoxyAuthor}{Author}
+Benjamin Bouvier \href{mailto:benjamin.bouvier@gmail.com}{\texttt{ benjamin.\+bouvier@gmail.\+com}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a83b5b97b72be39f6b4c4cf951481ebf9}\label{eo_2src_2serial_2_utils_8h_a83b5b97b72be39f6b4c4cf951481ebf9}} 
+\index{Utils.h@{Utils.h}!make@{make}}
+\index{make@{make}!Utils.h@{Utils.h}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+String$\ast$ eoserial\+::make (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Casts a value of a stream-\/serializable type (i.\+e, which implements operator $<$$<$) into a Json\+String. 
+
+This is used when serializing the objects \+: all primitives types should be converted into strings to get more easily manipulated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value we\textquotesingle{}re converting. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+String wrapper for the value. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a9177fd9cae4093984fe409ca57d9893e}\label{eo_2src_2serial_2_utils_8h_a9177fd9cae4093984fe409ca57d9893e}} 
+\index{Utils.h@{Utils.h}!makeArray@{makeArray}}
+\index{makeArray@{makeArray}!Utils.h@{Utils.h}}
+\doxysubsubsection{\texorpdfstring{makeArray()}{makeArray()}}
+{\footnotesize\ttfamily template$<$class Container , template$<$ class $>$ class Push\+Algorithm$>$ \\
+Array$\ast$ eoserial\+::make\+Array (\begin{DoxyParamCaption}\item[{const Container \&}]{array }\end{DoxyParamCaption})}
+
+
+
+Casts a S\+TL container (vector$<$int$>$ or list$<$std\+::string$>$, for instance) into a \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}}. 
+
+@þaram Push\+Algorithm The algorithm used for inserting new element in the \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}}. This algorithm is directly called, so it is its own charge to invoke push\+\_\+back on the \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}}. \mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a3429d6d4f0849c34cd3b6ecebc7c3b16}\label{eo_2src_2serial_2_utils_8h_a3429d6d4f0849c34cd3b6ecebc7c3b16}} 
+\index{Utils.h@{Utils.h}!pack@{pack}}
+\index{pack@{pack}!Utils.h@{Utils.h}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+Entity $\ast$ eoserial\+::pack (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Universal pack method. 
+
+\begin{DoxySeeAlso}{See also}
+unpack\+Base to understand the trick with the implementation.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Variable to store into an entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An entity to store into an object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}\label{eo_2src_2serial_2_utils_8h_a2bc3fa5ba97853aefa57027437919006}} 
+\index{Utils.h@{Utils.h}!unpack@{unpack}}
+\index{unpack@{unpack}!Utils.h@{Utils.h}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void eoserial\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{Object}} \&}]{obj,  }\item[{const std\+::string \&}]{key,  }\item[{T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Universal unpack method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The eoserial\+::object containing the value to deserialize. \\
+\hline
+{\em key} & Name of the field to deserialize \\
+\hline
+{\em value} & The object in which we\textquotesingle{}ll store the deserialized value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_ab545927cbbbc68d3761043f784d54fda}\label{eo_2src_2serial_2_utils_8h_ab545927cbbbc68d3761043f784d54fda}} 
+\index{Utils.h@{Utils.h}!unpackBase@{unpackBase}}
+\index{unpackBase@{unpackBase}!Utils.h@{Utils.h}}
+\doxysubsubsection{\texorpdfstring{unpackBase()}{unpackBase()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void eoserial\+::unpack\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_entity}{Entity}} $\ast$}]{obj,  }\item[{T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Unpack helper for determining which implementation to use. 
+
+The trick comes from Herb Sutter\+: Is\+Derived\+From$<$\+T, Persistent$>$\+::value is true if and only if T inherits from Persistent. In this case, it\textquotesingle{}s equal to 1, thus the partial specialization of Unpack\+Impl is used. In the other case, it\textquotesingle{}s equal to 0 and the generic implementation is used. \mbox{\Hypertarget{eo_2src_2serial_2_utils_8h_aec25b50b91e104044affc93f5f64e49b}\label{eo_2src_2serial_2_utils_8h_aec25b50b91e104044affc93f5f64e49b}} 
+\index{Utils.h@{Utils.h}!unpackObject@{unpackObject}}
+\index{unpackObject@{unpackObject}!Utils.h@{Utils.h}}
+\doxysubsubsection{\texorpdfstring{unpackObject()}{unpackObject()}}
+{\footnotesize\ttfamily void eoserial\+::unpack\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{Object}} \&}]{obj,  }\item[{const std\+::string \&}]{key,  }\item[{\mbox{\hyperlink{classeoserial_1_1_persistent}{Persistent}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\DoxyHorRuler{0}
+ O\+LD F\+U\+N\+C\+T\+I\+O\+NS $\ast$
+
+These functions are useful for casting eoserial\+::objects into simple, primitive variables or into class instance which implement \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}}.
+
+The model is always quite the same \+:
+\begin{DoxyItemize}
+\item the first argument is the containing object (which is a \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}}, an object or an array)
+\item the second argument is the key or index,
+\item the last argument is the value in which we\textquotesingle{}re writing. 
+\end{DoxyItemize}

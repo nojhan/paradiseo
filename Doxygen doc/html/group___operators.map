@@ -1,0 +1,5 @@
+<map id="Evolutionary Operators" name="Evolutionary Operators">
+<area shape="rect" id="node1" href="$group___initializators.html" title=" " alt="" coords="225,5,395,31"/>
+<area shape="rect" id="node2" href="$group___evaluation.html" title=" " alt="" coords="265,55,355,80"/>
+<area shape="rect" id="node3" title="in EO, an operator is any functors that modifies objects and inherits from an eoOp." alt="" coords="5,31,177,56"/>
+</map>

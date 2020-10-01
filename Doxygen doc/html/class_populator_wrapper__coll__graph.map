@@ -1,0 +1,9 @@
+<map id="PopulatorWrapper" name="PopulatorWrapper">
+<area shape="rect" id="node1" title=" " alt="" coords="173,352,312,379"/>
+<area shape="rect" id="node2" href="$classeo_populator.html" title=" " alt="" coords="161,276,325,303"/>
+<area shape="rect" id="node3" href="$classeo_pop.html" title=" " alt="" coords="171,157,315,184"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,81,179,108"/>
+<area shape="rect" id="node5" href="$classeo_object.html" title=" " alt="" coords="203,81,283,108"/>
+<area shape="rect" id="node6" href="$classeo_persistent.html" title=" " alt="" coords="307,81,410,108"/>
+<area shape="rect" id="node7" href="$classeo_printable.html" title=" " alt="" coords="311,5,407,32"/>
+</map>

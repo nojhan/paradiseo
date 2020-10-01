@@ -1,0 +1,13 @@
+<map id="eoVelocity&lt; POT &gt;" name="eoVelocity&lt; POT &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="477,209,624,235"/>
+<area shape="rect" id="node5" href="$classeo_constricted_variable_weight_velocity.html" title=" " alt="" coords="680,5,891,47"/>
+<area shape="rect" id="node6" href="$classeo_constricted_velocity.html" title=" " alt="" coords="703,71,867,112"/>
+<area shape="rect" id="node7" href="$classeo_extended_velocity.html" title=" " alt="" coords="710,136,861,177"/>
+<area shape="rect" id="node8" href="$classeo_fixed_inertia_weighted_velocity.html" title=" " alt="" coords="672,201,899,243"/>
+<area shape="rect" id="node9" href="$classeo_integer_velocity.html" title=" " alt="" coords="712,267,859,308"/>
+<area shape="rect" id="node10" href="$classeo_standard_velocity.html" title=" " alt="" coords="711,332,859,373"/>
+<area shape="rect" id="node11" href="$classeo_variable_inertia_weighted_velocity.html" title=" " alt="" coords="688,397,883,439"/>
+<area shape="rect" id="node2" href="$classeo_b_f.html" title=" " alt="" coords="248,201,429,243"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="43,179,162,206"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,231,200,272"/>
+</map>

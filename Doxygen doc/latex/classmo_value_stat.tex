@@ -1,0 +1,117 @@
+\hypertarget{classmo_value_stat}{}\doxysection{mo\+Value\+Stat$<$ E\+OT, Value\+Type $>$ Class Template Reference}
+\label{classmo_value_stat}\index{moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}}
+
+
+{\ttfamily \#include $<$mo\+Value\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Value\+Stat$<$ E\+OT, Value\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_value_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Value\+Stat$<$ E\+OT, Value\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_value_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_value_stat_a1ea578d1b79086de1f0830fd3a7d858f}{mo\+Value\+Stat}} (\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \&\+\_\+value\+Param, bool \+\_\+restart=false)
+\item 
+virtual void \mbox{\hyperlink{classmo_value_stat_ae85543d12705f28643920ff4e0f19328}{init}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_value_stat_a12ab9f38383dd0b5cac3ee2cf21083a7}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_value_stat_a1baf35228880a8bc866446833d2df9f1}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class Value\+Type$>$\newline
+class mo\+Value\+Stat$<$ E\+O\+T, Value\+Type $>$}
+
+The statistic gives the number of iteration 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_value_stat_a1ea578d1b79086de1f0830fd3a7d858f}\label{classmo_value_stat_a1ea578d1b79086de1f0830fd3a7d858f}} 
+\index{moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}!moValueStat@{moValueStat}}
+\index{moValueStat@{moValueStat}!moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}}
+\doxysubsubsection{\texorpdfstring{moValueStat()}{moValueStat()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Value\+Type $>$ \\
+\mbox{\hyperlink{classmo_value_stat}{mo\+Value\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, Value\+Type $>$\+::\mbox{\hyperlink{classmo_value_stat}{mo\+Value\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \&}]{\+\_\+value\+Param,  }\item[{bool}]{\+\_\+restart = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+value\+Param} & the value to report in the statistic \\
+\hline
+{\em \+\_\+restart} & if true, the value is initialized at 0 for each init (restart) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_value_stat_a1baf35228880a8bc866446833d2df9f1}\label{classmo_value_stat_a1baf35228880a8bc866446833d2df9f1}} 
+\index{moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}!className@{className}}
+\index{className@{className}!moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Value\+Type $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_value_stat}{mo\+Value\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, Value\+Type $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+name of the class 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_value_stat_ae85543d12705f28643920ff4e0f19328}\label{classmo_value_stat_ae85543d12705f28643920ff4e0f19328}} 
+\index{moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}!init@{init}}
+\index{init@{init}!moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Value\+Type $>$ \\
+virtual void \mbox{\hyperlink{classmo_value_stat}{mo\+Value\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, Value\+Type $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Init the number of iteration 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_value_stat_a12ab9f38383dd0b5cac3ee2cf21083a7}\label{classmo_value_stat_a12ab9f38383dd0b5cac3ee2cf21083a7}} 
+\index{moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moValueStat$<$ EOT, ValueType $>$@{moValueStat$<$ EOT, ValueType $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Value\+Type $>$ \\
+virtual void \mbox{\hyperlink{classmo_value_stat}{mo\+Value\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, Value\+Type $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the number of iteration 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Value\+Stat.\+h\end{DoxyCompactItemize}

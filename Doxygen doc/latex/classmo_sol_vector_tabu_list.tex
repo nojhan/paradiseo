@@ -1,0 +1,162 @@
+\hypertarget{classmo_sol_vector_tabu_list}{}\doxysection{mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_sol_vector_tabu_list}\index{moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Sol\+Vector\+Tabu\+List.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classmo_sol_vector_tabu_list__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classmo_sol_vector_tabu_list__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_sol_vector_tabu_list_a61c3e8d647a581435b669d2e5a60972a}\label{classmo_sol_vector_tabu_list_a61c3e8d647a581435b669d2e5a60972a}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_sol_vector_tabu_list_a1aa20b44fe56522fea4e6490dc75ee6e}{mo\+Sol\+Vector\+Tabu\+List}} (unsigned int \+\_\+max\+Size, unsigned int \+\_\+howlong)
+\item 
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list_acba896eb138f5d8cb15b05fe00881bde}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list_a57d4475e29e751b0c3597d421e157257}{add}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list_a815c3894e64f9b4b52bc122aa2ba7314}{update}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual bool \mbox{\hyperlink{classmo_sol_vector_tabu_list_a7ceb4b7ef3f32349b789162475cee444}{check}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list_a5bca24d26eff5254090c9f6ab4ed03ae}{clear\+Memory}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$}
+
+Tabu List of solution stocked in a vector 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_sol_vector_tabu_list_a1aa20b44fe56522fea4e6490dc75ee6e}\label{classmo_sol_vector_tabu_list_a1aa20b44fe56522fea4e6490dc75ee6e}} 
+\index{moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}!moSolVectorTabuList@{moSolVectorTabuList}}
+\index{moSolVectorTabuList@{moSolVectorTabuList}!moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moSolVectorTabuList()}{moSolVectorTabuList()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_sol_vector_tabu_list}{mo\+Sol\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_sol_vector_tabu_list}{mo\+Sol\+Vector\+Tabu\+List}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+max\+Size,  }\item[{unsigned int}]{\+\_\+howlong }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Size} & maximum size of the tabu list \\
+\hline
+{\em \+\_\+howlong} & how many iteration a solution is tabu \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_sol_vector_tabu_list_a57d4475e29e751b0c3597d421e157257}\label{classmo_sol_vector_tabu_list_a57d4475e29e751b0c3597d421e157257}} 
+\index{moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list}{mo\+Sol\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+add a new solution in the tabu\+List 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & unused neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_acf319ce1a44dbf601c80bd5670dde853}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_sol_vector_tabu_list_a7ceb4b7ef3f32349b789162475cee444}\label{classmo_sol_vector_tabu_list_a7ceb4b7ef3f32349b789162475cee444}} 
+\index{moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}!check@{check}}
+\index{check@{check}!moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_sol_vector_tabu_list}{mo\+Sol\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+check if the solution is tabu 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & the current neighbor (unused) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if tabu\+List contains \+\_\+sol 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_tabu_list_ab4c71e6e212f2fcc072b8eb2e551e3ad}{mo\+Tabu\+List$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_sol_vector_tabu_list_a5bca24d26eff5254090c9f6ab4ed03ae}\label{classmo_sol_vector_tabu_list_a5bca24d26eff5254090c9f6ab4ed03ae}} 
+\index{moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}!clearMemory@{clearMemory}}
+\index{clearMemory@{clearMemory}!moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{clearMemory()}{clearMemory()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list}{mo\+Sol\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::clear\+Memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+clear\+Memory\+: remove all solution of the tabu\+List 
+
+Implements \mbox{\hyperlink{classmo_memory_ab24822b7720f4434d355bb468cb43a66}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_sol_vector_tabu_list_acba896eb138f5d8cb15b05fe00881bde}\label{classmo_sol_vector_tabu_list_acba896eb138f5d8cb15b05fe00881bde}} 
+\index{moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list}{mo\+Sol\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+init the tabu\+List by clearing the memory 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_ab8dda5ba853c077d1713d27d6a0512cb}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_sol_vector_tabu_list_a815c3894e64f9b4b52bc122aa2ba7314}\label{classmo_sol_vector_tabu_list_a815c3894e64f9b4b52bc122aa2ba7314}} 
+\index{moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}!update@{update}}
+\index{update@{update}!moSolVectorTabuList$<$ Neighbor $>$@{moSolVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_sol_vector_tabu_list}{mo\+Sol\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+update the tabulist\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & the current neighbor (unused) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_a3db29eaee769fbf7fb5e80c653d74884}{mo\+Memory$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Sol\+Vector\+Tabu\+List.\+h\end{DoxyCompactItemize}

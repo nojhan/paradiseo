@@ -1,0 +1,108 @@
+\hypertarget{classmoeo_bert_distance}{}\doxysection{moeo\+Bert\+Distance$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_bert_distance}\index{moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Bert\+Distance.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Bert\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_bert_distance__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Bert\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_bert_distance__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}{Objective\+Vector}}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_bert_distance_aa0899e8ddb4c1fdd8f69aaad72d15012}{Fitness}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_bert_distance_a59d27eaed4d7bf03a6ff849bc5d50f0b}{moeo\+Bert\+Distance}} ()
+\item 
+\mbox{\Hypertarget{classmoeo_bert_distance_a1a70a177f0c05b67d7abe69e608f8ade}\label{classmoeo_bert_distance_a1a70a177f0c05b67d7abe69e608f8ade}} 
+double {\bfseries calculate\+Bert\+Distance} (std\+::triple$<$ double, double, double $>$ A, std\+::triple$<$ double, double, double $>$ B)
+\item 
+const \mbox{\hyperlink{classmoeo_bert_distance_aa0899e8ddb4c1fdd8f69aaad72d15012}{Fitness}} \mbox{\hyperlink{classmoeo_bert_distance_aa9956b25bd4f5dde1aba64143e28c344}{operator()}} (const \mbox{\hyperlink{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}{Objective\+Vector}} \&\+\_\+obj1, const \mbox{\hyperlink{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}{Objective\+Vector}} \&\+\_\+obj2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Bert\+Distance$<$ M\+O\+E\+O\+T $>$}
+
+A class allowing to compute the bertoluzza distance between two fuzzy solutions in the objective space with normalized objective values. A distance value lies between 0 and sqrt(n\+Objectives). 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_bert_distance_aa0899e8ddb4c1fdd8f69aaad72d15012}\label{classmoeo_bert_distance_aa0899e8ddb4c1fdd8f69aaad72d15012}} 
+\index{moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}!Fitness@{Fitness}}
+\index{Fitness@{Fitness}!moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{Fitness}{Fitness}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_bert_distance}{moeo\+Bert\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_bert_distance_aa0899e8ddb4c1fdd8f69aaad72d15012}{Fitness}}}
+
+the fitness type of the solutions \mbox{\Hypertarget{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}\label{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}} 
+\index{moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_bert_distance}{moeo\+Bert\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_bert_distance_a59d27eaed4d7bf03a6ff849bc5d50f0b}\label{classmoeo_bert_distance_a59d27eaed4d7bf03a6ff849bc5d50f0b}} 
+\index{moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}!moeoBertDistance@{moeoBertDistance}}
+\index{moeoBertDistance@{moeoBertDistance}!moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoBertDistance()}{moeoBertDistance()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_bert_distance}{moeo\+Bert\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_bert_distance}{moeo\+Bert\+Distance}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctr ctr with a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalizer} & the normalizer used for every Objective\+Vector default ctr \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_bert_distance_aa9956b25bd4f5dde1aba64143e28c344}\label{classmoeo_bert_distance_aa9956b25bd4f5dde1aba64143e28c344}} 
+\index{moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoBertDistance$<$ MOEOT $>$@{moeoBertDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+const \mbox{\hyperlink{classmoeo_bert_distance_aa0899e8ddb4c1fdd8f69aaad72d15012}{Fitness}} \mbox{\hyperlink{classmoeo_bert_distance}{moeo\+Bert\+Distance}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}{Objective\+Vector}} \&}]{\+\_\+obj1,  }\item[{const \mbox{\hyperlink{classmoeo_bert_distance_a7065e45dc92dcab33352ab77c999fab0}{Objective\+Vector}} \&}]{\+\_\+obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+tmp1 and tmp2 take the Expected values of Objective vectors Returns the Bert distance between \+\_\+obj1 and \+\_\+obj2 in the objective space 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+obj1} & the first objective vector \\
+\hline
+{\em \+\_\+obj2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_obj_space_distance_a22e0058103f71b2ccdba0abbde391b77}{moeo\+Obj\+Space\+Distance$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/distance/moeo\+Bert\+Distance.\+h\end{DoxyCompactItemize}

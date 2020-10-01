@@ -1,0 +1,86 @@
+\hypertarget{classmoeo_full_eval_by_copy}{}\doxysection{moeo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$ Class Template Reference}
+\label{classmoeo_full_eval_by_copy}\index{moeoFullEvalByCopy$<$ Neighbor $>$@{moeoFullEvalByCopy$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Full\+Eval\+By\+Copy.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmoeo_full_eval_by_copy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmoeo_full_eval_by_copy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_full_eval_by_copy_aa7cfce80f45c465a4ffa630adcb8d4c0}\label{classmoeo_full_eval_by_copy_aa7cfce80f45c465a4ffa630adcb8d4c0}} 
+typedef \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classeo_bit}{E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmoeo_full_eval_by_copy_a08296b8162dd6408fb9822ace90234a2}\label{classmoeo_full_eval_by_copy_a08296b8162dd6408fb9822ace90234a2}} 
+typedef \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_full_eval_by_copy_a5c0d12302842023b973f74c4dd718526}{moeo\+Full\+Eval\+By\+Copy}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+eval)
+\item 
+void \mbox{\hyperlink{classmoeo_full_eval_by_copy_a714311dbc7bf837349fc09ee8784dca5}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class moeo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$}
+
+Evaluation by copy 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_full_eval_by_copy_a5c0d12302842023b973f74c4dd718526}\label{classmoeo_full_eval_by_copy_a5c0d12302842023b973f74c4dd718526}} 
+\index{moeoFullEvalByCopy$<$ Neighbor $>$@{moeoFullEvalByCopy$<$ Neighbor $>$}!moeoFullEvalByCopy@{moeoFullEvalByCopy}}
+\index{moeoFullEvalByCopy@{moeoFullEvalByCopy}!moeoFullEvalByCopy$<$ Neighbor $>$@{moeoFullEvalByCopy$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFullEvalByCopy()}{moeoFullEvalByCopy()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmoeo_full_eval_by_copy}{moeo\+Full\+Eval\+By\+Copy}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmoeo_full_eval_by_copy}{moeo\+Full\+Eval\+By\+Copy}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & the full evaluation object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_full_eval_by_copy_a714311dbc7bf837349fc09ee8784dca5}\label{classmoeo_full_eval_by_copy_a714311dbc7bf837349fc09ee8784dca5}} 
+\index{moeoFullEvalByCopy$<$ Neighbor $>$@{moeoFullEvalByCopy$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFullEvalByCopy$<$ Neighbor $>$@{moeoFullEvalByCopy$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmoeo_full_eval_by_copy}{moeo\+Full\+Eval\+By\+Copy}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Full evaluation of the neighbor by copy 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & current solution \\
+\hline
+{\em \+\_\+neighbor} & the neighbor to be evaluated \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/utils/moeo\+Full\+Eval\+By\+Copy.\+h\end{DoxyCompactItemize}

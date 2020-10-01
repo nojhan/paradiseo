@@ -1,0 +1,64 @@
+\hypertarget{classmoeo_entropy_metric}{}\doxysection{moeo\+Entropy\+Metric$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_entropy_metric}\index{moeoEntropyMetric$<$ ObjectiveVector $>$@{moeoEntropyMetric$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Entropy\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Entropy\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_entropy_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Entropy\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_entropy_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classmoeo_entropy_metric_a191a8cdda7873e20338e678c5a7b927b}{operator()}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set1, const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Entropy\+Metric$<$ Objective\+Vector $>$}
+
+The entropy gives an idea of the diversity of a Pareto set relatively to another (Basseur, Seynhaeve, Talbi\+: \textquotesingle{}Design of Multi-\/objective Evolutionary Algorithms\+: Application to the Flow-\/shop Scheduling \mbox{\hyperlink{class_problem}{Problem}}\textquotesingle{}, in Proc. of the 2002 Congress on Evolutionary Computation, I\+E\+EE Press, pp. 1155-\/1156) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_entropy_metric_a191a8cdda7873e20338e678c5a7b927b}\label{classmoeo_entropy_metric_a191a8cdda7873e20338e678c5a7b927b}} 
+\index{moeoEntropyMetric$<$ ObjectiveVector $>$@{moeoEntropyMetric$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoEntropyMetric$<$ ObjectiveVector $>$@{moeoEntropyMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+double \mbox{\hyperlink{classmoeo_entropy_metric}{moeo\+Entropy\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set1,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the entropy of the Pareto set \textquotesingle{}\+\_\+set1\textquotesingle{} relatively to the Pareto set \textquotesingle{}\+\_\+set2\textquotesingle{} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set1} & the first Pareto set \\
+\hline
+{\em \+\_\+set2} & the second Pareto set \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const std\+::vector$<$ Objective\+Vector $>$ \&, const std\+::vector$<$ Objective\+Vector $>$ \&, double $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Entropy\+Metric.\+h\end{DoxyCompactItemize}

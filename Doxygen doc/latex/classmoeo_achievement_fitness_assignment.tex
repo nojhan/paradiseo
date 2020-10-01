@@ -1,0 +1,148 @@
+\hypertarget{classmoeo_achievement_fitness_assignment}{}\doxysection{moeo\+Achievement\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_achievement_fitness_assignment}\index{moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Achievement\+Fitness\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Achievement\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_achievement_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Achievement\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_achievement_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_achievement_fitness_assignment_a1a58a88ff0175cf303eb63d8b4f52a26}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_achievement_fitness_assignment_a52ae7d8112e66813232172a26d03cbb8}{moeo\+Achievement\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&\+\_\+reference, std\+::vector$<$ double $>$ \&\+\_\+lambdas, double \+\_\+spn=0.\+0001)
+\item 
+\mbox{\hyperlink{classmoeo_achievement_fitness_assignment_a75d9668a256381ef764352d705dcf47a}{moeo\+Achievement\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&\+\_\+reference, double \+\_\+spn=0.\+0001)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_achievement_fitness_assignment_ad5863db9571d7f23a16ca184adf562a3}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_achievement_fitness_assignment_aa6a2ae6c263dbcea3c16cde4c8a1e5fc}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\item 
+void \mbox{\hyperlink{classmoeo_achievement_fitness_assignment_ad200530e3fbdf847dca970ac2265d83d}{set\+Reference}} (const \mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&\+\_\+reference)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Achievement\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Fitness assignment sheme based on the achievement scalarizing function propozed by Wiersbicki (1980). 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_achievement_fitness_assignment_a1a58a88ff0175cf303eb63d8b4f52a26}\label{classmoeo_achievement_fitness_assignment_a1a58a88ff0175cf303eb63d8b4f52a26}} 
+\index{moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_achievement_fitness_assignment_a52ae7d8112e66813232172a26d03cbb8}\label{classmoeo_achievement_fitness_assignment_a52ae7d8112e66813232172a26d03cbb8}} 
+\index{moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}!moeoAchievementFitnessAssignment@{moeoAchievementFitnessAssignment}}
+\index{moeoAchievementFitnessAssignment@{moeoAchievementFitnessAssignment}!moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAchievementFitnessAssignment()}{moeoAchievementFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&}]{\+\_\+reference,  }\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+lambdas,  }\item[{double}]{\+\_\+spn = {\ttfamily 0.0001} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+reference} & reference point vector \\
+\hline
+{\em \+\_\+lambdas} & weighted coefficients vector \\
+\hline
+{\em \+\_\+spn} & arbitrary small positive number (0 $<$ \+\_\+spn $<$$<$ 1) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_achievement_fitness_assignment_a75d9668a256381ef764352d705dcf47a}\label{classmoeo_achievement_fitness_assignment_a75d9668a256381ef764352d705dcf47a}} 
+\index{moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}!moeoAchievementFitnessAssignment@{moeoAchievementFitnessAssignment}}
+\index{moeoAchievementFitnessAssignment@{moeoAchievementFitnessAssignment}!moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAchievementFitnessAssignment()}{moeoAchievementFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&}]{\+\_\+reference,  }\item[{double}]{\+\_\+spn = {\ttfamily 0.0001} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with default values for lambdas (1/n\+Objectives) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+reference} & reference point vector \\
+\hline
+{\em \+\_\+spn} & arbitrary small positive number (0 $<$ \+\_\+spn $<$$<$ 1) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_achievement_fitness_assignment_ad5863db9571d7f23a16ca184adf562a3}\label{classmoeo_achievement_fitness_assignment_ad5863db9571d7f23a16ca184adf562a3}} 
+\index{moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_achievement_fitness_assignment_ad200530e3fbdf847dca970ac2265d83d}\label{classmoeo_achievement_fitness_assignment_ad200530e3fbdf847dca970ac2265d83d}} 
+\index{moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}!setReference@{setReference}}
+\index{setReference@{setReference}!moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setReference()}{setReference()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::set\+Reference (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&}]{\+\_\+reference }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the reference point 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+reference} & the new reference point \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_achievement_fitness_assignment_aa6a2ae6c263dbcea3c16cde4c8a1e5fc}\label{classmoeo_achievement_fitness_assignment_aa6a2ae6c263dbcea3c16cde4c8a1e5fc}} 
+\index{moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoAchievementFitnessAssignment$<$ MOEOT $>$@{moeoAchievementFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_achievement_fitness_assignment}{moeo\+Achievement\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account (nothing to do). 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/fitness/moeo\+Achievement\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

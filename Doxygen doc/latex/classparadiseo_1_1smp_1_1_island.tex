@@ -1,0 +1,261 @@
+\hypertarget{classparadiseo_1_1smp_1_1_island}{}\doxysection{paradiseo\+::smp\+::Island$<$ E\+O\+Algo, E\+OT, b\+E\+OT $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_island}\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+
+
+{\ttfamily \#include $<$island.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Island$<$ E\+O\+Algo, E\+OT, b\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_island__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Island$<$ E\+O\+Algo, E\+OT, b\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_island__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class... Args$>$ }\\\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a882c5897a722d9023fadb4e26efd3b18}{Island}} (std\+::function$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}(b\+E\+OT \&)$>$ \+\_\+convert\+From\+Base, std\+::function$<$ b\+E\+OT(\mbox{\hyperlink{struct_dummy}{E\+OT}} \&)$>$ \+\_\+convert\+To\+Base, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, \mbox{\hyperlink{classeo_replacement}{Int\+Policy}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+int\+Policy, Mig\+Policy$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+mig\+Policy, Args \&... args)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_aea5a630a1b76acb67f9667df52abbcba}{Island}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, \mbox{\hyperlink{classeo_replacement}{Int\+Policy}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+int\+Policy, Mig\+Policy$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+mig\+Policy, Args \&... args)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a00068ee576046f423f815b624c0ef7de}{operator()}} (void)
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a9170c863f34dd1256f459d28cfd877d3}{set\+Model}} (\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_model}{Island\+Model}}$<$ b\+E\+OT $>$ $\ast$\+\_\+model)
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a6cdec93a78ec57b6eee7ef0a1883c8ff}{get\+Pop}} () const
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_ad14b76e62db02b2726d687a97068a315}{check}} (void)
+\item 
+bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a82f87c67e1a11a36c437167b0df2bb3c}{update}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ b\+E\+OT $>$ \+\_\+data)
+\item 
+virtual bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a2b9ff202435a897e6a11372aee1a3fb5}{is\+Stopped}} (void) const
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a081ea252fd61a33a4dbb045fd624d84a}{set\+Running}} (void)
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a697937c59028a4e1f4130eece5904634}{receive}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_a4644359dc04d695e34d9063681145bae}{send}} (\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+select)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a22e3b315f6bbab9e6b69a9db1ce250fd}\label{classparadiseo_1_1smp_1_1_island_a22e3b315f6bbab9e6b69a9db1ce250fd}} 
+E\+O\+Algo$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ {\bfseries algo}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_aa197fa8cc1a4ebbe5d692b44130aa1e4}\label{classparadiseo_1_1smp_1_1_island_aa197fa8cc1a4ebbe5d692b44130aa1e4}} 
+\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries eval}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a371183653cc56e4d751e9dae3d107e89}\label{classparadiseo_1_1smp_1_1_island_a371183653cc56e4d751e9dae3d107e89}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries pop}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a270e8a7d2a7793c61430ba43b46aa36d}\label{classparadiseo_1_1smp_1_1_island_a270e8a7d2a7793c61430ba43b46aa36d}} 
+std\+::queue$<$ \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ b\+E\+OT $>$ $>$ {\bfseries list\+Imigrants}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_af666a5e41c9bdd6e84d7f0e01da3c47b}\label{classparadiseo_1_1smp_1_1_island_af666a5e41c9bdd6e84d7f0e01da3c47b}} 
+\mbox{\hyperlink{classeo_replacement}{Int\+Policy}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries int\+Policy}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a84bb4dba38544336f4fc90a9eb82898d}\label{classparadiseo_1_1smp_1_1_island_a84bb4dba38544336f4fc90a9eb82898d}} 
+Mig\+Policy$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries mig\+Policy}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_afa734f6dd33792e10b760a0945628813}\label{classparadiseo_1_1smp_1_1_island_afa734f6dd33792e10b760a0945628813}} 
+std\+::atomic$<$ bool $>$ {\bfseries stopped}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a6d5385aed8bb12f8099dbf4c4c117ae2}\label{classparadiseo_1_1smp_1_1_island_a6d5385aed8bb12f8099dbf4c4c117ae2}} 
+std\+::vector$<$ std\+::shared\+\_\+future$<$ bool $>$ $>$ {\bfseries sent\+Messages}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a7dcceaf08781dd2ec0af9e8a8036d2ae}\label{classparadiseo_1_1smp_1_1_island_a7dcceaf08781dd2ec0af9e8a8036d2ae}} 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_model}{Island\+Model}}$<$ b\+E\+OT $>$ $\ast$ {\bfseries model}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a5b404f7e80533503beb140064019181d}\label{classparadiseo_1_1smp_1_1_island_a5b404f7e80533503beb140064019181d}} 
+std\+::function$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}(b\+E\+OT \&)$>$ {\bfseries convert\+From\+Base}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a682fcabbe9698357d2105d74787119e7}\label{classparadiseo_1_1smp_1_1_island_a682fcabbe9698357d2105d74787119e7}} 
+std\+::function$<$ b\+E\+OT(\mbox{\hyperlink{struct_dummy}{E\+OT}} \&)$>$ {\bfseries convert\+To\+Base}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT, class b\+E\+OT = E\+OT$>$\newline
+class paradiseo\+::smp\+::\+Island$<$ E\+O\+Algo, E\+O\+T, b\+E\+O\+T $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{Island}}\+: Concrete island that wraps an algorithm
+
+The island wraps an algorithm and provide mecanisms for emigration and integration of populations. An island also have a base type which represents the type of individuals of the \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{Island}} Model.
+
+\begin{DoxySeeAlso}{See also}
+smp\+::\+Abstract\+Island, smp\+::\+Mig\+Policy 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a882c5897a722d9023fadb4e26efd3b18}\label{classparadiseo_1_1smp_1_1_island_a882c5897a722d9023fadb4e26efd3b18}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!Island@{Island}}
+\index{Island@{Island}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{Island()}{Island()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+template$<$class... Args$>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{Island}} (\begin{DoxyParamCaption}\item[{std\+::function$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}(b\+E\+OT \&)$>$}]{\+\_\+convert\+From\+Base,  }\item[{std\+::function$<$ b\+E\+OT(\mbox{\hyperlink{struct_dummy}{E\+OT}} \&)$>$}]{\+\_\+convert\+To\+Base,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{\mbox{\hyperlink{classeo_replacement}{Int\+Policy}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+int\+Policy,  }\item[{Mig\+Policy$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+mig\+Policy,  }\item[{Args \&...}]{args }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+convert\+From\+Base} & \mbox{\hyperlink{struct_function}{Function}} to convert E\+OT from base E\+OT \\
+\hline
+{\em \+\_\+convert\+To\+Base} & \mbox{\hyperlink{struct_function}{Function}} to convert base E\+OT to E\+OT \\
+\hline
+{\em \+\_\+pop} & Population of the island \\
+\hline
+{\em \+\_\+int\+Policy} & Integration policy \\
+\hline
+{\em \+\_\+mig\+Policy} & Migration policy \\
+\hline
+{\em args} & \mbox{\hyperlink{struct_parameters}{Parameters}} to construct the algorithm. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_aea5a630a1b76acb67f9667df52abbcba}\label{classparadiseo_1_1smp_1_1_island_aea5a630a1b76acb67f9667df52abbcba}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!Island@{Island}}
+\index{Island@{Island}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{Island()}{Island()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+template$<$class... Args$>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{Island}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{\mbox{\hyperlink{classeo_replacement}{Int\+Policy}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+int\+Policy,  }\item[{Mig\+Policy$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+mig\+Policy,  }\item[{Args \&...}]{args }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & Population of the island \\
+\hline
+{\em \+\_\+int\+Policy} & Integration policy \\
+\hline
+{\em \+\_\+mig\+Policy} & Migration policy \\
+\hline
+{\em args} & \mbox{\hyperlink{struct_parameters}{Parameters}} to construct the algorithm. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_ad14b76e62db02b2726d687a97068a315}\label{classparadiseo_1_1smp_1_1_island_ad14b76e62db02b2726d687a97068a315}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!check@{check}}
+\index{check@{check}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::check (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Check if there is population to receive or to migrate 
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island_a98a53e996139efde36783859797c032b}{paradiseo\+::smp\+::\+A\+Island$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a6cdec93a78ec57b6eee7ef0a1883c8ff}\label{classparadiseo_1_1smp_1_1_island_a6cdec93a78ec57b6eee7ef0a1883c8ff}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!getPop@{getPop}}
+\index{getPop@{getPop}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{getPop()}{getPop()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::get\+Pop}
+
+Return a reference to the island population. \begin{DoxyReturn}{Returns}
+Reference to the island population 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a2b9ff202435a897e6a11372aee1a3fb5}\label{classparadiseo_1_1smp_1_1_island_a2b9ff202435a897e6a11372aee1a3fb5}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!isStopped@{isStopped}}
+\index{isStopped@{isStopped}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{isStopped()}{isStopped()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::is\+Stopped (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Check if the algorithm is stopped. \begin{DoxyReturn}{Returns}
+true if stopped 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island_ab71e86aec46abbda2ff2a430d22a0318}{paradiseo\+::smp\+::\+A\+Island$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a00068ee576046f423f815b624c0ef7de}\label{classparadiseo_1_1smp_1_1_island_a00068ee576046f423f815b624c0ef7de}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Start the island. 
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{paradiseo\+::smp\+::\+A\+Island$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a697937c59028a4e1f4130eece5904634}\label{classparadiseo_1_1smp_1_1_island_a697937c59028a4e1f4130eece5904634}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!receive@{receive}}
+\index{receive@{receive}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{receive()}{receive()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::receive (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Check if there is population to receive 
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island_add5b34683db3c5b9018df390d463e94b}{paradiseo\+::smp\+::\+A\+Island$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a4644359dc04d695e34d9063681145bae}\label{classparadiseo_1_1smp_1_1_island_a4644359dc04d695e34d9063681145bae}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!send@{send}}
+\index{send@{send}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+select }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Send population to mediator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+select} & Method to select E\+OT to send \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a9170c863f34dd1256f459d28cfd877d3}\label{classparadiseo_1_1smp_1_1_island_a9170c863f34dd1256f459d28cfd877d3}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!setModel@{setModel}}
+\index{setModel@{setModel}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setModel()}{setModel()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::set\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_model}{Island\+Model}}$<$ b\+E\+OT $>$ $\ast$}]{\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set model 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+model} & Pointer to the \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{Island}} Model corresponding \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a081ea252fd61a33a4dbb045fd624d84a}\label{classparadiseo_1_1smp_1_1_island_a081ea252fd61a33a4dbb045fd624d84a}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!setRunning@{setRunning}}
+\index{setRunning@{setRunning}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setRunning()}{setRunning()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::set\+Running (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set the stopped indicator on false 
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island_a5725de94e654692cac76c23927f95040}{paradiseo\+::smp\+::\+A\+Island$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_a82f87c67e1a11a36c437167b0df2bb3c}\label{classparadiseo_1_1smp_1_1_island_a82f87c67e1a11a36c437167b0df2bb3c}} 
+\index{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}!update@{update}}
+\index{update@{update}!paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$@{paradiseo::smp::Island$<$ EOAlgo, EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class b\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{paradiseo\+::smp\+::\+Island}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ b\+E\+OT $>$}]{\+\_\+data }\end{DoxyParamCaption})}
+
+Update the list of imigrants. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+data} & Elements to integrate in the main population. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/island.\+h\item 
+smp/src/island.\+cpp\end{DoxyCompactItemize}

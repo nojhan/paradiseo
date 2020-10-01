@@ -1,0 +1,109 @@
+\hypertarget{classmoeo_vec_vs_vec_epsilon_binary_metric}{}\doxysection{moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_vec_vs_vec_epsilon_binary_metric}\index{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_vec_vs_vec_epsilon_binary_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_vec_vs_vec_epsilon_binary_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric_ad3e33e2e505ef68de87a06fdd859f83a}{moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric}} (bool \+\_\+normalize=true)
+\item 
+double \mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric_ac8639e9491d906e5a21c5967108ed6f8}{operator()}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set1, const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set2)
+\item 
+\mbox{\Hypertarget{classmoeo_vec_vs_vec_epsilon_binary_metric_a91289d6787f586040fc20be0cb005aad}\label{classmoeo_vec_vs_vec_epsilon_binary_metric_a91289d6787f586040fc20be0cb005aad}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ {\bfseries get\+Bounds} ()
+\item 
+void \mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric_a6d3297562ad771e6030fc12fd2d584f2}{setup}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set1, const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_vec_vs_vec_epsilon_binary_metric_adcdcdaf599773947bd44fefe30870ddd}\label{classmoeo_vec_vs_vec_epsilon_binary_metric_adcdcdaf599773947bd44fefe30870ddd}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ {\bfseries bounds}
+\item 
+\mbox{\Hypertarget{classmoeo_vec_vs_vec_epsilon_binary_metric_a917e50db908e8a78a291867306379979}\label{classmoeo_vec_vs_vec_epsilon_binary_metric_a917e50db908e8a78a291867306379979}} 
+bool {\bfseries normalize}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric$<$ Objective\+Vector $>$}
+
+\mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric}{moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric}} is an abstract class allow to calculate the epsilon indicator betweend two Pareto sets 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_vec_vs_vec_epsilon_binary_metric_ad3e33e2e505ef68de87a06fdd859f83a}\label{classmoeo_vec_vs_vec_epsilon_binary_metric_ad3e33e2e505ef68de87a06fdd859f83a}} 
+\index{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$}!moeoVecVsVecEpsilonBinaryMetric@{moeoVecVsVecEpsilonBinaryMetric}}
+\index{moeoVecVsVecEpsilonBinaryMetric@{moeoVecVsVecEpsilonBinaryMetric}!moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoVecVsVecEpsilonBinaryMetric()}{moeoVecVsVecEpsilonBinaryMetric()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric}{moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric}{moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+normalize = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Construtcor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalize} & allow to normalize data (default true) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_vec_vs_vec_epsilon_binary_metric_ac8639e9491d906e5a21c5967108ed6f8}\label{classmoeo_vec_vs_vec_epsilon_binary_metric_ac8639e9491d906e5a21c5967108ed6f8}} 
+\index{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+double \mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric}{moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set1,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the epsilon indicator between two pareto sets. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set1} & the first Pareto set (must not have dominated element) \\
+\hline
+{\em \+\_\+set2} & the second Pareto set (must not have dominated element) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const std\+::vector$<$ Objective\+Vector $>$ \&, const std\+::vector$<$ Objective\+Vector $>$ \&, double $>$}}.
+
+\mbox{\Hypertarget{classmoeo_vec_vs_vec_epsilon_binary_metric_a6d3297562ad771e6030fc12fd2d584f2}\label{classmoeo_vec_vs_vec_epsilon_binary_metric_a6d3297562ad771e6030fc12fd2d584f2}} 
+\index{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$}!setup@{setup}}
+\index{setup@{setup}!moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$@{moeoVecVsVecEpsilonBinaryMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+void \mbox{\hyperlink{classmoeo_vec_vs_vec_epsilon_binary_metric}{moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::setup (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set1,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+method caclulate bounds for the normalization 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set1} & the first vector of objective vectors \\
+\hline
+{\em \+\_\+set2} & the second vector of objective vectors \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Vec\+Vs\+Vec\+Epsilon\+Binary\+Metric.\+h\end{DoxyCompactItemize}

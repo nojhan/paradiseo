@@ -1,0 +1,123 @@
+\hypertarget{classeo_s_g_a_gen_op}{}\doxysection{eo\+S\+G\+A\+Gen\+Op$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_s_g_a_gen_op}\index{eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+S\+G\+A\+Gen\+Op.\+h$>$}
+
+
+
+Inheritance diagram for eo\+S\+G\+A\+Gen\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_s_g_a_gen_op__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+S\+G\+A\+Gen\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_s_g_a_gen_op__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_s_g_a_gen_op_a5b8450443995c781f32299caa2d72394}{eo\+S\+G\+A\+Gen\+Op}} (\mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+cross, double \+\_\+p\+Cross, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+mut, double \+\_\+p\+Mut)
+\item 
+virtual void \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{apply}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+virtual unsigned \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{max\+\_\+production}} (void)
+\item 
+\mbox{\Hypertarget{classeo_s_g_a_gen_op_a2aafeee74848f232af283d3b4ef5c0b3}\label{classeo_s_g_a_gen_op_a2aafeee74848f232af283d3b4ef5c0b3}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\item 
+\mbox{\hyperlink{classeo_s_g_a_gen_op_a5b8450443995c781f32299caa2d72394}{eo\+S\+G\+A\+Gen\+Op}} (\mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+cross, double \+\_\+p\+Cross, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+mut, double \+\_\+p\+Mut)
+\item 
+virtual void \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{apply}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+virtual unsigned \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{max\+\_\+production}} (void)
+\item 
+\mbox{\Hypertarget{classeo_s_g_a_gen_op_a2aafeee74848f232af283d3b4ef5c0b3}\label{classeo_s_g_a_gen_op_a2aafeee74848f232af283d3b4ef5c0b3}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}} (for Simple GA) mimicks the usual crossover with proba p\+Cross + mutation with proba p\+Mut inside an eo\+General\+Op It does it exactly as class \mbox{\hyperlink{classeo_s_g_a_transform}{eo\+S\+G\+A\+Transform}}, i.\+e. only accepts quadratic crossover and unary mutation It was introduced for didactic reasons, but seems to be popular \+:-\/) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_s_g_a_gen_op_a5b8450443995c781f32299caa2d72394}\label{classeo_s_g_a_gen_op_a5b8450443995c781f32299caa2d72394}} 
+\index{eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}!eoSGAGenOp@{eoSGAGenOp}}
+\index{eoSGAGenOp@{eoSGAGenOp}!eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoSGAGenOp()}{eoSGAGenOp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+cross,  }\item[{double}]{\+\_\+p\+Cross,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+mut,  }\item[{double}]{\+\_\+p\+Mut }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from crossover (with proba) and mutation (with proba) Builds the sequential op that first applies a proportional choice between the crossover and nothing (cloning), then the mutation \mbox{\Hypertarget{classeo_s_g_a_gen_op_a5b8450443995c781f32299caa2d72394}\label{classeo_s_g_a_gen_op_a5b8450443995c781f32299caa2d72394}} 
+\index{eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}!eoSGAGenOp@{eoSGAGenOp}}
+\index{eoSGAGenOp@{eoSGAGenOp}!eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoSGAGenOp()}{eoSGAGenOp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+cross,  }\item[{double}]{\+\_\+p\+Cross,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+mut,  }\item[{double}]{\+\_\+p\+Mut }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from crossover (with proba) and mutation (with proba) Builds the sequential op that first applies a proportional choice between the crossover and nothing (cloning), then the mutation 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}\label{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}} 
+\index{eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}!apply@{apply}}
+\index{apply@{apply}!eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the job\+: delegate to op 
+
+Implements \mbox{\hyperlink{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}\label{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}} 
+\index{eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}!apply@{apply}}
+\index{apply@{apply}!eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the job\+: delegate to op 
+
+Implements \mbox{\hyperlink{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}\label{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}} 
+\index{eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual unsigned \mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited from \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}} 
+
+Implements \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}\label{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}} 
+\index{eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoSGAGenOp$<$ EOT $>$@{eoSGAGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual unsigned \mbox{\hyperlink{classeo_s_g_a_gen_op}{eo\+S\+G\+A\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited from \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}} 
+
+Implements \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+S\+G\+A\+Gen\+Op.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,9 @@
+<map id="moAcceptanceCriterion&lt; Neighbor &gt;" name="moAcceptanceCriterion&lt; Neighbor &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="169,213,344,255"/>
+<area shape="rect" id="node6" href="$classmo_always_accept_crit.html" title=" " alt="" coords="89,303,246,344"/>
+<area shape="rect" id="node7" href="$classmo_better_accept_crit.html" title=" " alt="" coords="271,303,421,344"/>
+<area shape="rect" id="node2" href="$classeo_b_f.html" title=" " alt="" coords="77,109,239,165"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="5,20,124,47"/>
+<area shape="rect" id="node4" title=" " alt="" coords="147,5,358,61"/>
+<area shape="rect" id="node5" href="$classmo_memory.html" title=" " alt="" coords="263,124,450,151"/>
+</map>

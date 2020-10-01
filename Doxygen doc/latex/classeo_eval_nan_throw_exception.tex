@@ -1,0 +1,61 @@
+\hypertarget{classeo_eval_nan_throw_exception}{}\doxysection{eo\+Eval\+Nan\+Throw\+Exception$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_eval_nan_throw_exception}\index{eoEvalNanThrowException$<$ EOT $>$@{eoEvalNanThrowException$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+Nan\+Throw\+Exception.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+Nan\+Throw\+Exception$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_eval_nan_throw_exception__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+Nan\+Throw\+Exception$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_nan_throw_exception__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_nan_throw_exception_a9fb949a41402767e65ebcb471f30fd74}\label{classeo_eval_nan_throw_exception_a9fb949a41402767e65ebcb471f30fd74}} 
+{\bfseries eo\+Eval\+Nan\+Throw\+Exception} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&func)
+\item 
+\mbox{\Hypertarget{classeo_eval_nan_throw_exception_af4f76e57458d80d4dea1006a89c0fd65}\label{classeo_eval_nan_throw_exception_af4f76e57458d80d4dea1006a89c0fd65}} 
+virtual void \mbox{\hyperlink{classeo_eval_nan_throw_exception_af4f76e57458d80d4dea1006a89c0fd65}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\begin{DoxyCompactList}\small\item\em Evaluate the individual, then throw an exception if it exceed the max number of evals. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_eval_nan_throw_exception_a7dc52e86b70a5ab79f022ac3f60d8909}\label{classeo_eval_nan_throw_exception_a7dc52e86b70a5ab79f022ac3f60d8909}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_nan_throw_exception_a1970622bc26253537e1b78866a506b1f}\label{classeo_eval_nan_throw_exception_a1970622bc26253537e1b78866a506b1f}} 
+\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries \+\_\+func}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename E\+OT$>$\newline
+class eo\+Eval\+Nan\+Throw\+Exception$<$ E\+O\+T $>$}
+
+Wrap an evaluation function so that an exception may be thrown when the eval function returns a bad value (Not A Number or infinity).
+
+\begin{DoxyWarning}{Warning}
+\+: Only work for \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}.
+\end{DoxyWarning}
+The class throw an \mbox{\hyperlink{classeo_nan_exception}{eo\+Nan\+Exception}}. You can catch this exception from your main function, so as to stop everything properly. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Eval\+Nan\+Throw\+Exception.\+h\end{DoxyCompactItemize}

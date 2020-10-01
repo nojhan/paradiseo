@@ -1,0 +1,98 @@
+\hypertarget{classeo_monitor}{}\doxysection{eo\+Monitor Class Reference}
+\label{classeo_monitor}\index{eoMonitor@{eoMonitor}}
+
+
+{\ttfamily \#include $<$eo\+Monitor.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_monitor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_monitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_monitor_ad978f1abfef6145397fd4670f4e33ebe}\label{classeo_monitor_ad978f1abfef6145397fd4670f4e33ebe}} 
+virtual void {\bfseries last\+Call} ()
+\item 
+virtual void \mbox{\hyperlink{classeo_monitor_a00b2754e710df16cd9e8592f47e64201}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param)
+\item 
+\mbox{\Hypertarget{classeo_monitor_a87beccd8493a94d95440d9a2144635e4}\label{classeo_monitor_a87beccd8493a94d95440d9a2144635e4}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+\mbox{\Hypertarget{classeo_monitor_a08668a13f31a743ff432e8de82f247c3}\label{classeo_monitor_a08668a13f31a743ff432e8de82f247c3}} 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& {\bfseries add\+To} (\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&cp)
+\item 
+\mbox{\Hypertarget{classeo_monitor_ad978f1abfef6145397fd4670f4e33ebe}\label{classeo_monitor_ad978f1abfef6145397fd4670f4e33ebe}} 
+virtual void {\bfseries last\+Call} ()
+\item 
+virtual void \mbox{\hyperlink{classeo_monitor_a00b2754e710df16cd9e8592f47e64201}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param)
+\item 
+\mbox{\Hypertarget{classeo_monitor_a87beccd8493a94d95440d9a2144635e4}\label{classeo_monitor_a87beccd8493a94d95440d9a2144635e4}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+\mbox{\Hypertarget{classeo_monitor_a08668a13f31a743ff432e8de82f247c3}\label{classeo_monitor_a08668a13f31a743ff432e8de82f247c3}} 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& {\bfseries add\+To} (\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&cp)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_monitor_aa753306c8e7b31b8815f3ab1b20a84a5}\label{classeo_monitor_aa753306c8e7b31b8815f3ab1b20a84a5}} 
+typedef std\+::vector$<$ const \mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ $>$\+::iterator {\bfseries iterator}
+\item 
+\mbox{\Hypertarget{classeo_monitor_aa753306c8e7b31b8815f3ab1b20a84a5}\label{classeo_monitor_aa753306c8e7b31b8815f3ab1b20a84a5}} 
+typedef std\+::vector$<$ const \mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ $>$\+::iterator {\bfseries iterator}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_monitor_a9d965ab92833e5f06bcf30979ff03fc3}\label{classeo_monitor_a9d965ab92833e5f06bcf30979ff03fc3}} 
+std\+::vector$<$ const \mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ $>$ {\bfseries vec}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The abstract monitor class is a std\+::vector of parameter pointers. Use either push\+\_\+back a pointer or add a reference to a parameter. Derived classes will then implement the \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{operator()(void)}} which will stream or pipe the current values of the parameters to wherever you want it streamed or piped to. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_monitor_a00b2754e710df16cd9e8592f47e64201}\label{classeo_monitor_a00b2754e710df16cd9e8592f47e64201}} 
+\index{eoMonitor@{eoMonitor}!add@{add}}
+\index{add@{add}!eoMonitor@{eoMonitor}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+Monitor\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Adds a parameter to the monitor. It is virtual so you can do some type checking in derived classes if you must. 
+
+Reimplemented in \mbox{\hyperlink{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}{eo\+File\+Snapshot}}, \mbox{\hyperlink{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}{eo\+File\+Snapshot}}, \mbox{\hyperlink{classeo_f_d_c_file_snapshot_a4ca13f52fbd0319d21dafacb77d311bf}{eo\+F\+D\+C\+File\+Snapshot$<$ E\+O\+T $>$}}, and \mbox{\hyperlink{classeo_f_d_c_file_snapshot_a2c412095b6530cc8a2fb95504d5a5ebb}{eo\+F\+D\+C\+File\+Snapshot$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_monitor_a00b2754e710df16cd9e8592f47e64201}\label{classeo_monitor_a00b2754e710df16cd9e8592f47e64201}} 
+\index{eoMonitor@{eoMonitor}!add@{add}}
+\index{add@{add}!eoMonitor@{eoMonitor}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+Monitor\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Adds a parameter to the monitor. It is virtual so you can do some type checking in derived classes if you must. 
+
+Reimplemented in \mbox{\hyperlink{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}{eo\+File\+Snapshot}}, \mbox{\hyperlink{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}{eo\+File\+Snapshot}}, \mbox{\hyperlink{classeo_f_d_c_file_snapshot_a4ca13f52fbd0319d21dafacb77d311bf}{eo\+F\+D\+C\+File\+Snapshot$<$ E\+O\+T $>$}}, and \mbox{\hyperlink{classeo_f_d_c_file_snapshot_a2c412095b6530cc8a2fb95504d5a5ebb}{eo\+F\+D\+C\+File\+Snapshot$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Monitor.\+h\end{DoxyCompactItemize}

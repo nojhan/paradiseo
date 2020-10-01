@@ -1,0 +1,218 @@
+\hypertarget{classmoeo_i_l_s}{}\doxysection{moeo\+I\+LS$<$ M $>$ Class Template Reference}
+\label{classmoeo_i_l_s}\index{moeoILS$<$ M $>$@{moeoILS$<$ M $>$}}
+
+
+Iterated Local Search (I\+LS)  
+
+
+
+
+{\ttfamily \#include $<$moeo\+I\+L\+S.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+I\+LS$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_i_l_s__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+I\+LS$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_i_l_s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_i_l_s_ac18e96badbc938ff6fffd7569b1c620b}\label{classmoeo_i_l_s_ac18e96badbc938ff6fffd7569b1c620b}} 
+typedef M\+::\+E\+O\+Type {\bfseries M\+O\+E\+OT}
+\item 
+\mbox{\Hypertarget{classmoeo_i_l_s_a60bc53509e5c6487678fe5a970f2a863}\label{classmoeo_i_l_s_a60bc53509e5c6487678fe5a970f2a863}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_i_l_s_a7dbe6e4203165fb6ed23904d830d9ad3}\label{classmoeo_i_l_s_a7dbe6e4203165fb6ed23904d830d9ad3}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_i_l_s_a7eaca8f626053235ca8dfbfd98e5e26c}{moeo\+I\+LS}} (\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&\+\_\+algorithm, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+acceptance\+\_\+criterion, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&\+\_\+perturbation, \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+full\+\_\+evaluation)
+\begin{DoxyCompactList}\small\item\em Generic constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmoeo_i_l_s_a289b7661526901994a7bb6158a5b8659}{moeo\+I\+LS}} (mo\+Move\+Init$<$ M $>$ \&\+\_\+move\+\_\+initializer, mo\+Next\+Move$<$ M $>$ \&\+\_\+next\+\_\+move\+\_\+generator, mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&\+\_\+incremental\+\_\+evaluation, \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+singler, mo\+Move\+Select$<$ M $>$ \&\+\_\+move\+\_\+selection, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+acceptance\+\_\+criterion, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&\+\_\+perturbation)
+\begin{DoxyCompactList}\small\item\em Constructor for using a mo\+HC. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmoeo_i_l_s_ac6bb95bfcbf37b73dab628e9d7662d60}{moeo\+I\+LS}} (mo\+Move\+Init$<$ M $>$ \&\+\_\+move\+\_\+initializer, mo\+Next\+Move$<$ M $>$ \&\+\_\+next\+\_\+move\+\_\+generator, mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&\+\_\+incremental\+\_\+evaluation, \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+singler, \mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ M $>$ \&\+\_\+tabu\+\_\+list, mo\+Aspir\+Crit$<$ M $>$ \&\+\_\+aspiration\+\_\+criterion, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+mo\+T\+S\+\_\+continue, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+acceptance\+\_\+criterion, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&\+\_\+perturbation)
+\begin{DoxyCompactList}\small\item\em Constructor for using a \mbox{\hyperlink{classmo_t_s}{mo\+TS}} for the mo\+Algo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmoeo_i_l_s_aaad135918ffc3f981f151ab525584a12}{moeo\+I\+LS}} (mo\+Rand\+Move$<$ M $>$ \&\+\_\+random\+\_\+move\+\_\+generator, mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&\+\_\+incremental\+\_\+evaluation, \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+singler, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+mo\+S\+A\+\_\+continue, double \+\_\+initial\+\_\+temperature, \mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}} \&\+\_\+cooling\+\_\+schedule, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+acceptance\+\_\+criterion, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&\+\_\+perturbation)
+\begin{DoxyCompactList}\small\item\em Constructor for using a \mbox{\hyperlink{classmo_s_a}{mo\+SA}} for the mo\+Algo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmoeo_i_l_s_aabef8f379110045e0032542492232b86}{operator()}} (M\+O\+E\+OT \&\+\_\+solution)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_function}{Function}} which launches the I\+LS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M$>$\newline
+class moeo\+I\+L\+S$<$ M $>$}
+
+Iterated Local Search (I\+LS) 
+
+Class which describes the algorithm for a iterated local search. Adapts the \mbox{\hyperlink{classmo_i_l_s}{mo\+I\+LS}} for a multi-\/objective problem using a \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}. M is for Move 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_i_l_s_a7eaca8f626053235ca8dfbfd98e5e26c}\label{classmoeo_i_l_s_a7eaca8f626053235ca8dfbfd98e5e26c}} 
+\index{moeoILS$<$ M $>$@{moeoILS$<$ M $>$}!moeoILS@{moeoILS}}
+\index{moeoILS@{moeoILS}!moeoILS$<$ M $>$@{moeoILS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoILS()}{moeoILS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+algorithm,  }\item[{mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+acceptance\+\_\+criterion,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+perturbation,  }\item[{\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+full\+\_\+evaluation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generic constructor. 
+
+Generic constructor using a mo\+Algo
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+algorithm} & The solution based heuristic to use. \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+acceptance\+\_\+criterion} & The acceptance criterion. \\
+\hline
+{\em \+\_\+perturbation} & The pertubation generator. \\
+\hline
+{\em \+\_\+full\+\_\+evaluation} & The evaluation function. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_i_l_s_a289b7661526901994a7bb6158a5b8659}\label{classmoeo_i_l_s_a289b7661526901994a7bb6158a5b8659}} 
+\index{moeoILS$<$ M $>$@{moeoILS$<$ M $>$}!moeoILS@{moeoILS}}
+\index{moeoILS@{moeoILS}!moeoILS$<$ M $>$@{moeoILS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoILS()}{moeoILS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}} (\begin{DoxyParamCaption}\item[{mo\+Move\+Init$<$ M $>$ \&}]{\+\_\+move\+\_\+initializer,  }\item[{mo\+Next\+Move$<$ M $>$ \&}]{\+\_\+next\+\_\+move\+\_\+generator,  }\item[{mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&}]{\+\_\+incremental\+\_\+evaluation,  }\item[{\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+singler,  }\item[{mo\+Move\+Select$<$ M $>$ \&}]{\+\_\+move\+\_\+selection,  }\item[{mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+acceptance\+\_\+criterion,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+perturbation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for using a mo\+HC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+move\+\_\+initializer} & The move initialisation (for the mo\+HC). \\
+\hline
+{\em \+\_\+next\+\_\+move\+\_\+generator} & The move generator (for the mo\+HC). \\
+\hline
+{\em \+\_\+incremental\+\_\+evaluation} & The partial evaluation function (for the mo\+HC). \\
+\hline
+{\em \+\_\+singler} & a single\+Objectivizer to translate objective\+Vectors into fitness \\
+\hline
+{\em \+\_\+move\+\_\+selection} & The move selection strategy (for the mo\+HC). \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+acceptance\+\_\+criterion} & The acceptance criterion. \\
+\hline
+{\em \+\_\+perturbation} & The pertubation generator. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_i_l_s_ac6bb95bfcbf37b73dab628e9d7662d60}\label{classmoeo_i_l_s_ac6bb95bfcbf37b73dab628e9d7662d60}} 
+\index{moeoILS$<$ M $>$@{moeoILS$<$ M $>$}!moeoILS@{moeoILS}}
+\index{moeoILS@{moeoILS}!moeoILS$<$ M $>$@{moeoILS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoILS()}{moeoILS()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}} (\begin{DoxyParamCaption}\item[{mo\+Move\+Init$<$ M $>$ \&}]{\+\_\+move\+\_\+initializer,  }\item[{mo\+Next\+Move$<$ M $>$ \&}]{\+\_\+next\+\_\+move\+\_\+generator,  }\item[{mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&}]{\+\_\+incremental\+\_\+evaluation,  }\item[{\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+singler,  }\item[{\mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ M $>$ \&}]{\+\_\+tabu\+\_\+list,  }\item[{mo\+Aspir\+Crit$<$ M $>$ \&}]{\+\_\+aspiration\+\_\+criterion,  }\item[{mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+mo\+T\+S\+\_\+continue,  }\item[{mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+acceptance\+\_\+criterion,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+perturbation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for using a \mbox{\hyperlink{classmo_t_s}{mo\+TS}} for the mo\+Algo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+move\+\_\+initializer} & The move initialisation (for the \mbox{\hyperlink{classmo_t_s}{mo\+TS}}). \\
+\hline
+{\em \+\_\+next\+\_\+move\+\_\+generator} & The move generator (for the \mbox{\hyperlink{classmo_t_s}{mo\+TS}}). \\
+\hline
+{\em \+\_\+incremental\+\_\+evaluation} & The partial evaluation function (for the \mbox{\hyperlink{classmo_t_s}{mo\+TS}}). \\
+\hline
+{\em \+\_\+singler} & a single\+Objectivizer to translate objective\+Vectors into fitness \\
+\hline
+{\em \+\_\+tabu\+\_\+list} & The tabu list (for the \mbox{\hyperlink{classmo_t_s}{mo\+TS}} !!!!). \\
+\hline
+{\em \+\_\+aspiration\+\_\+criterion} & The aspiration criterion (for the \mbox{\hyperlink{classmo_t_s}{mo\+TS}}). \\
+\hline
+{\em \+\_\+mo\+T\+S\+\_\+continue} & The stopping criterion (for the \mbox{\hyperlink{classmo_t_s}{mo\+TS}}). \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+acceptance\+\_\+criterion} & The acceptance criterion. \\
+\hline
+{\em \+\_\+perturbation} & The pertubation generator. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_i_l_s_aaad135918ffc3f981f151ab525584a12}\label{classmoeo_i_l_s_aaad135918ffc3f981f151ab525584a12}} 
+\index{moeoILS$<$ M $>$@{moeoILS$<$ M $>$}!moeoILS@{moeoILS}}
+\index{moeoILS@{moeoILS}!moeoILS$<$ M $>$@{moeoILS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoILS()}{moeoILS()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}} (\begin{DoxyParamCaption}\item[{mo\+Rand\+Move$<$ M $>$ \&}]{\+\_\+random\+\_\+move\+\_\+generator,  }\item[{mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&}]{\+\_\+incremental\+\_\+evaluation,  }\item[{\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+singler,  }\item[{mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+mo\+S\+A\+\_\+continue,  }\item[{double}]{\+\_\+initial\+\_\+temperature,  }\item[{\mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}} \&}]{\+\_\+cooling\+\_\+schedule,  }\item[{mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmo_comparator}{mo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+acceptance\+\_\+criterion,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+perturbation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for using a \mbox{\hyperlink{classmo_s_a}{mo\+SA}} for the mo\+Algo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+random\+\_\+move\+\_\+generator} & The random move generator (for the \mbox{\hyperlink{classmo_s_a}{mo\+SA}}). \\
+\hline
+{\em \+\_\+incremental\+\_\+evaluation} & The partial evaluation function (for the \mbox{\hyperlink{classmo_s_a}{mo\+SA}}). \\
+\hline
+{\em \+\_\+singler} & a single\+Objectivizer to translate objective\+Vectors into fitness \\
+\hline
+{\em \+\_\+mo\+S\+A\+\_\+continue} & The stopping criterion (for the \mbox{\hyperlink{classmo_s_a}{mo\+SA}}). \\
+\hline
+{\em \+\_\+initial\+\_\+temperature} & The initial temperature (for the \mbox{\hyperlink{classmo_s_a}{mo\+SA}}). \\
+\hline
+{\em \+\_\+cooling\+\_\+schedule} & The cooling schedule (for the \mbox{\hyperlink{classmo_s_a}{mo\+SA}}). \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+acceptance\+\_\+criterion} & The acceptance criterion. \\
+\hline
+{\em \+\_\+perturbation} & The pertubation generator. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_i_l_s_aabef8f379110045e0032542492232b86}\label{classmoeo_i_l_s_aabef8f379110045e0032542492232b86}} 
+\index{moeoILS$<$ M $>$@{moeoILS$<$ M $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoILS$<$ M $>$@{moeoILS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+bool \mbox{\hyperlink{classmoeo_i_l_s}{moeo\+I\+LS}}$<$ M $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{struct_function}{Function}} which launches the I\+LS. 
+
+The I\+LS has to improve a current solution.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a current solution to improve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/algo/moeo\+I\+L\+S.\+h\end{DoxyCompactItemize}

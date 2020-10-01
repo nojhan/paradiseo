@@ -1,0 +1,142 @@
+\hypertarget{classmoeo_crowding_diversity_assignment}{}\doxysection{moeo\+Crowding\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_crowding_diversity_assignment}\index{moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Crowding\+Diversity\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Crowding\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_crowding_diversity_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Crowding\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_crowding_diversity_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_ae6ece5e7569e9d168fcddaae37902585}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_a47832c8dcfbef532949cd2e0a21f6846}{inf}} () const
+\item 
+double \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_ac9d33ac71c3556a26db5f06009fc233f}{tiny}} () const
+\item 
+void \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_a1db056d5e06b337e67f848fdb60fa2a6}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_aba1d60c8e59fbe2c12e9eef33863f012}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_ae6ece5e7569e9d168fcddaae37902585}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_aacbe3e03404ecc67dd5e83f00576c255}{set\+Distances}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Crowding\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Diversity assignment sheme based on crowding proposed in\+: K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, \char`\"{}\+A Fast and Elitist Multi-\/\+Objective Genetic Algorithm\+: N\+S\+G\+A-\/\+I\+I\char`\"{}, I\+E\+EE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_crowding_diversity_assignment_ae6ece5e7569e9d168fcddaae37902585}\label{classmoeo_crowding_diversity_assignment_ae6ece5e7569e9d168fcddaae37902585}} 
+\index{moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_crowding_diversity_assignment}{moeo\+Crowding\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_crowding_diversity_assignment_ae6ece5e7569e9d168fcddaae37902585}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_crowding_diversity_assignment_a47832c8dcfbef532949cd2e0a21f6846}\label{classmoeo_crowding_diversity_assignment_a47832c8dcfbef532949cd2e0a21f6846}} 
+\index{moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}!inf@{inf}}
+\index{inf@{inf}!moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{inf()}{inf()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_crowding_diversity_assignment}{moeo\+Crowding\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::inf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a big value (regarded as infinite) \mbox{\Hypertarget{classmoeo_crowding_diversity_assignment_a1db056d5e06b337e67f848fdb60fa2a6}\label{classmoeo_crowding_diversity_assignment_a1db056d5e06b337e67f848fdb60fa2a6}} 
+\index{moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_crowding_diversity_assignment}{moeo\+Crowding\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Computes diversity values for every solution contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_crowding_diversity_assignment_aacbe3e03404ecc67dd5e83f00576c255}\label{classmoeo_crowding_diversity_assignment_aacbe3e03404ecc67dd5e83f00576c255}} 
+\index{moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}!setDistances@{setDistances}}
+\index{setDistances@{setDistances}!moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setDistances()}{setDistances()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_crowding_diversity_assignment}{moeo\+Crowding\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::set\+Distances (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Sets the distance values 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_crowding_diversity_assignment_ac9d33ac71c3556a26db5f06009fc233f}\label{classmoeo_crowding_diversity_assignment_ac9d33ac71c3556a26db5f06009fc233f}} 
+\index{moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}!tiny@{tiny}}
+\index{tiny@{tiny}!moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{tiny()}{tiny()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_crowding_diversity_assignment}{moeo\+Crowding\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::tiny (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound) \mbox{\Hypertarget{classmoeo_crowding_diversity_assignment_aba1d60c8e59fbe2c12e9eef33863f012}\label{classmoeo_crowding_diversity_assignment_aba1d60c8e59fbe2c12e9eef33863f012}} 
+\index{moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoCrowdingDiversityAssignment$<$ MOEOT $>$@{moeoCrowdingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_crowding_diversity_assignment}{moeo\+Crowding\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_crowding_diversity_assignment_ae6ece5e7569e9d168fcddaae37902585}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyWarning}{Warning}
+N\+OT I\+M\+P\+L\+E\+M\+E\+N\+T\+ED, DO N\+O\+T\+H\+I\+NG ! Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+N\+OT I\+M\+P\+L\+E\+M\+E\+N\+T\+ED, DO N\+O\+T\+H\+I\+NG ! 
+\end{DoxyWarning}
+
+
+Implements \mbox{\hyperlink{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}{moeo\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_front_by_front_crowding_diversity_assignment_af73ff88bd29c49260e2ca859250e4b68}{moeo\+Front\+By\+Front\+Crowding\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/diversity/moeo\+Crowding\+Diversity\+Assignment.\+h\end{DoxyCompactItemize}

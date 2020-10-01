@@ -1,0 +1,143 @@
+\hypertarget{classeo_uniform_init}{}\doxysection{eo\+Uniform\+Init$<$ T $>$ Class Template Reference}
+\label{classeo_uniform_init}\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+
+
+{\ttfamily \#include $<$eo\+Uniform\+Init.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Uniform\+Init$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_uniform_init__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Uniform\+Init$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_uniform_init__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_uniform_init_a7dd6b471736b1f9ffab383e93af66220}{eo\+Uniform\+Init}} (T \+\_\+max=T(1.\+0), \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+\mbox{\hyperlink{classeo_uniform_init_aab973fea134edb58c83b73ff956efb2e}{eo\+Uniform\+Init}} (\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+bound, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+\mbox{\hyperlink{classeo_uniform_init_aa1ed4efd6d3b6cc2a321394beb20c20f}{eo\+Uniform\+Init}} (T \+\_\+min, T \+\_\+max, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+void \mbox{\hyperlink{classeo_uniform_init_ad55627f74320f0cab6870b24b3d1f8d0}{operator()}} (T \&\+\_\+t)
+\item 
+\mbox{\hyperlink{classeo_uniform_init_a7dd6b471736b1f9ffab383e93af66220}{eo\+Uniform\+Init}} (T \+\_\+max=T(1.\+0), \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+\mbox{\hyperlink{classeo_uniform_init_aab973fea134edb58c83b73ff956efb2e}{eo\+Uniform\+Init}} (\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+bound, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+\mbox{\hyperlink{classeo_uniform_init_aa1ed4efd6d3b6cc2a321394beb20c20f}{eo\+Uniform\+Init}} (T \+\_\+min, T \+\_\+max, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+void \mbox{\hyperlink{classeo_uniform_init_ad55627f74320f0cab6870b24b3d1f8d0}{operator()}} (T \&\+\_\+t)
+\item 
+void \mbox{\hyperlink{classeo_uniform_init_a7f2e59204cedc53e3a10fc30421df263}{operator()}} (bool \&\+\_\+b)
+\item 
+void \mbox{\hyperlink{classeo_uniform_init_a7f2e59204cedc53e3a10fc30421df263}{operator()}} (bool \&\+\_\+b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T = double$>$\newline
+class eo\+Uniform\+Init$<$ T $>$}
+
+The class \mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}} can be used in the S\+TL apply function to easily randomize floats and doubles. It can also be used for ints and unsigneds by virtue of the static\+\_\+cast
+
+Also present is a specialization for boolean, that will ignore the minima and maxima that are possibly set and will return an unbiased flip of a coin. For a biased flip, use the eo\+Boolean
+
+either in \mbox{[}0, \+\_\+max) if only 1 value (\+\_\+max) is given (or none, as \+\_\+max defaults to 1.\+0) or in \mbox{[}\+\_\+min,\+\_\+max) if 2 values are given (\+\_\+min, \+\_\+max)
+
+Copied from the eo\+Rnd\+Generators to have objects deriving from \mbox{\hyperlink{classeo_init}{eo\+Init}} As the whole initialization mechanism in \mbox{\hyperlink{class_e_o}{EO}} is based on \mbox{\hyperlink{classeo_init}{eo\+Init}} rather than eo\+Rnd\+Generators, we might as well have these directly written without overhead
+
+for doubles, floats, ints, ... 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_uniform_init_a7dd6b471736b1f9ffab383e93af66220}\label{classeo_uniform_init_a7dd6b471736b1f9ffab383e93af66220}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!eoUniformInit@{eoUniformInit}}
+\index{eoUniformInit@{eoUniformInit}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eoUniformInit()}{eoUniformInit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}} (\begin{DoxyParamCaption}\item[{T}]{\+\_\+max = {\ttfamily T(1.0)},  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with only a max bound \mbox{\Hypertarget{classeo_uniform_init_aab973fea134edb58c83b73ff956efb2e}\label{classeo_uniform_init_aab973fea134edb58c83b73ff956efb2e}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!eoUniformInit@{eoUniformInit}}
+\index{eoUniformInit@{eoUniformInit}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eoUniformInit()}{eoUniformInit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+bound,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with an eo\+Real\+Bound \mbox{\Hypertarget{classeo_uniform_init_aa1ed4efd6d3b6cc2a321394beb20c20f}\label{classeo_uniform_init_aa1ed4efd6d3b6cc2a321394beb20c20f}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!eoUniformInit@{eoUniformInit}}
+\index{eoUniformInit@{eoUniformInit}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eoUniformInit()}{eoUniformInit()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}} (\begin{DoxyParamCaption}\item[{T}]{\+\_\+min,  }\item[{T}]{\+\_\+max,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with explicit min and max \mbox{\Hypertarget{classeo_uniform_init_a7dd6b471736b1f9ffab383e93af66220}\label{classeo_uniform_init_a7dd6b471736b1f9ffab383e93af66220}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!eoUniformInit@{eoUniformInit}}
+\index{eoUniformInit@{eoUniformInit}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eoUniformInit()}{eoUniformInit()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}} (\begin{DoxyParamCaption}\item[{T}]{\+\_\+max = {\ttfamily T(1.0)},  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with only a max bound \mbox{\Hypertarget{classeo_uniform_init_aab973fea134edb58c83b73ff956efb2e}\label{classeo_uniform_init_aab973fea134edb58c83b73ff956efb2e}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!eoUniformInit@{eoUniformInit}}
+\index{eoUniformInit@{eoUniformInit}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eoUniformInit()}{eoUniformInit()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+bound,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with an eo\+Real\+Bound \mbox{\Hypertarget{classeo_uniform_init_aa1ed4efd6d3b6cc2a321394beb20c20f}\label{classeo_uniform_init_aa1ed4efd6d3b6cc2a321394beb20c20f}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!eoUniformInit@{eoUniformInit}}
+\index{eoUniformInit@{eoUniformInit}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eoUniformInit()}{eoUniformInit()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::\mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}} (\begin{DoxyParamCaption}\item[{T}]{\+\_\+min,  }\item[{T}]{\+\_\+max,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with explicit min and max 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_uniform_init_a7f2e59204cedc53e3a10fc30421df263}\label{classeo_uniform_init_a7f2e59204cedc53e3a10fc30421df263}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ bool $>$\+::operator() (\begin{DoxyParamCaption}\item[{bool \&}]{\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Specialization for bool, does an unbiased coin flip \mbox{\Hypertarget{classeo_uniform_init_a7f2e59204cedc53e3a10fc30421df263}\label{classeo_uniform_init_a7f2e59204cedc53e3a10fc30421df263}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ bool $>$\+::operator() (\begin{DoxyParamCaption}\item[{bool \&}]{\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Specialization for bool, does an unbiased coin flip \mbox{\Hypertarget{classeo_uniform_init_ad55627f74320f0cab6870b24b3d1f8d0}\label{classeo_uniform_init_ad55627f74320f0cab6870b24b3d1f8d0}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+void \mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{T \&}]{\+\_\+t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Generates the number, uses a static\+\_\+cast to get the right behaviour for ints and unsigneds \mbox{\Hypertarget{classeo_uniform_init_ad55627f74320f0cab6870b24b3d1f8d0}\label{classeo_uniform_init_ad55627f74320f0cab6870b24b3d1f8d0}} 
+\index{eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUniformInit$<$ T $>$@{eoUniformInit$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+void \mbox{\hyperlink{classeo_uniform_init}{eo\+Uniform\+Init}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{T \&}]{\+\_\+t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Generates the number, uses a static\+\_\+cast to get the right behaviour for ints and unsigneds 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Uniform\+Init.\+h\end{DoxyCompactItemize}

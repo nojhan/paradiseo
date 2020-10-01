@@ -1,0 +1,20 @@
+\hypertarget{t-dispatcher-round_8cpp-example}{}\doxysection{t-\/dispatcher-\/round.\+cpp}
+Repair a candidate solution by sequentially applying several repairers on subparts of the solution (subparts being defined by the corresponding set of indexes).
+
+Only work on E\+OT that implements the \char`\"{}push\+\_\+back( E\+O\+T\+::\+Atom\+Type )\char`\"{} and \char`\"{}operator\mbox{[}$\,$\mbox{]}(uint)\char`\"{} and \char`\"{}at(uint)\char`\"{} methods (i.\+e. random access containers).
+
+Expects {\itshape addresses} of the repairer operators.
+
+Use the second template type if you want a different container to store indexes. You can use any iterable. For example, you may want to use a set if you need to be sure that indexes are use only once\+: \mbox{\hyperlink{classedo_repairer_dispatcher}{edo\+Repairer\+Dispatcher}}$<$E\+OT, std\+::set$<$unsigned int$>$ $>$ rpd; std\+::set$<$unsigned int$>$ idx(1,1); idx.\+insert(2); rpd.\+add( idx, \&repairer );
+
+A diagram trying to visually explain how it works\+: \textbackslash{}ditaa \begin{DoxyVerb}  |
+\end{DoxyVerb}
+ /-\/\textbackslash{} $\vert$ /-\/-\/-\/-\/-\/-\/-\/-\/-\/---\textbackslash{} $\vert$ +---$\vert$---+ Dispatcher $\vert$ $\vert$ $\vert$ v $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---+ $\vert$ $\vert$$\vert$ x\+\_\+0 $\vert$$\vert$ +-\/+-\/+-\/+ $\vert$ +-\/-\/-\/-\/-\/-\/-\/-\/-\/---\textbackslash{} $\vert$ /-\/\textbackslash{} $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$2$\vert$3$\vert$5+$\ast$-\/---$\ast$-\/$\ast$ Repairer A +---$\vert$---+ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+1 $\vert$$\vert$ +-\/+-\/+-\/+ $\vert$ $\vert$ $\vert$ $\vert$ v $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+2 $\vert$$\vert$ $\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+2 $\vert$$\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+3 $\vert$$\vert$ $\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+3 $\vert$$\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+4 $\vert$$\vert$ $\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+5 $\vert$$\vert$ $\vert$ ~\newline
+ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+5 $\vert$$\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ $\vert$ $\vert$ $\vert$ +---$\vert$---+ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+6 $\vert$$\vert$ $\vert$ $\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/---/ $\vert$ -\// $\vert$ $\vert$+-\/-\/---+$\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---+ $\vert$ $\vert$$\vert$ x\+\_\+7 $\vert$$\vert$ $\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ +-\/+-\/+ $\vert$ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+8 $\vert$$\vert$ $\vert$2$\vert$3+$\ast$-\/-\/-\/---+ $\vert$ $\vert$+-\/-\/---+$\vert$ +-\/+-\/+ $\vert$ $\vert$ $\vert$$\vert$ x\+\_\+9 $\vert$$\vert$ $\vert$ $\vert$ $\vert$+-\/-\/---+$\vert$ +-\/+-\/+ $\vert$ +-\/-\/-\/-\/-\/-\/-\/-\/-\/---\textbackslash{} /-\/\textbackslash{} $\vert$ $\vert$ $\vert$ $\vert$ $\vert$1$\vert$5+$\ast$-\/-\/-\/-\/-\/---$\ast$ Repairer B +-\/-\/-\/-\/---+ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ +-\/+-\/+ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ +-\/-\/-\/-\/---+ $\vert$ $\vert$ +---$\vert$---+ $\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/---/ -\// -\// $\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/---/ v
+
+\textbackslash{}endditaa
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

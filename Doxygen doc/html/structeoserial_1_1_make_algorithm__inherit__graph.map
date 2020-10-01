@@ -1,0 +1,4 @@
+<map id="eoserial::MakeAlgorithm&lt; T &gt;" name="eoserial::MakeAlgorithm&lt; T &gt;">
+<area shape="rect" id="node1" title="Push algorithm for primitive variables." alt="" coords="5,80,224,107"/>
+<area shape="rect" id="node2" href="$structeoserial_1_1_push_algorithm.html" title="Functor which explains how to push the value into the eoserial::Array." alt="" coords="7,5,222,32"/>
+</map>

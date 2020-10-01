@@ -1,0 +1,76 @@
+\hypertarget{classedo_binomial}{}\doxysection{edo\+Binomial$<$ E\+OT, T $>$ Class Template Reference}
+\label{classedo_binomial}\index{edoBinomial$<$ EOT, T $>$@{edoBinomial$<$ EOT, T $>$}}
+
+
+{\ttfamily \#include $<$edo\+Binomial.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Binomial$<$ E\+OT, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classedo_binomial__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Binomial$<$ E\+OT, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classedo_binomial__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_binomial_a83ad03aa71cf58180939054950a4a949}\label{classedo_binomial_a83ad03aa71cf58180939054950a4a949}} 
+typedef double {\bfseries Atom\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classedo_binomial_ae49a101d6adaecd1d1fef86dafcdead4}{edo\+Binomial}} (T initial\+\_\+probas)
+\item 
+\mbox{\hyperlink{classedo_binomial_a1d88601a85fb59bd4ea78c49da5edfc4}{edo\+Binomial}} (size\+\_\+t dim, double p=0.\+0)
+\item 
+\mbox{\hyperlink{classedo_binomial_a359e42932f4d7ca966746ee6a9ba604d}{edo\+Binomial}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class T = std\+::vector$<$double$>$$>$\newline
+class edo\+Binomial$<$ E\+O\+T, T $>$}
+
+A binomial distribution that model marginal probabilities across variables. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classedo_binomial_ae49a101d6adaecd1d1fef86dafcdead4}\label{classedo_binomial_ae49a101d6adaecd1d1fef86dafcdead4}} 
+\index{edoBinomial$<$ EOT, T $>$@{edoBinomial$<$ EOT, T $>$}!edoBinomial@{edoBinomial}}
+\index{edoBinomial@{edoBinomial}!edoBinomial$<$ EOT, T $>$@{edoBinomial$<$ EOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{edoBinomial()}{edoBinomial()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class T  = std\+::vector$<$double$>$$>$ \\
+\mbox{\hyperlink{classedo_binomial}{edo\+Binomial}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$\+::\mbox{\hyperlink{classedo_binomial}{edo\+Binomial}} (\begin{DoxyParamCaption}\item[{T}]{initial\+\_\+probas }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This constructor takes an initial vector of probabilities. Use it if you have prior knowledge. \mbox{\Hypertarget{classedo_binomial_a1d88601a85fb59bd4ea78c49da5edfc4}\label{classedo_binomial_a1d88601a85fb59bd4ea78c49da5edfc4}} 
+\index{edoBinomial$<$ EOT, T $>$@{edoBinomial$<$ EOT, T $>$}!edoBinomial@{edoBinomial}}
+\index{edoBinomial@{edoBinomial}!edoBinomial$<$ EOT, T $>$@{edoBinomial$<$ EOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{edoBinomial()}{edoBinomial()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class T  = std\+::vector$<$double$>$$>$ \\
+\mbox{\hyperlink{classedo_binomial}{edo\+Binomial}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$\+::\mbox{\hyperlink{classedo_binomial}{edo\+Binomial}} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{dim,  }\item[{double}]{p = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This constructor makes no assumption about initial probabilities. Every probabilities are set to 0.\+0. \mbox{\Hypertarget{classedo_binomial_a359e42932f4d7ca966746ee6a9ba604d}\label{classedo_binomial_a359e42932f4d7ca966746ee6a9ba604d}} 
+\index{edoBinomial$<$ EOT, T $>$@{edoBinomial$<$ EOT, T $>$}!edoBinomial@{edoBinomial}}
+\index{edoBinomial@{edoBinomial}!edoBinomial$<$ EOT, T $>$@{edoBinomial$<$ EOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{edoBinomial()}{edoBinomial()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class T  = std\+::vector$<$double$>$$>$ \\
+\mbox{\hyperlink{classedo_binomial}{edo\+Binomial}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$\+::\mbox{\hyperlink{classedo_binomial}{edo\+Binomial}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor without any assumption. Will create a vector of size 1 with a probability of 0.\+0. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Binomial.\+h\end{DoxyCompactItemize}

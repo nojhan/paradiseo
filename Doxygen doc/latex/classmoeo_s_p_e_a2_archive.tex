@@ -1,0 +1,186 @@
+\hypertarget{classmoeo_s_p_e_a2_archive}{}\doxysection{moeo\+S\+P\+E\+A2\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_s_p_e_a2_archive}\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+S\+P\+E\+A2\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+S\+P\+E\+A2\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_s_p_e_a2_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+S\+P\+E\+A2\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_s_p_e_a2_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_s_p_e_a2_archive_a5670dfd8965dedc7747c543b94fa833d}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive_a17a5f18f83a825ad3fd971c8a723ca76}{moeo\+S\+P\+E\+A2\+Archive}} (unsigned int \+\_\+max\+Size=100)
+\item 
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive_a9c0ebacd67ef44cb8a358a24ef09c9b5}{moeo\+S\+P\+E\+A2\+Archive}} (\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&\+\_\+dist, unsigned int \+\_\+max\+Size=100)
+\item 
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive_a72c68bcfa4c12e4837867168be14d604}{moeo\+S\+P\+E\+A2\+Archive}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&\+\_\+comparator, unsigned int \+\_\+max\+Size=100)
+\item 
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive_a4f9a65be70f59715999d33bf307f7983}{moeo\+S\+P\+E\+A2\+Archive}} (\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+indi\+Comparator, unsigned int \+\_\+max\+Size=100)
+\item 
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive_a7e8a00e7b7adada87530c9e6a0422ca5}{moeo\+S\+P\+E\+A2\+Archive}} (\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+indi\+Comparator, \mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&\+\_\+dist, \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&\+\_\+comparator, unsigned int \+\_\+max\+Size=100)
+\item 
+bool \mbox{\hyperlink{classmoeo_s_p_e_a2_archive_acd3eecf58a5ed764eef79c213e2e475b}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+bool \mbox{\hyperlink{classmoeo_s_p_e_a2_archive_a0e337daa999d21f66d50259a20a6c265}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+S\+P\+E\+A2\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+This class represents a bounded archive as defined in the S\+P\+E\+A2 algorithm. E. Zitzler, M. Laumanns, and L. Thiele. S\+P\+E\+A2\+: Improving the Strength Pareto Evolutionary Algorithm. Technical Report 103, Computer Engineering and Networks Laboratory (T\+IK), E\+TH Zurich, Zurich, Switzerland, 2001. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_a5670dfd8965dedc7747c543b94fa833d}\label{classmoeo_s_p_e_a2_archive_a5670dfd8965dedc7747c543b94fa833d}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_a17a5f18f83a825ad3fd971c8a723ca76}\label{classmoeo_s_p_e_a2_archive_a17a5f18f83a825ad3fd971c8a723ca76}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!moeoSPEA2Archive@{moeoSPEA2Archive}}
+\index{moeoSPEA2Archive@{moeoSPEA2Archive}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSPEA2Archive()}{moeoSPEA2Archive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or equal to the population size) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_a9c0ebacd67ef44cb8a358a24ef09c9b5}\label{classmoeo_s_p_e_a2_archive_a9c0ebacd67ef44cb8a358a24ef09c9b5}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!moeoSPEA2Archive@{moeoSPEA2Archive}}
+\index{moeoSPEA2Archive@{moeoSPEA2Archive}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSPEA2Archive()}{moeoSPEA2Archive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&}]{\+\_\+dist,  }\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+l Ctor where you can choose your own \mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dist} & the distance used \\
+\hline
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_a72c68bcfa4c12e4837867168be14d604}\label{classmoeo_s_p_e_a2_archive_a72c68bcfa4c12e4837867168be14d604}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!moeoSPEA2Archive@{moeoSPEA2Archive}}
+\index{moeoSPEA2Archive@{moeoSPEA2Archive}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSPEA2Archive()}{moeoSPEA2Archive()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_a4f9a65be70f59715999d33bf307f7983}\label{classmoeo_s_p_e_a2_archive_a4f9a65be70f59715999d33bf307f7983}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!moeoSPEA2Archive@{moeoSPEA2Archive}}
+\index{moeoSPEA2Archive@{moeoSPEA2Archive}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSPEA2Archive()}{moeoSPEA2Archive()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+indi\+Comparator,  }\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indi\+Comparator} & the functor used to compare M\+O\+E\+OT \\
+\hline
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_a7e8a00e7b7adada87530c9e6a0422ca5}\label{classmoeo_s_p_e_a2_archive_a7e8a00e7b7adada87530c9e6a0422ca5}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!moeoSPEA2Archive@{moeoSPEA2Archive}}
+\index{moeoSPEA2Archive@{moeoSPEA2Archive}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSPEA2Archive()}{moeoSPEA2Archive()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+indi\+Comparator,  }\item[{\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&}]{\+\_\+dist,  }\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}, \mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}} and \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indi\+Comparator} & the functor used to compare M\+O\+E\+OT \\
+\hline
+{\em \+\_\+dist} & the distance used \\
+\hline
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_a0e337daa999d21f66d50259a20a6c265}\label{classmoeo_s_p_e_a2_archive_a0e337daa999d21f66d50259a20a6c265}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the given population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true (T\+O\+DO) 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_aad2b1aecc1533e55c1d55b4b9757a952}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_s_p_e_a2_archive_acd3eecf58a5ed764eef79c213e2e475b}\label{classmoeo_s_p_e_a2_archive_acd3eecf58a5ed764eef79c213e2e475b}} 
+\index{moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSPEA2Archive$<$ MOEOT $>$@{moeoSPEA2Archive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_s_p_e_a2_archive}{moeo\+S\+P\+E\+A2\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given individual \+\_\+moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the given individual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true (T\+O\+DO) 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_a9b377903adc289ccc6e4b0ec52ae1245}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo\+S\+P\+E\+A2\+Archive.\+h\end{DoxyCompactItemize}

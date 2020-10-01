@@ -1,0 +1,149 @@
+\hypertarget{classmoeo_objective_vector}{}\doxysection{moeo\+Objective\+Vector$<$ Objective\+Vector\+Traits, Objective\+Vector\+Type $>$ Class Template Reference}
+\label{classmoeo_objective_vector}\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Objective\+Vector.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Objective\+Vector$<$ Objective\+Vector\+Traits, Objective\+Vector\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classmoeo_objective_vector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Objective\+Vector$<$ Objective\+Vector\+Traits, Objective\+Vector\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classmoeo_objective_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} \mbox{\hyperlink{classmoeo_objective_vector_a21ee0475420b613951b96a550e814fbb}{Traits}}
+\item 
+typedef Objective\+Vector\+Type \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_a084e9d2cecbf9ea66e4b68537457109f}{moeo\+Objective\+Vector}} (\mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}} \+\_\+value=\mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}}())
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_ac504cb6a2086a80aaaf41978032c8ce7}{moeo\+Objective\+Vector}} (std\+::vector$<$ \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}} $>$ \&\+\_\+v)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classmoeo_objective_vector_a0593e2d91be697d9b255513236cb207f}{setup}} (unsigned int \+\_\+n\+Objectives, std\+::vector$<$ bool $>$ \&\+\_\+b\+Objectives)
+\item 
+static unsigned int \mbox{\hyperlink{classmoeo_objective_vector_a4c9a17116e0a95b4e3191f299e10fc9d}{n\+Objectives}} ()
+\item 
+static bool \mbox{\hyperlink{classmoeo_objective_vector_adecaf6e3b9a9ac97461d2b271facfc5f}{minimizing}} (unsigned int \+\_\+i)
+\item 
+static bool \mbox{\hyperlink{classmoeo_objective_vector_ab62231b0e1c6bb6bab43d6d058871ce3}{maximizing}} (unsigned int \+\_\+i)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector\+Traits, class Objective\+Vector\+Type$>$\newline
+class moeo\+Objective\+Vector$<$ Objective\+Vector\+Traits, Objective\+Vector\+Type $>$}
+
+Abstract class allowing to represent a solution in the objective space (phenotypic representation). The template argument \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} defaults to \mbox{\hyperlink{classmoeo_objective_vector_traits}{moeo\+Objective\+Vector\+Traits}}, but it can be replaced at will by any other class that implements the static functions defined therein. Some static funtions to access to the traits characteristics are re-\/defined in order not to write a lot of typedef\textquotesingle{}s. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_objective_vector_a21ee0475420b613951b96a550e814fbb}\label{classmoeo_objective_vector_a21ee0475420b613951b96a550e814fbb}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!Traits@{Traits}}
+\index{Traits@{Traits}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{Traits}{Traits}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+typedef \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::\mbox{\hyperlink{classmoeo_objective_vector_a21ee0475420b613951b96a550e814fbb}{Traits}}}
+
+The traits of objective vectors \mbox{\Hypertarget{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}\label{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!Type@{Type}}
+\index{Type@{Type}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+typedef Objective\+Vector\+Type \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::\mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}}}
+
+The type of an objective value 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_objective_vector_a084e9d2cecbf9ea66e4b68537457109f}\label{classmoeo_objective_vector_a084e9d2cecbf9ea66e4b68537457109f}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!moeoObjectiveVector@{moeoObjectiveVector}}
+\index{moeoObjectiveVector@{moeoObjectiveVector}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{moeoObjectiveVector()}{moeoObjectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::\mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}}}]{\+\_\+value = {\ttfamily \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor \mbox{\Hypertarget{classmoeo_objective_vector_ac504cb6a2086a80aaaf41978032c8ce7}\label{classmoeo_objective_vector_ac504cb6a2086a80aaaf41978032c8ce7}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!moeoObjectiveVector@{moeoObjectiveVector}}
+\index{moeoObjectiveVector@{moeoObjectiveVector}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{moeoObjectiveVector()}{moeoObjectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::\mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Type}} $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from a vector of Type 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+v} & the std\+::vector $<$ Type $>$ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_objective_vector_ab62231b0e1c6bb6bab43d6d058871ce3}\label{classmoeo_objective_vector_ab62231b0e1c6bb6bab43d6d058871ce3}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!maximizing@{maximizing}}
+\index{maximizing@{maximizing}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{maximizing()}{maximizing()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+static bool \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::maximizing (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns true if the \+\_\+ith objective have to be maximized 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+i} & the index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_adecaf6e3b9a9ac97461d2b271facfc5f}\label{classmoeo_objective_vector_adecaf6e3b9a9ac97461d2b271facfc5f}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!minimizing@{minimizing}}
+\index{minimizing@{minimizing}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{minimizing()}{minimizing()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+static bool \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::minimizing (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns true if the \+\_\+ith objective have to be minimized 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+i} & the index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_a4c9a17116e0a95b4e3191f299e10fc9d}\label{classmoeo_objective_vector_a4c9a17116e0a95b4e3191f299e10fc9d}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!nObjectives@{nObjectives}}
+\index{nObjectives@{nObjectives}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{nObjectives()}{nObjectives()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+static unsigned int \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::n\+Objectives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns the number of objectives \mbox{\Hypertarget{classmoeo_objective_vector_a0593e2d91be697d9b255513236cb207f}\label{classmoeo_objective_vector_a0593e2d91be697d9b255513236cb207f}} 
+\index{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}!setup@{setup}}
+\index{setup@{setup}!moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$@{moeoObjectiveVector$<$ ObjectiveVectorTraits, ObjectiveVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class Objective\+Vector\+Type $>$ \\
+static void \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, Objective\+Vector\+Type $>$\+::setup (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+n\+Objectives,  }\item[{std\+::vector$<$ bool $>$ \&}]{\+\_\+b\+Objectives }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\hyperlink{struct_parameters}{Parameters}} setting (for the objective vector of any solution) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+n\+Objectives} & the number of objectives \\
+\hline
+{\em \+\_\+b\+Objectives} & the min/max vector (true = min / false = max) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/core/moeo\+Objective\+Vector.\+h\end{DoxyCompactItemize}

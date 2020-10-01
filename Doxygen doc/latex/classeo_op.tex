@@ -1,0 +1,83 @@
+\hypertarget{classeo_op}{}\doxysection{eo\+Op$<$ E\+O\+Type $>$ Class Template Reference}
+\label{classeo_op}\index{eoOp$<$ EOType $>$@{eoOp$<$ EOType $>$}}
+
+
+{\ttfamily \#include $<$eo\+Op.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Op$<$ E\+O\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_op__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_op_a04aa988c26acbc7e41e96cae0bd415cc}\label{classeo_op_a04aa988c26acbc7e41e96cae0bd415cc}} 
+enum {\bfseries Op\+Type} \{ \newline
+{\bfseries unary} = 0, 
+{\bfseries binary} = 1, 
+{\bfseries quadratic} = 2, 
+{\bfseries general} = 3, 
+\newline
+{\bfseries unary} = 0, 
+{\bfseries binary} = 1, 
+{\bfseries quadratic} = 2, 
+{\bfseries general} = 3
+ \}
+\item 
+\mbox{\Hypertarget{classeo_op_a04aa988c26acbc7e41e96cae0bd415cc}\label{classeo_op_a04aa988c26acbc7e41e96cae0bd415cc}} 
+enum {\bfseries Op\+Type} \{ \newline
+{\bfseries unary} = 0, 
+{\bfseries binary} = 1, 
+{\bfseries quadratic} = 2, 
+{\bfseries general} = 3, 
+\newline
+{\bfseries unary} = 0, 
+{\bfseries binary} = 1, 
+{\bfseries quadratic} = 2, 
+{\bfseries general} = 3
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_op_a5b9ae9bfcd36ab9cfbc2940039190bdc}\label{classeo_op_a5b9ae9bfcd36ab9cfbc2940039190bdc}} 
+\mbox{\hyperlink{classeo_op_a5b9ae9bfcd36ab9cfbc2940039190bdc}{eo\+Op}} (Op\+Type \+\_\+type)
+\begin{DoxyCompactList}\small\item\em Ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_op_a66db208d9e3c9f7920aafa198af07e79}\label{classeo_op_a66db208d9e3c9f7920aafa198af07e79}} 
+\mbox{\hyperlink{classeo_op_a66db208d9e3c9f7920aafa198af07e79}{eo\+Op}} (const \mbox{\hyperlink{classeo_op}{eo\+Op}} \&\+\_\+eop)
+\begin{DoxyCompactList}\small\item\em Copy Ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_op_a4d42fee3eb192bc52b184cd098f91850}\label{classeo_op_a4d42fee3eb192bc52b184cd098f91850}} 
+virtual \mbox{\hyperlink{classeo_op_a4d42fee3eb192bc52b184cd098f91850}{$\sim$eo\+Op}} ()
+\begin{DoxyCompactList}\small\item\em Needed virtual destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_op_acf08c054e075116f58b1fcc9f0cd330d}\label{classeo_op_acf08c054e075116f58b1fcc9f0cd330d}} 
+Op\+Type \mbox{\hyperlink{classeo_op_acf08c054e075116f58b1fcc9f0cd330d}{get\+Type}} () const
+\begin{DoxyCompactList}\small\item\em get\+Type\+: number of operands it takes and individuals it produces \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_op_a5b9ae9bfcd36ab9cfbc2940039190bdc}\label{classeo_op_a5b9ae9bfcd36ab9cfbc2940039190bdc}} 
+\mbox{\hyperlink{classeo_op_a5b9ae9bfcd36ab9cfbc2940039190bdc}{eo\+Op}} (Op\+Type \+\_\+type)
+\begin{DoxyCompactList}\small\item\em Ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_op_a66db208d9e3c9f7920aafa198af07e79}\label{classeo_op_a66db208d9e3c9f7920aafa198af07e79}} 
+\mbox{\hyperlink{classeo_op_a66db208d9e3c9f7920aafa198af07e79}{eo\+Op}} (const \mbox{\hyperlink{classeo_op}{eo\+Op}} \&\+\_\+eop)
+\begin{DoxyCompactList}\small\item\em Copy Ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_op_a4d42fee3eb192bc52b184cd098f91850}\label{classeo_op_a4d42fee3eb192bc52b184cd098f91850}} 
+virtual \mbox{\hyperlink{classeo_op_a4d42fee3eb192bc52b184cd098f91850}{$\sim$eo\+Op}} ()
+\begin{DoxyCompactList}\small\item\em Needed virtual destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_op_acf08c054e075116f58b1fcc9f0cd330d}\label{classeo_op_acf08c054e075116f58b1fcc9f0cd330d}} 
+Op\+Type \mbox{\hyperlink{classeo_op_acf08c054e075116f58b1fcc9f0cd330d}{get\+Type}} () const
+\begin{DoxyCompactList}\small\item\em get\+Type\+: number of operands it takes and individuals it produces \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+O\+Type$>$\newline
+class eo\+Op$<$ E\+O\+Type $>$}
+
+Abstract data types for \mbox{\hyperlink{class_e_o}{EO}} operators. Genetic operators act on chromosomes, changing them. The type to use them on is problem specific. If your genotype is a std\+::vector$<$bool$>$, there are operators that work specifically on std\+::vector$<$bool$>$, but you might also find that generic operators working on std\+::vector$<$\+T$>$ are what you need. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Op.\+h\end{DoxyCompactItemize}

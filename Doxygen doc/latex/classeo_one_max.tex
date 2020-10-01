@@ -1,0 +1,159 @@
+\hypertarget{classeo_one_max}{}\doxysection{eo\+One\+Max$<$ FitT $>$ Class Template Reference}
+\label{classeo_one_max}\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+
+
+{\ttfamily \#include $<$eo\+One\+Max.\+h$>$}
+
+
+
+Inheritance diagram for eo\+One\+Max$<$ FitT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classeo_one_max__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+One\+Max$<$ FitT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classeo_one_max__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_one_max_ace2fe561e40a97bfa6f9a4b1b9f1e323}{eo\+One\+Max}} ()
+\item 
+virtual string \mbox{\hyperlink{classeo_one_max_aa87dc6621f1b93e3e24b4b499e8c6ee9}{class\+Name}} () const
+\item 
+void \mbox{\hyperlink{classeo_one_max_a7ad518d0ecbba1c1dc8638f1713d218d}{print\+On}} (ostream \&\+\_\+os) const
+\item 
+void \mbox{\hyperlink{classeo_one_max_aac2b444ad0233687d6ec3e1dcbc367fa}{read\+From}} (istream \&\+\_\+is)
+\item 
+\mbox{\Hypertarget{classeo_one_max_a8991b93c5a671c86f615e5452448eccd}\label{classeo_one_max_a8991b93c5a671c86f615e5452448eccd}} 
+void {\bfseries setB} (vector$<$ bool $>$ \&\+\_\+b)
+\item 
+\mbox{\Hypertarget{classeo_one_max_a5bb5de2911520ed005f3b16b5ed85a36}\label{classeo_one_max_a5bb5de2911520ed005f3b16b5ed85a36}} 
+const vector$<$ bool $>$ \& {\bfseries B} ()
+\item 
+\mbox{\hyperlink{classeo_one_max_ace2fe561e40a97bfa6f9a4b1b9f1e323}{eo\+One\+Max}} ()
+\item 
+virtual string \mbox{\hyperlink{classeo_one_max_aa87dc6621f1b93e3e24b4b499e8c6ee9}{class\+Name}} () const
+\item 
+void \mbox{\hyperlink{classeo_one_max_a7ad518d0ecbba1c1dc8638f1713d218d}{print\+On}} (ostream \&\+\_\+os) const
+\item 
+void \mbox{\hyperlink{classeo_one_max_aac2b444ad0233687d6ec3e1dcbc367fa}{read\+From}} (istream \&\+\_\+is)
+\item 
+\mbox{\Hypertarget{classeo_one_max_a8991b93c5a671c86f615e5452448eccd}\label{classeo_one_max_a8991b93c5a671c86f615e5452448eccd}} 
+void {\bfseries setB} (vector$<$ bool $>$ \&\+\_\+b)
+\item 
+\mbox{\Hypertarget{classeo_one_max_a5bb5de2911520ed005f3b16b5ed85a36}\label{classeo_one_max_a5bb5de2911520ed005f3b16b5ed85a36}} 
+const vector$<$ bool $>$ \& {\bfseries B} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class FitT$>$\newline
+class eo\+One\+Max$<$ Fit\+T $>$}
+
+-\/$\ast$-\/ mode\+: c++; c-\/indent-\/level\+: 4; c++-\/member-\/init-\/indent\+: 8; comment-\/column\+: 35; -\/$\ast$-\/
+
+The above line is usefulin Emacs-\/like editors Always write a comment in this format before class definition if you want the class to be documented by Doxygen
+
+Note that you M\+U\+ST derive your structure from E\+O$<$fit\+T$>$ but you M\+AY use some other already prepared class in the hierarchy like \mbox{\hyperlink{classeo_vector}{eo\+Vector}} for instance, if you handle a vector of something....
+
+If you create a structure from scratch, the only thing you need to provide are a default constructor IO routines print\+On and read\+From
+
+Note that operator$<$$<$ and operator$>$$>$ are defined at \mbox{\hyperlink{class_e_o}{EO}} level using these routines 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_one_max_ace2fe561e40a97bfa6f9a4b1b9f1e323}\label{classeo_one_max_ace2fe561e40a97bfa6f9a4b1b9f1e323}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!eoOneMax@{eoOneMax}}
+\index{eoOneMax@{eoOneMax}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOneMax()}{eoOneMax()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+\mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::\mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: you M\+U\+ST provide a default ctor. though such individuals will generally be processed by some \mbox{\hyperlink{classeo_init}{eo\+Init}} object \mbox{\Hypertarget{classeo_one_max_ace2fe561e40a97bfa6f9a4b1b9f1e323}\label{classeo_one_max_ace2fe561e40a97bfa6f9a4b1b9f1e323}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!eoOneMax@{eoOneMax}}
+\index{eoOneMax@{eoOneMax}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOneMax()}{eoOneMax()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+\mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::\mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: you M\+U\+ST provide a default ctor. though such individuals will generally be processed by some \mbox{\hyperlink{classeo_init}{eo\+Init}} object 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_one_max_aa87dc6621f1b93e3e24b4b499e8c6ee9}\label{classeo_one_max_aa87dc6621f1b93e3e24b4b499e8c6ee9}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!className@{className}}
+\index{className@{className}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+virtual string \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. This should be redefined in each class. Only \char`\"{}leaf\char`\"{} classes can be non-\/virtual.
+
+Maarten\+: removed the default implementation as this proved to be too error-\/prone\+: I found several classes that had a typo in class\+Name (like classname), which would print \mbox{\hyperlink{classeo_object}{eo\+Object}} instead of their own. Having it pure will force the implementor to provide a name. 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_one_max_aa87dc6621f1b93e3e24b4b499e8c6ee9}\label{classeo_one_max_aa87dc6621f1b93e3e24b4b499e8c6ee9}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!className@{className}}
+\index{className@{className}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+virtual string \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. This should be redefined in each class. Only \char`\"{}leaf\char`\"{} classes can be non-\/virtual.
+
+Maarten\+: removed the default implementation as this proved to be too error-\/prone\+: I found several classes that had a typo in class\+Name (like classname), which would print \mbox{\hyperlink{classeo_object}{eo\+Object}} instead of their own. Having it pure will force the implementor to provide a name. 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_one_max_a7ad518d0ecbba1c1dc8638f1713d218d}\label{classeo_one_max_a7ad518d0ecbba1c1dc8638f1713d218d}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+void \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::print\+On (\begin{DoxyParamCaption}\item[{ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+printing... H\+I\+N\+TS in \mbox{\hyperlink{class_e_o}{EO}} we systematically write the sizes of things before the things so read\+From is easier to code (see below)
+
+Reimplemented from \mbox{\hyperlink{class_e_o_a3a022b10acf3d67e61c253caf1d76356}{E\+O$<$ Fit\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_one_max_a7ad518d0ecbba1c1dc8638f1713d218d}\label{classeo_one_max_a7ad518d0ecbba1c1dc8638f1713d218d}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+void \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::print\+On (\begin{DoxyParamCaption}\item[{ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+printing... H\+I\+N\+TS in \mbox{\hyperlink{class_e_o}{EO}} we systematically write the sizes of things before the things so read\+From is easier to code (see below)
+
+Reimplemented from \mbox{\hyperlink{class_e_o_a3a022b10acf3d67e61c253caf1d76356}{E\+O$<$ Fit\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_one_max_aac2b444ad0233687d6ec3e1dcbc367fa}\label{classeo_one_max_aac2b444ad0233687d6ec3e1dcbc367fa}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+void \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::read\+From (\begin{DoxyParamCaption}\item[{istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reading... of course, your read\+From must be able to read what print\+On writes!!! H\+I\+N\+TS remember the \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}} object will come from the default ctor this is why having the sizes written out is useful\mbox{\Hypertarget{classeo_one_max_aac2b444ad0233687d6ec3e1dcbc367fa}\label{classeo_one_max_aac2b444ad0233687d6ec3e1dcbc367fa}} 
+\index{eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoOneMax$<$ FitT $>$@{eoOneMax$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+void \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::read\+From (\begin{DoxyParamCaption}\item[{istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reading... of course, your read\+From must be able to read what print\+On writes!!! H\+I\+N\+TS remember the \mbox{\hyperlink{classeo_one_max}{eo\+One\+Max}} object will come from the default ctor this is why having the sizes written out is useful
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/tutorial/\+Lesson5/eo\+One\+Max.\+h\end{DoxyCompactItemize}

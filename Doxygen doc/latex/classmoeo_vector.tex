@@ -1,0 +1,158 @@
+\hypertarget{classmoeo_vector}{}\doxysection{moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$ Class Template Reference}
+\label{classmoeo_vector}\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Vector.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_vector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef Gene\+Type \mbox{\hyperlink{classmoeo_vector_a2319e69df9adf49e153e6ee74c70355e}{Atom\+Type}}
+\item 
+typedef std\+::vector$<$ Gene\+Type $>$ \mbox{\hyperlink{classmoeo_vector_a226491bbf07c9fe9a9162b325e8ca4c4}{Container\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_vector_a4fbce95d874794a69012e58d6d78ae3e}{moeo\+Vector}} (unsigned int \+\_\+size=0, Gene\+Type \+\_\+value=Gene\+Type())
+\item 
+void \mbox{\hyperlink{classmoeo_vector_a6f145848509452564b461a3523cea6f1}{value}} (const std\+::vector$<$ Gene\+Type $>$ \&\+\_\+v)
+\item 
+bool \mbox{\hyperlink{classmoeo_vector_a914b63b2863bb29ba9e56fa05142afea}{operator$<$}} (const \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$ \&\+\_\+moeo) const
+\item 
+virtual void \mbox{\hyperlink{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}{read\+From}} (std\+::istream \&\+\_\+is)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+O\+Objective\+Vector, class Gene\+Type, class M\+O\+E\+O\+Fitness = double, class M\+O\+E\+O\+Diversity = double$>$\newline
+class moeo\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}
+
+Base class for fixed length chromosomes, just derives from \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} and std\+::vector and redirects the smaller than operator to \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} (objective vector based comparison). Gene\+Type must have the following methods\+: void ctor (needed for the std\+::vector$<$$>$), copy ctor. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_vector_a2319e69df9adf49e153e6ee74c70355e}\label{classmoeo_vector_a2319e69df9adf49e153e6ee74c70355e}} 
+\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}!AtomType@{AtomType}}
+\index{AtomType@{AtomType}!moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{AtomType}{AtomType}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class Gene\+Type , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+typedef Gene\+Type \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::\mbox{\hyperlink{classmoeo_vector_a2319e69df9adf49e153e6ee74c70355e}{Atom\+Type}}}
+
+the atomic type \mbox{\Hypertarget{classmoeo_vector_a226491bbf07c9fe9a9162b325e8ca4c4}\label{classmoeo_vector_a226491bbf07c9fe9a9162b325e8ca4c4}} 
+\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}!ContainerType@{ContainerType}}
+\index{ContainerType@{ContainerType}!moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{ContainerType}{ContainerType}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class Gene\+Type , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+typedef std\+::vector$<$ Gene\+Type $>$ \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::\mbox{\hyperlink{classmoeo_vector_a226491bbf07c9fe9a9162b325e8ca4c4}{Container\+Type}}}
+
+the container type 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_vector_a4fbce95d874794a69012e58d6d78ae3e}\label{classmoeo_vector_a4fbce95d874794a69012e58d6d78ae3e}} 
+\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}!moeoVector@{moeoVector}}
+\index{moeoVector@{moeoVector}!moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{moeoVector()}{moeoVector()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class Gene\+Type , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+\mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::\mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+size = {\ttfamily 0},  }\item[{Gene\+Type}]{\+\_\+value = {\ttfamily GeneType()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & Length of vector (default is 0) \\
+\hline
+{\em \+\_\+value} & Initial value of all elements (default is default value of type Gene\+Type) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_vector_a914b63b2863bb29ba9e56fa05142afea}\label{classmoeo_vector_a914b63b2863bb29ba9e56fa05142afea}} 
+\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class Gene\+Type , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+bool \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$ \&}]{\+\_\+moeo }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+To avoid conflicts between \mbox{\hyperlink{class_m_o_e_o_ad38eef435511ba3a5a310712a608f4ab}{M\+O\+E\+O\+::operator$<$}} and std\+::vector$<$\+Gene\+Type$>$\+::operator$<$ 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}\label{classmoeo_vector_afd95fb4226c67d61285ed12463bbca53}} 
+\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class Gene\+Type , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+virtual void \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Writing object 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & output stream \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_m_o_e_o_a99e3dbc645fd2c23a82e9303683a05c5}{M\+O\+E\+O$<$ M\+O\+E\+O\+Objective\+Vector, double, double $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_bit_vector_ae54c36ce64b849a6846953a25247a861}{moeo\+Bit\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}}.
+
+\mbox{\Hypertarget{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}\label{classmoeo_vector_aa1826d283c0bcf5140f629ba1d9a14bc}} 
+\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class Gene\+Type , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+virtual void \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Reading object 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & input stream \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_m_o_e_o_a1bbd9cb1a7709592bf4bc29dff8c5273}{M\+O\+E\+O$<$ M\+O\+E\+O\+Objective\+Vector, double, double $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_bit_vector_a31cd3f894615d0a27dd116a5c8082521}{moeo\+Bit\+Vector$<$ M\+O\+E\+O\+Objective\+Vector, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$}}.
+
+\mbox{\Hypertarget{classmoeo_vector_a6f145848509452564b461a3523cea6f1}\label{classmoeo_vector_a6f145848509452564b461a3523cea6f1}} 
+\index{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}!value@{value}}
+\index{value@{value}!moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$@{moeoVector$<$ MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+O\+Objective\+Vector , class Gene\+Type , class M\+O\+E\+O\+Fitness  = double, class M\+O\+E\+O\+Diversity  = double$>$ \\
+void \mbox{\hyperlink{classmoeo_vector}{moeo\+Vector}}$<$ M\+O\+E\+O\+Objective\+Vector, Gene\+Type, M\+O\+E\+O\+Fitness, M\+O\+E\+O\+Diversity $>$\+::value (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Gene\+Type $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+We can\textquotesingle{}t have a Ctor from a std\+::vector as it would create ambiguity with the copy Ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+v} & a vector of Gene\+Type \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/core/moeo\+Vector.\+h\end{DoxyCompactItemize}

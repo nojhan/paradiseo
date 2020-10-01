@@ -1,0 +1,49 @@
+\hypertarget{classeo_shifted_bit_mutation}{}\doxysection{eo\+Shifted\+Bit\+Mutation$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_shifted_bit_mutation}\index{eoShiftedBitMutation$<$ EOT $>$@{eoShiftedBitMutation$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Standard\+Bit\+Mutation.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Shifted\+Bit\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_shifted_bit_mutation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Shifted\+Bit\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_shifted_bit_mutation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_shifted_bit_mutation_a89f3116ef8bb7430c5ab6ff31eadc71c}\label{classeo_shifted_bit_mutation_a89f3116ef8bb7430c5ab6ff31eadc71c}} 
+{\bfseries eo\+Shifted\+Bit\+Mutation} (double rate=0.\+5)
+\item 
+\mbox{\Hypertarget{classeo_shifted_bit_mutation_a22cab0ed93379d099df4022a8734e625}\label{classeo_shifted_bit_mutation_a22cab0ed93379d099df4022a8734e625}} 
+virtual bool \mbox{\hyperlink{classeo_shifted_bit_mutation_a22cab0ed93379d099df4022a8734e625}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&chrom)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Shifted\+Bit\+Mutation$<$ E\+O\+T $>$}
+
+Shifted standard bit mutation with mutation rate p\+: choose k from the binomial distribution Bin(n,p). When k= 0, set k= 1. Apply flip\+\_\+k(x).
+
+This is identical to sampling k from the conditional binomial distribution Bin0→1(n,p) which re-\/assigns the probability to sample a 0 to sampling k= 1. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/ga/eo\+Standard\+Bit\+Mutation.\+h\end{DoxyCompactItemize}

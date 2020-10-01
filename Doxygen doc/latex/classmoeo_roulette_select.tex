@@ -1,0 +1,95 @@
+\hypertarget{classmoeo_roulette_select}{}\doxysection{moeo\+Roulette\+Select$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_roulette_select}\index{moeoRouletteSelect$<$ MOEOT $>$@{moeoRouletteSelect$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Roulette\+Select.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Roulette\+Select$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_roulette_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Roulette\+Select$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_roulette_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_roulette_select_a4caa45f4c9d1ad2949cc14d2c21b77ea}{moeo\+Roulette\+Select}} (unsigned int \+\_\+t\+Size=2)
+\item 
+const M\+O\+E\+OT \& \mbox{\hyperlink{classmoeo_roulette_select_a573fe156daf6fdfbae96d2b54a9fc260}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{classmoeo_roulette_select_a754f8e3e2f3395ae948d822264d0853d}{t\+Size}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Roulette\+Select$<$ M\+O\+E\+O\+T $>$}
+
+Selection strategy that selects O\+NE individual by using roulette wheel process. W\+A\+R\+N\+I\+NG This selection only uses fitness values (and not diversity values). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_roulette_select_a4caa45f4c9d1ad2949cc14d2c21b77ea}\label{classmoeo_roulette_select_a4caa45f4c9d1ad2949cc14d2c21b77ea}} 
+\index{moeoRouletteSelect$<$ MOEOT $>$@{moeoRouletteSelect$<$ MOEOT $>$}!moeoRouletteSelect@{moeoRouletteSelect}}
+\index{moeoRouletteSelect@{moeoRouletteSelect}!moeoRouletteSelect$<$ MOEOT $>$@{moeoRouletteSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoRouletteSelect()}{moeoRouletteSelect()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_roulette_select}{moeo\+Roulette\+Select}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_roulette_select}{moeo\+Roulette\+Select}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+t\+Size = {\ttfamily 2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+t\+Size} & the number of individuals in the tournament (default\+: 2) ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_roulette_select_a573fe156daf6fdfbae96d2b54a9fc260}\label{classmoeo_roulette_select_a573fe156daf6fdfbae96d2b54a9fc260}} 
+\index{moeoRouletteSelect$<$ MOEOT $>$@{moeoRouletteSelect$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoRouletteSelect$<$ MOEOT $>$@{moeoRouletteSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+const M\+O\+E\+OT\& \mbox{\hyperlink{classmoeo_roulette_select}{moeo\+Roulette\+Select}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the tournament to the given population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, const M\+O\+E\+O\+T \& $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_roulette_select_a754f8e3e2f3395ae948d822264d0853d}\label{classmoeo_roulette_select_a754f8e3e2f3395ae948d822264d0853d}} 
+\index{moeoRouletteSelect$<$ MOEOT $>$@{moeoRouletteSelect$<$ MOEOT $>$}!tSize@{tSize}}
+\index{tSize@{tSize}!moeoRouletteSelect$<$ MOEOT $>$@{moeoRouletteSelect$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{tSize}{tSize}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo_roulette_select}{moeo\+Roulette\+Select}}$<$ M\+O\+E\+OT $>$\+::t\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+size 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/selection/moeo\+Roulette\+Select.\+h\end{DoxyCompactItemize}

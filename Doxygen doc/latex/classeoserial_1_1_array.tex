@@ -1,0 +1,120 @@
+\hypertarget{classeoserial_1_1_array}{}\doxysection{eoserial\+::Array Class Reference}
+\label{classeoserial_1_1_array}\index{eoserial::Array@{eoserial::Array}}
+
+
+Represents a J\+S\+ON array.  
+
+
+
+
+{\ttfamily \#include $<$Serial\+Array.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::Array\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{classeoserial_1_1_array__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eoserial\+::Array\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{classeoserial_1_1_array__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}}
+\begin{DoxyCompactList}\small\item\em Functor which determines how to retrieve the real value contained in a \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} at a given place. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_algorithm}{Unpack\+Algorithm}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}} for retrieving primitive variables. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_object_algorithm}{Unpack\+Object\+Algorithm}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}} for retrieving \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classeoserial_1_1_array_aec2d10cb3d3299fea0e68faa54c06411}{push\+\_\+back}} (const \mbox{\hyperlink{classeoserial_1_1_printable}{eoserial\+::\+Printable}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Adds the serializable object as a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeoserial_1_1_array_a3474934a438dde16bb959b5cf540c329}\label{classeoserial_1_1_array_a3474934a438dde16bb959b5cf540c329}} 
+void \mbox{\hyperlink{classeoserial_1_1_array_a3474934a438dde16bb959b5cf540c329}{push\+\_\+back}} (\mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} $\ast$json)
+\begin{DoxyCompactList}\small\item\em Proxy for vector\+::push\+\_\+back. \end{DoxyCompactList}\item 
+virtual std\+::ostream \& \mbox{\hyperlink{classeoserial_1_1_array_a41102329ba13ed80372605dbba30c3e6}{print}} (std\+::ostream \&out) const
+\begin{DoxyCompactList}\small\item\em Prints the J\+S\+ON array into the given stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeoserial_1_1_array_ac1cd8d2411649508579a38f5d9a145c6}\label{classeoserial_1_1_array_ac1cd8d2411649508579a38f5d9a145c6}} 
+\mbox{\hyperlink{classeoserial_1_1_array_ac1cd8d2411649508579a38f5d9a145c6}{$\sim$\+Array}} ()
+\begin{DoxyCompactList}\small\item\em Dtor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Container , template$<$ class T $>$ class Unpack\+Algorithm$>$ }\\void \mbox{\hyperlink{classeoserial_1_1_array_a6d8fd2c1684c619e5621d06002a8a577}{deserialize}} (Container \&array)
+\begin{DoxyCompactList}\small\item\em General algorithm for array deserialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeoserial_1_1_array_a0b146fb447dff533aaec0ebc2ca90332}\label{classeoserial_1_1_array_a0b146fb447dff533aaec0ebc2ca90332}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} $\ast$ $>$ {\bfseries Array\+Children}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a J\+S\+ON array. 
+
+Wrapper for an array, so as to be used as a J\+S\+ON object. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_array_a6d8fd2c1684c619e5621d06002a8a577}\label{classeoserial_1_1_array_a6d8fd2c1684c619e5621d06002a8a577}} 
+\index{eoserial::Array@{eoserial::Array}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!eoserial::Array@{eoserial::Array}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily template$<$class Container , template$<$ class T $>$ class Unpack\+Algorithm$>$ \\
+void eoserial\+::\+Array\+::deserialize (\begin{DoxyParamCaption}\item[{Container \&}]{array }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+General algorithm for array deserialization. 
+
+Applies the \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}} to each contained variable in the \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}}. \mbox{\Hypertarget{classeoserial_1_1_array_a41102329ba13ed80372605dbba30c3e6}\label{classeoserial_1_1_array_a41102329ba13ed80372605dbba30c3e6}} 
+\index{eoserial::Array@{eoserial::Array}!print@{print}}
+\index{print@{print}!eoserial::Array@{eoserial::Array}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily std\+::ostream \& eoserial\+::\+Array\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Prints the J\+S\+ON array into the given stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The stream \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_entity_acea8e7e906d326b8824f234646fa4fe4}{eoserial\+::\+Entity}}.
+
+\mbox{\Hypertarget{classeoserial_1_1_array_aec2d10cb3d3299fea0e68faa54c06411}\label{classeoserial_1_1_array_aec2d10cb3d3299fea0e68faa54c06411}} 
+\index{eoserial::Array@{eoserial::Array}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!eoserial::Array@{eoserial::Array}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily void eoserial\+::\+Array\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_printable}{eoserial\+::\+Printable}} $\ast$}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds the serializable object as a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & \mbox{\hyperlink{classeoserial_1_1_object}{Object}} which implemnets Json\+Serializable. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Serial\+Array.\+h\item 
+eo/src/serial/Serial\+Array.\+cpp\end{DoxyCompactItemize}

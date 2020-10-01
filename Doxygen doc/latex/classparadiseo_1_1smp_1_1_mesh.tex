@@ -1,0 +1,61 @@
+\hypertarget{classparadiseo_1_1smp_1_1_mesh}{}\doxysection{paradiseo\+::smp\+::Mesh Class Reference}
+\label{classparadiseo_1_1smp_1_1_mesh}\index{paradiseo::smp::Mesh@{paradiseo::smp::Mesh}}
+
+
+{\ttfamily \#include $<$mesh.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Mesh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_mesh__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Mesh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_mesh__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_mesh_adccb4fefc6e083a1110dcffdb10c635f}{operator()}} (unsigned nb\+Node, std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&matrix) const
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_mesh_a3d06cfb0d85278b5da4831f8250aad39}{set\+Ratio}} (double r)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_mesh}{Mesh}}\+: Inherit from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder}{Topology\+Builder}}. Represents a builder for a mesh topology \+: nodes are organised over a rectangular grid, and each node is connected to \+: 2 nodes (corner), 3 nodes (edge) or 4 nodes (center). The default mesh has a ratio near 1 (square), but the user can change the ratio between 0 and 1 (line to square) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_mesh_adccb4fefc6e083a1110dcffdb10c635f}\label{classparadiseo_1_1smp_1_1_mesh_adccb4fefc6e083a1110dcffdb10c635f}} 
+\index{paradiseo::smp::Mesh@{paradiseo::smp::Mesh}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::Mesh@{paradiseo::smp::Mesh}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Mesh\+::operator() (\begin{DoxyParamCaption}\item[{unsigned}]{nb\+Node,  }\item[{std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&}]{matrix }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Fills the given matrix for a mesh topology with the specified number of nodes. 
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder_a502944a16d352f569d36983b58af02e0}{paradiseo\+::smp\+::\+Topology\+Builder}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_mesh_a3d06cfb0d85278b5da4831f8250aad39}\label{classparadiseo_1_1smp_1_1_mesh_a3d06cfb0d85278b5da4831f8250aad39}} 
+\index{paradiseo::smp::Mesh@{paradiseo::smp::Mesh}!setRatio@{setRatio}}
+\index{setRatio@{setRatio}!paradiseo::smp::Mesh@{paradiseo::smp::Mesh}}
+\doxysubsubsection{\texorpdfstring{setRatio()}{setRatio()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Mesh\+::set\+Ratio (\begin{DoxyParamCaption}\item[{double}]{r }\end{DoxyParamCaption})}
+
+Setter for the variable \+\_\+ratio 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/mesh.\+h\item 
+smp/src/topology/mesh.\+cpp\end{DoxyCompactItemize}

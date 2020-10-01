@@ -1,0 +1,67 @@
+\hypertarget{classeo_weak_elitist_replacement}{}\doxysection{eo\+Weak\+Elitist\+Replacement$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_weak_elitist_replacement}\index{eoWeakElitistReplacement$<$ EOT $>$@{eoWeakElitistReplacement$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Replacement.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Weak\+Elitist\+Replacement$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classeo_weak_elitist_replacement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Weak\+Elitist\+Replacement$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classeo_weak_elitist_replacement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_weak_elitist_replacement_aed58bc61e69881fc4e929ced41da3648}\label{classeo_weak_elitist_replacement_aed58bc61e69881fc4e929ced41da3648}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\item 
+\mbox{\Hypertarget{classeo_weak_elitist_replacement_aed58bc61e69881fc4e929ced41da3648}\label{classeo_weak_elitist_replacement_aed58bc61e69881fc4e929ced41da3648}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_weak_elitist_replacement_ac4de3dcc56bbf57963b3691277f32409}\label{classeo_weak_elitist_replacement_ac4de3dcc56bbf57963b3691277f32409}} 
+{\bfseries eo\+Weak\+Elitist\+Replacement} (\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+replace)
+\item 
+\mbox{\Hypertarget{classeo_weak_elitist_replacement_aafe5a3e1974e6889896e2358240343c6}\label{classeo_weak_elitist_replacement_aafe5a3e1974e6889896e2358240343c6}} 
+void \mbox{\hyperlink{classeo_weak_elitist_replacement_aafe5a3e1974e6889896e2358240343c6}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+offspring)
+\begin{DoxyCompactList}\small\item\em do replacement \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_weak_elitist_replacement_ac4de3dcc56bbf57963b3691277f32409}\label{classeo_weak_elitist_replacement_ac4de3dcc56bbf57963b3691277f32409}} 
+{\bfseries eo\+Weak\+Elitist\+Replacement} (\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+replace)
+\item 
+\mbox{\Hypertarget{classeo_weak_elitist_replacement_aafe5a3e1974e6889896e2358240343c6}\label{classeo_weak_elitist_replacement_aafe5a3e1974e6889896e2358240343c6}} 
+void \mbox{\hyperlink{classeo_weak_elitist_replacement_aafe5a3e1974e6889896e2358240343c6}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+offspring)
+\begin{DoxyCompactList}\small\item\em do replacement \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_weak_elitist_replacement_aaf44d7f223e7c1d74558176182b3e828}\label{classeo_weak_elitist_replacement_aaf44d7f223e7c1d74558176182b3e828}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Weak\+Elitist\+Replacement$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_weak_elitist_replacement}{eo\+Weak\+Elitist\+Replacement}}\+: a wrapper for other replacement procedures. Copies in the new pop the best individual from the old pop, A\+F\+T\+ER normal replacement, if the best of the new pop is worse than the best of the old pop. Removes the worse individual from the new pop. This could be changed by adding a selector there...
+
+to add elitism 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Replacement.\+h\end{DoxyCompactItemize}

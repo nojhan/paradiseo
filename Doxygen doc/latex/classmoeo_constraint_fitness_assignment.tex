@@ -1,0 +1,187 @@
+\hypertarget{classmoeo_constraint_fitness_assignment}{}\doxysection{moeo\+Constraint\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_constraint_fitness_assignment}\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+
+
+Inheritance diagram for moeo\+Constraint\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_constraint_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Constraint\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_constraint_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_ac77f473ab8368d5436d5ea5a44572f6b}{Fitness}}
+\item 
+typedef \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a2fa5359c239639aa6386f2070003d8d0}{Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a5ed9e8b4ffb9f2b769a5edd42e9c457d}{moeo\+Constraint\+Fitness\+Assignment}} (std\+::vector$<$ double $>$ \&\+\_\+weight, \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}} \&\+\_\+constraint, int \+\_\+to\+\_\+optimize, \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&\+\_\+normalizer, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&\+\_\+eval)
+\item 
+\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_acc9eba4b0596248ebea33719258b2f8c}{moeo\+Constraint\+Fitness\+Assignment}} (std\+::vector$<$ double $>$ \&\+\_\+weight, \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}} \&\+\_\+constraint, int \+\_\+to\+\_\+optimize, \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&\+\_\+normalizer)
+\item 
+void \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_add8bc02ad865c376005a885b22ae9ccd}{operator()}} (M\+O\+E\+OT \&\+\_\+mo)
+\item 
+\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_ac77f473ab8368d5436d5ea5a44572f6b}{Fitness}} \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a72fb1325ef15f303346e1f42929d620e}{operator()}} (const typename M\+O\+E\+O\+T\+::\+Objective\+Vector \&\+\_\+mo)
+\item 
+void \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_ae3937f63e64bded5f5c1791739eacd0a}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a6b2df1e561948f2c14020c9827f25ef5}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_ac77f473ab8368d5436d5ea5a44572f6b}\label{classmoeo_constraint_fitness_assignment_ac77f473ab8368d5436d5ea5a44572f6b}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!Fitness@{Fitness}}
+\index{Fitness@{Fitness}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{Fitness}{Fitness}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_ac77f473ab8368d5436d5ea5a44572f6b}{Fitness}}}
+
+the fitness type of the solutions \mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}\label{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}}}
+
+the objective vector type of the solutions \mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_a2fa5359c239639aa6386f2070003d8d0}\label{classmoeo_constraint_fitness_assignment_a2fa5359c239639aa6386f2070003d8d0}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!Type@{Type}}
+\index{Type@{Type}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} \mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a2fa5359c239639aa6386f2070003d8d0}{Type}}}
+
+the type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_a5ed9e8b4ffb9f2b769a5edd42e9c457d}\label{classmoeo_constraint_fitness_assignment_a5ed9e8b4ffb9f2b769a5edd42e9c457d}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!moeoConstraintFitnessAssignment@{moeoConstraintFitnessAssignment}}
+\index{moeoConstraintFitnessAssignment@{moeoConstraintFitnessAssignment}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoConstraintFitnessAssignment()}{moeoConstraintFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weight,  }\item[{\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}} \&}]{\+\_\+constraint,  }\item[{int}]{\+\_\+to\+\_\+optimize,  }\item[{\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+normalizer,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+weight} & vectors contains all weights to apply for not respecting the contraint in each dimension. \\
+\hline
+{\em \+\_\+constraint} & vector containing the constraints, normalizer is applied to it \\
+\hline
+{\em \+\_\+to\+\_\+optimize} & dimension in which we ignore the constraint \\
+\hline
+{\em \+\_\+normalizer} & normalizer to apply to each objective \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_acc9eba4b0596248ebea33719258b2f8c}\label{classmoeo_constraint_fitness_assignment_acc9eba4b0596248ebea33719258b2f8c}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!moeoConstraintFitnessAssignment@{moeoConstraintFitnessAssignment}}
+\index{moeoConstraintFitnessAssignment@{moeoConstraintFitnessAssignment}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoConstraintFitnessAssignment()}{moeoConstraintFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weight,  }\item[{\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}} \&}]{\+\_\+constraint,  }\item[{int}]{\+\_\+to\+\_\+optimize,  }\item[{\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+normalizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with a dummy eval 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+weight} & vectors contains all weights to apply for not respecting the contraint in each dimension. \\
+\hline
+{\em \+\_\+constraint} & vector containing the constraints, normalizer is applied to it \\
+\hline
+{\em \+\_\+to\+\_\+optimize} & dimension in which we ignore the constraint \\
+\hline
+{\em \+\_\+normalizer} & normalizer to apply to each objective \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_a72fb1325ef15f303346e1f42929d620e}\label{classmoeo_constraint_fitness_assignment_a72fb1325ef15f303346e1f42929d620e}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_ac77f473ab8368d5436d5ea5a44572f6b}{Fitness}} \mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const typename M\+O\+E\+O\+T\+::\+Objective\+Vector \&}]{\+\_\+mo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Calculate a fitness from a valid objective\+Vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mo} & a valid objective\+Vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fitness of \+\_\+mo 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_ae3937f63e64bded5f5c1791739eacd0a}\label{classmoeo_constraint_fitness_assignment_ae3937f63e64bded5f5c1791739eacd0a}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop (and in the archive) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization_a2751dcec9bc9bcc905852993b9041002}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_add8bc02ad865c376005a885b22ae9ccd}\label{classmoeo_constraint_fitness_assignment_add8bc02ad865c376005a885b22ae9ccd}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+mo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop (and in the archive) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mo} & the M\+O\+E\+OT \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization_a38a7d53d743fb9cc32a3e0f66695f026}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_constraint_fitness_assignment_a6b2df1e561948f2c14020c9827f25ef5}\label{classmoeo_constraint_fitness_assignment_a6b2df1e561948f2c14020c9827f25ef5}} 
+\index{moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoConstraintFitnessAssignment$<$ MOEOT $>$@{moeoConstraintFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_constraint_fitness_assignment}{moeo\+Constraint\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_constraint_fitness_assignment_a7bbf8017ff3133a1aca492a7d6169a38}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Warning\+: no yet implemented\+: Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Constraint\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

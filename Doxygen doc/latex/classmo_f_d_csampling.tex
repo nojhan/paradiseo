@@ -1,0 +1,90 @@
+\hypertarget{classmo_f_d_csampling}{}\doxysection{mo\+F\+D\+Csampling$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_f_d_csampling}\index{moFDCsampling$<$ Neighbor $>$@{moFDCsampling$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+F\+D\+Csampling.\+h$>$}
+
+
+
+Inheritance diagram for mo\+F\+D\+Csampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmo_f_d_csampling__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+F\+D\+Csampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_f_d_csampling__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_f_d_csampling_af2a2f6964cffb7be582ea17f65fdea8a}\label{classmo_f_d_csampling_af2a2f6964cffb7be582ea17f65fdea8a}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_f_d_csampling_aad9294d0973b7be8c1930a0fd097a5e1}{mo\+F\+D\+Csampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+dist, \mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+ref\+Sol, unsigned int \+\_\+nb\+Sol)
+\item 
+\mbox{\hyperlink{classmo_f_d_csampling_a91fdc4fb17c2ca94d1d532a63a6224ae}{$\sim$mo\+F\+D\+Csampling}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_f_d_csampling_a4715e8e0262b3e6b5148977e40969792}\label{classmo_f_d_csampling_a4715e8e0262b3e6b5148977e40969792}} 
+\mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ {\bfseries fitness\+Stat}
+\item 
+\mbox{\Hypertarget{classmo_f_d_csampling_a6986200a85a3fa8763b3f17d396ac7c1}\label{classmo_f_d_csampling_a6986200a85a3fa8763b3f17d396ac7c1}} 
+\mbox{\hyperlink{classmo_distance_stat}{mo\+Distance\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ {\bfseries dist\+Stat}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+F\+D\+Csampling$<$ Neighbor $>$}
+
+To compute the fitness distance correlation\+: Sample the fitness and the distance from a particular solution of random solution in the search space The fitness values and distances of solutions are collected during the random search Then the correlation between the fitness and the distance can be computed 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_f_d_csampling_aad9294d0973b7be8c1930a0fd097a5e1}\label{classmo_f_d_csampling_aad9294d0973b7be8c1930a0fd097a5e1}} 
+\index{moFDCsampling$<$ Neighbor $>$@{moFDCsampling$<$ Neighbor $>$}!moFDCsampling@{moFDCsampling}}
+\index{moFDCsampling@{moFDCsampling}!moFDCsampling$<$ Neighbor $>$@{moFDCsampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFDCsampling()}{moFDCsampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_f_d_csampling}{mo\+F\+D\+Csampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_f_d_csampling}{mo\+F\+D\+Csampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+dist,  }\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+ref\+Sol,  }\item[{unsigned int}]{\+\_\+nb\+Sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+full\+Eval} & a full evaluation function \\
+\hline
+{\em \+\_\+dist} & the distance function between solution \\
+\hline
+{\em \+\_\+ref\+Sol} & the reference solution to compute the distance (think of global optimum when possible) \\
+\hline
+{\em \+\_\+nb\+Sol} & Number of solutions of the sample \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_f_d_csampling_a91fdc4fb17c2ca94d1d532a63a6224ae}\label{classmo_f_d_csampling_a91fdc4fb17c2ca94d1d532a63a6224ae}} 
+\index{moFDCsampling$<$ Neighbor $>$@{moFDCsampling$<$ Neighbor $>$}!````~moFDCsampling@{$\sim$moFDCsampling}}
+\index{````~moFDCsampling@{$\sim$moFDCsampling}!moFDCsampling$<$ Neighbor $>$@{moFDCsampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moFDCsampling()}{~moFDCsampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_f_d_csampling}{mo\+F\+D\+Csampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_f_d_csampling}{mo\+F\+D\+Csampling}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+F\+D\+Csampling.\+h\end{DoxyCompactItemize}

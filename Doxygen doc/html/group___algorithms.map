@@ -1,0 +1,7 @@
+<map id="Algorithms" name="Algorithms">
+<area shape="rect" id="node1" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="289,7,425,33"/>
+<area shape="rect" id="node2" href="$group___foundry.html" title="Tools for automatic algorithms assembling, selection and search." alt="" coords="320,79,395,105"/>
+<area shape="rect" id="node3" title="In EO, an algorithm is a functor that takes one or several solutions to an optimization problem as ar..." alt="" coords="5,106,99,131"/>
+<area shape="rect" id="node4" href="$group___reset.html" title="Algorithms operating a reset of some sort. (e.g. on the population)." alt="" coords="328,129,387,154"/>
+<area shape="rect" id="node5" href="$group___e_m_n_a.html" title="Estimation of Multivariate Normal Algorithm (EMNA) is a stochastic, derivative&#45;free methods for numer..." alt="" coords="327,178,388,203"/>
+</map>

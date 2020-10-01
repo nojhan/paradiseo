@@ -1,0 +1,42 @@
+\hypertarget{group___operators}{}\doxysection{Evolutionary Operators}
+\label{group___operators}\index{Evolutionary Operators@{Evolutionary Operators}}
+
+
+in \mbox{\hyperlink{class_e_o}{EO}}, an operator is any functors that modifies objects and inherits from an \mbox{\hyperlink{classeo_op}{eo\+Op}}.  
+
+
+Collaboration diagram for Evolutionary Operators\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___operators}
+\end{center}
+\end{figure}
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___evaluation}{Evaluation}}
+\item 
+\mbox{\hyperlink{group___initializators}{Initialization operators}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+in \mbox{\hyperlink{class_e_o}{EO}}, an operator is any functors that modifies objects and inherits from an \mbox{\hyperlink{classeo_op}{eo\+Op}}. 
+
+Typically, a mutation is an operator that modifies an individual, and an algorithm is an operator that modifies a population.
+
+In \mbox{\hyperlink{class_e_o}{EO}}, there is a genetic operator hierarchy, with \mbox{\hyperlink{classeo_op}{eo\+Op}} as father and \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}} (monary or unary operator), \mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}} and \mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}} (binary operators) and \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}} (any number of inputs and outputs, see eo\+Gen\+Op.\+h) as subclasses. Nobody should subclass \mbox{\hyperlink{classeo_op}{eo\+Op}}, you should subclass \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}, \mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}, \mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}} or \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}, those are the ones actually used here.
+
+\#eo\+Op\#s are only printable objects, so if you want to build them from a file, it has to be done in another class, namely factories. Each hierarchy of \#eo\+Op\#s should have its own factory, which know how to build them from a description in a file.
+
+\begin{DoxyAuthor}{Author}
+Ge\+Neura Team, Marten Keijzer and Marc Schoenauer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+9 
+\end{DoxyVersion}
+\begin{DoxySeeAlso}{See also}
+eo\+Gen\+Op.\+h eo\+Op\+Factory 
+\end{DoxySeeAlso}

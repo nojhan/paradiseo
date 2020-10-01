@@ -1,0 +1,6 @@
+<map id="Variation operators" name="Variation operators">
+<area shape="rect" id="node1" title="Variators are operators that modify individuals." alt="" coords="5,223,152,249"/>
+<area shape="rect" id="node2" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="373,31,509,57"/>
+<area shape="rect" id="node3" href="$group___real.html" title="Set of classes related to continuous black&#45;box optimization problems." alt="" coords="383,223,499,249"/>
+<area shape="rect" id="node4" href="$group__bitstring.html" title="Various functions for a bitstring representation." alt="" coords="397,283,485,309"/>
+</map>

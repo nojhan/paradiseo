@@ -1,0 +1,86 @@
+\hypertarget{classmo_full_eval_by_modif}{}\doxysection{mo\+Full\+Eval\+By\+Modif$<$ Backable\+Neighbor $>$ Class Template Reference}
+\label{classmo_full_eval_by_modif}\index{moFullEvalByModif$<$ BackableNeighbor $>$@{moFullEvalByModif$<$ BackableNeighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Full\+Eval\+By\+Modif.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Full\+Eval\+By\+Modif$<$ Backable\+Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_full_eval_by_modif__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Full\+Eval\+By\+Modif$<$ Backable\+Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_full_eval_by_modif__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_full_eval_by_modif_a68389360ef54f97261a2540d19be9397}\label{classmo_full_eval_by_modif_a68389360ef54f97261a2540d19be9397}} 
+typedef \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ Backable\+Neighbor $>$\+::E\+OT {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_full_eval_by_modif_a27d6ad56f1afaab64429b6e41db2479a}\label{classmo_full_eval_by_modif_a27d6ad56f1afaab64429b6e41db2479a}} 
+typedef \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ Backable\+Neighbor $>$\+::Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_full_eval_by_modif_af357d8ab94406efff088633cb2dc6e56}{mo\+Full\+Eval\+By\+Modif}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ E\+OT $>$ \&\+\_\+eval)
+\item 
+void \mbox{\hyperlink{classmo_full_eval_by_modif_a1a6331ec6c338c3965d7925b8be38ee2}{operator()}} (E\+OT \&\+\_\+sol, Backable\+Neighbor \&\+\_\+neighbor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Backable\+Neighbor$>$\newline
+class mo\+Full\+Eval\+By\+Modif$<$ Backable\+Neighbor $>$}
+
+Full evaluation to use with a \mbox{\hyperlink{classmo_backable_neighbor}{mo\+Backable\+Neighbor}} !!!\+W\+A\+R\+N\+I\+N\+G!!! Use only when your solution is composed by a fitness Value and a \char`\"{}genotype\char`\"{} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_full_eval_by_modif_af357d8ab94406efff088633cb2dc6e56}\label{classmo_full_eval_by_modif_af357d8ab94406efff088633cb2dc6e56}} 
+\index{moFullEvalByModif$<$ BackableNeighbor $>$@{moFullEvalByModif$<$ BackableNeighbor $>$}!moFullEvalByModif@{moFullEvalByModif}}
+\index{moFullEvalByModif@{moFullEvalByModif}!moFullEvalByModif$<$ BackableNeighbor $>$@{moFullEvalByModif$<$ BackableNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFullEvalByModif()}{moFullEvalByModif()}}
+{\footnotesize\ttfamily template$<$class Backable\+Neighbor $>$ \\
+\mbox{\hyperlink{classmo_full_eval_by_modif}{mo\+Full\+Eval\+By\+Modif}}$<$ Backable\+Neighbor $>$\+::\mbox{\hyperlink{classmo_full_eval_by_modif}{mo\+Full\+Eval\+By\+Modif}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ E\+OT $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & the full evaluation object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_full_eval_by_modif_a1a6331ec6c338c3965d7925b8be38ee2}\label{classmo_full_eval_by_modif_a1a6331ec6c338c3965d7925b8be38ee2}} 
+\index{moFullEvalByModif$<$ BackableNeighbor $>$@{moFullEvalByModif$<$ BackableNeighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moFullEvalByModif$<$ BackableNeighbor $>$@{moFullEvalByModif$<$ BackableNeighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Backable\+Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_full_eval_by_modif}{mo\+Full\+Eval\+By\+Modif}}$<$ Backable\+Neighbor $>$\+::operator() (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+sol,  }\item[{Backable\+Neighbor \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Full evaluation of the neighbor by copy 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & current solution \\
+\hline
+{\em \+\_\+neighbor} & the neighbor to be evaluated \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/eval/mo\+Full\+Eval\+By\+Modif.\+h\end{DoxyCompactItemize}

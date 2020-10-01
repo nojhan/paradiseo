@@ -1,0 +1,127 @@
+\hypertarget{classmoeo_indexed_archive}{}\doxysection{moeo\+Indexed\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_indexed_archive}\index{moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Indexed\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Indexed\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_indexed_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Indexed\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_indexed_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_indexed_archive_a22ffa9f4b09a38c92521868047791375}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_indexed_archive_a71394a3eb6305a60dac07ee712bc4672}{moeo\+Indexed\+Archive}} (\mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$ \&\+\_\+index)
+\item 
+bool \mbox{\hyperlink{classmoeo_indexed_archive_aad3fdf7a225be47a4c4aa02fb3d57a44}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+bool \mbox{\hyperlink{classmoeo_indexed_archive_aeffad121066d6ee897926ee9da68cb42}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmoeo_indexed_archive_a58e4bf2219e48a227b7fe72df990fd6c}{apply\+\_\+modif}} (typename \mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$\+::modif \&\+\_\+modif)
+\item 
+\mbox{\Hypertarget{classmoeo_indexed_archive_aef9c139869c3bbfb396adf5ddf4d14b2}\label{classmoeo_indexed_archive_aef9c139869c3bbfb396adf5ddf4d14b2}} 
+void {\bfseries apply\+\_\+modif} (std\+::vector$<$ typename \mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$\+::modif $>$ \&\+\_\+modifs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Indexed\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+Archive used for 2 dimension vectors which remove pareto dominated values Use an \mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}} 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_indexed_archive_a22ffa9f4b09a38c92521868047791375}\label{classmoeo_indexed_archive_a22ffa9f4b09a38c92521868047791375}} 
+\index{moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_indexed_archive}{moeo\+Indexed\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_indexed_archive_a71394a3eb6305a60dac07ee712bc4672}\label{classmoeo_indexed_archive_a71394a3eb6305a60dac07ee712bc4672}} 
+\index{moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}!moeoIndexedArchive@{moeoIndexedArchive}}
+\index{moeoIndexedArchive@{moeoIndexedArchive}!moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoIndexedArchive()}{moeoIndexedArchive()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_indexed_archive}{moeo\+Indexed\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_indexed_archive}{moeo\+Indexed\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor. The \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} used to compare solutions is based on Pareto dominance 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_indexed_archive_a58e4bf2219e48a227b7fe72df990fd6c}\label{classmoeo_indexed_archive_a58e4bf2219e48a227b7fe72df990fd6c}} 
+\index{moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}!apply\_modif@{apply\_modif}}
+\index{apply\_modif@{apply\_modif}!moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{apply\_modif()}{apply\_modif()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_indexed_archive}{moeo\+Indexed\+Archive}}$<$ M\+O\+E\+OT $>$\+::apply\+\_\+modif (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classmoeo_archive_index}{moeo\+Archive\+Index}}$<$ M\+O\+E\+OT $>$\+::modif \&}]{\+\_\+modif }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+apply a modification 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+modif} & the modification to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_indexed_archive_aeffad121066d6ee897926ee9da68cb42}\label{classmoeo_indexed_archive_aeffad121066d6ee897926ee9da68cb42}} 
+\index{moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_indexed_archive}{moeo\+Indexed\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the given population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_aad2b1aecc1533e55c1d55b4b9757a952}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_indexed_archive_aad3fdf7a225be47a4c4aa02fb3d57a44}\label{classmoeo_indexed_archive_aad3fdf7a225be47a4c4aa02fb3d57a44}} 
+\index{moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIndexedArchive$<$ MOEOT $>$@{moeoIndexedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_indexed_archive}{moeo\+Indexed\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given individual \+\_\+moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the given individual \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_a9b377903adc289ccc6e4b0ec52ae1245}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/archive/moeo\+Indexed\+Archive.\+h\end{DoxyCompactItemize}

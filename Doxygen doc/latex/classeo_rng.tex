@@ -1,0 +1,738 @@
+\hypertarget{classeo_rng}{}\doxysection{eo\+Rng Class Reference}
+\label{classeo_rng}\index{eoRng@{eoRng}}
+
+
+{\ttfamily \#include $<$utils/eo\+R\+N\+G.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Rng\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classeo_rng__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Rng\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classeo_rng__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_rng_a82e310f0ee31245c274a81c86817dc05}{eo\+Rng}} (uint32\+\_\+t s)
+\item 
+\mbox{\hyperlink{classeo_rng_a768dcaf6b4192a4b1b6bacc0df97fcac}{$\sim$eo\+Rng}} ()
+\item 
+void \mbox{\hyperlink{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}{reseed}} (uint32\+\_\+t s)
+\item 
+void \mbox{\hyperlink{classeo_rng_a26864d2a307bc9ad8d938fd4874b86c0}{old\+Reseed}} (uint32\+\_\+t s)
+\item 
+double \mbox{\hyperlink{classeo_rng_a50dfb052f11ae50326e552cb223d88e4}{uniform}} (double m=1.\+0)
+\item 
+double \mbox{\hyperlink{classeo_rng_a046747b6c871de243a03793f89e8436a}{uniform}} (double min, double max)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classeo_rng_af0829d258c74cdc3a8f6cd72c0287cb4}{random}} (uint32\+\_\+t m)
+\item 
+bool \mbox{\hyperlink{classeo_rng_aa59557f718b17c2dda8a633f9862aff4}{flip}} (double bias=0.\+5)
+\item 
+double \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal}} ()
+\item 
+double \mbox{\hyperlink{classeo_rng_a161ceb3a9a29872af266c933fbacd943}{normal}} (double stdev)
+\item 
+double \mbox{\hyperlink{classeo_rng_a1f4666108fd8d387d163b36ffb7c95cd}{normal}} (double mean, double stdev)
+\item 
+double \mbox{\hyperlink{classeo_rng_a872659f9c26f1ad7c4c0f79ce97b1f0e}{negexp}} (double mean)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}{rand}} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}{rand\+\_\+max}} () const
+\item 
+{\footnotesize template$<$typename T\+Y\+PE $>$ }\\int \mbox{\hyperlink{classeo_rng_a8560ec8a6688eb381e839f0245d9536d}{roulette\+\_\+wheel}} (const std\+::vector$<$ T\+Y\+PE $>$ \&vec, T\+Y\+PE total=0)
+\item 
+{\footnotesize template$<$typename T\+Y\+PE $>$ }\\const T\+Y\+PE \& \mbox{\hyperlink{classeo_rng_a0ffddb9e9c42bae9d892b6e1133f57c8}{choice}} (const std\+::vector$<$ T\+Y\+PE $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T\+Y\+PE $>$ }\\T\+Y\+PE \& \mbox{\hyperlink{classeo_rng_a3b03e09ce2923b3423f3102c8f39a45d}{choice}} (std\+::vector$<$ T\+Y\+PE $>$ \&vec)
+\item 
+void \mbox{\hyperlink{classeo_rng_abeb8197073d1cc788efae39ab48a0552}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\begin{DoxyCompactList}\small\item\em Print R\+NG. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_rng_a4d2f20b79665c5df3f64025de06e6d98}{read\+From}} (std\+::istream \&\+\_\+is)
+\begin{DoxyCompactList}\small\item\em Read R\+NG. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classeo_rng_a8a231cf59746a0bf5899f4215e3624f7}{class\+Name}} () const
+\item 
+\mbox{\hyperlink{classeo_rng_a82e310f0ee31245c274a81c86817dc05}{eo\+Rng}} (uint32\+\_\+t s)
+\item 
+\mbox{\hyperlink{classeo_rng_a768dcaf6b4192a4b1b6bacc0df97fcac}{$\sim$eo\+Rng}} ()
+\item 
+void \mbox{\hyperlink{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}{reseed}} (uint32\+\_\+t s)
+\item 
+double \mbox{\hyperlink{classeo_rng_a50dfb052f11ae50326e552cb223d88e4}{uniform}} (double m=1.\+0)
+\item 
+double \mbox{\hyperlink{classeo_rng_a046747b6c871de243a03793f89e8436a}{uniform}} (double min, double max)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classeo_rng_af0829d258c74cdc3a8f6cd72c0287cb4}{random}} (uint32\+\_\+t m)
+\item 
+bool \mbox{\hyperlink{classeo_rng_aa59557f718b17c2dda8a633f9862aff4}{flip}} (double bias=0.\+5)
+\item 
+unsigned \mbox{\hyperlink{classeo_rng_a6dc868357cab0c0534b2a5faacd7e6fa}{binomial}} (unsigned n, double p)
+\item 
+double \mbox{\hyperlink{classeo_rng_ae9410ddd87fe087801869a53b5b3fe44}{powerlaw}} (double min, double max, double gamma)
+\item 
+double \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal}} ()
+\item 
+double \mbox{\hyperlink{classeo_rng_a161ceb3a9a29872af266c933fbacd943}{normal}} (double stdev)
+\item 
+double \mbox{\hyperlink{classeo_rng_a1f4666108fd8d387d163b36ffb7c95cd}{normal}} (double mean, double stdev)
+\item 
+void \mbox{\hyperlink{classeo_rng_af84baac267e13f47a2ad3814c92bd5f3}{clear\+Cache}} ()
+\begin{DoxyCompactList}\small\item\em Forgets the last cached value of \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal()}}, so as to be able to perform some repeatable calls to \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal()}}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classeo_rng_a872659f9c26f1ad7c4c0f79ce97b1f0e}{negexp}} (double mean)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}{rand}} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}{rand\+\_\+max}} () const
+\item 
+{\footnotesize template$<$typename T\+Y\+PE $>$ }\\int \mbox{\hyperlink{classeo_rng_a8560ec8a6688eb381e839f0245d9536d}{roulette\+\_\+wheel}} (const std\+::vector$<$ T\+Y\+PE $>$ \&vec, T\+Y\+PE total=0)
+\item 
+{\footnotesize template$<$typename T\+Y\+PE $>$ }\\const T\+Y\+PE \& \mbox{\hyperlink{classeo_rng_a0ffddb9e9c42bae9d892b6e1133f57c8}{choice}} (const std\+::vector$<$ T\+Y\+PE $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T\+Y\+PE $>$ }\\T\+Y\+PE \& \mbox{\hyperlink{classeo_rng_a3b03e09ce2923b3423f3102c8f39a45d}{choice}} (std\+::vector$<$ T\+Y\+PE $>$ \&vec)
+\item 
+void \mbox{\hyperlink{classeo_rng_abeb8197073d1cc788efae39ab48a0552}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\begin{DoxyCompactList}\small\item\em Print R\+NG. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_rng_a4d2f20b79665c5df3f64025de06e6d98}{read\+From}} (std\+::istream \&\+\_\+is)
+\begin{DoxyCompactList}\small\item\em Read R\+NG. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classeo_rng_a8a231cf59746a0bf5899f4215e3624f7}{class\+Name}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Random Number Generator
+
+\mbox{\hyperlink{classeo_rng}{eo\+Rng}} is a persistent class that uses the \`{}`Mersenne Twister'\textquotesingle{} random number generator M\+T19937 for generating random numbers. The various member functions implement useful functions for evolutionary algorithms. Included are\+: \mbox{\hyperlink{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}{rand()}}, \mbox{\hyperlink{classeo_rng_af0829d258c74cdc3a8f6cd72c0287cb4}{random()}}, \mbox{\hyperlink{classeo_rng_aa59557f718b17c2dda8a633f9862aff4}{flip()}} and \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal()}}.
+
+\mbox{\hyperlink{class_e_o}{EO}} provides a global random number generator {\ttfamily rng} that is seeded by the current U\+N\+IX time at program start. Moreover some global convenience functions are provided that use the global random number generator\+: {\ttfamily random}, {\ttfamily normal}.
+
+\begin{DoxyWarning}{Warning}
+If you want to repeatedly generated the same sequence of pseudo-\/random numbers, you should always reseed the generator at the beginning of your code.
+\end{DoxyWarning}
+\doxysubsection*{Documentation in original file}
+
+This is the \`{}`Mersenne Twister'\textquotesingle{} random number generator M\+T19937, which generates pseudorandom integers uniformly distributed in 0..(2$^\wedge$32 -\/ 1) starting from any odd seed in 0..(2$^\wedge$32 -\/ 1). This version is a recode by Shawn Cokus (\href{mailto:Cokus@math.washington.edu}{\texttt{ Cokus@math.\+washington.\+edu}}) on March 8, 1998 of a version by Takuji Nishimura (who had suggestions from Topher Cooper and Marc Rieffel in July-\/\+August 1997).
+
+Effectiveness of the recoding (on Goedel2.\+math.\+washington.\+edu, a D\+EC Alpha running O\+S\+F/1) using G\+CC -\/O3 as a compiler\+: before recoding\+: 51.\+6 sec. to generate 300 million random numbers; after recoding\+: 24.\+0 sec. for the same (i.\+e., 46.\+5\% of original time), so speed is now about 12.\+5 million random number generations per second on this machine.
+
+According to the U\+RL \href{http://www.math.keio.ac.jp/~matumoto/emt.html}{\texttt{ http\+://www.\+math.\+keio.\+ac.\+jp/$\sim$matumoto/emt.\+html}} (and paraphrasing a bit in places), the Mersenne Twister is \`{}`designed with consideration of the flaws of various existing generators,'\textquotesingle{} has a period of 2$^\wedge$19937 -\/ 1, gives a sequence that is 623-\/dimensionally equidistributed, and \`{}`has passed many std\+::stringent tests, including the die-\/hard test of G. Marsaglia and the load test of P. Hellekalek and S. Wegenkittl.'\textquotesingle{} It is efficient in memory usage (typically using 2506 to 5012 bytes of static data, depending on data type sizes, and the code is quite short as well). It generates random numbers in batches of 624 at a time, so the caching and pipelining of modern systems is exploited. It is also divide-\/ and mod-\/free.
+
+The code as Shawn received it included the following notice\+: {\ttfamily Copyright (C) 1997 Makoto Matsumoto and Takuji Nishimura. When you use this, send an e-\/mail to \href{mailto:matumoto@math.keio.ac.jp}{\texttt{ matumoto@math.\+keio.\+ac.\+jp}} with an appropriate reference to your work.} It would be nice to Cc\+: \href{mailto:Cokus@math.washington.edu}{\texttt{ Cokus@math.\+washington.\+edu}} and \href{mailto:eodev-main@lists.sourceforge.net}{\texttt{ eodev-\/main@lists.\+sourceforge.\+net}} when you write.
+
+\doxysubsection*{Portability}
+
+Note for people porting \mbox{\hyperlink{class_e_o}{EO}} to other platforms\+: please make sure that the type uint32\+\_\+t in the file eo\+R\+N\+G.\+h is exactly 32 bits long. It may in principle be longer, but not shorter. If it is longer, file compatibility between \mbox{\hyperlink{class_e_o}{EO}} on different platforms may be broken. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_rng_a82e310f0ee31245c274a81c86817dc05}\label{classeo_rng_a82e310f0ee31245c274a81c86817dc05}} 
+\index{eoRng@{eoRng}!eoRng@{eoRng}}
+\index{eoRng@{eoRng}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{eoRng()}{eoRng()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Rng\+::eo\+Rng (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Random seed; if you want another seed, use reseed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}{reseed}} for details on usage of the seeding value. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classeo_rng_a768dcaf6b4192a4b1b6bacc0df97fcac}\label{classeo_rng_a768dcaf6b4192a4b1b6bacc0df97fcac}} 
+\index{eoRng@{eoRng}!````~eoRng@{$\sim$eoRng}}
+\index{````~eoRng@{$\sim$eoRng}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoRng()}{~eoRng()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Rng\+::$\sim$eo\+Rng (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor \mbox{\Hypertarget{classeo_rng_a82e310f0ee31245c274a81c86817dc05}\label{classeo_rng_a82e310f0ee31245c274a81c86817dc05}} 
+\index{eoRng@{eoRng}!eoRng@{eoRng}}
+\index{eoRng@{eoRng}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{eoRng()}{eoRng()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+Rng\+::eo\+Rng (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Random seed; if you want another seed, use reseed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}{reseed}} for details on usage of the seeding value. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classeo_rng_a768dcaf6b4192a4b1b6bacc0df97fcac}\label{classeo_rng_a768dcaf6b4192a4b1b6bacc0df97fcac}} 
+\index{eoRng@{eoRng}!````~eoRng@{$\sim$eoRng}}
+\index{````~eoRng@{$\sim$eoRng}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoRng()}{~eoRng()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+Rng\+::$\sim$eo\+Rng (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_rng_a6dc868357cab0c0534b2a5faacd7e6fa}\label{classeo_rng_a6dc868357cab0c0534b2a5faacd7e6fa}} 
+\index{eoRng@{eoRng}!binomial@{binomial}}
+\index{binomial@{binomial}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{binomial()}{binomial()}}
+{\footnotesize\ttfamily unsigned eo\+Rng\+::binomial (\begin{DoxyParamCaption}\item[{unsigned}]{n,  }\item[{double}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sample in a binomial distribution of size n and probability p.
+
+F\+I\+X\+ME most naive algorithm, one should really use a rejection algorithm. \mbox{\Hypertarget{classeo_rng_a0ffddb9e9c42bae9d892b6e1133f57c8}\label{classeo_rng_a0ffddb9e9c42bae9d892b6e1133f57c8}} 
+\index{eoRng@{eoRng}!choice@{choice}}
+\index{choice@{choice}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{choice()}{choice()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename T\+Y\+PE $>$ \\
+const T\+Y\+PE\& eo\+Rng\+::choice (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T\+Y\+PE $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Randomly select element from vector.
+
+\begin{DoxyReturn}{Returns}
+Uniformly chosen element from the vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a0ffddb9e9c42bae9d892b6e1133f57c8}\label{classeo_rng_a0ffddb9e9c42bae9d892b6e1133f57c8}} 
+\index{eoRng@{eoRng}!choice@{choice}}
+\index{choice@{choice}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{choice()}{choice()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename T\+Y\+PE $>$ \\
+const T\+Y\+PE\& eo\+Rng\+::choice (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T\+Y\+PE $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Randomly select element from vector.
+
+\begin{DoxyReturn}{Returns}
+Uniformly chosen element from the vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a3b03e09ce2923b3423f3102c8f39a45d}\label{classeo_rng_a3b03e09ce2923b3423f3102c8f39a45d}} 
+\index{eoRng@{eoRng}!choice@{choice}}
+\index{choice@{choice}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{choice()}{choice()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename T\+Y\+PE $>$ \\
+T\+Y\+PE\& eo\+Rng\+::choice (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T\+Y\+PE $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Randomly select element from vector.
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+
+Provide a version returning a non-\/const element reference.
+
+\begin{DoxyReturn}{Returns}
+Uniformly chosen element from the vector.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Changing the return value does alter the vector. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classeo_rng_a3b03e09ce2923b3423f3102c8f39a45d}\label{classeo_rng_a3b03e09ce2923b3423f3102c8f39a45d}} 
+\index{eoRng@{eoRng}!choice@{choice}}
+\index{choice@{choice}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{choice()}{choice()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename T\+Y\+PE $>$ \\
+T\+Y\+PE\& eo\+Rng\+::choice (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T\+Y\+PE $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Randomly select element from vector.
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+
+Provide a version returning a non-\/const element reference.
+
+\begin{DoxyReturn}{Returns}
+Uniformly chosen element from the vector.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Changing the return value does alter the vector. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classeo_rng_a8a231cf59746a0bf5899f4215e3624f7}\label{classeo_rng_a8a231cf59746a0bf5899f4215e3624f7}} 
+\index{eoRng@{eoRng}!className@{className}}
+\index{className@{className}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string eo\+Rng\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. This should be redefined in each class. Only \char`\"{}leaf\char`\"{} classes can be non-\/virtual.
+
+Maarten\+: removed the default implementation as this proved to be too error-\/prone\+: I found several classes that had a typo in class\+Name (like classname), which would print \mbox{\hyperlink{classeo_object}{eo\+Object}} instead of their own. Having it pure will force the implementor to provide a name. 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_rng_a8a231cf59746a0bf5899f4215e3624f7}\label{classeo_rng_a8a231cf59746a0bf5899f4215e3624f7}} 
+\index{eoRng@{eoRng}!className@{className}}
+\index{className@{className}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string eo\+Rng\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. This should be redefined in each class. Only \char`\"{}leaf\char`\"{} classes can be non-\/virtual.
+
+Maarten\+: removed the default implementation as this proved to be too error-\/prone\+: I found several classes that had a typo in class\+Name (like classname), which would print \mbox{\hyperlink{classeo_object}{eo\+Object}} instead of their own. Having it pure will force the implementor to provide a name. 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_rng_af84baac267e13f47a2ad3814c92bd5f3}\label{classeo_rng_af84baac267e13f47a2ad3814c92bd5f3}} 
+\index{eoRng@{eoRng}!clearCache@{clearCache}}
+\index{clearCache@{clearCache}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{clearCache()}{clearCache()}}
+{\footnotesize\ttfamily void eo\+Rng\+::clear\+Cache (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Forgets the last cached value of \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal()}}, so as to be able to perform some repeatable calls to \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal()}}. 
+
+As \mbox{\hyperlink{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}{normal()}} stores a cached value for performance purposes, sequences of pseudo random numbers can\textquotesingle{}t be repeated when reseeding, since the cached value can be yield before a number is generated. To avoid that, this method allows one to clean the cache and force to regenerate a new pseudo random number. \mbox{\Hypertarget{classeo_rng_aa59557f718b17c2dda8a633f9862aff4}\label{classeo_rng_aa59557f718b17c2dda8a633f9862aff4}} 
+\index{eoRng@{eoRng}!flip@{flip}}
+\index{flip@{flip}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{flip()}{flip()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool eo\+Rng\+::flip (\begin{DoxyParamCaption}\item[{double}]{bias = {\ttfamily 0.5} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Biased coin toss
+
+This tosses a biased coin such that flip(x/100.\+0) will true x\% of the time
+
+
+\begin{DoxyParams}{Parameters}
+{\em bias} & The coins\textquotesingle{} bias (the {\itshape x} above) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the biased coin toss 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_aa59557f718b17c2dda8a633f9862aff4}\label{classeo_rng_aa59557f718b17c2dda8a633f9862aff4}} 
+\index{eoRng@{eoRng}!flip@{flip}}
+\index{flip@{flip}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{flip()}{flip()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool eo\+Rng\+::flip (\begin{DoxyParamCaption}\item[{double}]{bias = {\ttfamily 0.5} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Biased coin toss
+
+This tosses a biased coin such that flip(x/100.\+0) will true x\% of the time
+
+
+\begin{DoxyParams}{Parameters}
+{\em bias} & The coins\textquotesingle{} bias (the {\itshape x} above) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the biased coin toss 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a872659f9c26f1ad7c4c0f79ce97b1f0e}\label{classeo_rng_a872659f9c26f1ad7c4c0f79ce97b1f0e}} 
+\index{eoRng@{eoRng}!negexp@{negexp}}
+\index{negexp@{negexp}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{negexp()}{negexp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double eo\+Rng\+::negexp (\begin{DoxyParamCaption}\item[{double}]{mean }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random numbers using a negative exponential distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em mean} & \mbox{\hyperlink{class_mean}{Mean}} value of distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random number from a negative exponential distribution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a872659f9c26f1ad7c4c0f79ce97b1f0e}\label{classeo_rng_a872659f9c26f1ad7c4c0f79ce97b1f0e}} 
+\index{eoRng@{eoRng}!negexp@{negexp}}
+\index{negexp@{negexp}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{negexp()}{negexp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double eo\+Rng\+::negexp (\begin{DoxyParamCaption}\item[{double}]{mean }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random numbers using a negative exponential distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em mean} & \mbox{\hyperlink{class_mean}{Mean}} value of distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random number from a negative exponential distribution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}\label{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}} 
+\index{eoRng@{eoRng}!normal@{normal}}
+\index{normal@{normal}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily double eo\+Rng\+::normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gaussian deviate
+
+Zero mean Gaussian deviate with standard deviation 1. Note\+: Use the Marsaglia polar method.
+
+\begin{DoxyReturn}{Returns}
+Random Gaussian deviate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}\label{classeo_rng_ab14c452827d9f8ff24fce8e6f4498316}} 
+\index{eoRng@{eoRng}!normal@{normal}}
+\index{normal@{normal}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily double eo\+Rng\+::normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gaussian deviate
+
+Zero mean Gaussian deviate with standard deviation 1. Note\+: Use the Marsaglia polar method.
+
+\begin{DoxyReturn}{Returns}
+Random Gaussian deviate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a1f4666108fd8d387d163b36ffb7c95cd}\label{classeo_rng_a1f4666108fd8d387d163b36ffb7c95cd}} 
+\index{eoRng@{eoRng}!normal@{normal}}
+\index{normal@{normal}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily double eo\+Rng\+::normal (\begin{DoxyParamCaption}\item[{double}]{mean,  }\item[{double}]{stdev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gaussian deviate
+
+Gaussian deviate with specified mean and standard deviation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mean} & \mbox{\hyperlink{class_mean}{Mean}} for Gaussian distribution \\
+\hline
+{\em stdev} & Standard deviation for Gaussian distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random Gaussian deviate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a1f4666108fd8d387d163b36ffb7c95cd}\label{classeo_rng_a1f4666108fd8d387d163b36ffb7c95cd}} 
+\index{eoRng@{eoRng}!normal@{normal}}
+\index{normal@{normal}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily double eo\+Rng\+::normal (\begin{DoxyParamCaption}\item[{double}]{mean,  }\item[{double}]{stdev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gaussian deviate
+
+Gaussian deviate with specified mean and standard deviation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mean} & \mbox{\hyperlink{class_mean}{Mean}} for Gaussian distribution \\
+\hline
+{\em stdev} & Standard deviation for Gaussian distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random Gaussian deviate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a161ceb3a9a29872af266c933fbacd943}\label{classeo_rng_a161ceb3a9a29872af266c933fbacd943}} 
+\index{eoRng@{eoRng}!normal@{normal}}
+\index{normal@{normal}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily double eo\+Rng\+::normal (\begin{DoxyParamCaption}\item[{double}]{stdev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gaussian deviate
+
+Gaussian deviate with zero mean and specified standard deviation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em stdev} & Standard deviation for Gaussian distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random Gaussian deviate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a161ceb3a9a29872af266c933fbacd943}\label{classeo_rng_a161ceb3a9a29872af266c933fbacd943}} 
+\index{eoRng@{eoRng}!normal@{normal}}
+\index{normal@{normal}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily double eo\+Rng\+::normal (\begin{DoxyParamCaption}\item[{double}]{stdev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gaussian deviate
+
+Gaussian deviate with zero mean and specified standard deviation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em stdev} & Standard deviation for Gaussian distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random Gaussian deviate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a26864d2a307bc9ad8d938fd4874b86c0}\label{classeo_rng_a26864d2a307bc9ad8d938fd4874b86c0}} 
+\index{eoRng@{eoRng}!oldReseed@{oldReseed}}
+\index{oldReseed@{oldReseed}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{oldReseed()}{oldReseed()}}
+{\footnotesize\ttfamily void eo\+Rng\+::old\+Reseed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Re-\/initializes the Random Number Generator
+
+This is the traditional seeding procedure. This version is deprecated and only provided for compatibility with old code. In new projects you should use reseed.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}{reseed}} for details on usage of the seeding value.
+\end{DoxySeeAlso}
+\begin{DoxyVersion}{Version}
+old version (deprecated) 
+\end{DoxyVersion}
+\mbox{\Hypertarget{classeo_rng_ae9410ddd87fe087801869a53b5b3fe44}\label{classeo_rng_ae9410ddd87fe087801869a53b5b3fe44}} 
+\index{eoRng@{eoRng}!powerlaw@{powerlaw}}
+\index{powerlaw@{powerlaw}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{powerlaw()}{powerlaw()}}
+{\footnotesize\ttfamily double eo\+Rng\+::powerlaw (\begin{DoxyParamCaption}\item[{double}]{min,  }\item[{double}]{max,  }\item[{double}]{gamma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sample in a power law distribution \mbox{\Hypertarget{classeo_rng_abeb8197073d1cc788efae39ab48a0552}\label{classeo_rng_abeb8197073d1cc788efae39ab48a0552}} 
+\index{eoRng@{eoRng}!printOn@{printOn}}
+\index{printOn@{printOn}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Rng\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Print R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & Stream to print R\+NG on \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_rng_abeb8197073d1cc788efae39ab48a0552}\label{classeo_rng_abeb8197073d1cc788efae39ab48a0552}} 
+\index{eoRng@{eoRng}!printOn@{printOn}}
+\index{printOn@{printOn}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Rng\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Print R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & Stream to print R\+NG on \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}\label{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}} 
+\index{eoRng@{eoRng}!rand@{rand}}
+\index{rand@{rand}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{rand()}{rand()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint32\+\_\+t eo\+Rng\+::rand (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}{rand()}} returns a random number in the range \mbox{[}0, rand\+\_\+max) \mbox{\Hypertarget{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}\label{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}} 
+\index{eoRng@{eoRng}!rand@{rand}}
+\index{rand@{rand}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{rand()}{rand()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily uint32\+\_\+t eo\+Rng\+::rand (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}{rand()}} returns a random number in the range \mbox{[}0, rand\+\_\+max) \mbox{\Hypertarget{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}\label{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}} 
+\index{eoRng@{eoRng}!rand\_max@{rand\_max}}
+\index{rand\_max@{rand\_max}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{rand\_max()}{rand\_max()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint32\+\_\+t eo\+Rng\+::rand\+\_\+max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}{rand\+\_\+max()}} the maximum returned by \mbox{\hyperlink{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}{rand()}} \mbox{\Hypertarget{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}\label{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}} 
+\index{eoRng@{eoRng}!rand\_max@{rand\_max}}
+\index{rand\_max@{rand\_max}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{rand\_max()}{rand\_max()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily uint32\+\_\+t eo\+Rng\+::rand\+\_\+max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{classeo_rng_a21a8a6535bce4261572a8d8eaa49e1f8}{rand\+\_\+max()}} the maximum returned by \mbox{\hyperlink{classeo_rng_a42987d1edbb4803faa85c58e589b9e0e}{rand()}} \mbox{\Hypertarget{classeo_rng_af0829d258c74cdc3a8f6cd72c0287cb4}\label{classeo_rng_af0829d258c74cdc3a8f6cd72c0287cb4}} 
+\index{eoRng@{eoRng}!random@{random}}
+\index{random@{random}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{random()}{random()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint32\+\_\+t eo\+Rng\+::random (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random integer number from unifom distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Define interval for random number to \mbox{[}0, m) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random integer in the range \mbox{[}0, m) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_af0829d258c74cdc3a8f6cd72c0287cb4}\label{classeo_rng_af0829d258c74cdc3a8f6cd72c0287cb4}} 
+\index{eoRng@{eoRng}!random@{random}}
+\index{random@{random}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{random()}{random()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily uint32\+\_\+t eo\+Rng\+::random (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random integer number from unifom distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Define interval for random number to \mbox{[}0, m) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random integer in the range \mbox{[}0, m) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a4d2f20b79665c5df3f64025de06e6d98}\label{classeo_rng_a4d2f20b79665c5df3f64025de06e6d98}} 
+\index{eoRng@{eoRng}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Rng\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Read R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & Stream to read R\+NG from \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_rng_a4d2f20b79665c5df3f64025de06e6d98}\label{classeo_rng_a4d2f20b79665c5df3f64025de06e6d98}} 
+\index{eoRng@{eoRng}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Rng\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Read R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & Stream to read R\+NG from \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}\label{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}} 
+\index{eoRng@{eoRng}!reseed@{reseed}}
+\index{reseed@{reseed}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{reseed()}{reseed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Rng\+::reseed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Re-\/initializes the Random Number Generator.
+
+W\+A\+R\+N\+I\+NG\+: Jeroen Eggermont \href{mailto:jeggermo@liacs.nl}{\texttt{ jeggermo@liacs.\+nl}} noticed that initialize does not differentiate between odd and even numbers, therefore the argument to reseed is now doubled before being passed on.
+
+Manually divide the seed by 2 if you want to re-\/run old runs
+
+\begin{DoxyVersion}{Version}
+MS. 5 Oct. 2001 
+\end{DoxyVersion}
+\mbox{\Hypertarget{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}\label{classeo_rng_ab5919255f9fd6c10934f77b61eedfe61}} 
+\index{eoRng@{eoRng}!reseed@{reseed}}
+\index{reseed@{reseed}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{reseed()}{reseed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Rng\+::reseed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Re-\/initializes the Random Number Generator.
+
+W\+A\+R\+N\+I\+NG\+: Jeroen Eggermont \href{mailto:jeggermo@liacs.nl}{\texttt{ jeggermo@liacs.\+nl}} noticed that initialize does not differentiate between odd and even numbers, therefore the argument to reseed is now doubled before being passed on.
+
+Manually divide the seed by 2 if you want to re-\/run old runs
+
+\begin{DoxyVersion}{Version}
+MS. 5 Oct. 2001 
+\end{DoxyVersion}
+\mbox{\Hypertarget{classeo_rng_a8560ec8a6688eb381e839f0245d9536d}\label{classeo_rng_a8560ec8a6688eb381e839f0245d9536d}} 
+\index{eoRng@{eoRng}!roulette\_wheel@{roulette\_wheel}}
+\index{roulette\_wheel@{roulette\_wheel}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{roulette\_wheel()}{roulette\_wheel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T\+Y\+PE $>$ \\
+int eo\+Rng\+::roulette\+\_\+wheel (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T\+Y\+PE $>$ \&}]{vec,  }\item[{T\+Y\+PE}]{total = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Roulette wheel selection
+
+roulette\+\_\+wheel(vec, total = 0) does a roulette wheel selection on the input std\+::vector vec. If the total is not supplied, it is calculated. It returns an integer denoting the selected argument. \mbox{\Hypertarget{classeo_rng_a8560ec8a6688eb381e839f0245d9536d}\label{classeo_rng_a8560ec8a6688eb381e839f0245d9536d}} 
+\index{eoRng@{eoRng}!roulette\_wheel@{roulette\_wheel}}
+\index{roulette\_wheel@{roulette\_wheel}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{roulette\_wheel()}{roulette\_wheel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T\+Y\+PE $>$ \\
+int eo\+Rng\+::roulette\+\_\+wheel (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T\+Y\+PE $>$ \&}]{vec,  }\item[{T\+Y\+PE}]{total = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Roulette wheel selection
+
+roulette\+\_\+wheel(vec, total = 0) does a roulette wheel selection on the input std\+::vector vec. If the total is not supplied, it is calculated. It returns an integer denoting the selected argument. \mbox{\Hypertarget{classeo_rng_a50dfb052f11ae50326e552cb223d88e4}\label{classeo_rng_a50dfb052f11ae50326e552cb223d88e4}} 
+\index{eoRng@{eoRng}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily double eo\+Rng\+::uniform (\begin{DoxyParamCaption}\item[{double}]{m = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random number from unifom distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Define interval for random number to \mbox{[}0, m) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random number in the range \mbox{[}0, m) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a50dfb052f11ae50326e552cb223d88e4}\label{classeo_rng_a50dfb052f11ae50326e552cb223d88e4}} 
+\index{eoRng@{eoRng}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily double eo\+Rng\+::uniform (\begin{DoxyParamCaption}\item[{double}]{m = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random number from unifom distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Define interval for random number to \mbox{[}0, m) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random number in the range \mbox{[}0, m) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a046747b6c871de243a03793f89e8436a}\label{classeo_rng_a046747b6c871de243a03793f89e8436a}} 
+\index{eoRng@{eoRng}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily double eo\+Rng\+::uniform (\begin{DoxyParamCaption}\item[{double}]{min,  }\item[{double}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random number from unifom distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & Define minimum for interval in the range \mbox{[}min, max) \\
+\hline
+{\em max} & Define maximum for interval in the range \mbox{[}min, max) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random number in the range \mbox{[}min, max) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_rng_a046747b6c871de243a03793f89e8436a}\label{classeo_rng_a046747b6c871de243a03793f89e8436a}} 
+\index{eoRng@{eoRng}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRng@{eoRng}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily double eo\+Rng\+::uniform (\begin{DoxyParamCaption}\item[{double}]{min,  }\item[{double}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Random number from unifom distribution
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & Define minimum for interval in the range \mbox{[}min, max) \\
+\hline
+{\em max} & Define maximum for interval in the range \mbox{[}min, max) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random number in the range \mbox{[}min, max) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+R\+N\+G.\+h\item 
+deprecated/eo/src/pyeo/random\+\_\+numbers.\+cpp\item 
+deprecated/eo/src/utils/eo\+R\+N\+G.\+cpp\end{DoxyCompactItemize}

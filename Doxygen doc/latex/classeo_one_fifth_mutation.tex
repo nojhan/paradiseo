@@ -1,0 +1,196 @@
+\hypertarget{classeo_one_fifth_mutation}{}\doxysection{eo\+One\+Fifth\+Mutation$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_one_fifth_mutation}\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Normal\+Mutation.\+h$>$}
+
+
+
+Inheritance diagram for eo\+One\+Fifth\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_one_fifth_mutation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+One\+Fifth\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_one_fifth_mutation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a43acc559bc5bccfd718fa30a536c0464}\label{classeo_one_fifth_mutation_a43acc559bc5bccfd718fa30a536c0464}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\item 
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a43acc559bc5bccfd718fa30a536c0464}\label{classeo_one_fifth_mutation_a43acc559bc5bccfd718fa30a536c0464}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_one_fifth_mutation_a31ab961810a6a9bfab893f212e71878a}{eo\+One\+Fifth\+Mutation}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+eval, double \&\+\_\+sigma\+Init, unsigned \+\_\+window\+Size=10, double \+\_\+update\+Factor=0.\+83, double \+\_\+threshold=0.\+2)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_one_fifth_mutation_a4a2eb0b65b139fd9e16afb4defa1a403}{class\+Name}} () const
+\item 
+bool \mbox{\hyperlink{classeo_one_fifth_mutation_a42566feb8d16f1a5d884cb80f9b48b12}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+void \mbox{\hyperlink{classeo_one_fifth_mutation_aabf50f4bfef012bb77658cafe580e8ca}{update}} ()
+\item 
+\mbox{\hyperlink{classeo_one_fifth_mutation_a31ab961810a6a9bfab893f212e71878a}{eo\+One\+Fifth\+Mutation}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+eval, double \&\+\_\+sigma\+Init, unsigned \+\_\+window\+Size=10, double \+\_\+update\+Factor=0.\+83, double \+\_\+threshold=0.\+2)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_one_fifth_mutation_a4a2eb0b65b139fd9e16afb4defa1a403}{class\+Name}} () const
+\item 
+bool \mbox{\hyperlink{classeo_one_fifth_mutation_a42566feb8d16f1a5d884cb80f9b48b12}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+void \mbox{\hyperlink{classeo_one_fifth_mutation_aabf50f4bfef012bb77658cafe580e8ca}{update}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+One\+Fifth\+Mutation$<$ E\+O\+T $>$}
+
+the dynamic version\+: just say it is updatable -\/ and write the \mbox{\hyperlink{classeo_one_fifth_mutation_aabf50f4bfef012bb77658cafe580e8ca}{update()}} method! here the 1 fifth rule\+: count the proportion of successful mutations, and increase sigma if more than threshold (1/5 !) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a31ab961810a6a9bfab893f212e71878a}\label{classeo_one_fifth_mutation_a31ab961810a6a9bfab893f212e71878a}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!eoOneFifthMutation@{eoOneFifthMutation}}
+\index{eoOneFifthMutation@{eoOneFifthMutation}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOneFifthMutation()}{eoOneFifthMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+eval,  }\item[{double \&}]{\+\_\+sigma\+Init,  }\item[{unsigned}]{\+\_\+window\+Size = {\ttfamily 10},  }\item[{double}]{\+\_\+update\+Factor = {\ttfamily 0.83},  }\item[{double}]{\+\_\+threshold = {\ttfamily 0.2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+(Default) Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & the evaluation function, needed to recompute the fitmess \\
+\hline
+{\em \+\_\+sigma\+Init} & the initial value for uniform mutation \\
+\hline
+{\em \+\_\+window\+Size} & the size of the window for statistics \\
+\hline
+{\em \+\_\+update\+Factor} & multiplicative update factor for sigma \\
+\hline
+{\em \+\_\+threshold} & the threshold (the 1/5 -\/ 0.\+2) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a31ab961810a6a9bfab893f212e71878a}\label{classeo_one_fifth_mutation_a31ab961810a6a9bfab893f212e71878a}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!eoOneFifthMutation@{eoOneFifthMutation}}
+\index{eoOneFifthMutation@{eoOneFifthMutation}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOneFifthMutation()}{eoOneFifthMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+eval,  }\item[{double \&}]{\+\_\+sigma\+Init,  }\item[{unsigned}]{\+\_\+window\+Size = {\ttfamily 10},  }\item[{double}]{\+\_\+update\+Factor = {\ttfamily 0.83},  }\item[{double}]{\+\_\+threshold = {\ttfamily 0.2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+(Default) Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & the evaluation function, needed to recompute the fitmess \\
+\hline
+{\em \+\_\+sigma\+Init} & the initial value for uniform mutation \\
+\hline
+{\em \+\_\+window\+Size} & the size of the window for statistics \\
+\hline
+{\em \+\_\+update\+Factor} & multiplicative update factor for sigma \\
+\hline
+{\em \+\_\+threshold} & the threshold (the 1/5 -\/ 0.\+2) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a4a2eb0b65b139fd9e16afb4defa1a403}\label{classeo_one_fifth_mutation_a4a2eb0b65b139fd9e16afb4defa1a403}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The class name 
+
+Reimplemented from \mbox{\hyperlink{classeo_normal_mutation_aa62c50771eb3b0d179ed2763f4ecc732}{eo\+Normal\+Mutation$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a4a2eb0b65b139fd9e16afb4defa1a403}\label{classeo_one_fifth_mutation_a4a2eb0b65b139fd9e16afb4defa1a403}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The class name 
+
+Reimplemented from \mbox{\hyperlink{classeo_normal_mutation_aa62c50771eb3b0d179ed2763f4ecc732}{eo\+Normal\+Mutation$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a42566feb8d16f1a5d884cb80f9b48b12}\label{classeo_one_fifth_mutation_a42566feb8d16f1a5d884cb80f9b48b12}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Do it! calls the standard mutation, then checks for success and updates stats
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eo} & The chromosome undergoing the mutation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_normal_mutation_a63e4863e5ad3a37d442fdf27c30310e0}{eo\+Normal\+Mutation$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_one_fifth_mutation_a42566feb8d16f1a5d884cb80f9b48b12}\label{classeo_one_fifth_mutation_a42566feb8d16f1a5d884cb80f9b48b12}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Do it! calls the standard mutation, then checks for success and updates stats
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eo} & The chromosome undergoing the mutation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_normal_mutation_a63e4863e5ad3a37d442fdf27c30310e0}{eo\+Normal\+Mutation$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_one_fifth_mutation_aabf50f4bfef012bb77658cafe580e8ca}\label{classeo_one_fifth_mutation_aabf50f4bfef012bb77658cafe580e8ca}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!update@{update}}
+\index{update@{update}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+the method that will be called every generation if the object is added to the checkpoint 
+
+Implements \mbox{\hyperlink{classeo_updatable}{eo\+Updatable}}.
+
+\mbox{\Hypertarget{classeo_one_fifth_mutation_aabf50f4bfef012bb77658cafe580e8ca}\label{classeo_one_fifth_mutation_aabf50f4bfef012bb77658cafe580e8ca}} 
+\index{eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}!update@{update}}
+\index{update@{update}!eoOneFifthMutation$<$ EOT $>$@{eoOneFifthMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_one_fifth_mutation}{eo\+One\+Fifth\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+the method that will be called every generation if the object is added to the checkpoint 
+
+Implements \mbox{\hyperlink{classeo_updatable}{eo\+Updatable}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/es/eo\+Normal\+Mutation.\+h\end{DoxyCompactItemize}

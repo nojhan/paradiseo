@@ -1,0 +1,197 @@
+\hypertarget{classeo_algo_foundry_fast_g_a}{}\doxysection{eo\+Algo\+Foundry\+Fast\+GA$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_algo_foundry_fast_g_a}\index{eoAlgoFoundryFastGA$<$ EOT $>$@{eoAlgoFoundryFastGA$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Algo\+Foundry\+Fast\+G\+A.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Algo\+Foundry\+Fast\+GA$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{classeo_algo_foundry_fast_g_a__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Algo\+Foundry\+Fast\+GA$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_algo_foundry_fast_g_a__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_algo_foundry_fast_g_a_affff30eac124bc033a073bd1c81938a3}{eo\+Algo\+Foundry\+Fast\+GA}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&init, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&eval, size\+\_\+t max\+\_\+evals=10000, size\+\_\+t max\+\_\+restarts=std\+::numeric\+\_\+limits$<$ size\+\_\+t $>$\+::max())
+\item 
+void \mbox{\hyperlink{classeo_algo_foundry_fast_g_a_a43a18865691b9c6125b4f5d4d641db46}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\item 
+std\+::string \mbox{\hyperlink{classeo_algo_foundry_fast_g_a_a734119a22ba3b13f36403816628063f3}{name}} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a7f3918890e601f71c49eed2aa1994141}\label{classeo_algo_foundry_fast_g_a_a7f3918890e601f71c49eed2aa1994141}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries continuator} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a929c73a425e52044618d0656dea0cbe2}\label{classeo_algo_foundry_fast_g_a_a929c73a425e52044618d0656dea0cbe2}} 
+double \& {\bfseries crossover\+\_\+rate} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a5a49dc9e6dea43540582d9a6a7cf7460}\label{classeo_algo_foundry_fast_g_a_a5a49dc9e6dea43540582d9a6a7cf7460}} 
+\mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries crossover} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a474bb8116b9e530a04cf9dfd8e7ef562}\label{classeo_algo_foundry_fast_g_a_a474bb8116b9e530a04cf9dfd8e7ef562}} 
+double \& {\bfseries mutation\+\_\+rate} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a4cb6cdcb5c00c783d8dd8212f3ad05e2}\label{classeo_algo_foundry_fast_g_a_a4cb6cdcb5c00c783d8dd8212f3ad05e2}} 
+\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries mutation} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a9a261bd00a936457ba48d9aeac1df914}\label{classeo_algo_foundry_fast_g_a_a9a261bd00a936457ba48d9aeac1df914}} 
+\mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries crossover\+\_\+selector} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a8da51ee22219aacf7a9969b551e4350f}\label{classeo_algo_foundry_fast_g_a_a8da51ee22219aacf7a9969b551e4350f}} 
+\mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries aftercross\+\_\+selector} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_aa0af86307b9319e28c9d61cd4749d6c9}\label{classeo_algo_foundry_fast_g_a_aa0af86307b9319e28c9d61cd4749d6c9}} 
+\mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries mutation\+\_\+selector} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_abdd87804d6dc82ed5f9870ebc525705c}\label{classeo_algo_foundry_fast_g_a_abdd87804d6dc82ed5f9870ebc525705c}} 
+size\+\_\+t \& {\bfseries pop\+\_\+size} ()
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_abef0728c0a655c9307e02240ef3bc7f6}\label{classeo_algo_foundry_fast_g_a_abef0728c0a655c9307e02240ef3bc7f6}} 
+\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries replacement} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_aa3ba6b9a2dda6cbc13c262d4cd90e5d8}\label{classeo_algo_foundry_fast_g_a_aa3ba6b9a2dda6cbc13c262d4cd90e5d8}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ double $>$ {\bfseries crossover\+\_\+rates}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_aeecb16eff752d52125309697053787a6}\label{classeo_algo_foundry_fast_g_a_aeecb16eff752d52125309697053787a6}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $>$ {\bfseries crossover\+\_\+selectors}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a3940f0ead9676f031a116af64cbd5110}\label{classeo_algo_foundry_fast_g_a_a3940f0ead9676f031a116af64cbd5110}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ \mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $>$ {\bfseries crossovers}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a7710da10b8f7a817ea20314664560ffb}\label{classeo_algo_foundry_fast_g_a_a7710da10b8f7a817ea20314664560ffb}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $>$ {\bfseries aftercross\+\_\+selectors}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_af4c23d49b39339da7cd42f542d9aee21}\label{classeo_algo_foundry_fast_g_a_af4c23d49b39339da7cd42f542d9aee21}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ double $>$ {\bfseries mutation\+\_\+rates}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a3199102423107c2fbcca7b791eb0f10f}\label{classeo_algo_foundry_fast_g_a_a3199102423107c2fbcca7b791eb0f10f}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $>$ {\bfseries mutation\+\_\+selectors}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_ac48d595a22aa0ba556cb5e1cfeab64fd}\label{classeo_algo_foundry_fast_g_a_ac48d595a22aa0ba556cb5e1cfeab64fd}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $>$ {\bfseries mutations}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_ae8c4f59f7d86587fb5c1d6e521f1a74f}\label{classeo_algo_foundry_fast_g_a_ae8c4f59f7d86587fb5c1d6e521f1a74f}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ \mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $>$ {\bfseries replacements}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a6193a54c6db7ef735eb06f584b491253}\label{classeo_algo_foundry_fast_g_a_a6193a54c6db7ef735eb06f584b491253}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $>$ {\bfseries continuators}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a0654b1ec8b895566df8a84f7b7147c22}\label{classeo_algo_foundry_fast_g_a_a0654b1ec8b895566df8a84f7b7147c22}} 
+\mbox{\hyperlink{classeo_operator_foundry}{eo\+Operator\+Foundry}}$<$ size\+\_\+t $>$ {\bfseries pop\+\_\+sizes}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_acc6b8b0809702258047518261ed54907}\label{classeo_algo_foundry_fast_g_a_acc6b8b0809702258047518261ed54907}} 
+\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries \+\_\+eval}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a73428351c276b3dce9a5d2ccf5db9d34}\label{classeo_algo_foundry_fast_g_a_a73428351c276b3dce9a5d2ccf5db9d34}} 
+\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries \+\_\+init}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a29bfaa14be7010ab77c1ecaae0fd2f21}\label{classeo_algo_foundry_fast_g_a_a29bfaa14be7010ab77c1ecaae0fd2f21}} 
+const size\+\_\+t {\bfseries \+\_\+max\+\_\+evals}
+\item 
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a1c03f907da8f29e3428939565746da0d}\label{classeo_algo_foundry_fast_g_a_a1c03f907da8f29e3428939565746da0d}} 
+const size\+\_\+t {\bfseries \+\_\+max\+\_\+restarts}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Algo\+Foundry\+Fast\+G\+A$<$ E\+O\+T $>$}
+
+A class that assemble an \mbox{\hyperlink{classeo_fast_g_a}{eo\+Fast\+GA}} on the fly, given a combination of available operators.
+
+The foundry should first be set up with sets of operators for the main modules of a Fast\+GA\+: continuators, crossovers, mutations, selections, replacement operators, etc.
+
+This is done through public member variable\textquotesingle{}s {\ttfamily add} method, which takes the class name as template and its constructor\textquotesingle{}s parameters as arguments. For example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{foundry.selectors.add< \mbox{\hyperlink{classeo_random_select}{eoRandomSelect<EOT>}} >();}
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Warning}
+If the constructor takes a reference Y\+OU S\+H\+O\+U\+LD A\+B\+S\+O\+L\+U\+T\+E\+LY wrap it in a {\ttfamily std\+::ref}, or it will silently be passed as a copy, which would effectively disable any link with other operator(s).
+\end{DoxyWarning}
+In a second step, the operators to be used should be selected by indicating their index, passing an array of 10 elements\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{foundry.select(\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\});}
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+\+: by default, the firsts of the 10 operators are selected.
+\end{DoxyNote}
+If you don\textquotesingle{}t (want to) recall the order of the operators in the encoding, you can use the {\ttfamily index()} member, for example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{foundry.at(foundry.continuators.index()) = 2; \textcolor{comment}{// select the third continuator}}
+\end{DoxyCode}
+
+
+Now, you can call the foundry just like any \mbox{\hyperlink{classeo_algo}{eo\+Algo}}, by passing it an \mbox{\hyperlink{classeo_pop}{eo\+Pop}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{foundry(pop);}
+\DoxyCodeLine{@encode}
+\DoxyCodeLine{It will instantiate the needed operators (only) and the algorithm itself on-\/the-\/fly,}
+\DoxyCodeLine{and then run it.}
+\DoxyCodeLine{}
+\DoxyCodeLine{@note: Thanks to the underlying \mbox{\hyperlink{classeo_operator_foundry}{eoOperatorFoundry}}, not all the added operators are instantiated.}
+\DoxyCodeLine{Every instantiation is deferred upon actual use. That way, you can still reconfigure them}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_algo_foundry_a4330a983b77169d032a1d81702f70414}{at}} any time with `eoForgeOperator::setup`, \textcolor{keywordflow}{for} example:}
+\DoxyCodeLine{@code}
+\DoxyCodeLine{foundry.selector.at(0).setup(0.5); \textcolor{comment}{// Will call constructor's arguments}}
+\end{DoxyCode}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_affff30eac124bc033a073bd1c81938a3}\label{classeo_algo_foundry_fast_g_a_affff30eac124bc033a073bd1c81938a3}} 
+\index{eoAlgoFoundryFastGA$<$ EOT $>$@{eoAlgoFoundryFastGA$<$ EOT $>$}!eoAlgoFoundryFastGA@{eoAlgoFoundryFastGA}}
+\index{eoAlgoFoundryFastGA@{eoAlgoFoundryFastGA}!eoAlgoFoundryFastGA$<$ EOT $>$@{eoAlgoFoundryFastGA$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoAlgoFoundryFastGA()}{eoAlgoFoundryFastGA()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_algo_foundry_fast_g_a}{eo\+Algo\+Foundry\+Fast\+GA}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_algo_foundry_fast_g_a}{eo\+Algo\+Foundry\+Fast\+GA}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{init,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{eval,  }\item[{size\+\_\+t}]{max\+\_\+evals = {\ttfamily 10000},  }\item[{size\+\_\+t}]{max\+\_\+restarts = {\ttfamily std\+:\+:numeric\+\_\+limits$<$size\+\_\+t$>$\+:\+:max()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The constructon only take an eval, because all other operators are stored in the public containers. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a734119a22ba3b13f36403816628063f3}\label{classeo_algo_foundry_fast_g_a_a734119a22ba3b13f36403816628063f3}} 
+\index{eoAlgoFoundryFastGA$<$ EOT $>$@{eoAlgoFoundryFastGA$<$ EOT $>$}!name@{name}}
+\index{name@{name}!eoAlgoFoundryFastGA$<$ EOT $>$@{eoAlgoFoundryFastGA$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+std\+::string \mbox{\hyperlink{classeo_algo_foundry_fast_g_a}{eo\+Algo\+Foundry\+Fast\+GA}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return an approximate name of the selected algorithm. \mbox{\Hypertarget{classeo_algo_foundry_fast_g_a_a43a18865691b9c6125b4f5d4d641db46}\label{classeo_algo_foundry_fast_g_a_a43a18865691b9c6125b4f5d4d641db46}} 
+\index{eoAlgoFoundryFastGA$<$ EOT $>$@{eoAlgoFoundryFastGA$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoAlgoFoundryFastGA$<$ EOT $>$@{eoAlgoFoundryFastGA$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_algo_foundry_fast_g_a}{eo\+Algo\+Foundry\+Fast\+GA}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+instantiate and call the pre-\/selected algorithm. 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ E\+O\+T $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Algo\+Foundry\+Fast\+G\+A.\+h\end{DoxyCompactItemize}

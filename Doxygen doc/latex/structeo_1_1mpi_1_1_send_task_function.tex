@@ -1,0 +1,53 @@
+\hypertarget{structeo_1_1mpi_1_1_send_task_function}{}\doxysection{eo\+::mpi\+::Send\+Task\+Function$<$ Job\+Data $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_send_task_function}\index{eo::mpi::SendTaskFunction$<$ JobData $>$@{eo::mpi::SendTaskFunction$<$ JobData $>$}}
+
+
+Functor (master side) used to send a task to the worker.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Send\+Task\+Function$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_send_task_function__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Send\+Task\+Function$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_send_task_function__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_send_task_function_a30366235d95327505d053a69b2ceca13}\label{structeo_1_1mpi_1_1_send_task_function_a30366235d95327505d053a69b2ceca13}} 
+{\bfseries Send\+Task\+Function} (\mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{Send\+Task\+Function}}$<$ Job\+Data $>$ $\ast$w=0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Job\+Data$>$\newline
+struct eo\+::mpi\+::\+Send\+Task\+Function$<$ Job\+Data $>$}
+
+Functor (master side) used to send a task to the worker. 
+
+The user doesn\textquotesingle{}t have to know which worker will receive a task, so we just indicate to master the rank of the worker. The data used for computation have to be explicitly sent by the master to the worker, with indicated rank. Once this functor has been called, the worker is considered busy until it sends a return message to the master.
+
+This is a functor implementing void \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{operator()(int)}}, and also a shared data function, containing wrapper on its own type. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

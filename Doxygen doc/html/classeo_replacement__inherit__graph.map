@@ -1,0 +1,20 @@
+<map id="eoReplacement&lt; EOT &gt;" name="eoReplacement&lt; EOT &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="463,214,643,241"/>
+<area shape="rect" id="node5" href="$classeo_deterministic_sa_d_replacement.html" title=" " alt="" coords="691,5,929,47"/>
+<area shape="rect" id="node6" href="$classeo_g3_replacement.html" title=" " alt="" coords="711,71,909,98"/>
+<area shape="rect" id="node7" href="$classeo_generational_replacement.html" title=" " alt="" coords="706,123,914,164"/>
+<area shape="rect" id="node8" href="$classeo_merge_reduce.html" title=" " alt="" coords="719,189,901,215"/>
+<area shape="rect" id="node12" href="$classeo_m_g_g_replacement.html" title=" " alt="" coords="704,239,916,266"/>
+<area shape="rect" id="node13" href="$classeo_reduce_merge.html" title=" " alt="" coords="719,290,901,317"/>
+<area shape="rect" id="node17" href="$classeo_reduce_merge_reduce.html" title=" " alt="" coords="723,341,897,383"/>
+<area shape="rect" id="node18" href="$classeo_weak_elitist_replacement.html" title=" " alt="" coords="711,407,909,448"/>
+<area shape="rect" id="node2" href="$classeo_b_f.html" title=" " alt="" coords="248,199,415,255"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="43,181,162,207"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,231,200,287"/>
+<area shape="rect" id="node9" href="$classeo_comma_replacement.html" title=" " alt="" coords="1026,83,1201,124"/>
+<area shape="rect" id="node10" href="$classeo_e_p_replacement.html" title=" " alt="" coords="1015,149,1211,175"/>
+<area shape="rect" id="node11" href="$classeo_plus_replacement.html" title=" " alt="" coords="1032,200,1195,241"/>
+<area shape="rect" id="node14" href="$classeo_s_s_g_a_det_tournament_replacement.html" title=" " alt="" coords="984,265,1243,307"/>
+<area shape="rect" id="node15" href="$classeo_s_s_g_a_stoch_tournament_replacement.html" title=" " alt="" coords="977,331,1249,372"/>
+<area shape="rect" id="node16" href="$classeo_s_s_g_a_worse_replacement.html" title=" " alt="" coords="1014,396,1213,437"/>
+</map>

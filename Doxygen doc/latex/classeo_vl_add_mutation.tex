@@ -1,0 +1,146 @@
+\hypertarget{classeo_vl_add_mutation}{}\doxysection{eo\+Vl\+Add\+Mutation$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_vl_add_mutation}\index{eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Variable\+Length\+Mutation.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Vl\+Add\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_vl_add_mutation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Vl\+Add\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_vl_add_mutation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_vl_add_mutation_a61a5500eb5da0716da04a961d1279697}\label{classeo_vl_add_mutation_a61a5500eb5da0716da04a961d1279697}} 
+typedef E\+O\+T\+::\+Atom\+Type {\bfseries Atom\+Type}
+\item 
+\mbox{\Hypertarget{classeo_vl_add_mutation_a61a5500eb5da0716da04a961d1279697}\label{classeo_vl_add_mutation_a61a5500eb5da0716da04a961d1279697}} 
+typedef E\+O\+T\+::\+Atom\+Type {\bfseries Atom\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_vl_add_mutation_a7a8a8c9b195db1ee5e73910b7542cd6b}{eo\+Vl\+Add\+Mutation}} (unsigned \+\_\+n\+Max, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ Atom\+Type $>$ \&\+\_\+atom\+Init)
+\item 
+bool \mbox{\hyperlink{classeo_vl_add_mutation_a63c220c631e6ff704780c862a5cfac38}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_vl_add_mutation_a62afe2d77ce6b2f3fa40f4accdef7a87}{class\+Name}} () const
+\item 
+\mbox{\hyperlink{classeo_vl_add_mutation_a7a8a8c9b195db1ee5e73910b7542cd6b}{eo\+Vl\+Add\+Mutation}} (unsigned \+\_\+n\+Max, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ Atom\+Type $>$ \&\+\_\+atom\+Init)
+\item 
+bool \mbox{\hyperlink{classeo_vl_add_mutation_a63c220c631e6ff704780c862a5cfac38}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_vl_add_mutation_a62afe2d77ce6b2f3fa40f4accdef7a87}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Vl\+Add\+Mutation$<$ E\+O\+T $>$}
+
+Base classes for generic mutations on variable length chromosomes. Contains addition and deletion of a gene
+
+The generic mutations that apply a gene-\/level mutation to some genes dont\textquotesingle{}t modify the length, and so are N\+OT specific to variable-\/length Hence they are in file eo\+Fl\+Or Mon\+Op.\+h file (Fixed\+Length\+Ordered mutations) Addition of a gene Is inserted at a random position -\/ so can be applied to both order-\/dependent and order-\/independent 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_vl_add_mutation_a7a8a8c9b195db1ee5e73910b7542cd6b}\label{classeo_vl_add_mutation_a7a8a8c9b195db1ee5e73910b7542cd6b}} 
+\index{eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}!eoVlAddMutation@{eoVlAddMutation}}
+\index{eoVlAddMutation@{eoVlAddMutation}!eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoVlAddMutation()}{eoVlAddMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+n\+Max,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ Atom\+Type $>$ \&}]{\+\_\+atom\+Init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+n\+Max} & max number of atoms \\
+\hline
+{\em \+\_\+atom\+Init} & an Atom initializer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vl_add_mutation_a7a8a8c9b195db1ee5e73910b7542cd6b}\label{classeo_vl_add_mutation_a7a8a8c9b195db1ee5e73910b7542cd6b}} 
+\index{eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}!eoVlAddMutation@{eoVlAddMutation}}
+\index{eoVlAddMutation@{eoVlAddMutation}!eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoVlAddMutation()}{eoVlAddMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+n\+Max,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ Atom\+Type $>$ \&}]{\+\_\+atom\+Init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+n\+Max} & max number of atoms \\
+\hline
+{\em \+\_\+atom\+Init} & an Atom initializer \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_vl_add_mutation_a62afe2d77ce6b2f3fa40f4accdef7a87}\label{classeo_vl_add_mutation_a62afe2d77ce6b2f3fa40f4accdef7a87}} 
+\index{eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited class\+Name 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_vl_add_mutation_a62afe2d77ce6b2f3fa40f4accdef7a87}\label{classeo_vl_add_mutation_a62afe2d77ce6b2f3fa40f4accdef7a87}} 
+\index{eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited class\+Name 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_vl_add_mutation_a63c220c631e6ff704780c862a5cfac38}\label{classeo_vl_add_mutation_a63c220c631e6ff704780c862a5cfac38}} 
+\index{eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+operator\+: actually adds an Atom 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classeo_vl_add_mutation_a63c220c631e6ff704780c862a5cfac38}\label{classeo_vl_add_mutation_a63c220c631e6ff704780c862a5cfac38}} 
+\index{eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoVlAddMutation$<$ EOT $>$@{eoVlAddMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_vl_add_mutation}{eo\+Vl\+Add\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+operator\+: actually adds an Atom 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Variable\+Length\+Mutation.\+h\end{DoxyCompactItemize}

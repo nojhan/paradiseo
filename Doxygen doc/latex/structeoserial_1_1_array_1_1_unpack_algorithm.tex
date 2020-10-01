@@ -1,0 +1,76 @@
+\hypertarget{structeoserial_1_1_array_1_1_unpack_algorithm}{}\doxysection{eoserial\+::Array\+::Unpack\+Algorithm$<$ C $>$ Struct Template Reference}
+\label{structeoserial_1_1_array_1_1_unpack_algorithm}\index{eoserial::Array::UnpackAlgorithm$<$ C $>$@{eoserial::Array::UnpackAlgorithm$<$ C $>$}}
+
+
+\mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}} for retrieving primitive variables.  
+
+
+
+
+{\ttfamily \#include $<$Serial\+Array.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::Array\+::Unpack\+Algorithm$<$ C $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{structeoserial_1_1_array_1_1_unpack_algorithm__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eoserial\+::Array\+::Unpack\+Algorithm$<$ C $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{structeoserial_1_1_array_1_1_unpack_algorithm__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_algorithm_ab9bcd38d68f9d038f9bdf9ada7bb0646}{operator()}} (const \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} \&array, unsigned int i, C \&container) const
+\begin{DoxyCompactList}\small\item\em Main operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename C$>$\newline
+struct eoserial\+::\+Array\+::\+Unpack\+Algorithm$<$ C $>$}
+
+\mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}} for retrieving primitive variables. 
+
+This one should be used to retrieve primitive (and types which implement operator$>$$>$) variables, for instance int, double, std\+::string, etc... 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeoserial_1_1_array_1_1_unpack_algorithm_ab9bcd38d68f9d038f9bdf9ada7bb0646}\label{structeoserial_1_1_array_1_1_unpack_algorithm_ab9bcd38d68f9d038f9bdf9ada7bb0646}} 
+\index{eoserial::Array::UnpackAlgorithm$<$ C $>$@{eoserial::Array::UnpackAlgorithm$<$ C $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoserial::Array::UnpackAlgorithm$<$ C $>$@{eoserial::Array::UnpackAlgorithm$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename C $>$ \\
+void \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_algorithm}{eoserial\+::\+Array\+::\+Unpack\+Algorithm}}$<$ C $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} \&}]{array,  }\item[{unsigned int}]{i,  }\item[{C \&}]{container }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Main operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & The \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} from which we\textquotesingle{}re reading. \\
+\hline
+{\em i} & The index of the contained value. \\
+\hline
+{\em container} & The standard (S\+TL) container in which we\textquotesingle{}ll push back the read value. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm_aaa131c48b290b8726d31c276afcdb625}{eoserial\+::\+Array\+::\+Base\+Algorithm$<$ C $>$}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Serial\+Array.\+h\end{DoxyCompactItemize}

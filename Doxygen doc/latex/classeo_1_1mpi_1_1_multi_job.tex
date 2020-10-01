@@ -1,0 +1,53 @@
+\hypertarget{classeo_1_1mpi_1_1_multi_job}{}\doxysection{eo\+::mpi\+::Multi\+Job$<$ Job\+Data $>$ Class Template Reference}
+\label{classeo_1_1mpi_1_1_multi_job}\index{eo::mpi::MultiJob$<$ JobData $>$@{eo::mpi::MultiJob$<$ JobData $>$}}
+
+
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} that will be launched an unknown amount of times, in worker side.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Multi\+Job$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{classeo_1_1mpi_1_1_multi_job__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Multi\+Job$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_multi_job__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_multi_job_a130e4017e548b2b53e3b95a34b94f244}\label{classeo_1_1mpi_1_1_multi_job_a130e4017e548b2b53e3b95a34b94f244}} 
+{\bfseries Multi\+Job} (\mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \&algo, int master\+Rank, \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}}$<$ Job\+Data $>$ \&store)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Job\+Data$>$\newline
+class eo\+::mpi\+::\+Multi\+Job$<$ Job\+Data $>$}
+
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} that will be launched an unknown amount of times, in worker side. 
+
+As explained in \mbox{\hyperlink{namespaceeo_1_1mpi}{eo\+::mpi}} documentation, jobs can happen either a well known amount of times or an unknown amount of times. This class implements the general case when the job is launched an unknown amount of times, for instance in a while loop. The master will run many jobs (or the same job many times), but the workers will launch it only once.
+
+It uses the message Message\+::\+Kill as the termination message. This message can be launched with an \mbox{\hyperlink{structeo_1_1mpi_1_1_empty_job}{Empty\+Job}}, launched only by the master. If no Message\+::\+Kill is sent on the Channels\+::\+Commands, the worker will wait forever, which will cause a deadlock. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

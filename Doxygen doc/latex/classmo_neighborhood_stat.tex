@@ -1,0 +1,327 @@
+\hypertarget{classmo_neighborhood_stat}{}\doxysection{mo\+Neighborhood\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neighborhood_stat}\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighborhood\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighborhood\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighborhood_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighborhood\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighborhood_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a7431084c9699084e102b4a843f03947f}\label{classmo_neighborhood_stat_a7431084c9699084e102b4a843f03947f}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a0ea57e17ec233718910e3b57c9777aa5}\label{classmo_neighborhood_stat_a0ea57e17ec233718910e3b57c9777aa5}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a4afcd81a12eefc99b2bfaf5895625773}\label{classmo_neighborhood_stat_a4afcd81a12eefc99b2bfaf5895625773}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neighborhood_stat_a1632327fb115136e6f1a9b221f139f7b}{mo\+Neighborhood\+Stat}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighbor\+Comparator, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator)
+\item 
+\mbox{\hyperlink{classmo_neighborhood_stat_a5e5f8c529ebc064b29276c933c77d0cc}{mo\+Neighborhood\+Stat}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_stat_a29a92a7e52c8b9c7694a4a82052b9033}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_stat_a6c9e081353bcaffd894d058b5d295175}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat_ab2c32fd12e954f45009ded1ab82aced2}{get\+Min}} ()
+\item 
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat_a9347fd662b1cbe8e27b6e7c17e84f495}{get\+Max}} ()
+\item 
+double \mbox{\hyperlink{classmo_neighborhood_stat_a28960d021469d31f34e725df532158f1}{get\+Mean}} ()
+\item 
+double \mbox{\hyperlink{classmo_neighborhood_stat_a0a9b697519769c02109270acaf611ea9}{get\+SD}} ()
+\item 
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat_aab9836a75defe68756776090e0832bdf}{get\+Q1}} ()
+\item 
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat_a376ea4b964b4bed74b78989e605fbaed}{get\+Q3}} ()
+\item 
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat_a8e9960e58821396a3b1d81882e54bee8}{get\+Median}} ()
+\item 
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat_af43eee678f5e727c3214bf8b95b060ad}{get\+Size}} ()
+\item 
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat_a765105534119daf5228c32770193c4c3}{get\+Nb\+Sup}} ()
+\item 
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat_ac78e770efd75e6dd53a72562eccb75de}{get\+Nb\+Equal}} ()
+\item 
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat_a1aec266f26f647cefe93bc0375757d14}{get\+Nb\+Inf}} ()
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_neighborhood_stat_aa7941af70ab3b7ae491215e1bfc778a6}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_aaee7debd910323186aa06bdb1aa36432}\label{classmo_neighborhood_stat_aaee7debd910323186aa06bdb1aa36432}} 
+\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \& {\bfseries neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a1506595a0b3176238a0616984c64c593}\label{classmo_neighborhood_stat_a1506595a0b3176238a0616984c64c593}} 
+\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries eval}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a06404bd4685ee98bbddbbd3d06efd3dc}\label{classmo_neighborhood_stat_a06404bd4685ee98bbddbbd3d06efd3dc}} 
+\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries neighbor\+Comparator}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_aeb52baac5e67360f9360f98d672d6003}\label{classmo_neighborhood_stat_aeb52baac5e67360f9360f98d672d6003}} 
+\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries sol\+Neighbor\+Comparator}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a29d49968d1a64782595def97306e7c6e}\label{classmo_neighborhood_stat_a29d49968d1a64782595def97306e7c6e}} 
+\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries default\+Neighbor\+Comp}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a269b6694f3157f464b3aa9d034941235}\label{classmo_neighborhood_stat_a269b6694f3157f464b3aa9d034941235}} 
+\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries default\+Sol\+Neighbor\+Comp}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_aa765e78493458741d38c94a6076ec0a3}\label{classmo_neighborhood_stat_aa765e78493458741d38c94a6076ec0a3}} 
+Fitness {\bfseries max}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_ae6f8744cf7433b1d9a56e449d1d2f127}\label{classmo_neighborhood_stat_ae6f8744cf7433b1d9a56e449d1d2f127}} 
+Fitness {\bfseries min}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a65c0ddc94be588d01d9620987d99d58b}\label{classmo_neighborhood_stat_a65c0ddc94be588d01d9620987d99d58b}} 
+double {\bfseries mean}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a764d03bfb81a4f7b4db4cb8b92c15565}\label{classmo_neighborhood_stat_a764d03bfb81a4f7b4db4cb8b92c15565}} 
+double {\bfseries sd}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a46b565f76dfe697468187d424551f964}\label{classmo_neighborhood_stat_a46b565f76dfe697468187d424551f964}} 
+Fitness {\bfseries q1}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a503bde98657676d8edad85ed64652755}\label{classmo_neighborhood_stat_a503bde98657676d8edad85ed64652755}} 
+Fitness {\bfseries q2}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a6af12adafa9d4067bbf233641da0b3ae}\label{classmo_neighborhood_stat_a6af12adafa9d4067bbf233641da0b3ae}} 
+Fitness {\bfseries q3}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a3024befed05a29cd901bbf92b1cf3247}\label{classmo_neighborhood_stat_a3024befed05a29cd901bbf92b1cf3247}} 
+unsigned int {\bfseries nb}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a2a57d1656708d6efa37241fe22708aae}\label{classmo_neighborhood_stat_a2a57d1656708d6efa37241fe22708aae}} 
+unsigned int {\bfseries nb\+Inf}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a8d9ecd17c038a705fc2bb814467e5e87}\label{classmo_neighborhood_stat_a8d9ecd17c038a705fc2bb814467e5e87}} 
+unsigned int {\bfseries nb\+Equal}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_stat_a316a25992685587f4bd4d0b677a2c2e7}\label{classmo_neighborhood_stat_a316a25992685587f4bd4d0b677a2c2e7}} 
+unsigned int {\bfseries nb\+Sup}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neighborhood\+Stat$<$ Neighbor $>$}
+
+All possible statitic on the neighborhood fitness to combine with other specific statistic to print them 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a1632327fb115136e6f1a9b221f139f7b}\label{classmo_neighborhood_stat_a1632327fb115136e6f1a9b221f139f7b}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!moNeighborhoodStat@{moNeighborhoodStat}}
+\index{moNeighborhoodStat@{moNeighborhoodStat}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborhoodStat()}{moNeighborhoodStat()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & a neighborhood \\
+\hline
+{\em \+\_\+eval} & an evaluation function \\
+\hline
+{\em \+\_\+neighbor\+Comparator} & a neighbor Comparator \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & a comparator between a solution and a neighbor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a5e5f8c529ebc064b29276c933c77d0cc}\label{classmo_neighborhood_stat_a5e5f8c529ebc064b29276c933c77d0cc}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!moNeighborhoodStat@{moNeighborhoodStat}}
+\index{moNeighborhoodStat@{moNeighborhoodStat}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborhoodStat()}{moNeighborhoodStat()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Constructor where the comparators are basic, there only compare the fitness values
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & a neighborhood \\
+\hline
+{\em \+\_\+eval} & an evaluation function \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighborhood_stat_aa7941af70ab3b7ae491215e1bfc778a6}\label{classmo_neighborhood_stat_aa7941af70ab3b7ae491215e1bfc778a6}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_stat_a9347fd662b1cbe8e27b6e7c17e84f495}\label{classmo_neighborhood_stat_a9347fd662b1cbe8e27b6e7c17e84f495}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getMax@{getMax}}
+\index{getMax@{getMax}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getMax()}{getMax()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the best fitness value found in the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a28960d021469d31f34e725df532158f1}\label{classmo_neighborhood_stat_a28960d021469d31f34e725df532158f1}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getMean@{getMean}}
+\index{getMean@{getMean}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getMean()}{getMean()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+double \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the mean fitness value of the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a8e9960e58821396a3b1d81882e54bee8}\label{classmo_neighborhood_stat_a8e9960e58821396a3b1d81882e54bee8}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getMedian@{getMedian}}
+\index{getMedian@{getMedian}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getMedian()}{getMedian()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Median (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the median fitness value of the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_ab2c32fd12e954f45009ded1ab82aced2}\label{classmo_neighborhood_stat_ab2c32fd12e954f45009ded1ab82aced2}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getMin@{getMin}}
+\index{getMin@{getMin}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getMin()}{getMin()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the worst fitness value found in the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_ac78e770efd75e6dd53a72562eccb75de}\label{classmo_neighborhood_stat_ac78e770efd75e6dd53a72562eccb75de}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getNbEqual@{getNbEqual}}
+\index{getNbEqual@{getNbEqual}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getNbEqual()}{getNbEqual()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Nb\+Equal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of neighbors having the same fitness than the current solution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a1aec266f26f647cefe93bc0375757d14}\label{classmo_neighborhood_stat_a1aec266f26f647cefe93bc0375757d14}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getNbInf@{getNbInf}}
+\index{getNbInf@{getNbInf}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getNbInf()}{getNbInf()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Nb\+Inf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of neighbors having a worst fitness than the current solution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a765105534119daf5228c32770193c4c3}\label{classmo_neighborhood_stat_a765105534119daf5228c32770193c4c3}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getNbSup@{getNbSup}}
+\index{getNbSup@{getNbSup}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getNbSup()}{getNbSup()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Nb\+Sup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of neighbors having a better fitness than the current solution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_aab9836a75defe68756776090e0832bdf}\label{classmo_neighborhood_stat_aab9836a75defe68756776090e0832bdf}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getQ1@{getQ1}}
+\index{getQ1@{getQ1}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getQ1()}{getQ1()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Q1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the first quartile of fitness in the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a376ea4b964b4bed74b78989e605fbaed}\label{classmo_neighborhood_stat_a376ea4b964b4bed74b78989e605fbaed}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getQ3@{getQ3}}
+\index{getQ3@{getQ3}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getQ3()}{getQ3()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+Fitness \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Q3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the third quartile of fitness in the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a0a9b697519769c02109270acaf611ea9}\label{classmo_neighborhood_stat_a0a9b697519769c02109270acaf611ea9}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getSD@{getSD}}
+\index{getSD@{getSD}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getSD()}{getSD()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+double \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+SD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the standard deviation value of the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_af43eee678f5e727c3214bf8b95b060ad}\label{classmo_neighborhood_stat_af43eee678f5e727c3214bf8b95b060ad}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!getSize@{getSize}}
+\index{getSize@{getSize}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the size of the neighborhood 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a29a92a7e52c8b9c7694a4a82052b9033}\label{classmo_neighborhood_stat_a29a92a7e52c8b9c7694a4a82052b9033}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute classical statistics of the first solution\textquotesingle{}s neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the first solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neighborhood_stat_a6c9e081353bcaffd894d058b5d295175}\label{classmo_neighborhood_stat_a6c9e081353bcaffd894d058b5d295175}} 
+\index{moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moNeighborhoodStat$<$ Neighbor $>$@{moNeighborhoodStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute classical statistics of a solution\textquotesingle{}s neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Neighborhood\+Stat.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,215 @@
+\hypertarget{classmoeo_fuzzy_archive}{}\doxysection{moeo\+Fuzzy\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_fuzzy_archive}\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fuzzy\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Fuzzy\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fuzzy_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Fuzzy\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fuzzy_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_fuzzy_archive_a6bb02d0858b4c7d3af7b754006d479f1}{moeo\+Fuzzy\+Archive}} (\mbox{\hyperlink{classmoeo_fuzzy_archive_aa8727ee1d987a2f8c3bdccc580321d11}{Fuzzy\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} $>$ \&\+\_\+comparator, bool \+\_\+replace=true)
+\item 
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive_aac7b2492146fb6b119533fcd3c9c3c2e}{dominates}} (const \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} \&\+\_\+objective\+Vector) const
+\item 
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive_aed209e96a8e293b25a56b715ab80da0b}{contains}} (const \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} \&\+\_\+objective\+Vector) const
+\item 
+virtual bool \mbox{\hyperlink{classmoeo_fuzzy_archive_ac22c95c4ba40b74506122f6df42d51c9}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeo)=0
+\item 
+virtual bool \mbox{\hyperlink{classmoeo_fuzzy_archive_a873664569397df0c73d2615d1dd2b12b}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)=0
+\item 
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive_ac25d5ca50e42e2082ad5362ec4389cbd}{equals}} (const \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+arch)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive_aa92695e121b84518d59463cf49902ed7}{update}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive_a9b019c14b5069e013e078a771d4bd49e}{update}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+moeo\+Fuzzy\+Pareto\+Comparator$<$ \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} $>$ \mbox{\hyperlink{classmoeo_fuzzy_archive_aa8727ee1d987a2f8c3bdccc580321d11}{Fuzzy\+Comparator}}
+\item 
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive_afbf229fdb48831ab185ad2bd002b6b83}{replace}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Fuzzy\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+Abstract class for representing an archive in a fuzzy space of solutions; an archive is a secondary population that stores non-\/dominated fuzzy solutions. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}\label{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_a6bb02d0858b4c7d3af7b754006d479f1}\label{classmoeo_fuzzy_archive_a6bb02d0858b4c7d3af7b754006d479f1}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!moeoFuzzyArchive@{moeoFuzzyArchive}}
+\index{moeoFuzzyArchive@{moeoFuzzyArchive}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFuzzyArchive()}{moeoFuzzyArchive()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_fuzzy_archive_aa8727ee1d987a2f8c3bdccc580321d11}{Fuzzy\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+ctor. The Fuzzy\+Comparator is used to compare fuzzy solutions based on Pareto dominance 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_aed209e96a8e293b25a56b715ab80da0b}\label{classmoeo_fuzzy_archive_aed209e96a8e293b25a56b715ab80da0b}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!contains@{contains}}
+\index{contains@{contains}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::contains (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current archive already contains a solution with the same objective values than \+\_\+objective\+Vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector} & the objective vector to compare with the current archive \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_aac7b2492146fb6b119533fcd3c9c3c2e}\label{classmoeo_fuzzy_archive_aac7b2492146fb6b119533fcd3c9c3c2e}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!dominates@{dominates}}
+\index{dominates@{dominates}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{dominates()}{dominates()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::dominates (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current archive dominates \+\_\+objective\+Vector according to the \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} given in the constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector} & the objective vector to compare with the current archive \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_ac25d5ca50e42e2082ad5362ec4389cbd}\label{classmoeo_fuzzy_archive_ac25d5ca50e42e2082ad5362ec4389cbd}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!equals@{equals}}
+\index{equals@{equals}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{equals()}{equals()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::equals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+arch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current archive contains the same objective vectors than the given archive \+\_\+arch 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+arch} & the given archive \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_a873664569397df0c73d2615d1dd2b12b}\label{classmoeo_fuzzy_archive_a873664569397df0c73d2615d1dd2b12b}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Updates the archive with a given population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the given population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if at least one \+\_\+pop\mbox{[}i\mbox{]} is added to the archive 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, bool $>$}}.
+
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_ac22c95c4ba40b74506122f6df42d51c9}\label{classmoeo_fuzzy_archive_ac22c95c4ba40b74506122f6df42d51c9}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Updates the archive with a given individual \+\_\+moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the given individual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the \+\_\+moeo is added to the archive 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const M\+O\+E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_a9b019c14b5069e013e078a771d4bd49e}\label{classmoeo_fuzzy_archive_a9b019c14b5069e013e078a771d4bd49e}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!update@{update}}
+\index{update@{update}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Updates the archive with a given population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the given population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_aa92695e121b84518d59463cf49902ed7}\label{classmoeo_fuzzy_archive_aa92695e121b84518d59463cf49902ed7}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!update@{update}}
+\index{update@{update}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::update (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Updates the archive with a given individual \+\_\+moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the given individual \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_archive_aa8727ee1d987a2f8c3bdccc580321d11}\label{classmoeo_fuzzy_archive_aa8727ee1d987a2f8c3bdccc580321d11}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!FuzzyComparator@{FuzzyComparator}}
+\index{FuzzyComparator@{FuzzyComparator}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{FuzzyComparator}{FuzzyComparator}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+moeo\+Fuzzy\+Pareto\+Comparator$<$ \mbox{\hyperlink{classmoeo_fuzzy_archive_a1042c56e288d01f6ba55d6a5502a6e66}{Objective\+Vector}} $>$ \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::Fuzzy\+Comparator\hspace{0.3cm}{\ttfamily [protected]}}
+
+A comparator based on fuzzy Pareto dominance (used as default) \mbox{\Hypertarget{classmoeo_fuzzy_archive_afbf229fdb48831ab185ad2bd002b6b83}\label{classmoeo_fuzzy_archive_afbf229fdb48831ab185ad2bd002b6b83}} 
+\index{moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}!replace@{replace}}
+\index{replace@{replace}!moeoFuzzyArchive$<$ MOEOT $>$@{moeoFuzzyArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{replace}{replace}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$\+::replace\hspace{0.3cm}{\ttfamily [protected]}}
+
+boolean 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo\+Fuzzy\+Archive.\+h\end{DoxyCompactItemize}

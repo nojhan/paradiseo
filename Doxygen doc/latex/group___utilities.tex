@@ -1,0 +1,158 @@
+\hypertarget{group___utilities}{}\doxysection{Utilities}
+\label{group___utilities}\index{Utilities@{Utilities}}
+
+
+Classes that may help you write elegant code.  
+
+
+Collaboration diagram for Utilities\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___utilities}
+\end{center}
+\end{figure}
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___builders}{Automatic builders}}
+\begin{DoxyCompactList}\small\item\em Automatic builders are functions that automagically builds most commons instances for you. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___continuators}{Stopping criteria}}
+\begin{DoxyCompactList}\small\item\em A stopping criterion is called a \char`\"{}continue\char`\"{}. This is a functor that is called at each generation end and that return true if one should stop the search. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___combination}{Operators combination}}
+\begin{DoxyCompactList}\small\item\em Classes that permits to combine several operators in a single one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___bounds}{Bounds management}}
+\begin{DoxyCompactList}\small\item\em Bounds are a set of utilities that permits to manage ranges of existence for variables. For example to restrain vectors or parameters to a given domain. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___checkpoints}{Checkpointing}}
+\begin{DoxyCompactList}\small\item\em Checkpoints are supposed to be called perodically (for instance at each generation) and will call every functors you put in them. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___logging}{Logging}}
+\item 
+\mbox{\hyperlink{group___monitors}{Monitoring}}
+\begin{DoxyCompactList}\small\item\em Monitors take a set of value parameters (\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}) objects and output them on a given stream, file, pipe, etc. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___parallel}{Parallel}}
+\item 
+\mbox{\hyperlink{group___parameters}{Parameters management}}
+\begin{DoxyCompactList}\small\item\em A parameter is basically an object that stores a value and that can read/print it from/on streams. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___random}{Random number generation}}
+\item 
+\mbox{\hyperlink{group___stats}{Statistics computation}}
+\begin{DoxyCompactList}\small\item\em Compute various statistics on a population. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___serialization}{Serialization helpers}}
+\begin{DoxyCompactList}\small\item\em Contains all the necessary entities to serialize eo objects into J\+S\+ON objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_procedure_counter}{eo\+Procedure\+Counter$<$ Procedure $>$}}
+\item 
+class \mbox{\hyperlink{classeo_factory}{eo\+Factory$<$ E\+O\+Class $>$}}
+\item 
+class \mbox{\hyperlink{classeo_functor_store}{eo\+Functor\+Store}}
+\item 
+class \mbox{\hyperlink{classeo_op_sel_mason}{eo\+Op\+Sel\+Mason$<$ eo\+Class $>$}}
+\item 
+class \mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth$<$ E\+O\+T, Worth\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Base class to transform raw fitnesses into fitness for selection. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_perf2_worth_cached}{eo\+Perf2\+Worth\+Cached$<$ E\+O\+T, Worth\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_no_perf2_worth}{eo\+No\+Perf2\+Worth$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_populator}{eo\+Populator$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_select_factory}{eo\+Select\+Factory$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_s_t_l_f}{eo\+S\+T\+L\+F$<$ R $>$}}
+\item 
+class \mbox{\hyperlink{classeo_s_t_l_u_f}{eo\+S\+T\+L\+U\+F$<$ A1, R $>$}}
+\item 
+class \mbox{\hyperlink{classeo_s_t_l_b_f}{eo\+S\+T\+L\+B\+F$<$ A1, A2, R $>$}}
+\item 
+class \mbox{\hyperlink{classlower__triangular__matrix}{lower\+\_\+triangular\+\_\+matrix}}
+\item 
+class \mbox{\hyperlink{classsquare__matrix}{square\+\_\+matrix}}
+\item 
+class \mbox{\hyperlink{classeo_external_e_o}{eo\+External\+E\+O$<$ Fit, External $>$}}
+\item 
+class \mbox{\hyperlink{classeo_external_init}{eo\+External\+Init$<$ F, External, External\+E\+O $>$}}
+\item 
+class \mbox{\hyperlink{classeo_external_eval_func}{eo\+External\+Eval\+Func$<$ F, External, External\+E\+O $>$}}
+\item 
+class \mbox{\hyperlink{classeo_external_mon_op}{eo\+External\+Mon\+Op$<$ F, External, External\+E\+O $>$}}
+\item 
+class \mbox{\hyperlink{classeo_external_bin_op}{eo\+External\+Bin\+Op$<$ F, External, External\+E\+O $>$}}
+\item 
+class \mbox{\hyperlink{classeo_external_quad_op}{eo\+External\+Quad\+Op$<$ F, External, External\+E\+O $>$}}
+\item 
+class \mbox{\hyperlink{classeo_string}{eo\+String$<$ fitness\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_signal}{eo\+Signal$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_state}{eo\+State}}
+\item 
+class \mbox{\hyperlink{classeo_updatable}{eo\+Updatable}}
+\item 
+class \mbox{\hyperlink{classeo_dyn_updater}{eo\+Dyn\+Updater}}
+\item 
+class \mbox{\hyperlink{classeo_timed_dyn_update}{eo\+Timed\+Dyn\+Update}}
+\item 
+class \mbox{\hyperlink{classeo_counted_dyn_update}{eo\+Counted\+Dyn\+Update}}
+\item 
+class \mbox{\hyperlink{classeo_updater}{eo\+Updater}}
+\item 
+class \mbox{\hyperlink{classeo_incrementor}{eo\+Incrementor$<$ T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_incrementor_param}{eo\+Incrementor\+Param$<$ T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_timed_state_saver}{eo\+Timed\+State\+Saver}}
+\item 
+class \mbox{\hyperlink{classeo_counted_state_saver}{eo\+Counted\+State\+Saver}}
+\item 
+class \mbox{\hyperlink{classeo_log_message}{eo\+Log\+Message}}
+\item 
+class \mbox{\hyperlink{classeo_timer}{eo\+Timer}}
+\begin{DoxyCompactList}\small\item\em Timer allowing to measure time between a start point and a stop point. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_timer_stat}{eo\+Timer\+Stat}}
+\begin{DoxyCompactList}\small\item\em Registers a group of statistics, each statistic corresponding to user, system and wallclock times distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\void \mbox{\hyperlink{group___utilities_gac678eec2c602083572edfb85ad72f408}{apply}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&\+\_\+proc, std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+{\footnotesize template$<$class F , class External $>$ }\\std\+::ostream \& \mbox{\hyperlink{group___utilities_gade9fa9c26490aaeb89ea88cac8e5d381}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classeo_external_e_o}{eo\+External\+EO}}$<$ F, External $>$ \&eo)
+\item 
+{\footnotesize template$<$class F , class External $>$ }\\std\+::istream \& \mbox{\hyperlink{group___utilities_ga57f8d8f850dd9454d482eb619db26c05}{operator$>$$>$}} (std\+::istream \&is, \mbox{\hyperlink{classeo_external_e_o}{eo\+External\+EO}}$<$ F, External $>$ \&eo)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classes that may help you write elegant code. 
+
+One of the invalidator operators. Use this one as a \textquotesingle{}hat\textquotesingle{} on an operator that is defined to work on a generic datatype. This functor will then check the return type of the operator and invalidate the fitness of the individual.
+
+This functor is used in algorithms that work with straight \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}, \mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}} or \mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}} operators, for instance \mbox{\hyperlink{classeo_s_g_a}{eo\+S\+GA}}. Note that \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}} derived operators generally do invalidate the fitness of the objects they have changed.
+
+Return value means \char`\"{}\+Has\+\_\+\+Changed\char`\"{} and not \char`\"{}\+Needs\+\_\+\+To\+\_\+\+Be\+\_\+\+Invalidated\char`\"{} as successive invalidation are not really a problem 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___utilities_gac678eec2c602083572edfb85ad72f408}\label{group___utilities_gac678eec2c602083572edfb85ad72f408}} 
+\index{Utilities@{Utilities}!apply@{apply}}
+\index{apply@{apply}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{\+\_\+proc,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})}
+
+Applies a unary function to a std\+::vector of things. \mbox{\Hypertarget{group___utilities_gade9fa9c26490aaeb89ea88cac8e5d381}\label{group___utilities_gade9fa9c26490aaeb89ea88cac8e5d381}} 
+\index{Utilities@{Utilities}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$class F , class External $>$ \\
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classeo_external_e_o}{eo\+External\+EO}}$<$ F, External $>$ \&}]{eo }\end{DoxyParamCaption})}
+
+To remove ambiguities between E\+O$<$\+F$>$ and External, streaming operators are defined yet again \mbox{\Hypertarget{group___utilities_ga57f8d8f850dd9454d482eb619db26c05}\label{group___utilities_ga57f8d8f850dd9454d482eb619db26c05}} 
+\index{Utilities@{Utilities}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}}
+{\footnotesize\ttfamily template$<$class F , class External $>$ \\
+std\+::istream \& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\mbox{\hyperlink{classeo_external_e_o}{eo\+External\+EO}}$<$ F, External $>$ \&}]{eo }\end{DoxyParamCaption})}
+
+To remove ambiguities between E\+O$<$\+F$>$ and External, streaming operators are defined yet again 

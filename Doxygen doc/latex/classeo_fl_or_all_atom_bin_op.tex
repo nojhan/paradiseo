@@ -1,0 +1,128 @@
+\hypertarget{classeo_fl_or_all_atom_bin_op}{}\doxysection{eo\+Fl\+Or\+All\+Atom\+Bin\+Op$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_fl_or_all_atom_bin_op}\index{eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Fl\+Or\+Bin\+Op.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Fl\+Or\+All\+Atom\+Bin\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_fl_or_all_atom_bin_op__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Fl\+Or\+All\+Atom\+Bin\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_fl_or_all_atom_bin_op__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a016b4f698d45ca60dc236ccfe8878531}\label{classeo_fl_or_all_atom_bin_op_a016b4f698d45ca60dc236ccfe8878531}} 
+typedef E\+O\+T\+::\+Atom\+Type {\bfseries Atom\+Type}
+\item 
+\mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a016b4f698d45ca60dc236ccfe8878531}\label{classeo_fl_or_all_atom_bin_op_a016b4f698d45ca60dc236ccfe8878531}} 
+typedef E\+O\+T\+::\+Atom\+Type {\bfseries Atom\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_fl_or_all_atom_bin_op_a563de8466cc6b2fb14bbaa2a354999bc}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}} (\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ Atom\+Type $>$ \&\+\_\+op, float \+\_\+rate=1.\+0)
+\item 
+bool \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op_a6e51bbaa869cddd5e78f196c4a757df2}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo1, const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo2)
+\item 
+virtual string \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op_a61d6990b3063084630ff7931bfd511fa}{class\+Name}} () const
+\item 
+\mbox{\hyperlink{classeo_fl_or_all_atom_bin_op_a563de8466cc6b2fb14bbaa2a354999bc}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}} (\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ Atom\+Type $>$ \&\+\_\+op, float \+\_\+rate=1.\+0)
+\item 
+bool \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op_a6e51bbaa869cddd5e78f196c4a757df2}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo1, const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo2)
+\item 
+virtual string \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op_a61d6990b3063084630ff7931bfd511fa}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Fl\+Or\+All\+Atom\+Bin\+Op$<$ E\+O\+T $>$}
+
+Generic eo\+Bin\+Ops on fixed length genotypes. Contains exchange crossovers (1pt and uniform) and crossovers that applies an Atom crossover to all components with given rate, or to a fixed prescribed nb of components
+
+Example\+: the standard bitstring 1-\/point and uniform crossovers could be implemented as resp. \mbox{\hyperlink{classeo_fl_or1pt_bin_op}{eo\+Fl\+Or1pt\+Bin\+Op}} and \mbox{\hyperlink{classeo_fl_or_uniform_bin_op}{eo\+Fl\+Or\+Uniform\+Bin\+Op}} Bin Crossover using an Atom Crossover that is applied to a A\+LL components with given rate 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a563de8466cc6b2fb14bbaa2a354999bc}\label{classeo_fl_or_all_atom_bin_op_a563de8466cc6b2fb14bbaa2a354999bc}} 
+\index{eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}!eoFlOrAllAtomBinOp@{eoFlOrAllAtomBinOp}}
+\index{eoFlOrAllAtomBinOp@{eoFlOrAllAtomBinOp}!eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoFlOrAllAtomBinOp()}{eoFlOrAllAtomBinOp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ Atom\+Type $>$ \&}]{\+\_\+op,  }\item[{float}]{\+\_\+rate = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctor\+: requires an Atom Bin\+Op \mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a563de8466cc6b2fb14bbaa2a354999bc}\label{classeo_fl_or_all_atom_bin_op_a563de8466cc6b2fb14bbaa2a354999bc}} 
+\index{eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}!eoFlOrAllAtomBinOp@{eoFlOrAllAtomBinOp}}
+\index{eoFlOrAllAtomBinOp@{eoFlOrAllAtomBinOp}!eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoFlOrAllAtomBinOp()}{eoFlOrAllAtomBinOp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ Atom\+Type $>$ \&}]{\+\_\+op,  }\item[{float}]{\+\_\+rate = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctor\+: requires an Atom Bin\+Op 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a61d6990b3063084630ff7931bfd511fa}\label{classeo_fl_or_all_atom_bin_op_a61d6990b3063084630ff7931bfd511fa}} 
+\index{eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual string \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited class\+Name() 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a61d6990b3063084630ff7931bfd511fa}\label{classeo_fl_or_all_atom_bin_op_a61d6990b3063084630ff7931bfd511fa}} 
+\index{eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual string \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited class\+Name() 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a6e51bbaa869cddd5e78f196c4a757df2}\label{classeo_fl_or_all_atom_bin_op_a6e51bbaa869cddd5e78f196c4a757df2}} 
+\index{eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo1,  }\item[{const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+applies Atom crossover to A\+LL components with given rate 
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ E\+O\+T \&, const E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classeo_fl_or_all_atom_bin_op_a6e51bbaa869cddd5e78f196c4a757df2}\label{classeo_fl_or_all_atom_bin_op_a6e51bbaa869cddd5e78f196c4a757df2}} 
+\index{eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFlOrAllAtomBinOp$<$ EOT $>$@{eoFlOrAllAtomBinOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_fl_or_all_atom_bin_op}{eo\+Fl\+Or\+All\+Atom\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo1,  }\item[{const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+applies Atom crossover to A\+LL components with given rate 
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ E\+O\+T \&, const E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Fl\+Or\+Bin\+Op.\+h\end{DoxyCompactItemize}

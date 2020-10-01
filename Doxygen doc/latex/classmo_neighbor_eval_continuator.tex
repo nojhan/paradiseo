@@ -1,0 +1,126 @@
+\hypertarget{classmo_neighbor_eval_continuator}{}\doxysection{mo\+Neighbor\+Eval\+Continuator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neighbor_eval_continuator}\index{moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighbor\+Eval\+Continuator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighbor\+Eval\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_neighbor_eval_continuator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighbor\+Eval\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_neighbor_eval_continuator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_eval_continuator_a7895ad9b569d2bdf519a433031136c0f}\label{classmo_neighbor_eval_continuator_a7895ad9b569d2bdf519a433031136c0f}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neighbor_eval_continuator_aac2faa6bd0661e8b45b60cc350fee923}{mo\+Neighbor\+Eval\+Continuator}} (\mbox{\hyperlink{classmo_eval_counter}{mo\+Eval\+Counter}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+max\+Neighbor\+Eval, bool \+\_\+restart\+Counter=true)
+\item 
+virtual bool \mbox{\hyperlink{classmo_neighbor_eval_continuator_afdbc53709120c4e1e81f44d3e5c87c32}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighbor_eval_continuator_ac247aa23ace1463b1072f923b83c8d41}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+unsigned int \mbox{\hyperlink{classmo_neighbor_eval_continuator_a900e6878bd6ba8f6aea421b957345005}{value}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neighbor\+Eval\+Continuator$<$ Neighbor $>$}
+
+Continue until a maximum fixed number of neighbor evaluation is reached
+
+Becareful 1\+: if restart\+Counter is true, then the number of neighbor evaluations (for example incremental evaluations) is considered during the local search (not before it)
+
+Becareful 2\+: Can not be used if the evaluation function is used in parallel 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neighbor_eval_continuator_aac2faa6bd0661e8b45b60cc350fee923}\label{classmo_neighbor_eval_continuator_aac2faa6bd0661e8b45b60cc350fee923}} 
+\index{moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}!moNeighborEvalContinuator@{moNeighborEvalContinuator}}
+\index{moNeighborEvalContinuator@{moNeighborEvalContinuator}!moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborEvalContinuator()}{moNeighborEvalContinuator()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighbor_eval_continuator}{mo\+Neighbor\+Eval\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighbor_eval_continuator}{mo\+Neighbor\+Eval\+Continuator}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_eval_counter}{mo\+Eval\+Counter}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+max\+Neighbor\+Eval,  }\item[{bool}]{\+\_\+restart\+Counter = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & neighbor evaluation function to count \\
+\hline
+{\em \+\_\+max\+Neighbor\+Eval} & number maximum of iterations \\
+\hline
+{\em \+\_\+restart\+Counter} & if true the counter of number of evaluations restarts to \char`\"{}zero\char`\"{} at initialization, if false, the number is cumulative \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighbor_eval_continuator_ac247aa23ace1463b1072f923b83c8d41}\label{classmo_neighbor_eval_continuator_ac247aa23ace1463b1072f923b83c8d41}} 
+\index{moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighbor_eval_continuator}{mo\+Neighbor\+Eval\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Reset the number of evaluations 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_continuator_a2e0feb9a6288cd6cba6b6817c9cdf481}{mo\+Continuator$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_eval_continuator_afdbc53709120c4e1e81f44d3e5c87c32}\label{classmo_neighbor_eval_continuator_afdbc53709120c4e1e81f44d3e5c87c32}} 
+\index{moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_neighbor_eval_continuator}{mo\+Neighbor\+Eval\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if continue 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if number of evaluations $<$ max\+Neighbor\+Eval 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_eval_continuator_a900e6878bd6ba8f6aea421b957345005}\label{classmo_neighbor_eval_continuator_a900e6878bd6ba8f6aea421b957345005}} 
+\index{moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}!value@{value}}
+\index{value@{value}!moNeighborEvalContinuator$<$ Neighbor $>$@{moNeighborEvalContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmo_neighbor_eval_continuator}{mo\+Neighbor\+Eval\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+the current number of evaluation from the begining \begin{DoxyReturn}{Returns}
+the number of evaluation 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Neighbor\+Eval\+Continuator.\+h\end{DoxyCompactItemize}

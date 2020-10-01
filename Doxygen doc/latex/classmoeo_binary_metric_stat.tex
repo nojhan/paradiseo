@@ -1,0 +1,100 @@
+\hypertarget{classmoeo_binary_metric_stat}{}\doxysection{moeo\+Binary\+Metric\+Stat$<$ M\+O\+E\+OT, T $>$ Class Template Reference}
+\label{classmoeo_binary_metric_stat}\index{moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Binary\+Metric\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Binary\+Metric\+Stat$<$ M\+O\+E\+OT, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_binary_metric_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Binary\+Metric\+Stat$<$ M\+O\+E\+OT, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_binary_metric_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_binary_metric_stat_aad0b1325a043db7c7f5a195c6be5ca53}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_binary_metric_stat_a4a5df948a09fcbab938b8e00cc7e6cac}\label{classmoeo_binary_metric_stat_a4a5df948a09fcbab938b8e00cc7e6cac}} 
+{\bfseries moeo\+Binary\+Metric\+Stat} (\mbox{\hyperlink{classmoeo_vector_vs_vector_binary_metric}{moeo\+Vector\+Vs\+Vector\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_binary_metric_stat_aad0b1325a043db7c7f5a195c6be5ca53}{Objective\+Vector}}, T $>$ \&metric, std\+::string \mbox{\hyperlink{classeo_param_abe1e3e50080a2be2365596ed68d16979}{description}}, T default\+\_\+value=0)
+\item 
+\mbox{\Hypertarget{classmoeo_binary_metric_stat_a4d1c2fc6a7fe68eb0f32061ed2654ce3}\label{classmoeo_binary_metric_stat_a4d1c2fc6a7fe68eb0f32061ed2654ce3}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+\mbox{\Hypertarget{classmoeo_binary_metric_stat_a0a0203c543bb9f1ac2f6920b52bb9eb7}\label{classmoeo_binary_metric_stat_a0a0203c543bb9f1ac2f6920b52bb9eb7}} 
+virtual void \mbox{\hyperlink{classmoeo_binary_metric_stat_a0a0203c543bb9f1ac2f6920b52bb9eb7}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_vector_vs_vector_binary_metric}{moeo\+Vector\+Vs\+Vector\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_binary_metric_stat_aad0b1325a043db7c7f5a195c6be5ca53}{Objective\+Vector}}, T $>$ \& \mbox{\hyperlink{classmoeo_binary_metric_stat_a7f6007f57929256584870a879293c525}{\+\_\+metric}}
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_binary_metric_stat_a384daba5166aec96299d88aa2cfee444}{\+\_\+prev\+\_\+pop}}
+\item 
+bool \mbox{\hyperlink{classmoeo_binary_metric_stat_a2eb2f5f24666d511f7bc49ba140d000c}{\+\_\+first\+\_\+gen}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT, class T = double$>$\newline
+class moeo\+Binary\+Metric\+Stat$<$ M\+O\+E\+O\+T, T $>$}
+
+A wrapper to save a \mbox{\hyperlink{classmoeo_metric}{moeo\+Metric}} in an \mbox{\hyperlink{classeo_stat}{eo\+Stat}}
+
+This wrap a \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} binary metric into an \mbox{\hyperlink{classeo_stat}{eo\+Stat}} This is useful if you want to use it in a checkpoint, for instance. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_binary_metric_stat_aad0b1325a043db7c7f5a195c6be5ca53}\label{classmoeo_binary_metric_stat_aad0b1325a043db7c7f5a195c6be5ca53}} 
+\index{moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class T  = double$>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_binary_metric_stat}{moeo\+Binary\+Metric\+Stat}}$<$ M\+O\+E\+OT, T $>$\+::\mbox{\hyperlink{classmoeo_binary_metric_stat_aad0b1325a043db7c7f5a195c6be5ca53}{Objective\+Vector}}}
+
+The objective vector type of a solution 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_binary_metric_stat_a2eb2f5f24666d511f7bc49ba140d000c}\label{classmoeo_binary_metric_stat_a2eb2f5f24666d511f7bc49ba140d000c}} 
+\index{moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}!\_first\_gen@{\_first\_gen}}
+\index{\_first\_gen@{\_first\_gen}!moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{\_first\_gen}{\_first\_gen}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class T  = double$>$ \\
+bool \mbox{\hyperlink{classmoeo_binary_metric_stat}{moeo\+Binary\+Metric\+Stat}}$<$ M\+O\+E\+OT, T $>$\+::\+\_\+first\+\_\+gen\hspace{0.3cm}{\ttfamily [protected]}}
+
+is it the first generation ? \mbox{\Hypertarget{classmoeo_binary_metric_stat_a7f6007f57929256584870a879293c525}\label{classmoeo_binary_metric_stat_a7f6007f57929256584870a879293c525}} 
+\index{moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}!\_metric@{\_metric}}
+\index{\_metric@{\_metric}!moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{\_metric}{\_metric}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class T  = double$>$ \\
+\mbox{\hyperlink{classmoeo_vector_vs_vector_binary_metric}{moeo\+Vector\+Vs\+Vector\+Binary\+Metric}}$<$\mbox{\hyperlink{classmoeo_binary_metric_stat_aad0b1325a043db7c7f5a195c6be5ca53}{Objective\+Vector}}, T$>$\& \mbox{\hyperlink{classmoeo_binary_metric_stat}{moeo\+Binary\+Metric\+Stat}}$<$ M\+O\+E\+OT, T $>$\+::\+\_\+metric\hspace{0.3cm}{\ttfamily [protected]}}
+
+binary metric comparing two Pareto sets \mbox{\Hypertarget{classmoeo_binary_metric_stat_a384daba5166aec96299d88aa2cfee444}\label{classmoeo_binary_metric_stat_a384daba5166aec96299d88aa2cfee444}} 
+\index{moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}!\_prev\_pop@{\_prev\_pop}}
+\index{\_prev\_pop@{\_prev\_pop}!moeoBinaryMetricStat$<$ MOEOT, T $>$@{moeoBinaryMetricStat$<$ MOEOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{\_prev\_pop}{\_prev\_pop}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class T  = double$>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$M\+O\+E\+OT$>$ \mbox{\hyperlink{classmoeo_binary_metric_stat}{moeo\+Binary\+Metric\+Stat}}$<$ M\+O\+E\+OT, T $>$\+::\+\_\+prev\+\_\+pop\hspace{0.3cm}{\ttfamily [protected]}}
+
+(n-\/1) population 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/utils/moeo\+Binary\+Metric\+Stat.\+h\end{DoxyCompactItemize}

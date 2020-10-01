@@ -1,0 +1,165 @@
+\hypertarget{classmo_count_move_memory}{}\doxysection{mo\+Count\+Move\+Memory$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_count_move_memory}\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Count\+Move\+Memory.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Count\+Move\+Memory$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classmo_count_move_memory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Count\+Move\+Memory$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classmo_count_move_memory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_count_move_memory_a73c76bab7745aca9227d562fb8e5d056}\label{classmo_count_move_memory_a73c76bab7745aca9227d562fb8e5d056}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmo_count_move_memory_a0298e31294b890ea9a07c34644997904}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+void \mbox{\hyperlink{classmo_count_move_memory_ab5a1b7223cb5391169fd73cf3b21bdf2}{add}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+void \mbox{\hyperlink{classmo_count_move_memory_a7ab356b0a53eabf5d9f732d5f1bdec0d}{update}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+void \mbox{\hyperlink{classmo_count_move_memory_ad085ab4739290ccedcad05d9e3a39494}{clear\+Memory}} ()
+\item 
+unsigned int \mbox{\hyperlink{classmo_count_move_memory_a3f8fe5cd2cd11075afc548384d78a697}{get\+Nb\+Move}} ()
+\item 
+unsigned int \mbox{\hyperlink{classmo_count_move_memory_a65c2287f653ce8c3c1cac817d7a53224}{get\+Nb\+No\+Move}} ()
+\item 
+unsigned int \mbox{\hyperlink{classmo_count_move_memory_a7c5c737636997702f0db2d831b7a736c}{get\+Counter}} ()
+\item 
+void \mbox{\hyperlink{classmo_count_move_memory_a96aa75f5a41d336aa06fcd8c6cb8fdb8}{init\+Counter}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Count\+Move\+Memory$<$ Neighbor $>$}
+
+Count the number of move, no move and the successive stagnation since the last Move 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_count_move_memory_ab5a1b7223cb5391169fd73cf3b21bdf2}\label{classmo_count_move_memory_ab5a1b7223cb5391169fd73cf3b21bdf2}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & unused solution \\
+\hline
+{\em \+\_\+neighbor} & unused neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_acf319ce1a44dbf601c80bd5670dde853}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_count_move_memory_ad085ab4739290ccedcad05d9e3a39494}\label{classmo_count_move_memory_ad085ab4739290ccedcad05d9e3a39494}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!clearMemory@{clearMemory}}
+\index{clearMemory@{clearMemory}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{clearMemory()}{clearMemory()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::clear\+Memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Clear\+Memory \+: Reinit all the counters 
+
+Implements \mbox{\hyperlink{classmo_memory_ab24822b7720f4434d355bb468cb43a66}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_count_move_memory_a7c5c737636997702f0db2d831b7a736c}\label{classmo_count_move_memory_a7c5c737636997702f0db2d831b7a736c}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!getCounter@{getCounter}}
+\index{getCounter@{getCounter}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getCounter()}{getCounter()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Counter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of the number of successive stagnation since the last Move \begin{DoxyReturn}{Returns}
+the counter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_count_move_memory_a3f8fe5cd2cd11075afc548384d78a697}\label{classmo_count_move_memory_a3f8fe5cd2cd11075afc548384d78a697}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!getNbMove@{getNbMove}}
+\index{getNbMove@{getNbMove}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getNbMove()}{getNbMove()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Nb\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of the number of move \begin{DoxyReturn}{Returns}
+the counter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_count_move_memory_a65c2287f653ce8c3c1cac817d7a53224}\label{classmo_count_move_memory_a65c2287f653ce8c3c1cac817d7a53224}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!getNbNoMove@{getNbNoMove}}
+\index{getNbNoMove@{getNbNoMove}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getNbNoMove()}{getNbNoMove()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Nb\+No\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of the number of no move \begin{DoxyReturn}{Returns}
+the counter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_count_move_memory_a0298e31294b890ea9a07c34644997904}\label{classmo_count_move_memory_a0298e31294b890ea9a07c34644997904}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Init all the counters 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_ab8dda5ba853c077d1713d27d6a0512cb}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_count_move_memory_a96aa75f5a41d336aa06fcd8c6cb8fdb8}\label{classmo_count_move_memory_a96aa75f5a41d336aa06fcd8c6cb8fdb8}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!initCounter@{initCounter}}
+\index{initCounter@{initCounter}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initCounter()}{initCounter()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Counter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Init counter \mbox{\Hypertarget{classmo_count_move_memory_a7ab356b0a53eabf5d9f732d5f1bdec0d}\label{classmo_count_move_memory_a7ab356b0a53eabf5d9f732d5f1bdec0d}} 
+\index{moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}!update@{update}}
+\index{update@{update}!moCountMoveMemory$<$ Neighbor $>$@{moCountMoveMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_count_move_memory}{mo\+Count\+Move\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & unused solution \\
+\hline
+{\em \+\_\+neighbor} & unused neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_a3db29eaee769fbf7fb5e80c653d74884}{mo\+Memory$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Count\+Move\+Memory.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,232 @@
+\hypertarget{classeo_vector_particle}{}\doxysection{eo\+Vector\+Particle$<$ FitT, Position\+Type, Velocity\+Type $>$ Class Template Reference}
+\label{classeo_vector_particle}\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+
+
+{\ttfamily \#include $<$eo\+Vector\+Particle.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Vector\+Particle$<$ FitT, Position\+Type, Velocity\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_vector_particle__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Vector\+Particle$<$ FitT, Position\+Type, Velocity\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_vector_particle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_a9412418df7ef01115a36d5c2c5754a07}\label{classeo_vector_particle_a9412418df7ef01115a36d5c2c5754a07}} 
+typedef Position\+Type {\bfseries Atom\+Type}
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_ae58377e4ccc597f6cc84cb7bc01594df}\label{classeo_vector_particle_ae58377e4ccc597f6cc84cb7bc01594df}} 
+typedef Velocity\+Type {\bfseries Particle\+Velocity\+Type}
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_a9412418df7ef01115a36d5c2c5754a07}\label{classeo_vector_particle_a9412418df7ef01115a36d5c2c5754a07}} 
+typedef Position\+Type {\bfseries Atom\+Type}
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_ae58377e4ccc597f6cc84cb7bc01594df}\label{classeo_vector_particle_ae58377e4ccc597f6cc84cb7bc01594df}} 
+typedef Velocity\+Type {\bfseries Particle\+Velocity\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_vector_particle_a1f7b87dcc1672e2342f2a3b6365a1015}{eo\+Vector\+Particle}} (unsigned \+\_\+size=0, Position\+Type \+\_\+position=Position\+Type(), Velocity\+Type \+\_\+velocity=Velocity\+Type(), Position\+Type \+\_\+best\+Positions=Position\+Type())
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_a231f376f2c33499e0bcf582fe1911b3b}\label{classeo_vector_particle_a231f376f2c33499e0bcf582fe1911b3b}} 
+void {\bfseries position} (const std\+::vector$<$ Position\+Type $>$ \&\+\_\+v)
+\item 
+void \mbox{\hyperlink{classeo_vector_particle_a121368b9c30257f81db4e831d05c5376}{resize}} (unsigned \+\_\+size)
+\item 
+void \mbox{\hyperlink{classeo_vector_particle_a5303ac285f96950f0974dab6f9da4b34}{resize\+Best\+Positions}} (unsigned \+\_\+size)
+\item 
+void \mbox{\hyperlink{classeo_vector_particle_a74da94fc81a141e0b8337bcc7d3d7700}{resize\+Velocities}} (unsigned \+\_\+size)
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_a4504e63096baa25138121f844a31325b}\label{classeo_vector_particle_a4504e63096baa25138121f844a31325b}} 
+bool \mbox{\hyperlink{classeo_vector_particle_a4504e63096baa25138121f844a31325b}{operator$<$}} (const \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$ \&\+\_\+eo) const
+\begin{DoxyCompactList}\small\item\em to avoid conflicts between EA and P\+SO \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_vector_particle_a12e7b867a2e894285c064a127cec7054}{print\+On}} (std\+::ostream \&os) const
+\item 
+\mbox{\hyperlink{classeo_vector_particle_a1f7b87dcc1672e2342f2a3b6365a1015}{eo\+Vector\+Particle}} (unsigned \+\_\+size=0, Position\+Type \+\_\+position=Position\+Type(), Velocity\+Type \+\_\+velocity=Velocity\+Type(), Position\+Type \+\_\+best\+Positions=Position\+Type())
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_a231f376f2c33499e0bcf582fe1911b3b}\label{classeo_vector_particle_a231f376f2c33499e0bcf582fe1911b3b}} 
+void {\bfseries position} (const std\+::vector$<$ Position\+Type $>$ \&\+\_\+v)
+\item 
+void \mbox{\hyperlink{classeo_vector_particle_a121368b9c30257f81db4e831d05c5376}{resize}} (unsigned \+\_\+size)
+\item 
+void \mbox{\hyperlink{classeo_vector_particle_a5303ac285f96950f0974dab6f9da4b34}{resize\+Best\+Positions}} (unsigned \+\_\+size)
+\item 
+void \mbox{\hyperlink{classeo_vector_particle_a74da94fc81a141e0b8337bcc7d3d7700}{resize\+Velocities}} (unsigned \+\_\+size)
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_a4504e63096baa25138121f844a31325b}\label{classeo_vector_particle_a4504e63096baa25138121f844a31325b}} 
+bool \mbox{\hyperlink{classeo_vector_particle_a4504e63096baa25138121f844a31325b}{operator$<$}} (const \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$ \&\+\_\+eo) const
+\begin{DoxyCompactList}\small\item\em to avoid conflicts between EA and P\+SO \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_vector_particle_a12e7b867a2e894285c064a127cec7054}{print\+On}} (std\+::ostream \&os) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_aa0c4a494dfc91738d8462ca343a9f0c4}\label{classeo_vector_particle_aa0c4a494dfc91738d8462ca343a9f0c4}} 
+std\+::vector$<$ Position\+Type $>$ {\bfseries best\+Positions}
+\item 
+\mbox{\Hypertarget{classeo_vector_particle_adf8b0a22a4aa543d85ac8de6ec5e0119}\label{classeo_vector_particle_adf8b0a22a4aa543d85ac8de6ec5e0119}} 
+std\+::vector$<$ Particle\+Velocity\+Type $>$ {\bfseries velocities}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class FitT, class Position\+Type, class Velocity\+Type$>$\newline
+class eo\+Vector\+Particle$<$ Fit\+T, Position\+Type, Velocity\+Type $>$}
+
+Main class for particle representation of particle swarm optimization. The positions, velocities and the best positions associated to the particle are stored as vectors. Inheriting from \mbox{\hyperlink{class_p_o}{PO}} and std\+::vector, tree templates arguments are required\+: the fitness type (which is also the type of the particle\textquotesingle{}s best fitness), the position type and the velocity type. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_vector_particle_a1f7b87dcc1672e2342f2a3b6365a1015}\label{classeo_vector_particle_a1f7b87dcc1672e2342f2a3b6365a1015}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!eoVectorParticle@{eoVectorParticle}}
+\index{eoVectorParticle@{eoVectorParticle}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{eoVectorParticle()}{eoVectorParticle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+\mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::\mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size = {\ttfamily 0},  }\item[{Position\+Type}]{\+\_\+position = {\ttfamily PositionType~()},  }\item[{Velocity\+Type}]{\+\_\+velocity = {\ttfamily VelocityType~()},  }\item[{Position\+Type}]{\+\_\+best\+Positions = {\ttfamily PositionType~()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & Length of the tree vectors (we expect the same size), default is 0 \\
+\hline
+{\em \+\_\+position} & \\
+\hline
+{\em \+\_\+velocity} & \\
+\hline
+{\em \+\_\+best\+Positions} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_particle_a1f7b87dcc1672e2342f2a3b6365a1015}\label{classeo_vector_particle_a1f7b87dcc1672e2342f2a3b6365a1015}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!eoVectorParticle@{eoVectorParticle}}
+\index{eoVectorParticle@{eoVectorParticle}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{eoVectorParticle()}{eoVectorParticle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+\mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::\mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size = {\ttfamily 0},  }\item[{Position\+Type}]{\+\_\+position = {\ttfamily PositionType~()},  }\item[{Velocity\+Type}]{\+\_\+velocity = {\ttfamily VelocityType~()},  }\item[{Position\+Type}]{\+\_\+best\+Positions = {\ttfamily PositionType~()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & Length of the tree vectors (we expect the same size), default is 0 \\
+\hline
+{\em \+\_\+position} & \\
+\hline
+{\em \+\_\+velocity} & \\
+\hline
+{\em \+\_\+best\+Positions} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_vector_particle_a12e7b867a2e894285c064a127cec7054}\label{classeo_vector_particle_a12e7b867a2e894285c064a127cec7054}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+virtual void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print-\/on a vector-\/particle 
+
+Reimplemented from \mbox{\hyperlink{class_p_o_a5bd1f1a689831ff9ec892305d4cf34f6}{P\+O$<$ Fit\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_vector_particle_a12e7b867a2e894285c064a127cec7054}\label{classeo_vector_particle_a12e7b867a2e894285c064a127cec7054}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+virtual void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print-\/on a vector-\/particle 
+
+Reimplemented from \mbox{\hyperlink{class_p_o_a5bd1f1a689831ff9ec892305d4cf34f6}{P\+O$<$ Fit\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_vector_particle_a121368b9c30257f81db4e831d05c5376}\label{classeo_vector_particle_a121368b9c30257f81db4e831d05c5376}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!resize@{resize}}
+\index{resize@{resize}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::resize (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resize the tree vectors of the particle\+: positions, velocities and best\+Positions 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & The new size for positions, velocities and best\+Positions \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_particle_a121368b9c30257f81db4e831d05c5376}\label{classeo_vector_particle_a121368b9c30257f81db4e831d05c5376}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!resize@{resize}}
+\index{resize@{resize}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::resize (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resize the tree vectors of the particle\+: positions, velocities and best\+Positions 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & The new size for positions, velocities and best\+Positions \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_particle_a5303ac285f96950f0974dab6f9da4b34}\label{classeo_vector_particle_a5303ac285f96950f0974dab6f9da4b34}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!resizeBestPositions@{resizeBestPositions}}
+\index{resizeBestPositions@{resizeBestPositions}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{resizeBestPositions()}{resizeBestPositions()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::resize\+Best\+Positions (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resize the best positions. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & The new size for the best positions. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_particle_a5303ac285f96950f0974dab6f9da4b34}\label{classeo_vector_particle_a5303ac285f96950f0974dab6f9da4b34}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!resizeBestPositions@{resizeBestPositions}}
+\index{resizeBestPositions@{resizeBestPositions}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{resizeBestPositions()}{resizeBestPositions()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::resize\+Best\+Positions (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resize the best positions. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & The new size for the best positions. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_particle_a74da94fc81a141e0b8337bcc7d3d7700}\label{classeo_vector_particle_a74da94fc81a141e0b8337bcc7d3d7700}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!resizeVelocities@{resizeVelocities}}
+\index{resizeVelocities@{resizeVelocities}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{resizeVelocities()}{resizeVelocities()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::resize\+Velocities (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resize the velocities. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & The new size for the velocities. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_particle_a74da94fc81a141e0b8337bcc7d3d7700}\label{classeo_vector_particle_a74da94fc81a141e0b8337bcc7d3d7700}} 
+\index{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}!resizeVelocities@{resizeVelocities}}
+\index{resizeVelocities@{resizeVelocities}!eoVectorParticle$<$ FitT, PositionType, VelocityType $>$@{eoVectorParticle$<$ FitT, PositionType, VelocityType $>$}}
+\doxysubsubsection{\texorpdfstring{resizeVelocities()}{resizeVelocities()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT , class Position\+Type , class Velocity\+Type $>$ \\
+void \mbox{\hyperlink{classeo_vector_particle}{eo\+Vector\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Position\+Type, Velocity\+Type $>$\+::resize\+Velocities (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resize the velocities. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & The new size for the velocities. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Vector\+Particle.\+h\end{DoxyCompactItemize}

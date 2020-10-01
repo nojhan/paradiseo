@@ -1,0 +1,145 @@
+\hypertarget{classmo_first_impr_h_c}{}\doxysection{mo\+First\+Impr\+HC$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_first_impr_h_c}\index{moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+First\+Impr\+H\+C.\+h$>$}
+
+
+
+Inheritance diagram for mo\+First\+Impr\+HC$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_first_impr_h_c__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+First\+Impr\+HC$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_first_impr_h_c__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_first_impr_h_c_a8a16f81a9aee3d863cfd9e03e87663fb}\label{classmo_first_impr_h_c_a8a16f81a9aee3d863cfd9e03e87663fb}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_first_impr_h_c_a9371a5412c00fb4b99b911603c99b5c3}\label{classmo_first_impr_h_c_a9371a5412c00fb4b99b911603c99b5c3}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_first_impr_h_c_a254606ba08a3358ee8b862759758f7ee}{mo\+First\+Impr\+HC}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval)
+\item 
+\mbox{\hyperlink{classmo_first_impr_h_c_a449ae2f43ad700eff6f376df214d99b2}{mo\+First\+Impr\+HC}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+\mbox{\hyperlink{classmo_first_impr_h_c_a3a06ed2bd427aecc5b6438509dbb2610}{mo\+First\+Impr\+HC}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+compN, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+comp\+SN)
+\item 
+virtual void \mbox{\hyperlink{classmo_first_impr_h_c_a92a3b320fb7d3094096fe34ebcef9e85}{always\+Continue}} ()
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_first_impr_h_c_a6a7b34684a04b1dc38f242b5808fb5ba}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+First\+Impr\+H\+C$<$ Neighbor $>$}
+
+First improvement HC\+: Hill-\/\+Climbing local search
+
+At each iteration, one of the random solution in the neighborhood is selected if the selected neighbor have higher fitness than the current solution then the solution is replaced by the selected neighbor the algorithm stops when there is no higher neighbor 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_first_impr_h_c_a254606ba08a3358ee8b862759758f7ee}\label{classmo_first_impr_h_c_a254606ba08a3358ee8b862759758f7ee}} 
+\index{moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}!moFirstImprHC@{moFirstImprHC}}
+\index{moFirstImprHC@{moFirstImprHC}!moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFirstImprHC()}{moFirstImprHC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Basic constructor for a hill-\/climber 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_first_impr_h_c_a449ae2f43ad700eff6f376df214d99b2}\label{classmo_first_impr_h_c_a449ae2f43ad700eff6f376df214d99b2}} 
+\index{moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}!moFirstImprHC@{moFirstImprHC}}
+\index{moFirstImprHC@{moFirstImprHC}!moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFirstImprHC()}{moFirstImprHC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Simple constructor for a hill-\/climber 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+cont} & an external continuator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_first_impr_h_c_a3a06ed2bd427aecc5b6438509dbb2610}\label{classmo_first_impr_h_c_a3a06ed2bd427aecc5b6438509dbb2610}} 
+\index{moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}!moFirstImprHC@{moFirstImprHC}}
+\index{moFirstImprHC@{moFirstImprHC}!moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFirstImprHC()}{moFirstImprHC()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+compN,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+comp\+SN }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+General constructor for a hill-\/climber 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+cont} & an external continuator \\
+\hline
+{\em \+\_\+compN} & a neighbor vs neighbor comparator \\
+\hline
+{\em \+\_\+comp\+SN} & a solution vs neighbor comparator \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_first_impr_h_c_a92a3b320fb7d3094096fe34ebcef9e85}\label{classmo_first_impr_h_c_a92a3b320fb7d3094096fe34ebcef9e85}} 
+\index{moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}!alwaysContinue@{alwaysContinue}}
+\index{alwaysContinue@{alwaysContinue}!moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{alwaysContinue()}{alwaysContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::always\+Continue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+to never stop the hill climbing \mbox{\Hypertarget{classmo_first_impr_h_c_a6a7b34684a04b1dc38f242b5808fb5ba}\label{classmo_first_impr_h_c_a6a7b34684a04b1dc38f242b5808fb5ba}} 
+\index{moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moFirstImprHC$<$ Neighbor $>$@{moFirstImprHC$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_first_impr_h_c}{mo\+First\+Impr\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/algo/mo\+First\+Impr\+H\+C.\+h\end{DoxyCompactItemize}

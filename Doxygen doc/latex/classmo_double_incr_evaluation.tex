@@ -1,0 +1,155 @@
+\hypertarget{classmo_double_incr_evaluation}{}\doxysection{mo\+Double\+Incr\+Evaluation$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_double_incr_evaluation}\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Double\+Incr\+Evaluation.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Double\+Incr\+Evaluation$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_double_incr_evaluation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Double\+Incr\+Evaluation$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_double_incr_evaluation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_double_incr_evaluation_ace976ae5fe574f0d1e151d379ff8f660}\label{classmo_double_incr_evaluation_ace976ae5fe574f0d1e151d379ff8f660}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_double_incr_evaluation_a1fdef78b8c8f6e0d97862e41894b1858}\label{classmo_double_incr_evaluation_a1fdef78b8c8f6e0d97862e41894b1858}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_double_incr_evaluation_ad25683a2c8bacb1e66f1b9b200869c4c}{mo\+Double\+Incr\+Evaluation}} (unsigned int \+\_\+neighborhood\+Size)
+\item 
+\mbox{\hyperlink{classmo_double_incr_evaluation_ad5ba57e2aaf00b68dc3249f0fb89405f}{$\sim$mo\+Double\+Incr\+Evaluation}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_double_incr_evaluation_ae0a0e80fc061e96e65b40b07b3070f6a}{init}} ()
+\item 
+\mbox{\Hypertarget{classmo_double_incr_evaluation_a90d92fddaa9efaf541f2180eca34542e}\label{classmo_double_incr_evaluation_a90d92fddaa9efaf541f2180eca34542e}} 
+virtual void \mbox{\hyperlink{classmo_double_incr_evaluation_a90d92fddaa9efaf541f2180eca34542e}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classmo_double_incr_evaluation_a87b2e25ce6e1d579315577898f5caa15}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Fitness $\ast$ \mbox{\hyperlink{classmo_double_incr_evaluation_a2d32d58f3ff4fd9fd4daef9efbfd3722}{delta\+Fitness}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{classmo_double_incr_evaluation_aa19b276b16b288722f4581993d232f2a}{neighborhood\+Size}}
+\item 
+bool \mbox{\hyperlink{classmo_double_incr_evaluation_aecb066ac11d7236b8f35e3bcf661c7e6}{first\+Eval}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Double\+Incr\+Evaluation$<$ Neighbor $>$}
+
+Base class for the double incremental evaluation of the neighborhood
+
+The sizes of the neighborhoods are equal 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_double_incr_evaluation_ad25683a2c8bacb1e66f1b9b200869c4c}\label{classmo_double_incr_evaluation_ad25683a2c8bacb1e66f1b9b200869c4c}} 
+\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}!moDoubleIncrEvaluation@{moDoubleIncrEvaluation}}
+\index{moDoubleIncrEvaluation@{moDoubleIncrEvaluation}!moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moDoubleIncrEvaluation()}{moDoubleIncrEvaluation()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+neighborhood\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood\+Size} & the size of the neighborhood \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_double_incr_evaluation_ad5ba57e2aaf00b68dc3249f0fb89405f}\label{classmo_double_incr_evaluation_ad5ba57e2aaf00b68dc3249f0fb89405f}} 
+\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}!````~moDoubleIncrEvaluation@{$\sim$moDoubleIncrEvaluation}}
+\index{````~moDoubleIncrEvaluation@{$\sim$moDoubleIncrEvaluation}!moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moDoubleIncrEvaluation()}{~moDoubleIncrEvaluation()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_double_incr_evaluation_ae0a0e80fc061e96e65b40b07b3070f6a}\label{classmo_double_incr_evaluation_ae0a0e80fc061e96e65b40b07b3070f6a}} 
+\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Initialisation of the evaluation process The first evaluation will be a simple incremental evaluation 
+
+Reimplemented from \mbox{\hyperlink{classmo_updater_a75d678281397954494f10716469fdf09}{mo\+Updater}}.
+
+\mbox{\Hypertarget{classmo_double_incr_evaluation_a87b2e25ce6e1d579315577898f5caa15}\label{classmo_double_incr_evaluation_a87b2e25ce6e1d579315577898f5caa15}} 
+\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Evaluation of the neighborhood Here nothing to do
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classmo_u_b_q_pdouble_incr_evaluation_af3f338f28fd3e9d54a34b8d53c49c55c}{mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation$<$ Neighbor $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmo_double_incr_evaluation_a2d32d58f3ff4fd9fd4daef9efbfd3722}\label{classmo_double_incr_evaluation_a2d32d58f3ff4fd9fd4daef9efbfd3722}} 
+\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}!deltaFitness@{deltaFitness}}
+\index{deltaFitness@{deltaFitness}!moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{deltaFitness}{deltaFitness}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+Fitness$\ast$ \mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::delta\+Fitness}
+
+the delta of fitness for each neighbors The fitness of the neighbor i is given by \+: fitness(solution) + delta\+Fitness\mbox{[}i\mbox{]} \mbox{\Hypertarget{classmo_double_incr_evaluation_aecb066ac11d7236b8f35e3bcf661c7e6}\label{classmo_double_incr_evaluation_aecb066ac11d7236b8f35e3bcf661c7e6}} 
+\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}!firstEval@{firstEval}}
+\index{firstEval@{firstEval}!moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{firstEval}{firstEval}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::first\+Eval\hspace{0.3cm}{\ttfamily [protected]}}
+
+flag \+: true when it is the first evaluation \mbox{\Hypertarget{classmo_double_incr_evaluation_aa19b276b16b288722f4581993d232f2a}\label{classmo_double_incr_evaluation_aa19b276b16b288722f4581993d232f2a}} 
+\index{moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}!neighborhoodSize@{neighborhoodSize}}
+\index{neighborhoodSize@{neighborhoodSize}!moDoubleIncrEvaluation$<$ Neighbor $>$@{moDoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{neighborhoodSize}{neighborhoodSize}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmo_double_incr_evaluation}{mo\+Double\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::neighborhood\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+the neighborhood size 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/eval/mo\+Double\+Incr\+Evaluation.\+h\end{DoxyCompactItemize}

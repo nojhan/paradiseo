@@ -1,0 +1,102 @@
+\hypertarget{classeo_u_bit_xover}{}\doxysection{eo\+U\+Bit\+Xover$<$ Chrom $>$ Class Template Reference}
+\label{classeo_u_bit_xover}\index{eoUBitXover$<$ Chrom $>$@{eoUBitXover$<$ Chrom $>$}}
+
+
+{\ttfamily \#include $<$ga/eo\+Bit\+Op.\+h$>$}
+
+
+
+Inheritance diagram for eo\+U\+Bit\+Xover$<$ Chrom $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_u_bit_xover__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+U\+Bit\+Xover$<$ Chrom $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_u_bit_xover__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_u_bit_xover_aea57c9744f034d89d94dfdb0fa192a8c}\label{classeo_u_bit_xover_aea57c9744f034d89d94dfdb0fa192a8c}} 
+\mbox{\hyperlink{classeo_u_bit_xover_aea57c9744f034d89d94dfdb0fa192a8c}{eo\+U\+Bit\+Xover}} (const float \&\+\_\+preference=0.\+5)
+\begin{DoxyCompactList}\small\item\em (Default) Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_u_bit_xover_ac0148477e8e406db146b05caf3dab9ad}\label{classeo_u_bit_xover_ac0148477e8e406db146b05caf3dab9ad}} 
+virtual std\+::string \mbox{\hyperlink{classeo_u_bit_xover_ac0148477e8e406db146b05caf3dab9ad}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The class name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classeo_u_bit_xover_ace66eece77560c3a02e5246a2ec9f021}{operator()}} (\mbox{\hyperlink{class_chrom}{Chrom}} \&chrom1, \mbox{\hyperlink{class_chrom}{Chrom}} \&chrom2)
+\item 
+\mbox{\Hypertarget{classeo_u_bit_xover_aa189b0df1c30c348a602771ce676589d}\label{classeo_u_bit_xover_aa189b0df1c30c348a602771ce676589d}} 
+\mbox{\hyperlink{classeo_u_bit_xover_aa189b0df1c30c348a602771ce676589d}{eo\+U\+Bit\+Xover}} (const double \&\+\_\+preference=0.\+5)
+\begin{DoxyCompactList}\small\item\em (Default) Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_u_bit_xover_ac0148477e8e406db146b05caf3dab9ad}\label{classeo_u_bit_xover_ac0148477e8e406db146b05caf3dab9ad}} 
+virtual std\+::string \mbox{\hyperlink{classeo_u_bit_xover_ac0148477e8e406db146b05caf3dab9ad}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The class name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classeo_u_bit_xover_ace66eece77560c3a02e5246a2ec9f021}{operator()}} (\mbox{\hyperlink{class_chrom}{Chrom}} \&chrom1, \mbox{\hyperlink{class_chrom}{Chrom}} \&chrom2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_u_bit_xover_a4270ebaf2b2ff71e956dd64066eca85b}\label{classeo_u_bit_xover_a4270ebaf2b2ff71e956dd64066eca85b}} 
+double {\bfseries preference}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Chrom$>$\newline
+class eo\+U\+Bit\+Xover$<$ Chrom $>$}
+
+\mbox{\hyperlink{classeo_u_bit_xover}{eo\+U\+Bit\+Xover}} -\/-\/$>$ classic Uniform crossover 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_u_bit_xover_ace66eece77560c3a02e5246a2ec9f021}\label{classeo_u_bit_xover_ace66eece77560c3a02e5246a2ec9f021}} 
+\index{eoUBitXover$<$ Chrom $>$@{eoUBitXover$<$ Chrom $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUBitXover$<$ Chrom $>$@{eoUBitXover$<$ Chrom $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Chrom $>$ \\
+bool \mbox{\hyperlink{classeo_u_bit_xover}{eo\+U\+Bit\+Xover}}$<$ \mbox{\hyperlink{class_chrom}{Chrom}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{chrom1,  }\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{chrom2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Uniform crossover for binary chromosomes. 
+\begin{DoxyParams}{Parameters}
+{\em chrom1} & The first chromosome. \\
+\hline
+{\em chrom2} & The first chromosome. std\+::runtime\+\_\+error if sizes don\textquotesingle{}t match \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ Chrom \&, Chrom \&, bool $>$}}.
+
+\mbox{\Hypertarget{classeo_u_bit_xover_ace66eece77560c3a02e5246a2ec9f021}\label{classeo_u_bit_xover_ace66eece77560c3a02e5246a2ec9f021}} 
+\index{eoUBitXover$<$ Chrom $>$@{eoUBitXover$<$ Chrom $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUBitXover$<$ Chrom $>$@{eoUBitXover$<$ Chrom $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Chrom $>$ \\
+bool \mbox{\hyperlink{classeo_u_bit_xover}{eo\+U\+Bit\+Xover}}$<$ \mbox{\hyperlink{class_chrom}{Chrom}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{chrom1,  }\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{chrom2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Uniform crossover for binary chromosomes. 
+\begin{DoxyParams}{Parameters}
+{\em chrom1} & The first chromosome. \\
+\hline
+{\em chrom2} & The first chromosome. std\+::runtime\+\_\+error if sizes don\textquotesingle{}t match \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ Chrom \&, Chrom \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/ga/eo\+Bit\+Op.\+h\end{DoxyCompactItemize}

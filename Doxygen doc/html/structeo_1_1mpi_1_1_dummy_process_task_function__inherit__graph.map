@@ -1,0 +1,7 @@
+<map id="eo::mpi::DummyProcessTaskFunction" name="eo::mpi::DummyProcessTaskFunction">
+<area shape="rect" id="node1" title="Process task functor which does nothing." alt="" coords="50,273,261,315"/>
+<area shape="rect" id="node2" href="$structeo_1_1mpi_1_1_process_task_function.html" title=" " alt="" coords="49,184,262,225"/>
+<area shape="rect" id="node3" href="$classeo_f.html" title=" " alt="" coords="13,95,117,121"/>
+<area shape="rect" id="node4" href="$classeo_functor_base.html" title=" " alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node5" href="$structeo_1_1mpi_1_1_shared_data_function.html" title=" " alt="" coords="141,80,351,136"/>
+</map>

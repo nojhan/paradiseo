@@ -1,0 +1,96 @@
+\hypertarget{classeo_eval_dump}{}\doxysection{eo\+Eval\+Dump$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_eval_dump}\index{eoEvalDump$<$ EOT $>$@{eoEvalDump$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+Dump.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+Dump$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_eval_dump__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+Dump$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_dump__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_eval_dump_1_1_dummy_eval}{Dummy\+Eval}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_a14e569c092a3a68e1f5ccce2a5bdb84d}\label{classeo_eval_dump_a14e569c092a3a68e1f5ccce2a5bdb84d}} 
+\mbox{\hyperlink{classeo_eval_dump_a14e569c092a3a68e1f5ccce2a5bdb84d}{eo\+Eval\+Dump}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&func, std\+::string filename, bool single\+\_\+file=false, unsigned int file\+\_\+count=0, std\+::string count\+\_\+prefix=\char`\"{}.\char`\"{})
+\begin{DoxyCompactList}\small\item\em A constructor for wrapping your own evaluator in a \mbox{\hyperlink{classeo_eval_dump}{eo\+Eval\+Dump}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_eval_dump_a20a1cb50cb899d906bc4632c617d5eac}\label{classeo_eval_dump_a20a1cb50cb899d906bc4632c617d5eac}} 
+\mbox{\hyperlink{classeo_eval_dump_a20a1cb50cb899d906bc4632c617d5eac}{eo\+Eval\+Dump}} (std\+::string filename, bool single\+\_\+file=false, unsigned int file\+\_\+count=0, std\+::string count\+\_\+prefix=\char`\"{}.\char`\"{})
+\begin{DoxyCompactList}\small\item\em A constructor without an eval func, the \mbox{\hyperlink{classeo_eval_dump}{eo\+Eval\+Dump}} will thus just write to the file, without evaluating. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_eval_dump_af604ca8e16b4f222b2c16a4d5a98939a}\label{classeo_eval_dump_af604ca8e16b4f222b2c16a4d5a98939a}} 
+virtual void \mbox{\hyperlink{classeo_eval_dump_af604ca8e16b4f222b2c16a4d5a98939a}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_eval_dump_a9c1784bb8eb3509932c0e10bba82438b}\label{classeo_eval_dump_a9c1784bb8eb3509932c0e10bba82438b}} 
+unsigned int {\bfseries file\+\_\+count} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_a808f905303dce12cfd50eb31358ed2ec}\label{classeo_eval_dump_a808f905303dce12cfd50eb31358ed2ec}} 
+void {\bfseries dump} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_abf2a0ceddedcbcc1e8cabea2b02045ee}\label{classeo_eval_dump_abf2a0ceddedcbcc1e8cabea2b02045ee}} 
+\mbox{\hyperlink{classeo_eval_dump_1_1_dummy_eval}{Dummy\+Eval}} {\bfseries \+\_\+dummy\+\_\+eval}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_a2a106c8da76f476b57f0204e34af7af0}\label{classeo_eval_dump_a2a106c8da76f476b57f0204e34af7af0}} 
+\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries \+\_\+func}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_aa5f643cd9fc33670662989898c8602c1}\label{classeo_eval_dump_aa5f643cd9fc33670662989898c8602c1}} 
+std\+::string {\bfseries \+\_\+filename}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_a638c172b40194ee22e5752cf52762cca}\label{classeo_eval_dump_a638c172b40194ee22e5752cf52762cca}} 
+bool {\bfseries \+\_\+single\+\_\+file}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_a5f8fc63b0a5d72f9c390040f50e815ec}\label{classeo_eval_dump_a5f8fc63b0a5d72f9c390040f50e815ec}} 
+unsigned int {\bfseries \+\_\+file\+\_\+count}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_a135d165f4407bf2f4a52e060d4c144fa}\label{classeo_eval_dump_a135d165f4407bf2f4a52e060d4c144fa}} 
+std\+::string {\bfseries \+\_\+sep}
+\item 
+\mbox{\Hypertarget{classeo_eval_dump_a8cbc0b714371c9fb91404999df9c13c3}\label{classeo_eval_dump_a8cbc0b714371c9fb91404999df9c13c3}} 
+std\+::ofstream {\bfseries \+\_\+of}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Eval\+Dump$<$ E\+O\+T $>$}
+
+Dump an evaluated individual to a given file.
+
+Note\+: test if the file could be open only in debug mode If the file cannot be open during the calls, everything will fail in an standard exception.
+
+The file name should be given at instanciation, if you asked for a single file, it will erase the previously written one and write the new individual in it.
+
+If you do not ask for a single file, it will create several files, one different each time it found a individual. The filenames have then the form\+: $<$filename$>$$<$count\+\_\+prefix$>$$<$count$>$ \char`\"{}$<$count$>$\char`\"{} being a integer, incremented by one each time a new file is written down.
+
+If you asked for a filename=\char`\"{}\+R\+E\+S\+U\+L\+T\char`\"{}, by default, the first dump file will be named \char`\"{}\+R\+E\+S\+U\+L\+T.\+0\char`\"{}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Eval\+Dump.\+h\end{DoxyCompactItemize}

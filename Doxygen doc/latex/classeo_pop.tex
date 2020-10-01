@@ -1,0 +1,625 @@
+\hypertarget{classeo_pop}{}\doxysection{eo\+Pop$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_pop}\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Pop.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Pop$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_pop__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Pop$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_pop__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeo_pop_1_1_cmp}{Cmp}}
+\begin{DoxyCompactList}\small\item\em helper struct for comparing on pointers \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_pop_1_1_cmp2}{Cmp2}}
+\begin{DoxyCompactList}\small\item\em helper struct for comparing (EA or P\+SO) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_pop_1_1_get_fitness}{Get\+Fitness}}
+\item 
+struct \mbox{\hyperlink{structeo_pop_1_1_ref}{Ref}}
+\begin{DoxyCompactList}\small\item\em helper struct for getting a pointer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_pop_aa1f7b9eb75e6d683885c3b0b510a2db9}\label{classeo_pop_aa1f7b9eb75e6d683885c3b0b510a2db9}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\item 
+\mbox{\Hypertarget{classeo_pop_a542b1ff8c2d26b38ada3b0ee08fb7ba9}\label{classeo_pop_a542b1ff8c2d26b38ada3b0ee08fb7ba9}} 
+typedef E\+O\+T\+::fitness\+\_\+traits {\bfseries fitness\+\_\+traits}
+\item 
+\mbox{\Hypertarget{classeo_pop_aa1f7b9eb75e6d683885c3b0b510a2db9}\label{classeo_pop_aa1f7b9eb75e6d683885c3b0b510a2db9}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\item 
+\mbox{\Hypertarget{classeo_pop_a542b1ff8c2d26b38ada3b0ee08fb7ba9}\label{classeo_pop_a542b1ff8c2d26b38ada3b0ee08fb7ba9}} 
+typedef E\+O\+T\+::fitness\+\_\+traits {\bfseries fitness\+\_\+traits}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_pop_ab643687724fca7036769c7c5c0cdf5f2}{eo\+Pop}} ()
+\item 
+\mbox{\hyperlink{classeo_pop_a56dac0c179a2c7226197df6f5ce2b36a}{eo\+Pop}} (unsigned \+\_\+pop\+Size, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+chrom\+Init)
+\item 
+void \mbox{\hyperlink{classeo_pop_af37a425b85894e44c25392ee5f6514fc}{append}} (unsigned \+\_\+new\+Pop\+Size, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+chrom\+Init)
+\item 
+\mbox{\hyperlink{classeo_pop_a4e8b1be3cf2f862f70315371d388ff0b}{eo\+Pop}} (std\+::istream \&\+\_\+is)
+\item 
+virtual \mbox{\hyperlink{classeo_pop_ad6a2ecffaab89a8c6d00858de7a54ef5}{$\sim$eo\+Pop}} ()
+\item 
+void \mbox{\hyperlink{classeo_pop_acee388e2a8d68da24040a9d440a36830}{sort}} (void)
+\item 
+void \mbox{\hyperlink{classeo_pop_a84518c9d85dec65f314ead50c55556d8}{sort}} (std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&result) const
+\item 
+void \mbox{\hyperlink{classeo_pop_ab65faec2bbc1217a9a94c240362fce63}{shuffle}} (void)
+\item 
+void \mbox{\hyperlink{classeo_pop_a4e3ef2c141d3e8efe25cfab6f114d8ca}{shuffle}} (std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&result) const
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::iterator \mbox{\hyperlink{classeo_pop_a92cdbaec5a1d66a9ac6322e1277b10b5}{it\+\_\+best\+\_\+element}} ()
+\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_pop_af49f88e89978e6ed6bff4f35c889d9c6}{best\+\_\+element}} () const
+\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_pop_a2b8f0d9870ca26785c379b4e768c7a30}{worse\+\_\+element}} () const
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::iterator \mbox{\hyperlink{classeo_pop_ab2194ac46bdbe81812bbaea955c2dc35}{it\+\_\+worse\+\_\+element}} ()
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::iterator \mbox{\hyperlink{classeo_pop_a102853315e533fe5e977b8fe8c593658}{nth\+\_\+element}} (int nth)
+\item 
+Fitness \mbox{\hyperlink{classeo_pop_a63e21d52afcb0c1d62024cdc851e8f25}{nth\+\_\+element\+\_\+fitness}} (int which) const
+\item 
+void \mbox{\hyperlink{classeo_pop_a91ce000007f05122c1a7850440c7ed2f}{nth\+\_\+element}} (int which, std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&result) const
+\item 
+void \mbox{\hyperlink{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}{swap}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&other)
+\item 
+virtual void \mbox{\hyperlink{classeo_pop_adb4c683919e3f7bc3cb1e9ece033abdd}{sorted\+Print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+\mbox{\Hypertarget{classeo_pop_a5368d1de4074e4ec7586a304978b8779}\label{classeo_pop_a5368d1de4074e4ec7586a304978b8779}} 
+void {\bfseries sort} ()
+\item 
+\mbox{\Hypertarget{classeo_pop_a3677b4f8523e0af644946e5e623abe5a}\label{classeo_pop_a3677b4f8523e0af644946e5e623abe5a}} 
+void {\bfseries scale} ()
+\item 
+\mbox{\Hypertarget{classeo_pop_a926a97b56035bdf1b46979e8d5ecee3e}\label{classeo_pop_a926a97b56035bdf1b46979e8d5ecee3e}} 
+void {\bfseries set\+Perf2\+Worth} (\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+p2w)
+\item 
+\mbox{\Hypertarget{classeo_pop_aaeaa666347d7966262f8147b45273a6b}\label{classeo_pop_aaeaa666347d7966262f8147b45273a6b}} 
+void {\bfseries set\+Perf2\+Worth} (\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$\+\_\+p2w)
+\item 
+\mbox{\Hypertarget{classeo_pop_a5236800b986f85c706d6462b6fe8f31f}\label{classeo_pop_a5236800b986f85c706d6462b6fe8f31f}} 
+\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ {\bfseries get\+Perf2\+Worth} ()
+\item 
+\mbox{\Hypertarget{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}\label{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}} 
+void {\bfseries swap} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&other)
+\item 
+\mbox{\hyperlink{classeo_pop_ab643687724fca7036769c7c5c0cdf5f2}{eo\+Pop}} ()
+\item 
+\mbox{\hyperlink{classeo_pop_a56dac0c179a2c7226197df6f5ce2b36a}{eo\+Pop}} (unsigned \+\_\+pop\+Size, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+chrom\+Init)
+\item 
+void \mbox{\hyperlink{classeo_pop_af37a425b85894e44c25392ee5f6514fc}{append}} (unsigned \+\_\+new\+Pop\+Size, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+chrom\+Init)
+\item 
+\mbox{\hyperlink{classeo_pop_a4e8b1be3cf2f862f70315371d388ff0b}{eo\+Pop}} (std\+::istream \&\+\_\+is)
+\item 
+virtual \mbox{\hyperlink{classeo_pop_ad6a2ecffaab89a8c6d00858de7a54ef5}{$\sim$eo\+Pop}} ()
+\item 
+void \mbox{\hyperlink{classeo_pop_acee388e2a8d68da24040a9d440a36830}{sort}} (void)
+\item 
+void \mbox{\hyperlink{classeo_pop_a84518c9d85dec65f314ead50c55556d8}{sort}} (std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&result) const
+\item 
+void \mbox{\hyperlink{classeo_pop_ab65faec2bbc1217a9a94c240362fce63}{shuffle}} (void)
+\item 
+void \mbox{\hyperlink{classeo_pop_a4e3ef2c141d3e8efe25cfab6f114d8ca}{shuffle}} (std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&result) const
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::iterator \mbox{\hyperlink{classeo_pop_a92cdbaec5a1d66a9ac6322e1277b10b5}{it\+\_\+best\+\_\+element}} ()
+\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_pop_af49f88e89978e6ed6bff4f35c889d9c6}{best\+\_\+element}} () const
+\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_pop_a2b8f0d9870ca26785c379b4e768c7a30}{worse\+\_\+element}} () const
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::iterator \mbox{\hyperlink{classeo_pop_ab2194ac46bdbe81812bbaea955c2dc35}{it\+\_\+worse\+\_\+element}} ()
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::iterator \mbox{\hyperlink{classeo_pop_a102853315e533fe5e977b8fe8c593658}{nth\+\_\+element}} (int nth)
+\item 
+Fitness \mbox{\hyperlink{classeo_pop_a63e21d52afcb0c1d62024cdc851e8f25}{nth\+\_\+element\+\_\+fitness}} (int which) const
+\item 
+void \mbox{\hyperlink{classeo_pop_a91ce000007f05122c1a7850440c7ed2f}{nth\+\_\+element}} (int which, std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&result) const
+\item 
+void \mbox{\hyperlink{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}{swap}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&other)
+\item 
+virtual void \mbox{\hyperlink{classeo_pop_adb4c683919e3f7bc3cb1e9ece033abdd}{sorted\+Print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+\mbox{\Hypertarget{classeo_pop_a5368d1de4074e4ec7586a304978b8779}\label{classeo_pop_a5368d1de4074e4ec7586a304978b8779}} 
+void {\bfseries sort} ()
+\item 
+\mbox{\Hypertarget{classeo_pop_a3677b4f8523e0af644946e5e623abe5a}\label{classeo_pop_a3677b4f8523e0af644946e5e623abe5a}} 
+void {\bfseries scale} ()
+\item 
+\mbox{\Hypertarget{classeo_pop_a926a97b56035bdf1b46979e8d5ecee3e}\label{classeo_pop_a926a97b56035bdf1b46979e8d5ecee3e}} 
+void {\bfseries set\+Perf2\+Worth} (\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+p2w)
+\item 
+\mbox{\Hypertarget{classeo_pop_aaeaa666347d7966262f8147b45273a6b}\label{classeo_pop_aaeaa666347d7966262f8147b45273a6b}} 
+void {\bfseries set\+Perf2\+Worth} (\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$\+\_\+p2w)
+\item 
+\mbox{\Hypertarget{classeo_pop_a5236800b986f85c706d6462b6fe8f31f}\label{classeo_pop_a5236800b986f85c706d6462b6fe8f31f}} 
+\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ {\bfseries get\+Perf2\+Worth} ()
+\item 
+\mbox{\Hypertarget{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}\label{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}} 
+void {\bfseries swap} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&other)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Methods from eo\+Object}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classeo_pop_a88d28926eb525f367ca9a19c0b69695a}{read\+From}} (std\+::istream \&\+\_\+is)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_pop_a6c48ed2be422baf4fc914125e7a3a0e6}{class\+Name}} () const
+\item 
+\mbox{\Hypertarget{classeo_pop_a94ff8afbb4bad67b48f04165b1170e67}\label{classeo_pop_a94ff8afbb4bad67b48f04165b1170e67}} 
+virtual void {\bfseries invalidate} ()
+\item 
+virtual void \mbox{\hyperlink{classeo_pop_a88d28926eb525f367ca9a19c0b69695a}{read\+From}} (std\+::istream \&\+\_\+is)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_pop_a6c48ed2be422baf4fc914125e7a3a0e6}{class\+Name}} () const
+\item 
+virtual void \mbox{\hyperlink{classeo_pop_a94ff8afbb4bad67b48f04165b1170e67}{invalidate}} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Pop$<$ E\+O\+T $>$}
+
+A std\+::vector of \mbox{\hyperlink{class_e_o}{EO}} object, to be used in all algorithms (selectors, operators, replacements, ...).
+
+We have no idea if a population can be some other thing that a std\+::vector, but if somebody thinks of it, this concrete implementation can be moved to \char`\"{}generic\char`\"{} and an abstract Population interface be provided.
+
+The template can be instantiated with anything that accepts a \char`\"{}size\char`\"{} and \mbox{\hyperlink{classeo_init}{eo\+Init}} derived object. in the ctor. E\+OT must also have a copy ctor, since temporaries are created and then passed to the \mbox{\hyperlink{classeo_init}{eo\+Init}} object 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_pop_ab643687724fca7036769c7c5c0cdf5f2}\label{classeo_pop_ab643687724fca7036769c7c5c0cdf5f2}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!eoPop@{eoPop}}
+\index{eoPop@{eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPop()}{eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor. Creates empty pop \mbox{\Hypertarget{classeo_pop_a56dac0c179a2c7226197df6f5ce2b36a}\label{classeo_pop_a56dac0c179a2c7226197df6f5ce2b36a}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!eoPop@{eoPop}}
+\index{eoPop@{eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPop()}{eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+pop\+Size,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+chrom\+Init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor for the initialization of chromosomes
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop\+Size} & total population size \\
+\hline
+{\em \+\_\+chrom\+Init} & Initialization routine, produces \mbox{\hyperlink{class_e_o}{EO}}\textquotesingle{}s, needs to be an \mbox{\hyperlink{classeo_init}{eo\+Init}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_a4e8b1be3cf2f862f70315371d388ff0b}\label{classeo_pop_a4e8b1be3cf2f862f70315371d388ff0b}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!eoPop@{eoPop}}
+\index{eoPop@{eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPop()}{eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from an std\+::istream; reads the population from a stream, each element should be in different lines 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & the stream \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_ad6a2ecffaab89a8c6d00858de7a54ef5}\label{classeo_pop_ad6a2ecffaab89a8c6d00858de7a54ef5}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!````~eoPop@{$\sim$eoPop}}
+\index{````~eoPop@{$\sim$eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoPop()}{~eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::$\sim$\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Empty Dtor \mbox{\Hypertarget{classeo_pop_ab643687724fca7036769c7c5c0cdf5f2}\label{classeo_pop_ab643687724fca7036769c7c5c0cdf5f2}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!eoPop@{eoPop}}
+\index{eoPop@{eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPop()}{eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor. Creates empty pop \mbox{\Hypertarget{classeo_pop_a56dac0c179a2c7226197df6f5ce2b36a}\label{classeo_pop_a56dac0c179a2c7226197df6f5ce2b36a}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!eoPop@{eoPop}}
+\index{eoPop@{eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPop()}{eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+pop\+Size,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+chrom\+Init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor for the initialization of chromosomes
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop\+Size} & total population size \\
+\hline
+{\em \+\_\+chrom\+Init} & Initialization routine, produces \mbox{\hyperlink{class_e_o}{EO}}\textquotesingle{}s, needs to be an \mbox{\hyperlink{classeo_init}{eo\+Init}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_a4e8b1be3cf2f862f70315371d388ff0b}\label{classeo_pop_a4e8b1be3cf2f862f70315371d388ff0b}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!eoPop@{eoPop}}
+\index{eoPop@{eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPop()}{eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from an std\+::istream; reads the population from a stream, each element should be in different lines 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & the stream \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_ad6a2ecffaab89a8c6d00858de7a54ef5}\label{classeo_pop_ad6a2ecffaab89a8c6d00858de7a54ef5}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!````~eoPop@{$\sim$eoPop}}
+\index{````~eoPop@{$\sim$eoPop}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoPop()}{~eoPop()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::$\sim$\mbox{\hyperlink{classeo_pop}{eo\+Pop}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Empty Dtor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_pop_af37a425b85894e44c25392ee5f6514fc}\label{classeo_pop_af37a425b85894e44c25392ee5f6514fc}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!append@{append}}
+\index{append@{append}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::append (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+new\+Pop\+Size,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+chrom\+Init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+appends random guys at end of pop. Can be used to initialize it pop is empty
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+new\+Pop\+Size} & total population size \\
+\hline
+{\em \+\_\+chrom\+Init} & Initialization routine, produces \mbox{\hyperlink{class_e_o}{EO}}\textquotesingle{}s, needs to be an \mbox{\hyperlink{classeo_init}{eo\+Init}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_af37a425b85894e44c25392ee5f6514fc}\label{classeo_pop_af37a425b85894e44c25392ee5f6514fc}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!append@{append}}
+\index{append@{append}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::append (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+new\+Pop\+Size,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+chrom\+Init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+appends random guys at end of pop. Can be used to initialize it pop is empty
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+new\+Pop\+Size} & total population size \\
+\hline
+{\em \+\_\+chrom\+Init} & Initialization routine, produces \mbox{\hyperlink{class_e_o}{EO}}\textquotesingle{}s, needs to be an \mbox{\hyperlink{classeo_init}{eo\+Init}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_af49f88e89978e6ed6bff4f35c889d9c6}\label{classeo_pop_af49f88e89978e6ed6bff4f35c889d9c6}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!best\_element@{best\_element}}
+\index{best\_element@{best\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{best\_element()}{best\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::best\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns an iterator to the best individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY \mbox{\Hypertarget{classeo_pop_af49f88e89978e6ed6bff4f35c889d9c6}\label{classeo_pop_af49f88e89978e6ed6bff4f35c889d9c6}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!best\_element@{best\_element}}
+\index{best\_element@{best\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{best\_element()}{best\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::best\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns an iterator to the best individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY \mbox{\Hypertarget{classeo_pop_a6c48ed2be422baf4fc914125e7a3a0e6}\label{classeo_pop_a6c48ed2be422baf4fc914125e7a3a0e6}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classeo_object}{eo\+Object}}. Returns the class name. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_object}{eo\+Object}} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_pop_a6c48ed2be422baf4fc914125e7a3a0e6}\label{classeo_pop_a6c48ed2be422baf4fc914125e7a3a0e6}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classeo_object}{eo\+Object}}. Returns the class name. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_object}{eo\+Object}} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_pop_a94ff8afbb4bad67b48f04165b1170e67}\label{classeo_pop_a94ff8afbb4bad67b48f04165b1170e67}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Invalidate the whole population \mbox{\Hypertarget{classeo_pop_a92cdbaec5a1d66a9ac6322e1277b10b5}\label{classeo_pop_a92cdbaec5a1d66a9ac6322e1277b10b5}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!it\_best\_element@{it\_best\_element}}
+\index{it\_best\_element@{it\_best\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{it\_best\_element()}{it\_best\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\+::iterator \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::it\+\_\+best\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns an iterator to the best individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY \mbox{\Hypertarget{classeo_pop_a92cdbaec5a1d66a9ac6322e1277b10b5}\label{classeo_pop_a92cdbaec5a1d66a9ac6322e1277b10b5}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!it\_best\_element@{it\_best\_element}}
+\index{it\_best\_element@{it\_best\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{it\_best\_element()}{it\_best\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\+::iterator \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::it\+\_\+best\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns an iterator to the best individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY \mbox{\Hypertarget{classeo_pop_ab2194ac46bdbe81812bbaea955c2dc35}\label{classeo_pop_ab2194ac46bdbe81812bbaea955c2dc35}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!it\_worse\_element@{it\_worse\_element}}
+\index{it\_worse\_element@{it\_worse\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{it\_worse\_element()}{it\_worse\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\+::iterator \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::it\+\_\+worse\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns an iterator to the worse individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY \mbox{\Hypertarget{classeo_pop_ab2194ac46bdbe81812bbaea955c2dc35}\label{classeo_pop_ab2194ac46bdbe81812bbaea955c2dc35}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!it\_worse\_element@{it\_worse\_element}}
+\index{it\_worse\_element@{it\_worse\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{it\_worse\_element()}{it\_worse\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\+::iterator \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::it\+\_\+worse\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns an iterator to the worse individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY \mbox{\Hypertarget{classeo_pop_a102853315e533fe5e977b8fe8c593658}\label{classeo_pop_a102853315e533fe5e977b8fe8c593658}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!nth\_element@{nth\_element}}
+\index{nth\_element@{nth\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nth\_element()}{nth\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\+::iterator \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nth\+\_\+element (\begin{DoxyParamCaption}\item[{int}]{nth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+slightly faster algorithm than sort to find all individuals that are better than the nth individual. I\+N\+D\+I\+V\+I\+D\+U\+A\+LS A\+RE M\+O\+V\+ED A\+R\+O\+U\+ND in the pop. \mbox{\Hypertarget{classeo_pop_a102853315e533fe5e977b8fe8c593658}\label{classeo_pop_a102853315e533fe5e977b8fe8c593658}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!nth\_element@{nth\_element}}
+\index{nth\_element@{nth\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nth\_element()}{nth\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\+::iterator \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nth\+\_\+element (\begin{DoxyParamCaption}\item[{int}]{nth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+slightly faster algorithm than sort to find all individuals that are better than the nth individual. I\+N\+D\+I\+V\+I\+D\+U\+A\+LS A\+RE M\+O\+V\+ED A\+R\+O\+U\+ND in the pop. \mbox{\Hypertarget{classeo_pop_a91ce000007f05122c1a7850440c7ed2f}\label{classeo_pop_a91ce000007f05122c1a7850440c7ed2f}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!nth\_element@{nth\_element}}
+\index{nth\_element@{nth\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nth\_element()}{nth\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nth\+\_\+element (\begin{DoxyParamCaption}\item[{int}]{which,  }\item[{std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+const nth\+\_\+element function, returns pointers to sorted individuals up the the nth \mbox{\Hypertarget{classeo_pop_a91ce000007f05122c1a7850440c7ed2f}\label{classeo_pop_a91ce000007f05122c1a7850440c7ed2f}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!nth\_element@{nth\_element}}
+\index{nth\_element@{nth\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nth\_element()}{nth\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nth\+\_\+element (\begin{DoxyParamCaption}\item[{int}]{which,  }\item[{std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+const nth\+\_\+element function, returns pointers to sorted individuals up the the nth \mbox{\Hypertarget{classeo_pop_a63e21d52afcb0c1d62024cdc851e8f25}\label{classeo_pop_a63e21d52afcb0c1d62024cdc851e8f25}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!nth\_element\_fitness@{nth\_element\_fitness}}
+\index{nth\_element\_fitness@{nth\_element\_fitness}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nth\_element\_fitness()}{nth\_element\_fitness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+Fitness \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nth\+\_\+element\+\_\+fitness (\begin{DoxyParamCaption}\item[{int}]{which }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns the fitness of the nth element \mbox{\Hypertarget{classeo_pop_a63e21d52afcb0c1d62024cdc851e8f25}\label{classeo_pop_a63e21d52afcb0c1d62024cdc851e8f25}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!nth\_element\_fitness@{nth\_element\_fitness}}
+\index{nth\_element\_fitness@{nth\_element\_fitness}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nth\_element\_fitness()}{nth\_element\_fitness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+Fitness \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nth\+\_\+element\+\_\+fitness (\begin{DoxyParamCaption}\item[{int}]{which }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns the fitness of the nth element \mbox{\Hypertarget{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}\label{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. It\textquotesingle{}s called print\+On since it prints the object {\itshape on} a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classeo_linear_topology_a4f847929fb8f1ac179c41151202cbfd4}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_ring_topology_aa0601c3f73d936beb5084ac0f6a5dcaf}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}\label{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. It\textquotesingle{}s called print\+On since it prints the object {\itshape on} a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classeo_linear_topology_a4f847929fb8f1ac179c41151202cbfd4}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_ring_topology_aa0601c3f73d936beb5084ac0f6a5dcaf}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_pop_a88d28926eb525f367ca9a19c0b69695a}\label{classeo_pop_a88d28926eb525f367ca9a19c0b69695a}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Read object. The E\+OT class must have a ctor from a stream; 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & A std\+::istream. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_pop_a88d28926eb525f367ca9a19c0b69695a}\label{classeo_pop_a88d28926eb525f367ca9a19c0b69695a}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Read object. The E\+OT class must have a ctor from a stream; 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & A std\+::istream. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_pop_a4e3ef2c141d3e8efe25cfab6f114d8ca}\label{classeo_pop_a4e3ef2c141d3e8efe25cfab6f114d8ca}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!shuffle@{shuffle}}
+\index{shuffle@{shuffle}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{shuffle()}{shuffle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::shuffle (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+creates a std\+::vector$<$\+E\+O\+T$\ast$$>$ pointing to the individuals in random order \mbox{\Hypertarget{classeo_pop_a4e3ef2c141d3e8efe25cfab6f114d8ca}\label{classeo_pop_a4e3ef2c141d3e8efe25cfab6f114d8ca}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!shuffle@{shuffle}}
+\index{shuffle@{shuffle}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{shuffle()}{shuffle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::shuffle (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+creates a std\+::vector$<$\+E\+O\+T$\ast$$>$ pointing to the individuals in random order \mbox{\Hypertarget{classeo_pop_ab65faec2bbc1217a9a94c240362fce63}\label{classeo_pop_ab65faec2bbc1217a9a94c240362fce63}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!shuffle@{shuffle}}
+\index{shuffle@{shuffle}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{shuffle()}{shuffle()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::shuffle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+shuffle the population. Use this member to put the population in random order \mbox{\Hypertarget{classeo_pop_ab65faec2bbc1217a9a94c240362fce63}\label{classeo_pop_ab65faec2bbc1217a9a94c240362fce63}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!shuffle@{shuffle}}
+\index{shuffle@{shuffle}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{shuffle()}{shuffle()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::shuffle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+shuffle the population. Use this member to put the population in random order \mbox{\Hypertarget{classeo_pop_a84518c9d85dec65f314ead50c55556d8}\label{classeo_pop_a84518c9d85dec65f314ead50c55556d8}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!sort@{sort}}
+\index{sort@{sort}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::sort (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+creates a std\+::vector$<$\+E\+O\+T$\ast$$>$ pointing to the individuals in descending order \mbox{\Hypertarget{classeo_pop_a84518c9d85dec65f314ead50c55556d8}\label{classeo_pop_a84518c9d85dec65f314ead50c55556d8}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!sort@{sort}}
+\index{sort@{sort}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::sort (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+creates a std\+::vector$<$\+E\+O\+T$\ast$$>$ pointing to the individuals in descending order \mbox{\Hypertarget{classeo_pop_acee388e2a8d68da24040a9d440a36830}\label{classeo_pop_acee388e2a8d68da24040a9d440a36830}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!sort@{sort}}
+\index{sort@{sort}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::sort (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+sort the population. Use this member to sort in order of descending Fitness, so the first individual is the best! \mbox{\Hypertarget{classeo_pop_acee388e2a8d68da24040a9d440a36830}\label{classeo_pop_acee388e2a8d68da24040a9d440a36830}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!sort@{sort}}
+\index{sort@{sort}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::sort (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+sort the population. Use this member to sort in order of descending Fitness, so the first individual is the best! \mbox{\Hypertarget{classeo_pop_adb4c683919e3f7bc3cb1e9ece033abdd}\label{classeo_pop_adb4c683919e3f7bc3cb1e9ece033abdd}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!sortedPrintOn@{sortedPrintOn}}
+\index{sortedPrintOn@{sortedPrintOn}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{sortedPrintOn()}{sortedPrintOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::sorted\+Print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Prints sorted pop but does N\+OT modify it!
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_adb4c683919e3f7bc3cb1e9ece033abdd}\label{classeo_pop_adb4c683919e3f7bc3cb1e9ece033abdd}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!sortedPrintOn@{sortedPrintOn}}
+\index{sortedPrintOn@{sortedPrintOn}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{sortedPrintOn()}{sortedPrintOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::sorted\+Print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Prints sorted pop but does N\+OT modify it!
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}\label{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!swap@{swap}}
+\index{swap@{swap}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+does S\+TL swap with other pop \mbox{\Hypertarget{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}\label{classeo_pop_a738202cf7d2c262a442c6c2ab8efa3f2}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!swap@{swap}}
+\index{swap@{swap}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+does S\+TL swap with other pop \mbox{\Hypertarget{classeo_pop_a2b8f0d9870ca26785c379b4e768c7a30}\label{classeo_pop_a2b8f0d9870ca26785c379b4e768c7a30}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!worse\_element@{worse\_element}}
+\index{worse\_element@{worse\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{worse\_element()}{worse\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::worse\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns a const reference to the worse individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY \mbox{\Hypertarget{classeo_pop_a2b8f0d9870ca26785c379b4e768c7a30}\label{classeo_pop_a2b8f0d9870ca26785c379b4e768c7a30}} 
+\index{eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}!worse\_element@{worse\_element}}
+\index{worse\_element@{worse\_element}!eoPop$<$ EOT $>$@{eoPop$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{worse\_element()}{worse\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::worse\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+returns a const reference to the worse individual D\+O\+ES N\+OT M\+O\+VE A\+N\+Y\+B\+O\+DY 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Pop.\+h\item 
+deprecated/eo/test/fitness\+\_\+traits.\+cpp\end{DoxyCompactItemize}

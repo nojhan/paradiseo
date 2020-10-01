@@ -1,0 +1,76 @@
+\hypertarget{structeoserial_1_1_array_1_1_unpack_object_algorithm}{}\doxysection{eoserial\+::Array\+::Unpack\+Object\+Algorithm$<$ C $>$ Struct Template Reference}
+\label{structeoserial_1_1_array_1_1_unpack_object_algorithm}\index{eoserial::Array::UnpackObjectAlgorithm$<$ C $>$@{eoserial::Array::UnpackObjectAlgorithm$<$ C $>$}}
+
+
+\mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}} for retrieving \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects.  
+
+
+
+
+{\ttfamily \#include $<$Serial\+Array.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::Array\+::Unpack\+Object\+Algorithm$<$ C $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{structeoserial_1_1_array_1_1_unpack_object_algorithm__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eoserial\+::Array\+::Unpack\+Object\+Algorithm$<$ C $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{structeoserial_1_1_array_1_1_unpack_object_algorithm__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_object_algorithm_abb49837fe0ef1c25db748428648059a3}{operator()}} (const \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} \&array, unsigned int i, C \&container) const
+\begin{DoxyCompactList}\small\item\em Main operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename C$>$\newline
+struct eoserial\+::\+Array\+::\+Unpack\+Object\+Algorithm$<$ C $>$}
+
+\mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{Base\+Algorithm}} for retrieving \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects. 
+
+This one should be used to retrieve objects which implement \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeoserial_1_1_array_1_1_unpack_object_algorithm_abb49837fe0ef1c25db748428648059a3}\label{structeoserial_1_1_array_1_1_unpack_object_algorithm_abb49837fe0ef1c25db748428648059a3}} 
+\index{eoserial::Array::UnpackObjectAlgorithm$<$ C $>$@{eoserial::Array::UnpackObjectAlgorithm$<$ C $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoserial::Array::UnpackObjectAlgorithm$<$ C $>$@{eoserial::Array::UnpackObjectAlgorithm$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename C $>$ \\
+void \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_object_algorithm}{eoserial\+::\+Array\+::\+Unpack\+Object\+Algorithm}}$<$ C $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} \&}]{array,  }\item[{unsigned int}]{i,  }\item[{C \&}]{container }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Main operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & The \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} from which we\textquotesingle{}re reading. \\
+\hline
+{\em i} & The index of the contained value. \\
+\hline
+{\em container} & The standard (S\+TL) container in which we\textquotesingle{}ll push back the read value. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm_aaa131c48b290b8726d31c276afcdb625}{eoserial\+::\+Array\+::\+Base\+Algorithm$<$ C $>$}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Serial\+Array.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,120 @@
+\hypertarget{classmoeo_t_s}{}\doxysection{moeo\+TS$<$ M $>$ Class Template Reference}
+\label{classmoeo_t_s}\index{moeoTS$<$ M $>$@{moeoTS$<$ M $>$}}
+
+
+Tabu Search (TS)  
+
+
+
+
+{\ttfamily \#include $<$moeo\+T\+S.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+TS$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_t_s__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+TS$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_t_s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_t_s_a9a4e0fb7c291aab51959482c886c8b8e}\label{classmoeo_t_s_a9a4e0fb7c291aab51959482c886c8b8e}} 
+typedef M\+::\+E\+O\+Type {\bfseries M\+O\+E\+OT}
+\item 
+\mbox{\Hypertarget{classmoeo_t_s_acc2570d1653e698191ce0bca9451d5e0}\label{classmoeo_t_s_acc2570d1653e698191ce0bca9451d5e0}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_t_s_a56c7efcb81d87699ab5e0dda03eeede6}\label{classmoeo_t_s_a56c7efcb81d87699ab5e0dda03eeede6}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_t_s_ae9cf8b38605b3d60985d4fb5d4fc95c5}{moeo\+TS}} (mo\+Move\+Init$<$ M $>$ \&\+\_\+move\+\_\+initializer, mo\+Next\+Move$<$ M $>$ \&\+\_\+next\+\_\+move\+\_\+generator, mo\+Move\+Incr\+Eval$<$ M, typename M\+O\+E\+O\+T\+::\+Objective\+Vector $>$ \&\+\_\+incremental\+\_\+evaluation, \mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ M $>$ \&\+\_\+tabu\+\_\+list, mo\+Aspir\+Crit$<$ M $>$ \&\+\_\+aspiration\+\_\+criterion, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+singler)
+\begin{DoxyCompactList}\small\item\em Full constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmoeo_t_s_a579e04ad073b2f50ca60b87c3f4bb032}{operator()}} (M\+O\+E\+OT \&\+\_\+solution)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_function}{Function}} which launchs the Tabu Search. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M$>$\newline
+class moeo\+T\+S$<$ M $>$}
+
+Tabu Search (TS) 
+
+Generic algorithm that describes a tabu search. Adapts the \mbox{\hyperlink{classmo_t_s}{mo\+TS}} for a multi-\/objective problem using a \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}. M is for Move 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_t_s_ae9cf8b38605b3d60985d4fb5d4fc95c5}\label{classmoeo_t_s_ae9cf8b38605b3d60985d4fb5d4fc95c5}} 
+\index{moeoTS$<$ M $>$@{moeoTS$<$ M $>$}!moeoTS@{moeoTS}}
+\index{moeoTS@{moeoTS}!moeoTS$<$ M $>$@{moeoTS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoTS()}{moeoTS()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_t_s}{moeo\+TS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_t_s}{moeo\+TS}} (\begin{DoxyParamCaption}\item[{mo\+Move\+Init$<$ M $>$ \&}]{\+\_\+move\+\_\+initializer,  }\item[{mo\+Next\+Move$<$ M $>$ \&}]{\+\_\+next\+\_\+move\+\_\+generator,  }\item[{mo\+Move\+Incr\+Eval$<$ M, typename M\+O\+E\+O\+T\+::\+Objective\+Vector $>$ \&}]{\+\_\+incremental\+\_\+evaluation,  }\item[{\mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ M $>$ \&}]{\+\_\+tabu\+\_\+list,  }\item[{mo\+Aspir\+Crit$<$ M $>$ \&}]{\+\_\+aspiration\+\_\+criterion,  }\item[{mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+singler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Full constructor. 
+
+All the boxes are given in order the TS to use a mo\+T\+S\+Move\+Loop\+Expl.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+move\+\_\+initializer} & a move initialiser. \\
+\hline
+{\em \+\_\+next\+\_\+move\+\_\+generator} & a neighborhood explorer. \\
+\hline
+{\em \+\_\+incremental\+\_\+evaluation} & a (generally) efficient evaluation function. \\
+\hline
+{\em \+\_\+tabu\+\_\+list} & The tabu list. \\
+\hline
+{\em \+\_\+aspiration\+\_\+criterion} & An aspiration criterion. \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+singler} & a single\+Objectivizer to translate objective\+Vectors into fitness \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_t_s_a579e04ad073b2f50ca60b87c3f4bb032}\label{classmoeo_t_s_a579e04ad073b2f50ca60b87c3f4bb032}} 
+\index{moeoTS$<$ M $>$@{moeoTS$<$ M $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoTS$<$ M $>$@{moeoTS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+bool \mbox{\hyperlink{classmoeo_t_s}{moeo\+TS}}$<$ M $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{struct_function}{Function}} which launchs the Tabu Search. 
+
+Algorithm of the tabu search. As a \mbox{\hyperlink{classmo_s_a}{mo\+SA}} or a mo\+HC, it can be used for H\+Y\+B\+R\+I\+D\+A\+T\+I\+ON in an evolutionary algorithm. For security a lock (pthread\+\_\+mutex\+\_\+t) is closed during the algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution to improve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/algo/moeo\+T\+S.\+h\end{DoxyCompactItemize}

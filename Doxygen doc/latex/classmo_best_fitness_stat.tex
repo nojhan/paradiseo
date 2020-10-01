@@ -1,0 +1,128 @@
+\hypertarget{classmo_best_fitness_stat}{}\doxysection{mo\+Best\+Fitness\+Stat$<$ E\+OT $>$ Class Template Reference}
+\label{classmo_best_fitness_stat}\index{moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$mo\+Best\+Fitness\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Best\+Fitness\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_best_fitness_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Best\+Fitness\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_best_fitness_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_best_fitness_stat_a96b4dbaf1d3c11215041d0702dc3bc81}\label{classmo_best_fitness_stat_a96b4dbaf1d3c11215041d0702dc3bc81}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_best_fitness_stat_a7334e1d1d258ab8c96ecaa6302ee136f}{mo\+Best\+Fitness\+Stat}} (bool \+\_\+re\+Init\+Sol=true)
+\item 
+virtual void \mbox{\hyperlink{classmo_best_fitness_stat_a343cfa3963205bd688afad5d5796c9d8}{init}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_best_fitness_stat_a9379425e3dc2a3f13c60faa26adb4b8a}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_best_fitness_stat_aed63cdb351addb848d6dab52cb5221b6}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_best_fitness_stat_a359b683c10017878290548aed520bc8c}\label{classmo_best_fitness_stat_a359b683c10017878290548aed520bc8c}} 
+bool {\bfseries re\+Init\+Sol}
+\item 
+\mbox{\Hypertarget{classmo_best_fitness_stat_a1b4a3d9f63c427522b3e3248d54f7cc9}\label{classmo_best_fitness_stat_a1b4a3d9f63c427522b3e3248d54f7cc9}} 
+bool {\bfseries first\+Time}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class mo\+Best\+Fitness\+Stat$<$ E\+O\+T $>$}
+
+The statistic which save the best solution found during the search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_best_fitness_stat_a7334e1d1d258ab8c96ecaa6302ee136f}\label{classmo_best_fitness_stat_a7334e1d1d258ab8c96ecaa6302ee136f}} 
+\index{moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}!moBestFitnessStat@{moBestFitnessStat}}
+\index{moBestFitnessStat@{moBestFitnessStat}!moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{moBestFitnessStat()}{moBestFitnessStat()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classmo_best_fitness_stat}{mo\+Best\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classmo_best_fitness_stat}{mo\+Best\+Fitness\+Stat}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+re\+Init\+Sol = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+re\+Init\+Sol} & when true the best so far is reinitialized \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_best_fitness_stat_aed63cdb351addb848d6dab52cb5221b6}\label{classmo_best_fitness_stat_aed63cdb351addb848d6dab52cb5221b6}} 
+\index{moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}!className@{className}}
+\index{className@{className}!moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_best_fitness_stat}{mo\+Best\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+name of the class 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_best_fitness_stat_a343cfa3963205bd688afad5d5796c9d8}\label{classmo_best_fitness_stat_a343cfa3963205bd688afad5d5796c9d8}} 
+\index{moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}!init@{init}}
+\index{init@{init}!moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmo_best_fitness_stat}{mo\+Best\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Initialization of the best solution on the first one 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_best_fitness_stat_a9379425e3dc2a3f13c60faa26adb4b8a}\label{classmo_best_fitness_stat_a9379425e3dc2a3f13c60faa26adb4b8a}} 
+\index{moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moBestFitnessStat$<$ EOT $>$@{moBestFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmo_best_fitness_stat}{mo\+Best\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the best solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Best\+Fitness\+Stat.\+h\end{DoxyCompactItemize}

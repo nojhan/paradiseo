@@ -1,0 +1,161 @@
+\hypertarget{group___evaluation}{}\doxysection{Evaluation}
+\label{group___evaluation}\index{Evaluation@{Evaluation}}
+Collaboration diagram for Evaluation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___evaluation}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness$<$ Base\+Type, Compare $>$}}
+\begin{DoxyCompactList}\small\item\em A fitness class that permits to compare feasible and unfeasible individuals and guaranties that a feasible individual will always be better than an unfeasible one. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_dual_stat_switch}{eo\+Dual\+Stat\+Switch$<$ E\+O\+T, E\+O\+S\+T\+A\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_counter_throw_exception}{eo\+Eval\+Counter\+Throw\+Exception$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_func_counter_bounder_exception}{eo\+Eval\+Func\+Counter\+Bounder\+Exception}}
+\item 
+class \mbox{\hyperlink{classeo_eval_func_counter_bounder}{eo\+Eval\+Func\+Counter\+Bounder$<$ E\+O\+T $>$}}
+\item 
+struct \mbox{\hyperlink{structeo_eval_func_ptr}{eo\+Eval\+Func\+Ptr$<$ E\+O\+T, Fit\+T, Function\+Arg $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_time_throw_exception}{eo\+Eval\+Time\+Throw\+Exception$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_max_time_exception}{eo\+Max\+Time\+Exception}}
+\item 
+class \mbox{\hyperlink{classeo_max_eval_exception}{eo\+Max\+Eval\+Exception}}
+\item 
+class \mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_pop_loop_eval}{eo\+Pop\+Loop\+Eval$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_time_varying_loop_eval}{eo\+Time\+Varying\+Loop\+Eval$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness$<$ Scalar\+Type, Compare $>$}}
+\item 
+class \mbox{\hyperlink{classeo_scalar_fitness_assembled_traits}{eo\+Scalar\+Fitness\+Assembled\+Traits}}
+\begin{DoxyCompactList}\small\item\em Defines properties of \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled$<$ Scalar\+Type, Compare, Fitness\+Traits $>$}}
+\begin{DoxyCompactList}\small\item\em Implements fitness as std\+::vector, storing all values that might occur during fitness assembly. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_dual_pop_split}{eo\+Dual\+Pop\+Split$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_keep_best}{eo\+Eval\+Keep\+Best$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_named_pipe}{eo\+Eval\+Named\+Pipe$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_nan_throw_exception}{eo\+Eval\+Nan\+Throw\+Exception$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_nan_exception}{eo\+Nan\+Exception}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___evaluation_ga7525b6c499f6c534cccdbf3a69ab5b98}\label{group___evaluation_ga7525b6c499f6c534cccdbf3a69ab5b98}} 
+typedef \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ double, std\+::less$<$ double $>$ $>$ \mbox{\hyperlink{group___evaluation_ga7525b6c499f6c534cccdbf3a69ab5b98}{eo\+Maximizing\+Dual\+Fitness}}
+\begin{DoxyCompactList}\small\item\em Compare dual fitnesses as if we were maximizing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}\label{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}} 
+typedef \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ double, std\+::greater$<$ double $>$ $>$ \mbox{\hyperlink{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}{eo\+Minimizing\+Dual\+Fitness}}
+\begin{DoxyCompactList}\small\item\em Compare dual fitnesses as if we were minimizing. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$ double, std\+::less$<$ double $>$ $>$ \mbox{\hyperlink{group___evaluation_ga02f1400f33e982a44b9635bc5ba1c005}{eo\+Maximizing\+Fitness}}
+\item 
+\mbox{\Hypertarget{group___evaluation_gab71af05a8f933ea2836abc8fcf04d529}\label{group___evaluation_gab71af05a8f933ea2836abc8fcf04d529}} 
+typedef \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$ double, std\+::greater$<$ double $>$ $>$ {\bfseries eo\+Minimizing\+Fitness}
+\item 
+typedef \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ double, std\+::less$<$ double $>$, \mbox{\hyperlink{classeo_scalar_fitness_assembled_traits}{eo\+Scalar\+Fitness\+Assembled\+Traits}} $>$ \mbox{\hyperlink{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}{eo\+Assembled\+Maximizing\+Fitness}}
+\item 
+\mbox{\Hypertarget{group___evaluation_gad9f6674902eef509cb36a706dc62d0f5}\label{group___evaluation_gad9f6674902eef509cb36a706dc62d0f5}} 
+typedef \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ double, std\+::greater$<$ double $>$, \mbox{\hyperlink{classeo_scalar_fitness_assembled_traits}{eo\+Scalar\+Fitness\+Assembled\+Traits}} $>$ {\bfseries eo\+Assembled\+Minimizing\+Fitness}
+\item 
+\mbox{\Hypertarget{group___evaluation_ga7525b6c499f6c534cccdbf3a69ab5b98}\label{group___evaluation_ga7525b6c499f6c534cccdbf3a69ab5b98}} 
+typedef \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ double, std\+::less$<$ double $>$ $>$ \mbox{\hyperlink{group___evaluation_ga7525b6c499f6c534cccdbf3a69ab5b98}{eo\+Maximizing\+Dual\+Fitness}}
+\begin{DoxyCompactList}\small\item\em Compare dual fitnesses as if we were maximizing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}\label{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}} 
+typedef \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ double, std\+::greater$<$ double $>$ $>$ \mbox{\hyperlink{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}{eo\+Minimizing\+Dual\+Fitness}}
+\begin{DoxyCompactList}\small\item\em Compare dual fitnesses as if we were minimizing. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T  = double$>$ }\\using \mbox{\hyperlink{group___evaluation_ga84bd5e3eecd27e81ed6ae7a0dad1ae73}{eo\+Maximizing\+FitnessT}} = \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$ T, std\+::less$<$ T $>$ $>$
+\item 
+\mbox{\Hypertarget{group___evaluation_ga35ea587da9a261eddb20f6b9b2771809}\label{group___evaluation_ga35ea587da9a261eddb20f6b9b2771809}} 
+{\footnotesize template$<$class T  = double$>$ }\\using {\bfseries eo\+Minimizing\+FitnessT} = \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$ T, std\+::greater$<$ T $>$ $>$
+\item 
+\mbox{\Hypertarget{group___evaluation_ga2498338d9f08b4b586773dfb1b1be23d}\label{group___evaluation_ga2498338d9f08b4b586773dfb1b1be23d}} 
+using {\bfseries eo\+Maximizing\+Fitness} = \mbox{\hyperlink{group___evaluation_ga84bd5e3eecd27e81ed6ae7a0dad1ae73}{eo\+Maximizing\+FitnessT}}$<$ double $>$
+\item 
+\mbox{\Hypertarget{group___evaluation_ga623c5af795cdb89235b3951b3cb7d8eb}\label{group___evaluation_ga623c5af795cdb89235b3951b3cb7d8eb}} 
+using {\bfseries eo\+Minimizing\+Fitness} = \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+FitnessT}}$<$ double $>$
+\item 
+typedef \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ double, std\+::less$<$ double $>$, \mbox{\hyperlink{classeo_scalar_fitness_assembled_traits}{eo\+Scalar\+Fitness\+Assembled\+Traits}} $>$ \mbox{\hyperlink{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}{eo\+Assembled\+Maximizing\+Fitness}}
+\item 
+\mbox{\Hypertarget{group___evaluation_gad9f6674902eef509cb36a706dc62d0f5}\label{group___evaluation_gad9f6674902eef509cb36a706dc62d0f5}} 
+typedef \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ double, std\+::greater$<$ double $>$, \mbox{\hyperlink{classeo_scalar_fitness_assembled_traits}{eo\+Scalar\+Fitness\+Assembled\+Traits}} $>$ {\bfseries eo\+Assembled\+Minimizing\+Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\bool \mbox{\hyperlink{group___evaluation_ga11a9b0146c9675c81a62154b72b501ed}{eo\+Is\+Feasible}} (const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\begin{DoxyCompactList}\small\item\em A predicate that returns the feasibility of a given dual fitness. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___evaluation_gae6668230f17740819a564306e33167c8}\label{group___evaluation_gae6668230f17740819a564306e33167c8}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$ F, Cmp $>$ \&f)
+\item 
+\mbox{\Hypertarget{group___evaluation_ga929a4eeff005e4a3cf13134279a99337}\label{group___evaluation_ga929a4eeff005e4a3cf13134279a99337}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\std\+::istream \& {\bfseries operator$>$$>$} (std\+::istream \&is, \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$ F, Cmp $>$ \&f)
+\item 
+\mbox{\Hypertarget{group___evaluation_ga9fcb3cac191775ff3fab31fa1b0d98ec}\label{group___evaluation_ga9fcb3cac191775ff3fab31fa1b0d98ec}} 
+{\footnotesize template$<$class F , class Cmp , class Fitness\+Traits $>$ }\\std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ F, Cmp, Fitness\+Traits $>$ \&f)
+\item 
+\mbox{\Hypertarget{group___evaluation_gad42a87cde6d71cc31ae858369d792db1}\label{group___evaluation_gad42a87cde6d71cc31ae858369d792db1}} 
+{\footnotesize template$<$class F , class Cmp , class Fitness\+Traits $>$ }\\std\+::istream \& {\bfseries operator$>$$>$} (std\+::istream \&is, \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ F, Cmp, Fitness\+Traits $>$ \&f)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}\label{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}} 
+\index{Evaluation@{Evaluation}!eoAssembledMaximizingFitness@{eoAssembledMaximizingFitness}}
+\index{eoAssembledMaximizingFitness@{eoAssembledMaximizingFitness}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eoAssembledMaximizingFitness}{eoAssembledMaximizingFitness}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$double, std\+::less$<$double$>$, \mbox{\hyperlink{classeo_scalar_fitness_assembled_traits}{eo\+Scalar\+Fitness\+Assembled\+Traits}} $>$ \mbox{\hyperlink{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}{eo\+Assembled\+Maximizing\+Fitness}}}
+
+Typedefs for fitness comparison, Maximizing Fitness compares with less, and minimizing fitness compares with greater. This because we want ordinary fitness values (doubles) to be equivalent with Maximizing Fitness, and comparing with less is the default behaviour. \mbox{\Hypertarget{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}\label{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}} 
+\index{Evaluation@{Evaluation}!eoAssembledMaximizingFitness@{eoAssembledMaximizingFitness}}
+\index{eoAssembledMaximizingFitness@{eoAssembledMaximizingFitness}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eoAssembledMaximizingFitness}{eoAssembledMaximizingFitness}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$double, std\+::less$<$double$>$, \mbox{\hyperlink{classeo_scalar_fitness_assembled_traits}{eo\+Scalar\+Fitness\+Assembled\+Traits}} $>$ \mbox{\hyperlink{group___evaluation_gabeddeb4ae97c24b7cc69e5bd8b44f4b9}{eo\+Assembled\+Maximizing\+Fitness}}}
+
+Typedefs for fitness comparison, Maximizing Fitness compares with less, and minimizing fitness compares with greater. This because we want ordinary fitness values (doubles) to be equivalent with Maximizing Fitness, and comparing with less is the default behaviour. \mbox{\Hypertarget{group___evaluation_ga02f1400f33e982a44b9635bc5ba1c005}\label{group___evaluation_ga02f1400f33e982a44b9635bc5ba1c005}} 
+\index{Evaluation@{Evaluation}!eoMaximizingFitness@{eoMaximizingFitness}}
+\index{eoMaximizingFitness@{eoMaximizingFitness}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eoMaximizingFitness}{eoMaximizingFitness}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$double, std\+::less$<$double$>$ $>$ \mbox{\hyperlink{group___evaluation_ga02f1400f33e982a44b9635bc5ba1c005}{eo\+Maximizing\+Fitness}}}
+
+Typedefs for fitness comparison, Maximizing Fitness compares with less, and minimizing fitness compares with greater. This because we want ordinary fitness values (doubles) to be equivalent with Maximizing Fitness, and comparing with less is the default behaviour. \mbox{\Hypertarget{group___evaluation_ga84bd5e3eecd27e81ed6ae7a0dad1ae73}\label{group___evaluation_ga84bd5e3eecd27e81ed6ae7a0dad1ae73}} 
+\index{Evaluation@{Evaluation}!eoMaximizingFitnessT@{eoMaximizingFitnessT}}
+\index{eoMaximizingFitnessT@{eoMaximizingFitnessT}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eoMaximizingFitnessT}{eoMaximizingFitnessT}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+using \mbox{\hyperlink{group___evaluation_ga84bd5e3eecd27e81ed6ae7a0dad1ae73}{eo\+Maximizing\+FitnessT}} =  \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}}$<$T, std\+::less$<$T$>$ $>$}
+
+Typedefs for fitness comparison, Maximizing Fitness compares with less, and minimizing fitness compares with greater. This because we want ordinary fitness values (doubles) to be equivalent with Maximizing Fitness, and comparing with less is the default behaviour. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___evaluation_ga11a9b0146c9675c81a62154b72b501ed}\label{group___evaluation_ga11a9b0146c9675c81a62154b72b501ed}} 
+\index{Evaluation@{Evaluation}!eoIsFeasible@{eoIsFeasible}}
+\index{eoIsFeasible@{eoIsFeasible}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eoIsFeasible()}{eoIsFeasible()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool eo\+Is\+Feasible (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{sol }\end{DoxyParamCaption})}
+
+
+
+A predicate that returns the feasibility of a given dual fitness. 
+
+Use this in S\+TL algorithm that use binary predicates (e.\+g. count\+\_\+if, find\+\_\+if, etc.) 

@@ -1,0 +1,119 @@
+\hypertarget{classmoeo_hyp_continue}{}\doxysection{moeo\+Hyp\+Continue$<$ M\+O\+E\+OT, MetricT $>$ Class Template Reference}
+\label{classmoeo_hyp_continue}\index{moeoHypContinue$<$ MOEOT, MetricT $>$@{moeoHypContinue$<$ MOEOT, MetricT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Hyp\+Continue.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Hyp\+Continue$<$ M\+O\+E\+OT, MetricT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hyp_continue__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Hyp\+Continue$<$ M\+O\+E\+OT, MetricT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hyp_continue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_aa1e8419a41ae00e2214c5142b1fdca25}\label{classmoeo_hyp_continue_aa1e8419a41ae00e2214c5142b1fdca25}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a69c7a49ad6dac1d2da5cdaa71b65f73c}\label{classmoeo_hyp_continue_a69c7a49ad6dac1d2da5cdaa71b65f73c}} 
+typedef \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} {\bfseries Atom\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a3cf4b5e9247162ccfc6d30aaee7b4515}\label{classmoeo_hyp_continue_a3cf4b5e9247162ccfc6d30aaee7b4515}} 
+\mbox{\hyperlink{classmoeo_hyp_continue_a3cf4b5e9247162ccfc6d30aaee7b4515}{moeo\+Hyp\+Continue}} (const std\+::vector$<$ Atom\+Type $>$ \&\+\_\+\+Optim\+Vec, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, bool \+\_\+normalize=true, double \+\_\+rho=1.\+1)
+\begin{DoxyCompactList}\small\item\em Ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a2e2dc6edea0260e37bc4c9f631700858}\label{classmoeo_hyp_continue_a2e2dc6edea0260e37bc4c9f631700858}} 
+{\bfseries moeo\+Hyp\+Continue} (const std\+::vector$<$ Atom\+Type $>$ \&\+\_\+\+Optim\+Vec, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, bool \+\_\+normalize=true, Objective\+Vector \&\+\_\+ref\+\_\+point=N\+U\+LL)
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a35b8d7fe1a917d18daeba2cee6f6d878}\label{classmoeo_hyp_continue_a35b8d7fe1a917d18daeba2cee6f6d878}} 
+{\bfseries moeo\+Hyp\+Continue} (MetricT \&\+\_\+metric, const std\+::vector$<$ Atom\+Type $>$ \&\+\_\+\+Optim\+Vec, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive)
+\item 
+virtual bool \mbox{\hyperlink{classmoeo_hyp_continue_a8d6e98be144bea4759a463b684a287ad}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&)
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a464f3524103a7004cbef3083a84cb3c9}\label{classmoeo_hyp_continue_a464f3524103a7004cbef3083a84cb3c9}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a3091b3f5187c93782a24e7dc189566b8}\label{classmoeo_hyp_continue_a3091b3f5187c93782a24e7dc189566b8}} 
+std\+::vector$<$ Objective\+Vector $>$ {\bfseries pareto} (\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive)
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_ab97ca9cb9d6c249fa19c03bee4b757b0}\label{classmoeo_hyp_continue_ab97ca9cb9d6c249fa19c03bee4b757b0}} 
+bool {\bfseries is\+\_\+null\+\_\+hypervolume} (std\+::vector$<$ Objective\+Vector $>$ \&best\+Current\+Pareto\+Set)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_hyp_continue_a5455d872a614db7a9e1fae330478929c}{vector\+To\+Pareto\+Set}} (const std\+::vector$<$ Atom\+Type $>$ \&\+\_\+\+Optim\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_ac54c24d89f8d3abb6cfff165a78cfea6}\label{classmoeo_hyp_continue_ac54c24d89f8d3abb6cfff165a78cfea6}} 
+\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \& {\bfseries arch}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a5b78ee23b1a07c6442e154971755c450}\label{classmoeo_hyp_continue_a5b78ee23b1a07c6442e154971755c450}} 
+MetricT $\ast$ {\bfseries default\+\_\+metric}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_a7d07944fef260c7ef188d4e032f09084}\label{classmoeo_hyp_continue_a7d07944fef260c7ef188d4e032f09084}} 
+MetricT \& {\bfseries metric}
+\item 
+\mbox{\Hypertarget{classmoeo_hyp_continue_af0e9a52d90f9991e3987d49141bec8ca}\label{classmoeo_hyp_continue_af0e9a52d90f9991e3987d49141bec8ca}} 
+std\+::vector$<$ Objective\+Vector $>$ {\bfseries Optim\+Set}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT, class MetricT = moeo\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$\newline
+class moeo\+Hyp\+Continue$<$ M\+O\+E\+O\+T, Metric\+T $>$}
+
+Continues until the given Pareto\+Set level is reached. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_hyp_continue_a8d6e98be144bea4759a463b684a287ad}\label{classmoeo_hyp_continue_a8d6e98be144bea4759a463b684a287ad}} 
+\index{moeoHypContinue$<$ MOEOT, MetricT $>$@{moeoHypContinue$<$ MOEOT, MetricT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoHypContinue$<$ MOEOT, MetricT $>$@{moeoHypContinue$<$ MOEOT, MetricT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class MetricT  = moeo\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$ \\
+virtual bool \mbox{\hyperlink{classmoeo_hyp_continue}{moeo\+Hyp\+Continue}}$<$ M\+O\+E\+OT, MetricT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns false when a Pareto\+Set is reached. 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, bool $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmoeo_dual_hyp_continue_a166d111923e66b226ded9ceebd9b8f72}{moeo\+Dual\+Hyp\+Continue$<$ M\+O\+E\+O\+T, Metric\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_hyp_continue_a5455d872a614db7a9e1fae330478929c}\label{classmoeo_hyp_continue_a5455d872a614db7a9e1fae330478929c}} 
+\index{moeoHypContinue$<$ MOEOT, MetricT $>$@{moeoHypContinue$<$ MOEOT, MetricT $>$}!vectorToParetoSet@{vectorToParetoSet}}
+\index{vectorToParetoSet@{vectorToParetoSet}!moeoHypContinue$<$ MOEOT, MetricT $>$@{moeoHypContinue$<$ MOEOT, MetricT $>$}}
+\doxysubsubsection{\texorpdfstring{vectorToParetoSet()}{vectorToParetoSet()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class MetricT  = moeo\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$ \\
+virtual void \mbox{\hyperlink{classmoeo_hyp_continue}{moeo\+Hyp\+Continue}}$<$ M\+O\+E\+OT, MetricT $>$\+::vector\+To\+Pareto\+Set (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Atom\+Type $>$ \&}]{\+\_\+\+Optim\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Translate a vector given as param to the Pareto\+Set that should be reached. 
+
+Reimplemented in \mbox{\hyperlink{classmoeo_dual_hyp_continue_a7aaec7d93e72395d07bb769c66825a68}{moeo\+Dual\+Hyp\+Continue$<$ M\+O\+E\+O\+T, Metric\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/continue/moeo\+Hyp\+Continue.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,6 @@
+<map id="Binomial" name="Binomial">
+<area shape="rect" id="node1" title="A binomial distribution that model marginal probabilities across boolean variables." alt="" coords="5,77,85,103"/>
+<area shape="rect" id="node2" href="$group___samplers.html" title="Functors that draw and repair individuals according to a given distribution." alt="" coords="290,5,373,31"/>
+<area shape="rect" id="node3" href="$group___estimators.html" title="Estimators takes an eoPop and estimates the parameters of a distributions (defined as an hypothesis) ..." alt="" coords="285,55,377,80"/>
+<area shape="rect" id="node4" href="$group___distributions.html" title="A distribution is a data structure that holds sufficient informations to describe a probability densi..." alt="" coords="279,124,384,149"/>
+</map>

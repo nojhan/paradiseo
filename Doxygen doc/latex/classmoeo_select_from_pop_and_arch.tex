@@ -1,0 +1,112 @@
+\hypertarget{classmoeo_select_from_pop_and_arch}{}\doxysection{moeo\+Select\+From\+Pop\+And\+Arch$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_select_from_pop_and_arch}\index{moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Select\+From\+Pop\+And\+Arch.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Select\+From\+Pop\+And\+Arch$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_select_from_pop_and_arch__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Select\+From\+Pop\+And\+Arch$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_select_from_pop_and_arch__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_select_from_pop_and_arch_a3c6c2cdbc36891ace866133383e8b55a}{moeo\+Select\+From\+Pop\+And\+Arch}} (\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop\+Select\+One, \mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&\+\_\+arch\+Select\+One, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+arch, double \+\_\+ratio\+From\+Pop=0.\+5)
+\item 
+\mbox{\hyperlink{classmoeo_select_from_pop_and_arch_a1c225b5f7b5a5ce6e87b46a7ea4a4cd0}{moeo\+Select\+From\+Pop\+And\+Arch}} (\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop\+Select\+One, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+arch, double \+\_\+ratio\+From\+Pop=0.\+5)
+\item 
+virtual const M\+O\+E\+OT \& \mbox{\hyperlink{classmoeo_select_from_pop_and_arch_a7b763aef8e25f205159b69b3f746c942}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_select_from_pop_and_arch_a70180aeaa5d647a720276c82b7a0b111}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Select\+From\+Pop\+And\+Arch$<$ M\+O\+E\+O\+T $>$}
+
+Elitist selection process that consists in choosing individuals in the archive as well as in the current population. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_select_from_pop_and_arch_a3c6c2cdbc36891ace866133383e8b55a}\label{classmoeo_select_from_pop_and_arch_a3c6c2cdbc36891ace866133383e8b55a}} 
+\index{moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}!moeoSelectFromPopAndArch@{moeoSelectFromPopAndArch}}
+\index{moeoSelectFromPopAndArch@{moeoSelectFromPopAndArch}!moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSelectFromPopAndArch()}{moeoSelectFromPopAndArch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_select_from_pop_and_arch}{moeo\+Select\+From\+Pop\+And\+Arch}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_select_from_pop_and_arch}{moeo\+Select\+From\+Pop\+And\+Arch}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop\+Select\+One,  }\item[{\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+arch\+Select\+One,  }\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+arch,  }\item[{double}]{\+\_\+ratio\+From\+Pop = {\ttfamily 0.5} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop\+Select\+One} & the population\textquotesingle{}s selection operator \\
+\hline
+{\em \+\_\+arch\+Select\+One} & the archive\textquotesingle{}s selection operator \\
+\hline
+{\em \+\_\+arch} & the archive \\
+\hline
+{\em \+\_\+ratio\+From\+Pop} & the ratio of selected individuals from the population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_select_from_pop_and_arch_a1c225b5f7b5a5ce6e87b46a7ea4a4cd0}\label{classmoeo_select_from_pop_and_arch_a1c225b5f7b5a5ce6e87b46a7ea4a4cd0}} 
+\index{moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}!moeoSelectFromPopAndArch@{moeoSelectFromPopAndArch}}
+\index{moeoSelectFromPopAndArch@{moeoSelectFromPopAndArch}!moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSelectFromPopAndArch()}{moeoSelectFromPopAndArch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_select_from_pop_and_arch}{moeo\+Select\+From\+Pop\+And\+Arch}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_select_from_pop_and_arch}{moeo\+Select\+From\+Pop\+And\+Arch}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop\+Select\+One,  }\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+arch,  }\item[{double}]{\+\_\+ratio\+From\+Pop = {\ttfamily 0.5} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Defaulr ctor -\/ the archive\textquotesingle{}s selection operator is a random selector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop\+Select\+One} & the population\textquotesingle{}s selection operator ~\newline
+ \\
+\hline
+{\em \+\_\+arch} & the archive \\
+\hline
+{\em \+\_\+ratio\+From\+Pop} & the ratio of selected individuals from the population \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_select_from_pop_and_arch_a7b763aef8e25f205159b69b3f746c942}\label{classmoeo_select_from_pop_and_arch_a7b763aef8e25f205159b69b3f746c942}} 
+\index{moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual const M\+O\+E\+OT\& \mbox{\hyperlink{classmoeo_select_from_pop_and_arch}{moeo\+Select\+From\+Pop\+And\+Arch}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The selection process 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, const M\+O\+E\+O\+T \& $>$}}.
+
+\mbox{\Hypertarget{classmoeo_select_from_pop_and_arch_a70180aeaa5d647a720276c82b7a0b111}\label{classmoeo_select_from_pop_and_arch_a70180aeaa5d647a720276c82b7a0b111}} 
+\index{moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}!setup@{setup}}
+\index{setup@{setup}!moeoSelectFromPopAndArch$<$ MOEOT $>$@{moeoSelectFromPopAndArch$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_select_from_pop_and_arch}{moeo\+Select\+From\+Pop\+And\+Arch}}$<$ M\+O\+E\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Setups some population stats 
+
+Reimplemented from \mbox{\hyperlink{classeo_select_one_acf3dedb81da5473386b4848057ef1cf4}{eo\+Select\+One$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/selection/moeo\+Select\+From\+Pop\+And\+Arch.\+h\end{DoxyCompactItemize}

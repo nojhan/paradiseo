@@ -1,0 +1,127 @@
+\hypertarget{classmo_neighbor_fitness_stat}{}\doxysection{mo\+Neighbor\+Fitness\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neighbor_fitness_stat}\index{moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighbor\+Fitness\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighbor\+Fitness\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighbor_fitness_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighbor\+Fitness\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighbor_fitness_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_fitness_stat_a3fc6b4d016e7bfe91be595581428c2b1}\label{classmo_neighbor_fitness_stat_a3fc6b4d016e7bfe91be595581428c2b1}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_fitness_stat_ae8ee18f2261e912733418fef4f6579a8}\label{classmo_neighbor_fitness_stat_ae8ee18f2261e912733418fef4f6579a8}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_fitness_stat_a1c371203cfb301f5112eaf928845dfe7}\label{classmo_neighbor_fitness_stat_a1c371203cfb301f5112eaf928845dfe7}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neighbor_fitness_stat_a3c00c063c640a905df32220328a8103b}{mo\+Neighbor\+Fitness\+Stat}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighbor_fitness_stat_ad6c8537f44ea4f7bb3b1bc19a7ab2131}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighbor_fitness_stat_a89108476195799d80f886b80e0706975}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor_fitness_stat_af353cd50bdd4868ac97116c2e8069247}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neighbor\+Fitness\+Stat$<$ Neighbor $>$}
+
+Compute the fitness of one random neighbor 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neighbor_fitness_stat_a3c00c063c640a905df32220328a8103b}\label{classmo_neighbor_fitness_stat_a3c00c063c640a905df32220328a8103b}} 
+\index{moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}!moNeighborFitnessStat@{moNeighborFitnessStat}}
+\index{moNeighborFitnessStat@{moNeighborFitnessStat}!moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborFitnessStat()}{moNeighborFitnessStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighbor_fitness_stat}{mo\+Neighbor\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighbor_fitness_stat}{mo\+Neighbor\+Fitness\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & a neighborhood \\
+\hline
+{\em \+\_\+eval} & an evaluation function \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighbor_fitness_stat_af353cd50bdd4868ac97116c2e8069247}\label{classmo_neighbor_fitness_stat_af353cd50bdd4868ac97116c2e8069247}} 
+\index{moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor_fitness_stat}{mo\+Neighbor\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_neighbor_fitness_stat_ad6c8537f44ea4f7bb3b1bc19a7ab2131}\label{classmo_neighbor_fitness_stat_ad6c8537f44ea4f7bb3b1bc19a7ab2131}} 
+\index{moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighbor_fitness_stat}{mo\+Neighbor\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute the fitness of one random neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_fitness_stat_a89108476195799d80f886b80e0706975}\label{classmo_neighbor_fitness_stat_a89108476195799d80f886b80e0706975}} 
+\index{moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moNeighborFitnessStat$<$ Neighbor $>$@{moNeighborFitnessStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighbor_fitness_stat}{mo\+Neighbor\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute the fitness of one random neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Neighbor\+Fitness\+Stat.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,89 @@
+\hypertarget{classmoeo_fixed_size_archive}{}\doxysection{moeo\+Fixed\+Size\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_fixed_size_archive}\index{moeoFixedSizeArchive$<$ MOEOT $>$@{moeoFixedSizeArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fixed\+Size\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Fixed\+Size\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fixed_size_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Fixed\+Size\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fixed_size_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fixed_size_archive_abe0b9e7f2f393329ee9f539d0044ddae}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_fixed_size_archive_aa954d1fc85042967d481fbd4e5364646}{moeo\+Fixed\+Size\+Archive}} (bool \+\_\+replace=true)
+\item 
+\mbox{\hyperlink{classmoeo_fixed_size_archive_a63579bbf32a98c2532cea5a76782c7e5}{moeo\+Fixed\+Size\+Archive}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&\+\_\+comparator, bool \+\_\+replace=true)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Fixed\+Size\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+Abstract class for representing a fixed size archive ; a fixed size archive is an archive containing a given number of solutions. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_fixed_size_archive_abe0b9e7f2f393329ee9f539d0044ddae}\label{classmoeo_fixed_size_archive_abe0b9e7f2f393329ee9f539d0044ddae}} 
+\index{moeoFixedSizeArchive$<$ MOEOT $>$@{moeoFixedSizeArchive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoFixedSizeArchive$<$ MOEOT $>$@{moeoFixedSizeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fixed_size_archive}{moeo\+Fixed\+Size\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_fixed_size_archive_aa954d1fc85042967d481fbd4e5364646}\label{classmoeo_fixed_size_archive_aa954d1fc85042967d481fbd4e5364646}} 
+\index{moeoFixedSizeArchive$<$ MOEOT $>$@{moeoFixedSizeArchive$<$ MOEOT $>$}!moeoFixedSizeArchive@{moeoFixedSizeArchive}}
+\index{moeoFixedSizeArchive@{moeoFixedSizeArchive}!moeoFixedSizeArchive$<$ MOEOT $>$@{moeoFixedSizeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFixedSizeArchive()}{moeoFixedSizeArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fixed_size_archive}{moeo\+Fixed\+Size\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fixed_size_archive}{moeo\+Fixed\+Size\+Archive}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor. The \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} used to compare solutions is based on Pareto dominance 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_fixed_size_archive_a63579bbf32a98c2532cea5a76782c7e5}\label{classmoeo_fixed_size_archive_a63579bbf32a98c2532cea5a76782c7e5}} 
+\index{moeoFixedSizeArchive$<$ MOEOT $>$@{moeoFixedSizeArchive$<$ MOEOT $>$}!moeoFixedSizeArchive@{moeoFixedSizeArchive}}
+\index{moeoFixedSizeArchive@{moeoFixedSizeArchive}!moeoFixedSizeArchive$<$ MOEOT $>$@{moeoFixedSizeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFixedSizeArchive()}{moeoFixedSizeArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fixed_size_archive}{moeo\+Fixed\+Size\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fixed_size_archive}{moeo\+Fixed\+Size\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} used to compare solutions \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo\+Fixed\+Size\+Archive.\+h\end{DoxyCompactItemize}

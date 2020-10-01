@@ -1,0 +1,69 @@
+\hypertarget{classeo_rank_mu_select}{}\doxysection{eo\+Rank\+Mu\+Select$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_rank_mu_select}\index{eoRankMuSelect$<$ EOT $>$@{eoRankMuSelect$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Rank\+Mu\+Select.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Rank\+Mu\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_rank_mu_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Rank\+Mu\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_rank_mu_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_rank_mu_select_ad59475ee04a429dee7b9c5d758ee781f}\label{classeo_rank_mu_select_ad59475ee04a429dee7b9c5d758ee781f}} 
+{\bfseries eo\+Rank\+Mu\+Select} (unsigned int mu)
+\item 
+void \mbox{\hyperlink{classeo_rank_mu_select_a65e8ab401803195b4ee1c5961883a336}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&source, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&dest)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename E\+OT$>$\newline
+class eo\+Rank\+Mu\+Select$<$ E\+O\+T $>$}
+
+Selects the \char`\"{}\+Mu\char`\"{} bests individuals.
+
+Note\+: sorts the population before trucating it. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_rank_mu_select_a65e8ab401803195b4ee1c5961883a336}\label{classeo_rank_mu_select_a65e8ab401803195b4ee1c5961883a336}} 
+\index{eoRankMuSelect$<$ EOT $>$@{eoRankMuSelect$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoRankMuSelect$<$ EOT $>$@{eoRankMuSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_rank_mu_select}{eo\+Rank\+Mu\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+source,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+source} & the source population \\
+\hline
+{\em \+\_\+dest} & the resulting population (size of this population is given by the How\+Many data It empties the destination and adds the selection into it) \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_det_select_a22c209125c3bb671b780a37c1bd0b1f4}{eo\+Det\+Select$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Rank\+Mu\+Select.\+h\end{DoxyCompactItemize}

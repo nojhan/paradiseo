@@ -1,0 +1,81 @@
+\hypertarget{struct_serializable_base}{}\doxysection{Serializable\+Base$<$ T $>$ Struct Template Reference}
+\label{struct_serializable_base}\index{SerializableBase$<$ T $>$@{SerializableBase$<$ T $>$}}
+
+
+Inheritance diagram for Serializable\+Base$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{struct_serializable_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Serializable\+Base$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{struct_serializable_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_serializable_base_a0041906d5bd315ddc79ad0bd1db25100}\label{struct_serializable_base_a0041906d5bd315ddc79ad0bd1db25100}} 
+{\bfseries operator T\&} ()
+\item 
+\mbox{\Hypertarget{struct_serializable_base_a3077033d14bb15f00686c55eae0d2c3a}\label{struct_serializable_base_a3077033d14bb15f00686c55eae0d2c3a}} 
+{\bfseries Serializable\+Base} (T base)
+\item 
+void \mbox{\hyperlink{struct_serializable_base_a6659d788bf7dddc5b19f4e297c8a0c64}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{struct_serializable_base_a88d5978b8a29eae379cb8cdb29dea4dd}{pack}} (void) const
+\begin{DoxyCompactList}\small\item\em Serializes the object to J\+S\+ON format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_serializable_base_a88d5978b8a29eae379cb8cdb29dea4dd}\label{struct_serializable_base_a88d5978b8a29eae379cb8cdb29dea4dd}} 
+\index{SerializableBase$<$ T $>$@{SerializableBase$<$ T $>$}!pack@{pack}}
+\index{pack@{pack}!SerializableBase$<$ T $>$@{SerializableBase$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}$\ast$ \mbox{\hyperlink{struct_serializable_base}{Serializable\+Base}}$<$ T $>$\+::pack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the object to J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+A J\+S\+ON object created with new. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{eoserial\+::\+Printable}}.
+
+\mbox{\Hypertarget{struct_serializable_base_a6659d788bf7dddc5b19f4e297c8a0c64}\label{struct_serializable_base_a6659d788bf7dddc5b19f4e297c8a0c64}} 
+\index{SerializableBase$<$ T $>$@{SerializableBase$<$ T $>$}!unpack@{unpack}}
+\index{unpack@{unpack}!SerializableBase$<$ T $>$@{SerializableBase$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{struct_serializable_base}{Serializable\+Base}}$<$ T $>$\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{eoserial\+::\+Persistent}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/test/mpi/\mbox{\hyperlink{t-mpi-common_8h}{t-\/mpi-\/common.\+h}}\end{DoxyCompactItemize}

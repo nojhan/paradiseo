@@ -1,0 +1,56 @@
+\hypertarget{structeoserial_1_1_array_1_1_base_algorithm}{}\doxysection{eoserial\+::Array\+::Base\+Algorithm$<$ Container $>$ Struct Template Reference}
+\label{structeoserial_1_1_array_1_1_base_algorithm}\index{eoserial::Array::BaseAlgorithm$<$ Container $>$@{eoserial::Array::BaseAlgorithm$<$ Container $>$}}
+
+
+Functor which determines how to retrieve the real value contained in a \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} at a given place.  
+
+
+
+
+{\ttfamily \#include $<$Serial\+Array.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm_aaa131c48b290b8726d31c276afcdb625}{operator()}} (const \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} \&array, unsigned int i, Container \&container) const =0
+\begin{DoxyCompactList}\small\item\em Main operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Container$>$\newline
+struct eoserial\+::\+Array\+::\+Base\+Algorithm$<$ Container $>$}
+
+Functor which determines how to retrieve the real value contained in a \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} at a given place. 
+
+It will be applied for each contained variable in the array. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeoserial_1_1_array_1_1_base_algorithm_aaa131c48b290b8726d31c276afcdb625}\label{structeoserial_1_1_array_1_1_base_algorithm_aaa131c48b290b8726d31c276afcdb625}} 
+\index{eoserial::Array::BaseAlgorithm$<$ Container $>$@{eoserial::Array::BaseAlgorithm$<$ Container $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoserial::Array::BaseAlgorithm$<$ Container $>$@{eoserial::Array::BaseAlgorithm$<$ Container $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Container $>$ \\
+virtual void \mbox{\hyperlink{structeoserial_1_1_array_1_1_base_algorithm}{eoserial\+::\+Array\+::\+Base\+Algorithm}}$<$ Container $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} \&}]{array,  }\item[{unsigned int}]{i,  }\item[{Container \&}]{container }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Main operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & The \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}} from which we\textquotesingle{}re reading. \\
+\hline
+{\em i} & The index of the contained value. \\
+\hline
+{\em container} & The standard (S\+TL) container in which we\textquotesingle{}ll push back the read value. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_object_algorithm_abb49837fe0ef1c25db748428648059a3}{eoserial\+::\+Array\+::\+Unpack\+Object\+Algorithm$<$ C $>$}}, and \mbox{\hyperlink{structeoserial_1_1_array_1_1_unpack_algorithm_ab9bcd38d68f9d038f9bdf9ada7bb0646}{eoserial\+::\+Array\+::\+Unpack\+Algorithm$<$ C $>$}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Serial\+Array.\+h\end{DoxyCompactItemize}

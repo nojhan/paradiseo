@@ -1,0 +1,34 @@
+<map id="moeoAlgo" name="moeoAlgo">
+<area shape="rect" id="node1" title=" " alt="" coords="5,616,93,643"/>
+<area shape="rect" id="node2" href="$classmoeo_pop_algo.html" title=" " alt="" coords="159,365,349,392"/>
+<area shape="rect" id="node14" href="$classmoeo_pop_algo.html" title=" " alt="" coords="149,492,359,519"/>
+<area shape="rect" id="node16" href="$classmoeo_pop_algo.html" title=" " alt="" coords="141,543,367,585"/>
+<area shape="rect" id="node19" href="$classmoeo_pop_algo.html" title=" " alt="" coords="161,609,347,650"/>
+<area shape="rect" id="node24" href="$classmoeo_pop_algo.html" title=" " alt="" coords="145,674,363,715"/>
+<area shape="rect" id="node26" href="$classmoeo_sol_algo.html" title=" " alt="" coords="161,740,347,767"/>
+<area shape="rect" id="node28" href="$classmoeo_sol_algo.html" title=" " alt="" coords="151,837,357,864"/>
+<area shape="rect" id="node3" href="$classmoeo_e_a.html" title=" " alt="" coords="451,289,605,316"/>
+<area shape="rect" id="node4" href="$classmoeo_a_s_e_e_a.html" title=" " alt="" coords="709,5,888,32"/>
+<area shape="rect" id="node5" href="$classmoeo_easy_e_a.html" title=" " alt="" coords="706,56,891,83"/>
+<area shape="rect" id="node6" href="$classmoeo_extended_n_s_g_a_i_i.html" title=" " alt="" coords="716,107,881,149"/>
+<area shape="rect" id="node7" href="$classmoeo_extended_s_p_e_a2.html" title=" " alt="" coords="713,173,885,214"/>
+<area shape="rect" id="node8" href="$classmoeo_i_b_e_a.html" title=" " alt="" coords="715,239,882,265"/>
+<area shape="rect" id="node9" href="$classmoeo_m_o_g_a.html" title=" " alt="" coords="709,289,888,316"/>
+<area shape="rect" id="node10" href="$classmoeo_n_s_g_a.html" title=" " alt="" coords="711,340,886,367"/>
+<area shape="rect" id="node11" href="$classmoeo_n_s_g_a_i_i.html" title=" " alt="" coords="707,391,890,417"/>
+<area shape="rect" id="node12" href="$classmoeo_s_e_e_a.html" title=" " alt="" coords="713,441,884,468"/>
+<area shape="rect" id="node13" href="$classmoeo_s_p_e_a2.html" title=" " alt="" coords="709,492,888,519"/>
+<area shape="rect" id="node15" href="$classmoeo_v_f_a_s.html" title="Variable fitness assignment search (vfas)" alt="" coords="461,492,595,519"/>
+<area shape="rect" id="node17" href="$classmoeo_pop_l_s.html" title=" " alt="" coords="415,551,641,577"/>
+<area shape="rect" id="node18" href="$classmoeo_unified_dominance_based_l_s.html" title=" " alt="" coords="689,543,908,585"/>
+<area shape="rect" id="node20" href="$classmoeo_pop_l_s.html" title=" " alt="" coords="435,616,621,643"/>
+<area shape="rect" id="node21" href="$classmoeo_unified_dominance_based_l_s.html" title=" " alt="" coords="689,609,908,650"/>
+<area shape="rect" id="node22" href="$classmoeo_p_l_s1.html" title=" " alt="" coords="956,591,1135,617"/>
+<area shape="rect" id="node23" href="$classmoeo_p_l_s2.html" title=" " alt="" coords="956,641,1135,668"/>
+<area shape="rect" id="node25" href="$classmoeo_pop_l_s.html" title=" " alt="" coords="419,681,637,708"/>
+<area shape="rect" id="node27" href="$classmoeo_v_n_s.html" title="Variable Neighbors Search (VNS)" alt="" coords="446,736,610,763"/>
+<area shape="rect" id="node29" href="$classmoeo_h_c.html" title="Hill Climbing (HC)" alt="" coords="468,787,588,813"/>
+<area shape="rect" id="node30" href="$classmoeo_i_l_s.html" title="Iterated Local Search (ILS)" alt="" coords="468,837,588,864"/>
+<area shape="rect" id="node31" href="$classmoeo_s_a.html" title="Simulated annealing (SA)" alt="" coords="469,888,587,915"/>
+<area shape="rect" id="node32" href="$classmoeo_t_s.html" title="Tabu Search (TS)" alt="" coords="469,939,587,965"/>
+</map>

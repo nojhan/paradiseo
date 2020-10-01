@@ -1,0 +1,82 @@
+\hypertarget{classmoeo_dual_hyper_volume_difference_metric}{}\doxysection{moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_dual_hyper_volume_difference_metric}\index{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+
+
+Inheritance diagram for moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_dual_hyper_volume_difference_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_dual_hyper_volume_difference_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_hyper_volume_difference_metric_a240cb3d60eaa70c5d89f1e7c30125ecb}\label{classmoeo_dual_hyper_volume_difference_metric_a240cb3d60eaa70c5d89f1e7c30125ecb}} 
+typedef \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} {\bfseries Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_hyper_volume_difference_metric_aa1739ed4cb502db633db2319c3906997}\label{classmoeo_dual_hyper_volume_difference_metric_aa1739ed4cb502db633db2319c3906997}} 
+{\bfseries moeo\+Dual\+Hyper\+Volume\+Difference\+Metric} (bool \+\_\+normalize=true, double \+\_\+rho=1.\+1)
+\item 
+\mbox{\Hypertarget{classmoeo_dual_hyper_volume_difference_metric_a13f8d90f0fa657e1dae30eb90fab7984}\label{classmoeo_dual_hyper_volume_difference_metric_a13f8d90f0fa657e1dae30eb90fab7984}} 
+{\bfseries moeo\+Dual\+Hyper\+Volume\+Difference\+Metric} (bool \+\_\+normalize, \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+ref\+\_\+point)
+\item 
+void \mbox{\hyperlink{classmoeo_dual_hyper_volume_difference_metric_a6e23649045b6d3fc872fa6aeeb3f101b}{setup}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set1, const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set2)
+\item 
+virtual double \mbox{\hyperlink{classmoeo_dual_hyper_volume_difference_metric_afd0587696eb8bf13c8f7fdb975c67640}{operator()}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set1, const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dual_hyper_volume_difference_metric_afd0587696eb8bf13c8f7fdb975c67640}\label{classmoeo_dual_hyper_volume_difference_metric_afd0587696eb8bf13c8f7fdb975c67640}} 
+\index{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+virtual double \mbox{\hyperlink{classmoeo_dual_hyper_volume_difference_metric}{moeo\+Dual\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set1,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+calculates and returns the Hyper\+Volume value of a pareto front 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set1} & the vector contains all objective Vector of the first pareto front \\
+\hline
+{\em \+\_\+set2} & the vector contains all objective Vector of the second pareto front \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmoeo_hyper_volume_difference_metric_ae4af21e242dd4b69eadd89955cdb1fcd}{moeo\+Hyper\+Volume\+Difference\+Metric$<$ Objective\+Vector $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dual_hyper_volume_difference_metric_a6e23649045b6d3fc872fa6aeeb3f101b}\label{classmoeo_dual_hyper_volume_difference_metric_a6e23649045b6d3fc872fa6aeeb3f101b}} 
+\index{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}!setup@{setup}}
+\index{setup@{setup}!moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$@{moeoDualHyperVolumeDifferenceMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+void \mbox{\hyperlink{classmoeo_dual_hyper_volume_difference_metric}{moeo\+Dual\+Hyper\+Volume\+Difference\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::setup (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set1,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+method calculate bounds for the normalization 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set1} & the vector contains all objective Vector of the first pareto front \\
+\hline
+{\em \+\_\+set2} & the vector contains all objective Vector of the second pareto front \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Dual\+Hyper\+Volume\+Difference\+Metric.\+h\end{DoxyCompactItemize}

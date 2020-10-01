@@ -1,0 +1,75 @@
+\hypertarget{classmoeo_fuzzy_pareto_objective_vector_comparator}{}\doxysection{moeo\+Fuzzy\+Pareto\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_fuzzy_pareto_objective_vector_comparator}\index{moeoFuzzyParetoObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoFuzzyParetoObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fuzzy\+Pareto\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Fuzzy\+Pareto\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fuzzy_pareto_objective_vector_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Fuzzy\+Pareto\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fuzzy_pareto_objective_vector_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_fuzzy_pareto_objective_vector_comparator_aca344f9ce06e68f3173c76aebf8e4fc0}\label{classmoeo_fuzzy_pareto_objective_vector_comparator_aca344f9ce06e68f3173c76aebf8e4fc0}} 
+enum {\bfseries Triangular\+Number\+Comparaison\+Result} \{ {\bfseries T\+N\+C\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+D\+O\+M\+I\+N\+A\+N\+CE}, 
+{\bfseries T\+N\+C\+R\+\_\+\+P\+A\+R\+T\+I\+A\+L\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+D\+O\+M\+I\+N\+A\+N\+CE}, 
+{\bfseries T\+N\+C\+R\+\_\+\+P\+A\+R\+T\+I\+A\+L\+\_\+\+W\+E\+A\+K\+\_\+\+D\+O\+M\+I\+N\+A\+N\+CE}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classmoeo_fuzzy_pareto_objective_vector_comparator_a87ca7201034c9cbb75c89a8bdc077e61}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+objective\+Vector2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Fuzzy\+Pareto\+Objective\+Vector\+Comparator$<$ Objective\+Vector $>$}
+
+This class allows ranking fuzzy-\/valued objectives according to new dominance relations. ~\newline
+ The dominance is defined between vectors of triangular fuzzy numbers (each number is expressed by a triplet of values \mbox{[}first, second, third\mbox{]}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_pareto_objective_vector_comparator_a87ca7201034c9cbb75c89a8bdc077e61}\label{classmoeo_fuzzy_pareto_objective_vector_comparator_a87ca7201034c9cbb75c89a8bdc077e61}} 
+\index{moeoFuzzyParetoObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoFuzzyParetoObjectiveVectorComparator$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFuzzyParetoObjectiveVectorComparator$<$ ObjectiveVector $>$@{moeoFuzzyParetoObjectiveVectorComparator$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{classmoeo_fuzzy_pareto_objective_vector_comparator}{moeo\+Fuzzy\+Pareto\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+objective\+Vector2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns true if \+\_\+objective\+Vector1 V1 is dominated by \+\_\+objective\+Vector2 V2 means V2 dominates V1 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+objective\+Vector1} & the first objective vector \\
+\hline
+{\em \+\_\+objective\+Vector2} & the second objective vector ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/comparator/moeo\+Fuzzy\+Pareto\+Comparator.\+h\end{DoxyCompactItemize}

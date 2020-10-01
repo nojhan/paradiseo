@@ -1,0 +1,93 @@
+\hypertarget{classeo_fit_continue}{}\doxysection{eo\+Fit\+Continue$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_fit_continue}\index{eoFitContinue$<$ EOT $>$@{eoFitContinue$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Fit\+Continue.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Fit\+Continue$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_fit_continue__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Fit\+Continue$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_fit_continue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}\label{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}} 
+typedef E\+O\+T\+::\+Fitness \mbox{\hyperlink{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}{Fitness\+Type}}
+\begin{DoxyCompactList}\small\item\em Define Fitness. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}\label{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}} 
+typedef E\+O\+T\+::\+Fitness \mbox{\hyperlink{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}{Fitness\+Type}}
+\begin{DoxyCompactList}\small\item\em Define Fitness. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_fit_continue_a6bde579d1e67d85d80bebbfca1728fec}\label{classeo_fit_continue_a6bde579d1e67d85d80bebbfca1728fec}} 
+\mbox{\hyperlink{classeo_fit_continue_a6bde579d1e67d85d80bebbfca1728fec}{eo\+Fit\+Continue}} (const \mbox{\hyperlink{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}{Fitness\+Type}} \+\_\+optimum)
+\begin{DoxyCompactList}\small\item\em Ctor. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classeo_fit_continue_a002da4417c5134d050d27cdebc5e2c2d}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_fit_continue_a089a153c6414b1a01916847f3604d5a1}\label{classeo_fit_continue_a089a153c6414b1a01916847f3604d5a1}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+\mbox{\Hypertarget{classeo_fit_continue_a6bde579d1e67d85d80bebbfca1728fec}\label{classeo_fit_continue_a6bde579d1e67d85d80bebbfca1728fec}} 
+\mbox{\hyperlink{classeo_fit_continue_a6bde579d1e67d85d80bebbfca1728fec}{eo\+Fit\+Continue}} (const \mbox{\hyperlink{classeo_fit_continue_a35cd68929fa66c4b8fa8f3fc84e276a1}{Fitness\+Type}} \+\_\+optimum)
+\begin{DoxyCompactList}\small\item\em Ctor. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classeo_fit_continue_a002da4417c5134d050d27cdebc5e2c2d}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_fit_continue_a089a153c6414b1a01916847f3604d5a1}\label{classeo_fit_continue_a089a153c6414b1a01916847f3604d5a1}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Fit\+Continue$<$ E\+O\+T $>$}
+
+Continues until the optimum fitness level is reached.
+
+All types which derive from \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Scalar\+Fitness}} is able to compare well via the operator override ( $<$, $>$, $<$=, ...) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_fit_continue_a002da4417c5134d050d27cdebc5e2c2d}\label{classeo_fit_continue_a002da4417c5134d050d27cdebc5e2c2d}} 
+\index{eoFitContinue$<$ EOT $>$@{eoFitContinue$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFitContinue$<$ EOT $>$@{eoFitContinue$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual bool \mbox{\hyperlink{classeo_fit_continue}{eo\+Fit\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns false when a fitness criterium is reached. Assumes pop is not sorted! 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, bool $>$}}.
+
+\mbox{\Hypertarget{classeo_fit_continue_a002da4417c5134d050d27cdebc5e2c2d}\label{classeo_fit_continue_a002da4417c5134d050d27cdebc5e2c2d}} 
+\index{eoFitContinue$<$ EOT $>$@{eoFitContinue$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFitContinue$<$ EOT $>$@{eoFitContinue$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual bool \mbox{\hyperlink{classeo_fit_continue}{eo\+Fit\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns false when a fitness criterium is reached. Assumes pop is not sorted! 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Fit\+Continue.\+h\end{DoxyCompactItemize}

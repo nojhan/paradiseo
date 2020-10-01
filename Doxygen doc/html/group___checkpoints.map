@@ -1,0 +1,5 @@
+<map id="Checkpointing" name="Checkpointing">
+<area shape="rect" id="node1" href="$group___stats.html" title="Compute various statistics on a population." alt="" coords="380,7,548,33"/>
+<area shape="rect" id="node2" href="$group___utilities.html" title="Classes that may help you write elegant code." alt="" coords="5,7,79,33"/>
+<area shape="rect" id="node3" title="Checkpoints are supposed to be called perodically (for instance at each generation) and will call eve..." alt="" coords="128,7,243,33"/>
+</map>

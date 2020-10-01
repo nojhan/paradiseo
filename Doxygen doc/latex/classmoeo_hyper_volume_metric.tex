@@ -1,0 +1,264 @@
+\hypertarget{classmoeo_hyper_volume_metric}{}\doxysection{moeo\+Hyper\+Volume\+Metric$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_hyper_volume_metric}\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Hyper\+Volume\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Hyper\+Volume\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hyper_volume_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Hyper\+Volume\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hyper_volume_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_hyper_volume_metric_a0644eabda4edc3e0ac5b8a7d428a8379}{moeo\+Hyper\+Volume\+Metric}} (bool \+\_\+normalize=true, double \+\_\+rho=1.\+1)
+\item 
+\mbox{\hyperlink{classmoeo_hyper_volume_metric_a5e8a02b5f92416283df141a038b4a96d}{moeo\+Hyper\+Volume\+Metric}} (bool \+\_\+normalize=true, \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+ref\+\_\+point=N\+U\+LL)
+\item 
+\mbox{\hyperlink{classmoeo_hyper_volume_metric_a0b533316cd1fd6e704eaecf031e595ee}{moeo\+Hyper\+Volume\+Metric}} (\mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+ref\+\_\+point, std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \&\+\_\+bounds)
+\item 
+double \mbox{\hyperlink{classmoeo_hyper_volume_metric_a5be58fd3ab239986ebd1cce4fb9ab41a}{operator()}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \mbox{\hyperlink{classmoeo_hyper_volume_metric_a72f31571342ba2a544782b7b018a5409}{get\+Bounds}} ()
+\item 
+void \mbox{\hyperlink{classmoeo_hyper_volume_metric_af21685f1165bf91da13afbf12d439bac}{setup}} (const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&\+\_\+set)
+\item 
+bool \mbox{\hyperlink{classmoeo_hyper_volume_metric_a805146798b12f5960049dd8cb3e26c9f}{dominates}} (std\+::vector$<$ double $>$ \&\+\_\+point1, std\+::vector$<$ double $>$ \&\+\_\+point2, unsigned int \+\_\+no\+\_\+objectives)
+\item 
+void \mbox{\hyperlink{classmoeo_hyper_volume_metric_ad41366d169258a65c9a4d1f9e79c41a4}{swap}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&\+\_\+front, unsigned int \+\_\+i, unsigned int \+\_\+j)
+\item 
+unsigned int \mbox{\hyperlink{classmoeo_hyper_volume_metric_a71418cb984d188e0235ae1d458e56565}{filter\+\_\+nondominated\+\_\+set}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&\+\_\+front, unsigned int \+\_\+no\+\_\+points, unsigned int \+\_\+no\+\_\+objectives)
+\item 
+double \mbox{\hyperlink{classmoeo_hyper_volume_metric_ad24f2e7982f4d71689426b2afaae264e}{surface\+\_\+unchanged\+\_\+to}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&\+\_\+front, unsigned int \+\_\+no\+\_\+points, unsigned int \+\_\+objective)
+\item 
+unsigned int \mbox{\hyperlink{classmoeo_hyper_volume_metric_a35950b8c23ac19befefd09efed68db5a}{reduce\+\_\+nondominated\+\_\+set}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&\+\_\+front, unsigned int \+\_\+no\+\_\+points, unsigned int \+\_\+objective, double \+\_\+threshold)
+\item 
+double \mbox{\hyperlink{classmoeo_hyper_volume_metric_a720619b463092fea6a38bac1ee973c74}{calc\+\_\+hypervolume}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&\+\_\+front, unsigned int \+\_\+no\+\_\+points, unsigned int \+\_\+no\+\_\+objectives)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Hyper\+Volume\+Metric$<$ Objective\+Vector $>$}
+
+The hypervolume metric evaluates the multi-\/dimensional area (hypervolume) enclosed by set of objective vectors and a reference point (E. Zitzler and L. Thiele. Multiobjective evolutionary algorithms\+: A comparative case study and the strength pareto approach. I\+E\+EE Transactions on Evolutionary Computation, 3(4)\+:257–271, 1999) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a0644eabda4edc3e0ac5b8a7d428a8379}\label{classmoeo_hyper_volume_metric_a0644eabda4edc3e0ac5b8a7d428a8379}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!moeoHyperVolumeMetric@{moeoHyperVolumeMetric}}
+\index{moeoHyperVolumeMetric@{moeoHyperVolumeMetric}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHyperVolumeMetric()}{moeoHyperVolumeMetric()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+normalize = {\ttfamily true},  }\item[{double}]{\+\_\+rho = {\ttfamily 1.1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with a coefficient (rho) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalize} & allow to normalize data (default true) \\
+\hline
+{\em \+\_\+rho} & coefficient to determine the reference point. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a5e8a02b5f92416283df141a038b4a96d}\label{classmoeo_hyper_volume_metric_a5e8a02b5f92416283df141a038b4a96d}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!moeoHyperVolumeMetric@{moeoHyperVolumeMetric}}
+\index{moeoHyperVolumeMetric@{moeoHyperVolumeMetric}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHyperVolumeMetric()}{moeoHyperVolumeMetric()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+normalize = {\ttfamily true},  }\item[{\mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+ref\+\_\+point = {\ttfamily NULL} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with a reference point 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalize} & allow to normalize data (default true) \\
+\hline
+{\em \+\_\+ref\+\_\+point} & the reference point \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a0b533316cd1fd6e704eaecf031e595ee}\label{classmoeo_hyper_volume_metric_a0b533316cd1fd6e704eaecf031e595ee}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!moeoHyperVolumeMetric@{moeoHyperVolumeMetric}}
+\index{moeoHyperVolumeMetric@{moeoHyperVolumeMetric}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHyperVolumeMetric()}{moeoHyperVolumeMetric()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+ref\+\_\+point,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \&}]{\+\_\+bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with a reference point 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ref\+\_\+point} & the reference point \\
+\hline
+{\em \+\_\+bounds} & bounds value \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a720619b463092fea6a38bac1ee973c74}\label{classmoeo_hyper_volume_metric_a720619b463092fea6a38bac1ee973c74}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!calc\_hypervolume@{calc\_hypervolume}}
+\index{calc\_hypervolume@{calc\_hypervolume}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{calc\_hypervolume()}{calc\_hypervolume()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+double \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::calc\+\_\+hypervolume (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{\+\_\+front,  }\item[{unsigned int}]{\+\_\+no\+\_\+points,  }\item[{unsigned int}]{\+\_\+no\+\_\+objectives }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+calculate hypervolume of the front (data are redrafted before) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+front} & the front \\
+\hline
+{\em \+\_\+no\+\_\+points} & the number of points of the front to consider (index 0 to \+\_\+no\+\_\+points are considered) \\
+\hline
+{\em \+\_\+no\+\_\+objectives} & the number of objective to consider \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the hypervolume of the front 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a805146798b12f5960049dd8cb3e26c9f}\label{classmoeo_hyper_volume_metric_a805146798b12f5960049dd8cb3e26c9f}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!dominates@{dominates}}
+\index{dominates@{dominates}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{dominates()}{dominates()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::dominates (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+point1,  }\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+point2,  }\item[{unsigned int}]{\+\_\+no\+\_\+objectives }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+method calculate if a point dominates another one regarding the x first objective 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+point1} & a vector of distances \\
+\hline
+{\em \+\_\+point2} & a vector of distances \\
+\hline
+{\em \+\_\+no\+\_\+objectives} & a number of objectives \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if \textquotesingle{}\+\_\+point1\textquotesingle{} dominates \textquotesingle{}\+\_\+point2\textquotesingle{} with respect to the first \textquotesingle{}no\+\_\+objectives\textquotesingle{} objectives 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a71418cb984d188e0235ae1d458e56565}\label{classmoeo_hyper_volume_metric_a71418cb984d188e0235ae1d458e56565}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!filter\_nondominated\_set@{filter\_nondominated\_set}}
+\index{filter\_nondominated\_set@{filter\_nondominated\_set}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{filter\_nondominated\_set()}{filter\_nondominated\_set()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::filter\+\_\+nondominated\+\_\+set (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{\+\_\+front,  }\item[{unsigned int}]{\+\_\+no\+\_\+points,  }\item[{unsigned int}]{\+\_\+no\+\_\+objectives }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+collect all nondominated points regarding the first \textquotesingle{}\+\_\+no\+\_\+objectives\textquotesingle{} objectives (dominated points are stored at the end of \+\_\+front) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+front} & the front \\
+\hline
+{\em \+\_\+no\+\_\+points} & the number of points of the front to consider (index 0 to \+\_\+no\+\_\+points are considered) \\
+\hline
+{\em \+\_\+no\+\_\+objectives} & the number of objective to consider \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the last nondominated point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a72f31571342ba2a544782b7b018a5409}\label{classmoeo_hyper_volume_metric_a72f31571342ba2a544782b7b018a5409}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!getBounds@{getBounds}}
+\index{getBounds@{getBounds}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::get\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+getter on bounds \begin{DoxyReturn}{Returns}
+bounds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a5be58fd3ab239986ebd1cce4fb9ab41a}\label{classmoeo_hyper_volume_metric_a5be58fd3ab239986ebd1cce4fb9ab41a}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+double \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+calculates and returns the Hyper\+Volume value of a pareto front 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set} & the vector contains all objective Vector of pareto front \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const std\+::vector$<$ Objective\+Vector $>$ \&, double $>$}}.
+
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_a35950b8c23ac19befefd09efed68db5a}\label{classmoeo_hyper_volume_metric_a35950b8c23ac19befefd09efed68db5a}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!reduce\_nondominated\_set@{reduce\_nondominated\_set}}
+\index{reduce\_nondominated\_set@{reduce\_nondominated\_set}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{reduce\_nondominated\_set()}{reduce\_nondominated\_set()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::reduce\+\_\+nondominated\+\_\+set (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{\+\_\+front,  }\item[{unsigned int}]{\+\_\+no\+\_\+points,  }\item[{unsigned int}]{\+\_\+objective,  }\item[{double}]{\+\_\+threshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+remove all points having a value $<$= \textquotesingle{}threshold\textquotesingle{} regarding the dimension \textquotesingle{}objective\textquotesingle{}, only points of index 0 to \+\_\+no\+\_\+points are considered. points removed are swap at the end of the front. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+front} & the front \\
+\hline
+{\em \+\_\+no\+\_\+points} & the number of points of the front to consider (index 0 to \+\_\+no\+\_\+points are considered) \\
+\hline
+{\em \+\_\+objective} & the objective to consider \\
+\hline
+{\em \+\_\+threshold} & the threshold \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index of the last points of \textquotesingle{}\+\_\+front\textquotesingle{} greater than the threshold 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_af21685f1165bf91da13afbf12d439bac}\label{classmoeo_hyper_volume_metric_af21685f1165bf91da13afbf12d439bac}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!setup@{setup}}
+\index{setup@{setup}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+void \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::setup (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ \&}]{\+\_\+set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+method caclulate bounds for the normalization 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+set} & the vector of objective vectors \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_ad24f2e7982f4d71689426b2afaae264e}\label{classmoeo_hyper_volume_metric_ad24f2e7982f4d71689426b2afaae264e}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!surface\_unchanged\_to@{surface\_unchanged\_to}}
+\index{surface\_unchanged\_to@{surface\_unchanged\_to}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{surface\_unchanged\_to()}{surface\_unchanged\_to()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+double \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::surface\+\_\+unchanged\+\_\+to (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{\+\_\+front,  }\item[{unsigned int}]{\+\_\+no\+\_\+points,  }\item[{unsigned int}]{\+\_\+objective }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+find a minimum value 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+front} & the front \\
+\hline
+{\em \+\_\+no\+\_\+points} & the number of points of the front to consider (index 0 to \+\_\+no\+\_\+points are considered) \\
+\hline
+{\em \+\_\+objective} & the objective to consider \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the minimum value regarding dimension \textquotesingle{}\+\_\+objective\textquotesingle{} consider points O to \+\_\+no\+\_\+points in \textquotesingle{}\+\_\+front\textquotesingle{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_hyper_volume_metric_ad41366d169258a65c9a4d1f9e79c41a4}\label{classmoeo_hyper_volume_metric_ad41366d169258a65c9a4d1f9e79c41a4}} 
+\index{moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}!swap@{swap}}
+\index{swap@{swap}!moeoHyperVolumeMetric$<$ ObjectiveVector $>$@{moeoHyperVolumeMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+void \mbox{\hyperlink{classmoeo_hyper_volume_metric}{moeo\+Hyper\+Volume\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::swap (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{\+\_\+front,  }\item[{unsigned int}]{\+\_\+i,  }\item[{unsigned int}]{\+\_\+j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+swap two elements of a vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+front} & the vector \\
+\hline
+{\em \+\_\+i} & index of the first element to swap \\
+\hline
+{\em \+\_\+j} & index of the second element to swap \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Hyper\+Volume\+Metric.\+h\end{DoxyCompactItemize}

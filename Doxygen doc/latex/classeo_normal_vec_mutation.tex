@@ -1,0 +1,183 @@
+\hypertarget{classeo_normal_vec_mutation}{}\doxysection{eo\+Normal\+Vec\+Mutation$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_normal_vec_mutation}\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Normal\+Mutation.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Normal\+Vec\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_normal_vec_mutation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Normal\+Vec\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_normal_vec_mutation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_normal_vec_mutation_ac98e60d4c6ae04c698653ddd75bee879}{eo\+Normal\+Vec\+Mutation}} (double \+\_\+sigma, const double \&\+\_\+p\+\_\+change=1.\+0)
+\item 
+\mbox{\hyperlink{classeo_normal_vec_mutation_afddd97194c2fb0c2a3a603cc1587a31d}{eo\+Normal\+Vec\+Mutation}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds, double \+\_\+sigma, const double \&\+\_\+p\+\_\+change=1.\+0)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_normal_vec_mutation_a11cd91363f404ddd7e3aab6514a22f92}{class\+Name}} () const
+\item 
+bool \mbox{\hyperlink{classeo_normal_vec_mutation_a1686a58aa50f3a80d94797fd093dcafe}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+\mbox{\hyperlink{classeo_normal_vec_mutation_ac98e60d4c6ae04c698653ddd75bee879}{eo\+Normal\+Vec\+Mutation}} (double \+\_\+sigma, const double \&\+\_\+p\+\_\+change=1.\+0)
+\item 
+\mbox{\hyperlink{classeo_normal_vec_mutation_afddd97194c2fb0c2a3a603cc1587a31d}{eo\+Normal\+Vec\+Mutation}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds, double \+\_\+sigma, const double \&\+\_\+p\+\_\+change=1.\+0)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_normal_vec_mutation_a11cd91363f404ddd7e3aab6514a22f92}{class\+Name}} () const
+\item 
+bool \mbox{\hyperlink{classeo_normal_vec_mutation_a1686a58aa50f3a80d94797fd093dcafe}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Normal\+Vec\+Mutation$<$ E\+O\+T $>$}
+
+Simple normal mutation of a std\+::vector of real values. The st\+Dev is fixed -\/ but it is passed ans stored as a reference, to enable dynamic mutations (see eo\+Oen\+Fith\+Mutation below).
+
+As for the bounds, the values are here folded back into the bounds. The other possiblity would be to iterate until we fall inside the bounds -\/ but this sometimes takes a long time!!! 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_normal_vec_mutation_ac98e60d4c6ae04c698653ddd75bee879}\label{classeo_normal_vec_mutation_ac98e60d4c6ae04c698653ddd75bee879}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!eoNormalVecMutation@{eoNormalVecMutation}}
+\index{eoNormalVecMutation@{eoNormalVecMutation}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoNormalVecMutation()}{eoNormalVecMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+sigma,  }\item[{const double \&}]{\+\_\+p\+\_\+change = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+(Default) Constructor. The bounds are initialized with the global object that says\+: no bounds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sigma} & the range for uniform nutation \\
+\hline
+{\em \+\_\+p\+\_\+change} & the probability to change a given coordinate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_normal_vec_mutation_afddd97194c2fb0c2a3a603cc1587a31d}\label{classeo_normal_vec_mutation_afddd97194c2fb0c2a3a603cc1587a31d}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!eoNormalVecMutation@{eoNormalVecMutation}}
+\index{eoNormalVecMutation@{eoNormalVecMutation}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoNormalVecMutation()}{eoNormalVecMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds,  }\item[{double}]{\+\_\+sigma,  }\item[{const double \&}]{\+\_\+p\+\_\+change = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with bounds 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & an \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} that contains the bounds \\
+\hline
+{\em \+\_\+sigma} & the range for uniform nutation \\
+\hline
+{\em \+\_\+p\+\_\+change} & the probability to change a given coordinate\\
+\hline
+\end{DoxyParams}
+for each component, the sigma is scaled to the range of the bound, if bounded \mbox{\Hypertarget{classeo_normal_vec_mutation_ac98e60d4c6ae04c698653ddd75bee879}\label{classeo_normal_vec_mutation_ac98e60d4c6ae04c698653ddd75bee879}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!eoNormalVecMutation@{eoNormalVecMutation}}
+\index{eoNormalVecMutation@{eoNormalVecMutation}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoNormalVecMutation()}{eoNormalVecMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+sigma,  }\item[{const double \&}]{\+\_\+p\+\_\+change = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+(Default) Constructor. The bounds are initialized with the global object that says\+: no bounds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sigma} & the range for uniform nutation \\
+\hline
+{\em \+\_\+p\+\_\+change} & the probability to change a given coordinate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_normal_vec_mutation_afddd97194c2fb0c2a3a603cc1587a31d}\label{classeo_normal_vec_mutation_afddd97194c2fb0c2a3a603cc1587a31d}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!eoNormalVecMutation@{eoNormalVecMutation}}
+\index{eoNormalVecMutation@{eoNormalVecMutation}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoNormalVecMutation()}{eoNormalVecMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds,  }\item[{double}]{\+\_\+sigma,  }\item[{const double \&}]{\+\_\+p\+\_\+change = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with bounds 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & an \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} that contains the bounds \\
+\hline
+{\em \+\_\+sigma} & the range for uniform nutation \\
+\hline
+{\em \+\_\+p\+\_\+change} & the probability to change a given coordinate\\
+\hline
+\end{DoxyParams}
+for each component, the sigma is scaled to the range of the bound, if bounded 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_normal_vec_mutation_a11cd91363f404ddd7e3aab6514a22f92}\label{classeo_normal_vec_mutation_a11cd91363f404ddd7e3aab6514a22f92}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The class name 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_normal_vec_mutation_a11cd91363f404ddd7e3aab6514a22f92}\label{classeo_normal_vec_mutation_a11cd91363f404ddd7e3aab6514a22f92}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The class name 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_normal_vec_mutation_a1686a58aa50f3a80d94797fd093dcafe}\label{classeo_normal_vec_mutation_a1686a58aa50f3a80d94797fd093dcafe}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Do it! 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eo} & The cromosome undergoing the mutation \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classeo_normal_vec_mutation_a1686a58aa50f3a80d94797fd093dcafe}\label{classeo_normal_vec_mutation_a1686a58aa50f3a80d94797fd093dcafe}} 
+\index{eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoNormalVecMutation$<$ EOT $>$@{eoNormalVecMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_normal_vec_mutation}{eo\+Normal\+Vec\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Do it! 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eo} & The cromosome undergoing the mutation \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/es/eo\+Normal\+Mutation.\+h\end{DoxyCompactItemize}

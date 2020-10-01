@@ -1,0 +1,247 @@
+\hypertarget{classmoeo2_d_min_hypervolume_archive}{}\doxysection{moeo2\+D\+Min\+Hypervolume\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo2_d_min_hypervolume_archive}\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo2\+D\+Min\+Hypervolume\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo2\+D\+Min\+Hypervolume\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classmoeo2_d_min_hypervolume_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo2\+D\+Min\+Hypervolume\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classmoeo2_d_min_hypervolume_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_abe1301be31baa99c1a0838ca4159a462}\label{classmoeo2_d_min_hypervolume_archive_abe1301be31baa99c1a0838ca4159a462}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\item 
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a26e93fa7dc734824f64813afc8f5bbc7}\label{classmoeo2_d_min_hypervolume_archive_a26e93fa7dc734824f64813afc8f5bbc7}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a34dd068374758ff81c9c13d65d6d1933}\label{classmoeo2_d_min_hypervolume_archive_a34dd068374758ff81c9c13d65d6d1933}} 
+typedef std\+::set$<$ M\+O\+E\+OT, \mbox{\hyperlink{structcomp}{comp}}$<$ M\+O\+E\+OT $>$ $>$\+::iterator {\bfseries Iterator}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a016a8d8eec209221ef83dbe838270aa2}{moeo2\+D\+Min\+Hypervolume\+Archive}} (unsigned int \+\_\+max\+Size=100, double \+\_\+max\+Value=L\+O\+N\+G\+\_\+\+M\+AX)
+\item 
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a4297fbe7dc088fd03efbd8809a07e33b}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_adc38eaaae777b71598324bfab85208a6}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a504fb88caa56d86c91dbf3d819c2ab79}{insert}} (const Objective\+Vector \&\+\_\+obj\+Vec)
+\item 
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a0bd82a1ea7b256c29938ba8171d675ec}{print}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_ae75c9dbed43f068b06948a4a8c097a46}{fitness}} (Iterator \&\+\_\+it, double \+\_\+fitness\+Value)
+\item 
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_ae0ca36261404c95d806e6a5a17901689}{remove}} (Iterator \&\+\_\+it, const Objective\+Vector \&\+\_\+obj\+Vec)
+\item 
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_ac93102d185af3c0b4976a03c87bd9c0f}{compute\+Fitness}} (Iterator \&\+\_\+it)
+\item 
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_ae5404cc48dbf00a10d2c1456db73a8f2}{compute}} (Iterator \&\+\_\+it)
+\item 
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a5a7b3c8968be4349c0e2ceb262fa6e96}\label{classmoeo2_d_min_hypervolume_archive_a5a7b3c8968be4349c0e2ceb262fa6e96}} 
+double {\bfseries compute\+Tmp} (const Objective\+Vector \&\+\_\+obj\+Vec, int \+\_\+where)
+\item 
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a10464b00eda858e8d24cfbf52096d4f2}\label{classmoeo2_d_min_hypervolume_archive_a10464b00eda858e8d24cfbf52096d4f2}} 
+void {\bfseries filterbis} ()
+\item 
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a37af560edf0cc9d2d7922b77600ff2cf}{filter}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a4a9a2bfc704d46a65a2a293e510f2fc4}{max\+Size}}
+\item 
+double \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a317af69c049bad4caadcb3fa11604c0e}{max\+Value}}
+\item 
+Iterator \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_a81df521aff70f3685b3ddabfe256f853}{hint}}
+\item 
+M\+O\+E\+OT \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive_afcbefb37e91554ddf0b451dbcc0e7a78}{empty}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo2\+D\+Min\+Hypervolume\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+2D (minimization) bounded archive by hypervolume , base on a set 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a016a8d8eec209221ef83dbe838270aa2}\label{classmoeo2_d_min_hypervolume_archive_a016a8d8eec209221ef83dbe838270aa2}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!moeo2DMinHypervolumeArchive@{moeo2DMinHypervolumeArchive}}
+\index{moeo2DMinHypervolumeArchive@{moeo2DMinHypervolumeArchive}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeo2DMinHypervolumeArchive()}{moeo2DMinHypervolumeArchive()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100},  }\item[{double}]{\+\_\+max\+Value = {\ttfamily LONG\+\_\+MAX} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctr. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Size} & size of the archive (must be $>$= 2) \\
+\hline
+{\em \+\_\+max\+Value} & fitness assigned to the first and the last solution in the archive (default L\+O\+N\+G\+\_\+\+M\+AX) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_ae5404cc48dbf00a10d2c1456db73a8f2}\label{classmoeo2_d_min_hypervolume_archive_ae5404cc48dbf00a10d2c1456db73a8f2}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!compute@{compute}}
+\index{compute@{compute}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::compute (\begin{DoxyParamCaption}\item[{Iterator \&}]{\+\_\+it }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+compute fitness value of a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+it} & refer to the solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_ac93102d185af3c0b4976a03c87bd9c0f}\label{classmoeo2_d_min_hypervolume_archive_ac93102d185af3c0b4976a03c87bd9c0f}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!computeFitness@{computeFitness}}
+\index{computeFitness@{computeFitness}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{computeFitness()}{computeFitness()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::compute\+Fitness (\begin{DoxyParamCaption}\item[{Iterator \&}]{\+\_\+it }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+compute fitness value of a solution and its two neighbors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+it} & refer to the solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a37af560edf0cc9d2d7922b77600ff2cf}\label{classmoeo2_d_min_hypervolume_archive_a37af560edf0cc9d2d7922b77600ff2cf}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!filter@{filter}}
+\index{filter@{filter}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::filter (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+iteratively removes the less-\/contributing solution from the acrhive \mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_ae75c9dbed43f068b06948a4a8c097a46}\label{classmoeo2_d_min_hypervolume_archive_ae75c9dbed43f068b06948a4a8c097a46}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!fitness@{fitness}}
+\index{fitness@{fitness}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{fitness()}{fitness()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::fitness (\begin{DoxyParamCaption}\item[{Iterator \&}]{\+\_\+it,  }\item[{double}]{\+\_\+fitness\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+set fitness \mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a504fb88caa56d86c91dbf3d819c2ab79}\label{classmoeo2_d_min_hypervolume_archive_a504fb88caa56d86c91dbf3d819c2ab79}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!insert@{insert}}
+\index{insert@{insert}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::insert (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if insertion wrt Pareto-\/dominance is possible, and fix \textquotesingle{}hint\textquotesingle{} if possible 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+obj\+Vec} & the objective vector of the sol to insert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if obj\+Vec can be added to the archive wrt Pareto-\/dominance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_adc38eaaae777b71598324bfab85208a6}\label{classmoeo2_d_min_hypervolume_archive_adc38eaaae777b71598324bfab85208a6}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+update the archive with a population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & a pop \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if at least one solution of \+\_\+pop has been added to the archive 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a4297fbe7dc088fd03efbd8809a07e33b}\label{classmoeo2_d_min_hypervolume_archive_a4297fbe7dc088fd03efbd8809a07e33b}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Update the archive with a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & a solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if \+\_\+moeo has been added to the archive 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a0bd82a1ea7b256c29938ba8171d675ec}\label{classmoeo2_d_min_hypervolume_archive_a0bd82a1ea7b256c29938ba8171d675ec}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!print@{print}}
+\index{print@{print}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+print objective vector and fitness value of the archive \mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_ae0ca36261404c95d806e6a5a17901689}\label{classmoeo2_d_min_hypervolume_archive_ae0ca36261404c95d806e6a5a17901689}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!remove@{remove}}
+\index{remove@{remove}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::remove (\begin{DoxyParamCaption}\item[{Iterator \&}]{\+\_\+it,  }\item[{const Objective\+Vector \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+remove solutions from the archive that are dominated by \+\_\+obj\+Vec 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+it} & an iterator beginning on the first potentialy sol to remove \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector of the new solution \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_afcbefb37e91554ddf0b451dbcc0e7a78}\label{classmoeo2_d_min_hypervolume_archive_afcbefb37e91554ddf0b451dbcc0e7a78}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!empty@{empty}}
+\index{empty@{empty}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{empty}{empty}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+M\+O\+E\+OT \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::empty\hspace{0.3cm}{\ttfamily [protected]}}
+
+an empty M\+O\+E\+OT used for checking insertion \mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a81df521aff70f3685b3ddabfe256f853}\label{classmoeo2_d_min_hypervolume_archive_a81df521aff70f3685b3ddabfe256f853}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!hint@{hint}}
+\index{hint@{hint}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{hint}{hint}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+Iterator \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::hint\hspace{0.3cm}{\ttfamily [protected]}}
+
+hint for the insertion \mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a4a9a2bfc704d46a65a2a293e510f2fc4}\label{classmoeo2_d_min_hypervolume_archive_a4a9a2bfc704d46a65a2a293e510f2fc4}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!maxSize@{maxSize}}
+\index{maxSize@{maxSize}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{maxSize}{maxSize}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::max\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+size max of the archive \mbox{\Hypertarget{classmoeo2_d_min_hypervolume_archive_a317af69c049bad4caadcb3fa11604c0e}\label{classmoeo2_d_min_hypervolume_archive_a317af69c049bad4caadcb3fa11604c0e}} 
+\index{moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}!maxValue@{maxValue}}
+\index{maxValue@{maxValue}!moeo2DMinHypervolumeArchive$<$ MOEOT $>$@{moeo2DMinHypervolumeArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{maxValue}{maxValue}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo2_d_min_hypervolume_archive}{moeo2\+D\+Min\+Hypervolume\+Archive}}$<$ M\+O\+E\+OT $>$\+::max\+Value\hspace{0.3cm}{\ttfamily [protected]}}
+
+fitness assigned to the first and the last solution in the archive 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo2\+D\+Min\+Hypervolume\+Archive.\+h\end{DoxyCompactItemize}

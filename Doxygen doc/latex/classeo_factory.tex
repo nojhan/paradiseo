@@ -1,0 +1,115 @@
+\hypertarget{classeo_factory}{}\doxysection{eo\+Factory$<$ E\+O\+Class $>$ Class Template Reference}
+\label{classeo_factory}\index{eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}}
+
+
+{\ttfamily \#include $<$eo\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Factory$<$ E\+O\+Class $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{classeo_factory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Factory$<$ E\+O\+Class $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{classeo_factory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{Indent}\textbf{ ctors and dtors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_factory_aedb6509adc8321a7f461f78ea1ab5ca1}\label{classeo_factory_aedb6509adc8321a7f461f78ea1ab5ca1}} 
+\mbox{\hyperlink{classeo_factory_aedb6509adc8321a7f461f78ea1ab5ca1}{eo\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_factory_af00fde93d8e25ae2b75ed30f25a99de0}\label{classeo_factory_af00fde93d8e25ae2b75ed30f25a99de0}} 
+virtual \mbox{\hyperlink{classeo_factory_af00fde93d8e25ae2b75ed30f25a99de0}{$\sim$eo\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual E\+O\+Class $\ast$ \mbox{\hyperlink{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}{make}} (std\+::istream \&\+\_\+is)=0
+\item 
+\mbox{\Hypertarget{classeo_factory_aedb6509adc8321a7f461f78ea1ab5ca1}\label{classeo_factory_aedb6509adc8321a7f461f78ea1ab5ca1}} 
+\mbox{\hyperlink{classeo_factory_aedb6509adc8321a7f461f78ea1ab5ca1}{eo\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_factory_af00fde93d8e25ae2b75ed30f25a99de0}\label{classeo_factory_af00fde93d8e25ae2b75ed30f25a99de0}} 
+virtual \mbox{\hyperlink{classeo_factory_af00fde93d8e25ae2b75ed30f25a99de0}{$\sim$eo\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual E\+O\+Class $\ast$ \mbox{\hyperlink{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}{make}} (std\+::istream \&\+\_\+is)=0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ eo\+Object methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_factory_af7f9f7d71bbc796afcc08227deb59c44}{class\+Name}} () const
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_factory_af7f9f7d71bbc796afcc08227deb59c44}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+O\+Class$>$\newline
+class eo\+Factory$<$ E\+O\+Class $>$}
+
+\mbox{\hyperlink{class_e_o}{EO}} Factory. A factory is used to create other objects. In particular, it can be used so that objects of that kind can´t be created in any other way. It should be instantiated with anything that needs a factory, like selectors or whatever; but the instance class should be the parent class from which all the object that are going to be created descend. This class basically defines an interface, as usual. The base factory class for each hierarchy should be redefined every time a new object is added to the hierarchy, which is not too good, but in any case, some code would have to be modified
+
+\mbox{\hyperlink{class_e_o}{EO}} Factory. A factory is used to create other objects. In particular, it can be used so that objects of that kind can\textquotesingle{}t be created in any other way. It should be instantiated with anything that needs a factory, like selectors or whatever; but the instance class should be the parent class from which all the object that are going to be created descend. This class basically defines an interface, as usual. The base factory class for each hierarchy should be redefined every time a new object is added to the hierarchy, which is not too good, but in any case, some code would have to be modified 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_factory_af7f9f7d71bbc796afcc08227deb59c44}\label{classeo_factory_af7f9f7d71bbc796afcc08227deb59c44}} 
+\index{eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}!className@{className}}
+\index{className@{className}!eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+O\+Class $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_factory}{eo\+Factory}}$<$ E\+O\+Class $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_factory_af7f9f7d71bbc796afcc08227deb59c44}\label{classeo_factory_af7f9f7d71bbc796afcc08227deb59c44}} 
+\index{eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}!className@{className}}
+\index{className@{className}!eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+O\+Class $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_factory}{eo\+Factory}}$<$ E\+O\+Class $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}\label{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}} 
+\index{eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}!make@{make}}
+\index{make@{make}!eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+O\+Class $>$ \\
+virtual E\+O\+Class$\ast$ \mbox{\hyperlink{classeo_factory}{eo\+Factory}}$<$ E\+O\+Class $>$\+::make (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Another factory methods\+: creates an object from an std\+::istream, reading from it whatever is needed to create the object. Usually, the format for the std\+::istream will be\textbackslash{} object\+Type parameter1 parameter2 ... parametern\textbackslash{} 
+
+Implemented in \mbox{\hyperlink{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}{eo\+Bit\+Op\+Factory$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}{eo\+Bit\+Op\+Factory$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_sel_mason_a7f77ed5366f118e9478464e3fc403761}{eo\+Op\+Sel\+Mason$<$ eo\+Class $>$}}, \mbox{\hyperlink{classeo_op_sel_mason_a7f77ed5366f118e9478464e3fc403761}{eo\+Op\+Sel\+Mason$<$ eo\+Class $>$}}, \mbox{\hyperlink{classeo_select_factory_a28040c41f9d397e6bfd017cee7a7533e}{eo\+Select\+Factory$<$ E\+O\+T $>$}}, and \mbox{\hyperlink{classeo_select_factory_a28040c41f9d397e6bfd017cee7a7533e}{eo\+Select\+Factory$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}\label{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}} 
+\index{eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}!make@{make}}
+\index{make@{make}!eoFactory$<$ EOClass $>$@{eoFactory$<$ EOClass $>$}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+O\+Class $>$ \\
+virtual E\+O\+Class$\ast$ \mbox{\hyperlink{classeo_factory}{eo\+Factory}}$<$ E\+O\+Class $>$\+::make (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Another factory methods\+: creates an object from an std\+::istream, reading from it whatever is needed to create the object. Usually, the format for the std\+::istream will be\textbackslash{} object\+Type parameter1 parameter2 ... parametern\textbackslash{} 
+
+Implemented in \mbox{\hyperlink{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}{eo\+Bit\+Op\+Factory$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}{eo\+Bit\+Op\+Factory$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_sel_mason_a7f77ed5366f118e9478464e3fc403761}{eo\+Op\+Sel\+Mason$<$ eo\+Class $>$}}, \mbox{\hyperlink{classeo_op_sel_mason_a7f77ed5366f118e9478464e3fc403761}{eo\+Op\+Sel\+Mason$<$ eo\+Class $>$}}, \mbox{\hyperlink{classeo_select_factory_a28040c41f9d397e6bfd017cee7a7533e}{eo\+Select\+Factory$<$ E\+O\+T $>$}}, and \mbox{\hyperlink{classeo_select_factory_a28040c41f9d397e6bfd017cee7a7533e}{eo\+Select\+Factory$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Factory.\+h\end{DoxyCompactItemize}

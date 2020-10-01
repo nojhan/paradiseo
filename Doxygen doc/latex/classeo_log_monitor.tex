@@ -1,0 +1,67 @@
+\hypertarget{classeo_log_monitor}{}\doxysection{eo\+Log\+Monitor Class Reference}
+\label{classeo_log_monitor}\index{eoLogMonitor@{eoLogMonitor}}
+
+
+{\ttfamily \#include $<$eo\+Log\+Monitor.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Log\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_log_monitor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Log\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_log_monitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_log_monitor_abc644caf0bce9555432bbe93d32247a2}\label{classeo_log_monitor_abc644caf0bce9555432bbe93d32247a2}} 
+{\bfseries eo\+Log\+Monitor} (\mbox{\hyperlink{classeo_logger}{eo\+Logger}} \&logger=eo\+::log, eo\+::\+Levels level=eo\+::progress, std\+::string delim=\char`\"{}\textbackslash{}t\char`\"{}, unsigned int width=20, char fill=\textquotesingle{} \textquotesingle{}, bool print\+\_\+names=false, std\+::string name\+\_\+sep=\char`\"{}\+:\char`\"{})
+\item 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_log_monitor_a352d0f6919d20320ccb755b26c282335}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_log_monitor_a0bc299a6f55098822e1739aff1e71edb}\label{classeo_log_monitor_a0bc299a6f55098822e1739aff1e71edb}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Prints statistics to the given \mbox{\hyperlink{classeo_logger}{eo\+Logger}}.
+
+You can configure the log level. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_log_monitor_a352d0f6919d20320ccb755b26c282335}\label{classeo_log_monitor_a352d0f6919d20320ccb755b26c282335}} 
+\index{eoLogMonitor@{eoLogMonitor}!operator()@{operator()}}
+\index{operator()@{operator()}!eoLogMonitor@{eoLogMonitor}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}}\& eo\+Log\+Monitor\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The pure virtual function that needs to be implemented by the subclass. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000014}{Todo}}]old verbose formatting, do we still need it? \end{DoxyRefDesc}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_o_stream_monitor_a7ee395a99b12daf5e713a33abb5bf283}{eo\+O\+Stream\+Monitor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/utils/eo\+Log\+Monitor.\+h\end{DoxyCompactItemize}

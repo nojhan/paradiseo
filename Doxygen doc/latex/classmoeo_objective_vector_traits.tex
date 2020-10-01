@@ -1,0 +1,88 @@
+\hypertarget{classmoeo_objective_vector_traits}{}\doxysection{moeo\+Objective\+Vector\+Traits Class Reference}
+\label{classmoeo_objective_vector_traits}\index{moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}}
+
+
+{\ttfamily \#include $<$moeo\+Objective\+Vector\+Traits.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Objective\+Vector\+Traits\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_objective_vector_traits__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classmoeo_objective_vector_traits_a327c1994f1b5aa3d6b5c8cae0b971191}{setup}} (unsigned int \+\_\+n\+Objectives, std\+::vector$<$ bool $>$ \&\+\_\+b\+Objectives)
+\item 
+static unsigned int \mbox{\hyperlink{classmoeo_objective_vector_traits_a5befa177fc91ead8234bac7ce9d1e587}{n\+Objectives}} ()
+\item 
+static bool \mbox{\hyperlink{classmoeo_objective_vector_traits_a1478ae3006747619aa9ef3c016bdc831}{minimizing}} (unsigned int \+\_\+i)
+\item 
+static bool \mbox{\hyperlink{classmoeo_objective_vector_traits_ac8e1a93d8c8480c391a007969ae652df}{maximizing}} (unsigned int \+\_\+i)
+\item 
+static double \mbox{\hyperlink{classmoeo_objective_vector_traits_ac1199e4f019ec88a0365db81e9ab8d1f}{tolerance}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A traits class for \mbox{\hyperlink{classmoeo_objective_vector}{moeo\+Objective\+Vector}} to specify the number of objectives and which ones have to be minimized or maximized. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_objective_vector_traits_ac8e1a93d8c8480c391a007969ae652df}\label{classmoeo_objective_vector_traits_ac8e1a93d8c8480c391a007969ae652df}} 
+\index{moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}!maximizing@{maximizing}}
+\index{maximizing@{maximizing}!moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}}
+\doxysubsubsection{\texorpdfstring{maximizing()}{maximizing()}}
+{\footnotesize\ttfamily static bool moeo\+Objective\+Vector\+Traits\+::maximizing (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns true if the \+\_\+ith objective have to be maximized 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+i} & the index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_traits_a1478ae3006747619aa9ef3c016bdc831}\label{classmoeo_objective_vector_traits_a1478ae3006747619aa9ef3c016bdc831}} 
+\index{moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}!minimizing@{minimizing}}
+\index{minimizing@{minimizing}!moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}}
+\doxysubsubsection{\texorpdfstring{minimizing()}{minimizing()}}
+{\footnotesize\ttfamily static bool moeo\+Objective\+Vector\+Traits\+::minimizing (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns true if the \+\_\+ith objective have to be minimized 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+i} & the index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_traits_a5befa177fc91ead8234bac7ce9d1e587}\label{classmoeo_objective_vector_traits_a5befa177fc91ead8234bac7ce9d1e587}} 
+\index{moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}!nObjectives@{nObjectives}}
+\index{nObjectives@{nObjectives}!moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}}
+\doxysubsubsection{\texorpdfstring{nObjectives()}{nObjectives()}}
+{\footnotesize\ttfamily static unsigned int moeo\+Objective\+Vector\+Traits\+::n\+Objectives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns the number of objectives \mbox{\Hypertarget{classmoeo_objective_vector_traits_a327c1994f1b5aa3d6b5c8cae0b971191}\label{classmoeo_objective_vector_traits_a327c1994f1b5aa3d6b5c8cae0b971191}} 
+\index{moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}!setup@{setup}}
+\index{setup@{setup}!moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily static void moeo\+Objective\+Vector\+Traits\+::setup (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+n\+Objectives,  }\item[{std\+::vector$<$ bool $>$ \&}]{\+\_\+b\+Objectives }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\hyperlink{struct_parameters}{Parameters}} setting 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+n\+Objectives} & the number of objectives \\
+\hline
+{\em \+\_\+b\+Objectives} & the min/max vector (true = min / false = max) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_traits_ac1199e4f019ec88a0365db81e9ab8d1f}\label{classmoeo_objective_vector_traits_ac1199e4f019ec88a0365db81e9ab8d1f}} 
+\index{moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}!tolerance@{tolerance}}
+\index{tolerance@{tolerance}!moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}}
+\doxysubsubsection{\texorpdfstring{tolerance()}{tolerance()}}
+{\footnotesize\ttfamily static double moeo\+Objective\+Vector\+Traits\+::tolerance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns the tolerance value (to compare solutions) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/core/moeo\+Objective\+Vector\+Traits.\+h\item 
+moeo/src/core/moeo\+Objective\+Vector\+Traits.\+cpp\end{DoxyCompactItemize}

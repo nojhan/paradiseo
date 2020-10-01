@@ -1,0 +1,162 @@
+\hypertarget{classmoeo_aggregation_fitness_assignment}{}\doxysection{moeo\+Aggregation\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_aggregation_fitness_assignment}\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+
+
+Inheritance diagram for moeo\+Aggregation\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_aggregation_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Aggregation\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_aggregation_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_a7a2b15c77efcf1883f092ab3927356ac}{Objective\+Vector}}
+\item 
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_a7ed89cbfa8bc6a0d6f43cef22323a8ad}\label{classmoeo_aggregation_fitness_assignment_a7ed89cbfa8bc6a0d6f43cef22323a8ad}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_af9f831f64fc65c899b396c59e2b70671}{moeo\+Aggregation\+Fitness\+Assignment}} (std\+::vector$<$ double $>$ \&\+\_\+weight, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&\+\_\+eval)
+\item 
+\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_a34013655db9be5430be3cf7d6396ed4e}{moeo\+Aggregation\+Fitness\+Assignment}} (std\+::vector$<$ double $>$ \&\+\_\+weight)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_a8e905634a758f4ad0b39794cab5ed0de}{operator()}} (M\+O\+E\+OT \&\+\_\+moeot)
+\item 
+virtual Fitness \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_ac268ea953965968c93bd5dbb70cf1739}{operator()}} (const typename M\+O\+E\+O\+T\+::\+Objective\+Vector \&\+\_\+mo)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_abd2614c0361c199e5a8bc8a81019fe1d}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_aef215f34f363007a023a338105bcc2da}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_a7a2b15c77efcf1883f092ab3927356ac}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_a7a2b15c77efcf1883f092ab3927356ac}\label{classmoeo_aggregation_fitness_assignment_a7a2b15c77efcf1883f092ab3927356ac}} 
+\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_a7a2b15c77efcf1883f092ab3927356ac}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_af9f831f64fc65c899b396c59e2b70671}\label{classmoeo_aggregation_fitness_assignment_af9f831f64fc65c899b396c59e2b70671}} 
+\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}!moeoAggregationFitnessAssignment@{moeoAggregationFitnessAssignment}}
+\index{moeoAggregationFitnessAssignment@{moeoAggregationFitnessAssignment}!moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAggregationFitnessAssignment()}{moeoAggregationFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weight,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+weight} & vectors contains all weights. \\
+\hline
+{\em \+\_\+eval} & a eval function, to revalidate the objective\+Vector if needed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_a34013655db9be5430be3cf7d6396ed4e}\label{classmoeo_aggregation_fitness_assignment_a34013655db9be5430be3cf7d6396ed4e}} 
+\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}!moeoAggregationFitnessAssignment@{moeoAggregationFitnessAssignment}}
+\index{moeoAggregationFitnessAssignment@{moeoAggregationFitnessAssignment}!moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAggregationFitnessAssignment()}{moeoAggregationFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with a dummy evaluation function 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+weight} & vectors contains all weights. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_ac268ea953965968c93bd5dbb70cf1739}\label{classmoeo_aggregation_fitness_assignment_ac268ea953965968c93bd5dbb70cf1739}} 
+\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual Fitness \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const typename M\+O\+E\+O\+T\+::\+Objective\+Vector \&}]{\+\_\+mo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+function which calculate the fitness from an objective\+Vector (which has troi be valid.) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mo} & an valid objective\+Vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fitness value of \+\_\+mo 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_abd2614c0361c199e5a8bc8a81019fe1d}\label{classmoeo_aggregation_fitness_assignment_abd2614c0361c199e5a8bc8a81019fe1d}} 
+\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop (and in the archive) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization_a2751dcec9bc9bcc905852993b9041002}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_a8e905634a758f4ad0b39794cab5ed0de}\label{classmoeo_aggregation_fitness_assignment_a8e905634a758f4ad0b39794cab5ed0de}} 
+\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+moeot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for \+\_\+moeot 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeot} & the M\+O\+E\+OT \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization_a38a7d53d743fb9cc32a3e0f66695f026}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_aggregation_fitness_assignment_aef215f34f363007a023a338105bcc2da}\label{classmoeo_aggregation_fitness_assignment_aef215f34f363007a023a338105bcc2da}} 
+\index{moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoAggregationFitnessAssignment$<$ MOEOT $>$@{moeoAggregationFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_aggregation_fitness_assignment}{moeo\+Aggregation\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_aggregation_fitness_assignment_a7a2b15c77efcf1883f092ab3927356ac}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Warning\+: no yet implemented\+: Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Aggregation\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,97 @@
+\hypertarget{classeo_timer}{}\doxysection{eo\+Timer Class Reference}
+\label{classeo_timer}\index{eoTimer@{eoTimer}}
+
+
+Timer allowing to measure time between a start point and a stop point.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Timer.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_timer_a38665bd83c7d0d0db12061d042a0de9f}\label{classeo_timer_a38665bd83c7d0d0db12061d042a0de9f}} 
+\mbox{\hyperlink{classeo_timer_a38665bd83c7d0d0db12061d042a0de9f}{eo\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Default ctor. Begins all the timers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}\label{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}} 
+void \mbox{\hyperlink{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}{restart}} ()
+\begin{DoxyCompactList}\small\item\em Restarts all the timers and launch the measure. \end{DoxyCompactList}\item 
+long int \mbox{\hyperlink{classeo_timer_a89687fc0e1d9a7c412a0fdb571f918b0}{usertime}} ()
+\begin{DoxyCompactList}\small\item\em Measures the user time spent since the last \mbox{\hyperlink{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}{restart()}}. \end{DoxyCompactList}\item 
+long int \mbox{\hyperlink{classeo_timer_a184430c65ffea9b8e01e7679fff86084}{systime}} ()
+\begin{DoxyCompactList}\small\item\em Measures the system time spent since the last \mbox{\hyperlink{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}{restart()}}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classeo_timer_a6a4fb5d1d70d14b4c716dda3535edb18}{wallclock}} ()
+\begin{DoxyCompactList}\small\item\em Measures the wallclock time spent since the last \mbox{\hyperlink{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}{restart()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_timer_a8485869c5b88c4e24401b006eaff2e77}\label{classeo_timer_a8485869c5b88c4e24401b006eaff2e77}} 
+struct rusage {\bfseries \+\_\+start}
+\item 
+\mbox{\Hypertarget{classeo_timer_a17c2025ac8a9547bb4ae491a5a104729}\label{classeo_timer_a17c2025ac8a9547bb4ae491a5a104729}} 
+long int {\bfseries uuremainder}
+\item 
+\mbox{\Hypertarget{classeo_timer_a9ac8981d6564121ffa56b1418b9e6071}\label{classeo_timer_a9ac8981d6564121ffa56b1418b9e6071}} 
+long int {\bfseries usremainder}
+\item 
+\mbox{\Hypertarget{classeo_timer_af2171bea3612a90bc81b39429a5deed3}\label{classeo_timer_af2171bea3612a90bc81b39429a5deed3}} 
+struct timeval {\bfseries wc\+\_\+start}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Timer allowing to measure time between a start point and a stop point. 
+
+This timer allows the user to measure user time, system time and wallclock time between two points. Basically, user time is time spent in developer code ; system time is time spent during the IO wait and system calls ; wallclock is the difference of time we could observe by measuring time with a watch. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_timer_a184430c65ffea9b8e01e7679fff86084}\label{classeo_timer_a184430c65ffea9b8e01e7679fff86084}} 
+\index{eoTimer@{eoTimer}!systime@{systime}}
+\index{systime@{systime}!eoTimer@{eoTimer}}
+\doxysubsubsection{\texorpdfstring{systime()}{systime()}}
+{\footnotesize\ttfamily long int eo\+Timer\+::systime (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Measures the system time spent since the last \mbox{\hyperlink{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}{restart()}}. 
+
+If the number of elapsed seconds is zero, the spent milliseconds are added to a remainder. If the remainder exceeds one second, it is added to the number of elapsed seconds.
+
+\begin{DoxyReturn}{Returns}
+Number of seconds elapsed in system (kernel) space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_timer_a89687fc0e1d9a7c412a0fdb571f918b0}\label{classeo_timer_a89687fc0e1d9a7c412a0fdb571f918b0}} 
+\index{eoTimer@{eoTimer}!usertime@{usertime}}
+\index{usertime@{usertime}!eoTimer@{eoTimer}}
+\doxysubsubsection{\texorpdfstring{usertime()}{usertime()}}
+{\footnotesize\ttfamily long int eo\+Timer\+::usertime (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Measures the user time spent since the last \mbox{\hyperlink{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}{restart()}}. 
+
+If the number of elapsed seconds is zero, the spent milliseconds are added to a remainder. If the remainder exceeds one second, it is added to the number of elapsed seconds.
+
+\begin{DoxyReturn}{Returns}
+Number of seconds elapsed in user space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_timer_a6a4fb5d1d70d14b4c716dda3535edb18}\label{classeo_timer_a6a4fb5d1d70d14b4c716dda3535edb18}} 
+\index{eoTimer@{eoTimer}!wallclock@{wallclock}}
+\index{wallclock@{wallclock}!eoTimer@{eoTimer}}
+\doxysubsubsection{\texorpdfstring{wallclock()}{wallclock()}}
+{\footnotesize\ttfamily double eo\+Timer\+::wallclock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Measures the wallclock time spent since the last \mbox{\hyperlink{classeo_timer_a571a4faede8822dd1e5e927e6e2f5155}{restart()}}. 
+
+\begin{DoxyReturn}{Returns}
+Number of seconds elapsed, as a double. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/utils/eo\+Timer.\+h\end{DoxyCompactItemize}

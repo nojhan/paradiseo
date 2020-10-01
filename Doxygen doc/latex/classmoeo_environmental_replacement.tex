@@ -1,0 +1,196 @@
+\hypertarget{classmoeo_environmental_replacement}{}\doxysection{moeo\+Environmental\+Replacement$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_environmental_replacement}\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Environmental\+Replacement.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Environmental\+Replacement$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_environmental_replacement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Environmental\+Replacement$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_environmental_replacement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classmoeo_environmental_replacement_1_1_cmp}{Cmp}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_environmental_replacement_aef38fb9b1ab23ddd2c558639e19f4821}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_environmental_replacement_ade6e8f546a4583f1eee31366f7099c38}{moeo\+Environmental\+Replacement}} (\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+fitness\+Assignment, \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+diversity\+Assignment, \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+comparator)
+\item 
+\mbox{\hyperlink{classmoeo_environmental_replacement_a9199a29cf89cd6b01bb9be304f344940}{moeo\+Environmental\+Replacement}} (\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+fitness\+Assignment, \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+diversity\+Assignment)
+\item 
+\mbox{\hyperlink{classmoeo_environmental_replacement_a7512641b5d58c96a148a75fd4dc95bf7}{moeo\+Environmental\+Replacement}} (\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+fitness\+Assignment, \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+comparator)
+\item 
+\mbox{\hyperlink{classmoeo_environmental_replacement_a2dfa5d51660039b4f90196e7885ed586}{moeo\+Environmental\+Replacement}} (\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+fitness\+Assignment)
+\item 
+void \mbox{\hyperlink{classmoeo_environmental_replacement_a55acfca7f9dd9e3d75cef7c9015dc037}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+parents, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+offspring)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \& \mbox{\hyperlink{classmoeo_environmental_replacement_a4b7bc138b17ad5381355c0481bc9c669}{fitness\+Assignment}}
+\item 
+\mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \& \mbox{\hyperlink{classmoeo_environmental_replacement_ae2453bd96c9a490f7de21f9ce22fdff9}{diversity\+Assignment}}
+\item 
+\mbox{\hyperlink{classmoeo_dummy_diversity_assignment}{moeo\+Dummy\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_environmental_replacement_a7f546704db3225ee1c40439beff5f618}{default\+Diversity}}
+\item 
+\mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_environmental_replacement_ab7f4ce8d3ecf2d18e8c48982875760bb}{default\+Comparator}}
+\item 
+\mbox{\Hypertarget{classmoeo_environmental_replacement_a3cc45a848d6ea5c2b04d66a501e2b106}\label{classmoeo_environmental_replacement_a3cc45a848d6ea5c2b04d66a501e2b106}} 
+class \mbox{\hyperlink{classmoeo_environmental_replacement_1_1_cmp}{moeo\+Environmental\+Replacement\+::\+Cmp}} {\bfseries comparator}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Environmental\+Replacement$<$ M\+O\+E\+O\+T $>$}
+
+Environmental replacement strategy that consists in keeping the N best individuals by deleting individuals 1 by 1 and by updating the fitness and diversity values after each deletion. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_environmental_replacement_aef38fb9b1ab23ddd2c558639e19f4821}\label{classmoeo_environmental_replacement_aef38fb9b1ab23ddd2c558639e19f4821}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_environmental_replacement_aef38fb9b1ab23ddd2c558639e19f4821}{Objective\+Vector}}}
+
+The type for objective vector 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_environmental_replacement_ade6e8f546a4583f1eee31366f7099c38}\label{classmoeo_environmental_replacement_ade6e8f546a4583f1eee31366f7099c38}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}}
+\index{moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEnvironmentalReplacement()}{moeoEnvironmentalReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+fitness\+Assignment,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+diversity\+Assignment,  }\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+comparator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Full constructor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fitness\+Assignment} & the fitness assignment strategy \\
+\hline
+{\em \+\_\+diversity\+Assignment} & the diversity assignment strategy \\
+\hline
+{\em \+\_\+comparator} & the comparator (used to compare 2 individuals) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_environmental_replacement_a9199a29cf89cd6b01bb9be304f344940}\label{classmoeo_environmental_replacement_a9199a29cf89cd6b01bb9be304f344940}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}}
+\index{moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEnvironmentalReplacement()}{moeoEnvironmentalReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+fitness\+Assignment,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+diversity\+Assignment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor without comparator. A moeo\+Fit\+Then\+Div\+Comparator is used as default. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fitness\+Assignment} & the fitness assignment strategy \\
+\hline
+{\em \+\_\+diversity\+Assignment} & the diversity assignment strategy \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_environmental_replacement_a7512641b5d58c96a148a75fd4dc95bf7}\label{classmoeo_environmental_replacement_a7512641b5d58c96a148a75fd4dc95bf7}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}}
+\index{moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEnvironmentalReplacement()}{moeoEnvironmentalReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+fitness\+Assignment,  }\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+comparator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor without moeo\+Diversity\+Assignement. A dummy diversity is used as default. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fitness\+Assignment} & the fitness assignment strategy \\
+\hline
+{\em \+\_\+comparator} & the comparator (used to compare 2 individuals) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_environmental_replacement_a2dfa5d51660039b4f90196e7885ed586}\label{classmoeo_environmental_replacement_a2dfa5d51660039b4f90196e7885ed586}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}}
+\index{moeoEnvironmentalReplacement@{moeoEnvironmentalReplacement}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEnvironmentalReplacement()}{moeoEnvironmentalReplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+fitness\+Assignment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor without moeo\+Diversity\+Assignement nor \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}. A moeo\+Fit\+Then\+Div\+Comparator and a dummy diversity are used as default. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fitness\+Assignment} & the fitness assignment strategy \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_environmental_replacement_a55acfca7f9dd9e3d75cef7c9015dc037}\label{classmoeo_environmental_replacement_a55acfca7f9dd9e3d75cef7c9015dc037}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+parents,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+offspring }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Replaces the first population by adding the individuals of the second one, sorting with a \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}} and resizing the whole population obtained. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+parents} & the population composed of the parents (the population you want to replace) \\
+\hline
+{\em \+\_\+offspring} & the offspring population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_environmental_replacement_ab7f4ce8d3ecf2d18e8c48982875760bb}\label{classmoeo_environmental_replacement_ab7f4ce8d3ecf2d18e8c48982875760bb}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!defaultComparator@{defaultComparator}}
+\index{defaultComparator@{defaultComparator}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{defaultComparator}{defaultComparator}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fitness_then_diversity_comparator}{moeo\+Fitness\+Then\+Diversity\+Comparator}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::default\+Comparator\hspace{0.3cm}{\ttfamily [protected]}}
+
+a fitness then diversity comparator can be used as default \mbox{\Hypertarget{classmoeo_environmental_replacement_a7f546704db3225ee1c40439beff5f618}\label{classmoeo_environmental_replacement_a7f546704db3225ee1c40439beff5f618}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!defaultDiversity@{defaultDiversity}}
+\index{defaultDiversity@{defaultDiversity}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{defaultDiversity}{defaultDiversity}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dummy_diversity_assignment}{moeo\+Dummy\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::default\+Diversity\hspace{0.3cm}{\ttfamily [protected]}}
+
+a dummy diversity assignment can be used as default \mbox{\Hypertarget{classmoeo_environmental_replacement_ae2453bd96c9a490f7de21f9ce22fdff9}\label{classmoeo_environmental_replacement_ae2453bd96c9a490f7de21f9ce22fdff9}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!diversityAssignment@{diversityAssignment}}
+\index{diversityAssignment@{diversityAssignment}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{diversityAssignment}{diversityAssignment}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\& \mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::diversity\+Assignment\hspace{0.3cm}{\ttfamily [protected]}}
+
+the diversity assignment strategy \mbox{\Hypertarget{classmoeo_environmental_replacement_a4b7bc138b17ad5381355c0481bc9c669}\label{classmoeo_environmental_replacement_a4b7bc138b17ad5381355c0481bc9c669}} 
+\index{moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}!fitnessAssignment@{fitnessAssignment}}
+\index{fitnessAssignment@{fitnessAssignment}!moeoEnvironmentalReplacement$<$ MOEOT $>$@{moeoEnvironmentalReplacement$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{fitnessAssignment}{fitnessAssignment}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\& \mbox{\hyperlink{classmoeo_environmental_replacement}{moeo\+Environmental\+Replacement}}$<$ M\+O\+E\+OT $>$\+::fitness\+Assignment\hspace{0.3cm}{\ttfamily [protected]}}
+
+the fitness assignment strategy 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/replacement/moeo\+Environmental\+Replacement.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,15 @@
+<map id="eoserial::Persistent" name="eoserial::Persistent">
+<area shape="rect" id="node1" title="Interface showing that object can be eoserialized (written and read from an input)." alt="" coords="193,233,340,260"/>
+<area shape="rect" id="node3" href="$class_distribution.html" title="Represents a distribution of processing times." alt="" coords="427,56,526,83"/>
+<area shape="rect" id="node7" href="$classeo_real_serializable.html" title=" " alt="" coords="405,107,548,133"/>
+<area shape="rect" id="node8" href="$classeo_timer_stat.html" title="Registers a group of statistics, each statistic corresponding to user, system and wallclock times dis..." alt="" coords="425,157,528,184"/>
+<area shape="rect" id="node9" href="$structeo_timer_stat_1_1_stat.html" title="Statistic related to a key (name)." alt="" coords="409,208,545,235"/>
+<area shape="rect" id="node10" href="$class_experiment.html" title="Serializable experiment." alt="" coords="428,259,525,285"/>
+<area shape="rect" id="node11" href="$struct_serializable_base.html" title=" " alt="" coords="393,309,561,336"/>
+<area shape="rect" id="node12" href="$class_serializable_e_o_real.html" title=" " alt="" coords="404,360,549,387"/>
+<area shape="rect" id="node13" href="$struct_serializable_vector.html" title=" " alt="" coords="388,411,565,437"/>
+<area shape="rect" id="node2" href="$classeoserial_1_1_printable.html" title="Interface showing that object can be written to a eoserial type (currently JSON)." alt="" coords="5,233,145,260"/>
+<area shape="rect" id="node4" href="$class_exponential_distribution.html" title="Exponential distribution." alt="" coords="613,5,788,32"/>
+<area shape="rect" id="node5" href="$class_normal_distribution.html" title="Normal (gaussian) distribution of times." alt="" coords="627,56,774,83"/>
+<area shape="rect" id="node6" href="$class_uniform_distribution.html" title="Uniform distribution." alt="" coords="625,107,776,133"/>
+</map>

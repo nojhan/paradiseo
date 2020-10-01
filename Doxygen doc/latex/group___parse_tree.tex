@@ -1,0 +1,68 @@
+\hypertarget{group___parse_tree}{}\doxysection{Parse\+Tree}
+\label{group___parse_tree}\index{ParseTree@{ParseTree}}
+
+
+Various functions for tree-\/based Genetic Programming.  
+
+
+Collaboration diagram for Parse\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{group___parse_tree}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_parse_tree}{eo\+Parse\+Tree$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_parse_tree_depth_init}{eo\+Parse\+Tree\+Depth\+Init$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_subtree_x_over}{eo\+Subtree\+X\+Over$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_branch_mutation}{eo\+Branch\+Mutation$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_point_mutation}{eo\+Point\+Mutation$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_expansion_mutation}{eo\+Expansion\+Mutation$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_collapse_subtree_mutation}{eo\+Collapse\+Subtree\+Mutation$<$ F\+Type, Node $>$}}
+\item 
+class \mbox{\hyperlink{classeo_hoist_mutation}{eo\+Hoist\+Mutation$<$ F\+Type, Node $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class F\+Type , class Node $>$ }\\void \mbox{\hyperlink{group___parse_tree_gafae0d1f936bf36205399b8c47af509d4}{eo\+Init\+Ramped\+Half\+And\+Half}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{eo\+Parse\+Tree}}$<$ F\+Type, \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \&pop, unsigned int population\+\_\+size, unsigned int init\+\_\+max\+\_\+depth, std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $>$ \&initializor)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Various functions for tree-\/based Genetic Programming. 
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___parse_tree_gafae0d1f936bf36205399b8c47af509d4}\label{group___parse_tree_gafae0d1f936bf36205399b8c47af509d4}} 
+\index{ParseTree@{ParseTree}!eoInitRampedHalfAndHalf@{eoInitRampedHalfAndHalf}}
+\index{eoInitRampedHalfAndHalf@{eoInitRampedHalfAndHalf}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{eoInitRampedHalfAndHalf()}{eoInitRampedHalfAndHalf()}}
+{\footnotesize\ttfamily template$<$class F\+Type , class Node $>$ \\
+void eo\+Init\+Ramped\+Half\+And\+Half (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_parse_tree}{eo\+Parse\+Tree}}$<$ F\+Type, \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \&}]{pop,  }\item[{unsigned int}]{population\+\_\+size,  }\item[{unsigned int}]{init\+\_\+max\+\_\+depth,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $>$ \&}]{initializor }\end{DoxyParamCaption})}
+
+A template function for ramped half and half initialization of an \mbox{\hyperlink{classeo_parse_tree}{eo\+Parse\+Tree}} population 
+\begin{DoxyParams}{Parameters}
+{\em pop} & the population to be created \\
+\hline
+{\em population\+\_\+size} & the size of the population to be created \\
+\hline
+{\em init\+\_\+max\+\_\+depth} & the initial maximum tree depth \\
+\hline
+{\em initializor} & A std\+::vector containing the possible nodes \\
+\hline
+\end{DoxyParams}

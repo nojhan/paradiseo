@@ -1,0 +1,138 @@
+\hypertarget{classmo_two_opt_ex_neighbor}{}\doxysection{mo\+Two\+Opt\+Ex\+Neighbor$<$ E\+OT, Fitness $>$ Class Template Reference}
+\label{classmo_two_opt_ex_neighbor}\index{moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}}
+
+
+{\ttfamily \#include $<$mo\+Two\+Opt\+Ex\+Neighbor.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Two\+Opt\+Ex\+Neighbor$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{classmo_two_opt_ex_neighbor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Two\+Opt\+Ex\+Neighbor$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{classmo_two_opt_ex_neighbor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighbor_a21688544b4a32c7ba8bbd7c7a1a92c88}{move}} (E\+OT \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighbor_ab0261a2b57d0e8aad42f18ebfb5b7f7a}{move\+Back}} (E\+OT \&\+\_\+solution)
+\item 
+void \mbox{\hyperlink{classmo_two_opt_ex_neighbor_adcc979cb28aba8c5504327a082c66148}{set\+Indices}} (unsigned int \+\_\+first, unsigned int \+\_\+second)
+\item 
+void \mbox{\hyperlink{classmo_two_opt_ex_neighbor_a6b266f6635ea57235b8095a1d46d81c8}{get\+Indices}} (unsigned int \&\+\_\+first, unsigned int \&\+\_\+second)
+\item 
+virtual bool \mbox{\hyperlink{classmo_two_opt_ex_neighbor_a2b685a6d76869e3adda3ee3685451a47}{equals}} (\mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$ \&\+\_\+neighbor)
+\item 
+void \mbox{\hyperlink{classmo_two_opt_ex_neighbor_a615aa27f3e798644b93bc91e9fd5cb4f}{print}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class Fitness = typename E\+O\+T\+::\+Fitness$>$\newline
+class mo\+Two\+Opt\+Ex\+Neighbor$<$ E\+O\+T, Fitness $>$}
+
+Two-\/opt exchange neighbor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_two_opt_ex_neighbor_a2b685a6d76869e3adda3ee3685451a47}\label{classmo_two_opt_ex_neighbor_a2b685a6d76869e3adda3ee3685451a47}} 
+\index{moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}!equals@{equals}}
+\index{equals@{equals}!moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{equals()}{equals()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual bool \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$\+::equals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$ \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighbor} & a neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if \+\_\+neighbor and this one are equals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_two_opt_ex_neighbor_a6b266f6635ea57235b8095a1d46d81c8}\label{classmo_two_opt_ex_neighbor_a6b266f6635ea57235b8095a1d46d81c8}} 
+\index{moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}!getIndices@{getIndices}}
+\index{getIndices@{getIndices}!moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{getIndices()}{getIndices()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+void \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$\+::get\+Indices (\begin{DoxyParamCaption}\item[{unsigned int \&}]{\+\_\+first,  }\item[{unsigned int \&}]{\+\_\+second }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the two indexes to move 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+first} & first index \\
+\hline
+{\em \+\_\+second} & second index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_two_opt_ex_neighbor_a21688544b4a32c7ba8bbd7c7a1a92c88}\label{classmo_two_opt_ex_neighbor_a21688544b4a32c7ba8bbd7c7a1a92c88}} 
+\index{moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}!move@{move}}
+\index{move@{move}!moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$\+::move (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the move 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighbor_a8f7c2d49ae656a7da9611fc59dc8a80f}{mo\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$}}.
+
+\mbox{\Hypertarget{classmo_two_opt_ex_neighbor_ab0261a2b57d0e8aad42f18ebfb5b7f7a}\label{classmo_two_opt_ex_neighbor_ab0261a2b57d0e8aad42f18ebfb5b7f7a}} 
+\index{moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}!moveBack@{moveBack}}
+\index{moveBack@{moveBack}!moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{moveBack()}{moveBack()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$\+::move\+Back (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+apply the move to restore the solution (use by \mbox{\hyperlink{classmo_full_eval_by_modif}{mo\+Full\+Eval\+By\+Modif}}) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move back \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_backable_neighbor_a9807bc11c441f0b852d1817ad152e147}{mo\+Backable\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$}}.
+
+\mbox{\Hypertarget{classmo_two_opt_ex_neighbor_a615aa27f3e798644b93bc91e9fd5cb4f}\label{classmo_two_opt_ex_neighbor_a615aa27f3e798644b93bc91e9fd5cb4f}} 
+\index{moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}!print@{print}}
+\index{print@{print}!moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+void \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Print the neighbor \mbox{\Hypertarget{classmo_two_opt_ex_neighbor_adcc979cb28aba8c5504327a082c66148}\label{classmo_two_opt_ex_neighbor_adcc979cb28aba8c5504327a082c66148}} 
+\index{moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}!setIndices@{setIndices}}
+\index{setIndices@{setIndices}!moTwoOptExNeighbor$<$ EOT, Fitness $>$@{moTwoOptExNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{setIndices()}{setIndices()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+void \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ E\+OT, Fitness $>$\+::set\+Indices (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+first,  }\item[{unsigned int}]{\+\_\+second }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setter to fix the two indexes to move 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+first} & first index \\
+\hline
+{\em \+\_\+second} & second index \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/permutation/mo\+Two\+Opt\+Ex\+Neighbor.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="eo::mpi::DummyIsFinishedFunction" name="eo::mpi::DummyIsFinishedFunction">
+<area shape="rect" id="node1" title="Is finished functor which returns true everytime." alt="" coords="5,269,201,310"/>
+<area shape="rect" id="node2" href="$structeo_1_1mpi_1_1_is_finished_function.html" title=" " alt="" coords="144,157,343,199"/>
+<area shape="rect" id="node5" href="$structeo_1_1mpi_1_1_shared_data_function.html" title=" " alt="" coords="226,261,437,317"/>
+<area shape="rect" id="node3" href="$classeo_f.html" title=" " alt="" coords="191,81,295,108"/>
+<area shape="rect" id="node4" href="$classeo_functor_base.html" title=" " alt="" coords="184,5,303,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Stopping criteria" name="Stopping criteria">
+<area shape="rect" id="node1" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="332,107,468,133"/>
+<area shape="rect" id="node2" href="$group___utilities.html" title="Classes that may help you write elegant code." alt="" coords="363,7,437,33"/>
+<area shape="rect" id="node3" title="A stopping criterion is called a &quot;continue&quot;. This is a functor that is called at each generation end ..." alt="" coords="5,29,135,54"/>
+</map>

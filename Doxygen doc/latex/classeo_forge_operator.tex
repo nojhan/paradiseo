@@ -1,0 +1,103 @@
+\hypertarget{classeo_forge_operator}{}\doxysection{eo\+Forge\+Operator$<$ Itf, Op, Args $>$ Class Template Reference}
+\label{classeo_forge_operator}\index{eoForgeOperator$<$ Itf, Op, Args $>$@{eoForgeOperator$<$ Itf, Op, Args $>$}}
+
+
+{\ttfamily \#include $<$eo\+Forge.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Forge\+Operator$<$ Itf, Op, Args $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classeo_forge_operator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Forge\+Operator$<$ Itf, Op, Args $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classeo_forge_operator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_forge_operator_a4932460a0c35c5da90a99df827b71fae}\label{classeo_forge_operator_a4932460a0c35c5da90a99df827b71fae}} 
+{\footnotesize template$<$class ... Args2$>$ }\\{\bfseries eo\+Forge\+Operator} (Args2... args)
+\item 
+Itf \& \mbox{\hyperlink{classeo_forge_operator_aad5c5afc7eefb1b6a5287aa198476a94}{instantiate}} (bool no\+\_\+cache=true)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_forge_operator_a5d20a93b86f2fa3d1f4b8de1109ffaca}\label{classeo_forge_operator_a5d20a93b86f2fa3d1f4b8de1109ffaca}} 
+std\+::tuple$<$ Args... $>$ {\bfseries \+\_\+args}
+\item 
+\mbox{\Hypertarget{classeo_forge_operator_a5a6184f241753ee6a0f2e5bff6ebfd8c}\label{classeo_forge_operator_a5a6184f241753ee6a0f2e5bff6ebfd8c}} 
+Itf $\ast$ {\bfseries \+\_\+instantiated}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Itf, class Op, typename... Args$>$\newline
+class eo\+Forge\+Operator$<$ Itf, Op, Args $>$}
+
+This \char`\"{}\+Forge\char`\"{} can defer the instantiation of an \mbox{\hyperlink{class_e_o}{EO}}\textquotesingle{}s operator.
+
+It allows to decouple the constructor\textquotesingle{}s parameters setup from its actual call. You can declare a parametrized operator at a given time, then actually instantiate it (with the given interface) at another time.
+
+This allows for creating containers of pre-\/parametrized operators (\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}).
+\end{DoxySeeAlso}
+\begin{DoxyWarning}{Warning}
+When passing a reference (as it is often the case within Paradis\+EO), it is M\+A\+N\+D\+A\+T\+O\+RY to wrap it in {\ttfamily std\+::ref}, or else it will default to use copy. This is is a source of bug which your compiler will to detect and that would disable any link between operators.
+\end{DoxyWarning}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_forge_operator}{eoForgeOperator<eoselect<EOT>}},\mbox{\hyperlink{classeo_rank_mu_select}{eoRankMuSelect<EOT>}}> forge(mu);}
+\DoxyCodeLine{\textcolor{comment}{//                \string^ desired     \string^ to-\/be-\/instantiated     \string^ operator's}}
+\DoxyCodeLine{\textcolor{comment}{//                  interface     operator                 parameters}}
+\DoxyCodeLine{\textcolor{comment}{// Actual instantiation:}}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_select}{eoSelect<EOT>}}\& select = forge.instantiate();}
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Warning}
+You may want to enable instantiation cache to grab some performances. The default is set to disable the cache, because its use with operators which hold a state will lead to unwanted behaviour. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_forge_operator_aad5c5afc7eefb1b6a5287aa198476a94}\label{classeo_forge_operator_aad5c5afc7eefb1b6a5287aa198476a94}} 
+\index{eoForgeOperator$<$ Itf, Op, Args $>$@{eoForgeOperator$<$ Itf, Op, Args $>$}!instantiate@{instantiate}}
+\index{instantiate@{instantiate}!eoForgeOperator$<$ Itf, Op, Args $>$@{eoForgeOperator$<$ Itf, Op, Args $>$}}
+\doxysubsubsection{\texorpdfstring{instantiate()}{instantiate()}}
+{\footnotesize\ttfamily template$<$class Itf , class Op , typename... Args$>$ \\
+Itf\& \mbox{\hyperlink{classeo_forge_operator}{eo\+Forge\+Operator}}$<$ Itf, Op, Args $>$\+::instantiate (\begin{DoxyParamCaption}\item[{bool}]{no\+\_\+cache = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+instantiate the managed operator class.
+
+That is call its constructor with the set up arguments.
+
+\begin{DoxyWarning}{Warning}
+Do not enable cache with operators which hold a state.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em no\+\_\+cache} & If false, will enable caching previous instances. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_forge_interface}{eo\+Forge\+Interface$<$ Itf $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Forge.\+h\end{DoxyCompactItemize}

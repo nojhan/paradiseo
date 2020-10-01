@@ -1,0 +1,8 @@
+<map id="Distributions" name="Distributions">
+<area shape="rect" id="node1" href="$group___binomial.html" title="A binomial distribution that model marginal probabilities across boolean variables." alt="" coords="303,11,383,37"/>
+<area shape="rect" id="node2" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="275,75,411,101"/>
+<area shape="rect" id="node3" href="$group___mononormal.html" title="A normal (Gaussian) distribution that only model variances of variables." alt="" coords="308,139,379,165"/>
+<area shape="rect" id="node4" href="$group___multinormal.html" title="Distribution that model co&#45;variances between variables." alt="" coords="268,213,419,238"/>
+<area shape="rect" id="node5" title="A distribution is a data structure that holds sufficient informations to describe a probability densi..." alt="" coords="5,137,111,162"/>
+<area shape="rect" id="node6" href="$group___e_m_n_a.html" title="Estimation of Multivariate Normal Algorithm (EMNA) is a stochastic, derivative&#45;free methods for numer..." alt="" coords="313,278,374,303"/>
+</map>

@@ -1,0 +1,150 @@
+\hypertarget{classmo_vector_v_n_selection}{}\doxysection{mo\+Vector\+V\+N\+Selection$<$ E\+OT $>$ Class Template Reference}
+\label{classmo_vector_v_n_selection}\index{moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$mo\+Vector\+V\+N\+Selection.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Vector\+V\+N\+Selection$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_vector_v_n_selection__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Vector\+V\+N\+Selection$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{classmo_vector_v_n_selection__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_vector_v_n_selection_a67a5dba17d4b436577ec699ed9a80104}{mo\+Vector\+V\+N\+Selection}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+first\+LS, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+first\+Shake)
+\item 
+void \mbox{\hyperlink{classmo_vector_v_n_selection_aaada60a97fa1e1e598a18bc55f852970}{add}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+other\+LS, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+other\+Shake)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_vector_v_n_selection_af2233b470b1d71e6de5fd7ed3f041a93}{class\+Name}} () const
+\item 
+virtual \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{classmo_vector_v_n_selection_a7fac8b721a1c7d6e125d767228527f11}{get\+Shake}} ()
+\item 
+virtual \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{classmo_vector_v_n_selection_a4c05a17d8cf45bf9aa97345607195308}{get\+Local\+Search}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_vector_v_n_selection_a330f7b80277f04c43a5a1ec0e93588aa}\label{classmo_vector_v_n_selection_a330f7b80277f04c43a5a1ec0e93588aa}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ $>$ {\bfseries L\+Svector}
+\item 
+\mbox{\Hypertarget{classmo_vector_v_n_selection_ad519351db56afeae75eaeaead7723ccb}\label{classmo_vector_v_n_selection_ad519351db56afeae75eaeaead7723ccb}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ $>$ {\bfseries shake\+Vector}
+\item 
+\mbox{\Hypertarget{classmo_vector_v_n_selection_a7e8622b5f78d3f02ecf41dc6e81fb572}\label{classmo_vector_v_n_selection_a7e8622b5f78d3f02ecf41dc6e81fb572}} 
+unsigned int {\bfseries current}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class mo\+Vector\+V\+N\+Selection$<$ E\+O\+T $>$}
+
+This class is used for the Variable Neighborhood Search explorer inherits from \mbox{\hyperlink{classmo_variable_neighborhood_selection}{mo\+Variable\+Neighborhood\+Selection}} The search heuristics are saved in vectors The way to croos the vector is not defined here 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_vector_v_n_selection_a67a5dba17d4b436577ec699ed9a80104}\label{classmo_vector_v_n_selection_a67a5dba17d4b436577ec699ed9a80104}} 
+\index{moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}!moVectorVNSelection@{moVectorVNSelection}}
+\index{moVectorVNSelection@{moVectorVNSelection}!moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{moVectorVNSelection()}{moVectorVNSelection()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classmo_vector_v_n_selection}{mo\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classmo_vector_v_n_selection}{mo\+Vector\+V\+N\+Selection}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+first\+LS,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+first\+Shake }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor with first search heuristics
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+first\+LS} & first local search \\
+\hline
+{\em \+\_\+first\+Shake} & first heuristic which perturbs the solution \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_vector_v_n_selection_aaada60a97fa1e1e598a18bc55f852970}\label{classmo_vector_v_n_selection_aaada60a97fa1e1e598a18bc55f852970}} 
+\index{moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}!add@{add}}
+\index{add@{add}!moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classmo_vector_v_n_selection}{mo\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+other\+LS,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+other\+Shake }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add some search heuristics
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other\+LS} & the added local search \\
+\hline
+{\em \+\_\+other\+Shake} & the added heuristic which perturbs the solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_vector_v_n_selection_af2233b470b1d71e6de5fd7ed3f041a93}\label{classmo_vector_v_n_selection_af2233b470b1d71e6de5fd7ed3f041a93}} 
+\index{moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}!className@{className}}
+\index{className@{className}!moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_vector_v_n_selection}{mo\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_variable_neighborhood_selection_a051705999c1f12a51aed7057b3858fa3}{mo\+Variable\+Neighborhood\+Selection$<$ E\+O\+T $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_rnd_vector_v_n_selection_ac11e6ee96edbb3c16900fb89f2b7be79}{mo\+Rnd\+Vector\+V\+N\+Selection$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classmo_backward_vector_v_n_selection_af29318b0276ce78297bc7d0f162ded5f}{mo\+Backward\+Vector\+V\+N\+Selection$<$ E\+O\+T $>$}}, and \mbox{\hyperlink{classmo_forward_vector_v_n_selection_acc4083fe1d1c61c05e378b80ff2e6d2d}{mo\+Forward\+Vector\+V\+N\+Selection$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_vector_v_n_selection_a4c05a17d8cf45bf9aa97345607195308}\label{classmo_vector_v_n_selection_a4c05a17d8cf45bf9aa97345607195308}} 
+\index{moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}!getLocalSearch@{getLocalSearch}}
+\index{getLocalSearch@{getLocalSearch}!moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{getLocalSearch()}{getLocalSearch()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\& \mbox{\hyperlink{classmo_vector_v_n_selection}{mo\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::get\+Local\+Search (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Get the current local search based on the current neighborhood
+
+\begin{DoxyReturn}{Returns}
+current local search 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_variable_neighborhood_selection_a554b6d7eb2dbaa4b85d76cf69b529446}{mo\+Variable\+Neighborhood\+Selection$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_vector_v_n_selection_a7fac8b721a1c7d6e125d767228527f11}\label{classmo_vector_v_n_selection_a7fac8b721a1c7d6e125d767228527f11}} 
+\index{moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}!getShake@{getShake}}
+\index{getShake@{getShake}!moVectorVNSelection$<$ EOT $>$@{moVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{getShake()}{getShake()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$\& \mbox{\hyperlink{classmo_vector_v_n_selection}{mo\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::get\+Shake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Get the current \char`\"{}shake\char`\"{} operator based on the current neighborhood
+
+\begin{DoxyReturn}{Returns}
+current shake operator 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_variable_neighborhood_selection_a2dc54ad5ceb5d80d112ed3fbb0d87701}{mo\+Variable\+Neighborhood\+Selection$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/neighborhood/mo\+Vector\+V\+N\+Selection.\+h\end{DoxyCompactItemize}

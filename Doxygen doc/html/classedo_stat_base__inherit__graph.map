@@ -1,0 +1,9 @@
+<map id="edoStatBase&lt; D &gt;" name="edoStatBase&lt; D &gt;">
+<area shape="rect" id="node1" title="edoStatBase&lt; D &gt;" alt="" coords="76,169,220,196"/>
+<area shape="rect" id="node5" href="$classedo_stat.html" title=" " alt="" coords="5,244,117,271"/>
+<area shape="rect" id="node6" href="$classedo_stat.html" title=" " alt="" coords="142,244,327,271"/>
+<area shape="rect" id="node2" href="$classeo_u_f.html" title=" " alt="" coords="55,95,241,121"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="10,13,129,39"/>
+<area shape="rect" id="node4" title=" " alt="" coords="153,5,303,47"/>
+<area shape="rect" id="node7" href="$classedo_distrib_stat.html" title="A parent class for any kind of distribution to dump parameter to std::string type." alt="" coords="157,319,312,345"/>
+</map>

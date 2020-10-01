@@ -1,0 +1,87 @@
+\hypertarget{classmo_max_s_a_tincr_eval}{}\doxysection{mo\+Max\+S\+A\+Tincr\+Eval$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_max_s_a_tincr_eval}\index{moMaxSATincrEval$<$ Neighbor $>$@{moMaxSATincrEval$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Max\+S\+A\+Tincr\+Eval.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Max\+S\+A\+Tincr\+Eval$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_max_s_a_tincr_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Max\+S\+A\+Tincr\+Eval$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_max_s_a_tincr_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_a6fba2fc0ef7fa8688982c14145271ab9}\label{classmo_max_s_a_tincr_eval_a6fba2fc0ef7fa8688982c14145271ab9}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_a9405b3e5f0f770f0f12c74f169ad9e22}\label{classmo_max_s_a_tincr_eval_a9405b3e5f0f770f0f12c74f169ad9e22}} 
+{\bfseries mo\+Max\+S\+A\+Tincr\+Eval} (\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+fulleval)
+\item 
+virtual void \mbox{\hyperlink{classmo_max_s_a_tincr_eval_a7a7643b36cddd643aa8e6c4fad9cef15}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_a497090e43f0227daccc5e21307f25012}\label{classmo_max_s_a_tincr_eval_a497090e43f0227daccc5e21307f25012}} 
+unsigned int {\bfseries nb\+Var}
+\item 
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_aaf1d0f111dff02702946415887e1f62f}\label{classmo_max_s_a_tincr_eval_aaf1d0f111dff02702946415887e1f62f}} 
+unsigned int {\bfseries nb\+Clauses}
+\item 
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_a98fe59a4f2814e85bc6c2059aa9e4f6a}\label{classmo_max_s_a_tincr_eval_a98fe59a4f2814e85bc6c2059aa9e4f6a}} 
+std\+::vector$<$ int $>$ $\ast$ {\bfseries clauses}
+\item 
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_a1129323baa00c94e1793a852eca5b20b}\label{classmo_max_s_a_tincr_eval_a1129323baa00c94e1793a852eca5b20b}} 
+std\+::vector$<$ int $>$ $\ast$ {\bfseries variables}
+\item 
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_a6b463cd8b7748ef1cd46fd90c19bfcc0}\label{classmo_max_s_a_tincr_eval_a6b463cd8b7748ef1cd46fd90c19bfcc0}} 
+\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \& {\bfseries fulleval}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Max\+S\+A\+Tincr\+Eval$<$ Neighbor $>$}
+
+Incremental evaluation \mbox{\hyperlink{struct_function}{Function}} for the max S\+AT problem 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_max_s_a_tincr_eval_a7a7643b36cddd643aa8e6c4fad9cef15}\label{classmo_max_s_a_tincr_eval_a7a7643b36cddd643aa8e6c4fad9cef15}} 
+\index{moMaxSATincrEval$<$ Neighbor $>$@{moMaxSATincrEval$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moMaxSATincrEval$<$ Neighbor $>$@{moMaxSATincrEval$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_max_s_a_tincr_eval}{mo\+Max\+S\+A\+Tincr\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+incremental evaluation of the neighbor for the max S\+AT problem 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution (of type bit string) to move \\
+\hline
+{\em \+\_\+neighbor} & the neighbor (of type mo\+Bit\+Neigbor) to consider \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/eval/mo\+Max\+S\+A\+Tincr\+Eval.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\hypertarget{classmoeo_dual_hyp_continue}{}\doxysection{moeo\+Dual\+Hyp\+Continue$<$ M\+O\+E\+OT, MetricT $>$ Class Template Reference}
+\label{classmoeo_dual_hyp_continue}\index{moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dual\+Hyp\+Continue.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dual\+Hyp\+Continue$<$ M\+O\+E\+OT, MetricT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_dual_hyp_continue__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dual\+Hyp\+Continue$<$ M\+O\+E\+OT, MetricT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_dual_hyp_continue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_hyp_continue_a89c53364bb76f8fd1bf4a215fba77529}\label{classmoeo_dual_hyp_continue_a89c53364bb76f8fd1bf4a215fba77529}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_hyp_continue_ae37dd14e6cb967b6e09f5bd708cee0bb}\label{classmoeo_dual_hyp_continue_ae37dd14e6cb967b6e09f5bd708cee0bb}} 
+typedef \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} {\bfseries Atom\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_dual_hyp_continue_a8368d06a1c4b73e1473740ea86fda56f}{moeo\+Dual\+Hyp\+Continue}} (const std\+::vector$<$ Atom\+Type $>$ \&\+\_\+\+Optim\+Vec, bool \+\_\+is\+\_\+feasible, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, bool \+\_\+normalize=true, double \+\_\+rho=1.\+1)
+\item 
+\mbox{\hyperlink{classmoeo_dual_hyp_continue_ae24f4436bf2aa1cfffd2a8c69b3e2cb5}{moeo\+Dual\+Hyp\+Continue}} (const std\+::vector$<$ Atom\+Type $>$ \&\+\_\+\+Optim\+Vec, bool \+\_\+is\+\_\+feasible, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, bool \+\_\+normalize=true, Objective\+Vector \&\+\_\+ref\+\_\+point=N\+U\+LL)
+\item 
+virtual bool \mbox{\hyperlink{classmoeo_dual_hyp_continue_a166d111923e66b226ded9ceebd9b8f72}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmoeo_dual_hyp_continue_a7aaec7d93e72395d07bb769c66825a68}{vector\+To\+Pareto\+Set}} (const std\+::vector$<$ Atom\+Type $>$ \&\+\_\+\+Optim\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_hyp_continue_a110579fed65f2c26005e94e2352dfd44}\label{classmoeo_dual_hyp_continue_a110579fed65f2c26005e94e2352dfd44}} 
+bool {\bfseries is\+\_\+feasible}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT, class MetricT = moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$\newline
+class moeo\+Dual\+Hyp\+Continue$<$ M\+O\+E\+O\+T, Metric\+T $>$}
+
+Continues until the (feasible or unfeasible) given Pareto set is reached. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_dual_hyp_continue_a8368d06a1c4b73e1473740ea86fda56f}\label{classmoeo_dual_hyp_continue_a8368d06a1c4b73e1473740ea86fda56f}} 
+\index{moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}!moeoDualHypContinue@{moeoDualHypContinue}}
+\index{moeoDualHypContinue@{moeoDualHypContinue}!moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDualHypContinue()}{moeoDualHypContinue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class MetricT  = moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$ \\
+\mbox{\hyperlink{classmoeo_dual_hyp_continue}{moeo\+Dual\+Hyp\+Continue}}$<$ M\+O\+E\+OT, MetricT $>$\+::\mbox{\hyperlink{classmoeo_dual_hyp_continue}{moeo\+Dual\+Hyp\+Continue}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Atom\+Type $>$ \&}]{\+\_\+\+Optim\+Vec,  }\item[{bool}]{\+\_\+is\+\_\+feasible,  }\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{bool}]{\+\_\+normalize = {\ttfamily true},  }\item[{double}]{\+\_\+rho = {\ttfamily 1.1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A continuator that stops once a given Pareto front has been reached
+
+You should specify the feasibility of the targeted front. N\+O\+TE\+: the M\+O\+E\+O\+T\+::\+Objective\+Vector is supposed to implement the \mbox{\hyperlink{classmoeo_dual_real_objective_vector}{moeo\+Dual\+Real\+Objective\+Vector}} interface. \mbox{\Hypertarget{classmoeo_dual_hyp_continue_ae24f4436bf2aa1cfffd2a8c69b3e2cb5}\label{classmoeo_dual_hyp_continue_ae24f4436bf2aa1cfffd2a8c69b3e2cb5}} 
+\index{moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}!moeoDualHypContinue@{moeoDualHypContinue}}
+\index{moeoDualHypContinue@{moeoDualHypContinue}!moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDualHypContinue()}{moeoDualHypContinue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class MetricT  = moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$ \\
+\mbox{\hyperlink{classmoeo_dual_hyp_continue}{moeo\+Dual\+Hyp\+Continue}}$<$ M\+O\+E\+OT, MetricT $>$\+::\mbox{\hyperlink{classmoeo_dual_hyp_continue}{moeo\+Dual\+Hyp\+Continue}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Atom\+Type $>$ \&}]{\+\_\+\+Optim\+Vec,  }\item[{bool}]{\+\_\+is\+\_\+feasible,  }\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{bool}]{\+\_\+normalize = {\ttfamily true},  }\item[{Objective\+Vector \&}]{\+\_\+ref\+\_\+point = {\ttfamily NULL} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A continuator that stops once a given Pareto front has been reached
+
+You should specify the feasibility of the targeted front. N\+O\+TE\+: the M\+O\+E\+O\+T\+::\+Objective\+Vector is supposed to implement the \mbox{\hyperlink{classmoeo_dual_real_objective_vector}{moeo\+Dual\+Real\+Objective\+Vector}} interface. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dual_hyp_continue_a166d111923e66b226ded9ceebd9b8f72}\label{classmoeo_dual_hyp_continue_a166d111923e66b226ded9ceebd9b8f72}} 
+\index{moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class MetricT  = moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$ \\
+virtual bool \mbox{\hyperlink{classmoeo_dual_hyp_continue}{moeo\+Dual\+Hyp\+Continue}}$<$ M\+O\+E\+OT, MetricT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns false when a Pareto\+Set is reached. 
+
+Reimplemented from \mbox{\hyperlink{classmoeo_hyp_continue_a8d6e98be144bea4759a463b684a287ad}{moeo\+Hyp\+Continue$<$ M\+O\+E\+O\+T, moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$ typename M\+O\+E\+O\+T\+::\+Objective\+Vector $>$ $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dual_hyp_continue_a7aaec7d93e72395d07bb769c66825a68}\label{classmoeo_dual_hyp_continue_a7aaec7d93e72395d07bb769c66825a68}} 
+\index{moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}!vectorToParetoSet@{vectorToParetoSet}}
+\index{vectorToParetoSet@{vectorToParetoSet}!moeoDualHypContinue$<$ MOEOT, MetricT $>$@{moeoDualHypContinue$<$ MOEOT, MetricT $>$}}
+\doxysubsubsection{\texorpdfstring{vectorToParetoSet()}{vectorToParetoSet()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class MetricT  = moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$typename M\+O\+E\+O\+T\+::\+Objective\+Vector$>$$>$ \\
+virtual void \mbox{\hyperlink{classmoeo_dual_hyp_continue}{moeo\+Dual\+Hyp\+Continue}}$<$ M\+O\+E\+OT, MetricT $>$\+::vector\+To\+Pareto\+Set (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Atom\+Type $>$ \&}]{\+\_\+\+Optim\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Translate a vector given as param to the Pareto\+Set that should be reached. 
+
+Reimplemented from \mbox{\hyperlink{classmoeo_hyp_continue_a5455d872a614db7a9e1fae330478929c}{moeo\+Hyp\+Continue$<$ M\+O\+E\+O\+T, moeo\+Dual\+Hyper\+Volume\+Difference\+Metric$<$ typename M\+O\+E\+O\+T\+::\+Objective\+Vector $>$ $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/continue/moeo\+Dual\+Hyp\+Continue.\+h\end{DoxyCompactItemize}

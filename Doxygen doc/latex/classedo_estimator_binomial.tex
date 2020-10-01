@@ -1,0 +1,57 @@
+\hypertarget{classedo_estimator_binomial}{}\doxysection{edo\+Estimator\+Binomial$<$ E\+OT, D $>$ Class Template Reference}
+\label{classedo_estimator_binomial}\index{edoEstimatorBinomial$<$ EOT, D $>$@{edoEstimatorBinomial$<$ EOT, D $>$}}
+
+
+{\ttfamily \#include $<$edo\+Estimator\+Binomial.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Estimator\+Binomial$<$ E\+OT, D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_estimator_binomial__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Estimator\+Binomial$<$ E\+OT, D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_estimator_binomial__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+D \mbox{\hyperlink{classedo_estimator_binomial_a5ed78f639f08a7b83465e69cfec2abb4}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class D = edo\+Binomial$<$\+E\+O\+T$>$$>$\newline
+class edo\+Estimator\+Binomial$<$ E\+O\+T, D $>$}
+
+An estimator for \mbox{\hyperlink{classedo_binomial}{edo\+Binomial}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classedo_estimator_binomial_a5ed78f639f08a7b83465e69cfec2abb4}\label{classedo_estimator_binomial_a5ed78f639f08a7b83465e69cfec2abb4}} 
+\index{edoEstimatorBinomial$<$ EOT, D $>$@{edoEstimatorBinomial$<$ EOT, D $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!edoEstimatorBinomial$<$ EOT, D $>$@{edoEstimatorBinomial$<$ EOT, D $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class D  = edo\+Binomial$<$\+E\+O\+T$>$$>$ \\
+D \mbox{\hyperlink{classedo_estimator_binomial}{edo\+Estimator\+Binomial}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, D $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This generic implementation makes no assumption about the underlying atom type of the E\+OT. It can be any type that may be casted in a double as 1 or 0.
+
+For instance, you can use a vector$<$int$>$, but it must contains 1 or 0.
+
+F\+I\+X\+ME\+: Partial template specializations with a conditional branching may be more generic. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Estimator\+Binomial.\+h\end{DoxyCompactItemize}

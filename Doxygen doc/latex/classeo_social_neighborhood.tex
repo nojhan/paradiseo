@@ -1,0 +1,248 @@
+\hypertarget{classeo_social_neighborhood}{}\doxysection{eo\+Social\+Neighborhood$<$ P\+OT $>$ Class Template Reference}
+\label{classeo_social_neighborhood}\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Social\+Neighborhood.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Social\+Neighborhood$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classeo_social_neighborhood__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Social\+Neighborhood$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classeo_social_neighborhood__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classeo_social_neighborhood_afd44b8a60b3d454f704d65d78ce412d7}{put}} (unsigned \+\_\+one\+Indice)
+\item 
+bool \mbox{\hyperlink{classeo_social_neighborhood_ac1d4d1e9d4bb1a8e655bef4374525c16}{contains}} (unsigned \+\_\+one\+Indice)
+\item 
+std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{classeo_social_neighborhood_ac8d41f2098107edf16d6f951f42ebf49}{get\+Informatives}} ()
+\item 
+unsigned \mbox{\hyperlink{classeo_social_neighborhood_a74936adfbd88ae71f36551bedf166469}{size}} ()
+\item 
+unsigned \mbox{\hyperlink{classeo_social_neighborhood_ad908d2a0ba1535a2511760dbdfe06aa1}{get}} (unsigned \+\_\+index)
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_social_neighborhood_a50d7db3b12513e733b5c1989d8c66083}{best}} ()
+\item 
+void \mbox{\hyperlink{classeo_social_neighborhood_af768db6766913fc8efdecce323e971d9}{best}} (P\+OT \+\_\+particle)
+\item 
+void \mbox{\hyperlink{classeo_social_neighborhood_afd44b8a60b3d454f704d65d78ce412d7}{put}} (unsigned \+\_\+one\+Indice)
+\item 
+bool \mbox{\hyperlink{classeo_social_neighborhood_a17abc6edbf39f050fb79d950d6dc1352}{contains}} (unsigned \+\_\+one\+Indice) const
+\item 
+std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{classeo_social_neighborhood_ac8d41f2098107edf16d6f951f42ebf49}{get\+Informatives}} ()
+\item 
+unsigned \mbox{\hyperlink{classeo_social_neighborhood_a08579f23fa54f49f0986994d6bd4f3c6}{size}} () const
+\item 
+unsigned \mbox{\hyperlink{classeo_social_neighborhood_aa1f969305a3951b9fd4d73dfe1bdc167}{get}} (unsigned \+\_\+index) const
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_social_neighborhood_a50d7db3b12513e733b5c1989d8c66083}{best}} ()
+\item 
+void \mbox{\hyperlink{classeo_social_neighborhood_af768db6766913fc8efdecce323e971d9}{best}} (P\+OT \+\_\+particle)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_social_neighborhood_a5840f62c2d3a6c00e53d48879d32a986}\label{classeo_social_neighborhood_a5840f62c2d3a6c00e53d48879d32a986}} 
+std\+::vector$<$ unsigned $>$ {\bfseries indices\+List}
+\item 
+\mbox{\Hypertarget{classeo_social_neighborhood_a30071ddcd0514e4e33b2c4387e53983e}\label{classeo_social_neighborhood_a30071ddcd0514e4e33b2c4387e53983e}} 
+P\+OT {\bfseries l\+Best}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class P\+OT$>$\newline
+class eo\+Social\+Neighborhood$<$ P\+O\+T $>$}
+
+Derivated from \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood}}. Just takes relationships into account. The neighborhood is defined as a list of indices corresponding to particles. Also contains O\+NE particle considered as the best of the neighborhood. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_social_neighborhood_a50d7db3b12513e733b5c1989d8c66083}\label{classeo_social_neighborhood_a50d7db3b12513e733b5c1989d8c66083}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the best particle of the neighborhood. The topology is expected to get it. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_a50d7db3b12513e733b5c1989d8c66083}\label{classeo_social_neighborhood_a50d7db3b12513e733b5c1989d8c66083}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the best particle of the neighborhood. The topology is expected to get it. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_af768db6766913fc8efdecce323e971d9}\label{classeo_social_neighborhood_af768db6766913fc8efdecce323e971d9}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{P\+OT}]{\+\_\+particle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the best particle of the neighborhood. The topology is expected to set it. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_af768db6766913fc8efdecce323e971d9}\label{classeo_social_neighborhood_af768db6766913fc8efdecce323e971d9}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{P\+OT}]{\+\_\+particle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the best particle of the neighborhood. The topology is expected to set it. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_ac1d4d1e9d4bb1a8e655bef4374525c16}\label{classeo_social_neighborhood_ac1d4d1e9d4bb1a8e655bef4374525c16}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!contains@{contains}}
+\index{contains@{contains}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::contains (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+one\+Indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return true if the neighborhood contains the indice (= that means \char`\"{}contains the
+particle whose indice is \+\_\+one\+Indice\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+one\+Indice} & -\/ The indice of the particle in its population. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_a17abc6edbf39f050fb79d950d6dc1352}\label{classeo_social_neighborhood_a17abc6edbf39f050fb79d950d6dc1352}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!contains@{contains}}
+\index{contains@{contains}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::contains (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+one\+Indice }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return true if the neighborhood contains the indice (= that means \char`\"{}contains the
+particle whose indice is \+\_\+one\+Indice\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+one\+Indice} & -\/ The indice of the particle in its population. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_ad908d2a0ba1535a2511760dbdfe06aa1}\label{classeo_social_neighborhood_ad908d2a0ba1535a2511760dbdfe06aa1}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!get@{get}}
+\index{get@{get}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::get (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the \char`\"{}\+\_\+index-\/th\char`\"{} particle of the neighborhood. Throw an exception if its not contained in the neighborhood. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_aa1f969305a3951b9fd4d73dfe1bdc167}\label{classeo_social_neighborhood_aa1f969305a3951b9fd4d73dfe1bdc167}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!get@{get}}
+\index{get@{get}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::get (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the \char`\"{}\+\_\+index-\/th\char`\"{} particle of the neighborhood. Throw an exception if its not contained in the neighborhood. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_ac8d41f2098107edf16d6f951f42ebf49}\label{classeo_social_neighborhood_ac8d41f2098107edf16d6f951f42ebf49}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!getInformatives@{getInformatives}}
+\index{getInformatives@{getInformatives}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{getInformatives()}{getInformatives()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+std\+::vector$<$unsigned$>$ \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::get\+Informatives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the list of particle indices as a vector. \mbox{\Hypertarget{classeo_social_neighborhood_ac8d41f2098107edf16d6f951f42ebf49}\label{classeo_social_neighborhood_ac8d41f2098107edf16d6f951f42ebf49}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!getInformatives@{getInformatives}}
+\index{getInformatives@{getInformatives}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{getInformatives()}{getInformatives()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+std\+::vector$<$unsigned$>$ \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::get\+Informatives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the list of particle indices as a vector. \mbox{\Hypertarget{classeo_social_neighborhood_afd44b8a60b3d454f704d65d78ce412d7}\label{classeo_social_neighborhood_afd44b8a60b3d454f704d65d78ce412d7}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!put@{put}}
+\index{put@{put}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::put (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+one\+Indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Put a particle (identified by its indice in its population) in the neighborhood. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+one\+Indice} & -\/ The indice of the particle in its population. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_afd44b8a60b3d454f704d65d78ce412d7}\label{classeo_social_neighborhood_afd44b8a60b3d454f704d65d78ce412d7}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!put@{put}}
+\index{put@{put}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::put (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+one\+Indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Put a particle (identified by its indice in its population) in the neighborhood. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+one\+Indice} & -\/ The indice of the particle in its population. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_a74936adfbd88ae71f36551bedf166469}\label{classeo_social_neighborhood_a74936adfbd88ae71f36551bedf166469}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!size@{size}}
+\index{size@{size}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the size of the neighborhood. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_social_neighborhood_a08579f23fa54f49f0986994d6bd4f3c6}\label{classeo_social_neighborhood_a08579f23fa54f49f0986994d6bd4f3c6}} 
+\index{eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}!size@{size}}
+\index{size@{size}!eoSocialNeighborhood$<$ POT $>$@{eoSocialNeighborhood$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the size of the neighborhood. 
+
+Implements \mbox{\hyperlink{classeo_neighborhood}{eo\+Neighborhood$<$ P\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Social\+Neighborhood.\+h\end{DoxyCompactItemize}

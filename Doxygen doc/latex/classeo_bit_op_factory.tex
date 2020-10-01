@@ -1,0 +1,106 @@
+\hypertarget{classeo_bit_op_factory}{}\doxysection{eo\+Bit\+Op\+Factory$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_bit_op_factory}\index{eoBitOpFactory$<$ EOT $>$@{eoBitOpFactory$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Bit\+Op\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Bit\+Op\+Factory$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classeo_bit_op_factory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Bit\+Op\+Factory$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classeo_bit_op_factory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{Indent}\textbf{ ctors and dtors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_bit_op_factory_a988b97e9dc07fbdd9391e0177ee7c61a}\label{classeo_bit_op_factory_a988b97e9dc07fbdd9391e0177ee7c61a}} 
+\mbox{\hyperlink{classeo_bit_op_factory_a988b97e9dc07fbdd9391e0177ee7c61a}{eo\+Bit\+Op\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_bit_op_factory_a8248fa7eeeed00eba26e6b46afa3dc75}\label{classeo_bit_op_factory_a8248fa7eeeed00eba26e6b46afa3dc75}} 
+virtual \mbox{\hyperlink{classeo_bit_op_factory_a8248fa7eeeed00eba26e6b46afa3dc75}{$\sim$eo\+Bit\+Op\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classeo_op}{eo\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ \mbox{\hyperlink{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}{make}} (std\+::istream \&\+\_\+is)
+\item 
+\mbox{\Hypertarget{classeo_bit_op_factory_a988b97e9dc07fbdd9391e0177ee7c61a}\label{classeo_bit_op_factory_a988b97e9dc07fbdd9391e0177ee7c61a}} 
+\mbox{\hyperlink{classeo_bit_op_factory_a988b97e9dc07fbdd9391e0177ee7c61a}{eo\+Bit\+Op\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_bit_op_factory_a8248fa7eeeed00eba26e6b46afa3dc75}\label{classeo_bit_op_factory_a8248fa7eeeed00eba26e6b46afa3dc75}} 
+virtual \mbox{\hyperlink{classeo_bit_op_factory_a8248fa7eeeed00eba26e6b46afa3dc75}{$\sim$eo\+Bit\+Op\+Factory}} ()
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classeo_op}{eo\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ \mbox{\hyperlink{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}{make}} (std\+::istream \&\+\_\+is)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Bit\+Op\+Factory$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{class_e_o}{EO}} Factory. An instance of the factory class to create operators that act on bitstring chromosomes. Only those chromosomes can instantiate the operators that are created here \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_select}{eo\+Select}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}\label{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}} 
+\index{eoBitOpFactory$<$ EOT $>$@{eoBitOpFactory$<$ EOT $>$}!make@{make}}
+\index{make@{make}!eoBitOpFactory$<$ EOT $>$@{eoBitOpFactory$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_op}{eo\+Op}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$$\ast$ \mbox{\hyperlink{classeo_bit_op_factory}{eo\+Bit\+Op\+Factory}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::make (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Another factory method\+: creates an object from an std\+::istream, reading from it whatever is needed to create the object. Usually, the format for the std\+::istream will be\textbackslash{} object\+Type parameter1 parameter2 ... parametern\textbackslash{} If there are problems, an std\+::exception is raised; it should be caught at the upper level, because it might be something for that level\textbackslash{} At the same time, it catches std\+::exceptions thrown at a lower level, which will indicate that whatever is in the stream is for this method to process 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & an stream from where a single line will be read \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+std\+::exception} & if the object type is not known \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}{eo\+Factory$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}\label{classeo_bit_op_factory_a482a620f79f4a3bfa30740c81a52a2d4}} 
+\index{eoBitOpFactory$<$ EOT $>$@{eoBitOpFactory$<$ EOT $>$}!make@{make}}
+\index{make@{make}!eoBitOpFactory$<$ EOT $>$@{eoBitOpFactory$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_op}{eo\+Op}}$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$>$$\ast$ \mbox{\hyperlink{classeo_bit_op_factory}{eo\+Bit\+Op\+Factory}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::make (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Another factory method\+: creates an object from an std\+::istream, reading from it whatever is needed to create the object. Usually, the format for the std\+::istream will be\textbackslash{} object\+Type parameter1 parameter2 ... parametern\textbackslash{} If there are problems, an std\+::exception is raised; it should be caught at the upper level, because it might be something for that level\textbackslash{} At the same time, it catches std\+::exceptions thrown at a lower level, which will indicate that whatever is in the stream is for this method to process 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & an stream from where a single line will be read \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+std\+::exception} & if the object type is not known \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classeo_factory_ad72a5ae6dad84da6150ec9cf46800fba}{eo\+Factory$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/ga/eo\+Bit\+Op\+Factory.\+h\end{DoxyCompactItemize}

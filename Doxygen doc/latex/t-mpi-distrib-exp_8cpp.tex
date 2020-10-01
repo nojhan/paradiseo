@@ -1,0 +1,69 @@
+\hypertarget{t-mpi-distrib-exp_8cpp}{}\doxysection{eo/test/mpi/t-\/mpi-\/distrib-\/exp.cpp File Reference}
+\label{t-mpi-distrib-exp_8cpp}\index{eo/test/mpi/t-\/mpi-\/distrib-\/exp.cpp@{eo/test/mpi/t-\/mpi-\/distrib-\/exp.cpp}}
+
+
+File for parallel experimentations.  
+
+
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$eo$>$}\newline
+{\ttfamily \#include $<$mpi/eo\+Mpi.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}t-\/mpi-\/common.\+h\char`\"{}}\newline
+Include dependency graph for t-\/mpi-\/distrib-\/exp.cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{t-mpi-distrib-exp_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_wait}{Wait}}
+\item 
+class \mbox{\hyperlink{class_distribution}{Distribution}}
+\begin{DoxyCompactList}\small\item\em Represents a distribution of processing times. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_uniform_distribution}{Uniform\+Distribution}}
+\begin{DoxyCompactList}\small\item\em Uniform distribution. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_normal_distribution}{Normal\+Distribution}}
+\begin{DoxyCompactList}\small\item\em Normal (gaussian) distribution of times. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_exponential_distribution}{Exponential\+Distribution}}
+\begin{DoxyCompactList}\small\item\em Exponential distribution. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_experiment}{Experiment}}
+\begin{DoxyCompactList}\small\item\em Serializable experiment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{t-mpi-distrib-exp_8cpp_a157577de7dd4dbc3080e59c82bbabb8c}\label{t-mpi-distrib-exp_8cpp_a157577de7dd4dbc3080e59c82bbabb8c}} 
+typedef \mbox{\hyperlink{struct_serializable_base}{Serializable\+Base}}$<$ int $>$ {\bfseries type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{t-mpi-distrib-exp_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{t-mpi-distrib-exp_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+int {\bfseries main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{t-mpi-distrib-exp_8cpp_a61664533149673be5d6bd71563535bb9}\label{t-mpi-distrib-exp_8cpp_a61664533149673be5d6bd71563535bb9}} 
+\mbox{\hyperlink{class_uniform_distribution}{Uniform\+Distribution}} {\bfseries uniform\+Distribution}
+\item 
+\mbox{\Hypertarget{t-mpi-distrib-exp_8cpp_a1bb77178e192e0365d1db3bcca5facdb}\label{t-mpi-distrib-exp_8cpp_a1bb77178e192e0365d1db3bcca5facdb}} 
+\mbox{\hyperlink{class_normal_distribution}{Normal\+Distribution}} {\bfseries normal\+Distribution}
+\item 
+\mbox{\Hypertarget{t-mpi-distrib-exp_8cpp_a9b65f81309d1bb6df8aa74fffb37bc49}\label{t-mpi-distrib-exp_8cpp_a9b65f81309d1bb6df8aa74fffb37bc49}} 
+\mbox{\hyperlink{class_exponential_distribution}{Exponential\+Distribution}} {\bfseries exponential\+Distribution}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File for parallel experimentations. 
+
+When using parallel evaluation, the individuals to evaluate are sent by packets (group), so as to avoid that communication time be more important than worker\textquotesingle{}s execution time. However, the ideal size of packet depends on the problem and the time needed to carry out the atomic operation on each individual. This experiment tries to find a relation between the total number of elements to process (size), the execution time and the size of packet. This could lead to an heuristic allowing to optimize the size of packet according to the processing times. 

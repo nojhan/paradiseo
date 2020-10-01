@@ -1,0 +1,376 @@
+\hypertarget{classeo_real_bounds}{}\doxysection{eo\+Real\+Bounds Class Reference}
+\label{classeo_real_bounds}\index{eoRealBounds@{eoRealBounds}}
+
+
+{\ttfamily \#include $<$es/eo\+Real\+Bounds.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Real\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_real_bounds__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Real\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{classeo_real_bounds__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_a0b2d9592c529794e14d0f8b22cd4fba9}{is\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_aeddde951f6ef749b66e2aafd3ab757be}{has\+No\+Bound\+At\+All}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_a1a3e56be018f7a25fc6f30f7bfd654d0}{is\+Min\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_aeee742daa90e6827cee3a2f0a2a4e76f}{is\+Max\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_a62387dbe377e4b134bb22ac924bd5c0c}{is\+In\+Bounds}} (double) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_real_bounds_af735865e6ebe0ef3efc64a28bbe4e2fb}{folds\+In\+Bounds}} (double \&) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_real_bounds_ab09c03b1ea461e634b3678d6eeea6d65}{truncate}} (double \&) const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_a9ee62ce87e86b285c1ede96f7e3e8272}{minimum}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_ab2fc7354b2b48a63c0055a552670f501}{maximum}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_a37fd090c4102480bbd17847eba7d9ba8}{range}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}{uniform}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const =0
+\item 
+virtual \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} $\ast$ \mbox{\hyperlink{classeo_real_bounds_ade2ce45fea6615d7925da2fb431efb86}{dup}} () const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_a0b2d9592c529794e14d0f8b22cd4fba9}{is\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_aeddde951f6ef749b66e2aafd3ab757be}{has\+No\+Bound\+At\+All}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_a1a3e56be018f7a25fc6f30f7bfd654d0}{is\+Min\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_aeee742daa90e6827cee3a2f0a2a4e76f}{is\+Max\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_bounds_a62387dbe377e4b134bb22ac924bd5c0c}{is\+In\+Bounds}} (double) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_real_bounds_af735865e6ebe0ef3efc64a28bbe4e2fb}{folds\+In\+Bounds}} (double \&) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_real_bounds_ab09c03b1ea461e634b3678d6eeea6d65}{truncate}} (double \&) const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_a9ee62ce87e86b285c1ede96f7e3e8272}{minimum}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_ab2fc7354b2b48a63c0055a552670f501}{maximum}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_a37fd090c4102480bbd17847eba7d9ba8}{range}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}{uniform}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const =0
+\item 
+virtual \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} $\ast$ \mbox{\hyperlink{classeo_real_bounds_ade2ce45fea6615d7925da2fb431efb86}{dup}} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Defines bound classes for real numbers.
+\end{DoxyVerb}
+\hypertarget{classeo_real_bounds_autotoc_md33}{}\doxysubsubsection{Scalar type\+:}\label{classeo_real_bounds_autotoc_md33}
+Basic class is \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}}, a pure virtual.
+
+The following pure virtual methods are to be used in mutations\+:
+\begin{DoxyItemize}
+\item void folds\+In\+Bounds(double \&) that folds any value that falls out of the bounds back into the bounds, by bouncing on the limit (if any)
+\item bool is\+In\+Bounds(double) that simply says whether or not the argument is in the bounds
+\item void truncate(double \&) that set the argument to the bound value it it exceeds it
+\end{DoxyItemize}
+
+So mutation can choose
+\begin{DoxyItemize}
+\item iterate trying until they fall in bounds,
+\item only try once and \char`\"{}restd\+::pair\char`\"{} by using the folds\+In\+Bounds method
+\item only try once and restd\+::pair using the truncate method (will create a huge bias toward the bound if the soluiton is not far from the bounds)
+\end{DoxyItemize}
+
+There is also a \mbox{\hyperlink{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}{uniform()}} method that generates a uniform value (if possible, i.\+e. if bounded) in the interval.
+
+Derived class are \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} that holds a minimum and maximum value, \mbox{\hyperlink{classeo_real_no_bounds}{eo\+Real\+No\+Bounds}} the \char`\"{}unbounded bounds\char`\"{} (-\/infinity, +infinity) \mbox{\hyperlink{classeo_real_below_bound}{eo\+Real\+Below\+Bound}} the half-\/bounded interval \mbox{[}min, +infinity) \mbox{\hyperlink{classeo_real_above_bound}{eo\+Real\+Above\+Bound}} the half-\/bounded interval (-\/infinity, max\mbox{]}
+
+T\+His file also contains the declaration of {\itshape the} global object that is the unbounded bound
+
+\begin{DoxyVerb}Defines bound classes for real numbers.
+\end{DoxyVerb}
+\hypertarget{classeo_real_bounds_autotoc_md68}{}\doxysubsubsection{Scalar type\+:}\label{classeo_real_bounds_autotoc_md68}
+Basic class is \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}}, a pure virtual.
+
+The following pure virtual methods are to be used in mutations\+:
+\begin{DoxyItemize}
+\item void folds\+In\+Bounds(double \&) that folds any value that falls out of the bounds back into the bounds, by bouncing on the limit (if any)
+\item bool is\+In\+Bounds(double) that simply says whether or not the argument is in the bounds
+\item void truncate(double \&) that set the argument to the bound value it it exceeds it
+\end{DoxyItemize}
+
+So mutation can choose
+\begin{DoxyItemize}
+\item iterate trying until they fall in bounds,
+\item only try once and \char`\"{}restd\+::pair\char`\"{} by using the folds\+In\+Bounds method
+\item only try once and restd\+::pair using the truncate method (will create a huge bias toward the bound if the soluiton is not far from the bounds)
+\end{DoxyItemize}
+
+There is also a \mbox{\hyperlink{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}{uniform()}} method that generates a uniform value (if possible, i.\+e. if bounded) in the interval.
+
+Derived class are \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} that holds a minimum and maximum value, \mbox{\hyperlink{classeo_real_no_bounds}{eo\+Real\+No\+Bounds}} the \char`\"{}unbounded bounds\char`\"{} (-\/infinity, +infinity) \mbox{\hyperlink{classeo_real_below_bound}{eo\+Real\+Below\+Bound}} the half-\/bounded interval \mbox{[}min, +infinity) \mbox{\hyperlink{classeo_real_above_bound}{eo\+Real\+Above\+Bound}} the half-\/bounded interval (-\/infinity, max\mbox{]}
+
+T\+His file also contains the declaration of {\itshape the} global object that is the unbounded bound 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_real_bounds_ade2ce45fea6615d7925da2fb431efb86}\label{classeo_real_bounds_ade2ce45fea6615d7925da2fb431efb86}} 
+\index{eoRealBounds@{eoRealBounds}!dup@{dup}}
+\index{dup@{dup}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}}$\ast$ eo\+Real\+Bounds\+::dup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+for memory managements -\/ ugly 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a14a63b82689d9f1a6f7c80ccad194ca6}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a14a63b82689d9f1a6f7c80ccad194ca6}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a474f11788fd58d92fda5b4e4b89447d6}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a474f11788fd58d92fda5b4e4b89447d6}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a6600df83456880678e2eecf7362db850}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a6600df83456880678e2eecf7362db850}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_afcbcaf203387c1e9d721881462dd7bd2}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_afcbcaf203387c1e9d721881462dd7bd2}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a52cc80a538aa2b43fc33c5470dfc01f3}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a52cc80a538aa2b43fc33c5470dfc01f3}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_ade2ce45fea6615d7925da2fb431efb86}\label{classeo_real_bounds_ade2ce45fea6615d7925da2fb431efb86}} 
+\index{eoRealBounds@{eoRealBounds}!dup@{dup}}
+\index{dup@{dup}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}}$\ast$ eo\+Real\+Bounds\+::dup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+for memory managements -\/ ugly 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a14a63b82689d9f1a6f7c80ccad194ca6}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a14a63b82689d9f1a6f7c80ccad194ca6}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a474f11788fd58d92fda5b4e4b89447d6}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a474f11788fd58d92fda5b4e4b89447d6}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a6600df83456880678e2eecf7362db850}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a6600df83456880678e2eecf7362db850}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_afcbcaf203387c1e9d721881462dd7bd2}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_afcbcaf203387c1e9d721881462dd7bd2}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a52cc80a538aa2b43fc33c5470dfc01f3}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a52cc80a538aa2b43fc33c5470dfc01f3}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_af735865e6ebe0ef3efc64a28bbe4e2fb}\label{classeo_real_bounds_af735865e6ebe0ef3efc64a28bbe4e2fb}} 
+\index{eoRealBounds@{eoRealBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by folding back and forth 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_af1ea165e77835f6a4d968f1e521fe731}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_af1ea165e77835f6a4d968f1e521fe731}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a8d4aecc8cb47aeda110ed2a6e6d033bb}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a8d4aecc8cb47aeda110ed2a6e6d033bb}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3f0a178bb0a1d034d34097cacfbe1e90}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3f0a178bb0a1d034d34097cacfbe1e90}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ad2170a1695a18700f10e031d3e9d5332}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ad2170a1695a18700f10e031d3e9d5332}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a6f279140bfb4027e353a9ba13b6926ff}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a6f279140bfb4027e353a9ba13b6926ff}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_af735865e6ebe0ef3efc64a28bbe4e2fb}\label{classeo_real_bounds_af735865e6ebe0ef3efc64a28bbe4e2fb}} 
+\index{eoRealBounds@{eoRealBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by folding back and forth 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_af1ea165e77835f6a4d968f1e521fe731}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_af1ea165e77835f6a4d968f1e521fe731}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a8d4aecc8cb47aeda110ed2a6e6d033bb}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a8d4aecc8cb47aeda110ed2a6e6d033bb}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3f0a178bb0a1d034d34097cacfbe1e90}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3f0a178bb0a1d034d34097cacfbe1e90}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ad2170a1695a18700f10e031d3e9d5332}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ad2170a1695a18700f10e031d3e9d5332}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a6f279140bfb4027e353a9ba13b6926ff}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a6f279140bfb4027e353a9ba13b6926ff}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_aeddde951f6ef749b66e2aafd3ab757be}\label{classeo_real_bounds_aeddde951f6ef749b66e2aafd3ab757be}} 
+\index{eoRealBounds@{eoRealBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if no min {\itshape {\bfseries{and}}} no max hence no further need to test/truncate/fold anything 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_af83d381b9d06c60adf2bb8ea9de1a9b1}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_af83d381b9d06c60adf2bb8ea9de1a9b1}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a21ad1a49beab77eaa841b0a50ee5b343}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a21ad1a49beab77eaa841b0a50ee5b343}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_afd6d83ca1144b940a0bd010ff32c6ef8}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_afd6d83ca1144b940a0bd010ff32c6ef8}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_aa69193faa50920f059db9fd4d9029bce}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_aa69193faa50920f059db9fd4d9029bce}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_aab0aa8b667d61232497f9ff85376cb44}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_aab0aa8b667d61232497f9ff85376cb44}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_aeddde951f6ef749b66e2aafd3ab757be}\label{classeo_real_bounds_aeddde951f6ef749b66e2aafd3ab757be}} 
+\index{eoRealBounds@{eoRealBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if no min {\itshape {\bfseries{and}}} no max hence no further need to test/truncate/fold anything 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_af83d381b9d06c60adf2bb8ea9de1a9b1}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_af83d381b9d06c60adf2bb8ea9de1a9b1}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a21ad1a49beab77eaa841b0a50ee5b343}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a21ad1a49beab77eaa841b0a50ee5b343}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_afd6d83ca1144b940a0bd010ff32c6ef8}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_afd6d83ca1144b940a0bd010ff32c6ef8}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_aa69193faa50920f059db9fd4d9029bce}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_aa69193faa50920f059db9fd4d9029bce}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_aab0aa8b667d61232497f9ff85376cb44}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_aab0aa8b667d61232497f9ff85376cb44}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a0b2d9592c529794e14d0f8b22cd4fba9}\label{classeo_real_bounds_a0b2d9592c529794e14d0f8b22cd4fba9}} 
+\index{eoRealBounds@{eoRealBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if {\itshape {\bfseries{both}}} a min and a max 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_af96844d47a88f1bffaa279dee8698fc0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_af96844d47a88f1bffaa279dee8698fc0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_af01c8a5b52da3b2efb2b1ba563377811}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_af01c8a5b52da3b2efb2b1ba563377811}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a75ac90bc82e14c4ad43550055f968a63}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a75ac90bc82e14c4ad43550055f968a63}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a4c1da0ef177b6a053ff75b45cce36ae5}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a4c1da0ef177b6a053ff75b45cce36ae5}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_adc85e74534826ab329a8631bd9b6bacc}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_adc85e74534826ab329a8631bd9b6bacc}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a0b2d9592c529794e14d0f8b22cd4fba9}\label{classeo_real_bounds_a0b2d9592c529794e14d0f8b22cd4fba9}} 
+\index{eoRealBounds@{eoRealBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if {\itshape {\bfseries{both}}} a min and a max 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_af96844d47a88f1bffaa279dee8698fc0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_af96844d47a88f1bffaa279dee8698fc0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_af01c8a5b52da3b2efb2b1ba563377811}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_af01c8a5b52da3b2efb2b1ba563377811}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a75ac90bc82e14c4ad43550055f968a63}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a75ac90bc82e14c4ad43550055f968a63}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a4c1da0ef177b6a053ff75b45cce36ae5}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a4c1da0ef177b6a053ff75b45cce36ae5}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_adc85e74534826ab329a8631bd9b6bacc}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_adc85e74534826ab329a8631bd9b6bacc}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a62387dbe377e4b134bb22ac924bd5c0c}\label{classeo_real_bounds_a62387dbe377e4b134bb22ac924bd5c0c}} 
+\index{eoRealBounds@{eoRealBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{double}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} on a value\+: is it in bounds? 
+
+Implemented in \mbox{\hyperlink{classeo_real_no_bounds_a1c6fbf7806fe3d022828a362e4f7baba}{eo\+Real\+No\+Bounds}}, \mbox{\hyperlink{classeo_real_no_bounds_a1c6fbf7806fe3d022828a362e4f7baba}{eo\+Real\+No\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a02c306a6e319f57a2588d1e746584180}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a02c306a6e319f57a2588d1e746584180}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a036b315ac64977943b872ccbe2fe9636}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a036b315ac64977943b872ccbe2fe9636}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acc9c64a4265f5c07ab36a2c7bc5a0b8e}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acc9c64a4265f5c07ab36a2c7bc5a0b8e}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ac87b98d51551059bc29e70f7a4e95a58}{eo\+Real\+Interval}}, and \mbox{\hyperlink{classeo_real_interval_ac87b98d51551059bc29e70f7a4e95a58}{eo\+Real\+Interval}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a62387dbe377e4b134bb22ac924bd5c0c}\label{classeo_real_bounds_a62387dbe377e4b134bb22ac924bd5c0c}} 
+\index{eoRealBounds@{eoRealBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{double}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} on a value\+: is it in bounds? 
+
+Implemented in \mbox{\hyperlink{classeo_real_no_bounds_a1c6fbf7806fe3d022828a362e4f7baba}{eo\+Real\+No\+Bounds}}, \mbox{\hyperlink{classeo_real_no_bounds_a1c6fbf7806fe3d022828a362e4f7baba}{eo\+Real\+No\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a02c306a6e319f57a2588d1e746584180}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a02c306a6e319f57a2588d1e746584180}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a036b315ac64977943b872ccbe2fe9636}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a036b315ac64977943b872ccbe2fe9636}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acc9c64a4265f5c07ab36a2c7bc5a0b8e}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acc9c64a4265f5c07ab36a2c7bc5a0b8e}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ac87b98d51551059bc29e70f7a4e95a58}{eo\+Real\+Interval}}, and \mbox{\hyperlink{classeo_real_interval_ac87b98d51551059bc29e70f7a4e95a58}{eo\+Real\+Interval}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_aeee742daa90e6827cee3a2f0a2a4e76f}\label{classeo_real_bounds_aeee742daa90e6827cee3a2f0a2a4e76f}} 
+\index{eoRealBounds@{eoRealBounds}!isMaxBounded@{isMaxBounded}}
+\index{isMaxBounded@{isMaxBounded}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isMaxBounded()}{isMaxBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+Max\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from above??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a193e4b3c0b8818d8edfd515ebe25cc6c}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a193e4b3c0b8818d8edfd515ebe25cc6c}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_adaa5b5cea93a4c8bb9d7520e12a57887}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_adaa5b5cea93a4c8bb9d7520e12a57887}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ada57cbf26bce66826da7c5bf9d6810d0}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ada57cbf26bce66826da7c5bf9d6810d0}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ae61d07175aa40cd317a20ac67a1e6029}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ae61d07175aa40cd317a20ac67a1e6029}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a4c219d949b10e406a5aa8ec0fd3ddceb}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a4c219d949b10e406a5aa8ec0fd3ddceb}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_aeee742daa90e6827cee3a2f0a2a4e76f}\label{classeo_real_bounds_aeee742daa90e6827cee3a2f0a2a4e76f}} 
+\index{eoRealBounds@{eoRealBounds}!isMaxBounded@{isMaxBounded}}
+\index{isMaxBounded@{isMaxBounded}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isMaxBounded()}{isMaxBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+Max\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from above??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a193e4b3c0b8818d8edfd515ebe25cc6c}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a193e4b3c0b8818d8edfd515ebe25cc6c}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_adaa5b5cea93a4c8bb9d7520e12a57887}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_adaa5b5cea93a4c8bb9d7520e12a57887}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ada57cbf26bce66826da7c5bf9d6810d0}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ada57cbf26bce66826da7c5bf9d6810d0}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ae61d07175aa40cd317a20ac67a1e6029}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ae61d07175aa40cd317a20ac67a1e6029}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a4c219d949b10e406a5aa8ec0fd3ddceb}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a4c219d949b10e406a5aa8ec0fd3ddceb}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a1a3e56be018f7a25fc6f30f7bfd654d0}\label{classeo_real_bounds_a1a3e56be018f7a25fc6f30f7bfd654d0}} 
+\index{eoRealBounds@{eoRealBounds}!isMinBounded@{isMinBounded}}
+\index{isMinBounded@{isMinBounded}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isMinBounded()}{isMinBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+Min\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from below??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a0d9153ceb2f374c2d7154e157f183103}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a0d9153ceb2f374c2d7154e157f183103}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_aa0522c6c6538c472c22cef7066c7f334}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_aa0522c6c6538c472c22cef7066c7f334}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ae08bef65ca46cde271d8bd6574b68a74}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ae08bef65ca46cde271d8bd6574b68a74}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a306c3b28c762cf52acfd6ba2767465dd}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a306c3b28c762cf52acfd6ba2767465dd}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_ac3d470603401a0cc504e38f7ed450837}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_ac3d470603401a0cc504e38f7ed450837}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a1a3e56be018f7a25fc6f30f7bfd654d0}\label{classeo_real_bounds_a1a3e56be018f7a25fc6f30f7bfd654d0}} 
+\index{eoRealBounds@{eoRealBounds}!isMinBounded@{isMinBounded}}
+\index{isMinBounded@{isMinBounded}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{isMinBounded()}{isMinBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Bounds\+::is\+Min\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from below??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a0d9153ceb2f374c2d7154e157f183103}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a0d9153ceb2f374c2d7154e157f183103}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_aa0522c6c6538c472c22cef7066c7f334}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_aa0522c6c6538c472c22cef7066c7f334}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ae08bef65ca46cde271d8bd6574b68a74}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ae08bef65ca46cde271d8bd6574b68a74}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a306c3b28c762cf52acfd6ba2767465dd}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a306c3b28c762cf52acfd6ba2767465dd}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_ac3d470603401a0cc504e38f7ed450837}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_ac3d470603401a0cc504e38f7ed450837}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_ab2fc7354b2b48a63c0055a552670f501}\label{classeo_real_bounds_ab2fc7354b2b48a63c0055a552670f501}} 
+\index{eoRealBounds@{eoRealBounds}!maximum@{maximum}}
+\index{maximum@{maximum}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get maximum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a1dd7b89fcddf6b2ace8f61b1bffb4783}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a1dd7b89fcddf6b2ace8f61b1bffb4783}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a35b2038c7ecd8f4c31564f9b73cea012}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a35b2038c7ecd8f4c31564f9b73cea012}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ab02701080be0ab2f24e6d639f01e10b1}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ab02701080be0ab2f24e6d639f01e10b1}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ab55ed6f999b018d28fa5469df75df879}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ab55ed6f999b018d28fa5469df75df879}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a6cb24cb5abbeb7f43ecac5e0cd01f0ca}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a6cb24cb5abbeb7f43ecac5e0cd01f0ca}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_ab2fc7354b2b48a63c0055a552670f501}\label{classeo_real_bounds_ab2fc7354b2b48a63c0055a552670f501}} 
+\index{eoRealBounds@{eoRealBounds}!maximum@{maximum}}
+\index{maximum@{maximum}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get maximum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a1dd7b89fcddf6b2ace8f61b1bffb4783}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a1dd7b89fcddf6b2ace8f61b1bffb4783}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a35b2038c7ecd8f4c31564f9b73cea012}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a35b2038c7ecd8f4c31564f9b73cea012}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ab02701080be0ab2f24e6d639f01e10b1}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ab02701080be0ab2f24e6d639f01e10b1}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ab55ed6f999b018d28fa5469df75df879}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ab55ed6f999b018d28fa5469df75df879}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a6cb24cb5abbeb7f43ecac5e0cd01f0ca}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a6cb24cb5abbeb7f43ecac5e0cd01f0ca}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a9ee62ce87e86b285c1ede96f7e3e8272}\label{classeo_real_bounds_a9ee62ce87e86b285c1ede96f7e3e8272}} 
+\index{eoRealBounds@{eoRealBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get minimum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_ade8cc32efaf9eb6399b1089b6b2384ed}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_ade8cc32efaf9eb6399b1089b6b2384ed}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_aa0a4c8b9d1796e8c8b0a0f45e3e5a510}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_aa0a4c8b9d1796e8c8b0a0f45e3e5a510}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3be756e14695561fafcd01913001b91f}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3be756e14695561fafcd01913001b91f}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a58aed497f9d501bb43fe2a9fbe2e7168}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a58aed497f9d501bb43fe2a9fbe2e7168}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_aee014a24d3c8d2f123b41798887f8fb0}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_aee014a24d3c8d2f123b41798887f8fb0}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a9ee62ce87e86b285c1ede96f7e3e8272}\label{classeo_real_bounds_a9ee62ce87e86b285c1ede96f7e3e8272}} 
+\index{eoRealBounds@{eoRealBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get minimum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_ade8cc32efaf9eb6399b1089b6b2384ed}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_ade8cc32efaf9eb6399b1089b6b2384ed}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_aa0a4c8b9d1796e8c8b0a0f45e3e5a510}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_aa0a4c8b9d1796e8c8b0a0f45e3e5a510}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3be756e14695561fafcd01913001b91f}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_a3be756e14695561fafcd01913001b91f}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a58aed497f9d501bb43fe2a9fbe2e7168}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a58aed497f9d501bb43fe2a9fbe2e7168}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_aee014a24d3c8d2f123b41798887f8fb0}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_aee014a24d3c8d2f123b41798887f8fb0}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a37fd090c4102480bbd17847eba7d9ba8}\label{classeo_real_bounds_a37fd090c4102480bbd17847eba7d9ba8}} 
+\index{eoRealBounds@{eoRealBounds}!range@{range}}
+\index{range@{range}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get range std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a8865c2fec49649f40a360b9cce3a76d3}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a8865c2fec49649f40a360b9cce3a76d3}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a333576d04e10ae2c98f47ce372f3749e}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a333576d04e10ae2c98f47ce372f3749e}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acccd299feea01a9ceb0ee59823a0a6b7}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acccd299feea01a9ceb0ee59823a0a6b7}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a722965522ea4b0f32546d1abd0a962ae}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a722965522ea4b0f32546d1abd0a962ae}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a71cff0d1db0430ea255f3b285759af7e}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a71cff0d1db0430ea255f3b285759af7e}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a37fd090c4102480bbd17847eba7d9ba8}\label{classeo_real_bounds_a37fd090c4102480bbd17847eba7d9ba8}} 
+\index{eoRealBounds@{eoRealBounds}!range@{range}}
+\index{range@{range}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get range std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a8865c2fec49649f40a360b9cce3a76d3}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a8865c2fec49649f40a360b9cce3a76d3}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a333576d04e10ae2c98f47ce372f3749e}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a333576d04e10ae2c98f47ce372f3749e}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acccd299feea01a9ceb0ee59823a0a6b7}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_acccd299feea01a9ceb0ee59823a0a6b7}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a722965522ea4b0f32546d1abd0a962ae}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a722965522ea4b0f32546d1abd0a962ae}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a71cff0d1db0430ea255f3b285759af7e}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a71cff0d1db0430ea255f3b285759af7e}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_ab09c03b1ea461e634b3678d6eeea6d65}\label{classeo_real_bounds_ab09c03b1ea461e634b3678d6eeea6d65}} 
+\index{eoRealBounds@{eoRealBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by truncating to a boundary value 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a70d252ad9d1f175194d74596c4cf04a0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a70d252ad9d1f175194d74596c4cf04a0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_abeb198356479f57e1122e62e06caba83}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_abeb198356479f57e1122e62e06caba83}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ac925131c44d7209eb1a0830b282aa9ab}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ac925131c44d7209eb1a0830b282aa9ab}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ad298528f1c85b2173f8d03f1ccf4da8c}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ad298528f1c85b2173f8d03f1ccf4da8c}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a920342efe0fc74eee41eed7fb4ef87cc}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a920342efe0fc74eee41eed7fb4ef87cc}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_ab09c03b1ea461e634b3678d6eeea6d65}\label{classeo_real_bounds_ab09c03b1ea461e634b3678d6eeea6d65}} 
+\index{eoRealBounds@{eoRealBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by truncating to a boundary value 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_a70d252ad9d1f175194d74596c4cf04a0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_a70d252ad9d1f175194d74596c4cf04a0}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_abeb198356479f57e1122e62e06caba83}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_abeb198356479f57e1122e62e06caba83}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ac925131c44d7209eb1a0830b282aa9ab}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_ac925131c44d7209eb1a0830b282aa9ab}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_ad298528f1c85b2173f8d03f1ccf4da8c}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_ad298528f1c85b2173f8d03f1ccf4da8c}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a920342efe0fc74eee41eed7fb4ef87cc}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a920342efe0fc74eee41eed7fb4ef87cc}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}\label{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}} 
+\index{eoRealBounds@{eoRealBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+random generator of uniform numbers in bounds std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_ad8db62a1c91ab1495e6b9859bd248c35}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_ad8db62a1c91ab1495e6b9859bd248c35}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a6d82f76ee7bdd370ae7e2b7bc754e3ff}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a6d82f76ee7bdd370ae7e2b7bc754e3ff}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_abda0d0dad3932715c33ba07962799492}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_abda0d0dad3932715c33ba07962799492}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a89c458effa1c7d2115f7de94fb2ff989}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a89c458effa1c7d2115f7de94fb2ff989}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a7061f9b6d14a9e74269f79cdf6cca73b}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a7061f9b6d14a9e74269f79cdf6cca73b}{eo\+Real\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}\label{classeo_real_bounds_a6933212aa55622ab3377fa92541eb6a7}} 
+\index{eoRealBounds@{eoRealBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRealBounds@{eoRealBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+random generator of uniform numbers in bounds std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_real_bounds_ad8db62a1c91ab1495e6b9859bd248c35}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_general_real_bounds_ad8db62a1c91ab1495e6b9859bd248c35}{eo\+General\+Real\+Bounds}}, \mbox{\hyperlink{classeo_real_above_bound_a6d82f76ee7bdd370ae7e2b7bc754e3ff}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_above_bound_a6d82f76ee7bdd370ae7e2b7bc754e3ff}{eo\+Real\+Above\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_abda0d0dad3932715c33ba07962799492}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_below_bound_abda0d0dad3932715c33ba07962799492}{eo\+Real\+Below\+Bound}}, \mbox{\hyperlink{classeo_real_interval_a89c458effa1c7d2115f7de94fb2ff989}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_interval_a89c458effa1c7d2115f7de94fb2ff989}{eo\+Real\+Interval}}, \mbox{\hyperlink{classeo_real_no_bounds_a7061f9b6d14a9e74269f79cdf6cca73b}{eo\+Real\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_no_bounds_a7061f9b6d14a9e74269f79cdf6cca73b}{eo\+Real\+No\+Bounds}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Real\+Bounds.\+h\end{DoxyCompactItemize}

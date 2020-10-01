@@ -1,0 +1,114 @@
+\hypertarget{classmo_neighbor_comparator}{}\doxysection{mo\+Neighbor\+Comparator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neighbor_comparator}\index{moNeighborComparator$<$ Neighbor $>$@{moNeighborComparator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighbor\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighbor\+Comparator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classmo_neighbor_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighbor\+Comparator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classmo_neighbor_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classmo_neighbor_comparator_a4ac5de74657fd735a218ab7f944422fe}{operator()}} (const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor1, const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor2)
+\item 
+virtual bool \mbox{\hyperlink{classmo_neighbor_comparator_a16c02ef49b3010a3769c3d3dc9ef5790}{equals}} (const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor1, const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor2)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor_comparator_a4ad27bf4268c06dca64a104aa1457a4b}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neighbor\+Comparator$<$ Neighbor $>$}
+
+Comparator of two neighbors 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighbor_comparator_a4ad27bf4268c06dca64a104aa1457a4b}\label{classmo_neighbor_comparator_a4ad27bf4268c06dca64a104aa1457a4b}} 
+\index{moNeighborComparator$<$ Neighbor $>$@{moNeighborComparator$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moNeighborComparator$<$ Neighbor $>$@{moNeighborComparator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_equal_neighbor_comparator_ae7a3ed170cc76f15b9e681817e162fd1}{mo\+Equal\+Neighbor\+Comparator$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_comparator_a16c02ef49b3010a3769c3d3dc9ef5790}\label{classmo_neighbor_comparator_a16c02ef49b3010a3769c3d3dc9ef5790}} 
+\index{moNeighborComparator$<$ Neighbor $>$@{moNeighborComparator$<$ Neighbor $>$}!equals@{equals}}
+\index{equals@{equals}!moNeighborComparator$<$ Neighbor $>$@{moNeighborComparator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{equals()}{equals()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::equals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor1,  }\item[{const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compare two neighbors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighbor1} & the first neighbor \\
+\hline
+{\em \+\_\+neighbor2} & the second neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the neighbor2 is equal to neighbor1 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_comparator_a9dbadbb8693f61b08e9e6797e7de4655}{mo\+Comparator$<$ Neighbor, Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_comparator_a4ac5de74657fd735a218ab7f944422fe}\label{classmo_neighbor_comparator_a4ac5de74657fd735a218ab7f944422fe}} 
+\index{moNeighborComparator$<$ Neighbor $>$@{moNeighborComparator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moNeighborComparator$<$ Neighbor $>$@{moNeighborComparator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor1,  }\item[{const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compare two neighbors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighbor1} & the first neighbor \\
+\hline
+{\em \+\_\+neighbor2} & the second neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the neighbor2 is better than neighbor1 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Neighbor \&, const Neighbor \&, bool $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_equal_neighbor_comparator_a1efef7cf82457c9c7b1a0c1163543579}{mo\+Equal\+Neighbor\+Comparator$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/comparator/mo\+Neighbor\+Comparator.\+h\end{DoxyCompactItemize}

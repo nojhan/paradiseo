@@ -1,0 +1,5 @@
+<map id="Evaluation" name="Evaluation">
+<area shape="rect" id="node1" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="440,7,576,33"/>
+<area shape="rect" id="node2" title=" " alt="" coords="227,7,317,33"/>
+<area shape="rect" id="node3" href="$group___operators.html" title="in EO, an operator is any functors that modifies objects and inherits from an eoOp." alt="" coords="5,7,177,33"/>
+</map>

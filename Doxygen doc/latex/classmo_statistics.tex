@@ -1,0 +1,97 @@
+\hypertarget{classmo_statistics}{}\doxysection{mo\+Statistics Class Reference}
+\label{classmo_statistics}\index{moStatistics@{moStatistics}}
+
+
+{\ttfamily \#include $<$mo\+Statistics.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_statistics_a7048700022cdf9736d4602ccc8b558d2}{mo\+Statistics}} ()
+\item 
+void \mbox{\hyperlink{classmo_statistics_a8aa293ac8230b34ce1422e50f8d35994}{basic}} (const std\+::vector$<$ double $>$ \&data, double \&min, double \&max, double \&avg, double \&std)
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\void \mbox{\hyperlink{classmo_statistics_a83b647c5094dacae2b0339ee2f00fdca}{distances}} (const std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&data, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&distance, std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&matrix)
+\item 
+void \mbox{\hyperlink{classmo_statistics_a033ee8c68afefaafb7f95c8a154aa405}{autocorrelation}} (const std\+::vector$<$ double $>$ \&data, unsigned int nbS, std\+::vector$<$ double $>$ \&rho, std\+::vector$<$ double $>$ \&phi)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tools to compute some basic statistics
+
+Remember it is better to use some statistic tool like R, etc. But it could be usefull to have here in paradis\+EO 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_statistics_a7048700022cdf9736d4602ccc8b558d2}\label{classmo_statistics_a7048700022cdf9736d4602ccc8b558d2}} 
+\index{moStatistics@{moStatistics}!moStatistics@{moStatistics}}
+\index{moStatistics@{moStatistics}!moStatistics@{moStatistics}}
+\doxysubsubsection{\texorpdfstring{moStatistics()}{moStatistics()}}
+{\footnotesize\ttfamily mo\+Statistics\+::mo\+Statistics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Constructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_statistics_a033ee8c68afefaafb7f95c8a154aa405}\label{classmo_statistics_a033ee8c68afefaafb7f95c8a154aa405}} 
+\index{moStatistics@{moStatistics}!autocorrelation@{autocorrelation}}
+\index{autocorrelation@{autocorrelation}!moStatistics@{moStatistics}}
+\doxysubsubsection{\texorpdfstring{autocorrelation()}{autocorrelation()}}
+{\footnotesize\ttfamily void mo\+Statistics\+::autocorrelation (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{data,  }\item[{unsigned int}]{nbS,  }\item[{std\+::vector$<$ double $>$ \&}]{rho,  }\item[{std\+::vector$<$ double $>$ \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+To compute the autocorrelation and partial autocorrelation
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & vector of double \\
+\hline
+{\em nbS} & number of correlation coefficients \\
+\hline
+{\em rho} & autocorrelation coefficients \\
+\hline
+{\em phi} & partial autocorrelation coefficients \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_statistics_a8aa293ac8230b34ce1422e50f8d35994}\label{classmo_statistics_a8aa293ac8230b34ce1422e50f8d35994}} 
+\index{moStatistics@{moStatistics}!basic@{basic}}
+\index{basic@{basic}!moStatistics@{moStatistics}}
+\doxysubsubsection{\texorpdfstring{basic()}{basic()}}
+{\footnotesize\ttfamily void mo\+Statistics\+::basic (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{data,  }\item[{double \&}]{min,  }\item[{double \&}]{max,  }\item[{double \&}]{avg,  }\item[{double \&}]{std }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+To compute min, max , average and standard deviation of a vector of double
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & vector of double \\
+\hline
+{\em min} & to compute \\
+\hline
+{\em max} & to compute \\
+\hline
+{\em avg} & average to compute \\
+\hline
+{\em std} & standard deviation to compute \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_statistics_a83b647c5094dacae2b0339ee2f00fdca}\label{classmo_statistics_a83b647c5094dacae2b0339ee2f00fdca}} 
+\index{moStatistics@{moStatistics}!distances@{distances}}
+\index{distances@{distances}!moStatistics@{moStatistics}}
+\doxysubsubsection{\texorpdfstring{distances()}{distances()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void mo\+Statistics\+::distances (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{data,  }\item[{\mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{distance,  }\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+To compute the distance between solutions
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & vector of solutions \\
+\hline
+{\em distance} & method to compute the distance \\
+\hline
+{\em matrix} & matrix of distances between solutions \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+Statistics.\+h\end{DoxyCompactItemize}

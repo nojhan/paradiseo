@@ -1,0 +1,134 @@
+\hypertarget{classmoeo_unbounded_archive}{}\doxysection{moeo\+Unbounded\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_unbounded_archive}\index{moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Unbounded\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Unbounded\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_unbounded_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Unbounded\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_unbounded_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_unbounded_archive_ac3545daf9da5ce981b94f3fead9af385}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_unbounded_archive_ad35e09f522692d55056515fda1c2cdad}{moeo\+Unbounded\+Archive}} (bool \+\_\+replace=true)
+\item 
+\mbox{\hyperlink{classmoeo_unbounded_archive_aad461b5611aa5cc0ccb68e20a97e9504}{moeo\+Unbounded\+Archive}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&\+\_\+comparator, bool \+\_\+replace=true)
+\item 
+bool \mbox{\hyperlink{classmoeo_unbounded_archive_a9b4005eafda9c5f75cb467fc81e822b7}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+bool \mbox{\hyperlink{classmoeo_unbounded_archive_a0910390bcefd186ca0cb4c26ad740344}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Unbounded\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+An unbounded archive is an archive storing an unbounded number of non-\/dominated solutions. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_unbounded_archive_ac3545daf9da5ce981b94f3fead9af385}\label{classmoeo_unbounded_archive_ac3545daf9da5ce981b94f3fead9af385}} 
+\index{moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_unbounded_archive}{moeo\+Unbounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_unbounded_archive_ad35e09f522692d55056515fda1c2cdad}\label{classmoeo_unbounded_archive_ad35e09f522692d55056515fda1c2cdad}} 
+\index{moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}!moeoUnboundedArchive@{moeoUnboundedArchive}}
+\index{moeoUnboundedArchive@{moeoUnboundedArchive}!moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoUnboundedArchive()}{moeoUnboundedArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_unbounded_archive}{moeo\+Unbounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_unbounded_archive}{moeo\+Unbounded\+Archive}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor. The \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} used to compare solutions is based on Pareto dominance 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_unbounded_archive_aad461b5611aa5cc0ccb68e20a97e9504}\label{classmoeo_unbounded_archive_aad461b5611aa5cc0ccb68e20a97e9504}} 
+\index{moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}!moeoUnboundedArchive@{moeoUnboundedArchive}}
+\index{moeoUnboundedArchive@{moeoUnboundedArchive}!moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoUnboundedArchive()}{moeoUnboundedArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_unbounded_archive}{moeo\+Unbounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_unbounded_archive}{moeo\+Unbounded\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} used to compare solutions \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_unbounded_archive_a0910390bcefd186ca0cb4c26ad740344}\label{classmoeo_unbounded_archive_a0910390bcefd186ca0cb4c26ad740344}} 
+\index{moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_unbounded_archive}{moeo\+Unbounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the given population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a \+\_\+pop\mbox{[}i\mbox{]} is added to the archive 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_aad2b1aecc1533e55c1d55b4b9757a952}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_unbounded_archive_a9b4005eafda9c5f75cb467fc81e822b7}\label{classmoeo_unbounded_archive_a9b4005eafda9c5f75cb467fc81e822b7}} 
+\index{moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoUnboundedArchive$<$ MOEOT $>$@{moeoUnboundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_unbounded_archive}{moeo\+Unbounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given individual \+\_\+moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the given individual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if \+\_\+moeo is added to the archive 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_a9b377903adc289ccc6e4b0ec52ae1245}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo\+Unbounded\+Archive.\+h\end{DoxyCompactItemize}

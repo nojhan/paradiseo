@@ -1,0 +1,83 @@
+\hypertarget{classmoeo_ptr_comparator}{}\doxysection{moeo\+Ptr\+Comparator$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_ptr_comparator}\index{moeoPtrComparator$<$ MOEOT $>$@{moeoPtrComparator$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Ptr\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Ptr\+Comparator$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_ptr_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Ptr\+Comparator$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classmoeo_ptr_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_ptr_comparator_a08d06e609187d43566c32a9d2cfdf3a3}{moeo\+Ptr\+Comparator}} (\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+cmp)
+\item 
+bool \mbox{\hyperlink{classmoeo_ptr_comparator_a5239e74a9c54aedd9bfdaf5f9b154081}{operator()}} (const M\+O\+E\+OT $\ast$ptr1, const M\+O\+E\+OT $\ast$ptr2)
+\item 
+bool \mbox{\hyperlink{classmoeo_ptr_comparator_aa7ce1104cecc422d9b3665b9544c4093}{operator()}} (M\+O\+E\+OT $\ast$ptr1, M\+O\+E\+OT $\ast$ptr2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Ptr\+Comparator$<$ M\+O\+E\+O\+T $>$}
+
+Functor allowing to compare two solutions.\+referenced by pointers. Several \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}} related stuff have to sort populations according some criterion Instead to do this, we used a vector whose elements are pointers to true individuals 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_ptr_comparator_a08d06e609187d43566c32a9d2cfdf3a3}\label{classmoeo_ptr_comparator_a08d06e609187d43566c32a9d2cfdf3a3}} 
+\index{moeoPtrComparator$<$ MOEOT $>$@{moeoPtrComparator$<$ MOEOT $>$}!moeoPtrComparator@{moeoPtrComparator}}
+\index{moeoPtrComparator@{moeoPtrComparator}!moeoPtrComparator$<$ MOEOT $>$@{moeoPtrComparator$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoPtrComparator()}{moeoPtrComparator()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_ptr_comparator}{moeo\+Ptr\+Comparator}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_ptr_comparator}{moeo\+Ptr\+Comparator}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+cmp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with a comparator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+cmp} & comparator to be employed \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_ptr_comparator_a5239e74a9c54aedd9bfdaf5f9b154081}\label{classmoeo_ptr_comparator_a5239e74a9c54aedd9bfdaf5f9b154081}} 
+\index{moeoPtrComparator$<$ MOEOT $>$@{moeoPtrComparator$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoPtrComparator$<$ MOEOT $>$@{moeoPtrComparator$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_ptr_comparator}{moeo\+Ptr\+Comparator}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT $\ast$}]{ptr1,  }\item[{const M\+O\+E\+OT $\ast$}]{ptr2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+compare two const individuals 
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const M\+O\+E\+O\+T $\ast$, const M\+O\+E\+O\+T $\ast$, bool $>$}}.
+
+\mbox{\Hypertarget{classmoeo_ptr_comparator_aa7ce1104cecc422d9b3665b9544c4093}\label{classmoeo_ptr_comparator_aa7ce1104cecc422d9b3665b9544c4093}} 
+\index{moeoPtrComparator$<$ MOEOT $>$@{moeoPtrComparator$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoPtrComparator$<$ MOEOT $>$@{moeoPtrComparator$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_ptr_comparator}{moeo\+Ptr\+Comparator}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT $\ast$}]{ptr1,  }\item[{M\+O\+E\+OT $\ast$}]{ptr2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+compare two non const individuals 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/comparator/moeo\+Ptr\+Comparator.\+h\end{DoxyCompactItemize}

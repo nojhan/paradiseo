@@ -1,0 +1,37 @@
+\hypertarget{classmpi_1_1status}{}\doxysection{mpi\+::status Class Reference}
+\label{classmpi_1_1status}\index{mpi::status@{mpi::status}}
+
+
+Wrapper class for M\+P\+I\+\_\+\+Status.  
+
+
+
+
+{\ttfamily \#include $<$impl\+Mpi.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmpi_1_1status_a01ef01b749ab6e2ab50d29664637628d}\label{classmpi_1_1status_a01ef01b749ab6e2ab50d29664637628d}} 
+\mbox{\hyperlink{classmpi_1_1status_a01ef01b749ab6e2ab50d29664637628d}{status}} (const M\+P\+I\+\_\+\+Status \&s)
+\begin{DoxyCompactList}\small\item\em Converts a M\+P\+I\+\_\+\+Status into a status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1status_a1967b75a3a8b78ba928971140fb6826c}\label{classmpi_1_1status_a1967b75a3a8b78ba928971140fb6826c}} 
+int \mbox{\hyperlink{classmpi_1_1status_a1967b75a3a8b78ba928971140fb6826c}{tag}} ()
+\begin{DoxyCompactList}\small\item\em Returns the tag of the associated communication. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1status_a7aab78ae7bd47620c1999f79aacb6827}\label{classmpi_1_1status_a7aab78ae7bd47620c1999f79aacb6827}} 
+int \mbox{\hyperlink{classmpi_1_1status_a7aab78ae7bd47620c1999f79aacb6827}{error}} ()
+\begin{DoxyCompactList}\small\item\em Indicates which error number we obtained in the associated communication. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1status_add11bef7cbf8953b2feb0d3875f642fd}\label{classmpi_1_1status_add11bef7cbf8953b2feb0d3875f642fd}} 
+int \mbox{\hyperlink{classmpi_1_1status_add11bef7cbf8953b2feb0d3875f642fd}{source}} ()
+\begin{DoxyCompactList}\small\item\em Returns the M\+PI rank of the source of the associated communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Wrapper class for M\+P\+I\+\_\+\+Status. 
+
+Consists only in a C++ wrapper class, giving getters on status attributes. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/impl\+Mpi.\+h\item 
+eo/src/mpi/impl\+Mpi.\+cpp\end{DoxyCompactItemize}

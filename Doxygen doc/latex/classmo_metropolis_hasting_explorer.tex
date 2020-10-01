@@ -1,0 +1,201 @@
+\hypertarget{classmo_metropolis_hasting_explorer}{}\doxysection{mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_metropolis_hasting_explorer}\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Metropolis\+Hasting\+Explorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_metropolis_hasting_explorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_metropolis_hasting_explorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a25024007bcfee5a53609b07daadf5f69}\label{classmo_metropolis_hasting_explorer_a25024007bcfee5a53609b07daadf5f69}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a39d33b6b1e33a9c34621601f90a142cf}\label{classmo_metropolis_hasting_explorer_a39d33b6b1e33a9c34621601f90a142cf}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_metropolis_hasting_explorer_a5c4e2b7f0068aaa0b2aa20756d6f0233}{mo\+Metropolis\+Hasting\+Explorer}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighbor\+Comparator, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator, unsigned int \+\_\+nb\+Step)
+\item 
+\mbox{\hyperlink{classmo_metropolis_hasting_explorer_a9bcb38a71016eb7a4f599532fc3c651f}{$\sim$mo\+Metropolis\+Hasting\+Explorer}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a06a8679b2b24018a278cdbb0bbe9f9d9}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a061f474c6d780cddf995bb84d18dae8f}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a3900b82eaa29d08eba0dd502a2906926}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer_ac9c232e1ff9dfc1d6659f6310192197a}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_metropolis_hasting_explorer_ab685bdb7c5f1b14f6cfbc5306c9228ff}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a5458cb3e5bd7dee3d793fdbad722c740}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$}
+
+Explorer for the Metropolis-\/\+Hasting Sampling. Only the symetric case is considered when Q(x,y) = Q(y,x) Fitness must be $>$ 0 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a5c4e2b7f0068aaa0b2aa20756d6f0233}\label{classmo_metropolis_hasting_explorer_a5c4e2b7f0068aaa0b2aa20756d6f0233}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!moMetropolisHastingExplorer@{moMetropolisHastingExplorer}}
+\index{moMetropolisHastingExplorer@{moMetropolisHastingExplorer}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMetropolisHastingExplorer()}{moMetropolisHastingExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator,  }\item[{unsigned int}]{\+\_\+nb\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+eval} & the evaluation function \\
+\hline
+{\em \+\_\+neighbor\+Comparator} & a neighbor comparator \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & a solution vs neighbor comparator \\
+\hline
+{\em \+\_\+nb\+Step} & maximum number of step to do \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a9bcb38a71016eb7a4f599532fc3c651f}\label{classmo_metropolis_hasting_explorer_a9bcb38a71016eb7a4f599532fc3c651f}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!````~moMetropolisHastingExplorer@{$\sim$moMetropolisHastingExplorer}}
+\index{````~moMetropolisHastingExplorer@{$\sim$moMetropolisHastingExplorer}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moMetropolisHastingExplorer()}{~moMetropolisHastingExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a5458cb3e5bd7dee3d793fdbad722c740}\label{classmo_metropolis_hasting_explorer_a5458cb3e5bd7dee3d793fdbad722c740}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+accept test if an ameliorated neighbor was found 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the best neighbor ameliorate the fitness 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a06a8679b2b24018a278cdbb0bbe9f9d9}\label{classmo_metropolis_hasting_explorer_a06a8679b2b24018a278cdbb0bbe9f9d9}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+initialization of the number of step to be done 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_ab685bdb7c5f1b14f6cfbc5306c9228ff}\label{classmo_metropolis_hasting_explorer_ab685bdb7c5f1b14f6cfbc5306c9228ff}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+continue if there is a neighbor and it is remainds some steps to do 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true there is some steps to do 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_ac9c232e1ff9dfc1d6659f6310192197a}\label{classmo_metropolis_hasting_explorer_ac9c232e1ff9dfc1d6659f6310192197a}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore the neighborhood of a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a3900b82eaa29d08eba0dd502a2906926}\label{classmo_metropolis_hasting_explorer_a3900b82eaa29d08eba0dd502a2906926}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+terminate\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_metropolis_hasting_explorer_a061f474c6d780cddf995bb84d18dae8f}\label{classmo_metropolis_hasting_explorer_a061f474c6d780cddf995bb84d18dae8f}} 
+\index{moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moMetropolisHastingExplorer$<$ Neighbor $>$@{moMetropolisHastingExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_metropolis_hasting_explorer}{mo\+Metropolis\+Hasting\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+increase the number of step 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+Metropolis\+Hasting\+Explorer.\+h\end{DoxyCompactItemize}

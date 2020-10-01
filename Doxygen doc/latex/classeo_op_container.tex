@@ -1,0 +1,148 @@
+\hypertarget{classeo_op_container}{}\doxysection{eo\+Op\+Container$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_op_container}\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Op\+Container.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Op\+Container$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_op_container__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Op\+Container$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_op_container__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_op_container_ab24a049b700070cd07abb3fc1f7134e6}{eo\+Op\+Container}} ()
+\item 
+virtual \mbox{\hyperlink{classeo_op_container_ac73f76c45f8152a3315ba08a04c3bd0f}{$\sim$eo\+Op\+Container}} (void)
+\item 
+virtual unsigned \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{max\+\_\+production}} (void)
+\item 
+void \mbox{\hyperlink{classeo_op_container_ac1c9829f902f4e8b6e6e670eda807581}{add}} (\mbox{\hyperlink{classeo_op}{eo\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op, double \+\_\+rate)
+\item 
+\mbox{\Hypertarget{classeo_op_container_a3ae943dea97408508d90f7eaab168009}\label{classeo_op_container_a3ae943dea97408508d90f7eaab168009}} 
+virtual std\+::string {\bfseries class\+Name} () const =0
+\item 
+\mbox{\hyperlink{classeo_op_container_ab24a049b700070cd07abb3fc1f7134e6}{eo\+Op\+Container}} ()
+\item 
+virtual \mbox{\hyperlink{classeo_op_container_ac73f76c45f8152a3315ba08a04c3bd0f}{$\sim$eo\+Op\+Container}} (void)
+\item 
+virtual unsigned \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{max\+\_\+production}} (void)
+\item 
+void \mbox{\hyperlink{classeo_op_container_ac1c9829f902f4e8b6e6e670eda807581}{add}} (\mbox{\hyperlink{classeo_op}{eo\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op, double \+\_\+rate)
+\item 
+\mbox{\Hypertarget{classeo_op_container_a3ae943dea97408508d90f7eaab168009}\label{classeo_op_container_a3ae943dea97408508d90f7eaab168009}} 
+virtual std\+::string {\bfseries class\+Name} () const =0
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_op_container_a0bd3ffd4e3414efbd22ef4a9ddfc01b0}\label{classeo_op_container_a0bd3ffd4e3414efbd22ef4a9ddfc01b0}} 
+std\+::vector$<$ double $>$ {\bfseries rates}
+\item 
+\mbox{\Hypertarget{classeo_op_container_a7eefb0c38de7b640cfe1415160b1d02f}\label{classeo_op_container_a7eefb0c38de7b640cfe1415160b1d02f}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ $>$ {\bfseries ops}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Op\+Container$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}} is a base class for the sequential and proportional selectors It takes care of wrapping the other operators, and deleting stuff that it has allocated
+
+Warning\+: all operators are added together with a rate (double) However, the meaning of this rate will be different in the differnet instances of \mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}\+: an {\itshape {\bfseries{absolute}}} probability in the sequential version, and a {\itshape {\bfseries{relative}}} weight in the proportional version 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_op_container_ab24a049b700070cd07abb3fc1f7134e6}\label{classeo_op_container_ab24a049b700070cd07abb3fc1f7134e6}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!eoOpContainer@{eoOpContainer}}
+\index{eoOpContainer@{eoOpContainer}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOpContainer()}{eoOpContainer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: nothing much to do \mbox{\Hypertarget{classeo_op_container_ac73f76c45f8152a3315ba08a04c3bd0f}\label{classeo_op_container_ac73f76c45f8152a3315ba08a04c3bd0f}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!````~eoOpContainer@{$\sim$eoOpContainer}}
+\index{````~eoOpContainer@{$\sim$eoOpContainer}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoOpContainer()}{~eoOpContainer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::$\sim$\mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}} (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Dtor\+: delete all the Gen\+Ops created when wrapping simple ops \mbox{\Hypertarget{classeo_op_container_ab24a049b700070cd07abb3fc1f7134e6}\label{classeo_op_container_ab24a049b700070cd07abb3fc1f7134e6}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!eoOpContainer@{eoOpContainer}}
+\index{eoOpContainer@{eoOpContainer}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOpContainer()}{eoOpContainer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: nothing much to do \mbox{\Hypertarget{classeo_op_container_ac73f76c45f8152a3315ba08a04c3bd0f}\label{classeo_op_container_ac73f76c45f8152a3315ba08a04c3bd0f}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!````~eoOpContainer@{$\sim$eoOpContainer}}
+\index{````~eoOpContainer@{$\sim$eoOpContainer}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoOpContainer()}{~eoOpContainer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual \mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::$\sim$\mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}} (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Dtor\+: delete all the Gen\+Ops created when wrapping simple ops 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_op_container_ac1c9829f902f4e8b6e6e670eda807581}\label{classeo_op_container_ac1c9829f902f4e8b6e6e670eda807581}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!add@{add}}
+\index{add@{add}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_op}{eo\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+op,  }\item[{double}]{\+\_\+rate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add an operator to the container, also give it a rate
+
+(sidenote, it\textquotesingle{}s much less hairy since I added the wrap\+\_\+op is used) \mbox{\Hypertarget{classeo_op_container_ac1c9829f902f4e8b6e6e670eda807581}\label{classeo_op_container_ac1c9829f902f4e8b6e6e670eda807581}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!add@{add}}
+\index{add@{add}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_op}{eo\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+op,  }\item[{double}]{\+\_\+rate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add an operator to the container, also give it a rate
+
+(sidenote, it\textquotesingle{}s much less hairy since I added the wrap\+\_\+op is used) \mbox{\Hypertarget{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}\label{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual unsigned \mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+for memory management (doesn\textquotesingle{}t have to be very precise 
+
+Implements \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}\label{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}} 
+\index{eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoOpContainer$<$ EOT $>$@{eoOpContainer$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual unsigned \mbox{\hyperlink{classeo_op_container}{eo\+Op\+Container}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+for memory management (doesn\textquotesingle{}t have to be very precise 
+
+Implements \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Op\+Container.\+h\end{DoxyCompactItemize}

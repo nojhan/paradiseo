@@ -1,0 +1,61 @@
+\hypertarget{classparadiseo_1_1smp_1_1_cont_wrapper}{}\doxysection{paradiseo\+::smp\+::Cont\+Wrapper$<$ E\+OT, b\+E\+OT $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_cont_wrapper}\index{paradiseo::smp::ContWrapper$<$ EOT, bEOT $>$@{paradiseo::smp::ContWrapper$<$ EOT, bEOT $>$}}
+
+
+{\ttfamily \#include $<$cont\+Wrapper.\+h$>$}
+
+
+
+Collaboration diagram for paradiseo\+::smp\+::Cont\+Wrapper$<$ E\+OT, b\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_cont_wrapper__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_cont_wrapper_a429e86afa5ce5af5d3170220cbce82b8}{Cont\+Wrapper}} (\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+cont, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ b\+E\+OT $>$ $\ast$\+\_\+island)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_cont_wrapper_a9c138e8fbf4e15ec5ccaf981b17684d1}\label{classparadiseo_1_1smp_1_1_cont_wrapper_a9c138e8fbf4e15ec5ccaf981b17684d1}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ {\bfseries ck}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_cont_wrapper_ad214c6828b13f8af7e7eef39abab3785}\label{classparadiseo_1_1smp_1_1_cont_wrapper_ad214c6828b13f8af7e7eef39abab3785}} 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_notifier}{Island\+Notifier}}$<$ b\+E\+OT $>$ {\bfseries island\+Notifier}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class b\+E\+OT$>$\newline
+class paradiseo\+::smp\+::\+Cont\+Wrapper$<$ E\+O\+T, b\+E\+O\+T $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_cont_wrapper}{Cont\+Wrapper}}\+: Utility class to wrap the algorithm continuators with island notifier.
+
+Utility class to wrap the algorithm continuators with island notifier during the island construction. By using the wrapper, we do not have to modify original continuators inside the \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_model}{Island\+Model}} and then, it avoids some side effects. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_cont_wrapper_a429e86afa5ce5af5d3170220cbce82b8}\label{classparadiseo_1_1smp_1_1_cont_wrapper_a429e86afa5ce5af5d3170220cbce82b8}} 
+\index{paradiseo::smp::ContWrapper$<$ EOT, bEOT $>$@{paradiseo::smp::ContWrapper$<$ EOT, bEOT $>$}!ContWrapper@{ContWrapper}}
+\index{ContWrapper@{ContWrapper}!paradiseo::smp::ContWrapper$<$ EOT, bEOT $>$@{paradiseo::smp::ContWrapper$<$ EOT, bEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ContWrapper()}{ContWrapper()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class b\+E\+OT $>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_cont_wrapper}{paradiseo\+::smp\+::\+Cont\+Wrapper}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, b\+E\+OT $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_cont_wrapper}{Cont\+Wrapper}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+cont,  }\item[{\mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ b\+E\+OT $>$ $\ast$}]{\+\_\+island }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+cont} & Original continuators \\
+\hline
+{\em \+\_\+island} & Pointer on the island used by the notifier \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/cont\+Wrapper.\+h\item 
+smp/src/cont\+Wrapper.\+cpp\end{DoxyCompactItemize}

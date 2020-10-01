@@ -1,0 +1,67 @@
+\hypertarget{classeo_operator_foundry}{}\doxysection{eo\+Operator\+Foundry$<$ Itf $>$ Class Template Reference}
+\label{classeo_operator_foundry}\index{eoOperatorFoundry$<$ Itf $>$@{eoOperatorFoundry$<$ Itf $>$}}
+
+
+{\ttfamily \#include $<$eo\+Algo\+Foundry.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Operator\+Foundry$<$ Itf $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classeo_operator_foundry__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Operator\+Foundry$<$ Itf $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classeo_operator_foundry__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_operator_foundry_ad8740a33d8054448419a12e0a8bba792}\label{classeo_operator_foundry_ad8740a33d8054448419a12e0a8bba792}} 
+{\bfseries eo\+Operator\+Foundry} (size\+\_\+t encoding\+\_\+index, bool always\+\_\+reinstantiate=true)
+\item 
+\mbox{\Hypertarget{classeo_operator_foundry_a22ce8fafb36974aa9838554769c53376}\label{classeo_operator_foundry_a22ce8fafb36974aa9838554769c53376}} 
+size\+\_\+t {\bfseries index} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_operator_foundry_adb50d1c7b9e34eb5fc0fcc2c9c11d8fe}\label{classeo_operator_foundry_adb50d1c7b9e34eb5fc0fcc2c9c11d8fe}} 
+size\+\_\+t {\bfseries \+\_\+index}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Itf$>$\newline
+class eo\+Operator\+Foundry$<$ Itf $>$}
+
+A vector of eo\+Forge which hold an index.
+
+To be used in conjunction with a subclass of an \mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry}}, where it can store all the alternative operators and hold the link to the encoding. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_algo_foundry_e_a}{eo\+Algo\+Foundry\+EA}}
+\end{DoxySeeAlso}
+As with \mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}, adding a managed operator is done through public member variable\textquotesingle{}s {\ttfamily add} method, which takes the class name as template and its constructor\textquotesingle{}s parameters as arguments. For example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_operator_foundry}{eoOperatorFoundry< eoSelectOne<EOT>}} > selectors;}
+\DoxyCodeLine{selectors.add< \mbox{\hyperlink{classeo_stoch_tournament_select}{eoStochTournamentSelect<EOT>}} >( 0.5 );}
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Warning}
+If the managed constructor takes a reference Y\+OU S\+H\+O\+U\+LD A\+B\+S\+O\+L\+U\+T\+E\+LY wrap it in a {\ttfamily std\+::ref} when using {\ttfamily add} or {\ttfamily setup}, or it will silently be passed as a copy, which would effectively disable any link between operators. 
+\end{DoxyWarning}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Algo\+Foundry.\+h\end{DoxyCompactItemize}

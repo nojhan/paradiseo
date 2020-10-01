@@ -1,0 +1,65 @@
+\hypertarget{group___parallel}{}\doxysection{Parallel}
+\label{group___parallel}\index{Parallel@{Parallel}}
+Collaboration diagram for Parallel\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___parallel}
+\end{center}
+\end{figure}
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___m_p_i}{Message Passing Interface}}
+\begin{DoxyCompactList}\small\item\em See namespace \mbox{\hyperlink{namespaceeo_1_1mpi}{eo\+::mpi}} to have all explanations about this module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_parallel}{eo\+Parallel}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___parallel_ga10892ca0339654c8886897921256571e}\label{group___parallel_ga10892ca0339654c8886897921256571e}} 
+void {\bfseries make\+\_\+parallel} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___parallel_ga9c4a827de4c8d1026de65fc91ed989e0}\label{group___parallel_ga9c4a827de4c8d1026de65fc91ed989e0}} 
+const int \mbox{\hyperlink{group___parallel_ga9c4a827de4c8d1026de65fc91ed989e0}{mpi\+::any\+\_\+source}} = M\+P\+I\+\_\+\+A\+N\+Y\+\_\+\+S\+O\+U\+R\+CE
+\begin{DoxyCompactList}\small\item\em Constant indicating that a message can come from any process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___parallel_gaa60c80af67fe827d0338f4da95fcbd26}\label{group___parallel_gaa60c80af67fe827d0338f4da95fcbd26}} 
+const int \mbox{\hyperlink{group___parallel_gaa60c80af67fe827d0338f4da95fcbd26}{mpi\+::any\+\_\+tag}} = M\+P\+I\+\_\+\+A\+N\+Y\+\_\+\+T\+AG
+\begin{DoxyCompactList}\small\item\em Constant indicating that a message can come from any tag (channel). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___parallel_ga43a042b471a84b187c77bca43368db6a}{mpi\+::broadcast}} (\mbox{\hyperlink{classmpi_1_1communicator}{communicator}} \&comm, int value, int root)
+\begin{DoxyCompactList}\small\item\em Wrapper for M\+P\+I\+\_\+\+Bcast. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___parallel_ga43a042b471a84b187c77bca43368db6a}\label{group___parallel_ga43a042b471a84b187c77bca43368db6a}} 
+\index{Parallel@{Parallel}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!Parallel@{Parallel}}
+\doxysubsubsection{\texorpdfstring{broadcast()}{broadcast()}}
+{\footnotesize\ttfamily void mpi\+::broadcast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmpi_1_1communicator}{communicator}} \&}]{comm,  }\item[{int}]{value,  }\item[{int}]{root }\end{DoxyParamCaption})}
+
+
+
+Wrapper for M\+P\+I\+\_\+\+Bcast. 
+
+Broadcasts an integer value on the communicator comm, from the process having the M\+PI rank root.
+
+
+\begin{DoxyParams}{Parameters}
+{\em comm} & The communicator on which to broadcast \\
+\hline
+{\em value} & The integer value to send \\
+\hline
+{\em root} & The M\+PI rank of the broadcaster\\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000032}{Todo}}]Actually comm isn\textquotesingle{}t used and broadcast is performed on the whole M\+P\+I\+\_\+\+C\+O\+M\+M\+\_\+\+W\+O\+R\+LD. T\+O\+DO\+: Use comm instead \end{DoxyRefDesc}

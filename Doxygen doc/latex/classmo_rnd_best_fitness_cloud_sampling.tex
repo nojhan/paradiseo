@@ -1,0 +1,82 @@
+\hypertarget{classmo_rnd_best_fitness_cloud_sampling}{}\doxysection{mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_rnd_best_fitness_cloud_sampling}\index{moRndBestFitnessCloudSampling$<$ Neighbor $>$@{moRndBestFitnessCloudSampling$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{classmo_rnd_best_fitness_cloud_sampling__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_rnd_best_fitness_cloud_sampling__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_rnd_best_fitness_cloud_sampling_a87a16b0cf348bb62bb475a4bcb9b6957}\label{classmo_rnd_best_fitness_cloud_sampling_a87a16b0cf348bb62bb475a4bcb9b6957}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_rnd_best_fitness_cloud_sampling_ad65cbd5b52a3261db1c300645101ada0}{mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Sol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_rnd_best_fitness_cloud_sampling_af4931e55a2754bec53387219043f30e4}\label{classmo_rnd_best_fitness_cloud_sampling_af4931e55a2754bec53387219043f30e4}} 
+\mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries neighbor\+Best\+Stat}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling$<$ Neighbor $>$}
+
+To compute an estimation of the fitness cloud, i.\+e. the scatter plot of solution fitness versus neighbor fitness\+:
+
+Sample the fitness of random solution in the search space and the best fitness of k random neighbor
+
+The values are collected during the random search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_rnd_best_fitness_cloud_sampling_ad65cbd5b52a3261db1c300645101ada0}\label{classmo_rnd_best_fitness_cloud_sampling_ad65cbd5b52a3261db1c300645101ada0}} 
+\index{moRndBestFitnessCloudSampling$<$ Neighbor $>$@{moRndBestFitnessCloudSampling$<$ Neighbor $>$}!moRndBestFitnessCloudSampling@{moRndBestFitnessCloudSampling}}
+\index{moRndBestFitnessCloudSampling@{moRndBestFitnessCloudSampling}!moRndBestFitnessCloudSampling$<$ Neighbor $>$@{moRndBestFitnessCloudSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRndBestFitnessCloudSampling()}{moRndBestFitnessCloudSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_rnd_best_fitness_cloud_sampling}{mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_rnd_best_fitness_cloud_sampling}{mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+neighborhood} & neighborhood to get one random neighbor (supposed to be random neighborhood) \\
+\hline
+{\em \+\_\+full\+Eval} & Fitness function, full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor evaluation, incremental evaluation function \\
+\hline
+{\em \+\_\+nb\+Sol} & Number of solutions in the sample \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+Rnd\+Best\+Fitness\+Cloud\+Sampling.\+h\end{DoxyCompactItemize}

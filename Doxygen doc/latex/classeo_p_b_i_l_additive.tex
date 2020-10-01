@@ -1,0 +1,97 @@
+\hypertarget{classeo_p_b_i_l_additive}{}\doxysection{eo\+P\+B\+I\+L\+Additive$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_p_b_i_l_additive}\index{eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+P\+B\+I\+L\+Additive.\+h$>$}
+
+
+
+Inheritance diagram for eo\+P\+B\+I\+L\+Additive$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_p_b_i_l_additive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+P\+B\+I\+L\+Additive$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_p_b_i_l_additive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_p_b_i_l_additive_a70f76025a659a4fc4a340ab4751ce9e8}{eo\+P\+B\+I\+L\+Additive}} (double \+\_\+\+L\+R\+Best, unsigned \+\_\+nb\+Best=1, double \+\_\+tolerance=0.\+0, double \+\_\+\+L\+R\+Worst=0.\+0, unsigned \+\_\+nb\+Worst=0)
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_additive_a4c00142a921e4a298a722df49cec58b7}{operator()}} (\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+distrib, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\hyperlink{classeo_p_b_i_l_additive_a70f76025a659a4fc4a340ab4751ce9e8}{eo\+P\+B\+I\+L\+Additive}} (double \+\_\+\+L\+R\+Best, unsigned \+\_\+nb\+Best=1, double \+\_\+tolerance=0.\+0, double \+\_\+\+L\+R\+Worst=0.\+0, unsigned \+\_\+nb\+Worst=0)
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_additive_a4c00142a921e4a298a722df49cec58b7}{operator()}} (\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+distrib, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+P\+B\+I\+L\+Additive$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{class_distribution}{Distribution}} Class for P\+B\+IL algorithm (Population-\/\+Based Incremental Learning, Baluja and Caruana 96)
+
+This class implements an extended update rule\+: in the original paper, the authors used
+
+p(i)(t+1) = (1-\/LR)$\ast$p(i)(t) + L\+R$\ast$best(i)
+
+here the same formula is applied, with some of the best individuals and for some of the worst individuals (with different learning rates) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_p_b_i_l_additive_a70f76025a659a4fc4a340ab4751ce9e8}\label{classeo_p_b_i_l_additive_a70f76025a659a4fc4a340ab4751ce9e8}} 
+\index{eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}!eoPBILAdditive@{eoPBILAdditive}}
+\index{eoPBILAdditive@{eoPBILAdditive}!eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPBILAdditive()}{eoPBILAdditive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_p_b_i_l_additive}{eo\+P\+B\+I\+L\+Additive}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_p_b_i_l_additive}{eo\+P\+B\+I\+L\+Additive}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+\+L\+R\+Best,  }\item[{unsigned}]{\+\_\+nb\+Best = {\ttfamily 1},  }\item[{double}]{\+\_\+tolerance = {\ttfamily 0.0},  }\item[{double}]{\+\_\+\+L\+R\+Worst = {\ttfamily 0.0},  }\item[{unsigned}]{\+\_\+nb\+Worst = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with parameters using the default values is equivalent to using \mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}} \mbox{\Hypertarget{classeo_p_b_i_l_additive_a70f76025a659a4fc4a340ab4751ce9e8}\label{classeo_p_b_i_l_additive_a70f76025a659a4fc4a340ab4751ce9e8}} 
+\index{eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}!eoPBILAdditive@{eoPBILAdditive}}
+\index{eoPBILAdditive@{eoPBILAdditive}!eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPBILAdditive()}{eoPBILAdditive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_p_b_i_l_additive}{eo\+P\+B\+I\+L\+Additive}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_p_b_i_l_additive}{eo\+P\+B\+I\+L\+Additive}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+\+L\+R\+Best,  }\item[{unsigned}]{\+\_\+nb\+Best = {\ttfamily 1},  }\item[{double}]{\+\_\+tolerance = {\ttfamily 0.0},  }\item[{double}]{\+\_\+\+L\+R\+Worst = {\ttfamily 0.0},  }\item[{unsigned}]{\+\_\+nb\+Worst = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with parameters using the default values is equivalent to using \mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_p_b_i_l_additive_a4c00142a921e4a298a722df49cec58b7}\label{classeo_p_b_i_l_additive_a4c00142a921e4a298a722df49cec58b7}} 
+\index{eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_additive}{eo\+P\+B\+I\+L\+Additive}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+distrib,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the distribution from the current population 
+
+Implements \mbox{\hyperlink{classeo_distrib_updater_ac419a7a103d00805d11625ce9faf8377}{eo\+Distrib\+Updater$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_additive_a4c00142a921e4a298a722df49cec58b7}\label{classeo_p_b_i_l_additive_a4c00142a921e4a298a722df49cec58b7}} 
+\index{eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoPBILAdditive$<$ EOT $>$@{eoPBILAdditive$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_additive}{eo\+P\+B\+I\+L\+Additive}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+distrib,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the distribution from the current population 
+
+Implements \mbox{\hyperlink{classeo_distrib_updater_ac419a7a103d00805d11625ce9faf8377}{eo\+Distrib\+Updater$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/es/eo\+P\+B\+I\+L\+Additive.\+h\end{DoxyCompactItemize}

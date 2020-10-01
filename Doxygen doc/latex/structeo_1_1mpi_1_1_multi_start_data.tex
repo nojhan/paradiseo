@@ -1,0 +1,83 @@
+\hypertarget{structeo_1_1mpi_1_1_multi_start_data}{}\doxysection{eo\+::mpi\+::Multi\+Start\+Data$<$ E\+OT $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_multi_start_data}\index{eo::mpi::MultiStartData$<$ EOT $>$@{eo::mpi::MultiStartData$<$ EOT $>$}}
+
+
+Data used by the Multi Start job.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Multi\+Start.\+h$>$}
+
+
+
+Collaboration diagram for eo\+::mpi\+::Multi\+Start\+Data$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_multi_start_data__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_ac0204b53d7914101a55a0cd27cc686a4}\label{structeo_1_1mpi_1_1_multi_start_data_ac0204b53d7914101a55a0cd27cc686a4}} 
+typedef \mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&, void $>$ {\bfseries Reset\+Algo}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_a8236ecad0218d7e6bf65760c5fc97cba}\label{structeo_1_1mpi_1_1_multi_start_data_a8236ecad0218d7e6bf65760c5fc97cba}} 
+{\bfseries Multi\+Start\+Data} (\mbox{\hyperlink{classmpi_1_1communicator}{bmpi\+::communicator}} \&\+\_\+comm, \mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+algo, int \+\_\+master\+Rank, \mbox{\hyperlink{classeo_u_f}{Reset\+Algo}} \&\+\_\+reset\+Algo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data_a46ef420d5aa66699ceabf76105c0d077}{runs}}
+\begin{DoxyCompactList}\small\item\em Total remaining number of runs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_acf135f8939be85e61e803aa4572780f8}\label{structeo_1_1mpi_1_1_multi_start_data_acf135f8939be85e61e803aa4572780f8}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data_acf135f8939be85e61e803aa4572780f8}{bests}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classeo_pop}{eo\+Pop}} of the best individuals, which are the one sent by the workers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_acd027e4d503c5fe12a78910fab438327}\label{structeo_1_1mpi_1_1_multi_start_data_acd027e4d503c5fe12a78910fab438327}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data_acd027e4d503c5fe12a78910fab438327}{pop}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classeo_pop}{eo\+Pop}} on which the worker is working. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_a201a0bd20209dd2f9e75ed6500069fe0}\label{structeo_1_1mpi_1_1_multi_start_data_a201a0bd20209dd2f9e75ed6500069fe0}} 
+\mbox{\hyperlink{classmpi_1_1communicator}{bmpi\+::communicator}} \& \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data_a201a0bd20209dd2f9e75ed6500069fe0}{comm}}
+\begin{DoxyCompactList}\small\item\em Communicator, used to send and retrieve messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_a89d9f6b8ffff5b39a9acbfc136b72438}\label{structeo_1_1mpi_1_1_multi_start_data_a89d9f6b8ffff5b39a9acbfc136b72438}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data_a89d9f6b8ffff5b39a9acbfc136b72438}{algo}}
+\begin{DoxyCompactList}\small\item\em Algorithm which will be performed by the worker. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_a9e88b317262cb38a2779f061d05ee905}\label{structeo_1_1mpi_1_1_multi_start_data_a9e88b317262cb38a2779f061d05ee905}} 
+\mbox{\hyperlink{classeo_u_f}{Reset\+Algo}} \& \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data_a9e88b317262cb38a2779f061d05ee905}{reset\+Algo}}
+\begin{DoxyCompactList}\small\item\em Reset Algo functor, which defines how to reset the algo (above) before re running it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_aced00668c878df70b6c96527577859f9}\label{structeo_1_1mpi_1_1_multi_start_data_aced00668c878df70b6c96527577859f9}} 
+int {\bfseries master\+Rank}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+struct eo\+::mpi\+::\+Multi\+Start\+Data$<$ E\+O\+T $>$}
+
+Data used by the Multi Start job. 
+
+This data is shared between the different \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} functors. More details are given for each attribute. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multi_start_data_a46ef420d5aa66699ceabf76105c0d077}\label{structeo_1_1mpi_1_1_multi_start_data_a46ef420d5aa66699ceabf76105c0d077}} 
+\index{eo::mpi::MultiStartData$<$ EOT $>$@{eo::mpi::MultiStartData$<$ EOT $>$}!runs@{runs}}
+\index{runs@{runs}!eo::mpi::MultiStartData$<$ EOT $>$@{eo::mpi::MultiStartData$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{runs}{runs}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+int \mbox{\hyperlink{structeo_1_1mpi_1_1_multi_start_data}{eo\+::mpi\+::\+Multi\+Start\+Data}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::runs}
+
+
+
+Total remaining number of runs. 
+
+It\textquotesingle{}s decremented as the runs are performed. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_multi_start_8h}{eo\+Multi\+Start.\+h}}\end{DoxyCompactItemize}

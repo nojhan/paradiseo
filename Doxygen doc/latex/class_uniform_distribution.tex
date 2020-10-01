@@ -1,0 +1,137 @@
+\hypertarget{class_uniform_distribution}{}\doxysection{Uniform\+Distribution Class Reference}
+\label{class_uniform_distribution}\index{UniformDistribution@{UniformDistribution}}
+
+
+Uniform distribution.  
+
+
+
+
+Inheritance diagram for Uniform\+Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_uniform_distribution__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Uniform\+Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_uniform_distribution__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_uniform_distribution_a2cbb154deb85c1345b1b5ff0e9d281ac}{make\+\_\+parser}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&parser)
+\begin{DoxyCompactList}\small\item\em Creates params and retrieves values from parser. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_uniform_distribution_afb67f02508a7086060011a8672da81fa}{next\+\_\+element}} ()
+\begin{DoxyCompactList}\small\item\em Returns the next element of the distribution to put in the vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{class_uniform_distribution_aed8fcebd2e971e3afe602640c421cbbd}{pack}} (void) const
+\begin{DoxyCompactList}\small\item\em Serializes the object to J\+S\+ON format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_uniform_distribution_ab88f8c1e95056f987037f0285d77f9e1}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_uniform_distribution_ae352f9dceddebeca18cb0d88bcbe9b45}\label{class_uniform_distribution_ae352f9dceddebeca18cb0d88bcbe9b45}} 
+std\+::string \mbox{\hyperlink{class_uniform_distribution_ae352f9dceddebeca18cb0d88bcbe9b45}{to\+String}} () const
+\begin{DoxyCompactList}\small\item\em Prints the name and the parameters of the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_uniform_distribution_a59778c029c75ed83075b0a14234abb5b}\label{class_uniform_distribution_a59778c029c75ed83075b0a14234abb5b}} 
+double {\bfseries \+\_\+min}
+\item 
+\mbox{\Hypertarget{class_uniform_distribution_a4e4c55935975c4a1d63c04c70ca60a71}\label{class_uniform_distribution_a4e4c55935975c4a1d63c04c70ca60a71}} 
+double {\bfseries \+\_\+max}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Uniform distribution. 
+
+This is an uniform distribution, defined by a minimum value and a maximum value. In the uniform distribution, every number from min to max has the same probability to appear.
+
+The 3 parameters activable from a parser are the following\+:
+\begin{DoxyItemize}
+\item uniform=1 \+: if we want to use the uniform distribution
+\item uniform-\/min=x \+: use x milliseconds as the minimum value of waiting time.
+\item uniform-\/max=y \+: use y milliseconds as the maximum value of waiting time. Ensure that x $<$ y, or the results are unpredictable. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_uniform_distribution_a2cbb154deb85c1345b1b5ff0e9d281ac}\label{class_uniform_distribution_a2cbb154deb85c1345b1b5ff0e9d281ac}} 
+\index{UniformDistribution@{UniformDistribution}!make\_parser@{make\_parser}}
+\index{make\_parser@{make\_parser}!UniformDistribution@{UniformDistribution}}
+\doxysubsubsection{\texorpdfstring{make\_parser()}{make\_parser()}}
+{\footnotesize\ttfamily void Uniform\+Distribution\+::make\+\_\+parser (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{parser }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Creates params and retrieves values from parser. 
+
+Parser\textquotesingle{}s params should take milliseconds as inputs. 
+
+Implements \mbox{\hyperlink{class_distribution_a3452bebe8b264677140f8216400fd85d}{Distribution}}.
+
+\mbox{\Hypertarget{class_uniform_distribution_afb67f02508a7086060011a8672da81fa}\label{class_uniform_distribution_afb67f02508a7086060011a8672da81fa}} 
+\index{UniformDistribution@{UniformDistribution}!next\_element@{next\_element}}
+\index{next\_element@{next\_element}!UniformDistribution@{UniformDistribution}}
+\doxysubsubsection{\texorpdfstring{next\_element()}{next\_element()}}
+{\footnotesize\ttfamily int Uniform\+Distribution\+::next\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the next element of the distribution to put in the vector. 
+
+\begin{DoxyReturn}{Returns}
+Number of milliseconds to wait. Can be negative ; in this case, the number will be truncated to 0ms. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_distribution_a0478f4f3f3b4e72e163073b0dc7eb29c}{Distribution}}.
+
+\mbox{\Hypertarget{class_uniform_distribution_aed8fcebd2e971e3afe602640c421cbbd}\label{class_uniform_distribution_aed8fcebd2e971e3afe602640c421cbbd}} 
+\index{UniformDistribution@{UniformDistribution}!pack@{pack}}
+\index{pack@{pack}!UniformDistribution@{UniformDistribution}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}$\ast$ Uniform\+Distribution\+::pack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the object to J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+A J\+S\+ON object created with new. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{eoserial\+::\+Printable}}.
+
+\mbox{\Hypertarget{class_uniform_distribution_ab88f8c1e95056f987037f0285d77f9e1}\label{class_uniform_distribution_ab88f8c1e95056f987037f0285d77f9e1}} 
+\index{UniformDistribution@{UniformDistribution}!unpack@{unpack}}
+\index{unpack@{unpack}!UniformDistribution@{UniformDistribution}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily void Uniform\+Distribution\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{eoserial\+::\+Persistent}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/test/mpi/\mbox{\hyperlink{t-mpi-distrib-exp_8cpp}{t-\/mpi-\/distrib-\/exp.\+cpp}}\end{DoxyCompactItemize}

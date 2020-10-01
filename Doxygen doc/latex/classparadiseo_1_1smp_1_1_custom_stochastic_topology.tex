@@ -1,0 +1,99 @@
+\hypertarget{classparadiseo_1_1smp_1_1_custom_stochastic_topology}{}\doxysection{paradiseo\+::smp\+::Custom\+Stochastic\+Topology Class Reference}
+\label{classparadiseo_1_1smp_1_1_custom_stochastic_topology}\index{paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}}
+
+
+Inheritance diagram for paradiseo\+::smp\+::Custom\+Stochastic\+Topology\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{classparadiseo_1_1smp_1_1_custom_stochastic_topology__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Custom\+Stochastic\+Topology\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{classparadiseo_1_1smp_1_1_custom_stochastic_topology__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a7cc0cbcfd2d696d887c397cb8ba118e4}{Custom\+Stochastic\+Topology}} (std\+::string filename)
+\item 
+std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a12f348e8b1b4657fd274f0da356a4310}{get\+Id\+Neighbors}} (unsigned id\+Node) const
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a18d522abafeba7f21b507b375eb64c3e}{construct}} (unsigned nb\+Node)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a77d27c4e07eb32c326fc810e4eb7085a}{isolate\+Node}} (unsigned id\+Node)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a7cc0cbcfd2d696d887c397cb8ba118e4}\label{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a7cc0cbcfd2d696d887c397cb8ba118e4}} 
+\index{paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}!CustomStochasticTopology@{CustomStochasticTopology}}
+\index{CustomStochasticTopology@{CustomStochasticTopology}!paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}}
+\doxysubsubsection{\texorpdfstring{CustomStochasticTopology()}{CustomStochasticTopology()}}
+{\footnotesize\ttfamily paradiseo\+::smp\+::\+Custom\+Stochastic\+Topology\+::\+Custom\+Stochastic\+Topology (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+Constructor for a custom topology from a file 
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file, must be in the same directory as the executable \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a18d522abafeba7f21b507b375eb64c3e}\label{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a18d522abafeba7f21b507b375eb64c3e}} 
+\index{paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}!construct@{construct}}
+\index{construct@{construct}!paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Custom\+Stochastic\+Topology\+::construct (\begin{DoxyParamCaption}\item[{unsigned}]{nb\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \+: a custom topology cannot be reconstructed in a different way, so the method throws an error if nb\+Node doesn\textquotesingle{}t match with the actual number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em nb\+Node} & number of nodes for the topology \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_a8b5612f89e420f37c7fa0080e7d156d9}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a12f348e8b1b4657fd274f0da356a4310}\label{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a12f348e8b1b4657fd274f0da356a4310}} 
+\index{paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}!getIdNeighbors@{getIdNeighbors}}
+\index{getIdNeighbors@{getIdNeighbors}!paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}}
+\doxysubsubsection{\texorpdfstring{getIdNeighbors()}{getIdNeighbors()}}
+{\footnotesize\ttfamily std\+::vector$<$ unsigned $>$ paradiseo\+::smp\+::\+Custom\+Stochastic\+Topology\+::get\+Id\+Neighbors (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \begin{DoxySeeAlso}{See also}
+smp\+::topology\+::\+Abstract\+Topology\+::get\+Id\+Neighbors 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_af3b0d21baaf63d453f5e4a76d4f9c1d8}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a77d27c4e07eb32c326fc810e4eb7085a}\label{classparadiseo_1_1smp_1_1_custom_stochastic_topology_a77d27c4e07eb32c326fc810e4eb7085a}} 
+\index{paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}!isolateNode@{isolateNode}}
+\index{isolateNode@{isolateNode}!paradiseo::smp::CustomStochasticTopology@{paradiseo::smp::CustomStochasticTopology}}
+\doxysubsubsection{\texorpdfstring{isolateNode()}{isolateNode()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Custom\+Stochastic\+Topology\+::isolate\+Node (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \+: changes the topology \+: removes any connection from/to the given node. 
+\begin{DoxyParams}{Parameters}
+{\em id\+Node} & index of the node to be isolated \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_ac7f65400edefd676de8f5db26ad570dc}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/custom\+Stochastic\+Topology.\+h\item 
+smp/src/topology/custom\+Stochastic\+Topology.\+cpp\end{DoxyCompactItemize}

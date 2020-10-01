@@ -1,0 +1,70 @@
+\hypertarget{classmoeo_dual_real_objective_vector}{}\doxysection{moeo\+Dual\+Real\+Objective\+Vector$<$ Objective\+Vector\+Traits, T $>$ Class Template Reference}
+\label{classmoeo_dual_real_objective_vector}\index{moeoDualRealObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoDualRealObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+
+
+Inheritance diagram for moeo\+Dual\+Real\+Objective\+Vector$<$ Objective\+Vector\+Traits, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classmoeo_dual_real_objective_vector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dual\+Real\+Objective\+Vector$<$ Objective\+Vector\+Traits, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classmoeo_dual_real_objective_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_a82977c19dd270b278982cfe40a73eda4}\label{classmoeo_dual_real_objective_vector_a82977c19dd270b278982cfe40a73eda4}} 
+typedef \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} {\bfseries Traits}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_a68361b46a1571dfc588cfc517e0cb434}\label{classmoeo_dual_real_objective_vector_a68361b46a1571dfc588cfc517e0cb434}} 
+typedef T {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_acb1e6e3129dea66ffca8e4eb371df0ad}\label{classmoeo_dual_real_objective_vector_acb1e6e3129dea66ffca8e4eb371df0ad}} 
+{\bfseries moeo\+Dual\+Real\+Objective\+Vector} (double value=0.\+0, bool feasible=false)
+\item 
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_a850ba189f58f9009a42903a6d2f2e5ff}\label{classmoeo_dual_real_objective_vector_a850ba189f58f9009a42903a6d2f2e5ff}} 
+bool {\bfseries is\+\_\+feasible} () const
+\item 
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_a3e6adb9193c7d4cf22b9fcd521c9b5b2}\label{classmoeo_dual_real_objective_vector_a3e6adb9193c7d4cf22b9fcd521c9b5b2}} 
+void \mbox{\hyperlink{classmoeo_dual_real_objective_vector_a3e6adb9193c7d4cf22b9fcd521c9b5b2}{is\+\_\+feasible}} (bool value)
+\begin{DoxyCompactList}\small\item\em One should ensure that feasabilities of scalars are all the same. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmoeo_dual_real_objective_vector_a5559a5a417c479cdf48583bfc1686690}{dominates}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&other) const
+\item 
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_a70710804181842a54ca4b0ac8be9559f}\label{classmoeo_dual_real_objective_vector_a70710804181842a54ca4b0ac8be9559f}} 
+bool \mbox{\hyperlink{classmoeo_dual_real_objective_vector_a70710804181842a54ca4b0ac8be9559f}{operator$<$}} (const \mbox{\hyperlink{classmoeo_dual_real_objective_vector}{moeo\+Dual\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em True if this is smaller than other. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_a39780ad270ee0c9618a6b62782d711b7}\label{classmoeo_dual_real_objective_vector_a39780ad270ee0c9618a6b62782d711b7}} 
+bool {\bfseries \+\_\+is\+\_\+feasible}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dual_real_objective_vector_a5559a5a417c479cdf48583bfc1686690}\label{classmoeo_dual_real_objective_vector_a5559a5a417c479cdf48583bfc1686690}} 
+\index{moeoDualRealObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoDualRealObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!dominates@{dominates}}
+\index{dominates@{dominates}!moeoDualRealObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoDualRealObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{dominates()}{dominates()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T  = eo\+Maximizing\+Dual\+Fitness$>$ \\
+bool \mbox{\hyperlink{classmoeo_dual_real_objective_vector}{moeo\+Dual\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::dominates (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector dominates \+\_\+other according to the Pareto dominance relation 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/core/moeo\+Dual\+Real\+Objective\+Vector.\+h\end{DoxyCompactItemize}

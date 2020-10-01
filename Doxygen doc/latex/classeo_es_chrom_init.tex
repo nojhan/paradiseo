@@ -1,0 +1,181 @@
+\hypertarget{classeo_es_chrom_init}{}\doxysection{eo\+Es\+Chrom\+Init$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_es_chrom_init}\index{eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Es\+Chrom\+Init.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Es\+Chrom\+Init$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_es_chrom_init__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Es\+Chrom\+Init$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_es_chrom_init__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_es_chrom_init_a06cbb0e851e1b5814dd4825dd716d98b}\label{classeo_es_chrom_init_a06cbb0e851e1b5814dd4825dd716d98b}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries FitT}
+\item 
+\mbox{\Hypertarget{classeo_es_chrom_init_a06cbb0e851e1b5814dd4825dd716d98b}\label{classeo_es_chrom_init_a06cbb0e851e1b5814dd4825dd716d98b}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries FitT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_es_chrom_init_a65970ef49133bd3ac385ab0d4618447a}{eo\+Es\+Chrom\+Init}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds, double \+\_\+sigma=0.\+3, bool \+\_\+to\+\_\+scale=false)
+\item 
+\mbox{\hyperlink{classeo_es_chrom_init_a80153ace28e085a985f722c859bdbc47}{eo\+Es\+Chrom\+Init}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds, const std\+::vector$<$ double $>$ \&\+\_\+vec\+Sigma)
+\item 
+void \mbox{\hyperlink{classeo_es_chrom_init_a8c78f16109076cff335ef205a9675691}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+\mbox{\hyperlink{classeo_es_chrom_init_a65970ef49133bd3ac385ab0d4618447a}{eo\+Es\+Chrom\+Init}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds, double \+\_\+sigma=0.\+3, bool \+\_\+to\+\_\+scale=false)
+\item 
+\mbox{\hyperlink{classeo_es_chrom_init_a80153ace28e085a985f722c859bdbc47}{eo\+Es\+Chrom\+Init}} (\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&\+\_\+bounds, const std\+::vector$<$ double $>$ \&\+\_\+vec\+Sigma)
+\item 
+void \mbox{\hyperlink{classeo_es_chrom_init_a8c78f16109076cff335ef205a9675691}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Es\+Chrom\+Init$<$ E\+O\+T $>$}
+
+Random Es-\/chromosome initializer (therefore derived from \mbox{\hyperlink{classeo_init}{eo\+Init}})
+
+This class can initialize four types of real-\/valued genotypes thanks to tempate specialization of private method create\+:
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classeo_real}{eo\+Real}} just an eo\+Vector$<$double$>$
+\item \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}} + one self-\/adapting single sigma for all variables
+\item \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}} a whole std\+::vector of self-\/adapting sigmas
+\item \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}} a full self-\/adapting correlation matrix
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_real}{eo\+Real}} \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}} \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}} \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}} \mbox{\hyperlink{classeo_init}{eo\+Init}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_es_chrom_init_a65970ef49133bd3ac385ab0d4618447a}\label{classeo_es_chrom_init_a65970ef49133bd3ac385ab0d4618447a}} 
+\index{eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}!eoEsChromInit@{eoEsChromInit}}
+\index{eoEsChromInit@{eoEsChromInit}!eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEsChromInit()}{eoEsChromInit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds,  }\item[{double}]{\+\_\+sigma = {\ttfamily 0.3},  }\item[{bool}]{\+\_\+to\+\_\+scale = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & bounds for uniform initialization \\
+\hline
+{\em \+\_\+sigma} & initial value for the stddev \\
+\hline
+{\em \+\_\+to\+\_\+scale} & wether sigma should be multiplied by the range of each variable added December 2004 -\/ MS (together with the whole comment \+:-\/) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_es_chrom_init_a80153ace28e085a985f722c859bdbc47}\label{classeo_es_chrom_init_a80153ace28e085a985f722c859bdbc47}} 
+\index{eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}!eoEsChromInit@{eoEsChromInit}}
+\index{eoEsChromInit@{eoEsChromInit}!eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEsChromInit()}{eoEsChromInit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds,  }\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+vec\+Sigma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+
+Specify individual initial sigmas for each variable.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & bounds for uniform initialization \\
+\hline
+{\em \+\_\+vec\+Sigma} & initial value for the stddev \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_es_chrom_init_a65970ef49133bd3ac385ab0d4618447a}\label{classeo_es_chrom_init_a65970ef49133bd3ac385ab0d4618447a}} 
+\index{eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}!eoEsChromInit@{eoEsChromInit}}
+\index{eoEsChromInit@{eoEsChromInit}!eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEsChromInit()}{eoEsChromInit()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds,  }\item[{double}]{\+\_\+sigma = {\ttfamily 0.3},  }\item[{bool}]{\+\_\+to\+\_\+scale = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & bounds for uniform initialization \\
+\hline
+{\em \+\_\+sigma} & initial value for the stddev \\
+\hline
+{\em \+\_\+to\+\_\+scale} & wether sigma should be multiplied by the range of each variable added December 2004 -\/ MS (together with the whole comment \+:-\/) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_es_chrom_init_a80153ace28e085a985f722c859bdbc47}\label{classeo_es_chrom_init_a80153ace28e085a985f722c859bdbc47}} 
+\index{eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}!eoEsChromInit@{eoEsChromInit}}
+\index{eoEsChromInit@{eoEsChromInit}!eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEsChromInit()}{eoEsChromInit()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} \&}]{\+\_\+bounds,  }\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+vec\+Sigma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+
+Specify individual initial sigmas for each variable.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & bounds for uniform initialization \\
+\hline
+{\em \+\_\+vec\+Sigma} & initial value for the stddev \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_es_chrom_init_a8c78f16109076cff335ef205a9675691}\label{classeo_es_chrom_init_a8c78f16109076cff335ef205a9675691}} 
+\index{eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+simply passes the argument to the uniform method of the bounds 
+
+Reimplemented from \mbox{\hyperlink{classeo_real_init_bounded_a15e2910be0fdc2b7f5265a66a6a1a74b}{eo\+Real\+Init\+Bounded$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_es_chrom_init_a8c78f16109076cff335ef205a9675691}\label{classeo_es_chrom_init_a8c78f16109076cff335ef205a9675691}} 
+\index{eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoEsChromInit$<$ EOT $>$@{eoEsChromInit$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+simply passes the argument to the uniform method of the bounds 
+
+Reimplemented from \mbox{\hyperlink{classeo_real_init_bounded_a15e2910be0fdc2b7f5265a66a6a1a74b}{eo\+Real\+Init\+Bounded$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/es/eo\+Es\+Chrom\+Init.\+h\end{DoxyCompactItemize}

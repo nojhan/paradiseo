@@ -1,0 +1,118 @@
+\hypertarget{classmoeo_fuzzy_nearest_neighbor_diversity}{}\doxysection{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_fuzzy_nearest_neighbor_diversity}\index{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_fuzzy_nearest_neighbor_diversity__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_fuzzy_nearest_neighbor_diversity__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity_a35752e5a01ae40992ca96343bbcd901f}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity_a480e56a389e5b9a076575503d59531c0}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity}} (\mbox{\hyperlink{classmoeo_bert_distance}{moeo\+Bert\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&\+\_\+dist, \mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, unsigned int \+\_\+index=1)
+\item 
+void \mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity_a914b053b5602795ba3f020df631eb90f}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity_a84c8d17c4549ca50f1f759c7b39a490a}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity$<$ M\+O\+E\+O\+T $>$}
+
+\mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity}} is a \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}} using the fuzzy \char`\"{}\+Bert\char`\"{} distance between individuals to assign diversity. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_nearest_neighbor_diversity_a35752e5a01ae40992ca96343bbcd901f}\label{classmoeo_fuzzy_nearest_neighbor_diversity_a35752e5a01ae40992ca96343bbcd901f}} 
+\index{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}}}
+
+The type for objective vector 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_nearest_neighbor_diversity_a480e56a389e5b9a076575503d59531c0}\label{classmoeo_fuzzy_nearest_neighbor_diversity_a480e56a389e5b9a076575503d59531c0}} 
+\index{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}!moeoFuzzyNearestNeighborDiversity@{moeoFuzzyNearestNeighborDiversity}}
+\index{moeoFuzzyNearestNeighborDiversity@{moeoFuzzyNearestNeighborDiversity}!moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFuzzyNearestNeighborDiversity()}{moeoFuzzyNearestNeighborDiversity()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_bert_distance}{moeo\+Bert\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&}]{\+\_\+dist,  }\item[{\mbox{\hyperlink{classmoeo_fuzzy_archive}{moeo\+Fuzzy\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{unsigned int}]{\+\_\+index = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own distance and archive 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dist} & the distance used \\
+\hline
+{\em \+\_\+archive} & the archive used \\
+\hline
+{\em \+\_\+index} & index for find the k-\/ieme nearest neighbor, \+\_\+index correspond to k \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_nearest_neighbor_diversity_a914b053b5602795ba3f020df631eb90f}\label{classmoeo_fuzzy_nearest_neighbor_diversity_a914b053b5602795ba3f020df631eb90f}} 
+\index{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Affect the diversity to the pop, diversity corresponding to the k-\/ieme nearest neighbor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_fuzzy_nearest_neighbor_diversity_a84c8d17c4549ca50f1f759c7b39a490a}\label{classmoeo_fuzzy_nearest_neighbor_diversity_a84c8d17c4549ca50f1f759c7b39a490a}} 
+\index{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$@{moeoFuzzyNearestNeighborDiversity$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}{moeo\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/diversity/moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity.\+h\end{DoxyCompactItemize}

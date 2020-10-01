@@ -1,0 +1,36 @@
+\hypertarget{classeoserial_1_1_is_derived_from}{}\doxysection{eoserial\+::Is\+Derived\+From$<$ Derived, Base $>$ Class Template Reference}
+\label{classeoserial_1_1_is_derived_from}\index{eoserial::IsDerivedFrom$<$ Derived, Base $>$@{eoserial::IsDerivedFrom$<$ Derived, Base $>$}}
+
+
+Trait to know whether Derived is derived from Base or not.  
+
+
+
+
+{\ttfamily \#include $<$Traits.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeoserial_1_1_is_derived_from_a88468764d651b0fe6e394809ba28e747}\label{classeoserial_1_1_is_derived_from_a88468764d651b0fe6e394809ba28e747}} 
+enum \{ {\bfseries value} = sizeof( Test( static\+\_\+cast$<$Derived$\ast$$>$(0) ) ) == sizeof(yes)
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Derived, class Base$>$\newline
+class eoserial\+::\+Is\+Derived\+From$<$ Derived, Base $>$}
+
+Trait to know whether Derived is derived from Base or not. 
+
+To know whether A is derived from B, just test the boolean Is\+Derived\+From$<$\+A, B$>$\+::value.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.gotw.ca/publications/mxc++-item-4.htm}{\texttt{ http\+://www.\+gotw.\+ca/publications/mxc++-\/item-\/4.\+htm}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/\mbox{\hyperlink{_traits_8h}{Traits.\+h}}\end{DoxyCompactItemize}

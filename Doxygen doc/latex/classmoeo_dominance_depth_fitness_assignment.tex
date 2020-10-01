@@ -1,0 +1,123 @@
+\hypertarget{classmoeo_dominance_depth_fitness_assignment}{}\doxysection{moeo\+Dominance\+Depth\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_dominance_depth_fitness_assignment}\index{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dominance\+Depth\+Fitness\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dominance\+Depth\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dominance_depth_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dominance\+Depth\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dominance_depth_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_addcd2245a488e65f4faea85944842127}{moeo\+Dominance\+Depth\+Fitness\+Assignment}} (bool \+\_\+rm\+\_\+equiv\+\_\+flag\+\_\+in\+\_\+2D=false)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_aee82cb163b2e0841bb1d6840a9ca4a03}{moeo\+Dominance\+Depth\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}{Objective\+Vector}} $>$ \&\+\_\+comparator, bool \+\_\+rm\+\_\+equiv\+\_\+flag\+\_\+in\+\_\+2D=true)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a8ee6a6d0115c16ef5e12a71fbcc6c38e}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a82ec4032dce53be5ae82a9ba8cdab1de}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Dominance\+Depth\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Fitness assignment sheme based on Pareto-\/dominance count proposed in\+: N. Srinivas, K. Deb, \char`\"{}\+Multiobjective Optimization Using Nondominated Sorting in Genetic Algorithms\char`\"{}, Evolutionary Computation vol. 2, no. 3, pp. 221-\/248 (1994) and in\+: K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, \char`\"{}\+A Fast and Elitist Multi-\/\+Objective Genetic Algorithm\+: N\+S\+G\+A-\/\+I\+I\char`\"{}, I\+E\+EE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). This strategy is, for instance, used in N\+S\+GA and N\+S\+G\+A-\/\+II. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}\label{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}} 
+\index{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment}{moeo\+Dominance\+Depth\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_depth_fitness_assignment_addcd2245a488e65f4faea85944842127}\label{classmoeo_dominance_depth_fitness_assignment_addcd2245a488e65f4faea85944842127}} 
+\index{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}!moeoDominanceDepthFitnessAssignment@{moeoDominanceDepthFitnessAssignment}}
+\index{moeoDominanceDepthFitnessAssignment@{moeoDominanceDepthFitnessAssignment}!moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceDepthFitnessAssignment()}{moeoDominanceDepthFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment}{moeo\+Dominance\+Depth\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment}{moeo\+Dominance\+Depth\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+rm\+\_\+equiv\+\_\+flag\+\_\+in\+\_\+2D = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor \mbox{\Hypertarget{classmoeo_dominance_depth_fitness_assignment_aee82cb163b2e0841bb1d6840a9ca4a03}\label{classmoeo_dominance_depth_fitness_assignment_aee82cb163b2e0841bb1d6840a9ca4a03}} 
+\index{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}!moeoDominanceDepthFitnessAssignment@{moeoDominanceDepthFitnessAssignment}}
+\index{moeoDominanceDepthFitnessAssignment@{moeoDominanceDepthFitnessAssignment}!moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceDepthFitnessAssignment()}{moeoDominanceDepthFitnessAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment}{moeo\+Dominance\+Depth\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment}{moeo\+Dominance\+Depth\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{bool}]{\+\_\+rm\+\_\+equiv\+\_\+flag\+\_\+in\+\_\+2D = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own way to compare objective vectors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_depth_fitness_assignment_a8ee6a6d0115c16ef5e12a71fbcc6c38e}\label{classmoeo_dominance_depth_fitness_assignment_a8ee6a6d0115c16ef5e12a71fbcc6c38e}} 
+\index{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment}{moeo\+Dominance\+Depth\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dominance_depth_fitness_assignment_a82ec4032dce53be5ae82a9ba8cdab1de}\label{classmoeo_dominance_depth_fitness_assignment_a82ec4032dce53be5ae82a9ba8cdab1de}} 
+\index{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$@{moeoDominanceDepthFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment}{moeo\+Dominance\+Depth\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_dominance_depth_fitness_assignment_a6dd6fa072703e705e9b374c6ab31d3c4}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Dominance\+Depth\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

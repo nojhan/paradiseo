@@ -1,0 +1,217 @@
+\hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm}{}\doxysection{eo\+::mpi\+::Dynamic\+Assignment\+Algorithm Struct Reference}
+\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm}\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+
+
+Assignment (scheduling) algorithm which handles workers in a queue.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi\+Assignment\+Algorithm.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Dynamic\+Assignment\+Algorithm\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{structeo_1_1mpi_1_1_dynamic_assignment_algorithm__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Dynamic\+Assignment\+Algorithm\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{structeo_1_1mpi_1_1_dynamic_assignment_algorithm__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a77ed8db95bd6bb63b2b45bb89b2d557c}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a77ed8db95bd6bb63b2b45bb89b2d557c}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a77ed8db95bd6bb63b2b45bb89b2d557c}{Dynamic\+Assignment\+Algorithm}} ()
+\begin{DoxyCompactList}\small\item\em Uses all the hosts whose rank is higher to 1, inclusive, as workers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a73bb6cd8d6dab5d3180db659d39eac8c}{Dynamic\+Assignment\+Algorithm}} (int unique)
+\begin{DoxyCompactList}\small\item\em Uses the unique host with given rank as a worker. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a0cb96021d502aa2b4fa6e67570249303}{Dynamic\+Assignment\+Algorithm}} (const std\+::vector$<$ int $>$ \&workers)
+\begin{DoxyCompactList}\small\item\em Uses the workers whose ranks are present in the argument as workers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a545b00c97a75443b833565f0b4c6ad8c}{Dynamic\+Assignment\+Algorithm}} (int first, int last)
+\begin{DoxyCompactList}\small\item\em Uses a range of ranks as workers. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_ac72365be8cf3c33b37abd0d230c4a7ec}{get}} ()
+\begin{DoxyCompactList}\small\item\em Gets the rank of an available worker, so as to send it a task. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a9efdee9919d748335bc5c4c56357c16f}{available\+Workers}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of total available workers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a1aa27eb8bd96425843c15a203ce03365}{confirm}} (int rank)
+\begin{DoxyCompactList}\small\item\em Reinject the worker of indicated rank in the available state. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_ad3de68053344e8174fe3061caaffddfa}{idles}} ()
+\begin{DoxyCompactList}\small\item\em Indicates who are the workers which do nothing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a477561d3002d0493a296dec530675002}{reinit}} (int \+\_\+)
+\begin{DoxyCompactList}\small\item\em Reinitializes the assignment algorithm with the right number of runs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_afc045f4cb2cb568b8d95b16854cfeb37}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_afc045f4cb2cb568b8d95b16854cfeb37}} 
+std\+::vector$<$ int $>$ {\bfseries available\+Wrk}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Assignment (scheduling) algorithm which handles workers in a queue. 
+
+With this assignment algorithm, workers are put in a queue and may be called an unlimited number of times. Whenever a worker returns, it is added to the queue, and it becomes available for the next call to \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_ac72365be8cf3c33b37abd0d230c4a7ec}{get()}}. The available workers are all located in the queue at any time, so the number of available workers is directly equal to the size of the queue.
+
+This kind of assignment is adapted for tasks whose execution time is stochastic or unknown, but without any warranty to be faster than other assignments. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a73bb6cd8d6dab5d3180db659d39eac8c}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a73bb6cd8d6dab5d3180db659d39eac8c}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!DynamicAssignmentAlgorithm@{DynamicAssignmentAlgorithm}}
+\index{DynamicAssignmentAlgorithm@{DynamicAssignmentAlgorithm}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{DynamicAssignmentAlgorithm()}{DynamicAssignmentAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::\+Dynamic\+Assignment\+Algorithm (\begin{DoxyParamCaption}\item[{int}]{unique }\end{DoxyParamCaption})}
+
+
+
+Uses the unique host with given rank as a worker. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em unique} & M\+PI rank of the unique worker. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a0cb96021d502aa2b4fa6e67570249303}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a0cb96021d502aa2b4fa6e67570249303}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!DynamicAssignmentAlgorithm@{DynamicAssignmentAlgorithm}}
+\index{DynamicAssignmentAlgorithm@{DynamicAssignmentAlgorithm}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{DynamicAssignmentAlgorithm()}{DynamicAssignmentAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::\+Dynamic\+Assignment\+Algorithm (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{workers }\end{DoxyParamCaption})}
+
+
+
+Uses the workers whose ranks are present in the argument as workers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em workers} & std\+::vector containing M\+PI ranks of workers. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a545b00c97a75443b833565f0b4c6ad8c}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a545b00c97a75443b833565f0b4c6ad8c}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!DynamicAssignmentAlgorithm@{DynamicAssignmentAlgorithm}}
+\index{DynamicAssignmentAlgorithm@{DynamicAssignmentAlgorithm}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{DynamicAssignmentAlgorithm()}{DynamicAssignmentAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::\+Dynamic\+Assignment\+Algorithm (\begin{DoxyParamCaption}\item[{int}]{first,  }\item[{int}]{last }\end{DoxyParamCaption})}
+
+
+
+Uses a range of ranks as workers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first} & The first worker to be included (inclusive) \\
+\hline
+{\em last} & The last worker to be included (inclusive). If last == \mbox{\hyperlink{group___m_p_i_ga278419db2678de33e623416b129c323c}{eo\+::mpi\+::\+R\+E\+S\+T\+\_\+\+O\+F\+\_\+\+T\+H\+E\+\_\+\+W\+O\+R\+LD}}, all hosts whose rank is higher than first are taken. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a9efdee9919d748335bc5c4c56357c16f}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a9efdee9919d748335bc5c4c56357c16f}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!availableWorkers@{availableWorkers}}
+\index{availableWorkers@{availableWorkers}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{availableWorkers()}{availableWorkers()}}
+{\footnotesize\ttfamily int eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::available\+Workers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the number of total available workers. 
+
+Before the first call, it is equal to the total number of present workers, as specified in the specific assignment algorithm constructor. It allows the \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} class to know when all the responses have been received, by comparing this number to the total number of workers.
+
+\begin{DoxyReturn}{Returns}
+Integer indicating how many workers are available. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a7739b53c6b530ea977696004f55da056}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a1aa27eb8bd96425843c15a203ce03365}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a1aa27eb8bd96425843c15a203ce03365}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!confirm@{confirm}}
+\index{confirm@{confirm}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{confirm()}{confirm()}}
+{\footnotesize\ttfamily void eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::confirm (\begin{DoxyParamCaption}\item[{int}]{wrk\+Rank }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reinject the worker of indicated rank in the available state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wrk\+Rank} & The M\+PI rank of the worker who has finished its job. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a886b8539c8505e7a31c9697b89b31e41}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_ac72365be8cf3c33b37abd0d230c4a7ec}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_ac72365be8cf3c33b37abd0d230c4a7ec}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!get@{get}}
+\index{get@{get}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily int eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the rank of an available worker, so as to send it a task. 
+
+\begin{DoxyReturn}{Returns}
+The M\+PI rank of an available worker, or -\/1 if there is no available worker. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a9615d21e32f5360ec8975d26f6dca2e0}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_ad3de68053344e8174fe3061caaffddfa}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_ad3de68053344e8174fe3061caaffddfa}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!idles@{idles}}
+\index{idles@{idles}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{idles()}{idles()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::idles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Indicates who are the workers which do nothing. 
+
+At the end of the algorithm, the master has to warn all the workers that it\textquotesingle{}s done. All the workers mean, the workers which are currently processing data, and the other ones who could be waiting \+: the idles. This function indicates to the master which worker aren\textquotesingle{}t doing anything.
+
+\begin{DoxyReturn}{Returns}
+A std\+::vector containing all the M\+PI ranks of the idles workers. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_ade3971338ff2ed092b5990535ecc0068}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a477561d3002d0493a296dec530675002}\label{structeo_1_1mpi_1_1_dynamic_assignment_algorithm_a477561d3002d0493a296dec530675002}} 
+\index{eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}!reinit@{reinit}}
+\index{reinit@{reinit}!eo::mpi::DynamicAssignmentAlgorithm@{eo::mpi::DynamicAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{reinit()}{reinit()}}
+{\footnotesize\ttfamily void eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm\+::reinit (\begin{DoxyParamCaption}\item[{int}]{runs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reinitializes the assignment algorithm with the right number of runs. 
+
+In fact, this is only useful for static assignment algorithm, which has to be reinitialized every time it\textquotesingle{}s used, in the case of a Multi \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}}. It\textquotesingle{}s the user\textquotesingle{}s responsability to call this function.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000031}{Todo}}]Not really clean. Find a better way to do it. \end{DoxyRefDesc}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a8cc57ef9b9b6a423f7b3c0a7cc5cbcd4}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi\+Assignment\+Algorithm.\+h\item 
+eo/src/mpi/eo\+Mpi\+Assignment\+Algorithm.\+cpp\end{DoxyCompactItemize}

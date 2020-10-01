@@ -1,0 +1,267 @@
+\hypertarget{classeo_ring_topology}{}\doxysection{eo\+Ring\+Topology$<$ P\+OT $>$ Class Template Reference}
+\label{classeo_ring_topology}\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Ring\+Topology.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Ring\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_ring_topology__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Ring\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_ring_topology__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_ring_topology_a27ad6deace780d582ab4cf31eaa0df7c}{eo\+Ring\+Topology}} (unsigned \+\_\+neighborhood\+Size)
+\item 
+void \mbox{\hyperlink{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+unsigned \mbox{\hyperlink{classeo_ring_topology_a49c4a76a90d808842af23cc90017fb6f}{retrieve\+Neighborhood\+By\+Indice}} (unsigned \+\_\+indice)
+\item 
+void \mbox{\hyperlink{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}{update\+Neighborhood}} (P\+OT \&\+\_\+po, unsigned \+\_\+indice)
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}{best}} (unsigned \+\_\+indice)
+\item 
+void \mbox{\hyperlink{classeo_ring_topology_acf7a9bf9d5395d04bac38d92aa372f97}{print\+On}} ()
+\item 
+\mbox{\Hypertarget{classeo_ring_topology_aa16181ac6df9f7545059873245cd9d9e}\label{classeo_ring_topology_aa16181ac6df9f7545059873245cd9d9e}} 
+virtual P\+OT \& {\bfseries global\+Best} ()
+\item 
+\mbox{\hyperlink{classeo_ring_topology_a27ad6deace780d582ab4cf31eaa0df7c}{eo\+Ring\+Topology}} (unsigned \+\_\+neighborhood\+Size)
+\item 
+void \mbox{\hyperlink{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+unsigned \mbox{\hyperlink{classeo_ring_topology_a49c4a76a90d808842af23cc90017fb6f}{retrieve\+Neighborhood\+By\+Indice}} (unsigned \+\_\+indice)
+\item 
+void \mbox{\hyperlink{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}{update\+Neighborhood}} (P\+OT \&\+\_\+po, unsigned \+\_\+indice)
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}{best}} (unsigned \+\_\+indice)
+\item 
+void \mbox{\hyperlink{classeo_ring_topology_aa0601c3f73d936beb5084ac0f6a5dcaf}{print\+On}} (std\+::ostream \&out) const
+\item 
+\mbox{\Hypertarget{classeo_ring_topology_aa16181ac6df9f7545059873245cd9d9e}\label{classeo_ring_topology_aa16181ac6df9f7545059873245cd9d9e}} 
+virtual P\+OT \& {\bfseries global\+Best} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_ring_topology_a8af7741605656ab36100419145bbde83}\label{classeo_ring_topology_a8af7741605656ab36100419145bbde83}} 
+std\+::vector$<$ \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$ $>$ {\bfseries neighborhoods}
+\item 
+\mbox{\Hypertarget{classeo_ring_topology_a04624ad8faba0c36896f7f9d99871583}\label{classeo_ring_topology_a04624ad8faba0c36896f7f9d99871583}} 
+unsigned {\bfseries neighborhood\+Size}
+\item 
+\mbox{\Hypertarget{classeo_ring_topology_aa702a7deca472b1a883625f239611589}\label{classeo_ring_topology_aa702a7deca472b1a883625f239611589}} 
+bool {\bfseries is\+Setup}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class P\+OT$>$\newline
+class eo\+Ring\+Topology$<$ P\+O\+T $>$}
+
+Static ring topology for particle swarm optimization. The neighborhoods are built using a ring based on each particle\textquotesingle{}s indice and do not change for all the time steps. Only the best particle in each neighborhood is potentially updated thanks to the \char`\"{}update\+Neighborhood\char`\"{} method. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_ring_topology_a27ad6deace780d582ab4cf31eaa0df7c}\label{classeo_ring_topology_a27ad6deace780d582ab4cf31eaa0df7c}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!eoRingTopology@{eoRingTopology}}
+\index{eoRingTopology@{eoRingTopology}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoRingTopology()}{eoRingTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+neighborhood\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The only Ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood\+Size} & -\/ The size of each neighborhood. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_ring_topology_a27ad6deace780d582ab4cf31eaa0df7c}\label{classeo_ring_topology_a27ad6deace780d582ab4cf31eaa0df7c}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!eoRingTopology@{eoRingTopology}}
+\index{eoRingTopology@{eoRingTopology}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoRingTopology()}{eoRingTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+neighborhood\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The only Ctor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood\+Size} & -\/ The size of each neighborhood. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}\label{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the best particle belonging to the neighborhood of the given particle. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indice} & -\/ The indice of a particle in the population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+OT \& -\/ The best particle in the neighborhood of the particle whose indice is \+\_\+indice 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}\label{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the best particle belonging to the neighborhood of the given particle. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indice} & -\/ The indice of a particle in the population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+OT \& -\/ The best particle in the neighborhood of the particle whose indice is \+\_\+indice 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_ring_topology_acf7a9bf9d5395d04bac38d92aa372f97}\label{classeo_ring_topology_acf7a9bf9d5395d04bac38d92aa372f97}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::print\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print the structure of the topology on the standard output. 
+
+Implements \mbox{\hyperlink{classeo_topology_a96f44377c7cf60ab8fede4ea0fa568a9}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_ring_topology_aa0601c3f73d936beb5084ac0f6a5dcaf}\label{classeo_ring_topology_aa0601c3f73d936beb5084ac0f6a5dcaf}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print the structure of the topology on the standard output. 
+
+Reimplemented from \mbox{\hyperlink{classeo_pop_a86429ea46461d7f049157dc0ceebcd34}{eo\+Pop$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_ring_topology_a49c4a76a90d808842af23cc90017fb6f}\label{classeo_ring_topology_a49c4a76a90d808842af23cc90017fb6f}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}}
+\index{retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{retrieveNeighborhoodByIndice()}{retrieveNeighborhoodByIndice()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::retrieve\+Neighborhood\+By\+Indice (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Retrieves the neighboorhood of a particle. \begin{DoxyReturn}{Returns}
+\+\_\+indice -\/ The particle indice (in the population) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_ring_topology_a49c4a76a90d808842af23cc90017fb6f}\label{classeo_ring_topology_a49c4a76a90d808842af23cc90017fb6f}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}}
+\index{retrieveNeighborhoodByIndice@{retrieveNeighborhoodByIndice}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{retrieveNeighborhoodByIndice()}{retrieveNeighborhoodByIndice()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::retrieve\+Neighborhood\+By\+Indice (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Retrieves the neighboorhood of a particle. \begin{DoxyReturn}{Returns}
+\+\_\+indice -\/ The particle indice (in the population) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}\label{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Builds the neighborhoods using a ring strategy based on the particle indices. Also initializes the best particle of each neighborhood. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & -\/ The population used to build the only neighborhood. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}\label{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Builds the neighborhoods using a ring strategy based on the particle indices. Also initializes the best particle of each neighborhood. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & -\/ The population used to build the only neighborhood. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}\label{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{\+\_\+po,  }\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the best fitness of the given particle and potentially replaces the local best the given particle it\textquotesingle{}s better. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+po} & -\/ The particle to update \\
+\hline
+{\em \+\_\+indice} & -\/ The indice of the given particle in the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}\label{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}} 
+\index{eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoRingTopology$<$ POT $>$@{eoRingTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_ring_topology}{eo\+Ring\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{\+\_\+po,  }\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the best fitness of the given particle and potentially replaces the local best the given particle it\textquotesingle{}s better. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+po} & -\/ The particle to update \\
+\hline
+{\em \+\_\+indice} & -\/ The indice of the given particle in the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Ring\+Topology.\+h\end{DoxyCompactItemize}

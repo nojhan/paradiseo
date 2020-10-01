@@ -1,0 +1,94 @@
+\hypertarget{classmoeo_fuzzy_objective_vector_normalizer}{}\doxysection{moeo\+Fuzzy\+Objective\+Vector\+Normalizer$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_fuzzy_objective_vector_normalizer}\index{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fuzzy\+Objective\+Vector\+Normalizer.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_fuzzy_objective_vector_normalizer_a353ac68e32a4d0ebf312195cde0f2e43}\label{classmoeo_fuzzy_objective_vector_normalizer_a353ac68e32a4d0ebf312195cde0f2e43}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_fuzzy_objective_vector_normalizer_a144290b9d64603066f0ab26b8105f671}\label{classmoeo_fuzzy_objective_vector_normalizer_a144290b9d64603066f0ab26b8105f671}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector\+::\+Type {\bfseries Type}
+\item 
+\mbox{\Hypertarget{classmoeo_fuzzy_objective_vector_normalizer_a54211b53776374a869e3a2b030800ab0}\label{classmoeo_fuzzy_objective_vector_normalizer_a54211b53776374a869e3a2b030800ab0}} 
+typedef std\+::vector$<$ std\+::vector$<$ Type $>$ $>$ {\bfseries Scale}
+\item 
+\mbox{\Hypertarget{classmoeo_fuzzy_objective_vector_normalizer_ad51ffc7e72deb90eb287d6816332f9c1}\label{classmoeo_fuzzy_objective_vector_normalizer_ad51ffc7e72deb90eb287d6816332f9c1}} 
+typedef \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} {\bfseries Bounds}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_fuzzy_objective_vector_normalizer_adc4af43ba04c158eebea9fb7e99972de}{moeo\+Fuzzy\+Objective\+Vector\+Normalizer}} (Scale \+\_\+scale=make\+\_\+dummy\+\_\+scale(), Type max\+\_\+param=100)
+\item 
+virtual Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_objective_vector_normalizer_a9b3cebd347512d9216e7bff209e23a38}{operator()}} (const Objective\+Vector \&\+\_\+vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ Objective\+Vector $>$ \mbox{\hyperlink{classmoeo_fuzzy_objective_vector_normalizer_a7c0ba0d0c4231eb200f069726f8c622d}{normalize}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop, Type \&max)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Fuzzy\+Objective\+Vector\+Normalizer$<$ M\+O\+E\+O\+T $>$}
+
+Adaptation of classical class \char`\"{}moeo\+Objective\+Vector\+Normalizer\char`\"{} to normalize fuzzy objective Vectors 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_objective_vector_normalizer_adc4af43ba04c158eebea9fb7e99972de}\label{classmoeo_fuzzy_objective_vector_normalizer_adc4af43ba04c158eebea9fb7e99972de}} 
+\index{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$}!moeoFuzzyObjectiveVectorNormalizer@{moeoFuzzyObjectiveVectorNormalizer}}
+\index{moeoFuzzyObjectiveVectorNormalizer@{moeoFuzzyObjectiveVectorNormalizer}!moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFuzzyObjectiveVectorNormalizer()}{moeoFuzzyObjectiveVectorNormalizer()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fuzzy_objective_vector_normalizer}{moeo\+Fuzzy\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fuzzy_objective_vector_normalizer}{moeo\+Fuzzy\+Objective\+Vector\+Normalizer}} (\begin{DoxyParamCaption}\item[{Scale}]{\+\_\+scale = {\ttfamily make\+\_\+dummy\+\_\+scale()},  }\item[{Type}]{max\+\_\+param = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a supplied scale, usefull if you tweak your scale 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+scale} & the scale for noramlzation \\
+\hline
+{\em max\+\_\+param} & the returned values will be between 0 and max \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_fuzzy_objective_vector_normalizer_a7c0ba0d0c4231eb200f069726f8c622d}\label{classmoeo_fuzzy_objective_vector_normalizer_a7c0ba0d0c4231eb200f069726f8c622d}} 
+\index{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$}!normalize@{normalize}}
+\index{normalize@{normalize}!moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static std\+::vector$<$Objective\+Vector$>$ \mbox{\hyperlink{classmoeo_fuzzy_objective_vector_normalizer}{moeo\+Fuzzy\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::normalize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{pop,  }\item[{Type \&}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+normalize a population 
+\begin{DoxyParams}{Parameters}
+{\em pop} & the population to normalize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of normalized Objective vectors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_fuzzy_objective_vector_normalizer_a9b3cebd347512d9216e7bff209e23a38}\label{classmoeo_fuzzy_objective_vector_normalizer_a9b3cebd347512d9216e7bff209e23a38}} 
+\index{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoFuzzyObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual Objective\+Vector \mbox{\hyperlink{classmoeo_fuzzy_objective_vector_normalizer}{moeo\+Fuzzy\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{\+\_\+vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+main fonction, normalize a triangular fuzzy vector defined with a triplet \mbox{[}first, second, third\mbox{]}. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+vec} & the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the normalized vector 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/utils/moeo\+Fuzzy\+Objective\+Vector\+Normalizer.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+\hypertarget{classeo_bin_gen_op}{}\doxysection{eo\+Bin\+Gen\+Op$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_bin_gen_op}\index{eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Gen\+Op.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Bin\+Gen\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_bin_gen_op__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Bin\+Gen\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_bin_gen_op__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_bin_gen_op_a134c57b76ba72b929bd8d1b81e460650}\label{classeo_bin_gen_op_a134c57b76ba72b929bd8d1b81e460650}} 
+{\bfseries eo\+Bin\+Gen\+Op} (\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op)
+\item 
+unsigned \mbox{\hyperlink{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}{max\+\_\+production}} (void)
+\item 
+void \mbox{\hyperlink{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}{apply}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_bin_gen_op_a47764a0f873b399a7f91a57caa22c53d}\label{classeo_bin_gen_op_a47764a0f873b399a7f91a57caa22c53d}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\item 
+\mbox{\Hypertarget{classeo_bin_gen_op_a134c57b76ba72b929bd8d1b81e460650}\label{classeo_bin_gen_op_a134c57b76ba72b929bd8d1b81e460650}} 
+{\bfseries eo\+Bin\+Gen\+Op} (\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op)
+\item 
+unsigned \mbox{\hyperlink{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}{max\+\_\+production}} (void)
+\item 
+void \mbox{\hyperlink{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}{apply}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_bin_gen_op_a47764a0f873b399a7f91a57caa22c53d}\label{classeo_bin_gen_op_a47764a0f873b399a7f91a57caa22c53d}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}
+
+Wrapper for binop\+: here we use select method of \mbox{\hyperlink{classeo_populator}{eo\+Populator}} but we could also have an embedded selector to select the second parent 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}\label{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}} 
+\index{eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}!apply@{apply}}
+\index{apply@{apply}!eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_bin_gen_op}{eo\+Bin\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the work\+: get 2 individuals from the population, modifies only one (it\textquotesingle{}s a \mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}) 
+
+Implements \mbox{\hyperlink{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}\label{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}} 
+\index{eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}!apply@{apply}}
+\index{apply@{apply}!eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_bin_gen_op}{eo\+Bin\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the work\+: get 2 individuals from the population, modifies only one (it\textquotesingle{}s a \mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}) 
+
+Implements \mbox{\hyperlink{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}\label{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}} 
+\index{eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_bin_gen_op}{eo\+Bin\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Max production is used to reserve space for all elements that are used by the operator, not setting it properly can result in a crash 
+
+Implements \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}\label{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}} 
+\index{eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoBinGenOp$<$ EOT $>$@{eoBinGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+unsigned \mbox{\hyperlink{classeo_bin_gen_op}{eo\+Bin\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Max production is used to reserve space for all elements that are used by the operator, not setting it properly can result in a crash 
+
+Implements \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{eo\+Gen\+Op$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Gen\+Op.\+h\end{DoxyCompactItemize}

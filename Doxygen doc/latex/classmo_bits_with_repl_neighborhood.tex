@@ -1,0 +1,220 @@
+\hypertarget{classmo_bits_with_repl_neighborhood}{}\doxysection{mo\+Bits\+With\+Repl\+Neighborhood$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_bits_with_repl_neighborhood}\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Bits\+With\+Repl\+Neighborhood.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Bits\+With\+Repl\+Neighborhood$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{classmo_bits_with_repl_neighborhood__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Bits\+With\+Repl\+Neighborhood$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{classmo_bits_with_repl_neighborhood__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} \mbox{\hyperlink{classmo_bits_with_repl_neighborhood_a7d35575548b86aed6583a98fdf95c850}{E\+OT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_bits_with_repl_neighborhood_a77cb30b50a1bce8107041247f59d2271}{mo\+Bits\+With\+Repl\+Neighborhood}} (unsigned \+\_\+length, unsigned \+\_\+n\+Bits, unsigned \+\_\+sample\+Size, bool \+\_\+exact\+Distance=false)
+\item 
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood_a160fb0de5a96d742695e0ddc95a796e8}{random\+Neighbor}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor, unsigned \+\_\+n)
+\item 
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood_a4f73c9fb9d762bc0f06f0317fa80c3c4}{random\+Neighbor}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood_a5d56e162c153324405fee124c7d5503d}{init}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood_a4ff585c8a74f8954b670cda7c2affecb}{next}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual bool \mbox{\hyperlink{classmo_bits_with_repl_neighborhood_a5a482c92187d9e6a31f419cf20f3d4f3}{cont}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_bits_with_repl_neighborhood_af1702334595790ffd5d810fb6373aac5}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_af25d9442dc104394eed47c2a4d609f1e}\label{classmo_bits_with_repl_neighborhood_af25d9442dc104394eed47c2a4d609f1e}} 
+std\+::vector$<$ unsigned int $>$ {\bfseries index\+Vector}
+\item 
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_ae56fc3ce341e97cefd0641bf403e949b}\label{classmo_bits_with_repl_neighborhood_ae56fc3ce341e97cefd0641bf403e949b}} 
+unsigned int {\bfseries sample\+Size}
+\item 
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a7949ba4fca9023fff1c2376b15714cea}\label{classmo_bits_with_repl_neighborhood_a7949ba4fca9023fff1c2376b15714cea}} 
+unsigned {\bfseries n\+Neighbors}
+\item 
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a2e7144644eaba7f879e63d81c592ae98}\label{classmo_bits_with_repl_neighborhood_a2e7144644eaba7f879e63d81c592ae98}} 
+bool {\bfseries exact\+Distance}
+\item 
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_af0deaf0dff9a998ae222eca718396bd7}\label{classmo_bits_with_repl_neighborhood_af0deaf0dff9a998ae222eca718396bd7}} 
+std\+::vector$<$ unsigned int $>$ {\bfseries n\+Size}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Bits\+With\+Repl\+Neighborhood$<$ Neighbor $>$}
+
+A neighborhood for bit string solutions where several bits could be flipped under a given Hamming distance
+
+The neighborhood is explored in a random order Each neighbors is visited once time and the number of visited neighbors is a parameter 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a7d35575548b86aed6583a98fdf95c850}\label{classmo_bits_with_repl_neighborhood_a7d35575548b86aed6583a98fdf95c850}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!EOT@{EOT}}
+\index{EOT@{EOT}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{EOT}{EOT}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} \mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}}
+
+Define type of a solution corresponding to Neighbor 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a77cb30b50a1bce8107041247f59d2271}\label{classmo_bits_with_repl_neighborhood_a77cb30b50a1bce8107041247f59d2271}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!moBitsWithReplNeighborhood@{moBitsWithReplNeighborhood}}
+\index{moBitsWithReplNeighborhood@{moBitsWithReplNeighborhood}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moBitsWithReplNeighborhood()}{moBitsWithReplNeighborhood()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+length,  }\item[{unsigned}]{\+\_\+n\+Bits,  }\item[{unsigned}]{\+\_\+sample\+Size,  }\item[{bool}]{\+\_\+exact\+Distance = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+length} & bit string length \\
+\hline
+{\em \+\_\+n\+Bits} & maximum number of bits to flip (radius of the neighborhood) \\
+\hline
+{\em \+\_\+sample\+Size} & number of neighbor to sample in the neighborhood, if 0 all the neighborhood is sampled \\
+\hline
+{\em \+\_\+exact\+Distance} & when true, only neighbor with exactly k bits flip are considered, other neighbor $<$= Hamming distance k \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_af1702334595790ffd5d810fb6373aac5}\label{classmo_bits_with_repl_neighborhood_af1702334595790ffd5d810fb6373aac5}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_bits_neighborhood_ae3dbc341b4dbc3e20d74558bad6efe87}{mo\+Bits\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a5a482c92187d9e6a31f419cf20f3d4f3}\label{classmo_bits_with_repl_neighborhood_a5a482c92187d9e6a31f419cf20f3d4f3}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!cont@{cont}}
+\index{cont@{cont}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{cont()}{cont()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::cont (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if all neighbors are explored or not,if false, there is no neighbor left to explore 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is again a neighbor to explore\+: population size larger or equals than 1 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a4093914507138339f3756ff5edaf6531}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a5d56e162c153324405fee124c7d5503d}\label{classmo_bits_with_repl_neighborhood_a5d56e162c153324405fee124c7d5503d}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Initialization of the neighborhood\+: one random neighbor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+neighbor} & the first neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a0022065ea8d42fa00768896648badf5c}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a4ff585c8a74f8954b670cda7c2affecb}\label{classmo_bits_with_repl_neighborhood_a4ff585c8a74f8954b670cda7c2affecb}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!next@{next}}
+\index{next@{next}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Give the next neighbor apply several bit flips on the solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore (population of solutions) \\
+\hline
+{\em \+\_\+neighbor} & the next neighbor which in order of distance \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a984c484c44c9852d0f971856d12092ed}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a4f73c9fb9d762bc0f06f0317fa80c3c4}\label{classmo_bits_with_repl_neighborhood_a4f73c9fb9d762bc0f06f0317fa80c3c4}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!randomNeighbor@{randomNeighbor}}
+\index{randomNeighbor@{randomNeighbor}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{randomNeighbor()}{randomNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::random\+Neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+one random neighbor at maximal Hamming distance \+\_\+n
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+neighbor} & the first neighbor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_bits_with_repl_neighborhood_a160fb0de5a96d742695e0ddc95a796e8}\label{classmo_bits_with_repl_neighborhood_a160fb0de5a96d742695e0ddc95a796e8}} 
+\index{moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}!randomNeighbor@{randomNeighbor}}
+\index{randomNeighbor@{randomNeighbor}!moBitsWithReplNeighborhood$<$ Neighbor $>$@{moBitsWithReplNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{randomNeighbor()}{randomNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_bits_with_repl_neighborhood}{mo\+Bits\+With\+Repl\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::random\+Neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor,  }\item[{unsigned}]{\+\_\+n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+one random neighbor at Hamming distance \+\_\+n
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+neighbor} & the first neighbor \\
+\hline
+{\em \+\_\+n} & Hamming distance of the neighbor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/bit\+String/mo\+Bits\+With\+Repl\+Neighborhood.\+h\end{DoxyCompactItemize}

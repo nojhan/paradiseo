@@ -1,0 +1,84 @@
+\hypertarget{classmoeo_s_a}{}\doxysection{moeo\+SA$<$ M $>$ Class Template Reference}
+\label{classmoeo_s_a}\index{moeoSA$<$ M $>$@{moeoSA$<$ M $>$}}
+
+
+Simulated annealing (SA)  
+
+
+
+
+{\ttfamily \#include $<$moeo\+S\+A.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+SA$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_s_a__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+SA$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_s_a__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_s_a_a6dc80891efb58f2682e0393381d8ed93}\label{classmoeo_s_a_a6dc80891efb58f2682e0393381d8ed93}} 
+typedef M\+::\+E\+O\+Type {\bfseries M\+O\+E\+OT}
+\item 
+\mbox{\Hypertarget{classmoeo_s_a_a461b1fd035cbbe6d542c53ac5ed658fc}\label{classmoeo_s_a_a461b1fd035cbbe6d542c53ac5ed658fc}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_s_a_a43f289f1cb11937d4a25016472dd5fba}\label{classmoeo_s_a_a43f289f1cb11937d4a25016472dd5fba}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_s_a_ae25aa7e66f9272db71e76ad18fac7cc7}\label{classmoeo_s_a_ae25aa7e66f9272db71e76ad18fac7cc7}} 
+{\bfseries moeo\+SA} (mo\+Rand\+Move$<$ M $>$ \&\+\_\+random\+\_\+move\+\_\+generator, mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&\+\_\+incremental\+\_\+evaluation, mo\+Sol\+Continue$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, double \+\_\+initial\+\_\+temperature, \mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}} \&\+\_\+cooling\+\_\+schedule, \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+singler)
+\item 
+bool \mbox{\hyperlink{classmoeo_s_a_acc06173438d27c71fbe7144ac587e2a6}{operator()}} (M\+O\+E\+OT \&\+\_\+solution)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M$>$\newline
+class moeo\+S\+A$<$ M $>$}
+
+Simulated annealing (SA) 
+
+Generic algorithm that describes a Simulated Annealing algorithm. Adapts the \mbox{\hyperlink{classmo_s_a}{mo\+SA}} for a multi-\/objective problem using a \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}. M is for Move 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_s_a_acc06173438d27c71fbe7144ac587e2a6}\label{classmoeo_s_a_acc06173438d27c71fbe7144ac587e2a6}} 
+\index{moeoSA$<$ M $>$@{moeoSA$<$ M $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSA$<$ M $>$@{moeoSA$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+bool \mbox{\hyperlink{classmoeo_s_a}{moeo\+SA}}$<$ M $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Algorithm of the SA As a mo\+HC, it can be used for H\+Y\+B\+R\+I\+D\+A\+T\+I\+ON in an evolutionary algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution to improve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/algo/moeo\+S\+A.\+h\end{DoxyCompactItemize}

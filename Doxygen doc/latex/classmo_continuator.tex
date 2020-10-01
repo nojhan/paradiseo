@@ -1,0 +1,86 @@
+\hypertarget{classmo_continuator}{}\doxysection{mo\+Continuator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_continuator}\index{moContinuator$<$ Neighbor $>$@{moContinuator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Continuator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_continuator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_continuator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_continuator_ad710e3e6feaabce2ba0e8a8fa311361a}\label{classmo_continuator_ad710e3e6feaabce2ba0e8a8fa311361a}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmo_continuator_a2e0feb9a6288cd6cba6b6817c9cdf481}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_continuator_ae63e06a6d1ca1988aaa9ad1713bda383}{last\+Call}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Continuator$<$ Neighbor $>$}
+
+To make specific continuator from a solution 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_continuator_a2e0feb9a6288cd6cba6b6817c9cdf481}\label{classmo_continuator_a2e0feb9a6288cd6cba6b6817c9cdf481}} 
+\index{moContinuator$<$ Neighbor $>$@{moContinuator$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moContinuator$<$ Neighbor $>$@{moContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Init Continuator parameters 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the related solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classmo_time_continuator_a18f66200e4668b845f16eb7d2fc455d6}{mo\+Time\+Continuator$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_time_continuator_a18f66200e4668b845f16eb7d2fc455d6}{mo\+Time\+Continuator$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_value_param_continuator_a4943fd04f3063668f5decf7753d9bc06}{mo\+Value\+Param\+Continuator$<$ Neighbor, Value\+Type $>$}}, \mbox{\hyperlink{classmo_neighbor_eval_continuator_ac247aa23ace1463b1072f923b83c8d41}{mo\+Neighbor\+Eval\+Continuator$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_iter_continuator_ac8a422faae391d67a50c002d9549f8cd}{mo\+Iter\+Continuator$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_iter_continuator_ac8a422faae391d67a50c002d9549f8cd}{mo\+Iter\+Continuator$<$ mo\+Dummy\+Neighbor$<$ eo\+Bit$<$ Fitness $>$ $>$ $>$}}, \mbox{\hyperlink{classmo_iter_continuator_ac8a422faae391d67a50c002d9549f8cd}{mo\+Iter\+Continuator$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_combined_continuator_ac4059747e6cb4d039e8bcd8aa4b5bfc9}{mo\+Combined\+Continuator$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_true_continuator_a29fb55bef449050788244929694f19e3}{mo\+True\+Continuator$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_true_continuator_a29fb55bef449050788244929694f19e3}{mo\+True\+Continuator$<$ mo\+Bit\+Neighbor $>$}}, and \mbox{\hyperlink{classmo_checkpoint_a7c021b914ac171968aab660bdb0e5ab0}{mo\+Checkpoint$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_continuator_ae63e06a6d1ca1988aaa9ad1713bda383}\label{classmo_continuator_ae63e06a6d1ca1988aaa9ad1713bda383}} 
+\index{moContinuator$<$ Neighbor $>$@{moContinuator$<$ Neighbor $>$}!lastCall@{lastCall}}
+\index{lastCall@{lastCall}!moContinuator$<$ Neighbor $>$@{moContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{lastCall()}{lastCall()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::last\+Call (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Last Call to terminate the checkpoint 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the related solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classmo_checkpoint_a7d2d30a027753e664fe8c68a40277494}{mo\+Checkpoint$<$ mo\+Bit\+Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Continuator.\+h\end{DoxyCompactItemize}

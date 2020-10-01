@@ -1,0 +1,89 @@
+\hypertarget{classeo_algo_pop_reset}{}\doxysection{eo\+Algo\+Pop\+Reset$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_algo_pop_reset}\index{eoAlgoPopReset$<$ EOT $>$@{eoAlgoPopReset$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Algo\+Reset.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Algo\+Pop\+Reset$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{classeo_algo_pop_reset__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Algo\+Pop\+Reset$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_algo_pop_reset__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_algo_pop_reset_a0fdd8036ceabf360a6a2ed849437c094}{eo\+Algo\+Pop\+Reset}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&init, \mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop\+\_\+eval)
+\item 
+\mbox{\hyperlink{classeo_algo_pop_reset_a878f80eff97db9bef28b59109aaa8dfe}{eo\+Algo\+Pop\+Reset}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&init, \mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop\+\_\+eval, size\+\_\+t pop\+\_\+size)
+\item 
+\mbox{\Hypertarget{classeo_algo_pop_reset_a2561f245a8f5778ae26826733d1a2310}\label{classeo_algo_pop_reset_a2561f245a8f5778ae26826733d1a2310}} 
+virtual void \mbox{\hyperlink{classeo_algo_pop_reset_a2561f245a8f5778ae26826733d1a2310}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_algo_pop_reset_ac5600e8f9fb8e6fb6372fa2392370eaf}\label{classeo_algo_pop_reset_ac5600e8f9fb8e6fb6372fa2392370eaf}} 
+\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries \+\_\+init}
+\item 
+\mbox{\Hypertarget{classeo_algo_pop_reset_a8854766e60cf411aea71e0f53a83b249}\label{classeo_algo_pop_reset_a8854766e60cf411aea71e0f53a83b249}} 
+\mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries \+\_\+pop\+\_\+eval}
+\item 
+\mbox{\Hypertarget{classeo_algo_pop_reset_a567bde4963216fc8a213f94682089929}\label{classeo_algo_pop_reset_a567bde4963216fc8a213f94682089929}} 
+bool {\bfseries \+\_\+has\+\_\+pop\+\_\+size}
+\item 
+\mbox{\Hypertarget{classeo_algo_pop_reset_aab21e339595104638ca985805556a13d}\label{classeo_algo_pop_reset_aab21e339595104638ca985805556a13d}} 
+size\+\_\+t {\bfseries \+\_\+pop\+\_\+size}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Algo\+Pop\+Reset$<$ E\+O\+T $>$}
+
+Reset the given population when called.
+
+i.\+e. Remove all its content, then re-\/generate individuals with the given \mbox{\hyperlink{classeo_init}{eo\+Init}}.
+
+The reinitialized pop will have either the same size than the previous population (if no pop\+\_\+size is passed to the constructor), either the previous (given) pop size.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_algo_restart}{eo\+Algo\+Restart}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_algo_pop_reset_a0fdd8036ceabf360a6a2ed849437c094}\label{classeo_algo_pop_reset_a0fdd8036ceabf360a6a2ed849437c094}} 
+\index{eoAlgoPopReset$<$ EOT $>$@{eoAlgoPopReset$<$ EOT $>$}!eoAlgoPopReset@{eoAlgoPopReset}}
+\index{eoAlgoPopReset@{eoAlgoPopReset}!eoAlgoPopReset$<$ EOT $>$@{eoAlgoPopReset$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoAlgoPopReset()}{eoAlgoPopReset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_algo_pop_reset}{eo\+Algo\+Pop\+Reset}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_algo_pop_reset}{eo\+Algo\+Pop\+Reset}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{init,  }\item[{\mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for fixed-\/size populations. \mbox{\Hypertarget{classeo_algo_pop_reset_a878f80eff97db9bef28b59109aaa8dfe}\label{classeo_algo_pop_reset_a878f80eff97db9bef28b59109aaa8dfe}} 
+\index{eoAlgoPopReset$<$ EOT $>$@{eoAlgoPopReset$<$ EOT $>$}!eoAlgoPopReset@{eoAlgoPopReset}}
+\index{eoAlgoPopReset@{eoAlgoPopReset}!eoAlgoPopReset$<$ EOT $>$@{eoAlgoPopReset$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoAlgoPopReset()}{eoAlgoPopReset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_algo_pop_reset}{eo\+Algo\+Pop\+Reset}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_algo_pop_reset}{eo\+Algo\+Pop\+Reset}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{init,  }\item[{\mbox{\hyperlink{classeo_pop_eval_func}{eo\+Pop\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop\+\_\+eval,  }\item[{size\+\_\+t}]{pop\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for resets to the given population size. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Algo\+Reset.\+h\end{DoxyCompactItemize}

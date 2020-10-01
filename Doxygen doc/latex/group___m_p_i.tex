@@ -1,0 +1,82 @@
+\hypertarget{group___m_p_i}{}\doxysection{Message Passing Interface}
+\label{group___m_p_i}\index{Message Passing Interface@{Message Passing Interface}}
+
+
+See namespace \mbox{\hyperlink{namespaceeo_1_1mpi}{eo\+::mpi}} to have all explanations about this module.  
+
+
+Collaboration diagram for Message Passing Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{group___m_p_i}
+\end{center}
+\end{figure}
+\doxysubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{eo_multi_start_8h}{eo\+Multi\+Start.\+h}}
+\item 
+file \mbox{\hyperlink{eo_multi_start_8h}{eo\+Multi\+Start.\+h}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceeo_1_1mpi}{eo\+::mpi}}
+\begin{DoxyCompactList}\small\item\em M\+PI parallelization helpers for \mbox{\hyperlink{class_e_o}{EO}}. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespaceeo_1_1mpi_1_1_channel}{eo\+::mpi\+::\+Channel}}
+\begin{DoxyCompactList}\small\item\em Tags used in M\+PI messages for framework communication. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespaceeo_1_1mpi_1_1_message}{eo\+::mpi\+::\+Message}}
+\begin{DoxyCompactList}\small\item\em Simple orders used by the framework. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{eo\+::mpi\+::\+Shared\+Data\+Function$<$ Job\+Data, Wrapped $>$}}
+\begin{DoxyCompactList}\small\item\em Base class for the 4 algorithm functors. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{eo\+::mpi\+::\+Send\+Task\+Function$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em Functor (master side) used to send a task to the worker. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{eo\+::mpi\+::\+Handle\+Response\+Function$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em Functor (master side) used to indicate what to do when receiving a response. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{eo\+::mpi\+::\+Process\+Task\+Function$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em Functor (worker side) implementing the processing to do. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_is_finished_function}{eo\+::mpi\+::\+Is\+Finished\+Function$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em Functor (master side) indicating whether the job is done or not. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{eo\+::mpi\+::\+Job\+Store$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em Contains all the required data and the functors to launch a job. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{eo\+::mpi\+::\+Job$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em Class implementing the centralized job algorithm. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_one_shot_job}{eo\+::mpi\+::\+One\+Shot\+Job$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} that will be launched only once. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_job}{eo\+::mpi\+::\+Multi\+Job$<$ Job\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} that will be launched an unknown amount of times, in worker side. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{eo\+::mpi\+::\+Assignment\+Algorithm}}
+\begin{DoxyCompactList}\small\item\em Contains informations on the available workers and allows to find assignees for jobs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm}{eo\+::mpi\+::\+Dynamic\+Assignment\+Algorithm}}
+\begin{DoxyCompactList}\small\item\em Assignment (scheduling) algorithm which handles workers in a queue. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm}{eo\+::mpi\+::\+Static\+Assignment\+Algorithm}}
+\begin{DoxyCompactList}\small\item\em Assignment algorithm which gives to each worker a precise number of tasks to do, in a round robin fashion. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_node}{eo\+::mpi\+::\+Node}}
+\begin{DoxyCompactList}\small\item\em Global object used to reach \mbox{\hyperlink{classmpi_1_1communicator}{mpi\+::communicator}} everywhere. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data}{eo\+::mpi\+::\+Parallel\+Apply\+Data$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Data useful for a parallel apply (map). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_store}{eo\+::mpi\+::\+Parallel\+Apply\+Store$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Store containing all the datas and the functors for the parallel apply (map) job. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_parallel_apply}{eo\+::mpi\+::\+Parallel\+Apply$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Parallel apply job. Present for convenience only. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_dummy_send_task_function}{eo\+::mpi\+::\+Dummy\+Send\+Task\+Function}}
+\begin{DoxyCompactList}\small\item\em Send task functor which does nothing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___m_p_i_gafbb77faa1fc663490460f631906a3099}\label{group___m_p_i_gafbb77faa1fc663490460f631906a3099}} 
+const int \mbox{\hyperlink{group___m_p_i_gafbb77faa1fc663490460f631906a3099}{eo\+::mpi\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+S\+T\+ER}} = 0
+\begin{DoxyCompactList}\small\item\em If the job only has one master, the user can use this constant, so as not to worry with integer ids. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___m_p_i_ga278419db2678de33e623416b129c323c}\label{group___m_p_i_ga278419db2678de33e623416b129c323c}} 
+const int \mbox{\hyperlink{group___m_p_i_ga278419db2678de33e623416b129c323c}{eo\+::mpi\+::\+R\+E\+S\+T\+\_\+\+O\+F\+\_\+\+T\+H\+E\+\_\+\+W\+O\+R\+LD}} = -\/1
+\begin{DoxyCompactList}\small\item\em Constant indicating to use all the resting available workers, in assignment algorithms constructor using an interval. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+See namespace \mbox{\hyperlink{namespaceeo_1_1mpi}{eo\+::mpi}} to have all explanations about this module. 
+

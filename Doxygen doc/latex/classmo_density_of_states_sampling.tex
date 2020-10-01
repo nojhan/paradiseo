@@ -1,0 +1,83 @@
+\hypertarget{classmo_density_of_states_sampling}{}\doxysection{mo\+Density\+Of\+States\+Sampling$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_density_of_states_sampling}\index{moDensityOfStatesSampling$<$ Neighbor $>$@{moDensityOfStatesSampling$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Density\+Of\+States\+Sampling.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Density\+Of\+States\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classmo_density_of_states_sampling__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Density\+Of\+States\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_density_of_states_sampling__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_density_of_states_sampling_aaabbcf823e62a53af270eecd4900263d}\label{classmo_density_of_states_sampling_aaabbcf823e62a53af270eecd4900263d}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_density_of_states_sampling_ae7c640ac322d1c678b26ec71b97d36e7}{mo\+Density\+Of\+States\+Sampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, unsigned int \+\_\+nb\+Sol)
+\item 
+\mbox{\hyperlink{classmo_density_of_states_sampling_ac7ae1ad03d77c4d3daecd143ca40e0f3}{$\sim$mo\+Density\+Of\+States\+Sampling}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_density_of_states_sampling_ad3ffdfc837ccffbe92ac1d2fd1663f33}\label{classmo_density_of_states_sampling_ad3ffdfc837ccffbe92ac1d2fd1663f33}} 
+\mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ {\bfseries fitness\+Stat}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Density\+Of\+States\+Sampling$<$ Neighbor $>$}
+
+To compute the density of states\+: Sample the fitness of random solution in the search space The fitness values of solutions are collected during the random search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_density_of_states_sampling_ae7c640ac322d1c678b26ec71b97d36e7}\label{classmo_density_of_states_sampling_ae7c640ac322d1c678b26ec71b97d36e7}} 
+\index{moDensityOfStatesSampling$<$ Neighbor $>$@{moDensityOfStatesSampling$<$ Neighbor $>$}!moDensityOfStatesSampling@{moDensityOfStatesSampling}}
+\index{moDensityOfStatesSampling@{moDensityOfStatesSampling}!moDensityOfStatesSampling$<$ Neighbor $>$@{moDensityOfStatesSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moDensityOfStatesSampling()}{moDensityOfStatesSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_density_of_states_sampling}{mo\+Density\+Of\+States\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_density_of_states_sampling}{mo\+Density\+Of\+States\+Sampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{unsigned int}]{\+\_\+nb\+Sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+full\+Eval} & Fitness function, full evaluation function \\
+\hline
+{\em \+\_\+nb\+Sol} & Number of solutions in the sample \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_density_of_states_sampling_ac7ae1ad03d77c4d3daecd143ca40e0f3}\label{classmo_density_of_states_sampling_ac7ae1ad03d77c4d3daecd143ca40e0f3}} 
+\index{moDensityOfStatesSampling$<$ Neighbor $>$@{moDensityOfStatesSampling$<$ Neighbor $>$}!````~moDensityOfStatesSampling@{$\sim$moDensityOfStatesSampling}}
+\index{````~moDensityOfStatesSampling@{$\sim$moDensityOfStatesSampling}!moDensityOfStatesSampling$<$ Neighbor $>$@{moDensityOfStatesSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moDensityOfStatesSampling()}{~moDensityOfStatesSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_density_of_states_sampling}{mo\+Density\+Of\+States\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_density_of_states_sampling}{mo\+Density\+Of\+States\+Sampling}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default destructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+Density\+Of\+States\+Sampling.\+h\end{DoxyCompactItemize}

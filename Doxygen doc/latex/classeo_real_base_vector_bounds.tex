@@ -1,0 +1,491 @@
+\hypertarget{classeo_real_base_vector_bounds}{}\doxysection{eo\+Real\+Base\+Vector\+Bounds Class Reference}
+\label{classeo_real_base_vector_bounds}\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+
+
+{\ttfamily \#include $<$eo\+Real\+Vector\+Bounds.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Real\+Base\+Vector\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{classeo_real_base_vector_bounds__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Real\+Base\+Vector\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{classeo_real_base_vector_bounds__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_real_base_vector_bounds_a7773e88300a1f7cdbb147dd15ac338bb}{eo\+Real\+Base\+Vector\+Bounds}} ()
+\item 
+\mbox{\hyperlink{classeo_real_base_vector_bounds_a8815b773b873e3c32db12d9bfda268bb}{eo\+Real\+Base\+Vector\+Bounds}} (unsigned \+\_\+dim, \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+bounds)
+\item 
+\mbox{\hyperlink{classeo_real_base_vector_bounds_af4cd437066cdfaa633356100336fc040}{eo\+Real\+Base\+Vector\+Bounds}} (\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+xbounds, \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+ybounds)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_ab548de331f2b0ce17ccf55f8d5bbfec0}{is\+Bounded}} (unsigned \+\_\+i)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a400646dbf7b67154296153e1c2f7ce79}{is\+Bounded}} (void)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_abed604195960392c9118b3975f8b4aae}{has\+No\+Bound\+At\+All}} (unsigned \+\_\+i)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a4a4dd0091b58ec93408a138d0f68c52f}{has\+No\+Bound\+At\+All}} (void)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_aa94e86c36b93fe0fc0cc40bb6f1ec7e5}\label{classeo_real_base_vector_bounds_aa94e86c36b93fe0fc0cc40bb6f1ec7e5}} 
+virtual bool {\bfseries is\+Min\+Bounded} (unsigned \+\_\+i)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a855a5e6dd047e60e1c649e3c21e58b8e}\label{classeo_real_base_vector_bounds_a855a5e6dd047e60e1c649e3c21e58b8e}} 
+virtual bool {\bfseries is\+Max\+Bounded} (unsigned \+\_\+i)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_a79aff0ac26b6510a84c5ac1dabe8831a}{folds\+In\+Bounds}} (unsigned \+\_\+i, double \&\+\_\+r)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_a2f445081b5da54caf5dfb841015d6ce9}{folds\+In\+Bounds}} (std\+::vector$<$ double $>$ \&\+\_\+v)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_ab9975065dace78791ea771790229031c}{truncate}} (unsigned \+\_\+i, double \&\+\_\+r)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_a1ee354877f46bfa247f64fae9d0875b3}{truncate}} (std\+::vector$<$ double $>$ \&\+\_\+v)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a7ac2296ca90476f534b6ca5cd4c4ccdf}{is\+In\+Bounds}} (unsigned \+\_\+i, double \+\_\+r)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a0988938d62a19081e48c2677f5dbc968}{is\+In\+Bounds}} (std\+::vector$<$ double $>$ \+\_\+v)
+\item 
+virtual double \mbox{\hyperlink{classeo_real_base_vector_bounds_aa04952a4ffcd9332ee1adb4cfeb95ee9}{minimum}} (unsigned \+\_\+i)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a971a5d11b05b618ced2cd85e0436bf2e}\label{classeo_real_base_vector_bounds_a971a5d11b05b618ced2cd85e0436bf2e}} 
+virtual double {\bfseries maximum} (unsigned \+\_\+i)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a347481ff610aeeab3ffe0167dc6c7914}\label{classeo_real_base_vector_bounds_a347481ff610aeeab3ffe0167dc6c7914}} 
+virtual double {\bfseries range} (unsigned \+\_\+i)
+\item 
+virtual double \mbox{\hyperlink{classeo_real_base_vector_bounds_a42a35063e56a74d6c3de3fd71f9a7b0b}{average\+Range}} ()
+\item 
+virtual double \mbox{\hyperlink{classeo_real_base_vector_bounds_a3cd3bd84b5317afa537824399be3c803}{uniform}} (unsigned \+\_\+i, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng)
+\item 
+void \mbox{\hyperlink{classeo_real_base_vector_bounds_a64e7f8f1fa402654b1b7a772fd0db126}{uniform}} (std\+::vector$<$ double $>$ \&\+\_\+v, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_af1d8deb2410e06f2a8d8ddd03e7e7ff5}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+\mbox{\hyperlink{classeo_real_base_vector_bounds_a7773e88300a1f7cdbb147dd15ac338bb}{eo\+Real\+Base\+Vector\+Bounds}} ()
+\item 
+\mbox{\hyperlink{classeo_real_base_vector_bounds_a8815b773b873e3c32db12d9bfda268bb}{eo\+Real\+Base\+Vector\+Bounds}} (unsigned \+\_\+dim, \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+bounds)
+\item 
+\mbox{\hyperlink{classeo_real_base_vector_bounds_af4cd437066cdfaa633356100336fc040}{eo\+Real\+Base\+Vector\+Bounds}} (\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+xbounds, \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&\+\_\+ybounds)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_ab548de331f2b0ce17ccf55f8d5bbfec0}{is\+Bounded}} (unsigned \+\_\+i)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a400646dbf7b67154296153e1c2f7ce79}{is\+Bounded}} (void)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_abed604195960392c9118b3975f8b4aae}{has\+No\+Bound\+At\+All}} (unsigned \+\_\+i)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a4a4dd0091b58ec93408a138d0f68c52f}{has\+No\+Bound\+At\+All}} (void)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_aa94e86c36b93fe0fc0cc40bb6f1ec7e5}\label{classeo_real_base_vector_bounds_aa94e86c36b93fe0fc0cc40bb6f1ec7e5}} 
+virtual bool {\bfseries is\+Min\+Bounded} (unsigned \+\_\+i)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a855a5e6dd047e60e1c649e3c21e58b8e}\label{classeo_real_base_vector_bounds_a855a5e6dd047e60e1c649e3c21e58b8e}} 
+virtual bool {\bfseries is\+Max\+Bounded} (unsigned \+\_\+i)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_a79aff0ac26b6510a84c5ac1dabe8831a}{folds\+In\+Bounds}} (unsigned \+\_\+i, double \&\+\_\+r)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_a2f445081b5da54caf5dfb841015d6ce9}{folds\+In\+Bounds}} (std\+::vector$<$ double $>$ \&\+\_\+v)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_ab9975065dace78791ea771790229031c}{truncate}} (unsigned \+\_\+i, double \&\+\_\+r)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_a1ee354877f46bfa247f64fae9d0875b3}{truncate}} (std\+::vector$<$ double $>$ \&\+\_\+v)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a7ac2296ca90476f534b6ca5cd4c4ccdf}{is\+In\+Bounds}} (unsigned \+\_\+i, double \+\_\+r)
+\item 
+virtual bool \mbox{\hyperlink{classeo_real_base_vector_bounds_a0988938d62a19081e48c2677f5dbc968}{is\+In\+Bounds}} (std\+::vector$<$ double $>$ \+\_\+v)
+\item 
+virtual double \mbox{\hyperlink{classeo_real_base_vector_bounds_aa04952a4ffcd9332ee1adb4cfeb95ee9}{minimum}} (unsigned \+\_\+i)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a971a5d11b05b618ced2cd85e0436bf2e}\label{classeo_real_base_vector_bounds_a971a5d11b05b618ced2cd85e0436bf2e}} 
+virtual double {\bfseries maximum} (unsigned \+\_\+i)
+\item 
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a347481ff610aeeab3ffe0167dc6c7914}\label{classeo_real_base_vector_bounds_a347481ff610aeeab3ffe0167dc6c7914}} 
+virtual double {\bfseries range} (unsigned \+\_\+i)
+\item 
+virtual double \mbox{\hyperlink{classeo_real_base_vector_bounds_a42a35063e56a74d6c3de3fd71f9a7b0b}{average\+Range}} ()
+\item 
+virtual double \mbox{\hyperlink{classeo_real_base_vector_bounds_a3cd3bd84b5317afa537824399be3c803}{uniform}} (unsigned \+\_\+i, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng)
+\item 
+void \mbox{\hyperlink{classeo_real_base_vector_bounds_a64e7f8f1fa402654b1b7a772fd0db126}{uniform}} (std\+::vector$<$ double $>$ \&\+\_\+v, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng)
+\item 
+virtual void \mbox{\hyperlink{classeo_real_base_vector_bounds_af1d8deb2410e06f2a8d8ddd03e7e7ff5}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{classeo_real_base_vector_bounds_autotoc_md34}{}\doxysubsubsection{Vector type for bounds (see eo\+Real\+Bounds.\+h for scalar types)}\label{classeo_real_base_vector_bounds_autotoc_md34}
+Class \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} implements the std\+::vectorized version\+: it is basically a std\+::vector of \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} $\ast$ and forwards all request to the elements of the std\+::vector.
+
+This file also contains the global variables and eo\+Dummy\+Vector\+No\+Bounds that are used as defaults in ctors (i.\+e. when no bounds are given, it is assumed unbounded values)
+
+T\+He 2 main classes defined here are
+
+\mbox{\hyperlink{classeo_real_base_vector_bounds}{eo\+Real\+Base\+Vector\+Bounds}}, base class that handles all useful functions \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} which derives from the preceding {\itshape and} \mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} and also has a mechanism for memory handling of the pointers it has to allocate\hypertarget{classeo_real_base_vector_bounds_autotoc_md69}{}\doxysubsubsection{Vector type for bounds (see eo\+Real\+Bounds.\+h for scalar types)}\label{classeo_real_base_vector_bounds_autotoc_md69}
+Class \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} implements the std\+::vectorized version\+: it is basically a std\+::vector of \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} $\ast$ and forwards all request to the elements of the std\+::vector.
+
+This file also contains the global variables and eo\+Dummy\+Vector\+No\+Bounds that are used as defaults in ctors (i.\+e. when no bounds are given, it is assumed unbounded values)
+
+T\+He 2 main classes defined here are
+
+\mbox{\hyperlink{classeo_real_base_vector_bounds}{eo\+Real\+Base\+Vector\+Bounds}}, base class that handles all useful functions \mbox{\hyperlink{classeo_real_vector_bounds}{eo\+Real\+Vector\+Bounds}} which derives from the preceding {\itshape and} \mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} and also has a mechanism for memory handling of the pointers it has to allocate 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a7773e88300a1f7cdbb147dd15ac338bb}\label{classeo_real_base_vector_bounds_a7773e88300a1f7cdbb147dd15ac338bb}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{eoRealBaseVectorBounds()}{eoRealBaseVectorBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily eo\+Real\+Base\+Vector\+Bounds\+::eo\+Real\+Base\+Vector\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Ctor. \mbox{\Hypertarget{classeo_real_base_vector_bounds_a8815b773b873e3c32db12d9bfda268bb}\label{classeo_real_base_vector_bounds_a8815b773b873e3c32db12d9bfda268bb}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{eoRealBaseVectorBounds()}{eoRealBaseVectorBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily eo\+Real\+Base\+Vector\+Bounds\+::eo\+Real\+Base\+Vector\+Bounds (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+dim,  }\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: same bounds for everybody, given as an \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \mbox{\Hypertarget{classeo_real_base_vector_bounds_af4cd437066cdfaa633356100336fc040}\label{classeo_real_base_vector_bounds_af4cd437066cdfaa633356100336fc040}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{eoRealBaseVectorBounds()}{eoRealBaseVectorBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily eo\+Real\+Base\+Vector\+Bounds\+::eo\+Real\+Base\+Vector\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+xbounds,  }\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+ybounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor, particular case of dim-\/2 \mbox{\Hypertarget{classeo_real_base_vector_bounds_a7773e88300a1f7cdbb147dd15ac338bb}\label{classeo_real_base_vector_bounds_a7773e88300a1f7cdbb147dd15ac338bb}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{eoRealBaseVectorBounds()}{eoRealBaseVectorBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily eo\+Real\+Base\+Vector\+Bounds\+::eo\+Real\+Base\+Vector\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Ctor. \mbox{\Hypertarget{classeo_real_base_vector_bounds_a8815b773b873e3c32db12d9bfda268bb}\label{classeo_real_base_vector_bounds_a8815b773b873e3c32db12d9bfda268bb}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{eoRealBaseVectorBounds()}{eoRealBaseVectorBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily eo\+Real\+Base\+Vector\+Bounds\+::eo\+Real\+Base\+Vector\+Bounds (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+dim,  }\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: same bounds for everybody, given as an \mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \mbox{\Hypertarget{classeo_real_base_vector_bounds_af4cd437066cdfaa633356100336fc040}\label{classeo_real_base_vector_bounds_af4cd437066cdfaa633356100336fc040}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{eoRealBaseVectorBounds()}{eoRealBaseVectorBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily eo\+Real\+Base\+Vector\+Bounds\+::eo\+Real\+Base\+Vector\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+xbounds,  }\item[{\mbox{\hyperlink{classeo_real_bounds}{eo\+Real\+Bounds}} \&}]{\+\_\+ybounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor, particular case of dim-\/2 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a42a35063e56a74d6c3de3fd71f9a7b0b}\label{classeo_real_base_vector_bounds_a42a35063e56a74d6c3de3fd71f9a7b0b}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!averageRange@{averageRange}}
+\index{averageRange@{averageRange}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{averageRange()}{averageRange()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Base\+Vector\+Bounds\+::average\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Computes the average range An std\+::exception will be raised if one of the component is unbounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_ae998c7a0a09eccaea928a3a40084e62a}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_ae998c7a0a09eccaea928a3a40084e62a}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a42a35063e56a74d6c3de3fd71f9a7b0b}\label{classeo_real_base_vector_bounds_a42a35063e56a74d6c3de3fd71f9a7b0b}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!averageRange@{averageRange}}
+\index{averageRange@{averageRange}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{averageRange()}{averageRange()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Base\+Vector\+Bounds\+::average\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Computes the average range An std\+::exception will be raised if one of the component is unbounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_ae998c7a0a09eccaea928a3a40084e62a}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_ae998c7a0a09eccaea928a3a40084e62a}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a2f445081b5da54caf5dfb841015d6ce9}\label{classeo_real_base_vector_bounds_a2f445081b5da54caf5dfb841015d6ce9}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Folds all variables of a std\+::vector of real values into the bounds 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a55004497bde9dfede3f8e4a924607ca8}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a55004497bde9dfede3f8e4a924607ca8}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a2f445081b5da54caf5dfb841015d6ce9}\label{classeo_real_base_vector_bounds_a2f445081b5da54caf5dfb841015d6ce9}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Folds all variables of a std\+::vector of real values into the bounds 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a55004497bde9dfede3f8e4a924607ca8}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a55004497bde9dfede3f8e4a924607ca8}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a79aff0ac26b6510a84c5ac1dabe8831a}\label{classeo_real_base_vector_bounds_a79aff0ac26b6510a84c5ac1dabe8831a}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{double \&}]{\+\_\+r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Folds a real value back into the bounds -\/ i\+\_\+th component 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a5a8050910b5d4acaa9c7cc408f026a96}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a5a8050910b5d4acaa9c7cc408f026a96}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a79aff0ac26b6510a84c5ac1dabe8831a}\label{classeo_real_base_vector_bounds_a79aff0ac26b6510a84c5ac1dabe8831a}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{double \&}]{\+\_\+r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Folds a real value back into the bounds -\/ i\+\_\+th component 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a5a8050910b5d4acaa9c7cc408f026a96}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a5a8050910b5d4acaa9c7cc408f026a96}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_abed604195960392c9118b3975f8b4aae}\label{classeo_real_base_vector_bounds_abed604195960392c9118b3975f8b4aae}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/test\+: true iff i\+\_\+th component has no bounds at all 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_ae87d692420901519ef6023ce3b8cf61d}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_ae87d692420901519ef6023ce3b8cf61d}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_abed604195960392c9118b3975f8b4aae}\label{classeo_real_base_vector_bounds_abed604195960392c9118b3975f8b4aae}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/test\+: true iff i\+\_\+th component has no bounds at all 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_ae87d692420901519ef6023ce3b8cf61d}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_ae87d692420901519ef6023ce3b8cf61d}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a4a4dd0091b58ec93408a138d0f68c52f}\label{classeo_real_base_vector_bounds_a4a4dd0091b58ec93408a138d0f68c52f}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/test\+: true iff all components have no bound at all 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a87cda708a1a69313795061f61c693cc5}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a87cda708a1a69313795061f61c693cc5}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a4a4dd0091b58ec93408a138d0f68c52f}\label{classeo_real_base_vector_bounds_a4a4dd0091b58ec93408a138d0f68c52f}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/test\+: true iff all components have no bound at all 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a87cda708a1a69313795061f61c693cc5}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a87cda708a1a69313795061f61c693cc5}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_ab548de331f2b0ce17ccf55f8d5bbfec0}\label{classeo_real_base_vector_bounds_ab548de331f2b0ce17ccf55f8d5bbfec0}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: is i\+\_\+th component bounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_ab7e5146b787cf51bb5ede1af566b4af4}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_ab7e5146b787cf51bb5ede1af566b4af4}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_ab548de331f2b0ce17ccf55f8d5bbfec0}\label{classeo_real_base_vector_bounds_ab548de331f2b0ce17ccf55f8d5bbfec0}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: is i\+\_\+th component bounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_ab7e5146b787cf51bb5ede1af566b4af4}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_ab7e5146b787cf51bb5ede1af566b4af4}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a400646dbf7b67154296153e1c2f7ce79}\label{classeo_real_base_vector_bounds_a400646dbf7b67154296153e1c2f7ce79}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: bounded iff all are bounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a77b0ea6f1a11e2f85a7af95c9b480417}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a77b0ea6f1a11e2f85a7af95c9b480417}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a400646dbf7b67154296153e1c2f7ce79}\label{classeo_real_base_vector_bounds_a400646dbf7b67154296153e1c2f7ce79}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: bounded iff all are bounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a77b0ea6f1a11e2f85a7af95c9b480417}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a77b0ea6f1a11e2f85a7af95c9b480417}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a0988938d62a19081e48c2677f5dbc968}\label{classeo_real_base_vector_bounds_a0988938d62a19081e48c2677f5dbc968}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: are A\+LL components within the bounds? 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_aa098b84af12cdb86cf66c7498de9cc38}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_aa098b84af12cdb86cf66c7498de9cc38}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a0988938d62a19081e48c2677f5dbc968}\label{classeo_real_base_vector_bounds_a0988938d62a19081e48c2677f5dbc968}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: are A\+LL components within the bounds? 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_aa098b84af12cdb86cf66c7498de9cc38}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_aa098b84af12cdb86cf66c7498de9cc38}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a7ac2296ca90476f534b6ca5cd4c4ccdf}\label{classeo_real_base_vector_bounds_a7ac2296ca90476f534b6ca5cd4c4ccdf}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{double}]{\+\_\+r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: is i\+\_\+th component within the bounds? 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a173d86e0127e1bf8e4f9ed6c432dd4f6}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a173d86e0127e1bf8e4f9ed6c432dd4f6}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a7ac2296ca90476f534b6ca5cd4c4ccdf}\label{classeo_real_base_vector_bounds_a7ac2296ca90476f534b6ca5cd4c4ccdf}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual bool eo\+Real\+Base\+Vector\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{double}]{\+\_\+r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test\+: is i\+\_\+th component within the bounds? 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a173d86e0127e1bf8e4f9ed6c432dd4f6}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a173d86e0127e1bf8e4f9ed6c432dd4f6}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_aa04952a4ffcd9332ee1adb4cfeb95ee9}\label{classeo_real_base_vector_bounds_aa04952a4ffcd9332ee1adb4cfeb95ee9}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Base\+Vector\+Bounds\+::minimum (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Accessors\+: will raise an std\+::exception if these do not exist 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a97470664c282479e818267699acb4aa4}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a97470664c282479e818267699acb4aa4}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_aa04952a4ffcd9332ee1adb4cfeb95ee9}\label{classeo_real_base_vector_bounds_aa04952a4ffcd9332ee1adb4cfeb95ee9}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Base\+Vector\+Bounds\+::minimum (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Accessors\+: will raise an std\+::exception if these do not exist 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a97470664c282479e818267699acb4aa4}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a97470664c282479e818267699acb4aa4}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_af1d8deb2410e06f2a8d8ddd03e7e7ff5}\label{classeo_real_base_vector_bounds_af1d8deb2410e06f2a8d8ddd03e7e7ff5}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!printOn@{printOn}}
+\index{printOn@{printOn}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. It\textquotesingle{}s called print\+On since it prints the object on a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_bounds_a7ec98544e5ff3ce126d83e07ae4d9b1f}{eo\+Real\+Vector\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_bounds_a7ec98544e5ff3ce126d83e07ae4d9b1f}{eo\+Real\+Vector\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_af1d8deb2410e06f2a8d8ddd03e7e7ff5}\label{classeo_real_base_vector_bounds_af1d8deb2410e06f2a8d8ddd03e7e7ff5}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!printOn@{printOn}}
+\index{printOn@{printOn}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. It\textquotesingle{}s called print\+On since it prints the object on a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_bounds_a7ec98544e5ff3ce126d83e07ae4d9b1f}{eo\+Real\+Vector\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_bounds_a7ec98544e5ff3ce126d83e07ae4d9b1f}{eo\+Real\+Vector\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a1ee354877f46bfa247f64fae9d0875b3}\label{classeo_real_base_vector_bounds_a1ee354877f46bfa247f64fae9d0875b3}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+truncates all variables of a std\+::vector of real values to the bounds 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a530af2930a706a26a6555463ffa0d345}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a530af2930a706a26a6555463ffa0d345}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a1ee354877f46bfa247f64fae9d0875b3}\label{classeo_real_base_vector_bounds_a1ee354877f46bfa247f64fae9d0875b3}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+truncates all variables of a std\+::vector of real values to the bounds 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a530af2930a706a26a6555463ffa0d345}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a530af2930a706a26a6555463ffa0d345}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_ab9975065dace78791ea771790229031c}\label{classeo_real_base_vector_bounds_ab9975065dace78791ea771790229031c}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{double \&}]{\+\_\+r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Truncates a real value to the bounds -\/ i\+\_\+th component 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a3367af340f8f3f5586c22dc26e4bf06c}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a3367af340f8f3f5586c22dc26e4bf06c}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_ab9975065dace78791ea771790229031c}\label{classeo_real_base_vector_bounds_ab9975065dace78791ea771790229031c}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual void eo\+Real\+Base\+Vector\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{double \&}]{\+\_\+r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Truncates a real value to the bounds -\/ i\+\_\+th component 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_a3367af340f8f3f5586c22dc26e4bf06c}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_a3367af340f8f3f5586c22dc26e4bf06c}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a64e7f8f1fa402654b1b7a772fd0db126}\label{classeo_real_base_vector_bounds_a64e7f8f1fa402654b1b7a772fd0db126}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void eo\+Real\+Base\+Vector\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+v,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+fills a std\+::vector with uniformly chosen variables in bounds An std\+::exception will be raised if one of the component is unbounded \mbox{\Hypertarget{classeo_real_base_vector_bounds_a64e7f8f1fa402654b1b7a772fd0db126}\label{classeo_real_base_vector_bounds_a64e7f8f1fa402654b1b7a772fd0db126}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void eo\+Real\+Base\+Vector\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+v,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+fills a std\+::vector with uniformly chosen variables in bounds An std\+::exception will be raised if one of the component is unbounded \mbox{\Hypertarget{classeo_real_base_vector_bounds_a3cd3bd84b5317afa537824399be3c803}\label{classeo_real_base_vector_bounds_a3cd3bd84b5317afa537824399be3c803}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Base\+Vector\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Generates a random number in i\+\_\+th range An std\+::exception will be raised if one of the component is unbounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_af2812e9bffa236c6cc9fed586daa9b6f}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_af2812e9bffa236c6cc9fed586daa9b6f}{eo\+Real\+Vector\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_real_base_vector_bounds_a3cd3bd84b5317afa537824399be3c803}\label{classeo_real_base_vector_bounds_a3cd3bd84b5317afa537824399be3c803}} 
+\index{eoRealBaseVectorBounds@{eoRealBaseVectorBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoRealBaseVectorBounds@{eoRealBaseVectorBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual double eo\+Real\+Base\+Vector\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+i,  }\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Generates a random number in i\+\_\+th range An std\+::exception will be raised if one of the component is unbounded 
+
+Reimplemented in \mbox{\hyperlink{classeo_real_vector_no_bounds_af2812e9bffa236c6cc9fed586daa9b6f}{eo\+Real\+Vector\+No\+Bounds}}, and \mbox{\hyperlink{classeo_real_vector_no_bounds_af2812e9bffa236c6cc9fed586daa9b6f}{eo\+Real\+Vector\+No\+Bounds}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Real\+Vector\+Bounds.\+h\end{DoxyCompactItemize}

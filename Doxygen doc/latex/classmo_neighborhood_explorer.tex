@@ -1,0 +1,271 @@
+\hypertarget{classmo_neighborhood_explorer}{}\doxysection{mo\+Neighborhood\+Explorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neighborhood_explorer}\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighborhood\+Explorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighborhood\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighborhood_explorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighborhood\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighborhood_explorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_ac89731b163c7ee1ab9cbd272dca5a126}\label{classmo_neighborhood_explorer_ac89731b163c7ee1ab9cbd272dca5a126}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a54eb10e950f9c41d1c57fcb8e41561d5}\label{classmo_neighborhood_explorer_a54eb10e950f9c41d1c57fcb8e41561d5}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a2559d8af97c77c14def9a16f45be9ee4}\label{classmo_neighborhood_explorer_a2559d8af97c77c14def9a16f45be9ee4}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neighborhood_explorer_a433217b405733514a8673f130bd41c59}{mo\+Neighborhood\+Explorer}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)=0
+\item 
+virtual bool \mbox{\hyperlink{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer_af321423ac3db0d321b1d14ac963b3f3e}{move}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)=0
+\item 
+bool \mbox{\hyperlink{classmo_neighborhood_explorer_a5b603364c3efe7a91b65907ff8e963b0}{move\+Applied}} ()
+\item 
+void \mbox{\hyperlink{classmo_neighborhood_explorer_a0c2c27ec539684d518bd36162e0f22b2}{move\+Applied}} (bool \+\_\+is\+Moved)
+\item 
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \& \mbox{\hyperlink{classmo_neighborhood_explorer_a408ad1f3a2cae4c31877bdbb237b0b67}{get\+Current\+Neighbor}} ()
+\item 
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \& \mbox{\hyperlink{classmo_neighborhood_explorer_a7c2ebf5dc330c5fe3b4475f0c3259d84}{get\+Selected\+Neighbor}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a75f3a5e10af0a1721f24d4b06eb083cf}\label{classmo_neighborhood_explorer_a75f3a5e10af0a1721f24d4b06eb083cf}} 
+\mbox{\hyperlink{classmo_dummy_neighborhood}{mo\+Dummy\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries dummy\+Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_aa347b8ef2fa1f9a1aefd76d128d4a9aa}\label{classmo_neighborhood_explorer_aa347b8ef2fa1f9a1aefd76d128d4a9aa}} 
+\mbox{\hyperlink{classmo_dummy_eval}{mo\+Dummy\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries dummy\+Eval}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_aaf75e56de5ff3098ca354657d7f1f912}\label{classmo_neighborhood_explorer_aaf75e56de5ff3098ca354657d7f1f912}} 
+\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \& {\bfseries neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a09e33bb296b374a8e9d075239f7bc069}\label{classmo_neighborhood_explorer_a09e33bb296b374a8e9d075239f7bc069}} 
+\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries eval}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_ac93d5db5d964fbb4122e4febaed03ce4}\label{classmo_neighborhood_explorer_ac93d5db5d964fbb4122e4febaed03ce4}} 
+bool {\bfseries is\+Moved}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a3b46ff62ff41df8508955efa1d981078}\label{classmo_neighborhood_explorer_a3b46ff62ff41df8508955efa1d981078}} 
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} {\bfseries current\+Neighbor}
+\item 
+\mbox{\Hypertarget{classmo_neighborhood_explorer_ad6ba3d828002acb7c3e3b6ccecdea074}\label{classmo_neighborhood_explorer_ad6ba3d828002acb7c3e3b6ccecdea074}} 
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} {\bfseries selected\+Neighbor}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neighborhood\+Explorer$<$ Neighbor $>$}
+
+Explore the neighborhood according to the local search algorithm
+
+During this exploration, the parameters are updated one neighbor is selected a comparason with the solution is made to acccept or not this new neighbor
+
+The current neighbor (current\+Neigbor) is the neighbor under consideration during the search (in \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{operator()(\+E\+O\+T \&)}})
+
+The selected neighbor (selected\+Neighbor) is the neighbor selected in method \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{operator()(\+E\+O\+T \&)}}. If this neighbor is accepted, then the solution is moved on this neighbor (in \mbox{\hyperlink{classmo_neighborhood_explorer_af321423ac3db0d321b1d14ac963b3f3e}{move(\+E\+O\+T \&)}}) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a433217b405733514a8673f130bd41c59}\label{classmo_neighborhood_explorer_a433217b405733514a8673f130bd41c59}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!moNeighborhoodExplorer@{moNeighborhoodExplorer}}
+\index{moNeighborhoodExplorer@{moNeighborhoodExplorer}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborhoodExplorer()}{moNeighborhoodExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with a Neighborhood and evaluation function 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+eval} & the evaluation function \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}\label{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if a solution is accepted 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the solution is accepted, else return false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classmo_t_sexplorer_ac0a79ae870d937e3d77af27f098c5a94}{mo\+T\+Sexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_t_sexplorer_ac0a79ae870d937e3d77af27f098c5a94}{mo\+T\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_ae1e7fe467c501c476fd81f11f6ac49cc}{mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_ae1e7fe467c501c476fd81f11f6ac49cc}{mo\+Random\+Best\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_a5bbf504876dcde6600c46db6ba9fb77a}{mo\+Random\+Neutral\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_a5bbf504876dcde6600c46db6ba9fb77a}{mo\+Random\+Neutral\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a2d40f5c6b92c22a7645a901c21ccb8a3}{mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a2d40f5c6b92c22a7645a901c21ccb8a3}{mo\+First\+Impr\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_v_n_sexplorer_ace7f78ddd813ba93bdeca385f7a044b2}{mo\+V\+N\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_a360c3f6451e3aa802a843558829eb176}{mo\+Simple\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_a360c3f6451e3aa802a843558829eb176}{mo\+Simple\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_s_aexplorer_a643d66f8a125c6b8698a72876abb5cd9}{mo\+S\+Aexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a5458cb3e5bd7dee3d793fdbad722c740}{mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a5458cb3e5bd7dee3d793fdbad722c740}{mo\+Metropolis\+Hasting\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_af95f8ce3c97b74dd221a0ca085c69787}{mo\+Random\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_af95f8ce3c97b74dd221a0ca085c69787}{mo\+Random\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_search_explorer_ab0840336cd09fdaa22f26849a3c2cedd}{mo\+Random\+Search\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a93ddf9629cb117a0f2447c096f48fe7c}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a93ddf9629cb117a0f2447c096f48fe7c}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_explorer_ae58e9ebd24249c7c6cba2e421936c59a}{mo\+Dummy\+Explorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_explorer_ae58e9ebd24249c7c6cba2e421936c59a}{mo\+Dummy\+Explorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a408ad1f3a2cae4c31877bdbb237b0b67}\label{classmo_neighborhood_explorer_a408ad1f3a2cae4c31877bdbb237b0b67}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!getCurrentNeighbor@{getCurrentNeighbor}}
+\index{getCurrentNeighbor@{getCurrentNeighbor}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getCurrentNeighbor()}{getCurrentNeighbor()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}\& \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Current\+Neighbor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of the current neighbor \begin{DoxyReturn}{Returns}
+current neighbor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a7c2ebf5dc330c5fe3b4475f0c3259d84}\label{classmo_neighborhood_explorer_a7c2ebf5dc330c5fe3b4475f0c3259d84}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!getSelectedNeighbor@{getSelectedNeighbor}}
+\index{getSelectedNeighbor@{getSelectedNeighbor}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getSelectedNeighbor()}{getSelectedNeighbor()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}\& \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Selected\+Neighbor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of the selected neighbor \begin{DoxyReturn}{Returns}
+selected neighbor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}\label{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Init Search parameters 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_t_sexplorer_aab5c8dff5071fb9358b6fac2b9bfc38d}{mo\+T\+Sexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_t_sexplorer_aab5c8dff5071fb9358b6fac2b9bfc38d}{mo\+T\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_a75364740962fccc1b6ae5ea6a87e305f}{mo\+Random\+Neutral\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_a75364740962fccc1b6ae5ea6a87e305f}{mo\+Random\+Neutral\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_s_aexplorer_a38b5bc2490c69923a5cad87e276a51f3}{mo\+S\+Aexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_ab9feb15072d6fdb01c3d8bb577faad88}{mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a06a8679b2b24018a278cdbb0bbe9f9d9}{mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_aaa09dd383e66caf2cf2839a769b231ca}{mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_ab9feb15072d6fdb01c3d8bb577faad88}{mo\+First\+Impr\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a06a8679b2b24018a278cdbb0bbe9f9d9}{mo\+Metropolis\+Hasting\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_aaa09dd383e66caf2cf2839a769b231ca}{mo\+Random\+Best\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a21c23de25aa404cd7cd6583245359efc}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a21c23de25aa404cd7cd6583245359efc}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_a4c083525de3500ea0a249aa523283746}{mo\+Random\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_a4c083525de3500ea0a249aa523283746}{mo\+Random\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_ab4cdf118e0df047e50f61492f445d9aa}{mo\+Simple\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_ab4cdf118e0df047e50f61492f445d9aa}{mo\+Simple\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_search_explorer_aa13c11d58578341aa8689baf6849b99b}{mo\+Random\+Search\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_v_n_sexplorer_aef1bef902e892bbd2aa101a6c3aa24bc}{mo\+V\+N\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_explorer_a2f143f269dc75c7045a1baa73936a108}{mo\+Dummy\+Explorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_explorer_a2f143f269dc75c7045a1baa73936a108}{mo\+Dummy\+Explorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}\label{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if the exploration continue or not 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the exploration continue, else return false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classmo_t_sexplorer_a41ce67c397a8334f1f88d52ec9757e0c}{mo\+T\+Sexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_t_sexplorer_a41ce67c397a8334f1f88d52ec9757e0c}{mo\+T\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_a3993431b31297559a7086054feaf8518}{mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_a3993431b31297559a7086054feaf8518}{mo\+Random\+Best\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_aeb381f9d809448fdedf468c43e3cec5d}{mo\+Random\+Neutral\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_aeb381f9d809448fdedf468c43e3cec5d}{mo\+Random\+Neutral\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_aa9988dfa0bb2afb848f97dcbd9831ad0}{mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_aa9988dfa0bb2afb848f97dcbd9831ad0}{mo\+First\+Impr\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_a1d9b34f41e08111b8869d82de8a0f2d4}{mo\+Simple\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_a1d9b34f41e08111b8869d82de8a0f2d4}{mo\+Simple\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_s_aexplorer_a19533b62b81ec9d1c2acc283af893212}{mo\+S\+Aexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_ab685bdb7c5f1b14f6cfbc5306c9228ff}{mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_ab685bdb7c5f1b14f6cfbc5306c9228ff}{mo\+Metropolis\+Hasting\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_ae012b59431fdda37e96e5d0b4088147c}{mo\+Random\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_ae012b59431fdda37e96e5d0b4088147c}{mo\+Random\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_v_n_sexplorer_a08c848ad28fcd46f19b2792f67a9fba6}{mo\+V\+N\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_search_explorer_a3c786106afbca87957a864cc2c5885ee}{mo\+Random\+Search\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3c8f82f330980941f8aab5734dc4629e}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3c8f82f330980941f8aab5734dc4629e}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_explorer_a512f569044a851b390430801800caffa}{mo\+Dummy\+Explorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_explorer_a512f569044a851b390430801800caffa}{mo\+Dummy\+Explorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_explorer_af321423ac3db0d321b1d14ac963b3f3e}\label{classmo_neighborhood_explorer_af321423ac3db0d321b1d14ac963b3f3e}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!move@{move}}
+\index{move@{move}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Move a solution on the selected neighbor This method can be re-\/defined according to the metaheuritic
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classmo_v_n_sexplorer_a2eeafb81ba973e1e58ef3dc3eedd59e0}{mo\+V\+N\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_search_explorer_a7f8b0817f8cc8830ed488ff275019f2d}{mo\+Random\+Search\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_explorer_a85228f99815d942af84bcabd24129cac}{mo\+Dummy\+Explorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_explorer_a85228f99815d942af84bcabd24129cac}{mo\+Dummy\+Explorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a5b603364c3efe7a91b65907ff8e963b0}\label{classmo_neighborhood_explorer_a5b603364c3efe7a91b65907ff8e963b0}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!moveApplied@{moveApplied}}
+\index{moveApplied@{moveApplied}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moveApplied()}{moveApplied()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::move\+Applied (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of \char`\"{}is\+Moved\char`\"{} \begin{DoxyReturn}{Returns}
+true if move is applied 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a0c2c27ec539684d518bd36162e0f22b2}\label{classmo_neighborhood_explorer_a0c2c27ec539684d518bd36162e0f22b2}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!moveApplied@{moveApplied}}
+\index{moveApplied@{moveApplied}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moveApplied()}{moveApplied()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::move\+Applied (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+is\+Moved }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setter of \char`\"{}is\+Moved\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is\+Moved} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}\label{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Terminate the search 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_t_sexplorer_a0d24f8daeef52f90c7ddb4d7f66c41a2}{mo\+T\+Sexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_t_sexplorer_a0d24f8daeef52f90c7ddb4d7f66c41a2}{mo\+T\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_a127b647f1fe3106d3fe97c806df1e7ec}{mo\+Random\+Neutral\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_a127b647f1fe3106d3fe97c806df1e7ec}{mo\+Random\+Neutral\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_ac02d2d967b6a7529dd6e31cfac363b53}{mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_ac02d2d967b6a7529dd6e31cfac363b53}{mo\+Random\+Best\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_s_aexplorer_a5fb5390e6b30d5459b65ba3fb11fc7e6}{mo\+S\+Aexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a3900b82eaa29d08eba0dd502a2906926}{mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a3900b82eaa29d08eba0dd502a2906926}{mo\+Metropolis\+Hasting\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_v_n_sexplorer_a16f31b42c9b1bccc4f594c993d45e495}{mo\+V\+N\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_add3ac0aab9f497524c872af3a841847c}{mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_a15d7419ba71d8f48d6967341e22e374e}{mo\+Random\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_add3ac0aab9f497524c872af3a841847c}{mo\+First\+Impr\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_a15d7419ba71d8f48d6967341e22e374e}{mo\+Random\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_explorer_a991a914eec5687c39dde826a0b178a3b}{mo\+Dummy\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_explorer_a991a914eec5687c39dde826a0b178a3b}{mo\+Dummy\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_search_explorer_a7099b212acb36098269bedb4b875f95a}{mo\+Random\+Search\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_aa32e4d83d487add50b5531b6baa8047e}{mo\+Simple\+H\+Cexplorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_simple_h_cexplorer_aa32e4d83d487add50b5531b6baa8047e}{mo\+Simple\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}\label{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}} 
+\index{moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moNeighborhoodExplorer$<$ Neighbor $>$@{moNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Update Search parameters 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_t_sexplorer_a26a2e7529b2c2b4b650a64a89f3e24f3}{mo\+T\+Sexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_t_sexplorer_a26a2e7529b2c2b4b650a64a89f3e24f3}{mo\+T\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_ab8612c07f8f9a94ae9957cd156930bf2}{mo\+Random\+Neutral\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_neutral_walk_explorer_ab8612c07f8f9a94ae9957cd156930bf2}{mo\+Random\+Neutral\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_s_aexplorer_a1c5138427cf405b3ba85f4404cc6b5a0}{mo\+S\+Aexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a061f474c6d780cddf995bb84d18dae8f}{mo\+Metropolis\+Hasting\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3b807ab5e6bef67cffccf48d91829c8c}{mo\+Neutral\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_a067edf978d68456719dd3693845f79aa}{mo\+Random\+Best\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_metropolis_hasting_explorer_a061f474c6d780cddf995bb84d18dae8f}{mo\+Metropolis\+Hasting\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neutral_h_cexplorer_a3b807ab5e6bef67cffccf48d91829c8c}{mo\+Neutral\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_best_h_cexplorer_a067edf978d68456719dd3693845f79aa}{mo\+Random\+Best\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a4c5fddb8f156ae28783971ea729ef6ef}{mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a4c5fddb8f156ae28783971ea729ef6ef}{mo\+First\+Impr\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_ab8c94a8d52366a7378ea5217230da67d}{mo\+Random\+Walk\+Explorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_walk_explorer_ab8c94a8d52366a7378ea5217230da67d}{mo\+Random\+Walk\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_v_n_sexplorer_a03dc7a16b7bc3059308f1588f355f636}{mo\+V\+N\+Sexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_a32ed348a0532b9fea73eb9edc703abcf}{mo\+Simple\+H\+Cexplorer$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_random_search_explorer_a2ebeba20759ad4c0cf16e2499ebd9725}{mo\+Random\+Search\+Explorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_simple_h_cexplorer_a32ed348a0532b9fea73eb9edc703abcf}{mo\+Simple\+H\+Cexplorer$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_explorer_ab9e3af405b8ed86515417bc2d5dd1010}{mo\+Dummy\+Explorer$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_explorer_ab9e3af405b8ed86515417bc2d5dd1010}{mo\+Dummy\+Explorer$<$ mo\+Bit\+Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+Neighborhood\+Explorer.\+h\end{DoxyCompactItemize}

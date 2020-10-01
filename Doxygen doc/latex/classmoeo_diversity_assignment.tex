@@ -1,0 +1,95 @@
+\hypertarget{classmoeo_diversity_assignment}{}\doxysection{moeo\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_diversity_assignment}\index{moeoDiversityAssignment$<$ MOEOT $>$@{moeoDiversityAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Diversity\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_diversity_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_diversity_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&\+\_\+obj\+Vec)=0
+\item 
+void \mbox{\hyperlink{classmoeo_diversity_assignment_ad104002fdd5d81aabe25f95d443ed390}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, M\+O\+E\+OT \&\+\_\+moeo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Functor that sets the diversity values of a whole population. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}\label{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}} 
+\index{moeoDiversityAssignment$<$ MOEOT $>$@{moeoDiversityAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoDiversityAssignment$<$ MOEOT $>$@{moeoDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}}}
+
+The type for objective vector 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_diversity_assignment_ad104002fdd5d81aabe25f95d443ed390}\label{classmoeo_diversity_assignment_ad104002fdd5d81aabe25f95d443ed390}} 
+\index{moeoDiversityAssignment$<$ MOEOT $>$@{moeoDiversityAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoDiversityAssignment$<$ MOEOT $>$@{moeoDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the individual \+\_\+moeo into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+moeo} & the individual \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}\label{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}} 
+\index{moeoDiversityAssignment$<$ MOEOT $>$@{moeoDiversityAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoDiversityAssignment$<$ MOEOT $>$@{moeoDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_a52d561f4fe067cd36b2ed1ed8b4607c3}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a21c8d6e020af23b2be219b7e02248300}{moeo\+Sharing\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_crowding_diversity_assignment_aba1d60c8e59fbe2c12e9eef33863f012}{moeo\+Crowding\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_fuzzy_nearest_neighbor_diversity_a84c8d17c4549ca50f1f759c7b39a490a}{moeo\+Fuzzy\+Nearest\+Neighbor\+Diversity$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_front_by_front_sharing_diversity_assignment_a623489a246f86cf24cc5860d32caa743}{moeo\+Front\+By\+Front\+Sharing\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classmoeo_front_by_front_crowding_diversity_assignment_af73ff88bd29c49260e2ca859250e4b68}{moeo\+Front\+By\+Front\+Crowding\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}, and \mbox{\hyperlink{classmoeo_dummy_diversity_assignment_a6bed06d060c66b5360bb12b33e3e83be}{moeo\+Dummy\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/diversity/moeo\+Diversity\+Assignment.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,222 @@
+\hypertarget{classeo_scalar_fitness_assembled}{}\doxysection{eo\+Scalar\+Fitness\+Assembled$<$ Scalar\+Type, Compare, Fitness\+Traits $>$ Class Template Reference}
+\label{classeo_scalar_fitness_assembled}\index{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$@{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$}}
+
+
+Implements fitness as std\+::vector, storing all values that might occur during fitness assembly.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Scalar\+Fitness\+Assembled.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Scalar\+Fitness\+Assembled$<$ Scalar\+Type, Compare, Fitness\+Traits $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classeo_scalar_fitness_assembled__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Scalar\+Fitness\+Assembled$<$ Scalar\+Type, Compare, Fitness\+Traits $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classeo_scalar_fitness_assembled__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a1f4e688cc323f372498470792d2a2678}\label{classeo_scalar_fitness_assembled_a1f4e688cc323f372498470792d2a2678}} 
+typedef std\+::vector$<$ Scalar\+Type $>$ {\bfseries base\+Vector}
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_adf14082961a11c13629beb572571624e}\label{classeo_scalar_fitness_assembled_adf14082961a11c13629beb572571624e}} 
+typedef base\+Vector\+::size\+\_\+type {\bfseries size\+\_\+type}
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a1f4e688cc323f372498470792d2a2678}\label{classeo_scalar_fitness_assembled_a1f4e688cc323f372498470792d2a2678}} 
+typedef std\+::vector$<$ Scalar\+Type $>$ {\bfseries base\+Vector}
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_adf14082961a11c13629beb572571624e}\label{classeo_scalar_fitness_assembled_adf14082961a11c13629beb572571624e}} 
+typedef base\+Vector\+::size\+\_\+type {\bfseries size\+\_\+type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a23c34da15b61bfc6c046a280efb1de4a}\label{classeo_scalar_fitness_assembled_a23c34da15b61bfc6c046a280efb1de4a}} 
+{\bfseries eo\+Scalar\+Fitness\+Assembled} (size\+\_\+type \+\_\+n, const Scalar\+Type \&\+\_\+val, const std\+::string \&\+\_\+descr=\char`\"{}Unnamed variable\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a3bf8d33b3810ea1ecce0ccea83243dba}\label{classeo_scalar_fitness_assembled_a3bf8d33b3810ea1ecce0ccea83243dba}} 
+{\bfseries eo\+Scalar\+Fitness\+Assembled} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \&other)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_ab993e43677c7db1926e706488230ec66}\label{classeo_scalar_fitness_assembled_ab993e43677c7db1926e706488230ec66}} 
+\mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \& {\bfseries operator=} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \&other)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a264dafa2a4082282133b13035a3736a8}\label{classeo_scalar_fitness_assembled_a264dafa2a4082282133b13035a3736a8}} 
+{\bfseries eo\+Scalar\+Fitness\+Assembled} (const Scalar\+Type \&v)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a1870549f766a7af919effd6ffb1df41a}\label{classeo_scalar_fitness_assembled_a1870549f766a7af919effd6ffb1df41a}} 
+\mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \& {\bfseries operator=} (const Scalar\+Type \&v)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}\label{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}{push\+\_\+back}} (const Scalar\+Type \&\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Overload \mbox{\hyperlink{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}{push\+\_\+back()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a5d54ec2b481bca7ec51da54711d3a12a}\label{classeo_scalar_fitness_assembled_a5d54ec2b481bca7ec51da54711d3a12a}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a5d54ec2b481bca7ec51da54711d3a12a}{push\+\_\+back}} (const Scalar\+Type \&\+\_\+val, const std\+::string \&\+\_\+descr)
+\begin{DoxyCompactList}\small\item\em Overload \mbox{\hyperlink{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}{push\+\_\+back()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}\label{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}{resize}} (size\+\_\+type \+\_\+n, const Scalar\+Type \&\+\_\+val=Scalar\+Type(), const std\+::string \&\+\_\+descr=\char`\"{}Unnamed variable\char`\"{})
+\begin{DoxyCompactList}\small\item\em Overload \mbox{\hyperlink{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}{resize()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a7f6a1cc8bdc9611d55e7049d7304fb8b}\label{classeo_scalar_fitness_assembled_a7f6a1cc8bdc9611d55e7049d7304fb8b}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a7f6a1cc8bdc9611d55e7049d7304fb8b}{set\+Description}} (size\+\_\+type \+\_\+idx, std\+::string \+\_\+descr)
+\begin{DoxyCompactList}\small\item\em Set description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_aad91628eb92c20bb1679e6aec9c06e68}\label{classeo_scalar_fitness_assembled_aad91628eb92c20bb1679e6aec9c06e68}} 
+std\+::string \mbox{\hyperlink{classeo_scalar_fitness_assembled_aad91628eb92c20bb1679e6aec9c06e68}{get\+Description}} (size\+\_\+type \+\_\+idx)
+\begin{DoxyCompactList}\small\item\em Get description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a44fce3061e792c30c6ed4be429be9075}\label{classeo_scalar_fitness_assembled_a44fce3061e792c30c6ed4be429be9075}} 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classeo_scalar_fitness_assembled_a44fce3061e792c30c6ed4be429be9075}{get\+Description\+Vector}} ()
+\begin{DoxyCompactList}\small\item\em Get vector with descriptions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_abe2e4a7e1c965a78687ba8e38aff4bde}\label{classeo_scalar_fitness_assembled_abe2e4a7e1c965a78687ba8e38aff4bde}} 
+{\bfseries operator Scalar\+Type} (void) const
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a3fba6d5658efb522bd71791fcdaa67a5}\label{classeo_scalar_fitness_assembled_a3fba6d5658efb522bd71791fcdaa67a5}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a3fba6d5658efb522bd71791fcdaa67a5}{print\+All}} (std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em Print term values and descriptions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a70fe3bd26c8e23bca51255d2bb54f8ce}\label{classeo_scalar_fitness_assembled_a70fe3bd26c8e23bca51255d2bb54f8ce}} 
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled_a70fe3bd26c8e23bca51255d2bb54f8ce}{operator$<$}} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \&other) const
+\begin{DoxyCompactList}\small\item\em Comparison, using less by default. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_ac9ece211c02c6a22a957e9776cb5e0bf}\label{classeo_scalar_fitness_assembled_ac9ece211c02c6a22a957e9776cb5e0bf}} 
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled_ac9ece211c02c6a22a957e9776cb5e0bf}{operator$<$}} (Scalar\+Type x) const
+\begin{DoxyCompactList}\small\item\em Comparison with Scalar\+Types. Explicit definition needed to compile with VS 8.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a8e04497821f91945b61e11cd3bb22f24}\label{classeo_scalar_fitness_assembled_a8e04497821f91945b61e11cd3bb22f24}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$ \&y) const
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a001044f3b1a366b819a10ee4161560c5}\label{classeo_scalar_fitness_assembled_a001044f3b1a366b819a10ee4161560c5}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$ \&y) const
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_aba40cfc7f4e146b6830f46bd1e77fbd9}\label{classeo_scalar_fitness_assembled_aba40cfc7f4e146b6830f46bd1e77fbd9}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$ \&y) const
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a23c34da15b61bfc6c046a280efb1de4a}\label{classeo_scalar_fitness_assembled_a23c34da15b61bfc6c046a280efb1de4a}} 
+{\bfseries eo\+Scalar\+Fitness\+Assembled} (size\+\_\+type \+\_\+n, const Scalar\+Type \&\+\_\+val, const std\+::string \&\+\_\+descr=\char`\"{}Unnamed variable\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a3bf8d33b3810ea1ecce0ccea83243dba}\label{classeo_scalar_fitness_assembled_a3bf8d33b3810ea1ecce0ccea83243dba}} 
+{\bfseries eo\+Scalar\+Fitness\+Assembled} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \&other)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_ab993e43677c7db1926e706488230ec66}\label{classeo_scalar_fitness_assembled_ab993e43677c7db1926e706488230ec66}} 
+\mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \& {\bfseries operator=} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \&other)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a264dafa2a4082282133b13035a3736a8}\label{classeo_scalar_fitness_assembled_a264dafa2a4082282133b13035a3736a8}} 
+{\bfseries eo\+Scalar\+Fitness\+Assembled} (const Scalar\+Type \&v)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a1870549f766a7af919effd6ffb1df41a}\label{classeo_scalar_fitness_assembled_a1870549f766a7af919effd6ffb1df41a}} 
+\mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \& {\bfseries operator=} (const Scalar\+Type \&v)
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}\label{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}{push\+\_\+back}} (const Scalar\+Type \&\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Overload \mbox{\hyperlink{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}{push\+\_\+back()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a5d54ec2b481bca7ec51da54711d3a12a}\label{classeo_scalar_fitness_assembled_a5d54ec2b481bca7ec51da54711d3a12a}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a5d54ec2b481bca7ec51da54711d3a12a}{push\+\_\+back}} (const Scalar\+Type \&\+\_\+val, const std\+::string \&\+\_\+descr)
+\begin{DoxyCompactList}\small\item\em Overload \mbox{\hyperlink{classeo_scalar_fitness_assembled_ae3a4ee205ad57f80081a73d457e61ae5}{push\+\_\+back()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}\label{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}{resize}} (size\+\_\+type \+\_\+n, const Scalar\+Type \&\+\_\+val=Scalar\+Type(), const std\+::string \&\+\_\+descr=\char`\"{}Unnamed variable\char`\"{})
+\begin{DoxyCompactList}\small\item\em Overload \mbox{\hyperlink{classeo_scalar_fitness_assembled_a4e77a3041af0f6e29337cf28bb08f5c3}{resize()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a7f6a1cc8bdc9611d55e7049d7304fb8b}\label{classeo_scalar_fitness_assembled_a7f6a1cc8bdc9611d55e7049d7304fb8b}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a7f6a1cc8bdc9611d55e7049d7304fb8b}{set\+Description}} (size\+\_\+type \+\_\+idx, std\+::string \+\_\+descr)
+\begin{DoxyCompactList}\small\item\em Set description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_aad91628eb92c20bb1679e6aec9c06e68}\label{classeo_scalar_fitness_assembled_aad91628eb92c20bb1679e6aec9c06e68}} 
+std\+::string \mbox{\hyperlink{classeo_scalar_fitness_assembled_aad91628eb92c20bb1679e6aec9c06e68}{get\+Description}} (size\+\_\+type \+\_\+idx)
+\begin{DoxyCompactList}\small\item\em Get description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a44fce3061e792c30c6ed4be429be9075}\label{classeo_scalar_fitness_assembled_a44fce3061e792c30c6ed4be429be9075}} 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classeo_scalar_fitness_assembled_a44fce3061e792c30c6ed4be429be9075}{get\+Description\+Vector}} ()
+\begin{DoxyCompactList}\small\item\em Get vector with descriptions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_abe2e4a7e1c965a78687ba8e38aff4bde}\label{classeo_scalar_fitness_assembled_abe2e4a7e1c965a78687ba8e38aff4bde}} 
+{\bfseries operator Scalar\+Type} (void) const
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a3fba6d5658efb522bd71791fcdaa67a5}\label{classeo_scalar_fitness_assembled_a3fba6d5658efb522bd71791fcdaa67a5}} 
+void \mbox{\hyperlink{classeo_scalar_fitness_assembled_a3fba6d5658efb522bd71791fcdaa67a5}{print\+All}} (std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em Print term values and descriptions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a70fe3bd26c8e23bca51255d2bb54f8ce}\label{classeo_scalar_fitness_assembled_a70fe3bd26c8e23bca51255d2bb54f8ce}} 
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled_a70fe3bd26c8e23bca51255d2bb54f8ce}{operator$<$}} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}} \&other) const
+\begin{DoxyCompactList}\small\item\em Comparison, using less by default. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_ac9ece211c02c6a22a957e9776cb5e0bf}\label{classeo_scalar_fitness_assembled_ac9ece211c02c6a22a957e9776cb5e0bf}} 
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled_ac9ece211c02c6a22a957e9776cb5e0bf}{operator$<$}} (Scalar\+Type x) const
+\begin{DoxyCompactList}\small\item\em Comparison with Scalar\+Types. Explicit definition needed to compile with VS 8.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a8e04497821f91945b61e11cd3bb22f24}\label{classeo_scalar_fitness_assembled_a8e04497821f91945b61e11cd3bb22f24}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$ \&y) const
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_a001044f3b1a366b819a10ee4161560c5}\label{classeo_scalar_fitness_assembled_a001044f3b1a366b819a10ee4161560c5}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$ \&y) const
+\item 
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_aba40cfc7f4e146b6830f46bd1e77fbd9}\label{classeo_scalar_fitness_assembled_aba40cfc7f4e146b6830f46bd1e77fbd9}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$ \&y) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled_a7b1e4958a48c1a2d2af56ba6d18696a2}{feasible}}
+\begin{DoxyCompactList}\small\item\em Feasibility boolean. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled_aafab9d70f29101792b9fd39068f52e78}{failed}}
+\begin{DoxyCompactList}\small\item\em Failed boolean. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classeo_scalar_fitness_assembled_a5da33418b0f7a35b950a072dc1788826}{msg}}
+\begin{DoxyCompactList}\small\item\em Message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Scalar\+Type, class Compare, class Fitness\+Traits$>$\newline
+class eo\+Scalar\+Fitness\+Assembled$<$ Scalar\+Type, Compare, Fitness\+Traits $>$}
+
+Implements fitness as std\+::vector, storing all values that might occur during fitness assembly. 
+
+Properties\+:
+\begin{DoxyItemize}
+\item Wraps a scalar fitness values such as a double or int, with the option of maximizing (using less$<$\+Scalar\+Type$>$) or minimizing (using greater$<$\+Scalar\+Type$>$).
+\item Stores all kinda different values met during fitness assembly, to be defined in \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}.
+\item It overrides \mbox{\hyperlink{classeo_scalar_fitness_assembled_a70fe3bd26c8e23bca51255d2bb54f8ce}{operator$<$()}} to use the Compare template argument.
+\item Suitable constructors and assignments and casts are defined to work with this quantity as if it were a Scalar\+Type.
+\item Global fitness value is stored as first element in the vector 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classeo_scalar_fitness_assembled_aafab9d70f29101792b9fd39068f52e78}\label{classeo_scalar_fitness_assembled_aafab9d70f29101792b9fd39068f52e78}} 
+\index{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$@{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$}!failed@{failed}}
+\index{failed@{failed}!eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$@{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$}}
+\doxysubsubsection{\texorpdfstring{failed}{failed}}
+{\footnotesize\ttfamily template$<$class Scalar\+Type , class Compare , class Fitness\+Traits $>$ \\
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$\+::failed}
+
+
+
+Failed boolean. 
+
+Can be specified anywhere in fitness evaluation as an indicator if the evaluation of the individual failed \mbox{\Hypertarget{classeo_scalar_fitness_assembled_a7b1e4958a48c1a2d2af56ba6d18696a2}\label{classeo_scalar_fitness_assembled_a7b1e4958a48c1a2d2af56ba6d18696a2}} 
+\index{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$@{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$}!feasible@{feasible}}
+\index{feasible@{feasible}!eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$@{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$}}
+\doxysubsubsection{\texorpdfstring{feasible}{feasible}}
+{\footnotesize\ttfamily template$<$class Scalar\+Type , class Compare , class Fitness\+Traits $>$ \\
+bool \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$\+::feasible}
+
+
+
+Feasibility boolean. 
+
+Can be specified anywhere in fitness evaluation as an indicator if the individual is in some feasible range. \mbox{\Hypertarget{classeo_scalar_fitness_assembled_a5da33418b0f7a35b950a072dc1788826}\label{classeo_scalar_fitness_assembled_a5da33418b0f7a35b950a072dc1788826}} 
+\index{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$@{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$}!msg@{msg}}
+\index{msg@{msg}!eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$@{eoScalarFitnessAssembled$<$ ScalarType, Compare, FitnessTraits $>$}}
+\doxysubsubsection{\texorpdfstring{msg}{msg}}
+{\footnotesize\ttfamily template$<$class Scalar\+Type , class Compare , class Fitness\+Traits $>$ \\
+std\+::string \mbox{\hyperlink{classeo_scalar_fitness_assembled}{eo\+Scalar\+Fitness\+Assembled}}$<$ Scalar\+Type, Compare, Fitness\+Traits $>$\+::msg}
+
+
+
+Message. 
+
+Can be specified anywhere in fitness evaluation. Typically used to store some sort of error messages, if evaluation of individual failed. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Scalar\+Fitness\+Assembled.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,172 @@
+\hypertarget{classmoeo_nearest_neighbor_diversity_assignment}{}\doxysection{moeo\+Nearest\+Neighbor\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_nearest_neighbor_diversity_assignment}\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Nearest\+Neighbor\+Diversity\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Nearest\+Neighbor\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_nearest_neighbor_diversity_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Nearest\+Neighbor\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_nearest_neighbor_diversity_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_a710a3570119ee8cd747892932dad9392}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_a3cf8268280361b06ce470a28af79b765}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (unsigned int \+\_\+index=1)
+\item 
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_a0a8e5e349677f65d6c8bad636e316fd2}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, unsigned int \+\_\+index=1)
+\item 
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_a0c1d4e4bf20361041cbc44541bfdeac2}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&\+\_\+dist, unsigned int \+\_\+index=1)
+\item 
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_abc80026fb7a6c753e349826c2c7a96a3}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&\+\_\+dist, \mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+archive, unsigned int \+\_\+index=1)
+\item 
+void \mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_a3aefb9c852140e2c2a1fb763752977e6}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment_a52d561f4fe067cd36b2ed1ed8b4607c3}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Nearest\+Neighbor\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} is a \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}} using distance between individuals to assign diversity. Proposed in\+: E. Zitzler, M. Laumanns, and L. Thiele. S\+P\+E\+A2\+: Improving the Strength Pareto Evolutionary Algorithm. Technical Report 103, Computer Engineering and Networks Laboratory (T\+IK), E\+TH Zurich, Zurich, Switzerland, 2001.
+
+It is used in \mbox{\hyperlink{classmoeo_s_p_e_a2}{moeo\+S\+P\+E\+A2}}. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_nearest_neighbor_diversity_assignment_a710a3570119ee8cd747892932dad9392}\label{classmoeo_nearest_neighbor_diversity_assignment_a710a3570119ee8cd747892932dad9392}} 
+\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}}}
+
+The type for objective vector 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_nearest_neighbor_diversity_assignment_a3cf8268280361b06ce470a28af79b765}\label{classmoeo_nearest_neighbor_diversity_assignment_a3cf8268280361b06ce470a28af79b765}} 
+\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}!moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}}
+\index{moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}!moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoNearestNeighborDiversityAssignment()}{moeoNearestNeighborDiversityAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+index = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+index} & index for find the k-\/ieme nearest neighbor, \+\_\+index correspond to k \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_nearest_neighbor_diversity_assignment_a0a8e5e349677f65d6c8bad636e316fd2}\label{classmoeo_nearest_neighbor_diversity_assignment_a0a8e5e349677f65d6c8bad636e316fd2}} 
+\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}!moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}}
+\index{moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}!moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoNearestNeighborDiversityAssignment()}{moeoNearestNeighborDiversityAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{unsigned int}]{\+\_\+index = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own archive 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+archive} & the archive used \\
+\hline
+{\em \+\_\+index} & index for find the k-\/ieme nearest neighbor, \+\_\+index correspond to k \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_nearest_neighbor_diversity_assignment_a0c1d4e4bf20361041cbc44541bfdeac2}\label{classmoeo_nearest_neighbor_diversity_assignment_a0c1d4e4bf20361041cbc44541bfdeac2}} 
+\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}!moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}}
+\index{moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}!moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoNearestNeighborDiversityAssignment()}{moeoNearestNeighborDiversityAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&}]{\+\_\+dist,  }\item[{unsigned int}]{\+\_\+index = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own distance 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dist} & the distance used \\
+\hline
+{\em \+\_\+index} & index for find the k-\/ieme nearest neighbor, \+\_\+index correspond to k \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_nearest_neighbor_diversity_assignment_abc80026fb7a6c753e349826c2c7a96a3}\label{classmoeo_nearest_neighbor_diversity_assignment_abc80026fb7a6c753e349826c2c7a96a3}} 
+\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}!moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}}
+\index{moeoNearestNeighborDiversityAssignment@{moeoNearestNeighborDiversityAssignment}!moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoNearestNeighborDiversityAssignment()}{moeoNearestNeighborDiversityAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&}]{\+\_\+dist,  }\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+archive,  }\item[{unsigned int}]{\+\_\+index = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own distance and archive 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dist} & the distance used \\
+\hline
+{\em \+\_\+archive} & the archive used \\
+\hline
+{\em \+\_\+index} & index for find the k-\/ieme nearest neighbor, \+\_\+index correspond to k \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_nearest_neighbor_diversity_assignment_a3aefb9c852140e2c2a1fb763752977e6}\label{classmoeo_nearest_neighbor_diversity_assignment_a3aefb9c852140e2c2a1fb763752977e6}} 
+\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Affect the diversity to the pop, diversity corresponding to the k-\/ieme nearest neighbor. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_nearest_neighbor_diversity_assignment_a52d561f4fe067cd36b2ed1ed8b4607c3}\label{classmoeo_nearest_neighbor_diversity_assignment_a52d561f4fe067cd36b2ed1ed8b4607c3}} 
+\index{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$@{moeoNearestNeighborDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_nearest_neighbor_diversity_assignment}{moeo\+Nearest\+Neighbor\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyWarning}{Warning}
+N\+OT I\+M\+P\+L\+E\+M\+E\+N\+T\+ED, D\+O\+ES N\+O\+T\+H\+I\+NG ! Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+N\+OT I\+M\+P\+L\+E\+M\+E\+N\+T\+ED, D\+O\+ES N\+O\+T\+H\+I\+NG ! 
+\end{DoxyWarning}
+
+
+Implements \mbox{\hyperlink{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}{moeo\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/diversity/moeo\+Nearest\+Neighbor\+Diversity\+Assignment.\+h\end{DoxyCompactItemize}

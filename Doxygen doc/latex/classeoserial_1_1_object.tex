@@ -1,0 +1,115 @@
+\hypertarget{classeoserial_1_1_object}{}\doxysection{eoserial\+::Object Class Reference}
+\label{classeoserial_1_1_object}\index{eoserial::Object@{eoserial::Object}}
+
+
+J\+S\+ON \mbox{\hyperlink{classeoserial_1_1_object}{Object}}.  
+
+
+
+
+{\ttfamily \#include $<$Serial\+Object.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::Object\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{classeoserial_1_1_object__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eoserial\+::Object\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{classeoserial_1_1_object__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeoserial_1_1_object_a1189db8e4878bc55051fe657934cee74}\label{classeoserial_1_1_object_a1189db8e4878bc55051fe657934cee74}} 
+typedef std\+::map$<$ std\+::string, \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} $\ast$ $>$ {\bfseries Json\+Values}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classeoserial_1_1_object_ade298dfad535b7b9d4b24a73bd3c3320}{add}} (const std\+::string \&key, \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} $\ast$json)
+\begin{DoxyCompactList}\small\item\em Adds a pair into the J\+S\+ON object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeoserial_1_1_object_a57b91adad8a05d2b513b4b363dfe4417}{add}} (const std\+::string \&key, const \mbox{\hyperlink{classeoserial_1_1_printable}{eoserial\+::\+Printable}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Adds a pair into the J\+S\+ON object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeoserial_1_1_object_ab6bc28fc142f095eecceea6f93d5cd72}{deserialize}} (\mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} \&obj)
+\begin{DoxyCompactList}\small\item\em Deserializes a Serializable class instance from this J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeoserial_1_1_object_ae8f5483f459e46687bd01e6f9977afd3}\label{classeoserial_1_1_object_ae8f5483f459e46687bd01e6f9977afd3}} 
+\mbox{\hyperlink{classeoserial_1_1_object_ae8f5483f459e46687bd01e6f9977afd3}{$\sim$\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Dtor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeoserial_1_1_object_a6b6c4abb10819f17c42baebbcdbf10df}\label{classeoserial_1_1_object_a6b6c4abb10819f17c42baebbcdbf10df}} 
+virtual std\+::ostream \& \mbox{\hyperlink{classeoserial_1_1_object_a6b6c4abb10819f17c42baebbcdbf10df}{print}} (std\+::ostream \&out) const
+\begin{DoxyCompactList}\small\item\em Prints the content of a J\+S\+ON object into a stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+J\+S\+ON \mbox{\hyperlink{classeoserial_1_1_object}{Object}}. 
+
+This class represents a J\+S\+ON object, which is basically a dictionnary of keys (strings) and values (J\+S\+ON entities). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_object_a57b91adad8a05d2b513b4b363dfe4417}\label{classeoserial_1_1_object_a57b91adad8a05d2b513b4b363dfe4417}} 
+\index{eoserial::Object@{eoserial::Object}!add@{add}}
+\index{add@{add}!eoserial::Object@{eoserial::Object}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eoserial\+::\+Object\+::add (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{const \mbox{\hyperlink{classeoserial_1_1_printable}{eoserial\+::\+Printable}} $\ast$}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a pair into the J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key associated with the eoserial object \\
+\hline
+{\em obj} & A J\+S\+O\+N-\/serializable object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeoserial_1_1_object_ade298dfad535b7b9d4b24a73bd3c3320}\label{classeoserial_1_1_object_ade298dfad535b7b9d4b24a73bd3c3320}} 
+\index{eoserial::Object@{eoserial::Object}!add@{add}}
+\index{add@{add}!eoserial::Object@{eoserial::Object}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eoserial\+::\+Object\+::add (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{\mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a pair into the J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key associated with the eoserial object \\
+\hline
+{\em json} & The J\+S\+ON object as created with framework. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeoserial_1_1_object_ab6bc28fc142f095eecceea6f93d5cd72}\label{classeoserial_1_1_object_ab6bc28fc142f095eecceea6f93d5cd72}} 
+\index{eoserial::Object@{eoserial::Object}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!eoserial::Object@{eoserial::Object}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void eoserial\+::\+Object\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deserializes a Serializable class instance from this J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object we want to rebuild. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Serial\+Object.\+h\item 
+eo/src/serial/Serial\+Object.\+cpp\end{DoxyCompactItemize}

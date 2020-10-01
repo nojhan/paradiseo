@@ -1,0 +1,73 @@
+\hypertarget{classmo_always_accept_crit}{}\doxysection{mo\+Always\+Accept\+Crit$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_always_accept_crit}\index{moAlwaysAcceptCrit$<$ Neighbor $>$@{moAlwaysAcceptCrit$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Always\+Accept\+Crit.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Always\+Accept\+Crit$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_always_accept_crit__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Always\+Accept\+Crit$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_always_accept_crit__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_always_accept_crit_a9b80b918ff3ef0cbdd8ddc43a0b896cd}\label{classmo_always_accept_crit_a9b80b918ff3ef0cbdd8ddc43a0b896cd}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classmo_always_accept_crit_aab0020927f12ca9c1c4e634792aaa964}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol1, \mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Always\+Accept\+Crit$<$ Neighbor $>$}
+
+Acceptance Criterion for extreme diversification \+: always accept new solution 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_always_accept_crit_aab0020927f12ca9c1c4e634792aaa964}\label{classmo_always_accept_crit_aab0020927f12ca9c1c4e634792aaa964}} 
+\index{moAlwaysAcceptCrit$<$ Neighbor $>$@{moAlwaysAcceptCrit$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moAlwaysAcceptCrit$<$ Neighbor $>$@{moAlwaysAcceptCrit$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_always_accept_crit}{mo\+Always\+Accept\+Crit}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol1,  }\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Always accept the new solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol1} & the previous solution \\
+\hline
+{\em \+\_\+sol2} & the new solution after local search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+always true 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ Neighbor\+::\+E\+O\+T \&, Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/accept\+Crit/mo\+Always\+Accept\+Crit.\+h\end{DoxyCompactItemize}

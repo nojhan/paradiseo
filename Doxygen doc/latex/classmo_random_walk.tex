@@ -1,0 +1,95 @@
+\hypertarget{classmo_random_walk}{}\doxysection{mo\+Random\+Walk$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_random_walk}\index{moRandomWalk$<$ Neighbor $>$@{moRandomWalk$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Random\+Walk.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Random\+Walk$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_random_walk__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Random\+Walk$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_random_walk__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_random_walk_aa62feff616a8acfd90c1036e5077a442}\label{classmo_random_walk_aa62feff616a8acfd90c1036e5077a442}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_random_walk_a0457f4f8a88a9067dbacf260393a0526}\label{classmo_random_walk_a0457f4f8a88a9067dbacf260393a0526}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_random_walk_a73323d9bdc49b4bb272af72dde477825}{mo\+Random\+Walk}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned \+\_\+nb\+Step\+Max)
+\item 
+\mbox{\hyperlink{classmo_random_walk_ae03fa30fa7bc2a56cc40f253ef618079}{mo\+Random\+Walk}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Random\+Walk$<$ Neighbor $>$}
+
+Random Walk\+: Random walk local search
+
+At each iteration, one random neighbor is selected and replace the current solution the algorithm stops when the number of steps is reached 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_random_walk_a73323d9bdc49b4bb272af72dde477825}\label{classmo_random_walk_a73323d9bdc49b4bb272af72dde477825}} 
+\index{moRandomWalk$<$ Neighbor $>$@{moRandomWalk$<$ Neighbor $>$}!moRandomWalk@{moRandomWalk}}
+\index{moRandomWalk@{moRandomWalk}!moRandomWalk$<$ Neighbor $>$@{moRandomWalk$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRandomWalk()}{moRandomWalk()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_walk}{mo\+Random\+Walk}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_random_walk}{mo\+Random\+Walk}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned}]{\+\_\+nb\+Step\+Max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Simple constructor for a random walk 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+nb\+Step\+Max} & number of step of the walk \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_walk_ae03fa30fa7bc2a56cc40f253ef618079}\label{classmo_random_walk_ae03fa30fa7bc2a56cc40f253ef618079}} 
+\index{moRandomWalk$<$ Neighbor $>$@{moRandomWalk$<$ Neighbor $>$}!moRandomWalk@{moRandomWalk}}
+\index{moRandomWalk@{moRandomWalk}!moRandomWalk$<$ Neighbor $>$@{moRandomWalk$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRandomWalk()}{moRandomWalk()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_walk}{mo\+Random\+Walk}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_random_walk}{mo\+Random\+Walk}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+General constructor for a random walk 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor\textquotesingle{}s evaluation function \\
+\hline
+{\em \+\_\+cont} & a user-\/defined continuator \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/algo/mo\+Random\+Walk.\+h\end{DoxyCompactItemize}

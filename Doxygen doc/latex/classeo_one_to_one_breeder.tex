@@ -1,0 +1,143 @@
+\hypertarget{classeo_one_to_one_breeder}{}\doxysection{eo\+One\+To\+One\+Breeder$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_one_to_one_breeder}\index{eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+One\+To\+One\+Breeder.\+h$>$}
+
+
+
+Inheritance diagram for eo\+One\+To\+One\+Breeder$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_one_to_one_breeder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+One\+To\+One\+Breeder$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_one_to_one_breeder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_one_to_one_breeder_abcf1be7974bae4718ffbffd9391b02cd}{eo\+One\+To\+One\+Breeder}} (\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+eval, double \+\_\+p\+Replace=1.\+0, \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \+\_\+how\+Many=\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(1.\+0))
+\item 
+void \mbox{\hyperlink{classeo_one_to_one_breeder_a763bc424363b0c6c1e7b221d2451756b}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+parents, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+offspring)
+\item 
+\mbox{\Hypertarget{classeo_one_to_one_breeder_a5de0d2fad0664084eefc4e00e844cb06}\label{classeo_one_to_one_breeder_a5de0d2fad0664084eefc4e00e844cb06}} 
+virtual std\+::string \mbox{\hyperlink{classeo_one_to_one_breeder_a5de0d2fad0664084eefc4e00e844cb06}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The class name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_one_to_one_breeder_abcf1be7974bae4718ffbffd9391b02cd}{eo\+One\+To\+One\+Breeder}} (\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+eval, double \+\_\+p\+Replace=1.\+0, \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \+\_\+how\+Many=\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(1.\+0))
+\item 
+void \mbox{\hyperlink{classeo_one_to_one_breeder_a763bc424363b0c6c1e7b221d2451756b}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+parents, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+offspring)
+\item 
+\mbox{\Hypertarget{classeo_one_to_one_breeder_a5de0d2fad0664084eefc4e00e844cb06}\label{classeo_one_to_one_breeder_a5de0d2fad0664084eefc4e00e844cb06}} 
+virtual std\+::string \mbox{\hyperlink{classeo_one_to_one_breeder_a5de0d2fad0664084eefc4e00e844cb06}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The class name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+One\+To\+One\+Breeder$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_one_to_one_breeder}{eo\+One\+To\+One\+Breeder}}\+: transforms a population using
+\begin{DoxyItemize}
+\item an operator that M\+O\+D\+I\+F\+I\+ES only one parent from the populator (though it can use any number aside) and thus generates O\+NE offspring)
+\item a local replacement between the parent and its offspring
+\end{DoxyItemize}
+
+Typically, Differential Evolution (Storn and Price 94) and Deb et al\textquotesingle{}s G3 can be built on this 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_one_to_one_breeder_abcf1be7974bae4718ffbffd9391b02cd}\label{classeo_one_to_one_breeder_abcf1be7974bae4718ffbffd9391b02cd}} 
+\index{eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}!eoOneToOneBreeder@{eoOneToOneBreeder}}
+\index{eoOneToOneBreeder@{eoOneToOneBreeder}!eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOneToOneBreeder()}{eoOneToOneBreeder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_one_to_one_breeder}{eo\+One\+To\+One\+Breeder}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_one_to_one_breeder}{eo\+One\+To\+One\+Breeder}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+op,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+eval,  }\item[{double}]{\+\_\+p\+Replace = {\ttfamily 1.0},  }\item[{\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}}]{\+\_\+how\+Many = {\ttfamily \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(1.0)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+op} & a general operator (must M\+O\+D\+I\+FY only O\+NE parent) \\
+\hline
+{\em \+\_\+eval} & an \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}} to evaluate the offspring \\
+\hline
+{\em \+\_\+p\+Replace} & probability that the best of parent/offspring wins \mbox{[}1\mbox{]} \\
+\hline
+{\em \+\_\+how\+Many} & \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} offpsring to generate \mbox{[}100\%\mbox{]} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_one_to_one_breeder_abcf1be7974bae4718ffbffd9391b02cd}\label{classeo_one_to_one_breeder_abcf1be7974bae4718ffbffd9391b02cd}} 
+\index{eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}!eoOneToOneBreeder@{eoOneToOneBreeder}}
+\index{eoOneToOneBreeder@{eoOneToOneBreeder}!eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoOneToOneBreeder()}{eoOneToOneBreeder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_one_to_one_breeder}{eo\+One\+To\+One\+Breeder}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_one_to_one_breeder}{eo\+One\+To\+One\+Breeder}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+op,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+eval,  }\item[{double}]{\+\_\+p\+Replace = {\ttfamily 1.0},  }\item[{\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}}]{\+\_\+how\+Many = {\ttfamily \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(1.0)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+op} & a general operator (must M\+O\+D\+I\+FY only O\+NE parent) \\
+\hline
+{\em \+\_\+eval} & an \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}} to evaluate the offspring \\
+\hline
+{\em \+\_\+p\+Replace} & probability that the best of parent/offspring wins \mbox{[}1\mbox{]} \\
+\hline
+{\em \+\_\+how\+Many} & \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} offpsring to generate \mbox{[}100\%\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_one_to_one_breeder_a763bc424363b0c6c1e7b221d2451756b}\label{classeo_one_to_one_breeder_a763bc424363b0c6c1e7b221d2451756b}} 
+\index{eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_one_to_one_breeder}{eo\+One\+To\+One\+Breeder}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+parents,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+offspring }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The breeder\+: iteratively calls the gen\+Op O\+N\+CE on a selective populator after having recorded the parent Then does the replacement
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+parents} & the initial population \\
+\hline
+{\em \+\_\+offspring} & the resulting population (content -\/if any-\/ is lost) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, eo\+Pop$<$ E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classeo_one_to_one_breeder_a763bc424363b0c6c1e7b221d2451756b}\label{classeo_one_to_one_breeder_a763bc424363b0c6c1e7b221d2451756b}} 
+\index{eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoOneToOneBreeder$<$ EOT $>$@{eoOneToOneBreeder$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classeo_one_to_one_breeder}{eo\+One\+To\+One\+Breeder}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+parents,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+offspring }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The breeder\+: iteratively calls the gen\+Op O\+N\+CE on a selective populator after having recorded the parent Then does the replacement
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+parents} & the initial population \\
+\hline
+{\em \+\_\+offspring} & the resulting population (content -\/if any-\/ is lost) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, eo\+Pop$<$ E\+O\+T $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+One\+To\+One\+Breeder.\+h\end{DoxyCompactItemize}

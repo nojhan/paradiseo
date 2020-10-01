@@ -1,0 +1,57 @@
+\hypertarget{classeo_invalidate_bin_op}{}\doxysection{eo\+Invalidate\+Bin\+Op$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_invalidate_bin_op}\index{eoInvalidateBinOp$<$ EOT $>$@{eoInvalidateBinOp$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Invalidate\+Ops.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Invalidate\+Bin\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_invalidate_bin_op__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Invalidate\+Bin\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_invalidate_bin_op__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_invalidate_bin_op_afd34a68d113fa068426cc894a1acbc8c}\label{classeo_invalidate_bin_op_afd34a68d113fa068426cc894a1acbc8c}} 
+{\bfseries eo\+Invalidate\+Bin\+Op} (\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op)
+\item 
+\mbox{\Hypertarget{classeo_invalidate_bin_op_a8b0780d5bb74fb7024fbc4824eb6eaa0}\label{classeo_invalidate_bin_op_a8b0780d5bb74fb7024fbc4824eb6eaa0}} 
+bool \mbox{\hyperlink{classeo_invalidate_bin_op_a8b0780d5bb74fb7024fbc4824eb6eaa0}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo, const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo2)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_invalidate_bin_op_afd34a68d113fa068426cc894a1acbc8c}\label{classeo_invalidate_bin_op_afd34a68d113fa068426cc894a1acbc8c}} 
+{\bfseries eo\+Invalidate\+Bin\+Op} (\mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+op)
+\item 
+\mbox{\Hypertarget{classeo_invalidate_bin_op_a8b0780d5bb74fb7024fbc4824eb6eaa0}\label{classeo_invalidate_bin_op_a8b0780d5bb74fb7024fbc4824eb6eaa0}} 
+bool \mbox{\hyperlink{classeo_invalidate_bin_op_a8b0780d5bb74fb7024fbc4824eb6eaa0}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo, const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo2)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Invalidate\+Bin\+Op$<$ E\+O\+T $>$}
+
+One of the invalidator operators. Use this one as a \textquotesingle{}hat\textquotesingle{} on an operator that is defined to work on a generic datatype. This functor will then check the return type of the operator and invalidate the fitness of the individual.
+
+This functor is used in algorithms that work with straight \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}, \mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}} or \mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}} operators, for instance \mbox{\hyperlink{classeo_s_g_a}{eo\+S\+GA}}. Note that \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}} derived operators generally do invalidate the fitness of the objects they have changed.
+
+Return value means \char`\"{}\+Has\+\_\+\+Changed\char`\"{} and not \char`\"{}\+Needs\+\_\+\+To\+\_\+\+Be\+\_\+\+Invalidated\char`\"{} as successive invalidation are not really a problem 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Invalidate\+Ops.\+h\end{DoxyCompactItemize}

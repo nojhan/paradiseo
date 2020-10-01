@@ -1,0 +1,134 @@
+\hypertarget{classmo_swap_neighborhood}{}\doxysection{mo\+Swap\+Neighborhood$<$ E\+OT, Fitness $>$ Class Template Reference}
+\label{classmo_swap_neighborhood}\index{moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}}
+
+
+{\ttfamily \#include $<$mo\+Swap\+Neighborhood.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Swap\+Neighborhood$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{classmo_swap_neighborhood__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Swap\+Neighborhood$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{classmo_swap_neighborhood__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_swap_neighborhood_a028fd1b558d51046ac5a7e99ff306488}\label{classmo_swap_neighborhood_a028fd1b558d51046ac5a7e99ff306488}} 
+typedef \mbox{\hyperlink{classmo_swap_neighbor}{mo\+Swap\+Neighbor}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$ {\bfseries Neighbor}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classmo_swap_neighborhood_a6bbe339f663c71c6015787f7463e2e61}{has\+Neighbor}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_swap_neighborhood_a3ace26e207adb74469b434e5c2621eac}{init}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_swap_neighbor}{Neighbor}} \&\+\_\+current)
+\item 
+virtual void \mbox{\hyperlink{classmo_swap_neighborhood_aace96596fb6fa80ca79cc3323d699d8d}{next}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_swap_neighbor}{Neighbor}} \&\+\_\+current)
+\item 
+virtual bool \mbox{\hyperlink{classmo_swap_neighborhood_a3ea004835d1c2595b65412c8e5ed237b}{cont}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_swap_neighborhood_a1e39eecb8138c2d8a0399f5fd29168c2}{class\+Name}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class Fitness = typename E\+O\+T\+::\+Fitness$>$\newline
+class mo\+Swap\+Neighborhood$<$ E\+O\+T, Fitness $>$}
+
+Swap Neighborhood 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_swap_neighborhood_a1e39eecb8138c2d8a0399f5fd29168c2}\label{classmo_swap_neighborhood_a1e39eecb8138c2d8a0399f5fd29168c2}} 
+\index{moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}!className@{className}}
+\index{className@{className}!moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_swap_neighborhood}{mo\+Swap\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classmo_swap_neighborhood_a3ea004835d1c2595b65412c8e5ed237b}\label{classmo_swap_neighborhood_a3ea004835d1c2595b65412c8e5ed237b}} 
+\index{moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}!cont@{cont}}
+\index{cont@{cont}!moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{cont()}{cont()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual bool \mbox{\hyperlink{classmo_swap_neighborhood}{mo\+Swap\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::cont (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if there is again a neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is again a neighbor not explored 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a4093914507138339f3756ff5edaf6531}{mo\+Neighborhood$<$ mo\+Swap\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$ $>$}}.
+
+\mbox{\Hypertarget{classmo_swap_neighborhood_a6bbe339f663c71c6015787f7463e2e61}\label{classmo_swap_neighborhood_a6bbe339f663c71c6015787f7463e2e61}} 
+\index{moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}!hasNeighbor@{hasNeighbor}}
+\index{hasNeighbor@{hasNeighbor}!moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{hasNeighbor()}{hasNeighbor()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual bool \mbox{\hyperlink{classmo_swap_neighborhood}{mo\+Swap\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::has\+Neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+true if there is at least an available neighbor 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a9a4b6ca2bcf76697145509eb35baf3be}{mo\+Neighborhood$<$ mo\+Swap\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$ $>$}}.
+
+\mbox{\Hypertarget{classmo_swap_neighborhood_a3ace26e207adb74469b434e5c2621eac}\label{classmo_swap_neighborhood_a3ace26e207adb74469b434e5c2621eac}} 
+\index{moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}!init@{init}}
+\index{init@{init}!moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_swap_neighborhood}{mo\+Swap\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_swap_neighbor}{Neighbor}} \&}]{\+\_\+current }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Initialization of the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+current} & the first neighbor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_swap_neighborhood_aace96596fb6fa80ca79cc3323d699d8d}\label{classmo_swap_neighborhood_aace96596fb6fa80ca79cc3323d699d8d}} 
+\index{moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}!next@{next}}
+\index{next@{next}!moSwapNeighborhood$<$ EOT, Fitness $>$@{moSwapNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_swap_neighborhood}{mo\+Swap\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_swap_neighbor}{Neighbor}} \&}]{\+\_\+current }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Give the next neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+current} & the next neighbor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/permutation/mo\+Swap\+Neighborhood.\+h\end{DoxyCompactItemize}

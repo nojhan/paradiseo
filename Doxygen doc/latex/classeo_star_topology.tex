@@ -1,0 +1,216 @@
+\hypertarget{classeo_star_topology}{}\doxysection{eo\+Star\+Topology$<$ P\+OT $>$ Class Template Reference}
+\label{classeo_star_topology}\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Star\+Topology.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Star\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_star_topology__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Star\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_star_topology__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_star_topology_a47b997a8f7ebd4f8eab5d6f8f82ecc35}{eo\+Star\+Topology}} ()
+\item 
+void \mbox{\hyperlink{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classeo_star_topology_a2d0abe8599e15d5f9af5b71dd1a359c1}{update\+Neighborhood}} (P\+OT \&\+\_\+po, unsigned \+\_\+indice)
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_star_topology_a433aa48e4e6e544a6cd6e073a73514d0}{best}} (unsigned \+\_\+indice)
+\item 
+\mbox{\Hypertarget{classeo_star_topology_a6a1acd2d0b16e1b99fa3c274dac9d9c0}\label{classeo_star_topology_a6a1acd2d0b16e1b99fa3c274dac9d9c0}} 
+virtual P\+OT \& {\bfseries global\+Best} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}{print\+On}} ()
+\item 
+\mbox{\hyperlink{classeo_star_topology_a47b997a8f7ebd4f8eab5d6f8f82ecc35}{eo\+Star\+Topology}} ()
+\item 
+void \mbox{\hyperlink{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classeo_star_topology_aa7e260cf5af142697ebfc3d5262e4e0f}{update\+Neighborhood}} (P\+OT \&\+\_\+po, unsigned)
+\item 
+P\+OT \& \mbox{\hyperlink{classeo_star_topology_ad96bcce87b69c9abbeb32191825ecdb3}{best}} (unsigned)
+\item 
+\mbox{\Hypertarget{classeo_star_topology_a430fa8c781fc662bb6c07050d158d1bf}\label{classeo_star_topology_a430fa8c781fc662bb6c07050d158d1bf}} 
+virtual P\+OT \& {\bfseries global\+Best} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&)
+\item 
+void \mbox{\hyperlink{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}{print\+On}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_star_topology_a138aa7679f71d2a6222a1903319f297a}\label{classeo_star_topology_a138aa7679f71d2a6222a1903319f297a}} 
+\mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}$<$ P\+OT $>$ {\bfseries neighborhood}
+\item 
+\mbox{\Hypertarget{classeo_star_topology_af3f458b7791d4e2f7d2e123714ebc8ec}\label{classeo_star_topology_af3f458b7791d4e2f7d2e123714ebc8ec}} 
+bool {\bfseries is\+Setup}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class P\+OT$>$\newline
+class eo\+Star\+Topology$<$ P\+O\+T $>$}
+
+Topology dedicated to \char`\"{}globest best\char`\"{} strategy for particle swarm optimization. All the particles of the swarm belong to the same and only social neighborhood. The global best is stored and updated using the \mbox{\hyperlink{classeo_social_neighborhood}{eo\+Social\+Neighborhood}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_star_topology_a47b997a8f7ebd4f8eab5d6f8f82ecc35}\label{classeo_star_topology_a47b997a8f7ebd4f8eab5d6f8f82ecc35}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!eoStarTopology@{eoStarTopology}}
+\index{eoStarTopology@{eoStarTopology}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStarTopology()}{eoStarTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The only Ctor. No parameter required. \mbox{\Hypertarget{classeo_star_topology_a47b997a8f7ebd4f8eab5d6f8f82ecc35}\label{classeo_star_topology_a47b997a8f7ebd4f8eab5d6f8f82ecc35}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!eoStarTopology@{eoStarTopology}}
+\index{eoStarTopology@{eoStarTopology}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{eoStarTopology()}{eoStarTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+\mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::\mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The only Ctor. No parameter required. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_star_topology_a433aa48e4e6e544a6cd6e073a73514d0}\label{classeo_star_topology_a433aa48e4e6e544a6cd6e073a73514d0}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+indice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the global best particle. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indice} & -\/ The indice of a particle in the population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+OT \& -\/ The best particle in the neighborhood of the particle whose indice is \+\_\+indice 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_star_topology_ad96bcce87b69c9abbeb32191825ecdb3}\label{classeo_star_topology_ad96bcce87b69c9abbeb32191825ecdb3}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+P\+OT\& \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the global best particle. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indice} & -\/ The indice of a particle in the population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+OT \& -\/ The best particle in the neighborhood of the particle whose indice is \+\_\+indice 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}\label{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::print\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print the structure of the topology on the standard output. 
+
+Implements \mbox{\hyperlink{classeo_topology_a96f44377c7cf60ab8fede4ea0fa568a9}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}\label{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::print\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Print the structure of the topology on the standard output. 
+
+Implements \mbox{\hyperlink{classeo_topology_a96f44377c7cf60ab8fede4ea0fa568a9}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}\label{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Builds the only neighborhood that contains all the particles of the given population. Also initializes the global best particle with the best particle of the given population. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & -\/ The population used to build the only neighborhood. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}\label{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Builds the only neighborhood that contains all the particles of the given population. Also initializes the global best particle with the best particle of the given population. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & -\/ The population used to build the only neighborhood. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_star_topology_a2d0abe8599e15d5f9af5b71dd1a359c1}\label{classeo_star_topology_a2d0abe8599e15d5f9af5b71dd1a359c1}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{,  }\item[{unsigned}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the neighborhood of the given particle and its indice in the population 
+
+Implements \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_star_topology_aa7e260cf5af142697ebfc3d5262e4e0f}\label{classeo_star_topology_aa7e260cf5af142697ebfc3d5262e4e0f}} 
+\index{eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoStarTopology$<$ POT $>$@{eoStarTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+void \mbox{\hyperlink{classeo_star_topology}{eo\+Star\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{,  }\item[{unsigned}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the neighborhood of the given particle and its indice in the population 
+
+Implements \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{eo\+Topology$<$ P\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Star\+Topology.\+h\end{DoxyCompactItemize}

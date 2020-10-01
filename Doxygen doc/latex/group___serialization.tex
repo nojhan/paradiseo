@@ -1,0 +1,43 @@
+\hypertarget{group___serialization}{}\doxysection{Serialization helpers}
+\label{group___serialization}\index{Serialization helpers@{Serialization helpers}}
+
+
+Contains all the necessary entities to serialize eo objects into J\+S\+ON objects.  
+
+
+Collaboration diagram for Serialization helpers\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group___serialization}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}}
+\begin{DoxyCompactList}\small\item\em J\+S\+ON entity. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeoserial_1_1_parser}{eoserial\+::\+Parser}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classeoserial_1_1_parser}{Parser}} from a J\+S\+ON source. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeoserial_1_1_array}{eoserial\+::\+Array}}
+\begin{DoxyCompactList}\small\item\em Represents a J\+S\+ON array. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeoserial_1_1_printable}{eoserial\+::\+Printable}}
+\begin{DoxyCompactList}\small\item\em Interface showing that object can be written to a eoserial type (currently J\+S\+ON). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}}
+\begin{DoxyCompactList}\small\item\em Interface showing that object can be eoserialized (written and read from an input). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}
+\begin{DoxyCompactList}\small\item\em J\+S\+ON \mbox{\hyperlink{classeoserial_1_1_object}{Object}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeoserial_1_1_string}{eoserial\+::\+String}}
+\begin{DoxyCompactList}\small\item\em J\+S\+ON \mbox{\hyperlink{classeoserial_1_1_string}{String}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains all the necessary entities to serialize eo objects into J\+S\+ON objects. 
+
+Allows serialization from user objects into J\+S\+ON objects, if they implement the interface eoserial\+::\+Serializable or \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}}. The following user objects can be serialized\+:
+\begin{DoxyItemize}
+\item primitive types (int, std\+::string, ...), in particular every type that can be written into a std\+::stringstream.
+\item objects which implement eoserial\+::\+Serializable.
+\item array of serializable things (primitive or serializable objects). 
+\end{DoxyItemize}

@@ -1,0 +1,238 @@
+\hypertarget{classmoeo_quad_tree}{}\doxysection{moeo\+Quad\+Tree$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_quad_tree}\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+
+
+Inheritance diagram for moeo\+Quad\+Tree$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{classmoeo_quad_tree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Quad\+Tree$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{classmoeo_quad_tree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::pair$<$ bool, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ $>$ \mbox{\hyperlink{classmoeo_quad_tree_a1e5d0c5069def3e2fe1303aea4f1e54b}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeot, bool \+\_\+insert=true)
+\item 
+bool \mbox{\hyperlink{classmoeo_quad_tree_a612e47d361333e42945985400cba1de6}{update}} (\mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} \&\+\_\+update)
+\item 
+void \mbox{\hyperlink{classmoeo_quad_tree_a1836d2ab373341be71e6509554b2282c}{insert}} (Objective\+Vector \+\_\+obj, std\+::pair$<$ bool, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ $>$ \&res)
+\item 
+bool \mbox{\hyperlink{classmoeo_quad_tree_a0290f4774ac8958e10b24dc1844bb915}{insert\+\_\+aux}} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+newnode, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+tmproot, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+parent, unsigned int \+\_\+succ, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&modifs)
+\item 
+\mbox{\Hypertarget{classmoeo_quad_tree_af24cc2de1886ab8c183426cc7e2d2691}\label{classmoeo_quad_tree_af24cc2de1886ab8c183426cc7e2d2691}} 
+unsigned int {\bfseries k\+\_\+succ} (const Objective\+Vector \&\+\_\+obj\+Vec1, const Objective\+Vector \&\+\_\+obj\+Vec2)
+\item 
+\mbox{\Hypertarget{classmoeo_quad_tree_a9dc1cb5ff04f534e59284abdb19b036f}\label{classmoeo_quad_tree_a9dc1cb5ff04f534e59284abdb19b036f}} 
+void {\bfseries replace} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+newnode, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+tmproot, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+parent, unsigned int \+\_\+succ, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&res)
+\item 
+void \mbox{\hyperlink{classmoeo_quad_tree_a36af40c16d2476a93b87df8f52d297c0}{reconsider}} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+newroot, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+child, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&res)
+\item 
+void \mbox{\hyperlink{classmoeo_quad_tree_a26d9ad0dc56c3534490841be9a7fcdb4}{reinsert}} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+node1, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+node2)
+\item 
+void \mbox{\hyperlink{classmoeo_quad_tree_aabfc6ee53c0d9737be6a89ae8928381d}{remove}} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+node, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+parent, unsigned int \+\_\+succ, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&res)
+\item 
+bool \mbox{\hyperlink{classmoeo_quad_tree_a4a44802e6134a9598859a0bdcc01297e}{test1}} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+node1, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+node2)
+\item 
+void \mbox{\hyperlink{classmoeo_quad_tree_a549d9e626cdab41372c06d3c27ac69cc}{test2}} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+node1, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+node2, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+parent, unsigned int \+\_\+succ, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&res)
+\item 
+\mbox{\Hypertarget{classmoeo_quad_tree_a0f1e5e4f8ece3a2a574bbf65e885794a}\label{classmoeo_quad_tree_a0f1e5e4f8ece3a2a574bbf65e885794a}} 
+void {\bfseries print\+Tree} ()
+\item 
+\mbox{\Hypertarget{classmoeo_quad_tree_ad556d0b9e5ed867f335db8ea915ceb6b}\label{classmoeo_quad_tree_ad556d0b9e5ed867f335db8ea915ceb6b}} 
+void {\bfseries print\+Child} (\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$\+\_\+child, unsigned int \+\_\+key)
+\item 
+bool \mbox{\hyperlink{classmoeo_quad_tree_a99fd64a780ff7fc6949f0540974968e9}{is\+Empty}} ()
+\item 
+\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$ \mbox{\hyperlink{classmoeo_quad_tree_a6fdbf5d2feaf2b11aeab0582195f669e}{get\+Root}} ()
+\item 
+unsigned int \mbox{\hyperlink{classmoeo_quad_tree_a9da526c6bc83b0be3b060d3c13647bd9}{size}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_quad_tree_a6fdbf5d2feaf2b11aeab0582195f669e}\label{classmoeo_quad_tree_a6fdbf5d2feaf2b11aeab0582195f669e}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!getRoot@{getRoot}}
+\index{getRoot@{getRoot}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{getRoot()}{getRoot()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$Objective\+Vector$>$$\ast$ \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::get\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a pointer on the root of the tree 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_quad_tree_a1836d2ab373341be71e6509554b2282c}\label{classmoeo_quad_tree_a1836d2ab373341be71e6509554b2282c}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!insert@{insert}}
+\index{insert@{insert}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::insert (\begin{DoxyParamCaption}\item[{Objective\+Vector}]{\+\_\+obj,  }\item[{std\+::pair$<$ bool, std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ $>$ \&}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+@paramm \+\_\+obj the Objective Vector to insert into the tree. \begin{DoxyReturn}{Returns}
+true if it is inserted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_quad_tree_a0290f4774ac8958e10b24dc1844bb915}\label{classmoeo_quad_tree_a0290f4774ac8958e10b24dc1844bb915}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!insert\_aux@{insert\_aux}}
+\index{insert\_aux@{insert\_aux}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{insert\_aux()}{insert\_aux()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::insert\+\_\+aux (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+newnode,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+tmproot,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+parent,  }\item[{unsigned int}]{\+\_\+succ,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&}]{modifs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+newnode} & the node to insert \\
+\hline
+{\em \+\_\+tmproot} & the temporary root \\
+\hline
+{\em \+\_\+parent} & the parent of \+\_\+tmproot \\
+\hline
+{\em \+\_\+succ} & the index of \+\_\+parent where the \+\_\+tmproot is linked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the \+\_\+newnode is inserted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_quad_tree_a99fd64a780ff7fc6949f0540974968e9}\label{classmoeo_quad_tree_a99fd64a780ff7fc6949f0540974968e9}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+if the tree is empty or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_quad_tree_a1e5d0c5069def3e2fe1303aea4f1e54b}\label{classmoeo_quad_tree_a1e5d0c5069def3e2fe1303aea4f1e54b}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+std\+::pair$<$bool,std\+::vector$<$\mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}}$>$ $>$ \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeot,  }\item[{bool}]{\+\_\+insert = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+insert a \+\_\+moeot in the index if it can be inserted 
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_index_a2116be26ea339f2529399fef888f35fe}{moeo\+Archive\+Index$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_quad_tree_a36af40c16d2476a93b87df8f52d297c0}\label{classmoeo_quad_tree_a36af40c16d2476a93b87df8f52d297c0}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!reconsider@{reconsider}}
+\index{reconsider@{reconsider}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{reconsider()}{reconsider()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::reconsider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+newroot,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+child,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+newroot} & the new root \\
+\hline
+{\em \+\_\+child} & a node to reconsider regarding tthe \+\_\+newroot \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_quad_tree_a26d9ad0dc56c3534490841be9a7fcdb4}\label{classmoeo_quad_tree_a26d9ad0dc56c3534490841be9a7fcdb4}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!reinsert@{reinsert}}
+\index{reinsert@{reinsert}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{reinsert()}{reinsert()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::reinsert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+node1,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+node2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reinsert \+\_\+node2 into \+\_\+node1 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+node1} & first node \\
+\hline
+{\em \+\_\+node2} & second node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_quad_tree_aabfc6ee53c0d9737be6a89ae8928381d}\label{classmoeo_quad_tree_aabfc6ee53c0d9737be6a89ae8928381d}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!remove@{remove}}
+\index{remove@{remove}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+node,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+parent,  }\item[{unsigned int}]{\+\_\+succ,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+remove a node 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+node} & the node to remove \\
+\hline
+{\em \+\_\+parent} & its parent \\
+\hline
+{\em \+\_\+succ} & the index of \+\_\+parent where the \+\_\+node is linked \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_quad_tree_a9da526c6bc83b0be3b060d3c13647bd9}\label{classmoeo_quad_tree_a9da526c6bc83b0be3b060d3c13647bd9}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!size@{size}}
+\index{size@{size}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+the number of individual currently indexed \begin{DoxyReturn}{Returns}
+the tree size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_quad_tree_a4a44802e6134a9598859a0bdcc01297e}\label{classmoeo_quad_tree_a4a44802e6134a9598859a0bdcc01297e}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!test1@{test1}}
+\index{test1@{test1}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{test1()}{test1()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::test1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+node1,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+node2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+test if \+\_\+node1 is dominated by \+\_\+node2 (and recursivly by its childs) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+node1} & first node \\
+\hline
+{\em \+\_\+node2} & second node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_quad_tree_a549d9e626cdab41372c06d3c27ac69cc}\label{classmoeo_quad_tree_a549d9e626cdab41372c06d3c27ac69cc}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!test2@{test2}}
+\index{test2@{test2}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{test2()}{test2()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::test2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+node1,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+node2,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ Objective\+Vector $>$ $\ast$}]{\+\_\+parent,  }\item[{unsigned int}]{\+\_\+succ,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} $>$ \&}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+test if \+\_\+node1 dominates \+\_\+node2 (and recursivly its childs) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+node1} & first node \\
+\hline
+{\em \+\_\+node2} & second node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_quad_tree_a612e47d361333e42945985400cba1de6}\label{classmoeo_quad_tree_a612e47d361333e42945985400cba1de6}} 
+\index{moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}!update@{update}}
+\index{update@{update}!moeoQuadTree$<$ MOEOT $>$@{moeoQuadTree$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_quad_tree}{moeo\+Quad\+Tree}}$<$ M\+O\+E\+OT $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmoeo_archive_index_1_1modif}{modif}} \&}]{\+\_\+update }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+apply the modif 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+update} & the modif to apply (move only) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if no problem occured 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_index_acd5461f54caadb53754ff66fb37ef06e}{moeo\+Archive\+Index$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/archive/moeo\+Quad\+Tree.\+h\end{DoxyCompactItemize}

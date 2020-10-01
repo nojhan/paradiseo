@@ -1,0 +1,92 @@
+\hypertarget{classeo_uniform_generator}{}\doxysection{eo\+Uniform\+Generator$<$ T $>$ Class Template Reference}
+\label{classeo_uniform_generator}\index{eoUniformGenerator$<$ T $>$@{eoUniformGenerator$<$ T $>$}}
+
+
+{\ttfamily \#include $<$eo\+Rnd\+Generators.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Uniform\+Generator$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classeo_uniform_generator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Uniform\+Generator$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classeo_uniform_generator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_uniform_generator_a57a635ecad0819116adf0bad467941e4}\label{classeo_uniform_generator_a57a635ecad0819116adf0bad467941e4}} 
+{\bfseries eo\+Uniform\+Generator} (T \+\_\+max=T(1.\+0), \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+\mbox{\Hypertarget{classeo_uniform_generator_a7fdf85943ea346ffca4e96554a8450d7}\label{classeo_uniform_generator_a7fdf85943ea346ffca4e96554a8450d7}} 
+{\bfseries eo\+Uniform\+Generator} (T \+\_\+min, T \+\_\+max, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+T \mbox{\hyperlink{classeo_uniform_generator_a4d9446742e0b4aa967d850a8e9dfada8}{operator()}} (void)
+\item 
+\mbox{\Hypertarget{classeo_uniform_generator_a57a635ecad0819116adf0bad467941e4}\label{classeo_uniform_generator_a57a635ecad0819116adf0bad467941e4}} 
+{\bfseries eo\+Uniform\+Generator} (T \+\_\+max=T(1.\+0), \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+\mbox{\Hypertarget{classeo_uniform_generator_a7fdf85943ea346ffca4e96554a8450d7}\label{classeo_uniform_generator_a7fdf85943ea346ffca4e96554a8450d7}} 
+{\bfseries eo\+Uniform\+Generator} (T \+\_\+min, T \+\_\+max, \mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=rng)
+\item 
+T \mbox{\hyperlink{classeo_uniform_generator_a4d9446742e0b4aa967d850a8e9dfada8}{operator()}} (void)
+\item 
+\mbox{\Hypertarget{classeo_uniform_generator_a4497bcc62c2028d1ebf1e2cd3de3a999}\label{classeo_uniform_generator_a4497bcc62c2028d1ebf1e2cd3de3a999}} 
+bool \mbox{\hyperlink{classeo_uniform_generator_a4497bcc62c2028d1ebf1e2cd3de3a999}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em Specialization for bool, does an unbiased coin flip. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_uniform_generator_a4497bcc62c2028d1ebf1e2cd3de3a999}\label{classeo_uniform_generator_a4497bcc62c2028d1ebf1e2cd3de3a999}} 
+bool \mbox{\hyperlink{classeo_uniform_generator_a4497bcc62c2028d1ebf1e2cd3de3a999}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em Specialization for bool, does an unbiased coin flip. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T = double$>$\newline
+class eo\+Uniform\+Generator$<$ T $>$}
+
+The class eo\+Uniform can be used in the S\+TL generate function to easily generate random floats and doubles. It can also be used for ints and unsigneds by virtue of the static\+\_\+cast in the generator function.
+
+Also present is a specialization for boolean, that will ignore the minima and maxima that are possibly set and will return an unbiased flip of a coin. For a biased flip, use the eo\+Boolean
+
+either in \mbox{[}0, \+\_\+max) if only 1 value (\+\_\+max) is given (or none, as \+\_\+max defaults to 1.\+0) or in \mbox{[}\+\_\+min,\+\_\+max) if 2 values are given (\+\_\+min, \+\_\+max) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_uniform_generator_a4d9446742e0b4aa967d850a8e9dfada8}\label{classeo_uniform_generator_a4d9446742e0b4aa967d850a8e9dfada8}} 
+\index{eoUniformGenerator$<$ T $>$@{eoUniformGenerator$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUniformGenerator$<$ T $>$@{eoUniformGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+T \mbox{\hyperlink{classeo_uniform_generator}{eo\+Uniform\+Generator}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Generates the number, uses a static\+\_\+cast to get the right behaviour for ints and unsigneds 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ double $>$}}.
+
+\mbox{\Hypertarget{classeo_uniform_generator_a4d9446742e0b4aa967d850a8e9dfada8}\label{classeo_uniform_generator_a4d9446742e0b4aa967d850a8e9dfada8}} 
+\index{eoUniformGenerator$<$ T $>$@{eoUniformGenerator$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUniformGenerator$<$ T $>$@{eoUniformGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T  = double$>$ \\
+T \mbox{\hyperlink{classeo_uniform_generator}{eo\+Uniform\+Generator}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Generates the number, uses a static\+\_\+cast to get the right behaviour for ints and unsigneds 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ double $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Rnd\+Generators.\+h\end{DoxyCompactItemize}

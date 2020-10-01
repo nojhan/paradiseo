@@ -1,0 +1,7 @@
+<map id="Normal" name="Normal">
+<area shape="rect" id="node1" href="$group___modifiers.html" title="A set of classes that arbitrarly modify a given distribution." alt="" coords="307,7,390,33"/>
+<area shape="rect" id="node2" title="A normal (Gaussian) distribution that only model variances of variables." alt="" coords="5,103,76,129"/>
+<area shape="rect" id="node3" href="$group___samplers.html" title="Functors that draw and repair individuals according to a given distribution." alt="" coords="307,57,390,82"/>
+<area shape="rect" id="node4" href="$group___estimators.html" title="Estimators takes an eoPop and estimates the parameters of a distributions (defined as an hypothesis) ..." alt="" coords="303,106,395,131"/>
+<area shape="rect" id="node5" href="$group___distributions.html" title="A distribution is a data structure that holds sufficient informations to describe a probability densi..." alt="" coords="296,174,401,199"/>
+</map>

@@ -1,0 +1,187 @@
+\hypertarget{classmo_s_aexplorer}{}\doxysection{mo\+S\+Aexplorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_s_aexplorer}\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+S\+Aexplorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+S\+Aexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_s_aexplorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+S\+Aexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_s_aexplorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_s_aexplorer_a351aacb4381602ab059a5a02b2e2a0c6}\label{classmo_s_aexplorer_a351aacb4381602ab059a5a02b2e2a0c6}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_s_aexplorer_ae4ed60d35a766b158aadf302afd5a196}\label{classmo_s_aexplorer_ae4ed60d35a766b158aadf302afd5a196}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_s_aexplorer_a17ad940867378eff1f3cdbe5c9750724}{mo\+S\+Aexplorer}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator, \mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+cooling\+Schedule)
+\item 
+\mbox{\hyperlink{classmo_s_aexplorer_a4020079cdd6b020492410d8542763886}{$\sim$mo\+S\+Aexplorer}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_s_aexplorer_a38b5bc2490c69923a5cad87e276a51f3}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_s_aexplorer_a1c5138427cf405b3ba85f4404cc6b5a0}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_s_aexplorer_a5fb5390e6b30d5459b65ba3fb11fc7e6}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_s_aexplorer_a79f2bc7a22590519b4e4735a9c98c873}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_s_aexplorer_a19533b62b81ec9d1c2acc283af893212}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_s_aexplorer_a643d66f8a125c6b8698a72876abb5cd9}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+double \mbox{\hyperlink{classmo_s_aexplorer_a50a2a492ee5e25d2ef54f9635d4ce542}{get\+Temperature}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+S\+Aexplorer$<$ Neighbor $>$}
+
+Explorer for the Simulated Annealing Only the symetric case is considered when Q(x,y) = Q(y,x) Fitness must be $>$ 0 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_s_aexplorer_a17ad940867378eff1f3cdbe5c9750724}\label{classmo_s_aexplorer_a17ad940867378eff1f3cdbe5c9750724}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!moSAexplorer@{moSAexplorer}}
+\index{moSAexplorer@{moSAexplorer}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moSAexplorer()}{moSAexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+cooling\+Schedule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+eval} & the evaluation function \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & a solution vs neighbor comparator \\
+\hline
+{\em \+\_\+cooling\+Schedule} & the cooling schedule \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_s_aexplorer_a4020079cdd6b020492410d8542763886}\label{classmo_s_aexplorer_a4020079cdd6b020492410d8542763886}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!````~moSAexplorer@{$\sim$moSAexplorer}}
+\index{````~moSAexplorer@{$\sim$moSAexplorer}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moSAexplorer()}{~moSAexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_s_aexplorer_a643d66f8a125c6b8698a72876abb5cd9}\label{classmo_s_aexplorer_a643d66f8a125c6b8698a72876abb5cd9}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+acceptance criterion according to the boltzmann criterion 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if better neighbor or rnd $<$ exp(delta f / T) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_s_aexplorer_a50a2a492ee5e25d2ef54f9635d4ce542}\label{classmo_s_aexplorer_a50a2a492ee5e25d2ef54f9635d4ce542}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!getTemperature@{getTemperature}}
+\index{getTemperature@{getTemperature}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getTemperature()}{getTemperature()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+double \mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Temperature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter \begin{DoxyReturn}{Returns}
+the temperature 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_s_aexplorer_a38b5bc2490c69923a5cad87e276a51f3}\label{classmo_s_aexplorer_a38b5bc2490c69923a5cad87e276a51f3}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+initialization of the initial temperature 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_s_aexplorer_a19533b62b81ec9d1c2acc283af893212}\label{classmo_s_aexplorer_a19533b62b81ec9d1c2acc283af893212}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+continue if the temperature is not too low 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the criteria from the cooling schedule is true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_s_aexplorer_a79f2bc7a22590519b4e4735a9c98c873}\label{classmo_s_aexplorer_a79f2bc7a22590519b4e4735a9c98c873}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore one random solution in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_s_aexplorer_a5fb5390e6b30d5459b65ba3fb11fc7e6}\label{classmo_s_aexplorer_a5fb5390e6b30d5459b65ba3fb11fc7e6}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+terminate\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_s_aexplorer_a1c5138427cf405b3ba85f4404cc6b5a0}\label{classmo_s_aexplorer_a1c5138427cf405b3ba85f4404cc6b5a0}} 
+\index{moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moSAexplorer$<$ Neighbor $>$@{moSAexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_s_aexplorer}{mo\+S\+Aexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+decrease the temperature if necessary 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+S\+Aexplorer.\+h\end{DoxyCompactItemize}

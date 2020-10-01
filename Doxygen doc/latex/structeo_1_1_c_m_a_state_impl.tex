@@ -1,0 +1,83 @@
+\hypertarget{structeo_1_1_c_m_a_state_impl}{}\doxysection{eo\+::C\+M\+A\+State\+Impl Struct Reference}
+\label{structeo_1_1_c_m_a_state_impl}\index{eo::CMAStateImpl@{eo::CMAStateImpl}}
+
+
+Collaboration diagram for eo\+::C\+M\+A\+State\+Impl\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1_c_m_a_state_impl__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a797adf68b837f6e0c975144778799859}\label{structeo_1_1_c_m_a_state_impl_a797adf68b837f6e0c975144778799859}} 
+{\bfseries C\+M\+A\+State\+Impl} (const \mbox{\hyperlink{classeo_1_1_c_m_a_params}{C\+M\+A\+Params}} \&params\+\_\+, const vector$<$ double $>$ \&m, double sigma\+\_\+)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a50e2917ebe91360fc3b6da11059ad18f}\label{structeo_1_1_c_m_a_state_impl_a50e2917ebe91360fc3b6da11059ad18f}} 
+void {\bfseries sample} (vector$<$ double $>$ \&v)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a1a729574f3328c44a53b8d74eaaf9bf7}\label{structeo_1_1_c_m_a_state_impl_a1a729574f3328c44a53b8d74eaaf9bf7}} 
+void {\bfseries reestimate} (const vector$<$ const vector$<$ double $>$ $\ast$ $>$ \&pop, double mu\+Best, double mu\+Worst)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_aa79c3866435c416f593ae6bcda628432}\label{structeo_1_1_c_m_a_state_impl_aa79c3866435c416f593ae6bcda628432}} 
+void {\bfseries treat\+Numerical\+Issues} (double best, double worst)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a79bb89696b5c95f0b418878fcf3428cc}\label{structeo_1_1_c_m_a_state_impl_a79bb89696b5c95f0b418878fcf3428cc}} 
+bool {\bfseries update\+Eigen\+System} (unsigned max\+\_\+tries, unsigned max\+\_\+iters)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a797adf68b837f6e0c975144778799859}\label{structeo_1_1_c_m_a_state_impl_a797adf68b837f6e0c975144778799859}} 
+{\bfseries C\+M\+A\+State\+Impl} (const \mbox{\hyperlink{classeo_1_1_c_m_a_params}{C\+M\+A\+Params}} \&params\+\_\+, const vector$<$ double $>$ \&m, double sigma\+\_\+)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a50e2917ebe91360fc3b6da11059ad18f}\label{structeo_1_1_c_m_a_state_impl_a50e2917ebe91360fc3b6da11059ad18f}} 
+void {\bfseries sample} (vector$<$ double $>$ \&v)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a1a729574f3328c44a53b8d74eaaf9bf7}\label{structeo_1_1_c_m_a_state_impl_a1a729574f3328c44a53b8d74eaaf9bf7}} 
+void {\bfseries reestimate} (const vector$<$ const vector$<$ double $>$ $\ast$ $>$ \&pop, double mu\+Best, double mu\+Worst)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_aa79c3866435c416f593ae6bcda628432}\label{structeo_1_1_c_m_a_state_impl_aa79c3866435c416f593ae6bcda628432}} 
+void {\bfseries treat\+Numerical\+Issues} (double best, double worst)
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a79bb89696b5c95f0b418878fcf3428cc}\label{structeo_1_1_c_m_a_state_impl_a79bb89696b5c95f0b418878fcf3428cc}} 
+bool {\bfseries update\+Eigen\+System} (unsigned max\+\_\+tries, unsigned max\+\_\+iters)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_ac5b43ac8f262279367277c3ee4078524}\label{structeo_1_1_c_m_a_state_impl_ac5b43ac8f262279367277c3ee4078524}} 
+\mbox{\hyperlink{classeo_1_1_c_m_a_params}{C\+M\+A\+Params}} {\bfseries p}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a6e58bb0ccb0de1c4294fbc7c7ceee210}\label{structeo_1_1_c_m_a_state_impl_a6e58bb0ccb0de1c4294fbc7c7ceee210}} 
+\mbox{\hyperlink{classlower__triangular__matrix}{lower\+\_\+triangular\+\_\+matrix}} {\bfseries C}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a9894cdf70fa960456bcd5ff3b2783466}\label{structeo_1_1_c_m_a_state_impl_a9894cdf70fa960456bcd5ff3b2783466}} 
+\mbox{\hyperlink{classsquare__matrix}{square\+\_\+matrix}} {\bfseries B}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_ae4c95f767e3d8a96268bb74102edfe1a}\label{structeo_1_1_c_m_a_state_impl_ae4c95f767e3d8a96268bb74102edfe1a}} 
+valarray$<$ double $>$ {\bfseries d}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a940815458d03989f2d420cfa31813bd7}\label{structeo_1_1_c_m_a_state_impl_a940815458d03989f2d420cfa31813bd7}} 
+valarray$<$ double $>$ {\bfseries pc}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_acb3a60b0dab15d8a0e07ef6f5a809ac6}\label{structeo_1_1_c_m_a_state_impl_acb3a60b0dab15d8a0e07ef6f5a809ac6}} 
+valarray$<$ double $>$ {\bfseries ps}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a51a2c589016be005d016971f225573a7}\label{structeo_1_1_c_m_a_state_impl_a51a2c589016be005d016971f225573a7}} 
+vector$<$ double $>$ {\bfseries mean}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a8c7f830bed003e450ce41ea22563e40e}\label{structeo_1_1_c_m_a_state_impl_a8c7f830bed003e450ce41ea22563e40e}} 
+double {\bfseries sigma}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a36c1871a9a3357e1a365aafb6769438e}\label{structeo_1_1_c_m_a_state_impl_a36c1871a9a3357e1a365aafb6769438e}} 
+unsigned {\bfseries gen}
+\item 
+\mbox{\Hypertarget{structeo_1_1_c_m_a_state_impl_a08df26a2fdac08a2dc247108f72b9ad1}\label{structeo_1_1_c_m_a_state_impl_a08df26a2fdac08a2dc247108f72b9ad1}} 
+vector$<$ double $>$ {\bfseries fitness\+History}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/es/C\+M\+A\+State.\+cpp\end{DoxyCompactItemize}

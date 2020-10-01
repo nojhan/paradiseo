@@ -1,0 +1,74 @@
+\hypertarget{structeoserial_1_1_make_algorithm}{}\doxysection{eoserial\+::Make\+Algorithm$<$ T $>$ Struct Template Reference}
+\label{structeoserial_1_1_make_algorithm}\index{eoserial::MakeAlgorithm$<$ T $>$@{eoserial::MakeAlgorithm$<$ T $>$}}
+
+
+Push algorithm for primitive variables.  
+
+
+
+
+{\ttfamily \#include $<$Utils.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::Make\+Algorithm$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{structeoserial_1_1_make_algorithm__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eoserial\+::Make\+Algorithm$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{structeoserial_1_1_make_algorithm__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{structeoserial_1_1_make_algorithm_afb09481947c6af59bedd4d37eab496c7}{operator()}} (\mbox{\hyperlink{classeoserial_1_1_array}{Array}} \&array, const T \&value)
+\begin{DoxyCompactList}\small\item\em Main operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+struct eoserial\+::\+Make\+Algorithm$<$ T $>$}
+
+Push algorithm for primitive variables. 
+
+This one should be used when inserting primitive (and types which implement operator$<$$<$) variables. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeoserial_1_1_make_algorithm_afb09481947c6af59bedd4d37eab496c7}\label{structeoserial_1_1_make_algorithm_afb09481947c6af59bedd4d37eab496c7}} 
+\index{eoserial::MakeAlgorithm$<$ T $>$@{eoserial::MakeAlgorithm$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoserial::MakeAlgorithm$<$ T $>$@{eoserial::MakeAlgorithm$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{structeoserial_1_1_make_algorithm}{eoserial\+::\+Make\+Algorithm}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeoserial_1_1_array}{Array}} \&}]{array,  }\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Main operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & The eoserial\+::array in which we\textquotesingle{}re writing. \\
+\hline
+{\em value} & The variable we are writing. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structeoserial_1_1_push_algorithm_a77ee939f5d8130041c3c0d8b614eb4b6}{eoserial\+::\+Push\+Algorithm$<$ T $>$}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/\mbox{\hyperlink{eo_2src_2serial_2_utils_8h}{Utils.\+h}}\end{DoxyCompactItemize}

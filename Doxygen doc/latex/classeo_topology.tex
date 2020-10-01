@@ -1,0 +1,159 @@
+\hypertarget{classeo_topology}{}\doxysection{eo\+Topology$<$ P\+OT $>$ Class Template Reference}
+\label{classeo_topology}\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Topology.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_topology__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Topology$<$ P\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_topology__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&)=0
+\item 
+virtual void \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{update\+Neighborhood}} (P\+OT \&, unsigned)=0
+\item 
+virtual void \mbox{\hyperlink{classeo_topology_a74c72740788c63a2a08ec82a61a039ea}{update\+Neighborhood}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+virtual P\+OT \& \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{best}} (unsigned)=0
+\item 
+\mbox{\Hypertarget{classeo_topology_ab55b09996deab3458f1b58f704a95987}\label{classeo_topology_ab55b09996deab3458f1b58f704a95987}} 
+virtual P\+OT \& {\bfseries global\+Best} ()=0
+\item 
+virtual void \mbox{\hyperlink{classeo_topology_a96f44377c7cf60ab8fede4ea0fa568a9}{print\+On}} ()=0
+\item 
+virtual void \mbox{\hyperlink{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&)=0
+\item 
+virtual void \mbox{\hyperlink{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}{update\+Neighborhood}} (P\+OT \&, unsigned)=0
+\item 
+virtual void \mbox{\hyperlink{classeo_topology_a74c72740788c63a2a08ec82a61a039ea}{update\+Neighborhood}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&\+\_\+pop)
+\item 
+virtual P\+OT \& \mbox{\hyperlink{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}{best}} (unsigned)=0
+\item 
+\mbox{\Hypertarget{classeo_topology_ab55b09996deab3458f1b58f704a95987}\label{classeo_topology_ab55b09996deab3458f1b58f704a95987}} 
+virtual P\+OT \& {\bfseries global\+Best} ()=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class P\+OT$>$\newline
+class eo\+Topology$<$ P\+O\+T $>$}
+
+Defines the interface of a swarm topology. Can be static (usually the case for the social topologies) or dynamic. It\textquotesingle{}s the same interface for both social and physical topologies. (\char`\"{}social\char`\"{} topology means social-\/neighborhood-\/based toplogy and so on ...) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}\label{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual P\+OT\& \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Builds the neighborhoods contained in the topology. 
+
+Implemented in \mbox{\hyperlink{classeo_star_topology_ad96bcce87b69c9abbeb32191825ecdb3}{eo\+Star\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_star_topology_a433aa48e4e6e544a6cd6e073a73514d0}{eo\+Star\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}\label{classeo_topology_a35887c5b1b9a7f7aae89166d7a6bb732}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!best@{best}}
+\index{best@{best}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{best()}{best()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual P\+OT\& \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::best (\begin{DoxyParamCaption}\item[{unsigned}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Builds the neighborhoods contained in the topology. 
+
+Implemented in \mbox{\hyperlink{classeo_star_topology_ad96bcce87b69c9abbeb32191825ecdb3}{eo\+Star\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a698c5e141e6704e83d62e53348ba3b31}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ac5fdfc3b9dab8e50a7c6f44f8c68ba30}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_star_topology_a433aa48e4e6e544a6cd6e073a73514d0}{eo\+Star\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_topology_a96f44377c7cf60ab8fede4ea0fa568a9}\label{classeo_topology_a96f44377c7cf60ab8fede4ea0fa568a9}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::print\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Prints the neighborhoods contained in the topology. 
+
+Implemented in \mbox{\hyperlink{classeo_linear_topology_a0e7b4b3a67d55827a66c33051145f47b}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_acf7a9bf9d5395d04bac38d92aa372f97}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}{eo\+Star\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_star_topology_a338c79fb0e633cd0ee9bf7b5c7da418c}{eo\+Star\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}\label{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Builds the neighborhoods contained in the topology. 
+
+Implemented in \mbox{\hyperlink{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}{eo\+Star\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}{eo\+Star\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}\label{classeo_topology_a74566cef431a2a1d0b68eea010c863a7}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!setup@{setup}}
+\index{setup@{setup}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Builds the neighborhoods contained in the topology. 
+
+Implemented in \mbox{\hyperlink{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_a167963748515f8849c1077c22d29a7e1}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_aba7386f3b7df0dfdff9a3a112c976459}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}{eo\+Star\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_star_topology_a45920dc98b90f0b11db5e4512545da89}{eo\+Star\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_topology_a74c72740788c63a2a08ec82a61a039ea}\label{classeo_topology_a74c72740788c63a2a08ec82a61a039ea}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the neighborhood of the given particle thanks to a whole population (used for distributed or synchronous P\+SO) \mbox{\Hypertarget{classeo_topology_a74c72740788c63a2a08ec82a61a039ea}\label{classeo_topology_a74c72740788c63a2a08ec82a61a039ea}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ P\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the neighborhood of the given particle thanks to a whole population (used for distributed or synchronous P\+SO) \mbox{\Hypertarget{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}\label{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{,  }\item[{unsigned}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Updates the neighborhood of the given particle and its indice in the population 
+
+Implemented in \mbox{\hyperlink{classeo_star_topology_aa7e260cf5af142697ebfc3d5262e4e0f}{eo\+Star\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_star_topology_a2d0abe8599e15d5f9af5b71dd1a359c1}{eo\+Star\+Topology$<$ P\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}\label{classeo_topology_af26fb51e143c892a1f8ec360a8230b0c}} 
+\index{eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}!updateNeighborhood@{updateNeighborhood}}
+\index{updateNeighborhood@{updateNeighborhood}!eoTopology$<$ POT $>$@{eoTopology$<$ POT $>$}}
+\doxysubsubsection{\texorpdfstring{updateNeighborhood()}{updateNeighborhood()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class P\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_topology}{eo\+Topology}}$<$ P\+OT $>$\+::update\+Neighborhood (\begin{DoxyParamCaption}\item[{P\+OT \&}]{,  }\item[{unsigned}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Updates the neighborhood of the given particle and its indice in the population 
+
+Implemented in \mbox{\hyperlink{classeo_star_topology_aa7e260cf5af142697ebfc3d5262e4e0f}{eo\+Star\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_linear_topology_a78efbd86790f8580513b36caeb7c8670}{eo\+Linear\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, \mbox{\hyperlink{classeo_ring_topology_ae39b4f72578667c9631aeea0ed086282}{eo\+Ring\+Topology$<$ P\+O\+T $>$}}, and \mbox{\hyperlink{classeo_star_topology_a2d0abe8599e15d5f9af5b71dd1a359c1}{eo\+Star\+Topology$<$ P\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Topology.\+h\end{DoxyCompactItemize}

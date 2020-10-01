@@ -1,0 +1,652 @@
+\hypertarget{group___builders}{}\doxysection{Automatic builders}
+\label{group___builders}\index{Automatic builders@{Automatic builders}}
+
+
+Automatic builders are functions that automagically builds most commons instances for you.  
+
+
+Collaboration diagram for Automatic builders\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{group___builders}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{group___builders_ga5d125d5ed90d2c464bf0de4c6fb43f35}{do\+\_\+make\+\_\+checkpoint}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ unsigned long $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+continue)
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{group___builders_gafcb22c04786f4bc0b9d979967ef3c163}{do\+\_\+make\+\_\+checkpoint\+\_\+assembled}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+continue)
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{group___builders_ga907eeb298d51ddfb98956d6c2d8eb95b}{do\+\_\+make\+\_\+checkpoint}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+continue)
+\item 
+\mbox{\Hypertarget{group___builders_ga84838110eea3adca5e5c6b8d9bed5621}\label{group___builders_ga84838110eea3adca5e5c6b8d9bed5621}} 
+{\footnotesize template$<$class Indi $>$ }\\\mbox{\hyperlink{classeo_combined_continue}{eo\+Combined\+Continue}}$<$ \mbox{\hyperlink{class_indi}{Indi}} $>$ $\ast$ {\bfseries make\+\_\+combined\+Continue} (\mbox{\hyperlink{classeo_combined_continue}{eo\+Combined\+Continue}}$<$ \mbox{\hyperlink{class_indi}{Indi}} $>$ $\ast$\+\_\+combined, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{class_indi}{Indi}} $>$ $\ast$\+\_\+cont)
+\item 
+\mbox{\Hypertarget{group___builders_ga13d6dde53014ff0b01b929728bfe60a7}\label{group___builders_ga13d6dde53014ff0b01b929728bfe60a7}} 
+{\footnotesize template$<$class Indi $>$ }\\\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{class_indi}{Indi}} $>$ \& {\bfseries do\+\_\+make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{class_indi}{Indi}} $>$ \&\+\_\+eval)
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{group___builders_ga632f5f14906aab803d16e02d0e16b342}{decode\+\_\+reduce}} (\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&\+\_\+pp\+Reduce, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state)
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{group___builders_gad9b45362d847b45ca51264d35608e12d}{make\+\_\+general\+\_\+replacement}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \+\_\+elite=\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(0), bool \+\_\+strong\+Elitism=false, \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \+\_\+survive\+Parents=\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(0.\+0), \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&\+\_\+reduce\+Parent\+Type=\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}}(\char`\"{}Deterministic\char`\"{}), eo\+How\+Many \+\_\+survive\+Offspring=\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(1.\+0), \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&\+\_\+reduce\+Offspring\+Type=\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}}(\char`\"{}Deterministic\char`\"{}), eo\+Param\+Param\+Type \&\+\_\+reduce\+Final\+Type=\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}}(\char`\"{}Deterministic\char`\"{}))
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{group___builders_gace1963a80d735320d735704179dfa536}{do\+\_\+make\+\_\+pop}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+init)
+\item 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga6c4aee599b2645167d2a2d3392d2e829}{make\+\_\+genotype}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ \+\_\+eo)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_gae402d8423048b6522ae11516e803d700}\label{group___builders_gae402d8423048b6522ae11516e803d700}} 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+genotype} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ \+\_\+eo)
+\item 
+\mbox{\Hypertarget{group___builders_ga33cd2c6d3bfd3da39d46f7ade6f3e124}\label{group___builders_ga33cd2c6d3bfd3da39d46f7ade6f3e124}} 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+genotype} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ \+\_\+eo)
+\item 
+\mbox{\Hypertarget{group___builders_gab156d042c8b6e9bf410795cf3e25401c}\label{group___builders_gab156d042c8b6e9bf410795cf3e25401c}} 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+genotype} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ \+\_\+eo)
+\item 
+\mbox{\Hypertarget{group___builders_gaaab02c6dd006ee724a5c96a4c379b4f4}\label{group___builders_gaaab02c6dd006ee724a5c96a4c379b4f4}} 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+genotype} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ \+\_\+eo)
+\item 
+\mbox{\Hypertarget{group___builders_ga86eb43566587c112a4b75b3ce534587f}\label{group___builders_ga86eb43566587c112a4b75b3ce534587f}} 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+genotype} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ \+\_\+eo)
+\item 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga33116db182e7a07fc5f46f0a85a85f75}{make\+\_\+op}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+init)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga67a3c264cfd01810aadc56be476fe265}\label{group___builders_ga67a3c264cfd01810aadc56be476fe265}} 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+init)
+\item 
+\mbox{\Hypertarget{group___builders_ga4438b904c7683ff86118d7bd6f10be9b}\label{group___builders_ga4438b904c7683ff86118d7bd6f10be9b}} 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+init)
+\item 
+\mbox{\Hypertarget{group___builders_ga52ca6da20db7df266a082fcd5661bbd4}\label{group___builders_ga52ca6da20db7df266a082fcd5661bbd4}} 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+init)
+\item 
+\mbox{\Hypertarget{group___builders_ga54690da3d3675d47b1842fdd1e732376}\label{group___builders_ga54690da3d3675d47b1842fdd1e732376}} 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+init)
+\item 
+\mbox{\Hypertarget{group___builders_ga750463707537607d215189e7497fe525}\label{group___builders_ga750463707537607d215189e7497fe525}} 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+init)
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_gac023faa6286e9e5393519c754388b0e3}{make\+\_\+pop}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga50ac2f2a1b3841ff58271b5b83b8a210}\label{group___builders_ga50ac2f2a1b3841ff58271b5b83b8a210}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+pop} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&)
+\item 
+\mbox{\Hypertarget{group___builders_ga7a0a099ab29824e4db8cf2db7f571b24}\label{group___builders_ga7a0a099ab29824e4db8cf2db7f571b24}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+pop} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&)
+\item 
+\mbox{\Hypertarget{group___builders_gadd021ab4bf466dad09bd8cf3f763fffd}\label{group___builders_gadd021ab4bf466dad09bd8cf3f763fffd}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+pop} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&)
+\item 
+\mbox{\Hypertarget{group___builders_ga948483a5405d1fa4270ce45f309c5b5b}\label{group___builders_ga948483a5405d1fa4270ce45f309c5b5b}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+pop} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&)
+\item 
+\mbox{\Hypertarget{group___builders_ga1efe186629ee5090e88345db933e77b3}\label{group___builders_ga1efe186629ee5090e88345db933e77b3}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+pop} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&)
+\item 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga4dcca8aa380e015bcbeaaf1941c8dd08}{make\+\_\+continue}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+eval)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga83bfc1a97966490b9adebe3a2642e0c2}\label{group___builders_ga83bfc1a97966490b9adebe3a2642e0c2}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval)
+\item 
+\mbox{\Hypertarget{group___builders_gab6cabd784ae2f5a85cdd0328ff8f6849}\label{group___builders_gab6cabd784ae2f5a85cdd0328ff8f6849}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+eval)
+\item 
+\mbox{\Hypertarget{group___builders_gafea81dcefc94b73423db5d5012b9a929}\label{group___builders_gafea81dcefc94b73423db5d5012b9a929}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval)
+\item 
+\mbox{\Hypertarget{group___builders_gae99709a967b9a106d85f1440956d0f2e}\label{group___builders_gae99709a967b9a106d85f1440956d0f2e}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+eval)
+\item 
+\mbox{\Hypertarget{group___builders_ga7bda7a888a297509749245fd32881ffa}\label{group___builders_ga7bda7a888a297509749245fd32881ffa}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval)
+\item 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga5034e4943254eed3dca2dd28f461ae39}{make\+\_\+checkpoint}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+continue)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga7b6b3f233d91d15ec531d3c8ac5460c2}\label{group___builders_ga7b6b3f233d91d15ec531d3c8ac5460c2}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+checkpoint} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+continue)
+\item 
+\mbox{\Hypertarget{group___builders_ga8950e3a04d439ba4d73b9c6ba4cb79c6}\label{group___builders_ga8950e3a04d439ba4d73b9c6ba4cb79c6}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+checkpoint} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+continue)
+\item 
+\mbox{\Hypertarget{group___builders_gae1234bb6b2007fb384d98021c9ccced4}\label{group___builders_gae1234bb6b2007fb384d98021c9ccced4}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+checkpoint} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+continue)
+\item 
+\mbox{\Hypertarget{group___builders_gac890c120a1cc3640af34fa72af21092e}\label{group___builders_gac890c120a1cc3640af34fa72af21092e}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+checkpoint} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+continue)
+\item 
+\mbox{\Hypertarget{group___builders_gab6e9e9419e52667e1d247b3fd57b4834}\label{group___builders_gab6e9e9419e52667e1d247b3fd57b4834}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+checkpoint} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+continue)
+\item 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga7cb342f2bec0ba569a70bab6768ff76b}{make\+\_\+algo\+\_\+scalar}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga6051ca87f41378d74dbe3fefa627ac79}\label{group___builders_ga6051ca87f41378d74dbe3fefa627ac79}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+algo\+\_\+scalar} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\item 
+\mbox{\Hypertarget{group___builders_ga77c662e1793412fcc262e821bdc8a11a}\label{group___builders_ga77c662e1793412fcc262e821bdc8a11a}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+algo\+\_\+scalar} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\item 
+\mbox{\Hypertarget{group___builders_gab2267690cbc9a942757a534179ee54c4}\label{group___builders_gab2267690cbc9a942757a534179ee54c4}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+algo\+\_\+scalar} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\item 
+\mbox{\Hypertarget{group___builders_gaf0d11975348be0d1a4be78865ceb4e8a}\label{group___builders_gaf0d11975348be0d1a4be78865ceb4e8a}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \& {\bfseries make\+\_\+algo\+\_\+scalar} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\item 
+\mbox{\Hypertarget{group___builders_gac6f0761713794d2f85e866cd8bfe96aa}\label{group___builders_gac6f0761713794d2f85e866cd8bfe96aa}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+algo\+\_\+scalar} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\item 
+void \mbox{\hyperlink{group___builders_gab35aae7bdc8f41d42ad33b4352fa6357}{run\+\_\+ea}} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga0129d23af9587eb733accd91d9b1c82e}\label{group___builders_ga0129d23af9587eb733accd91d9b1c82e}} 
+void {\bfseries run\+\_\+ea} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{group___builders_ga4b40bdd552747e594671c920345ab103}\label{group___builders_ga4b40bdd552747e594671c920345ab103}} 
+void {\bfseries run\+\_\+ea} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ double $>$ $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{group___builders_ga10b7bec86afcecf9d6b66ad400f2ee8c}\label{group___builders_ga10b7bec86afcecf9d6b66ad400f2ee8c}} 
+void {\bfseries run\+\_\+ea} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_stdev}{eo\+Es\+Stdev}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{group___builders_ga85528581be371b020a80b5d0ac254d25}\label{group___builders_ga85528581be371b020a80b5d0ac254d25}} 
+void {\bfseries run\+\_\+ea} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ double $>$ $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{group___builders_gadfd9fe9d9f3ea77fd6dc926a62ef391d}\label{group___builders_gadfd9fe9d9f3ea77fd6dc926a62ef391d}} 
+void {\bfseries run\+\_\+ea} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_full}{eo\+Es\+Full}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{group___builders_ga688f6e52137f8cac101df55538d2ea18}{make\+\_\+help}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser)
+\item 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{group___builders_gafe3fb0d352218785092d300cb7c53b1a}{do\+\_\+make\+\_\+genotype}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{struct_dummy}{E\+OT}})
+\item 
+\mbox{\Hypertarget{group___builders_gaca2bb9dfbe451865e02b38c2a6966492}\label{group___builders_gaca2bb9dfbe451865e02b38c2a6966492}} 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries do\+\_\+make\+\_\+op} (\mbox{\hyperlink{classeo_parameter_loader}{eo\+Parameter\+Loader}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+init)
+\item 
+\mbox{\Hypertarget{group___builders_ga943efc8a1e9cf6b518bad57bab0f0f59}\label{group___builders_ga943efc8a1e9cf6b518bad57bab0f0f59}} 
+{\footnotesize template$<$class E\+OT $>$ }\\\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries do\+\_\+make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+init)
+\item 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_gad9bedee8989115fb892494ca88c0a4b3}{make\+\_\+genotype}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ \+\_\+eo)
+\begin{DoxyCompactList}\small\item\em The following functions merely call the templatized do\+\_\+$\ast$ functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga03d89662417f93e1183044ac4a4f6819}\label{group___builders_ga03d89662417f93e1183044ac4a4f6819}} 
+\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+genotype} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ \+\_\+eo)
+\item 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga91e341637d1e17a665ee7ac52a252c26}{make\+\_\+op}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+init)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga25448ca2b630c8591973e1d60ef12785}\label{group___builders_ga25448ca2b630c8591973e1d60ef12785}} 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+init)
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga669d199b35185b85fa0df10d1aa4d3df}{make\+\_\+pop}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_gabbe9ac7c4f16865cabdbc8d2f02da6a4}\label{group___builders_gabbe9ac7c4f16865cabdbc8d2f02da6a4}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+pop} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&)
+\item 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga5fbb0f0bce301b36375693dff42c1d4f}{make\+\_\+continue}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+eval)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_gae5441e5d8dc4e49da3fdbfa6f18edeb6}\label{group___builders_gae5441e5d8dc4e49da3fdbfa6f18edeb6}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval)
+\item 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga06e6fc5b55684dae942c6392e3c17c51}{make\+\_\+checkpoint}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+continue)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga45b0ac180ebbc0ed6d72b93f34975be6}\label{group___builders_ga45b0ac180ebbc0ed6d72b93f34975be6}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+checkpoint} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+continue)
+\item 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga353c680e27c5bf07753a9045339764d7}{make\+\_\+algo\+\_\+scalar}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga93abd8604112b8cecd0b2fa479014a67}\label{group___builders_ga93abd8604112b8cecd0b2fa479014a67}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+algo\+\_\+scalar} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\item 
+void \mbox{\hyperlink{group___builders_gaf90f1f75900fe33d2b12a8f9044c2c61}{run\+\_\+ea}} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga041709a0b635bbdd63853c687886910b}\label{group___builders_ga041709a0b635bbdd63853c687886910b}} 
+void {\bfseries run\+\_\+ea} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+pop)
+\item 
+\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga7980c2df8c3741682293cf527d1445eb}{make\+\_\+genotype}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ \+\_\+eo, float \+\_\+bias=0.\+5)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga3082da00d33459fe8edb86c748c07913}\label{group___builders_ga3082da00d33459fe8edb86c748c07913}} 
+\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+genotype} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ \+\_\+eo, float \+\_\+bias=0.\+5)
+\item 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga2fbddaa4e74697736c0d4f227095cee8}{make\+\_\+op}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+init)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_gad60496fe3691b2d63dce2822063ca929}\label{group___builders_gad60496fe3691b2d63dce2822063ca929}} 
+\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+op} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+init)
+\item 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_gaf9bcacf0aca6e28d695db931d45baddd}{make\+\_\+pop}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_gafd09288692c539f3875c9db4c8c2902e}\label{group___builders_gafd09288692c539f3875c9db4c8c2902e}} 
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+pop} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&)
+\item 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga8cd63aafcff43081c49cce654e7a8bb4}{make\+\_\+continue}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+eval)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga1274e108474b449913dd9f73de6e2b2e}\label{group___builders_ga1274e108474b449913dd9f73de6e2b2e}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+continue} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval)
+\item 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_ga7de51e60d00c506a97c60a42f0b85f61}{make\+\_\+checkpoint}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+continue)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga0b4d0db2082d1341a2f491799fbe08d0}\label{group___builders_ga0b4d0db2082d1341a2f491799fbe08d0}} 
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+checkpoint} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+continue)
+\item 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& \mbox{\hyperlink{group___builders_gae21cefa12b4da56b915a48752363020b}{make\+\_\+algo\+\_\+scalar}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_ga9e0421ec329a0c98c5965206c36d3bff}\label{group___builders_ga9e0421ec329a0c98c5965206c36d3bff}} 
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \& {\bfseries make\+\_\+algo\+\_\+scalar} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, \mbox{\hyperlink{classeo_state}{eo\+State}} \&\+\_\+state, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+eval, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ccontinue, \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+op, \mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ $\ast$\+\_\+dist=N\+U\+LL)
+\item 
+void \mbox{\hyperlink{group___builders_ga9a0b919bbb13bca2dcdb6b1bdf703512}{run\+\_\+ea}} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The following function merely call the templatized do\+\_\+$\ast$ functions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___builders_gaf0efb3e4ad20871dc0fedd470711a035}\label{group___builders_gaf0efb3e4ad20871dc0fedd470711a035}} 
+void {\bfseries run\+\_\+ea} (\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+ga, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{eo\+Minimizing\+Fitness}} $>$ $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{group___builders_ga68470e770314a423e04782c86c4dfb69}\label{group___builders_ga68470e770314a423e04782c86c4dfb69}} 
+void {\bfseries make\+\_\+help} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&\+\_\+parser, bool exit\+\_\+after)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Automatic builders are functions that automagically builds most commons instances for you. 
+
+All the options you needs are set in the command-\/line parser. Those functions all start with the \char`\"{}do\+\_\+make\+\_\+\char`\"{} prefix.
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED}}} declarations of all components of the library for {\itshape {\bfseries{E\+S-\/like gnptype}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED}}} definitions are contained in the different .cpp files in the src/es dir, while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in the different make\+\_\+\+X\+X\+X.\+h files either in hte src/do dir for representation independant functions, or in the src/es dir for representation dependent stuff.
+
+See also real.\+h for the similar declarations of \mbox{\hyperlink{classeo_real}{eo\+Real}} genotypes i.\+e. {\itshape {\bfseries{without}}} mutation parameters attached to individuals
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations
+
+(c) Maarten Keijzer, Marc Schoenauer and Ge\+Neura Team, 2001
+
+This library is free software; you can redistribute it and/or modify it under the terms of the G\+NU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU Lesser General Public License for more details.
+
+You should have received a copy of the G\+NU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 U\+SA
+
+Contact\+: \href{http://eodev.sourceforge.net}{\texttt{ http\+://eodev.\+sourceforge.\+net}} \href{mailto:todos@geneura.ugr.es}{\texttt{ todos@geneura.\+ugr.\+es}}, \href{http://geneura.ugr.es}{\texttt{ http\+://geneura.\+ugr.\+es}} \href{mailto:Marc.Schoenauer@polytechnique.fr}{\texttt{ Marc.\+Schoenauer@polytechnique.\+fr}} \href{mailto:mkeijzer@dhi.dk}{\texttt{ mkeijzer@dhi.\+dk}}
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED}}} declarations of all components of the library for {\itshape {\bfseries{std\+::vector$<$\+Real\+Values$>$}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED}}} definitions are contained in the different .cpp files in the src/es dir, while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in the different make\+\_\+\+X\+X\+X.\+h files either in hte src/do dir for representation independant functions, or in the src/es dir for representation dependent stuff.
+
+See also es.\+h for the similar declarations of E\+S-\/like genotypes i.\+e. {\itshape {\bfseries{with}}} mutation parameters attached to individuals
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED}}} declarations of all components of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED}}} definitions are contained in ga.\+cpp while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in the different make\+X\+X\+X.\+h files
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___builders_ga632f5f14906aab803d16e02d0e16b342}\label{group___builders_ga632f5f14906aab803d16e02d0e16b342}} 
+\index{Automatic builders@{Automatic builders}!decode\_reduce@{decode\_reduce}}
+\index{decode\_reduce@{decode\_reduce}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{decode\_reduce()}{decode\_reduce()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_reduce}{eo\+Reduce}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& decode\+\_\+reduce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&}]{\+\_\+pp\+Reduce,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state }\end{DoxyParamCaption})}
+
+a helper function that decodes a parameter read by the parser into an eo\+Reduce$<$\+E\+O\+T$>$ \& (allocates the pointer and stores it into an \mbox{\hyperlink{classeo_state}{eo\+State}}) \mbox{\Hypertarget{group___builders_ga907eeb298d51ddfb98956d6c2d8eb95b}\label{group___builders_ga907eeb298d51ddfb98956d6c2d8eb95b}} 
+\index{Automatic builders@{Automatic builders}!do\_make\_checkpoint@{do\_make\_checkpoint}}
+\index{do\_make\_checkpoint@{do\_make\_checkpoint}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{do\_make\_checkpoint()}{do\_make\_checkpoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& do\+\_\+make\+\_\+checkpoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+continue }\end{DoxyParamCaption})}
+
+existing stats as of today, April 10. 2001
+
+\mbox{\hyperlink{classeo_best_fitness_stat}{eo\+Best\+Fitness\+Stat}} \+: best value in pop -\/ type E\+O\+T\+::\+Fitness \mbox{\hyperlink{classeo_average_stat}{eo\+Average\+Stat}} \+: average value in pop -\/ type E\+O\+T\+::\+Fitness eo\+Second\+Moment\+Stat\+: average + stdev -\/ type std\+::pair$<$double, double$>$ \mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}} \+: whole population -\/ type std\+::string (!!) \mbox{\hyperlink{classeo_scalar_fitness_stat}{eo\+Scalar\+Fitness\+Stat}}\+: the fitnesses -\/ type std\+::vector$<$double$>$ eo\+D\+F\+C\+S\+Tat \+: F\+DC wrt best in pop or absolute best -\/ type double requires an \mbox{\hyperlink{classeo_distance}{eo\+Distance}}. See eo\+F\+D\+C\+Stat.\+h also computes all elements for the F\+DC scatter plot
+
+existing stats as of today, April 10. 2001
+
+\mbox{\hyperlink{classeo_best_fitness_stat}{eo\+Best\+Fitness\+Stat}} \+: best value in pop -\/ type E\+O\+T\+::\+Fitness \mbox{\hyperlink{classeo_average_stat}{eo\+Average\+Stat}} \+: average value in pop -\/ type E\+O\+T\+::\+Fitness eo\+Second\+Moment\+Stat\+: average + stdev -\/ type std\+::pair$<$double, double$>$ \mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}} \+: whole population -\/ type std\+::string (!!) \mbox{\hyperlink{classeo_scalar_fitness_stat}{eo\+Scalar\+Fitness\+Stat}}\+: the fitnesses -\/ type std\+::vector$<$double$>$ eo\+D\+F\+C\+S\+Tat \+: F\+DC wrt best in pop or absolute best -\/ type double requires an \mbox{\hyperlink{classeo_distance}{eo\+Distance}}. See eo\+F\+D\+C\+Stat.\+h also computes all elements for the F\+DC scatter plot\mbox{\Hypertarget{group___builders_ga5d125d5ed90d2c464bf0de4c6fb43f35}\label{group___builders_ga5d125d5ed90d2c464bf0de4c6fb43f35}} 
+\index{Automatic builders@{Automatic builders}!do\_make\_checkpoint@{do\_make\_checkpoint}}
+\index{do\_make\_checkpoint@{do\_make\_checkpoint}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{do\_make\_checkpoint()}{do\_make\_checkpoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& do\+\_\+make\+\_\+checkpoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ unsigned long $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+continue }\end{DoxyParamCaption})}
+
+C\+H\+A\+N\+GE (March 2008)\+: now receiving an \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}} instead of an \mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}. This function is just interested in the value of the parameter calculated on the evaluation function, not in the actual function itself!! existing stats as of today, April 10. 2001
+
+\mbox{\hyperlink{classeo_best_fitness_stat}{eo\+Best\+Fitness\+Stat}} \+: best value in pop -\/ type E\+O\+T\+::\+Fitness \mbox{\hyperlink{classeo_average_stat}{eo\+Average\+Stat}} \+: average value in pop -\/ type E\+O\+T\+::\+Fitness eo\+Second\+Moment\+Stat\+: average + stdev -\/ type std\+::pair$<$double, double$>$ \mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}} \+: whole population -\/ type std\+::string (!!) \mbox{\hyperlink{classeo_scalar_fitness_stat}{eo\+Scalar\+Fitness\+Stat}}\+: the fitnesses -\/ type std\+::vector$<$double$>$
+
+existing stats as of today, April 10. 2001
+
+\mbox{\hyperlink{classeo_best_fitness_stat}{eo\+Best\+Fitness\+Stat}} \+: best value in pop -\/ type E\+O\+T\+::\+Fitness \mbox{\hyperlink{classeo_average_stat}{eo\+Average\+Stat}} \+: average value in pop -\/ type E\+O\+T\+::\+Fitness eo\+Second\+Moment\+Stat\+: average + stdev -\/ type std\+::pair$<$double, double$>$ \mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat}} \+: whole population -\/ type std\+::string (!!) \mbox{\hyperlink{classeo_scalar_fitness_stat}{eo\+Scalar\+Fitness\+Stat}}\+: the fitnesses -\/ type std\+::vector$<$double$>$\mbox{\Hypertarget{group___builders_gafcb22c04786f4bc0b9d979967ef3c163}\label{group___builders_gafcb22c04786f4bc0b9d979967ef3c163}} 
+\index{Automatic builders@{Automatic builders}!do\_make\_checkpoint\_assembled@{do\_make\_checkpoint\_assembled}}
+\index{do\_make\_checkpoint\_assembled@{do\_make\_checkpoint\_assembled}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{do\_make\_checkpoint\_assembled()}{do\_make\_checkpoint\_assembled()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& do\+\_\+make\+\_\+checkpoint\+\_\+assembled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+continue }\end{DoxyParamCaption})}
+
+Of course, Fitness needs to be an eo\+Scalar\+Fitness\+Assembled!!! \mbox{\Hypertarget{group___builders_gafe3fb0d352218785092d300cb7c53b1a}\label{group___builders_gafe3fb0d352218785092d300cb7c53b1a}} 
+\index{Automatic builders@{Automatic builders}!do\_make\_genotype@{do\_make\_genotype}}
+\index{do\_make\_genotype@{do\_make\_genotype}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{do\_make\_genotype()}{do\_make\_genotype()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_es_chrom_init}{eo\+Es\+Chrom\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& do\+\_\+make\+\_\+genotype (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}}}]{ }\end{DoxyParamCaption})}
+
+Initialize genotype
+
+This fuction does the initialization of what\textquotesingle{}s needed for a particular genotype (here, std\+::vector$<$double$>$ == \mbox{\hyperlink{classeo_real}{eo\+Real}}). It could be here tempatied only on the fitness, as it can be used to evolve bitstrings with any fitness. However, for consistency reasons, it was finally chosen, as in the rest of \mbox{\hyperlink{class_e_o}{EO}}, to templatize by the full E\+OT, as this eventually allows to choose the type of genotype at run time (see in es dir)
+
+It is instanciated in src/es/make\+\_\+genotyupe\+\_\+real.\+cpp and incorporated in the src/es/libes.\+a
+
+It returns an eo\+Init$<$\+E\+O\+T$>$ tha can later be used to initialize the population (see make\+\_\+pop.\+h).
+
+It uses a parser (to get user parameters) and a state (to store the memory) the last argument is to disambiguate the call upon different instanciations.
+
+\begin{DoxyWarning}{Warning}
+\+: that last argument will generally be the result of calling the default ctor of E\+OT, resulting in most cases in an E\+OT that is {\itshape {\bfseries{not properly initialized}}} 
+\end{DoxyWarning}
+\mbox{\Hypertarget{group___builders_gace1963a80d735320d735704179dfa536}\label{group___builders_gace1963a80d735320d735704179dfa536}} 
+\index{Automatic builders@{Automatic builders}!do\_make\_pop@{do\_make\_pop}}
+\index{do\_make\_pop@{do\_make\_pop}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{do\_make\_pop()}{do\_make\_pop()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& do\+\_\+make\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+init }\end{DoxyParamCaption})}
+
+Templatized version of parser-\/based construct of the population
+\begin{DoxyItemize}
+\item other initializations that are N\+OT representation-\/dependent.
+\end{DoxyItemize}
+
+It must then be instantiated, and compiled on its own for a given E\+O\+Type (see e.\+g. ga.\+h and ga.\+pp in dir ga) \mbox{\Hypertarget{group___builders_gae21cefa12b4da56b915a48752363020b}\label{group___builders_gae21cefa12b4da56b915a48752363020b}} 
+\index{Automatic builders@{Automatic builders}!make\_algo\_scalar@{make\_algo\_scalar}}
+\index{make\_algo\_scalar@{make\_algo\_scalar}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_algo\_scalar()}{make\_algo\_scalar()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$\mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$double$>$ $>$\& make\+\_\+algo\+\_\+scalar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+op,  }\item[{\mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ $\ast$}]{\+\_\+dist }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of pop. init. of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/ga/ga.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+algo\+\_\+scalar.\+h in the src/do dir
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations \mbox{\Hypertarget{group___builders_ga7cb342f2bec0ba569a70bab6768ff76b}\label{group___builders_ga7cb342f2bec0ba569a70bab6768ff76b}} 
+\index{Automatic builders@{Automatic builders}!make\_algo\_scalar@{make\_algo\_scalar}}
+\index{make\_algo\_scalar@{make\_algo\_scalar}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_algo\_scalar()}{make\_algo\_scalar()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$\mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$double$>$ $>$\& make\+\_\+algo\+\_\+scalar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+op,  }\item[{\mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of select/replace fns of the library for evolution of {\itshape {\bfseries{eo\+Es genotypes}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/es.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+algo\+\_\+scalar.\+h in the src/do dir \mbox{\Hypertarget{group___builders_ga353c680e27c5bf07753a9045339764d7}\label{group___builders_ga353c680e27c5bf07753a9045339764d7}} 
+\index{Automatic builders@{Automatic builders}!make\_algo\_scalar@{make\_algo\_scalar}}
+\index{make\_algo\_scalar@{make\_algo\_scalar}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_algo\_scalar()}{make\_algo\_scalar()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$\mbox{\hyperlink{classeo_real}{eo\+Real}}$<$double$>$ $>$\& make\+\_\+algo\+\_\+scalar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+op,  }\item[{\mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ $\ast$}]{\+\_\+dist }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of select/replace fns of the library for evolution of {\itshape {\bfseries{\mbox{\hyperlink{classeo_real}{eo\+Real}}}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/real.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+algo\+\_\+scalar.\+h in the src/do dir \mbox{\Hypertarget{group___builders_ga7de51e60d00c506a97c60a42f0b85f61}\label{group___builders_ga7de51e60d00c506a97c60a42f0b85f61}} 
+\index{Automatic builders@{Automatic builders}!make\_checkpoint@{make\_checkpoint}}
+\index{make\_checkpoint@{make\_checkpoint}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_checkpoint()}{make\_checkpoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$\mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$double$>$ $>$\& make\+\_\+checkpoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+continue }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions. 
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of operators of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in make\+\_\+checkpoint\+\_\+ga.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+checkpoint.\+h in the do dir
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations \mbox{\Hypertarget{group___builders_ga5034e4943254eed3dca2dd28f461ae39}\label{group___builders_ga5034e4943254eed3dca2dd28f461ae39}} 
+\index{Automatic builders@{Automatic builders}!make\_checkpoint@{make\_checkpoint}}
+\index{make\_checkpoint@{make\_checkpoint}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_checkpoint()}{make\_checkpoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$\mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$double$>$ $>$\& make\+\_\+checkpoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+continue }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of checkpoint fns of the library for evolution of {\itshape {\bfseries{ES genotypes}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/es.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+checkpoint.\+h in the src/do dir \mbox{\Hypertarget{group___builders_ga06e6fc5b55684dae942c6392e3c17c51}\label{group___builders_ga06e6fc5b55684dae942c6392e3c17c51}} 
+\index{Automatic builders@{Automatic builders}!make\_checkpoint@{make\_checkpoint}}
+\index{make\_checkpoint@{make\_checkpoint}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_checkpoint()}{make\_checkpoint()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$\mbox{\hyperlink{classeo_real}{eo\+Real}}$<$double$>$ $>$\& make\+\_\+checkpoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+continue }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of checkpoint fns of the library for evolution of {\itshape {\bfseries{\mbox{\hyperlink{classeo_real}{eo\+Real}}}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/real.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+checkpoint.\+h in the src/do dir \mbox{\Hypertarget{group___builders_ga8cd63aafcff43081c49cce654e7a8bb4}\label{group___builders_ga8cd63aafcff43081c49cce654e7a8bb4}} 
+\index{Automatic builders@{Automatic builders}!make\_continue@{make\_continue}}
+\index{make\_continue@{make\_continue}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_continue()}{make\_continue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$\mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$double$>$ $>$\& make\+\_\+continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of operators of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in ga.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+continue.\+h in the src/do dir
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations \mbox{\Hypertarget{group___builders_ga4dcca8aa380e015bcbeaaf1941c8dd08}\label{group___builders_ga4dcca8aa380e015bcbeaaf1941c8dd08}} 
+\index{Automatic builders@{Automatic builders}!make\_continue@{make\_continue}}
+\index{make\_continue@{make\_continue}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_continue()}{make\_continue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$\mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$double$>$ $>$\& make\+\_\+continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of continuator fns of the library for evolution of {\itshape {\bfseries{ES genotypes}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/es.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+continue.\+h in the src/do dir \mbox{\Hypertarget{group___builders_ga5fbb0f0bce301b36375693dff42c1d4f}\label{group___builders_ga5fbb0f0bce301b36375693dff42c1d4f}} 
+\index{Automatic builders@{Automatic builders}!make\_continue@{make\_continue}}
+\index{make\_continue@{make\_continue}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_continue()}{make\_continue()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$\mbox{\hyperlink{classeo_real}{eo\+Real}}$<$double$>$ $>$\& make\+\_\+continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_eval_func_counter}{eo\+Eval\+Func\+Counter}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of continuator fns of the library for evolution of {\itshape {\bfseries{R\+E\+AL vectors}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/real.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+continue.\+h in the src/do dir \mbox{\Hypertarget{group___builders_gad9b45362d847b45ca51264d35608e12d}\label{group___builders_gad9b45362d847b45ca51264d35608e12d}} 
+\index{Automatic builders@{Automatic builders}!make\_general\_replacement@{make\_general\_replacement}}
+\index{make\_general\_replacement@{make\_general\_replacement}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_general\_replacement()}{make\_general\_replacement()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_replacement}{eo\+Replacement}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& make\+\_\+general\+\_\+replacement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}}]{\+\_\+elite = {\ttfamily \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(0)},  }\item[{bool}]{\+\_\+strong\+Elitism = {\ttfamily false},  }\item[{\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}}]{\+\_\+survive\+Parents = {\ttfamily \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(0.0)},  }\item[{\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&}]{\+\_\+reduce\+Parent\+Type = {\ttfamily \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}}(\char`\"{}Deterministic\char`\"{})},  }\item[{\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}}]{\+\_\+survive\+Offspring = {\ttfamily \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}}(1.0)},  }\item[{\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&}]{\+\_\+reduce\+Offspring\+Type = {\ttfamily \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}}(\char`\"{}Deterministic\char`\"{})},  }\item[{\mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \&}]{\+\_\+reduce\+Final\+Type = {\ttfamily \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}}(\char`\"{}Deterministic\char`\"{})} }\end{DoxyParamCaption})}
+
+Helper function that creates a replacement from the class \mbox{\hyperlink{classeo_reduce_merge_reduce}{eo\+Reduce\+Merge\+Reduce}} using 6 parameters (after the usual \mbox{\hyperlink{classeo_state}{eo\+State}} and \mbox{\hyperlink{classeo_parser}{eo\+Parser}})
+
+\mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \+\_\+elite the number of elite parents (0 = no elitism) see below bool \+\_\+strong\+Elitism if elite $>$ 0, std\+::string elitism or weak elitism strong = elite parents survive, whatever the offspring weak -\/ elite patents compete A\+F\+T\+ER replacement with best offspring \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \+\_\+survive\+Parents number of parents after parents recuction \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \& \+\_\+reduce\+Parent\+Type how the parents are reduced \mbox{\hyperlink{classeo_how_many}{eo\+How\+Many}} \+\_\+survive\+Offspring number of offspring after offspring recuction \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \& \+\_\+reduce\+Offspring\+Type how the offspring are reduced \mbox{\hyperlink{classeo_param_param_type}{eo\+Param\+Param\+Type}} \& \+\_\+reduce\+Final\+Type how the final population is reduced to initial population size \mbox{\Hypertarget{group___builders_ga7980c2df8c3741682293cf527d1445eb}\label{group___builders_ga7980c2df8c3741682293cf527d1445eb}} 
+\index{Automatic builders@{Automatic builders}!make\_genotype@{make\_genotype}}
+\index{make\_genotype@{make\_genotype}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_genotype()}{make\_genotype()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& make\+\_\+genotype (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$}]{\+\_\+eo,  }\item[{float}]{\+\_\+bias }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of operators of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in ga.\+h in src/ga dir while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+genotype\+\_\+ga.\+h \mbox{\Hypertarget{group___builders_ga6c4aee599b2645167d2a2d3392d2e829}\label{group___builders_ga6c4aee599b2645167d2a2d3392d2e829}} 
+\index{Automatic builders@{Automatic builders}!make\_genotype@{make\_genotype}}
+\index{make\_genotype@{make\_genotype}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_genotype()}{make\_genotype()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& make\+\_\+genotype (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$}]{\+\_\+eo }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions. 
+
+Init functions
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of \mbox{\hyperlink{classeo_real}{eo\+Real}} Init fns It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/make\+\_\+real.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+genotype\+\_\+real.\+h
+
+It is instanciated in src/es/make\+\_\+genotype\+\_\+real.\+cpp -\/ and incorporated in the ga/libga.\+a
+
+It returns an eo\+Init$<$\+E\+O\+T$>$ that can later be used to initialize the population (see make\+\_\+pop.\+h).
+
+It uses a parser (to get user parameters) and a state (to store the memory) the last argument is to disambiguate the call upon different instanciations.
+
+W\+A\+R\+N\+I\+NG\+: that last argument will generally be the result of calling the default ctor of E\+OT, resulting in most cases in an E\+OT that is not properly initialized$\ast$$\ast$$\ast$ \mbox{\Hypertarget{group___builders_gad9bedee8989115fb892494ca88c0a4b3}\label{group___builders_gad9bedee8989115fb892494ca88c0a4b3}} 
+\index{Automatic builders@{Automatic builders}!make\_genotype@{make\_genotype}}
+\index{make\_genotype@{make\_genotype}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_genotype()}{make\_genotype()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$\mbox{\hyperlink{classeo_real}{eo\+Real}}$<$double$>$ $>$\& make\+\_\+genotype (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$}]{\+\_\+eo }\end{DoxyParamCaption})}
+
+
+
+The following functions merely call the templatized do\+\_\+$\ast$ functions. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of \mbox{\hyperlink{classeo_real}{eo\+Real}} Init fns It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/make\+\_\+real.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+genotype\+\_\+real.\+h
+
+It is instanciated in src/es/make\+\_\+genotype\+\_\+real.\+cpp -\/ and incorporated in the ga/libga.\+a
+
+It returns an eo\+Init$<$\+E\+O\+T$>$ that can later be used to initialize the population (see make\+\_\+pop.\+h).
+
+It uses a parser (to get user parameters) and a state (to store the memory) the last argument is to disambiguate the call upon different instanciations.
+
+W\+A\+R\+N\+I\+NG\+: that last argument will generally be the result of calling the default ctor of E\+OT, resulting in most cases in an E\+OT that is {\itshape {\bfseries{not properly initialized}}} \mbox{\Hypertarget{group___builders_ga688f6e52137f8cac101df55538d2ea18}\label{group___builders_ga688f6e52137f8cac101df55538d2ea18}} 
+\index{Automatic builders@{Automatic builders}!make\_help@{make\_help}}
+\index{make\_help@{make\_help}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_help()}{make\_help()}}
+{\footnotesize\ttfamily void make\+\_\+help (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser }\end{DoxyParamCaption})}
+
+Generation of the status file, and output of the help message if needed
+
+M\+U\+ST be called after A\+LL parameters have been read in order to list them
+
+Warning\+: this is a plain .cpp file and shoudl N\+OT be included anywhere, but compiled separately and stored in a library.
+
+It is declared in all make\+\_\+xxx.\+h files in representation-\/dependent dirs but it is N\+OT representation-\/dependent itself -\/ that\textquotesingle{}s why it\textquotesingle{}s in utils \mbox{\Hypertarget{group___builders_ga2fbddaa4e74697736c0d4f227095cee8}\label{group___builders_ga2fbddaa4e74697736c0d4f227095cee8}} 
+\index{Automatic builders@{Automatic builders}!make\_op@{make\_op}}
+\index{make\_op@{make\_op}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_op()}{make\_op()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& make\+\_\+op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+init }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of operators of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in make\+\_\+op\+\_\+ga.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+op.\+h in the ga dir
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations \mbox{\Hypertarget{group___builders_ga33116db182e7a07fc5f46f0a85a85f75}\label{group___builders_ga33116db182e7a07fc5f46f0a85a85f75}} 
+\index{Automatic builders@{Automatic builders}!make\_op@{make\_op}}
+\index{make\_op@{make\_op}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_op()}{make\_op()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& make\+\_\+op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+init }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of operators fns of the library for {\itshape {\bfseries{\mbox{\hyperlink{classeo_real}{eo\+Real}}}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in es.\+h in src/es dir while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+op.\+h in the es dir \mbox{\Hypertarget{group___builders_ga91e341637d1e17a665ee7ac52a252c26}\label{group___builders_ga91e341637d1e17a665ee7ac52a252c26}} 
+\index{Automatic builders@{Automatic builders}!make\_op@{make\_op}}
+\index{make\_op@{make\_op}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_op()}{make\_op()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$\mbox{\hyperlink{classeo_real}{eo\+Real}}$<$double$>$ $>$\& make\+\_\+op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_real_init_bounded}{eo\+Real\+Init\+Bounded}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+init }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of operators fns of the library for {\itshape {\bfseries{\mbox{\hyperlink{classeo_real}{eo\+Real}}}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in es.\+h in src/es dir while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+op.\+h in the es dir \mbox{\Hypertarget{group___builders_gaf9bcacf0aca6e28d695db931d45baddd}\label{group___builders_gaf9bcacf0aca6e28d695db931d45baddd}} 
+\index{Automatic builders@{Automatic builders}!make\_pop@{make\_pop}}
+\index{make\_pop@{make\_pop}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_pop()}{make\_pop()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \& make\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+init }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of population init of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in ga/make\+\_\+ga.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+pop.\+h in the src/do dir \mbox{\Hypertarget{group___builders_gac023faa6286e9e5393519c754388b0e3}\label{group___builders_gac023faa6286e9e5393519c754388b0e3}} 
+\index{Automatic builders@{Automatic builders}!make\_pop@{make\_pop}}
+\index{make\_pop@{make\_pop}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_pop()}{make\_pop()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \& make\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+init }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of pop. init. fns of the library for evolution of {\itshape {\bfseries{ES genotypes}}} indis inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/es.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+pop.\+h in the src/do dir \mbox{\Hypertarget{group___builders_ga669d199b35185b85fa0df10d1aa4d3df}\label{group___builders_ga669d199b35185b85fa0df10d1aa4d3df}} 
+\index{Automatic builders@{Automatic builders}!make\_pop@{make\_pop}}
+\index{make\_pop@{make\_pop}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{make\_pop()}{make\_pop()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$\mbox{\hyperlink{classeo_real}{eo\+Real}}$<$double$>$ $>$\& make\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{\+\_\+parser,  }\item[{\mbox{\hyperlink{classeo_state}{eo\+State}} \&}]{\+\_\+state,  }\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+init }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of pop. init. fns of the library for evolution of {\itshape {\bfseries{\mbox{\hyperlink{classeo_real}{eo\+Real}}}}} indis inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/real.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+pop.\+h in the src/do dir \mbox{\Hypertarget{group___builders_ga9a0b919bbb13bca2dcdb6b1bdf703512}\label{group___builders_ga9a0b919bbb13bca2dcdb6b1bdf703512}} 
+\index{Automatic builders@{Automatic builders}!run\_ea@{run\_ea}}
+\index{run\_ea@{run\_ea}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{run\_ea()}{run\_ea()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void run\+\_\+ea (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+ga,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ double $>$ $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains all {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of operators of the library for {\itshape {\bfseries{B\+I\+S\+T\+R\+I\+NG}}} evolution inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in make\+\_\+run\+\_\+ga.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+run.\+h in the do dir
+
+Unlike most \mbox{\hyperlink{class_e_o}{EO}} .h files, it does not (and should not) contain any code, just declarations \mbox{\Hypertarget{group___builders_gab35aae7bdc8f41d42ad33b4352fa6357}\label{group___builders_gab35aae7bdc8f41d42ad33b4352fa6357}} 
+\index{Automatic builders@{Automatic builders}!run\_ea@{run\_ea}}
+\index{run\_ea@{run\_ea}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{run\_ea()}{run\_ea()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void run\+\_\+ea (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+ga,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_es_simple}{eo\+Es\+Simple}}$<$ double $>$ $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of run funs of the library for evolution of {\itshape {\bfseries{ES genotypes}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/es.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+run.\+h in the src/do dir \mbox{\Hypertarget{group___builders_gaf90f1f75900fe33d2b12a8f9044c2c61}\label{group___builders_gaf90f1f75900fe33d2b12a8f9044c2c61}} 
+\index{Automatic builders@{Automatic builders}!run\_ea@{run\_ea}}
+\index{run\_ea@{run\_ea}!Automatic builders@{Automatic builders}}
+\doxysubsubsection{\texorpdfstring{run\_ea()}{run\_ea()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void run\+\_\+ea (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_algo}{eo\+Algo}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+ga,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_real}{eo\+Real}}$<$ double $>$ $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})}
+
+
+
+The following function merely call the templatized do\+\_\+$\ast$ functions above. 
+
+This file contains {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+F\+I\+N\+I\+T\+I\+O\+NS}}} of run funs of the library for evolution of {\itshape {\bfseries{\mbox{\hyperlink{classeo_real}{eo\+Real}}}}} inside \mbox{\hyperlink{class_e_o}{EO}}. It should be included in the file that calls any of the corresponding fns Compiling this file allows one to generate part of the library (i.\+e. object files that you just need to link with your own main and fitness code).
+
+The corresponding {\itshape {\bfseries{I\+N\+S\+T\+A\+N\+C\+I\+A\+T\+ED D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+NS}}} are contained in src/es/real.\+h while the T\+E\+M\+P\+L\+A\+T\+I\+Z\+ED code is define in make\+\_\+run.\+h in the src/do dir 

@@ -1,0 +1,137 @@
+\hypertarget{classeo_vector}{}\doxysection{eo\+Vector$<$ FitT, Gene\+Type $>$ Class Template Reference}
+\label{classeo_vector}\index{eoVector$<$ FitT, GeneType $>$@{eoVector$<$ FitT, GeneType $>$}}
+
+
+{\ttfamily \#include $<$eo\+Vector.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Vector$<$ FitT, Gene\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classeo_vector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Vector$<$ FitT, Gene\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classeo_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_vector_af093df5d8c56c360c6b13c66c5dd310e}\label{classeo_vector_af093df5d8c56c360c6b13c66c5dd310e}} 
+typedef Gene\+Type {\bfseries Atom\+Type}
+\item 
+\mbox{\Hypertarget{classeo_vector_a2d39a6b7bec940beec40252dda153d10}\label{classeo_vector_a2d39a6b7bec940beec40252dda153d10}} 
+typedef std\+::vector$<$ Gene\+Type $>$ {\bfseries Container\+Type}
+\item 
+\mbox{\Hypertarget{classeo_vector_af093df5d8c56c360c6b13c66c5dd310e}\label{classeo_vector_af093df5d8c56c360c6b13c66c5dd310e}} 
+typedef Gene\+Type {\bfseries Atom\+Type}
+\item 
+\mbox{\Hypertarget{classeo_vector_a2d39a6b7bec940beec40252dda153d10}\label{classeo_vector_a2d39a6b7bec940beec40252dda153d10}} 
+typedef std\+::vector$<$ Gene\+Type $>$ {\bfseries Container\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_vector_ad7b0997a5a3b669edfa4aaab1544088e}{eo\+Vector}} (unsigned \+\_\+size=0, Gene\+Type \+\_\+value=Gene\+Type())
+\item 
+\mbox{\Hypertarget{classeo_vector_aa2ce4cb144c85cd7b0deb4531755281f}\label{classeo_vector_aa2ce4cb144c85cd7b0deb4531755281f}} 
+{\footnotesize template$<$class Other\+Fitness\+Type $>$ }\\\mbox{\hyperlink{classeo_vector_aa2ce4cb144c85cd7b0deb4531755281f}{eo\+Vector}} (const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ Other\+Fitness\+Type, Gene\+Type $>$ \&\+\_\+vec)
+\begin{DoxyCompactList}\small\item\em copy ctor abstracting from the FitT \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_vector_ab2e16c8059fd3606e8580bd327542d09}\label{classeo_vector_ab2e16c8059fd3606e8580bd327542d09}} 
+void {\bfseries value} (const std\+::vector$<$ Gene\+Type $>$ \&\+\_\+v)
+\item 
+\mbox{\Hypertarget{classeo_vector_ad08cda47dd4fced315d00339d338d9bd}\label{classeo_vector_ad08cda47dd4fced315d00339d338d9bd}} 
+bool \mbox{\hyperlink{classeo_vector_ad08cda47dd4fced315d00339d338d9bd}{operator$<$}} (const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&\+\_\+eo) const
+\begin{DoxyCompactList}\small\item\em to avoid conflicts between \mbox{\hyperlink{class_e_o_a5ad609c4753a1f975b3d0fac2b221fbd}{E\+O\+::operator$<$}} and std\+::vector$<$\+Gene\+Type$>$\+::operator$<$ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_vector_a59d46415d733298d3914715019140f97}\label{classeo_vector_a59d46415d733298d3914715019140f97}} 
+virtual void \mbox{\hyperlink{classeo_vector_a59d46415d733298d3914715019140f97}{print\+On}} (std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em printing... \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_vector_acccb8de6742e46b976a2de7356fd86d3}\label{classeo_vector_acccb8de6742e46b976a2de7356fd86d3}} 
+virtual void \mbox{\hyperlink{classeo_vector_acccb8de6742e46b976a2de7356fd86d3}{read\+From}} (std\+::istream \&is)
+\begin{DoxyCompactList}\small\item\em reading... \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_vector_ad7b0997a5a3b669edfa4aaab1544088e}{eo\+Vector}} (unsigned \+\_\+size=0, Gene\+Type \+\_\+value=Gene\+Type())
+\item 
+\mbox{\hyperlink{classeo_vector_a2ddc5f80ea6a76811e695f4577b88d61}{eo\+Vector}} (std\+::vector$<$ Gene\+Type $>$ vec)
+\item 
+\mbox{\Hypertarget{classeo_vector_aa2ce4cb144c85cd7b0deb4531755281f}\label{classeo_vector_aa2ce4cb144c85cd7b0deb4531755281f}} 
+{\footnotesize template$<$class Other\+Fitness\+Type $>$ }\\\mbox{\hyperlink{classeo_vector_aa2ce4cb144c85cd7b0deb4531755281f}{eo\+Vector}} (const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ Other\+Fitness\+Type, Gene\+Type $>$ \&\+\_\+vec)
+\begin{DoxyCompactList}\small\item\em copy ctor abstracting from the FitT \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_vector_ab2e16c8059fd3606e8580bd327542d09}\label{classeo_vector_ab2e16c8059fd3606e8580bd327542d09}} 
+void {\bfseries value} (const std\+::vector$<$ Gene\+Type $>$ \&\+\_\+v)
+\item 
+\mbox{\Hypertarget{classeo_vector_ad08cda47dd4fced315d00339d338d9bd}\label{classeo_vector_ad08cda47dd4fced315d00339d338d9bd}} 
+bool \mbox{\hyperlink{classeo_vector_ad08cda47dd4fced315d00339d338d9bd}{operator$<$}} (const \mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$ \&\+\_\+eo) const
+\begin{DoxyCompactList}\small\item\em to avoid conflicts between \mbox{\hyperlink{class_e_o_a5ad609c4753a1f975b3d0fac2b221fbd}{E\+O\+::operator$<$}} and std\+::vector$<$\+Gene\+Type$>$\+::operator$<$ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_vector_a59d46415d733298d3914715019140f97}\label{classeo_vector_a59d46415d733298d3914715019140f97}} 
+virtual void \mbox{\hyperlink{classeo_vector_a59d46415d733298d3914715019140f97}{print\+On}} (std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em printing... \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_vector_acccb8de6742e46b976a2de7356fd86d3}\label{classeo_vector_acccb8de6742e46b976a2de7356fd86d3}} 
+virtual void \mbox{\hyperlink{classeo_vector_acccb8de6742e46b976a2de7356fd86d3}{read\+From}} (std\+::istream \&is)
+\begin{DoxyCompactList}\small\item\em reading... \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class FitT, class Gene\+Type$>$\newline
+class eo\+Vector$<$ Fit\+T, Gene\+Type $>$}
+
+Base class for fixed length chromosomes
+
+It just derives from \mbox{\hyperlink{class_e_o}{EO}} and std\+::vector and redirects the smaller than operator to \mbox{\hyperlink{class_e_o}{EO}} (fitness based comparison).
+
+Gene\+Type must have the following methods\+: void ctor (needed for the std\+::vector$<$$>$), copy ctor, 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_vector_ad7b0997a5a3b669edfa4aaab1544088e}\label{classeo_vector_ad7b0997a5a3b669edfa4aaab1544088e}} 
+\index{eoVector$<$ FitT, GeneType $>$@{eoVector$<$ FitT, GeneType $>$}!eoVector@{eoVector}}
+\index{eoVector@{eoVector}!eoVector$<$ FitT, GeneType $>$@{eoVector$<$ FitT, GeneType $>$}}
+\doxysubsubsection{\texorpdfstring{eoVector()}{eoVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class FitT , class Gene\+Type $>$ \\
+\mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$\+::\mbox{\hyperlink{classeo_vector}{eo\+Vector}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size = {\ttfamily 0},  }\item[{Gene\+Type}]{\+\_\+value = {\ttfamily GeneType()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & Length of vector (default is 0) \\
+\hline
+{\em \+\_\+value} & Initial value of all elements (default is default value of type Gene\+Type) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_ad7b0997a5a3b669edfa4aaab1544088e}\label{classeo_vector_ad7b0997a5a3b669edfa4aaab1544088e}} 
+\index{eoVector$<$ FitT, GeneType $>$@{eoVector$<$ FitT, GeneType $>$}!eoVector@{eoVector}}
+\index{eoVector@{eoVector}!eoVector$<$ FitT, GeneType $>$@{eoVector$<$ FitT, GeneType $>$}}
+\doxysubsubsection{\texorpdfstring{eoVector()}{eoVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class FitT , class Gene\+Type $>$ \\
+\mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$\+::\mbox{\hyperlink{classeo_vector}{eo\+Vector}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+size = {\ttfamily 0},  }\item[{Gene\+Type}]{\+\_\+value = {\ttfamily GeneType()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & Length of vector (default is 0) \\
+\hline
+{\em \+\_\+value} & Initial value of all elements (default is default value of type Gene\+Type) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_vector_a2ddc5f80ea6a76811e695f4577b88d61}\label{classeo_vector_a2ddc5f80ea6a76811e695f4577b88d61}} 
+\index{eoVector$<$ FitT, GeneType $>$@{eoVector$<$ FitT, GeneType $>$}!eoVector@{eoVector}}
+\index{eoVector@{eoVector}!eoVector$<$ FitT, GeneType $>$@{eoVector$<$ FitT, GeneType $>$}}
+\doxysubsubsection{\texorpdfstring{eoVector()}{eoVector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class FitT , class Gene\+Type $>$ \\
+\mbox{\hyperlink{classeo_vector}{eo\+Vector}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Gene\+Type $>$\+::\mbox{\hyperlink{classeo_vector}{eo\+Vector}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Gene\+Type $>$}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor copying from a vector (or an initialization list). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Vector.\+h\end{DoxyCompactItemize}

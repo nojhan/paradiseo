@@ -1,0 +1,139 @@
+\hypertarget{classmo_bit_neighbor}{}\doxysection{mo\+Bit\+Neighbor$<$ Fitness $>$ Class Template Reference}
+\label{classmo_bit_neighbor}\index{moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}}
+
+
+{\ttfamily \#include $<$mo\+Bit\+Neighbor.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Bit\+Neighbor$<$ Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_bit_neighbor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Bit\+Neighbor$<$ Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_bit_neighbor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_bit_neighbor_a9b791df71e7e04a7877297a2a81b2094}\label{classmo_bit_neighbor_a9b791df71e7e04a7877297a2a81b2094}} 
+typedef \mbox{\hyperlink{classeo_bit}{eo\+Bit}}$<$ Fitness $>$ {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmo_bit_neighbor_ad30d6e4116a44380d7cfac887e32e8a0}{move}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_bit_neighbor_a178a98409a0e4596d5cd9cf10ac7e249}{move\+Back}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_bit_neighbor_a34e921c45d1a1201820b235fc66efdc3}{class\+Name}} () const
+\item 
+virtual void \mbox{\hyperlink{classmo_bit_neighbor_a7c6f4cfaf887636f1bb3e585a52e17b9}{read\+From}} (std\+::istream \&\+\_\+is)
+\item 
+virtual void \mbox{\hyperlink{classmo_bit_neighbor_a2304396d98282814387c4c194fbb69a4}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Fitness$>$\newline
+class mo\+Bit\+Neighbor$<$ Fitness $>$}
+
+Neighbor related to a vector of Bit 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_bit_neighbor_a34e921c45d1a1201820b235fc66efdc3}\label{classmo_bit_neighbor_a34e921c45d1a1201820b235fc66efdc3}} 
+\index{moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}!className@{className}}
+\index{className@{className}!moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Fitness $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_bit_neighbor}{mo\+Bit\+Neighbor}}$<$ Fitness $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+return the class name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classmo_bit_neighbor_ad30d6e4116a44380d7cfac887e32e8a0}\label{classmo_bit_neighbor_ad30d6e4116a44380d7cfac887e32e8a0}} 
+\index{moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}!move@{move}}
+\index{move@{move}!moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$class Fitness $>$ \\
+virtual void \mbox{\hyperlink{classmo_bit_neighbor}{mo\+Bit\+Neighbor}}$<$ Fitness $>$\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+move the solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighbor_a8f7c2d49ae656a7da9611fc59dc8a80f}{mo\+Neighbor$<$ eo\+Bit$<$ Fitness $>$, typename eo\+Bit$<$ Fitness $>$ \+::\+Fitness $>$}}.
+
+\mbox{\Hypertarget{classmo_bit_neighbor_a178a98409a0e4596d5cd9cf10ac7e249}\label{classmo_bit_neighbor_a178a98409a0e4596d5cd9cf10ac7e249}} 
+\index{moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}!moveBack@{moveBack}}
+\index{moveBack@{moveBack}!moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{moveBack()}{moveBack()}}
+{\footnotesize\ttfamily template$<$class Fitness $>$ \\
+virtual void \mbox{\hyperlink{classmo_bit_neighbor}{mo\+Bit\+Neighbor}}$<$ Fitness $>$\+::move\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+move back the solution (useful for the evaluation by modif) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move back \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_bit_neighbor_a2304396d98282814387c4c194fbb69a4}\label{classmo_bit_neighbor_a2304396d98282814387c4c194fbb69a4}} 
+\index{moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}}
+{\footnotesize\ttfamily template$<$class Fitness $>$ \\
+virtual void \mbox{\hyperlink{classmo_bit_neighbor}{mo\+Bit\+Neighbor}}$<$ Fitness $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. Called print\+On since it prints the object {\itshape on} a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_index_neighbor_a588c63b282323f7fda44ab269c36738b}{mo\+Index\+Neighbor$<$ eo\+Bit$<$ Fitness $>$ $>$}}.
+
+\mbox{\Hypertarget{classmo_bit_neighbor_a7c6f4cfaf887636f1bb3e585a52e17b9}\label{classmo_bit_neighbor_a7c6f4cfaf887636f1bb3e585a52e17b9}} 
+\index{moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!moBitNeighbor$<$ Fitness $>$@{moBitNeighbor$<$ Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}}
+{\footnotesize\ttfamily template$<$class Fitness $>$ \\
+virtual void \mbox{\hyperlink{classmo_bit_neighbor}{mo\+Bit\+Neighbor}}$<$ Fitness $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Read object.\textbackslash{} Calls base class, just in case that one had something to do. The read and print methods should be compatible and have the same format. In principle, format is \char`\"{}plain\char`\"{}\+: they just print a number 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & a std\+::istream. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+std\+::exception} & If a valid object can\textquotesingle{}t be read. \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{class_e_o_a8d98b330d6a8c2b4e3371eae2b2d7e48}{E\+O$<$ typename eo\+Bit$<$ Fitness $>$ \+::\+Fitness $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/bit\+String/mo\+Bit\+Neighbor.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="eo::mpi::Node" name="eo::mpi::Node">
+<area shape="rect" id="node1" title="Global object used to reach mpi::communicator everywhere." alt="" coords="23,95,137,121"/>
+<area shape="rect" id="node2" href="$classmpi_1_1communicator.html" title="Main object, used to send / receive messages, get informations about the rank and the size of the wor..." alt="" coords="5,5,155,32"/>
+</map>

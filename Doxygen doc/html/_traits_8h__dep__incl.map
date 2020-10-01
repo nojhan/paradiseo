@@ -1,0 +1,13 @@
+<map id="eo/src/serial/Traits.h" name="eo/src/serial/Traits.h">
+<area shape="rect" id="node1" title=" " alt="" coords="446,5,598,32"/>
+<area shape="rect" id="node2" href="$eo_2src_2serial_2_utils_8h.html" title="Contains utilities for simple serialization and deserialization." alt="" coords="449,80,595,107"/>
+<area shape="rect" id="node3" href="$eo_serial_8h_source.html" title=" " alt="" coords="437,155,607,181"/>
+<area shape="rect" id="node4" href="$eo_timer_8h_source.html" title=" " alt="" coords="441,229,603,256"/>
+<area shape="rect" id="node6" href="$impl_mpi_8h_source.html" title=" " alt="" coords="5,386,164,413"/>
+<area shape="rect" id="node11" href="$t-mpi-common_8h.html" title=" " alt="" coords="653,304,863,331"/>
+<area shape="rect" id="node5" href="$eo_mpi_8h_source.html" title=" " alt="" coords="449,304,595,331"/>
+<area shape="rect" id="node8" href="$eo_parallel_apply_8h.html" title="Applies a functor with single parameter to elements of a table, in a parallel fashion." alt="" coords="189,386,394,413"/>
+<area shape="rect" id="node9" href="$eo_terminate_job_8h_source.html" title=" " alt="" coords="419,386,625,413"/>
+<area shape="rect" id="node10" href="$t-mpi-distrib-exp_8cpp.html" title="File for parallel experimentations." alt="" coords="701,379,882,420"/>
+<area shape="rect" id="node7" href="$eo_mpi_node_8h_source.html" title=" " alt="" coords="284,468,464,495"/>
+</map>

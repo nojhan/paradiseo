@@ -1,0 +1,122 @@
+\hypertarget{classmo_max_neighbor_stat}{}\doxysection{mo\+Max\+Neighbor\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_max_neighbor_stat}\index{moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Max\+Neighbor\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Max\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_max_neighbor_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Max\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_max_neighbor_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_max_neighbor_stat_aea89bfbefd6021931006c49280b2c231}\label{classmo_max_neighbor_stat_aea89bfbefd6021931006c49280b2c231}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_max_neighbor_stat_af0ea033882d892d05a6758b049025d64}\label{classmo_max_neighbor_stat_af0ea033882d892d05a6758b049025d64}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_max_neighbor_stat_a9db2f391ad3cf321b67c72de4b377fd8}{mo\+Max\+Neighbor\+Stat}} (\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Stat)
+\item 
+virtual void \mbox{\hyperlink{classmo_max_neighbor_stat_a669a4019288e0ee8803615bf4f3a350c}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_max_neighbor_stat_a7a941f85d9ff92086ba902a3fbbda6f3}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_max_neighbor_stat_ad31c34c099f1891d234cb1e07b608750}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Max\+Neighbor\+Stat$<$ Neighbor $>$}
+
+From \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}, to compute the max fitness in the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_max_neighbor_stat_a9db2f391ad3cf321b67c72de4b377fd8}\label{classmo_max_neighbor_stat_a9db2f391ad3cf321b67c72de4b377fd8}} 
+\index{moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}!moMaxNeighborStat@{moMaxNeighborStat}}
+\index{moMaxNeighborStat@{moMaxNeighborStat}!moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMaxNeighborStat()}{moMaxNeighborStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_max_neighbor_stat}{mo\+Max\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_max_neighbor_stat}{mo\+Max\+Neighbor\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nh\+Stat} & a neighborhood\+Stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_max_neighbor_stat_ad31c34c099f1891d234cb1e07b608750}\label{classmo_max_neighbor_stat_ad31c34c099f1891d234cb1e07b608750}} 
+\index{moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_max_neighbor_stat}{mo\+Max\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_max_neighbor_stat_a669a4019288e0ee8803615bf4f3a350c}\label{classmo_max_neighbor_stat_a669a4019288e0ee8803615bf4f3a350c}} 
+\index{moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_max_neighbor_stat}{mo\+Max\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the max fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_max_neighbor_stat_a7a941f85d9ff92086ba902a3fbbda6f3}\label{classmo_max_neighbor_stat_a7a941f85d9ff92086ba902a3fbbda6f3}} 
+\index{moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moMaxNeighborStat$<$ Neighbor $>$@{moMaxNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_max_neighbor_stat}{mo\+Max\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the max fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Max\+Neighbor\+Stat.\+h\end{DoxyCompactItemize}

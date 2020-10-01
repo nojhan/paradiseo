@@ -1,0 +1,119 @@
+\hypertarget{classmo_neutral_degree_sampling}{}\doxysection{mo\+Neutral\+Degree\+Sampling$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neutral_degree_sampling}\index{moNeutralDegreeSampling$<$ Neighbor $>$@{moNeutralDegreeSampling$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neutral\+Degree\+Sampling.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neutral\+Degree\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{classmo_neutral_degree_sampling__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neutral\+Degree\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neutral_degree_sampling__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neutral_degree_sampling_a6a9f6afb0f7d91551d158e33d7f8009c}\label{classmo_neutral_degree_sampling_a6a9f6afb0f7d91551d158e33d7f8009c}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neutral_degree_sampling_adaa6fc610ede7a306604c94c25ed1598}{mo\+Neutral\+Degree\+Sampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Sol)
+\item 
+\mbox{\hyperlink{classmo_neutral_degree_sampling_adc47ae2c93acf2dace7aff698d5bbea9}{mo\+Neutral\+Degree\+Sampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighbor\+Comparator, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator, unsigned int \+\_\+nb\+Sol)
+\item 
+\mbox{\hyperlink{classmo_neutral_degree_sampling_ad587d5c870743044681b6f455c015d46}{$\sim$mo\+Neutral\+Degree\+Sampling}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neutral_degree_sampling_a1176b357e4981f90121144893698600e}\label{classmo_neutral_degree_sampling_a1176b357e4981f90121144893698600e}} 
+\mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ {\bfseries fitness\+Stat}
+\item 
+\mbox{\Hypertarget{classmo_neutral_degree_sampling_a5f87adb72cf60f76a0fd2576065b5e3b}\label{classmo_neutral_degree_sampling_a5f87adb72cf60f76a0fd2576065b5e3b}} 
+\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries neighborhood\+Stat}
+\item 
+\mbox{\Hypertarget{classmo_neutral_degree_sampling_a08b9947e845c79d9ad1ac7ef2bfb86eb}\label{classmo_neutral_degree_sampling_a08b9947e845c79d9ad1ac7ef2bfb86eb}} 
+\mbox{\hyperlink{classmo_neutral_degree_neighbor_stat}{mo\+Neutral\+Degree\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries nd\+Stat}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neutral\+Degree\+Sampling$<$ Neighbor $>$}
+
+To compute the neutral degree\+: Sample the fitness of random solution in the search space (1er information) and sample the neutral degree (2nd information), i.\+e. the number of neighbor solutions with the same fitness value The values are collected during the random search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neutral_degree_sampling_adaa6fc610ede7a306604c94c25ed1598}\label{classmo_neutral_degree_sampling_adaa6fc610ede7a306604c94c25ed1598}} 
+\index{moNeutralDegreeSampling$<$ Neighbor $>$@{moNeutralDegreeSampling$<$ Neighbor $>$}!moNeutralDegreeSampling@{moNeutralDegreeSampling}}
+\index{moNeutralDegreeSampling@{moNeutralDegreeSampling}!moNeutralDegreeSampling$<$ Neighbor $>$@{moNeutralDegreeSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeutralDegreeSampling()}{moNeutralDegreeSampling()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neutral_degree_sampling}{mo\+Neutral\+Degree\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neutral_degree_sampling}{mo\+Neutral\+Degree\+Sampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+neighborhood} & neighborhood to compute the neutral degree \\
+\hline
+{\em \+\_\+full\+Eval} & Fitness function, full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor evaluation, incremental evaluation function \\
+\hline
+{\em \+\_\+nb\+Sol} & Number of solutions in the sample \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neutral_degree_sampling_adc47ae2c93acf2dace7aff698d5bbea9}\label{classmo_neutral_degree_sampling_adc47ae2c93acf2dace7aff698d5bbea9}} 
+\index{moNeutralDegreeSampling$<$ Neighbor $>$@{moNeutralDegreeSampling$<$ Neighbor $>$}!moNeutralDegreeSampling@{moNeutralDegreeSampling}}
+\index{moNeutralDegreeSampling@{moNeutralDegreeSampling}!moNeutralDegreeSampling$<$ Neighbor $>$@{moNeutralDegreeSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeutralDegreeSampling()}{moNeutralDegreeSampling()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neutral_degree_sampling}{mo\+Neutral\+Degree\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neutral_degree_sampling}{mo\+Neutral\+Degree\+Sampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator,  }\item[{unsigned int}]{\+\_\+nb\+Sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with comparators 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+neighborhood} & neighborhood to compute the neutral degree \\
+\hline
+{\em \+\_\+full\+Eval} & Fitness function, full evaluation function \\
+\hline
+{\em \+\_\+eval} & neighbor evaluation, incremental evaluation function \\
+\hline
+{\em \+\_\+neighbor\+Comparator} & a neighbor Comparator \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & a comparator between a solution and a neighbor \\
+\hline
+{\em \+\_\+nb\+Sol} & Number of solutions in the sample \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neutral_degree_sampling_ad587d5c870743044681b6f455c015d46}\label{classmo_neutral_degree_sampling_ad587d5c870743044681b6f455c015d46}} 
+\index{moNeutralDegreeSampling$<$ Neighbor $>$@{moNeutralDegreeSampling$<$ Neighbor $>$}!````~moNeutralDegreeSampling@{$\sim$moNeutralDegreeSampling}}
+\index{````~moNeutralDegreeSampling@{$\sim$moNeutralDegreeSampling}!moNeutralDegreeSampling$<$ Neighbor $>$@{moNeutralDegreeSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moNeutralDegreeSampling()}{~moNeutralDegreeSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neutral_degree_sampling}{mo\+Neutral\+Degree\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_neutral_degree_sampling}{mo\+Neutral\+Degree\+Sampling}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default destructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+Neutral\+Degree\+Sampling.\+h\end{DoxyCompactItemize}

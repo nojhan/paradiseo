@@ -1,0 +1,74 @@
+\hypertarget{classeo_dual_stat_switch}{}\doxysection{eo\+Dual\+Stat\+Switch$<$ E\+OT, E\+O\+S\+T\+AT $>$ Class Template Reference}
+\label{classeo_dual_stat_switch}\index{eoDualStatSwitch$<$ EOT, EOSTAT $>$@{eoDualStatSwitch$<$ EOT, EOSTAT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Dual\+Fitness.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Dual\+Stat\+Switch$<$ E\+OT, E\+O\+S\+T\+AT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_dual_stat_switch__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Dual\+Stat\+Switch$<$ E\+OT, E\+O\+S\+T\+AT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_dual_stat_switch__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_adac04b6c17717d6a6d8f3196b52a9c76}\label{classeo_dual_stat_switch_adac04b6c17717d6a6d8f3196b52a9c76}} 
+typedef E\+O\+S\+T\+A\+T\+::\+E\+O\+Type {\bfseries E\+O\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_a1c341b5f488f916edd856c8cb4e636b6}\label{classeo_dual_stat_switch_a1c341b5f488f916edd856c8cb4e636b6}} 
+{\bfseries eo\+Dual\+Stat\+Switch} (E\+O\+S\+T\+AT \&stat\+\_\+feasible, E\+O\+S\+T\+AT \&stat\+\_\+unfeasible, std\+::string sep=\char`\"{} \char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_ab51fed847d9fbbd7fbc661c9abc98c74}\label{classeo_dual_stat_switch_ab51fed847d9fbbd7fbc661c9abc98c74}} 
+virtual void \mbox{\hyperlink{classeo_dual_stat_switch_ab51fed847d9fbbd7fbc661c9abc98c74}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_a1c341b5f488f916edd856c8cb4e636b6}\label{classeo_dual_stat_switch_a1c341b5f488f916edd856c8cb4e636b6}} 
+{\bfseries eo\+Dual\+Stat\+Switch} (E\+O\+S\+T\+AT \&stat\+\_\+feasible, E\+O\+S\+T\+AT \&stat\+\_\+unfeasible, std\+::string sep=\char`\"{} \char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_a6e99c97dbcae9f65639acc4a1b92466e}\label{classeo_dual_stat_switch_a6e99c97dbcae9f65639acc4a1b92466e}} 
+virtual void {\bfseries operator()} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ E\+O\+Type $>$ \&pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_a8def8080bd944f5064a27949ad1188da}\label{classeo_dual_stat_switch_a8def8080bd944f5064a27949ad1188da}} 
+E\+O\+S\+T\+AT \& {\bfseries \+\_\+stat\+\_\+feasible}
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_a242223dc7624ef77ad8cf48517b44d91}\label{classeo_dual_stat_switch_a242223dc7624ef77ad8cf48517b44d91}} 
+E\+O\+S\+T\+AT \& {\bfseries \+\_\+stat\+\_\+unfeasible}
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_a56885250c9ba038804ae2e198a02e980}\label{classeo_dual_stat_switch_a56885250c9ba038804ae2e198a02e980}} 
+std\+::string {\bfseries \+\_\+sep}
+\item 
+\mbox{\Hypertarget{classeo_dual_stat_switch_a54fcbfc25f3a234fbf27d82683b8210f}\label{classeo_dual_stat_switch_a54fcbfc25f3a234fbf27d82683b8210f}} 
+\mbox{\hyperlink{classeo_dual_pop_split}{eo\+Dual\+Pop\+Split}}$<$ E\+O\+Type $>$ {\bfseries \+\_\+pop\+\_\+split}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class E\+O\+S\+T\+AT$>$\newline
+class eo\+Dual\+Stat\+Switch$<$ E\+O\+T, E\+O\+S\+T\+A\+T $>$}
+
+Embed two \mbox{\hyperlink{classeo_stat}{eo\+Stat}} and call the first one on the feasible individuals and the second one on the unfeasible ones, merge the two resulting value in a string, separated by a given marker. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Dual\+Fitness.\+h\end{DoxyCompactItemize}

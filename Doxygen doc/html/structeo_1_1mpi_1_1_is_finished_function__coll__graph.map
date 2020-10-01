@@ -1,0 +1,6 @@
+<map id="eo::mpi::IsFinishedFunction&lt; JobData &gt;" name="eo::mpi::IsFinishedFunction&lt; JobData &gt;">
+<area shape="rect" id="node1" title="Functor (master side) indicating whether the job is done or not." alt="" coords="57,184,256,225"/>
+<area shape="rect" id="node2" href="$classeo_f.html" title=" " alt="" coords="13,95,117,121"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node4" href="$structeo_1_1mpi_1_1_shared_data_function.html" title=" " alt="" coords="141,80,357,136"/>
+</map>

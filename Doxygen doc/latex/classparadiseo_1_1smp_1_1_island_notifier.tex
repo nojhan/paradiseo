@@ -1,0 +1,88 @@
+\hypertarget{classparadiseo_1_1smp_1_1_island_notifier}{}\doxysection{paradiseo\+::smp\+::Island\+Notifier$<$ E\+OT $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_island_notifier}\index{paradiseo::smp::IslandNotifier$<$ EOT $>$@{paradiseo::smp::IslandNotifier$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$island\+Notifier.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Island\+Notifier$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{classparadiseo_1_1smp_1_1_island_notifier__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Island\+Notifier$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{classparadiseo_1_1smp_1_1_island_notifier__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_notifier_aff79b38b4c227307aafeefc0b33fc999}{Island\+Notifier}} (\mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$\+\_\+observer, std\+::function$<$ void(\mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$)$>$ \+\_\+task)
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_notifier_a6e338c3ebe9862a6f507441610159040}{operator()}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_notifier_a809d446ac8a2ba90e27b4f6b0a2bb398}\label{classparadiseo_1_1smp_1_1_island_notifier_a809d446ac8a2ba90e27b4f6b0a2bb398}} 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ {\bfseries observer}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_notifier_a7851bd4d3631753e996b3d38ee83d52d}\label{classparadiseo_1_1smp_1_1_island_notifier_a7851bd4d3631753e996b3d38ee83d52d}} 
+std\+::function$<$ void(\mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$)$>$ {\bfseries task}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class paradiseo\+::smp\+::\+Island\+Notifier$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_notifier}{Island\+Notifier}}\+: The notifier will perform the binded task each generation.
+
+The island notifier makes the binded task executed by the island which observes. We can imagine that a continuator checks if we have to execute the binded task. At the moment, the task is performed each generation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_notifier_aff79b38b4c227307aafeefc0b33fc999}\label{classparadiseo_1_1smp_1_1_island_notifier_aff79b38b4c227307aafeefc0b33fc999}} 
+\index{paradiseo::smp::IslandNotifier$<$ EOT $>$@{paradiseo::smp::IslandNotifier$<$ EOT $>$}!IslandNotifier@{IslandNotifier}}
+\index{IslandNotifier@{IslandNotifier}!paradiseo::smp::IslandNotifier$<$ EOT $>$@{paradiseo::smp::IslandNotifier$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{IslandNotifier()}{IslandNotifier()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_notifier}{paradiseo\+::smp\+::\+Island\+Notifier}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_notifier}{Island\+Notifier}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$}]{\+\_\+observer,  }\item[{std\+::function$<$ void(\mbox{\hyperlink{classparadiseo_1_1smp_1_1_a_island}{A\+Island}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$)$>$}]{\+\_\+task }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+observer} & \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{Island}} which will perform the task \\
+\hline
+{\em \+\_\+task} & Task to perform each generation \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_island_notifier_a6e338c3ebe9862a6f507441610159040}\label{classparadiseo_1_1smp_1_1_island_notifier_a6e338c3ebe9862a6f507441610159040}} 
+\index{paradiseo::smp::IslandNotifier$<$ EOT $>$@{paradiseo::smp::IslandNotifier$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::IslandNotifier$<$ EOT $>$@{paradiseo::smp::IslandNotifier$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_island_notifier}{paradiseo\+::smp\+::\+Island\+Notifier}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator()\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Notify the island by performing the binded task 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ void $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/island\+Notifier.\+h\item 
+smp/src/island\+Notifier.\+cpp\end{DoxyCompactItemize}

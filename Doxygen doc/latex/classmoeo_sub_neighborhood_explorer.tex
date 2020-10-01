@@ -1,0 +1,137 @@
+\hypertarget{classmoeo_sub_neighborhood_explorer}{}\doxysection{moeo\+Sub\+Neighborhood\+Explorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmoeo_sub_neighborhood_explorer}\index{moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Sub\+Neighborhood\+Explorer.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Sub\+Neighborhood\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_sub_neighborhood_explorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Sub\+Neighborhood\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_sub_neighborhood_explorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_sub_neighborhood_explorer_ae3426560233cd8d0a0bf521ed4014d17}{moeo\+Sub\+Neighborhood\+Explorer}} (\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighborhood, unsigned int \+\_\+number)
+\item 
+void \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer_a3331d5a4732a55e7d920a346cb69a8f5}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} $>$ \&\+\_\+src, std\+::vector$<$ unsigned int $>$ \+\_\+select, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} $>$ \&\+\_\+dest)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer_a9166a7c0f2fa0f719f5511e3caf03920}{explore}} (\mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} \&\+\_\+src, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} $>$ \&\+\_\+dest)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer_af04ca27a95a9d4be198e936075cf2308}{neighbor}}
+\item 
+\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer_aac01c8edbdcf69b9b8a6845faf3b7f83}{neighborhood}}
+\item 
+unsigned int \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer_ade29b62d7af1345cdc8d27b7f09d2d7e}{number}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class moeo\+Sub\+Neighborhood\+Explorer$<$ Neighbor $>$}
+
+Explorer which explore a part of the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_sub_neighborhood_explorer_ae3426560233cd8d0a0bf521ed4014d17}\label{classmoeo_sub_neighborhood_explorer_ae3426560233cd8d0a0bf521ed4014d17}} 
+\index{moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}!moeoSubNeighborhoodExplorer@{moeoSubNeighborhoodExplorer}}
+\index{moeoSubNeighborhoodExplorer@{moeoSubNeighborhoodExplorer}!moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSubNeighborhoodExplorer()}{moeoSubNeighborhoodExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmoeo_sub_neighborhood_explorer}{moeo\+Sub\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmoeo_sub_neighborhood_explorer}{moeo\+Sub\+Neighborhood\+Explorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighborhood,  }\item[{unsigned int}]{\+\_\+number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & a neighborhood \\
+\hline
+{\em \+\_\+number} & the number of neighbor to explore \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_sub_neighborhood_explorer_a9166a7c0f2fa0f719f5511e3caf03920}\label{classmoeo_sub_neighborhood_explorer_a9166a7c0f2fa0f719f5511e3caf03920}} 
+\index{moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}!explore@{explore}}
+\index{explore@{explore}!moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{explore()}{explore()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer}{moeo\+Sub\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::explore (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} \&}]{\+\_\+src,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} $>$ \&}]{\+\_\+dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+explorer of one individual 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+src} & the individual to explore \\
+\hline
+{\em \+\_\+dest} & contains new generated individuals \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_sub_neighborhood_explorer_a3331d5a4732a55e7d920a346cb69a8f5}\label{classmoeo_sub_neighborhood_explorer_a3331d5a4732a55e7d920a346cb69a8f5}} 
+\index{moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer}{moeo\+Sub\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} $>$ \&}]{\+\_\+src,  }\item[{std\+::vector$<$ unsigned int $>$}]{\+\_\+select,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{classeo_bit}{M\+O\+E\+OT}} $>$ \&}]{\+\_\+dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+functor to explore the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+src} & the population to explore \\
+\hline
+{\em \+\_\+select} & contains index of individuals from the population to explore \\
+\hline
+{\em \+\_\+dest} & contains new generated individuals \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_pop_neighborhood_explorer_a76bf140553eb97f0f900cfa3ecec745e}{moeo\+Pop\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_sub_neighborhood_explorer_af04ca27a95a9d4be198e936075cf2308}\label{classmoeo_sub_neighborhood_explorer_af04ca27a95a9d4be198e936075cf2308}} 
+\index{moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}!neighbor@{neighbor}}
+\index{neighbor@{neighbor}!moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{neighbor}{neighbor}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer}{moeo\+Sub\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::neighbor\hspace{0.3cm}{\ttfamily [protected]}}
+
+Neighbor \mbox{\Hypertarget{classmoeo_sub_neighborhood_explorer_aac01c8edbdcf69b9b8a6845faf3b7f83}\label{classmoeo_sub_neighborhood_explorer_aac01c8edbdcf69b9b8a6845faf3b7f83}} 
+\index{moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}!neighborhood@{neighborhood}}
+\index{neighborhood@{neighborhood}!moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{neighborhood}{neighborhood}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}$>$\& \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer}{moeo\+Sub\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::neighborhood\hspace{0.3cm}{\ttfamily [protected]}}
+
+Neighborhood \mbox{\Hypertarget{classmoeo_sub_neighborhood_explorer_ade29b62d7af1345cdc8d27b7f09d2d7e}\label{classmoeo_sub_neighborhood_explorer_ade29b62d7af1345cdc8d27b7f09d2d7e}} 
+\index{moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}!number@{number}}
+\index{number@{number}!moeoSubNeighborhoodExplorer$<$ Neighbor $>$@{moeoSubNeighborhoodExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{number}{number}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmoeo_sub_neighborhood_explorer}{moeo\+Sub\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::number\hspace{0.3cm}{\ttfamily [protected]}}
+
+number of neighbor to explore for each selected individual 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/explorer/moeo\+Sub\+Neighborhood\+Explorer.\+h\end{DoxyCompactItemize}

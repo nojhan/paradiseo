@@ -1,0 +1,156 @@
+\hypertarget{classeo_forge_vector}{}\doxysection{eo\+Forge\+Vector$<$ Itf $>$ Class Template Reference}
+\label{classeo_forge_vector}\index{eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}}
+
+
+{\ttfamily \#include $<$eo\+Forge.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Forge\+Vector$<$ Itf $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classeo_forge_vector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Forge\+Vector$<$ Itf $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classeo_forge_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_forge_vector_afe76350786be9a5a0a0b56cb3aeadf44}{eo\+Forge\+Vector}} (bool always\+\_\+reinstantiate=true)
+\item 
+{\footnotesize template$<$class Op , typename... Args$>$ }\\void \mbox{\hyperlink{classeo_forge_vector_adce9bcac1f3810c191a32e4dc1319ae0}{add}} (Args... args)
+\item 
+{\footnotesize template$<$class Op $>$ }\\void \mbox{\hyperlink{classeo_forge_vector_a660cf37f1320f7f7deb61897385123ae}{add}} ()
+\item 
+{\footnotesize template$<$class Op , typename... Args$>$ }\\void \mbox{\hyperlink{classeo_forge_vector_ae3643d35d9866b20fda964e5a0163dd6}{setup}} (size\+\_\+t index, Args... args)
+\item 
+{\footnotesize template$<$class Op $>$ }\\void \mbox{\hyperlink{classeo_forge_vector_ad8f8a93c031b2f035f03b02c4afb1490}{setup}} (size\+\_\+t index)
+\item 
+Itf \& \mbox{\hyperlink{classeo_forge_vector_a61f4a08f4f65a56bee2182238156b451}{instantiate}} (size\+\_\+t index)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_forge_vector_a1a51079b1a6b939c761f0101f7d3ed51}\label{classeo_forge_vector_a1a51079b1a6b939c761f0101f7d3ed51}} 
+bool {\bfseries \+\_\+no\+\_\+cache}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Itf$>$\newline
+class eo\+Forge\+Vector$<$ Itf $>$}
+
+A vector holding an operator with deferred instantiation at a given index.
+
+\begin{DoxyNote}{Note}
+You can actually store several instances of the same class, with different parametrization (or not).
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+When passing a reference (as it is often the case within Paradis\+EO), it is M\+A\+N\+D\+A\+T\+O\+RY to wrap it in {\ttfamily std\+::ref}, or else it will default to use copy. This is is a source of bug which your compiler will to detect and that would disable any link between operators.
+
+You may want to enable instantiation cache to grab some performances. The default is set to disable the cache, because its use with operators which hold a state will lead to unwanted behaviour.
+\end{DoxyWarning}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_forge_vector}{eoForgeVector<eoSelect<EOT>}}> factories(\textcolor{keyword}{false});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Capture constructor's parameters and defer instantiation.}}
+\DoxyCodeLine{factories.add<\mbox{\hyperlink{classeo_rank_mu_select}{eoRankMuSelect<EOT>}}>(1);}
+\DoxyCodeLine{factories.setup<\mbox{\hyperlink{classeo_rank_mu_select}{eoRankMuSelect<EOT>}}>(0, 5); \textcolor{comment}{// Edit}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Actually instantiate.}}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_select}{eoSelect<EOT>}}\& op  = factories.instantiate(0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Call.}}
+\DoxyCodeLine{op();}
+\end{DoxyCode}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_forge_vector_afe76350786be9a5a0a0b56cb3aeadf44}\label{classeo_forge_vector_afe76350786be9a5a0a0b56cb3aeadf44}} 
+\index{eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}!eoForgeVector@{eoForgeVector}}
+\index{eoForgeVector@{eoForgeVector}!eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}}
+\doxysubsubsection{\texorpdfstring{eoForgeVector()}{eoForgeVector()}}
+{\footnotesize\ttfamily template$<$class Itf $>$ \\
+\mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}$<$ Itf $>$\+::\mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}} (\begin{DoxyParamCaption}\item[{bool}]{always\+\_\+reinstantiate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor do not cache instantiations.
+
+\begin{DoxyWarning}{Warning}
+You most probably want to disable caching for operators that hold a state. If you enable the cache, the last used instantiation will be used, at its last state. For example, continuators should most probably not be cached, as they very often hold a state in the form of a counter. At the end of a search, the continuator will be in the end state, and thus always ask for a stop. Reusing an instance in this state will de facto disable further searches.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em always\+\_\+reinstantiate} & If false, will enable cache for the forges in this container. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_forge_vector_a660cf37f1320f7f7deb61897385123ae}\label{classeo_forge_vector_a660cf37f1320f7f7deb61897385123ae}} 
+\index{eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}!add@{add}}
+\index{add@{add}!eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Itf $>$ \\
+template$<$class Op $>$ \\
+void \mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}$<$ Itf $>$\+::add (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Specialization for operators with empty constructors. \mbox{\Hypertarget{classeo_forge_vector_adce9bcac1f3810c191a32e4dc1319ae0}\label{classeo_forge_vector_adce9bcac1f3810c191a32e4dc1319ae0}} 
+\index{eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}!add@{add}}
+\index{add@{add}!eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Itf $>$ \\
+template$<$class Op , typename... Args$>$ \\
+void \mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}$<$ Itf $>$\+::add (\begin{DoxyParamCaption}\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add an operator to the list.
+
+\begin{DoxyWarning}{Warning}
+When passing a reference (as it is often the case within Paradis\+EO), it is M\+A\+N\+D\+A\+T\+O\+RY to wrap it in {\ttfamily std\+::ref}, or else it will default to use copy. This is is a source of bug which your compiler will to detect and that would disable any link between operators. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classeo_forge_vector_a61f4a08f4f65a56bee2182238156b451}\label{classeo_forge_vector_a61f4a08f4f65a56bee2182238156b451}} 
+\index{eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}!instantiate@{instantiate}}
+\index{instantiate@{instantiate}!eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}}
+\doxysubsubsection{\texorpdfstring{instantiate()}{instantiate()}}
+{\footnotesize\ttfamily template$<$class Itf $>$ \\
+Itf\& \mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}$<$ Itf $>$\+::instantiate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+instantiate the operator managed at the given index. \mbox{\Hypertarget{classeo_forge_vector_ad8f8a93c031b2f035f03b02c4afb1490}\label{classeo_forge_vector_ad8f8a93c031b2f035f03b02c4afb1490}} 
+\index{eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}!setup@{setup}}
+\index{setup@{setup}!eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Itf $>$ \\
+template$<$class Op $>$ \\
+void \mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}$<$ Itf $>$\+::setup (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Specialization for empty constructors. \mbox{\Hypertarget{classeo_forge_vector_ae3643d35d9866b20fda964e5a0163dd6}\label{classeo_forge_vector_ae3643d35d9866b20fda964e5a0163dd6}} 
+\index{eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}!setup@{setup}}
+\index{setup@{setup}!eoForgeVector$<$ Itf $>$@{eoForgeVector$<$ Itf $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Itf $>$ \\
+template$<$class Op , typename... Args$>$ \\
+void \mbox{\hyperlink{classeo_forge_vector}{eo\+Forge\+Vector}}$<$ Itf $>$\+::setup (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Change the set up arguments to the constructor.
+
+\begin{DoxyWarning}{Warning}
+When passing a reference (as it is often the case within Paradis\+EO), it is M\+A\+N\+D\+A\+T\+O\+RY to wrap it in {\ttfamily std\+::ref}, or else it will default to use copy. This is is a source of bug which your compiler will to detect and that would disable any link between operators.
+
+The operator at {\ttfamily index} should have been added with \mbox{\hyperlink{classeo_forge_vector_adce9bcac1f3810c191a32e4dc1319ae0}{eo\+Forge\+Vector\+::add}} already.. 
+\end{DoxyWarning}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Forge.\+h\end{DoxyCompactItemize}

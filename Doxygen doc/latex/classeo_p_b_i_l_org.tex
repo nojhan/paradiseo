@@ -1,0 +1,95 @@
+\hypertarget{classeo_p_b_i_l_org}{}\doxysection{eo\+P\+B\+I\+L\+Org$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_p_b_i_l_org}\index{eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+P\+B\+I\+L\+Org.\+h$>$}
+
+
+
+Inheritance diagram for eo\+P\+B\+I\+L\+Org$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_p_b_i_l_org__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+P\+B\+I\+L\+Org$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_p_b_i_l_org__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_p_b_i_l_org_ae807a357d05e7f373f6c52cf04dc1048}{eo\+P\+B\+I\+L\+Org}} (double \+\_\+\+LR, double \+\_\+tolerance=0.\+0)
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_org_a46484863d3e1f938bbdaabd58714f25d}{operator()}} (\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+distrib, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\hyperlink{classeo_p_b_i_l_org_ae807a357d05e7f373f6c52cf04dc1048}{eo\+P\+B\+I\+L\+Org}} (double \+\_\+\+LR, double \+\_\+tolerance=0.\+0)
+\item 
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_org_a46484863d3e1f938bbdaabd58714f25d}{operator()}} (\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+distrib, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+P\+B\+I\+L\+Org$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{class_distribution}{Distribution}} Class for P\+B\+IL algorithm (Population-\/\+Based Incremental Learning, Baluja and Caruana 95)
+
+This class implements the update rule from the original paper\+:
+
+p(i)(t+1) = (1-\/LR)$\ast$p(i)(t) + L\+R$\ast$best(i) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_p_b_i_l_org_ae807a357d05e7f373f6c52cf04dc1048}\label{classeo_p_b_i_l_org_ae807a357d05e7f373f6c52cf04dc1048}} 
+\index{eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}!eoPBILOrg@{eoPBILOrg}}
+\index{eoPBILOrg@{eoPBILOrg}!eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPBILOrg()}{eoPBILOrg()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+\+LR,  }\item[{double}]{\+\_\+tolerance = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with size of genomes, and update parameters \mbox{\Hypertarget{classeo_p_b_i_l_org_ae807a357d05e7f373f6c52cf04dc1048}\label{classeo_p_b_i_l_org_ae807a357d05e7f373f6c52cf04dc1048}} 
+\index{eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}!eoPBILOrg@{eoPBILOrg}}
+\index{eoPBILOrg@{eoPBILOrg}!eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoPBILOrg()}{eoPBILOrg()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+\+LR,  }\item[{double}]{\+\_\+tolerance = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with size of genomes, and update parameters 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_p_b_i_l_org_a46484863d3e1f938bbdaabd58714f25d}\label{classeo_p_b_i_l_org_a46484863d3e1f938bbdaabd58714f25d}} 
+\index{eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+distrib,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the distribution from the current population 
+
+Implements \mbox{\hyperlink{classeo_distrib_updater_ac419a7a103d00805d11625ce9faf8377}{eo\+Distrib\+Updater$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_p_b_i_l_org_a46484863d3e1f938bbdaabd58714f25d}\label{classeo_p_b_i_l_org_a46484863d3e1f938bbdaabd58714f25d}} 
+\index{eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoPBILOrg$<$ EOT $>$@{eoPBILOrg$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_p_b_i_l_org}{eo\+P\+B\+I\+L\+Org}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_distribution}{eo\+Distribution}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+distrib,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the distribution from the current population 
+
+Implements \mbox{\hyperlink{classeo_distrib_updater_ac419a7a103d00805d11625ce9faf8377}{eo\+Distrib\+Updater$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/es/eo\+P\+B\+I\+L\+Org.\+h\end{DoxyCompactItemize}

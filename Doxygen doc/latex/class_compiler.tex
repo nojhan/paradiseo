@@ -1,0 +1,93 @@
+\hypertarget{class_compiler}{}\doxysection{Compiler Class Reference}
+\label{class_compiler}\index{Compiler@{Compiler}}
+
+
+Collaboration diagram for Compiler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_compiler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_compiler_a72b0f074e1879b28b91daea21a91f74e}\label{class_compiler_a72b0f074e1879b28b91daea21a91f74e}} 
+enum {\bfseries func\+\_\+type} \{ \newline
+{\bfseries constant}, 
+{\bfseries variable}, 
+{\bfseries function}, 
+{\bfseries constant}, 
+\newline
+{\bfseries variable}, 
+{\bfseries function}
+ \}
+\item 
+\mbox{\Hypertarget{class_compiler_a72b0f074e1879b28b91daea21a91f74e}\label{class_compiler_a72b0f074e1879b28b91daea21a91f74e}} 
+enum {\bfseries func\+\_\+type} \{ \newline
+{\bfseries constant}, 
+{\bfseries variable}, 
+{\bfseries function}, 
+{\bfseries constant}, 
+\newline
+{\bfseries variable}, 
+{\bfseries function}
+ \}
+\item 
+\mbox{\Hypertarget{class_compiler_aeb59e608330c1dcce92bc53d13a82180}\label{class_compiler_aeb59e608330c1dcce92bc53d13a82180}} 
+typedef pair$<$ func\+\_\+type, unsigned $>$ {\bfseries entry}
+\item 
+\mbox{\Hypertarget{class_compiler_a21eccca32efb5f93b0a805b2f89854e2}\label{class_compiler_a21eccca32efb5f93b0a805b2f89854e2}} 
+typedef hash\+\_\+map$<$ \mbox{\hyperlink{class_sym}{Sym}}, entry, \mbox{\hyperlink{class_hash_sym}{Hash\+Sym}} $>$ {\bfseries Hash\+Map}
+\item 
+\mbox{\Hypertarget{class_compiler_aeb59e608330c1dcce92bc53d13a82180}\label{class_compiler_aeb59e608330c1dcce92bc53d13a82180}} 
+typedef pair$<$ func\+\_\+type, unsigned $>$ {\bfseries entry}
+\item 
+\mbox{\Hypertarget{class_compiler_a21eccca32efb5f93b0a805b2f89854e2}\label{class_compiler_a21eccca32efb5f93b0a805b2f89854e2}} 
+typedef hash\+\_\+map$<$ \mbox{\hyperlink{class_sym}{Sym}}, entry, \mbox{\hyperlink{class_hash_sym}{Hash\+Sym}} $>$ {\bfseries Hash\+Map}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_compiler_ab52b96fddc032f49c1ff9b0ec68dde7a}\label{class_compiler_ab52b96fddc032f49c1ff9b0ec68dde7a}} 
+entry {\bfseries do\+\_\+add} (\mbox{\hyperlink{class_sym}{Sym}} sym)
+\item 
+\mbox{\Hypertarget{class_compiler_a60a4921ba5a083a3e273d760a63e01e3}\label{class_compiler_a60a4921ba5a083a3e273d760a63e01e3}} 
+void {\bfseries add} (\mbox{\hyperlink{class_sym}{Sym}} sym)
+\item 
+\mbox{\Hypertarget{class_compiler_ab52b96fddc032f49c1ff9b0ec68dde7a}\label{class_compiler_ab52b96fddc032f49c1ff9b0ec68dde7a}} 
+entry {\bfseries do\+\_\+add} (\mbox{\hyperlink{class_sym}{Sym}} sym)
+\item 
+\mbox{\Hypertarget{class_compiler_a60a4921ba5a083a3e273d760a63e01e3}\label{class_compiler_a60a4921ba5a083a3e273d760a63e01e3}} 
+void {\bfseries add} (\mbox{\hyperlink{class_sym}{Sym}} sym)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_compiler_a3f8680dd87fca168e102264c77aacea4}\label{class_compiler_a3f8680dd87fca168e102264c77aacea4}} 
+Hash\+Map {\bfseries map}
+\item 
+\mbox{\Hypertarget{class_compiler_a24ff53f19b2db9c0d1a7c9410323f328}\label{class_compiler_a24ff53f19b2db9c0d1a7c9410323f328}} 
+vector$<$ double $>$ {\bfseries constants}
+\item 
+\mbox{\Hypertarget{class_compiler_a835849d86e43b1783bb85821401b0350}\label{class_compiler_a835849d86e43b1783bb85821401b0350}} 
+vector$<$ unsigned $>$ {\bfseries variables}
+\item 
+\mbox{\Hypertarget{class_compiler_a5df7353bf255e9b044b9c535c3891426}\label{class_compiler_a5df7353bf255e9b044b9c535c3891426}} 
+vector$<$ fptr $>$ {\bfseries functions}
+\item 
+\mbox{\Hypertarget{class_compiler_a424d5883bac1c8c510527a0d325bebda}\label{class_compiler_a424d5883bac1c8c510527a0d325bebda}} 
+vector$<$ vector$<$ entry $>$ $>$ {\bfseries function\+\_\+args}
+\item 
+\mbox{\Hypertarget{class_compiler_aef1d8e10143d962e1b1ece03e0fef9af}\label{class_compiler_aef1d8e10143d962e1b1ece03e0fef9af}} 
+unsigned {\bfseries total\+\_\+args}
+\item 
+\mbox{\Hypertarget{class_compiler_a3f48500ab8cef1ace48e599e06c51c7a}\label{class_compiler_a3f48500ab8cef1ace48e599e06c51c7a}} 
+vector$<$ entry $>$ {\bfseries outputs}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/contrib/mathsym/eval/Multi\+Function.\+cpp\end{DoxyCompactItemize}

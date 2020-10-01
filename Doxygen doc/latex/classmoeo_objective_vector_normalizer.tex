@@ -1,0 +1,355 @@
+\hypertarget{classmoeo_objective_vector_normalizer}{}\doxysection{moeo\+Objective\+Vector\+Normalizer$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_objective_vector_normalizer}\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Objective\+Vector\+Normalizer.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a1af64b2ff7ee7ef1c6ea3852c34cc0d0}\label{classmoeo_objective_vector_normalizer_a1af64b2ff7ee7ef1c6ea3852c34cc0d0}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a15abdad7806e321e052bba09c40b1fa4}\label{classmoeo_objective_vector_normalizer_a15abdad7806e321e052bba09c40b1fa4}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector\+::\+Type {\bfseries Type}
+\item 
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_aac30d6ff104293c88176828dd629ac1a}\label{classmoeo_objective_vector_normalizer_aac30d6ff104293c88176828dd629ac1a}} 
+typedef std\+::vector$<$ std\+::vector$<$ Type $>$ $>$ {\bfseries Scale}
+\item 
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a1e1b01d48b0df8dcee850daaa75bbb59}\label{classmoeo_objective_vector_normalizer_a1e1b01d48b0df8dcee850daaa75bbb59}} 
+typedef \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} {\bfseries Bounds}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer_aa8ca18c479de88ea3cf9a25efcb325c8}{moeo\+Objective\+Vector\+Normalizer}} (Scale \+\_\+scale=\mbox{\hyperlink{classmoeo_objective_vector_normalizer_a9734c96e68f973d86e02096c104cee28}{make\+\_\+dummy\+\_\+scale}}(), Type max\+\_\+param=100)
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer_ab69fec7d5ec904772c8bdd20bb2df1d0}{moeo\+Objective\+Vector\+Normalizer}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, Type max\+\_\+param=100)
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer_abb3a6989e5d18ed4e5542b1bd2fa94b1}{moeo\+Objective\+Vector\+Normalizer}} (std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{Bounds}} $>$ \&\+\_\+boundaries, Type max\+\_\+param=100)
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer_af6728a78de3eb4da2d13dd11adfcc124}{moeo\+Objective\+Vector\+Normalizer}} (\mbox{\hyperlink{classeo_real_interval}{Bounds}} \&\+\_\+bounds, Type max\+\_\+param=100)
+\item 
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer_a4c123a07e4d4a7604f959e1593744df0}{moeo\+Objective\+Vector\+Normalizer}} (const Objective\+Vector \&\+\_\+best, const Objective\+Vector \&\+\_\+worst, Type max\+\_\+param=100)
+\item 
+virtual Objective\+Vector \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a2ad862e43f9d217b9c2b2f9c40ac7186}{operator()}} (const Objective\+Vector \&\+\_\+vec)
+\item 
+std\+::vector$<$ Objective\+Vector $>$ \mbox{\hyperlink{classmoeo_objective_vector_normalizer_af37a2de991ad5277b136ae553d8eef7e}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop)
+\item 
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer_af8e8e173275eb643f9be7649073afc99}{update\+\_\+by\+\_\+pop}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ pop)
+\item 
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer_aa7a61b892b996510a03ab21992ed0e10}{update\+\_\+by\+\_\+min\+\_\+max}} (const Objective\+Vector \&\+\_\+min, const Objective\+Vector \&\+\_\+max)
+\item 
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a5186b854499b9bddbc3945de042e1b79}{update\+\_\+by\+\_\+bounds}} (const std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{Bounds}} $>$ \&boundaries)
+\item 
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a0c88d5423a31ff645b93ccb36a1f2001}{update\+\_\+by\+\_\+bounds}} (const \mbox{\hyperlink{classeo_real_interval}{Bounds}} \&bounds)
+\item 
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer_aba7f0d13ccf5599e8346f13038e6b084}{update\+\_\+scale}} (Scale \+\_\+scale)
+\item 
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a7430f029299b9a4695acb0dd404f0938}{change\+\_\+max}} (Type \+\_\+max)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer_ad92f76d650a0c3fde3d9a8ff2cdd8fdf}{make\+\_\+scale\+\_\+from\+\_\+pop}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, Type max\+\_\+param=100)
+\item 
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a0e354bc1edce18cb1215b6cbc63f17a9}{make\+\_\+scale\+\_\+from\+\_\+bounds}} (const std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{Bounds}} $>$ \&\+\_\+boundaries, Type max=100)
+\item 
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a1ad06a878f1d346af8646a4afb72bee4}{make\+\_\+scale\+\_\+from\+\_\+bounds}} (const \mbox{\hyperlink{classeo_real_interval}{Bounds}} \&bounds, Type max=100)
+\item 
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a20f65b37565dc750f37b5262ea3d940e}{make\+\_\+scale\+\_\+from\+\_\+minmax}} (const Objective\+Vector \&best, const Objective\+Vector \&worst, Type max=100)
+\item 
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a9734c96e68f973d86e02096c104cee28}{make\+\_\+dummy\+\_\+scale}} ()
+\item 
+static std\+::vector$<$ Objective\+Vector $>$ \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a4923c2c17985b703e4bb552607716fbf}{normalize}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&pop, Type \&max)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Objective\+Vector\+Normalizer$<$ M\+O\+E\+O\+T $>$}
+
+class to normalize each dimension of objective\+Vectors 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_aa8ca18c479de88ea3cf9a25efcb325c8}\label{classmoeo_objective_vector_normalizer_aa8ca18c479de88ea3cf9a25efcb325c8}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}}
+\index{moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoObjectiveVectorNormalizer()}{moeoObjectiveVectorNormalizer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}} (\begin{DoxyParamCaption}\item[{Scale}]{\+\_\+scale = {\ttfamily \mbox{\hyperlink{classmoeo_objective_vector_normalizer_a9734c96e68f973d86e02096c104cee28}{make\+\_\+dummy\+\_\+scale}}()},  }\item[{Type}]{max\+\_\+param = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a supplied scale, usefull if you tweak your scale 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+scale} & the scale for noramlzation \\
+\hline
+{\em max\+\_\+param} & the returned values will be between 0 and max \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_ab69fec7d5ec904772c8bdd20bb2df1d0}\label{classmoeo_objective_vector_normalizer_ab69fec7d5ec904772c8bdd20bb2df1d0}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}}
+\index{moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoObjectiveVectorNormalizer()}{moeoObjectiveVectorNormalizer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{Type}]{max\+\_\+param = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor to create a normalizer from a given population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population to analyse to create the scale \\
+\hline
+{\em max\+\_\+param} & the returned values will be between 0 and max \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_abb3a6989e5d18ed4e5542b1bd2fa94b1}\label{classmoeo_objective_vector_normalizer_abb3a6989e5d18ed4e5542b1bd2fa94b1}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}}
+\index{moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoObjectiveVectorNormalizer()}{moeoObjectiveVectorNormalizer()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{Bounds}} $>$ \&}]{\+\_\+boundaries,  }\item[{Type}]{max\+\_\+param = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor to create a normalizer with given boundaries 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+boundaries} & the supplied vectors should have their values between thos boundaries \\
+\hline
+{\em max\+\_\+param} & the returned values will be between 0 and max \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_af6728a78de3eb4da2d13dd11adfcc124}\label{classmoeo_objective_vector_normalizer_af6728a78de3eb4da2d13dd11adfcc124}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}}
+\index{moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoObjectiveVectorNormalizer()}{moeoObjectiveVectorNormalizer()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_interval}{Bounds}} \&}]{\+\_\+bounds,  }\item[{Type}]{max\+\_\+param = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor to create a normalizer from bounds 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bounds} & the supplied vectors should have their value in those bounds \\
+\hline
+{\em max\+\_\+param} & the returned values will be between 0 and max \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a4c123a07e4d4a7604f959e1593744df0}\label{classmoeo_objective_vector_normalizer_a4c123a07e4d4a7604f959e1593744df0}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}}
+\index{moeoObjectiveVectorNormalizer@{moeoObjectiveVectorNormalizer}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoObjectiveVectorNormalizer()}{moeoObjectiveVectorNormalizer()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}} (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{\+\_\+best,  }\item[{const Objective\+Vector \&}]{\+\_\+worst,  }\item[{Type}]{max\+\_\+param = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor to create a normalizer from a worst vector and a best vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+worst} & the worst possible vector \\
+\hline
+{\em \+\_\+best} & the best possible vector \\
+\hline
+{\em max\+\_\+param} & the maximum value for returned objectives \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a7430f029299b9a4695acb0dd404f0938}\label{classmoeo_objective_vector_normalizer_a7430f029299b9a4695acb0dd404f0938}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!change\_max@{change\_max}}
+\index{change\_max@{change\_max}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{change\_max()}{change\_max()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::change\+\_\+max (\begin{DoxyParamCaption}\item[{Type}]{\+\_\+max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+change the maximum returned by the normalizer (if the scale is adapted) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max} & the maximum returned \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a9734c96e68f973d86e02096c104cee28}\label{classmoeo_objective_vector_normalizer_a9734c96e68f973d86e02096c104cee28}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!make\_dummy\_scale@{make\_dummy\_scale}}
+\index{make\_dummy\_scale@{make\_dummy\_scale}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{make\_dummy\_scale()}{make\_dummy\_scale()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::make\+\_\+dummy\+\_\+scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+create a default scale that does nothing when applied \begin{DoxyReturn}{Returns}
+a dummy scale 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a1ad06a878f1d346af8646a4afb72bee4}\label{classmoeo_objective_vector_normalizer_a1ad06a878f1d346af8646a4afb72bee4}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!make\_scale\_from\_bounds@{make\_scale\_from\_bounds}}
+\index{make\_scale\_from\_bounds@{make\_scale\_from\_bounds}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{make\_scale\_from\_bounds()}{make\_scale\_from\_bounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::make\+\_\+scale\+\_\+from\+\_\+bounds (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_real_interval}{Bounds}} \&}]{bounds,  }\item[{Type}]{max = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+create a scale from bounds 
+\begin{DoxyParams}{Parameters}
+{\em bounds} & the bounds (the same for each dimension) \\
+\hline
+{\em max} & the maximum for returned values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a scale 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a0e354bc1edce18cb1215b6cbc63f17a9}\label{classmoeo_objective_vector_normalizer_a0e354bc1edce18cb1215b6cbc63f17a9}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!make\_scale\_from\_bounds@{make\_scale\_from\_bounds}}
+\index{make\_scale\_from\_bounds@{make\_scale\_from\_bounds}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{make\_scale\_from\_bounds()}{make\_scale\_from\_bounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::make\+\_\+scale\+\_\+from\+\_\+bounds (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{Bounds}} $>$ \&}]{\+\_\+boundaries,  }\item[{Type}]{max = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+create a scale from bounds 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+boundaries} & the boundaries \\
+\hline
+{\em max} & the maximum for returned values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a scale 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a20f65b37565dc750f37b5262ea3d940e}\label{classmoeo_objective_vector_normalizer_a20f65b37565dc750f37b5262ea3d940e}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!make\_scale\_from\_minmax@{make\_scale\_from\_minmax}}
+\index{make\_scale\_from\_minmax@{make\_scale\_from\_minmax}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{make\_scale\_from\_minmax()}{make\_scale\_from\_minmax()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::make\+\_\+scale\+\_\+from\+\_\+minmax (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{best,  }\item[{const Objective\+Vector \&}]{worst,  }\item[{Type}]{max = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+create a scale from a point with minimums in each dimension, and a point with ther max in each dimension 
+\begin{DoxyParams}{Parameters}
+{\em best} & the point with all mins \\
+\hline
+{\em worst} & the point with all maxs \\
+\hline
+{\em max} & the maximum for returned values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a scale 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_ad92f76d650a0c3fde3d9a8ff2cdd8fdf}\label{classmoeo_objective_vector_normalizer_ad92f76d650a0c3fde3d9a8ff2cdd8fdf}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!make\_scale\_from\_pop@{make\_scale\_from\_pop}}
+\index{make\_scale\_from\_pop@{make\_scale\_from\_pop}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{make\_scale\_from\_pop()}{make\_scale\_from\_pop()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static Scale \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::make\+\_\+scale\+\_\+from\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{Type}]{max\+\_\+param = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Creates a scale which can be used in conjonction with a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population to analyse \\
+\hline
+{\em max\+\_\+param} & worst vector is set to it \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a scale to use with the normalizer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a4923c2c17985b703e4bb552607716fbf}\label{classmoeo_objective_vector_normalizer_a4923c2c17985b703e4bb552607716fbf}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!normalize@{normalize}}
+\index{normalize@{normalize}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+static std\+::vector$<$Objective\+Vector$>$ \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::normalize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{pop,  }\item[{Type \&}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+fast(to use, not in complexity) function to normalize a population 
+\begin{DoxyParams}{Parameters}
+{\em pop} & the population to normalize \\
+\hline
+{\em max} & the returned values will be between 0 and max \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of normalized Objective vectors $<$ max 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_af37a2de991ad5277b136ae553d8eef7e}\label{classmoeo_objective_vector_normalizer_af37a2de991ad5277b136ae553d8eef7e}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+std\+::vector$<$Objective\+Vector$>$ \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+normalize a population 
+\begin{DoxyParams}{Parameters}
+{\em pop} & the population to normalize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of normalized Objective vectors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a2ad862e43f9d217b9c2b2f9c40ac7186}\label{classmoeo_objective_vector_normalizer_a2ad862e43f9d217b9c2b2f9c40ac7186}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual Objective\+Vector \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{\+\_\+vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+main fonction, normalize a vector. All objective returned vectors will be between 0 and max previously supplied, be carefull about a possible rounding error. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+vec} & the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the normalized vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a0c88d5423a31ff645b93ccb36a1f2001}\label{classmoeo_objective_vector_normalizer_a0c88d5423a31ff645b93ccb36a1f2001}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!update\_by\_bounds@{update\_by\_bounds}}
+\index{update\_by\_bounds@{update\_by\_bounds}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update\_by\_bounds()}{update\_by\_bounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::update\+\_\+by\+\_\+bounds (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_real_interval}{Bounds}} \&}]{bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+change the scale according to bounds,them same is used in each dimension 
+\begin{DoxyParams}{Parameters}
+{\em bounds} & bounds corresponding to the bounds in each dimension \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_a5186b854499b9bddbc3945de042e1b79}\label{classmoeo_objective_vector_normalizer_a5186b854499b9bddbc3945de042e1b79}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!update\_by\_bounds@{update\_by\_bounds}}
+\index{update\_by\_bounds@{update\_by\_bounds}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update\_by\_bounds()}{update\_by\_bounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::update\+\_\+by\+\_\+bounds (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{Bounds}} $>$ \&}]{boundaries }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+change the scale according to given boundaries 
+\begin{DoxyParams}{Parameters}
+{\em boundaries} & a vector of bounds corresponding to the bounds in each dimension \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_aa7a61b892b996510a03ab21992ed0e10}\label{classmoeo_objective_vector_normalizer_aa7a61b892b996510a03ab21992ed0e10}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!update\_by\_min\_max@{update\_by\_min\_max}}
+\index{update\_by\_min\_max@{update\_by\_min\_max}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update\_by\_min\_max()}{update\_by\_min\_max()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::update\+\_\+by\+\_\+min\+\_\+max (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{\+\_\+min,  }\item[{const Objective\+Vector \&}]{\+\_\+max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+change the scale with the worst point and the best point 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max} & the worst point \\
+\hline
+{\em \+\_\+min} & the best point \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_af8e8e173275eb643f9be7649073afc99}\label{classmoeo_objective_vector_normalizer_af8e8e173275eb643f9be7649073afc99}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!update\_by\_pop@{update\_by\_pop}}
+\index{update\_by\_pop@{update\_by\_pop}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update\_by\_pop()}{update\_by\_pop()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::update\+\_\+by\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Change the scale according to a new pop. Should be called everytime pop is updated 
+\begin{DoxyParams}{Parameters}
+{\em pop} & population to analyse \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_objective_vector_normalizer_aba7f0d13ccf5599e8346f13038e6b084}\label{classmoeo_objective_vector_normalizer_aba7f0d13ccf5599e8346f13038e6b084}} 
+\index{moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}!update\_scale@{update\_scale}}
+\index{update\_scale@{update\_scale}!moeoObjectiveVectorNormalizer$<$ MOEOT $>$@{moeoObjectiveVectorNormalizer$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{update\_scale()}{update\_scale()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$\+::update\+\_\+scale (\begin{DoxyParamCaption}\item[{Scale}]{\+\_\+scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+updates the scale 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+scale} & the new scale \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/utils/moeo\+Objective\+Vector\+Normalizer.\+h\end{DoxyCompactItemize}

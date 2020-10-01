@@ -1,0 +1,73 @@
+\hypertarget{classedo_cont_adaptive_finite}{}\doxysection{edo\+Cont\+Adaptive\+Finite$<$ D $>$ Class Template Reference}
+\label{classedo_cont_adaptive_finite}\index{edoContAdaptiveFinite$<$ D $>$@{edoContAdaptiveFinite$<$ D $>$}}
+
+
+{\ttfamily \#include $<$edo\+Cont\+Adaptive\+Finite.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Cont\+Adaptive\+Finite$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_cont_adaptive_finite__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Cont\+Adaptive\+Finite$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_cont_adaptive_finite__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_ab76a9f8160fc25a4c77e7406700f681c}\label{classedo_cont_adaptive_finite_ab76a9f8160fc25a4c77e7406700f681c}} 
+using {\bfseries E\+O\+Type} = typename D\+::\+E\+O\+Type
+\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_a9db8a1012cd8d21e06bc2296f3eece10}\label{classedo_cont_adaptive_finite_a9db8a1012cd8d21e06bc2296f3eece10}} 
+using {\bfseries Matrix} = typename D\+::\+Matrix
+\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_a28afad0f088aacf40e8cd41ecb877629}\label{classedo_cont_adaptive_finite_a28afad0f088aacf40e8cd41ecb877629}} 
+using {\bfseries Vector} = typename D\+::\+Vector
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_a15db3e9b560959687c2a047bc6ca9ea5}\label{classedo_cont_adaptive_finite_a15db3e9b560959687c2a047bc6ca9ea5}} 
+bool \mbox{\hyperlink{classedo_cont_adaptive_finite_a15db3e9b560959687c2a047bc6ca9ea5}{operator()}} (const D \&d)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_a221992000708ca9a460c2d52503f80f5}\label{classedo_cont_adaptive_finite_a221992000708ca9a460c2d52503f80f5}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_acfa50bebdcb507cec8bc604a3660cb5f}\label{classedo_cont_adaptive_finite_acfa50bebdcb507cec8bc604a3660cb5f}} 
+bool {\bfseries is\+\_\+finite} (const Matrix \&mat) const
+\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_a3ca5b1a7b4e5ea6bc7078b72484a204a}\label{classedo_cont_adaptive_finite_a3ca5b1a7b4e5ea6bc7078b72484a204a}} 
+bool {\bfseries is\+\_\+finite} (const Vector \&vec) const
+\item 
+\mbox{\Hypertarget{classedo_cont_adaptive_finite_a68e81d7e64635ab3ad9b45231fb9dbcb}\label{classedo_cont_adaptive_finite_a68e81d7e64635ab3ad9b45231fb9dbcb}} 
+bool {\bfseries is\+\_\+finite} (const typename E\+O\+Type\+::\+Atom\+Type \&x) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class D$>$\newline
+class edo\+Cont\+Adaptive\+Finite$<$ D $>$}
+
+A continuator that check if any element in the parameters of an edo\+Normal\+Adaptive distribution are finite
+
+If any element of any parameter is infinity or NaN (Not A Number), it will ask for a stop. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Cont\+Adaptive\+Finite.\+h\end{DoxyCompactItemize}

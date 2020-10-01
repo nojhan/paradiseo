@@ -1,0 +1,82 @@
+\hypertarget{classmo_cooling_schedule}{}\doxysection{mo\+Cooling\+Schedule$<$ E\+OT $>$ Class Template Reference}
+\label{classmo_cooling_schedule}\index{moCoolingSchedule$<$ EOT $>$@{moCoolingSchedule$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$mo\+Cooling\+Schedule.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Cooling\+Schedule$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_cooling_schedule__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Cooling\+Schedule$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classmo_cooling_schedule__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \mbox{\hyperlink{classmo_cooling_schedule_a227ce6ed032c453e025d8f7cf01fa624}{init}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_cooling_schedule_afb04032f2cd9f875c918270c5d518014}{update}} (double \&\+\_\+temp, bool \+\_\+accepted\+Move)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class mo\+Cooling\+Schedule$<$ E\+O\+T $>$}
+
+Cooling Schedule of the temperature in the simulated algorithm 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_cooling_schedule_a227ce6ed032c453e025d8f7cf01fa624}\label{classmo_cooling_schedule_a227ce6ed032c453e025d8f7cf01fa624}} 
+\index{moCoolingSchedule$<$ EOT $>$@{moCoolingSchedule$<$ EOT $>$}!init@{init}}
+\index{init@{init}!moCoolingSchedule$<$ EOT $>$@{moCoolingSchedule$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual double \mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Init the solution with the initial temperature 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & initial solution \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_dyn_span_cooling_schedule_a6717352e0213692ceb811679affb9089}{mo\+Dyn\+Span\+Cooling\+Schedule$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classmo_simple_cooling_schedule_a23308b8cb5b374ac70da985aca2c88d7}{mo\+Simple\+Cooling\+Schedule$<$ E\+O\+T $>$}}, and \mbox{\hyperlink{classmo_simple_cooling_schedule_a23308b8cb5b374ac70da985aca2c88d7}{mo\+Simple\+Cooling\+Schedule$<$ eo\+Bit$<$ Fitness $>$ $>$}}.
+
+\mbox{\Hypertarget{classmo_cooling_schedule_afb04032f2cd9f875c918270c5d518014}\label{classmo_cooling_schedule_afb04032f2cd9f875c918270c5d518014}} 
+\index{moCoolingSchedule$<$ EOT $>$@{moCoolingSchedule$<$ EOT $>$}!update@{update}}
+\index{update@{update}!moCoolingSchedule$<$ EOT $>$@{moCoolingSchedule$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmo_cooling_schedule}{mo\+Cooling\+Schedule}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::update (\begin{DoxyParamCaption}\item[{double \&}]{\+\_\+temp,  }\item[{bool}]{\+\_\+accepted\+Move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+update the temperature 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+temp} & current temperature to update \\
+\hline
+{\em \+\_\+accepted\+Move} & true when the move is accepted, false otherwise \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_dyn_span_cooling_schedule_ab27c976fb5e5b887c932bbce1e595dbb}{mo\+Dyn\+Span\+Cooling\+Schedule$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classmo_simple_cooling_schedule_aa49dd9379a8365cf902107197c769d0c}{mo\+Simple\+Cooling\+Schedule$<$ E\+O\+T $>$}}, and \mbox{\hyperlink{classmo_simple_cooling_schedule_aa49dd9379a8365cf902107197c769d0c}{mo\+Simple\+Cooling\+Schedule$<$ eo\+Bit$<$ Fitness $>$ $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/cooling\+Schedule/mo\+Cooling\+Schedule.\+h\end{DoxyCompactItemize}

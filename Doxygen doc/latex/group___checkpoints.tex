@@ -1,0 +1,56 @@
+\hypertarget{group___checkpoints}{}\doxysection{Checkpointing}
+\label{group___checkpoints}\index{Checkpointing@{Checkpointing}}
+
+
+Checkpoints are supposed to be called perodically (for instance at each generation) and will call every functors you put in them.  
+
+
+Collaboration diagram for Checkpointing\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___checkpoints}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point$<$ E\+O\+T $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___checkpoints_ga35dd7f8fc3cee41dba30ced5fdaa4834}\label{group___checkpoints_ga35dd7f8fc3cee41dba30ced5fdaa4834}} 
+bool \mbox{\hyperlink{group___checkpoints_ga35dd7f8fc3cee41dba30ced5fdaa4834}{eo\+Check\+Point$<$ E\+O\+T $>$\+::operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{group___checkpoints_gad27951b2655adfdbdb131523b56fc123}{eo\+Check\+Point$<$ E\+O\+T $>$\+::all\+Class\+Names}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Checkpoints are supposed to be called perodically (for instance at each generation) and will call every functors you put in them. 
+
+Use them with eo\+Stats, \mbox{\hyperlink{classeo_updater}{eo\+Updater}} and \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} to get statistics at each generation.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_stat}{eo\+Stat}} 
+
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} 
+
+\mbox{\hyperlink{classeo_updater}{eo\+Updater}}
+\end{DoxySeeAlso}
+Example of a test program using checkpointing\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___checkpoints_gad27951b2655adfdbdb131523b56fc123}\label{group___checkpoints_gad27951b2655adfdbdb131523b56fc123}} 
+\index{Checkpointing@{Checkpointing}!allClassNames@{allClassNames}}
+\index{allClassNames@{allClassNames}!Checkpointing@{Checkpointing}}
+\doxysubsubsection{\texorpdfstring{allClassNames()}{allClassNames()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+std\+::string \mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::all\+Class\+Names}
+
+returns a string with all class\+Name() of data separated with \char`\"{}\textbackslash{}n\char`\"{} (for debugging) 

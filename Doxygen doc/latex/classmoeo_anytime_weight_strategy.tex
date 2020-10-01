@@ -1,0 +1,89 @@
+\hypertarget{classmoeo_anytime_weight_strategy}{}\doxysection{moeo\+Anytime\+Weight\+Strategy$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_anytime_weight_strategy}\index{moeoAnytimeWeightStrategy$<$ MOEOT $>$@{moeoAnytimeWeightStrategy$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Anytime\+Weight\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Anytime\+Weight\+Strategy$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classmoeo_anytime_weight_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Anytime\+Weight\+Strategy$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classmoeo_anytime_weight_strategy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_anytime_weight_strategy_aa73d9333340bc2b0ff7ee334e0b1a8e8}{moeo\+Anytime\+Weight\+Strategy}} ()
+\item 
+\mbox{\hyperlink{classmoeo_anytime_weight_strategy_a0cb903ed4ddb77a2937e4639134b2c94}{moeo\+Anytime\+Weight\+Strategy}} (\mbox{\hyperlink{class_u_f__random__generator}{U\+F\+\_\+random\+\_\+generator}}$<$ double $>$ \&\+\_\+random)
+\item 
+void \mbox{\hyperlink{classmoeo_anytime_weight_strategy_a6e6e9e275e95e64124a4b825e515492c}{operator()}} (std\+::vector$<$ double $>$ \&\+\_\+weights, const M\+O\+E\+OT \&\+\_\+moeot)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Anytime\+Weight\+Strategy$<$ M\+O\+E\+O\+T $>$}
+
+Change all weights according to a pattern ressembling to a \char`\"{}double strategy\char`\"{} 2 to 1 then 1 to 2. Can only be applied to 2 objectives vector problem 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_anytime_weight_strategy_aa73d9333340bc2b0ff7ee334e0b1a8e8}\label{classmoeo_anytime_weight_strategy_aa73d9333340bc2b0ff7ee334e0b1a8e8}} 
+\index{moeoAnytimeWeightStrategy$<$ MOEOT $>$@{moeoAnytimeWeightStrategy$<$ MOEOT $>$}!moeoAnytimeWeightStrategy@{moeoAnytimeWeightStrategy}}
+\index{moeoAnytimeWeightStrategy@{moeoAnytimeWeightStrategy}!moeoAnytimeWeightStrategy$<$ MOEOT $>$@{moeoAnytimeWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAnytimeWeightStrategy()}{moeoAnytimeWeightStrategy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_anytime_weight_strategy}{moeo\+Anytime\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_anytime_weight_strategy}{moeo\+Anytime\+Weight\+Strategy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default constructor \mbox{\Hypertarget{classmoeo_anytime_weight_strategy_a0cb903ed4ddb77a2937e4639134b2c94}\label{classmoeo_anytime_weight_strategy_a0cb903ed4ddb77a2937e4639134b2c94}} 
+\index{moeoAnytimeWeightStrategy$<$ MOEOT $>$@{moeoAnytimeWeightStrategy$<$ MOEOT $>$}!moeoAnytimeWeightStrategy@{moeoAnytimeWeightStrategy}}
+\index{moeoAnytimeWeightStrategy@{moeoAnytimeWeightStrategy}!moeoAnytimeWeightStrategy$<$ MOEOT $>$@{moeoAnytimeWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAnytimeWeightStrategy()}{moeoAnytimeWeightStrategy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_anytime_weight_strategy}{moeo\+Anytime\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_anytime_weight_strategy}{moeo\+Anytime\+Weight\+Strategy}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_f__random__generator}{U\+F\+\_\+random\+\_\+generator}}$<$ double $>$ \&}]{\+\_\+random }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a given random generator, for algorithms wanting to keep the same generator for some reason 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+random} & an uniform random generator \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_anytime_weight_strategy_a6e6e9e275e95e64124a4b825e515492c}\label{classmoeo_anytime_weight_strategy_a6e6e9e275e95e64124a4b825e515492c}} 
+\index{moeoAnytimeWeightStrategy$<$ MOEOT $>$@{moeoAnytimeWeightStrategy$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAnytimeWeightStrategy$<$ MOEOT $>$@{moeoAnytimeWeightStrategy$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_anytime_weight_strategy}{moeo\+Anytime\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weights,  }\item[{const M\+O\+E\+OT \&}]{\+\_\+moeot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+weights} & the weights to change \\
+\hline
+{\em \+\_\+moeot} & not used \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/weighting/moeo\+Anytime\+Weight\+Strategy.\+h\end{DoxyCompactItemize}

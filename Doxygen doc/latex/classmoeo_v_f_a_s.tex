@@ -1,0 +1,158 @@
+\hypertarget{classmoeo_v_f_a_s}{}\doxysection{moeo\+V\+F\+AS$<$ M $>$ Class Template Reference}
+\label{classmoeo_v_f_a_s}\index{moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}}
+
+
+Variable fitness assignment search (vfas)  
+
+
+
+
+{\ttfamily \#include $<$moeo\+V\+F\+A\+S.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+V\+F\+AS$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_v_f_a_s__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+V\+F\+AS$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_v_f_a_s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_v_f_a_s_afdb14f0628ccf97afc9da8b0c0cb6f1c}\label{classmoeo_v_f_a_s_afdb14f0628ccf97afc9da8b0c0cb6f1c}} 
+typedef M\+::\+E\+O\+Type {\bfseries M\+O\+E\+OT}
+\item 
+\mbox{\Hypertarget{classmoeo_v_f_a_s_a2cdbbaff2c6a600e01d50917fc7a5a4f}\label{classmoeo_v_f_a_s_a2cdbbaff2c6a600e01d50917fc7a5a4f}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_v_f_a_s_a805ecb7254b1bf02ba394d3ddd9a5ebc}\label{classmoeo_v_f_a_s_a805ecb7254b1bf02ba394d3ddd9a5ebc}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_v_f_a_s_aeeec42003e4f849d5e08b34eeeff1c92}{moeo\+V\+F\+AS}} (\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&\+\_\+algorithm, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&\+\_\+select, std\+::vector$<$ double $>$ \&\+\_\+weights, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&\+\_\+eval, \mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$ \&\+\_\+wstrat)
+\item 
+\mbox{\hyperlink{classmoeo_v_f_a_s_af33f4d5827ab32b45f0be9237f29a0ba}{moeo\+V\+F\+AS}} (\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&\+\_\+algorithm, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&\+\_\+select, std\+::vector$<$ double $>$ \&\+\_\+weights, Objective\+Vector \&\+\_\+ref\+Point, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&\+\_\+eval, \mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$ \&\+\_\+wstrat, \mbox{\hyperlink{classmoeo_variable_ref_point_strategy}{moeo\+Variable\+Ref\+Point\+Strategy}}$<$ M\+O\+E\+OT $>$ \&\+\_\+rstrat)
+\item 
+\mbox{\hyperlink{classmoeo_v_f_a_s_a28a8a031ace5617cac14f30b32d0006d}{moeo\+V\+F\+AS}} (\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&\+\_\+algorithm, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ M\+O\+E\+OT $>$ \&\+\_\+continue, \mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&\+\_\+select, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&\+\_\+eval, \mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$ \&\+\_\+wstrat)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_v_f_a_s_a16dbf58e691d94895df34346faa97b2e}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M$>$\newline
+class moeo\+V\+F\+A\+S$<$ M $>$}
+
+Variable fitness assignment search (vfas) 
+
+Search using multiple fitness assignment to search solution to a multi objective problem 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_v_f_a_s_aeeec42003e4f849d5e08b34eeeff1c92}\label{classmoeo_v_f_a_s_aeeec42003e4f849d5e08b34eeeff1c92}} 
+\index{moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}!moeoVFAS@{moeoVFAS}}
+\index{moeoVFAS@{moeoVFAS}!moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoVFAS()}{moeoVFAS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_v_f_a_s}{moeo\+V\+F\+AS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_v_f_a_s}{moeo\+V\+F\+AS}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+algorithm,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+select,  }\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weights,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+wstrat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor using a mo\+Algo and a vector of weight take a base vector of weight, and modify it to relaunch the algo with a diferent fitness use a select\+One to determine which moeot should be the base for the algo launch use a \mbox{\hyperlink{classeo_pop}{eo\+Pop}} to keep result from each iteration 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+algorithm} & The solution based heuristic to use. It should at least use the fitness value at some point. \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+select} & a selector to choose on which moeot we use the algorithm \\
+\hline
+{\em \+\_\+weights} & a vector containing the base weights, which will be changed at each iteration. \\
+\hline
+{\em \+\_\+eval} & The evaluation function. \\
+\hline
+{\em \+\_\+wstrat} & the strategy to change weights (should be constructed with the same weights as the fitness) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_v_f_a_s_af33f4d5827ab32b45f0be9237f29a0ba}\label{classmoeo_v_f_a_s_af33f4d5827ab32b45f0be9237f29a0ba}} 
+\index{moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}!moeoVFAS@{moeoVFAS}}
+\index{moeoVFAS@{moeoVFAS}!moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoVFAS()}{moeoVFAS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_v_f_a_s}{moeo\+V\+F\+AS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_v_f_a_s}{moeo\+V\+F\+AS}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+algorithm,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+select,  }\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+weights,  }\item[{Objective\+Vector \&}]{\+\_\+ref\+Point,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+wstrat,  }\item[{\mbox{\hyperlink{classmoeo_variable_ref_point_strategy}{moeo\+Variable\+Ref\+Point\+Strategy}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+rstrat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor using a mo\+Algo an Objective\+Vector and a vector of weight take a base vector of weight, and modify it to relaunch the algo with a diferent fitness use a select\+One to determine which moeot should be the base for the algo launch use a \mbox{\hyperlink{classeo_pop}{eo\+Pop}} to keep result from each iteration 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+algorithm} & The solution based heuristic to use. It should at least use the fitness value at some point. \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+select} & a selector to choose on which moeot we use the algorithm \\
+\hline
+{\em \+\_\+weights} & a vector containing the base weights, which will be changed at each iteration. \\
+\hline
+{\em \+\_\+ref\+Point} & a reference point changed at each iteration \\
+\hline
+{\em \+\_\+eval} & The evaluation function. \\
+\hline
+{\em \+\_\+wstrat} & the strategy to change weights (should be constructed with the same weights as the fitness) \\
+\hline
+{\em \+\_\+rstrat} & the strategy to change the reference point \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_v_f_a_s_a28a8a031ace5617cac14f30b32d0006d}\label{classmoeo_v_f_a_s_a28a8a031ace5617cac14f30b32d0006d}} 
+\index{moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}!moeoVFAS@{moeoVFAS}}
+\index{moeoVFAS@{moeoVFAS}!moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoVFAS()}{moeoVFAS()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_v_f_a_s}{moeo\+V\+F\+AS}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_v_f_a_s}{moeo\+V\+F\+AS}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_sol_algo}{moeo\+Sol\+Algo}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+algorithm,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+continue,  }\item[{\mbox{\hyperlink{classmoeo_select_one}{moeo\+Select\+One}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+select,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmoeo_variable_weight_strategy}{moeo\+Variable\+Weight\+Strategy}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+wstrat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor without the weights 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+algorithm} & The solution based heuristic to use. It should at least use the fitness value at some point. \\
+\hline
+{\em \+\_\+continue} & The stopping criterion. \\
+\hline
+{\em \+\_\+select} & a selector to choose on which moeot we use the algorithm \\
+\hline
+{\em \+\_\+eval} & The evaluation function. \\
+\hline
+{\em \+\_\+wstrat} & the strategy to change weights (should be constructed with the same weights as the fitness) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_v_f_a_s_a16dbf58e691d94895df34346faa97b2e}\label{classmoeo_v_f_a_s_a16dbf58e691d94895df34346faa97b2e}} 
+\index{moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoVFAS$<$ M $>$@{moeoVFAS$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_v_f_a_s}{moeo\+V\+F\+AS}}$<$ M $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+launch the algorithm 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the initial population on which algo will be launched \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+::\+E\+O\+Type $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/algo/moeo\+V\+F\+A\+S.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,206 @@
+\hypertarget{classmo_indexed_swap_neighbor}{}\doxysection{mo\+Indexed\+Swap\+Neighbor$<$ E\+OT, Fitness $>$ Class Template Reference}
+\label{classmo_indexed_swap_neighbor}\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+
+
+{\ttfamily \#include $<$mo\+Indexed\+Swap\+Neighbor.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Indexed\+Swap\+Neighbor$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_indexed_swap_neighbor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Indexed\+Swap\+Neighbor$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_indexed_swap_neighbor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_indexed_swap_neighbor_aca40eb47ecd9505892b07b1f9b6ba88a}{mo\+Indexed\+Swap\+Neighbor}} ()
+\item 
+\mbox{\hyperlink{classmo_indexed_swap_neighbor_aecb21d783492b7a5bc083205f9392586}{mo\+Indexed\+Swap\+Neighbor}} (const \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$ \&\+\_\+n)
+\item 
+\mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$ \& \mbox{\hyperlink{classmo_indexed_swap_neighbor_a0918ef85dc14fde3fa394dfec2bacaa8}{operator=}} (const \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$ \&\+\_\+source)
+\item 
+virtual void \mbox{\hyperlink{classmo_indexed_swap_neighbor_ac51e5bb143de63ab7bea090adcf0e8db}{move}} (E\+OT \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_indexed_swap_neighbor_ada8580457bdf9a140ce8cfcead438c25}{class\+Name}} () const
+\item 
+virtual void \mbox{\hyperlink{classmo_indexed_swap_neighbor_ac05d94aa63d8dfee0180deaf76415935}{move\+Back}} (E\+OT \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_indexed_swap_neighbor_adf1ab16204bfeeef2c061e9041cc179e}{index}} (E\+OT \&\+\_\+solution, unsigned int \+\_\+key)
+\item 
+void \mbox{\hyperlink{classmo_indexed_swap_neighbor_ab7654cc14cd9bb98e9f6b3d1965b02b4}{set}} (E\+OT \&\+\_\+solution, unsigned int \+\_\+first, unsigned int \+\_\+second)
+\item 
+unsigned int \mbox{\hyperlink{classmo_indexed_swap_neighbor_aa730ab673220fb1e95525732630ef9f3}{first}} () const
+\item 
+unsigned int \mbox{\hyperlink{classmo_indexed_swap_neighbor_a8cd099932b9da91913c8ec2315798a5f}{second}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_a6a49ce537e84d2010f23357816247e14}\label{classmo_indexed_swap_neighbor_a6a49ce537e84d2010f23357816247e14}} 
+std\+::pair$<$ unsigned int, unsigned int $>$ {\bfseries indices}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class Fitness = typename E\+O\+T\+::\+Fitness$>$\newline
+class mo\+Indexed\+Swap\+Neighbor$<$ E\+O\+T, Fitness $>$}
+
+Indexed Swap Neighbor\+: the position of the swap are computed according to the index 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_aca40eb47ecd9505892b07b1f9b6ba88a}\label{classmo_indexed_swap_neighbor_aca40eb47ecd9505892b07b1f9b6ba88a}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!moIndexedSwapNeighbor@{moIndexedSwapNeighbor}}
+\index{moIndexedSwapNeighbor@{moIndexedSwapNeighbor}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{moIndexedSwapNeighbor()}{moIndexedSwapNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+\mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::\mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Constructor \mbox{\Hypertarget{classmo_indexed_swap_neighbor_aecb21d783492b7a5bc083205f9392586}\label{classmo_indexed_swap_neighbor_aecb21d783492b7a5bc083205f9392586}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!moIndexedSwapNeighbor@{moIndexedSwapNeighbor}}
+\index{moIndexedSwapNeighbor@{moIndexedSwapNeighbor}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{moIndexedSwapNeighbor()}{moIndexedSwapNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+\mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::\mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$ \&}]{\+\_\+n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+n} & the neighbor to copy \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_ada8580457bdf9a140ce8cfcead438c25}\label{classmo_indexed_swap_neighbor_ada8580457bdf9a140ce8cfcead438c25}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!className@{className}}
+\index{className@{className}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_aa730ab673220fb1e95525732630ef9f3}\label{classmo_indexed_swap_neighbor_aa730ab673220fb1e95525732630ef9f3}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!first@{first}}
+\index{first@{first}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{first()}{first()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+unsigned int \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::first (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of the firt location \begin{DoxyReturn}{Returns}
+first indice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_adf1ab16204bfeeef2c061e9041cc179e}\label{classmo_indexed_swap_neighbor_adf1ab16204bfeeef2c061e9041cc179e}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!index@{index}}
+\index{index@{index}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::index (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+solution,  }\item[{unsigned int}]{\+\_\+key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Setter The \char`\"{}parameters\char`\"{} of the neighbor is a function of key and the current solution for example, for variable length solution
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & solution from which the neighborhood is visited \\
+\hline
+{\em \+\_\+key} & index of the Index\+Neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_index_neighbor_aa8251206c8fc5178d29181d6e4147243}{mo\+Index\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$}}.
+
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_ac51e5bb143de63ab7bea090adcf0e8db}\label{classmo_indexed_swap_neighbor_ac51e5bb143de63ab7bea090adcf0e8db}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!move@{move}}
+\index{move@{move}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::move (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply the swap 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighbor_a8f7c2d49ae656a7da9611fc59dc8a80f}{mo\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$}}.
+
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_ac05d94aa63d8dfee0180deaf76415935}\label{classmo_indexed_swap_neighbor_ac05d94aa63d8dfee0180deaf76415935}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!moveBack@{moveBack}}
+\index{moveBack@{moveBack}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{moveBack()}{moveBack()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::move\+Back (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+apply the swap to restore the solution (use by \mbox{\hyperlink{classmo_full_eval_by_modif}{mo\+Full\+Eval\+By\+Modif}}) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move back \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_backable_neighbor_a9807bc11c441f0b852d1817ad152e147}{mo\+Backable\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$}}.
+
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_a0918ef85dc14fde3fa394dfec2bacaa8}\label{classmo_indexed_swap_neighbor_a0918ef85dc14fde3fa394dfec2bacaa8}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+\mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$E\+OT, Fitness$>$\& \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$ \&}]{\+\_\+source }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Assignment operator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+source} & the source neighbor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_a8cd099932b9da91913c8ec2315798a5f}\label{classmo_indexed_swap_neighbor_a8cd099932b9da91913c8ec2315798a5f}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!second@{second}}
+\index{second@{second}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{second()}{second()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+unsigned int \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::second (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter of the second location \begin{DoxyReturn}{Returns}
+second indice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_indexed_swap_neighbor_ab7654cc14cd9bb98e9f6b3d1965b02b4}\label{classmo_indexed_swap_neighbor_ab7654cc14cd9bb98e9f6b3d1965b02b4}} 
+\index{moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}!set@{set}}
+\index{set@{set}!moIndexedSwapNeighbor$<$ EOT, Fitness $>$@{moIndexedSwapNeighbor$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+void \mbox{\hyperlink{classmo_indexed_swap_neighbor}{mo\+Indexed\+Swap\+Neighbor}}$<$ E\+OT, Fitness $>$\+::set (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+solution,  }\item[{unsigned int}]{\+\_\+first,  }\item[{unsigned int}]{\+\_\+second }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setter to fix the two indexes to swap 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & solution from which the neighborhood is visited \\
+\hline
+{\em \+\_\+first} & first index \\
+\hline
+{\em \+\_\+second} & second index \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/permutation/mo\+Indexed\+Swap\+Neighbor.\+h\end{DoxyCompactItemize}

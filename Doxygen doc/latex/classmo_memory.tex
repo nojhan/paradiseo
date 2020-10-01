@@ -1,0 +1,110 @@
+\hypertarget{classmo_memory}{}\doxysection{mo\+Memory$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_memory}\index{moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Memory.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Memory$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_memory__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_memory_a6ab5eb5638d42da8d5cf22e63919ce4a}\label{classmo_memory_a6ab5eb5638d42da8d5cf22e63919ce4a}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmo_memory_ab8dda5ba853c077d1713d27d6a0512cb}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_memory_acf319ce1a44dbf601c80bd5670dde853}{add}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_memory_a3db29eaee769fbf7fb5e80c653d74884}{update}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_memory_ab24822b7720f4434d355bb468cb43a66}{clear\+Memory}} ()=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Memory$<$ Neighbor $>$}
+
+Abstract class for different memory 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_memory_acf319ce1a44dbf601c80bd5670dde853}\label{classmo_memory_acf319ce1a44dbf601c80bd5670dde853}} 
+\index{moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_memory}{mo\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Add data to the memory 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & the current neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a33775ac4d0f8658ec86cdacc6088a1dc}{mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighborhood_perturb_a2e5db55a2181ae67d6af67ab530eba4f}{mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_a47c41d622a0869f7a8bda7b79e6a70e5}{mo\+Neighbor\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_rnd_indexed_vector_tabu_list_a3e5a3050e4d4a7b22429707d4d6451fd}{mo\+Rnd\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_sol_vector_tabu_list_a57d4475e29e751b0c3597d421e157257}{mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_count_move_memory_ab5a1b7223cb5391169fd73cf3b21bdf2}{mo\+Count\+Move\+Memory$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_memory_adc2cada428520dedea3b0e798915a0db}{mo\+Dummy\+Memory$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_a47c41d622a0869f7a8bda7b79e6a70e5}{mo\+Neighbor\+Vector\+Tabu\+List$<$ mo\+Bit\+Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_memory_adc2cada428520dedea3b0e798915a0db}{mo\+Dummy\+Memory$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_memory_ab24822b7720f4434d355bb468cb43a66}\label{classmo_memory_ab24822b7720f4434d355bb468cb43a66}} 
+\index{moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}!clearMemory@{clearMemory}}
+\index{clearMemory@{clearMemory}!moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{clearMemory()}{clearMemory()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_memory}{mo\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::clear\+Memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+clear the memory 
+
+Implemented in \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a59eb7243f73024fa885bd7ba48627a49}{mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_sol_vector_tabu_list_a5bca24d26eff5254090c9f6ab4ed03ae}{mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_a2811e9e62ae2b1f6d212d028bfa737e2}{mo\+Neighbor\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_a2811e9e62ae2b1f6d212d028bfa737e2}{mo\+Neighbor\+Vector\+Tabu\+List$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neighborhood_perturb_ae48eb040bf335ef159a96bea1ddfd532}{mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$}}, \mbox{\hyperlink{classmo_count_move_memory_ad085ab4739290ccedcad05d9e3a39494}{mo\+Count\+Move\+Memory$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_memory_a6b124081a055e994f48046f7e37b7e56}{mo\+Dummy\+Memory$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_memory_a6b124081a055e994f48046f7e37b7e56}{mo\+Dummy\+Memory$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_memory_ab8dda5ba853c077d1713d27d6a0512cb}\label{classmo_memory_ab8dda5ba853c077d1713d27d6a0512cb}} 
+\index{moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_memory}{mo\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Init the memory 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a88914af71a1fc8470841f6efe9bba3f3}{mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighborhood_perturb_a08e0d5383a917b32d7cfeac81686a7b1}{mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_aea25bb70d53c7a7a395a0384ca1c45cd}{mo\+Neighbor\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_sol_vector_tabu_list_acba896eb138f5d8cb15b05fe00881bde}{mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_aea25bb70d53c7a7a395a0384ca1c45cd}{mo\+Neighbor\+Vector\+Tabu\+List$<$ mo\+Bit\+Neighbor $>$}}, \mbox{\hyperlink{classmo_count_move_memory_a0298e31294b890ea9a07c34644997904}{mo\+Count\+Move\+Memory$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_memory_a63fd63431431a986eb1b4e422e182268}{mo\+Dummy\+Memory$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_memory_a63fd63431431a986eb1b4e422e182268}{mo\+Dummy\+Memory$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_memory_a3db29eaee769fbf7fb5e80c653d74884}\label{classmo_memory_a3db29eaee769fbf7fb5e80c653d74884}} 
+\index{moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}!update@{update}}
+\index{update@{update}!moMemory$<$ Neighbor $>$@{moMemory$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_memory}{mo\+Memory}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+update the memory 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & the current neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a94288eb95ef160655c451901ac26b986}{mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighborhood_perturb_afe1b09d56e827539d1641f4dcca49802}{mo\+Neighborhood\+Perturb$<$ Neighbor, Other\+Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_a992359aa5ad37b58e9cdfe8ebe76536a}{mo\+Neighbor\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_sol_vector_tabu_list_a815c3894e64f9b4b52bc122aa2ba7314}{mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_count_move_memory_a7ab356b0a53eabf5d9f732d5f1bdec0d}{mo\+Count\+Move\+Memory$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_dummy_memory_a1a383031c2e76245928e9b00faa76393}{mo\+Dummy\+Memory$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_a992359aa5ad37b58e9cdfe8ebe76536a}{mo\+Neighbor\+Vector\+Tabu\+List$<$ mo\+Bit\+Neighbor $>$}}, and \mbox{\hyperlink{classmo_dummy_memory_a1a383031c2e76245928e9b00faa76393}{mo\+Dummy\+Memory$<$ mo\+Bit\+Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Memory.\+h\end{DoxyCompactItemize}

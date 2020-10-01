@@ -1,0 +1,162 @@
+\hypertarget{classeo_1_1mpi_1_1_job}{}\doxysection{eo\+::mpi\+::Job$<$ Job\+Data $>$ Class Template Reference}
+\label{classeo_1_1mpi_1_1_job}\index{eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}}
+
+
+Class implementing the centralized job algorithm.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Job$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classeo_1_1mpi_1_1_job__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Job$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_job__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_job_1_1_finally_block}{Finally\+Block}}
+\begin{DoxyCompactList}\small\item\em Finally block of the main algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job_a9d2f74781fd5fdc7e6cf238aa839384c}{Job}} (\mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \&\+\_\+algo, int \+\_\+master\+Rank, int \+\_\+worker\+Stop\+Condition, \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}}$<$ Job\+Data $>$ \&\+\_\+store)
+\begin{DoxyCompactList}\small\item\em Main constructor for \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_job_a7054b7a3ae44f834d74180c29158cd15}{run}} ()
+\begin{DoxyCompactList}\small\item\em Launches the job algorithm, according to the role of the host (roles are deduced from the master rank indicated in the constructor). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_ad506d0886110289dc5ed8ecec779e802}\label{classeo_1_1mpi_1_1_job_ad506d0886110289dc5ed8ecec779e802}} 
+bool \mbox{\hyperlink{classeo_1_1mpi_1_1_job_ad506d0886110289dc5ed8ecec779e802}{is\+Master}} ()
+\begin{DoxyCompactList}\small\item\em Returns true if the current host is the master, false otherwise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_job_ac0e547ff5c45070ee0311454ae706111}{master}} ()
+\begin{DoxyCompactList}\small\item\em Master part of the job. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_job_ac23983dbbc3c683d813e184f39559104}{worker}} ()
+\begin{DoxyCompactList}\small\item\em Worker part of the algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a2a4819b40e5b633ead4b16629c794d45}\label{classeo_1_1mpi_1_1_job_a2a4819b40e5b633ead4b16629c794d45}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \& {\bfseries assignment\+Algo}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a70dd9deb1cba4a11a8d2d66b8cca6556}\label{classeo_1_1mpi_1_1_job_a70dd9deb1cba4a11a8d2d66b8cca6556}} 
+int {\bfseries master\+Rank}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a764a12af1697e7b992fd80ae4a396f01}\label{classeo_1_1mpi_1_1_job_a764a12af1697e7b992fd80ae4a396f01}} 
+const int {\bfseries worker\+Stop\+Condition}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_aead192011f80c632de60b07fd4746f55}\label{classeo_1_1mpi_1_1_job_aead192011f80c632de60b07fd4746f55}} 
+\mbox{\hyperlink{classmpi_1_1communicator}{bmpi\+::communicator}} \& {\bfseries comm}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a550ac477efec6a53780d75b9d98f111b}\label{classeo_1_1mpi_1_1_job_a550ac477efec6a53780d75b9d98f111b}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}}$<$ Job\+Data $>$ \& {\bfseries store}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_abb70a4972e198b4ce12da932a7ca2436}\label{classeo_1_1mpi_1_1_job_abb70a4972e198b4ce12da932a7ca2436}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{Send\+Task\+Function}}$<$ Job\+Data $>$ \& {\bfseries send\+Task}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a0e33fd4771c2a93026413be4df1f8525}\label{classeo_1_1mpi_1_1_job_a0e33fd4771c2a93026413be4df1f8525}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{Handle\+Response\+Function}}$<$ Job\+Data $>$ \& {\bfseries handle\+Response}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_ac4c998f34613f631eb75684f83861dfb}\label{classeo_1_1mpi_1_1_job_ac4c998f34613f631eb75684f83861dfb}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{Process\+Task\+Function}}$<$ Job\+Data $>$ \& {\bfseries process\+Task}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a0e4b087d0673d665f9355a9ff12484ab}\label{classeo_1_1mpi_1_1_job_a0e4b087d0673d665f9355a9ff12484ab}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_is_finished_function}{Is\+Finished\+Function}}$<$ Job\+Data $>$ \& {\bfseries is\+Finished}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a9b8cd2e10c8d641c4c26c95472bb1621}\label{classeo_1_1mpi_1_1_job_a9b8cd2e10c8d641c4c26c95472bb1621}} 
+bool {\bfseries \+\_\+is\+Master}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Job\+Data$>$\newline
+class eo\+::mpi\+::\+Job$<$ Job\+Data $>$}
+
+Class implementing the centralized job algorithm. 
+
+This class handles all the job algorithm. With its store and its assignment (scheduling) algorithm, it executes the general algorithm described above, adding some networking, so as to make the global process work. It initializes all the functors with the data, then launches the main loop, indicating to workers when they will have to work and when they will finish, by sending them a termination message (integer that can be customized). As the algorithm is centralized, it is also mandatory to indicate what is the M\+PI rank of the master process, hence the workers will know from who they should receive their commands.
+
+Any of the 3 master functors can launch exception, it will be catched and rethrown as a std\+::runtime\+\_\+exception to the higher layers. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a9d2f74781fd5fdc7e6cf238aa839384c}\label{classeo_1_1mpi_1_1_job_a9d2f74781fd5fdc7e6cf238aa839384c}} 
+\index{eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}!Job@{Job}}
+\index{Job@{Job}!eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}}
+\doxysubsubsection{\texorpdfstring{Job()}{Job()}}
+{\footnotesize\ttfamily template$<$class Job\+Data $>$ \\
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{eo\+::mpi\+::\+Job}}$<$ Job\+Data $>$\+::\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \&}]{\+\_\+algo,  }\item[{int}]{\+\_\+master\+Rank,  }\item[{int}]{\+\_\+worker\+Stop\+Condition,  }\item[{\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}}$<$ Job\+Data $>$ \&}]{\+\_\+store }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Main constructor for \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+algo} & The used assignment (scheduling) algorithm. It has to be initialized, with its maximum possible number of workers (some workers referenced in this algorithm shouldn\textquotesingle{}t be busy). See \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} for more details.\\
+\hline
+{\em \+\_\+master\+Rank} & The M\+PI rank of the master.\\
+\hline
+{\em \+\_\+worker\+Stop\+Condition} & Number of the message which will cause the workers to terminate. It could be one of the constants defined in eo\+::mpi\+::\+Commands, or any other integer. The user has to be sure that a message containing this integer will be sent to each worker on the Commands channel, otherwise deadlock will happen. Master sends Finish messages at the end of a simple job, but as a job can happen multiples times (multi job), workers don\textquotesingle{}t have to really finish on these messages but on another message. This is here where you can configurate it. See also \mbox{\hyperlink{classeo_1_1mpi_1_1_one_shot_job}{One\+Shot\+Job}} and \mbox{\hyperlink{classeo_1_1mpi_1_1_multi_job}{Multi\+Job}}.\\
+\hline
+{\em store} & The \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}} containing functors and data for this job. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_ac0e547ff5c45070ee0311454ae706111}\label{classeo_1_1mpi_1_1_job_ac0e547ff5c45070ee0311454ae706111}} 
+\index{eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}!master@{master}}
+\index{master@{master}!eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}}
+\doxysubsubsection{\texorpdfstring{master()}{master()}}
+{\footnotesize\ttfamily template$<$class Job\+Data $>$ \\
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{eo\+::mpi\+::\+Job}}$<$ Job\+Data $>$\+::master (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Master part of the job. 
+
+Launches the parallelized job algorithm \+: while there is something to do (! Is\+Finished ), get a worker who will be the assignee ; if no worker is available, wait for a response, handle it and reask for an assignee. Then send the command and the task. Once there is no more to do (Is\+Finished), indicate to all available workers that they\textquotesingle{}re free, wait for all the responses and send termination messages (see also \mbox{\hyperlink{structeo_1_1mpi_1_1_job_1_1_finally_block}{Finally\+Block}}). \mbox{\Hypertarget{classeo_1_1mpi_1_1_job_a7054b7a3ae44f834d74180c29158cd15}\label{classeo_1_1mpi_1_1_job_a7054b7a3ae44f834d74180c29158cd15}} 
+\index{eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}!run@{run}}
+\index{run@{run}!eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$class Job\+Data $>$ \\
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{eo\+::mpi\+::\+Job}}$<$ Job\+Data $>$\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Launches the job algorithm, according to the role of the host (roles are deduced from the master rank indicated in the constructor). 
+
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_job_ac23983dbbc3c683d813e184f39559104}\label{classeo_1_1mpi_1_1_job_ac23983dbbc3c683d813e184f39559104}} 
+\index{eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}!worker@{worker}}
+\index{worker@{worker}!eo::mpi::Job$<$ JobData $>$@{eo::mpi::Job$<$ JobData $>$}}
+\doxysubsubsection{\texorpdfstring{worker()}{worker()}}
+{\footnotesize\ttfamily template$<$class Job\+Data $>$ \\
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{eo\+::mpi\+::\+Job}}$<$ Job\+Data $>$\+::worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Worker part of the algorithm. 
+
+The algorithm is more much simpler\+: wait for an order; if it\textquotesingle{}s termination message, leave. Otherwise, prepare to work. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

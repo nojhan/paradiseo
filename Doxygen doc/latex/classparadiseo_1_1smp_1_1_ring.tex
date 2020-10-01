@@ -1,0 +1,53 @@
+\hypertarget{classparadiseo_1_1smp_1_1_ring}{}\doxysection{paradiseo\+::smp\+::Ring Class Reference}
+\label{classparadiseo_1_1smp_1_1_ring}\index{paradiseo::smp::Ring@{paradiseo::smp::Ring}}
+
+
+{\ttfamily \#include $<$ring.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Ring\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_ring__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Ring\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_ring__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_ring_a29baea67445d59a27cfac677f44a93ff}{operator()}} (unsigned nb\+Node, std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&matrix) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_ring}{Ring}}\+: Inherit from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder}{Topology\+Builder}}. Represents a builder for a ring topology \+: each node has the next node for neighor. The last node is connected to the first. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_ring_a29baea67445d59a27cfac677f44a93ff}\label{classparadiseo_1_1smp_1_1_ring_a29baea67445d59a27cfac677f44a93ff}} 
+\index{paradiseo::smp::Ring@{paradiseo::smp::Ring}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::Ring@{paradiseo::smp::Ring}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Ring\+::operator() (\begin{DoxyParamCaption}\item[{unsigned}]{nb\+Node,  }\item[{std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&}]{matrix }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Fills the given matrix for a ring topology with the specified number of nodes. 
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder_a502944a16d352f569d36983b58af02e0}{paradiseo\+::smp\+::\+Topology\+Builder}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/ring.\+h\item 
+smp/src/topology/ring.\+cpp\end{DoxyCompactItemize}

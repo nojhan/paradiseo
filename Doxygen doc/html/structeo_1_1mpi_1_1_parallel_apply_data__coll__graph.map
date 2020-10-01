@@ -1,0 +1,7 @@
+<map id="eo::mpi::ParallelApplyData&lt; EOT &gt;" name="eo::mpi::ParallelApplyData&lt; EOT &gt;">
+<area shape="rect" id="node1" title="Data useful for a parallel apply (map)." alt="" coords="145,185,339,227"/>
+<area shape="rect" id="node2" href="$classeo_u_f.html" title=" " alt="" coords="51,96,239,123"/>
+<area shape="rect" id="node3" href="$classeo_functor_base.html" title=" " alt="" coords="5,13,124,39"/>
+<area shape="rect" id="node4" title=" " alt="" coords="147,5,302,47"/>
+<area shape="rect" id="node5" href="$classmpi_1_1communicator.html" title="Main object, used to send / receive messages, get informations about the rank and the size of the wor..." alt="" coords="263,96,413,123"/>
+</map>

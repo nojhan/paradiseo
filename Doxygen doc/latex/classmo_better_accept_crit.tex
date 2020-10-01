@@ -1,0 +1,72 @@
+\hypertarget{classmo_better_accept_crit}{}\doxysection{mo\+Better\+Accept\+Crit$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_better_accept_crit}\index{moBetterAcceptCrit$<$ Neighbor $>$@{moBetterAcceptCrit$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Better\+Accept\+Crit.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Better\+Accept\+Crit$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_better_accept_crit__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Better\+Accept\+Crit$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_better_accept_crit__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_better_accept_crit_a967b3ca56fad7c83cc6e3d7e60fd7749}\label{classmo_better_accept_crit_a967b3ca56fad7c83cc6e3d7e60fd7749}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_better_accept_crit_a5bd04c73a0931b226bf811a79cca4756}\label{classmo_better_accept_crit_a5bd04c73a0931b226bf811a79cca4756}} 
+{\bfseries mo\+Better\+Accept\+Crit} (\mbox{\hyperlink{classmo_sol_comparator}{mo\+Sol\+Comparator}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+comparator)
+\item 
+bool \mbox{\hyperlink{classmo_better_accept_crit_aa2c7131ea977d218d0ae58437e1ab4ae}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol1, \mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Better\+Accept\+Crit$<$ Neighbor $>$}
+
+Acceptance Criterion for extreme intensification \+: accept if the new solution is better than previous one 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_better_accept_crit_aa2c7131ea977d218d0ae58437e1ab4ae}\label{classmo_better_accept_crit_aa2c7131ea977d218d0ae58437e1ab4ae}} 
+\index{moBetterAcceptCrit$<$ Neighbor $>$@{moBetterAcceptCrit$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moBetterAcceptCrit$<$ Neighbor $>$@{moBetterAcceptCrit$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_better_accept_crit}{mo\+Better\+Accept\+Crit}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol1,  }\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Accept if the new solution is better than previous one according to the comparator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol1} & the previous solution \\
+\hline
+{\em \+\_\+sol2} & the new solution after local search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the new solution is better than previous one 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/accept\+Crit/mo\+Better\+Accept\+Crit.\+h\end{DoxyCompactItemize}

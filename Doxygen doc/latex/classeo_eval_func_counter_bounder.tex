@@ -1,0 +1,49 @@
+\hypertarget{classeo_eval_func_counter_bounder}{}\doxysection{eo\+Eval\+Func\+Counter\+Bounder$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_eval_func_counter_bounder}\index{eoEvalFuncCounterBounder$<$ EOT $>$@{eoEvalFuncCounterBounder$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+Func\+Counter\+Bounder.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+Func\+Counter\+Bounder$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_func_counter_bounder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+Func\+Counter\+Bounder$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_eval_func_counter_bounder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_func_counter_bounder_a6ad2c72b1b979e5cc9d10c48b6c68b8d}\label{classeo_eval_func_counter_bounder_a6ad2c72b1b979e5cc9d10c48b6c68b8d}} 
+{\bfseries eo\+Eval\+Func\+Counter\+Bounder} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&func, unsigned long threshold, std\+::string name=\char`\"{}Eval. \char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_eval_func_counter_bounder_a25a19b5311458132b8b2366abee9efc9}\label{classeo_eval_func_counter_bounder_a25a19b5311458132b8b2366abee9efc9}} 
+virtual void \mbox{\hyperlink{classeo_eval_func_counter_bounder_a25a19b5311458132b8b2366abee9efc9}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&eo)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename E\+OT$>$\newline
+class eo\+Eval\+Func\+Counter\+Bounder$<$ E\+O\+T $>$}
+
+Counts the number of evaluations actually performed and throw an \mbox{\hyperlink{classeo_eval_func_counter_bounder_exception}{eo\+Eval\+Func\+Counter\+Bounder\+Exception}} when the maximum number of allowed evaluations is reached.
+
+This eval counter permits to stop a search during a generation, without waiting for a continue to be checked at the end of the loop. Useful if you have 10 individuals and 10 generations, but want to stop after 95 evaluations. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Eval\+Func\+Counter\+Bounder.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,68 @@
+\hypertarget{classeo_1_1mpi_1_1_node}{}\doxysection{eo\+::mpi\+::Node Class Reference}
+\label{classeo_1_1mpi_1_1_node}\index{eo::mpi::Node@{eo::mpi::Node}}
+
+
+Global object used to reach \mbox{\hyperlink{classmpi_1_1communicator}{mpi\+::communicator}} everywhere.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi\+Node.\+h$>$}
+
+
+
+Collaboration diagram for eo\+::mpi\+::Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{classeo_1_1mpi_1_1_node__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classeo_1_1mpi_1_1_node_a1cd1e8cc5a4b3ebbc3a2dfb0cd8216e3}{init}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Initializes the M\+PI environment with argc and argv. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_node_a1658773813860cda8047bce6f2b8cf99}\label{classeo_1_1mpi_1_1_node_a1658773813860cda8047bce6f2b8cf99}} 
+static \mbox{\hyperlink{classmpi_1_1communicator}{bmpi\+::communicator}} \& \mbox{\hyperlink{classeo_1_1mpi_1_1_node_a1658773813860cda8047bce6f2b8cf99}{comm}} ()
+\begin{DoxyCompactList}\small\item\em Returns the global \mbox{\hyperlink{classmpi_1_1communicator}{mpi\+::communicator}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_node_ab4033fc7ddce4d3afbe533c45a5d56b6}\label{classeo_1_1mpi_1_1_node_ab4033fc7ddce4d3afbe533c45a5d56b6}} 
+static \mbox{\hyperlink{classmpi_1_1communicator}{bmpi\+::communicator}} {\bfseries \+\_\+comm}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global object used to reach \mbox{\hyperlink{classmpi_1_1communicator}{mpi\+::communicator}} everywhere. 
+
+\mbox{\hyperlink{classmpi_1_1communicator}{mpi\+::communicator}} is the main object used to send and receive messages between the different hosts of a M\+PI algorithm. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_node_a1cd1e8cc5a4b3ebbc3a2dfb0cd8216e3}\label{classeo_1_1mpi_1_1_node_a1cd1e8cc5a4b3ebbc3a2dfb0cd8216e3}} 
+\index{eo::mpi::Node@{eo::mpi::Node}!init@{init}}
+\index{init@{init}!eo::mpi::Node@{eo::mpi::Node}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Node\+::init (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initializes the M\+PI environment with argc and argv. 
+
+Should be called at the beginning of every parallel program.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Main\textquotesingle{}s argc \\
+\hline
+{\em argv} & Main\textquotesingle{}s argv \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi\+Node.\+h\item 
+eo/src/mpi/eo\+Mpi\+Node.\+cpp\end{DoxyCompactItemize}

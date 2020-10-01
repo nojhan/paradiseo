@@ -1,0 +1,73 @@
+\hypertarget{classparadiseo_1_1smp_1_1_shared_fit_continue}{}\doxysection{paradiseo\+::smp\+::Shared\+Fit\+Continue$<$ E\+OT $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_shared_fit_continue}\index{paradiseo::smp::SharedFitContinue$<$ EOT $>$@{paradiseo::smp::SharedFitContinue$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$shared\+Fit\+Continue.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Shared\+Fit\+Continue$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_shared_fit_continue__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Shared\+Fit\+Continue$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_shared_fit_continue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_shared_fit_continue_a23763c39dd9fb19695d7d0228e874eac}\label{classparadiseo_1_1smp_1_1_shared_fit_continue_a23763c39dd9fb19695d7d0228e874eac}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_shared_fit_continue_a079cd43427d6701a87d5ad912075e2bb}\label{classparadiseo_1_1smp_1_1_shared_fit_continue_a079cd43427d6701a87d5ad912075e2bb}} 
+{\bfseries Shared\+Fit\+Continue} (const Fitness \+\_\+optimum)
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_shared_fit_continue_a01004b5020d000e44d79fc85f6d22b8d}\label{classparadiseo_1_1smp_1_1_shared_fit_continue_a01004b5020d000e44d79fc85f6d22b8d}} 
+virtual bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_shared_fit_continue_a01004b5020d000e44d79fc85f6d22b8d}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_shared_fit_continue_a74fa74354f0b2af829dc4d377f616751}\label{classparadiseo_1_1smp_1_1_shared_fit_continue_a74fa74354f0b2af829dc4d377f616751}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_shared_fit_continue_afa8fa197791c87a95d4f7bc85e9201d2}\label{classparadiseo_1_1smp_1_1_shared_fit_continue_afa8fa197791c87a95d4f7bc85e9201d2}} 
+\mbox{\hyperlink{classeo_fit_continue}{eo\+Fit\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ {\bfseries fit}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_shared_fit_continue_aa665e36163f2fde96906d0ba2075e954}\label{classparadiseo_1_1smp_1_1_shared_fit_continue_aa665e36163f2fde96906d0ba2075e954}} 
+std\+::atomic$<$ bool $>$ {\bfseries found}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class paradiseo\+::smp\+::\+Shared\+Fit\+Continue$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_shared_fit_continue}{Shared\+Fit\+Continue}}
+
+Wrapper on the \mbox{\hyperlink{classeo_fit_continue}{eo\+Fit\+Continue}} in order to allow the island model to stop as soon as an island found a good solution.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_island}{smp\+::\+Island}}, \mbox{\hyperlink{classeo_fit_continue}{eo\+Fit\+Continue}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/shared\+Fit\+Continue.\+h\item 
+smp/src/shared\+Fit\+Continue.\+cpp\end{DoxyCompactItemize}

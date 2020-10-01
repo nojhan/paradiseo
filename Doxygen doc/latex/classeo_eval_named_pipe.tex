@@ -1,0 +1,84 @@
+\hypertarget{classeo_eval_named_pipe}{}\doxysection{eo\+Eval\+Named\+Pipe$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_eval_named_pipe}\index{eoEvalNamedPipe$<$ EOT $>$@{eoEvalNamedPipe$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+Named\+Pipe.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+Named\+Pipe$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_eval_named_pipe__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+Named\+Pipe$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classeo_eval_named_pipe__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_eval_named_pipe_ad8038fe4ef4ec553dfc2c6e2a23e05a2}\label{classeo_eval_named_pipe_ad8038fe4ef4ec553dfc2c6e2a23e05a2}} 
+using {\bfseries Fitness} = typename E\+O\+T\+::\+Fitness
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_eval_named_pipe_a595d2e7b697ad91e4c276dd6a431acbe}{eo\+Eval\+Named\+Pipe}} (const std\+::string output\+\_\+pipe\+\_\+name, const std\+::string input\+\_\+pipe\+\_\+name=\char`\"{}\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_eval_named_pipe_a027bfce9c2361162c2160b946d760f94}\label{classeo_eval_named_pipe_a027bfce9c2361162c2160b946d760f94}} 
+virtual void \mbox{\hyperlink{classeo_eval_named_pipe_a027bfce9c2361162c2160b946d760f94}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&sol)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Eval\+Named\+Pipe$<$ E\+O\+T $>$}
+
+Communicate through a named pipe F\+I\+FO to evaluate an individual.
+
+With this class, you can plug an external process computing the fitness of a serialized solution with a process hosting the \mbox{\hyperlink{class_e_o}{EO}} algorithm. Both processes just have to read/write solutions/fitness in files.
+
+The code would work with any file, but it is actually only useful with F\+I\+FO pipes, which are blocking on I/O. Thus, the process actually computing the fitness will ait for the solution to be wrote, then compute and write the fitness back, waiting it to be read. Conversely, the \mbox{\hyperlink{class_e_o}{EO}} process will wait after having wrote the solution, that the other process actually read it, then wait itself for the fitness to be read in the pipe. With pipes, the synchronization of the two processes is guaranteed.
+
+To create a named F\+I\+FO pipe under Linux, see the command {\ttfamily mkfifo}.
+
+\begin{DoxyNote}{Note}
+\+: if you use a single pipe for input/output, take care of the synchronization with the process handling the fitness computation. In particular, the first call of \mbox{\hyperlink{classeo_eval_named_pipe}{eo\+Eval\+Named\+Pipe}} is to write the solution, T\+H\+EN to read the fitness.
+
+Tested only under Unix systems, may not be portable as is.
+\end{DoxyNote}
+Use the default string serialization of the E\+OT and the default deserialization of the fitness. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_eval_named_pipe_a595d2e7b697ad91e4c276dd6a431acbe}\label{classeo_eval_named_pipe_a595d2e7b697ad91e4c276dd6a431acbe}} 
+\index{eoEvalNamedPipe$<$ EOT $>$@{eoEvalNamedPipe$<$ EOT $>$}!eoEvalNamedPipe@{eoEvalNamedPipe}}
+\index{eoEvalNamedPipe@{eoEvalNamedPipe}!eoEvalNamedPipe$<$ EOT $>$@{eoEvalNamedPipe$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEvalNamedPipe()}{eoEvalNamedPipe()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_eval_named_pipe}{eo\+Eval\+Named\+Pipe}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_eval_named_pipe}{eo\+Eval\+Named\+Pipe}} (\begin{DoxyParamCaption}\item[{const std\+::string}]{output\+\_\+pipe\+\_\+name,  }\item[{const std\+::string}]{input\+\_\+pipe\+\_\+name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em output\+\_\+pipe\+\_\+name} & The named pipe in which to write the serialized solution. \\
+\hline
+{\em input\+\_\+pipe\+\_\+name} & The named pipe in which to read the serialized fitness. If it is \char`\"{}\char`\"{}, use the output pipe. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Eval\+Named\+Pipe.\+h\end{DoxyCompactItemize}

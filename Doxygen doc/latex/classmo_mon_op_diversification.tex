@@ -1,0 +1,86 @@
+\hypertarget{classmo_mon_op_diversification}{}\doxysection{mo\+Mon\+Op\+Diversification$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_mon_op_diversification}\index{moMonOpDiversification$<$ Neighbor $>$@{moMonOpDiversification$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Mon\+Op\+Diversification.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Mon\+Op\+Diversification$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_mon_op_diversification__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Mon\+Op\+Diversification$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_mon_op_diversification__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_mon_op_diversification_a295da71fe42c70e67d18c6d9f404d9b6}\label{classmo_mon_op_diversification_a295da71fe42c70e67d18c6d9f404d9b6}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_mon_op_diversification_af3e235dceb0898c0f8d9038b5ca3a9b5}{mo\+Mon\+Op\+Diversification}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+mon\+Op, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval)
+\item 
+bool \mbox{\hyperlink{classmo_mon_op_diversification_a6a557ae9037c3f5e8ee38ec01337b750}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Mon\+Op\+Diversification$<$ Neighbor $>$}
+
+Diversification strategy applies a \char`\"{}mon\+Op\char`\"{} operator 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_mon_op_diversification_af3e235dceb0898c0f8d9038b5ca3a9b5}\label{classmo_mon_op_diversification_af3e235dceb0898c0f8d9038b5ca3a9b5}} 
+\index{moMonOpDiversification$<$ Neighbor $>$@{moMonOpDiversification$<$ Neighbor $>$}!moMonOpDiversification@{moMonOpDiversification}}
+\index{moMonOpDiversification@{moMonOpDiversification}!moMonOpDiversification$<$ Neighbor $>$@{moMonOpDiversification$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMonOpDiversification()}{moMonOpDiversification()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_mon_op_diversification}{mo\+Mon\+Op\+Diversification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_mon_op_diversification}{mo\+Mon\+Op\+Diversification}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+mon\+Op,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mon\+Op} & an \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}} (diversification operator) \\
+\hline
+{\em \+\_\+full\+Eval} & a full evaluation function \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_mon_op_diversification_a6a557ae9037c3f5e8ee38ec01337b750}\label{classmo_mon_op_diversification_a6a557ae9037c3f5e8ee38ec01337b750}} 
+\index{moMonOpDiversification$<$ Neighbor $>$@{moMonOpDiversification$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moMonOpDiversification$<$ Neighbor $>$@{moMonOpDiversification$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_mon_op_diversification}{mo\+Mon\+Op\+Diversification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Apply mon\+Op on the solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & to diversify \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of mon\+Op 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Mon\+Op\+Diversification.\+h\end{DoxyCompactItemize}

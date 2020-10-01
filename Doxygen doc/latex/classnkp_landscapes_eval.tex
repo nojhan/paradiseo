@@ -1,0 +1,146 @@
+\hypertarget{classnkp_landscapes_eval}{}\doxysection{nkp\+Landscapes\+Eval$<$ E\+OT $>$ Class Template Reference}
+\label{classnkp_landscapes_eval}\index{nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}}
+
+
+Inheritance diagram for nkp\+Landscapes\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classnkp_landscapes_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nkp\+Landscapes\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classnkp_landscapes_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnkp_landscapes_eval_aee3ccddbd3bd23a883da3fc86262cd7d}{nkp\+Landscapes\+Eval}} ()
+\item 
+\mbox{\hyperlink{classnkp_landscapes_eval_a9ea6701c6dd0efc4cd4d0f1c360216c8}{nkp\+Landscapes\+Eval}} (int \+\_\+N, int \+\_\+K, double \+\_\+p, bool consecutive=false)
+\item 
+\mbox{\hyperlink{classnkp_landscapes_eval_a1f74f1ddde8a961640294400601f8e3d}{nkp\+Landscapes\+Eval}} (const char $\ast$\+\_\+file\+Name)
+\item 
+virtual void \mbox{\hyperlink{classnkp_landscapes_eval_ab1c3df9137080dc05f15f5776e63b5d7}{load}} (const string \+\_\+file\+Name)
+\item 
+virtual void \mbox{\hyperlink{classnkp_landscapes_eval_a0cbe002e1bda82ffcd57fd4a1b9bc8f0}{save}} (const char $\ast$\+\_\+file\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classnkp_landscapes_eval_abe45ce00fcc974197571c0272d266e84}\label{classnkp_landscapes_eval_abe45ce00fcc974197571c0272d266e84}} 
+double {\bfseries p}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \mbox{\hyperlink{classnkp_landscapes_eval_a40f614da8c8454fb728eaeb4de349f0f}{contribution}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnkp_landscapes_eval_aee3ccddbd3bd23a883da3fc86262cd7d}\label{classnkp_landscapes_eval_aee3ccddbd3bd23a883da3fc86262cd7d}} 
+\index{nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}!nkpLandscapesEval@{nkpLandscapesEval}}
+\index{nkpLandscapesEval@{nkpLandscapesEval}!nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nkpLandscapesEval()}{nkpLandscapesEval()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Empty constructor \mbox{\Hypertarget{classnkp_landscapes_eval_a9ea6701c6dd0efc4cd4d0f1c360216c8}\label{classnkp_landscapes_eval_a9ea6701c6dd0efc4cd4d0f1c360216c8}} 
+\index{nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}!nkpLandscapesEval@{nkpLandscapesEval}}
+\index{nkpLandscapesEval@{nkpLandscapesEval}!nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nkpLandscapesEval()}{nkpLandscapesEval()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}} (\begin{DoxyParamCaption}\item[{int}]{\+\_\+N,  }\item[{int}]{\+\_\+K,  }\item[{double}]{\+\_\+p,  }\item[{bool}]{consecutive = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor of random instance
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+N} & size of the bit string \\
+\hline
+{\em \+\_\+K} & number of the epistatic links \\
+\hline
+{\em \+\_\+p} & probability to have a contribution equals to zero \\
+\hline
+{\em consecutive} & \+: if true then the links are consecutive (i, i+1, i+2, ..., i+K), else the links are randomly choose from (1..N) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnkp_landscapes_eval_a1f74f1ddde8a961640294400601f8e3d}\label{classnkp_landscapes_eval_a1f74f1ddde8a961640294400601f8e3d}} 
+\index{nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}!nkpLandscapesEval@{nkpLandscapesEval}}
+\index{nkpLandscapesEval@{nkpLandscapesEval}!nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nkpLandscapesEval()}{nkpLandscapesEval()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}} (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor from a file instance
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Name} & the name of the file of the instance \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classnkp_landscapes_eval_a40f614da8c8454fb728eaeb4de349f0f}\label{classnkp_landscapes_eval_a40f614da8c8454fb728eaeb4de349f0f}} 
+\index{nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}!contribution@{contribution}}
+\index{contribution@{contribution}!nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{contribution()}{contribution()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual double \mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::contribution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+To generate a contribution in the table f\+\_\+i 
+
+Reimplemented from \mbox{\hyperlink{classnk_landscapes_eval_a7edf391f46122c5bbfe30d3628c4911a}{nk\+Landscapes\+Eval$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classnkp_landscapes_eval_ab1c3df9137080dc05f15f5776e63b5d7}\label{classnkp_landscapes_eval_ab1c3df9137080dc05f15f5776e63b5d7}} 
+\index{nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}!load@{load}}
+\index{load@{load}!nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::load (\begin{DoxyParamCaption}\item[{const string}]{\+\_\+file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Load the instance from a file
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Name} & file name of the instance \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classnk_landscapes_eval_a9923b11bec11aa61a3a2920537a59df9}{nk\+Landscapes\+Eval$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classnkp_landscapes_eval_a0cbe002e1bda82ffcd57fd4a1b9bc8f0}\label{classnkp_landscapes_eval_a0cbe002e1bda82ffcd57fd4a1b9bc8f0}} 
+\index{nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}!save@{save}}
+\index{save@{save}!nkpLandscapesEval$<$ EOT $>$@{nkpLandscapesEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classnkp_landscapes_eval}{nkp\+Landscapes\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::save (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Save the current intance into a file
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Name} & the file name of instance \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classnk_landscapes_eval_a8fb7a0fe409bcd733f0ece10d727ff11}{nk\+Landscapes\+Eval$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/nkp\+Landscapes\+Eval.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,148 @@
+\hypertarget{structeo_1_1mpi_1_1_shared_data_function}{}\doxysection{eo\+::mpi\+::Shared\+Data\+Function$<$ Job\+Data, Wrapped $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_shared_data_function}\index{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}}
+
+
+Base class for the 4 algorithm functors.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function_a387b0c3050ed4a4392db588209336fa5}{Shared\+Data\+Function}} (Wrapped $\ast$w=0)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function_a344b05efa954aeec9adffece9a2abe6a}{$\sim$\+Shared\+Data\+Function}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function_a05aed1a8dea4683dc215a1928ecb6fab}{wrapped}} (Wrapped $\ast$w)
+\begin{DoxyCompactList}\small\item\em Setter for the wrapped function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function_aa0bab07ff9039d2f2b491650f970820b}{data}} (Job\+Data $\ast$d)
+\begin{DoxyCompactList}\small\item\em Setter for the data present in the functor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function_a781198689a04459bcff1ec075afe82ee}{need\+Delete}} ()
+\begin{DoxyCompactList}\small\item\em Returns true if we need to use operator delete on this wrapper, false otherwise. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_afdcae347a0b0414b3a820eff8eaf82c6}\label{structeo_1_1mpi_1_1_shared_data_function_afdcae347a0b0414b3a820eff8eaf82c6}} 
+void {\bfseries need\+Delete} (bool b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_a068417a1cf49aa03634fe959298ff9f1}\label{structeo_1_1mpi_1_1_shared_data_function_a068417a1cf49aa03634fe959298ff9f1}} 
+Job\+Data $\ast$ {\bfseries \+\_\+data}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_a06aee61fa6eee9135bba996566c45c55}\label{structeo_1_1mpi_1_1_shared_data_function_a06aee61fa6eee9135bba996566c45c55}} 
+Wrapped $\ast$ {\bfseries \+\_\+wrapped}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_a3b5f4cb46410c09f2f012b4772b96d5c}\label{structeo_1_1mpi_1_1_shared_data_function_a3b5f4cb46410c09f2f012b4772b96d5c}} 
+bool {\bfseries \+\_\+need\+Delete}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Job\+Data, typename Wrapped$>$\newline
+struct eo\+::mpi\+::\+Shared\+Data\+Function$<$ Job\+Data, Wrapped $>$}
+
+Base class for the 4 algorithm functors. 
+
+This class can embed a data (Job\+Data) and a wrapper, so as to make all the 4 functors wrappable. We can add a wrapper at initialization or at any time when executing the program.
+
+According to R\+A\+II, the boolean need\+Delete helps to know if we have to use the operator delete on the wrapper or not. Hence, if any functor is wrapped, user has just to put this boolean to true, to indicate to wrapper that it should call delete. This allows to mix wrapper initialized in the heap (with new) or in the stack.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Job\+Data} & a Data type, which can have any form. It can a struct, a single int, anything.\\
+\hline
+{\em Wrapped} & the type of the functor, which will be stored as a pointer under the name \+\_\+wrapped. This allows to wrap directly the functor in functors of the same type here, instead of dealing with Shared\+Data\+Function$\ast$ that we would have to cast all the time. Doing also allows to handle the wrapped functor as the functor we\textquotesingle{}re writing, when coding the wrappers, instead of doing some static\+\_\+cast. For instance, if there are 2 functors subclasses, fA and fB, fA implementing do\+Fa() and fB implementing do\+Fb(), we could have the following code\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\textcolor{keyword}{struct }fA\_wrapper}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{comment}{// some code}}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} doFa()}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{     \_wrapped-\/>doFa();}
+\DoxyCodeLine{     std::cout << \textcolor{stringliteral}{"I'm a fA wrapper!"} << std::endl;}
+\DoxyCodeLine{     \textcolor{comment}{// if we didn't have the second template parameter, but a SharedDataFunction, we would have to do this:}}
+\DoxyCodeLine{     \textcolor{keyword}{static\_cast<}fA*\textcolor{keyword}{>}(\_wrapped)-\/>doFa();}
+\DoxyCodeLine{     \textcolor{comment}{// do other things (it's a wrapper)}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{struct }fB\_wrapper}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{ \textcolor{comment}{// some code}}
+\DoxyCodeLine{ \textcolor{keywordtype}{void} doFb()}
+\DoxyCodeLine{ \{}
+\DoxyCodeLine{     \_wrapped-\/>doFb(); \textcolor{comment}{// and not: static\_cast<fB*>(\_wrapped)-\/>doFb();}}
+\DoxyCodeLine{ \}}
+\DoxyCodeLine{\};}
+\end{DoxyCode}
+ This makes the code easier to write for the user. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_a387b0c3050ed4a4392db588209336fa5}\label{structeo_1_1mpi_1_1_shared_data_function_a387b0c3050ed4a4392db588209336fa5}} 
+\index{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}!SharedDataFunction@{SharedDataFunction}}
+\index{SharedDataFunction@{SharedDataFunction}!eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}}
+\doxysubsubsection{\texorpdfstring{SharedDataFunction()}{SharedDataFunction()}}
+{\footnotesize\ttfamily template$<$typename Job\+Data , typename Wrapped $>$ \\
+\mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{eo\+::mpi\+::\+Shared\+Data\+Function}}$<$ Job\+Data, Wrapped $>$\+::\mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{Shared\+Data\+Function}} (\begin{DoxyParamCaption}\item[{Wrapped $\ast$}]{w = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+The user is not bound to give a wrapped functor. \mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_a344b05efa954aeec9adffece9a2abe6a}\label{structeo_1_1mpi_1_1_shared_data_function_a344b05efa954aeec9adffece9a2abe6a}} 
+\index{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}!````~SharedDataFunction@{$\sim$SharedDataFunction}}
+\index{````~SharedDataFunction@{$\sim$SharedDataFunction}!eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$SharedDataFunction()}{~SharedDataFunction()}}
+{\footnotesize\ttfamily template$<$typename Job\+Data , typename Wrapped $>$ \\
+virtual \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{eo\+::mpi\+::\+Shared\+Data\+Function}}$<$ Job\+Data, Wrapped $>$\+::$\sim$\mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{Shared\+Data\+Function}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+Calls delete on the wrapped function, only if necessary. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_aa0bab07ff9039d2f2b491650f970820b}\label{structeo_1_1mpi_1_1_shared_data_function_aa0bab07ff9039d2f2b491650f970820b}} 
+\index{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}!data@{data}}
+\index{data@{data}!eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily template$<$typename Job\+Data , typename Wrapped $>$ \\
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{eo\+::mpi\+::\+Shared\+Data\+Function}}$<$ Job\+Data, Wrapped $>$\+::data (\begin{DoxyParamCaption}\item[{Job\+Data $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Setter for the data present in the functor. 
+
+Calls the setter on the functor and on the wrapped functors, in a Composite pattern fashion. \mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_a781198689a04459bcff1ec075afe82ee}\label{structeo_1_1mpi_1_1_shared_data_function_a781198689a04459bcff1ec075afe82ee}} 
+\index{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}!needDelete@{needDelete}}
+\index{needDelete@{needDelete}!eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}}
+\doxysubsubsection{\texorpdfstring{needDelete()}{needDelete()}}
+{\footnotesize\ttfamily template$<$typename Job\+Data , typename Wrapped $>$ \\
+bool \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{eo\+::mpi\+::\+Shared\+Data\+Function}}$<$ Job\+Data, Wrapped $>$\+::need\+Delete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns true if we need to use operator delete on this wrapper, false otherwise. 
+
+Allows the user to reject delete responsability to the framework, by setting this value to true. \mbox{\Hypertarget{structeo_1_1mpi_1_1_shared_data_function_a05aed1a8dea4683dc215a1928ecb6fab}\label{structeo_1_1mpi_1_1_shared_data_function_a05aed1a8dea4683dc215a1928ecb6fab}} 
+\index{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}!wrapped@{wrapped}}
+\index{wrapped@{wrapped}!eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$@{eo::mpi::SharedDataFunction$<$ JobData, Wrapped $>$}}
+\doxysubsubsection{\texorpdfstring{wrapped()}{wrapped()}}
+{\footnotesize\ttfamily template$<$typename Job\+Data , typename Wrapped $>$ \\
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_shared_data_function}{eo\+::mpi\+::\+Shared\+Data\+Function}}$<$ Job\+Data, Wrapped $>$\+::wrapped (\begin{DoxyParamCaption}\item[{Wrapped $\ast$}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Setter for the wrapped function. 
+
+It doesn\textquotesingle{}t do anything on the current wrapped function, like deleting it. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

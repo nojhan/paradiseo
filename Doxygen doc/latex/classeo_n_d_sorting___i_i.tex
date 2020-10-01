@@ -1,0 +1,78 @@
+\hypertarget{classeo_n_d_sorting___i_i}{}\doxysection{eo\+N\+D\+Sorting\+\_\+\+II$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_n_d_sorting___i_i}\index{eoNDSorting\_II$<$ EOT $>$@{eoNDSorting\_II$<$ EOT $>$}}
+
+
+Fast Elitist Non-\/\+Dominant Sorting Genetic Algorithm.  
+
+
+
+
+{\ttfamily \#include $<$eo\+N\+D\+Sorting.\+h$>$}
+
+
+
+Inheritance diagram for eo\+N\+D\+Sorting\+\_\+\+II$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_n_d_sorting___i_i__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+N\+D\+Sorting\+\_\+\+II$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_n_d_sorting___i_i__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_n_d_sorting___i_i_1_1compare__nodes}{compare\+\_\+nodes}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_i_ab8a26b12aefd60734a358977b241108b}\label{classeo_n_d_sorting___i_i_ab8a26b12aefd60734a358977b241108b}} 
+typedef std\+::pair$<$ double, unsigned $>$ {\bfseries double\+\_\+index\+\_\+pair}
+\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_i_ab8a26b12aefd60734a358977b241108b}\label{classeo_n_d_sorting___i_i_ab8a26b12aefd60734a358977b241108b}} 
+typedef std\+::pair$<$ double, unsigned $>$ {\bfseries double\+\_\+index\+\_\+pair}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_i_a826a58fbda9e009622b7e48b26ea0527}\label{classeo_n_d_sorting___i_i_a826a58fbda9e009622b7e48b26ea0527}} 
+{\bfseries eo\+N\+D\+Sorting\+\_\+\+II} (bool nasty\+\_\+flag\+\_\+=false)
+\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_i_a6f2a8721bd0a4e718bfdad5e993da88e}\label{classeo_n_d_sorting___i_i_a6f2a8721bd0a4e718bfdad5e993da88e}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classeo_n_d_sorting___i_i_a6f2a8721bd0a4e718bfdad5e993da88e}{niche\+\_\+penalty}} (const std\+::vector$<$ unsigned $>$ \&\+\_\+cf, const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em \+\_\+cf points into the elements that consist of the current front \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_i_a826a58fbda9e009622b7e48b26ea0527}\label{classeo_n_d_sorting___i_i_a826a58fbda9e009622b7e48b26ea0527}} 
+{\bfseries eo\+N\+D\+Sorting\+\_\+\+II} (bool nasty\+\_\+flag\+\_\+=false)
+\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_i_a6f2a8721bd0a4e718bfdad5e993da88e}\label{classeo_n_d_sorting___i_i_a6f2a8721bd0a4e718bfdad5e993da88e}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classeo_n_d_sorting___i_i_a6f2a8721bd0a4e718bfdad5e993da88e}{niche\+\_\+penalty}} (const std\+::vector$<$ unsigned $>$ \&\+\_\+cf, const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em \+\_\+cf points into the elements that consist of the current front \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+N\+D\+Sorting\+\_\+\+I\+I$<$ E\+O\+T $>$}
+
+Fast Elitist Non-\/\+Dominant Sorting Genetic Algorithm. 
+
+Adapted from Deb, Agrawal, Pratab and Meyarivan\+: A Fast Elitist Non-\/\+Dominant Sorting Genetic Algorithm for Multi\+Objective Optimization\+: N\+S\+G\+A-\/\+II Kan\+G\+AL Report No. 200001
+
+Note that this class does not do the sorting per se, but the sorting of it worth\+\_\+std\+::vector will give the right order
+
+The crowding distance is calculated as the sum of the distances to the nearest neighbours. As we need to return the penalty value, we have to invert that and invert it again in the base class, but such is life, sigh 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+N\+D\+Sorting.\+h\end{DoxyCompactItemize}

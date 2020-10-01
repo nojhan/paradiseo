@@ -1,0 +1,160 @@
+\hypertarget{classmo_time_continuator}{}\doxysection{mo\+Time\+Continuator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_time_continuator}\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Time\+Continuator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Time\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_time_continuator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Time\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_time_continuator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_time_continuator_a61baaaf8b52db6aa58f89b7f2bddafcd}\label{classmo_time_continuator_a61baaaf8b52db6aa58f89b7f2bddafcd}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_time_continuator_aa2a7884b540f1e5e65ccd8d298ef7983}{mo\+Time\+Continuator}} (time\+\_\+t \+\_\+max, bool \+\_\+verbose=true)
+\item 
+virtual void \mbox{\hyperlink{classmo_time_continuator_acbd5b24e96edac99f24355cf65e8b675}{set\+Starting\+Time}} (time\+\_\+t \+\_\+external\+Start)
+\item 
+virtual time\+\_\+t \mbox{\hyperlink{classmo_time_continuator_aad646fa1f32bae512deb93f84473b317}{get\+Starting\+Time}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_time_continuator_a7c808c92f25ca19aa6f771ae97667eb7}{max\+Time}} (time\+\_\+t \+\_\+max\+Time)
+\item 
+virtual bool \mbox{\hyperlink{classmo_time_continuator_aa6659458e03d8c1048e5a4849826e4a1}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_time_continuator_a18f66200e4668b845f16eb7d2fc455d6}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_time_continuator_a4bd2f3585f761ec3e140ca55afcceb41}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Time\+Continuator$<$ Neighbor $>$}
+
+Termination condition until a running time is reached. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_time_continuator_aa2a7884b540f1e5e65ccd8d298ef7983}\label{classmo_time_continuator_aa2a7884b540f1e5e65ccd8d298ef7983}} 
+\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}!moTimeContinuator@{moTimeContinuator}}
+\index{moTimeContinuator@{moTimeContinuator}!moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moTimeContinuator()}{moTimeContinuator()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}} (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{\+\_\+max,  }\item[{bool}]{\+\_\+verbose = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max} & maximum running time (in second) \\
+\hline
+{\em \+\_\+verbose} & verbose mode true/false -\/$>$ on/off \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_time_continuator_a4bd2f3585f761ec3e140ca55afcceb41}\label{classmo_time_continuator_a4bd2f3585f761ec3e140ca55afcceb41}} 
+\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Class name 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_time_continuator_aad646fa1f32bae512deb93f84473b317}\label{classmo_time_continuator_aad646fa1f32bae512deb93f84473b317}} 
+\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}!getStartingTime@{getStartingTime}}
+\index{getStartingTime@{getStartingTime}!moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getStartingTime()}{getStartingTime()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual time\+\_\+t \mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Starting\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+To get the starting time \begin{DoxyReturn}{Returns}
+starting time 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_time_continuator_a18f66200e4668b845f16eb7d2fc455d6}\label{classmo_time_continuator_a18f66200e4668b845f16eb7d2fc455d6}} 
+\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+reset the start time 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_continuator_a2e0feb9a6288cd6cba6b6817c9cdf481}{mo\+Continuator$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_time_continuator_a7c808c92f25ca19aa6f771ae97667eb7}\label{classmo_time_continuator_a7c808c92f25ca19aa6f771ae97667eb7}} 
+\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}!maxTime@{maxTime}}
+\index{maxTime@{maxTime}!moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{maxTime()}{maxTime()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::max\+Time (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{\+\_\+max\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+To set the maximum running time
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Time} & maximum running time \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_time_continuator_aa6659458e03d8c1048e5a4849826e4a1}\label{classmo_time_continuator_aa6659458e03d8c1048e5a4849826e4a1}} 
+\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns false when the running time is reached. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classmo_time_continuator_acbd5b24e96edac99f24355cf65e8b675}\label{classmo_time_continuator_acbd5b24e96edac99f24355cf65e8b675}} 
+\index{moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}!setStartingTime@{setStartingTime}}
+\index{setStartingTime@{setStartingTime}!moTimeContinuator$<$ Neighbor $>$@{moTimeContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{setStartingTime()}{setStartingTime()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_time_continuator}{mo\+Time\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::set\+Starting\+Time (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{\+\_\+external\+Start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Synchronize the whole time with an external starting time 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+external\+Start} & external starting time \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Time\+Continuator.\+h\end{DoxyCompactItemize}

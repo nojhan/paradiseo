@@ -1,0 +1,101 @@
+\hypertarget{group___stats}{}\doxysection{Statistics computation}
+\label{group___stats}\index{Statistics computation@{Statistics computation}}
+
+
+Compute various statistics on a population.  
+
+
+Collaboration diagram for Statistics computation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___stats}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_assembled_fitness_average_stat}{eo\+Assembled\+Fitness\+Average\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_assembled_fitness_best_stat}{eo\+Assembled\+Fitness\+Best\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_distance}{eo\+Distance$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_quad_distance}{eo\+Quad\+Distance$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_hamming_distance}{eo\+Hamming\+Distance$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_fitness_distance}{eo\+Fitness\+Distance$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_f_d_c_stat}{eo\+F\+D\+C\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_f_d_c_file_snapshot}{eo\+F\+D\+C\+File\+Snapshot$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_feasible_ratio_stat}{eo\+Feasible\+Ratio\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_func_ptr_stat}{eo\+Func\+Ptr\+Stat$<$ E\+O\+T, T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_functor_stat}{eo\+Functor\+Stat$<$ E\+O\+T, T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_gen_counter}{eo\+Gen\+Counter}}
+\item 
+class \mbox{\hyperlink{classeo_pop_stat}{eo\+Pop\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_sorted_pop_stat}{eo\+Sorted\+Pop\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_scalar_fitness_stat}{eo\+Scalar\+Fitness\+Stat$<$ E\+O\+T, Fit\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_stat_base}{eo\+Stat\+Base$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_stat}{eo\+Stat$<$ E\+O\+T, T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_sorted_stat_base}{eo\+Sorted\+Stat\+Base$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_sorted_stat}{eo\+Sorted\+Stat$<$ E\+O\+T, Param\+Type $>$}}
+\item 
+class \mbox{\hyperlink{classeo_average_stat}{eo\+Average\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_second_moment_stats}{eo\+Second\+Moment\+Stats$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_nth_element_fitness_stat}{eo\+Nth\+Element\+Fitness\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_best_fitness_stat}{eo\+Best\+Fitness\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_distance_stat}{eo\+Distance\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_interquartile_range_stat}{eo\+Interquartile\+Range\+Stat$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em A robust measure of dispersion (also called midspread or middle fifty) that is the difference between the third and the first quartile. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_average_size_stat}{eo\+Average\+Size\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_time_counter}{eo\+Time\+Counter}}
+\item 
+class \mbox{\hyperlink{classeo_l1_distance}{eo\+L1\+Distance$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_best_individual_stat}{eo\+Best\+Individual\+Stat$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_nth_element_stat}{eo\+Nth\+Element\+Stat$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em A robust measure of the mass (generally used to compute the median). Do not alter the given pop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___stats_ga5502c1dea995f95b792541acc98a3515}\label{group___stats_ga5502c1dea995f95b792541acc98a3515}} 
+{\footnotesize template$<$class E\+OT , class T $>$ }\\\mbox{\hyperlink{classeo_func_ptr_stat}{eo\+Func\+Ptr\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$ \& {\bfseries make\+Func\+Ptr\+Stat} (T($\ast$func)(const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&), \mbox{\hyperlink{classeo_functor_store}{eo\+Functor\+Store}} \&store, std\+::string description=\char`\"{}func\char`\"{})
+\item 
+\mbox{\Hypertarget{group___stats_ga5d94a54e3d7a2cfecc4aa212a4d90f06}\label{group___stats_ga5d94a54e3d7a2cfecc4aa212a4d90f06}} 
+{\footnotesize template$<$class E\+OT , class T $>$ }\\\mbox{\hyperlink{classeo_functor_stat}{eo\+Functor\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$ \& {\bfseries make\+Functor\+Stat} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&, T $>$ \&func, \mbox{\hyperlink{classeo_functor_store}{eo\+Functor\+Store}} \&store, std\+::string description=\char`\"{}func\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Compute various statistics on a population. 
+
+Objects of those classes are generally called by an \mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}} to compute statistics about the population at a given generation. As they inherit from \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}, they can be printed drectly, for instance by an \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}}.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_check_point}{eo\+Check\+Point}} 
+
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} 
+\end{DoxySeeAlso}

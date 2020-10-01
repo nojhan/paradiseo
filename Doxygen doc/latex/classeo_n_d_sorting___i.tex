@@ -1,0 +1,76 @@
+\hypertarget{classeo_n_d_sorting___i}{}\doxysection{eo\+N\+D\+Sorting\+\_\+I$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_n_d_sorting___i}\index{eoNDSorting\_I$<$ EOT $>$@{eoNDSorting\_I$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+N\+D\+Sorting.\+h$>$}
+
+
+
+Inheritance diagram for eo\+N\+D\+Sorting\+\_\+I$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_n_d_sorting___i__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+N\+D\+Sorting\+\_\+I$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_n_d_sorting___i__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_a00a06930b9692663ad0c8fbaacebe0cc}\label{classeo_n_d_sorting___i_a00a06930b9692663ad0c8fbaacebe0cc}} 
+{\bfseries eo\+N\+D\+Sorting\+\_\+I} (double \+\_\+niche\+Size, bool nasty\+\_\+flag\+\_\+=false)
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classeo_n_d_sorting___i_a2fdf88eb2249b256d838258d0294ccfa}{niche\+\_\+penalty}} (const std\+::vector$<$ unsigned $>$ \&current\+\_\+front, const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_n_d_sorting___i_a00a06930b9692663ad0c8fbaacebe0cc}\label{classeo_n_d_sorting___i_a00a06930b9692663ad0c8fbaacebe0cc}} 
+{\bfseries eo\+N\+D\+Sorting\+\_\+I} (double \+\_\+niche\+Size, bool nasty\+\_\+flag\+\_\+=false)
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classeo_n_d_sorting___i_a2fdf88eb2249b256d838258d0294ccfa}{niche\+\_\+penalty}} (const std\+::vector$<$ unsigned $>$ \&current\+\_\+front, const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+N\+D\+Sorting\+\_\+\+I$<$ E\+O\+T $>$}
+
+The original Non Dominated Sorting algorithm from Srinivas and Deb 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_n_d_sorting___i_a2fdf88eb2249b256d838258d0294ccfa}\label{classeo_n_d_sorting___i_a2fdf88eb2249b256d838258d0294ccfa}} 
+\index{eoNDSorting\_I$<$ EOT $>$@{eoNDSorting\_I$<$ EOT $>$}!niche\_penalty@{niche\_penalty}}
+\index{niche\_penalty@{niche\_penalty}!eoNDSorting\_I$<$ EOT $>$@{eoNDSorting\_I$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{niche\_penalty()}{niche\_penalty()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+std\+::vector$<$double$>$ \mbox{\hyperlink{classeo_n_d_sorting___i}{eo\+N\+D\+Sorting\+\_\+I}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::niche\+\_\+penalty (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ unsigned $>$ \&}]{current\+\_\+front,  }\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Pure virtual function that calculates the \textquotesingle{}distance\textquotesingle{} for each element in the current front Implement to create your own nondominated sorting algorithm. The size of the returned std\+::vector should be equal to the size of the current\+\_\+front. 
+
+Implements \mbox{\hyperlink{classeo_n_d_sorting_aba975cc5364e753ae3d58bcdfeb199b6}{eo\+N\+D\+Sorting$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classeo_n_d_sorting___i_a2fdf88eb2249b256d838258d0294ccfa}\label{classeo_n_d_sorting___i_a2fdf88eb2249b256d838258d0294ccfa}} 
+\index{eoNDSorting\_I$<$ EOT $>$@{eoNDSorting\_I$<$ EOT $>$}!niche\_penalty@{niche\_penalty}}
+\index{niche\_penalty@{niche\_penalty}!eoNDSorting\_I$<$ EOT $>$@{eoNDSorting\_I$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{niche\_penalty()}{niche\_penalty()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+std\+::vector$<$double$>$ \mbox{\hyperlink{classeo_n_d_sorting___i}{eo\+N\+D\+Sorting\+\_\+I}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::niche\+\_\+penalty (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ unsigned $>$ \&}]{current\+\_\+front,  }\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Pure virtual function that calculates the \textquotesingle{}distance\textquotesingle{} for each element in the current front Implement to create your own nondominated sorting algorithm. The size of the returned std\+::vector should be equal to the size of the current\+\_\+front. 
+
+Implements \mbox{\hyperlink{classeo_n_d_sorting_aba975cc5364e753ae3d58bcdfeb199b6}{eo\+N\+D\+Sorting$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+N\+D\+Sorting.\+h\end{DoxyCompactItemize}

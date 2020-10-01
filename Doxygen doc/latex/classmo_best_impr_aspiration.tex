@@ -1,0 +1,123 @@
+\hypertarget{classmo_best_impr_aspiration}{}\doxysection{mo\+Best\+Impr\+Aspiration$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_best_impr_aspiration}\index{moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Best\+Impr\+Aspiration.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Best\+Impr\+Aspiration$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_best_impr_aspiration__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Best\+Impr\+Aspiration$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_best_impr_aspiration__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_best_impr_aspiration_afcc46787d6c867a0f5cee4a742363b82}\label{classmo_best_impr_aspiration_afcc46787d6c867a0f5cee4a742363b82}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmo_best_impr_aspiration_a2a258d3bc1fd8fa86c291346fcc5a6ef}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+void \mbox{\hyperlink{classmo_best_impr_aspiration_a15a10919a7fb5a5317fb81501f0d2ddb}{update}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+bool \mbox{\hyperlink{classmo_best_impr_aspiration_ae40d1b5a3dfcbcd14f0723a821c8e86c}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+\mbox{\hyperlink{classeo_bit}{E\+OT}} \& \mbox{\hyperlink{classmo_best_impr_aspiration_aceb444ec13fb250480597694d86436b3}{get\+Best}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Best\+Impr\+Aspiration$<$ Neighbor $>$}
+
+Aspiration criteria accepts a solution better than the best so far 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_best_impr_aspiration_aceb444ec13fb250480597694d86436b3}\label{classmo_best_impr_aspiration_aceb444ec13fb250480597694d86436b3}} 
+\index{moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}!getBest@{getBest}}
+\index{getBest@{getBest}!moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getBest()}{getBest()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classeo_bit}{E\+OT}}\& \mbox{\hyperlink{classmo_best_impr_aspiration}{mo\+Best\+Impr\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Best (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter \begin{DoxyReturn}{Returns}
+a reference on the best found so far solution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_best_impr_aspiration_a2a258d3bc1fd8fa86c291346fcc5a6ef}\label{classmo_best_impr_aspiration_a2a258d3bc1fd8fa86c291346fcc5a6ef}} 
+\index{moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_best_impr_aspiration}{mo\+Best\+Impr\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+init the best solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the best solution found \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_aspiration_ab9f76f8508016cb8bd386b5c453b5310}{mo\+Aspiration$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_best_impr_aspiration_ae40d1b5a3dfcbcd14f0723a821c8e86c}\label{classmo_best_impr_aspiration_ae40d1b5a3dfcbcd14f0723a821c8e86c}} 
+\index{moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_best_impr_aspiration}{mo\+Best\+Impr\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} the tabu feature of the neighbor\+: test if the neighbor\textquotesingle{}s fitness is better than the \char`\"{}best\+Found\+So\+Far\char`\"{} fitness 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & a solution \\
+\hline
+{\em \+\_\+neighbor} & a neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if \+\_\+neighbor fitness is better than the \char`\"{}best\+Found\+So\+Far\char`\"{} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ Neighbor\+::\+E\+O\+T \&, Neighbor \&, bool $>$}}.
+
+\mbox{\Hypertarget{classmo_best_impr_aspiration_a15a10919a7fb5a5317fb81501f0d2ddb}\label{classmo_best_impr_aspiration_a15a10919a7fb5a5317fb81501f0d2ddb}} 
+\index{moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}!update@{update}}
+\index{update@{update}!moBestImprAspiration$<$ Neighbor $>$@{moBestImprAspiration$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_best_impr_aspiration}{mo\+Best\+Impr\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+update the \char`\"{}best\+Found\+So\+Far\char`\"{} if a best solution is found 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & a solution \\
+\hline
+{\em \+\_\+neighbor} & a neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_aspiration_a98cd4d54c0b2f9a8eaf8858483052a6f}{mo\+Aspiration$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Best\+Impr\+Aspiration.\+h\end{DoxyCompactItemize}

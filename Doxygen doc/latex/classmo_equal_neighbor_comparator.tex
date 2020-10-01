@@ -1,0 +1,83 @@
+\hypertarget{classmo_equal_neighbor_comparator}{}\doxysection{mo\+Equal\+Neighbor\+Comparator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_equal_neighbor_comparator}\index{moEqualNeighborComparator$<$ Neighbor $>$@{moEqualNeighborComparator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Equal\+Neighbor\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Equal\+Neighbor\+Comparator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classmo_equal_neighbor_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Equal\+Neighbor\+Comparator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classmo_equal_neighbor_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classmo_equal_neighbor_comparator_a1efef7cf82457c9c7b1a0c1163543579}{operator()}} (const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor1, const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor2)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_equal_neighbor_comparator_ae7a3ed170cc76f15b9e681817e162fd1}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Equal\+Neighbor\+Comparator$<$ Neighbor $>$}
+
+Comparator of two neighbors \+: a neighbor is better if the fitness is higher or equal 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_equal_neighbor_comparator_ae7a3ed170cc76f15b9e681817e162fd1}\label{classmo_equal_neighbor_comparator_ae7a3ed170cc76f15b9e681817e162fd1}} 
+\index{moEqualNeighborComparator$<$ Neighbor $>$@{moEqualNeighborComparator$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moEqualNeighborComparator$<$ Neighbor $>$@{moEqualNeighborComparator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_equal_neighbor_comparator}{mo\+Equal\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_neighbor_comparator_a4ad27bf4268c06dca64a104aa1457a4b}{mo\+Neighbor\+Comparator$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_equal_neighbor_comparator_a1efef7cf82457c9c7b1a0c1163543579}\label{classmo_equal_neighbor_comparator_a1efef7cf82457c9c7b1a0c1163543579}} 
+\index{moEqualNeighborComparator$<$ Neighbor $>$@{moEqualNeighborComparator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moEqualNeighborComparator$<$ Neighbor $>$@{moEqualNeighborComparator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_equal_neighbor_comparator}{mo\+Equal\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor1,  }\item[{const \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compare two neighbors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighbor1} & the first neighbor \\
+\hline
+{\em \+\_\+neighbor2} & the second neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the neighbor2 is better or equal than neighbor1 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_neighbor_comparator_a4ac5de74657fd735a218ab7f944422fe}{mo\+Neighbor\+Comparator$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/comparator/mo\+Equal\+Neighbor\+Comparator.\+h\end{DoxyCompactItemize}

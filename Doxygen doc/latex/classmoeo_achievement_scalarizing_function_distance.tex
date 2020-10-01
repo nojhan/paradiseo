@@ -1,0 +1,113 @@
+\hypertarget{classmoeo_achievement_scalarizing_function_distance}{}\doxysection{moeo\+Achievement\+Scalarizing\+Function\+Distance$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_achievement_scalarizing_function_distance}\index{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$@{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Achievement\+Scalarizing\+Function\+Distance.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Achievement\+Scalarizing\+Function\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_achievement_scalarizing_function_distance__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Achievement\+Scalarizing\+Function\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_achievement_scalarizing_function_distance__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_achievement_scalarizing_function_distance_ad761825368d2aa21dd092bba803914fc}\label{classmoeo_achievement_scalarizing_function_distance_ad761825368d2aa21dd092bba803914fc}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_achievement_scalarizing_function_distance_a0e56035fd955fc4dd91bb57b9304d0cd}\label{classmoeo_achievement_scalarizing_function_distance_a0e56035fd955fc4dd91bb57b9304d0cd}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance_ad84bf35efebe5319330f92171a3fe3c5}{moeo\+Achievement\+Scalarizing\+Function\+Distance}} (unsigned int \+\_\+rho, const Objective\+Vector \&\+\_\+weight, \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&\+\_\+normalizer)
+\item 
+\mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance_a91ecb2ebd9959a12b6cf17702bbbb406}{moeo\+Achievement\+Scalarizing\+Function\+Distance}} (unsigned int \+\_\+rho, const Objective\+Vector \&\+\_\+weight)
+\item 
+const Fitness \mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance_ac28ca7de88975146bd05541bf7a63b12}{operator()}} (const Objective\+Vector \&\+\_\+reference, const Objective\+Vector \&\+\_\+obj)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Achievement\+Scalarizing\+Function\+Distance$<$ M\+O\+E\+O\+T $>$}
+
+Achievment scalarizing function aproach to calculate a distance 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_achievement_scalarizing_function_distance_ad84bf35efebe5319330f92171a3fe3c5}\label{classmoeo_achievement_scalarizing_function_distance_ad84bf35efebe5319330f92171a3fe3c5}} 
+\index{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$@{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$}!moeoAchievementScalarizingFunctionDistance@{moeoAchievementScalarizingFunctionDistance}}
+\index{moeoAchievementScalarizingFunctionDistance@{moeoAchievementScalarizingFunctionDistance}!moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$@{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAchievementScalarizingFunctionDistance()}{moeoAchievementScalarizingFunctionDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance}{moeo\+Achievement\+Scalarizing\+Function\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance}{moeo\+Achievement\+Scalarizing\+Function\+Distance}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+rho,  }\item[{const Objective\+Vector \&}]{\+\_\+weight,  }\item[{\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+normalizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rho} & \\
+\hline
+{\em \+\_\+weight} & the weight to apply to each dimension \\
+\hline
+{\em \+\_\+normalizer} & the normalizer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_achievement_scalarizing_function_distance_a91ecb2ebd9959a12b6cf17702bbbb406}\label{classmoeo_achievement_scalarizing_function_distance_a91ecb2ebd9959a12b6cf17702bbbb406}} 
+\index{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$@{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$}!moeoAchievementScalarizingFunctionDistance@{moeoAchievementScalarizingFunctionDistance}}
+\index{moeoAchievementScalarizingFunctionDistance@{moeoAchievementScalarizingFunctionDistance}!moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$@{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAchievementScalarizingFunctionDistance()}{moeoAchievementScalarizingFunctionDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance}{moeo\+Achievement\+Scalarizing\+Function\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance}{moeo\+Achievement\+Scalarizing\+Function\+Distance}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+rho,  }\item[{const Objective\+Vector \&}]{\+\_\+weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor without a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rho} & \\
+\hline
+{\em \+\_\+weight} & the weight to apply to each dimension \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_achievement_scalarizing_function_distance_ac28ca7de88975146bd05541bf7a63b12}\label{classmoeo_achievement_scalarizing_function_distance_ac28ca7de88975146bd05541bf7a63b12}} 
+\index{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$@{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$@{moeoAchievementScalarizingFunctionDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+const Fitness \mbox{\hyperlink{classmoeo_achievement_scalarizing_function_distance}{moeo\+Achievement\+Scalarizing\+Function\+Distance}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{\+\_\+reference,  }\item[{const Objective\+Vector \&}]{\+\_\+obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+fonction which calculate the distance 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+obj} & the point to evaluate \\
+\hline
+{\em \+\_\+reference} & the reference to calculate the distance from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fitness conrresponding to the distance 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_obj_space_distance_a22e0058103f71b2ccdba0abbde391b77}{moeo\+Obj\+Space\+Distance$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/distance/moeo\+Achievement\+Scalarizing\+Function\+Distance.\+h\end{DoxyCompactItemize}

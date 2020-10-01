@@ -1,0 +1,8 @@
+<map id="eo::mpi::DummySendTaskFunction" name="eo::mpi::DummySendTaskFunction">
+<area shape="rect" id="node1" title="Send task functor which does nothing." alt="" coords="119,288,365,315"/>
+<area shape="rect" id="node2" href="$structeo_1_1mpi_1_1_send_task_function.html" title=" " alt="" coords="145,199,339,240"/>
+<area shape="rect" id="node3" href="$classeo_u_f.html" title=" " alt="" coords="74,109,213,136"/>
+<area shape="rect" id="node4" href="$classeo_functor_base.html" title=" " alt="" coords="5,13,124,39"/>
+<area shape="rect" id="node5" title=" " alt="" coords="149,5,295,47"/>
+<area shape="rect" id="node6" href="$structeo_1_1mpi_1_1_shared_data_function.html" title=" " alt="" coords="237,95,447,151"/>
+</map>

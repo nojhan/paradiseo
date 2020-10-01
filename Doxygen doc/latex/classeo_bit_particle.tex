@@ -1,0 +1,80 @@
+\hypertarget{classeo_bit_particle}{}\doxysection{eo\+Bit\+Particle$<$ FitT $>$ Class Template Reference}
+\label{classeo_bit_particle}\index{eoBitParticle$<$ FitT $>$@{eoBitParticle$<$ FitT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Bit\+Particle.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Bit\+Particle$<$ FitT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{classeo_bit_particle__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Bit\+Particle$<$ FitT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{classeo_bit_particle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_bit_particle_a7351303f8fe202c9fb2937422471b863}\label{classeo_bit_particle_a7351303f8fe202c9fb2937422471b863}} 
+{\bfseries eo\+Bit\+Particle} (unsigned size=0, bool positions=0, double velocities=0.\+0, bool best\+Positions=0)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_bit_particle_a7f20c14986bc97d82a6ebf411be9da7a}{class\+Name}} () const
+\item 
+\mbox{\Hypertarget{classeo_bit_particle_a7351303f8fe202c9fb2937422471b863}\label{classeo_bit_particle_a7351303f8fe202c9fb2937422471b863}} 
+{\bfseries eo\+Bit\+Particle} (unsigned size=0, bool positions=0, double velocities=0.\+0, bool best\+Positions=0)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_bit_particle_a7f20c14986bc97d82a6ebf411be9da7a}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class FitT$>$\newline
+class eo\+Bit\+Particle$<$ Fit\+T $>$}
+
+\mbox{\hyperlink{classeo_bit_particle}{eo\+Bit\+Particle}}\+: Implementation of a bit-\/coded particle (swarm optimization). Positions and best positions are 0 or 1 but the velocity is a vector of double. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_bit_particle_a7f20c14986bc97d82a6ebf411be9da7a}\label{classeo_bit_particle_a7f20c14986bc97d82a6ebf411be9da7a}} 
+\index{eoBitParticle$<$ FitT $>$@{eoBitParticle$<$ FitT $>$}!className@{className}}
+\index{className@{className}!eoBitParticle$<$ FitT $>$@{eoBitParticle$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_bit_particle}{eo\+Bit\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. This should be redefined in each class. Only \char`\"{}leaf\char`\"{} classes can be non-\/virtual.
+
+Maarten\+: removed the default implementation as this proved to be too error-\/prone\+: I found several classes that had a typo in class\+Name (like classname), which would print \mbox{\hyperlink{classeo_object}{eo\+Object}} instead of their own. Having it pure will force the implementor to provide a name. 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classeo_bit_particle_a7f20c14986bc97d82a6ebf411be9da7a}\label{classeo_bit_particle_a7f20c14986bc97d82a6ebf411be9da7a}} 
+\index{eoBitParticle$<$ FitT $>$@{eoBitParticle$<$ FitT $>$}!className@{className}}
+\index{className@{className}!eoBitParticle$<$ FitT $>$@{eoBitParticle$<$ FitT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class FitT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_bit_particle}{eo\+Bit\+Particle}}$<$ \mbox{\hyperlink{classeo_scalar_fitness}{FitT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. This should be redefined in each class. Only \char`\"{}leaf\char`\"{} classes can be non-\/virtual.
+
+Maarten\+: removed the default implementation as this proved to be too error-\/prone\+: I found several classes that had a typo in class\+Name (like classname), which would print \mbox{\hyperlink{classeo_object}{eo\+Object}} instead of their own. Having it pure will force the implementor to provide a name. 
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Bit\+Particle.\+h\end{DoxyCompactItemize}

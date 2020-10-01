@@ -1,0 +1,238 @@
+\hypertarget{classeo_gnuplot}{}\doxysection{eo\+Gnuplot Class Reference}
+\label{classeo_gnuplot}\index{eoGnuplot@{eoGnuplot}}
+
+
+{\ttfamily \#include $<$eo\+Gnuplot.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Gnuplot\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_gnuplot__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Gnuplot\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{classeo_gnuplot__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_gnuplot_aa7e5eb395ec029ab7425145451c39805}{eo\+Gnuplot}} (std\+::string \+\_\+title, std\+::string \+\_\+extra=std\+::string(\char`\"{}\char`\"{}))
+\item 
+virtual \mbox{\hyperlink{classeo_gnuplot_aeeb6cad70417e24ebd07497b9a411d1d}{$\sim$eo\+Gnuplot}} ()
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_gnuplot_abbb997ca4c270c5c50cadc778e759666}{class\+Name}} () const
+\item 
+void \mbox{\hyperlink{classeo_gnuplot_ab6bf8aee43645492aee433080b9708bf}{gnuplot\+Command}} (const char $\ast$\+\_\+command)
+\item 
+void \mbox{\hyperlink{classeo_gnuplot_a59f2589543f38db1d38d64a73166c21c}{gnuplot\+Command}} (std\+::string \+\_\+command)
+\item 
+\mbox{\hyperlink{classeo_gnuplot_aa7e5eb395ec029ab7425145451c39805}{eo\+Gnuplot}} (std\+::string \+\_\+title, std\+::string \+\_\+extra=std\+::string(\char`\"{}\char`\"{}))
+\item 
+virtual \mbox{\hyperlink{classeo_gnuplot_ae621d46dc6b9d57bdbdd6411e4bf4ed2}{$\sim$eo\+Gnuplot}} ()
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_gnuplot_abbb997ca4c270c5c50cadc778e759666}{class\+Name}} () const
+\item 
+void \mbox{\hyperlink{classeo_gnuplot_ab6bf8aee43645492aee433080b9708bf}{gnuplot\+Command}} (const char $\ast$\+\_\+command)
+\item 
+void \mbox{\hyperlink{classeo_gnuplot_a59f2589543f38db1d38d64a73166c21c}{gnuplot\+Command}} (std\+::string \+\_\+command)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classeo_gnuplot_a0787d73cc56b0ad773d0ee539ca98cb8}{init\+Gnu\+Plot}} (std\+::string \+\_\+title, std\+::string \+\_\+extra)
+\item 
+void \mbox{\hyperlink{classeo_gnuplot_a0787d73cc56b0ad773d0ee539ca98cb8}{init\+Gnu\+Plot}} (std\+::string \+\_\+title, std\+::string \+\_\+extra)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classeo_gnuplot_a2f96564fc72c1dcbff2fc2917341597f}{first\+Time}}
+\item 
+\mbox{\hyperlink{struct_pipe_communication}{P\+Com}} $\ast$ \mbox{\hyperlink{classeo_gnuplot_a8365c84ae93156aadf20bfd2188e194e}{gp\+Com}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned \mbox{\hyperlink{classeo_gnuplot_a55822c61dacdb1b168ff43d42db5e3c3}{num\+Window}} =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for calls to gnuplot
+
+This class is the abstract class that will be used by further gnuplot calls to plots what is already written by some \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} into a file
+
+\begin{DoxyAuthor}{Author}
+Marc Schoenauer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+0 (2001) 
+\end{DoxyVersion}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_gnuplot_aa7e5eb395ec029ab7425145451c39805}\label{classeo_gnuplot_aa7e5eb395ec029ab7425145451c39805}} 
+\index{eoGnuplot@{eoGnuplot}!eoGnuplot@{eoGnuplot}}
+\index{eoGnuplot@{eoGnuplot}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{eoGnuplot()}{eoGnuplot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Gnuplot\+::eo\+Gnuplot (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+title,  }\item[{std\+::string}]{\+\_\+extra = {\ttfamily std\+:\+:string(\char`\"{}\char`\"{})} }\end{DoxyParamCaption})}
+
+Open pipe to Gnuplot.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+title} & Title for gnuplot window. \\
+\hline
+{\em \+\_\+extra} & Extra parameters to gnuplot (default to none\+: \char`\"{}\char`\"{}). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_gnuplot_aeeb6cad70417e24ebd07497b9a411d1d}\label{classeo_gnuplot_aeeb6cad70417e24ebd07497b9a411d1d}} 
+\index{eoGnuplot@{eoGnuplot}!````~eoGnuplot@{$\sim$eoGnuplot}}
+\index{````~eoGnuplot@{$\sim$eoGnuplot}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoGnuplot()}{~eoGnuplot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Gnuplot\+::$\sim$eo\+Gnuplot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor
+
+Close the gnuplot windows if pipe was correctly opened \mbox{\Hypertarget{classeo_gnuplot_aa7e5eb395ec029ab7425145451c39805}\label{classeo_gnuplot_aa7e5eb395ec029ab7425145451c39805}} 
+\index{eoGnuplot@{eoGnuplot}!eoGnuplot@{eoGnuplot}}
+\index{eoGnuplot@{eoGnuplot}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{eoGnuplot()}{eoGnuplot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+Gnuplot\+::eo\+Gnuplot (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+title,  }\item[{std\+::string}]{\+\_\+extra = {\ttfamily std\+:\+:string(\char`\"{}\char`\"{})} }\end{DoxyParamCaption})}
+
+Open pipe to Gnuplot.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+title} & Title for gnuplot window. \\
+\hline
+{\em \+\_\+extra} & Extra parameters to gnuplot (default to none\+: \char`\"{}\char`\"{}). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_gnuplot_ae621d46dc6b9d57bdbdd6411e4bf4ed2}\label{classeo_gnuplot_ae621d46dc6b9d57bdbdd6411e4bf4ed2}} 
+\index{eoGnuplot@{eoGnuplot}!````~eoGnuplot@{$\sim$eoGnuplot}}
+\index{````~eoGnuplot@{$\sim$eoGnuplot}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoGnuplot()}{~eoGnuplot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual eo\+Gnuplot\+::$\sim$eo\+Gnuplot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor
+
+Close the gnuplot windows if pipe was correctly opened 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_gnuplot_abbb997ca4c270c5c50cadc778e759666}\label{classeo_gnuplot_abbb997ca4c270c5c50cadc778e759666}} 
+\index{eoGnuplot@{eoGnuplot}!className@{className}}
+\index{className@{className}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual std\+::string eo\+Gnuplot\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Class name 
+
+Reimplemented in \mbox{\hyperlink{classeo_gnuplot1_d_snapshot_a3ba0ed367f7ec09dd0f65295a7bfd067}{eo\+Gnuplot1\+D\+Snapshot}}, \mbox{\hyperlink{classeo_gnuplot1_d_snapshot_a3ba0ed367f7ec09dd0f65295a7bfd067}{eo\+Gnuplot1\+D\+Snapshot}}, \mbox{\hyperlink{classeo_gnuplot1_d_monitor_a9f851f96ac174b2ad985d82be1bdccf1}{eo\+Gnuplot1\+D\+Monitor}}, and \mbox{\hyperlink{classeo_gnuplot1_d_monitor_a9f851f96ac174b2ad985d82be1bdccf1}{eo\+Gnuplot1\+D\+Monitor}}.
+
+\mbox{\Hypertarget{classeo_gnuplot_abbb997ca4c270c5c50cadc778e759666}\label{classeo_gnuplot_abbb997ca4c270c5c50cadc778e759666}} 
+\index{eoGnuplot@{eoGnuplot}!className@{className}}
+\index{className@{className}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual std\+::string eo\+Gnuplot\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Class name 
+
+Reimplemented in \mbox{\hyperlink{classeo_gnuplot1_d_snapshot_a3ba0ed367f7ec09dd0f65295a7bfd067}{eo\+Gnuplot1\+D\+Snapshot}}, \mbox{\hyperlink{classeo_gnuplot1_d_snapshot_a3ba0ed367f7ec09dd0f65295a7bfd067}{eo\+Gnuplot1\+D\+Snapshot}}, \mbox{\hyperlink{classeo_gnuplot1_d_monitor_a9f851f96ac174b2ad985d82be1bdccf1}{eo\+Gnuplot1\+D\+Monitor}}, and \mbox{\hyperlink{classeo_gnuplot1_d_monitor_a9f851f96ac174b2ad985d82be1bdccf1}{eo\+Gnuplot1\+D\+Monitor}}.
+
+\mbox{\Hypertarget{classeo_gnuplot_ab6bf8aee43645492aee433080b9708bf}\label{classeo_gnuplot_ab6bf8aee43645492aee433080b9708bf}} 
+\index{eoGnuplot@{eoGnuplot}!gnuplotCommand@{gnuplotCommand}}
+\index{gnuplotCommand@{gnuplotCommand}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{gnuplotCommand()}{gnuplotCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void eo\+Gnuplot\+::gnuplot\+Command (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+command }\end{DoxyParamCaption})}
+
+Send command to gnuplot \mbox{\Hypertarget{classeo_gnuplot_ab6bf8aee43645492aee433080b9708bf}\label{classeo_gnuplot_ab6bf8aee43645492aee433080b9708bf}} 
+\index{eoGnuplot@{eoGnuplot}!gnuplotCommand@{gnuplotCommand}}
+\index{gnuplotCommand@{gnuplotCommand}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{gnuplotCommand()}{gnuplotCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void eo\+Gnuplot\+::gnuplot\+Command (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+command }\end{DoxyParamCaption})}
+
+Send command to gnuplot \mbox{\Hypertarget{classeo_gnuplot_a59f2589543f38db1d38d64a73166c21c}\label{classeo_gnuplot_a59f2589543f38db1d38d64a73166c21c}} 
+\index{eoGnuplot@{eoGnuplot}!gnuplotCommand@{gnuplotCommand}}
+\index{gnuplotCommand@{gnuplotCommand}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{gnuplotCommand()}{gnuplotCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void eo\+Gnuplot\+::gnuplot\+Command (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+command }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Send command to gnuplot
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \mbox{\Hypertarget{classeo_gnuplot_a59f2589543f38db1d38d64a73166c21c}\label{classeo_gnuplot_a59f2589543f38db1d38d64a73166c21c}} 
+\index{eoGnuplot@{eoGnuplot}!gnuplotCommand@{gnuplotCommand}}
+\index{gnuplotCommand@{gnuplotCommand}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{gnuplotCommand()}{gnuplotCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void eo\+Gnuplot\+::gnuplot\+Command (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+command }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Send command to gnuplot
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \mbox{\Hypertarget{classeo_gnuplot_a0787d73cc56b0ad773d0ee539ca98cb8}\label{classeo_gnuplot_a0787d73cc56b0ad773d0ee539ca98cb8}} 
+\index{eoGnuplot@{eoGnuplot}!initGnuPlot@{initGnuPlot}}
+\index{initGnuPlot@{initGnuPlot}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{initGnuPlot()}{initGnuPlot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Gnuplot\+::init\+Gnu\+Plot (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+title,  }\item[{std\+::string}]{\+\_\+extra }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Initialize gnuplot
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+title} & Title for gnuplot window. \\
+\hline
+{\em \+\_\+extra} & Extra parameters to gnuplot. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_gnuplot_a0787d73cc56b0ad773d0ee539ca98cb8}\label{classeo_gnuplot_a0787d73cc56b0ad773d0ee539ca98cb8}} 
+\index{eoGnuplot@{eoGnuplot}!initGnuPlot@{initGnuPlot}}
+\index{initGnuPlot@{initGnuPlot}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{initGnuPlot()}{initGnuPlot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Gnuplot\+::init\+Gnu\+Plot (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+title,  }\item[{std\+::string}]{\+\_\+extra }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Initialize gnuplot
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+title} & Title for gnuplot window. \\
+\hline
+{\em \+\_\+extra} & Extra parameters to gnuplot. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classeo_gnuplot_a2f96564fc72c1dcbff2fc2917341597f}\label{classeo_gnuplot_a2f96564fc72c1dcbff2fc2917341597f}} 
+\index{eoGnuplot@{eoGnuplot}!firstTime@{firstTime}}
+\index{firstTime@{firstTime}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{firstTime}{firstTime}}
+{\footnotesize\ttfamily bool eo\+Gnuplot\+::first\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+The stats might be unknown in Ctor \mbox{\Hypertarget{classeo_gnuplot_a8365c84ae93156aadf20bfd2188e194e}\label{classeo_gnuplot_a8365c84ae93156aadf20bfd2188e194e}} 
+\index{eoGnuplot@{eoGnuplot}!gpCom@{gpCom}}
+\index{gpCom@{gpCom}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{gpCom}{gpCom}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pipe_communication}{P\+Com}} $\ast$ eo\+Gnuplot\+::gp\+Com\hspace{0.3cm}{\ttfamily [protected]}}
+
+Communication with gnuplot OK \mbox{\Hypertarget{classeo_gnuplot_a55822c61dacdb1b168ff43d42db5e3c3}\label{classeo_gnuplot_a55822c61dacdb1b168ff43d42db5e3c3}} 
+\index{eoGnuplot@{eoGnuplot}!numWindow@{numWindow}}
+\index{numWindow@{numWindow}!eoGnuplot@{eoGnuplot}}
+\doxysubsubsection{\texorpdfstring{numWindow}{numWindow}}
+{\footnotesize\ttfamily static unsigned eo\+Gnuplot\+::num\+Window =0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Internal counter for gnuplot windows 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Gnuplot.\+h\item 
+deprecated/eo/src/utils/eo\+Gnuplot.\+cpp\end{DoxyCompactItemize}

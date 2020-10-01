@@ -1,0 +1,213 @@
+\hypertarget{classmoeo_sharing_diversity_assignment}{}\doxysection{moeo\+Sharing\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_sharing_diversity_assignment}\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Sharing\+Diversity\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Sharing\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_sharing_diversity_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Sharing\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_sharing_diversity_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a5e92f136f41363dcb8a6df94dbf2f3b3}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a10ba0d2cdd57ce47244afdf4b1623409}{moeo\+Sharing\+Diversity\+Assignment}} (\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&\+\_\+distance, double \+\_\+niche\+Size=0.\+5, double \+\_\+alpha=1.\+0)
+\item 
+\mbox{\hyperlink{classmoeo_sharing_diversity_assignment_accc66529da0cacd3f11a019ebe646668}{moeo\+Sharing\+Diversity\+Assignment}} (double \+\_\+niche\+Size=0.\+5, double \+\_\+alpha=1.\+0)
+\item 
+void \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a6228be85e166172cf03def1a004505d5}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a21c8d6e020af23b2be219b7e02248300}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_ac01f6ac1abba3799f5c4b6c0608dac55}{set\+Similarities}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+double \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a5b5daaa55e97c6fcd172d61c7837e26c}{sh}} (double \+\_\+dist)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \& \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_ab81d950d0469ebd4c769994bcea58f8b}{distance}}
+\item 
+\mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_aecde6f1a0ba15d9ec563396a585188f0}{default\+Distance}}
+\item 
+double \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a175d978d4b56603a3bcb45fec8395441}{niche\+Size}}
+\item 
+double \mbox{\hyperlink{classmoeo_sharing_diversity_assignment_a95ed49448a35d5b99cdfd496a33fd45b}{alpha}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Sharing\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Sharing assignment scheme originally porposed by\+: D. E. Goldberg, \char`\"{}\+Genetic Algorithms in Search, Optimization and Machine Learning\char`\"{}, Addision-\/\+Wesley, MA, U\+SA (1989). 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_a5e92f136f41363dcb8a6df94dbf2f3b3}\label{classmoeo_sharing_diversity_assignment_a5e92f136f41363dcb8a6df94dbf2f3b3}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_a10ba0d2cdd57ce47244afdf4b1623409}\label{classmoeo_sharing_diversity_assignment_a10ba0d2cdd57ce47244afdf4b1623409}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!moeoSharingDiversityAssignment@{moeoSharingDiversityAssignment}}
+\index{moeoSharingDiversityAssignment@{moeoSharingDiversityAssignment}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSharingDiversityAssignment()}{moeoSharingDiversityAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, double $>$ \&}]{\+\_\+distance,  }\item[{double}]{\+\_\+niche\+Size = {\ttfamily 0.5},  }\item[{double}]{\+\_\+alpha = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+distance} & the distance used to compute the neighborhood of solutions (can be related to the decision space or the objective space) \\
+\hline
+{\em \+\_\+niche\+Size} & neighborhood size in terms of radius distance (closely related to the way the distances are computed) \\
+\hline
+{\em \+\_\+alpha} & parameter used to regulate the shape of the sharing function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_accc66529da0cacd3f11a019ebe646668}\label{classmoeo_sharing_diversity_assignment_accc66529da0cacd3f11a019ebe646668}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!moeoSharingDiversityAssignment@{moeoSharingDiversityAssignment}}
+\index{moeoSharingDiversityAssignment@{moeoSharingDiversityAssignment}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoSharingDiversityAssignment()}{moeoSharingDiversityAssignment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+niche\+Size = {\ttfamily 0.5},  }\item[{double}]{\+\_\+alpha = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with an euclidean distance (with normalized objective values) in the objective space is used as default 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+niche\+Size} & neighborhood size in terms of radius distance (closely related to the way the distances are computed) \\
+\hline
+{\em \+\_\+alpha} & parameter used to regulate the shape of the sharing function \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_a6228be85e166172cf03def1a004505d5}\label{classmoeo_sharing_diversity_assignment_a6228be85e166172cf03def1a004505d5}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets diversity values for every solution contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_ac01f6ac1abba3799f5c4b6c0608dac55}\label{classmoeo_sharing_diversity_assignment_ac01f6ac1abba3799f5c4b6c0608dac55}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!setSimilarities@{setSimilarities}}
+\index{setSimilarities@{setSimilarities}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setSimilarities()}{setSimilarities()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::set\+Similarities (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Sets similarities for every solution contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_a5b5daaa55e97c6fcd172d61c7837e26c}\label{classmoeo_sharing_diversity_assignment_a5b5daaa55e97c6fcd172d61c7837e26c}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!sh@{sh}}
+\index{sh@{sh}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{sh()}{sh()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::sh (\begin{DoxyParamCaption}\item[{double}]{\+\_\+dist }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Sharing function 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dist} & the distance value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_a21c8d6e020af23b2be219b7e02248300}\label{classmoeo_sharing_diversity_assignment_a21c8d6e020af23b2be219b7e02248300}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyWarning}{Warning}
+N\+OT I\+M\+P\+L\+E\+M\+E\+N\+T\+ED, DO N\+O\+T\+H\+I\+NG ! Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+N\+OT I\+M\+P\+L\+E\+M\+E\+N\+T\+ED, DO N\+O\+T\+H\+I\+NG ! 
+\end{DoxyWarning}
+
+
+Implements \mbox{\hyperlink{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}{moeo\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_a95ed49448a35d5b99cdfd496a33fd45b}\label{classmoeo_sharing_diversity_assignment_a95ed49448a35d5b99cdfd496a33fd45b}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!alpha@{alpha}}
+\index{alpha@{alpha}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::alpha\hspace{0.3cm}{\ttfamily [protected]}}
+
+parameter used to regulate the shape of the sharing function \mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_aecde6f1a0ba15d9ec563396a585188f0}\label{classmoeo_sharing_diversity_assignment_aecde6f1a0ba15d9ec563396a585188f0}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!defaultDistance@{defaultDistance}}
+\index{defaultDistance@{defaultDistance}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{defaultDistance}{defaultDistance}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}}$<$ M\+O\+E\+OT $>$ \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::default\+Distance\hspace{0.3cm}{\ttfamily [protected]}}
+
+euclidean distancein the objective space (can be used as default) \mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_ab81d950d0469ebd4c769994bcea58f8b}\label{classmoeo_sharing_diversity_assignment_ab81d950d0469ebd4c769994bcea58f8b}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!distance@{distance}}
+\index{distance@{distance}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{distance}{distance}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT , double $>$\& \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::distance\hspace{0.3cm}{\ttfamily [protected]}}
+
+the distance used to compute the neighborhood of solutions \mbox{\Hypertarget{classmoeo_sharing_diversity_assignment_a175d978d4b56603a3bcb45fec8395441}\label{classmoeo_sharing_diversity_assignment_a175d978d4b56603a3bcb45fec8395441}} 
+\index{moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}!nicheSize@{nicheSize}}
+\index{nicheSize@{nicheSize}!moeoSharingDiversityAssignment$<$ MOEOT $>$@{moeoSharingDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{nicheSize}{nicheSize}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_sharing_diversity_assignment}{moeo\+Sharing\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::niche\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+neighborhood size in terms of radius distance 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/diversity/moeo\+Sharing\+Diversity\+Assignment.\+h\end{DoxyCompactItemize}

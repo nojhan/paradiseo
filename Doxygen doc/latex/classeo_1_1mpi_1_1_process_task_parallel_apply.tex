@@ -1,0 +1,56 @@
+\hypertarget{classeo_1_1mpi_1_1_process_task_parallel_apply}{}\doxysection{eo\+::mpi\+::Process\+Task\+Parallel\+Apply$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_1_1mpi_1_1_process_task_parallel_apply}\index{eo::mpi::ProcessTaskParallelApply$<$ EOT $>$@{eo::mpi::ProcessTaskParallelApply$<$ EOT $>$}}
+
+
+Process task functor implementation for the parallel apply (map) job.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Parallel\+Apply.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Process\+Task\+Parallel\+Apply$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_process_task_parallel_apply__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Process\+Task\+Parallel\+Apply$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_1_1mpi_1_1_process_task_parallel_apply__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_process_task_parallel_apply_a7698a1bd57bea1a50678814a30261a99}\label{classeo_1_1mpi_1_1_process_task_parallel_apply_a7698a1bd57bea1a50678814a30261a99}} 
+{\bfseries Process\+Task\+Parallel\+Apply} (\mbox{\hyperlink{classeo_1_1mpi_1_1_process_task_parallel_apply}{Process\+Task\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$w=0)
+\item 
+\mbox{\Hypertarget{classeo_1_1mpi_1_1_process_task_parallel_apply_af78355eb5ab6173374664fa8c74cf716}\label{classeo_1_1mpi_1_1_process_task_parallel_apply_af78355eb5ab6173374664fa8c74cf716}} 
+void \mbox{\hyperlink{classeo_1_1mpi_1_1_process_task_parallel_apply_af78355eb5ab6173374664fa8c74cf716}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+::mpi\+::\+Process\+Task\+Parallel\+Apply$<$ E\+O\+T $>$}
+
+Process task functor implementation for the parallel apply (map) job. 
+
+Worker side\+: apply the function to the given slice of data.
+
+Implementation details\+: retrieves the number of elements to evaluate, retrieves them, applies the function and then returns the results. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_parallel_apply_8h}{eo\+Parallel\+Apply.\+h}}\end{DoxyCompactItemize}

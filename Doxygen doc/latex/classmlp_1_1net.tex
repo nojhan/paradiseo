@@ -1,0 +1,139 @@
+\hypertarget{classmlp_1_1net}{}\doxysection{mlp\+::net Class Reference}
+\label{classmlp_1_1net}\index{mlp::net@{mlp::net}}
+
+
+Inheritance diagram for mlp\+::net\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classmlp_1_1net__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mlp\+::net\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classmlp_1_1net__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_af439b60550193a6c196111c4e2fa323e}\label{classmlp_1_1net_af439b60550193a6c196111c4e2fa323e}} 
+{\bfseries net} (const unsigned \&num\+\_\+inputs=0, const unsigned \&num\+\_\+outputs=0, const std\+::vector$<$ unsigned $>$ \&hidden=std\+::vector$<$ unsigned $>$())
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_ae649db8072e23dc3ff43625ed43920e8}\label{classmlp_1_1net_ae649db8072e23dc3ff43625ed43920e8}} 
+{\bfseries net} (istream \&is)
+\item 
+virtual \mbox{\hyperlink{classmlp_1_1net_abfc23d1eab8c80ea917b0656618306df}{$\sim$net}} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_aa39cdcabdecbfcb06338c72ed421c6fd}\label{classmlp_1_1net_aa39cdcabdecbfcb06338c72ed421c6fd}} 
+void {\bfseries load} (istream \&is)
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a59f67a92988eac381c72a6ad7a212ff3}\label{classmlp_1_1net_a59f67a92988eac381c72a6ad7a212ff3}} 
+void {\bfseries init} (unsigned num\+\_\+inputs, unsigned num\+\_\+outputs, const std\+::vector$<$ unsigned $>$ \&hidden)
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_aeeec97f7fdb10c6a7297e13734c1f8c5}\label{classmlp_1_1net_aeeec97f7fdb10c6a7297e13734c1f8c5}} 
+void {\bfseries reset} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a2abf9e5a2852e81cfe5facf533404b1b}\label{classmlp_1_1net_a2abf9e5a2852e81cfe5facf533404b1b}} 
+virtual vector {\bfseries operator()} (const vector \&input) const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a85bdd204a430fd5b5fa7a2cdd5434c79}\label{classmlp_1_1net_a85bdd204a430fd5b5fa7a2cdd5434c79}} 
+unsigned {\bfseries winner} (const vector \&input) const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_ac8d4670202672b4c612e971ca7ab3412}\label{classmlp_1_1net_ac8d4670202672b4c612e971ca7ab3412}} 
+void {\bfseries save} (ostream \&os) const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_aa8435c2246c3358aa3c4b9107092e977}\label{classmlp_1_1net_aa8435c2246c3358aa3c4b9107092e977}} 
+unsigned {\bfseries num\+\_\+inputs} () const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a4a22f04bab882c031ebb1dafe6614328}\label{classmlp_1_1net_a4a22f04bab882c031ebb1dafe6614328}} 
+unsigned {\bfseries num\+\_\+outputs} () const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a66ad34f5e7953b7ae87d0607dc347149}\label{classmlp_1_1net_a66ad34f5e7953b7ae87d0607dc347149}} 
+unsigned {\bfseries num\+\_\+hidden\+\_\+layers} () const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a283ca6c6f6d468ed16fe8e830a4ff791}\label{classmlp_1_1net_a283ca6c6f6d468ed16fe8e830a4ff791}} 
+unsigned {\bfseries length} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a21b4b217eb050c91774c152c3126d9b7}\label{classmlp_1_1net_a21b4b217eb050c91774c152c3126d9b7}} 
+void {\bfseries normalize} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a29a71c002713c1c0ddc0473c6121b2e4}\label{classmlp_1_1net_a29a71c002713c1c0ddc0473c6121b2e4}} 
+void {\bfseries desaturate} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_ad380e978d65eb853c79928835291482e}\label{classmlp_1_1net_ad380e978d65eb853c79928835291482e}} 
+void {\bfseries perturb} (double magnitude=0.\+3, double probability=1.\+0)
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_af439b60550193a6c196111c4e2fa323e}\label{classmlp_1_1net_af439b60550193a6c196111c4e2fa323e}} 
+{\bfseries net} (const unsigned \&num\+\_\+inputs=0, const unsigned \&num\+\_\+outputs=0, const std\+::vector$<$ unsigned $>$ \&hidden=std\+::vector$<$ unsigned $>$())
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_ae649db8072e23dc3ff43625ed43920e8}\label{classmlp_1_1net_ae649db8072e23dc3ff43625ed43920e8}} 
+{\bfseries net} (istream \&is)
+\item 
+virtual \mbox{\hyperlink{classmlp_1_1net_abfc23d1eab8c80ea917b0656618306df}{$\sim$net}} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_aa39cdcabdecbfcb06338c72ed421c6fd}\label{classmlp_1_1net_aa39cdcabdecbfcb06338c72ed421c6fd}} 
+void {\bfseries load} (istream \&is)
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a59f67a92988eac381c72a6ad7a212ff3}\label{classmlp_1_1net_a59f67a92988eac381c72a6ad7a212ff3}} 
+void {\bfseries init} (unsigned num\+\_\+inputs, unsigned num\+\_\+outputs, const std\+::vector$<$ unsigned $>$ \&hidden)
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_aeeec97f7fdb10c6a7297e13734c1f8c5}\label{classmlp_1_1net_aeeec97f7fdb10c6a7297e13734c1f8c5}} 
+void {\bfseries reset} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a013d2d18cfb7059a2cf4d635a72e53ac}\label{classmlp_1_1net_a013d2d18cfb7059a2cf4d635a72e53ac}} 
+virtual vector {\bfseries operator()} (const vector \&input) const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a85bdd204a430fd5b5fa7a2cdd5434c79}\label{classmlp_1_1net_a85bdd204a430fd5b5fa7a2cdd5434c79}} 
+unsigned {\bfseries winner} (const vector \&input) const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_ac8d4670202672b4c612e971ca7ab3412}\label{classmlp_1_1net_ac8d4670202672b4c612e971ca7ab3412}} 
+void {\bfseries save} (ostream \&os) const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_aa8435c2246c3358aa3c4b9107092e977}\label{classmlp_1_1net_aa8435c2246c3358aa3c4b9107092e977}} 
+unsigned {\bfseries num\+\_\+inputs} () const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a4a22f04bab882c031ebb1dafe6614328}\label{classmlp_1_1net_a4a22f04bab882c031ebb1dafe6614328}} 
+unsigned {\bfseries num\+\_\+outputs} () const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a66ad34f5e7953b7ae87d0607dc347149}\label{classmlp_1_1net_a66ad34f5e7953b7ae87d0607dc347149}} 
+unsigned {\bfseries num\+\_\+hidden\+\_\+layers} () const
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a283ca6c6f6d468ed16fe8e830a4ff791}\label{classmlp_1_1net_a283ca6c6f6d468ed16fe8e830a4ff791}} 
+unsigned {\bfseries length} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a21b4b217eb050c91774c152c3126d9b7}\label{classmlp_1_1net_a21b4b217eb050c91774c152c3126d9b7}} 
+void {\bfseries normalize} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_a29a71c002713c1c0ddc0473c6121b2e4}\label{classmlp_1_1net_a29a71c002713c1c0ddc0473c6121b2e4}} 
+void {\bfseries desaturate} ()
+\item 
+\mbox{\Hypertarget{classmlp_1_1net_ad380e978d65eb853c79928835291482e}\label{classmlp_1_1net_ad380e978d65eb853c79928835291482e}} 
+void {\bfseries perturb} (double magnitude=0.\+3, double probability=1.\+0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmlp_1_1net_abfc23d1eab8c80ea917b0656618306df}\label{classmlp_1_1net_abfc23d1eab8c80ea917b0656618306df}} 
+\index{mlp::net@{mlp::net}!````~net@{$\sim$net}}
+\index{````~net@{$\sim$net}!mlp::net@{mlp::net}}
+\doxysubsubsection{\texorpdfstring{$\sim$net()}{~net()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual mlp\+::net\+::$\sim$net (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Virtual destructor \mbox{\Hypertarget{classmlp_1_1net_abfc23d1eab8c80ea917b0656618306df}\label{classmlp_1_1net_abfc23d1eab8c80ea917b0656618306df}} 
+\index{mlp::net@{mlp::net}!````~net@{$\sim$net}}
+\index{````~net@{$\sim$net}!mlp::net@{mlp::net}}
+\doxysubsubsection{\texorpdfstring{$\sim$net()}{~net()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual mlp\+::net\+::$\sim$net (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Virtual destructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/app/gprop/mlp.\+h\end{DoxyCompactItemize}

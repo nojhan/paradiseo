@@ -1,0 +1,147 @@
+\hypertarget{classmo_neighbor}{}\doxysection{mo\+Neighbor$<$ E\+O\+Type, Fitness $>$ Class Template Reference}
+\label{classmo_neighbor}\index{moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighbor.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighbor$<$ E\+O\+Type, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classmo_neighbor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighbor$<$ E\+O\+Type, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classmo_neighbor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_a1dc4890c2b45e90db425aea68181627b}\label{classmo_neighbor_a1dc4890c2b45e90db425aea68181627b}} 
+typedef E\+O\+Type {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neighbor_a230b9adb0fb16db50a754606c74e0dfd}{mo\+Neighbor}} ()
+\item 
+\mbox{\hyperlink{classmo_neighbor_ae4ed0421f011b3bb404c08f6c4e51b5b}{mo\+Neighbor}} (const \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+OT, Fitness $>$ \&\+\_\+neighbor)
+\item 
+virtual \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+OT, Fitness $>$ \& \mbox{\hyperlink{classmo_neighbor_a7ecdaf6f6adbcb1182bd0be2de1e2def}{operator=}} (const \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+OT, Fitness $>$ \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighbor_a8f7c2d49ae656a7da9611fc59dc8a80f}{move}} (E\+OT \&\+\_\+solution)=0
+\item 
+virtual bool \mbox{\hyperlink{classmo_neighbor_a1891af5404194c2c814010cec036edf6}{equals}} (\mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+OT, Fitness $>$ \&\+\_\+neighbor)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor_add2e6ebf5482d5275748ca2abb332b60}{class\+Name}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+O\+Type, class Fitness = typename E\+O\+Type\+::\+Fitness$>$\newline
+class mo\+Neighbor$<$ E\+O\+Type, Fitness $>$}
+
+Container of the neighbor informations 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neighbor_a230b9adb0fb16db50a754606c74e0dfd}\label{classmo_neighbor_a230b9adb0fb16db50a754606c74e0dfd}} 
+\index{moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}!moNeighbor@{moNeighbor}}
+\index{moNeighbor@{moNeighbor}!moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighbor()}{moNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+O\+Type , class Fitness  = typename E\+O\+Type\+::\+Fitness$>$ \\
+\mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+O\+Type, Fitness $>$\+::\mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Constructor \mbox{\Hypertarget{classmo_neighbor_ae4ed0421f011b3bb404c08f6c4e51b5b}\label{classmo_neighbor_ae4ed0421f011b3bb404c08f6c4e51b5b}} 
+\index{moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}!moNeighbor@{moNeighbor}}
+\index{moNeighbor@{moNeighbor}!moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighbor()}{moNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+O\+Type , class Fitness  = typename E\+O\+Type\+::\+Fitness$>$ \\
+\mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+O\+Type, Fitness $>$\+::\mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+OT, Fitness $>$ \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighbor} & to copy \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighbor_add2e6ebf5482d5275748ca2abb332b60}\label{classmo_neighbor_add2e6ebf5482d5275748ca2abb332b60}} 
+\index{moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}!className@{className}}
+\index{className@{className}!moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+O\+Type , class Fitness  = typename E\+O\+Type\+::\+Fitness$>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+O\+Type, Fitness $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_index_neighbor_a5677017fdc29481fd851261935063db4}{mo\+Index\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$}}, \mbox{\hyperlink{classmo_index_neighbor_a5677017fdc29481fd851261935063db4}{mo\+Index\+Neighbor$<$ eo\+Bit$<$ Fitness $>$ $>$}}, \mbox{\hyperlink{classmo_index_neighbor_a5677017fdc29481fd851261935063db4}{mo\+Index\+Neighbor$<$ Solution, Objective\+Vector $>$}}, \mbox{\hyperlink{classmo_index_neighbor_a5677017fdc29481fd851261935063db4}{mo\+Index\+Neighbor$<$ eo\+Bit$<$ double $>$ $>$}}, and \mbox{\hyperlink{classmo_bit_neighbor_a34e921c45d1a1201820b235fc66efdc3}{mo\+Bit\+Neighbor$<$ double $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_a1891af5404194c2c814010cec036edf6}\label{classmo_neighbor_a1891af5404194c2c814010cec036edf6}} 
+\index{moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}!equals@{equals}}
+\index{equals@{equals}!moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{equals()}{equals()}}
+{\footnotesize\ttfamily template$<$class E\+O\+Type , class Fitness  = typename E\+O\+Type\+::\+Fitness$>$ \\
+virtual bool \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+O\+Type, Fitness $>$\+::equals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+OT, Fitness $>$ \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} equality between two neighbors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighbor} & a neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if \+\_\+neighbor and this one are equals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_neighbor_a8f7c2d49ae656a7da9611fc59dc8a80f}\label{classmo_neighbor_a8f7c2d49ae656a7da9611fc59dc8a80f}} 
+\index{moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}!move@{move}}
+\index{move@{move}!moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$class E\+O\+Type , class Fitness  = typename E\+O\+Type\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+O\+Type, Fitness $>$\+::move (\begin{DoxyParamCaption}\item[{E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Move a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the related solution \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_dummy_backable_neighbor_ac15760efd5a0189f4a0a2eb9fdc9bf21}{mo\+Dummy\+Backable\+Neighbor}}, \mbox{\hyperlink{class_sol_neighbor_a4f359bbbc0a2ae36d6971615073edb25}{Sol\+Neighbor}}, \mbox{\hyperlink{classmo_dummy_neighbor_test_ad2eb0e44de03898c8c2e0efb40ae3d4c}{mo\+Dummy\+Neighbor\+Test}}, \mbox{\hyperlink{classmo_bits_neighbor_a5f37e2c30e608b7471fe348ad325423b}{mo\+Bits\+Neighbor$<$ E\+O\+T, Fitness $>$}}, \mbox{\hyperlink{classmo_indexed_swap_neighbor_ac51e5bb143de63ab7bea090adcf0e8db}{mo\+Indexed\+Swap\+Neighbor$<$ E\+O\+T, Fitness $>$}}, \mbox{\hyperlink{classmo_bit_neighbor_ad30d6e4116a44380d7cfac887e32e8a0}{mo\+Bit\+Neighbor$<$ Fitness $>$}}, \mbox{\hyperlink{classmo_bit_neighbor_ad30d6e4116a44380d7cfac887e32e8a0}{mo\+Bit\+Neighbor$<$ double $>$}}, \mbox{\hyperlink{classmo_shift_neighbor_a2b1ec2bcc0ff2361ee641446a8618e79}{mo\+Shift\+Neighbor$<$ E\+O\+T, Fitness $>$}}, \mbox{\hyperlink{classmo_dummy_neighbor_a0e01035ed808a35b594eea148bb93b3b}{mo\+Dummy\+Neighbor$<$ E\+O\+T, Fitness $>$}}, \mbox{\hyperlink{classmo_swap_neighbor_ab847d478f2ac2754764cf31134233461}{mo\+Swap\+Neighbor$<$ E\+O\+T, Fitness $>$}}, and \mbox{\hyperlink{classmo_two_opt_ex_neighbor_a21688544b4a32c7ba8bbd7c7a1a92c88}{mo\+Two\+Opt\+Ex\+Neighbor$<$ E\+O\+T, Fitness $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_a7ecdaf6f6adbcb1182bd0be2de1e2def}\label{classmo_neighbor_a7ecdaf6f6adbcb1182bd0be2de1e2def}} 
+\index{moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!moNeighbor$<$ EOType, Fitness $>$@{moNeighbor$<$ EOType, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$class E\+O\+Type , class Fitness  = typename E\+O\+Type\+::\+Fitness$>$ \\
+virtual \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$E\+OT, Fitness$>$\& \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+O\+Type, Fitness $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmo_neighbor}{mo\+Neighbor}}$<$ E\+OT, Fitness $>$ \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Assignment operator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighbor} & the neighbor to assign \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a neighbor equal to the other 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/neighborhood/mo\+Neighbor.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,128 @@
+\hypertarget{classeo_fl_or_all_mutation}{}\doxysection{eo\+Fl\+Or\+All\+Mutation$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_fl_or_all_mutation}\index{eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Fl\+Or\+Mon\+Op.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Fl\+Or\+All\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_fl_or_all_mutation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Fl\+Or\+All\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_fl_or_all_mutation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_fl_or_all_mutation_a85d131bbd384564f7bf153aaf6235e11}\label{classeo_fl_or_all_mutation_a85d131bbd384564f7bf153aaf6235e11}} 
+typedef E\+O\+T\+::\+Atom\+Type {\bfseries Atom\+Type}
+\item 
+\mbox{\Hypertarget{classeo_fl_or_all_mutation_a85d131bbd384564f7bf153aaf6235e11}\label{classeo_fl_or_all_mutation_a85d131bbd384564f7bf153aaf6235e11}} 
+typedef E\+O\+T\+::\+Atom\+Type {\bfseries Atom\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_fl_or_all_mutation_ad2490d701b24a4749b699bc6d9e2d79e}{eo\+Fl\+Or\+All\+Mutation}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ Atom\+Type $>$ \&\+\_\+atom\+Mutation, double \+\_\+rate=1.\+0)
+\item 
+bool \mbox{\hyperlink{classeo_fl_or_all_mutation_a9002ad6dc2d37b23a7192122ffcae293}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_fl_or_all_mutation_a2ba8189e01ff9e6b0fb6186918438ab1}{class\+Name}} () const
+\item 
+\mbox{\hyperlink{classeo_fl_or_all_mutation_ad2490d701b24a4749b699bc6d9e2d79e}{eo\+Fl\+Or\+All\+Mutation}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ Atom\+Type $>$ \&\+\_\+atom\+Mutation, double \+\_\+rate=1.\+0)
+\item 
+bool \mbox{\hyperlink{classeo_fl_or_all_mutation_a9002ad6dc2d37b23a7192122ffcae293}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+virtual std\+::string \mbox{\hyperlink{classeo_fl_or_all_mutation_a2ba8189e01ff9e6b0fb6186918438ab1}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Fl\+Or\+All\+Mutation$<$ E\+O\+T $>$}
+
+Base classes for generic mutations on fixed length chromosomes. Contains 2 classes that both use an atomic mutation \mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}} applies the atom mutation to all components with given rate \mbox{\hyperlink{classeo_fl_or_k_mutation}{eo\+Fl\+Or\+K\+Mutation}} applies the atom mutation to a fixed nb of components
+
+Remark\+: the standard bit-\/flip mutation is an \mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}} with atom mutation == bitflipping applies an atomic mutation to all the components with a given rate 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_fl_or_all_mutation_ad2490d701b24a4749b699bc6d9e2d79e}\label{classeo_fl_or_all_mutation_ad2490d701b24a4749b699bc6d9e2d79e}} 
+\index{eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}!eoFlOrAllMutation@{eoFlOrAllMutation}}
+\index{eoFlOrAllMutation@{eoFlOrAllMutation}!eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoFlOrAllMutation()}{eoFlOrAllMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ Atom\+Type $>$ \&}]{\+\_\+atom\+Mutation,  }\item[{double}]{\+\_\+rate = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctor\+: requires an Atom mutation and a rate \mbox{\Hypertarget{classeo_fl_or_all_mutation_ad2490d701b24a4749b699bc6d9e2d79e}\label{classeo_fl_or_all_mutation_ad2490d701b24a4749b699bc6d9e2d79e}} 
+\index{eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}!eoFlOrAllMutation@{eoFlOrAllMutation}}
+\index{eoFlOrAllMutation@{eoFlOrAllMutation}!eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoFlOrAllMutation()}{eoFlOrAllMutation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ Atom\+Type $>$ \&}]{\+\_\+atom\+Mutation,  }\item[{double}]{\+\_\+rate = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctor\+: requires an Atom mutation and a rate 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_fl_or_all_mutation_a2ba8189e01ff9e6b0fb6186918438ab1}\label{classeo_fl_or_all_mutation_a2ba8189e01ff9e6b0fb6186918438ab1}} 
+\index{eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited class\+Name() 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_fl_or_all_mutation_a2ba8189e01ff9e6b0fb6186918438ab1}\label{classeo_fl_or_all_mutation_a2ba8189e01ff9e6b0fb6186918438ab1}} 
+\index{eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}!className@{className}}
+\index{className@{className}!eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+inherited class\+Name() 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classeo_fl_or_all_mutation_a9002ad6dc2d37b23a7192122ffcae293}\label{classeo_fl_or_all_mutation_a9002ad6dc2d37b23a7192122ffcae293}} 
+\index{eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+applies the atom mutation to all components with given rate 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classeo_fl_or_all_mutation_a9002ad6dc2d37b23a7192122ffcae293}\label{classeo_fl_or_all_mutation_a9002ad6dc2d37b23a7192122ffcae293}} 
+\index{eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFlOrAllMutation$<$ EOT $>$@{eoFlOrAllMutation$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classeo_fl_or_all_mutation}{eo\+Fl\+Or\+All\+Mutation}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+eo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+applies the atom mutation to all components with given rate 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Fl\+Or\+Mon\+Op.\+h\end{DoxyCompactItemize}

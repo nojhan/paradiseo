@@ -1,0 +1,200 @@
+\hypertarget{classmo_checkpoint}{}\doxysection{mo\+Checkpoint$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_checkpoint}\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Checkpoint.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Checkpoint$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_checkpoint__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Checkpoint$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_checkpoint__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_checkpoint_aab078a225fce7549538eef95ccbe83c4}\label{classmo_checkpoint_aab078a225fce7549538eef95ccbe83c4}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_checkpoint_af0bff15dcfacf46c546c904b9a9db5bc}{mo\+Checkpoint}} (\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont, unsigned int \+\_\+interval=1)
+\item 
+void \mbox{\hyperlink{classmo_checkpoint_a5f4bf8cf27c9eef114d385ca8bacfefc}{add}} (\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+void \mbox{\hyperlink{classmo_checkpoint_ab44a9c7168cad4aaf11c7702560946ab}{add}} (\mbox{\hyperlink{classmo_stat_base}{mo\+Stat\+Base}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+stat)
+\item 
+void \mbox{\hyperlink{classmo_checkpoint_aa8842ccf50fe57ba659d4b057affc903}{add}} (\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&\+\_\+mon)
+\item 
+void \mbox{\hyperlink{classmo_checkpoint_adb044eac0e630fba934c2d414f15a3ce}{add}} (\mbox{\hyperlink{classeo_updater}{eo\+Updater}} \&\+\_\+upd)
+\item 
+void \mbox{\hyperlink{classmo_checkpoint_a84bbd2d52c6e8d3831a7dbecfdbbb9a3}{add}} (\mbox{\hyperlink{classmo_updater}{mo\+Updater}} \&\+\_\+moupd)
+\item 
+virtual void \mbox{\hyperlink{classmo_checkpoint_a7c021b914ac171968aab660bdb0e5ab0}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_checkpoint_ada77df5c6a9eecec7a8e12bc6d24a042}{class\+Name}} (void) const
+\item 
+bool \mbox{\hyperlink{classmo_checkpoint_a523547194ebc4d69795b112fa52bc725}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+void \mbox{\hyperlink{classmo_checkpoint_a7d2d30a027753e664fe8c68a40277494}{last\+Call}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Checkpoint$<$ Neighbor $>$}
+
+Continuator allowing to add others (continuators, stats, monitors or updaters) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_checkpoint_af0bff15dcfacf46c546c904b9a9db5bc}\label{classmo_checkpoint_af0bff15dcfacf46c546c904b9a9db5bc}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!moCheckpoint@{moCheckpoint}}
+\index{moCheckpoint@{moCheckpoint}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moCheckpoint()}{moCheckpoint()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont,  }\item[{unsigned int}]{\+\_\+interval = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor (\mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}} must have at least one continuator) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+cont} & a continuator \\
+\hline
+{\em \+\_\+interval} & frequency to compute statistical operators \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_checkpoint_aa8842ccf50fe57ba659d4b057affc903}\label{classmo_checkpoint_aa8842ccf50fe57ba659d4b057affc903}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \&}]{\+\_\+mon }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+add a monitor to the checkpoint 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mon} & a monitor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_checkpoint_adb044eac0e630fba934c2d414f15a3ce}\label{classmo_checkpoint_adb044eac0e630fba934c2d414f15a3ce}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_updater}{eo\+Updater}} \&}]{\+\_\+upd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+add a updater to the checkpoint 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+upd} & an updater \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_checkpoint_a5f4bf8cf27c9eef114d385ca8bacfefc}\label{classmo_checkpoint_a5f4bf8cf27c9eef114d385ca8bacfefc}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+add a continuator to the checkpoint 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+cont} & a continuator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_checkpoint_ab44a9c7168cad4aaf11c7702560946ab}\label{classmo_checkpoint_ab44a9c7168cad4aaf11c7702560946ab}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_stat_base}{mo\+Stat\+Base}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+add a statistic operator to the checkpoint 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+stat} & a statistic operator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_checkpoint_a84bbd2d52c6e8d3831a7dbecfdbbb9a3}\label{classmo_checkpoint_a84bbd2d52c6e8d3831a7dbecfdbbb9a3}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_updater}{mo\+Updater}} \&}]{\+\_\+moupd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+add a MO updater to the checkpoint 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moupd} & an mo updater \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_checkpoint_ada77df5c6a9eecec7a8e12bc6d24a042}\label{classmo_checkpoint_ada77df5c6a9eecec7a8e12bc6d24a042}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_checkpoint_a7c021b914ac171968aab660bdb0e5ab0}\label{classmo_checkpoint_a7c021b914ac171968aab660bdb0e5ab0}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+init all continuators containing in the checkpoint regarding a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_checkpoint_a7d2d30a027753e664fe8c68a40277494}\label{classmo_checkpoint_a7d2d30a027753e664fe8c68a40277494}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!lastCall@{lastCall}}
+\index{lastCall@{lastCall}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{lastCall()}{lastCall()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::last\+Call (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+last call of statistic operators, monitors and updaters 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & reference of the solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_checkpoint_a523547194ebc4d69795b112fa52bc725}\label{classmo_checkpoint_a523547194ebc4d69795b112fa52bc725}} 
+\index{moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moCheckpoint$<$ Neighbor $>$@{moCheckpoint$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+apply operator of checkpoint\textquotesingle{}s containers 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & reference of the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if all continuator return true 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Checkpoint.\+h\end{DoxyCompactItemize}

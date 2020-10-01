@@ -1,0 +1,117 @@
+\hypertarget{structeo_1_1mpi_1_1_job_store}{}\doxysection{eo\+::mpi\+::Job\+Store$<$ Job\+Data $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_job_store}\index{eo::mpi::JobStore$<$ JobData $>$@{eo::mpi::JobStore$<$ JobData $>$}}
+
+
+Contains all the required data and the functors to launch a job.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a35ffa3353b05aa1bc9f0366acaeeb530}\label{structeo_1_1mpi_1_1_job_store_a35ffa3353b05aa1bc9f0366acaeeb530}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store_a35ffa3353b05aa1bc9f0366acaeeb530}{Job\+Store}} (\mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{Send\+Task\+Function}}$<$ Job\+Data $>$ $\ast$stf, \mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{Handle\+Response\+Function}}$<$ Job\+Data $>$ $\ast$hrf, \mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{Process\+Task\+Function}}$<$ Job\+Data $>$ $\ast$ptf, \mbox{\hyperlink{structeo_1_1mpi_1_1_is_finished_function}{Is\+Finished\+Function}}$<$ Job\+Data $>$ $\ast$iff)
+\begin{DoxyCompactList}\small\item\em Default ctor with the 4 functors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store_a58554478e7ae85d5ebcf59b6dd8450dd}{Job\+Store}} ()
+\begin{DoxyCompactList}\small\item\em Empty ctor, useful for not forcing users to call the other constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store_a378bd12fc480941eb11181bcac349ce3}{$\sim$\+Job\+Store}} ()
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_ad1d4fddfb73700174a81ab36300afa35}\label{structeo_1_1mpi_1_1_job_store_ad1d4fddfb73700174a81ab36300afa35}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{Send\+Task\+Function}}$<$ Job\+Data $>$ \& {\bfseries send\+Task} ()
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_ac3c6eef7ff4dc8d8d1668169516c2cd9}\label{structeo_1_1mpi_1_1_job_store_ac3c6eef7ff4dc8d8d1668169516c2cd9}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{Handle\+Response\+Function}}$<$ Job\+Data $>$ \& {\bfseries handle\+Response} ()
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a678e28ed1cb02362763229a29c315acf}\label{structeo_1_1mpi_1_1_job_store_a678e28ed1cb02362763229a29c315acf}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{Process\+Task\+Function}}$<$ Job\+Data $>$ \& {\bfseries process\+Task} ()
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a56636fb7a55d48c9425d91cef0481c4d}\label{structeo_1_1mpi_1_1_job_store_a56636fb7a55d48c9425d91cef0481c4d}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_is_finished_function}{Is\+Finished\+Function}}$<$ Job\+Data $>$ \& {\bfseries is\+Finished} ()
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_aa2146debdaabcb7c51e01d1873977780}\label{structeo_1_1mpi_1_1_job_store_aa2146debdaabcb7c51e01d1873977780}} 
+void {\bfseries send\+Task} (\mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{Send\+Task\+Function}}$<$ Job\+Data $>$ $\ast$stf)
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a0c8b70085bb14439bbe43c2ed4b6fcdc}\label{structeo_1_1mpi_1_1_job_store_a0c8b70085bb14439bbe43c2ed4b6fcdc}} 
+void {\bfseries handle\+Response} (\mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{Handle\+Response\+Function}}$<$ Job\+Data $>$ $\ast$hrf)
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a383cd125849b504cae24a5c10278febd}\label{structeo_1_1mpi_1_1_job_store_a383cd125849b504cae24a5c10278febd}} 
+void {\bfseries process\+Task} (\mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{Process\+Task\+Function}}$<$ Job\+Data $>$ $\ast$ptf)
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a9b87f110c95756488ac511575207e8bd}\label{structeo_1_1mpi_1_1_job_store_a9b87f110c95756488ac511575207e8bd}} 
+void {\bfseries is\+Finished} (\mbox{\hyperlink{structeo_1_1mpi_1_1_is_finished_function}{Is\+Finished\+Function}}$<$ Job\+Data $>$ $\ast$iff)
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_ae12adf23dee9f0f0d664cdee0af51beb}\label{structeo_1_1mpi_1_1_job_store_ae12adf23dee9f0f0d664cdee0af51beb}} 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store_ae12adf23dee9f0f0d664cdee0af51beb}{wrap\+Send\+Task}} (\mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{Send\+Task\+Function}}$<$ Job\+Data $>$ $\ast$stf)
+\begin{DoxyCompactList}\small\item\em Helpers for wrapping send task functor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a528bd0659f5bfcdbe6ba4cb1c5cdbe27}\label{structeo_1_1mpi_1_1_job_store_a528bd0659f5bfcdbe6ba4cb1c5cdbe27}} 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store_a528bd0659f5bfcdbe6ba4cb1c5cdbe27}{wrap\+Handle\+Response}} (\mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{Handle\+Response\+Function}}$<$ Job\+Data $>$ $\ast$hrf)
+\begin{DoxyCompactList}\small\item\em Helpers for wrapping handle response functor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a071ba423f0f220f9f059163f8743823f}\label{structeo_1_1mpi_1_1_job_store_a071ba423f0f220f9f059163f8743823f}} 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store_a071ba423f0f220f9f059163f8743823f}{wrap\+Process\+Task}} (\mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{Process\+Task\+Function}}$<$ Job\+Data $>$ $\ast$ptf)
+\begin{DoxyCompactList}\small\item\em Helpers for wrapping process task functor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a1d2af202171603b2fe8e66772fa7bcf1}\label{structeo_1_1mpi_1_1_job_store_a1d2af202171603b2fe8e66772fa7bcf1}} 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store_a1d2af202171603b2fe8e66772fa7bcf1}{wrap\+Is\+Finished}} (\mbox{\hyperlink{structeo_1_1mpi_1_1_is_finished_function}{Is\+Finished\+Function}}$<$ Job\+Data $>$ $\ast$iff)
+\begin{DoxyCompactList}\small\item\em Helpers for wrapping is finished functor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_ab06d30200ad05c5b331e1ceb055a079d}\label{structeo_1_1mpi_1_1_job_store_ab06d30200ad05c5b331e1ceb055a079d}} 
+virtual Job\+Data $\ast$ {\bfseries data} ()=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a372c094d18022064edd3d42e5805729d}\label{structeo_1_1mpi_1_1_job_store_a372c094d18022064edd3d42e5805729d}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_send_task_function}{Send\+Task\+Function}}$<$ Job\+Data $>$ $\ast$ {\bfseries \+\_\+stf}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_aec442462c01510816663791092b400dc}\label{structeo_1_1mpi_1_1_job_store_aec442462c01510816663791092b400dc}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{Handle\+Response\+Function}}$<$ Job\+Data $>$ $\ast$ {\bfseries \+\_\+hrf}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a8131ed796c7ce5b1071194abdca15029}\label{structeo_1_1mpi_1_1_job_store_a8131ed796c7ce5b1071194abdca15029}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_process_task_function}{Process\+Task\+Function}}$<$ Job\+Data $>$ $\ast$ {\bfseries \+\_\+ptf}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a057f09e79367f2465f498d6d52f4d904}\label{structeo_1_1mpi_1_1_job_store_a057f09e79367f2465f498d6d52f4d904}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_is_finished_function}{Is\+Finished\+Function}}$<$ Job\+Data $>$ $\ast$ {\bfseries \+\_\+iff}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Job\+Data$>$\newline
+struct eo\+::mpi\+::\+Job\+Store$<$ Job\+Data $>$}
+
+Contains all the required data and the functors to launch a job. 
+
+Splitting the functors and data from the job in itself allows to use the same functors and data for multiples instances of the same job. You define your store once and can use it a lot of times during your program. If the store was included in the job, you\textquotesingle{}d have to give again all the functors and all the datas to each invokation of the job.
+
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} store contains the 4 functors (pointers, so as to be able to wrap them ; references couldn\textquotesingle{}t have permitted that) described above and the Job\+Data used by all these functors. It contains also helpers to easily wrap the functors, getters and setters on all of them.
+
+The user has to implement data(), which is the getter for retrieving Job\+Data. We don\textquotesingle{}t have any idea of who owns the data, moreover it is impossible to initialize it in this generic \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}}, as we don\textquotesingle{}t know its form. As a matter of fact, the user has to define this in the \mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}} subclasses. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a58554478e7ae85d5ebcf59b6dd8450dd}\label{structeo_1_1mpi_1_1_job_store_a58554478e7ae85d5ebcf59b6dd8450dd}} 
+\index{eo::mpi::JobStore$<$ JobData $>$@{eo::mpi::JobStore$<$ JobData $>$}!JobStore@{JobStore}}
+\index{JobStore@{JobStore}!eo::mpi::JobStore$<$ JobData $>$@{eo::mpi::JobStore$<$ JobData $>$}}
+\doxysubsubsection{\texorpdfstring{JobStore()}{JobStore()}}
+{\footnotesize\ttfamily template$<$typename Job\+Data $>$ \\
+\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{eo\+::mpi\+::\+Job\+Store}}$<$ Job\+Data $>$\+::\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Empty ctor, useful for not forcing users to call the other constructor. 
+
+When using this constructor, the user have to care about the 4 functors pointers, otherwise null pointer segfaults have to be expected. \mbox{\Hypertarget{structeo_1_1mpi_1_1_job_store_a378bd12fc480941eb11181bcac349ce3}\label{structeo_1_1mpi_1_1_job_store_a378bd12fc480941eb11181bcac349ce3}} 
+\index{eo::mpi::JobStore$<$ JobData $>$@{eo::mpi::JobStore$<$ JobData $>$}!````~JobStore@{$\sim$JobStore}}
+\index{````~JobStore@{$\sim$JobStore}!eo::mpi::JobStore$<$ JobData $>$@{eo::mpi::JobStore$<$ JobData $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$JobStore()}{~JobStore()}}
+{\footnotesize\ttfamily template$<$typename Job\+Data $>$ \\
+\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{eo\+::mpi\+::\+Job\+Store}}$<$ Job\+Data $>$\+::$\sim$\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default destructor. 
+
+\mbox{\hyperlink{structeo_1_1mpi_1_1_job_store}{Job\+Store}} is the highest layer which calls need\+Delete on its functors. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\hypertarget{classedo_sampler}{}\doxysection{edo\+Sampler$<$ D $>$ Class Template Reference}
+\label{classedo_sampler}\index{edoSampler$<$ D $>$@{edoSampler$<$ D $>$}}
+
+
+{\ttfamily \#include $<$edo\+Sampler.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Sampler$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{classedo_sampler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Sampler$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{classedo_sampler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_sampler_a4c614e281a25c7735d35531f81c0fe9a}\label{classedo_sampler_a4c614e281a25c7735d35531f81c0fe9a}} 
+typedef D\+::\+E\+O\+Type {\bfseries E\+O\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_sampler_a97f05eab701d268a0ae52f7c26d824f5}\label{classedo_sampler_a97f05eab701d268a0ae52f7c26d824f5}} 
+{\bfseries edo\+Sampler} (\mbox{\hyperlink{classedo_repairer}{edo\+Repairer}}$<$ E\+O\+Type $>$ \&repairer)
+\item 
+\mbox{\Hypertarget{classedo_sampler_a02818f4b52c6411e2da326149c329102}\label{classedo_sampler_a02818f4b52c6411e2da326149c329102}} 
+E\+O\+Type \mbox{\hyperlink{classedo_sampler_a02818f4b52c6411e2da326149c329102}{operator()}} (D \&distrib)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_sampler_a46b8f71479ff84c7695c1ef9f85a8c37}\label{classedo_sampler_a46b8f71479ff84c7695c1ef9f85a8c37}} 
+virtual E\+O\+Type {\bfseries sample} (D \&)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename D$>$\newline
+class edo\+Sampler$<$ D $>$}
+
+Base class for samplers
+
+The functor here is already implemented\+: it first sample an E\+OT from the given distribution, and then apply the given repairers (if set).
+
+Thus, the function that need to be overloaded is \char`\"{}sample\char`\"{}, unlike most of \mbox{\hyperlink{class_e_o}{EO}} functors. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Sampler.\+h\end{DoxyCompactItemize}

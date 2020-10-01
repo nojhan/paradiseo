@@ -1,0 +1,97 @@
+\hypertarget{classmoeo_dummy_fitness_assignment}{}\doxysection{moeo\+Dummy\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_dummy_fitness_assignment}\index{moeoDummyFitnessAssignment$<$ MOEOT $>$@{moeoDummyFitnessAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dummy\+Fitness\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dummy\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dummy_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dummy\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dummy_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dummy_fitness_assignment_a33cc1cd06c4c1d8f1f56602594e0593a}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmoeo_dummy_fitness_assignment_a03c7c1649ae3c83ef6b3668977c10982}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_dummy_fitness_assignment_a6e87d4a8ff8f43a7001a21a13795d00e}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_dummy_fitness_assignment_a33cc1cd06c4c1d8f1f56602594e0593a}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Dummy\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+\mbox{\hyperlink{classmoeo_dummy_fitness_assignment}{moeo\+Dummy\+Fitness\+Assignment}} is a \mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}} that gives the value \textquotesingle{}0\textquotesingle{} as the individual\textquotesingle{}s fitness for a whole population if it is invalid. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_dummy_fitness_assignment_a33cc1cd06c4c1d8f1f56602594e0593a}\label{classmoeo_dummy_fitness_assignment_a33cc1cd06c4c1d8f1f56602594e0593a}} 
+\index{moeoDummyFitnessAssignment$<$ MOEOT $>$@{moeoDummyFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoDummyFitnessAssignment$<$ MOEOT $>$@{moeoDummyFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dummy_fitness_assignment}{moeo\+Dummy\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dummy_fitness_assignment_a33cc1cd06c4c1d8f1f56602594e0593a}{Objective\+Vector}}}
+
+The type for objective vector 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dummy_fitness_assignment_a03c7c1649ae3c83ef6b3668977c10982}\label{classmoeo_dummy_fitness_assignment_a03c7c1649ae3c83ef6b3668977c10982}} 
+\index{moeoDummyFitnessAssignment$<$ MOEOT $>$@{moeoDummyFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDummyFitnessAssignment$<$ MOEOT $>$@{moeoDummyFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dummy_fitness_assignment}{moeo\+Dummy\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness to \textquotesingle{}0\textquotesingle{} for every individuals of the population \+\_\+pop if it is invalid 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dummy_fitness_assignment_a6e87d4a8ff8f43a7001a21a13795d00e}\label{classmoeo_dummy_fitness_assignment_a6e87d4a8ff8f43a7001a21a13795d00e}} 
+\index{moeoDummyFitnessAssignment$<$ MOEOT $>$@{moeoDummyFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoDummyFitnessAssignment$<$ MOEOT $>$@{moeoDummyFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dummy_fitness_assignment}{moeo\+Dummy\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_dummy_fitness_assignment_a33cc1cd06c4c1d8f1f56602594e0593a}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Dummy\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

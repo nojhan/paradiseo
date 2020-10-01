@@ -1,0 +1,158 @@
+\hypertarget{classparadiseo_1_1smp_1_1_scheduler}{}\doxysection{paradiseo\+::smp\+::Scheduler$<$ E\+OT, Policy $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_scheduler}\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+
+
+{\ttfamily \#include $<$scheduler.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_a73a5cf14c34dcbd08339504082cd1fda}{Scheduler}} (unsigned workers\+Nb)
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_a84b118f77e28d50d71e2b08b2db8423c}{$\sim$\+Scheduler}} ()
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_af1c0b7aceef7a5cb8e5e959736f11874}{operator()}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&func, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_a50cc51162245ca758e50704e1e052483}{operator()}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&func, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, const \mbox{\hyperlink{structparadiseo_1_1smp_1_1_linear_policy}{Linear\+Policy}} \&)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_aacbf905de811e7a985bacb89435c6da4}{operator()}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&func, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, const \mbox{\hyperlink{structparadiseo_1_1smp_1_1_progressive_policy}{Progressive\+Policy}} \&)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_abe2f7f58de797c9b8b4ca8d464b7a226}{apply\+Linear\+Policy}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&func, std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&pop)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_a8a5f5b39b455ae469ac74b2e99448b11}{apply\+Progressive\+Policy}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&func, std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&pop, int id)
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler_abd4cfd0a104a325e0b4aec63ea1e291c}{sub\+Groups}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_aba9590b8107801bc325ad89bedd2e394}\label{classparadiseo_1_1smp_1_1_scheduler_aba9590b8107801bc325ad89bedd2e394}} 
+std\+::vector$<$ std\+::thread $>$ {\bfseries workers}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_aa74a0d339c55fce76868e37f4d8ae969}\label{classparadiseo_1_1smp_1_1_scheduler_aa74a0d339c55fce76868e37f4d8ae969}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ $>$ {\bfseries pop\+Packages}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_ac888b57d95d55e5f221b2991c153ffba}\label{classparadiseo_1_1smp_1_1_scheduler_ac888b57d95d55e5f221b2991c153ffba}} 
+std\+::atomic$<$ bool $>$ {\bfseries done}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_af2793b25cc73c0019243ad20627cff26}\label{classparadiseo_1_1smp_1_1_scheduler_af2793b25cc73c0019243ad20627cff26}} 
+std\+::vector$<$ unsigned $>$ {\bfseries planning}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_af2e67d2b9da11b8e4a0a7529f4e87212}\label{classparadiseo_1_1smp_1_1_scheduler_af2e67d2b9da11b8e4a0a7529f4e87212}} 
+std\+::vector$<$ std\+::atomic$<$ int $>$ $>$ {\bfseries is\+Working}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_a7e56bb965fa429fb311e31b313e10d5b}\label{classparadiseo_1_1smp_1_1_scheduler_a7e56bb965fa429fb311e31b313e10d5b}} 
+std\+::vector$<$ std\+::mutex $>$ {\bfseries m}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class Policy = Linear\+Policy$>$\newline
+class paradiseo\+::smp\+::\+Scheduler$<$ E\+O\+T, Policy $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{Scheduler}} \+: Dispatch load between workers according to a policy.
+
+Dispatch load between the specified number of workers according to a policy. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_a73a5cf14c34dcbd08339504082cd1fda}\label{classparadiseo_1_1smp_1_1_scheduler_a73a5cf14c34dcbd08339504082cd1fda}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!Scheduler@{Scheduler}}
+\index{Scheduler@{Scheduler}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{Scheduler()}{Scheduler()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy $>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{Scheduler}} (\begin{DoxyParamCaption}\item[{unsigned}]{workers\+Nb }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em workers\+Nb} & number of workers to perform tasks \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_a84b118f77e28d50d71e2b08b2db8423c}\label{classparadiseo_1_1smp_1_1_scheduler_a84b118f77e28d50d71e2b08b2db8423c}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!````~Scheduler@{$\sim$Scheduler}}
+\index{````~Scheduler@{$\sim$Scheduler}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$Scheduler()}{~Scheduler()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy $>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::$\sim$\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{Scheduler}}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_abe2f7f58de797c9b8b4ca8d464b7a226}\label{classparadiseo_1_1smp_1_1_scheduler_abe2f7f58de797c9b8b4ca8d464b7a226}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!applyLinearPolicy@{applyLinearPolicy}}
+\index{applyLinearPolicy@{applyLinearPolicy}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{applyLinearPolicy()}{applyLinearPolicy()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::apply\+Linear\+Policy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{func,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Apply an unary functor on a sub-\/group of population 
+\begin{DoxyParams}{Parameters}
+{\em func} & unary functor \\
+\hline
+{\em pop} & reference to the sub-\/group \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_a8a5f5b39b455ae469ac74b2e99448b11}\label{classparadiseo_1_1smp_1_1_scheduler_a8a5f5b39b455ae469ac74b2e99448b11}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!applyProgressivePolicy@{applyProgressivePolicy}}
+\index{applyProgressivePolicy@{applyProgressivePolicy}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{applyProgressivePolicy()}{applyProgressivePolicy()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::apply\+Progressive\+Policy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{func,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $\ast$ $>$ \&}]{pop,  }\item[{int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Apply an unary functor on a sub-\/group of population 
+\begin{DoxyParams}{Parameters}
+{\em func} & unary functor \\
+\hline
+{\em pop} & reference to the sub-\/group \\
+\hline
+{\em id} & id of the thread \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_af1c0b7aceef7a5cb8e5e959736f11874}\label{classparadiseo_1_1smp_1_1_scheduler_af1c0b7aceef7a5cb8e5e959736f11874}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{func,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop }\end{DoxyParamCaption})}
+
+Start an unary functor on workers on all the pop 
+\begin{DoxyParams}{Parameters}
+{\em func} & unary functor \\
+\hline
+{\em pop} & reference to the population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_a50cc51162245ca758e50704e1e052483}\label{classparadiseo_1_1smp_1_1_scheduler_a50cc51162245ca758e50704e1e052483}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{func,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{const \mbox{\hyperlink{structparadiseo_1_1smp_1_1_linear_policy}{Linear\+Policy}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Perform scheduling with a linear policy \mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_aacbf905de811e7a985bacb89435c6da4}\label{classparadiseo_1_1smp_1_1_scheduler_aacbf905de811e7a985bacb89435c6da4}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{func,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{const \mbox{\hyperlink{structparadiseo_1_1smp_1_1_progressive_policy}{Progressive\+Policy}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Perform scheduling with a linear policy \mbox{\Hypertarget{classparadiseo_1_1smp_1_1_scheduler_abd4cfd0a104a325e0b4aec63ea1e291c}\label{classparadiseo_1_1smp_1_1_scheduler_abd4cfd0a104a325e0b4aec63ea1e291c}} 
+\index{paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}!subGroups@{subGroups}}
+\index{subGroups@{subGroups}!paradiseo::smp::Scheduler$<$ EOT, Policy $>$@{paradiseo::smp::Scheduler$<$ EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{subGroups()}{subGroups()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Policy  = Linear\+Policy$>$ \\
+std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{struct_dummy}{E\+OT}}$\ast$$>$ $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{paradiseo\+::smp\+::\+Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::sub\+Groups (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Create sub-\/groups with similar size from a population. 
+\begin{DoxyParams}{Parameters}
+{\em pop} & reference to the pop \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/scheduler.\+h\item 
+smp/src/scheduler.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,141 @@
+\hypertarget{classmo_best_no_improve_continuator}{}\doxysection{mo\+Best\+No\+Improve\+Continuator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_best_no_improve_continuator}\index{moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Best\+No\+Improve\+Continuator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Best\+No\+Improve\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_best_no_improve_continuator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Best\+No\+Improve\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_best_no_improve_continuator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_best_no_improve_continuator_a63e31f966db21e61604ed22b5153e899}\label{classmo_best_no_improve_continuator_a63e31f966db21e61604ed22b5153e899}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_best_no_improve_continuator_a6ab599db9abd0a705fcdc8af3af820ae}{mo\+Best\+No\+Improve\+Continuator}} (const \mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+best\+Sol, unsigned int \+\_\+max\+No\+Improve, \mbox{\hyperlink{classmo_sol_comparator}{mo\+Sol\+Comparator}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+sol\+Comparator, bool \+\_\+verbose=true)
+\item 
+\mbox{\hyperlink{classmo_best_no_improve_continuator_a89fa43fdf52ba1360dbc375a2b2d242d}{mo\+Best\+No\+Improve\+Continuator}} (const \mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+best\+Sol, unsigned int \+\_\+max\+No\+Improve, bool \+\_\+verbose=true)
+\item 
+virtual bool \mbox{\hyperlink{classmo_best_no_improve_continuator_a93a70c2cca4ea8b18a5cf1db33ef4cd4}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_best_no_improve_continuator_a9581fd229a3f5730133f9fe1c3179144}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+unsigned int \mbox{\hyperlink{classmo_best_no_improve_continuator_ac690a2d9af63c6ee51e906e19939d8d2}{value}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Best\+No\+Improve\+Continuator$<$ Neighbor $>$}
+
+Stop when the best solution cannot be improved within a given number of iterations 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_best_no_improve_continuator_a6ab599db9abd0a705fcdc8af3af820ae}\label{classmo_best_no_improve_continuator_a6ab599db9abd0a705fcdc8af3af820ae}} 
+\index{moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}!moBestNoImproveContinuator@{moBestNoImproveContinuator}}
+\index{moBestNoImproveContinuator@{moBestNoImproveContinuator}!moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moBestNoImproveContinuator()}{moBestNoImproveContinuator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_best_no_improve_continuator}{mo\+Best\+No\+Improve\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_best_no_improve_continuator}{mo\+Best\+No\+Improve\+Continuator}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+best\+Sol,  }\item[{unsigned int}]{\+\_\+max\+No\+Improve,  }\item[{\mbox{\hyperlink{classmo_sol_comparator}{mo\+Sol\+Comparator}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+sol\+Comparator,  }\item[{bool}]{\+\_\+verbose = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+best\+Sol} & the best solution \\
+\hline
+{\em \+\_\+max\+No\+Improve} & number maximum of iterations \\
+\hline
+{\em \+\_\+sol\+Comparator} & a comparator between solutions \\
+\hline
+{\em \+\_\+verbose} & true/false \+: verbose mode on/off \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_best_no_improve_continuator_a89fa43fdf52ba1360dbc375a2b2d242d}\label{classmo_best_no_improve_continuator_a89fa43fdf52ba1360dbc375a2b2d242d}} 
+\index{moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}!moBestNoImproveContinuator@{moBestNoImproveContinuator}}
+\index{moBestNoImproveContinuator@{moBestNoImproveContinuator}!moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moBestNoImproveContinuator()}{moBestNoImproveContinuator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_best_no_improve_continuator}{mo\+Best\+No\+Improve\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_best_no_improve_continuator}{mo\+Best\+No\+Improve\+Continuator}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+best\+Sol,  }\item[{unsigned int}]{\+\_\+max\+No\+Improve,  }\item[{bool}]{\+\_\+verbose = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor where the comparator of solutions is the default comparator
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+best\+Sol} & the best solution \\
+\hline
+{\em \+\_\+max\+No\+Improve} & number maximum of iterations \\
+\hline
+{\em \+\_\+verbose} & true/false \+: verbose mode on/off \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_best_no_improve_continuator_a9581fd229a3f5730133f9fe1c3179144}\label{classmo_best_no_improve_continuator_a9581fd229a3f5730133f9fe1c3179144}} 
+\index{moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_best_no_improve_continuator}{mo\+Best\+No\+Improve\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+reset the counter of iteration 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_best_no_improve_continuator_a93a70c2cca4ea8b18a5cf1db33ef4cd4}\label{classmo_best_no_improve_continuator_a93a70c2cca4ea8b18a5cf1db33ef4cd4}} 
+\index{moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_best_no_improve_continuator}{mo\+Best\+No\+Improve\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Count and test the number of non improvement of the best solution improvement\+: if the current solution is S\+T\+R\+I\+C\+T\+LY better than the current best solution ~\newline
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if counter $<$ max\+No\+Improve 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_best_no_improve_continuator_ac690a2d9af63c6ee51e906e19939d8d2}\label{classmo_best_no_improve_continuator_ac690a2d9af63c6ee51e906e19939d8d2}} 
+\index{moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}!value@{value}}
+\index{value@{value}!moBestNoImproveContinuator$<$ Neighbor $>$@{moBestNoImproveContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmo_best_no_improve_continuator}{mo\+Best\+No\+Improve\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+the current number of iteration without improvement \begin{DoxyReturn}{Returns}
+the number of iteration 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Best\+No\+Improve\+Continuator.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,97 @@
+\hypertarget{structeo_eval_func_ptr}{}\doxysection{eo\+Eval\+Func\+Ptr$<$ E\+OT, FitT, Function\+Arg $>$ Struct Template Reference}
+\label{structeo_eval_func_ptr}\index{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$@{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+Func\+Ptr.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Eval\+Func\+Ptr$<$ E\+OT, FitT, Function\+Arg $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{structeo_eval_func_ptr__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Eval\+Func\+Ptr$<$ E\+OT, FitT, Function\+Arg $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{structeo_eval_func_ptr__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structeo_eval_func_ptr_ac67cf28cf812a01dd5851a4983e57ec4}{eo\+Eval\+Func\+Ptr}} (\mbox{\hyperlink{classeo_scalar_fitness}{FitT}}($\ast$\+\_\+eval)(Function\+Arg))
+\item 
+\mbox{\Hypertarget{structeo_eval_func_ptr_aea3dbddb89d1aa3f64c18357cd23ca4f}\label{structeo_eval_func_ptr_aea3dbddb89d1aa3f64c18357cd23ca4f}} 
+virtual void \mbox{\hyperlink{structeo_eval_func_ptr_aea3dbddb89d1aa3f64c18357cd23ca4f}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\begin{DoxyCompactList}\small\item\em Effectively applies the evaluation function to an \mbox{\hyperlink{class_e_o}{EO}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_eval_func_ptr_ac67cf28cf812a01dd5851a4983e57ec4}{eo\+Eval\+Func\+Ptr}} (\mbox{\hyperlink{classeo_scalar_fitness}{FitT}}($\ast$\+\_\+eval)(Function\+Arg))
+\item 
+\mbox{\Hypertarget{structeo_eval_func_ptr_aea3dbddb89d1aa3f64c18357cd23ca4f}\label{structeo_eval_func_ptr_aea3dbddb89d1aa3f64c18357cd23ca4f}} 
+virtual void \mbox{\hyperlink{structeo_eval_func_ptr_aea3dbddb89d1aa3f64c18357cd23ca4f}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\begin{DoxyCompactList}\small\item\em Effectively applies the evaluation function to an \mbox{\hyperlink{class_e_o}{EO}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class FitT = typename E\+O\+T\+::\+Fitness, class Function\+Arg = const E\+O\+T\&$>$\newline
+struct eo\+Eval\+Func\+Ptr$<$ E\+O\+T, Fit\+T, Function\+Arg $>$}
+
+-\/$\ast$-\/ mode\+: c++; c-\/indent-\/level\+: 4; c++-\/member-\/init-\/indent\+: 8; comment-\/column\+: 35; -\/$\ast$-\/
+
+\DoxyHorRuler{0}
+ eo\+Eval\+Func\+Ptr.\+h Converts a classical C fitness evaluation function into a fitness evaluation object
+
+(c) Ge\+Neura Team, 2000
+
+This library is free software; you can redistribute it and/or modify it under the terms of the G\+NU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU Lesser General Public License for more details.
+
+You should have received a copy of the G\+NU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 U\+SA
+
+Contact\+: \href{mailto:todos@geneura.ugr.es}{\texttt{ todos@geneura.\+ugr.\+es}}, \href{http://geneura.ugr.es}{\texttt{ http\+://geneura.\+ugr.\+es}} E\+O\+Eval\+Func\+Ptr\+: This class takes an existing function pointer and converts it into a evaluation function class. That way, old style C or C++ functions can be adapted to \mbox{\hyperlink{class_e_o}{EO}} function classes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structeo_eval_func_ptr_ac67cf28cf812a01dd5851a4983e57ec4}\label{structeo_eval_func_ptr_ac67cf28cf812a01dd5851a4983e57ec4}} 
+\index{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$@{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$}!eoEvalFuncPtr@{eoEvalFuncPtr}}
+\index{eoEvalFuncPtr@{eoEvalFuncPtr}!eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$@{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$}}
+\doxysubsubsection{\texorpdfstring{eoEvalFuncPtr()}{eoEvalFuncPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class FitT  = typename E\+O\+T\+::\+Fitness, class Function\+Arg  = const E\+O\+T\&$>$ \\
+\mbox{\hyperlink{structeo_eval_func_ptr}{eo\+Eval\+Func\+Ptr}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Function\+Arg $>$\+::\mbox{\hyperlink{structeo_eval_func_ptr}{eo\+Eval\+Func\+Ptr}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_scalar_fitness}{FitT}}($\ast$)(Function\+Arg)}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Applies the function to the chromosome and sets the fitness of the \mbox{\hyperlink{class_chrom}{Chrom}}. Thus, the evaluation function need not be worried about that. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & pointer to the evaluation function, takes a E\+OT as an argument and returns the fitness \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the evaluated fitness for that object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structeo_eval_func_ptr_ac67cf28cf812a01dd5851a4983e57ec4}\label{structeo_eval_func_ptr_ac67cf28cf812a01dd5851a4983e57ec4}} 
+\index{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$@{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$}!eoEvalFuncPtr@{eoEvalFuncPtr}}
+\index{eoEvalFuncPtr@{eoEvalFuncPtr}!eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$@{eoEvalFuncPtr$<$ EOT, FitT, FunctionArg $>$}}
+\doxysubsubsection{\texorpdfstring{eoEvalFuncPtr()}{eoEvalFuncPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT , class FitT  = typename E\+O\+T\+::\+Fitness, class Function\+Arg  = const E\+O\+T\&$>$ \\
+\mbox{\hyperlink{structeo_eval_func_ptr}{eo\+Eval\+Func\+Ptr}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{classeo_scalar_fitness}{FitT}}, Function\+Arg $>$\+::\mbox{\hyperlink{structeo_eval_func_ptr}{eo\+Eval\+Func\+Ptr}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_scalar_fitness}{FitT}}($\ast$)(Function\+Arg)}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Applies the function to the chromosome and sets the fitness of the \mbox{\hyperlink{class_chrom}{Chrom}}. Thus, the evaluation function need not be worried about that. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & pointer to the evaluation function, takes a E\+OT as an argument and returns the fitness \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the evaluated fitness for that object. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Eval\+Func\+Ptr.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\hypertarget{classmoeo_augmented_weighted_chebychev_distance}{}\doxysection{moeo\+Augmented\+Weighted\+Chebychev\+Distance$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_augmented_weighted_chebychev_distance}\index{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$@{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Augmented\+Weighted\+Chebychev\+Distance.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Augmented\+Weighted\+Chebychev\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_augmented_weighted_chebychev_distance__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Augmented\+Weighted\+Chebychev\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_augmented_weighted_chebychev_distance__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_augmented_weighted_chebychev_distance_a3a9d79764811ec758c46a5e79127fe09}\label{classmoeo_augmented_weighted_chebychev_distance_a3a9d79764811ec758c46a5e79127fe09}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_augmented_weighted_chebychev_distance_aa6db4a096165b48f02664a9d446f49fe}\label{classmoeo_augmented_weighted_chebychev_distance_aa6db4a096165b48f02664a9d446f49fe}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance_a3e4561c5e51f679fbfff989c1ab7c0a9}{moeo\+Augmented\+Weighted\+Chebychev\+Distance}} (unsigned int \+\_\+rho, const Objective\+Vector \&\+\_\+weight, \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&\+\_\+normalizer)
+\item 
+\mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance_aee3fd3c856b48a1dd0d0a51ef256817c}{moeo\+Augmented\+Weighted\+Chebychev\+Distance}} (unsigned int \+\_\+rho, const Objective\+Vector \&\+\_\+weight)
+\item 
+const Fitness \mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance_ae9df3e69bcf89d592ee3fe3f85bd7496}{operator()}} (const Objective\+Vector \&\+\_\+reference, const Objective\+Vector \&\+\_\+obj)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Augmented\+Weighted\+Chebychev\+Distance$<$ M\+O\+E\+O\+T $>$}
+
+order representing chebychev distance 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_augmented_weighted_chebychev_distance_a3e4561c5e51f679fbfff989c1ab7c0a9}\label{classmoeo_augmented_weighted_chebychev_distance_a3e4561c5e51f679fbfff989c1ab7c0a9}} 
+\index{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$@{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$}!moeoAugmentedWeightedChebychevDistance@{moeoAugmentedWeightedChebychevDistance}}
+\index{moeoAugmentedWeightedChebychevDistance@{moeoAugmentedWeightedChebychevDistance}!moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$@{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAugmentedWeightedChebychevDistance()}{moeoAugmentedWeightedChebychevDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance}{moeo\+Augmented\+Weighted\+Chebychev\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance}{moeo\+Augmented\+Weighted\+Chebychev\+Distance}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+rho,  }\item[{const Objective\+Vector \&}]{\+\_\+weight,  }\item[{\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+normalizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rho} & \\
+\hline
+{\em \+\_\+weight} & the weight to apply to each dimension \\
+\hline
+{\em \+\_\+normalizer} & the normalizer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_augmented_weighted_chebychev_distance_aee3fd3c856b48a1dd0d0a51ef256817c}\label{classmoeo_augmented_weighted_chebychev_distance_aee3fd3c856b48a1dd0d0a51ef256817c}} 
+\index{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$@{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$}!moeoAugmentedWeightedChebychevDistance@{moeoAugmentedWeightedChebychevDistance}}
+\index{moeoAugmentedWeightedChebychevDistance@{moeoAugmentedWeightedChebychevDistance}!moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$@{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoAugmentedWeightedChebychevDistance()}{moeoAugmentedWeightedChebychevDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance}{moeo\+Augmented\+Weighted\+Chebychev\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance}{moeo\+Augmented\+Weighted\+Chebychev\+Distance}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+rho,  }\item[{const Objective\+Vector \&}]{\+\_\+weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a dummy normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rho} & \\
+\hline
+{\em \+\_\+weight} & the weight to apply to each dimension \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_augmented_weighted_chebychev_distance_ae9df3e69bcf89d592ee3fe3f85bd7496}\label{classmoeo_augmented_weighted_chebychev_distance_ae9df3e69bcf89d592ee3fe3f85bd7496}} 
+\index{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$@{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$@{moeoAugmentedWeightedChebychevDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+const Fitness \mbox{\hyperlink{classmoeo_augmented_weighted_chebychev_distance}{moeo\+Augmented\+Weighted\+Chebychev\+Distance}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Objective\+Vector \&}]{\+\_\+reference,  }\item[{const Objective\+Vector \&}]{\+\_\+obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+fonction which calculate a fitness 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+reference} & the reference to calculate the distance from \\
+\hline
+{\em \+\_\+obj} & the point to evaluate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fitness conrresponding to the distance 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_obj_space_distance_a22e0058103f71b2ccdba0abbde391b77}{moeo\+Obj\+Space\+Distance$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/distance/moeo\+Augmented\+Weighted\+Chebychev\+Distance.\+h\end{DoxyCompactItemize}

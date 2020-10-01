@@ -1,0 +1,93 @@
+\hypertarget{classmo_pop_sol_eval}{}\doxysection{mo\+Pop\+Sol\+Eval$<$ E\+OT $>$ Class Template Reference}
+\label{classmo_pop_sol_eval}\index{moPopSolEval$<$ EOT $>$@{moPopSolEval$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$mo\+Pop\+Sol\+Eval.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Pop\+Sol\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classmo_pop_sol_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Pop\+Sol\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classmo_pop_sol_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_pop_sol_eval_a2503e1002b8d055ca3821aa41641a34e}\label{classmo_pop_sol_eval_a2503e1002b8d055ca3821aa41641a34e}} 
+typedef E\+O\+T\+::\+S\+U\+B\+E\+OT {\bfseries S\+U\+B\+E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_pop_sol_eval_a2976e1380fb31c728d6dabcda42f9f96}{mo\+Pop\+Sol\+Eval}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ S\+U\+B\+E\+OT $>$ \&\+\_\+eval, unsigned int \+\_\+p)
+\item 
+void \mbox{\hyperlink{classmo_pop_sol_eval_a502318f2878c7aebebc7ae9c0164f253}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class mo\+Pop\+Sol\+Eval$<$ E\+O\+T $>$}
+
+To compute the fitness of a pop-\/based solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_pop_sol_eval_a2976e1380fb31c728d6dabcda42f9f96}\label{classmo_pop_sol_eval_a2976e1380fb31c728d6dabcda42f9f96}} 
+\index{moPopSolEval$<$ EOT $>$@{moPopSolEval$<$ EOT $>$}!moPopSolEval@{moPopSolEval}}
+\index{moPopSolEval@{moPopSolEval}!moPopSolEval$<$ EOT $>$@{moPopSolEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{moPopSolEval()}{moPopSolEval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classmo_pop_sol_eval}{mo\+Pop\+Sol\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classmo_pop_sol_eval}{mo\+Pop\+Sol\+Eval}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ S\+U\+B\+E\+OT $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & evaluation function of the solution \\
+\hline
+{\em \+\_\+p} & the exponent of the p-\/norm to compute the population based fitness \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_pop_sol_eval_a502318f2878c7aebebc7ae9c0164f253}\label{classmo_pop_sol_eval_a502318f2878c7aebebc7ae9c0164f253}} 
+\index{moPopSolEval$<$ EOT $>$@{moPopSolEval$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moPopSolEval$<$ EOT $>$@{moPopSolEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classmo_pop_sol_eval}{mo\+Pop\+Sol\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+to compute the fitness of a population-\/based solution which is the norm p of the fitness of solutions\+: ( sigma\+\_\+\{i\} f(s\+\_\+i)$^\wedge$p )$^\wedge$(1/p)
+
+re-\/compute the fitness of solution which are invalid
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the population-\/based solution to evaluate \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/mo\+Pop\+Sol\+Eval.\+h\end{DoxyCompactItemize}

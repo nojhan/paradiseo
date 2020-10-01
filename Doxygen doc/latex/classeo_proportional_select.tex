@@ -1,0 +1,87 @@
+\hypertarget{classeo_proportional_select}{}\doxysection{eo\+Proportional\+Select$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_proportional_select}\index{eoProportionalSelect$<$ EOT $>$@{eoProportionalSelect$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Proportional\+Select.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Proportional\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_proportional_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Proportional\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_proportional_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_proportional_select_a4ab0209012b56e1f19238de105b11733}\label{classeo_proportional_select_a4ab0209012b56e1f19238de105b11733}} 
+\mbox{\hyperlink{classeo_proportional_select_a4ab0209012b56e1f19238de105b11733}{eo\+Proportional\+Select}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&=\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$())
+\begin{DoxyCompactList}\small\item\em Sanity check. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_proportional_select_a9ac22e01bda2857e21850e6cf366ea48}\label{classeo_proportional_select_a9ac22e01bda2857e21850e6cf366ea48}} 
+void \mbox{\hyperlink{classeo_proportional_select_a9ac22e01bda2857e21850e6cf366ea48}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_proportional_select_a7e888522de3a2a2f9963f1e12cd63bb5}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_proportional_select_a4ab0209012b56e1f19238de105b11733}\label{classeo_proportional_select_a4ab0209012b56e1f19238de105b11733}} 
+\mbox{\hyperlink{classeo_proportional_select_a4ab0209012b56e1f19238de105b11733}{eo\+Proportional\+Select}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&=\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$())
+\begin{DoxyCompactList}\small\item\em Sanity check. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_proportional_select_a9ac22e01bda2857e21850e6cf366ea48}\label{classeo_proportional_select_a9ac22e01bda2857e21850e6cf366ea48}} 
+void \mbox{\hyperlink{classeo_proportional_select_a9ac22e01bda2857e21850e6cf366ea48}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_proportional_select_a7e888522de3a2a2f9963f1e12cd63bb5}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_proportional_select_a0f875c28cd61034e5409cf0017150e77}\label{classeo_proportional_select_a0f875c28cd61034e5409cf0017150e77}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Proportional\+Select$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_proportional_select}{eo\+Proportional\+Select}}\+: select an individual proportional to her stored fitness value
+
+Changed the algorithm to make use of a cumulative array of fitness scores, This changes the algorithm from O(n) per call to O(log n) per call. (MK) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_proportional_select_a7e888522de3a2a2f9963f1e12cd63bb5}\label{classeo_proportional_select_a7e888522de3a2a2f9963f1e12cd63bb5}} 
+\index{eoProportionalSelect$<$ EOT $>$@{eoProportionalSelect$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoProportionalSelect$<$ EOT $>$@{eoProportionalSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_proportional_select}{eo\+Proportional\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the selection, 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, const E\+O\+T \& $>$}}.
+
+\mbox{\Hypertarget{classeo_proportional_select_a7e888522de3a2a2f9963f1e12cd63bb5}\label{classeo_proportional_select_a7e888522de3a2a2f9963f1e12cd63bb5}} 
+\index{eoProportionalSelect$<$ EOT $>$@{eoProportionalSelect$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoProportionalSelect$<$ EOT $>$@{eoProportionalSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_proportional_select}{eo\+Proportional\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the selection, 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, const E\+O\+T \& $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Proportional\+Select.\+h\end{DoxyCompactItemize}

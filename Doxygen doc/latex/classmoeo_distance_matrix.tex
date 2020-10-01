@@ -1,0 +1,81 @@
+\hypertarget{classmoeo_distance_matrix}{}\doxysection{moeo\+Distance\+Matrix$<$ M\+O\+E\+OT, Type $>$ Class Template Reference}
+\label{classmoeo_distance_matrix}\index{moeoDistanceMatrix$<$ MOEOT, Type $>$@{moeoDistanceMatrix$<$ MOEOT, Type $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Distance\+Matrix.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Distance\+Matrix$<$ M\+O\+E\+OT, Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_distance_matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Distance\+Matrix$<$ M\+O\+E\+OT, Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_distance_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_distance_matrix_a5526260bd46b6877abd700a15b9b9ee8}{moeo\+Distance\+Matrix}} (unsigned int \+\_\+size, \mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, Type $>$ \&\+\_\+distance)
+\item 
+void \mbox{\hyperlink{classmoeo_distance_matrix_aae3d433983a0a3d369cc17971498ad48}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT, class Type$>$\newline
+class moeo\+Distance\+Matrix$<$ M\+O\+E\+O\+T, Type $>$}
+
+A matrix to compute distances between every pair of individuals contained in a population. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_distance_matrix_a5526260bd46b6877abd700a15b9b9ee8}\label{classmoeo_distance_matrix_a5526260bd46b6877abd700a15b9b9ee8}} 
+\index{moeoDistanceMatrix$<$ MOEOT, Type $>$@{moeoDistanceMatrix$<$ MOEOT, Type $>$}!moeoDistanceMatrix@{moeoDistanceMatrix}}
+\index{moeoDistanceMatrix@{moeoDistanceMatrix}!moeoDistanceMatrix$<$ MOEOT, Type $>$@{moeoDistanceMatrix$<$ MOEOT, Type $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDistanceMatrix()}{moeoDistanceMatrix()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Type $>$ \\
+\mbox{\hyperlink{classmoeo_distance_matrix}{moeo\+Distance\+Matrix}}$<$ M\+O\+E\+OT, Type $>$\+::\mbox{\hyperlink{classmoeo_distance_matrix}{moeo\+Distance\+Matrix}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+size,  }\item[{\mbox{\hyperlink{classmoeo_distance}{moeo\+Distance}}$<$ M\+O\+E\+OT, Type $>$ \&}]{\+\_\+distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & size for every dimension of the matrix \\
+\hline
+{\em \+\_\+distance} & the distance to use \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_distance_matrix_aae3d433983a0a3d369cc17971498ad48}\label{classmoeo_distance_matrix_aae3d433983a0a3d369cc17971498ad48}} 
+\index{moeoDistanceMatrix$<$ MOEOT, Type $>$@{moeoDistanceMatrix$<$ MOEOT, Type $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDistanceMatrix$<$ MOEOT, Type $>$@{moeoDistanceMatrix$<$ MOEOT, Type $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Type $>$ \\
+void \mbox{\hyperlink{classmoeo_distance_matrix}{moeo\+Distance\+Matrix}}$<$ M\+O\+E\+OT, Type $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the distance between every pair of individuals contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/distance/moeo\+Distance\+Matrix.\+h\end{DoxyCompactItemize}

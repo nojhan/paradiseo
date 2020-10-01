@@ -1,0 +1,116 @@
+\hypertarget{classeo_gen_op}{}\doxysection{eo\+Gen\+Op$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_gen_op}\index{eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Gen\+Op.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Gen\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_gen_op__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Gen\+Op$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_gen_op__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_gen_op_a3c017dd5409799dac9b9d850b256209c}\label{classeo_gen_op_a3c017dd5409799dac9b9d850b256209c}} 
+\mbox{\hyperlink{classeo_gen_op_a3c017dd5409799dac9b9d850b256209c}{eo\+Gen\+Op}} ()
+\begin{DoxyCompactList}\small\item\em Ctor that honors its superclass. \end{DoxyCompactList}\item 
+virtual unsigned \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{max\+\_\+production}} (void)=0
+\item 
+\mbox{\Hypertarget{classeo_gen_op_ac88647292c28ba7701c552b106ea4be3}\label{classeo_gen_op_ac88647292c28ba7701c552b106ea4be3}} 
+virtual std\+::string {\bfseries class\+Name} () const =0
+\item 
+\mbox{\Hypertarget{classeo_gen_op_a9fec43b05b4b5436c60ea20e865ca62f}\label{classeo_gen_op_a9fec43b05b4b5436c60ea20e865ca62f}} 
+void \mbox{\hyperlink{classeo_gen_op_a9fec43b05b4b5436c60ea20e865ca62f}{operator()}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}{apply}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)=0
+\item 
+\mbox{\Hypertarget{classeo_gen_op_a3c017dd5409799dac9b9d850b256209c}\label{classeo_gen_op_a3c017dd5409799dac9b9d850b256209c}} 
+\mbox{\hyperlink{classeo_gen_op_a3c017dd5409799dac9b9d850b256209c}{eo\+Gen\+Op}} ()
+\begin{DoxyCompactList}\small\item\em Ctor that honors its superclass. \end{DoxyCompactList}\item 
+virtual unsigned \mbox{\hyperlink{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}{max\+\_\+production}} (void)=0
+\item 
+\mbox{\Hypertarget{classeo_gen_op_ac88647292c28ba7701c552b106ea4be3}\label{classeo_gen_op_ac88647292c28ba7701c552b106ea4be3}} 
+virtual std\+::string {\bfseries class\+Name} () const =0
+\item 
+\mbox{\Hypertarget{classeo_gen_op_a9fec43b05b4b5436c60ea20e865ca62f}\label{classeo_gen_op_a9fec43b05b4b5436c60ea20e865ca62f}} 
+void \mbox{\hyperlink{classeo_gen_op_a9fec43b05b4b5436c60ea20e865ca62f}{operator()}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}{apply}} (\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Gen\+Op$<$ E\+O\+T $>$}
+
+The base class for General Operators Subclass this operator is you want to define an operator that falls outside of the \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}, \mbox{\hyperlink{classeo_bin_op}{eo\+Bin\+Op}}, \mbox{\hyperlink{classeo_quad_op}{eo\+Quad\+Op}} classification. The argument the operator will receive is an \mbox{\hyperlink{classeo_populator}{eo\+Populator}}, which is a wrapper around the original population, is an instantiation of the next population and has often a selection function embedded in it to select new individuals.
+
+Note that the actual work is performed in the apply function. A\+ND that the apply function is responsible for invalidating the object if necessary 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}\label{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}} 
+\index{eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}!apply@{apply}}
+\index{apply@{apply}!eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+the function that will do the work 
+
+Implemented in \mbox{\hyperlink{class_gen_op_wrapper_aa120061f6dc613defdbed9a24acb467a}{Gen\+Op\+Wrapper}}, \mbox{\hyperlink{class_gen_op_wrapper_aa120061f6dc613defdbed9a24acb467a}{Gen\+Op\+Wrapper}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_quad_gen_op_a242d67e4bb9405500a15ddd9f15671ea}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_quad_gen_op_a242d67e4bb9405500a15ddd9f15671ea}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_adc874c8c312dea5a1300aa06cdc42a20}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_adc874c8c312dea5a1300aa06cdc42a20}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_a17f4c9d70d1cb46c767d242535beb0f3}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_a17f4c9d70d1cb46c767d242535beb0f3}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classthree2three_op_abb6df706ea0e8f252743fee8ae405690}{three2three\+Op}}, \mbox{\hyperlink{classthree2three_op_abb6df706ea0e8f252743fee8ae405690}{three2three\+Op}}, \mbox{\hyperlink{classtwo2one_op_a00e05f607e9c0c3f539fc499b5e8f7aa}{two2one\+Op}}, \mbox{\hyperlink{classtwo2one_op_a00e05f607e9c0c3f539fc499b5e8f7aa}{two2one\+Op}}, \mbox{\hyperlink{classone2three_op_af63b76ef88cec438312d07d10763b777}{one2three\+Op}}, \mbox{\hyperlink{classone2three_op_af63b76ef88cec438312d07d10763b777}{one2three\+Op}}, \mbox{\hyperlink{classeo_es_global_xover_ae10f419ec14e738f3329bdf7d905bbec}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_es_global_xover_ae10f419ec14e738f3329bdf7d905bbec}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_mon_gen_op_aac7257021b6fb674c899ce6e460fdacb}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_mon_gen_op_aac7257021b6fb674c899ce6e460fdacb}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ Dummy $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ Dummy $>$}}, \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ Dummy $>$}}, and \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ Dummy $>$}}.
+
+\mbox{\Hypertarget{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}\label{classeo_gen_op_a7f068857fa57b4f399d2b447481c6448}} 
+\index{eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}!apply@{apply}}
+\index{apply@{apply}!eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_populator}{eo\+Populator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+the function that will do the work 
+
+Implemented in \mbox{\hyperlink{class_gen_op_wrapper_aa120061f6dc613defdbed9a24acb467a}{Gen\+Op\+Wrapper}}, \mbox{\hyperlink{class_gen_op_wrapper_aa120061f6dc613defdbed9a24acb467a}{Gen\+Op\+Wrapper}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_quad_gen_op_a242d67e4bb9405500a15ddd9f15671ea}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_quad_gen_op_a242d67e4bb9405500a15ddd9f15671ea}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_adc874c8c312dea5a1300aa06cdc42a20}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_adc874c8c312dea5a1300aa06cdc42a20}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bin_gen_op_a9885257057e81633b1e7c37811ab51f7}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_abffa9921d70b9999c708e20b973939b2}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_a17f4c9d70d1cb46c767d242535beb0f3}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_a17f4c9d70d1cb46c767d242535beb0f3}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classthree2three_op_abb6df706ea0e8f252743fee8ae405690}{three2three\+Op}}, \mbox{\hyperlink{classthree2three_op_abb6df706ea0e8f252743fee8ae405690}{three2three\+Op}}, \mbox{\hyperlink{classtwo2one_op_a00e05f607e9c0c3f539fc499b5e8f7aa}{two2one\+Op}}, \mbox{\hyperlink{classtwo2one_op_a00e05f607e9c0c3f539fc499b5e8f7aa}{two2one\+Op}}, \mbox{\hyperlink{classone2three_op_af63b76ef88cec438312d07d10763b777}{one2three\+Op}}, \mbox{\hyperlink{classone2three_op_af63b76ef88cec438312d07d10763b777}{one2three\+Op}}, \mbox{\hyperlink{classeo_es_global_xover_ae10f419ec14e738f3329bdf7d905bbec}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_es_global_xover_ae10f419ec14e738f3329bdf7d905bbec}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_mon_gen_op_aac7257021b6fb674c899ce6e460fdacb}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_mon_gen_op_aac7257021b6fb674c899ce6e460fdacb}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ Dummy $>$}}, \mbox{\hyperlink{classeo_proportional_op_a9d93af8a78319533c944e8233d4aafab}{eo\+Proportional\+Op$<$ Dummy $>$}}, \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ Dummy $>$}}, and \mbox{\hyperlink{classeo_sequential_op_a5cb57026027d43a893ed5550cffd0a4e}{eo\+Sequential\+Op$<$ Dummy $>$}}.
+
+\mbox{\Hypertarget{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}\label{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}} 
+\index{eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual unsigned \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Max production is used to reserve space for all elements that are used by the operator, not setting it properly can result in a crash 
+
+Implemented in \mbox{\hyperlink{classeo_quad_gen_op_afc996554bc1686bea5ec649c3e31e375}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_quad_gen_op_afc996554bc1686bea5ec649c3e31e375}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classthree2three_op_a8a63720593a2b507354b5e27a8f917f9}{three2three\+Op}}, \mbox{\hyperlink{classthree2three_op_a8a63720593a2b507354b5e27a8f917f9}{three2three\+Op}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_a1679ec76bb020dfcfcb53131bd31eb28}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_a1679ec76bb020dfcfcb53131bd31eb28}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classtwo2one_op_a4e9e53b3ae21d7d999d2a829ed8ace22}{two2one\+Op}}, \mbox{\hyperlink{classtwo2one_op_a4e9e53b3ae21d7d999d2a829ed8ace22}{two2one\+Op}}, \mbox{\hyperlink{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classone2three_op_a32f6eb77bd6096c509d101f746d08a69}{one2three\+Op}}, \mbox{\hyperlink{classone2three_op_a32f6eb77bd6096c509d101f746d08a69}{one2three\+Op}}, \mbox{\hyperlink{classeo_mon_gen_op_a201916ef7b186c77f95807d3c6d30099}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_mon_gen_op_a201916ef7b186c77f95807d3c6d30099}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_afe6b1c9503f73548950c3fe37e888629}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_afe6b1c9503f73548950c3fe37e888629}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_es_global_xover_afea66db7f0b99c52c4dcb33257286b80}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_es_global_xover_afea66db7f0b99c52c4dcb33257286b80}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ Dummy $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ Dummy $>$}}, \mbox{\hyperlink{class_gen_op_wrapper_ac0b65f9714b8cc733122d62c29f314b3}{Gen\+Op\+Wrapper}}, and \mbox{\hyperlink{class_gen_op_wrapper_ac0b65f9714b8cc733122d62c29f314b3}{Gen\+Op\+Wrapper}}.
+
+\mbox{\Hypertarget{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}\label{classeo_gen_op_aaeaf1af3f0c36a94096b622a6c14241f}} 
+\index{eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}!max\_production@{max\_production}}
+\index{max\_production@{max\_production}!eoGenOp$<$ EOT $>$@{eoGenOp$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{max\_production()}{max\_production()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual unsigned \mbox{\hyperlink{classeo_gen_op}{eo\+Gen\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::max\+\_\+production (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Max production is used to reserve space for all elements that are used by the operator, not setting it properly can result in a crash 
+
+Implemented in \mbox{\hyperlink{classeo_quad_gen_op_afc996554bc1686bea5ec649c3e31e375}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_quad_gen_op_afc996554bc1686bea5ec649c3e31e375}{eo\+Quad\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classthree2three_op_a8a63720593a2b507354b5e27a8f917f9}{three2three\+Op}}, \mbox{\hyperlink{classthree2three_op_a8a63720593a2b507354b5e27a8f917f9}{three2three\+Op}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_a1679ec76bb020dfcfcb53131bd31eb28}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_sel_bin_gen_op_a1679ec76bb020dfcfcb53131bd31eb28}{eo\+Sel\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classtwo2one_op_a4e9e53b3ae21d7d999d2a829ed8ace22}{two2one\+Op}}, \mbox{\hyperlink{classtwo2one_op_a4e9e53b3ae21d7d999d2a829ed8ace22}{two2one\+Op}}, \mbox{\hyperlink{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_bin_gen_op_a77c4eb67ff91f582c400aa72fa6bae34}{eo\+Bin\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classone2three_op_a32f6eb77bd6096c509d101f746d08a69}{one2three\+Op}}, \mbox{\hyperlink{classone2three_op_a32f6eb77bd6096c509d101f746d08a69}{one2three\+Op}}, \mbox{\hyperlink{classeo_mon_gen_op_a201916ef7b186c77f95807d3c6d30099}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_mon_gen_op_a201916ef7b186c77f95807d3c6d30099}{eo\+Mon\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_s_g_a_gen_op_a2d691b170862603bea7850a53ff7c39a}{eo\+S\+G\+A\+Gen\+Op$<$ M\+O\+E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_afe6b1c9503f73548950c3fe37e888629}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_prop_g_a_gen_op_afe6b1c9503f73548950c3fe37e888629}{eo\+Prop\+G\+A\+Gen\+Op$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_es_global_xover_afea66db7f0b99c52c4dcb33257286b80}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_es_global_xover_afea66db7f0b99c52c4dcb33257286b80}{eo\+Es\+Global\+Xover$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ E\+O\+T $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ Dummy $>$}}, \mbox{\hyperlink{classeo_op_container_ab64d3eccdd3f30fcbfff32eb21c88160}{eo\+Op\+Container$<$ Dummy $>$}}, \mbox{\hyperlink{class_gen_op_wrapper_ac0b65f9714b8cc733122d62c29f314b3}{Gen\+Op\+Wrapper}}, and \mbox{\hyperlink{class_gen_op_wrapper_ac0b65f9714b8cc733122d62c29f314b3}{Gen\+Op\+Wrapper}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Gen\+Op.\+h\end{DoxyCompactItemize}

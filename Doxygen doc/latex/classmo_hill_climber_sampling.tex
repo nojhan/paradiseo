@@ -1,0 +1,105 @@
+\hypertarget{classmo_hill_climber_sampling}{}\doxysection{mo\+Hill\+Climber\+Sampling$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_hill_climber_sampling}\index{moHillClimberSampling$<$ Neighbor $>$@{moHillClimberSampling$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Hill\+Climber\+Sampling.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Hill\+Climber\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{classmo_hill_climber_sampling__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Hill\+Climber\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_hill_climber_sampling__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_a1f0c618f6aaa52ac049f979acdf4631a}\label{classmo_hill_climber_sampling_a1f0c618f6aaa52ac049f979acdf4631a}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_hill_climber_sampling_ab54561dd7d7f0c6745d94f3e6752a39f}{mo\+Hill\+Climber\+Sampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighborhood, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned int \+\_\+nb\+Adapt\+Walk)
+\item 
+\mbox{\hyperlink{classmo_hill_climber_sampling_abf3f02a7e1ca432a08f411d780069cdd}{$\sim$mo\+Hill\+Climber\+Sampling}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_a05384e78d9db963e67add71d21050289}\label{classmo_hill_climber_sampling_a05384e78d9db963e67add71d21050289}} 
+\mbox{\hyperlink{classmo_solution_stat}{mo\+Solution\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ {\bfseries sol\+Stat}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_add13163d4eb3522277ea2ac48abdc962}\label{classmo_hill_climber_sampling_add13163d4eb3522277ea2ac48abdc962}} 
+\mbox{\hyperlink{classmo_minus_one_counter_stat}{mo\+Minus\+One\+Counter\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ {\bfseries length\+Stat}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_aa618c90d09666bcb7ccf46b6915440f5}\label{classmo_hill_climber_sampling_aa618c90d09666bcb7ccf46b6915440f5}} 
+\mbox{\hyperlink{classmo_true_continuator}{mo\+True\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries true\+Cont}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_aef61867ed14b69756aeb15842fe014f5}\label{classmo_hill_climber_sampling_aef61867ed14b69756aeb15842fe014f5}} 
+\mbox{\hyperlink{classmo_stat_from_stat}{mo\+Stat\+From\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}}, unsigned int $>$ {\bfseries copy\+Stat}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_ac83c0f83927b7b4d20a16d65968418e0}\label{classmo_hill_climber_sampling_ac83c0f83927b7b4d20a16d65968418e0}} 
+\mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries checkpoint}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_ae7c36ad1c074af823e9ab260632786ae}\label{classmo_hill_climber_sampling_ae7c36ad1c074af823e9ab260632786ae}} 
+\mbox{\hyperlink{classmo_simple_h_c}{mo\+Simple\+HC}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries hc}
+\item 
+\mbox{\Hypertarget{classmo_hill_climber_sampling_a4000fa87039239cbd6f2bcc42489a19d}\label{classmo_hill_climber_sampling_a4000fa87039239cbd6f2bcc42489a19d}} 
+\mbox{\hyperlink{classmo_local_search_init}{mo\+Local\+Search\+Init}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries init\+HC}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Hill\+Climber\+Sampling$<$ Neighbor $>$}
+
+To compute the length and final solution of an adaptive walk\+: Perform a simple Hill-\/climber based on the neighborhood (gradiant walk, the whole neighborhood is visited), The lengths of HC are collected and the final solution which are local optima The adaptive walk is repeated several times 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_hill_climber_sampling_ab54561dd7d7f0c6745d94f3e6752a39f}\label{classmo_hill_climber_sampling_ab54561dd7d7f0c6745d94f3e6752a39f}} 
+\index{moHillClimberSampling$<$ Neighbor $>$@{moHillClimberSampling$<$ Neighbor $>$}!moHillClimberSampling@{moHillClimberSampling}}
+\index{moHillClimberSampling@{moHillClimberSampling}!moHillClimberSampling$<$ Neighbor $>$@{moHillClimberSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moHillClimberSampling()}{moHillClimberSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_hill_climber_sampling}{mo\+Hill\+Climber\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_hill_climber_sampling}{mo\+Hill\+Climber\+Sampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned int}]{\+\_\+nb\+Adapt\+Walk }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+neighborhood} & neighborhood giving neighbor in random order \\
+\hline
+{\em \+\_\+full\+Eval} & a full evaluation function \\
+\hline
+{\em \+\_\+eval} & an incremental evaluation of neighbors \\
+\hline
+{\em \+\_\+nb\+Adapt\+Walk} & Number of adaptive walks \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_hill_climber_sampling_abf3f02a7e1ca432a08f411d780069cdd}\label{classmo_hill_climber_sampling_abf3f02a7e1ca432a08f411d780069cdd}} 
+\index{moHillClimberSampling$<$ Neighbor $>$@{moHillClimberSampling$<$ Neighbor $>$}!````~moHillClimberSampling@{$\sim$moHillClimberSampling}}
+\index{````~moHillClimberSampling@{$\sim$moHillClimberSampling}!moHillClimberSampling$<$ Neighbor $>$@{moHillClimberSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moHillClimberSampling()}{~moHillClimberSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_hill_climber_sampling}{mo\+Hill\+Climber\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_hill_climber_sampling}{mo\+Hill\+Climber\+Sampling}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+Hill\+Climber\+Sampling.\+h\end{DoxyCompactItemize}

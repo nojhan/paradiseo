@@ -1,0 +1,74 @@
+\hypertarget{classmo_eval_counter}{}\doxysection{mo\+Eval\+Counter$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_eval_counter}\index{moEvalCounter$<$ Neighbor $>$@{moEvalCounter$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Eval\+Counter.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Eval\+Counter$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_eval_counter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Eval\+Counter$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_eval_counter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_eval_counter_a3ac83aeb3792b9d4bb95288982bfe24b}\label{classmo_eval_counter_a3ac83aeb3792b9d4bb95288982bfe24b}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_eval_counter_a9e8b28630f288853568fe5724cdfafb6}\label{classmo_eval_counter_a9e8b28630f288853568fe5724cdfafb6}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_eval_counter_abb745e5a6409f35537548d5fc930c562}\label{classmo_eval_counter_abb745e5a6409f35537548d5fc930c562}} 
+{\bfseries mo\+Eval\+Counter} (\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, std\+::string \+\_\+name=\char`\"{}Neighbor Eval. \char`\"{})
+\item 
+void \mbox{\hyperlink{classmo_eval_counter_adb86d043209bbaec2b14edc6bf94caa4}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Eval\+Counter$<$ Neighbor $>$}
+
+Counts the number of neighbor evaluations actually performed, thus checks first if it has to be evaluated.. etc. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_eval_counter_adb86d043209bbaec2b14edc6bf94caa4}\label{classmo_eval_counter_adb86d043209bbaec2b14edc6bf94caa4}} 
+\index{moEvalCounter$<$ Neighbor $>$@{moEvalCounter$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moEvalCounter$<$ Neighbor $>$@{moEvalCounter$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_eval_counter}{mo\+Eval\+Counter}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Increase the number of neighbor evaluations and perform the evaluation
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+{\em \+\_\+neighbor} & a neighbor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/eval/mo\+Eval\+Counter.\+h\end{DoxyCompactItemize}

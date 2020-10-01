@@ -1,0 +1,115 @@
+\hypertarget{classmo_distance_stat}{}\doxysection{mo\+Distance\+Stat$<$ E\+OT, T $>$ Class Template Reference}
+\label{classmo_distance_stat}\index{moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}}
+
+
+{\ttfamily \#include $<$mo\+Distance\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Distance\+Stat$<$ E\+OT, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_distance_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Distance\+Stat$<$ E\+OT, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_distance_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_distance_stat_a6e46f40a8ae4e439b613a8b934f50a1e}{mo\+Distance\+Stat}} (\mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+dist, \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+ref)
+\item 
+virtual void \mbox{\hyperlink{classmo_distance_stat_a5df609ea6f1dd758718c503a2cdaa3ae}{init}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_distance_stat_a82e9ef5f3976ca87de0f04544ee2f3df}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_distance_stat_a5b9bf396d2bf0609e8bd8b77cebff17d}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class T = double$>$\newline
+class mo\+Distance\+Stat$<$ E\+O\+T, T $>$}
+
+The statistic gives the distance to a reference solution The reference solution could be the global optimum, or the best knowed solution It allows to compute the Fitness-\/\+Distance correlation (F\+DC) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_distance_stat_a6e46f40a8ae4e439b613a8b934f50a1e}\label{classmo_distance_stat_a6e46f40a8ae4e439b613a8b934f50a1e}} 
+\index{moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}!moDistanceStat@{moDistanceStat}}
+\index{moDistanceStat@{moDistanceStat}!moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{moDistanceStat()}{moDistanceStat()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class T  = double$>$ \\
+\mbox{\hyperlink{classmo_distance_stat}{mo\+Distance\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$\+::\mbox{\hyperlink{classmo_distance_stat}{mo\+Distance\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_distance}{eo\+Distance}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+dist,  }\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+ref }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dist} & a distance \\
+\hline
+{\em \+\_\+ref} & the reference solution \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_distance_stat_a5b9bf396d2bf0609e8bd8b77cebff17d}\label{classmo_distance_stat_a5b9bf396d2bf0609e8bd8b77cebff17d}} 
+\index{moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}!className@{className}}
+\index{className@{className}!moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class T  = double$>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_distance_stat}{mo\+Distance\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+name of the class 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_distance_stat_a5df609ea6f1dd758718c503a2cdaa3ae}\label{classmo_distance_stat_a5df609ea6f1dd758718c503a2cdaa3ae}} 
+\index{moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}!init@{init}}
+\index{init@{init}!moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class T  = double$>$ \\
+virtual void \mbox{\hyperlink{classmo_distance_stat}{mo\+Distance\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute distance between the first solution and the reference solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_distance_stat_a82e9ef5f3976ca87de0f04544ee2f3df}\label{classmo_distance_stat_a82e9ef5f3976ca87de0f04544ee2f3df}} 
+\index{moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moDistanceStat$<$ EOT, T $>$@{moDistanceStat$<$ EOT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class T  = double$>$ \\
+virtual void \mbox{\hyperlink{classmo_distance_stat}{mo\+Distance\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, T $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute distance between a solution and the reference solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Distance\+Stat.\+h\end{DoxyCompactItemize}

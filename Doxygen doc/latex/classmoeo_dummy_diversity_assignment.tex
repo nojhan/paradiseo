@@ -1,0 +1,97 @@
+\hypertarget{classmoeo_dummy_diversity_assignment}{}\doxysection{moeo\+Dummy\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_dummy_diversity_assignment}\index{moeoDummyDiversityAssignment$<$ MOEOT $>$@{moeoDummyDiversityAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dummy\+Diversity\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dummy\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dummy_diversity_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dummy\+Diversity\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_dummy_diversity_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dummy_diversity_assignment_a657d87e8f537200392bd7a24649f0294}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmoeo_dummy_diversity_assignment_a78c9150d3c586f5324ccbd2faa984ba9}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_dummy_diversity_assignment_a6bed06d060c66b5360bb12b33e3e83be}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&, \mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Dummy\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+\mbox{\hyperlink{classmoeo_dummy_diversity_assignment}{moeo\+Dummy\+Diversity\+Assignment}} is a \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}} that gives the value \textquotesingle{}0\textquotesingle{} as the individual\textquotesingle{}s diversity for a whole population if it is invalid. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_dummy_diversity_assignment_a657d87e8f537200392bd7a24649f0294}\label{classmoeo_dummy_diversity_assignment_a657d87e8f537200392bd7a24649f0294}} 
+\index{moeoDummyDiversityAssignment$<$ MOEOT $>$@{moeoDummyDiversityAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoDummyDiversityAssignment$<$ MOEOT $>$@{moeoDummyDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dummy_diversity_assignment}{moeo\+Dummy\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}}}
+
+The type for objective vector 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dummy_diversity_assignment_a78c9150d3c586f5324ccbd2faa984ba9}\label{classmoeo_dummy_diversity_assignment_a78c9150d3c586f5324ccbd2faa984ba9}} 
+\index{moeoDummyDiversityAssignment$<$ MOEOT $>$@{moeoDummyDiversityAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDummyDiversityAssignment$<$ MOEOT $>$@{moeoDummyDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dummy_diversity_assignment}{moeo\+Dummy\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the diversity to \textquotesingle{}0\textquotesingle{} for every individuals of the population \+\_\+pop if it is invalid 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dummy_diversity_assignment_a6bed06d060c66b5360bb12b33e3e83be}\label{classmoeo_dummy_diversity_assignment_a6bed06d060c66b5360bb12b33e3e83be}} 
+\index{moeoDummyDiversityAssignment$<$ MOEOT $>$@{moeoDummyDiversityAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoDummyDiversityAssignment$<$ MOEOT $>$@{moeoDummyDiversityAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dummy_diversity_assignment}{moeo\+Dummy\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment_adc2aa6c655cb0c163aa3c769c91c9339}{Objective\+Vector}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the diversity values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_diversity_assignment_a57f400263b36664df6269f1b522cfdcb}{moeo\+Diversity\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/diversity/moeo\+Dummy\+Diversity\+Assignment.\+h\end{DoxyCompactItemize}

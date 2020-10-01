@@ -1,0 +1,111 @@
+\hypertarget{classmoeo_distance_metric}{}\doxysection{moeo\+Distance\+Metric$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_distance_metric}\index{moeoDistanceMetric$<$ MOEOT $>$@{moeoDistanceMetric$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Distance\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Distance\+Metric$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_distance_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Distance\+Metric$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_distance_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_distance_metric_a1dd5465c2cf5f1ca1cbdffbefb4f0b4d}\label{classmoeo_distance_metric_a1dd5465c2cf5f1ca1cbdffbefb4f0b4d}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_distance_metric_a02c1620c5a625b5d59573569f34379a7}\label{classmoeo_distance_metric_a02c1620c5a625b5d59573569f34379a7}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_distance_metric_a7f0299aad69f7e93a8203b4dcd2cb20a}{moeo\+Distance\+Metric}} (\mbox{\hyperlink{classmoeo_obj_space_distance}{moeo\+Obj\+Space\+Distance}}$<$ M\+O\+E\+OT $>$ \&\+\_\+distance, const Objective\+Vector \&\+\_\+reference\+Point, \mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&\+\_\+normalizer)
+\item 
+\mbox{\hyperlink{classmoeo_distance_metric_ad18f579492b069c70843a32ad2eea077}{moeo\+Distance\+Metric}} (\mbox{\hyperlink{classmoeo_obj_space_distance}{moeo\+Obj\+Space\+Distance}}$<$ M\+O\+E\+OT $>$ \&\+\_\+distance, const Objective\+Vector \&\+\_\+reference\+Point)
+\item 
+Fitness \mbox{\hyperlink{classmoeo_distance_metric_a9503cf6cb552d28a62f138a26d7f8ba8}{operator()}} (Objective\+Vector \+\_\+obj)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Distance\+Metric$<$ M\+O\+E\+O\+T $>$}
+
+Adapter to use Distances as a metric 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_distance_metric_a7f0299aad69f7e93a8203b4dcd2cb20a}\label{classmoeo_distance_metric_a7f0299aad69f7e93a8203b4dcd2cb20a}} 
+\index{moeoDistanceMetric$<$ MOEOT $>$@{moeoDistanceMetric$<$ MOEOT $>$}!moeoDistanceMetric@{moeoDistanceMetric}}
+\index{moeoDistanceMetric@{moeoDistanceMetric}!moeoDistanceMetric$<$ MOEOT $>$@{moeoDistanceMetric$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDistanceMetric()}{moeoDistanceMetric()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_distance_metric}{moeo\+Distance\+Metric}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_distance_metric}{moeo\+Distance\+Metric}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_obj_space_distance}{moeo\+Obj\+Space\+Distance}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+distance,  }\item[{const Objective\+Vector \&}]{\+\_\+reference\+Point,  }\item[{\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+normalizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+distance} & the distance \\
+\hline
+{\em \+\_\+reference\+Point} & the point from which we evaluate the distance \\
+\hline
+{\em \+\_\+normalizer} & the normalizer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_distance_metric_ad18f579492b069c70843a32ad2eea077}\label{classmoeo_distance_metric_ad18f579492b069c70843a32ad2eea077}} 
+\index{moeoDistanceMetric$<$ MOEOT $>$@{moeoDistanceMetric$<$ MOEOT $>$}!moeoDistanceMetric@{moeoDistanceMetric}}
+\index{moeoDistanceMetric@{moeoDistanceMetric}!moeoDistanceMetric$<$ MOEOT $>$@{moeoDistanceMetric$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDistanceMetric()}{moeoDistanceMetric()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_distance_metric}{moeo\+Distance\+Metric}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_distance_metric}{moeo\+Distance\+Metric}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_obj_space_distance}{moeo\+Obj\+Space\+Distance}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+distance,  }\item[{const Objective\+Vector \&}]{\+\_\+reference\+Point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructor with a dummy normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+distance} & the distance \\
+\hline
+{\em \+\_\+reference\+Point} & the point from which we evaluate the distance \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_distance_metric_a9503cf6cb552d28a62f138a26d7f8ba8}\label{classmoeo_distance_metric_a9503cf6cb552d28a62f138a26d7f8ba8}} 
+\index{moeoDistanceMetric$<$ MOEOT $>$@{moeoDistanceMetric$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDistanceMetric$<$ MOEOT $>$@{moeoDistanceMetric$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+Fitness \mbox{\hyperlink{classmoeo_distance_metric}{moeo\+Distance\+Metric}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{Objective\+Vector}]{\+\_\+obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+fonction which apply the metric to calculate a fitness 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+obj} & the point to evaluate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fitness conrresponding to the distance 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ M\+O\+E\+O\+T\+::\+Objective\+Vector, M\+O\+E\+O\+T\+::\+Fitness $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Distance\+Metric.\+h\end{DoxyCompactItemize}

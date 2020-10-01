@@ -1,0 +1,153 @@
+\hypertarget{classmo_neighbor_best_stat}{}\doxysection{mo\+Neighbor\+Best\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_neighbor_best_stat}\index{moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Neighbor\+Best\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Neighbor\+Best\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighbor_best_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Neighbor\+Best\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_neighbor_best_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_best_stat_a6f73c9a608d1982eb847f8e51b2d3611}\label{classmo_neighbor_best_stat_a6f73c9a608d1982eb847f8e51b2d3611}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_best_stat_ae141c20c356b95e3cb162bff9003f3ed}\label{classmo_neighbor_best_stat_ae141c20c356b95e3cb162bff9003f3ed}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_neighbor_best_stat_a2a7a64eb2df4f83832521c9abc23a2c6}\label{classmo_neighbor_best_stat_a2a7a64eb2df4f83832521c9abc23a2c6}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_neighbor_best_stat_a8189603f671df26c02f96a2d82b4c9bb}{mo\+Neighbor\+Best\+Stat}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighbor\+Comparator, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator, unsigned int \+\_\+k=0)
+\item 
+\mbox{\hyperlink{classmo_neighbor_best_stat_a2bab3f78239feafe900ba780dfa3a2be}{mo\+Neighbor\+Best\+Stat}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, unsigned \+\_\+k=0)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighbor_best_stat_ab7ce94c302e48ff46908207fa9bd0b65}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_neighbor_best_stat_aba76a11bdc0366d967fac3ce2753ef00}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor_best_stat_abbab93692ec598cb5b84e91a459e0631}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Neighbor\+Best\+Stat$<$ Neighbor $>$}
+
+Compute the fitness of the best solution among k neighbor or all neighbors 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_neighbor_best_stat_a8189603f671df26c02f96a2d82b4c9bb}\label{classmo_neighbor_best_stat_a8189603f671df26c02f96a2d82b4c9bb}} 
+\index{moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}!moNeighborBestStat@{moNeighborBestStat}}
+\index{moNeighborBestStat@{moNeighborBestStat}!moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborBestStat()}{moNeighborBestStat()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator,  }\item[{unsigned int}]{\+\_\+k = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & a neighborhood \\
+\hline
+{\em \+\_\+eval} & an evaluation function \\
+\hline
+{\em \+\_\+neighbor\+Comparator} & a neighbor Comparator \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & a comparator between a solution and a neighbor \\
+\hline
+{\em \+\_\+k} & number of neighbors visited \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_neighbor_best_stat_a2bab3f78239feafe900ba780dfa3a2be}\label{classmo_neighbor_best_stat_a2bab3f78239feafe900ba780dfa3a2be}} 
+\index{moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}!moNeighborBestStat@{moNeighborBestStat}}
+\index{moNeighborBestStat@{moNeighborBestStat}!moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNeighborBestStat()}{moNeighborBestStat()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{unsigned}]{\+\_\+k = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Constructor where the comparators are basic, there only compare the fitness values
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & a neighborhood \\
+\hline
+{\em \+\_\+eval} & an evaluation function \\
+\hline
+{\em \+\_\+k} & number of neighbors visited (default all) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_neighbor_best_stat_abbab93692ec598cb5b84e91a459e0631}\label{classmo_neighbor_best_stat_abbab93692ec598cb5b84e91a459e0631}} 
+\index{moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_neighbor_best_stat_ab7ce94c302e48ff46908207fa9bd0b65}\label{classmo_neighbor_best_stat_ab7ce94c302e48ff46908207fa9bd0b65}} 
+\index{moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute classical statistics of the first solution\textquotesingle{}s neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_neighbor_best_stat_aba76a11bdc0366d967fac3ce2753ef00}\label{classmo_neighbor_best_stat_aba76a11bdc0366d967fac3ce2753ef00}} 
+\index{moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moNeighborBestStat$<$ Neighbor $>$@{moNeighborBestStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_neighbor_best_stat}{mo\+Neighbor\+Best\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compute the best fitness amoung all neighbors or k neighbors 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Neighbor\+Best\+Stat.\+h\end{DoxyCompactItemize}

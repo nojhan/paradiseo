@@ -1,0 +1,95 @@
+\hypertarget{class_long_k_path_eval}{}\doxysection{Long\+K\+Path\+Eval$<$ E\+OT $>$ Class Template Reference}
+\label{class_long_k_path_eval}\index{LongKPathEval$<$ EOT $>$@{LongKPathEval$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$long\+K\+Path\+Eval.\+h$>$}
+
+
+
+Inheritance diagram for Long\+K\+Path\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_long_k_path_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Long\+K\+Path\+Eval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_long_k_path_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_long_k_path_eval_aae878999f49ab9163cb1b7dadb3a2dc5}{Long\+K\+Path\+Eval}} (unsigned \+\_\+k)
+\item 
+\mbox{\hyperlink{class_long_k_path_eval_a68d624254c4e2b06b9605a8e1d2f1400}{$\sim$\+Long\+K\+Path\+Eval}} (void)
+\item 
+void \mbox{\hyperlink{class_long_k_path_eval_a20fff88091bce9e8dfd5fcc4e7540224}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class Long\+K\+Path\+Eval$<$ E\+O\+T $>$}
+
+Full evaluation function for long k-\/path problem 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_long_k_path_eval_aae878999f49ab9163cb1b7dadb3a2dc5}\label{class_long_k_path_eval_aae878999f49ab9163cb1b7dadb3a2dc5}} 
+\index{LongKPathEval$<$ EOT $>$@{LongKPathEval$<$ EOT $>$}!LongKPathEval@{LongKPathEval}}
+\index{LongKPathEval@{LongKPathEval}!LongKPathEval$<$ EOT $>$@{LongKPathEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{LongKPathEval()}{LongKPathEval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_long_k_path_eval}{Long\+K\+Path\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{class_long_k_path_eval}{Long\+K\+Path\+Eval}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+k} & parameter k of the long K-\/path problem \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_long_k_path_eval_a68d624254c4e2b06b9605a8e1d2f1400}\label{class_long_k_path_eval_a68d624254c4e2b06b9605a8e1d2f1400}} 
+\index{LongKPathEval$<$ EOT $>$@{LongKPathEval$<$ EOT $>$}!````~LongKPathEval@{$\sim$LongKPathEval}}
+\index{````~LongKPathEval@{$\sim$LongKPathEval}!LongKPathEval$<$ EOT $>$@{LongKPathEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$LongKPathEval()}{~LongKPathEval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_long_k_path_eval}{Long\+K\+Path\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::$\sim$\mbox{\hyperlink{class_long_k_path_eval}{Long\+K\+Path\+Eval}} (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_long_k_path_eval_a20fff88091bce9e8dfd5fcc4e7540224}\label{class_long_k_path_eval_a20fff88091bce9e8dfd5fcc4e7540224}} 
+\index{LongKPathEval$<$ EOT $>$@{LongKPathEval$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!LongKPathEval$<$ EOT $>$@{LongKPathEval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{class_long_k_path_eval}{Long\+K\+Path\+Eval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+compute the fitnes of the solution
+
+
+\begin{DoxyParams}{Parameters}
+{\em solution} & the solution to evaluate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fitness of the solution 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/long\+K\+Path\+Eval.\+h\end{DoxyCompactItemize}

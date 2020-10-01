@@ -1,0 +1,100 @@
+\hypertarget{classeoserial_1_1_parser}{}\doxysection{eoserial\+::Parser Class Reference}
+\label{classeoserial_1_1_parser}\index{eoserial::Parser@{eoserial::Parser}}
+
+
+\mbox{\hyperlink{classeoserial_1_1_parser}{Parser}} from a J\+S\+ON source.  
+
+
+
+
+{\ttfamily \#include $<$Parser.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeoserial_1_1_parser_a8c8453be84d0807f273ce357bc3fd515}\label{classeoserial_1_1_parser_a8c8453be84d0807f273ce357bc3fd515}} 
+static \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{classeoserial_1_1_parser_a8c8453be84d0807f273ce357bc3fd515}{parse}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Parses the given string and returns the J\+S\+ON object read. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classeoserial_1_1_entity}{eoserial\+::\+Entity}} $\ast$ \mbox{\hyperlink{classeoserial_1_1_parser_aff030a8dfc3038c69bd86622650d05f6}{parse\+Right}} (const std\+::string \&str, size\+\_\+t \&pos)
+\begin{DoxyCompactList}\small\item\em Parses the right part of a J\+S\+ON object as a string. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classeoserial_1_1_parser_af91c2482daaab6994296660159b20afb}{parse\+Left}} (const std\+::string \&str, size\+\_\+t \&pos, \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$json)
+\begin{DoxyCompactList}\small\item\em Parses the left value of a key-\/value pair, which is the key. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classeoserial_1_1_string}{eoserial\+::\+String}} $\ast$ \mbox{\hyperlink{classeoserial_1_1_parser_a9965daf67320a24ea51e9d991b0b4c02}{parse\+Json\+String}} (const std\+::string \&str, size\+\_\+t \&pos)
+\begin{DoxyCompactList}\small\item\em Retrieves a string in a J\+S\+ON content. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classeoserial_1_1_parser}{Parser}} from a J\+S\+ON source. 
+
+This parser does just retrieve values and does N\+OT check the structure of the input. This implies that if the input is not correct, the result is undefined and can result to a failure on execution. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_parser_a9965daf67320a24ea51e9d991b0b4c02}\label{classeoserial_1_1_parser_a9965daf67320a24ea51e9d991b0b4c02}} 
+\index{eoserial::Parser@{eoserial::Parser}!parseJsonString@{parseJsonString}}
+\index{parseJsonString@{parseJsonString}!eoserial::Parser@{eoserial::Parser}}
+\doxysubsubsection{\texorpdfstring{parseJsonString()}{parseJsonString()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_string}{String}} $\ast$ eoserial\+::\+Parser\+::parse\+Json\+String (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str,  }\item[{size\+\_\+t \&}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Retrieves a string in a J\+S\+ON content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string we\textquotesingle{}re parsing. \\
+\hline
+{\em pos} & The index of the current position of parsing, which will be updated. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeoserial_1_1_parser_af91c2482daaab6994296660159b20afb}\label{classeoserial_1_1_parser_af91c2482daaab6994296660159b20afb}} 
+\index{eoserial::Parser@{eoserial::Parser}!parseLeft@{parseLeft}}
+\index{parseLeft@{parseLeft}!eoserial::Parser@{eoserial::Parser}}
+\doxysubsubsection{\texorpdfstring{parseLeft()}{parseLeft()}}
+{\footnotesize\ttfamily void eoserial\+::\+Parser\+::parse\+Left (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str,  }\item[{size\+\_\+t \&}]{pos,  }\item[{\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Parses the left value of a key-\/value pair, which is the key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string we\textquotesingle{}re parsing. \\
+\hline
+{\em pos} & The index of the current position in the string. \\
+\hline
+{\em json} & The current J\+S\+ON object for which we\textquotesingle{}re adding a key-\/value pair. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeoserial_1_1_parser_aff030a8dfc3038c69bd86622650d05f6}\label{classeoserial_1_1_parser_aff030a8dfc3038c69bd86622650d05f6}} 
+\index{eoserial::Parser@{eoserial::Parser}!parseRight@{parseRight}}
+\index{parseRight@{parseRight}!eoserial::Parser@{eoserial::Parser}}
+\doxysubsubsection{\texorpdfstring{parseRight()}{parseRight()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_entity}{Entity}} $\ast$ eoserial\+::\+Parser\+::parse\+Right (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str,  }\item[{size\+\_\+t \&}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Parses the right part of a J\+S\+ON object as a string. 
+
+The right part of an object can be a string (for instance \+: \char`\"{}key\char`\"{}\+:\char`\"{}value\char`\"{}), a J\+S\+ON array (for instance\+: \char`\"{}key\char`\"{}\+:\mbox{[}\char`\"{}1\char`\"{}\mbox{]}) or another J\+S\+ON object (for instance\+: \char`\"{}key\char`\"{}\+:\{\char`\"{}another\+\_\+key\char`\"{}\+:\char`\"{}value\char`\"{}\}).
+
+The right parts are found after keys (which are parsed by parse\+Left) and in arrays.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string we\textquotesingle{}re parsing. \\
+\hline
+{\em pos} & The index of the current position in the string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The J\+S\+ON object matching the right part. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/\mbox{\hyperlink{_parser_8h}{Parser.\+h}}\item 
+eo/src/serial/Parser.\+cpp\end{DoxyCompactItemize}

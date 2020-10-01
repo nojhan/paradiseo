@@ -1,0 +1,5 @@
+<map id="Foundry" name="Foundry">
+<area shape="rect" id="node1" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="271,25,407,50"/>
+<area shape="rect" id="node2" title="Tools for automatic algorithms assembling, selection and search." alt="" coords="5,62,80,87"/>
+<area shape="rect" id="node3" href="$group___algorithms.html" title="In EO, an algorithm is a functor that takes one or several solutions to an optimization problem as ar..." alt="" coords="292,99,385,125"/>
+</map>

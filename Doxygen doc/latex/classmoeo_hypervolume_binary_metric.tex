@@ -1,0 +1,88 @@
+\hypertarget{classmoeo_hypervolume_binary_metric}{}\doxysection{moeo\+Hypervolume\+Binary\+Metric$<$ Objective\+Vector $>$ Class Template Reference}
+\label{classmoeo_hypervolume_binary_metric}\index{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$@{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Hypervolume\+Binary\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Hypervolume\+Binary\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hypervolume_binary_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Hypervolume\+Binary\+Metric$<$ Objective\+Vector $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_hypervolume_binary_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_hypervolume_binary_metric_a01a07711a7c9f38cdc2c76e40a3c5958}{moeo\+Hypervolume\+Binary\+Metric}} (double \+\_\+rho=1.\+1)
+\item 
+double \mbox{\hyperlink{classmoeo_hypervolume_binary_metric_ac147309a5ba6b365be926e6083c5b9f2}{operator()}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+o1, const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+o2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector$>$\newline
+class moeo\+Hypervolume\+Binary\+Metric$<$ Objective\+Vector $>$}
+
+Hypervolume binary metric allowing to compare two objective vectors as proposed in Zitzler E., Künzli S.\+: Indicator-\/\+Based Selection in Multiobjective Search. In Parallel \mbox{\hyperlink{class_problem}{Problem}} Solving from Nature (P\+P\+SN V\+I\+II). Lecture Notes in Computer Science 3242, Springer, Birmingham, UK pp.\+832–842 (2004).
+
+This indicator is based on the hypervolume concept introduced in Zitzler, E., Thiele, L.\+: Multiobjective Optimization Using Evolutionary Algorithms -\/ A Comparative Case Study. Parallel \mbox{\hyperlink{class_problem}{Problem}} Solving from Nature (P\+P\+S\+N-\/V), pp.\+292-\/301 (1998).
+
+This code is adapted from the P\+I\+SA implementation of I\+B\+EA (\href{http://www.tik.ee.ethz.ch/sop/pisa/}{\texttt{ http\+://www.\+tik.\+ee.\+ethz.\+ch/sop/pisa/}}) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_hypervolume_binary_metric_a01a07711a7c9f38cdc2c76e40a3c5958}\label{classmoeo_hypervolume_binary_metric_a01a07711a7c9f38cdc2c76e40a3c5958}} 
+\index{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$@{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$}!moeoHypervolumeBinaryMetric@{moeoHypervolumeBinaryMetric}}
+\index{moeoHypervolumeBinaryMetric@{moeoHypervolumeBinaryMetric}!moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$@{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHypervolumeBinaryMetric()}{moeoHypervolumeBinaryMetric()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+\mbox{\hyperlink{classmoeo_hypervolume_binary_metric}{moeo\+Hypervolume\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::\mbox{\hyperlink{classmoeo_hypervolume_binary_metric}{moeo\+Hypervolume\+Binary\+Metric}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+rho = {\ttfamily 1.1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rho} & value used to compute the reference point from the worst values for each objective (default \+: 1.\+1) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_hypervolume_binary_metric_ac147309a5ba6b365be926e6083c5b9f2}\label{classmoeo_hypervolume_binary_metric_ac147309a5ba6b365be926e6083c5b9f2}} 
+\index{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$@{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$@{moeoHypervolumeBinaryMetric$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+double \mbox{\hyperlink{classmoeo_hypervolume_binary_metric}{moeo\+Hypervolume\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+o1,  }\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&}]{\+\_\+o2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the volume of the space that is dominated by \+\_\+o2 but not by \+\_\+o1 with respect to a reference point computed using rho. \begin{DoxyWarning}{Warning}
+don\textquotesingle{}t forget to set the bounds for every objective before the call of this function 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+o1} & the first objective vector \\
+\hline
+{\em \+\_\+o2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const Objective\+Vector \&, const Objective\+Vector \&, double $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Hypervolume\+Binary\+Metric.\+h\end{DoxyCompactItemize}

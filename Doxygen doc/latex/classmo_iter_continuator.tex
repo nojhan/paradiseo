@@ -1,0 +1,120 @@
+\hypertarget{classmo_iter_continuator}{}\doxysection{mo\+Iter\+Continuator$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_iter_continuator}\index{moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Iter\+Continuator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Iter\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_iter_continuator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Iter\+Continuator$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_iter_continuator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_iter_continuator_a38454fa61985c200e1bd8ba8dc97f503}\label{classmo_iter_continuator_a38454fa61985c200e1bd8ba8dc97f503}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_iter_continuator_a767d181153c780f0b20b7a0ce82a4ea0}{mo\+Iter\+Continuator}} (unsigned int \+\_\+max\+Iter, bool \+\_\+verbose=true)
+\item 
+virtual bool \mbox{\hyperlink{classmo_iter_continuator_a6c42a536b89c3cf6b5c5a640f3042add}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_iter_continuator_ac8a422faae391d67a50c002d9549f8cd}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+unsigned int \mbox{\hyperlink{classmo_iter_continuator_a3bda35736b66a8392914362d28a84508}{value}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Iter\+Continuator$<$ Neighbor $>$}
+
+Continue until a maximum fixed number of iterations is reached 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_iter_continuator_a767d181153c780f0b20b7a0ce82a4ea0}\label{classmo_iter_continuator_a767d181153c780f0b20b7a0ce82a4ea0}} 
+\index{moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}!moIterContinuator@{moIterContinuator}}
+\index{moIterContinuator@{moIterContinuator}!moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moIterContinuator()}{moIterContinuator()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_iter_continuator}{mo\+Iter\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_iter_continuator}{mo\+Iter\+Continuator}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+max\+Iter,  }\item[{bool}]{\+\_\+verbose = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Iter} & number maximum of iterations \\
+\hline
+{\em \+\_\+verbose} & true/false \+: verbose mode on/off \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_iter_continuator_ac8a422faae391d67a50c002d9549f8cd}\label{classmo_iter_continuator_ac8a422faae391d67a50c002d9549f8cd}} 
+\index{moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_iter_continuator}{mo\+Iter\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+reset the counter of iteration 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_continuator_a2e0feb9a6288cd6cba6b6817c9cdf481}{mo\+Continuator$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_iter_continuator_a6c42a536b89c3cf6b5c5a640f3042add}\label{classmo_iter_continuator_a6c42a536b89c3cf6b5c5a640f3042add}} 
+\index{moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_iter_continuator}{mo\+Iter\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if counter $<$ max\+Iter 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+\mbox{\Hypertarget{classmo_iter_continuator_a3bda35736b66a8392914362d28a84508}\label{classmo_iter_continuator_a3bda35736b66a8392914362d28a84508}} 
+\index{moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}!value@{value}}
+\index{value@{value}!moIterContinuator$<$ Neighbor $>$@{moIterContinuator$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+unsigned int \mbox{\hyperlink{classmo_iter_continuator}{mo\+Iter\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+the current number of iteration \begin{DoxyReturn}{Returns}
+the number of iteration 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Iter\+Continuator.\+h\end{DoxyCompactItemize}

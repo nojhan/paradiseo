@@ -1,0 +1,206 @@
+\hypertarget{classmo_evaluated_neighborhood}{}\doxysection{mo\+Evaluated\+Neighborhood$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_evaluated_neighborhood}\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Evaluated\+Neighborhood.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Evaluated\+Neighborhood$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{classmo_evaluated_neighborhood__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Evaluated\+Neighborhood$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_evaluated_neighborhood__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} \mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_evaluated_neighborhood_afd7024330b0fd7c1bd429eaeafdb76fa}{mo\+Evaluated\+Neighborhood}} (\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+original\+Neighborhood, \mbox{\hyperlink{classmo_neighborhood_evaluation}{mo\+Neighborhood\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Eval)
+\item 
+virtual bool \mbox{\hyperlink{classmo_evaluated_neighborhood_a4db50db85e455b79676d6ef179ac3d39}{is\+Random}} ()
+\item 
+virtual bool \mbox{\hyperlink{classmo_evaluated_neighborhood_aa3da51bc920dec8aadeab69a723cf24a}{has\+Neighbor}} (\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_evaluated_neighborhood_af89c78dbe6effc4b8b02f4b9663eabc8}{init}} (\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_evaluated_neighborhood_a3134d9f6be6f8f6c6ad9b2132de2b100}{next}} (\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual bool \mbox{\hyperlink{classmo_evaluated_neighborhood_a5454f0a00ec46f6b25b06cec6848e121}{cont}} (\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_evaluated_neighborhood_a2fa45889ab0972debcaf0b2ae90fc756}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_abf651b249fe32b793b7fc9d6beac6959}\label{classmo_evaluated_neighborhood_abf651b249fe32b793b7fc9d6beac6959}} 
+\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries original\+Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_a4797f877f5221b977ee150f3411331d5}\label{classmo_evaluated_neighborhood_a4797f877f5221b977ee150f3411331d5}} 
+\mbox{\hyperlink{classmo_neighborhood_evaluation}{mo\+Neighborhood\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries nh\+Eval}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Evaluated\+Neighborhood$<$ Neighbor $>$}
+
+A Neighborhood for the evaluation of all neighbors in one step
+
+It is usefull for example in a double incremental evaluation (Q\+AP, U\+B\+QP problems) This class is used in combinaison with the class \mbox{\hyperlink{classmo_neighborhood_evaluation}{mo\+Neighborhood\+Evaluation}} 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}\label{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!EOT@{EOT}}
+\index{EOT@{EOT}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{EOT}{EOT}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} \mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}}}
+
+Define type of a solution corresponding to Neighbor 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_afd7024330b0fd7c1bd429eaeafdb76fa}\label{classmo_evaluated_neighborhood_afd7024330b0fd7c1bd429eaeafdb76fa}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!moEvaluatedNeighborhood@{moEvaluatedNeighborhood}}
+\index{moEvaluatedNeighborhood@{moEvaluatedNeighborhood}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moEvaluatedNeighborhood()}{moEvaluatedNeighborhood()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+original\+Neighborhood,  }\item[{\mbox{\hyperlink{classmo_neighborhood_evaluation}{mo\+Neighborhood\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+original\+Neighborhood} & the original neighborhood to apply \\
+\hline
+{\em \+\_\+nh\+Eval} & the evaluation function of the neighborhood \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_a2fa45889ab0972debcaf0b2ae90fc756}\label{classmo_evaluated_neighborhood_a2fa45889ab0972debcaf0b2ae90fc756}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_neighborhood_a6ed673e57794bfe49d80a2adf6ed3e77}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_a5454f0a00ec46f6b25b06cec6848e121}\label{classmo_evaluated_neighborhood_a5454f0a00ec46f6b25b06cec6848e121}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!cont@{cont}}
+\index{cont@{cont}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{cont()}{cont()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::cont (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+give the continuation with the original neighborhood
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is again a neighbor to explore 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a4093914507138339f3756ff5edaf6531}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_aa3da51bc920dec8aadeab69a723cf24a}\label{classmo_evaluated_neighborhood_aa3da51bc920dec8aadeab69a723cf24a}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!hasNeighbor@{hasNeighbor}}
+\index{hasNeighbor@{hasNeighbor}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{hasNeighbor()}{hasNeighbor()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::has\+Neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if a neighbor exists 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the neighborhood was not empty 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a9a4b6ca2bcf76697145509eb35baf3be}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_af89c78dbe6effc4b8b02f4b9663eabc8}\label{classmo_evaluated_neighborhood_af89c78dbe6effc4b8b02f4b9663eabc8}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Initialization of the neighborhood with the full evaluation
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+neighbor} & the first neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a0022065ea8d42fa00768896648badf5c}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_a4db50db85e455b79676d6ef179ac3d39}\label{classmo_evaluated_neighborhood_a4db50db85e455b79676d6ef179ac3d39}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!isRandom@{isRandom}}
+\index{isRandom@{isRandom}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isRandom()}{isRandom()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+true if the neighborhood is random (default false) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_neighborhood_a6fc17b91d591a56424b79ce0b4b42909}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_evaluated_neighborhood_a3134d9f6be6f8f6c6ad9b2132de2b100}\label{classmo_evaluated_neighborhood_a3134d9f6be6f8f6c6ad9b2132de2b100}} 
+\index{moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}!next@{next}}
+\index{next@{next}!moEvaluatedNeighborhood$<$ Neighbor $>$@{moEvaluatedNeighborhood$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_evaluated_neighborhood}{mo\+Evaluated\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_evaluated_neighborhood_a8fbab33af1d0674deb3dbd0beac03e2b}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Give the next neighbor with the original neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+neighbor} & the next neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a984c484c44c9852d0f971856d12092ed}{mo\+Neighborhood$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/neighborhood/mo\+Evaluated\+Neighborhood.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,78 @@
+\hypertarget{classeo_elite_sequential_select}{}\doxysection{eo\+Elite\+Sequential\+Select$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_elite_sequential_select}\index{eoEliteSequentialSelect$<$ EOT $>$@{eoEliteSequentialSelect$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Sequential\+Select.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Elite\+Sequential\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_elite_sequential_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Elite\+Sequential\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_elite_sequential_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_elite_sequential_select_aa9d3b92f175be0a59b36af3740335b65}{eo\+Elite\+Sequential\+Select}} ()
+\item 
+\mbox{\Hypertarget{classeo_elite_sequential_select_a63b841033b6b254d8a879a10733ec0a7}\label{classeo_elite_sequential_select_a63b841033b6b254d8a879a10733ec0a7}} 
+void \mbox{\hyperlink{classeo_elite_sequential_select_a63b841033b6b254d8a879a10733ec0a7}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_elite_sequential_select_a059bb4a8c79ad95c6a53530ab09c7def}\label{classeo_elite_sequential_select_a059bb4a8c79ad95c6a53530ab09c7def}} 
+virtual const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_elite_sequential_select_a059bb4a8c79ad95c6a53530ab09c7def}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_elite_sequential_select_aa9d3b92f175be0a59b36af3740335b65}{eo\+Elite\+Sequential\+Select}} ()
+\item 
+\mbox{\Hypertarget{classeo_elite_sequential_select_a63b841033b6b254d8a879a10733ec0a7}\label{classeo_elite_sequential_select_a63b841033b6b254d8a879a10733ec0a7}} 
+void \mbox{\hyperlink{classeo_elite_sequential_select_a63b841033b6b254d8a879a10733ec0a7}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_elite_sequential_select_a059bb4a8c79ad95c6a53530ab09c7def}\label{classeo_elite_sequential_select_a059bb4a8c79ad95c6a53530ab09c7def}} 
+virtual const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_elite_sequential_select_a059bb4a8c79ad95c6a53530ab09c7def}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Elite\+Sequential\+Select$<$ E\+O\+T $>$}
+
+All Individuals in order
+
+The best individual first, then the others in sequence (random order). for G3 evolution engine, see Deb, Anad and Joshi, C\+EC 2002
+
+As \mbox{\hyperlink{classeo_sequential_select}{eo\+Sequential\+Select}}, it is an \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}} to be used within the eo\+Easey\+EA algo, but conceptually it should be a global \mbox{\hyperlink{classeo_select}{eo\+Select}}, as it selects a bunch of guys in one go (done in the setup function now) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_elite_sequential_select_aa9d3b92f175be0a59b36af3740335b65}\label{classeo_elite_sequential_select_aa9d3b92f175be0a59b36af3740335b65}} 
+\index{eoEliteSequentialSelect$<$ EOT $>$@{eoEliteSequentialSelect$<$ EOT $>$}!eoEliteSequentialSelect@{eoEliteSequentialSelect}}
+\index{eoEliteSequentialSelect@{eoEliteSequentialSelect}!eoEliteSequentialSelect$<$ EOT $>$@{eoEliteSequentialSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEliteSequentialSelect()}{eoEliteSequentialSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_elite_sequential_select}{eo\+Elite\+Sequential\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_elite_sequential_select}{eo\+Elite\+Sequential\+Select}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: sets the current pter to numeric\+\_\+limits$<$unsigned$>$\+::max() so init will take place first time not very elegant, maybe ... \mbox{\Hypertarget{classeo_elite_sequential_select_aa9d3b92f175be0a59b36af3740335b65}\label{classeo_elite_sequential_select_aa9d3b92f175be0a59b36af3740335b65}} 
+\index{eoEliteSequentialSelect$<$ EOT $>$@{eoEliteSequentialSelect$<$ EOT $>$}!eoEliteSequentialSelect@{eoEliteSequentialSelect}}
+\index{eoEliteSequentialSelect@{eoEliteSequentialSelect}!eoEliteSequentialSelect$<$ EOT $>$@{eoEliteSequentialSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoEliteSequentialSelect()}{eoEliteSequentialSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_elite_sequential_select}{eo\+Elite\+Sequential\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_elite_sequential_select}{eo\+Elite\+Sequential\+Select}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: sets the current pter to numeric\+\_\+limits$<$unsigned$>$\+::max() so init will take place first time not very elegant, maybe ... 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Sequential\+Select.\+h\end{DoxyCompactItemize}

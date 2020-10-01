@@ -1,0 +1,135 @@
+\hypertarget{class_normal_distribution}{}\doxysection{Normal\+Distribution Class Reference}
+\label{class_normal_distribution}\index{NormalDistribution@{NormalDistribution}}
+
+
+Normal (gaussian) distribution of times.  
+
+
+
+
+Inheritance diagram for Normal\+Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_normal_distribution__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Normal\+Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_normal_distribution__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_normal_distribution_aa51682d19514eb1b9305898397dedc11}{make\+\_\+parser}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&parser)
+\begin{DoxyCompactList}\small\item\em Creates params and retrieves values from parser. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_normal_distribution_a0decf2373d21bc282999cebcc5f02eff}{next\+\_\+element}} ()
+\begin{DoxyCompactList}\small\item\em Returns the next element of the distribution to put in the vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{class_normal_distribution_a1155159a4f5376dbf08abca3ce12f2cb}{pack}} (void) const
+\begin{DoxyCompactList}\small\item\em Serializes the object to J\+S\+ON format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_normal_distribution_a46f7fa75f81d134f6e2a06b4b954a1ea}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_normal_distribution_a390716890d74dda2f844ea4acec80e54}\label{class_normal_distribution_a390716890d74dda2f844ea4acec80e54}} 
+std\+::string \mbox{\hyperlink{class_normal_distribution_a390716890d74dda2f844ea4acec80e54}{to\+String}} () const
+\begin{DoxyCompactList}\small\item\em Prints the name and the parameters of the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_normal_distribution_abf3fd661f7e17ba921d0856020c336a9}\label{class_normal_distribution_abf3fd661f7e17ba921d0856020c336a9}} 
+double {\bfseries \+\_\+mean}
+\item 
+\mbox{\Hypertarget{class_normal_distribution_ac7b52fc7c9c53627fb6f80a17b59cec9}\label{class_normal_distribution_ac7b52fc7c9c53627fb6f80a17b59cec9}} 
+double {\bfseries \+\_\+stddev}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Normal (gaussian) distribution of times. 
+
+A normal distribution is defined by a mean and a standard deviation. The 3 parameters activable from the parser are the following\+:
+\begin{DoxyItemize}
+\item normal=1\+: activates the gaussian distribution.
+\item normal-\/mean=50\+: use 50ms as the mean of the distribution.
+\item normal-\/stddev=10\+: use 10ms as the standard deviation of the distribution. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_normal_distribution_aa51682d19514eb1b9305898397dedc11}\label{class_normal_distribution_aa51682d19514eb1b9305898397dedc11}} 
+\index{NormalDistribution@{NormalDistribution}!make\_parser@{make\_parser}}
+\index{make\_parser@{make\_parser}!NormalDistribution@{NormalDistribution}}
+\doxysubsubsection{\texorpdfstring{make\_parser()}{make\_parser()}}
+{\footnotesize\ttfamily void Normal\+Distribution\+::make\+\_\+parser (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{parser }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Creates params and retrieves values from parser. 
+
+Parser\textquotesingle{}s params should take milliseconds as inputs. 
+
+Implements \mbox{\hyperlink{class_distribution_a3452bebe8b264677140f8216400fd85d}{Distribution}}.
+
+\mbox{\Hypertarget{class_normal_distribution_a0decf2373d21bc282999cebcc5f02eff}\label{class_normal_distribution_a0decf2373d21bc282999cebcc5f02eff}} 
+\index{NormalDistribution@{NormalDistribution}!next\_element@{next\_element}}
+\index{next\_element@{next\_element}!NormalDistribution@{NormalDistribution}}
+\doxysubsubsection{\texorpdfstring{next\_element()}{next\_element()}}
+{\footnotesize\ttfamily int Normal\+Distribution\+::next\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the next element of the distribution to put in the vector. 
+
+\begin{DoxyReturn}{Returns}
+Number of milliseconds to wait. Can be negative ; in this case, the number will be truncated to 0ms. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_distribution_a0478f4f3f3b4e72e163073b0dc7eb29c}{Distribution}}.
+
+\mbox{\Hypertarget{class_normal_distribution_a1155159a4f5376dbf08abca3ce12f2cb}\label{class_normal_distribution_a1155159a4f5376dbf08abca3ce12f2cb}} 
+\index{NormalDistribution@{NormalDistribution}!pack@{pack}}
+\index{pack@{pack}!NormalDistribution@{NormalDistribution}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}$\ast$ Normal\+Distribution\+::pack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the object to J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+A J\+S\+ON object created with new. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{eoserial\+::\+Printable}}.
+
+\mbox{\Hypertarget{class_normal_distribution_a46f7fa75f81d134f6e2a06b4b954a1ea}\label{class_normal_distribution_a46f7fa75f81d134f6e2a06b4b954a1ea}} 
+\index{NormalDistribution@{NormalDistribution}!unpack@{unpack}}
+\index{unpack@{unpack}!NormalDistribution@{NormalDistribution}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily void Normal\+Distribution\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{eoserial\+::\+Persistent}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/test/mpi/\mbox{\hyperlink{t-mpi-distrib-exp_8cpp}{t-\/mpi-\/distrib-\/exp.\+cpp}}\end{DoxyCompactItemize}

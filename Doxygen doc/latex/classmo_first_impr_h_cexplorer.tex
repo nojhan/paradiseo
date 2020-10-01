@@ -1,0 +1,208 @@
+\hypertarget{classmo_first_impr_h_cexplorer}{}\doxysection{mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_first_impr_h_cexplorer}\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+First\+Impr\+H\+Cexplorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_first_impr_h_cexplorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_first_impr_h_cexplorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_a47a51f9ea04d7276e8baa8038448ba63}\label{classmo_first_impr_h_cexplorer_a47a51f9ea04d7276e8baa8038448ba63}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_a5bf746ef3b9dbe17516b9d7aa8fd12b7}\label{classmo_first_impr_h_cexplorer_a5bf746ef3b9dbe17516b9d7aa8fd12b7}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_first_impr_h_cexplorer_ac64dbba1d03b02cee8fea2490285cdc5}{mo\+First\+Impr\+H\+Cexplorer}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighbor\+Comparator, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator)
+\item 
+\mbox{\hyperlink{classmo_first_impr_h_cexplorer_a414468e3bacd25fabb68e1e94c1e9f2c}{$\sim$mo\+First\+Impr\+H\+Cexplorer}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a003eb9312a2c36596617dfef01d0cf29}{always\+Continue}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer_ab9feb15072d6fdb01c3d8bb577faad88}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a4c5fddb8f156ae28783971ea729ef6ef}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer_add3ac0aab9f497524c872af3a841847c}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a642a669f88b9db788c9682cd83da5742}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_first_impr_h_cexplorer_aa9988dfa0bb2afb848f97dcbd9831ad0}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_first_impr_h_cexplorer_a2d40f5c6b92c22a7645a901c21ccb8a3}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+First\+Impr\+H\+Cexplorer$<$ Neighbor $>$}
+
+Explorer for a first improvement heuristic 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_ac64dbba1d03b02cee8fea2490285cdc5}\label{classmo_first_impr_h_cexplorer_ac64dbba1d03b02cee8fea2490285cdc5}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!moFirstImprHCexplorer@{moFirstImprHCexplorer}}
+\index{moFirstImprHCexplorer@{moFirstImprHCexplorer}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFirstImprHCexplorer()}{moFirstImprHCexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+eval} & the evaluation function \\
+\hline
+{\em \+\_\+neighbor\+Comparator} & a neighbor comparator \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & a solution vs neighbor comparator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_a414468e3bacd25fabb68e1e94c1e9f2c}\label{classmo_first_impr_h_cexplorer_a414468e3bacd25fabb68e1e94c1e9f2c}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!````~moFirstImprHCexplorer@{$\sim$moFirstImprHCexplorer}}
+\index{````~moFirstImprHCexplorer@{$\sim$moFirstImprHCexplorer}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moFirstImprHCexplorer()}{~moFirstImprHCexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_a2d40f5c6b92c22a7645a901c21ccb8a3}\label{classmo_first_impr_h_cexplorer_a2d40f5c6b92c22a7645a901c21ccb8a3}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+accept test if an ameliorated neighbor was found 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the best neighbor ameliorate the fitness 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_a003eb9312a2c36596617dfef01d0cf29}\label{classmo_first_impr_h_cexplorer_a003eb9312a2c36596617dfef01d0cf29}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!alwaysContinue@{alwaysContinue}}
+\index{alwaysContinue@{alwaysContinue}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{alwaysContinue()}{alwaysContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::always\+Continue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+to never stop the hill climbing \mbox{\Hypertarget{classmo_first_impr_h_cexplorer_ab9feb15072d6fdb01c3d8bb577faad88}\label{classmo_first_impr_h_cexplorer_ab9feb15072d6fdb01c3d8bb577faad88}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+init\+Param\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_aa9988dfa0bb2afb848f97dcbd9831ad0}\label{classmo_first_impr_h_cexplorer_aa9988dfa0bb2afb848f97dcbd9831ad0}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+continue if a move is accepted, or according to the flag \textquotesingle{}stop\textquotesingle{} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if an ameliorated neighbor was found 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_a642a669f88b9db788c9682cd83da5742}\label{classmo_first_impr_h_cexplorer_a642a669f88b9db788c9682cd83da5742}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore the neighborhood of a solution until an ameliorated neighbor is found 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_add3ac0aab9f497524c872af3a841847c}\label{classmo_first_impr_h_cexplorer_add3ac0aab9f497524c872af3a841847c}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+terminate\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_first_impr_h_cexplorer_a4c5fddb8f156ae28783971ea729ef6ef}\label{classmo_first_impr_h_cexplorer_a4c5fddb8f156ae28783971ea729ef6ef}} 
+\index{moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moFirstImprHCexplorer$<$ Neighbor $>$@{moFirstImprHCexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_first_impr_h_cexplorer}{mo\+First\+Impr\+H\+Cexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+update\+Param\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+First\+Impr\+H\+Cexplorer.\+h\end{DoxyCompactItemize}

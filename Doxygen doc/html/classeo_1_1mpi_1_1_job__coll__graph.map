@@ -1,0 +1,5 @@
+<map id="eo::mpi::Job&lt; JobData &gt;" name="eo::mpi::Job&lt; JobData &gt;">
+<area shape="rect" id="node1" title="Class implementing the centralized job algorithm." alt="" coords="94,95,274,121"/>
+<area shape="rect" id="node2" href="$classmpi_1_1communicator.html" title="Main object, used to send / receive messages, get informations about the rank and the size of the wor..." alt="" coords="5,5,155,32"/>
+<area shape="rect" id="node3" href="$structeo_1_1mpi_1_1_assignment_algorithm.html" title="Contains informations on the available workers and allows to find assignees for jobs." alt="" coords="179,5,399,32"/>
+</map>

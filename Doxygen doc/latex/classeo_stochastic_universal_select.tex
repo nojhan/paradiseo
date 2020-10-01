@@ -1,0 +1,82 @@
+\hypertarget{classeo_stochastic_universal_select}{}\doxysection{eo\+Stochastic\+Universal\+Select$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_stochastic_universal_select}\index{eoStochasticUniversalSelect$<$ EOT $>$@{eoStochasticUniversalSelect$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Stochastic\+Universal\+Select.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Stochastic\+Universal\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_stochastic_universal_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Stochastic\+Universal\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_stochastic_universal_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_stochastic_universal_select_a152fc3dc59693b15e74e086cd763682c}\label{classeo_stochastic_universal_select_a152fc3dc59693b15e74e086cd763682c}} 
+\mbox{\hyperlink{classeo_stochastic_universal_select_a152fc3dc59693b15e74e086cd763682c}{eo\+Stochastic\+Universal\+Select}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop=\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$())
+\begin{DoxyCompactList}\small\item\em Sanity check. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_stochastic_universal_select_a6d9eba708160ccaa5ae207e49dd2b836}\label{classeo_stochastic_universal_select_a6d9eba708160ccaa5ae207e49dd2b836}} 
+void \mbox{\hyperlink{classeo_stochastic_universal_select_a6d9eba708160ccaa5ae207e49dd2b836}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_stochastic_universal_select_a183a174521f2b51b8a76275394f42dc6}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+\mbox{\Hypertarget{classeo_stochastic_universal_select_a152fc3dc59693b15e74e086cd763682c}\label{classeo_stochastic_universal_select_a152fc3dc59693b15e74e086cd763682c}} 
+\mbox{\hyperlink{classeo_stochastic_universal_select_a152fc3dc59693b15e74e086cd763682c}{eo\+Stochastic\+Universal\+Select}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop=\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$())
+\begin{DoxyCompactList}\small\item\em Sanity check. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_stochastic_universal_select_a6d9eba708160ccaa5ae207e49dd2b836}\label{classeo_stochastic_universal_select_a6d9eba708160ccaa5ae207e49dd2b836}} 
+void \mbox{\hyperlink{classeo_stochastic_universal_select_a6d9eba708160ccaa5ae207e49dd2b836}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_stochastic_universal_select_a183a174521f2b51b8a76275394f42dc6}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Stochastic\+Universal\+Select$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classeo_stochastic_universal_select}{eo\+Stochastic\+Universal\+Select}}\+: select an individual proportional to her stored fitness value, but in contrast with \mbox{\hyperlink{classeo_stochastic_universal_select}{eo\+Stochastic\+Universal\+Select}}, get rid of most finite sampling effects by doing all selections in one go, using a single random number. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_stochastic_universal_select_a183a174521f2b51b8a76275394f42dc6}\label{classeo_stochastic_universal_select_a183a174521f2b51b8a76275394f42dc6}} 
+\index{eoStochasticUniversalSelect$<$ EOT $>$@{eoStochasticUniversalSelect$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoStochasticUniversalSelect$<$ EOT $>$@{eoStochasticUniversalSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_stochastic_universal_select}{eo\+Stochastic\+Universal\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the selection, 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, const E\+O\+T \& $>$}}.
+
+\mbox{\Hypertarget{classeo_stochastic_universal_select_a183a174521f2b51b8a76275394f42dc6}\label{classeo_stochastic_universal_select_a183a174521f2b51b8a76275394f42dc6}} 
+\index{eoStochasticUniversalSelect$<$ EOT $>$@{eoStochasticUniversalSelect$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoStochasticUniversalSelect$<$ EOT $>$@{eoStochasticUniversalSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+const \mbox{\hyperlink{struct_dummy}{E\+OT}}\& \mbox{\hyperlink{classeo_stochastic_universal_select}{eo\+Stochastic\+Universal\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+do the selection, 
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, const E\+O\+T \& $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Stochastic\+Universal\+Select.\+h\end{DoxyCompactItemize}

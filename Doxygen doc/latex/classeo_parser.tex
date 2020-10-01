@@ -1,0 +1,483 @@
+\hypertarget{classeo_parser}{}\doxysection{eo\+Parser Class Reference}
+\label{classeo_parser}\index{eoParser@{eoParser}}
+
+
+{\ttfamily \#include $<$eo\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_parser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_parser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_parser_a8bf62941631900ce2cf8e9972680a3fc}{eo\+Parser}} (unsigned \+\_\+argc, char $\ast$$\ast$\+\_\+argv, std\+::string \+\_\+program\+Description=\char`\"{}\char`\"{}, std\+::string \+\_\+l\+File\+Param\+Name=\char`\"{}param-\/file\char`\"{}, char \+\_\+short\+Hand=\textquotesingle{}p\textquotesingle{})
+\item 
+void \mbox{\hyperlink{classeo_parser_a3e39518c3f01abbb776b8813a81598de}{process\+Param}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&param, std\+::string section=\char`\"{}\char`\"{})
+\item 
+void \mbox{\hyperlink{classeo_parser_aed2260355dfa1e1d51cc09b5009a7ce2}{read\+From}} (std\+::istream \&is)
+\item 
+void \mbox{\hyperlink{classeo_parser_a8f7ed55736478c80cf7e2015f2fc1ee7}{print\+On}} (std\+::ostream \&os) const
+\item 
+\mbox{\Hypertarget{classeo_parser_a310139564e904a33a45707d028eae997}\label{classeo_parser_a310139564e904a33a45707d028eae997}} 
+std\+::string \mbox{\hyperlink{classeo_parser_a310139564e904a33a45707d028eae997}{class\+Name}} (void) const
+\begin{DoxyCompactList}\small\item\em class\+Name for readibility \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_parser_aedf1e5cd53184cbbb9c5bed955558150}\label{classeo_parser_aedf1e5cd53184cbbb9c5bed955558150}} 
+bool \mbox{\hyperlink{classeo_parser_aedf1e5cd53184cbbb9c5bed955558150}{user\+Needs\+Help}} (void)
+\begin{DoxyCompactList}\small\item\em true if the user made an error or asked for help \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_parser_ac7efdd52ed3a8a86efc376860cf8f9f9}{print\+Help}} (std\+::ostream \&os)
+\item 
+\mbox{\Hypertarget{classeo_parser_aa1908b7ad21971594b03a928cf388c5b}\label{classeo_parser_aa1908b7ad21971594b03a928cf388c5b}} 
+std\+::string {\bfseries Program\+Name} ()
+\item 
+virtual bool \mbox{\hyperlink{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}{is\+It\+There}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param) const
+\item 
+\mbox{\Hypertarget{classeo_parser_a4cfad44d381ee94808469f6e9bc6f8b9}\label{classeo_parser_a4cfad44d381ee94808469f6e9bc6f8b9}} 
+std\+::string {\bfseries get} (const std\+::string \&name) const
+\item 
+\mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ \mbox{\hyperlink{classeo_parser_a3c163b1d6ee0853cd323484142b82331}{get\+Param\+With\+Long\+Name}} (const std\+::string \&\+\_\+name) const
+\item 
+\mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ \mbox{\hyperlink{classeo_parser_a67b90388a71d3ed29ee1d7186ec898db}{get\+Param}} (const std\+::string \&\+\_\+name) const
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{classeo_parser_a9e3b053cd52cc53ef874f15e3ae5a0f7}{value\+Of}} (const std\+::string \&\+\_\+name) const
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \& \mbox{\hyperlink{classeo_parser_a6cb79c3f9b8ca18896f5093c3e0824d2}{get\+O\+Rcreate\+Param}} (Value\+Type \+\_\+default\+Value, std\+::string \+\_\+long\+Name, std\+::string \+\_\+description, char \+\_\+short\+Hand=0, std\+::string \+\_\+section=\char`\"{}\char`\"{}, bool \+\_\+required=false)
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \& \mbox{\hyperlink{classeo_parser_a0176b98bc27de39df4bc431f2cc6c816}{set\+O\+Rcreate\+Param}} (Value\+Type \+\_\+default\+Value, std\+::string \+\_\+long\+Name, std\+::string \+\_\+description, char \+\_\+short\+Hand=0, std\+::string \+\_\+section=\char`\"{}\char`\"{}, bool \+\_\+required=false)
+\item 
+void \mbox{\hyperlink{classeo_parser_a16576eb8f57c99c16df471a2a75c3b81}{set\+Stop\+On\+Unknown\+Param}} (bool \+\_\+b)
+\item 
+\mbox{\Hypertarget{classeo_parser_a5537393a42b030749721816dc3dfcb70}\label{classeo_parser_a5537393a42b030749721816dc3dfcb70}} 
+bool {\bfseries get\+Stop\+On\+Unknown\+Param} ()
+\item 
+void \mbox{\hyperlink{classeo_parser_ad95b514c2ad4308b54be258c644d54b5}{set\+Prefix}} (const std\+::string \&\+\_\+prefix)
+\item 
+\mbox{\Hypertarget{classeo_parser_a3f9a088a612923936253a9a30314ccc4}\label{classeo_parser_a3f9a088a612923936253a9a30314ccc4}} 
+void {\bfseries reset\+Prefix} ()
+\item 
+\mbox{\Hypertarget{classeo_parser_abd795cd0009274b750d7ddaf58a4641b}\label{classeo_parser_abd795cd0009274b750d7ddaf58a4641b}} 
+std\+::string {\bfseries get\+Prefix} ()
+\item 
+\mbox{\hyperlink{classeo_parser_a8bf62941631900ce2cf8e9972680a3fc}{eo\+Parser}} (unsigned \+\_\+argc, char $\ast$$\ast$\+\_\+argv, std\+::string \+\_\+program\+Description=\char`\"{}\char`\"{}, std\+::string \+\_\+l\+File\+Param\+Name=\char`\"{}param-\/file\char`\"{}, char \+\_\+short\+Hand=\textquotesingle{}p\textquotesingle{})
+\item 
+void \mbox{\hyperlink{classeo_parser_a3e39518c3f01abbb776b8813a81598de}{process\+Param}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&param, std\+::string section=\char`\"{}\char`\"{})
+\item 
+void \mbox{\hyperlink{classeo_parser_aed2260355dfa1e1d51cc09b5009a7ce2}{read\+From}} (std\+::istream \&is)
+\item 
+void \mbox{\hyperlink{classeo_parser_a8f7ed55736478c80cf7e2015f2fc1ee7}{print\+On}} (std\+::ostream \&os) const
+\item 
+\mbox{\Hypertarget{classeo_parser_a310139564e904a33a45707d028eae997}\label{classeo_parser_a310139564e904a33a45707d028eae997}} 
+std\+::string \mbox{\hyperlink{classeo_parser_a310139564e904a33a45707d028eae997}{class\+Name}} (void) const
+\begin{DoxyCompactList}\small\item\em class\+Name for readibility \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_parser_aedf1e5cd53184cbbb9c5bed955558150}\label{classeo_parser_aedf1e5cd53184cbbb9c5bed955558150}} 
+bool \mbox{\hyperlink{classeo_parser_aedf1e5cd53184cbbb9c5bed955558150}{user\+Needs\+Help}} (void)
+\begin{DoxyCompactList}\small\item\em true if the user made an error or asked for help \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classeo_parser_ac7efdd52ed3a8a86efc376860cf8f9f9}{print\+Help}} (std\+::ostream \&os)
+\item 
+\mbox{\Hypertarget{classeo_parser_aa1908b7ad21971594b03a928cf388c5b}\label{classeo_parser_aa1908b7ad21971594b03a928cf388c5b}} 
+std\+::string {\bfseries Program\+Name} ()
+\item 
+virtual bool \mbox{\hyperlink{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}{is\+It\+There}} (\mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_parser_a60a16d753cf40ee97788b9a604fb9bd5}{is\+It\+There}} (const std\+::string \&name) const
+\item 
+\mbox{\Hypertarget{classeo_parser_a4cfad44d381ee94808469f6e9bc6f8b9}\label{classeo_parser_a4cfad44d381ee94808469f6e9bc6f8b9}} 
+std\+::string {\bfseries get} (const std\+::string \&name) const
+\item 
+\mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ \mbox{\hyperlink{classeo_parser_adcdf5a45358096b79812e14a4867fb30}{get\+Param\+With\+Long\+Name}} (const std\+::string \&\+\_\+name) const
+\item 
+\mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ \mbox{\hyperlink{classeo_parser_aed840d51ecb666551f5ce028ba416bc7}{get\+Param}} (const std\+::string \&\+\_\+name) const
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \& \mbox{\hyperlink{classeo_parser_a368c7e1595406207db78bb7c4d411393}{get\+Value\+Param}} (const std\+::string \&\+\_\+name)
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{classeo_parser_a9e3b053cd52cc53ef874f15e3ae5a0f7}{value\+Of}} (const std\+::string \&\+\_\+name) const
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \& \mbox{\hyperlink{classeo_parser_a6cb79c3f9b8ca18896f5093c3e0824d2}{get\+O\+Rcreate\+Param}} (Value\+Type \+\_\+default\+Value, std\+::string \+\_\+long\+Name, std\+::string \+\_\+description, char \+\_\+short\+Hand=0, std\+::string \+\_\+section=\char`\"{}\char`\"{}, bool \+\_\+required=false)
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$ Value\+Type $>$ \& \mbox{\hyperlink{classeo_parser_a0176b98bc27de39df4bc431f2cc6c816}{set\+O\+Rcreate\+Param}} (Value\+Type \+\_\+default\+Value, std\+::string \+\_\+long\+Name, std\+::string \+\_\+description, char \+\_\+short\+Hand=0, std\+::string \+\_\+section=\char`\"{}\char`\"{}, bool \+\_\+required=false)
+\item 
+void \mbox{\hyperlink{classeo_parser_a16576eb8f57c99c16df471a2a75c3b81}{set\+Stop\+On\+Unknown\+Param}} (bool \+\_\+b)
+\item 
+\mbox{\Hypertarget{classeo_parser_a5537393a42b030749721816dc3dfcb70}\label{classeo_parser_a5537393a42b030749721816dc3dfcb70}} 
+bool {\bfseries get\+Stop\+On\+Unknown\+Param} ()
+\item 
+void \mbox{\hyperlink{classeo_parser_ad95b514c2ad4308b54be258c644d54b5}{set\+Prefix}} (const std\+::string \&\+\_\+prefix)
+\item 
+\mbox{\Hypertarget{classeo_parser_a3f9a088a612923936253a9a30314ccc4}\label{classeo_parser_a3f9a088a612923936253a9a30314ccc4}} 
+void {\bfseries reset\+Prefix} ()
+\item 
+\mbox{\Hypertarget{classeo_parser_abd795cd0009274b750d7ddaf58a4641b}\label{classeo_parser_abd795cd0009274b750d7ddaf58a4641b}} 
+std\+::string {\bfseries get\+Prefix} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classeo_parser}{eo\+Parser}}\+: command line parser and configuration file reader This class is persistent, so it can be stored and reloaded to restore parameter settings.
+
+\mbox{\hyperlink{struct_parameters}{Parameters}} can be read from argv, strings or streams, and must be specified using the following convention\+: --name=value or -\/n=value
+
+You should not use space as a separator between the parameter and its value. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_parser_a8bf62941631900ce2cf8e9972680a3fc}\label{classeo_parser_a8bf62941631900ce2cf8e9972680a3fc}} 
+\index{eoParser@{eoParser}!eoParser@{eoParser}}
+\index{eoParser@{eoParser}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{eoParser()}{eoParser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+Parser\+::eo\+Parser (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+argc,  }\item[{char $\ast$$\ast$}]{\+\_\+argv,  }\item[{std\+::string}]{\+\_\+program\+Description = {\ttfamily \char`\"{}\char`\"{}},  }\item[{std\+::string}]{\+\_\+l\+File\+Param\+Name = {\ttfamily \char`\"{}param-\/file\char`\"{}},  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily \textquotesingle{}p\textquotesingle{}} }\end{DoxyParamCaption})}
+
+Constructor a complete constructor that reads the command line an optionally reads a configuration file.
+
+my\+Eo --param-\/file=param.\+rc will then load using the parameter file param.\+rc
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+argc} & command line arguments count \\
+\hline
+{\em \+\_\+argv} & command line parameters \\
+\hline
+{\em \+\_\+program\+Description} & Description of the work the program does \\
+\hline
+{\em \+\_\+l\+File\+Param\+Name} & Name of the parameter specifying the configuration file (--param-\/file) \\
+\hline
+{\em \+\_\+short\+Hand} & Single charachter shorthand for specifying the configuration file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_parser_a8bf62941631900ce2cf8e9972680a3fc}\label{classeo_parser_a8bf62941631900ce2cf8e9972680a3fc}} 
+\index{eoParser@{eoParser}!eoParser@{eoParser}}
+\index{eoParser@{eoParser}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{eoParser()}{eoParser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+Parser\+::eo\+Parser (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+argc,  }\item[{char $\ast$$\ast$}]{\+\_\+argv,  }\item[{std\+::string}]{\+\_\+program\+Description = {\ttfamily \char`\"{}\char`\"{}},  }\item[{std\+::string}]{\+\_\+l\+File\+Param\+Name = {\ttfamily \char`\"{}param-\/file\char`\"{}},  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily \textquotesingle{}p\textquotesingle{}} }\end{DoxyParamCaption})}
+
+Constructor a complete constructor that reads the command line an optionally reads a configuration file.
+
+my\+Eo --param-\/file=param.\+rc will then load using the parameter file param.\+rc
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+argc} & command line arguments count \\
+\hline
+{\em \+\_\+argv} & command line parameters \\
+\hline
+{\em \+\_\+program\+Description} & Description of the work the program does \\
+\hline
+{\em \+\_\+l\+File\+Param\+Name} & Name of the parameter specifying the configuration file (--param-\/file) \\
+\hline
+{\em \+\_\+short\+Hand} & Single charachter shorthand for specifying the configuration file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_parser_a6cb79c3f9b8ca18896f5093c3e0824d2}\label{classeo_parser_a6cb79c3f9b8ca18896f5093c3e0824d2}} 
+\index{eoParser@{eoParser}!getORcreateParam@{getORcreateParam}}
+\index{getORcreateParam@{getORcreateParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{getORcreateParam()}{getORcreateParam()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$Value\+Type$>$\& eo\+Parser\+::get\+O\+Rcreate\+Param (\begin{DoxyParamCaption}\item[{Value\+Type}]{\+\_\+default\+Value,  }\item[{std\+::string}]{\+\_\+long\+Name,  }\item[{std\+::string}]{\+\_\+description,  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+section = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{\+\_\+required = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get or create parameter
+
+It seems finally that the easiest use of the above method is through the following, whose interface is similar to that of the widely-\/used create\+Param. \mbox{\Hypertarget{classeo_parser_a6cb79c3f9b8ca18896f5093c3e0824d2}\label{classeo_parser_a6cb79c3f9b8ca18896f5093c3e0824d2}} 
+\index{eoParser@{eoParser}!getORcreateParam@{getORcreateParam}}
+\index{getORcreateParam@{getORcreateParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{getORcreateParam()}{getORcreateParam()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$Value\+Type$>$\& eo\+Parser\+::get\+O\+Rcreate\+Param (\begin{DoxyParamCaption}\item[{Value\+Type}]{\+\_\+default\+Value,  }\item[{std\+::string}]{\+\_\+long\+Name,  }\item[{std\+::string}]{\+\_\+description,  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+section = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{\+\_\+required = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get or create parameter
+
+It seems finally that the easiest use of the above method is through the following, whose interface is similar to that of the widely-\/used create\+Param. \mbox{\Hypertarget{classeo_parser_a67b90388a71d3ed29ee1d7186ec898db}\label{classeo_parser_a67b90388a71d3ed29ee1d7186ec898db}} 
+\index{eoParser@{eoParser}!getParam@{getParam}}
+\index{getParam@{getParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{getParam()}{getParam()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ eo\+Parser\+::get\+Param (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+name }\end{DoxyParamCaption}) const}
+
+Get a handle on a param from its long name If not found, raise an \mbox{\hyperlink{classeo_missing_param_exception}{eo\+Missing\+Param\+Exception}} \mbox{\Hypertarget{classeo_parser_aed840d51ecb666551f5ce028ba416bc7}\label{classeo_parser_aed840d51ecb666551f5ce028ba416bc7}} 
+\index{eoParser@{eoParser}!getParam@{getParam}}
+\index{getParam@{getParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{getParam()}{getParam()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_param}{eo\+Param}}$\ast$ eo\+Parser\+::get\+Param (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+name }\end{DoxyParamCaption}) const}
+
+Get a handle on a param from its long name If not found, raise an \mbox{\hyperlink{classeo_missing_param_exception}{eo\+Missing\+Param\+Exception}} \mbox{\Hypertarget{classeo_parser_a3c163b1d6ee0853cd323484142b82331}\label{classeo_parser_a3c163b1d6ee0853cd323484142b82331}} 
+\index{eoParser@{eoParser}!getParamWithLongName@{getParamWithLongName}}
+\index{getParamWithLongName@{getParamWithLongName}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{getParamWithLongName()}{getParamWithLongName()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_param}{eo\+Param}} $\ast$ eo\+Parser\+::get\+Param\+With\+Long\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+name }\end{DoxyParamCaption}) const}
+
+get a handle on a param from its long\+Name
+
+if not found, returns 0 (null pointer \+:-\/)
+
+Not very clean (requires hard-\/coding of the long name twice!) but very useful in many occasions... \mbox{\Hypertarget{classeo_parser_adcdf5a45358096b79812e14a4867fb30}\label{classeo_parser_adcdf5a45358096b79812e14a4867fb30}} 
+\index{eoParser@{eoParser}!getParamWithLongName@{getParamWithLongName}}
+\index{getParamWithLongName@{getParamWithLongName}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{getParamWithLongName()}{getParamWithLongName()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_param}{eo\+Param}}$\ast$ eo\+Parser\+::get\+Param\+With\+Long\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+name }\end{DoxyParamCaption}) const}
+
+get a handle on a param from its long\+Name
+
+if not found, returns 0 (null pointer \+:-\/)
+
+Not very clean (requires hard-\/coding of the long name twice!) but very useful in many occasions... \mbox{\Hypertarget{classeo_parser_a368c7e1595406207db78bb7c4d411393}\label{classeo_parser_a368c7e1595406207db78bb7c4d411393}} 
+\index{eoParser@{eoParser}!getValueParam@{getValueParam}}
+\index{getValueParam@{getValueParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{getValueParam()}{getValueParam()}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$Value\+Type$>$\& eo\+Parser\+::get\+Value\+Param (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get a \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}} handle on a param from its long name If not found, raise an \mbox{\hyperlink{classeo_missing_param_exception}{eo\+Missing\+Param\+Exception}} \mbox{\Hypertarget{classeo_parser_a60a16d753cf40ee97788b9a604fb9bd5}\label{classeo_parser_a60a16d753cf40ee97788b9a604fb9bd5}} 
+\index{eoParser@{eoParser}!isItThere@{isItThere}}
+\index{isItThere@{isItThere}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{isItThere()}{isItThere()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily virtual bool eo\+Parser\+::is\+It\+There (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Has param been entered by user?
+
+Checks if a given param has been actually entered by the user \mbox{\Hypertarget{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}\label{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}} 
+\index{eoParser@{eoParser}!isItThere@{isItThere}}
+\index{isItThere@{isItThere}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{isItThere()}{isItThere()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily virtual bool eo\+Parser\+::is\+It\+There (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{\+\_\+param }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Has param been entered by user?
+
+Checks if \+\_\+param has been actually entered by the user 
+
+Implements \mbox{\hyperlink{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}{eo\+Parameter\+Loader}}.
+
+\mbox{\Hypertarget{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}\label{classeo_parser_a7a5265175c0a528c1c9b020bfc35f66b}} 
+\index{eoParser@{eoParser}!isItThere@{isItThere}}
+\index{isItThere@{isItThere}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{isItThere()}{isItThere()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily virtual bool eo\+Parser\+::is\+It\+There (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{\+\_\+param }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Has param been entered by user?
+
+Checks if \+\_\+param has been actually entered by the user 
+
+Implements \mbox{\hyperlink{classeo_parameter_loader_a87c1f87753f790a747455a1672c025ff}{eo\+Parameter\+Loader}}.
+
+\mbox{\Hypertarget{classeo_parser_ac7efdd52ed3a8a86efc376860cf8f9f9}\label{classeo_parser_ac7efdd52ed3a8a86efc376860cf8f9f9}} 
+\index{eoParser@{eoParser}!printHelp@{printHelp}}
+\index{printHelp@{printHelp}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{printHelp()}{printHelp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::print\+Help (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})}
+
+Prints an automatic help in the specified output using the information provided by parameters \mbox{\Hypertarget{classeo_parser_ac7efdd52ed3a8a86efc376860cf8f9f9}\label{classeo_parser_ac7efdd52ed3a8a86efc376860cf8f9f9}} 
+\index{eoParser@{eoParser}!printHelp@{printHelp}}
+\index{printHelp@{printHelp}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{printHelp()}{printHelp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::print\+Help (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})}
+
+Prints an automatic help in the specified output using the information provided by parameters \mbox{\Hypertarget{classeo_parser_a8f7ed55736478c80cf7e2015f2fc1ee7}\label{classeo_parser_a8f7ed55736478c80cf7e2015f2fc1ee7}} 
+\index{eoParser@{eoParser}!printOn@{printOn}}
+\index{printOn@{printOn}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Pint on a stream 
+\begin{DoxyParams}{Parameters}
+{\em os} & the output stream \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_parser_a8f7ed55736478c80cf7e2015f2fc1ee7}\label{classeo_parser_a8f7ed55736478c80cf7e2015f2fc1ee7}} 
+\index{eoParser@{eoParser}!printOn@{printOn}}
+\index{printOn@{printOn}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Pint on a stream 
+\begin{DoxyParams}{Parameters}
+{\em os} & the output stream \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_parser_a3e39518c3f01abbb776b8813a81598de}\label{classeo_parser_a3e39518c3f01abbb776b8813a81598de}} 
+\index{eoParser@{eoParser}!processParam@{processParam}}
+\index{processParam@{processParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{processParam()}{processParam()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::process\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{param,  }\item[{std\+::string}]{section = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Processes the parameter and puts it in the appropriate section for readability 
+
+Implements \mbox{\hyperlink{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}{eo\+Parameter\+Loader}}.
+
+\mbox{\Hypertarget{classeo_parser_a3e39518c3f01abbb776b8813a81598de}\label{classeo_parser_a3e39518c3f01abbb776b8813a81598de}} 
+\index{eoParser@{eoParser}!processParam@{processParam}}
+\index{processParam@{processParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{processParam()}{processParam()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::process\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{param,  }\item[{std\+::string}]{section = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Processes the parameter and puts it in the appropriate section for readability 
+
+Implements \mbox{\hyperlink{classeo_parameter_loader_a347120a0df08026e967355a069d697b7}{eo\+Parameter\+Loader}}.
+
+\mbox{\Hypertarget{classeo_parser_aed2260355dfa1e1d51cc09b5009a7ce2}\label{classeo_parser_aed2260355dfa1e1d51cc09b5009a7ce2}} 
+\index{eoParser@{eoParser}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Read from a stream 
+\begin{DoxyParams}{Parameters}
+{\em is} & the input stream \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_parser_aed2260355dfa1e1d51cc09b5009a7ce2}\label{classeo_parser_aed2260355dfa1e1d51cc09b5009a7ce2}} 
+\index{eoParser@{eoParser}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Read from a stream 
+\begin{DoxyParams}{Parameters}
+{\em is} & the input stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000039}{Todo}}]it should be the next std\+::string \end{DoxyRefDesc}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_parser_a0176b98bc27de39df4bc431f2cc6c816}\label{classeo_parser_a0176b98bc27de39df4bc431f2cc6c816}} 
+\index{eoParser@{eoParser}!setORcreateParam@{setORcreateParam}}
+\index{setORcreateParam@{setORcreateParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{setORcreateParam()}{setORcreateParam()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$Value\+Type$>$\& eo\+Parser\+::set\+O\+Rcreate\+Param (\begin{DoxyParamCaption}\item[{Value\+Type}]{\+\_\+default\+Value,  }\item[{std\+::string}]{\+\_\+long\+Name,  }\item[{std\+::string}]{\+\_\+description,  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+section = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{\+\_\+required = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set parameter value or create parameter
+
+This makes sure that the specified parameter has the given value. If the parameter does not exist yet, it is created.
+
+This requires that operator$<$$<$ is defined for Value\+Type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+default\+Value} & Default value. \\
+\hline
+{\em \+\_\+long\+Name} & Long name of the argument. \\
+\hline
+{\em \+\_\+description} & Description of the parameter. \\
+\hline
+{\em \+\_\+short\+Hand} & Short name of the argument (Optional) \\
+\hline
+{\em \+\_\+section} & Name of the section where the parameter belongs. \\
+\hline
+{\em \+\_\+required} & Is the parameter mandatory? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding parameter. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_parser_a0176b98bc27de39df4bc431f2cc6c816}\label{classeo_parser_a0176b98bc27de39df4bc431f2cc6c816}} 
+\index{eoParser@{eoParser}!setORcreateParam@{setORcreateParam}}
+\index{setORcreateParam@{setORcreateParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{setORcreateParam()}{setORcreateParam()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}}$<$Value\+Type$>$\& eo\+Parser\+::set\+O\+Rcreate\+Param (\begin{DoxyParamCaption}\item[{Value\+Type}]{\+\_\+default\+Value,  }\item[{std\+::string}]{\+\_\+long\+Name,  }\item[{std\+::string}]{\+\_\+description,  }\item[{char}]{\+\_\+short\+Hand = {\ttfamily 0},  }\item[{std\+::string}]{\+\_\+section = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{\+\_\+required = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set parameter value or create parameter
+
+This makes sure that the specified parameter has the given value. If the parameter does not exist yet, it is created.
+
+This requires that operator$<$$<$ is defined for Value\+Type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+default\+Value} & Default value. \\
+\hline
+{\em \+\_\+long\+Name} & Long name of the argument. \\
+\hline
+{\em \+\_\+description} & Description of the parameter. \\
+\hline
+{\em \+\_\+short\+Hand} & Short name of the argument (Optional) \\
+\hline
+{\em \+\_\+section} & Name of the section where the parameter belongs. \\
+\hline
+{\em \+\_\+required} & Is the parameter mandatory? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding parameter. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classeo_parser_ad95b514c2ad4308b54be258c644d54b5}\label{classeo_parser_ad95b514c2ad4308b54be258c644d54b5}} 
+\index{eoParser@{eoParser}!setPrefix@{setPrefix}}
+\index{setPrefix@{setPrefix}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{setPrefix()}{setPrefix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::set\+Prefix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Prefix handling \mbox{\Hypertarget{classeo_parser_ad95b514c2ad4308b54be258c644d54b5}\label{classeo_parser_ad95b514c2ad4308b54be258c644d54b5}} 
+\index{eoParser@{eoParser}!setPrefix@{setPrefix}}
+\index{setPrefix@{setPrefix}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{setPrefix()}{setPrefix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::set\+Prefix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Prefix handling \mbox{\Hypertarget{classeo_parser_a16576eb8f57c99c16df471a2a75c3b81}\label{classeo_parser_a16576eb8f57c99c16df471a2a75c3b81}} 
+\index{eoParser@{eoParser}!setStopOnUnknownParam@{setStopOnUnknownParam}}
+\index{setStopOnUnknownParam@{setStopOnUnknownParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{setStopOnUnknownParam()}{setStopOnUnknownParam()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::set\+Stop\+On\+Unknown\+Param (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+accessors to the stop\+On\+Unknown\+Param value \mbox{\Hypertarget{classeo_parser_a16576eb8f57c99c16df471a2a75c3b81}\label{classeo_parser_a16576eb8f57c99c16df471a2a75c3b81}} 
+\index{eoParser@{eoParser}!setStopOnUnknownParam@{setStopOnUnknownParam}}
+\index{setStopOnUnknownParam@{setStopOnUnknownParam}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{setStopOnUnknownParam()}{setStopOnUnknownParam()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+Parser\+::set\+Stop\+On\+Unknown\+Param (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+accessors to the stop\+On\+Unknown\+Param value \mbox{\Hypertarget{classeo_parser_a9e3b053cd52cc53ef874f15e3ae5a0f7}\label{classeo_parser_a9e3b053cd52cc53ef874f15e3ae5a0f7}} 
+\index{eoParser@{eoParser}!valueOf@{valueOf}}
+\index{valueOf@{valueOf}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{valueOf()}{valueOf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+Value\+Type eo\+Parser\+::value\+Of (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the value of a param from its long name If not found, raise an \mbox{\hyperlink{classeo_missing_param_exception}{eo\+Missing\+Param\+Exception}}
+
+Remember to specify the expected return type with a templated call\+: unsigned int pop\+Size = eoparser.\+value$<$unsigned int$>$(\char`\"{}pop\+Size\char`\"{});
+
+If the template type is not the good one, an \mbox{\hyperlink{classeo_wrong_param_type_exception}{eo\+Wrong\+Param\+Type\+Exception}} is raised. \mbox{\Hypertarget{classeo_parser_a9e3b053cd52cc53ef874f15e3ae5a0f7}\label{classeo_parser_a9e3b053cd52cc53ef874f15e3ae5a0f7}} 
+\index{eoParser@{eoParser}!valueOf@{valueOf}}
+\index{valueOf@{valueOf}!eoParser@{eoParser}}
+\doxysubsubsection{\texorpdfstring{valueOf()}{valueOf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+Value\+Type eo\+Parser\+::value\+Of (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the value of a param from its long name If not found, raise an \mbox{\hyperlink{classeo_missing_param_exception}{eo\+Missing\+Param\+Exception}}
+
+Remember to specify the expected return type with a templated call\+: unsigned int pop\+Size = eoparser.\+value\+Of$<$unsigned int$>$(\char`\"{}pop\+Size\char`\"{});
+
+If the template type is not the good one, an \mbox{\hyperlink{classeo_wrong_param_type_exception}{eo\+Wrong\+Param\+Type\+Exception}} is raised. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Parser.\+h\item 
+deprecated/eo/src/utils/eo\+Parser.\+cpp\end{DoxyCompactItemize}

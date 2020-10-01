@@ -1,0 +1,83 @@
+\hypertarget{classmo_equal_sol_comparator}{}\doxysection{mo\+Equal\+Sol\+Comparator$<$ E\+OT $>$ Class Template Reference}
+\label{classmo_equal_sol_comparator}\index{moEqualSolComparator$<$ EOT $>$@{moEqualSolComparator$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$mo\+Equal\+Sol\+Comparator.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Equal\+Sol\+Comparator$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{classmo_equal_sol_comparator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Equal\+Sol\+Comparator$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{classmo_equal_sol_comparator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classmo_equal_sol_comparator_a70b16e6099ce4e590315f5c5e41b01af}{operator()}} (const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol1, const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol2)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_equal_sol_comparator_a595156edce578c6e93d891864769f005}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class mo\+Equal\+Sol\+Comparator$<$ E\+O\+T $>$}
+
+Comparator of two solutions \+: a neighbor is better if the fitness is higher or equal 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_equal_sol_comparator_a595156edce578c6e93d891864769f005}\label{classmo_equal_sol_comparator_a595156edce578c6e93d891864769f005}} 
+\index{moEqualSolComparator$<$ EOT $>$@{moEqualSolComparator$<$ EOT $>$}!className@{className}}
+\index{className@{className}!moEqualSolComparator$<$ EOT $>$@{moEqualSolComparator$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_equal_sol_comparator}{mo\+Equal\+Sol\+Comparator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_sol_comparator_a8dd99d368147da01e913abd6d35b0c14}{mo\+Sol\+Comparator$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_equal_sol_comparator_a70b16e6099ce4e590315f5c5e41b01af}\label{classmo_equal_sol_comparator_a70b16e6099ce4e590315f5c5e41b01af}} 
+\index{moEqualSolComparator$<$ EOT $>$@{moEqualSolComparator$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moEqualSolComparator$<$ EOT $>$@{moEqualSolComparator$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual bool \mbox{\hyperlink{classmo_equal_sol_comparator}{mo\+Equal\+Sol\+Comparator}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol1,  }\item[{const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Compare two solutions 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol1} & the first solution \\
+\hline
+{\em \+\_\+sol2} & the second solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the solution2 is better than solution1 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_sol_comparator_ab4c1f8bf0597ea6b9e2f66a29fa8719d}{mo\+Sol\+Comparator$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/comparator/mo\+Equal\+Sol\+Comparator.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,116 @@
+\hypertarget{classmoeo_h_c}{}\doxysection{moeo\+HC$<$ M $>$ Class Template Reference}
+\label{classmoeo_h_c}\index{moeoHC$<$ M $>$@{moeoHC$<$ M $>$}}
+
+
+Hill Climbing (HC)  
+
+
+
+
+{\ttfamily \#include $<$moeo\+H\+C.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+HC$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_h_c__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+HC$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classmoeo_h_c__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_h_c_aea4f2d9a69768902789e7e200f40f985}\label{classmoeo_h_c_aea4f2d9a69768902789e7e200f40f985}} 
+typedef M\+::\+E\+O\+Type {\bfseries M\+O\+E\+OT}
+\item 
+\mbox{\Hypertarget{classmoeo_h_c_adaa6c8534f4680289d133e2cc4d339c9}\label{classmoeo_h_c_adaa6c8534f4680289d133e2cc4d339c9}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\item 
+\mbox{\Hypertarget{classmoeo_h_c_a389428af4b659038d4ef8375aadea380}\label{classmoeo_h_c_a389428af4b659038d4ef8375aadea380}} 
+typedef M\+O\+E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_h_c_a549831c1ccf2a37d4a93657c20ba3818}{moeo\+HC}} (mo\+Move\+Init$<$ M $>$ \&\+\_\+move\+\_\+initializer, mo\+Next\+Move$<$ M $>$ \&\+\_\+next\+\_\+move\+\_\+generator, mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&\+\_\+incremental\+\_\+evaluation, mo\+Move\+Select$<$ M $>$ \&\+\_\+move\+\_\+selection, \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+singler)
+\begin{DoxyCompactList}\small\item\em Full constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmoeo_h_c_aae48563f1001597a47d499ae66817ef2}{operator()}} (M\+O\+E\+OT \&\+\_\+solution)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_function}{Function}} which launches the HC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M$>$\newline
+class moeo\+H\+C$<$ M $>$}
+
+Hill Climbing (HC) 
+
+Class which describes the algorithm for a hill climbing. Adapts the mo\+HC for a multi-\/objective problem using a \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}. M is for Move 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_h_c_a549831c1ccf2a37d4a93657c20ba3818}\label{classmoeo_h_c_a549831c1ccf2a37d4a93657c20ba3818}} 
+\index{moeoHC$<$ M $>$@{moeoHC$<$ M $>$}!moeoHC@{moeoHC}}
+\index{moeoHC@{moeoHC}!moeoHC$<$ M $>$@{moeoHC$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHC()}{moeoHC()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_h_c}{moeo\+HC}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_h_c}{moeo\+HC}} (\begin{DoxyParamCaption}\item[{mo\+Move\+Init$<$ M $>$ \&}]{\+\_\+move\+\_\+initializer,  }\item[{mo\+Next\+Move$<$ M $>$ \&}]{\+\_\+next\+\_\+move\+\_\+generator,  }\item[{mo\+Move\+Incr\+Eval$<$ M, Objective\+Vector $>$ \&}]{\+\_\+incremental\+\_\+evaluation,  }\item[{mo\+Move\+Select$<$ M $>$ \&}]{\+\_\+move\+\_\+selection,  }\item[{\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+singler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Full constructor. 
+
+All the boxes are given in order the HC to use a mo\+H\+C\+Move\+Loop\+Expl.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+move\+\_\+initializer} & a move initialiser. \\
+\hline
+{\em \+\_\+next\+\_\+move\+\_\+generator} & a neighborhood explorer. \\
+\hline
+{\em \+\_\+incremental\+\_\+evaluation} & a (generally) efficient evaluation function. \\
+\hline
+{\em \+\_\+move\+\_\+selection} & a move selector. \\
+\hline
+{\em \+\_\+singler} & a single\+Objectivizer to translate objective\+Vectors into fitness \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_h_c_aae48563f1001597a47d499ae66817ef2}\label{classmoeo_h_c_aae48563f1001597a47d499ae66817ef2}} 
+\index{moeoHC$<$ M $>$@{moeoHC$<$ M $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoHC$<$ M $>$@{moeoHC$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+bool \mbox{\hyperlink{classmoeo_h_c}{moeo\+HC}}$<$ M $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{struct_function}{Function}} which launches the HC. 
+
+The HC has to improve a current solution. As the \mbox{\hyperlink{classmo_s_a}{mo\+SA}} and the mo TS, it can be used for H\+Y\+B\+R\+I\+D\+A\+T\+I\+ON in an evolutionnary algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & a current solution to improve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/algo/moeo\+H\+C.\+h\end{DoxyCompactItemize}

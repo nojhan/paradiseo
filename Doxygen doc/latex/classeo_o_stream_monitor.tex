@@ -1,0 +1,84 @@
+\hypertarget{classeo_o_stream_monitor}{}\doxysection{eo\+O\+Stream\+Monitor Class Reference}
+\label{classeo_o_stream_monitor}\index{eoOStreamMonitor@{eoOStreamMonitor}}
+
+
+{\ttfamily \#include $<$eo\+O\+Stream\+Monitor.\+h$>$}
+
+
+
+Inheritance diagram for eo\+O\+Stream\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{classeo_o_stream_monitor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+O\+Stream\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_o_stream_monitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_o_stream_monitor_a267b7fbc87c78d527052dc8a2172705a}\label{classeo_o_stream_monitor_a267b7fbc87c78d527052dc8a2172705a}} 
+{\bfseries eo\+O\+Stream\+Monitor} (std\+::ostream \&\+\_\+out, bool=true, std\+::string \+\_\+delim=\char`\"{}\textbackslash{}t\char`\"{}, unsigned int \+\_\+width=20, char \+\_\+fill=\textquotesingle{} \textquotesingle{})
+\item 
+\mbox{\Hypertarget{classeo_o_stream_monitor_a89341eb7e1b78f15c766f438dc28a920}\label{classeo_o_stream_monitor_a89341eb7e1b78f15c766f438dc28a920}} 
+{\bfseries eo\+O\+Stream\+Monitor} (std\+::ostream \&\+\_\+out, std\+::string \+\_\+delim=\char`\"{}\textbackslash{}t\char`\"{}, unsigned int \+\_\+width=20, char \+\_\+fill=\textquotesingle{} \textquotesingle{})
+\item 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_o_stream_monitor_a7ee395a99b12daf5e713a33abb5bf283}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_o_stream_monitor_a6946edc12099f03a89808a92a95608ee}\label{classeo_o_stream_monitor_a6946edc12099f03a89808a92a95608ee}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+\mbox{\Hypertarget{classeo_o_stream_monitor_adb357bbc8680e3d5987efef5a5995cdb}\label{classeo_o_stream_monitor_adb357bbc8680e3d5987efef5a5995cdb}} 
+{\bfseries eo\+O\+Stream\+Monitor} (std\+::ostream \&\+\_\+out, std\+::string \+\_\+delim=\char`\"{}\textbackslash{}t\char`\"{}, unsigned int \+\_\+width=20, char \+\_\+fill=\textquotesingle{} \textquotesingle{}, bool \+\_\+print\+\_\+names=false, std\+::string \+\_\+name\+\_\+sep=\char`\"{}\+:\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_o_stream_monitor_a03c497dff781561d9eab2589d1e59eda}\label{classeo_o_stream_monitor_a03c497dff781561d9eab2589d1e59eda}} 
+\mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_o_stream_monitor_a03c497dff781561d9eab2589d1e59eda}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_o_stream_monitor_a6946edc12099f03a89808a92a95608ee}\label{classeo_o_stream_monitor_a6946edc12099f03a89808a92a95608ee}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Prints statistics to a given ostream.
+
+You can pass any instance of an ostream to the constructor, like, for example, std\+::clog. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_o_stream_monitor_a7ee395a99b12daf5e713a33abb5bf283}\label{classeo_o_stream_monitor_a7ee395a99b12daf5e713a33abb5bf283}} 
+\index{eoOStreamMonitor@{eoOStreamMonitor}!operator()@{operator()}}
+\index{operator()@{operator()}!eoOStreamMonitor@{eoOStreamMonitor}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& eo\+O\+Stream\+Monitor\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The pure virtual function that needs to be implemented by the subclass. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000014}{Todo}}]old verbose formatting, do we still need it? \end{DoxyRefDesc}
+
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ eo\+Monitor \& $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classeo_log_monitor_a352d0f6919d20320ccb755b26c282335}{eo\+Log\+Monitor}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+O\+Stream\+Monitor.\+h\item 
+deprecated/eo/src/utils/eo\+O\+Stream\+Monitor.\+cpp\end{DoxyCompactItemize}

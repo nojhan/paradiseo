@@ -1,0 +1,4 @@
+<map id="eo::mpi::OneShotJob&lt; JobData &gt;" name="eo::mpi::OneShotJob&lt; JobData &gt;">
+<area shape="rect" id="node1" title="Job that will be launched only once." alt="" coords="18,80,173,121"/>
+<area shape="rect" id="node2" href="$classeo_1_1mpi_1_1_job.html" title="Class implementing the centralized job algorithm." alt="" coords="5,5,185,32"/>
+</map>

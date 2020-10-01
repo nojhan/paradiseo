@@ -1,0 +1,150 @@
+\hypertarget{classmoeo_fit_div_bounded_archive}{}\doxysection{moeo\+Fit\+Div\+Bounded\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_fit_div_bounded_archive}\index{moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Fit\+Div\+Bounded\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Fit\+Div\+Bounded\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fit_div_bounded_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Fit\+Div\+Bounded\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_fit_div_bounded_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fit_div_bounded_archive_a2fc36683597f83c17907ddcbd3c888bd}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_fit_div_bounded_archive_ac9ad1f3bc737e18ead124269aeafbf8f}{moeo\+Fit\+Div\+Bounded\+Archive}} (\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+indi\+Comparator, \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&\+\_\+comparator, \mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+fitness, \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+diversity, unsigned int \+\_\+max\+Size=100, bool \+\_\+replace=true)
+\item 
+\mbox{\hyperlink{classmoeo_fit_div_bounded_archive_abd0d8dcc4143653b829322c7f639924e}{moeo\+Fit\+Div\+Bounded\+Archive}} (\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&\+\_\+indi\+Comparator, \mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+fitness, \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&\+\_\+diversity, unsigned int \+\_\+max\+Size=100, bool \+\_\+replace=true)
+\item 
+bool \mbox{\hyperlink{classmoeo_fit_div_bounded_archive_a84690f1cd1af4a53ed2790e7f70b30aa}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+bool \mbox{\hyperlink{classmoeo_fit_div_bounded_archive_abf143d5e9262362c9db70a92deb7cbd2}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Fit\+Div\+Bounded\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+This class represents a bounded archive which different parameters to specify. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_fit_div_bounded_archive_a2fc36683597f83c17907ddcbd3c888bd}\label{classmoeo_fit_div_bounded_archive_a2fc36683597f83c17907ddcbd3c888bd}} 
+\index{moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_fit_div_bounded_archive}{moeo\+Fit\+Div\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_fit_div_bounded_archive_ac9ad1f3bc737e18ead124269aeafbf8f}\label{classmoeo_fit_div_bounded_archive_ac9ad1f3bc737e18ead124269aeafbf8f}} 
+\index{moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}!moeoFitDivBoundedArchive@{moeoFitDivBoundedArchive}}
+\index{moeoFitDivBoundedArchive@{moeoFitDivBoundedArchive}!moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFitDivBoundedArchive()}{moeoFitDivBoundedArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fit_div_bounded_archive}{moeo\+Fit\+Div\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fit_div_bounded_archive}{moeo\+Fit\+Div\+Bounded\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+indi\+Comparator,  }\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_archive_a655f6879b14d7b4e65ea03724e5ee601}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+fitness,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+diversity,  }\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100},  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}, \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}, \mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}, \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}} and archive size. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indi\+Comparator} & the functor used to compare M\+O\+E\+OT \\
+\hline
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+fitness} & the assignment fitness method \\
+\hline
+{\em \+\_\+diversity} & the diversity assignment method \\
+\hline
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_fit_div_bounded_archive_abd0d8dcc4143653b829322c7f639924e}\label{classmoeo_fit_div_bounded_archive_abd0d8dcc4143653b829322c7f639924e}} 
+\index{moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}!moeoFitDivBoundedArchive@{moeoFitDivBoundedArchive}}
+\index{moeoFitDivBoundedArchive@{moeoFitDivBoundedArchive}!moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoFitDivBoundedArchive()}{moeoFitDivBoundedArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_fit_div_bounded_archive}{moeo\+Fit\+Div\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_fit_div_bounded_archive}{moeo\+Fit\+Div\+Bounded\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+indi\+Comparator,  }\item[{\mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+fitness,  }\item[{\mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+diversity,  }\item[{unsigned int}]{\+\_\+max\+Size = {\ttfamily 100},  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor with \mbox{\hyperlink{classmoeo_pareto_objective_vector_comparator}{moeo\+Pareto\+Objective\+Vector\+Comparator}} where you can choose your own \mbox{\hyperlink{classmoeo_comparator}{moeo\+Comparator}}, \mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}, \mbox{\hyperlink{classmoeo_diversity_assignment}{moeo\+Diversity\+Assignment}} and archive size. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+indi\+Comparator} & the functor used to compare M\+O\+E\+OT \\
+\hline
+{\em \+\_\+fitness} & the assignment fitness method \\
+\hline
+{\em \+\_\+diversity} & the diversity assignment method \\
+\hline
+{\em \+\_\+max\+Size} & the size of archive (must be smaller or egal to the population size) \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_fit_div_bounded_archive_abf143d5e9262362c9db70a92deb7cbd2}\label{classmoeo_fit_div_bounded_archive_abf143d5e9262362c9db70a92deb7cbd2}} 
+\index{moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fit_div_bounded_archive}{moeo\+Fit\+Div\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the given population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a \+\_\+pop\mbox{[}i\mbox{]} is non-\/dominated (and not if it is added to the archive) 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_aad2b1aecc1533e55c1d55b4b9757a952}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_fit_div_bounded_archive_a84690f1cd1af4a53ed2790e7f70b30aa}\label{classmoeo_fit_div_bounded_archive_a84690f1cd1af4a53ed2790e7f70b30aa}} 
+\index{moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoFitDivBoundedArchive$<$ MOEOT $>$@{moeoFitDivBoundedArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_fit_div_bounded_archive}{moeo\+Fit\+Div\+Bounded\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given individual \+\_\+moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the given individual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if \+\_\+moeo is non-\/dominated (and not if it is added to the archive) 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_a9b377903adc289ccc6e4b0ec52ae1245}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo\+Fit\+Div\+Bounded\+Archive.\+h\end{DoxyCompactItemize}

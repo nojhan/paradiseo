@@ -1,0 +1,414 @@
+\hypertarget{classeo_int_bounds}{}\doxysection{eo\+Int\+Bounds Class Reference}
+\label{classeo_int_bounds}\index{eoIntBounds@{eoIntBounds}}
+
+
+{\ttfamily \#include $<$es/eo\+Int\+Bounds.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Int\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_int_bounds__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Int\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classeo_int_bounds__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}{is\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}{has\+No\+Bound\+At\+All}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}{is\+Min\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}{is\+Max\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}{is\+In\+Bounds}} (double) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}{folds\+In\+Bounds}} (double \&) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a2b3d5adf6ba684ee224b848587d1a720}{folds\+In\+Bounds}} (long int \&i) const
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}{truncate}} (double \&) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a12c4869bddda64dac70db1e2684598b7}{truncate}} (long int \&i) const
+\item 
+virtual long int \mbox{\hyperlink{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}{minimum}} () const =0
+\item 
+virtual long int \mbox{\hyperlink{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}{maximum}} () const =0
+\item 
+virtual long int \mbox{\hyperlink{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}{range}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}{uniform}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const =0
+\item 
+\mbox{\Hypertarget{classeo_int_bounds_a994b944c887237f2788e77e8177d1e4a}\label{classeo_int_bounds_a994b944c887237f2788e77e8177d1e4a}} 
+virtual long int {\bfseries random} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const =0
+\item 
+virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}} $\ast$ \mbox{\hyperlink{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}{dup}} () const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}{is\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}{has\+No\+Bound\+At\+All}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}{is\+Min\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}{is\+Max\+Bounded}} (void) const =0
+\item 
+virtual bool \mbox{\hyperlink{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}{is\+In\+Bounds}} (double) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}{folds\+In\+Bounds}} (double \&) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a2b3d5adf6ba684ee224b848587d1a720}{folds\+In\+Bounds}} (long int \&i) const
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}{truncate}} (double \&) const =0
+\item 
+virtual void \mbox{\hyperlink{classeo_int_bounds_a12c4869bddda64dac70db1e2684598b7}{truncate}} (long int \&i) const
+\item 
+virtual long int \mbox{\hyperlink{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}{minimum}} () const =0
+\item 
+virtual long int \mbox{\hyperlink{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}{maximum}} () const =0
+\item 
+virtual long int \mbox{\hyperlink{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}{range}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}{uniform}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const =0
+\item 
+\mbox{\Hypertarget{classeo_int_bounds_a994b944c887237f2788e77e8177d1e4a}\label{classeo_int_bounds_a994b944c887237f2788e77e8177d1e4a}} 
+virtual long int {\bfseries random} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const =0
+\item 
+virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}} $\ast$ \mbox{\hyperlink{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}{dup}} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Defines bound classes for real numbers.
+\end{DoxyVerb}
+\hypertarget{classeo_int_bounds_autotoc_md32}{}\doxysubsubsection{Scalar type\+:}\label{classeo_int_bounds_autotoc_md32}
+Basic class is \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}, a pure virtual.
+
+The following pure virtual methods are to be used in mutations\+:
+\begin{DoxyItemize}
+\item void folds\+In\+Bounds(long int \&) that folds any value that falls out of the bounds back into the bounds, by bouncing on the limit (if any)
+\item bool is\+In\+Bounds(long int) that simply says whether or not the argument is in the bounds
+\item void truncate(long int \&) that set the argument to the bound value it it exceeds it
+\end{DoxyItemize}
+
+So mutation can choose
+\begin{DoxyItemize}
+\item iterate trying until they fall in bounds,
+\item only try once and \char`\"{}restd\+::pair\char`\"{} by using the folds\+In\+Bounds method
+\item only try once and restd\+::pair using the truncate method (will create a huge bias toward the bound if the soluiton is not far from the bounds)
+\end{DoxyItemize}
+
+There is also a \mbox{\hyperlink{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}{uniform()}} method that generates a uniform value (if possible, i.\+e. if bounded) in the interval.
+
+Derived class are \mbox{\hyperlink{classeo_int_interval}{eo\+Int\+Interval}} that holds a minimum and maximum value, \mbox{\hyperlink{classeo_int_no_bounds}{eo\+Int\+No\+Bounds}} the \char`\"{}unbounded bounds\char`\"{} (-\/infinity, +infinity) \mbox{\hyperlink{classeo_int_below_bound}{eo\+Int\+Below\+Bound}} the half-\/bounded interval \mbox{[}min, +infinity) \mbox{\hyperlink{classeo_int_above_bound}{eo\+Int\+Above\+Bound}} the half-\/bounded interval (-\/infinity, max\mbox{]}
+
+T\+His file also contains the declaration of {\itshape the} global object that is the unbounded bound
+
+\begin{DoxyVerb}Defines bound classes for real numbers.
+\end{DoxyVerb}
+\hypertarget{classeo_int_bounds_autotoc_md67}{}\doxysubsubsection{Scalar type\+:}\label{classeo_int_bounds_autotoc_md67}
+Basic class is \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}, a pure virtual.
+
+The following pure virtual methods are to be used in mutations\+:
+\begin{DoxyItemize}
+\item void folds\+In\+Bounds(long int \&) that folds any value that falls out of the bounds back into the bounds, by bouncing on the limit (if any)
+\item bool is\+In\+Bounds(long int) that simply says whether or not the argument is in the bounds
+\item void truncate(long int \&) that set the argument to the bound value it it exceeds it
+\end{DoxyItemize}
+
+So mutation can choose
+\begin{DoxyItemize}
+\item iterate trying until they fall in bounds,
+\item only try once and \char`\"{}restd\+::pair\char`\"{} by using the folds\+In\+Bounds method
+\item only try once and restd\+::pair using the truncate method (will create a huge bias toward the bound if the soluiton is not far from the bounds)
+\end{DoxyItemize}
+
+There is also a \mbox{\hyperlink{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}{uniform()}} method that generates a uniform value (if possible, i.\+e. if bounded) in the interval.
+
+Derived class are \mbox{\hyperlink{classeo_int_interval}{eo\+Int\+Interval}} that holds a minimum and maximum value, \mbox{\hyperlink{classeo_int_no_bounds}{eo\+Int\+No\+Bounds}} the \char`\"{}unbounded bounds\char`\"{} (-\/infinity, +infinity) \mbox{\hyperlink{classeo_int_below_bound}{eo\+Int\+Below\+Bound}} the half-\/bounded interval \mbox{[}min, +infinity) \mbox{\hyperlink{classeo_int_above_bound}{eo\+Int\+Above\+Bound}} the half-\/bounded interval (-\/infinity, max\mbox{]}
+
+T\+His file also contains the declaration of {\itshape the} global object that is the unbounded bound 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}\label{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}} 
+\index{eoIntBounds@{eoIntBounds}!dup@{dup}}
+\index{dup@{dup}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}$\ast$ eo\+Int\+Bounds\+::dup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+for memory managements -\/ ugly 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a4a09f271c734915083220e880b1f8cf4}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a4a09f271c734915083220e880b1f8cf4}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a386259cba53ea7bf8d996eae9bbdca39}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a386259cba53ea7bf8d996eae9bbdca39}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a01505a17c7360145ad461d646fd3ccff}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a01505a17c7360145ad461d646fd3ccff}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a57a669c19720e9ff8697b69720c61566}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a57a669c19720e9ff8697b69720c61566}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}\label{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}} 
+\index{eoIntBounds@{eoIntBounds}!dup@{dup}}
+\index{dup@{dup}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}$\ast$ eo\+Int\+Bounds\+::dup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+for memory managements -\/ ugly 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a4a09f271c734915083220e880b1f8cf4}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a4a09f271c734915083220e880b1f8cf4}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a386259cba53ea7bf8d996eae9bbdca39}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a386259cba53ea7bf8d996eae9bbdca39}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a01505a17c7360145ad461d646fd3ccff}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a01505a17c7360145ad461d646fd3ccff}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a57a669c19720e9ff8697b69720c61566}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a57a669c19720e9ff8697b69720c61566}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}\label{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}} 
+\index{eoIntBounds@{eoIntBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by folding back and forth 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a6858813f6e3b20ab997169cbd8dc6017}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a6858813f6e3b20ab997169cbd8dc6017}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a3aaead6f440ecd0f8c254f47f9e9248a}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a3aaead6f440ecd0f8c254f47f9e9248a}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a6755daf6c4e32647cb9657470f91ec27}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a6755daf6c4e32647cb9657470f91ec27}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a5996ba3542379bbd1a311cebc45171c8}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a5996ba3542379bbd1a311cebc45171c8}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}\label{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}} 
+\index{eoIntBounds@{eoIntBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by folding back and forth 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a6858813f6e3b20ab997169cbd8dc6017}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a6858813f6e3b20ab997169cbd8dc6017}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a3aaead6f440ecd0f8c254f47f9e9248a}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a3aaead6f440ecd0f8c254f47f9e9248a}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a6755daf6c4e32647cb9657470f91ec27}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a6755daf6c4e32647cb9657470f91ec27}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a5996ba3542379bbd1a311cebc45171c8}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a5996ba3542379bbd1a311cebc45171c8}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a2b3d5adf6ba684ee224b848587d1a720}\label{classeo_int_bounds_a2b3d5adf6ba684ee224b848587d1a720}} 
+\index{eoIntBounds@{eoIntBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{long int \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+folds\+In\+Bounds for ints\+: call the method for double and convert back \mbox{\Hypertarget{classeo_int_bounds_a2b3d5adf6ba684ee224b848587d1a720}\label{classeo_int_bounds_a2b3d5adf6ba684ee224b848587d1a720}} 
+\index{eoIntBounds@{eoIntBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{long int \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+folds\+In\+Bounds for ints\+: call the method for double and convert back \mbox{\Hypertarget{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}\label{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}} 
+\index{eoIntBounds@{eoIntBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if no min {\itshape {\bfseries{and}}} no max hence no further need to test/truncate/fold anything 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a077c12dd4a10a86e6bf7b34ac5e9c773}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a077c12dd4a10a86e6bf7b34ac5e9c773}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a9aadffa6bf2af75d28cfc35f16628565}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a9aadffa6bf2af75d28cfc35f16628565}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a3842ccdbf258adb89faf50810c1f47c9}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a3842ccdbf258adb89faf50810c1f47c9}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a32c2be8452b88ac2b789b88d8071ab07}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a32c2be8452b88ac2b789b88d8071ab07}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}\label{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}} 
+\index{eoIntBounds@{eoIntBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if no min {\itshape {\bfseries{and}}} no max hence no further need to test/truncate/fold anything 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a077c12dd4a10a86e6bf7b34ac5e9c773}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a077c12dd4a10a86e6bf7b34ac5e9c773}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a9aadffa6bf2af75d28cfc35f16628565}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a9aadffa6bf2af75d28cfc35f16628565}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a3842ccdbf258adb89faf50810c1f47c9}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a3842ccdbf258adb89faf50810c1f47c9}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a32c2be8452b88ac2b789b88d8071ab07}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a32c2be8452b88ac2b789b88d8071ab07}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}\label{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}} 
+\index{eoIntBounds@{eoIntBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if {\itshape {\bfseries{both}}} a min and a max 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a8e6d927510d0b52e0ecb7b804b969c18}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a8e6d927510d0b52e0ecb7b804b969c18}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad24afa54c9087edbc697ed79b9332868}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad24afa54c9087edbc697ed79b9332868}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_aa043f29cdb0be122cbf9fd95659efdc6}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_aa043f29cdb0be122cbf9fd95659efdc6}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a32c4918dfd8b0e31006304f409716ef2}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a32c4918dfd8b0e31006304f409716ef2}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}\label{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}} 
+\index{eoIntBounds@{eoIntBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: true if {\itshape {\bfseries{both}}} a min and a max 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a8e6d927510d0b52e0ecb7b804b969c18}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a8e6d927510d0b52e0ecb7b804b969c18}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad24afa54c9087edbc697ed79b9332868}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad24afa54c9087edbc697ed79b9332868}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_aa043f29cdb0be122cbf9fd95659efdc6}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_aa043f29cdb0be122cbf9fd95659efdc6}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a32c4918dfd8b0e31006304f409716ef2}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a32c4918dfd8b0e31006304f409716ef2}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}\label{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}} 
+\index{eoIntBounds@{eoIntBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{double}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} on a value\+: is it in bounds? 
+
+Implemented in \mbox{\hyperlink{classeo_int_no_bounds_aaa1e3ef4bfe71fe316b6e578300215af}{eo\+Int\+No\+Bounds}}, \mbox{\hyperlink{classeo_int_no_bounds_aaa1e3ef4bfe71fe316b6e578300215af}{eo\+Int\+No\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a17e7f273a1b9ae0fa299b815c7c86898}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a17e7f273a1b9ae0fa299b815c7c86898}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_aee61deeb2359e8a642198a2a20a39613}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_aee61deeb2359e8a642198a2a20a39613}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_ac6f05931b144d716d53d82d7cc1bbe08}{eo\+Int\+Interval}}, and \mbox{\hyperlink{classeo_int_interval_ac6f05931b144d716d53d82d7cc1bbe08}{eo\+Int\+Interval}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}\label{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}} 
+\index{eoIntBounds@{eoIntBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{double}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} on a value\+: is it in bounds? 
+
+Implemented in \mbox{\hyperlink{classeo_int_no_bounds_aaa1e3ef4bfe71fe316b6e578300215af}{eo\+Int\+No\+Bounds}}, \mbox{\hyperlink{classeo_int_no_bounds_aaa1e3ef4bfe71fe316b6e578300215af}{eo\+Int\+No\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a17e7f273a1b9ae0fa299b815c7c86898}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a17e7f273a1b9ae0fa299b815c7c86898}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_aee61deeb2359e8a642198a2a20a39613}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_aee61deeb2359e8a642198a2a20a39613}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_ac6f05931b144d716d53d82d7cc1bbe08}{eo\+Int\+Interval}}, and \mbox{\hyperlink{classeo_int_interval_ac6f05931b144d716d53d82d7cc1bbe08}{eo\+Int\+Interval}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}\label{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}} 
+\index{eoIntBounds@{eoIntBounds}!isMaxBounded@{isMaxBounded}}
+\index{isMaxBounded@{isMaxBounded}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMaxBounded()}{isMaxBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+Max\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from above??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a35a53f8c63f3531e87cee3ddcae862ea}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a35a53f8c63f3531e87cee3ddcae862ea}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_af6b1383f9003b5293dc7c4f4f7ef9efc}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_af6b1383f9003b5293dc7c4f4f7ef9efc}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a2aaff773fb169a17c019e4995e91a68e}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a2aaff773fb169a17c019e4995e91a68e}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a2501dcc7614eb5e42cdd87408e6fb178}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a2501dcc7614eb5e42cdd87408e6fb178}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}\label{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}} 
+\index{eoIntBounds@{eoIntBounds}!isMaxBounded@{isMaxBounded}}
+\index{isMaxBounded@{isMaxBounded}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMaxBounded()}{isMaxBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+Max\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from above??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a35a53f8c63f3531e87cee3ddcae862ea}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a35a53f8c63f3531e87cee3ddcae862ea}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_af6b1383f9003b5293dc7c4f4f7ef9efc}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_af6b1383f9003b5293dc7c4f4f7ef9efc}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a2aaff773fb169a17c019e4995e91a68e}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a2aaff773fb169a17c019e4995e91a68e}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a2501dcc7614eb5e42cdd87408e6fb178}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a2501dcc7614eb5e42cdd87408e6fb178}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}\label{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}} 
+\index{eoIntBounds@{eoIntBounds}!isMinBounded@{isMinBounded}}
+\index{isMinBounded@{isMinBounded}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMinBounded()}{isMinBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+Min\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from below??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a64edfc0b15a810f13cb5ac6a93baa915}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a64edfc0b15a810f13cb5ac6a93baa915}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a43b292692e48b734bcadc278a7975da6}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a43b292692e48b734bcadc278a7975da6}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_ac5436f62390c5c7366ce61fcbc9c0067}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_ac5436f62390c5c7366ce61fcbc9c0067}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a74a590e9f8aedfd36d406054fdd38868}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a74a590e9f8aedfd36d406054fdd38868}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}\label{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}} 
+\index{eoIntBounds@{eoIntBounds}!isMinBounded@{isMinBounded}}
+\index{isMinBounded@{isMinBounded}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMinBounded()}{isMinBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+Int\+Bounds\+::is\+Min\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Self-\/\+Test\+: bounded from below??? 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a64edfc0b15a810f13cb5ac6a93baa915}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a64edfc0b15a810f13cb5ac6a93baa915}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a43b292692e48b734bcadc278a7975da6}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a43b292692e48b734bcadc278a7975da6}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_ac5436f62390c5c7366ce61fcbc9c0067}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_ac5436f62390c5c7366ce61fcbc9c0067}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a74a590e9f8aedfd36d406054fdd38868}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a74a590e9f8aedfd36d406054fdd38868}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}\label{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}} 
+\index{eoIntBounds@{eoIntBounds}!maximum@{maximum}}
+\index{maximum@{maximum}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual long int eo\+Int\+Bounds\+::maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get maximum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a6f92db5e5997823ab3e74c3c2b207df5}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a6f92db5e5997823ab3e74c3c2b207df5}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab8ec840d028a166ee25a29263259e4cf}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab8ec840d028a166ee25a29263259e4cf}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a59ab35f6087ab303a083b722cba3d2af}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a59ab35f6087ab303a083b722cba3d2af}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_ab7ba6ef090eb24eae550139417090424}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_ab7ba6ef090eb24eae550139417090424}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}\label{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}} 
+\index{eoIntBounds@{eoIntBounds}!maximum@{maximum}}
+\index{maximum@{maximum}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual long int eo\+Int\+Bounds\+::maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get maximum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a6f92db5e5997823ab3e74c3c2b207df5}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a6f92db5e5997823ab3e74c3c2b207df5}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab8ec840d028a166ee25a29263259e4cf}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab8ec840d028a166ee25a29263259e4cf}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a59ab35f6087ab303a083b722cba3d2af}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a59ab35f6087ab303a083b722cba3d2af}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_ab7ba6ef090eb24eae550139417090424}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_ab7ba6ef090eb24eae550139417090424}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}\label{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}} 
+\index{eoIntBounds@{eoIntBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual long int eo\+Int\+Bounds\+::minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get minimum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a346d48321c85823d04a45e6b68b3666b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a346d48321c85823d04a45e6b68b3666b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab0906fb9e69e913f725e2c19f00c98e3}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab0906fb9e69e913f725e2c19f00c98e3}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a85fcf137f60815d489a0bdf3e839b277}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a85fcf137f60815d489a0bdf3e839b277}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a5484bf151b124ae1310133b2d4c798b7}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a5484bf151b124ae1310133b2d4c798b7}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}\label{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}} 
+\index{eoIntBounds@{eoIntBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual long int eo\+Int\+Bounds\+::minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get minimum value std\+::exception if does not exist 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a346d48321c85823d04a45e6b68b3666b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a346d48321c85823d04a45e6b68b3666b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab0906fb9e69e913f725e2c19f00c98e3}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ab0906fb9e69e913f725e2c19f00c98e3}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a85fcf137f60815d489a0bdf3e839b277}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a85fcf137f60815d489a0bdf3e839b277}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a5484bf151b124ae1310133b2d4c798b7}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a5484bf151b124ae1310133b2d4c798b7}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}\label{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}} 
+\index{eoIntBounds@{eoIntBounds}!range@{range}}
+\index{range@{range}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual long int eo\+Int\+Bounds\+::range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get range std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a606d4c26e97e00a71601a05068a1113f}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a606d4c26e97e00a71601a05068a1113f}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad2d4f9024e956f3d1e5759d6eb0934c4}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad2d4f9024e956f3d1e5759d6eb0934c4}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a51b2ad6d1ea928979fd11500974018e1}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a51b2ad6d1ea928979fd11500974018e1}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a06d0bcef3633715d9acb9d409dc18ada}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a06d0bcef3633715d9acb9d409dc18ada}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}\label{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}} 
+\index{eoIntBounds@{eoIntBounds}!range@{range}}
+\index{range@{range}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual long int eo\+Int\+Bounds\+::range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+get range std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a606d4c26e97e00a71601a05068a1113f}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a606d4c26e97e00a71601a05068a1113f}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad2d4f9024e956f3d1e5759d6eb0934c4}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ad2d4f9024e956f3d1e5759d6eb0934c4}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a51b2ad6d1ea928979fd11500974018e1}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a51b2ad6d1ea928979fd11500974018e1}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a06d0bcef3633715d9acb9d409dc18ada}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a06d0bcef3633715d9acb9d409dc18ada}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}\label{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}} 
+\index{eoIntBounds@{eoIntBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by truncating to a boundary value 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_adbaa7cf7808c5261acdc45b205009b8b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_adbaa7cf7808c5261acdc45b205009b8b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ac36437558cf592b96890d5d5e67ad430}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ac36437558cf592b96890d5d5e67ad430}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a5384c8fe9be69b15326340b6324b4754}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a5384c8fe9be69b15326340b6324b4754}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a733b1f20576ba66e10b22d43519e6b3d}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a733b1f20576ba66e10b22d43519e6b3d}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}\label{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}} 
+\index{eoIntBounds@{eoIntBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{double \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Put value back into bounds -\/ by truncating to a boundary value 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_adbaa7cf7808c5261acdc45b205009b8b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_adbaa7cf7808c5261acdc45b205009b8b}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ac36437558cf592b96890d5d5e67ad430}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_ac36437558cf592b96890d5d5e67ad430}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a5384c8fe9be69b15326340b6324b4754}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a5384c8fe9be69b15326340b6324b4754}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_a733b1f20576ba66e10b22d43519e6b3d}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_a733b1f20576ba66e10b22d43519e6b3d}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_a12c4869bddda64dac70db1e2684598b7}\label{classeo_int_bounds_a12c4869bddda64dac70db1e2684598b7}} 
+\index{eoIntBounds@{eoIntBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{long int \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+truncate for ints\+: call the method for double and convert back \mbox{\Hypertarget{classeo_int_bounds_a12c4869bddda64dac70db1e2684598b7}\label{classeo_int_bounds_a12c4869bddda64dac70db1e2684598b7}} 
+\index{eoIntBounds@{eoIntBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual void eo\+Int\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{long int \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+truncate for ints\+: call the method for double and convert back \mbox{\Hypertarget{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}\label{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}} 
+\index{eoIntBounds@{eoIntBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+Int\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+random generator of uniform numbers in bounds uses same naming convention than eo\+::rng std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a1df83234c06af400075a91e15cebf478}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a1df83234c06af400075a91e15cebf478}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a293af23b6ce12d28bca30cf06786b30d}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a293af23b6ce12d28bca30cf06786b30d}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a5dc13b9ac5652af9c6c599ff8df3e97f}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a5dc13b9ac5652af9c6c599ff8df3e97f}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_abe08b50f06881b9318a44acadb3cc7ea}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_abe08b50f06881b9318a44acadb3cc7ea}{eo\+Int\+No\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}\label{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}} 
+\index{eoIntBounds@{eoIntBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoIntBounds@{eoIntBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+Int\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+random generator of uniform numbers in bounds uses same naming convention than eo\+::rng std\+::exception if unbounded 
+
+Implemented in \mbox{\hyperlink{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}{eo\+General\+Int\+Bounds}}, \mbox{\hyperlink{classeo_int_above_bound_a1df83234c06af400075a91e15cebf478}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_above_bound_a1df83234c06af400075a91e15cebf478}{eo\+Int\+Above\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a293af23b6ce12d28bca30cf06786b30d}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_below_bound_a293af23b6ce12d28bca30cf06786b30d}{eo\+Int\+Below\+Bound}}, \mbox{\hyperlink{classeo_int_interval_a5dc13b9ac5652af9c6c599ff8df3e97f}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_interval_a5dc13b9ac5652af9c6c599ff8df3e97f}{eo\+Int\+Interval}}, \mbox{\hyperlink{classeo_int_no_bounds_abe08b50f06881b9318a44acadb3cc7ea}{eo\+Int\+No\+Bounds}}, and \mbox{\hyperlink{classeo_int_no_bounds_abe08b50f06881b9318a44acadb3cc7ea}{eo\+Int\+No\+Bounds}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Int\+Bounds.\+h\end{DoxyCompactItemize}

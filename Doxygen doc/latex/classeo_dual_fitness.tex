@@ -1,0 +1,302 @@
+\hypertarget{classeo_dual_fitness}{}\doxysection{eo\+Dual\+Fitness$<$ Base\+Type, Compare $>$ Class Template Reference}
+\label{classeo_dual_fitness}\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+
+
+A fitness class that permits to compare feasible and unfeasible individuals and guaranties that a feasible individual will always be better than an unfeasible one.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Dual\+Fitness.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a263daf30f0b3d3790d394d10ebe40e55}\label{classeo_dual_fitness_a263daf30f0b3d3790d394d10ebe40e55}} 
+typedef BaseT {\bfseries Base}
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a8272d67f3507c888f61f90580ea126dd}\label{classeo_dual_fitness_a8272d67f3507c888f61f90580ea126dd}} 
+typedef Cmp {\bfseries Compare}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_dual_fitness_a40b38f909f91fadd297bccbe1d81185c}{eo\+Dual\+Fitness}} ()
+\begin{DoxyCompactList}\small\item\em Empty initialization. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a05396d4048d290bf9ae81b8840d3302d}\label{classeo_dual_fitness_a05396d4048d290bf9ae81b8840d3302d}} 
+\mbox{\hyperlink{classeo_dual_fitness_a05396d4048d290bf9ae81b8840d3302d}{eo\+Dual\+Fitness}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_afd8a65df013147d15ba2e643d46a02fb}\label{classeo_dual_fitness_afd8a65df013147d15ba2e643d46a02fb}} 
+\mbox{\hyperlink{classeo_dual_fitness_afd8a65df013147d15ba2e643d46a02fb}{eo\+Dual\+Fitness}} (const Base\+Type \&v, const bool \&is\+\_\+feasible)
+\begin{DoxyCompactList}\small\item\em Constructor from explicit value/feasibility. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a7257a24a29f218c13d3f4ae47e405857}\label{classeo_dual_fitness_a7257a24a29f218c13d3f4ae47e405857}} 
+\mbox{\hyperlink{classeo_dual_fitness_a7257a24a29f218c13d3f4ae47e405857}{eo\+Dual\+Fitness}} (const std\+::pair$<$ Base\+Type, bool $>$ \&dual)
+\begin{DoxyCompactList}\small\item\em From a std\+::pair (first element is the value, second is the feasibility) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_dual_fitness_ae31288bc1cb29506ae2cf293edcd888c}{operator Base\+Type}} (void) const
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a1ea145d88d8f92172e7e73a0d1808e86}\label{classeo_dual_fitness_a1ea145d88d8f92172e7e73a0d1808e86}} 
+bool {\bfseries is\+\_\+feasible} () const
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ad2f11e05ce52fc4f0ebe09892175cc1a}\label{classeo_dual_fitness_ad2f11e05ce52fc4f0ebe09892175cc1a}} 
+Base\+Type {\bfseries value} () const
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a140e8af32adf2d237902f052982f3de4}\label{classeo_dual_fitness_a140e8af32adf2d237902f052982f3de4}} 
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \& \mbox{\hyperlink{classeo_dual_fitness_a140e8af32adf2d237902f052982f3de4}{operator=}} (const std\+::pair$<$ Base\+Type, bool $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Copy operator from a std\+::pair. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ae11935a651e025cb514f517247594c2b}\label{classeo_dual_fitness_ae11935a651e025cb514f517247594c2b}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_ae11935a651e025cb514f517247594c2b}{operator=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copy operator from another \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classeo_dual_fitness_a6aa1b54631863c94c4ff1bdbe2b1e6de}{operator$<$}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Comparison that separate feasible individuals from unfeasible ones. Feasible are always better. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a8bf05946b66d16ba67e16b3f9a176b39}\label{classeo_dual_fitness_a8bf05946b66d16ba67e16b3f9a176b39}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_a8bf05946b66d16ba67e16b3f9a176b39}{operator$>$}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Greater\+: if the other is lesser than me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ac83b6466c615932b46dc0ff58cb1826a}\label{classeo_dual_fitness_ac83b6466c615932b46dc0ff58cb1826a}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_ac83b6466c615932b46dc0ff58cb1826a}{operator$<$=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Less or equal\+: if the other is not lesser than me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a8096947824a7430bec260ee376ea3cbe}\label{classeo_dual_fitness_a8096947824a7430bec260ee376ea3cbe}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_a8096947824a7430bec260ee376ea3cbe}{operator$>$=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Greater or equal\+: if the other is not greater than me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_acb9ccb6303bac483d3fd0227a91d82ba}\label{classeo_dual_fitness_acb9ccb6303bac483d3fd0227a91d82ba}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_acb9ccb6303bac483d3fd0227a91d82ba}{operator==}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equal\+: if the other is equal to me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_adaf89beb4f799291703fa9470692790c}\label{classeo_dual_fitness_adaf89beb4f799291703fa9470692790c}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ {\bfseries operator+} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&that)
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a0c410bd4646c4680e63e7ee54fb91800}\label{classeo_dual_fitness_a0c410bd4646c4680e63e7ee54fb91800}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ {\bfseries operator-\/} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&that)
+\item 
+\mbox{\hyperlink{classeo_dual_fitness_a40b38f909f91fadd297bccbe1d81185c}{eo\+Dual\+Fitness}} ()
+\begin{DoxyCompactList}\small\item\em Empty initialization. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_dual_fitness_a35e2901f127b22cd9a8731c1caf308d6}{eo\+Dual\+Fitness}} (const double value)
+\begin{DoxyCompactList}\small\item\em Initialization with only the value, the fitness will be unfeasible. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a05396d4048d290bf9ae81b8840d3302d}\label{classeo_dual_fitness_a05396d4048d290bf9ae81b8840d3302d}} 
+\mbox{\hyperlink{classeo_dual_fitness_a05396d4048d290bf9ae81b8840d3302d}{eo\+Dual\+Fitness}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_aada8c4c9d4f7b566a37cd4749e03dde2}\label{classeo_dual_fitness_aada8c4c9d4f7b566a37cd4749e03dde2}} 
+\mbox{\hyperlink{classeo_dual_fitness_aada8c4c9d4f7b566a37cd4749e03dde2}{eo\+Dual\+Fitness}} (const BaseT \&v, const bool \&is\+\_\+feasible)
+\begin{DoxyCompactList}\small\item\em Constructor from explicit value/feasibility. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a404a04387356189098daaff0a4571322}\label{classeo_dual_fitness_a404a04387356189098daaff0a4571322}} 
+\mbox{\hyperlink{classeo_dual_fitness_a404a04387356189098daaff0a4571322}{eo\+Dual\+Fitness}} (const std\+::pair$<$ BaseT, bool $>$ \&dual)
+\begin{DoxyCompactList}\small\item\em From a std\+::pair (first element is the value, second is the feasibility) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_dual_fitness_a02ee1e27678b8319144528e525141b4d}{operator BaseT}} (void) const
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a1ea145d88d8f92172e7e73a0d1808e86}\label{classeo_dual_fitness_a1ea145d88d8f92172e7e73a0d1808e86}} 
+bool {\bfseries is\+\_\+feasible} () const
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a3204fc5b7f9dab6f5c4bd699711ee0ea}\label{classeo_dual_fitness_a3204fc5b7f9dab6f5c4bd699711ee0ea}} 
+void \mbox{\hyperlink{classeo_dual_fitness_a3204fc5b7f9dab6f5c4bd699711ee0ea}{is\+\_\+feasible}} (bool feasible)
+\begin{DoxyCompactList}\small\item\em Explicitly set the feasibility. Useful if you have used previously the instantiation on a single scalar. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ab3054eed999eebc4f2042bce426bb1d2}\label{classeo_dual_fitness_ab3054eed999eebc4f2042bce426bb1d2}} 
+BaseT {\bfseries value} () const
+\item 
+bool \mbox{\hyperlink{classeo_dual_fitness_a6aa1b54631863c94c4ff1bdbe2b1e6de}{operator$<$}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Comparison that separate feasible individuals from unfeasible ones. Feasible are always better. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a8bf05946b66d16ba67e16b3f9a176b39}\label{classeo_dual_fitness_a8bf05946b66d16ba67e16b3f9a176b39}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_a8bf05946b66d16ba67e16b3f9a176b39}{operator$>$}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Greater\+: if the other is lesser than me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ac83b6466c615932b46dc0ff58cb1826a}\label{classeo_dual_fitness_ac83b6466c615932b46dc0ff58cb1826a}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_ac83b6466c615932b46dc0ff58cb1826a}{operator$<$=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Less or equal\+: if the other is not lesser than me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a8096947824a7430bec260ee376ea3cbe}\label{classeo_dual_fitness_a8096947824a7430bec260ee376ea3cbe}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_a8096947824a7430bec260ee376ea3cbe}{operator$>$=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Greater or equal\+: if the other is not greater than me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_acb9ccb6303bac483d3fd0227a91d82ba}\label{classeo_dual_fitness_acb9ccb6303bac483d3fd0227a91d82ba}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_acb9ccb6303bac483d3fd0227a91d82ba}{operator==}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equal\+: if the other is equal to me. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a0840e21cfb28f7eb223d586019a9970b}\label{classeo_dual_fitness_a0840e21cfb28f7eb223d586019a9970b}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_a0840e21cfb28f7eb223d586019a9970b}{operator+=}} (const T that)
+\begin{DoxyCompactList}\small\item\em Add a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ad57a36b1e677e0f51f68c7573e7de433}\label{classeo_dual_fitness_ad57a36b1e677e0f51f68c7573e7de433}} 
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_ad57a36b1e677e0f51f68c7573e7de433}{operator+=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&that)
+\begin{DoxyCompactList}\small\item\em Add a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a6d826231e6f953572324b207e7ccdcec}\label{classeo_dual_fitness_a6d826231e6f953572324b207e7ccdcec}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_a6d826231e6f953572324b207e7ccdcec}{operator-\/=}} (const T that)
+\begin{DoxyCompactList}\small\item\em Substract a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a7ef8c11bffa9d7c0131e049d33fde477}\label{classeo_dual_fitness_a7ef8c11bffa9d7c0131e049d33fde477}} 
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_a7ef8c11bffa9d7c0131e049d33fde477}{operator-\/=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&that)
+\begin{DoxyCompactList}\small\item\em Substract a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a7575b00ea147b3aa7c298c221c45d5b8}\label{classeo_dual_fitness_a7575b00ea147b3aa7c298c221c45d5b8}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_a7575b00ea147b3aa7c298c221c45d5b8}{operator/=}} (T that)
+\begin{DoxyCompactList}\small\item\em Add a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_acbdfd34ffc956349de080e61837d34e5}\label{classeo_dual_fitness_acbdfd34ffc956349de080e61837d34e5}} 
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_acbdfd34ffc956349de080e61837d34e5}{operator/=}} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&that)
+\begin{DoxyCompactList}\small\item\em Add a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a6d13b962a666586b5982326440de3d81}\label{classeo_dual_fitness_a6d13b962a666586b5982326440de3d81}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ {\bfseries operator+} (T that)
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ac8f18242a98c8b81c1b5ac4abcf60f0a}\label{classeo_dual_fitness_ac8f18242a98c8b81c1b5ac4abcf60f0a}} 
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ {\bfseries operator+} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&that)
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a5581a37a92379596e02a3cbedd41846b}\label{classeo_dual_fitness_a5581a37a92379596e02a3cbedd41846b}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ {\bfseries operator-\/} (T that)
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a662f6247155173a841037b87459c8f3a}\label{classeo_dual_fitness_a662f6247155173a841037b87459c8f3a}} 
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ {\bfseries operator-\/} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&that)
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_aaeef5fa8a08dfaad4813636bc90af965}\label{classeo_dual_fitness_aaeef5fa8a08dfaad4813636bc90af965}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ {\bfseries operator/} (T that)
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_af37924355e4c361ef2bc6ae00355aeba}\label{classeo_dual_fitness_af37924355e4c361ef2bc6ae00355aeba}} 
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ {\bfseries operator/} (const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&that)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a8ecd9de6e369025703fcd2943812e303}\label{classeo_dual_fitness_a8ecd9de6e369025703fcd2943812e303}} 
+Base\+Type \mbox{\hyperlink{classeo_dual_fitness_a8ecd9de6e369025703fcd2943812e303}{\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Scalar type of the fitness (generally a double) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ad2492266f2073937ae1c5b671a090ac6}\label{classeo_dual_fitness_ad2492266f2073937ae1c5b671a090ac6}} 
+bool \mbox{\hyperlink{classeo_dual_fitness_ad2492266f2073937ae1c5b671a090ac6}{\+\_\+is\+\_\+feasible}}
+\begin{DoxyCompactList}\small\item\em Flag that marks if the individual is feasible. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a064e33fd0db594aff9f1fe5020b7b53c}\label{classeo_dual_fitness_a064e33fd0db594aff9f1fe5020b7b53c}} 
+BaseT \mbox{\hyperlink{classeo_dual_fitness_a064e33fd0db594aff9f1fe5020b7b53c}{\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Scalar type of the fitness (generally a double) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classeo_dual_fitness_a7d12103ab76b34e9ca7c95c5fee80053}{\+\_\+feasible\+\_\+init}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_dual_fitness_abf077afd5f1067b98af767568aab0bba}\label{classeo_dual_fitness_abf077afd5f1067b98af767568aab0bba}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_abf077afd5f1067b98af767568aab0bba}{operator+=}} (\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&from, const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&that)
+\begin{DoxyCompactList}\small\item\em Add a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ab49fa17f13ebe49ede8c957ac43746ea}\label{classeo_dual_fitness_ab49fa17f13ebe49ede8c957ac43746ea}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \& \mbox{\hyperlink{classeo_dual_fitness_ab49fa17f13ebe49ede8c957ac43746ea}{operator-\/=}} (\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&from, const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&that)
+\begin{DoxyCompactList}\small\item\em Substract a given fitness to the current one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_ad2add8659de6e8b6f53a91978b7e5cae}\label{classeo_dual_fitness_ad2add8659de6e8b6f53a91978b7e5cae}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\std\+::ostream \& \mbox{\hyperlink{classeo_dual_fitness_ad2add8659de6e8b6f53a91978b7e5cae}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&f)
+\begin{DoxyCompactList}\small\item\em Print an \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} instance as a pair of numbers, separated by a space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_acd1571ab0f6eb1e0979460c152933358}\label{classeo_dual_fitness_acd1571ab0f6eb1e0979460c152933358}} 
+{\footnotesize template$<$class F , class Cmp $>$ }\\std\+::istream \& \mbox{\hyperlink{classeo_dual_fitness_acd1571ab0f6eb1e0979460c152933358}{operator$>$$>$}} (std\+::istream \&is, \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ F, Cmp $>$ \&f)
+\begin{DoxyCompactList}\small\item\em Read an \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} instance as a pair of numbers, separated by a space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_af7bfac7a3539c3c722a06d9438d0d17d}\label{classeo_dual_fitness_af7bfac7a3539c3c722a06d9438d0d17d}} 
+std\+::ostream \& \mbox{\hyperlink{classeo_dual_fitness_af7bfac7a3539c3c722a06d9438d0d17d}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&fitness)
+\begin{DoxyCompactList}\small\item\em Print an \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} instance as a pair of numbers, separated by a space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_dual_fitness_a3ce9ae74c4d5aedd50dd1e433603be26}\label{classeo_dual_fitness_a3ce9ae74c4d5aedd50dd1e433603be26}} 
+std\+::istream \& \mbox{\hyperlink{classeo_dual_fitness_a3ce9ae74c4d5aedd50dd1e433603be26}{operator$>$$>$}} (std\+::istream \&is, \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ BaseT, Cmp $>$ \&fitness)
+\begin{DoxyCompactList}\small\item\em Read an \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} instance as a pair of numbers, separated by a space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Base\+Type, class Compare$>$\newline
+class eo\+Dual\+Fitness$<$ Base\+Type, Compare $>$}
+
+A fitness class that permits to compare feasible and unfeasible individuals and guaranties that a feasible individual will always be better than an unfeasible one. 
+
+Use this class as fitness if you have some kind of individuals that must be always considered as better than others while having the same fitness type.
+
+Wraps a scalar fitness \+\_\+values such as a double or int, with the option of maximizing (using less$<$\+Base\+Type$>$, \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group___evaluation_ga7525b6c499f6c534cccdbf3a69ab5b98}{eo\+Maximizing\+Dual\+Fitness}}) or minimizing (using greater$<$\+Base\+Type$>$, 
+
+\mbox{\hyperlink{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}{eo\+Minimizing\+Dual\+Fitness}}).
+\end{DoxySeeAlso}
+Suitable constructors, assignments and casts are defined to work with those quantities as if they were a pair of\+: a Base\+Type and a boolean.
+
+When changing the fitness, you can use\+: individual.\+fitness( std\+::make\+\_\+pair$<$\+Base\+Type,bool$>$( fitness, feasibility ) );
+
+Be aware that, when printing or reading an e\+Dual\+Fitness instance on a iostream, friend IO classes use a space separator.
+
+This class overrides \mbox{\hyperlink{classeo_dual_fitness_a6aa1b54631863c94c4ff1bdbe2b1e6de}{operator$<$()}} to use the Compare template argument and handle feasibility. Over operators are coded using this sole function.
+
+Standard arithmetic operators are provided to add or substract dual fitnesses. They behave as expected for the fitness value and gives priority to unfeasible fitness (i.\+e. when adding or substracting dual fitness, the only case when the result will be a feasible fitness is when both are feasible, else the result is an unfeasibe fitness) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_dual_fitness_a40b38f909f91fadd297bccbe1d81185c}\label{classeo_dual_fitness_a40b38f909f91fadd297bccbe1d81185c}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!eoDualFitness@{eoDualFitness}}
+\index{eoDualFitness@{eoDualFitness}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{eoDualFitness()}{eoDualFitness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Empty initialization. 
+
+Unfeasible by default \mbox{\Hypertarget{classeo_dual_fitness_a40b38f909f91fadd297bccbe1d81185c}\label{classeo_dual_fitness_a40b38f909f91fadd297bccbe1d81185c}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!eoDualFitness@{eoDualFitness}}
+\index{eoDualFitness@{eoDualFitness}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{eoDualFitness()}{eoDualFitness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Empty initialization. 
+
+Unfeasible by default \mbox{\Hypertarget{classeo_dual_fitness_a35e2901f127b22cd9a8731c1caf308d6}\label{classeo_dual_fitness_a35e2901f127b22cd9a8731c1caf308d6}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!eoDualFitness@{eoDualFitness}}
+\index{eoDualFitness@{eoDualFitness}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{eoDualFitness()}{eoDualFitness()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} (\begin{DoxyParamCaption}\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialization with only the value, the fitness will be unfeasible. 
+
+W\+A\+R\+N\+I\+NG\+: this is what is used when you initialize a new fitness from a double. If you use this interface, you M\+U\+ST set the feasibility B\+E\+F\+O\+RE asking for it or the value. Or else, an assert will fail in debug mode. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_dual_fitness_a02ee1e27678b8319144528e525141b4d}\label{classeo_dual_fitness_a02ee1e27678b8319144528e525141b4d}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!operator BaseT@{operator BaseT}}
+\index{operator BaseT@{operator BaseT}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{operator BaseT()}{operator BaseT()}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::operator BaseT (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Conversion operator\+: it permits to use a fitness instance as its scalar type, if needed.~For example, this is possible\+: \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$double,std\+::less$<$double$>$ $>$ fit; double val = 1.\+0; val = fit; \mbox{\Hypertarget{classeo_dual_fitness_ae31288bc1cb29506ae2cf293edcd888c}\label{classeo_dual_fitness_ae31288bc1cb29506ae2cf293edcd888c}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!operator BaseType@{operator BaseType}}
+\index{operator BaseType@{operator BaseType}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{operator BaseType()}{operator BaseType()}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+\mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::operator Base\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Conversion operator\+: it permits to use a fitness instance as its scalar type, if needed.~For example, this is possible\+: \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$double,std\+::less$<$double$>$ $>$ fit; double val = 1.\+0; fit = val; val = fit; \mbox{\Hypertarget{classeo_dual_fitness_a6aa1b54631863c94c4ff1bdbe2b1e6de}\label{classeo_dual_fitness_a6aa1b54631863c94c4ff1bdbe2b1e6de}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+bool \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comparison that separate feasible individuals from unfeasible ones. Feasible are always better. 
+
+Use less as a default comparison operator (see the \char`\"{}\+Compare\char`\"{} template of the class to change this behaviour, \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}{eo\+Minimizing\+Dual\+Fitness}} for an example). 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classeo_dual_fitness_a6aa1b54631863c94c4ff1bdbe2b1e6de}\label{classeo_dual_fitness_a6aa1b54631863c94c4ff1bdbe2b1e6de}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+bool \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comparison that separate feasible individuals from unfeasible ones. Feasible are always better. 
+
+Use less as a default comparison operator (see the \char`\"{}\+Cmp\char`\"{} template of the class to change this behaviour, \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group___evaluation_gadbf8c40d1536be104d80e1f311714ed1}{eo\+Minimizing\+Dual\+Fitness}} for an example). 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classeo_dual_fitness_a7d12103ab76b34e9ca7c95c5fee80053}\label{classeo_dual_fitness_a7d12103ab76b34e9ca7c95c5fee80053}} 
+\index{eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}!\_feasible\_init@{\_feasible\_init}}
+\index{\_feasible\_init@{\_feasible\_init}!eoDualFitness$<$ BaseType, Compare $>$@{eoDualFitness$<$ BaseType, Compare $>$}}
+\doxysubsubsection{\texorpdfstring{\_feasible\_init}{\_feasible\_init}}
+{\footnotesize\ttfamily template$<$class Base\+Type , class Compare $>$ \\
+bool \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}}$<$ Base\+Type, Compare $>$\+::\+\_\+feasible\+\_\+init\hspace{0.3cm}{\ttfamily [protected]}}
+
+Flag to prevent partial initialization
+
+The reason behind the use of this flag is a bit complicated. Normally, we would not want to allow initialization on a scalar. But in \mbox{\hyperlink{class_m_o_e_o}{M\+O\+EO}}, this would necessitate to re-\/implement most of the operator computing metrics, as they expect generic scalars.
+
+As this would be too much work, we use derived metric classes and overload them so that they initialize dual fitnesses with the feasibility flag. But the compiler still must compile the base methods, that use the scalar interface.
+
+Thus, \mbox{\hyperlink{classeo_dual_fitness}{eo\+Dual\+Fitness}} has a scalar interface, but this flag add a security against partial initialization. In D\+E\+B\+UG mode, asserts will fail if the feasibility has not been explicitly initialized at runtime. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Dual\+Fitness.\+h\end{DoxyCompactItemize}

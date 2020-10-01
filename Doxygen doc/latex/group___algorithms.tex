@@ -1,0 +1,71 @@
+\hypertarget{group___algorithms}{}\doxysection{Algorithms}
+\label{group___algorithms}\index{Algorithms@{Algorithms}}
+
+
+In \mbox{\hyperlink{class_e_o}{EO}}, an algorithm is a functor that takes one or several solutions to an optimization problem as arguments, and iteratively modify them with the help of operators.  
+
+
+Collaboration diagram for Algorithms\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___algorithms}
+\end{center}
+\end{figure}
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___e_m_n_a}{E\+M\+NA}}
+\begin{DoxyCompactList}\small\item\em Estimation of Multivariate Normal Algorithm (E\+M\+NA) is a stochastic, derivative-\/free methods for numerical optimization of non-\/linear or non-\/convex continuous optimization problems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_algo}{eo\+Algo$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_cellular_easy_e_a}{eo\+Cellular\+Easy\+E\+A$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_easy_e_a}{eo\+Easy\+E\+A$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_easy_p_s_o}{eo\+Easy\+P\+S\+O$<$ P\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_e_d_a}{eo\+E\+D\+A$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_p_s_o}{eo\+P\+S\+O$<$ P\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_s_g_a}{eo\+S\+G\+A$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_simple_e_d_a}{eo\+Simple\+E\+D\+A$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_sync_easy_p_s_o}{eo\+Sync\+Easy\+P\+S\+O$<$ P\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classedo_algo}{edo\+Algo$<$ D $>$}}
+\item 
+class \mbox{\hyperlink{classedo_algo_adaptive}{edo\+Algo\+Adaptive$<$ D $>$}}
+\item 
+class \mbox{\hyperlink{classedo_algo_stateless}{edo\+Algo\+Stateless$<$ D $>$}}
+\item 
+class \mbox{\hyperlink{classeo_algo_foundry}{eo\+Algo\+Foundry$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_algo_foundry_e_a}{eo\+Algo\+Foundry\+E\+A$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_algo_foundry_fast_g_a}{eo\+Algo\+Foundry\+Fast\+G\+A$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_algo_reset}{eo\+Algo\+Reset$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_algo_restart}{eo\+Algo\+Restart$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_fast_g_a}{eo\+Fast\+G\+A$<$ E\+O\+T $>$}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+In \mbox{\hyperlink{class_e_o}{EO}}, an algorithm is a functor that takes one or several solutions to an optimization problem as arguments, and iteratively modify them with the help of operators. 
+
+In E\+DO, as in \mbox{\hyperlink{class_e_o}{EO}}, an algorithm is a functor that takes one or several solutions to an optimization problem as arguments, and iteratively modify them with the help of operators.\+It differs from a canonical \mbox{\hyperlink{class_e_o}{EO}} algorithm because it is templatized on a \mbox{\hyperlink{classedo_distrib}{edo\+Distrib}} rather than just an E\+OT.
+
+Generally, an \mbox{\hyperlink{class_e_o}{EO}} object is built by assembling together \mbox{\hyperlink{group___operators}{Evolutionary Operators}} in an algorithm instance, and then calling the algorithm\textquotesingle{}s operator() on an initial population (an \mbox{\hyperlink{classeo_pop}{eo\+Pop}}). The algorithm will then manipulate the solutions within the population to search for the problem\textquotesingle{}s optimum.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_algo}{eo\+Algo}} 
+\end{DoxySeeAlso}

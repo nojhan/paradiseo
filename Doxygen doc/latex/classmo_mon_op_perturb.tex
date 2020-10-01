@@ -1,0 +1,108 @@
+\hypertarget{classmo_mon_op_perturb}{}\doxysection{mo\+Mon\+Op\+Perturb$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_mon_op_perturb}\index{moMonOpPerturb$<$ Neighbor $>$@{moMonOpPerturb$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Mon\+Op\+Perturb.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Mon\+Op\+Perturb$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_mon_op_perturb__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Mon\+Op\+Perturb$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_mon_op_perturb__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_mon_op_perturb_a2932b46150a3fa30a1394efed86ac089}\label{classmo_mon_op_perturb_a2932b46150a3fa30a1394efed86ac089}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_mon_op_perturb_aa994c848e97b15ebb8a81365be25ebc1}{mo\+Mon\+Op\+Perturb}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+mon\+Op, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, unsigned int \+\_\+nb\+Perturbation=1)
+\item 
+\mbox{\hyperlink{classmo_mon_op_perturb_a6a118ae1da2ee2ceeedb8c323657418b}{mo\+Mon\+Op\+Perturb}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+mon\+Op, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, unsigned int \+\_\+nb\+Perturbation\+Min, unsigned int \+\_\+nb\+Perturbation\+Max)
+\item 
+bool \mbox{\hyperlink{classmo_mon_op_perturb_abddd466e35bb662b5c75351f76a474a6}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Mon\+Op\+Perturb$<$ Neighbor $>$}
+
+Perturbation operator using only a \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_mon_op_perturb_aa994c848e97b15ebb8a81365be25ebc1}\label{classmo_mon_op_perturb_aa994c848e97b15ebb8a81365be25ebc1}} 
+\index{moMonOpPerturb$<$ Neighbor $>$@{moMonOpPerturb$<$ Neighbor $>$}!moMonOpPerturb@{moMonOpPerturb}}
+\index{moMonOpPerturb@{moMonOpPerturb}!moMonOpPerturb$<$ Neighbor $>$@{moMonOpPerturb$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMonOpPerturb()}{moMonOpPerturb()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_mon_op_perturb}{mo\+Mon\+Op\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_mon_op_perturb}{mo\+Mon\+Op\+Perturb}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+mon\+Op,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{unsigned int}]{\+\_\+nb\+Perturbation = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mon\+Op} & an \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}} (pertubation operator) \\
+\hline
+{\em \+\_\+full\+Eval} & a full evaluation function \\
+\hline
+{\em \+\_\+nb\+Perturbation} & number of operator executions for perturbation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_mon_op_perturb_a6a118ae1da2ee2ceeedb8c323657418b}\label{classmo_mon_op_perturb_a6a118ae1da2ee2ceeedb8c323657418b}} 
+\index{moMonOpPerturb$<$ Neighbor $>$@{moMonOpPerturb$<$ Neighbor $>$}!moMonOpPerturb@{moMonOpPerturb}}
+\index{moMonOpPerturb@{moMonOpPerturb}!moMonOpPerturb$<$ Neighbor $>$@{moMonOpPerturb$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMonOpPerturb()}{moMonOpPerturb()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_mon_op_perturb}{mo\+Mon\+Op\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_mon_op_perturb}{mo\+Mon\+Op\+Perturb}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+mon\+Op,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{unsigned int}]{\+\_\+nb\+Perturbation\+Min,  }\item[{unsigned int}]{\+\_\+nb\+Perturbation\+Max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with random value at each iteration of the number of perturbation moves 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mon\+Op} & an \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}} (pertubation operator) \\
+\hline
+{\em \+\_\+full\+Eval} & a full evaluation function \\
+\hline
+{\em \+\_\+nb\+Perturbation\+Min} & minimum number of operator executions for perturbation \\
+\hline
+{\em \+\_\+nb\+Perturbation\+Max} & maximum number of operator executions for perturbation \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_mon_op_perturb_abddd466e35bb662b5c75351f76a474a6}\label{classmo_mon_op_perturb_abddd466e35bb662b5c75351f76a474a6}} 
+\index{moMonOpPerturb$<$ Neighbor $>$@{moMonOpPerturb$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moMonOpPerturb$<$ Neighbor $>$@{moMonOpPerturb$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_mon_op_perturb}{mo\+Mon\+Op\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Apply mon\+Op on the solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & to perturb \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of mon\+Op 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/perturb/mo\+Mon\+Op\+Perturb.\+h\end{DoxyCompactItemize}

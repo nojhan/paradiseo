@@ -1,0 +1,122 @@
+\hypertarget{classmo_min_neighbor_stat}{}\doxysection{mo\+Min\+Neighbor\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_min_neighbor_stat}\index{moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Min\+Neighbor\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Min\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_min_neighbor_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Min\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_min_neighbor_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_min_neighbor_stat_a9e5af2304e80a431e24cc3efff0fd99a}\label{classmo_min_neighbor_stat_a9e5af2304e80a431e24cc3efff0fd99a}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_min_neighbor_stat_ac5366089898ed2a7a3995891f582d21c}\label{classmo_min_neighbor_stat_ac5366089898ed2a7a3995891f582d21c}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_min_neighbor_stat_af9db1933d06b03366e8aaa927a55e2c8}{mo\+Min\+Neighbor\+Stat}} (\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Stat)
+\item 
+virtual void \mbox{\hyperlink{classmo_min_neighbor_stat_a52e0bfc971ce7ad579fc80bdd39fa241}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_min_neighbor_stat_a2c9866c870f0997a5722819f0d136ca9}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_min_neighbor_stat_a57298e4fb1b6d9050e47a8d591455abf}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Min\+Neighbor\+Stat$<$ Neighbor $>$}
+
+From \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}, to compute the min fitness in the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_min_neighbor_stat_af9db1933d06b03366e8aaa927a55e2c8}\label{classmo_min_neighbor_stat_af9db1933d06b03366e8aaa927a55e2c8}} 
+\index{moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}!moMinNeighborStat@{moMinNeighborStat}}
+\index{moMinNeighborStat@{moMinNeighborStat}!moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moMinNeighborStat()}{moMinNeighborStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_min_neighbor_stat}{mo\+Min\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_min_neighbor_stat}{mo\+Min\+Neighbor\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nh\+Stat} & a neighborhood\+Stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_min_neighbor_stat_a57298e4fb1b6d9050e47a8d591455abf}\label{classmo_min_neighbor_stat_a57298e4fb1b6d9050e47a8d591455abf}} 
+\index{moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_min_neighbor_stat}{mo\+Min\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_min_neighbor_stat_a52e0bfc971ce7ad579fc80bdd39fa241}\label{classmo_min_neighbor_stat_a52e0bfc971ce7ad579fc80bdd39fa241}} 
+\index{moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_min_neighbor_stat}{mo\+Min\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the worst fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_min_neighbor_stat_a2c9866c870f0997a5722819f0d136ca9}\label{classmo_min_neighbor_stat_a2c9866c870f0997a5722819f0d136ca9}} 
+\index{moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moMinNeighborStat$<$ Neighbor $>$@{moMinNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_min_neighbor_stat}{mo\+Min\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the worst fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Min\+Neighbor\+Stat.\+h\end{DoxyCompactItemize}

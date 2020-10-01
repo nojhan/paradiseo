@@ -1,0 +1,138 @@
+\hypertarget{group___continuators}{}\doxysection{Stopping criteria}
+\label{group___continuators}\index{Stopping criteria@{Stopping criteria}}
+
+
+A stopping criterion is called a \char`\"{}continue\char`\"{}. This is a functor that is called at each generation end and that return true if one should stop the search.  
+
+
+Collaboration diagram for Stopping criteria\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___continuators}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_continue}{eo\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_ctrl_c_continue}{eo\+Ctrl\+C\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_eval_continue}{eo\+Eval\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_fit_continue}{eo\+Fit\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_gen_continue}{eo\+Gen\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_seconds_elapsed_continue}{eo\+Seconds\+Elapsed\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_s_i_g_continue}{eo\+S\+I\+G\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_steady_fit_continue}{eo\+Steady\+Fit\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_time_continue}{eo\+Time\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_signal}{eo\+Signal$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classedo_combined_continue}{edo\+Combined\+Continue$<$ D $>$}}
+\item 
+class \mbox{\hyperlink{classedo_cont_adaptive_finite}{edo\+Cont\+Adaptive\+Finite$<$ D $>$}}
+\item 
+class \mbox{\hyperlink{classedo_continue}{edo\+Continue$<$ D $>$}}
+\item 
+class \mbox{\hyperlink{classeo_dummy_continue}{eo\+Dummy\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_count_continue}{eo\+Count\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classeo_inverted_continue}{eo\+Inverted\+Continue$<$ E\+O\+T $>$}}
+\item 
+class \mbox{\hyperlink{classmoeo_dual_hyp_continue}{moeo\+Dual\+Hyp\+Continue$<$ M\+O\+E\+O\+T, Metric\+T $>$}}
+\item 
+class \mbox{\hyperlink{classmoeo_hyp_continue}{moeo\+Hyp\+Continue$<$ M\+O\+E\+O\+T, Metric\+T $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___continuators_ga6aa59f98cad89c73966351ad7afb303c}\label{group___continuators_ga6aa59f98cad89c73966351ad7afb303c}} 
+void {\bfseries signal\+\_\+handler} (int sig)
+\item 
+\mbox{\Hypertarget{group___continuators_gaece5dbfdd3d3df4e81d11d72c4a6371b}\label{group___continuators_gaece5dbfdd3d3df4e81d11d72c4a6371b}} 
+void {\bfseries set\+\_\+bool} (int)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}\label{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}} 
+bool {\bfseries ask\+\_\+for\+\_\+stop} = false
+\item 
+\mbox{\Hypertarget{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}\label{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}} 
+bool {\bfseries exist\+Ctrl\+C\+Continue} = false
+\item 
+\mbox{\Hypertarget{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}\label{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}} 
+bool {\bfseries ask\+\_\+for\+\_\+stop}
+\item 
+\mbox{\Hypertarget{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}\label{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}} 
+bool {\bfseries exist\+Ctrl\+C\+Continue}
+\item 
+\mbox{\Hypertarget{group___continuators_gad6313c92968fdf244ab3aceb2d067d9a}\label{group___continuators_gad6313c92968fdf244ab3aceb2d067d9a}} 
+bool {\bfseries exist\+S\+I\+G\+Continue}
+\item 
+\mbox{\Hypertarget{group___continuators_gadf035a7eac1fa52c31876821a57ef345}\label{group___continuators_gadf035a7eac1fa52c31876821a57ef345}} 
+bool {\bfseries call\+\_\+func}
+\item 
+\mbox{\Hypertarget{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}\label{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}} 
+std\+::map$<$ int, bool $>$ {\bfseries signals\+\_\+called}
+\item 
+\mbox{\Hypertarget{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}\label{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}} 
+std\+::map$<$ int, bool $>$ {\bfseries signals\+\_\+called}
+\item 
+\mbox{\Hypertarget{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}\label{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}} 
+bool {\bfseries ask\+\_\+for\+\_\+stop} = false
+\item 
+\mbox{\Hypertarget{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}\label{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}} 
+bool {\bfseries exist\+Ctrl\+C\+Continue} = false
+\item 
+\mbox{\Hypertarget{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}\label{group___continuators_ga92be105a245ed8976e65e8e5cc394efe}} 
+bool {\bfseries ask\+\_\+for\+\_\+stop}
+\item 
+\mbox{\Hypertarget{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}\label{group___continuators_ga01b5cd12c5785e757b07c5d32ccd51b0}} 
+bool {\bfseries exist\+Ctrl\+C\+Continue}
+\item 
+\mbox{\Hypertarget{group___continuators_gad6313c92968fdf244ab3aceb2d067d9a}\label{group___continuators_gad6313c92968fdf244ab3aceb2d067d9a}} 
+bool {\bfseries exist\+S\+I\+G\+Continue}
+\item 
+\mbox{\Hypertarget{group___continuators_gadf035a7eac1fa52c31876821a57ef345}\label{group___continuators_gadf035a7eac1fa52c31876821a57ef345}} 
+bool {\bfseries call\+\_\+func}
+\item 
+\mbox{\Hypertarget{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}\label{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}} 
+std\+::map$<$ int, bool $>$ {\bfseries signals\+\_\+called}
+\item 
+\mbox{\Hypertarget{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}\label{group___continuators_gaf01227a60db3cf4566ea3ff3c78d1a9d}} 
+std\+::map$<$ int, bool $>$ {\bfseries signals\+\_\+called}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A stopping criterion is called a \char`\"{}continue\char`\"{}. This is a functor that is called at each generation end and that return true if one should stop the search. 
+
+This library is free software; you can redistribute it and/or modify it under the terms of the G\+NU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU Lesser General Public License for more details.
+
+You should have received a copy of the G\+NU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 U\+SA
+
+Contact\+: \href{http://eodev.sourceforge.net}{\texttt{ http\+://eodev.\+sourceforge.\+net}}
+
+Autors\+: \href{mailto:todos@geneura.ugr.es}{\texttt{ todos@geneura.\+ugr.\+es}}, \href{http://geneura.ugr.es}{\texttt{ http\+://geneura.\+ugr.\+es}} \href{mailto:Marc.Schoenauer@polytechnique.fr}{\texttt{ Marc.\+Schoenauer@polytechnique.\+fr}} \href{mailto:mak@dhi.dk}{\texttt{ mak@dhi.\+dk}} \href{mailto:Caner.Candan@univ-angers.fr}{\texttt{ Caner.\+Candan@univ-\/angers.\+fr}}
+
+This library is free software; you can redistribute it and/or modify it under the terms of the G\+NU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU Lesser General Public License for more details.
+
+You should have received a copy of the G\+NU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 U\+SA
+
+Contact\+: \href{http://eodev.sourceforge.net}{\texttt{ http\+://eodev.\+sourceforge.\+net}}
+
+Authors\+: \href{mailto:todos@geneura.ugr.es}{\texttt{ todos@geneura.\+ugr.\+es}}, \href{http://geneura.ugr.es}{\texttt{ http\+://geneura.\+ugr.\+es}} \href{mailto:Marc.Schoenauer@polytechnique.fr}{\texttt{ Marc.\+Schoenauer@polytechnique.\+fr}} \href{mailto:mak@dhi.dk}{\texttt{ mak@dhi.\+dk}} \href{mailto:Caner.Candan@univ-angers.fr}{\texttt{ Caner.\+Candan@univ-\/angers.\+fr}} 

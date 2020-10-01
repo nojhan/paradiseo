@@ -1,0 +1,164 @@
+\hypertarget{classmoeo_dominance_matrix}{}\doxysection{moeo\+Dominance\+Matrix$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_dominance_matrix}\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Dominance\+Matrix.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Dominance\+Matrix$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_dominance_matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Dominance\+Matrix$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_dominance_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_matrix_a49c36eed7993da595c050203c801832a}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_dominance_matrix_a09e5171bcbe67d0d0a787bd0ff0d13d8}{moeo\+Dominance\+Matrix}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_matrix_a49c36eed7993da595c050203c801832a}{Objective\+Vector}} $>$ \&\+\_\+comparator, bool \+\_\+nocopy=true)
+\item 
+\mbox{\hyperlink{classmoeo_dominance_matrix_a62c597192475c9fd9a325831ec0ec9a2}{moeo\+Dominance\+Matrix}} (bool \+\_\+nocopy=false)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_matrix_aa10bcbc8b0f2b2e28313480bd6431023}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_dominance_matrix_aac30432c9f6a08582c569b201fa7426c}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop1, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop2)
+\item 
+double \mbox{\hyperlink{classmoeo_dominance_matrix_a3cbddd31b350af464beed8f1b58c8f1a}{rank}} (unsigned int \+\_\+i)
+\item 
+double \mbox{\hyperlink{classmoeo_dominance_matrix_a9f069277053c94040d6314e6cbc02d6e}{count}} (unsigned int \+\_\+i)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Dominance\+Matrix$<$ M\+O\+E\+O\+T $>$}
+
+\mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}} allow to know if an M\+O\+E\+OT dominates another one or not. Can be apply on one or two \mbox{\hyperlink{classeo_pop}{eo\+Pop}}. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_matrix_a49c36eed7993da595c050203c801832a}\label{classmoeo_dominance_matrix_a49c36eed7993da595c050203c801832a}} 
+\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_matrix_a49c36eed7993da595c050203c801832a}{Objective\+Vector}}}
+
+The type for objective vector 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_matrix_a09e5171bcbe67d0d0a787bd0ff0d13d8}\label{classmoeo_dominance_matrix_a09e5171bcbe67d0d0a787bd0ff0d13d8}} 
+\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}!moeoDominanceMatrix@{moeoDominanceMatrix}}
+\index{moeoDominanceMatrix@{moeoDominanceMatrix}!moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceMatrix()}{moeoDominanceMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_dominance_matrix_a49c36eed7993da595c050203c801832a}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{bool}]{\+\_\+nocopy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor which allow to choose the comparator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nocopy} & boolean allow to consider copy and doublons as bad element whose were dominated by all other M\+O\+E\+OT \\
+\hline
+{\em \+\_\+comparator} & the comparator you want to use for the comparaison of two M\+O\+E\+OT \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_dominance_matrix_a62c597192475c9fd9a325831ec0ec9a2}\label{classmoeo_dominance_matrix_a62c597192475c9fd9a325831ec0ec9a2}} 
+\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}!moeoDominanceMatrix@{moeoDominanceMatrix}}
+\index{moeoDominanceMatrix@{moeoDominanceMatrix}!moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoDominanceMatrix()}{moeoDominanceMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+nocopy = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor with pareto\+Comparator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nocopy} & boolean allow to consider copy and doublons as bad element whose were dominated by all other M\+O\+E\+OT \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_dominance_matrix_a9f069277053c94040d6314e6cbc02d6e}\label{classmoeo_dominance_matrix_a9f069277053c94040d6314e6cbc02d6e}} 
+\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}!count@{count}}
+\index{count@{count}!moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{count()}{count()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}}$<$ M\+O\+E\+OT $>$\+::count (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+i} & the index of the element that we want Count\+Dominance\+Fitness \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Count\+Dominance\+Fitness of element of index \+\_\+i 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_dominance_matrix_aa10bcbc8b0f2b2e28313480bd6431023}\label{classmoeo_dominance_matrix_aa10bcbc8b0f2b2e28313480bd6431023}} 
+\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Filling up the Dominance Matrix on one population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & first population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dominance_matrix_aac30432c9f6a08582c569b201fa7426c}\label{classmoeo_dominance_matrix_aac30432c9f6a08582c569b201fa7426c}} 
+\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop1,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Filling up the Dominance Matrix of first and second population (if you have only one population, the second must be empty) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop1} & first population \\
+\hline
+{\em \+\_\+pop2} & second population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_dominance_matrix_a3cbddd31b350af464beed8f1b58c8f1a}\label{classmoeo_dominance_matrix_a3cbddd31b350af464beed8f1b58c8f1a}} 
+\index{moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}!rank@{rank}}
+\index{rank@{rank}!moeoDominanceMatrix$<$ MOEOT $>$@{moeoDominanceMatrix$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+double \mbox{\hyperlink{classmoeo_dominance_matrix}{moeo\+Dominance\+Matrix}}$<$ M\+O\+E\+OT $>$\+::rank (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+i} & the index of the element that we want Rank\+Dominance\+Fitness \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Rank\+Dominance\+Fitness of element of index \+\_\+i 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/utils/moeo\+Dominance\+Matrix.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,91 @@
+\hypertarget{classeo_f_d_c_file_snapshot}{}\doxysection{eo\+F\+D\+C\+File\+Snapshot$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_f_d_c_file_snapshot}\index{eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+F\+D\+C\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for eo\+F\+D\+C\+File\+Snapshot$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classeo_f_d_c_file_snapshot__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+F\+D\+C\+File\+Snapshot$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classeo_f_d_c_file_snapshot__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_f_d_c_file_snapshot_a1109881f86e633440f128c831479ccf0}{eo\+F\+D\+C\+File\+Snapshot}} (\mbox{\hyperlink{classeo_f_d_c_stat}{eo\+F\+D\+C\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+\+F\+D\+Cstat, std\+::string \+\_\+dirname=\char`\"{}tmp\+F\+DC\char`\"{}, unsigned \+\_\+frequency=1, std\+::string \+\_\+filename=\char`\"{}F\+DC\char`\"{}, std\+::string \+\_\+delim=\char`\"{} \char`\"{})
+\item 
+virtual void \mbox{\hyperlink{classeo_f_d_c_file_snapshot_a4ca13f52fbd0319d21dafacb77d311bf}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&\+\_\+param)
+\item 
+\mbox{\hyperlink{classeo_f_d_c_file_snapshot_a1109881f86e633440f128c831479ccf0}{eo\+F\+D\+C\+File\+Snapshot}} (\mbox{\hyperlink{classeo_f_d_c_stat}{eo\+F\+D\+C\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+\+F\+D\+Cstat, std\+::string \+\_\+dirname=\char`\"{}tmp\+F\+DC\char`\"{}, unsigned \+\_\+frequency=1, std\+::string \+\_\+filename=\char`\"{}F\+DC\char`\"{}, std\+::string \+\_\+delim=\char`\"{} \char`\"{})
+\item 
+virtual void \mbox{\hyperlink{classeo_f_d_c_file_snapshot_a2c412095b6530cc8a2fb95504d5a5ebb}{add}} (const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+F\+D\+C\+File\+Snapshot$<$ E\+O\+T $>$}
+
+Specific class for F\+D\+C\+Stat monitoring\+: As I failed to have F\+DC stat as an \mbox{\hyperlink{classeo_stat}{eo\+Stat}}, this is the trick to put the 2 \mbox{\hyperlink{classeo_param}{eo\+Param}}$<$std\+::vector$<$double$>$ $>$ into a monitor This class does nothing else. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_f_d_c_file_snapshot_a1109881f86e633440f128c831479ccf0}\label{classeo_f_d_c_file_snapshot_a1109881f86e633440f128c831479ccf0}} 
+\index{eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}!eoFDCFileSnapshot@{eoFDCFileSnapshot}}
+\index{eoFDCFileSnapshot@{eoFDCFileSnapshot}!eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoFDCFileSnapshot()}{eoFDCFileSnapshot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_f_d_c_file_snapshot}{eo\+F\+D\+C\+File\+Snapshot}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_f_d_c_file_snapshot}{eo\+F\+D\+C\+File\+Snapshot}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_f_d_c_stat}{eo\+F\+D\+C\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+\+F\+D\+Cstat,  }\item[{std\+::string}]{\+\_\+dirname = {\ttfamily \char`\"{}tmpFDC\char`\"{}},  }\item[{unsigned}]{\+\_\+frequency = {\ttfamily 1},  }\item[{std\+::string}]{\+\_\+filename = {\ttfamily \char`\"{}FDC\char`\"{}},  }\item[{std\+::string}]{\+\_\+delim = {\ttfamily \char`\"{}~\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: in addition to the parameters of the ctor of an \mbox{\hyperlink{classeo_file_snapshot}{eo\+File\+Snapshot}} we need here an \mbox{\hyperlink{classeo_f_d_c_stat}{eo\+F\+D\+C\+Stat}}. The 2 std\+::vectors (distances to optimum and fitnesses) are added to the monitor so they can be processed later to a file -\/ and eventually by gnuplot \mbox{\Hypertarget{classeo_f_d_c_file_snapshot_a1109881f86e633440f128c831479ccf0}\label{classeo_f_d_c_file_snapshot_a1109881f86e633440f128c831479ccf0}} 
+\index{eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}!eoFDCFileSnapshot@{eoFDCFileSnapshot}}
+\index{eoFDCFileSnapshot@{eoFDCFileSnapshot}!eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoFDCFileSnapshot()}{eoFDCFileSnapshot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_f_d_c_file_snapshot}{eo\+F\+D\+C\+File\+Snapshot}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_f_d_c_file_snapshot}{eo\+F\+D\+C\+File\+Snapshot}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_f_d_c_stat}{eo\+F\+D\+C\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+\+F\+D\+Cstat,  }\item[{std\+::string}]{\+\_\+dirname = {\ttfamily \char`\"{}tmpFDC\char`\"{}},  }\item[{unsigned}]{\+\_\+frequency = {\ttfamily 1},  }\item[{std\+::string}]{\+\_\+filename = {\ttfamily \char`\"{}FDC\char`\"{}},  }\item[{std\+::string}]{\+\_\+delim = {\ttfamily \char`\"{}~\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: in addition to the parameters of the ctor of an \mbox{\hyperlink{classeo_file_snapshot}{eo\+File\+Snapshot}} we need here an \mbox{\hyperlink{classeo_f_d_c_stat}{eo\+F\+D\+C\+Stat}}. The 2 std\+::vectors (distances to optimum and fitnesses) are added to the monitor so they can be processed later to a file -\/ and eventually by gnuplot 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_f_d_c_file_snapshot_a2c412095b6530cc8a2fb95504d5a5ebb}\label{classeo_f_d_c_file_snapshot_a2c412095b6530cc8a2fb95504d5a5ebb}} 
+\index{eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}!add@{add}}
+\index{add@{add}!eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_f_d_c_file_snapshot}{eo\+F\+D\+C\+File\+Snapshot}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+just to be sure the add method is not called further 
+
+Reimplemented from \mbox{\hyperlink{classeo_file_snapshot_ae9516b08fcbf21f8b72ccb5de7c29f07}{eo\+File\+Snapshot}}.
+
+\mbox{\Hypertarget{classeo_f_d_c_file_snapshot_a4ca13f52fbd0319d21dafacb77d311bf}\label{classeo_f_d_c_file_snapshot_a4ca13f52fbd0319d21dafacb77d311bf}} 
+\index{eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}!add@{add}}
+\index{add@{add}!eoFDCFileSnapshot$<$ EOT $>$@{eoFDCFileSnapshot$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_f_d_c_file_snapshot}{eo\+F\+D\+C\+File\+Snapshot}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_param}{eo\+Param}} \&}]{\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+just to be sure the add method is not called further 
+
+Reimplemented from \mbox{\hyperlink{classeo_monitor_a00b2754e710df16cd9e8592f47e64201}{eo\+Monitor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+F\+D\+C\+Stat.\+h\end{DoxyCompactItemize}

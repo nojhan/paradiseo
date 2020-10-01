@@ -1,0 +1,168 @@
+\hypertarget{classmoeo_scalar_objective_vector}{}\doxysection{moeo\+Scalar\+Objective\+Vector$<$ Objective\+Vector\+Traits, T $>$ Class Template Reference}
+\label{classmoeo_scalar_objective_vector}\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Scalar\+Objective\+Vector.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Scalar\+Objective\+Vector$<$ Objective\+Vector\+Traits, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{classmoeo_scalar_objective_vector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Scalar\+Objective\+Vector$<$ Objective\+Vector\+Traits, T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{classmoeo_scalar_objective_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_scalar_objective_vector_acff2d93d60010423c96ede268e88cdd4}{moeo\+Scalar\+Objective\+Vector}} (T \+\_\+value=0.\+0)
+\item 
+\mbox{\hyperlink{classmoeo_scalar_objective_vector_ad8e73dbcd30936891a62af94b3ad5da9}{moeo\+Scalar\+Objective\+Vector}} (std\+::vector$<$ T $>$ \&\+\_\+v)
+\item 
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector_ab88e1160bb1c3f17dd28a55e1d59816c}{dominates}} (const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector_ac6a012c28be3f019e1bfed804f7dd89a}{operator==}} (const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector_a74cd382829deeb052b7f55662af043a4}{operator!=}} (const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector_aaf6a6d661fd55cefd169efcf28483673}{operator$<$}} (const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector_aa76b3673e125edac2ab7561291e2895d}{operator$>$}} (const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector_aa8944f366b919e86308210674b1ce658}{operator$<$=}} (const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector_a99cbc3bdd9d701f1d6eb0d4934b35dea}{operator$>$=}} (const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&\+\_\+other) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector\+Traits, class T$>$\newline
+class moeo\+Scalar\+Objective\+Vector$<$ Objective\+Vector\+Traits, T $>$}
+
+This class allows to represent a solution in the objective space (phenotypic representation) by a std\+::vector of typed values, i.\+e. that an objective value is represented using a T, and this for any objective. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_acff2d93d60010423c96ede268e88cdd4}\label{classmoeo_scalar_objective_vector_acff2d93d60010423c96ede268e88cdd4}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!moeoScalarObjectiveVector@{moeoScalarObjectiveVector}}
+\index{moeoScalarObjectiveVector@{moeoScalarObjectiveVector}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{moeoScalarObjectiveVector()}{moeoScalarObjectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+\mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::\mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} (\begin{DoxyParamCaption}\item[{T}]{\+\_\+value = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor \mbox{\Hypertarget{classmoeo_scalar_objective_vector_ad8e73dbcd30936891a62af94b3ad5da9}\label{classmoeo_scalar_objective_vector_ad8e73dbcd30936891a62af94b3ad5da9}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!moeoScalarObjectiveVector@{moeoScalarObjectiveVector}}
+\index{moeoScalarObjectiveVector@{moeoScalarObjectiveVector}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{moeoScalarObjectiveVector()}{moeoScalarObjectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+\mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::\mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from a vector of Ts 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+v} & the std\+::vector $<$ T $>$ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_ab88e1160bb1c3f17dd28a55e1d59816c}\label{classmoeo_scalar_objective_vector_ab88e1160bb1c3f17dd28a55e1d59816c}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!dominates@{dominates}}
+\index{dominates@{dominates}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{dominates()}{dominates()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::dominates (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector dominates \+\_\+other according to the Pareto dominance relation (but it\textquotesingle{}s better to use a \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} object to compare solutions) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_a74cd382829deeb052b7f55662af043a4}\label{classmoeo_scalar_objective_vector_a74cd382829deeb052b7f55662af043a4}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is different than \+\_\+other (according to a tolerance value) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_aaf6a6d661fd55cefd169efcf28483673}\label{classmoeo_scalar_objective_vector_aaf6a6d661fd55cefd169efcf28483673}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is smaller than \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_aa8944f366b919e86308210674b1ce658}\label{classmoeo_scalar_objective_vector_aa8944f366b919e86308210674b1ce658}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is smaller than or equal to \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_ac6a012c28be3f019e1bfed804f7dd89a}\label{classmoeo_scalar_objective_vector_ac6a012c28be3f019e1bfed804f7dd89a}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is equal to \+\_\+other (according to a tolerance value) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_aa76b3673e125edac2ab7561291e2895d}\label{classmoeo_scalar_objective_vector_aa76b3673e125edac2ab7561291e2895d}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is greater than \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_scalar_objective_vector_a99cbc3bdd9d701f1d6eb0d4934b35dea}\label{classmoeo_scalar_objective_vector_a99cbc3bdd9d701f1d6eb0d4934b35dea}} 
+\index{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$@{moeoScalarObjectiveVector$<$ ObjectiveVectorTraits, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits , class T $>$ \\
+bool \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}}, T $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is greater than or equal to \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_scalar_objective_vector}{moeo\+Scalar\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/core/moeo\+Scalar\+Objective\+Vector.\+h\end{DoxyCompactItemize}

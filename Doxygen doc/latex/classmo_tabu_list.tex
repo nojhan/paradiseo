@@ -1,0 +1,72 @@
+\hypertarget{classmo_tabu_list}{}\doxysection{mo\+Tabu\+List$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_tabu_list}\index{moTabuList$<$ Neighbor $>$@{moTabuList$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Tabu\+List.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Tabu\+List$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_tabu_list__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Tabu\+List$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classmo_tabu_list__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_tabu_list_a620adc2ab1d8721f33ba9e9bdc6b93e9}\label{classmo_tabu_list_a620adc2ab1d8721f33ba9e9bdc6b93e9}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classmo_tabu_list_ab4c71e6e212f2fcc072b8eb2e551e3ad}{check}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Tabu\+List$<$ Neighbor $>$}
+
+Abstract class for the Tabu List 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_tabu_list_ab4c71e6e212f2fcc072b8eb2e551e3ad}\label{classmo_tabu_list_ab4c71e6e212f2fcc072b8eb2e551e3ad}} 
+\index{moTabuList$<$ Neighbor $>$@{moTabuList$<$ Neighbor $>$}!check@{check}}
+\index{check@{check}!moTabuList$<$ Neighbor $>$@{moTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Check if a neighbor is tabu or not 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & the neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the neighbor is tabu 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a9a729991be44d7395c7bf0b11bd22b5f}{mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_ae11ee5b8b17b8b14b83937566aad6126}{mo\+Neighbor\+Vector\+Tabu\+List$<$ Neighbor $>$}}, \mbox{\hyperlink{classmo_sol_vector_tabu_list_a7ceb4b7ef3f32349b789162475cee444}{mo\+Sol\+Vector\+Tabu\+List$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_neighbor_vector_tabu_list_ae11ee5b8b17b8b14b83937566aad6126}{mo\+Neighbor\+Vector\+Tabu\+List$<$ mo\+Bit\+Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Tabu\+List.\+h\end{DoxyCompactItemize}

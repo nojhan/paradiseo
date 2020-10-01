@@ -1,0 +1,107 @@
+\hypertarget{classeo_select_perc}{}\doxysection{eo\+Select\+Perc$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_select_perc}\index{eoSelectPerc$<$ EOT $>$@{eoSelectPerc$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Select\+Perc.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Select\+Perc$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_select_perc__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Select\+Perc$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classeo_select_perc__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_select_perc_a616131f52f77f586b0f7445c6fb7824c}\label{classeo_select_perc_a616131f52f77f586b0f7445c6fb7824c}} 
+\mbox{\hyperlink{classeo_select_perc_a616131f52f77f586b0f7445c6fb7824c}{eo\+Select\+Perc}} (\mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+select, float \+\_\+rate=1.\+0)
+\begin{DoxyCompactList}\small\item\em init \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_select_perc_a7b57c29b1473085f531d8432c96e40bb}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+source, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+dest)
+\item 
+\mbox{\Hypertarget{classeo_select_perc_a616131f52f77f586b0f7445c6fb7824c}\label{classeo_select_perc_a616131f52f77f586b0f7445c6fb7824c}} 
+\mbox{\hyperlink{classeo_select_perc_a616131f52f77f586b0f7445c6fb7824c}{eo\+Select\+Perc}} (\mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+select, float \+\_\+rate=1.\+0)
+\begin{DoxyCompactList}\small\item\em init \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_select_perc_a7b57c29b1473085f531d8432c96e40bb}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+source, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+dest)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Select\+Perc$<$ E\+O\+T $>$}
+
+-\/$\ast$-\/ mode\+: c++; c-\/indent-\/level\+: 4; c++-\/member-\/init-\/indent\+: 8; comment-\/column\+: 35; -\/$\ast$-\/
+
+\DoxyHorRuler{0}
+ eo\+Select\+Perc.\+h (c) Maarten Keijzer, Ge\+Neura Team, 2000
+
+This library is free software; you can redistribute it and/or modify it under the terms of the G\+NU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU Lesser General Public License for more details.
+
+You should have received a copy of the G\+NU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 U\+SA
+
+Contact\+: \href{mailto:todos@geneura.ugr.es}{\texttt{ todos@geneura.\+ugr.\+es}}, \href{http://geneura.ugr.es}{\texttt{ http\+://geneura.\+ugr.\+es}} \mbox{\hyperlink{classeo_select_perc}{eo\+Select\+Perc}} selects many individuals using \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}} as it\textquotesingle{}s mechanism. Therefore \mbox{\hyperlink{classeo_select_perc}{eo\+Select\+Perc}} needs an \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}} in its ctor
+
+It will select floor(rate$\ast$pop.size()) individuals and pushes them to the back of the destination population. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_select_perc_a7b57c29b1473085f531d8432c96e40bb}\label{classeo_select_perc_a7b57c29b1473085f531d8432c96e40bb}} 
+\index{eoSelectPerc$<$ EOT $>$@{eoSelectPerc$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoSelectPerc$<$ EOT $>$@{eoSelectPerc$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_select_perc}{eo\+Select\+Perc}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+source,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The implementation selects a percentage
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+source} & the source population \\
+\hline
+{\em \+\_\+dest} & the resulting population (size of this population is the number of times \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}} is called. It empties the destination and adds the selection into it) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, eo\+Pop$<$ E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classeo_select_perc_a7b57c29b1473085f531d8432c96e40bb}\label{classeo_select_perc_a7b57c29b1473085f531d8432c96e40bb}} 
+\index{eoSelectPerc$<$ EOT $>$@{eoSelectPerc$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoSelectPerc$<$ EOT $>$@{eoSelectPerc$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classeo_select_perc}{eo\+Select\+Perc}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+source,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+The implementation selects a percentage
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+source} & the source population \\
+\hline
+{\em \+\_\+dest} & the resulting population (size of this population is the number of times \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}} is called. It empties the destination and adds the selection into it) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, eo\+Pop$<$ E\+O\+T $>$ \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Select\+Perc.\+h\end{DoxyCompactItemize}

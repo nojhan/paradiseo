@@ -1,0 +1,54 @@
+\hypertarget{structeo_1_1mpi_1_1_multiples_of_number}{}\doxysection{eo\+::mpi\+::Multiples\+Of\+Number$<$ E\+OT $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_multiples_of_number}\index{eo::mpi::MultiplesOfNumber$<$ EOT $>$@{eo::mpi::MultiplesOfNumber$<$ EOT $>$}}
+
+
+Sends seeds to the workers, which are multiple of a number given by the master. If no number is given, a random one is used.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Multi\+Start.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Multiples\+Of\+Number$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{structeo_1_1mpi_1_1_multiples_of_number__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Multiples\+Of\+Number$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{structeo_1_1mpi_1_1_multiples_of_number__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multiples_of_number_aff332267bc1ad9eef27aed187cd27aa3}\label{structeo_1_1mpi_1_1_multiples_of_number_aff332267bc1ad9eef27aed187cd27aa3}} 
+{\bfseries Multiples\+Of\+Number} (int n=0)
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_multiples_of_number_a763136d2b12ec39d9f1a646af5d0a47d}\label{structeo_1_1mpi_1_1_multiples_of_number_a763136d2b12ec39d9f1a646af5d0a47d}} 
+std\+::vector$<$ int $>$ {\bfseries operator()} (int n)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+struct eo\+::mpi\+::\+Multiples\+Of\+Number$<$ E\+O\+T $>$}
+
+Sends seeds to the workers, which are multiple of a number given by the master. If no number is given, a random one is used. 
+
+This functor ensures that even if the same store is used with different jobs, the seeds will be different. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_multi_start_8h}{eo\+Multi\+Start.\+h}}\end{DoxyCompactItemize}

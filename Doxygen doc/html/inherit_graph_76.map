@@ -1,0 +1,10 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,122,92,149"/>
+<area shape="rect" id="node2" href="$classeo_eval_func_counter_bounder_exception.html" title=" " alt="" coords="147,5,348,47"/>
+<area shape="rect" id="node3" href="$classeo_max_exception.html" title="Base class for limit&#45;based exceptions (see eoMaxTimeException and eoMaxEvalException." alt="" coords="182,71,313,98"/>
+<area shape="rect" id="node6" href="$classeo_missing_param_exception.html" title=" " alt="" coords="151,122,344,149"/>
+<area shape="rect" id="node7" href="$classeo_wrong_param_type_exception.html" title=" " alt="" coords="140,173,355,199"/>
+<area shape="rect" id="node8" href="$structindex__error.html" title=" " alt="" coords="199,223,295,250"/>
+<area shape="rect" id="node4" href="$classeo_max_eval_exception.html" title=" " alt="" coords="405,46,563,73"/>
+<area shape="rect" id="node5" href="$classeo_max_time_exception.html" title=" " alt="" coords="403,97,565,123"/>
+</map>

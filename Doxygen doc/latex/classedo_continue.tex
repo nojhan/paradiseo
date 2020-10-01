@@ -1,0 +1,93 @@
+\hypertarget{classedo_continue}{}\doxysection{edo\+Continue$<$ D $>$ Class Template Reference}
+\label{classedo_continue}\index{edoContinue$<$ D $>$@{edoContinue$<$ D $>$}}
+
+
+{\ttfamily \#include $<$edo\+Continue.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Continue$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_continue__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Continue$<$ D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_continue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_continue_ade8eed19ee8beef473deb0139805c7d5}\label{classedo_continue_ade8eed19ee8beef473deb0139805c7d5}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+virtual void \mbox{\hyperlink{classedo_continue_a4791b123d56050a6e559b924f83379dd}{read\+From}} (std\+::istream \&)
+\item 
+virtual void \mbox{\hyperlink{classedo_continue_a71909a8a53a3e8fe92f6ffb9642f8a94}{print\+On}} (std\+::ostream \&) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename D$>$\newline
+class edo\+Continue$<$ D $>$}
+
+A continuator that check the state of an \mbox{\hyperlink{classedo_distrib}{edo\+Distrib}}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classedo_continue_a71909a8a53a3e8fe92f6ffb9642f8a94}\label{classedo_continue_a71909a8a53a3e8fe92f6ffb9642f8a94}} 
+\index{edoContinue$<$ D $>$@{edoContinue$<$ D $>$}!printOn@{printOn}}
+\index{printOn@{printOn}!edoContinue$<$ D $>$@{edoContinue$<$ D $>$}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}}
+{\footnotesize\ttfamily template$<$typename D $>$ \\
+virtual void \mbox{\hyperlink{classedo_continue}{edo\+Continue}}$<$ D $>$\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Write object. It\textquotesingle{}s called print\+On since it prints the object on a stream. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+os} & A std\+::ostream. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classedo_continue_a4791b123d56050a6e559b924f83379dd}\label{classedo_continue_a4791b123d56050a6e559b924f83379dd}} 
+\index{edoContinue$<$ D $>$@{edoContinue$<$ D $>$}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!edoContinue$<$ D $>$@{edoContinue$<$ D $>$}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}}
+{\footnotesize\ttfamily template$<$typename D $>$ \\
+virtual void \mbox{\hyperlink{classedo_continue}{edo\+Continue}}$<$ D $>$\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Read object. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+is} & A std\+::istream. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+std\+::exception} & If a valid object can\textquotesingle{}t be read. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Continue.\+h\end{DoxyCompactItemize}

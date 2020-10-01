@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classeo_1_1mpi_1_1_job.html" title=" " alt="" coords="5,13,163,39"/>
+<area shape="rect" id="node2" href="$classeo_1_1mpi_1_1_one_shot_job.html" title=" " alt="" coords="211,5,365,47"/>
+<area shape="rect" id="node3" href="$structeo_1_1mpi_1_1_empty_job.html" title="Job to run after a Multi Job, so as to indicate that every workers should terminate." alt="" coords="413,13,555,39"/>
+</map>

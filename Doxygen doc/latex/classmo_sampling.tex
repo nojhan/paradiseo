@@ -1,0 +1,240 @@
+\hypertarget{classmo_sampling}{}\doxysection{mo\+Sampling$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_sampling}\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Sampling.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_sampling__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Sampling$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_sampling__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_sampling_a04a7efe11b99b7d16b5f9f33138e3727}\label{classmo_sampling_a04a7efe11b99b7d16b5f9f33138e3727}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classmo_sampling_af7fb93f95e3825a5e169d1d473ce31a2}{mo\+Sampling}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+local\+Search, \mbox{\hyperlink{classmo_stat}{mo\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}}, Value\+Type $>$ \&\+\_\+stat, bool \+\_\+monitoring=true)
+\item 
+\mbox{\hyperlink{classmo_sampling_a60d27bd40909cba71b178020a84c746e}{$\sim$mo\+Sampling}} ()
+\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\void \mbox{\hyperlink{classmo_sampling_ada477ec0805ee01bc9fe193c90c46274}{add}} (\mbox{\hyperlink{classmo_stat}{mo\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}}, Value\+Type $>$ \&\+\_\+stat, bool \+\_\+monitoring=true)
+\item 
+void \mbox{\hyperlink{classmo_sampling_a7a78f6afa8e169ba4d3e6db3863dbb0b}{operator()}} (void)
+\item 
+void \mbox{\hyperlink{classmo_sampling_ae284854c95646324f027b210edcc927c}{precision}} (unsigned int \+\_\+precision)
+\item 
+void \mbox{\hyperlink{classmo_sampling_ae2271e593f2366dd232dd885482b663a}{file\+Export}} (std\+::string \+\_\+filename, std\+::string \+\_\+delim=\char`\"{} \char`\"{}, bool \+\_\+open\+File=false, bool \+\_\+header=false)
+\item 
+void \mbox{\hyperlink{classmo_sampling_a1a8ed0d00f7f2af6d316c33d3d2a2231}{file\+Export}} (unsigned int \+\_\+col, std\+::string \+\_\+filename, bool \+\_\+open\+File=false)
+\item 
+const std\+::vector$<$ double $>$ \& \mbox{\hyperlink{classmo_sampling_a603784f51657ef0fee335ba2cbfe8d37}{get\+Values}} (unsigned int \+\_\+num\+Stat)
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \& \mbox{\hyperlink{classmo_sampling_a2c2afcdb19fea03ac023cccd50474d6d}{get\+Solutions}} (unsigned int \+\_\+num\+Stat)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_sampling_a5cd76ebf7dcc14cfc5b4d6da2a40b268}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_sampling_afb53e8f83e67e3cd0ee20182bb6af1dc}\label{classmo_sampling_afb53e8f83e67e3cd0ee20182bb6af1dc}} 
+\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \& {\bfseries init}
+\item 
+\mbox{\Hypertarget{classmo_sampling_af9c2e4573dd7b5df7ea530a234564a28}\label{classmo_sampling_af9c2e4573dd7b5df7ea530a234564a28}} 
+\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ $\ast$ {\bfseries local\+Search}
+\item 
+\mbox{\Hypertarget{classmo_sampling_a046893e96fee6d24d010e6b8113d894f}\label{classmo_sampling_a046893e96fee6d24d010e6b8113d894f}} 
+\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ $\ast$ {\bfseries continuator}
+\item 
+\mbox{\Hypertarget{classmo_sampling_a1bf4599a8aaf869da0c63240f8952f7f}\label{classmo_sampling_a1bf4599a8aaf869da0c63240f8952f7f}} 
+\mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ $\ast$ {\bfseries checkpoint}
+\item 
+\mbox{\Hypertarget{classmo_sampling_abe28098f93f46ba4fbe018ef77ca4b8e}\label{classmo_sampling_abe28098f93f46ba4fbe018ef77ca4b8e}} 
+std\+::vector$<$ \mbox{\hyperlink{classmo_vector_monitor}{mo\+Vector\+Monitor}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ $\ast$ $>$ {\bfseries monitor\+Vec}
+\item 
+\mbox{\Hypertarget{classmo_sampling_ae964477b68b04f4b9018df425d8129f3}\label{classmo_sampling_ae964477b68b04f4b9018df425d8129f3}} 
+unsigned int {\bfseries precision\+Output}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Sampling$<$ Neighbor $>$}
+
+To sample the search space\+: A local search is used to sample the search space Some statistics are computed at each step of the local search
+
+Can be used to study the fitness landscape 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_sampling_af7fb93f95e3825a5e169d1d473ce31a2}\label{classmo_sampling_af7fb93f95e3825a5e169d1d473ce31a2}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!moSampling@{moSampling}}
+\index{moSampling@{moSampling}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moSampling()}{moSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_sampling}{mo\+Sampling}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+local\+Search,  }\item[{\mbox{\hyperlink{classmo_stat}{mo\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}}, Value\+Type $>$ \&}]{\+\_\+stat,  }\item[{bool}]{\+\_\+monitoring = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & initialisation method of the solution \\
+\hline
+{\em \+\_\+local\+Search} & local search to sample the search space \\
+\hline
+{\em \+\_\+stat} & statistic to compute during the search \\
+\hline
+{\em \+\_\+monitoring} & the statistic is saved into the monitor if true \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_sampling_a60d27bd40909cba71b178020a84c746e}\label{classmo_sampling_a60d27bd40909cba71b178020a84c746e}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!````~moSampling@{$\sim$moSampling}}
+\index{````~moSampling@{$\sim$moSampling}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moSampling()}{~moSampling()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_sampling}{mo\+Sampling}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_sampling_ada477ec0805ee01bc9fe193c90c46274}\label{classmo_sampling_ada477ec0805ee01bc9fe193c90c46274}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+template$<$class Value\+Type $>$ \\
+void \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_stat}{mo\+Stat}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}}, Value\+Type $>$ \&}]{\+\_\+stat,  }\item[{bool}]{\+\_\+monitoring = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a statistic 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+stat} & another statistic to compute during the search \\
+\hline
+{\em \+\_\+monitoring} & the statistic is saved into the monitor if true \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_sampling_a5cd76ebf7dcc14cfc5b4d6da2a40b268}\label{classmo_sampling_a5cd76ebf7dcc14cfc5b4d6da2a40b268}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+name of the class 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_sampling_ae2271e593f2366dd232dd885482b663a}\label{classmo_sampling_ae2271e593f2366dd232dd885482b663a}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!fileExport@{fileExport}}
+\index{fileExport@{fileExport}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{fileExport()}{fileExport()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::file\+Export (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+filename,  }\item[{std\+::string}]{\+\_\+delim = {\ttfamily \char`\"{}~\char`\"{}},  }\item[{bool}]{\+\_\+open\+File = {\ttfamily false},  }\item[{bool}]{\+\_\+header = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+to export the vectors of values into one file
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & file name \\
+\hline
+{\em \+\_\+delim} & delimiter between statistics \\
+\hline
+{\em \+\_\+open\+File} & to specify if it writes at the following of the file \\
+\hline
+{\em \+\_\+header} & if true, print the headers which are the name of the statistic \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_sampling_a1a8ed0d00f7f2af6d316c33d3d2a2231}\label{classmo_sampling_a1a8ed0d00f7f2af6d316c33d3d2a2231}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!fileExport@{fileExport}}
+\index{fileExport@{fileExport}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{fileExport()}{fileExport()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::file\+Export (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+col,  }\item[{std\+::string}]{\+\_\+filename,  }\item[{bool}]{\+\_\+open\+File = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+to export one vector of values into a file 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+col} & number of vector to print into file \\
+\hline
+{\em \+\_\+filename} & file name \\
+\hline
+{\em \+\_\+open\+File} & to specify if it writes at the following of the file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_sampling_a2c2afcdb19fea03ac023cccd50474d6d}\label{classmo_sampling_a2c2afcdb19fea03ac023cccd50474d6d}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!getSolutions@{getSolutions}}
+\index{getSolutions@{getSolutions}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getSolutions()}{getSolutions()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+const std\+::vector$<$\mbox{\hyperlink{classeo_bit}{E\+OT}}$>$\& \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Solutions (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+num\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+to get one vector of solutions values 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+num\+Stat} & number of statistics to get (in the order of creation) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the vector of value (all values are converted in double) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_sampling_a603784f51657ef0fee335ba2cbfe8d37}\label{classmo_sampling_a603784f51657ef0fee335ba2cbfe8d37}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!getValues@{getValues}}
+\index{getValues@{getValues}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getValues()}{getValues()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+const std\+::vector$<$double$>$\& \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Values (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+num\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+to get one vector of values 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+num\+Stat} & number of statistics to get (in the order of creation) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the vector of value (all values are converted in double) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_sampling_a7a78f6afa8e169ba4d3e6db3863dbb0b}\label{classmo_sampling_a7a78f6afa8e169ba4d3e6db3863dbb0b}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+To sample the search and get the statistics which are stored in the \mbox{\hyperlink{classmo_vector_monitor}{mo\+Vector\+Monitor}} vector 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ void $>$}}.
+
+\mbox{\Hypertarget{classmo_sampling_ae284854c95646324f027b210edcc927c}\label{classmo_sampling_ae284854c95646324f027b210edcc927c}} 
+\index{moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}!precision@{precision}}
+\index{precision@{precision}!moSampling$<$ Neighbor $>$@{moSampling$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{precision()}{precision()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_sampling}{mo\+Sampling}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::precision (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+precision }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+to set the precision of the output file 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+precision} & precision of the output (number of digit) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/sampling/mo\+Sampling.\+h\end{DoxyCompactItemize}

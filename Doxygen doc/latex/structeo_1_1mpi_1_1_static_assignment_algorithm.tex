@@ -1,0 +1,231 @@
+\hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm}{}\doxysection{eo\+::mpi\+::Static\+Assignment\+Algorithm Struct Reference}
+\label{structeo_1_1mpi_1_1_static_assignment_algorithm}\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+
+
+Assignment algorithm which gives to each worker a precise number of tasks to do, in a round robin fashion.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi\+Assignment\+Algorithm.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Static\+Assignment\+Algorithm\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{structeo_1_1mpi_1_1_static_assignment_algorithm__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Static\+Assignment\+Algorithm\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{structeo_1_1mpi_1_1_static_assignment_algorithm__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_a642a7b57ba911839bec2919ca6760da3}{Static\+Assignment\+Algorithm}} (const std\+::vector$<$ int $>$ \&workers, int runs)
+\begin{DoxyCompactList}\small\item\em Uses a given precise set of workers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_ad1ffcf4f9a3996c3a647c1a16f4d651d}{Static\+Assignment\+Algorithm}} (int first, int last, int runs)
+\begin{DoxyCompactList}\small\item\em Uses a range of workers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_ae07a7fb66c2160963a2b197eddfaf6e9}{Static\+Assignment\+Algorithm}} (int runs=0)
+\begin{DoxyCompactList}\small\item\em Uses all the hosts whose rank is higher than 1 (inclusive) as workers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_abdc782c711efa2fe93adeaa4bed2d82a}{Static\+Assignment\+Algorithm}} (int unique, int runs)
+\begin{DoxyCompactList}\small\item\em Uses an unique host as worker. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_a5df2c52a46f34e489fe5f39118d03afd}{get}} ()
+\begin{DoxyCompactList}\small\item\em Gets the rank of an available worker, so as to send it a task. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_accf369aaf35822768f807c5c687aadf2}{available\+Workers}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of total available workers. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_ae6d89663c6c155300b7d295a874145d5}{idles}} ()
+\begin{DoxyCompactList}\small\item\em Indicates who are the workers which do nothing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_aa79cc5df665d4bda1bf9847700d473fc}{confirm}} (int rank)
+\begin{DoxyCompactList}\small\item\em Reinject the worker of indicated rank in the available state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_a2192d8befcb6f5a3ea656ab17352ec23}{reinit}} (int runs)
+\begin{DoxyCompactList}\small\item\em Reinitializes the assignment algorithm with the right number of runs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Assignment algorithm which gives to each worker a precise number of tasks to do, in a round robin fashion. 
+
+This scheduling algorithm attributes, at initialization or when calling \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_a2192d8befcb6f5a3ea656ab17352ec23}{reinit()}}, a fixed amount of runs to distribute to the workers. The amount of runs is then equally distributed between all workers ; if total number of runs is not a direct multiple of workers number, then remainding unaffected runs are distributed to workers from the first to the last, in a round-\/robin fashion.
+
+This scheduling should be used when the amount of runs can be computed or is fixed and when we guess that the duration of processing task will be the same for each run. There is no warranty that this algorithm is more or less efficient that another one. When having a doubt, use \mbox{\hyperlink{structeo_1_1mpi_1_1_dynamic_assignment_algorithm}{Dynamic\+Assignment\+Algorithm}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_a642a7b57ba911839bec2919ca6760da3}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_a642a7b57ba911839bec2919ca6760da3}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}}
+\index{StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{StaticAssignmentAlgorithm()}{StaticAssignmentAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::\+Static\+Assignment\+Algorithm (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{workers,  }\item[{int}]{runs }\end{DoxyParamCaption})}
+
+
+
+Uses a given precise set of workers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em workers} & std\+::vector of M\+PI ranks of workers which will be used. \\
+\hline
+{\em runs} & Fixed amount of runs, strictly positive. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_ad1ffcf4f9a3996c3a647c1a16f4d651d}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_ad1ffcf4f9a3996c3a647c1a16f4d651d}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}}
+\index{StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{StaticAssignmentAlgorithm()}{StaticAssignmentAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::\+Static\+Assignment\+Algorithm (\begin{DoxyParamCaption}\item[{int}]{first,  }\item[{int}]{last,  }\item[{int}]{runs }\end{DoxyParamCaption})}
+
+
+
+Uses a range of workers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first} & The first M\+PI rank of worker to use \\
+\hline
+{\em last} & The last M\+PI rank of worker to use. If it\textquotesingle{}s equal to R\+E\+S\+T\+\_\+\+O\+F\+\_\+\+T\+H\+E\+\_\+\+W\+O\+R\+LD, then all the workers from the first one are taken as workers. \\
+\hline
+{\em runs} & Fixed amount of runs, strictly positive. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_ae07a7fb66c2160963a2b197eddfaf6e9}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_ae07a7fb66c2160963a2b197eddfaf6e9}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}}
+\index{StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{StaticAssignmentAlgorithm()}{StaticAssignmentAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::\+Static\+Assignment\+Algorithm (\begin{DoxyParamCaption}\item[{int}]{runs = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Uses all the hosts whose rank is higher than 1 (inclusive) as workers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em runs} & Fixed amount of runs, strictly positive. If it\textquotesingle{}s not set, you\textquotesingle{}ll have to call \mbox{\hyperlink{structeo_1_1mpi_1_1_static_assignment_algorithm_a2192d8befcb6f5a3ea656ab17352ec23}{reinit()}} later. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_abdc782c711efa2fe93adeaa4bed2d82a}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_abdc782c711efa2fe93adeaa4bed2d82a}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}}
+\index{StaticAssignmentAlgorithm@{StaticAssignmentAlgorithm}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{StaticAssignmentAlgorithm()}{StaticAssignmentAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::\+Static\+Assignment\+Algorithm (\begin{DoxyParamCaption}\item[{int}]{unique,  }\item[{int}]{runs }\end{DoxyParamCaption})}
+
+
+
+Uses an unique host as worker. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em unique} & The M\+PI rank of the host which will be the worker. \\
+\hline
+{\em runs} & Fixed amount of runs, strictly positive. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_accf369aaf35822768f807c5c687aadf2}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_accf369aaf35822768f807c5c687aadf2}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!availableWorkers@{availableWorkers}}
+\index{availableWorkers@{availableWorkers}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{availableWorkers()}{availableWorkers()}}
+{\footnotesize\ttfamily int eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::available\+Workers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the number of total available workers. 
+
+Before the first call, it is equal to the total number of present workers, as specified in the specific assignment algorithm constructor. It allows the \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}} class to know when all the responses have been received, by comparing this number to the total number of workers.
+
+\begin{DoxyReturn}{Returns}
+Integer indicating how many workers are available. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a7739b53c6b530ea977696004f55da056}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_aa79cc5df665d4bda1bf9847700d473fc}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_aa79cc5df665d4bda1bf9847700d473fc}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!confirm@{confirm}}
+\index{confirm@{confirm}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{confirm()}{confirm()}}
+{\footnotesize\ttfamily void eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::confirm (\begin{DoxyParamCaption}\item[{int}]{wrk\+Rank }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reinject the worker of indicated rank in the available state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wrk\+Rank} & The M\+PI rank of the worker who has finished its job. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a886b8539c8505e7a31c9697b89b31e41}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_a5df2c52a46f34e489fe5f39118d03afd}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_a5df2c52a46f34e489fe5f39118d03afd}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!get@{get}}
+\index{get@{get}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily int eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the rank of an available worker, so as to send it a task. 
+
+\begin{DoxyReturn}{Returns}
+The M\+PI rank of an available worker, or -\/1 if there is no available worker. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a9615d21e32f5360ec8975d26f6dca2e0}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_ae6d89663c6c155300b7d295a874145d5}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_ae6d89663c6c155300b7d295a874145d5}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!idles@{idles}}
+\index{idles@{idles}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{idles()}{idles()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::idles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Indicates who are the workers which do nothing. 
+
+At the end of the algorithm, the master has to warn all the workers that it\textquotesingle{}s done. All the workers mean, the workers which are currently processing data, and the other ones who could be waiting \+: the idles. This function indicates to the master which worker aren\textquotesingle{}t doing anything.
+
+\begin{DoxyReturn}{Returns}
+A std\+::vector containing all the M\+PI ranks of the idles workers. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_ade3971338ff2ed092b5990535ecc0068}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_static_assignment_algorithm_a2192d8befcb6f5a3ea656ab17352ec23}\label{structeo_1_1mpi_1_1_static_assignment_algorithm_a2192d8befcb6f5a3ea656ab17352ec23}} 
+\index{eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}!reinit@{reinit}}
+\index{reinit@{reinit}!eo::mpi::StaticAssignmentAlgorithm@{eo::mpi::StaticAssignmentAlgorithm}}
+\doxysubsubsection{\texorpdfstring{reinit()}{reinit()}}
+{\footnotesize\ttfamily void eo\+::mpi\+::\+Static\+Assignment\+Algorithm\+::reinit (\begin{DoxyParamCaption}\item[{int}]{runs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reinitializes the assignment algorithm with the right number of runs. 
+
+In fact, this is only useful for static assignment algorithm, which has to be reinitialized every time it\textquotesingle{}s used, in the case of a Multi \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}}. It\textquotesingle{}s the user\textquotesingle{}s responsability to call this function.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000031}{Todo}}]Not really clean. Find a better way to do it. \end{DoxyRefDesc}
+
+
+Implements \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm_a8cc57ef9b9b6a423f7b3c0a7cc5cbcd4}{eo\+::mpi\+::\+Assignment\+Algorithm}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi\+Assignment\+Algorithm.\+h\item 
+eo/src/mpi/eo\+Mpi\+Assignment\+Algorithm.\+cpp\end{DoxyCompactItemize}

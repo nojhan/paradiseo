@@ -1,0 +1,68 @@
+\hypertarget{classeo_roulette_worth_select}{}\doxysection{eo\+Roulette\+Worth\+Select$<$ E\+OT, WorthT $>$ Class Template Reference}
+\label{classeo_roulette_worth_select}\index{eoRouletteWorthSelect$<$ EOT, WorthT $>$@{eoRouletteWorthSelect$<$ EOT, WorthT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Select\+From\+Worth.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Roulette\+Worth\+Select$<$ E\+OT, WorthT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_roulette_worth_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Roulette\+Worth\+Select$<$ E\+OT, WorthT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_roulette_worth_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_ac91204a13a5c29157853f235e62c707b}\label{classeo_roulette_worth_select_ac91204a13a5c29157853f235e62c707b}} 
+typedef std\+::vector$<$ WorthT $>$\+::iterator {\bfseries worth\+Iterator}
+\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_ac91204a13a5c29157853f235e62c707b}\label{classeo_roulette_worth_select_ac91204a13a5c29157853f235e62c707b}} 
+typedef std\+::vector$<$ WorthT $>$\+::iterator {\bfseries worth\+Iterator}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_a32758e50326374b588e371c1d76a8653}\label{classeo_roulette_worth_select_a32758e50326374b588e371c1d76a8653}} 
+{\bfseries eo\+Roulette\+Worth\+Select} (\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, WorthT $>$ \&\+\_\+perf2\+Worth)
+\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_a91729910dcb98830f4edaa641ec28215}\label{classeo_roulette_worth_select_a91729910dcb98830f4edaa641ec28215}} 
+virtual void \mbox{\hyperlink{classeo_roulette_worth_select_a91729910dcb98830f4edaa641ec28215}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_aa89261d8ed2985716893b7c94c9a9bf1}\label{classeo_roulette_worth_select_aa89261d8ed2985716893b7c94c9a9bf1}} 
+virtual const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_roulette_worth_select_aa89261d8ed2985716893b7c94c9a9bf1}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_a32758e50326374b588e371c1d76a8653}\label{classeo_roulette_worth_select_a32758e50326374b588e371c1d76a8653}} 
+{\bfseries eo\+Roulette\+Worth\+Select} (\mbox{\hyperlink{classeo_perf2_worth}{eo\+Perf2\+Worth}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, WorthT $>$ \&\+\_\+perf2\+Worth)
+\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_a91729910dcb98830f4edaa641ec28215}\label{classeo_roulette_worth_select_a91729910dcb98830f4edaa641ec28215}} 
+virtual void \mbox{\hyperlink{classeo_roulette_worth_select_a91729910dcb98830f4edaa641ec28215}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_roulette_worth_select_aa89261d8ed2985716893b7c94c9a9bf1}\label{classeo_roulette_worth_select_aa89261d8ed2985716893b7c94c9a9bf1}} 
+virtual const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_roulette_worth_select_aa89261d8ed2985716893b7c94c9a9bf1}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class WorthT = double$>$\newline
+class eo\+Roulette\+Worth\+Select$<$ E\+O\+T, Worth\+T $>$}
+
+An instance of eo\+Select\+Perf2\+Worth that does selection from the Worthes using a ... roulette wheel selection, yes! 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Select\+From\+Worth.\+h\end{DoxyCompactItemize}

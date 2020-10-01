@@ -1,0 +1,210 @@
+\hypertarget{classmo_indexed_vector_tabu_list}{}\doxysection{mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_indexed_vector_tabu_list}\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Indexed\+Vector\+Tabu\+List.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{classmo_indexed_vector_tabu_list__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classmo_indexed_vector_tabu_list__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a766b704560676f822228001f0fec76ce}\label{classmo_indexed_vector_tabu_list_a766b704560676f822228001f0fec76ce}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_indexed_vector_tabu_list_a144a13f37b309ae50c3aa65db65e0ed7}{mo\+Indexed\+Vector\+Tabu\+List}} (unsigned int \+\_\+max\+Size, unsigned int \+\_\+howlong)
+\item 
+\mbox{\hyperlink{classmo_indexed_vector_tabu_list_a2db222c4a763995647b26166ec3a94bb}{mo\+Indexed\+Vector\+Tabu\+List}} (unsigned int \+\_\+max\+Size, unsigned int \+\_\+howlong\+Min, unsigned int \+\_\+howlong\+Max)
+\item 
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a88914af71a1fc8470841f6efe9bba3f3}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a33775ac4d0f8658ec86cdacc6088a1dc}{add}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a94288eb95ef160655c451901ac26b986}{update}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual bool \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a9a729991be44d7395c7bf0b11bd22b5f}{check}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\item 
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list_a59eb7243f73024fa885bd7ba48627a49}{clear\+Memory}} ()
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a366ed9c082a3793622ca0a2ce47bf26a}\label{classmo_indexed_vector_tabu_list_a366ed9c082a3793622ca0a2ce47bf26a}} 
+void {\bfseries print} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_ac514fdd2279fe7c41ebbc7893d8fffc4}\label{classmo_indexed_vector_tabu_list_ac514fdd2279fe7c41ebbc7893d8fffc4}} 
+std\+::vector$<$ unsigned int $>$ {\bfseries tabu\+List}
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a18982634b03946205b018ec5476b9dc2}\label{classmo_indexed_vector_tabu_list_a18982634b03946205b018ec5476b9dc2}} 
+unsigned int {\bfseries max\+Size}
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a25d0c72cf80bfae9809cb83657062dd2}\label{classmo_indexed_vector_tabu_list_a25d0c72cf80bfae9809cb83657062dd2}} 
+unsigned int {\bfseries howlong}
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a23961988646f4dede6efa20f80329df0}\label{classmo_indexed_vector_tabu_list_a23961988646f4dede6efa20f80329df0}} 
+unsigned int {\bfseries howlong\+Min}
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_af8cd87a158900a814ab1b56cc2d436d4}\label{classmo_indexed_vector_tabu_list_af8cd87a158900a814ab1b56cc2d436d4}} 
+unsigned int {\bfseries howlong\+Max}
+\item 
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a4946925dfc1d8d69531442ef1cab2903}\label{classmo_indexed_vector_tabu_list_a4946925dfc1d8d69531442ef1cab2903}} 
+bool {\bfseries robust}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}
+
+Tabu List of indexed neighbors save in a vector each neighbor can not used during howlong iterations
+
+The tabu tenure could be random between two bounds such as in robust tabu search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a144a13f37b309ae50c3aa65db65e0ed7}\label{classmo_indexed_vector_tabu_list_a144a13f37b309ae50c3aa65db65e0ed7}} 
+\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}!moIndexedVectorTabuList@{moIndexedVectorTabuList}}
+\index{moIndexedVectorTabuList@{moIndexedVectorTabuList}!moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moIndexedVectorTabuList()}{moIndexedVectorTabuList()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+max\+Size,  }\item[{unsigned int}]{\+\_\+howlong }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Size} & maximum size of the tabu list \\
+\hline
+{\em \+\_\+howlong} & how many iteration a move is tabu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a2db222c4a763995647b26166ec3a94bb}\label{classmo_indexed_vector_tabu_list_a2db222c4a763995647b26166ec3a94bb}} 
+\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}!moIndexedVectorTabuList@{moIndexedVectorTabuList}}
+\index{moIndexedVectorTabuList@{moIndexedVectorTabuList}!moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moIndexedVectorTabuList()}{moIndexedVectorTabuList()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+max\+Size,  }\item[{unsigned int}]{\+\_\+howlong\+Min,  }\item[{unsigned int}]{\+\_\+howlong\+Max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+max\+Size} & maximum size of the tabu list \\
+\hline
+{\em \+\_\+howlong\+Min} & minimal number of iterations during a move is tabu \\
+\hline
+{\em \+\_\+howlong\+Max} & maximal number of iterations during a move is tabu \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a33775ac4d0f8658ec86cdacc6088a1dc}\label{classmo_indexed_vector_tabu_list_a33775ac4d0f8658ec86cdacc6088a1dc}} 
+\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}!add@{add}}
+\index{add@{add}!moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+add a new neighbor in the tabu\+List 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & unused solution \\
+\hline
+{\em \+\_\+neighbor} & the current neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_acf319ce1a44dbf601c80bd5670dde853}{mo\+Memory$<$ Neighbor $>$}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classmo_rnd_indexed_vector_tabu_list_a3e5a3050e4d4a7b22429707d4d6451fd}{mo\+Rnd\+Indexed\+Vector\+Tabu\+List$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a9a729991be44d7395c7bf0b11bd22b5f}\label{classmo_indexed_vector_tabu_list_a9a729991be44d7395c7bf0b11bd22b5f}} 
+\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}!check@{check}}
+\index{check@{check}!moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+check if the move is tabu 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & unused solution \\
+\hline
+{\em \+\_\+neighbor} & the current neighbor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if tabu\+List contains \+\_\+sol 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_tabu_list_ab4c71e6e212f2fcc072b8eb2e551e3ad}{mo\+Tabu\+List$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a59eb7243f73024fa885bd7ba48627a49}\label{classmo_indexed_vector_tabu_list_a59eb7243f73024fa885bd7ba48627a49}} 
+\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}!clearMemory@{clearMemory}}
+\index{clearMemory@{clearMemory}!moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{clearMemory()}{clearMemory()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::clear\+Memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+clear\+Memory\+: remove all solution of the tabu\+List 
+
+Implements \mbox{\hyperlink{classmo_memory_ab24822b7720f4434d355bb468cb43a66}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a88914af71a1fc8470841f6efe9bba3f3}\label{classmo_indexed_vector_tabu_list_a88914af71a1fc8470841f6efe9bba3f3}} 
+\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+init the tabu\+List by clearing the memory 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_ab8dda5ba853c077d1713d27d6a0512cb}{mo\+Memory$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_indexed_vector_tabu_list_a94288eb95ef160655c451901ac26b986}\label{classmo_indexed_vector_tabu_list_a94288eb95ef160655c451901ac26b986}} 
+\index{moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}!update@{update}}
+\index{update@{update}!moIndexedVectorTabuList$<$ Neighbor $>$@{moIndexedVectorTabuList$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_indexed_vector_tabu_list}{mo\+Indexed\+Vector\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+update the tabulist by decreasing the number of tabu iteration 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & unused solution \\
+\hline
+{\em \+\_\+neighbor} & unused neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_memory_a3db29eaee769fbf7fb5e80c653d74884}{mo\+Memory$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Indexed\+Vector\+Tabu\+List.\+h\end{DoxyCompactItemize}

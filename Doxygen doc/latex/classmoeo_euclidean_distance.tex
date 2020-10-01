@@ -1,0 +1,114 @@
+\hypertarget{classmoeo_euclidean_distance}{}\doxysection{moeo\+Euclidean\+Distance$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_euclidean_distance}\index{moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Euclidean\+Distance.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Euclidean\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_euclidean_distance__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Euclidean\+Distance$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_euclidean_distance__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}{Objective\+Vector}}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_euclidean_distance_a8c896795884e12b92e6fb9d064bc9861}{Fitness}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_euclidean_distance_a3c012f25d57c3c8499278d8149953b3c}{moeo\+Euclidean\+Distance}} (\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$ \+\_\+normalizer)
+\item 
+\mbox{\hyperlink{classmoeo_euclidean_distance_a5778a8a11e4b8429c91c29c474400617}{moeo\+Euclidean\+Distance}} ()
+\item 
+const \mbox{\hyperlink{classmoeo_euclidean_distance_a8c896795884e12b92e6fb9d064bc9861}{Fitness}} \mbox{\hyperlink{classmoeo_euclidean_distance_a1606d513fd8a05ca73986a3dc14d40ab}{operator()}} (const \mbox{\hyperlink{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}{Objective\+Vector}} \&\+\_\+obj1, const \mbox{\hyperlink{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}{Objective\+Vector}} \&\+\_\+obj2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Euclidean\+Distance$<$ M\+O\+E\+O\+T $>$}
+
+A class allowing to compute an euclidian distance between two solutions in the objective space with normalized objective values (i.\+e. between 0 and 1). A distance value then lies between 0 and sqrt(n\+Objectives). 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_euclidean_distance_a8c896795884e12b92e6fb9d064bc9861}\label{classmoeo_euclidean_distance_a8c896795884e12b92e6fb9d064bc9861}} 
+\index{moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}!Fitness@{Fitness}}
+\index{Fitness@{Fitness}!moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{Fitness}{Fitness}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_euclidean_distance_a8c896795884e12b92e6fb9d064bc9861}{Fitness}}}
+
+the fitness type of the solutions \mbox{\Hypertarget{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}\label{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}} 
+\index{moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}{Objective\+Vector}}}
+
+the objective vector type of the solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_euclidean_distance_a3c012f25d57c3c8499278d8149953b3c}\label{classmoeo_euclidean_distance_a3c012f25d57c3c8499278d8149953b3c}} 
+\index{moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}!moeoEuclideanDistance@{moeoEuclideanDistance}}
+\index{moeoEuclideanDistance@{moeoEuclideanDistance}!moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEuclideanDistance()}{moeoEuclideanDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_normalizer}{moeo\+Objective\+Vector\+Normalizer}}$<$ M\+O\+E\+OT $>$}]{\+\_\+normalizer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+ctr with a normalizer 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+normalizer} & the normalizer used for every Objective\+Vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_euclidean_distance_a5778a8a11e4b8429c91c29c474400617}\label{classmoeo_euclidean_distance_a5778a8a11e4b8429c91c29c474400617}} 
+\index{moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}!moeoEuclideanDistance@{moeoEuclideanDistance}}
+\index{moeoEuclideanDistance@{moeoEuclideanDistance}!moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEuclideanDistance()}{moeoEuclideanDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default ctr 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_euclidean_distance_a1606d513fd8a05ca73986a3dc14d40ab}\label{classmoeo_euclidean_distance_a1606d513fd8a05ca73986a3dc14d40ab}} 
+\index{moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoEuclideanDistance$<$ MOEOT $>$@{moeoEuclideanDistance$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+const \mbox{\hyperlink{classmoeo_euclidean_distance_a8c896795884e12b92e6fb9d064bc9861}{Fitness}} \mbox{\hyperlink{classmoeo_euclidean_distance}{moeo\+Euclidean\+Distance}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}{Objective\+Vector}} \&}]{\+\_\+obj1,  }\item[{const \mbox{\hyperlink{classmoeo_euclidean_distance_ad75b1b8695b3eb16f9574496b5822daa}{Objective\+Vector}} \&}]{\+\_\+obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns the euclidian distance between \+\_\+obj1 and \+\_\+obj2 in the objective space 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+obj1} & the first objective vector \\
+\hline
+{\em \+\_\+obj2} & the second objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_obj_space_distance_a22e0058103f71b2ccdba0abbde391b77}{moeo\+Obj\+Space\+Distance$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/distance/moeo\+Euclidean\+Distance.\+h\end{DoxyCompactItemize}

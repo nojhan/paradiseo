@@ -1,0 +1,45 @@
+\hypertarget{classparadiseo_1_1smp_1_1_topology_builder}{}\doxysection{paradiseo\+::smp\+::Topology\+Builder Class Reference}
+\label{classparadiseo_1_1smp_1_1_topology_builder}\index{paradiseo::smp::TopologyBuilder@{paradiseo::smp::TopologyBuilder}}
+
+
+{\ttfamily \#include $<$topology\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Topology\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_topology_builder__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder_a502944a16d352f569d36983b58af02e0}{operator()}} (unsigned \+\_\+nb\+Node, std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&\+\_\+matrix) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_builder}{Topology\+Builder}}\+: abstract class to build any boolean topology with a particular structure. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_topology_builder_a502944a16d352f569d36983b58af02e0}\label{classparadiseo_1_1smp_1_1_topology_builder_a502944a16d352f569d36983b58af02e0}} 
+\index{paradiseo::smp::TopologyBuilder@{paradiseo::smp::TopologyBuilder}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::TopologyBuilder@{paradiseo::smp::TopologyBuilder}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily virtual void paradiseo\+::smp\+::\+Topology\+Builder\+::operator() (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+nb\+Node,  }\item[{std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&}]{\+\_\+matrix }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Build th topology with the given number of nodes in the matrix. \begin{DoxySeeAlso}{See also}
+smp\+::topology\+::\+Ring, smp\+::topology\+::\+Star, smp\+::topology\+::\+Complete 
+\end{DoxySeeAlso}
+
+
+Implemented in \mbox{\hyperlink{classparadiseo_1_1smp_1_1_hypercubic_a814cfb24787df560b41ec5fd6bdbbfc4}{paradiseo\+::smp\+::\+Hypercubic}}, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_mesh_adccb4fefc6e083a1110dcffdb10c635f}{paradiseo\+::smp\+::\+Mesh}}, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_ring_a29baea67445d59a27cfac677f44a93ff}{paradiseo\+::smp\+::\+Ring}}, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_star_adf1b15759e567233a8cd830141235f9f}{paradiseo\+::smp\+::\+Star}}, and \mbox{\hyperlink{classparadiseo_1_1smp_1_1_complete_aac193e7b5b2b01376364a30b2cd7fd55}{paradiseo\+::smp\+::\+Complete}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/topology\+Builder.\+h\end{DoxyCompactItemize}

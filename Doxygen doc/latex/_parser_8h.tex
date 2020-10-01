@@ -1,0 +1,39 @@
+\hypertarget{_parser_8h}{}\doxysection{eo/src/serial/\+Parser.h File Reference}
+\label{_parser_8h}\index{eo/src/serial/Parser.h@{eo/src/serial/Parser.h}}
+{\ttfamily \#include \char`\"{}Entity.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Serial\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Serial\+Object.\+h\char`\"{}}\newline
+Include dependency graph for Parser.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_parser_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_parser_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeoserial_1_1_parser}{eoserial\+::\+Parser}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classeoserial_1_1_parser}{Parser}} from a J\+S\+ON source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains a tiny J\+S\+ON parser used in D\+AE. This parser just handles a subset of J\+S\+ON grammar, with the following restrictions \+:
+\begin{DoxyItemize}
+\item all strings must be surrounded by double quotes.
+\item everything which is not an object or an array is considered to be a string (even integers, booleans,...).
+\item no syntax check is done. We trust the programmer and he has to ensure that every J\+S\+ON string he produces is valid.
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Benjamin B\+O\+U\+V\+I\+ER 
+\end{DoxyAuthor}

@@ -1,0 +1,122 @@
+\hypertarget{classmo_quartiles_neighbor_stat}{}\doxysection{mo\+Quartiles\+Neighbor\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_quartiles_neighbor_stat}\index{moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Quartiles\+Neighbor\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Quartiles\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_quartiles_neighbor_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Quartiles\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_quartiles_neighbor_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_quartiles_neighbor_stat_a8682c7889a72a96a950d0f1aafdb481f}\label{classmo_quartiles_neighbor_stat_a8682c7889a72a96a950d0f1aafdb481f}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_quartiles_neighbor_stat_adca763efcfc53ce437d2cece7873f0d3}\label{classmo_quartiles_neighbor_stat_adca763efcfc53ce437d2cece7873f0d3}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_quartiles_neighbor_stat_ab809f3c802877020dda1202d2feed2a2}{mo\+Quartiles\+Neighbor\+Stat}} (\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Stat)
+\item 
+virtual void \mbox{\hyperlink{classmo_quartiles_neighbor_stat_a8c63f9c433b956fe9b02b9eafaec4f4a}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_quartiles_neighbor_stat_a0499bfcebab873a46f88e862a16c3155}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_quartiles_neighbor_stat_a6a15dce4592097185b33a531a4c16a02}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Quartiles\+Neighbor\+Stat$<$ Neighbor $>$}
+
+From \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}, to compute the first and the third quartile of fitness in the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_quartiles_neighbor_stat_ab809f3c802877020dda1202d2feed2a2}\label{classmo_quartiles_neighbor_stat_ab809f3c802877020dda1202d2feed2a2}} 
+\index{moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}!moQuartilesNeighborStat@{moQuartilesNeighborStat}}
+\index{moQuartilesNeighborStat@{moQuartilesNeighborStat}!moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moQuartilesNeighborStat()}{moQuartilesNeighborStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_quartiles_neighbor_stat}{mo\+Quartiles\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_quartiles_neighbor_stat}{mo\+Quartiles\+Neighbor\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nh\+Stat} & a neighborhood\+Stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_quartiles_neighbor_stat_a6a15dce4592097185b33a531a4c16a02}\label{classmo_quartiles_neighbor_stat_a6a15dce4592097185b33a531a4c16a02}} 
+\index{moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_quartiles_neighbor_stat}{mo\+Quartiles\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_quartiles_neighbor_stat_a8c63f9c433b956fe9b02b9eafaec4f4a}\label{classmo_quartiles_neighbor_stat_a8c63f9c433b956fe9b02b9eafaec4f4a}} 
+\index{moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_quartiles_neighbor_stat}{mo\+Quartiles\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the first and the third quartile of fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_quartiles_neighbor_stat_a0499bfcebab873a46f88e862a16c3155}\label{classmo_quartiles_neighbor_stat_a0499bfcebab873a46f88e862a16c3155}} 
+\index{moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moQuartilesNeighborStat$<$ Neighbor $>$@{moQuartilesNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_quartiles_neighbor_stat}{mo\+Quartiles\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the first and the third quartile fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Quartiles\+Neighbor\+Stat.\+h\end{DoxyCompactItemize}

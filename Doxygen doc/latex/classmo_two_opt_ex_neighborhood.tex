@@ -1,0 +1,134 @@
+\hypertarget{classmo_two_opt_ex_neighborhood}{}\doxysection{mo\+Two\+Opt\+Ex\+Neighborhood$<$ E\+OT, Fitness $>$ Class Template Reference}
+\label{classmo_two_opt_ex_neighborhood}\index{moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}}
+
+
+{\ttfamily \#include $<$mo\+Two\+Opt\+Ex\+Neighborhood.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Two\+Opt\+Ex\+Neighborhood$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmo_two_opt_ex_neighborhood__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Two\+Opt\+Ex\+Neighborhood$<$ E\+OT, Fitness $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmo_two_opt_ex_neighborhood__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_two_opt_ex_neighborhood_a254b7ca3ce31b08327ba8f0365341374}\label{classmo_two_opt_ex_neighborhood_a254b7ca3ce31b08327ba8f0365341374}} 
+typedef \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{mo\+Two\+Opt\+Ex\+Neighbor}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$ {\bfseries Neighbor}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classmo_two_opt_ex_neighborhood_a6f2977303bdb9eb8946ac6b56eaa4f9a}{has\+Neighbor}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighborhood_aa7f4cc59ffc149ec2b41a0cb9bc9794b}{init}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{Neighbor}} \&\+\_\+current)
+\item 
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighborhood_a5afff0df34a8453f4baa8f6b3cf675c5}{next}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_two_opt_ex_neighbor}{Neighbor}} \&\+\_\+current)
+\item 
+virtual bool \mbox{\hyperlink{classmo_two_opt_ex_neighborhood_a44a8e1fd1803c78544799a7dc315a28d}{cont}} (\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_two_opt_ex_neighborhood_a939bbf5dd4bbf7aa8667a6361f572609}{class\+Name}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT, class Fitness = typename E\+O\+T\+::\+Fitness$>$\newline
+class mo\+Two\+Opt\+Ex\+Neighborhood$<$ E\+O\+T, Fitness $>$}
+
+Two-\/opt exchange neighborhood 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_two_opt_ex_neighborhood_a939bbf5dd4bbf7aa8667a6361f572609}\label{classmo_two_opt_ex_neighborhood_a939bbf5dd4bbf7aa8667a6361f572609}} 
+\index{moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}!className@{className}}
+\index{className@{className}!moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_two_opt_ex_neighborhood}{mo\+Two\+Opt\+Ex\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class Name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_object_a1c02745db786e7bb46dea93b560fe685}{eo\+Object}}.
+
+\mbox{\Hypertarget{classmo_two_opt_ex_neighborhood_a44a8e1fd1803c78544799a7dc315a28d}\label{classmo_two_opt_ex_neighborhood_a44a8e1fd1803c78544799a7dc315a28d}} 
+\index{moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}!cont@{cont}}
+\index{cont@{cont}!moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{cont()}{cont()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual bool \mbox{\hyperlink{classmo_two_opt_ex_neighborhood}{mo\+Two\+Opt\+Ex\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::cont (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} if there is again a neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is again a neighbor not explored 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a4093914507138339f3756ff5edaf6531}{mo\+Neighborhood$<$ mo\+Two\+Opt\+Ex\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$ $>$}}.
+
+\mbox{\Hypertarget{classmo_two_opt_ex_neighborhood_a6f2977303bdb9eb8946ac6b56eaa4f9a}\label{classmo_two_opt_ex_neighborhood_a6f2977303bdb9eb8946ac6b56eaa4f9a}} 
+\index{moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}!hasNeighbor@{hasNeighbor}}
+\index{hasNeighbor@{hasNeighbor}!moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{hasNeighbor()}{hasNeighbor()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual bool \mbox{\hyperlink{classmo_two_opt_ex_neighborhood}{mo\+Two\+Opt\+Ex\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::has\+Neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+true if there is at least an available neighbor 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_a9a4b6ca2bcf76697145509eb35baf3be}{mo\+Neighborhood$<$ mo\+Two\+Opt\+Ex\+Neighbor$<$ E\+O\+T, typename E\+O\+T\+::\+Fitness $>$ $>$}}.
+
+\mbox{\Hypertarget{classmo_two_opt_ex_neighborhood_aa7f4cc59ffc149ec2b41a0cb9bc9794b}\label{classmo_two_opt_ex_neighborhood_aa7f4cc59ffc149ec2b41a0cb9bc9794b}} 
+\index{moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}!init@{init}}
+\index{init@{init}!moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighborhood}{mo\+Two\+Opt\+Ex\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_two_opt_ex_neighbor}{Neighbor}} \&}]{\+\_\+current }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Initialization of the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+current} & the first neighbor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_two_opt_ex_neighborhood_a5afff0df34a8453f4baa8f6b3cf675c5}\label{classmo_two_opt_ex_neighborhood_a5afff0df34a8453f4baa8f6b3cf675c5}} 
+\index{moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}!next@{next}}
+\index{next@{next}!moTwoOptExNeighborhood$<$ EOT, Fitness $>$@{moTwoOptExNeighborhood$<$ EOT, Fitness $>$}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily template$<$class E\+OT , class Fitness  = typename E\+O\+T\+::\+Fitness$>$ \\
+virtual void \mbox{\hyperlink{classmo_two_opt_ex_neighborhood}{mo\+Two\+Opt\+Ex\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}}, Fitness $>$\+::next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_a9b0ab01b1c9034657754257a90726d14}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_two_opt_ex_neighbor}{Neighbor}} \&}]{\+\_\+current }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Give the next neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to explore \\
+\hline
+{\em \+\_\+current} & the next neighbor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/permutation/mo\+Two\+Opt\+Ex\+Neighborhood.\+h\end{DoxyCompactItemize}

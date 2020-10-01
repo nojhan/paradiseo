@@ -1,0 +1,122 @@
+\hypertarget{classmoeo_normalized_solution_vs_solution_binary_metric}{}\doxysection{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric$<$ Objective\+Vector, R $>$ Class Template Reference}
+\label{classmoeo_normalized_solution_vs_solution_binary_metric}\index{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric$<$ Objective\+Vector, R $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_normalized_solution_vs_solution_binary_metric__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric$<$ Objective\+Vector, R $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_normalized_solution_vs_solution_binary_metric__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_normalized_solution_vs_solution_binary_metric_a4b3c36fc060e855f67f45bb15f348443}\label{classmoeo_normalized_solution_vs_solution_binary_metric_a4b3c36fc060e855f67f45bb15f348443}} 
+typedef \mbox{\hyperlink{classmoeo_objective_vector_ae86f199692cae43bc346be63130eb993}{Objective\+Vector\+::\+Type}} {\bfseries Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric_ae58174a553269d3e8b0685a1f22b8333}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}} ()
+\item 
+void \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric_a4931f5694aee4a78a48379157158bfd6}{setup}} (Type \+\_\+min, Type \+\_\+max, unsigned int \+\_\+obj)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric_a0693a23c68e3fe0bb546e34926dcfe93}{setup}} (\mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} \+\_\+real\+Interval, unsigned int \+\_\+obj)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric_ad0ccbdceb71b9d2d6ae8ceec1af9dcdb}{tiny}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric_a81bff9a83c74f7f7f8a1db28c09c4c38}{bounds}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector, class R$>$\newline
+class moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric$<$ Objective\+Vector, R $>$}
+
+Base class for binary metrics dedicated to the performance comparison between two solutions\textquotesingle{}s objective vectors using normalized values. Then, indicator values lie in the interval \mbox{[}-\/1,1\mbox{]}. Note that you have to set the bounds for every objective before using the operator(). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_normalized_solution_vs_solution_binary_metric_ae58174a553269d3e8b0685a1f22b8333}\label{classmoeo_normalized_solution_vs_solution_binary_metric_ae58174a553269d3e8b0685a1f22b8333}} 
+\index{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}!moeoNormalizedSolutionVsSolutionBinaryMetric@{moeoNormalizedSolutionVsSolutionBinaryMetric}}
+\index{moeoNormalizedSolutionVsSolutionBinaryMetric@{moeoNormalizedSolutionVsSolutionBinaryMetric}!moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}}
+\doxysubsubsection{\texorpdfstring{moeoNormalizedSolutionVsSolutionBinaryMetric()}{moeoNormalizedSolutionVsSolutionBinaryMetric()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector , class R $>$ \\
+\mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}}, \mbox{\hyperlink{classeo_real}{R}} $>$\+::\mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default ctr for any \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}} object 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_normalized_solution_vs_solution_binary_metric_a0693a23c68e3fe0bb546e34926dcfe93}\label{classmoeo_normalized_solution_vs_solution_binary_metric_a0693a23c68e3fe0bb546e34926dcfe93}} 
+\index{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}!setup@{setup}}
+\index{setup@{setup}!moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector , class R $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}}, \mbox{\hyperlink{classeo_real}{R}} $>$\+::setup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}}}]{\+\_\+real\+Interval,  }\item[{unsigned int}]{\+\_\+obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the lower bound and the upper bound for the objective \+\_\+obj using a \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} object 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+real\+Interval} & the \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} object \\
+\hline
+{\em \+\_\+obj} & the objective index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_normalized_solution_vs_solution_binary_metric_a4931f5694aee4a78a48379157158bfd6}\label{classmoeo_normalized_solution_vs_solution_binary_metric_a4931f5694aee4a78a48379157158bfd6}} 
+\index{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}!setup@{setup}}
+\index{setup@{setup}!moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector , class R $>$ \\
+void \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}}, \mbox{\hyperlink{classeo_real}{R}} $>$\+::setup (\begin{DoxyParamCaption}\item[{Type}]{\+\_\+min,  }\item[{Type}]{\+\_\+max,  }\item[{unsigned int}]{\+\_\+obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the lower bound (\+\_\+min) and the upper bound (\+\_\+max) for the objective \+\_\+obj 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+min} & lower bound \\
+\hline
+{\em \+\_\+max} & upper bound \\
+\hline
+{\em \+\_\+obj} & the objective index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_normalized_solution_vs_solution_binary_metric_ad0ccbdceb71b9d2d6ae8ceec1af9dcdb}\label{classmoeo_normalized_solution_vs_solution_binary_metric_ad0ccbdceb71b9d2d6ae8ceec1af9dcdb}} 
+\index{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}!tiny@{tiny}}
+\index{tiny@{tiny}!moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}}
+\doxysubsubsection{\texorpdfstring{tiny()}{tiny()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector , class R $>$ \\
+static double \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}}, \mbox{\hyperlink{classeo_real}{R}} $>$\+::tiny (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound) 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_normalized_solution_vs_solution_binary_metric_a81bff9a83c74f7f7f8a1db28c09c4c38}\label{classmoeo_normalized_solution_vs_solution_binary_metric_a81bff9a83c74f7f7f8a1db28c09c4c38}} 
+\index{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}!bounds@{bounds}}
+\index{bounds@{bounds}!moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$@{moeoNormalizedSolutionVsSolutionBinaryMetric$<$ ObjectiveVector, R $>$}}
+\doxysubsubsection{\texorpdfstring{bounds}{bounds}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector , class R $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classeo_real_interval}{eo\+Real\+Interval}} $>$ \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}}, \mbox{\hyperlink{classeo_real}{R}} $>$\+::bounds\hspace{0.3cm}{\ttfamily [protected]}}
+
+the bounds for every objective (bounds\mbox{[}i\mbox{]} = bounds for the objective i) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/metric/moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric.\+h\end{DoxyCompactItemize}

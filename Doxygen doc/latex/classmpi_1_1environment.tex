@@ -1,0 +1,50 @@
+\hypertarget{classmpi_1_1environment}{}\doxysection{mpi\+::environment Class Reference}
+\label{classmpi_1_1environment}\index{mpi::environment@{mpi::environment}}
+
+
+Wrapper class to have a M\+PI environment.  
+
+
+
+
+{\ttfamily \#include $<$impl\+Mpi.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmpi_1_1environment_adb081791166792cb7d19f586ae5c5a3c}{environment}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Inits M\+PI context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmpi_1_1environment_a4643b49009997a0a98a0d5bcff881a27}\label{classmpi_1_1environment_a4643b49009997a0a98a0d5bcff881a27}} 
+\mbox{\hyperlink{classmpi_1_1environment_a4643b49009997a0a98a0d5bcff881a27}{$\sim$environment}} ()
+\begin{DoxyCompactList}\small\item\em Closes M\+PI context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Wrapper class to have a M\+PI environment. 
+
+Instead of calling M\+P\+I\+\_\+\+Init and M\+P\+I\+\_\+\+Finalize, it is only necessary to instantiate this class once, in the global context. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmpi_1_1environment_adb081791166792cb7d19f586ae5c5a3c}\label{classmpi_1_1environment_adb081791166792cb7d19f586ae5c5a3c}} 
+\index{mpi::environment@{mpi::environment}!environment@{environment}}
+\index{environment@{environment}!mpi::environment@{mpi::environment}}
+\doxysubsubsection{\texorpdfstring{environment()}{environment()}}
+{\footnotesize\ttfamily mpi\+::environment\+::environment (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Inits M\+PI context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of params in command line (same as one in main) \\
+\hline
+{\em argv} & Strings containing params (same as one in main) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/impl\+Mpi.\+h\item 
+eo/src/mpi/impl\+Mpi.\+cpp\end{DoxyCompactItemize}

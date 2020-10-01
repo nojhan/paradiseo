@@ -1,0 +1,105 @@
+\hypertarget{classmo_u_b_q_pdouble_incr_evaluation}{}\doxysection{mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_u_b_q_pdouble_incr_evaluation}\index{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$@{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation.\+h$>$}
+
+
+
+Inheritance diagram for mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_u_b_q_pdouble_incr_evaluation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_u_b_q_pdouble_incr_evaluation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_u_b_q_pdouble_incr_evaluation_adbe32646469cc913de1b9805d54e71bc}\label{classmo_u_b_q_pdouble_incr_evaluation_adbe32646469cc913de1b9805d54e71bc}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_u_b_q_pdouble_incr_evaluation_ae202a5f122cec5664edb3958da7a1f94}\label{classmo_u_b_q_pdouble_incr_evaluation_ae202a5f122cec5664edb3958da7a1f94}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_u_b_q_pdouble_incr_evaluation_a9e582c0f5e00faa5633998bc99d44458}{mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation}} (unsigned int \+\_\+neighborhood\+Size, \mbox{\hyperlink{classmo_u_b_q_p_simple_incr_eval}{mo\+U\+B\+Q\+P\+Simple\+Incr\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+incr\+Eval)
+\item 
+\mbox{\Hypertarget{classmo_u_b_q_pdouble_incr_evaluation_a505966c30c6832ff043fa3fb0efb43ac}\label{classmo_u_b_q_pdouble_incr_evaluation_a505966c30c6832ff043fa3fb0efb43ac}} 
+void {\bfseries neighborhood\+Explorer} (\mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+search\+Explorer)
+\item 
+virtual void \mbox{\hyperlink{classmo_u_b_q_pdouble_incr_evaluation_af3f338f28fd3e9d54a34b8d53c49c55c}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+\mbox{\Hypertarget{classmo_u_b_q_pdouble_incr_evaluation_ab96cf846d4b7cdaa154b95e1dfb5d9fc}\label{classmo_u_b_q_pdouble_incr_evaluation_ab96cf846d4b7cdaa154b95e1dfb5d9fc}} 
+int $\ast$$\ast$ {\bfseries getQ} ()
+\item 
+\mbox{\Hypertarget{classmo_u_b_q_pdouble_incr_evaluation_aa76d8ef3aad08e41e6a23c48f975b99d}\label{classmo_u_b_q_pdouble_incr_evaluation_aa76d8ef3aad08e41e6a23c48f975b99d}} 
+int {\bfseries get\+Nb\+Var} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation$<$ Neighbor $>$}
+
+The neighborhood evaluation for the U\+B\+QP The double incremental evaluation is used
+
+B\+E\+C\+A\+R\+E\+F\+U\+LL\+: This object must be added to the \mbox{\hyperlink{classmo_checkpoint}{mo\+Checkpoint}} of the local search (init method) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_u_b_q_pdouble_incr_evaluation_a9e582c0f5e00faa5633998bc99d44458}\label{classmo_u_b_q_pdouble_incr_evaluation_a9e582c0f5e00faa5633998bc99d44458}} 
+\index{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$@{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$}!moUBQPdoubleIncrEvaluation@{moUBQPdoubleIncrEvaluation}}
+\index{moUBQPdoubleIncrEvaluation@{moUBQPdoubleIncrEvaluation}!moUBQPdoubleIncrEvaluation$<$ Neighbor $>$@{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moUBQPdoubleIncrEvaluation()}{moUBQPdoubleIncrEvaluation()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_u_b_q_pdouble_incr_evaluation}{mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_u_b_q_pdouble_incr_evaluation}{mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation}} (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+neighborhood\+Size,  }\item[{\mbox{\hyperlink{classmo_u_b_q_p_simple_incr_eval}{mo\+U\+B\+Q\+P\+Simple\+Incr\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+incr\+Eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood\+Size} & the size of the neighborhood \\
+\hline
+{\em \+\_\+incr\+Eval} & the incremental evaluation of the U\+B\+QP \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_u_b_q_pdouble_incr_evaluation_af3f338f28fd3e9d54a34b8d53c49c55c}\label{classmo_u_b_q_pdouble_incr_evaluation_af3f338f28fd3e9d54a34b8d53c49c55c}} 
+\index{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$@{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moUBQPdoubleIncrEvaluation$<$ Neighbor $>$@{moUBQPdoubleIncrEvaluation$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_u_b_q_pdouble_incr_evaluation}{mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Evaluation of the neighborhood Here nothing to do
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_double_incr_evaluation_a87b2e25ce6e1d579315577898f5caa15}{mo\+Double\+Incr\+Evaluation$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/eval/mo\+U\+B\+Q\+Pdouble\+Incr\+Evaluation.\+h\end{DoxyCompactItemize}

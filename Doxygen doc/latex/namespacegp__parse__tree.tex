@@ -1,0 +1,150 @@
+\hypertarget{namespacegp__parse__tree}{}\doxysection{gp\+\_\+parse\+\_\+tree Namespace Reference}
+\label{namespacegp__parse__tree}\index{gp\_parse\_tree@{gp\_parse\_tree}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classgp__parse__tree_1_1parse__tree}{parse\+\_\+tree}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacegp__parse__tree_a98f90e3962c85227b5da089d7b4f9c10}\label{namespacegp__parse__tree_a98f90e3962c85227b5da089d7b4f9c10}} 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{namespacegp__parse__tree_a98f90e3962c85227b5da089d7b4f9c10}{do\+\_\+the\+\_\+swap}} (T \&a, T \&b)
+\begin{DoxyCompactList}\small\item\em This ones defined because gcc does not always implement namespaces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parse\+\_\+tree and subtree classes (c) copyright Maarten Keijzer 1999, 2000
+
+Permission to copy, use, modify, sell and distribute this software is granted provided this copyright notice appears in all copies. This software is provided \char`\"{}as is\char`\"{} without express or implied warranty, and with no claim as to its suitability for any purpose.
+
+Permission to modify the code and to distribute modified code is granted, provided the above notices as well as this one are retained, and a notice that the code was modified is included with the above copyright notice.
+
+Usage information.
+
+class \mbox{\hyperlink{class_node}{Node}} (your node in the tree) must have the following implemented\+: \begin{DoxyVerb}        Arity      ******
+\end{DoxyVerb}
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} arity(\textcolor{keywordtype}{void}) \textcolor{keyword}{const}}
+\end{DoxyCode}
+ \begin{DoxyVerb}Note:   the default constructor of a Node should provide a
+                Node with arity 0!
+
+    Evaluation   ******
+\end{DoxyVerb}
+
+
+A \mbox{\hyperlink{classgp__parse__tree_1_1parse__tree}{parse\+\_\+tree}} is evaluated through one of it\textquotesingle{}s \mbox{\hyperlink{group___utilities_gac678eec2c602083572edfb85ad72f408}{apply()}} members\+: \begin{DoxyVerb}  1) parse_tree::apply(RetVal)
+
+     is the simplest evaluation, it will call
+\end{DoxyVerb}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RetVal Node::operator()(RetVal, subtree<Node, RetVal>::const\_iterator)}
+\end{DoxyCode}
+
+
+(Unfortunately the first Ret\+Val argument is mandatory (although you might not need it. This is because M\+S\+VC does not support member template functions properly. If it cannot deduce the template arguments (as is the case in templatizing over return value) you are not allowed to specify them. calling tree.\+apply$<$double$>$() would result in a syntax error. That is why you have to call tree.\+apply(double()) instead.)
+
+\begin{DoxyVerb}    2) parse_tree::apply(RetVal v, It values)
+
+   will call:
+
+\code
+   RetVal Node::operator()(RetVal, subtree<... , It values)
+\endcode
+
+   where It is whatever type you desire (most of the time
+       this will be a std::vector containing the values of your
+       variables);
+
+    3) parse_tree::apply(RetVal, It values, It2 moreValues)
+
+   will call:
+
+\code
+   RetVal Node::operator()(RetVal, subtree<... , It values, It2 moreValues)
+\endcode
+
+       although I do not see the immediate use of this, however...
+
+    4) parse_tree::apply(RetVal, It values, It2 args, It3 adfs)
+
+            that calls:
+
+\code
+   RetVal Node::operator()(subtree<... , It values, It2 args, It3 adfs)
+\endcode
+
+            can be useful for implementing adfs.
+
+
+    In general it is a good idea to leave the specifics of the
+    arguments open so that different ways of evaluation remain
+    possible. Implement the simplest eval as:
+
+\code
+    template <class It>
+            RetVal operator()(RetVal dummy, It begin) const
+\endcode
+
+        Internal Structure    ******
+\end{DoxyVerb}
+
+
+A \mbox{\hyperlink{classgp__parse__tree_1_1parse__tree}{parse\+\_\+tree}} has two template arguments\+: the \mbox{\hyperlink{class_node}{Node}} and the Return\+Value produced by evaluating the node. The structure of the tree is defined through a subtree class that has the same two template arguments.
+
+The nodes are stored in a tree like \+: \begin{DoxyVerb}                  node4
+                  /  \
+           node3 node2
+                  / \
+      node1 node0
+\end{DoxyVerb}
+
+
+where nodes 2 and 4 have arity 2 and nodes 0,1 and 3 arity 0 (terminals)
+
+The nodes are subtrees, containing the structure of the tree, together with its size and depth. They contain a \mbox{\hyperlink{class_node}{Node}}, the user defined template argument. To access these nodes from a subtree, use operator-\/$>$ or operator$\ast$.
+
+The numbers behind the nodes define a reverse-\/polish or postfix traversel through the tree. The \mbox{\hyperlink{classgp__parse__tree_1_1parse__tree}{parse\+\_\+tree}} defines iterators on the tree such that
+
+tree.\+begin() points at the subtree at node0 and tree.\+back() returns the subtree at node4, the complete tree
+
+Likewise operator\mbox{[}\mbox{]} is defined on the tree, such that\+:
+
+tree\mbox{[}0\mbox{]} will return the subtree at node0, while tree\mbox{[}2\mbox{]} will return the subtree at node2
+
+Assigments of subtrees is protected so that the code\+:
+
+tree\mbox{[}2\mbox{]} = tree\mbox{[}0\mbox{]};
+
+will not crash and result in a tree structured as\+: \begin{DoxyVerb}          node4
+          /  \
+   node3 node0
+\end{DoxyVerb}
+
+
+Note that the rank numbers no longer specify their place in the tree\+:
+
+tree\mbox{[}0\mbox{]} still points at node0, but tree\mbox{[}1\mbox{]} now points to node3 and tree\mbox{[}2\mbox{]} points at the root node4
+
+Embedded iterators are implemented to iterate over nodes rather than subtrees. So an easy way to copy your tree to a std\+::vector is\+:
+
+std\+::vector$<$\+Node$>$ vec(tree.\+size()); copy(tree.\+ebegin(), tree.\+eend(), vec.\+begin());
+
+You can also copy it to an std\+::ostream\+\_\+iterator with this technique, given that your \mbox{\hyperlink{class_node}{Node}} implements an appropriate operator$<$$<$. Reinitializing a tree with the std\+::vector is also simple\+:
+
+tree.\+clear(); copy(vec.\+begin(), vec.\+end(), back\+\_\+inserter(tree));
+
+or from an std\+::istream\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{copy(std::istream\_iterator<T>(my\_stream), std::istream\_iterator<T>(), back\_inserter(tree));}
+\end{DoxyCode}
+
+
+Note that the back\+\_\+inserter must be used as there is no resize member in the \mbox{\hyperlink{classgp__parse__tree_1_1parse__tree}{parse\+\_\+tree}}. back\+\_\+inserter will use the push\+\_\+back member from the \mbox{\hyperlink{classgp__parse__tree_1_1parse__tree}{parse\+\_\+tree}} 

@@ -1,0 +1,49 @@
+\hypertarget{classeo_conditional_bit_mutation}{}\doxysection{eo\+Conditional\+Bit\+Mutation$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_conditional_bit_mutation}\index{eoConditionalBitMutation$<$ EOT $>$@{eoConditionalBitMutation$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Standard\+Bit\+Mutation.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Conditional\+Bit\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_conditional_bit_mutation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Conditional\+Bit\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_conditional_bit_mutation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_conditional_bit_mutation_a735796b513cf08349778d59d4c2d8d44}\label{classeo_conditional_bit_mutation_a735796b513cf08349778d59d4c2d8d44}} 
+{\bfseries eo\+Conditional\+Bit\+Mutation} (double rate=0.\+5)
+\item 
+\mbox{\Hypertarget{classeo_conditional_bit_mutation_abdd0821a028e0ff93e9f2dbc75793a83}\label{classeo_conditional_bit_mutation_abdd0821a028e0ff93e9f2dbc75793a83}} 
+virtual bool \mbox{\hyperlink{classeo_conditional_bit_mutation_abdd0821a028e0ff93e9f2dbc75793a83}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&chrom)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Conditional\+Bit\+Mutation$<$ E\+O\+T $>$}
+
+Conditional standard bit mutation with mutation rate p\+: choose k from the binomial distribution Bin(n,p) until k $>$0 and apply flip\+\_\+k(x).
+
+This is identical to sampling k from the conditional binomial distribution Bin$>$0(n,p) which re-\/assigns the probability to sample a 0 proportionally to all values i ∈ \mbox{[}1..n\mbox{]}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/ga/eo\+Standard\+Bit\+Mutation.\+h\end{DoxyCompactItemize}

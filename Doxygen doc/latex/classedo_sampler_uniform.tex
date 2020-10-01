@@ -1,0 +1,57 @@
+\hypertarget{classedo_sampler_uniform}{}\doxysection{edo\+Sampler\+Uniform$<$ E\+OT, D $>$ Class Template Reference}
+\label{classedo_sampler_uniform}\index{edoSamplerUniform$<$ EOT, D $>$@{edoSamplerUniform$<$ EOT, D $>$}}
+
+
+{\ttfamily \#include $<$edo\+Sampler\+Uniform.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Sampler\+Uniform$<$ E\+OT, D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_sampler_uniform__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Sampler\+Uniform$<$ E\+OT, D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_sampler_uniform__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_sampler_uniform_a827ba22b7733cb1ddc20416369120293}\label{classedo_sampler_uniform_a827ba22b7733cb1ddc20416369120293}} 
+typedef D {\bfseries Distrib}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_sampler_uniform_a0fc5a3095034d0631b25b9e10a98331f}\label{classedo_sampler_uniform_a0fc5a3095034d0631b25b9e10a98331f}} 
+{\bfseries edo\+Sampler\+Uniform} (\mbox{\hyperlink{classedo_repairer}{edo\+Repairer}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&repairer)
+\item 
+\mbox{\Hypertarget{classedo_sampler_uniform_a81edc6a7c41e1dd1f126ce5d5b1000b9}\label{classedo_sampler_uniform_a81edc6a7c41e1dd1f126ce5d5b1000b9}} 
+\mbox{\hyperlink{struct_dummy}{E\+OT}} {\bfseries sample} (\mbox{\hyperlink{classedo_uniform}{edo\+Uniform}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&distrib)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename E\+OT, class D = edo\+Uniform$<$\+E\+O\+T$>$$>$\newline
+class edo\+Sampler\+Uniform$<$ E\+O\+T, D $>$}
+
+This class uses the Uniform distribution parameters (bounds) to return a random position used for population sampling.
+
+Returns a random number in \mbox{[}min,max\mbox{[} for each variable defined by the given distribution.
+
+Note\+: if the distribution given at call defines a min==max for one of the variable, the result will be the same number. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Sampler\+Uniform.\+h\end{DoxyCompactItemize}

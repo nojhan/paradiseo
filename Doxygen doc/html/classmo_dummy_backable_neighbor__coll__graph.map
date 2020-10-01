@@ -1,0 +1,9 @@
+<map id="moDummyBackableNeighbor" name="moDummyBackableNeighbor">
+<area shape="rect" id="node1" title=" " alt="" coords="5,437,219,464"/>
+<area shape="rect" id="node2" href="$classmo_backable_neighbor.html" title=" " alt="" coords="31,348,193,389"/>
+<area shape="rect" id="node3" href="$classmo_neighbor.html" title=" " alt="" coords="25,244,199,300"/>
+<area shape="rect" id="node4" href="$class_e_o.html" title=" " alt="" coords="23,155,201,196"/>
+<area shape="rect" id="node5" href="$classeo_object.html" title=" " alt="" coords="15,80,95,107"/>
+<area shape="rect" id="node6" href="$classeo_persistent.html" title=" " alt="" coords="119,80,222,107"/>
+<area shape="rect" id="node7" href="$classeo_printable.html" title=" " alt="" coords="123,5,219,32"/>
+</map>

@@ -1,0 +1,476 @@
+\hypertarget{classeo_general_int_bounds}{}\doxysection{eo\+General\+Int\+Bounds Class Reference}
+\label{classeo_general_int_bounds}\index{eoGeneralIntBounds@{eoGeneralIntBounds}}
+
+
+{\ttfamily \#include $<$eo\+Int\+Bounds.\+h$>$}
+
+
+
+Inheritance diagram for eo\+General\+Int\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classeo_general_int_bounds__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+General\+Int\+Bounds\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classeo_general_int_bounds__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_general_int_bounds_a73d0185f9ccd0d2ba6408429234d86d8}{eo\+General\+Int\+Bounds}} (std\+::string \+\_\+s=\char`\"{}\mbox{[}-\/infinity,+infinity\mbox{]}\char`\"{})
+\item 
+\mbox{\hyperlink{classeo_general_int_bounds_a5ad98237c03abbd018dba8e20e908860}{eo\+General\+Int\+Bounds}} (const \mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \&\+\_\+b)
+\item 
+\mbox{\Hypertarget{classeo_general_int_bounds_af5a5346846bee7affdb9f18101c0f29b}\label{classeo_general_int_bounds_af5a5346846bee7affdb9f18101c0f29b}} 
+\mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \& {\bfseries operator=} (const \mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \&\+\_\+b)
+\item 
+\mbox{\hyperlink{classeo_general_int_bounds_a0c5c9a94cd67efefaba9e1060b571b98}{$\sim$eo\+General\+Int\+Bounds}} ()
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}{is\+Bounded}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}{has\+No\+Bound\+At\+All}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}{is\+Min\+Bounded}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}{is\+Max\+Bounded}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}{is\+In\+Bounds}} (double \+\_\+x) const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}{folds\+In\+Bounds}} (double \&\+\_\+x) const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}{truncate}} (double \&\+\_\+x) const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}{minimum}} () const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}{maximum}} () const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}{range}} () const
+\item 
+virtual double \mbox{\hyperlink{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}{uniform}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a01649725b5a9c239d033f82ec7279e4b}{random}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const
+\item 
+virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}} $\ast$ \mbox{\hyperlink{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}{dup}} () const
+\item 
+const \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}} \& \mbox{\hyperlink{classeo_general_int_bounds_ae320c4838137ee06fb76cb9702f9efc7}{the\+Bounds}} () const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a5060eaea13c176d97a1cc3910a006042}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a30921eccbf8a211064392d588ee305b6}{read\+From}} (std\+::istream \&\+\_\+is)
+\item 
+\mbox{\hyperlink{classeo_general_int_bounds_a73d0185f9ccd0d2ba6408429234d86d8}{eo\+General\+Int\+Bounds}} (std\+::string \+\_\+s=\char`\"{}\mbox{[}-\/infinity,+infinity\mbox{]}\char`\"{})
+\item 
+\mbox{\hyperlink{classeo_general_int_bounds_a5ad98237c03abbd018dba8e20e908860}{eo\+General\+Int\+Bounds}} (const \mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \&\+\_\+b)
+\item 
+\mbox{\Hypertarget{classeo_general_int_bounds_af5a5346846bee7affdb9f18101c0f29b}\label{classeo_general_int_bounds_af5a5346846bee7affdb9f18101c0f29b}} 
+\mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \& {\bfseries operator=} (const \mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \&\+\_\+b)
+\item 
+\mbox{\hyperlink{classeo_general_int_bounds_a0c5c9a94cd67efefaba9e1060b571b98}{$\sim$eo\+General\+Int\+Bounds}} ()
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}{is\+Bounded}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}{has\+No\+Bound\+At\+All}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}{is\+Min\+Bounded}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}{is\+Max\+Bounded}} (void) const
+\item 
+virtual bool \mbox{\hyperlink{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}{is\+In\+Bounds}} (double \+\_\+x) const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}{folds\+In\+Bounds}} (double \&\+\_\+x) const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}{truncate}} (double \&\+\_\+x) const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}{minimum}} () const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}{maximum}} () const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}{range}} () const
+\item 
+virtual double \mbox{\hyperlink{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}{uniform}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const
+\item 
+virtual long int \mbox{\hyperlink{classeo_general_int_bounds_a01649725b5a9c239d033f82ec7279e4b}{random}} (\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&\+\_\+rng=eo\+::rng) const
+\item 
+virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}} $\ast$ \mbox{\hyperlink{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}{dup}} () const
+\item 
+const \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}} \& \mbox{\hyperlink{classeo_general_int_bounds_ae320c4838137ee06fb76cb9702f9efc7}{the\+Bounds}} () const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a5060eaea13c176d97a1cc3910a006042}{print\+On}} (std\+::ostream \&\+\_\+os) const
+\item 
+virtual void \mbox{\hyperlink{classeo_general_int_bounds_a30921eccbf8a211064392d588ee305b6}{read\+From}} (std\+::istream \&\+\_\+is)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that encapsulate all possible \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}. Mandatory in order to read through the parser 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_general_int_bounds_a73d0185f9ccd0d2ba6408429234d86d8}\label{classeo_general_int_bounds_a73d0185f9ccd0d2ba6408429234d86d8}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{eoGeneralIntBounds()}{eoGeneralIntBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily eo\+General\+Int\+Bounds\+::eo\+General\+Int\+Bounds (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+s = {\ttfamily \char`\"{}\mbox{[}-\/infinity,+infinity\mbox{]}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: from a string, chooses the type of bound \mbox{\Hypertarget{classeo_general_int_bounds_a5ad98237c03abbd018dba8e20e908860}\label{classeo_general_int_bounds_a5ad98237c03abbd018dba8e20e908860}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{eoGeneralIntBounds()}{eoGeneralIntBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily eo\+General\+Int\+Bounds\+::eo\+General\+Int\+Bounds (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \&}]{\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Need a Cpy Ctor because we are allocating memory \mbox{\Hypertarget{classeo_general_int_bounds_a0c5c9a94cd67efefaba9e1060b571b98}\label{classeo_general_int_bounds_a0c5c9a94cd67efefaba9e1060b571b98}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!````~eoGeneralIntBounds@{$\sim$eoGeneralIntBounds}}
+\index{````~eoGeneralIntBounds@{$\sim$eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoGeneralIntBounds()}{~eoGeneralIntBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+General\+Int\+Bounds\+::$\sim$eo\+General\+Int\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Need a Dtor because we allocate an actual bound ~\newline
+ \mbox{\Hypertarget{classeo_general_int_bounds_a73d0185f9ccd0d2ba6408429234d86d8}\label{classeo_general_int_bounds_a73d0185f9ccd0d2ba6408429234d86d8}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{eoGeneralIntBounds()}{eoGeneralIntBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily eo\+General\+Int\+Bounds\+::eo\+General\+Int\+Bounds (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+s = {\ttfamily \char`\"{}\mbox{[}-\/infinity,+infinity\mbox{]}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: from a string, chooses the type of bound \mbox{\Hypertarget{classeo_general_int_bounds_a5ad98237c03abbd018dba8e20e908860}\label{classeo_general_int_bounds_a5ad98237c03abbd018dba8e20e908860}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{eoGeneralIntBounds()}{eoGeneralIntBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily eo\+General\+Int\+Bounds\+::eo\+General\+Int\+Bounds (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_general_int_bounds}{eo\+General\+Int\+Bounds}} \&}]{\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Need a Cpy Ctor because we are allocating memory \mbox{\Hypertarget{classeo_general_int_bounds_a0c5c9a94cd67efefaba9e1060b571b98}\label{classeo_general_int_bounds_a0c5c9a94cd67efefaba9e1060b571b98}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!````~eoGeneralIntBounds@{$\sim$eoGeneralIntBounds}}
+\index{````~eoGeneralIntBounds@{$\sim$eoGeneralIntBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{$\sim$eoGeneralIntBounds()}{~eoGeneralIntBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+General\+Int\+Bounds\+::$\sim$eo\+General\+Int\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Need a Dtor because we allocate an actual bound ~\newline
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}\label{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!dup@{dup}}
+\index{dup@{dup}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}$\ast$ eo\+General\+Int\+Bounds\+::dup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+for memory managements -\/ ugly 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}\label{classeo_general_int_bounds_ac6d9ff162fa5e767369e5c7d2f132892}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!dup@{dup}}
+\index{dup@{dup}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}$\ast$ eo\+General\+Int\+Bounds\+::dup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+for memory managements -\/ ugly 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_aba85c6e66b0b60cb276a70eb1db85dbd}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}\label{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{double \&}]{\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Put value back into bounds -\/ by folding back and forth 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}\label{classeo_general_int_bounds_a21a66eb4ed803d13baa775950371c458}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!foldsInBounds@{foldsInBounds}}
+\index{foldsInBounds@{foldsInBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{foldsInBounds()}{foldsInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::folds\+In\+Bounds (\begin{DoxyParamCaption}\item[{double \&}]{\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Put value back into bounds -\/ by folding back and forth 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a3d8e3301b935bd10097d7a779440544f}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}\label{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: true if no min {\itshape {\bfseries{and}}} no max hence no further need to test/truncate/fold anything 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}\label{classeo_general_int_bounds_a59c884726482be42324b9c54f499b14d}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!hasNoBoundAtAll@{hasNoBoundAtAll}}
+\index{hasNoBoundAtAll@{hasNoBoundAtAll}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{hasNoBoundAtAll()}{hasNoBoundAtAll()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::has\+No\+Bound\+At\+All (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: true if no min {\itshape {\bfseries{and}}} no max hence no further need to test/truncate/fold anything 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a5dc6126a0b7a32381c0cb6edef5838b2}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}\label{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: true if {\itshape {\bfseries{both}}} a min and a max 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}\label{classeo_general_int_bounds_a7b6a8875faf13b8404ba7cf0696b2ec1}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isBounded@{isBounded}}
+\index{isBounded@{isBounded}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isBounded()}{isBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: true if {\itshape {\bfseries{both}}} a min and a max 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a1974708df3083f0fc62d4962b166115a}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}\label{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{double}]{\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} on a value\+: is it in bounds? 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}\label{classeo_general_int_bounds_abb5d55e743e72b903e350522a2889c49}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isInBounds@{isInBounds}}
+\index{isInBounds@{isInBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isInBounds()}{isInBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+In\+Bounds (\begin{DoxyParamCaption}\item[{double}]{\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{struct_test}{Test}} on a value\+: is it in bounds? 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a58e9e97a44247b73c36cbd74cce85ae8}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}\label{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isMaxBounded@{isMaxBounded}}
+\index{isMaxBounded@{isMaxBounded}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMaxBounded()}{isMaxBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+Max\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: bounded from above??? 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}\label{classeo_general_int_bounds_aa250b694c26e0079debfb78e71a419ff}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isMaxBounded@{isMaxBounded}}
+\index{isMaxBounded@{isMaxBounded}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMaxBounded()}{isMaxBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+Max\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: bounded from above??? 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_ad48e3bedb52a3b37f1e52540a6521c20}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}\label{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isMinBounded@{isMinBounded}}
+\index{isMinBounded@{isMinBounded}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMinBounded()}{isMinBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+Min\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: bounded from below??? 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}\label{classeo_general_int_bounds_a7ec28be48de564cafad9137e09a0bc70}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!isMinBounded@{isMinBounded}}
+\index{isMinBounded@{isMinBounded}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{isMinBounded()}{isMinBounded()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool eo\+General\+Int\+Bounds\+::is\+Min\+Bounded (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Self-\/\+Test\+: bounded from below??? 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_af5efb56e026b55d2bf5fa36a36af9432}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}\label{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!maximum@{maximum}}
+\index{maximum@{maximum}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+get maximum value std\+::exception if does not exist 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}\label{classeo_general_int_bounds_a2541735a59c207c5714b74119f491224}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!maximum@{maximum}}
+\index{maximum@{maximum}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+get maximum value std\+::exception if does not exist 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_abfb77028c48d8b9f9c9033d84493bc37}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}\label{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+get minimum value std\+::exception if does not exist 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}\label{classeo_general_int_bounds_a665c4a7c94ead0e5eb09672dae38db82}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!minimum@{minimum}}
+\index{minimum@{minimum}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+get minimum value std\+::exception if does not exist 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a9782466cee3c13b2672db80fe73818ed}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a5060eaea13c176d97a1cc3910a006042}\label{classeo_general_int_bounds_a5060eaea13c176d97a1cc3910a006042}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!printOn@{printOn}}
+\index{printOn@{printOn}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+don\textquotesingle{}t forget the print\+On method -\/ again that of the embedded bound 
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a5060eaea13c176d97a1cc3910a006042}\label{classeo_general_int_bounds_a5060eaea13c176d97a1cc3910a006042}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!printOn@{printOn}}
+\index{printOn@{printOn}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{printOn()}{printOn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::print\+On (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+don\textquotesingle{}t forget the print\+On method -\/ again that of the embedded bound 
+
+Implements \mbox{\hyperlink{classeo_printable_a08ce136c0e66d3beaa091209871fcb74}{eo\+Printable}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a01649725b5a9c239d033f82ec7279e4b}\label{classeo_general_int_bounds_a01649725b5a9c239d033f82ec7279e4b}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!random@{random}}
+\index{random@{random}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{random()}{random()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+random generator of uniform ints in bounds std\+::exception if unbounded 
+
+Implements \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a01649725b5a9c239d033f82ec7279e4b}\label{classeo_general_int_bounds_a01649725b5a9c239d033f82ec7279e4b}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!random@{random}}
+\index{random@{random}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{random()}{random()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+random generator of uniform ints in bounds std\+::exception if unbounded 
+
+Implements \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}\label{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!range@{range}}
+\index{range@{range}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+get range std\+::exception if unbounded 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}\label{classeo_general_int_bounds_a6010f1b756a290c0f796f2de791f994e}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!range@{range}}
+\index{range@{range}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual long int eo\+General\+Int\+Bounds\+::range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+get range std\+::exception if unbounded 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a097ee18441e5ba43df9fffbe07cb94bf}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a30921eccbf8a211064392d588ee305b6}\label{classeo_general_int_bounds_a30921eccbf8a211064392d588ee305b6}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+no read\+From ??? Have to check that later 
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a30921eccbf8a211064392d588ee305b6}\label{classeo_general_int_bounds_a30921eccbf8a211064392d588ee305b6}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{readFrom()}{readFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::read\+From (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{\+\_\+is }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+no read\+From ??? Have to check that later 
+
+Implements \mbox{\hyperlink{classeo_persistent_af9ffb4fe25ffe2ca3009387ca74abf3a}{eo\+Persistent}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_ae320c4838137ee06fb76cb9702f9efc7}\label{classeo_general_int_bounds_ae320c4838137ee06fb76cb9702f9efc7}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!theBounds@{theBounds}}
+\index{theBounds@{theBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{theBounds()}{theBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}\& eo\+General\+Int\+Bounds\+::the\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+for efficiency, it\textquotesingle{}s better to use the embedded boud directly \mbox{\Hypertarget{classeo_general_int_bounds_ae320c4838137ee06fb76cb9702f9efc7}\label{classeo_general_int_bounds_ae320c4838137ee06fb76cb9702f9efc7}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!theBounds@{theBounds}}
+\index{theBounds@{theBounds}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{theBounds()}{theBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classeo_int_bounds}{eo\+Int\+Bounds}}\& eo\+General\+Int\+Bounds\+::the\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+for efficiency, it\textquotesingle{}s better to use the embedded boud directly \mbox{\Hypertarget{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}\label{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{double \&}]{\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Put value back into bounds -\/ by truncating to a boundary value 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}\label{classeo_general_int_bounds_a7d39af34083eebca611bceb12e5ada0e}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!truncate@{truncate}}
+\index{truncate@{truncate}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void eo\+General\+Int\+Bounds\+::truncate (\begin{DoxyParamCaption}\item[{double \&}]{\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Put value back into bounds -\/ by truncating to a boundary value 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_a024e79fc0982a7973d89f6da238a2d47}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}\label{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual double eo\+General\+Int\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+random generator of uniform doubles in bounds std\+::exception if unbounded 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}{eo\+Int\+Bounds}}.
+
+\mbox{\Hypertarget{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}\label{classeo_general_int_bounds_a45ec5e682dd1c50edb6527e9a2b092e2}} 
+\index{eoGeneralIntBounds@{eoGeneralIntBounds}!uniform@{uniform}}
+\index{uniform@{uniform}!eoGeneralIntBounds@{eoGeneralIntBounds}}
+\doxysubsubsection{\texorpdfstring{uniform()}{uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual double eo\+General\+Int\+Bounds\+::uniform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_rng}{eo\+Rng}} \&}]{\+\_\+rng = {\ttfamily eo\+:\+:rng} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+random generator of uniform doubles in bounds std\+::exception if unbounded 
+
+Implements \mbox{\hyperlink{classeo_int_bounds_aafc85df9b12b98dac1486a1c183afef9}{eo\+Int\+Bounds}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Int\+Bounds.\+h\item 
+deprecated/eo/src/utils/eo\+Int\+Bounds.\+cpp\end{DoxyCompactItemize}

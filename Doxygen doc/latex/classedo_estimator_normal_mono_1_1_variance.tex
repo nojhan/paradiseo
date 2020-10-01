@@ -1,0 +1,52 @@
+\hypertarget{classedo_estimator_normal_mono_1_1_variance}{}\doxysection{edo\+Estimator\+Normal\+Mono$<$ E\+OT $>$\+::Variance Class Reference}
+\label{classedo_estimator_normal_mono_1_1_variance}\index{edoEstimatorNormalMono$<$ EOT $>$::Variance@{edoEstimatorNormalMono$<$ EOT $>$::Variance}}
+
+
+Knuth\textquotesingle{}s algorithm, online variance, numericably stable.  
+
+
+
+
+{\ttfamily \#include $<$edo\+Estimator\+Normal\+Mono.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_estimator_normal_mono_1_1_variance_ad3dd8bb768ca72f4c6dc4e0e37671cd9}\label{classedo_estimator_normal_mono_1_1_variance_ad3dd8bb768ca72f4c6dc4e0e37671cd9}} 
+void {\bfseries update} (Atom\+Type x)
+\item 
+\mbox{\Hypertarget{classedo_estimator_normal_mono_1_1_variance_a769bbfeaf8257dcfae3d9f6bab851011}\label{classedo_estimator_normal_mono_1_1_variance_a769bbfeaf8257dcfae3d9f6bab851011}} 
+Atom\+Type {\bfseries mean} () const
+\item 
+\mbox{\Hypertarget{classedo_estimator_normal_mono_1_1_variance_ae4aa434301f09efcfc71a368f1dc226f}\label{classedo_estimator_normal_mono_1_1_variance_ae4aa434301f09efcfc71a368f1dc226f}} 
+Atom\+Type \mbox{\hyperlink{classedo_estimator_normal_mono_1_1_variance_ae4aa434301f09efcfc71a368f1dc226f}{var\+\_\+n}} () const
+\begin{DoxyCompactList}\small\item\em Population variance. \end{DoxyCompactList}\item 
+Atom\+Type \mbox{\hyperlink{classedo_estimator_normal_mono_1_1_variance_af34a4e40fdb87e2ab14dbf6baf8b8426}{var}} () const
+\item 
+\mbox{\Hypertarget{classedo_estimator_normal_mono_1_1_variance_af12f8c35f86125c8d0684583e3592b01}\label{classedo_estimator_normal_mono_1_1_variance_af12f8c35f86125c8d0684583e3592b01}} 
+Atom\+Type \mbox{\hyperlink{classedo_estimator_normal_mono_1_1_variance_af12f8c35f86125c8d0684583e3592b01}{std\+\_\+n}} () const
+\begin{DoxyCompactList}\small\item\em Population standard deviation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classedo_estimator_normal_mono_1_1_variance_ae2c7c13dd5022521a9a84f8e4ac59e78}\label{classedo_estimator_normal_mono_1_1_variance_ae2c7c13dd5022521a9a84f8e4ac59e78}} 
+Atom\+Type \mbox{\hyperlink{classedo_estimator_normal_mono_1_1_variance_ae2c7c13dd5022521a9a84f8e4ac59e78}{std}} () const
+\begin{DoxyCompactList}\small\item\em Sample standard deviation, is a biased estimate of the population standard deviation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename E\+OT$>$\newline
+class edo\+Estimator\+Normal\+Mono$<$ E\+O\+T $>$\+::\+Variance}
+
+Knuth\textquotesingle{}s algorithm, online variance, numericably stable. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classedo_estimator_normal_mono_1_1_variance_af34a4e40fdb87e2ab14dbf6baf8b8426}\label{classedo_estimator_normal_mono_1_1_variance_af34a4e40fdb87e2ab14dbf6baf8b8426}} 
+\index{edoEstimatorNormalMono$<$ EOT $>$::Variance@{edoEstimatorNormalMono$<$ EOT $>$::Variance}!var@{var}}
+\index{var@{var}!edoEstimatorNormalMono$<$ EOT $>$::Variance@{edoEstimatorNormalMono$<$ EOT $>$::Variance}}
+\doxysubsubsection{\texorpdfstring{var()}{var()}}
+{\footnotesize\ttfamily template$<$typename E\+OT $>$ \\
+Atom\+Type \mbox{\hyperlink{classedo_estimator_normal_mono}{edo\+Estimator\+Normal\+Mono}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::Variance\+::var (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sample variance (using Bessel\textquotesingle{}s correction) is an unbiased estimate of the population variance, but it has uniformly higher mean squared error 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Estimator\+Normal\+Mono.\+h\end{DoxyCompactItemize}

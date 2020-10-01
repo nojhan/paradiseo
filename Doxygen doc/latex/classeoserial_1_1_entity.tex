@@ -1,0 +1,69 @@
+\hypertarget{classeoserial_1_1_entity}{}\doxysection{eoserial\+::Entity Class Reference}
+\label{classeoserial_1_1_entity}\index{eoserial::Entity@{eoserial::Entity}}
+
+
+J\+S\+ON entity.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::Entity\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeoserial_1_1_entity__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classeoserial_1_1_entity_aa5e5d9a87839b77835bef45c3571992b}{$\sim$\+Entity}} ()
+\item 
+virtual std\+::ostream \& \mbox{\hyperlink{classeoserial_1_1_entity_acea8e7e906d326b8824f234646fa4fe4}{print}} (std\+::ostream \&out) const =0
+\begin{DoxyCompactList}\small\item\em Prints the content of a J\+S\+ON object into a stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+J\+S\+ON entity. 
+
+This class represents a J\+S\+ON entity, which can be J\+S\+ON objects, strings or arrays. It is the base class for the J\+S\+ON hierarchy. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_entity_aa5e5d9a87839b77835bef45c3571992b}\label{classeoserial_1_1_entity_aa5e5d9a87839b77835bef45c3571992b}} 
+\index{eoserial::Entity@{eoserial::Entity}!````~Entity@{$\sim$Entity}}
+\index{````~Entity@{$\sim$Entity}!eoserial::Entity@{eoserial::Entity}}
+\doxysubsubsection{\texorpdfstring{$\sim$Entity()}{~Entity()}}
+{\footnotesize\ttfamily virtual eoserial\+::\+Entity\+::$\sim$\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Virtual dtor (base class). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_entity_acea8e7e906d326b8824f234646fa4fe4}\label{classeoserial_1_1_entity_acea8e7e906d326b8824f234646fa4fe4}} 
+\index{eoserial::Entity@{eoserial::Entity}!print@{print}}
+\index{print@{print}!eoserial::Entity@{eoserial::Entity}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual std\+::ostream\& eoserial\+::\+Entity\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Prints the content of a J\+S\+ON object into a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The stream in which we\textquotesingle{}re printing. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classeoserial_1_1_array_a41102329ba13ed80372605dbba30c3e6}{eoserial\+::\+Array}}, \mbox{\hyperlink{classeoserial_1_1_object_a6b6c4abb10819f17c42baebbcdbf10df}{eoserial\+::\+Object}}, and \mbox{\hyperlink{classeoserial_1_1_string_ab32cbc21afdf15e7d00a43ce39ccc1c9}{eoserial\+::\+String}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Entity.\+h\end{DoxyCompactItemize}

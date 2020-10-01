@@ -1,0 +1,99 @@
+\hypertarget{classparadiseo_1_1smp_1_1_custom_boolean_topology}{}\doxysection{paradiseo\+::smp\+::Custom\+Boolean\+Topology Class Reference}
+\label{classparadiseo_1_1smp_1_1_custom_boolean_topology}\index{paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}}
+
+
+Inheritance diagram for paradiseo\+::smp\+::Custom\+Boolean\+Topology\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{classparadiseo_1_1smp_1_1_custom_boolean_topology__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Custom\+Boolean\+Topology\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{classparadiseo_1_1smp_1_1_custom_boolean_topology__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_boolean_topology_a074557032a973475b54c283270699e33}{Custom\+Boolean\+Topology}} (std\+::string filename)
+\item 
+std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_boolean_topology_ab429ce3eedf95794a196622fabc37e39}{get\+Id\+Neighbors}} (unsigned id\+Node) const
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_boolean_topology_ae68670d92bb2dea8d7a7c251cab5aae7}{construct}} (unsigned nb\+Node)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_custom_boolean_topology_a5b6c18ddd2b5023e342accadb6843591}{isolate\+Node}} (unsigned id\+Node)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_boolean_topology_a074557032a973475b54c283270699e33}\label{classparadiseo_1_1smp_1_1_custom_boolean_topology_a074557032a973475b54c283270699e33}} 
+\index{paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}!CustomBooleanTopology@{CustomBooleanTopology}}
+\index{CustomBooleanTopology@{CustomBooleanTopology}!paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}}
+\doxysubsubsection{\texorpdfstring{CustomBooleanTopology()}{CustomBooleanTopology()}}
+{\footnotesize\ttfamily paradiseo\+::smp\+::\+Custom\+Boolean\+Topology\+::\+Custom\+Boolean\+Topology (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+Constructor for a custom topology from a file 
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file, must be in the same directory as the executable \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_boolean_topology_ae68670d92bb2dea8d7a7c251cab5aae7}\label{classparadiseo_1_1smp_1_1_custom_boolean_topology_ae68670d92bb2dea8d7a7c251cab5aae7}} 
+\index{paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}!construct@{construct}}
+\index{construct@{construct}!paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Custom\+Boolean\+Topology\+::construct (\begin{DoxyParamCaption}\item[{unsigned}]{nb\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \+: a custom topology cannot be reconstructed in a different way, so the method throws an error if nb\+Node doesn\textquotesingle{}t match with the actual number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em nb\+Node} & number of nodes for the topology \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_a8b5612f89e420f37c7fa0080e7d156d9}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_boolean_topology_ab429ce3eedf95794a196622fabc37e39}\label{classparadiseo_1_1smp_1_1_custom_boolean_topology_ab429ce3eedf95794a196622fabc37e39}} 
+\index{paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}!getIdNeighbors@{getIdNeighbors}}
+\index{getIdNeighbors@{getIdNeighbors}!paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}}
+\doxysubsubsection{\texorpdfstring{getIdNeighbors()}{getIdNeighbors()}}
+{\footnotesize\ttfamily std\+::vector$<$ unsigned $>$ paradiseo\+::smp\+::\+Custom\+Boolean\+Topology\+::get\+Id\+Neighbors (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \begin{DoxySeeAlso}{See also}
+smp\+::topology\+::\+Abstract\+Topology\+::get\+Id\+Neighbors 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_af3b0d21baaf63d453f5e4a76d4f9c1d8}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_custom_boolean_topology_a5b6c18ddd2b5023e342accadb6843591}\label{classparadiseo_1_1smp_1_1_custom_boolean_topology_a5b6c18ddd2b5023e342accadb6843591}} 
+\index{paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}!isolateNode@{isolateNode}}
+\index{isolateNode@{isolateNode}!paradiseo::smp::CustomBooleanTopology@{paradiseo::smp::CustomBooleanTopology}}
+\doxysubsubsection{\texorpdfstring{isolateNode()}{isolateNode()}}
+{\footnotesize\ttfamily void paradiseo\+::smp\+::\+Custom\+Boolean\+Topology\+::isolate\+Node (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \+: changes the topology \+: removes any connection from/to the given node. 
+\begin{DoxyParams}{Parameters}
+{\em id\+Node} & index of the node to be isolated \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_ac7f65400edefd676de8f5db26ad570dc}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/custom\+Boolean\+Topology.\+h\item 
+smp/src/topology/custom\+Boolean\+Topology.\+cpp\end{DoxyCompactItemize}

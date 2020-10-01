@@ -1,0 +1,80 @@
+\hypertarget{classmoeo_archive_objective_vector_saving_updater}{}\doxysection{moeo\+Archive\+Objective\+Vector\+Saving\+Updater$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_archive_objective_vector_saving_updater}\index{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$@{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Archive\+Objective\+Vector\+Saving\+Updater.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Archive\+Objective\+Vector\+Saving\+Updater$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classmoeo_archive_objective_vector_saving_updater__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Archive\+Objective\+Vector\+Saving\+Updater$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classmoeo_archive_objective_vector_saving_updater__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_archive_objective_vector_saving_updater_ad9f70d24605ccd1e89c8b4ea4c96c333}{moeo\+Archive\+Objective\+Vector\+Saving\+Updater}} (\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&\+\_\+arch, const std\+::string \&\+\_\+filename, bool \+\_\+count=false, int \+\_\+id=-\/1)
+\item 
+void \mbox{\hyperlink{classmoeo_archive_objective_vector_saving_updater_a0f6770822c62463ee3b56f7a4c59a850}{operator()}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Archive\+Objective\+Vector\+Saving\+Updater$<$ M\+O\+E\+O\+T $>$}
+
+This class allows to save the objective vectors of the solutions contained in an archive into a file at each generation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_archive_objective_vector_saving_updater_ad9f70d24605ccd1e89c8b4ea4c96c333}\label{classmoeo_archive_objective_vector_saving_updater_ad9f70d24605ccd1e89c8b4ea4c96c333}} 
+\index{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$@{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$}!moeoArchiveObjectiveVectorSavingUpdater@{moeoArchiveObjectiveVectorSavingUpdater}}
+\index{moeoArchiveObjectiveVectorSavingUpdater@{moeoArchiveObjectiveVectorSavingUpdater}!moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$@{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoArchiveObjectiveVectorSavingUpdater()}{moeoArchiveObjectiveVectorSavingUpdater()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_archive_objective_vector_saving_updater}{moeo\+Archive\+Objective\+Vector\+Saving\+Updater}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_archive_objective_vector_saving_updater}{moeo\+Archive\+Objective\+Vector\+Saving\+Updater}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_archive}{moeo\+Archive}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+arch,  }\item[{const std\+::string \&}]{\+\_\+filename,  }\item[{bool}]{\+\_\+count = {\ttfamily false},  }\item[{int}]{\+\_\+id = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+arch} & local archive \\
+\hline
+{\em \+\_\+filename} & target filename \\
+\hline
+{\em \+\_\+count} & put this variable to true if you want a new file to be created each time () is called and to false if you only want the file to be updated \\
+\hline
+{\em \+\_\+id} & own ID \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_archive_objective_vector_saving_updater_a0f6770822c62463ee3b56f7a4c59a850}\label{classmoeo_archive_objective_vector_saving_updater_a0f6770822c62463ee3b56f7a4c59a850}} 
+\index{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$@{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$@{moeoArchiveObjectiveVectorSavingUpdater$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_archive_objective_vector_saving_updater}{moeo\+Archive\+Objective\+Vector\+Saving\+Updater}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Saves the fitness of the archive\textquotesingle{}s members into the file 
+
+Implements \mbox{\hyperlink{classeo_f_a8b8f7f70edd96ec765c29357b373913d}{eo\+F$<$ void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/utils/moeo\+Archive\+Objective\+Vector\+Saving\+Updater.\+h\end{DoxyCompactItemize}

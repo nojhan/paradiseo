@@ -1,0 +1,133 @@
+\hypertarget{class_exponential_distribution}{}\doxysection{Exponential\+Distribution Class Reference}
+\label{class_exponential_distribution}\index{ExponentialDistribution@{ExponentialDistribution}}
+
+
+Exponential distribution.  
+
+
+
+
+Inheritance diagram for Exponential\+Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_exponential_distribution__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Exponential\+Distribution\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_exponential_distribution__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_exponential_distribution_a85a30cf445131c1671f13cf891e4ba39}{make\+\_\+parser}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&parser)
+\begin{DoxyCompactList}\small\item\em Creates params and retrieves values from parser. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_exponential_distribution_a8fb4915fd57627f1081b0ea5cf0ec911}{next\+\_\+element}} ()
+\begin{DoxyCompactList}\small\item\em Returns the next element of the distribution to put in the vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{class_exponential_distribution_ac452d0d1b556136b88060e9cc95e7807}{pack}} (void) const
+\begin{DoxyCompactList}\small\item\em Serializes the object to J\+S\+ON format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_exponential_distribution_a6abd56086a4d8910e88356776549f5c3}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_exponential_distribution_a3f2ab530bd789264f7690a42d9805fdc}\label{class_exponential_distribution_a3f2ab530bd789264f7690a42d9805fdc}} 
+std\+::string \mbox{\hyperlink{class_exponential_distribution_a3f2ab530bd789264f7690a42d9805fdc}{to\+String}} () const
+\begin{DoxyCompactList}\small\item\em Prints the name and the parameters of the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_exponential_distribution_a227466b932f438a83d059a4f8a3ecee9}\label{class_exponential_distribution_a227466b932f438a83d059a4f8a3ecee9}} 
+double {\bfseries \+\_\+mean}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Exponential distribution. 
+
+This distribution belongs to the category of the decreasing power laws and are affected by long trails phenomenons. An exponential distribution is only defined by its mean.
+
+The 2 parameters activable from the parser are the following\+:
+\begin{DoxyItemize}
+\item exponential=1\+: to activate the exponential distribution.
+\item exponential-\/mean=50\+: indicates that the mean must be 50ms. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_exponential_distribution_a85a30cf445131c1671f13cf891e4ba39}\label{class_exponential_distribution_a85a30cf445131c1671f13cf891e4ba39}} 
+\index{ExponentialDistribution@{ExponentialDistribution}!make\_parser@{make\_parser}}
+\index{make\_parser@{make\_parser}!ExponentialDistribution@{ExponentialDistribution}}
+\doxysubsubsection{\texorpdfstring{make\_parser()}{make\_parser()}}
+{\footnotesize\ttfamily void Exponential\+Distribution\+::make\+\_\+parser (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&}]{parser }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Creates params and retrieves values from parser. 
+
+Parser\textquotesingle{}s params should take milliseconds as inputs. 
+
+Implements \mbox{\hyperlink{class_distribution_a3452bebe8b264677140f8216400fd85d}{Distribution}}.
+
+\mbox{\Hypertarget{class_exponential_distribution_a8fb4915fd57627f1081b0ea5cf0ec911}\label{class_exponential_distribution_a8fb4915fd57627f1081b0ea5cf0ec911}} 
+\index{ExponentialDistribution@{ExponentialDistribution}!next\_element@{next\_element}}
+\index{next\_element@{next\_element}!ExponentialDistribution@{ExponentialDistribution}}
+\doxysubsubsection{\texorpdfstring{next\_element()}{next\_element()}}
+{\footnotesize\ttfamily int Exponential\+Distribution\+::next\+\_\+element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the next element of the distribution to put in the vector. 
+
+\begin{DoxyReturn}{Returns}
+Number of milliseconds to wait. Can be negative ; in this case, the number will be truncated to 0ms. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_distribution_a0478f4f3f3b4e72e163073b0dc7eb29c}{Distribution}}.
+
+\mbox{\Hypertarget{class_exponential_distribution_ac452d0d1b556136b88060e9cc95e7807}\label{class_exponential_distribution_ac452d0d1b556136b88060e9cc95e7807}} 
+\index{ExponentialDistribution@{ExponentialDistribution}!pack@{pack}}
+\index{pack@{pack}!ExponentialDistribution@{ExponentialDistribution}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}$\ast$ Exponential\+Distribution\+::pack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the object to J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+A J\+S\+ON object created with new. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{eoserial\+::\+Printable}}.
+
+\mbox{\Hypertarget{class_exponential_distribution_a6abd56086a4d8910e88356776549f5c3}\label{class_exponential_distribution_a6abd56086a4d8910e88356776549f5c3}} 
+\index{ExponentialDistribution@{ExponentialDistribution}!unpack@{unpack}}
+\index{unpack@{unpack}!ExponentialDistribution@{ExponentialDistribution}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily void Exponential\+Distribution\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{eoserial\+::\+Persistent}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/test/mpi/\mbox{\hyperlink{t-mpi-distrib-exp_8cpp}{t-\/mpi-\/distrib-\/exp.\+cpp}}\end{DoxyCompactItemize}

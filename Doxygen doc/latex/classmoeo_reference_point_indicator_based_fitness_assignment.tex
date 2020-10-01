@@ -1,0 +1,171 @@
+\hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment}{}\doxysection{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_reference_point_indicator_based_fitness_assignment}\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classmoeo_reference_point_indicator_based_fitness_assignment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_reference_point_indicator_based_fitness_assignment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a67a5e91e08f89f27ad5aad989898c425}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}} (\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}} \&\+\_\+ref\+Point, \mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}}, double $>$ \&\+\_\+metric)
+\item 
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_ad122ebb7cda54b283d6736dc5e57da7d}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_aba47422dd4f82274af2f69c0b5f95d3a}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a67bfa12f97d247c15f3e28f923646b78}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_ab1ca358eeb6dac0afe902a3978e1219a}{set\+Fitnesses}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}} \& \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a73dc1eb66e46b28b7ee283f7367f427b}{ref\+Point}}
+\item 
+\mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}}, double $>$ \& \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a9adf4fd353f44f15d3722ef26aa81832}{metric}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}
+
+Fitness assignment sheme based a Reference Point and a Quality Indicator. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}\label{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}}}
+
+The type of objective vector 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_a67a5e91e08f89f27ad5aad989898c425}\label{classmoeo_reference_point_indicator_based_fitness_assignment_a67a5e91e08f89f27ad5aad989898c425}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!moeoReferencePointIndicatorBasedFitnessAssignment@{moeoReferencePointIndicatorBasedFitnessAssignment}}
+\index{moeoReferencePointIndicatorBasedFitnessAssignment@{moeoReferencePointIndicatorBasedFitnessAssignment}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoReferencePointIndicatorBasedFitnessAssignment()}{moeoReferencePointIndicatorBasedFitnessAssignment()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}} \&}]{\+\_\+ref\+Point,  }\item[{\mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}}, double $>$ \&}]{\+\_\+metric }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ref\+Point} & the reference point \\
+\hline
+{\em \+\_\+metric} & the quality indicator \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_ad122ebb7cda54b283d6736dc5e57da7d}\label{classmoeo_reference_point_indicator_based_fitness_assignment_ad122ebb7cda54b283d6736dc5e57da7d}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Sets the fitness values for every solution contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ eo\+Pop$<$ M\+O\+E\+O\+T $>$ \&, void $>$}}.
+
+\mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_ab1ca358eeb6dac0afe902a3978e1219a}\label{classmoeo_reference_point_indicator_based_fitness_assignment_ab1ca358eeb6dac0afe902a3978e1219a}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!setFitnesses@{setFitnesses}}
+\index{setFitnesses@{setFitnesses}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setFitnesses()}{setFitnesses()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::set\+Fitnesses (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Sets the fitness of every individual contained in the population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_a67bfa12f97d247c15f3e28f923646b78}\label{classmoeo_reference_point_indicator_based_fitness_assignment_a67bfa12f97d247c15f3e28f923646b78}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!setup@{setup}}
+\index{setup@{setup}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Sets the bounds for every objective using the min and the max value for every objective vector of \+\_\+pop (and the reference point) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_aba47422dd4f82274af2f69c0b5f95d3a}\label{classmoeo_reference_point_indicator_based_fitness_assignment_aba47422dd4f82274af2f69c0b5f95d3a}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+void \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the fitness values of the whole population \+\_\+pop by taking the deletion of the objective vector \+\_\+obj\+Vec into account. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+{\em \+\_\+obj\+Vec} & the objective vector \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_a9adf4fd353f44f15d3722ef26aa81832}\label{classmoeo_reference_point_indicator_based_fitness_assignment_a9adf4fd353f44f15d3722ef26aa81832}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!metric@{metric}}
+\index{metric@{metric}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{metric}{metric}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_normalized_solution_vs_solution_binary_metric}{moeo\+Normalized\+Solution\+Vs\+Solution\+Binary\+Metric}}$<$ \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}}, double $>$\& \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::metric\hspace{0.3cm}{\ttfamily [protected]}}
+
+the quality indicator \mbox{\Hypertarget{classmoeo_reference_point_indicator_based_fitness_assignment_a73dc1eb66e46b28b7ee283f7367f427b}\label{classmoeo_reference_point_indicator_based_fitness_assignment_a73dc1eb66e46b28b7ee283f7367f427b}} 
+\index{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}!refPoint@{refPoint}}
+\index{refPoint@{refPoint}!moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$@{moeoReferencePointIndicatorBasedFitnessAssignment$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{refPoint}{refPoint}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment_a51ae5507dca3e934f7db36eef78df556}{Objective\+Vector}}\& \mbox{\hyperlink{classmoeo_reference_point_indicator_based_fitness_assignment}{moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment}}$<$ M\+O\+E\+OT $>$\+::ref\+Point\hspace{0.3cm}{\ttfamily [protected]}}
+
+the reference point 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/fitness/moeo\+Reference\+Point\+Indicator\+Based\+Fitness\+Assignment.\+h\end{DoxyCompactItemize}

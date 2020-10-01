@@ -1,0 +1,187 @@
+\hypertarget{classmo_random_search_explorer}{}\doxysection{mo\+Random\+Search\+Explorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_random_search_explorer}\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Random\+Search\+Explorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Random\+Search\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_random_search_explorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Random\+Search\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_random_search_explorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_random_search_explorer_accbd81f4adba9ddbe80159445e42b045}\label{classmo_random_search_explorer_accbd81f4adba9ddbe80159445e42b045}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_random_search_explorer_acc23761fec3baa4f099ccf91b00104b7}\label{classmo_random_search_explorer_acc23761fec3baa4f099ccf91b00104b7}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_random_search_explorer_a67cec1616ea30e1163a4d4ad48f16cdd}{mo\+Random\+Search\+Explorer}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+init, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+fulleval, unsigned \+\_\+nb\+Step)
+\item 
+\mbox{\hyperlink{classmo_random_search_explorer_a58f106906cf70cc3b790154bdd3a4c3c}{$\sim$mo\+Random\+Search\+Explorer}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_random_search_explorer_aa13c11d58578341aa8689baf6849b99b}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_search_explorer_a2ebeba20759ad4c0cf16e2499ebd9725}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_search_explorer_a7099b212acb36098269bedb4b875f95a}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_search_explorer_afbcde853d3b5ea2a7f7938b4087c2228}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_random_search_explorer_a3c786106afbca87957a864cc2c5885ee}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_random_search_explorer_a7f8b0817f8cc8830ed488ff275019f2d}{move}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_random_search_explorer_ab0840336cd09fdaa22f26849a3c2cedd}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Random\+Search\+Explorer$<$ Neighbor $>$}
+
+Explorer for a pure random search\+: the solution is initialized at each step 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_random_search_explorer_a67cec1616ea30e1163a4d4ad48f16cdd}\label{classmo_random_search_explorer_a67cec1616ea30e1163a4d4ad48f16cdd}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!moRandomSearchExplorer@{moRandomSearchExplorer}}
+\index{moRandomSearchExplorer@{moRandomSearchExplorer}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRandomSearchExplorer()}{moRandomSearchExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+init,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+fulleval,  }\item[{unsigned}]{\+\_\+nb\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+init} & the solution initializer, to explore at random the search space \\
+\hline
+{\em \+\_\+fulleval} & the evaluation function \\
+\hline
+{\em \+\_\+nb\+Step} & maximum number of step to do \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_search_explorer_a58f106906cf70cc3b790154bdd3a4c3c}\label{classmo_random_search_explorer_a58f106906cf70cc3b790154bdd3a4c3c}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!````~moRandomSearchExplorer@{$\sim$moRandomSearchExplorer}}
+\index{````~moRandomSearchExplorer@{$\sim$moRandomSearchExplorer}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moRandomSearchExplorer()}{~moRandomSearchExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_random_search_explorer_ab0840336cd09fdaa22f26849a3c2cedd}\label{classmo_random_search_explorer_ab0840336cd09fdaa22f26849a3c2cedd}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+accept test \+: always accept 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the best neighbor ameliorate the fitness 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_random_search_explorer_aa13c11d58578341aa8689baf6849b99b}\label{classmo_random_search_explorer_aa13c11d58578341aa8689baf6849b99b}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+initialization of the number of step to be done 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_search_explorer_a3c786106afbca87957a864cc2c5885ee}\label{classmo_random_search_explorer_a3c786106afbca87957a864cc2c5885ee}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+continue if it is remains some steps to do 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true there is some steps to do 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_random_search_explorer_a7f8b0817f8cc8830ed488ff275019f2d}\label{classmo_random_search_explorer_a7f8b0817f8cc8830ed488ff275019f2d}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!move@{move}}
+\index{move@{move}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+move the solution with the best neighbor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_search_explorer_afbcde853d3b5ea2a7f7938b4087c2228}\label{classmo_random_search_explorer_afbcde853d3b5ea2a7f7938b4087c2228}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore the neighborhood with only one random solution we supposed that the first neighbor is uniformly selected in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_search_explorer_a7099b212acb36098269bedb4b875f95a}\label{classmo_random_search_explorer_a7099b212acb36098269bedb4b875f95a}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+terminate\+: N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_random_search_explorer_a2ebeba20759ad4c0cf16e2499ebd9725}\label{classmo_random_search_explorer_a2ebeba20759ad4c0cf16e2499ebd9725}} 
+\index{moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moRandomSearchExplorer$<$ Neighbor $>$@{moRandomSearchExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_random_search_explorer}{mo\+Random\+Search\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+increase the number of step 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+Random\+Search\+Explorer.\+h\end{DoxyCompactItemize}

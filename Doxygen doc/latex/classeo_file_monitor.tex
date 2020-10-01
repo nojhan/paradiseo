@@ -1,0 +1,142 @@
+\hypertarget{classeo_file_monitor}{}\doxysection{eo\+File\+Monitor Class Reference}
+\label{classeo_file_monitor}\index{eoFileMonitor@{eoFileMonitor}}
+
+
+{\ttfamily \#include $<$eo\+File\+Monitor.\+h$>$}
+
+
+
+Inheritance diagram for eo\+File\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{classeo_file_monitor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+File\+Monitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classeo_file_monitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_file_monitor_ab61c1a04b1bd116d7ab0a4164ea25770}{eo\+File\+Monitor}} (std\+::string \+\_\+filename, std\+::string \+\_\+delim=\char`\"{} \char`\"{}, bool \+\_\+keep\+\_\+existing=false, bool \+\_\+header=false, bool \+\_\+overwrite=false)
+\item 
+\mbox{\Hypertarget{classeo_file_monitor_a9e7c3bd40a4f04ce2c54cc7a6e77f9b7}\label{classeo_file_monitor_a9e7c3bd40a4f04ce2c54cc7a6e77f9b7}} 
+virtual \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_monitor_a9e7c3bd40a4f04ce2c54cc7a6e77f9b7}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em Called first, try to open the file in append mode and write the header if asked. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_monitor_a82ea16edce6d15420a04657f83382a0f}{operator()}} (std\+::ostream \&os)
+\item 
+\mbox{\Hypertarget{classeo_file_monitor_afe1cae35511f3e4cd58a37efa647f56d}\label{classeo_file_monitor_afe1cae35511f3e4cd58a37efa647f56d}} 
+void \mbox{\hyperlink{classeo_file_monitor_afe1cae35511f3e4cd58a37efa647f56d}{print\+Header}} (void)
+\begin{DoxyCompactList}\small\item\em Try to open the file, and then call print\+Header(file) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_file_monitor_aa0decae2a5a4d3cfdfb895389b4c3e44}\label{classeo_file_monitor_aa0decae2a5a4d3cfdfb895389b4c3e44}} 
+virtual void \mbox{\hyperlink{classeo_file_monitor_aa0decae2a5a4d3cfdfb895389b4c3e44}{print\+Header}} (std\+::ostream \&os)
+\begin{DoxyCompactList}\small\item\em Print long names of the registered items, separated by delim. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_file_monitor_a0ea6c9ded1f7937a477d470514e45dc4}\label{classeo_file_monitor_a0ea6c9ded1f7937a477d470514e45dc4}} 
+virtual std\+::string {\bfseries get\+File\+Name} ()
+\item 
+\mbox{\hyperlink{classeo_file_monitor_ab61c1a04b1bd116d7ab0a4164ea25770}{eo\+File\+Monitor}} (std\+::string \+\_\+filename, std\+::string \+\_\+delim=\char`\"{} \char`\"{}, bool \+\_\+keep\+\_\+existing=false, bool \+\_\+header=false, bool \+\_\+overwrite=false)
+\item 
+\mbox{\Hypertarget{classeo_file_monitor_abe2c2e938ca5f34c178a78951d37eaf9}\label{classeo_file_monitor_abe2c2e938ca5f34c178a78951d37eaf9}} 
+virtual \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_monitor_abe2c2e938ca5f34c178a78951d37eaf9}{operator()}} (void)
+\begin{DoxyCompactList}\small\item\em Called first, try to open the file in append mode and write the header if asked. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& \mbox{\hyperlink{classeo_file_monitor_a1a5093ca50360088200c7fcb0ac4fcd8}{operator()}} (std\+::ostream \&os)
+\item 
+\mbox{\Hypertarget{classeo_file_monitor_afe1cae35511f3e4cd58a37efa647f56d}\label{classeo_file_monitor_afe1cae35511f3e4cd58a37efa647f56d}} 
+void \mbox{\hyperlink{classeo_file_monitor_afe1cae35511f3e4cd58a37efa647f56d}{print\+Header}} (void)
+\begin{DoxyCompactList}\small\item\em Try to open the file, and then call print\+Header(file) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_file_monitor_a1152031899bdb3341aac3bf77d1ea6ff}\label{classeo_file_monitor_a1152031899bdb3341aac3bf77d1ea6ff}} 
+virtual void \mbox{\hyperlink{classeo_file_monitor_a1152031899bdb3341aac3bf77d1ea6ff}{print\+Header}} (std\+::ostream \&os)
+\begin{DoxyCompactList}\small\item\em Print long names of the registered items, separated by delim. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_file_monitor_a0ea6c9ded1f7937a477d470514e45dc4}\label{classeo_file_monitor_a0ea6c9ded1f7937a477d470514e45dc4}} 
+virtual std\+::string {\bfseries get\+File\+Name} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Prints statistics to file
+
+Modified the default behavior, so that it erases existing files. Can be modified in the ctor.
+
+\begin{DoxyVersion}{Version}
+MS 25/11/00 
+\end{DoxyVersion}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_file_monitor_ab61c1a04b1bd116d7ab0a4164ea25770}\label{classeo_file_monitor_ab61c1a04b1bd116d7ab0a4164ea25770}} 
+\index{eoFileMonitor@{eoFileMonitor}!eoFileMonitor@{eoFileMonitor}}
+\index{eoFileMonitor@{eoFileMonitor}!eoFileMonitor@{eoFileMonitor}}
+\doxysubsubsection{\texorpdfstring{eoFileMonitor()}{eoFileMonitor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily eo\+File\+Monitor\+::eo\+File\+Monitor (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+filename,  }\item[{std\+::string}]{\+\_\+delim = {\ttfamily \char`\"{}~\char`\"{}},  }\item[{bool}]{\+\_\+keep\+\_\+existing = {\ttfamily false},  }\item[{bool}]{\+\_\+header = {\ttfamily false},  }\item[{bool}]{\+\_\+overwrite = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+Try to create the file in writing mode, erasing it if asked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & complete filename to write to \\
+\hline
+{\em \+\_\+delim} & delimiter string to use between each item of the registered vector (e.\+g. of eo\+Stats) \\
+\hline
+{\em \+\_\+keep\+\_\+existing} & if true, overwrite any existing file with the same name prior to any output \\
+\hline
+{\em \+\_\+header} & print the header (with the descriptions of registered eo\+Stats) at the beginning of the file (W\+A\+R\+N\+I\+NG\+: true will discards header printing) \\
+\hline
+{\em \+\_\+overwrite} & if true, overwrite the existing file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_file_monitor_ab61c1a04b1bd116d7ab0a4164ea25770}\label{classeo_file_monitor_ab61c1a04b1bd116d7ab0a4164ea25770}} 
+\index{eoFileMonitor@{eoFileMonitor}!eoFileMonitor@{eoFileMonitor}}
+\index{eoFileMonitor@{eoFileMonitor}!eoFileMonitor@{eoFileMonitor}}
+\doxysubsubsection{\texorpdfstring{eoFileMonitor()}{eoFileMonitor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily eo\+File\+Monitor\+::eo\+File\+Monitor (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+filename,  }\item[{std\+::string}]{\+\_\+delim = {\ttfamily \char`\"{}~\char`\"{}},  }\item[{bool}]{\+\_\+keep\+\_\+existing = {\ttfamily false},  }\item[{bool}]{\+\_\+header = {\ttfamily false},  }\item[{bool}]{\+\_\+overwrite = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+Try to create the file in writing mode, erasing it if asked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & complete filename to write to \\
+\hline
+{\em \+\_\+delim} & delimiter string to use between each item of the registered vector (e.\+g. of eo\+Stats) \\
+\hline
+{\em \+\_\+keep\+\_\+existing} & if true, overwrite any existing file with the same name prior to any output \\
+\hline
+{\em \+\_\+header} & print the header (with the descriptions of registered eo\+Stats) at the beginning of the file (W\+A\+R\+N\+I\+NG\+: true will discards header printing) \\
+\hline
+{\em \+\_\+overwrite} & if true, overwrite the existing file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_file_monitor_a82ea16edce6d15420a04657f83382a0f}\label{classeo_file_monitor_a82ea16edce6d15420a04657f83382a0f}} 
+\index{eoFileMonitor@{eoFileMonitor}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFileMonitor@{eoFileMonitor}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}} \& eo\+File\+Monitor\+::operator() (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Main call, normally called at each generation. Write the content of the registered vector into the file, each item being separated by delim \mbox{\Hypertarget{classeo_file_monitor_a1a5093ca50360088200c7fcb0ac4fcd8}\label{classeo_file_monitor_a1a5093ca50360088200c7fcb0ac4fcd8}} 
+\index{eoFileMonitor@{eoFileMonitor}!operator()@{operator()}}
+\index{operator()@{operator()}!eoFileMonitor@{eoFileMonitor}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classeo_monitor}{eo\+Monitor}}\& eo\+File\+Monitor\+::operator() (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Main call, normally called at each generation. Write the content of the registered vector into the file, each item being separated by delim 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+File\+Monitor.\+h\item 
+deprecated/eo/src/utils/eo\+File\+Monitor.\+cpp\end{DoxyCompactItemize}

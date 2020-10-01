@@ -1,0 +1,55 @@
+\hypertarget{structeo_1_1mpi_1_1_handle_response_function}{}\doxysection{eo\+::mpi\+::Handle\+Response\+Function$<$ Job\+Data $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_handle_response_function}\index{eo::mpi::HandleResponseFunction$<$ JobData $>$@{eo::mpi::HandleResponseFunction$<$ JobData $>$}}
+
+
+Functor (master side) used to indicate what to do when receiving a response.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Handle\+Response\+Function$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_handle_response_function__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Handle\+Response\+Function$<$ Job\+Data $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_handle_response_function__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_handle_response_function_a4060ab7b47e5fca65e2d7c0a287750c7}\label{structeo_1_1mpi_1_1_handle_response_function_a4060ab7b47e5fca65e2d7c0a287750c7}} 
+{\bfseries Handle\+Response\+Function} (\mbox{\hyperlink{structeo_1_1mpi_1_1_handle_response_function}{Handle\+Response\+Function}}$<$ Job\+Data $>$ $\ast$w=0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Job\+Data$>$\newline
+struct eo\+::mpi\+::\+Handle\+Response\+Function$<$ Job\+Data $>$}
+
+Functor (master side) used to indicate what to do when receiving a response. 
+
+The master calls this function as soon as it receives some data, in some channel. Thanks to M\+PI, we retrieve the rank of the data\textquotesingle{}s sender. This functor is then called with this rank. There is no memoization of a link between sent data and rank, so the user has to implement it, if he needs it.
+
+This is a functor implementing void \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{operator()(int)}}, and also a shared data function, containing wrapper on its own type.
+
+The master has to receive worker\textquotesingle{}s data on channel (= M\+PI tag) eo\+::mpi\+::\+Channel\+::\+Messages. No other tags are allowed. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

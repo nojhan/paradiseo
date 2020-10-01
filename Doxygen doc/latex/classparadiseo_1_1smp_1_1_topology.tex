@@ -1,0 +1,122 @@
+\hypertarget{classparadiseo_1_1smp_1_1_topology}{}\doxysection{paradiseo\+::smp\+::Topology$<$ Topology\+Type $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_topology}\index{paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}}
+
+
+{\ttfamily \#include $<$topology.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Topology$<$ Topology\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_topology__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Topology$<$ Topology\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classparadiseo_1_1smp_1_1_topology__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_a7252e6da9827962ac3ab11da8a0054bd}{Topology}} ()=default
+\item 
+std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_a498e368c0e0f84d61796194eaa7a7513}{get\+Id\+Neighbors}} (unsigned id\+Node) const
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_ac28e45de413a0b1f76e63b336581c8fd}{construct}} (unsigned nb\+Node)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_a4d44371b8fae058c8398066df907b682}{isolate\+Node}} (unsigned id\+Node)
+\item 
+Topology\+Type \& \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology_a2663b8fb1486e4e25a8e9de36d13afc7}{get\+Builder}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Topology\+Type$>$\newline
+class paradiseo\+::smp\+::\+Topology$<$ Topology\+Type $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{Topology}} \+: Inherit from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} and must be templated with the type of \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{Topology}} (e.\+g \+: \mbox{\hyperlink{classparadiseo_1_1smp_1_1_ring}{Ring}}, \mbox{\hyperlink{classparadiseo_1_1smp_1_1_star}{Star}}...) It represents the boolean topology, and cannot be used for Stochastic topology.
+
+\begin{DoxySeeAlso}{See also}
+smp\+::topology\+::\+Abstract\+Topology 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_topology_a7252e6da9827962ac3ab11da8a0054bd}\label{classparadiseo_1_1smp_1_1_topology_a7252e6da9827962ac3ab11da8a0054bd}} 
+\index{paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}!Topology@{Topology}}
+\index{Topology@{Topology}!paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}}
+\doxysubsubsection{\texorpdfstring{Topology()}{Topology()}}
+{\footnotesize\ttfamily template$<$class Topology\+Type $>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{paradiseo\+::smp\+::\+Topology}}$<$ Topology\+Type $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{Topology}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Default constructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_topology_ac28e45de413a0b1f76e63b336581c8fd}\label{classparadiseo_1_1smp_1_1_topology_ac28e45de413a0b1f76e63b336581c8fd}} 
+\index{paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}!construct@{construct}}
+\index{construct@{construct}!paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily template$<$class Topology\+Type $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{paradiseo\+::smp\+::\+Topology}}$<$ Topology\+Type $>$\+::construct (\begin{DoxyParamCaption}\item[{unsigned}]{nb\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \+: construct or re-\/construct a topology with the given number of nodes 
+\begin{DoxyParams}{Parameters}
+{\em nb\+Node} & number of nodes for the topology \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_a8b5612f89e420f37c7fa0080e7d156d9}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_topology_a2663b8fb1486e4e25a8e9de36d13afc7}\label{classparadiseo_1_1smp_1_1_topology_a2663b8fb1486e4e25a8e9de36d13afc7}} 
+\index{paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}!getBuilder@{getBuilder}}
+\index{getBuilder@{getBuilder}!paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}}
+\doxysubsubsection{\texorpdfstring{getBuilder()}{getBuilder()}}
+{\footnotesize\ttfamily template$<$class Topology\+Type $>$ \\
+Topology\+Type \& \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{paradiseo\+::smp\+::\+Topology}}$<$ Topology\+Type $>$\+::get\+Builder}
+
+Getter for the variable \+\_\+builder by reference \mbox{\Hypertarget{classparadiseo_1_1smp_1_1_topology_a498e368c0e0f84d61796194eaa7a7513}\label{classparadiseo_1_1smp_1_1_topology_a498e368c0e0f84d61796194eaa7a7513}} 
+\index{paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}!getIdNeighbors@{getIdNeighbors}}
+\index{getIdNeighbors@{getIdNeighbors}!paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}}
+\doxysubsubsection{\texorpdfstring{getIdNeighbors()}{getIdNeighbors()}}
+{\footnotesize\ttfamily template$<$class Topology\+Type $>$ \\
+std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{paradiseo\+::smp\+::\+Topology}}$<$ Topology\+Type $>$\+::get\+Id\+Neighbors (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \begin{DoxySeeAlso}{See also}
+smp\+::topology\+::\+Abstract\+Topology\+::get\+Id\+Neighbors 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_af3b0d21baaf63d453f5e4a76d4f9c1d8}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_topology_a4d44371b8fae058c8398066df907b682}\label{classparadiseo_1_1smp_1_1_topology_a4d44371b8fae058c8398066df907b682}} 
+\index{paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}!isolateNode@{isolateNode}}
+\index{isolateNode@{isolateNode}!paradiseo::smp::Topology$<$ TopologyType $>$@{paradiseo::smp::Topology$<$ TopologyType $>$}}
+\doxysubsubsection{\texorpdfstring{isolateNode()}{isolateNode()}}
+{\footnotesize\ttfamily template$<$class Topology\+Type $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_topology}{paradiseo\+::smp\+::\+Topology}}$<$ Topology\+Type $>$\+::isolate\+Node (\begin{DoxyParamCaption}\item[{unsigned}]{id\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Inherited from \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology}{Abstract\+Topology}} \+: changes the topology \+: removes any connection from/to the given node. 
+\begin{DoxyParams}{Parameters}
+{\em id\+Node} & index of the node to be isolated \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classparadiseo_1_1smp_1_1_abstract_topology_ac7f65400edefd676de8f5db26ad570dc}{paradiseo\+::smp\+::\+Abstract\+Topology}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/topology/topology.\+h\item 
+smp/src/topology/topology.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,54 @@
+\hypertarget{eo_parallel_apply_8h}{}\doxysection{eo/src/mpi/eo\+Parallel\+Apply.h File Reference}
+\label{eo_parallel_apply_8h}\index{eo/src/mpi/eoParallelApply.h@{eo/src/mpi/eoParallelApply.h}}
+
+
+Applies a functor with single parameter to elements of a table, in a parallel fashion.  
+
+
+{\ttfamily \#include \char`\"{}eo\+Mpi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../eo\+Functor.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for eo\+Parallel\+Apply.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eo_parallel_apply_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_assignment}{eo\+::mpi\+::\+Parallel\+Apply\+Assignment}}
+\begin{DoxyCompactList}\small\item\em Structure used to save assignment to a worker, i.\+e which slice of the table it has to process. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data}{eo\+::mpi\+::\+Parallel\+Apply\+Data$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Data useful for a parallel apply (map). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_send_task_parallel_apply}{eo\+::mpi\+::\+Send\+Task\+Parallel\+Apply$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Send task functor implementation for the parallel apply (map) job. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_handle_response_parallel_apply}{eo\+::mpi\+::\+Handle\+Response\+Parallel\+Apply$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Handle response functor implementation for the parallel apply (map) job. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_process_task_parallel_apply}{eo\+::mpi\+::\+Process\+Task\+Parallel\+Apply$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Process task functor implementation for the parallel apply (map) job. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_is_finished_parallel_apply}{eo\+::mpi\+::\+Is\+Finished\+Parallel\+Apply$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Is finished functor implementation for the parallel apply (map) job. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_store}{eo\+::mpi\+::\+Parallel\+Apply\+Store$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Store containing all the datas and the functors for the parallel apply (map) job. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classeo_1_1mpi_1_1_parallel_apply}{eo\+::mpi\+::\+Parallel\+Apply$<$ E\+O\+T $>$}}
+\begin{DoxyCompactList}\small\item\em Parallel apply job. Present for convenience only. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceeo_1_1mpi}{eo\+::mpi}}
+\begin{DoxyCompactList}\small\item\em M\+PI parallelization helpers for \mbox{\hyperlink{class_e_o}{EO}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Applies a functor with single parameter to elements of a table, in a parallel fashion. 
+
+This file contains all the required classes to do a parallel apply of a table, in a parallel fashion. This can be very useful when applying the function can be made without any dependances within the data. In \mbox{\hyperlink{class_e_o}{EO}}, it occurs in particular during the evaluation\+: the number of individuals to evaluate can be really high, and the evaluation of one individual is independant from the evaluation of other individuals.
+
+Elements in the table are directly replaced, as the table is given by reference. No new table is made during the process.
+
+User can tune this job, indicating how many elements of the table should be sent and evaluated by a worker, at a time\+: this is called the \char`\"{}packet size\char`\"{}, as individuals are groupped into a packet of individuals which are sent to the worker before evaluation. The problem of choosing the optimal packet size is beyond the purposes of this documentation and deserves a theoritical study.
+
+This job is the parallel equivalent to the function apply$<$\+E\+O\+T$>$, defined in apply.\+h. It just applies the function to every element of a table. In Python or Javascript, it\textquotesingle{}s the equivalent of the function Map. 

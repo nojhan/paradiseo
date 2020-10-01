@@ -1,0 +1,94 @@
+\hypertarget{classmoeo_h_c_move_loop_expl}{}\doxysection{moeo\+H\+C\+Move\+Loop\+Expl$<$ M $>$ Class Template Reference}
+\label{classmoeo_h_c_move_loop_expl}\index{moeoHCMoveLoopExpl$<$ M $>$@{moeoHCMoveLoopExpl$<$ M $>$}}
+
+
+{\ttfamily \#include $<$moeo\+H\+C\+Move\+Loop\+Expl.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+H\+C\+Move\+Loop\+Expl$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classmoeo_h_c_move_loop_expl__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+H\+C\+Move\+Loop\+Expl$<$ M $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classmoeo_h_c_move_loop_expl__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_h_c_move_loop_expl_a0975a9db442c97d78316244048c36c98}{moeo\+H\+C\+Move\+Loop\+Expl}} (mo\+Move\+Init$<$ M $>$ \&\+\_\+move\+\_\+initializer, mo\+Next\+Move$<$ M $>$ \&\+\_\+next\+\_\+move\+\_\+generator, \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ E\+OT, M $>$ \&\+\_\+incremental\+\_\+evaluation, mo\+Move\+Select$<$ M $>$ \&\+\_\+move\+\_\+selection)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoeo_h_c_move_loop_expl_aaf9dfcc395a2d9b824c84efb41ae3c60}{operator()}} (const E\+OT \&\+\_\+old\+\_\+solution, E\+OT \&\+\_\+new\+\_\+solution)
+\begin{DoxyCompactList}\small\item\em Procedure which launches the explorer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M$>$\newline
+class moeo\+H\+C\+Move\+Loop\+Expl$<$ M $>$}
+
+move explorer for multiobjectives solutions 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_h_c_move_loop_expl_a0975a9db442c97d78316244048c36c98}\label{classmoeo_h_c_move_loop_expl_a0975a9db442c97d78316244048c36c98}} 
+\index{moeoHCMoveLoopExpl$<$ M $>$@{moeoHCMoveLoopExpl$<$ M $>$}!moeoHCMoveLoopExpl@{moeoHCMoveLoopExpl}}
+\index{moeoHCMoveLoopExpl@{moeoHCMoveLoopExpl}!moeoHCMoveLoopExpl$<$ M $>$@{moeoHCMoveLoopExpl$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{moeoHCMoveLoopExpl()}{moeoHCMoveLoopExpl()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+\mbox{\hyperlink{classmoeo_h_c_move_loop_expl}{moeo\+H\+C\+Move\+Loop\+Expl}}$<$ M $>$\+::\mbox{\hyperlink{classmoeo_h_c_move_loop_expl}{moeo\+H\+C\+Move\+Loop\+Expl}} (\begin{DoxyParamCaption}\item[{mo\+Move\+Init$<$ M $>$ \&}]{\+\_\+move\+\_\+initializer,  }\item[{mo\+Next\+Move$<$ M $>$ \&}]{\+\_\+next\+\_\+move\+\_\+generator,  }\item[{\mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ E\+OT, M $>$ \&}]{\+\_\+incremental\+\_\+evaluation,  }\item[{mo\+Move\+Select$<$ M $>$ \&}]{\+\_\+move\+\_\+selection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+All the boxes have to be specified.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+move\+\_\+initializer} & The move initialiser. \\
+\hline
+{\em \+\_\+next\+\_\+move\+\_\+generator} & The neighbourhood explorer. \\
+\hline
+{\em \+\_\+incremental\+\_\+evaluation} & (generally) Efficient evaluation function. \\
+\hline
+{\em \+\_\+move\+\_\+selection} & The move selector. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_h_c_move_loop_expl_aaf9dfcc395a2d9b824c84efb41ae3c60}\label{classmoeo_h_c_move_loop_expl_aaf9dfcc395a2d9b824c84efb41ae3c60}} 
+\index{moeoHCMoveLoopExpl$<$ M $>$@{moeoHCMoveLoopExpl$<$ M $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoHCMoveLoopExpl$<$ M $>$@{moeoHCMoveLoopExpl$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+void \mbox{\hyperlink{classmoeo_h_c_move_loop_expl}{moeo\+H\+C\+Move\+Loop\+Expl}}$<$ M $>$\+::operator() (\begin{DoxyParamCaption}\item[{const E\+OT \&}]{\+\_\+old\+\_\+solution,  }\item[{E\+OT \&}]{\+\_\+new\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Procedure which launches the explorer. 
+
+The exploration starts from an old solution and provides a new solution.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old\+\_\+solution} & The current solution. \\
+\hline
+{\em \+\_\+new\+\_\+solution} & The new solution (result of the procedure). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/explorer/moeo\+H\+C\+Move\+Loop\+Expl.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+<map id="EMNA" name="EMNA">
+<area shape="rect" id="node1" href="$group___samplers.html" title="Functors that draw and repair individuals according to a given distribution." alt="" coords="461,5,543,31"/>
+<area shape="rect" id="node2" href="$group___estimators.html" title="Estimators takes an eoPop and estimates the parameters of a distributions (defined as an hypothesis) ..." alt="" coords="456,55,548,80"/>
+<area shape="rect" id="node3" href="$group___algorithms.html" title="In EO, an algorithm is a functor that takes one or several solutions to an optimization problem as ar..." alt="" coords="5,92,99,117"/>
+<area shape="rect" id="node6" title="Estimation of Multivariate Normal Algorithm (EMNA) is a stochastic, derivative&#45;free methods for numer..." alt="" coords="148,92,209,117"/>
+<area shape="rect" id="node4" href="$group___multinormal.html" title="Distribution that model co&#45;variances between variables." alt="" coords="427,129,577,155"/>
+<area shape="rect" id="node5" href="$group___distributions.html" title="A distribution is a data structure that holds sufficient informations to describe a probability densi..." alt="" coords="449,179,555,204"/>
+</map>

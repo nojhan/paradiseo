@@ -1,0 +1,77 @@
+\hypertarget{class_serializable_e_o_real}{}\doxysection{Serializable\+E\+O\+Real Class Reference}
+\label{class_serializable_e_o_real}\index{SerializableEOReal@{SerializableEOReal}}
+
+
+Inheritance diagram for Serializable\+E\+O\+Real\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serializable_e_o_real__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Serializable\+E\+O\+Real\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serializable_e_o_real__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_serializable_e_o_real_aa6c538b0e07af01e3d58116e2e2a74d9}\label{class_serializable_e_o_real_aa6c538b0e07af01e3d58116e2e2a74d9}} 
+{\bfseries Serializable\+E\+O\+Real} (unsigned size=0, double value=0.\+0)
+\item 
+void \mbox{\hyperlink{class_serializable_e_o_real_af0a374915b344d9d64a98296edbe5af9}{unpack}} (const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Loads class fields from a J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$ \mbox{\hyperlink{class_serializable_e_o_real_aba67b57afa52413a5800728f276aa0c6}{pack}} (void) const
+\begin{DoxyCompactList}\small\item\em Serializes the object to J\+S\+ON format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_serializable_e_o_real_aba67b57afa52413a5800728f276aa0c6}\label{class_serializable_e_o_real_aba67b57afa52413a5800728f276aa0c6}} 
+\index{SerializableEOReal@{SerializableEOReal}!pack@{pack}}
+\index{pack@{pack}!SerializableEOReal@{SerializableEOReal}}
+\doxysubsubsection{\texorpdfstring{pack()}{pack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}}$\ast$ Serializable\+E\+O\+Real\+::pack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the object to J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+A J\+S\+ON object created with new. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_printable_aad91bc7e395362d2d3818fd41b267121}{eoserial\+::\+Printable}}.
+
+\mbox{\Hypertarget{class_serializable_e_o_real_af0a374915b344d9d64a98296edbe5af9}\label{class_serializable_e_o_real_af0a374915b344d9d64a98296edbe5af9}} 
+\index{SerializableEOReal@{SerializableEOReal}!unpack@{unpack}}
+\index{unpack@{unpack}!SerializableEOReal@{SerializableEOReal}}
+\doxysubsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily void Serializable\+E\+O\+Real\+::unpack (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeoserial_1_1_object}{eoserial\+::\+Object}} $\ast$}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Loads class fields from a J\+S\+ON object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A J\+S\+ON object. Programmer doesn\textquotesingle{}t have to delete it, it is automatically done. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeoserial_1_1_persistent_a366ffa79c94271940f6fbe9233141112}{eoserial\+::\+Persistent}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/test/mpi/t-\/mpi-\/multistart.\+cpp\end{DoxyCompactItemize}

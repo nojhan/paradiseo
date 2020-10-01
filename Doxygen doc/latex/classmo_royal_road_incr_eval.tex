@@ -1,0 +1,89 @@
+\hypertarget{classmo_royal_road_incr_eval}{}\doxysection{mo\+Royal\+Road\+Incr\+Eval$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_royal_road_incr_eval}\index{moRoyalRoadIncrEval$<$ Neighbor $>$@{moRoyalRoadIncrEval$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Royal\+Road\+Incr\+Eval.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Royal\+Road\+Incr\+Eval$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_royal_road_incr_eval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Royal\+Road\+Incr\+Eval$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_royal_road_incr_eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_royal_road_incr_eval_a6b1e67f6db95aef665c5206b5b11f86c}\label{classmo_royal_road_incr_eval_a6b1e67f6db95aef665c5206b5b11f86c}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_royal_road_incr_eval_a905ca9cc156268075a503e1e5dd26863}{mo\+Royal\+Road\+Incr\+Eval}} (\mbox{\hyperlink{class_royal_road_eval}{Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+rr)
+\item 
+virtual void \mbox{\hyperlink{classmo_royal_road_incr_eval_adf5a9ec90b24604c31e8284b020cffc3}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_royal_road_incr_eval_a447380f390842954be20022fca4593c6}\label{classmo_royal_road_incr_eval_a447380f390842954be20022fca4593c6}} 
+unsigned int {\bfseries k}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Royal\+Road\+Incr\+Eval$<$ Neighbor $>$}
+
+Incremental evaluation \mbox{\hyperlink{struct_function}{Function}} for the Royal Road problem 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_royal_road_incr_eval_a905ca9cc156268075a503e1e5dd26863}\label{classmo_royal_road_incr_eval_a905ca9cc156268075a503e1e5dd26863}} 
+\index{moRoyalRoadIncrEval$<$ Neighbor $>$@{moRoyalRoadIncrEval$<$ Neighbor $>$}!moRoyalRoadIncrEval@{moRoyalRoadIncrEval}}
+\index{moRoyalRoadIncrEval@{moRoyalRoadIncrEval}!moRoyalRoadIncrEval$<$ Neighbor $>$@{moRoyalRoadIncrEval$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRoyalRoadIncrEval()}{moRoyalRoadIncrEval()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_royal_road_incr_eval}{mo\+Royal\+Road\+Incr\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_royal_road_incr_eval}{mo\+Royal\+Road\+Incr\+Eval}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_royal_road_eval}{Royal\+Road\+Eval}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+rr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rr} & full evaluation of the Royal Road (to have the same block size) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_royal_road_incr_eval_adf5a9ec90b24604c31e8284b020cffc3}\label{classmo_royal_road_incr_eval_adf5a9ec90b24604c31e8284b020cffc3}} 
+\index{moRoyalRoadIncrEval$<$ Neighbor $>$@{moRoyalRoadIncrEval$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moRoyalRoadIncrEval$<$ Neighbor $>$@{moRoyalRoadIncrEval$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_royal_road_incr_eval}{mo\+Royal\+Road\+Incr\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+incremental evaluation of the neighbor for the Royal Road problem 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to move (bit string) \\
+\hline
+{\em \+\_\+neighbor} & the neighbor to consider (of type mo\+Bit\+Neigbor) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/problems/eval/mo\+Royal\+Road\+Incr\+Eval.\+h\end{DoxyCompactItemize}

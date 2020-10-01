@@ -1,0 +1,88 @@
+\hypertarget{classmo_aspiration}{}\doxysection{mo\+Aspiration$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_aspiration}\index{moAspiration$<$ Neighbor $>$@{moAspiration$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Aspiration.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Aspiration$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_aspiration__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Aspiration$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_aspiration__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_aspiration_a8172aee2d324919890a958c167433c9c}\label{classmo_aspiration_a8172aee2d324919890a958c167433c9c}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classmo_aspiration_ab9f76f8508016cb8bd386b5c453b5310}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)=0
+\item 
+virtual void \mbox{\hyperlink{classmo_aspiration_a98cd4d54c0b2f9a8eaf8858483052a6f}{update}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Aspiration$<$ Neighbor $>$}
+
+Abstract class for Aspiration Criteria 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_aspiration_ab9f76f8508016cb8bd386b5c453b5310}\label{classmo_aspiration_ab9f76f8508016cb8bd386b5c453b5310}} 
+\index{moAspiration$<$ Neighbor $>$@{moAspiration$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moAspiration$<$ Neighbor $>$@{moAspiration$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_aspiration}{mo\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Virtual Init 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_best_impr_aspiration_a2a258d3bc1fd8fa86c291346fcc5a6ef}{mo\+Best\+Impr\+Aspiration$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_best_impr_aspiration_a2a258d3bc1fd8fa86c291346fcc5a6ef}{mo\+Best\+Impr\+Aspiration$<$ mo\+Bit\+Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_aspiration_a98cd4d54c0b2f9a8eaf8858483052a6f}\label{classmo_aspiration_a98cd4d54c0b2f9a8eaf8858483052a6f}} 
+\index{moAspiration$<$ Neighbor $>$@{moAspiration$<$ Neighbor $>$}!update@{update}}
+\index{update@{update}!moAspiration$<$ Neighbor $>$@{moAspiration$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_aspiration}{mo\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Virtual update 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the current solution \\
+\hline
+{\em \+\_\+neighbor} & the current neighbor \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classmo_best_impr_aspiration_a15a10919a7fb5a5317fb81501f0d2ddb}{mo\+Best\+Impr\+Aspiration$<$ Neighbor $>$}}, and \mbox{\hyperlink{classmo_best_impr_aspiration_a15a10919a7fb5a5317fb81501f0d2ddb}{mo\+Best\+Impr\+Aspiration$<$ mo\+Bit\+Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/memory/mo\+Aspiration.\+h\end{DoxyCompactItemize}

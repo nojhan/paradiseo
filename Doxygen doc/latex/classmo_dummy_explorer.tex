@@ -1,0 +1,204 @@
+\hypertarget{classmo_dummy_explorer}{}\doxysection{mo\+Dummy\+Explorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_dummy_explorer}\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Dummy\+Explorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Dummy\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_dummy_explorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Dummy\+Explorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_dummy_explorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_dummy_explorer_a60f03143823d985bddaeba13a9290260}\label{classmo_dummy_explorer_a60f03143823d985bddaeba13a9290260}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_dummy_explorer_a1b5dc13e02f2b15a60380a6e263ee9a2}\label{classmo_dummy_explorer_a1b5dc13e02f2b15a60380a6e263ee9a2}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_dummy_explorer_a00c83b3e0d4ea65950c4d9e646a1c4e9}\label{classmo_dummy_explorer_a00c83b3e0d4ea65950c4d9e646a1c4e9}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmo_dummy_explorer_a2f143f269dc75c7045a1baa73936a108}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+void \mbox{\hyperlink{classmo_dummy_explorer_ab9e3af405b8ed86515417bc2d5dd1010}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+bool \mbox{\hyperlink{classmo_dummy_explorer_a512f569044a851b390430801800caffa}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+void \mbox{\hyperlink{classmo_dummy_explorer_a85228f99815d942af84bcabd24129cac}{move}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_dummy_explorer_ae58e9ebd24249c7c6cba2e421936c59a}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_dummy_explorer_a991a914eec5687c39dde826a0b178a3b}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+void \mbox{\hyperlink{classmo_dummy_explorer_a780b49135b3ce5412a998babc682a4b8}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_dummy_explorer_a515d200cce6a7f775749c8b3ad6a4eb0}{class\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Dummy\+Explorer$<$ Neighbor $>$}
+
+\mbox{\hyperlink{struct_dummy}{Dummy}} Explorer the neighborhood\+: nothing is explored 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_dummy_explorer_ae58e9ebd24249c7c6cba2e421936c59a}\label{classmo_dummy_explorer_ae58e9ebd24249c7c6cba2e421936c59a}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+always false 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_dummy_explorer_a515d200cce6a7f775749c8b3ad6a4eb0}\label{classmo_dummy_explorer_a515d200cce6a7f775749c8b3ad6a4eb0}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class name \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_dummy_explorer_a2f143f269dc75c7045a1baa73936a108}\label{classmo_dummy_explorer_a2f143f269dc75c7045a1baa73936a108}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_dummy_explorer_a512f569044a851b390430801800caffa}\label{classmo_dummy_explorer_a512f569044a851b390430801800caffa}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+always false 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_dummy_explorer_a85228f99815d942af84bcabd24129cac}\label{classmo_dummy_explorer_a85228f99815d942af84bcabd24129cac}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!move@{move}}
+\index{move@{move}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_neighborhood_explorer_af321423ac3db0d321b1d14ac963b3f3e}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_dummy_explorer_a780b49135b3ce5412a998babc682a4b8}\label{classmo_dummy_explorer_a780b49135b3ce5412a998babc682a4b8}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{classmo_dummy_explorer_a991a914eec5687c39dde826a0b178a3b}\label{classmo_dummy_explorer_a991a914eec5687c39dde826a0b178a3b}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_dummy_explorer_ab9e3af405b8ed86515417bc2d5dd1010}\label{classmo_dummy_explorer_ab9e3af405b8ed86515417bc2d5dd1010}} 
+\index{moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moDummyExplorer$<$ Neighbor $>$@{moDummyExplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_dummy_explorer}{mo\+Dummy\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+N\+O\+T\+H\+I\+NG TO DO 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & unused solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+Dummy\+Explorer.\+h\end{DoxyCompactItemize}

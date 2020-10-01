@@ -1,0 +1,47 @@
+\hypertarget{classedo_sampler_normal_multi}{}\doxysection{edo\+Sampler\+Normal\+Multi$<$ E\+OT, D $>$ Class Template Reference}
+\label{classedo_sampler_normal_multi}\index{edoSamplerNormalMulti$<$ EOT, D $>$@{edoSamplerNormalMulti$<$ EOT, D $>$}}
+
+
+{\ttfamily \#include $<$edo\+Sampler\+Normal\+Multi.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Sampler\+Normal\+Multi$<$ E\+OT, D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_sampler_normal_multi__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Sampler\+Normal\+Multi$<$ E\+OT, D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classedo_sampler_normal_multi__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename E\+OT, typename D = edo\+Normal\+Multi$<$ E\+O\+T $>$$>$\newline
+class edo\+Sampler\+Normal\+Multi$<$ E\+O\+T, D $>$}
+
+Sample points in a multi-\/normal law defined by a mean vector and a covariance matrix.
+
+Given M the mean vector and V the covariance matrix, of order n\+:
+\begin{DoxyItemize}
+\item draw a vector T in N(0,\+I) (i.\+e. each value is drawn in a normal law with mean=0 an stddev=1)
+\item compute the Cholesky decomposition L of V (i.\+e. such as V=L\+L$\ast$)
+\item return X = M + LT
+\end{DoxyItemize}
+
+Exists in two implementations, using either \href{http://www.boost.org/doc/libs/1_50_0/libs/numeric/ublas/doc/index.htm}{\texttt{ Boost\+::u\+B\+L\+AS}} (if compiled W\+I\+T\+H\+\_\+\+B\+O\+O\+ST) or \href{http://eigen.tuxfamily.org}{\texttt{ Eigen3}} (W\+I\+T\+H\+\_\+\+E\+I\+G\+EN). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Sampler\+Normal\+Multi.\+h\end{DoxyCompactItemize}

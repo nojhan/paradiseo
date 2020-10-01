@@ -1,0 +1,122 @@
+\hypertarget{classparadiseo_1_1smp_1_1_policy_element}{}\doxysection{paradiseo\+::smp\+::Policy\+Element$<$ E\+OT $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_policy_element}\index{paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$policy\+Element.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::Policy\+Element$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_policy_element__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::Policy\+Element$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_policy_element__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element_adca566998a5c61c31b61f5b7599ab465}{Policy\+Element}} (\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+selection, \mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+criterion)
+\item 
+bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element_a20707df81ab657b7d97395cbea737db1}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element_a5ca85d0d17f6c84f7cdc51f35146721f}{add\+Criterion}} (\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+criterion)
+\item 
+\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element_a5cee418ef25c51620d82ea93a7c6920e}{get\+Select}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_policy_element_a93326a4d005099f2d5c761da6102093d}\label{classparadiseo_1_1smp_1_1_policy_element_a93326a4d005099f2d5c761da6102093d}} 
+\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries selection}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_policy_element_a2e00d442abd4179e4b64a68037758775}\label{classparadiseo_1_1smp_1_1_policy_element_a2e00d442abd4179e4b64a68037758775}} 
+\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& {\bfseries criterion}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class paradiseo\+::smp\+::\+Policy\+Element$<$ E\+O\+T $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element}{Policy\+Element}}\+: \mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element}{Policy\+Element}} is an element of a migration policy.
+
+The policy element is a pair made of a selection method and a criterion to apply the selection. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_policy_element_adca566998a5c61c31b61f5b7599ab465}\label{classparadiseo_1_1smp_1_1_policy_element_adca566998a5c61c31b61f5b7599ab465}} 
+\index{paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}!PolicyElement@{PolicyElement}}
+\index{PolicyElement@{PolicyElement}!paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{PolicyElement()}{PolicyElement()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element}{paradiseo\+::smp\+::\+Policy\+Element}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element}{Policy\+Element}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+selection,  }\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+criterion }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+selection} & How to select elements for migration \\
+\hline
+{\em \+\_\+criterion} & When notifying the island \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_policy_element_a5ca85d0d17f6c84f7cdc51f35146721f}\label{classparadiseo_1_1smp_1_1_policy_element_a5ca85d0d17f6c84f7cdc51f35146721f}} 
+\index{paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}!addCriterion@{addCriterion}}
+\index{addCriterion@{addCriterion}!paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{addCriterion()}{addCriterion()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element}{paradiseo\+::smp\+::\+Policy\+Element}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::add\+Criterion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_continue}{eo\+Continue}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+criterion }\end{DoxyParamCaption})}
+
+Add criteria for the same selection method. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+criterion} & New criterion. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_policy_element_a5cee418ef25c51620d82ea93a7c6920e}\label{classparadiseo_1_1smp_1_1_policy_element_a5cee418ef25c51620d82ea93a7c6920e}} 
+\index{paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}!getSelect@{getSelect}}
+\index{getSelect@{getSelect}!paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{getSelect()}{getSelect()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_select}{eo\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \& \mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element}{paradiseo\+::smp\+::\+Policy\+Element}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::get\+Select}
+
+Access to the selection method. \begin{DoxyReturn}{Returns}
+Reference to the selection method. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_policy_element_a20707df81ab657b7d97395cbea737db1}\label{classparadiseo_1_1smp_1_1_policy_element_a20707df81ab657b7d97395cbea737db1}} 
+\index{paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::PolicyElement$<$ EOT $>$@{paradiseo::smp::PolicyElement$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{classparadiseo_1_1smp_1_1_policy_element}{paradiseo\+::smp\+::\+Policy\+Element}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Check is the criterion is reach 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & Population which is checked by the criteria. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if the criterion is reached. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ const eo\+Pop$<$ E\+O\+T $>$ \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/policy\+Element.\+h\item 
+smp/src/policy\+Element.\+cpp\end{DoxyCompactItemize}

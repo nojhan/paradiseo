@@ -1,0 +1,82 @@
+\hypertarget{classedo_estimator_adaptive_edit}{}\doxysection{edo\+Estimator\+Adaptive\+Edit$<$ D, P $>$ Class Template Reference}
+\label{classedo_estimator_adaptive_edit}\index{edoEstimatorAdaptiveEdit$<$ D, P $>$@{edoEstimatorAdaptiveEdit$<$ D, P $>$}}
+
+
+{\ttfamily \#include $<$edo\+Estimator\+Adaptive\+Edit.\+h$>$}
+
+
+
+Inheritance diagram for edo\+Estimator\+Adaptive\+Edit$<$ D, P $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classedo_estimator_adaptive_edit__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for edo\+Estimator\+Adaptive\+Edit$<$ D, P $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classedo_estimator_adaptive_edit__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_estimator_adaptive_edit_a62044375192604d6c48c1369bcbfd5a9}\label{classedo_estimator_adaptive_edit_a62044375192604d6c48c1369bcbfd5a9}} 
+typedef D\+::\+E\+O\+Type {\bfseries E\+O\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classedo_estimator_adaptive_edit_ac45824aa83916f1985aa3bd247293442}{edo\+Estimator\+Adaptive\+Edit}} (D \&distrib, std\+::function$<$ P()$>$ getter, std\+::function$<$ void(P)$>$ setter)
+\item 
+\mbox{\Hypertarget{classedo_estimator_adaptive_edit_a4a73b3f1711316d3b61731469b476173}\label{classedo_estimator_adaptive_edit_a4a73b3f1711316d3b61731469b476173}} 
+virtual D \mbox{\hyperlink{classedo_estimator_adaptive_edit_a4a73b3f1711316d3b61731469b476173}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ E\+O\+Type $>$ \&)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classedo_estimator_adaptive_edit_a900eed50a183f7fd7f7dc6893b3f17b4}\label{classedo_estimator_adaptive_edit_a900eed50a183f7fd7f7dc6893b3f17b4}} 
+std\+::function$<$ P()$>$ {\bfseries \+\_\+getter}
+\item 
+\mbox{\Hypertarget{classedo_estimator_adaptive_edit_af6f7c827efd0b6850a70b67f788738d4}\label{classedo_estimator_adaptive_edit_af6f7c827efd0b6850a70b67f788738d4}} 
+std\+::function$<$ void(P)$>$ {\bfseries \+\_\+setter}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class D, class P = typename D\+::\+E\+O\+Type$>$\newline
+class edo\+Estimator\+Adaptive\+Edit$<$ D, P $>$}
+
+An estimator that change the parameters on the managed distribution. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classedo_estimator_adaptive_edit_ac45824aa83916f1985aa3bd247293442}\label{classedo_estimator_adaptive_edit_ac45824aa83916f1985aa3bd247293442}} 
+\index{edoEstimatorAdaptiveEdit$<$ D, P $>$@{edoEstimatorAdaptiveEdit$<$ D, P $>$}!edoEstimatorAdaptiveEdit@{edoEstimatorAdaptiveEdit}}
+\index{edoEstimatorAdaptiveEdit@{edoEstimatorAdaptiveEdit}!edoEstimatorAdaptiveEdit$<$ D, P $>$@{edoEstimatorAdaptiveEdit$<$ D, P $>$}}
+\doxysubsubsection{\texorpdfstring{edoEstimatorAdaptiveEdit()}{edoEstimatorAdaptiveEdit()}}
+{\footnotesize\ttfamily template$<$class D , class P  = typename D\+::\+E\+O\+Type$>$ \\
+\mbox{\hyperlink{classedo_estimator_adaptive_edit}{edo\+Estimator\+Adaptive\+Edit}}$<$ D, P $>$\+::\mbox{\hyperlink{classedo_estimator_adaptive_edit}{edo\+Estimator\+Adaptive\+Edit}} (\begin{DoxyParamCaption}\item[{D \&}]{distrib,  }\item[{std\+::function$<$ P()$>$}]{getter,  }\item[{std\+::function$<$ void(P)$>$}]{setter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Edit the given distribution\textquotesingle{}s members with the given accessors.
+
+For example, to shift the distribution\textquotesingle{}s mean toward pop\textquotesingle{}s best element (note the lack of parenthesis)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classedo_estimator_adaptive_edit}{edoEstimatorAdaptiveEdit<D>}} e(distrib,}
+\DoxyCodeLine{     std::bind(\&\mbox{\hyperlink{classeo_pop}{eoPop<S>::best\_element}}, \&pop),}
+\DoxyCodeLine{     \textcolor{comment}{// std::bind(\&D::mean, \&distrib, std::placeholders::\_1) // Fail to deduce templates}}
+\DoxyCodeLine{     \textcolor{comment}{// but you can use lambdas (even more readable):}}
+\DoxyCodeLine{     [\&distrib](S center)\{distrib.mean(center);\}}
+\DoxyCodeLine{distrib.mean, pop.best\_element);}
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+edo/src/edo\+Estimator\+Adaptive\+Edit.\+h\end{DoxyCompactItemize}

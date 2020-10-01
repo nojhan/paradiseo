@@ -1,0 +1,122 @@
+\hypertarget{classmo_nb_inf_neighbor_stat}{}\doxysection{mo\+Nb\+Inf\+Neighbor\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_nb_inf_neighbor_stat}\index{moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Nb\+Inf\+Neighbor\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Nb\+Inf\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_nb_inf_neighbor_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Nb\+Inf\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_nb_inf_neighbor_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_nb_inf_neighbor_stat_aa4113bc120586318d7294fc233caa49b}\label{classmo_nb_inf_neighbor_stat_aa4113bc120586318d7294fc233caa49b}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_nb_inf_neighbor_stat_a32f8c5d75bf17111364f8f3adb5483f8}\label{classmo_nb_inf_neighbor_stat_a32f8c5d75bf17111364f8f3adb5483f8}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_nb_inf_neighbor_stat_a9d0bf1b3ce2bdde0aabb5ffd92a37c3d}{mo\+Nb\+Inf\+Neighbor\+Stat}} (\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Stat)
+\item 
+virtual void \mbox{\hyperlink{classmo_nb_inf_neighbor_stat_a5234ee52637d8df044dfde415c066b88}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_nb_inf_neighbor_stat_a5c1251c1bd2312dbb35c330115f3e566}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_nb_inf_neighbor_stat_acdc987cb75a7eae60b4e1d6bd62d7f71}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Nb\+Inf\+Neighbor\+Stat$<$ Neighbor $>$}
+
+From \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}, to compute the number of solutions in the neighborhood with (strictly) lower fitness than the current solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_nb_inf_neighbor_stat_a9d0bf1b3ce2bdde0aabb5ffd92a37c3d}\label{classmo_nb_inf_neighbor_stat_a9d0bf1b3ce2bdde0aabb5ffd92a37c3d}} 
+\index{moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}!moNbInfNeighborStat@{moNbInfNeighborStat}}
+\index{moNbInfNeighborStat@{moNbInfNeighborStat}!moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moNbInfNeighborStat()}{moNbInfNeighborStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_nb_inf_neighbor_stat}{mo\+Nb\+Inf\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_nb_inf_neighbor_stat}{mo\+Nb\+Inf\+Neighbor\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nh\+Stat} & a neighborhood\+Stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_nb_inf_neighbor_stat_acdc987cb75a7eae60b4e1d6bd62d7f71}\label{classmo_nb_inf_neighbor_stat_acdc987cb75a7eae60b4e1d6bd62d7f71}} 
+\index{moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_nb_inf_neighbor_stat}{mo\+Nb\+Inf\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_nb_inf_neighbor_stat_a5234ee52637d8df044dfde415c066b88}\label{classmo_nb_inf_neighbor_stat_a5234ee52637d8df044dfde415c066b88}} 
+\index{moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_nb_inf_neighbor_stat}{mo\+Nb\+Inf\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the number of solutions in the neighborhood with (strictly) lower fitness than the current solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_nb_inf_neighbor_stat_a5c1251c1bd2312dbb35c330115f3e566}\label{classmo_nb_inf_neighbor_stat_a5c1251c1bd2312dbb35c330115f3e566}} 
+\index{moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moNbInfNeighborStat$<$ Neighbor $>$@{moNbInfNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_nb_inf_neighbor_stat}{mo\+Nb\+Inf\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the number of solutions in the neighborhood with (strictly) lower fitness than the current solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Nb\+Inf\+Neighbor\+Stat.\+h\end{DoxyCompactItemize}

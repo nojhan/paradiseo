@@ -1,0 +1,59 @@
+\hypertarget{classeo_normal_bit_mutation}{}\doxysection{eo\+Normal\+Bit\+Mutation$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_normal_bit_mutation}\index{eoNormalBitMutation$<$ EOT $>$@{eoNormalBitMutation$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Standard\+Bit\+Mutation.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Normal\+Bit\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_normal_bit_mutation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Normal\+Bit\+Mutation$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_normal_bit_mutation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_normal_bit_mutation_a53dd38d185c0d6fc5fcaa1ba7b838dec}\label{classeo_normal_bit_mutation_a53dd38d185c0d6fc5fcaa1ba7b838dec}} 
+{\bfseries eo\+Normal\+Bit\+Mutation} (double rate=0.\+5, double variance=1)
+\item 
+\mbox{\Hypertarget{classeo_normal_bit_mutation_a0c784915cf0ae0e273a6488f6b0c9b23}\label{classeo_normal_bit_mutation_a0c784915cf0ae0e273a6488f6b0c9b23}} 
+virtual bool \mbox{\hyperlink{classeo_normal_bit_mutation_a0c784915cf0ae0e273a6488f6b0c9b23}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&chrom)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_normal_bit_mutation_ab2a2d6030014efad09dc652de6241b97}\label{classeo_normal_bit_mutation_ab2a2d6030014efad09dc652de6241b97}} 
+double {\bfseries \+\_\+variance}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Normal\+Bit\+Mutation$<$ E\+O\+T $>$}
+
+Mutation which size is sample in a gaussian.
+
+sample k from the normal distribution N(pn,σ$^\wedge$2) and apply flip\+\_\+k(x).
+
+From\+: Furong Ye, Carola Doerr, and Thomas Back. Interpolating local and global search by controllingthe variance of standard bit mutation. In 2019 I\+E\+EE Congress on Evolutionary Computation(\+C\+E\+C), pages 2292–2299.
+
+In contrast to standard bit mutation, this operators allows to scale the variance of the mutation strength independently of the mean. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/ga/eo\+Standard\+Bit\+Mutation.\+h\end{DoxyCompactItemize}

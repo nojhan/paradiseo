@@ -1,0 +1,96 @@
+\hypertarget{classeo_order_xover}{}\doxysection{eo\+Order\+Xover$<$ Chrom $>$ Class Template Reference}
+\label{classeo_order_xover}\index{eoOrderXover$<$ Chrom $>$@{eoOrderXover$<$ Chrom $>$}}
+
+
+{\ttfamily \#include $<$eo\+Order\+Xover.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Order\+Xover$<$ Chrom $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_order_xover__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Order\+Xover$<$ Chrom $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_order_xover__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_order_xover_a0a43967f604f2e472ffe3a99baeade21}\label{classeo_order_xover_a0a43967f604f2e472ffe3a99baeade21}} 
+virtual std\+::string \mbox{\hyperlink{classeo_order_xover_a0a43967f604f2e472ffe3a99baeade21}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The class name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classeo_order_xover_a11ce71ce47fc1fa1dc2a9ddd126a76c1}{operator()}} (\mbox{\hyperlink{class_chrom}{Chrom}} \&\+\_\+chrom1, \mbox{\hyperlink{class_chrom}{Chrom}} \&\+\_\+chrom2)
+\item 
+\mbox{\Hypertarget{classeo_order_xover_a0a43967f604f2e472ffe3a99baeade21}\label{classeo_order_xover_a0a43967f604f2e472ffe3a99baeade21}} 
+virtual std\+::string \mbox{\hyperlink{classeo_order_xover_a0a43967f604f2e472ffe3a99baeade21}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The class name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classeo_order_xover_a11ce71ce47fc1fa1dc2a9ddd126a76c1}{operator()}} (\mbox{\hyperlink{class_chrom}{Chrom}} \&\+\_\+chrom1, \mbox{\hyperlink{class_chrom}{Chrom}} \&\+\_\+chrom2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Chrom$>$\newline
+class eo\+Order\+Xover$<$ Chrom $>$}
+
+apply order\+Xover on two chromosomes. Example\+: With 2 parents p1= \mbox{[}1,2,4,3,6,5\mbox{]}, p2= \mbox{[}4,5,3,1,6,2\mbox{]} It applies a random cut between (\char`\"{}$\vert$\char`\"{}) two indices. Example\+: the second element and the fourth\+: p1 \+: \mbox{[}1$\vert$2,4,3$\vert$6,5\mbox{]} and p2 \+: \mbox{[}4$\vert$5,3,1$\vert$6,2\mbox{]} generate two children\+: c1 = \mbox{[}2,4,3,6,5,1\mbox{]} 2,4,3 taken from p1 and 6,5,1 from p2 c2 = \mbox{[}5,3,1,6,2,4\mbox{]} 5,3,1 taken from p2 and 6,2,4 from p1 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_order_xover_a11ce71ce47fc1fa1dc2a9ddd126a76c1}\label{classeo_order_xover_a11ce71ce47fc1fa1dc2a9ddd126a76c1}} 
+\index{eoOrderXover$<$ Chrom $>$@{eoOrderXover$<$ Chrom $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoOrderXover$<$ Chrom $>$@{eoOrderXover$<$ Chrom $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Chrom $>$ \\
+bool \mbox{\hyperlink{classeo_order_xover}{eo\+Order\+Xover}}$<$ \mbox{\hyperlink{class_chrom}{Chrom}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{\+\_\+chrom1,  }\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{\+\_\+chrom2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+true if the chromosome has changed 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+chrom1} & The first chromosome which will be crossed with chrom2. \\
+\hline
+{\em \+\_\+chrom2} & The second chromosome which will be crossed with chrom1. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ Chrom \&, Chrom \&, bool $>$}}.
+
+\mbox{\Hypertarget{classeo_order_xover_a11ce71ce47fc1fa1dc2a9ddd126a76c1}\label{classeo_order_xover_a11ce71ce47fc1fa1dc2a9ddd126a76c1}} 
+\index{eoOrderXover$<$ Chrom $>$@{eoOrderXover$<$ Chrom $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoOrderXover$<$ Chrom $>$@{eoOrderXover$<$ Chrom $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Chrom $>$ \\
+bool \mbox{\hyperlink{classeo_order_xover}{eo\+Order\+Xover}}$<$ \mbox{\hyperlink{class_chrom}{Chrom}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{\+\_\+chrom1,  }\item[{\mbox{\hyperlink{class_chrom}{Chrom}} \&}]{\+\_\+chrom2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+true if the chromosome has changed 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+chrom1} & The first chromosome which will be crossed with chrom2. \\
+\hline
+{\em \+\_\+chrom2} & The second chromosome which will be crossed with chrom1. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ Chrom \&, Chrom \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Order\+Xover.\+h\end{DoxyCompactItemize}

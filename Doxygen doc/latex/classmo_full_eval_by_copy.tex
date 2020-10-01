@@ -1,0 +1,86 @@
+\hypertarget{classmo_full_eval_by_copy}{}\doxysection{mo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_full_eval_by_copy}\index{moFullEvalByCopy$<$ Neighbor $>$@{moFullEvalByCopy$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Full\+Eval\+By\+Copy.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_full_eval_by_copy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classmo_full_eval_by_copy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_full_eval_by_copy_a17f4beffea4d53270103622777785708}\label{classmo_full_eval_by_copy_a17f4beffea4d53270103622777785708}} 
+typedef \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classeo_bit}{E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_full_eval_by_copy_a9b9d74e3d97666126498ccaf5ca1c10a}\label{classmo_full_eval_by_copy_a9b9d74e3d97666126498ccaf5ca1c10a}} 
+typedef \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_full_eval_by_copy_abd43fdbf57efdc6fbfd57841cc320d6e}{mo\+Full\+Eval\+By\+Copy}} (\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+eval)
+\item 
+void \mbox{\hyperlink{classmo_full_eval_by_copy_ac1d23338e05c27bb837fff97c1f8715f}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol, \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&\+\_\+neighbor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Full\+Eval\+By\+Copy$<$ Neighbor $>$}
+
+Evaluation by copy 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_full_eval_by_copy_abd43fdbf57efdc6fbfd57841cc320d6e}\label{classmo_full_eval_by_copy_abd43fdbf57efdc6fbfd57841cc320d6e}} 
+\index{moFullEvalByCopy$<$ Neighbor $>$@{moFullEvalByCopy$<$ Neighbor $>$}!moFullEvalByCopy@{moFullEvalByCopy}}
+\index{moFullEvalByCopy@{moFullEvalByCopy}!moFullEvalByCopy$<$ Neighbor $>$@{moFullEvalByCopy$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moFullEvalByCopy()}{moFullEvalByCopy()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_full_eval_by_copy}{mo\+Full\+Eval\+By\+Copy}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_full_eval_by_copy}{mo\+Full\+Eval\+By\+Copy}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+eval} & the full evaluation object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_full_eval_by_copy_ac1d23338e05c27bb837fff97c1f8715f}\label{classmo_full_eval_by_copy_ac1d23338e05c27bb837fff97c1f8715f}} 
+\index{moFullEvalByCopy$<$ Neighbor $>$@{moFullEvalByCopy$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moFullEvalByCopy$<$ Neighbor $>$@{moFullEvalByCopy$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_full_eval_by_copy}{mo\+Full\+Eval\+By\+Copy}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol,  }\item[{\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} \&}]{\+\_\+neighbor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Full evaluation of the neighbor by copy 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & current solution \\
+\hline
+{\em \+\_\+neighbor} & the neighbor to be evaluated \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/eval/mo\+Full\+Eval\+By\+Copy.\+h\end{DoxyCompactItemize}

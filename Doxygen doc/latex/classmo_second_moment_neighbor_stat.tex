@@ -1,0 +1,122 @@
+\hypertarget{classmo_second_moment_neighbor_stat}{}\doxysection{mo\+Second\+Moment\+Neighbor\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_second_moment_neighbor_stat}\index{moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Second\+Moment\+Neighbor\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Second\+Moment\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_second_moment_neighbor_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Second\+Moment\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_second_moment_neighbor_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_second_moment_neighbor_stat_ad22d611ec881b20efc3b88717e719e56}\label{classmo_second_moment_neighbor_stat_ad22d611ec881b20efc3b88717e719e56}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_second_moment_neighbor_stat_a57a11da8f5168beedd76572f83523470}\label{classmo_second_moment_neighbor_stat_a57a11da8f5168beedd76572f83523470}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_second_moment_neighbor_stat_affe7b71c667eec5cfaba2f2675c19eef}{mo\+Second\+Moment\+Neighbor\+Stat}} (\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Stat)
+\item 
+virtual void \mbox{\hyperlink{classmo_second_moment_neighbor_stat_acf5b0c73c8f9e27d31598c65c3c10f59}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_second_moment_neighbor_stat_a67cce736b837c7b82ad2185ae3879dbb}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_second_moment_neighbor_stat_a65e0b8e2e39b6dbc9e97030f79d71060}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Second\+Moment\+Neighbor\+Stat$<$ Neighbor $>$}
+
+From \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}, to compute the average and the standard deviation of fitness in the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_second_moment_neighbor_stat_affe7b71c667eec5cfaba2f2675c19eef}\label{classmo_second_moment_neighbor_stat_affe7b71c667eec5cfaba2f2675c19eef}} 
+\index{moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}!moSecondMomentNeighborStat@{moSecondMomentNeighborStat}}
+\index{moSecondMomentNeighborStat@{moSecondMomentNeighborStat}!moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moSecondMomentNeighborStat()}{moSecondMomentNeighborStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_second_moment_neighbor_stat}{mo\+Second\+Moment\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_second_moment_neighbor_stat}{mo\+Second\+Moment\+Neighbor\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nh\+Stat} & a neighborhood\+Stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_second_moment_neighbor_stat_a65e0b8e2e39b6dbc9e97030f79d71060}\label{classmo_second_moment_neighbor_stat_a65e0b8e2e39b6dbc9e97030f79d71060}} 
+\index{moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_second_moment_neighbor_stat}{mo\+Second\+Moment\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_second_moment_neighbor_stat_acf5b0c73c8f9e27d31598c65c3c10f59}\label{classmo_second_moment_neighbor_stat_acf5b0c73c8f9e27d31598c65c3c10f59}} 
+\index{moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_second_moment_neighbor_stat}{mo\+Second\+Moment\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the average and the standard deviation of fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_second_moment_neighbor_stat_a67cce736b837c7b82ad2185ae3879dbb}\label{classmo_second_moment_neighbor_stat_a67cce736b837c7b82ad2185ae3879dbb}} 
+\index{moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moSecondMomentNeighborStat$<$ Neighbor $>$@{moSecondMomentNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_second_moment_neighbor_stat}{mo\+Second\+Moment\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the average and the standard deviation of fitness in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Second\+Moment\+Neighbor\+Stat.\+h\end{DoxyCompactItemize}

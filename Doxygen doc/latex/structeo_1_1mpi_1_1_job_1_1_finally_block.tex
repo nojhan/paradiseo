@@ -1,0 +1,61 @@
+\hypertarget{structeo_1_1mpi_1_1_job_1_1_finally_block}{}\doxysection{eo\+::mpi\+::Job$<$ Job\+Data $>$\+::Finally\+Block Struct Reference}
+\label{structeo_1_1mpi_1_1_job_1_1_finally_block}\index{eo::mpi::Job$<$ JobData $>$::FinallyBlock@{eo::mpi::Job$<$ JobData $>$::FinallyBlock}}
+
+
+Finally block of the main algorithm.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Mpi.\+h$>$}
+
+
+
+Collaboration diagram for eo\+::mpi\+::Job$<$ Job\+Data $>$\+::Finally\+Block\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_job_1_1_finally_block__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_1_1_finally_block_ab396ca06bdd7af3917d359bff09359cf}\label{structeo_1_1mpi_1_1_job_1_1_finally_block_ab396ca06bdd7af3917d359bff09359cf}} 
+{\bfseries Finally\+Block} (int \+\_\+total\+Workers, \mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \&\+\_\+algo, \mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}}$<$ Job\+Data $>$ \&\+\_\+that)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_1_1_finally_block_af9b58c0fa050d1e58b87e28bd9bd4f6d}\label{structeo_1_1mpi_1_1_job_1_1_finally_block_af9b58c0fa050d1e58b87e28bd9bd4f6d}} 
+int {\bfseries total\+Workers}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_1_1_finally_block_a80deb9f2c56037672547b2aa680f5bb9}\label{structeo_1_1mpi_1_1_job_1_1_finally_block_a80deb9f2c56037672547b2aa680f5bb9}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_assignment_algorithm}{Assignment\+Algorithm}} \& {\bfseries assignment\+Algo}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_1_1_finally_block_a6534d25cc939e94742734d464d5e499a}\label{structeo_1_1mpi_1_1_job_1_1_finally_block_a6534d25cc939e94742734d464d5e499a}} 
+\mbox{\hyperlink{classeo_1_1mpi_1_1_job}{Job}}$<$ Job\+Data $>$ \& {\bfseries that}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_job_1_1_finally_block_abae9fc086ebf36096c08f2ca06ef8130}\label{structeo_1_1mpi_1_1_job_1_1_finally_block_abae9fc086ebf36096c08f2ca06ef8130}} 
+\mbox{\hyperlink{classmpi_1_1communicator}{bmpi\+::communicator}} \& {\bfseries comm}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Job\+Data$>$\newline
+struct eo\+::mpi\+::\+Job$<$ Job\+Data $>$\+::\+Finally\+Block}
+
+Finally block of the main algorithm. 
+
+Herb Sutter\textquotesingle{}s trick for having a finally block, in a try/catch section\+: invoke a class at the beginning of the try, its destructor will be called in every cases.
+
+This implements the end of the master algorithm\+:
+\begin{DoxyItemize}
+\item sends to all available workers that they are free,
+\item waits for last responses, handles them and sends termination messages to last workers. 
+\end{DoxyItemize}
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/eo\+Mpi.\+h\end{DoxyCompactItemize}

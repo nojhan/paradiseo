@@ -1,0 +1,145 @@
+\hypertarget{classmo_local_search}{}\doxysection{mo\+Local\+Search$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_local_search}\index{moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Local\+Search.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Local\+Search$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_local_search__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Local\+Search$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_local_search__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_local_search_aa7ec9ea9b9fc811b0856eac06c46f400}\label{classmo_local_search_aa7ec9ea9b9fc811b0856eac06c46f400}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\item 
+\mbox{\Hypertarget{classmo_local_search_af095f3a25a4c0715144379dd4b22a123}\label{classmo_local_search_af095f3a25a4c0715144379dd4b22a123}} 
+typedef \mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood\+Explorer}
+\item 
+\mbox{\Hypertarget{classmo_local_search_a9bc78a5a4de63fc550b871caa92bc03e}\label{classmo_local_search_a9bc78a5a4de63fc550b871caa92bc03e}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_local_search_a997bf7dcff173a1d74c9b0bf945e7198}{mo\+Local\+Search}} (\mbox{\hyperlink{classmo_neighborhood_explorer}{Neighborhood\+Explorer}} \&\+\_\+search\+Expl, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval)
+\item 
+virtual bool \mbox{\hyperlink{classmo_local_search_abeaca0f01da325fb59669c14a36b0458}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+void \mbox{\hyperlink{classmo_local_search_ae259874247c49177cc30a95b32ba2d53}{set\+Continuator}} (\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+cont)
+\item 
+\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ $\ast$ \mbox{\hyperlink{classmo_local_search_a977f99ca7d98dd519ac92da72426f88a}{get\+Continuator}} () const
+\item 
+\mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& \mbox{\hyperlink{classmo_local_search_a7958f7c36f9566795f772a3e982ec383}{get\+Neighborhood\+Explorer}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_local_search_ad4c313303d6d32bce0111f463044b2f3}\label{classmo_local_search_ad4c313303d6d32bce0111f463044b2f3}} 
+\mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries search\+Explorer}
+\item 
+\mbox{\Hypertarget{classmo_local_search_ae1c355cbb93261b280de8eac89bb8fab}\label{classmo_local_search_ae1c355cbb93261b280de8eac89bb8fab}} 
+\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ $\ast$ {\bfseries cont}
+\item 
+\mbox{\Hypertarget{classmo_local_search_acd806308f119d8ea8d4381d38a99b8b7}\label{classmo_local_search_acd806308f119d8ea8d4381d38a99b8b7}} 
+\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \& {\bfseries full\+Eval}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Local\+Search$<$ Neighbor $>$}
+
+the main algorithm of the local search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_local_search_a997bf7dcff173a1d74c9b0bf945e7198}\label{classmo_local_search_a997bf7dcff173a1d74c9b0bf945e7198}} 
+\index{moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}!moLocalSearch@{moLocalSearch}}
+\index{moLocalSearch@{moLocalSearch}!moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moLocalSearch()}{moLocalSearch()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_explorer}{Neighborhood\+Explorer}} \&}]{\+\_\+search\+Expl,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor of a \mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+search\+Expl} & a neighborhood explorer \\
+\hline
+{\em \+\_\+cont} & an external continuator (can be a checkpoint!) \\
+\hline
+{\em \+\_\+full\+Eval} & a full evaluation function \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_local_search_a977f99ca7d98dd519ac92da72426f88a}\label{classmo_local_search_a977f99ca7d98dd519ac92da72426f88a}} 
+\index{moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}!getContinuator@{getContinuator}}
+\index{getContinuator@{getContinuator}!moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getContinuator()}{getContinuator()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}$>$$\ast$ \mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Continuator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+external continuator object
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \begin{DoxyReturn}{Returns}
+the external continuator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_local_search_a7958f7c36f9566795f772a3e982ec383}\label{classmo_local_search_a7958f7c36f9566795f772a3e982ec383}} 
+\index{moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}!getNeighborhoodExplorer@{getNeighborhoodExplorer}}
+\index{getNeighborhoodExplorer@{getNeighborhoodExplorer}!moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getNeighborhoodExplorer()}{getNeighborhoodExplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_neighborhood_explorer}{mo\+Neighborhood\+Explorer}}$<$\mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}$>$\& \mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Neighborhood\+Explorer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+to get the neighborhood explorer
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \begin{DoxyReturn}{Returns}
+the neighborhood explorer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_local_search_abeaca0f01da325fb59669c14a36b0458}\label{classmo_local_search_abeaca0f01da325fb59669c14a36b0458}} 
+\index{moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Run the local search on a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the related solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_local_search_ae259874247c49177cc30a95b32ba2d53}\label{classmo_local_search_ae259874247c49177cc30a95b32ba2d53}} 
+\index{moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}!setContinuator@{setContinuator}}
+\index{setContinuator@{setContinuator}!moLocalSearch$<$ Neighbor $>$@{moLocalSearch$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{setContinuator()}{setContinuator()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+void \mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::set\+Continuator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set an external continuator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+cont} & the external continuator \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/algo/mo\+Local\+Search.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,119 @@
+\hypertarget{classmo_fitness_stat}{}\doxysection{mo\+Fitness\+Stat$<$ E\+OT $>$ Class Template Reference}
+\label{classmo_fitness_stat}\index{moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$mo\+Fitness\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Fitness\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_fitness_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Fitness\+Stat$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_fitness_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_fitness_stat_a26edf7715ee6ba1b4fdf93a6c6ba3d7d}\label{classmo_fitness_stat_a26edf7715ee6ba1b4fdf93a6c6ba3d7d}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_fitness_stat_a98929e97cadf7f153f4483102db88c84}{mo\+Fitness\+Stat}} (std\+::string \+\_\+description=\char`\"{}fitness\char`\"{})
+\item 
+virtual void \mbox{\hyperlink{classmo_fitness_stat_a370bb2d834a559ef86086ac76fd068c6}{init}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_fitness_stat_a82b58d13c3f03081a77c9053f9f349c7}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_fitness_stat_ac095bc1fcfe322b234c049851e05d917}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class mo\+Fitness\+Stat$<$ E\+O\+T $>$}
+
+Stat given the fitness of the current solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_fitness_stat_a98929e97cadf7f153f4483102db88c84}\label{classmo_fitness_stat_a98929e97cadf7f153f4483102db88c84}} 
+\index{moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}!moFitnessStat@{moFitnessStat}}
+\index{moFitnessStat@{moFitnessStat}!moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{moFitnessStat()}{moFitnessStat()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}} (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+description = {\ttfamily \char`\"{}fitness\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+description} & a description of the stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_fitness_stat_ac095bc1fcfe322b234c049851e05d917}\label{classmo_fitness_stat_ac095bc1fcfe322b234c049851e05d917}} 
+\index{moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}!className@{className}}
+\index{className@{className}!moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the name of the class 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_fitness_stat_a370bb2d834a559ef86086ac76fd068c6}\label{classmo_fitness_stat_a370bb2d834a559ef86086ac76fd068c6}} 
+\index{moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}!init@{init}}
+\index{init@{init}!moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+store the initial fitness value 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the initial solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_fitness_stat_a82b58d13c3f03081a77c9053f9f349c7}\label{classmo_fitness_stat_a82b58d13c3f03081a77c9053f9f349c7}} 
+\index{moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moFitnessStat$<$ EOT $>$@{moFitnessStat$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmo_fitness_stat}{mo\+Fitness\+Stat}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+store fitness value 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Fitness\+Stat.\+h\end{DoxyCompactItemize}

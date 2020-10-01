@@ -1,0 +1,92 @@
+\hypertarget{classmo_restart_perturb}{}\doxysection{mo\+Restart\+Perturb$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_restart_perturb}\index{moRestartPerturb$<$ Neighbor $>$@{moRestartPerturb$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Restart\+Perturb.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Restart\+Perturb$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_restart_perturb__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Restart\+Perturb$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_restart_perturb__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_restart_perturb_ad3d31b2fbeca4de30e0a712e6ef74975}\label{classmo_restart_perturb_ad3d31b2fbeca4de30e0a712e6ef74975}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_restart_perturb_a4483d814eb352ee6ee56bf20ae9879c0}{mo\+Restart\+Perturb}} (\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+initializer, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, unsigned int \+\_\+threshold)
+\item 
+bool \mbox{\hyperlink{classmo_restart_perturb_a93181c925f0b72458e20f2aef8efdbe9}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Restart\+Perturb$<$ Neighbor $>$}
+
+Restart Perturbation \+: restart when maximum number of iteration with no improvement is reached 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_restart_perturb_a4483d814eb352ee6ee56bf20ae9879c0}\label{classmo_restart_perturb_a4483d814eb352ee6ee56bf20ae9879c0}} 
+\index{moRestartPerturb$<$ Neighbor $>$@{moRestartPerturb$<$ Neighbor $>$}!moRestartPerturb@{moRestartPerturb}}
+\index{moRestartPerturb@{moRestartPerturb}!moRestartPerturb$<$ Neighbor $>$@{moRestartPerturb$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moRestartPerturb()}{moRestartPerturb()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_restart_perturb}{mo\+Restart\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_restart_perturb}{mo\+Restart\+Perturb}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_init}{eo\+Init}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+initializer,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{unsigned int}]{\+\_\+threshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+initializer} & an initializer of solution \\
+\hline
+{\em \+\_\+full\+Eval} & a full evaluation function \\
+\hline
+{\em \+\_\+threshold} & maximum number of iteration with no improvement \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_restart_perturb_a93181c925f0b72458e20f2aef8efdbe9}\label{classmo_restart_perturb_a93181c925f0b72458e20f2aef8efdbe9}} 
+\index{moRestartPerturb$<$ Neighbor $>$@{moRestartPerturb$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moRestartPerturb$<$ Neighbor $>$@{moRestartPerturb$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+bool \mbox{\hyperlink{classmo_restart_perturb}{mo\+Restart\+Perturb}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Apply restart when necessary 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & to restart \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/perturb/mo\+Restart\+Perturb.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,115 @@
+\hypertarget{classmo_i_l_s}{}\doxysection{mo\+I\+LS$<$ Neighbor, Neighbor\+LO $>$ Class Template Reference}
+\label{classmo_i_l_s}\index{moILS$<$ Neighbor, NeighborLO $>$@{moILS$<$ Neighbor, NeighborLO $>$}}
+
+
+{\ttfamily \#include $<$mo\+I\+L\+S.\+h$>$}
+
+
+
+Inheritance diagram for mo\+I\+LS$<$ Neighbor, Neighbor\+LO $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_i_l_s__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+I\+LS$<$ Neighbor, Neighbor\+LO $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_i_l_s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_i_l_s_a4d738a6aff5ed8217ee06ecac72e319f}\label{classmo_i_l_s_a4d738a6aff5ed8217ee06ecac72e319f}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_i_l_s_a9a53c4bec6efcce554cfffc1bafff884}\label{classmo_i_l_s_a9a53c4bec6efcce554cfffc1bafff884}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_i_l_s_ad84ba5c791fe0651a8f00d0486843b2b}{mo\+I\+LS}} (\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+ls, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+op, unsigned int \+\_\+nb\+Iteration)
+\item 
+\mbox{\hyperlink{classmo_i_l_s_a41fe604760f2a7bc4f8a28bfcb85b236}{mo\+I\+LS}} (\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+ls, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+op, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ Neighbor\+LO $>$ \&\+\_\+cont)
+\item 
+\mbox{\hyperlink{classmo_i_l_s_a74f8632acf72966e7aa763e4775e1ffd}{mo\+I\+LS}} (\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+ls, \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&\+\_\+full\+Eval, \mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ Neighbor\+LO $>$ \&\+\_\+cont, \mbox{\hyperlink{classmo_perturbation}{mo\+Perturbation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+perturb, \mbox{\hyperlink{classmo_acceptance_criterion}{mo\+Acceptance\+Criterion}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+accept)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor, class Neighbor\+LO = mo\+Dummy\+Neighbor$<$typename Neighbor\+::\+E\+O\+T$>$$>$\newline
+class mo\+I\+L\+S$<$ Neighbor, Neighbor\+L\+O $>$}
+
+Iterated Local Search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_i_l_s_ad84ba5c791fe0651a8f00d0486843b2b}\label{classmo_i_l_s_ad84ba5c791fe0651a8f00d0486843b2b}} 
+\index{moILS$<$ Neighbor, NeighborLO $>$@{moILS$<$ Neighbor, NeighborLO $>$}!moILS@{moILS}}
+\index{moILS@{moILS}!moILS$<$ Neighbor, NeighborLO $>$@{moILS$<$ Neighbor, NeighborLO $>$}}
+\doxysubsubsection{\texorpdfstring{moILS()}{moILS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Neighbor\+LO  = mo\+Dummy\+Neighbor$<$typename Neighbor\+::\+E\+O\+T$>$$>$ \\
+\mbox{\hyperlink{classmo_i_l_s}{mo\+I\+LS}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Neighbor\+LO $>$\+::\mbox{\hyperlink{classmo_i_l_s}{mo\+I\+LS}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+ls,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+op,  }\item[{unsigned int}]{\+\_\+nb\+Iteration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Basic constructor for Iterated Local Search 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ls} & the local search to iterates \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+op} & the operator used to perturb solution \\
+\hline
+{\em \+\_\+nb\+Iteration} & the time limit for search \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_i_l_s_a41fe604760f2a7bc4f8a28bfcb85b236}\label{classmo_i_l_s_a41fe604760f2a7bc4f8a28bfcb85b236}} 
+\index{moILS$<$ Neighbor, NeighborLO $>$@{moILS$<$ Neighbor, NeighborLO $>$}!moILS@{moILS}}
+\index{moILS@{moILS}!moILS$<$ Neighbor, NeighborLO $>$@{moILS$<$ Neighbor, NeighborLO $>$}}
+\doxysubsubsection{\texorpdfstring{moILS()}{moILS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Neighbor\+LO  = mo\+Dummy\+Neighbor$<$typename Neighbor\+::\+E\+O\+T$>$$>$ \\
+\mbox{\hyperlink{classmo_i_l_s}{mo\+I\+LS}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Neighbor\+LO $>$\+::\mbox{\hyperlink{classmo_i_l_s}{mo\+I\+LS}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+ls,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+op,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ Neighbor\+LO $>$ \&}]{\+\_\+cont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Simple constructor for Iterated Local Search 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ls} & the local search to iterates \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+op} & the operator used to perturb solution \\
+\hline
+{\em \+\_\+cont} & a continuator \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_i_l_s_a74f8632acf72966e7aa763e4775e1ffd}\label{classmo_i_l_s_a74f8632acf72966e7aa763e4775e1ffd}} 
+\index{moILS$<$ Neighbor, NeighborLO $>$@{moILS$<$ Neighbor, NeighborLO $>$}!moILS@{moILS}}
+\index{moILS@{moILS}!moILS$<$ Neighbor, NeighborLO $>$@{moILS$<$ Neighbor, NeighborLO $>$}}
+\doxysubsubsection{\texorpdfstring{moILS()}{moILS()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Neighbor , class Neighbor\+LO  = mo\+Dummy\+Neighbor$<$typename Neighbor\+::\+E\+O\+T$>$$>$ \\
+\mbox{\hyperlink{classmo_i_l_s}{mo\+I\+LS}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}}, Neighbor\+LO $>$\+::\mbox{\hyperlink{classmo_i_l_s}{mo\+I\+LS}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_local_search}{mo\+Local\+Search}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+ls,  }\item[{\mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}$<$ \mbox{\hyperlink{classeo_bit}{E\+OT}} $>$ \&}]{\+\_\+full\+Eval,  }\item[{\mbox{\hyperlink{classmo_continuator}{mo\+Continuator}}$<$ Neighbor\+LO $>$ \&}]{\+\_\+cont,  }\item[{\mbox{\hyperlink{classmo_perturbation}{mo\+Perturbation}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+perturb,  }\item[{\mbox{\hyperlink{classmo_acceptance_criterion}{mo\+Acceptance\+Criterion}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+accept }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+General constructor for Iterated Local Search 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ls} & the local search to iterates \\
+\hline
+{\em \+\_\+full\+Eval} & the full evaluation function \\
+\hline
+{\em \+\_\+cont} & a continuator \\
+\hline
+{\em \+\_\+perturb} & a perturbation operator \\
+\hline
+{\em \+\_\+accept} & a acceptance criteria \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/algo/mo\+I\+L\+S.\+h\end{DoxyCompactItemize}

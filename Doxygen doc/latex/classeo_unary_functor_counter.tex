@@ -1,0 +1,96 @@
+\hypertarget{classeo_unary_functor_counter}{}\doxysection{eo\+Unary\+Functor\+Counter$<$ Unary\+Functor $>$ Class Template Reference}
+\label{classeo_unary_functor_counter}\index{eoUnaryFunctorCounter$<$ UnaryFunctor $>$@{eoUnaryFunctorCounter$<$ UnaryFunctor $>$}}
+
+
+{\ttfamily \#include $<$eo\+Counter.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Unary\+Functor\+Counter$<$ Unary\+Functor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classeo_unary_functor_counter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Unary\+Functor\+Counter$<$ Unary\+Functor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{classeo_unary_functor_counter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_unary_functor_counter_a2225e8bdebaf2b94a11463d54ff4ee25}\label{classeo_unary_functor_counter_a2225e8bdebaf2b94a11463d54ff4ee25}} 
+{\bfseries eo\+Unary\+Functor\+Counter} (Unary\+Functor \&\+\_\+func, std\+::string \+\_\+name=\char`\"{}uf\+\_\+counter\char`\"{})
+\item 
+Unary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_unary_functor_counter_a793a3b2cf3a3d7f8b46c8e16960be996}{operator()}} (typename Unary\+Functor\+::first\+\_\+argument\+\_\+type \+\_\+arg1)
+\item 
+\mbox{\Hypertarget{classeo_unary_functor_counter_a2225e8bdebaf2b94a11463d54ff4ee25}\label{classeo_unary_functor_counter_a2225e8bdebaf2b94a11463d54ff4ee25}} 
+{\bfseries eo\+Unary\+Functor\+Counter} (Unary\+Functor \&\+\_\+func, std\+::string \+\_\+name=\char`\"{}uf\+\_\+counter\char`\"{})
+\item 
+Unary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_unary_functor_counter_a793a3b2cf3a3d7f8b46c8e16960be996}{operator()}} (typename Unary\+Functor\+::first\+\_\+argument\+\_\+type \+\_\+arg1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Unary\+Functor$>$\newline
+class eo\+Unary\+Functor\+Counter$<$ Unary\+Functor $>$}
+
+\begin{DoxyVerb}  Generic counter class that counts the number of times
+  a unary function is used. Add a unary function through its ctor and
+  use this class instead of it.
+\end{DoxyVerb}
+
+
+It is derived from \mbox{\hyperlink{classeo_value_param}{eo\+Value\+Param}} so you can add it to a monitor.
+
+Example\+: suppose you have an \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}} called myeval, to count the number of evaluations, just define\+:
+
+eo\+Unary\+Functor\+Counter$<$void, Eo\+Type$>$ eval\+Counter(myeval);
+
+and use eval\+Counter now instead of myeval. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_unary_functor_counter_a793a3b2cf3a3d7f8b46c8e16960be996}\label{classeo_unary_functor_counter_a793a3b2cf3a3d7f8b46c8e16960be996}} 
+\index{eoUnaryFunctorCounter$<$ UnaryFunctor $>$@{eoUnaryFunctorCounter$<$ UnaryFunctor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUnaryFunctorCounter$<$ UnaryFunctor $>$@{eoUnaryFunctorCounter$<$ UnaryFunctor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Unary\+Functor $>$ \\
+Unary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_unary_functor_counter}{eo\+Unary\+Functor\+Counter}}$<$ Unary\+Functor $>$\+::operator() (\begin{DoxyParamCaption}\item[{typename Unary\+Functor\+::first\+\_\+argument\+\_\+type}]{\+\_\+arg1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calls the embedded function and increments the counter
+
+Note for M\+S\+VC users, if this code does not compile, you are quite likely trying to count a function that has a non-\/void return type. Don\textquotesingle{}t look at us, look at the M\+S\+VC builders. Code like \char`\"{}return void;\char`\"{} is perfectly legal according to the A\+N\+SI standard, but the guys at Microsoft didn\textquotesingle{}t get to implementing it yet.
+
+We had two choices\+: assuming (and compiling ) code that returns void or code that returns non-\/void. Given that in \mbox{\hyperlink{class_e_o}{EO}} most functors return void, it was chosen to support void.
+
+But also please let me know if you have a compiler that defines \+\_\+\+M\+S\+C\+\_\+\+V\+ER (lot\textquotesingle{}s of windows compilers do), but is quite capable of compiling return void; type of code. We\textquotesingle{}ll try to change the signature then.
+
+You happy G\+NU (and other compiler) users will not have a problem with this. \mbox{\Hypertarget{classeo_unary_functor_counter_a793a3b2cf3a3d7f8b46c8e16960be996}\label{classeo_unary_functor_counter_a793a3b2cf3a3d7f8b46c8e16960be996}} 
+\index{eoUnaryFunctorCounter$<$ UnaryFunctor $>$@{eoUnaryFunctorCounter$<$ UnaryFunctor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!eoUnaryFunctorCounter$<$ UnaryFunctor $>$@{eoUnaryFunctorCounter$<$ UnaryFunctor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Unary\+Functor $>$ \\
+Unary\+Functor\+::result\+\_\+type \mbox{\hyperlink{classeo_unary_functor_counter}{eo\+Unary\+Functor\+Counter}}$<$ Unary\+Functor $>$\+::operator() (\begin{DoxyParamCaption}\item[{typename Unary\+Functor\+::first\+\_\+argument\+\_\+type}]{\+\_\+arg1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calls the embedded function and increments the counter
+
+Note for M\+S\+VC users, if this code does not compile, you are quite likely trying to count a function that has a non-\/void return type. Don\textquotesingle{}t look at us, look at the M\+S\+VC builders. Code like \char`\"{}return void;\char`\"{} is perfectly legal according to the A\+N\+SI standard, but the guys at Microsoft didn\textquotesingle{}t get to implementing it yet.
+
+We had two choices\+: assuming (and compiling ) code that returns void or code that returns non-\/void. Given that in \mbox{\hyperlink{class_e_o}{EO}} most functors return void, it was chosen to support void.
+
+But also please let me know if you have a compiler that defines \+\_\+\+M\+S\+C\+\_\+\+V\+ER (lot\textquotesingle{}s of windows compilers do), but is quite capable of compiling return void; type of code. We\textquotesingle{}ll try to change the signature then.
+
+You happy G\+NU (and other compiler) users will not have a problem with this. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Counter.\+h\end{DoxyCompactItemize}

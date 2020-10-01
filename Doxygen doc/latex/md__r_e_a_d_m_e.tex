@@ -1,0 +1,183 @@
+Paradiseo is an open-\/source {\itshape {\bfseries{full-\/featured evolutionary computation framework}}} which main purpose is to help you write {\itshape {\bfseries{your own stochastic optimization algorithms}}}, insanely fast.
+
+It focus on the efficiency of the implementation of solvers, by providing\+:
+\begin{DoxyItemize}
+\item a {\itshape {\bfseries{modular design}}} for several types of paradigms,
+\item the {\itshape {\bfseries{largest codebase}}} of existing components,
+\item tools for {\itshape {\bfseries{automated design and selection}}} of algorithms,
+\item a focus on {\itshape {\bfseries{speed}}} and several {\itshape {\bfseries{parallelization}}} options.
+\end{DoxyItemize}
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md71}{}\doxysection{Quick Start}\label{md__r_e_a_d_m_e_autotoc_md71}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md72}{}\doxysection{Very Quick Start}\label{md__r_e_a_d_m_e_autotoc_md72}
+
+\begin{DoxyEnumerate}
+\item Use a recent Linux, like an Ubuntu.
+\item {\ttfamily sudo apt install g++-\/8 cmake make libeigen3-\/dev libopenmpi-\/dev doxygen graphviz libgnuplot-\/iostream-\/dev}
+\item From the Paradiseo directory\+: {\ttfamily mkdir build ; cd build ; cmake -\/D C\+M\+A\+K\+E\+\_\+\+B\+U\+I\+L\+D\+\_\+\+T\+Y\+PE=Release -\/D\+E\+DO=ON .. \&\& make -\/j}
+\item Copy-\/paste this C\+M\+A-\/\+ES code in {\ttfamily cmaes.\+cpp}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <eo>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <edo>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <es.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <do/make\_pop.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <do/make\_run.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <do/make\_continue.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <do/make\_checkpoint.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using} \mbox{\hyperlink{classeo_real}{R}} = \mbox{\hyperlink{classeo_real}{eoReal<eoMinimizingFitness>}};}
+\DoxyCodeLine{\textcolor{keyword}{using} CMA = edoNormalAdaptive<R>;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_scalar_fitness}{R::FitnessType}} sphere(\textcolor{keyword}{const} \mbox{\hyperlink{classeo_real}{R}}\& sol) \{}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} sum = 0;}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} x : sol) \{ sum += x * x; \}}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{}
+\DoxyCodeLine{    \mbox{\hyperlink{classeo_parser}{eoParser}} parser(argc, argv);}
+\DoxyCodeLine{    \mbox{\hyperlink{classeo_state}{eoState}} state;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} dim = parser.createParam<\textcolor{keywordtype}{size\_t}>(10,}
+\DoxyCodeLine{            \textcolor{stringliteral}{"dimension"}, \textcolor{stringliteral}{"Dimension"}, \textcolor{charliteral}{'d'},}
+\DoxyCodeLine{            \textcolor{stringliteral}{"Problem"}).value();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} max\_eval = parser.getORcreateParam<\textcolor{keywordtype}{size\_t}>(100 * dim,}
+\DoxyCodeLine{            \textcolor{stringliteral}{"maxEval"}, \textcolor{stringliteral}{"Maximum number of evaluations"}, \textcolor{charliteral}{'E'},}
+\DoxyCodeLine{            \textcolor{stringliteral}{"Stopping criterion"}).value();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    edoNormalAdaptive<R> gaussian(dim);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& obj\_func = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{structeo_eval_func_ptr}{eoEvalFuncPtr<R>}} >(sphere);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& eval     = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_eval_counter_throw_exception}{eoEvalCounterThrowException<R>}} >(obj\_func, max\_eval);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& pop\_eval = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_pop_loop_eval}{eoPopLoopEval<R>}} >(eval);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& gen  = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_uniform_generator}{eoUniformGenerator<R::AtomType>}} >(-\/5, 5);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& init = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_init_fixed_length}{eoInitFixedLength<R>}} >(dim, gen);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& pop = \mbox{\hyperlink{group___builders_gace1963a80d735320d735704179dfa536}{do\_make\_pop}}(parser, state, init);}
+\DoxyCodeLine{    pop\_eval(pop,pop);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& eo\_continue  = do\_make\_continue(  parser, state, eval);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& pop\_continue = \mbox{\hyperlink{group___builders_ga5d125d5ed90d2c464bf0de4c6fb43f35}{do\_make\_checkpoint}}(parser, state, eval, eo\_continue);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& best = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_best_individual_stat}{eoBestIndividualStat<R>}} >();}
+\DoxyCodeLine{    pop\_continue.add( best );}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& distrib\_continue = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classedo_cont_adaptive_finite}{edoContAdaptiveFinite<CMA>}} >();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& selector  = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_rank_mu_select}{eoRankMuSelect<R>}} >(dim/2);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& estimator = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< edoEstimatorNormalAdaptive<R> >(gaussian);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& bounder   = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classedo_bounder_rng}{edoBounderRng<R>}} >(\mbox{\hyperlink{classeo_real}{R}}(dim, -\/5), \mbox{\hyperlink{classeo_real}{R}}(dim, 5), gen);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& sampler   = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< edoSamplerNormalAdaptive<R> >(bounder);}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& replacor  = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classeo_comma_replacement}{eoCommaReplacement<R>}} >();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \mbox{\hyperlink{group___logging_ga03c28b709422a7043dbda8a40a495f3b}{make\_verbose}}(parser);}
+\DoxyCodeLine{    \mbox{\hyperlink{group___builders_ga688f6e52137f8cac101df55538d2ea18}{make\_help}}(parser);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{auto}\& algo = state.\mbox{\hyperlink{classeo_functor_store_a4048f16ccaf8b247cc4f746bae7129d6}{pack}}< \mbox{\hyperlink{classedo_algo_adaptive}{edoAlgoAdaptive<CMA>}} >(}
+\DoxyCodeLine{         gaussian , pop\_eval, selector,}
+\DoxyCodeLine{         estimator, sampler , replacor,}
+\DoxyCodeLine{         pop\_continue, distrib\_continue);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{        algo(pop);}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{catch} (\mbox{\hyperlink{classeo_max_eval_exception}{eoMaxEvalException}}\& e) \{}
+\DoxyCodeLine{        eo::log << eo::progress << \textcolor{stringliteral}{"STOP"} << std::endl;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    std::cout << best.value() << std::endl;}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\item Compile it with\+: {\ttfamily c++ cmaes.\+cpp -\/I../eo/src -\/I../edo/src -\/D\+W\+I\+T\+H\+\_\+\+E\+I\+G\+EN=1 -\/I/usr/include/eigen3 -\/std=c++17 -\/L./lib/ -\/leo -\/leoutils -\/les -\/o cmaes}
+\item {\ttfamily ./cmaes -\/h}
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md73}{}\doxysubsection{Not-\/so-\/quick Start}\label{md__r_e_a_d_m_e_autotoc_md73}
+
+\begin{DoxyEnumerate}
+\item Use your system of choice, as soon as you know how to operate a C++ buildchain on it.
+\item Dependencies are\+: {\ttfamily libeigen3-\/dev libopenmpi-\/dev doxygen graphviz libgnuplot-\/iostream-\/dev} (or similar packagesnames, depending on your system)
+\item From the Paradiseo directory, within a {\ttfamily build} directory, call the equivalent of {\ttfamily cmake -\/D C\+M\+A\+K\+E\+\_\+\+B\+U\+I\+L\+D\+\_\+\+T\+Y\+PE=Release -\/D\+E\+DO=ON ..}, then call your system\textquotesingle{}s favorite generator (see cmake\textquotesingle{}s documentation for the {\ttfamily -\/G} option).
+\item Code your own algorithm, starting from one of the numerous examples (or tests) available around Paradis\+EO (see the source code in {\ttfamily $<$module$>$/test/} or {\ttfamily $<$module$>$/tutorial/}, or see the website).
+\item Build it, indicating where to include the needed Paradis\+EO {\ttfamily $<$module$>$/src/} directories, and the {\ttfamily build/lib} directory for the library linker.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md74}{}\doxysection{Rationale}\label{md__r_e_a_d_m_e_autotoc_md74}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md75}{}\doxysubsection{Black-\/box and Gray-\/box Optimization Problems}\label{md__r_e_a_d_m_e_autotoc_md75}
+Paradiseo targets the development of solvers for mathematical optimization problems for which you cannot compute gradients. The classical use case is the automated design or configuration of some system which is simulated.\hypertarget{md__r_e_a_d_m_e_autotoc_md76}{}\doxysubsection{Metaheuristics / Evolutionary Algorithms}\label{md__r_e_a_d_m_e_autotoc_md76}
+Paradiseo targets the design of metaheuristics solvers using computational intelligence methods, a subdomain of artificial intelligence.\hypertarget{md__r_e_a_d_m_e_autotoc_md77}{}\doxysubsection{Why choosing Paradiseo?}\label{md__r_e_a_d_m_e_autotoc_md77}
+Learning a full-\/featured framework like Paradiseo very often seems overkill. However, we would like to stress out that you may forget some points while jumping to this conclusion.
+
+{\bfseries{Paradiseo provides the {\itshape largest mature codebase} of state-\/of-\/the-\/art algorithms, and is focused on (automatically) find the {\itshape most efficient solvers}.}}
+
+The most classical impediment to the use of Paradiseo is that you just want to check if your problem can actually be solved with heuristics. You feel that it would be a loss of time to learn complex stuff if it ends being useless.
+
+However, you should keep in mind that\+:
+
+
+\begin{DoxyItemize}
+\item Metaheuristics do seem very easy to implement in textbooks, but the state-\/of-\/the art versions of efficient algorithms can be a lot more complex.
+\item It is usually easy to get something to actually run, but it is far more difficult to get an efficient solver.
+\item Metaheuristics performances on a given problem are very sensitive to small variations in the parameter setting or the choice of some operators. Which render large experimental plans and algorithm selection compulsory to attain peak efficiency.
+\end{DoxyItemize}
+
+{\bfseries{Fortunately, Paradiseo have the {\itshape largest codebase} of the market, hardened along 20 years of development of tens of solvers. Additionally, it provides the tools to rapidly search for the best combination of algorithms to solve your problem, even searching for this combination {\itshape automatically}.}}
+
+Paradiseo is the fastest framework on the market, which is a crucial feature for modern and robust approach to solver design and validation.
+
+Another classical criticism against Paradiseo is that C++ is hard and that a fast language is useless because speed is not a concern when your objective function is dominating all the runtime.
+
+However, we argue that\+:
+
+
+\begin{DoxyItemize}
+\item During the design phase of your solver, you will need to estimate its performance against synthetic benchmarks that are fast to compute. In that case, fast computation means fast design iterations. And it\textquotesingle{}s even more true if you plan to use automated design to find the best solver for your problem.
+\item Modern C++ makes use of the very same high-\/level abstractions you would find in more accepted languages like Python. Sure, the syntax is cumbersome, but you will not see it after a while, given that you will work at the algorithm level.
+\item C++ provides full type checking and the largest set of tooling for any modern language, which are your first line of defense against long-\/term bugs. Sure, it sometimes gives you the impression that you fight against the compiler, but chasing subtle interface bugs across a complex Python code is even harder.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md78}{}\doxysection{Features}\label{md__r_e_a_d_m_e_autotoc_md78}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md79}{}\doxysubsection{Component-\/based Design}\label{md__r_e_a_d_m_e_autotoc_md79}
+Designing an algorithm with Paradiseo consists in choosing what components (called operators) you want to use for your specific needs, just as building a structure with Lego blocks.
+
+If you have a classical problem for which available code exists (for example if you have a black-\/box problem with real-\/valued variables), you will just choose operators to form an algorithm and connect it to your evaluation function (which computes the quality of a given solution).
+
+If your problem is a bit more exotic, you will have to code a class that encodes how solutions to your problem are represented, and perhaps a few more. For instance, you may want ad-\/hoc variations operators, but most of the other operators (selection, replacement, stopping criteria, command-\/line interface, etc.) are already available in Paradiseo.\hypertarget{md__r_e_a_d_m_e_autotoc_md80}{}\doxysubsection{Large Choice of Components}\label{md__r_e_a_d_m_e_autotoc_md80}
+Paradiseo is organized in several modules, either providing different \char`\"{}grammars\char`\"{} for different algorithms, either providing high-\/level features. All modules follows the same architecture design and are interoperable with the others, so that you can easily choose the subset of features you need.
+
+It is, for instance, easy to start with a simple local search, then add multi-\/objective capabilities, then shared-\/memory parallelization, then hybridization with an evolutionary algorithm and finally plug everything in an objective function so as to optimize the parameters with a particle swarm optimizer.\hypertarget{md__r_e_a_d_m_e_autotoc_md81}{}\doxysubsection{Portability}\label{md__r_e_a_d_m_e_autotoc_md81}
+Paradiseo is mainly developed under Linux operating systems, where its dependencies and the C++ toolchain are easy to install. Recent versions have been tested with gcc and clang compilers.
+
+Stable versions should however work on Windows and any Unix-\/like operating system with a standard-\/conforming C++ development system.\hypertarget{md__r_e_a_d_m_e_autotoc_md82}{}\doxysection{Code}\label{md__r_e_a_d_m_e_autotoc_md82}
+The latest stable version is on the official Git repository of I\+N\+R\+IA\+: {\ttfamily git clone git\+://scm.gforge.\+inria.\+fr/paradiseo/paradiseo.git}\hypertarget{md__r_e_a_d_m_e_autotoc_md83}{}\doxysubsection{Dependencies}\label{md__r_e_a_d_m_e_autotoc_md83}
+In order to build the latest version of Paradiseo, you will need a C++ compiler supporting C++17. So far, G\+CC and C\+L\+A\+NG gave good results under Linux. You will also need the C\+Make and make build tools.
+
+A free working build chain under Windows seems always difficult to find. Paradiseo 2.\+0.\+1 was successfully tested with Min\+GW (minus the P\+EO module), but it\textquotesingle{}s unsure if it still work for recent versions. If you managed to build under Windows, your feedback would be appreciated.
+
+Some features are only available if some dependencies are installed\+:
+
+
+\begin{DoxyItemize}
+\item Most of the E\+DO module depends on either u\+Blas or Eigen3. The recommended package is Eigen3, which enables the adaptive algorithms.
+\item Doxygen is needed to build the A\+PI documentation, and you should also install graphviz if you want the class relationship diagrams.
+\item G\+N\+Uplot is needed to have the… G\+N\+Uplot graphs at checkpoints.
+\end{DoxyItemize}
+
+To install all those dependencies at once under Ubuntu (18.\+04), just type\+: {\ttfamily sudo apt install g++-\/8 cmake make libeigen3-\/dev libopenmpi-\/dev doxygen graphviz libgnuplot-\/iostream-\/dev}.\hypertarget{md__r_e_a_d_m_e_autotoc_md84}{}\doxysubsection{Compilation}\label{md__r_e_a_d_m_e_autotoc_md84}
+The build chain uses the classical workflow of C\+Make. The recommended method is to build in a specific, separated directory and call {\ttfamily cmake ..} from here. C\+Make will prepare the compilation script for your system of choice which you can change with the {\ttfamily -\/G $<$generator-\/name$>$} option (see the C\+Make doc for the list of available generators).
+
+Under Linux, the default is make, and a build command is straitghtforward\+: {\ttfamily mkdir build ; cd build ; cmake .. \&\& make -\/j}.
+
+There is, however, several build options which you may want to switch. To see them, we recommend the use of a C\+Make gui, like ccmake or cmake-\/gui . On the command line, you can see the available options with\+: {\ttfamily cmake -\/LH ..} . Those options can be set with the {\ttfamily -\/D$<$option$>$=$<$value$>$} argument to cmake.
+
+{\bfseries{The first option to consider is {\ttfamily C\+M\+A\+K\+E\+\_\+\+B\+U\+I\+L\+D\+\_\+\+T\+Y\+PE}, which you most probably want to set to {\ttfamily Debug} (during development/tests) or {\ttfamily Release} (for production/validation).}}
+
+Other important options are\+: {\ttfamily E\+DO} (which is false by default) and parallelization options\+: {\ttfamily E\+N\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+MP}, {\ttfamily M\+PI}, {\ttfamily S\+MP}.
+
+By default, the build script will build the Paradiseo libraries only.
+
+If you {\ttfamily E\+N\+A\+B\+L\+E\+\_\+\+C\+M\+A\+K\+E\+\_\+\+T\+E\+S\+T\+I\+NG} and {\ttfamily B\+U\+I\+L\+D\+\_\+\+T\+E\+S\+T\+I\+NG}, it will be the tests, which you can run with the {\ttfamily ctest} command.
+
+If you {\ttfamily E\+N\+A\+B\+L\+E\+\_\+\+C\+M\+A\+K\+E\+\_\+\+E\+X\+A\+M\+P\+LE}, it will also build the examples.\hypertarget{md__r_e_a_d_m_e_autotoc_md85}{}\doxysubsection{Licenses}\label{md__r_e_a_d_m_e_autotoc_md85}
+Paradiseo is distributed under the G\+NU Lesser General Public License and the Ce\+C\+I\+LL license (depending on the modules).
+
+Note that those licenses places copyleft restrictions on a program created with Paradiseo, but does not apply these restrictions to other software that would links with the program.\hypertarget{md__r_e_a_d_m_e_autotoc_md86}{}\doxysection{Documentation}\label{md__r_e_a_d_m_e_autotoc_md86}
+Paradiseo has a lot of documentation! You will find in the source repository a lot of examples, the tutorials and you can generate the A\+PI documentation ({\ttfamily make doc}, then open {\ttfamily paradiseo/$<$build$>$/$<$module$>$/doc/html/index.html}).
+
+Tutorials are located in each module\textquotesingle{}s directory. For example for the \mbox{\hyperlink{class_e_o}{EO}} module\+: {\ttfamily paradiseo/eo/tutorial}. A lot of examples for (almost) each class are available in the test directories (e.\+g. {\ttfamily paradiseo/eo/test}). Example problems and bindings to external benchmark libraries are in {\ttfamily paradiseo/problems}.
+
+For academic articles, books, more tutorials, presentations slides, real life example of solvers and contact information, please see the web site (available in {\ttfamily paradiseo/website/index.\+html}). 

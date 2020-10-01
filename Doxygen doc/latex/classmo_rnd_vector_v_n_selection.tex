@@ -1,0 +1,146 @@
+\hypertarget{classmo_rnd_vector_v_n_selection}{}\doxysection{mo\+Rnd\+Vector\+V\+N\+Selection$<$ E\+OT $>$ Class Template Reference}
+\label{classmo_rnd_vector_v_n_selection}\index{moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$mo\+Rnd\+Vector\+V\+N\+Selection.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Rnd\+Vector\+V\+N\+Selection$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{classmo_rnd_vector_v_n_selection__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Rnd\+Vector\+V\+N\+Selection$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{classmo_rnd_vector_v_n_selection__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_rnd_vector_v_n_selection_ae47dc78d4970064b89ba5c617ef0b597}{mo\+Rnd\+Vector\+V\+N\+Selection}} (\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+first\+LS, \mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+first\+Shake, bool \+\_\+cycle=true)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_rnd_vector_v_n_selection_ac11e6ee96edbb3c16900fb89f2b7be79}{class\+Name}} () const
+\item 
+virtual bool \mbox{\hyperlink{classmo_rnd_vector_v_n_selection_a7181c777478bf4301b895a5f5830c301}{cont}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_rnd_vector_v_n_selection_a148fcf413b76150ac0d05b5748e19842}{init}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_rnd_vector_v_n_selection_abe990f3c5d991d808492fd43f67198e3}{next}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class mo\+Rnd\+Vector\+V\+N\+Selection$<$ E\+O\+T $>$}
+
+This class is used for the Variable Neighborhood Search explorer inherits from \mbox{\hyperlink{classmo_vector_v_n_selection}{mo\+Vector\+V\+N\+Selection}} The search heuristics are saved in vectors They are given in random order (at each initialization the order is changed) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_rnd_vector_v_n_selection_ae47dc78d4970064b89ba5c617ef0b597}\label{classmo_rnd_vector_v_n_selection_ae47dc78d4970064b89ba5c617ef0b597}} 
+\index{moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}!moRndVectorVNSelection@{moRndVectorVNSelection}}
+\index{moRndVectorVNSelection@{moRndVectorVNSelection}!moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{moRndVectorVNSelection()}{moRndVectorVNSelection()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classmo_rnd_vector_v_n_selection}{mo\+Rnd\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classmo_rnd_vector_v_n_selection}{mo\+Rnd\+Vector\+V\+N\+Selection}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+first\+LS,  }\item[{\mbox{\hyperlink{classeo_mon_op}{eo\+Mon\+Op}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+first\+Shake,  }\item[{bool}]{\+\_\+cycle = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor with first search heuristics
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+first\+LS} & first local search \\
+\hline
+{\em \+\_\+first\+Shake} & first heuristic which perturbs the solution \\
+\hline
+{\em \+\_\+cycle} & when true, the first heuristics follows the last ones. Otherwise the search stop. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_rnd_vector_v_n_selection_ac11e6ee96edbb3c16900fb89f2b7be79}\label{classmo_rnd_vector_v_n_selection_ac11e6ee96edbb3c16900fb89f2b7be79}} 
+\index{moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}!className@{className}}
+\index{className@{className}!moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_rnd_vector_v_n_selection}{mo\+Rnd\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Return the class id. \begin{DoxyReturn}{Returns}
+the class name as a std\+::string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_vector_v_n_selection_af2233b470b1d71e6de5fd7ed3f041a93}{mo\+Vector\+V\+N\+Selection$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_rnd_vector_v_n_selection_a7181c777478bf4301b895a5f5830c301}\label{classmo_rnd_vector_v_n_selection_a7181c777478bf4301b895a5f5830c301}} 
+\index{moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}!cont@{cont}}
+\index{cont@{cont}!moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{cont()}{cont()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual bool \mbox{\hyperlink{classmo_rnd_vector_v_n_selection}{mo\+Rnd\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::cont (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+test if there is still some heuristics
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the current solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is some heuristics 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_variable_neighborhood_selection_a64cdbb11a302a525e2f62a8e81aa3880}{mo\+Variable\+Neighborhood\+Selection$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_rnd_vector_v_n_selection_a148fcf413b76150ac0d05b5748e19842}\label{classmo_rnd_vector_v_n_selection_a148fcf413b76150ac0d05b5748e19842}} 
+\index{moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}!init@{init}}
+\index{init@{init}!moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmo_rnd_vector_v_n_selection}{mo\+Rnd\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+put the current heuristics on the first ones
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_variable_neighborhood_selection_a24a7216e656bca63d6668cf3ac57f96a}{mo\+Variable\+Neighborhood\+Selection$<$ E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_rnd_vector_v_n_selection_abe990f3c5d991d808492fd43f67198e3}\label{classmo_rnd_vector_v_n_selection_abe990f3c5d991d808492fd43f67198e3}} 
+\index{moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}!next@{next}}
+\index{next@{next}!moRndVectorVNSelection$<$ EOT $>$@{moRndVectorVNSelection$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{classmo_rnd_vector_v_n_selection}{mo\+Rnd\+Vector\+V\+N\+Selection}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+put the current heuristics on the next ones
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the current solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_variable_neighborhood_selection_a3f22b476e239947aafc680fee671da2f}{mo\+Variable\+Neighborhood\+Selection$<$ E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/neighborhood/mo\+Rnd\+Vector\+V\+N\+Selection.\+h\end{DoxyCompactItemize}

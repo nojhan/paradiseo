@@ -1,0 +1,27 @@
+\hypertarget{namespacempi}{}\doxysection{mpi Namespace Reference}
+\label{namespacempi}\index{mpi@{mpi}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classmpi_1_1communicator}{communicator}}
+\begin{DoxyCompactList}\small\item\em Main object, used to send / receive messages, get informations about the rank and the size of the world, etc. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classmpi_1_1environment}{environment}}
+\begin{DoxyCompactList}\small\item\em Wrapper class to have a M\+PI environment. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classmpi_1_1status}{status}}
+\begin{DoxyCompactList}\small\item\em Wrapper class for M\+P\+I\+\_\+\+Status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{group___parallel_ga9c4a827de4c8d1026de65fc91ed989e0}{any\+\_\+source}} = M\+P\+I\+\_\+\+A\+N\+Y\+\_\+\+S\+O\+U\+R\+CE
+\begin{DoxyCompactList}\small\item\em Constant indicating that a message can come from any process. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{group___parallel_gaa60c80af67fe827d0338f4da95fcbd26}{any\+\_\+tag}} = M\+P\+I\+\_\+\+A\+N\+Y\+\_\+\+T\+AG
+\begin{DoxyCompactList}\small\item\em Constant indicating that a message can come from any tag (channel). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___parallel_ga43a042b471a84b187c77bca43368db6a}{broadcast}} (\mbox{\hyperlink{classmpi_1_1communicator}{communicator}} \&comm, int value, int root)
+\begin{DoxyCompactList}\small\item\em Wrapper for M\+P\+I\+\_\+\+Bcast. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This namespace contains reimplementations of some parts of the Boost\+::\+M\+PI A\+PI in C++, so as to be used in \mbox{\hyperlink{class_e_o}{EO}} without any dependance to Boost. Historically, \mbox{\hyperlink{class_e_o}{EO}}\textquotesingle{}s parallelization module used the boost library to add a layer over M\+PI. After having noticed that just some functions were really used, we decided to reimplement our own C++-\/like implementation of M\+PI.
+
+Because the Boost\+::\+M\+PI A\+PI is really clean, we reused it in this module. However, all the functions of Boost\+::\+M\+PI were not used, hence a subset of the A\+PI is reused. For instance, users can just send integer, std\+::string or \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects; furthermore, only \mbox{\hyperlink{classeoserial_1_1_persistent}{eoserial\+::\+Persistent}} objects can sent in a table.
+
+The documentation of the functions is exactly the same as the official Boost\+::\+M\+PI documentation. You can find it on www.\+boost.\+org/doc/libs/1\+\_\+49\+\_\+0/doc/html/mpi/ The entities are here shortly described, if you need further details, don\textquotesingle{}t hesitate to visit the boost U\+RL. 

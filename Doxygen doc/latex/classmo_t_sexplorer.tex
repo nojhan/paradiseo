@@ -1,0 +1,241 @@
+\hypertarget{classmo_t_sexplorer}{}\doxysection{mo\+T\+Sexplorer$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_t_sexplorer}\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+T\+Sexplorer.\+h$>$}
+
+
+
+Inheritance diagram for mo\+T\+Sexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classmo_t_sexplorer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+T\+Sexplorer$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_t_sexplorer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_aee702fae6d1626080de6f7dffef7d9c6}\label{classmo_t_sexplorer_aee702fae6d1626080de6f7dffef7d9c6}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_a9ee89a6f32fe535c05acea00e065c9a1}\label{classmo_t_sexplorer_a9ee89a6f32fe535c05acea00e065c9a1}} 
+typedef \mbox{\hyperlink{classmo_neighborhood}{mo\+Neighborhood}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ {\bfseries Neighborhood}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_t_sexplorer_a51932c84e71899b7f6490cb9bd9d3636}{mo\+T\+Sexplorer}} (\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&\+\_\+neighborhood, \mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+eval, \mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+neighbor\+Comparator, \mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+sol\+Neighbor\+Comparator, \mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+tabu\+List, \mbox{\hyperlink{classmo_intensification}{mo\+Intensification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+intensification, \mbox{\hyperlink{classmo_diversification}{mo\+Diversification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+diversification, \mbox{\hyperlink{classmo_aspiration}{mo\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+aspiration)
+\item 
+\mbox{\hyperlink{classmo_t_sexplorer_a2e2bfc81b0a6f9f8f329d8e4c9187f64}{$\sim$mo\+T\+Sexplorer}} ()
+\item 
+virtual void \mbox{\hyperlink{classmo_t_sexplorer_aab5c8dff5071fb9358b6fac2b9bfc38d}{init\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_t_sexplorer_a26a2e7529b2c2b4b650a64a89f3e24f3}{update\+Param}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_t_sexplorer_a0d24f8daeef52f90c7ddb4d7f66c41a2}{terminate}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{classmo_t_sexplorer_af93efb81b0d9f9e7c9f16b4e0219a0fc}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_t_sexplorer_a41ce67c397a8334f1f88d52ec9757e0c}{is\+Continue}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual bool \mbox{\hyperlink{classmo_t_sexplorer_ac0a79ae870d937e3d77af27f098c5a94}{accept}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+solution)
+\item 
+const \mbox{\hyperlink{classeo_bit}{E\+OT}} \& \mbox{\hyperlink{classmo_t_sexplorer_a3726e998f2cf8126898c81158de0b823}{get\+Best}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_a80947171772c205cef30496b49365bff}\label{classmo_t_sexplorer_a80947171772c205cef30496b49365bff}} 
+\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries neighbor\+Comparator}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_a861f2036a79f08153e1dc2ea976bc4a8}\label{classmo_t_sexplorer_a861f2036a79f08153e1dc2ea976bc4a8}} 
+\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries sol\+Neighbor\+Comparator}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_a13d907484b836284d661a7d8bef10686}\label{classmo_t_sexplorer_a13d907484b836284d661a7d8bef10686}} 
+\mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries tabu\+List}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_ae22d3f26b50a70eb654f7f0551811dff}\label{classmo_t_sexplorer_ae22d3f26b50a70eb654f7f0551811dff}} 
+\mbox{\hyperlink{classmo_intensification}{mo\+Intensification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries intensification}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_ae00e50d64e36aa0830ea034aaf74847f}\label{classmo_t_sexplorer_ae00e50d64e36aa0830ea034aaf74847f}} 
+\mbox{\hyperlink{classmo_diversification}{mo\+Diversification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries diversification}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_afd6d0bd1c130983fd92a1b55cf406d3f}\label{classmo_t_sexplorer_afd6d0bd1c130983fd92a1b55cf406d3f}} 
+\mbox{\hyperlink{classmo_aspiration}{mo\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \& {\bfseries aspiration}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_a19214d66acd38df8b2938e8e45b9ad28}\label{classmo_t_sexplorer_a19214d66acd38df8b2938e8e45b9ad28}} 
+\mbox{\hyperlink{classeo_bit}{E\+OT}} {\bfseries best\+So\+Far}
+\item 
+\mbox{\Hypertarget{classmo_t_sexplorer_a3b502b7a0a4ebb9cf3f937d9fd202dc0}\label{classmo_t_sexplorer_a3b502b7a0a4ebb9cf3f937d9fd202dc0}} 
+bool {\bfseries is\+Accept}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+T\+Sexplorer$<$ Neighbor $>$}
+
+Explorer for a Tabu Search 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_t_sexplorer_a51932c84e71899b7f6490cb9bd9d3636}\label{classmo_t_sexplorer_a51932c84e71899b7f6490cb9bd9d3636}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!moTSexplorer@{moTSexplorer}}
+\index{moTSexplorer@{moTSexplorer}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moTSexplorer()}{moTSexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood}{Neighborhood}} \&}]{\+\_\+neighborhood,  }\item[{\mbox{\hyperlink{classmo_eval}{mo\+Eval}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+eval,  }\item[{\mbox{\hyperlink{classmo_neighbor_comparator}{mo\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_sol_neighbor_comparator}{mo\+Sol\+Neighbor\+Comparator}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+sol\+Neighbor\+Comparator,  }\item[{\mbox{\hyperlink{classmo_tabu_list}{mo\+Tabu\+List}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+tabu\+List,  }\item[{\mbox{\hyperlink{classmo_intensification}{mo\+Intensification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+intensification,  }\item[{\mbox{\hyperlink{classmo_diversification}{mo\+Diversification}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+diversification,  }\item[{\mbox{\hyperlink{classmo_aspiration}{mo\+Aspiration}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+aspiration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+neighborhood} & the neighborhood \\
+\hline
+{\em \+\_\+eval} & the evaluation function \\
+\hline
+{\em \+\_\+neighbor\+Comparator} & a neighbor comparator \\
+\hline
+{\em \+\_\+sol\+Neighbor\+Comparator} & a comparator between a solution and a neighbor \\
+\hline
+{\em \+\_\+tabu\+List} & the tabu list \\
+\hline
+{\em \+\_\+intensification} & the intensification box \\
+\hline
+{\em \+\_\+diversification} & the diversification box \\
+\hline
+{\em \+\_\+aspiration} & the aspiration criteria \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmo_t_sexplorer_a2e2bfc81b0a6f9f8f329d8e4c9187f64}\label{classmo_t_sexplorer_a2e2bfc81b0a6f9f8f329d8e4c9187f64}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!````~moTSexplorer@{$\sim$moTSexplorer}}
+\index{````~moTSexplorer@{$\sim$moTSexplorer}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$moTSexplorer()}{~moTSexplorer()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::$\sim$\mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_t_sexplorer_ac0a79ae870d937e3d77af27f098c5a94}\label{classmo_t_sexplorer_ac0a79ae870d937e3d77af27f098c5a94}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!accept@{accept}}
+\index{accept@{accept}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+accept test if an ameliorated neighbor was found 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the best neighbor ameliorate the fitness 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a1f7cef19fb9b961ed030b2de4c04d0af}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_t_sexplorer_a3726e998f2cf8126898c81158de0b823}\label{classmo_t_sexplorer_a3726e998f2cf8126898c81158de0b823}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!getBest@{getBest}}
+\index{getBest@{getBest}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{getBest()}{getBest()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+const \mbox{\hyperlink{classeo_bit}{E\+OT}}\& \mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::get\+Best (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Give the current best found so far \begin{DoxyReturn}{Returns}
+the best solution so far 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmo_t_sexplorer_aab5c8dff5071fb9358b6fac2b9bfc38d}\label{classmo_t_sexplorer_aab5c8dff5071fb9358b6fac2b9bfc38d}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!initParam@{initParam}}
+\index{initParam@{initParam}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{initParam()}{initParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+init tabu list, intensification box, diversification box and aspiration criteria 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a01e26d82397763e7d560879c53855ca2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_t_sexplorer_a41ce67c397a8334f1f88d52ec9757e0c}\label{classmo_t_sexplorer_a41ce67c397a8334f1f88d52ec9757e0c}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!isContinue@{isContinue}}
+\index{isContinue@{isContinue}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{isContinue()}{isContinue()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual bool \mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::is\+Continue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+always continue 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a48c3bced4d49d8e3dbe7e4fd16c71fd2}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_t_sexplorer_af93efb81b0d9f9e7c9f16b4e0219a0fc}\label{classmo_t_sexplorer_af93efb81b0d9f9e7c9f16b4e0219a0fc}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Explore the neighborhood of a solution 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{classmo_t_sexplorer_a0d24f8daeef52f90c7ddb4d7f66c41a2}\label{classmo_t_sexplorer_a0d24f8daeef52f90c7ddb4d7f66c41a2}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!terminate@{terminate}}
+\index{terminate@{terminate}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::terminate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+terminate \+: \+\_\+solution becomes the best so far 
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a5847d6d097d6908bff3640c7f9b675b6}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+\mbox{\Hypertarget{classmo_t_sexplorer_a26a2e7529b2c2b4b650a64a89f3e24f3}\label{classmo_t_sexplorer_a26a2e7529b2c2b4b650a64a89f3e24f3}} 
+\index{moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}!updateParam@{updateParam}}
+\index{updateParam@{updateParam}!moTSexplorer$<$ Neighbor $>$@{moTSexplorer$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{updateParam()}{updateParam()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_t_sexplorer}{mo\+T\+Sexplorer}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::update\+Param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+update params of tabu list, intensification box, diversification box and aspiration criteria 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmo_neighborhood_explorer_a024ca64a7ce03d7457e6f2a906cb1a8d}{mo\+Neighborhood\+Explorer$<$ Neighbor $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/explorer/mo\+T\+Sexplorer.\+h\end{DoxyCompactItemize}

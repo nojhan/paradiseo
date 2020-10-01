@@ -1,0 +1,56 @@
+\hypertarget{class_quad_tree_node}{}\doxysection{Quad\+Tree\+Node$<$ Objective\+Vector $>$ Class Template Reference}
+\label{class_quad_tree_node}\index{QuadTreeNode$<$ ObjectiveVector $>$@{QuadTreeNode$<$ ObjectiveVector $>$}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_a2412755bf8f104e1377350739d06660e}\label{class_quad_tree_node_a2412755bf8f104e1377350739d06660e}} 
+{\bfseries Quad\+Tree\+Node} (\mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_af02de668c50534ec9ea23f4bd7989997}\label{class_quad_tree_node_af02de668c50534ec9ea23f4bd7989997}} 
+{\bfseries Quad\+Tree\+Node} (const \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}} \&\+\_\+source)
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_a517c497dcf9eb9d06783e00749f7e1a7}\label{class_quad_tree_node_a517c497dcf9eb9d06783e00749f7e1a7}} 
+\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}} \&\+\_\+src)
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_ad3709b8b9f6931d34446877fc27b986f}\label{class_quad_tree_node_ad3709b8b9f6931d34446877fc27b986f}} 
+\mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} \& {\bfseries get\+Vec} ()
+\item 
+bool \mbox{\hyperlink{class_quad_tree_node_ae8cc50cd7474ac325859f91588282222}{set\+Child}} (unsigned int \+\_\+k\+Succesor, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ $\ast$\+\_\+child)
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_a2454af924dd8e4242ccc765396e115f6}\label{class_quad_tree_node_a2454af924dd8e4242ccc765396e115f6}} 
+std\+::map$<$ unsigned int, \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ $\ast$ $>$ \& {\bfseries get\+Sub\+Tree} ()
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_a1a137ef53386d8a52ae283e327b62ae0}\label{class_quad_tree_node_a1a137ef53386d8a52ae283e327b62ae0}} 
+void {\bfseries set\+\_\+index} (int idx)
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_ac1f2156a145b17d09d89619ba64ae47e}\label{class_quad_tree_node_ac1f2156a145b17d09d89619ba64ae47e}} 
+unsigned int {\bfseries get\+\_\+index} ()
+\item 
+\mbox{\Hypertarget{class_quad_tree_node_ada3741d1279c3f4c3e9f8465f5f9ac3a}\label{class_quad_tree_node_ada3741d1279c3f4c3e9f8465f5f9ac3a}} 
+bool {\bfseries is\+\_\+inserted} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_quad_tree_node_ae8cc50cd7474ac325859f91588282222}\label{class_quad_tree_node_ae8cc50cd7474ac325859f91588282222}} 
+\index{QuadTreeNode$<$ ObjectiveVector $>$@{QuadTreeNode$<$ ObjectiveVector $>$}!setChild@{setChild}}
+\index{setChild@{setChild}!QuadTreeNode$<$ ObjectiveVector $>$@{QuadTreeNode$<$ ObjectiveVector $>$}}
+\doxysubsubsection{\texorpdfstring{setChild()}{setChild()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector $>$ \\
+bool \mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$\+::set\+Child (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+k\+Succesor,  }\item[{\mbox{\hyperlink{class_quad_tree_node}{Quad\+Tree\+Node}}$<$ \mbox{\hyperlink{classmoeo_real_objective_vector}{Objective\+Vector}} $>$ $\ast$}]{\+\_\+child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+k\+Succesor} & the k\+\_\+successor of \+\_\+child regarding this \mbox{\hyperlink{class_node}{Node}} \\
+\hline
+{\em \+\_\+child} & the child to link at the index \+\_\+k\+Successor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if \+\_\+child is inserted, false if there is already a child for this index 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/archive/moeo\+Quad\+Tree.\+h\end{DoxyCompactItemize}

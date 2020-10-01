@@ -1,0 +1,122 @@
+\hypertarget{classmo_size_neighbor_stat}{}\doxysection{mo\+Size\+Neighbor\+Stat$<$ Neighbor $>$ Class Template Reference}
+\label{classmo_size_neighbor_stat}\index{moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}}
+
+
+{\ttfamily \#include $<$mo\+Size\+Neighbor\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for mo\+Size\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_size_neighbor_stat__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mo\+Size\+Neighbor\+Stat$<$ Neighbor $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmo_size_neighbor_stat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmo_size_neighbor_stat_a8b8ced17264ccb2a53cb805526db2529}\label{classmo_size_neighbor_stat_a8b8ced17264ccb2a53cb805526db2529}} 
+typedef \mbox{\hyperlink{classeo_bit}{Neighbor\+::\+E\+OT}} {\bfseries E\+OT}
+\item 
+\mbox{\Hypertarget{classmo_size_neighbor_stat_aa1c03ca48153bca8c98c1f436c806ded}\label{classmo_size_neighbor_stat_aa1c03ca48153bca8c98c1f436c806ded}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries Fitness}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmo_size_neighbor_stat_a1107d167c58a728bbb2a23fb18824126}{mo\+Size\+Neighbor\+Stat}} (\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&\+\_\+nh\+Stat)
+\item 
+virtual void \mbox{\hyperlink{classmo_size_neighbor_stat_a3c5097774509067a73f77204b7393b67}{init}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual void \mbox{\hyperlink{classmo_size_neighbor_stat_aa22cafbfaa2530366f47a1cf91d9e97d}{operator()}} (\mbox{\hyperlink{classeo_bit}{E\+OT}} \&\+\_\+sol)
+\item 
+virtual std\+::string \mbox{\hyperlink{classmo_size_neighbor_stat_a0aef1f9b93432725043cee3c47fabd67}{class\+Name}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Neighbor$>$\newline
+class mo\+Size\+Neighbor\+Stat$<$ Neighbor $>$}
+
+From \mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}, to compute the number of solutions in the neighborhood 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmo_size_neighbor_stat_a1107d167c58a728bbb2a23fb18824126}\label{classmo_size_neighbor_stat_a1107d167c58a728bbb2a23fb18824126}} 
+\index{moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}!moSizeNeighborStat@{moSizeNeighborStat}}
+\index{moSizeNeighborStat@{moSizeNeighborStat}!moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{moSizeNeighborStat()}{moSizeNeighborStat()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+\mbox{\hyperlink{classmo_size_neighbor_stat}{mo\+Size\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::\mbox{\hyperlink{classmo_size_neighbor_stat}{mo\+Size\+Neighbor\+Stat}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmo_neighborhood_stat}{mo\+Neighborhood\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$ \&}]{\+\_\+nh\+Stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+nh\+Stat} & a neighborhood\+Stat \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmo_size_neighbor_stat_a0aef1f9b93432725043cee3c47fabd67}\label{classmo_size_neighbor_stat_a0aef1f9b93432725043cee3c47fabd67}} 
+\index{moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}!className@{className}}
+\index{className@{className}!moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual std\+::string \mbox{\hyperlink{classmo_size_neighbor_stat}{mo\+Size\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::class\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the class name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{classmo_size_neighbor_stat_a3c5097774509067a73f77204b7393b67}\label{classmo_size_neighbor_stat_a3c5097774509067a73f77204b7393b67}} 
+\index{moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}!init@{init}}
+\index{init@{init}!moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_size_neighbor_stat}{mo\+Size\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the number of solutions in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the first solution \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classmo_stat_base_a283efc00343f493a562ecac8224f6b52}{mo\+Stat\+Base$<$ Neighbor\+::\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmo_size_neighbor_stat_aa22cafbfaa2530366f47a1cf91d9e97d}\label{classmo_size_neighbor_stat_aa22cafbfaa2530366f47a1cf91d9e97d}} 
+\index{moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moSizeNeighborStat$<$ Neighbor $>$@{moSizeNeighborStat$<$ Neighbor $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Neighbor $>$ \\
+virtual void \mbox{\hyperlink{classmo_size_neighbor_stat}{mo\+Size\+Neighbor\+Stat}}$<$ \mbox{\hyperlink{classmo_bit_neighbor}{Neighbor}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_bit}{E\+OT}} \&}]{\+\_\+sol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the number of solutions in the neighborhood 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sol} & the corresponding solution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ Neighbor\+::\+E\+O\+T \&, void $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mo/src/continuator/mo\+Size\+Neighbor\+Stat.\+h\end{DoxyCompactItemize}

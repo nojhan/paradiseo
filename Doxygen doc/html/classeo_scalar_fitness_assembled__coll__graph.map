@@ -1,0 +1,4 @@
+<map id="eoScalarFitnessAssembled&lt; ScalarType, Compare, FitnessTraits &gt;" name="eoScalarFitnessAssembled&lt; ScalarType, Compare, FitnessTraits &gt;">
+<area shape="rect" id="node1" title="Implements fitness as std::vector, storing all values that might occur during fitness assembly." alt="" coords="5,80,201,136"/>
+<area shape="rect" id="node2" title=" " alt="" coords="8,5,199,32"/>
+</map>

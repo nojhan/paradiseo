@@ -1,0 +1,178 @@
+\hypertarget{classmoeo_incr_eval_single_objectivizer}{}\doxysection{moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+OT, Move $>$ Class Template Reference}
+\label{classmoeo_incr_eval_single_objectivizer}\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Incr\+Eval\+Single\+Objectivizer.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+OT, Move $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_incr_eval_single_objectivizer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+OT, Move $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_incr_eval_single_objectivizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_a2f3591ac6eb558078117e4da917a3afb}\label{classmoeo_incr_eval_single_objectivizer_a2f3591ac6eb558078117e4da917a3afb}} 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector {\bfseries Objective\+Vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_a7fbf66763fe221db616ac440fb8b5823}{moeo\+Incr\+Eval\+Single\+Objectivizer}} (\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&\+\_\+singler, mo\+Move\+Incr\+Eval$<$ Move, typename M\+O\+E\+O\+T\+::\+Objective\+Vector $>$ \&\+\_\+incr)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_aae1a770b1013f42175282cb3e1b1da72}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+virtual void \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_a1ce7bd4e11da500c6a655100b00a60df}{operator()}} (M\+O\+E\+OT \&\+\_\+moeot)
+\item 
+virtual M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_a6bf2a5f88f80a64999f9180f90d43598}{operator()}} (const typename M\+O\+E\+O\+T\+::\+Objective\+Vector \&\+\_\+moeot)
+\item 
+virtual M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_a4cd4a6fbd2cc0cf22889fbb0eed777d6}{operator()}} (const Move \&\+\_\+mov, const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+virtual \mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_af2f90125a589fe7f557694ae50a4144e}{incr\+\_\+obj}} (const Move \&\+\_\+mov, const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+void \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer_aa6c8f816486e467133070d19cb5e0d2f}{update\+By\+Deleting}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop, \mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&\+\_\+obj\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT, class Move$>$\newline
+class moeo\+Incr\+Eval\+Single\+Objectivizer$<$ M\+O\+E\+O\+T, Move $>$}
+
+Class to adapt mo algorithms (\mbox{\hyperlink{classmo_t_s}{mo\+TS}} mo\+V\+NC...) for multiobjectives This class play a mo\+Move\+Incr\+Eval but can be used with multi objectives Use a Singleobjectivizer to set the fitness value according to each dimension 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_a7fbf66763fe221db616ac440fb8b5823}\label{classmoeo_incr_eval_single_objectivizer_a7fbf66763fe221db616ac440fb8b5823}} 
+\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}!moeoIncrEvalSingleObjectivizer@{moeoIncrEvalSingleObjectivizer}}
+\index{moeoIncrEvalSingleObjectivizer@{moeoIncrEvalSingleObjectivizer}!moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+\doxysubsubsection{\texorpdfstring{moeoIncrEvalSingleObjectivizer()}{moeoIncrEvalSingleObjectivizer()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Move $>$ \\
+\mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ M\+O\+E\+OT, Move $>$\+::\mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+singler,  }\item[{mo\+Move\+Incr\+Eval$<$ Move, typename M\+O\+E\+O\+T\+::\+Objective\+Vector $>$ \&}]{\+\_\+incr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+singler} & a single\+Objectivizer to calculte the fitness from the objective\+Vector \\
+\hline
+{\em \+\_\+incr} & incremental evaluation of moeots \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_af2f90125a589fe7f557694ae50a4144e}\label{classmoeo_incr_eval_single_objectivizer_af2f90125a589fe7f557694ae50a4144e}} 
+\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}!incr\_obj@{incr\_obj}}
+\index{incr\_obj@{incr\_obj}!moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+\doxysubsubsection{\texorpdfstring{incr\_obj()}{incr\_obj()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Move $>$ \\
+virtual \mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ M\+O\+E\+OT, Move $>$\+::incr\+\_\+obj (\begin{DoxyParamCaption}\item[{const Move \&}]{\+\_\+mov,  }\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+evaluates incrementally the objective\+Vector for a moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mov} & a movement to virtually apply to \+\_\+moeo \\
+\hline
+{\em \+\_\+moeo} & the base solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the objective\+Vector of \+\_\+moeo with \+\_\+move applied 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_a4cd4a6fbd2cc0cf22889fbb0eed777d6}\label{classmoeo_incr_eval_single_objectivizer_a4cd4a6fbd2cc0cf22889fbb0eed777d6}} 
+\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Move $>$ \\
+virtual M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ M\+O\+E\+OT, Move $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Move \&}]{\+\_\+mov,  }\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+evaluates incrementally the fitness for a moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mov} & a movement to virtually apply to \+\_\+moeo \\
+\hline
+{\em \+\_\+moeo} & the base solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fitness of \+\_\+moeo with \+\_\+move applied 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_a6bf2a5f88f80a64999f9180f90d43598}\label{classmoeo_incr_eval_single_objectivizer_a6bf2a5f88f80a64999f9180f90d43598}} 
+\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Move $>$ \\
+virtual M\+O\+E\+O\+T\+::\+Fitness \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ M\+O\+E\+OT, Move $>$\+::operator() (\begin{DoxyParamCaption}\item[{const typename M\+O\+E\+O\+T\+::\+Objective\+Vector \&}]{\+\_\+moeot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+calculate fitness from an objective\+Vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeot} & a valid Obejctive\+Vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fitness value for the objective\+Vector 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_aae1a770b1013f42175282cb3e1b1da72}\label{classmoeo_incr_eval_single_objectivizer_aae1a770b1013f42175282cb3e1b1da72}} 
+\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Move $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ M\+O\+E\+OT, Move $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+herited from \mbox{\hyperlink{classmoeo_fitness_assignment}{moeo\+Fitness\+Assignment}}, calculate fitness for all population 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the population \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization_a2751dcec9bc9bcc905852993b9041002}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_a1ce7bd4e11da500c6a655100b00a60df}\label{classmoeo_incr_eval_single_objectivizer_a1ce7bd4e11da500c6a655100b00a60df}} 
+\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Move $>$ \\
+virtual void \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ M\+O\+E\+OT, Move $>$\+::operator() (\begin{DoxyParamCaption}\item[{M\+O\+E\+OT \&}]{\+\_\+moeot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+herited from \mbox{\hyperlink{classeo_eval_func}{eo\+Eval\+Func}}, calculate fitness for a moeot ~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeot} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classmoeo_single_objectivization_a38a7d53d743fb9cc32a3e0f66695f026}{moeo\+Single\+Objectivization$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_incr_eval_single_objectivizer_aa6c8f816486e467133070d19cb5e0d2f}\label{classmoeo_incr_eval_single_objectivizer_aa6c8f816486e467133070d19cb5e0d2f}} 
+\index{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$@{moeoIncrEvalSingleObjectivizer$<$ MOEOT, Move $>$}}
+\doxysubsubsection{\texorpdfstring{updateByDeleting()}{updateByDeleting()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT , class Move $>$ \\
+void \mbox{\hyperlink{classmoeo_incr_eval_single_objectivizer}{moeo\+Incr\+Eval\+Single\+Objectivizer}}$<$ M\+O\+E\+OT, Move $>$\+::update\+By\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop,  }\item[{\mbox{\hyperlink{classmoeo_fitness_assignment_a6271b8215ea5df4fc1f19e513cd1d533}{Objective\+Vector}} \&}]{\+\_\+obj\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+dummy method 
+
+Implements \mbox{\hyperlink{classmoeo_fitness_assignment_a4922629569eddc9be049b3ead1ab0269}{moeo\+Fitness\+Assignment$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/scalar\+Stuffs/fitness/moeo\+Incr\+Eval\+Single\+Objectivizer.\+h\end{DoxyCompactItemize}

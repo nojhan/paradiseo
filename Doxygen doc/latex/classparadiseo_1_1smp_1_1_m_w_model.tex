@@ -1,0 +1,181 @@
+\hypertarget{classparadiseo_1_1smp_1_1_m_w_model}{}\doxysection{paradiseo\+::smp\+::M\+W\+Model$<$ E\+O\+Algo, E\+OT, Policy $>$ Class Template Reference}
+\label{classparadiseo_1_1smp_1_1_m_w_model}\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+
+
+{\ttfamily \#include $<$M\+W\+Model.\+h$>$}
+
+
+
+Inheritance diagram for paradiseo\+::smp\+::M\+W\+Model$<$ E\+O\+Algo, E\+OT, Policy $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classparadiseo_1_1smp_1_1_m_w_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for paradiseo\+::smp\+::M\+W\+Model$<$ E\+O\+Algo, E\+OT, Policy $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classparadiseo_1_1smp_1_1_m_w_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class... Args$>$ }\\\mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_af495fed960b6254910e524d77536b86d}{M\+W\+Model}} (unsigned workers\+Nb, Args \&... args)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\\mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_af6c01e8df00c836d807cfb0f3e9f293a}{M\+W\+Model}} (Args \&... args)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_a3bea46c1927e81b14eb065e20dd67ac5}{apply}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&func, \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_a001ac1d810518f04d425de0c9378e0d8}{evaluate}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_a8fa65c81edcda0efd8997f170014c35e}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_a16fcafbf98e09eaaac4bfe506b2a2bc6}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, const \mbox{\hyperlink{structparadiseo_1_1smp_1_1eo_easy_e_a__tag}{eo\+Easy\+E\+A\+\_\+tag}} \&)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_a9c99b369cb900cd0d0f7988ca726f342}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, const \mbox{\hyperlink{structparadiseo_1_1smp_1_1eo_easy_p_s_o__tag}{eo\+Easy\+P\+S\+O\+\_\+tag}} \&)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_a96b29be3068859957031a7a38dd94f18}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, const \mbox{\hyperlink{structparadiseo_1_1smp_1_1eo_sync_easy_p_s_o__tag}{eo\+Sync\+Easy\+P\+S\+O\+\_\+tag}} \&)
+\item 
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model_ae8cf83bbddd8702fcf66523344200d9c}{operator()}} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, const \mbox{\hyperlink{structparadiseo_1_1smp_1_1error__tag}{error\+\_\+tag}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_ab4841dc14e87fcf22404d3da246d6d9b}\label{classparadiseo_1_1smp_1_1_m_w_model_ab4841dc14e87fcf22404d3da246d6d9b}} 
+std\+::vector$<$ std\+::thread $\ast$ $>$ {\bfseries workers}
+\item 
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_a04fcd7efdc84fc8be66c573db14e05b7}\label{classparadiseo_1_1smp_1_1_m_w_model_a04fcd7efdc84fc8be66c573db14e05b7}} 
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_scheduler}{Scheduler}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$ {\bfseries scheduler}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT, class Policy = Linear\+Policy$>$\newline
+class paradiseo\+::smp\+::\+M\+W\+Model$<$ E\+O\+Algo, E\+O\+T, Policy $>$}
+
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{M\+W\+Model}}\+: Master / Worker Model for multicore computation
+
+The MW Model wraps any algorithm in order to dispatch load between threads.
+
+\begin{DoxySeeAlso}{See also}
+smp\+::\+Worker, smp\+::\+Thread 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_af495fed960b6254910e524d77536b86d}\label{classparadiseo_1_1smp_1_1_m_w_model_af495fed960b6254910e524d77536b86d}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!MWModel@{MWModel}}
+\index{MWModel@{MWModel}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{MWModel()}{MWModel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+template$<$class... Args$>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{M\+W\+Model}} (\begin{DoxyParamCaption}\item[{unsigned}]{workers\+Nb,  }\item[{Args \&...}]{args }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em workers\+Nb} & the number of workers \\
+\hline
+{\em args...} & list of parameters according to the constructor of your algorithm \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_af6c01e8df00c836d807cfb0f3e9f293a}\label{classparadiseo_1_1smp_1_1_m_w_model_af6c01e8df00c836d807cfb0f3e9f293a}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!MWModel@{MWModel}}
+\index{MWModel@{MWModel}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{MWModel()}{MWModel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+template$<$class... Args$>$ \\
+\mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::\mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{M\+W\+Model}} (\begin{DoxyParamCaption}\item[{Args \&...}]{args }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em args...} & list of parameters according to the constructor of your algorithm \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_a3bea46c1927e81b14eb065e20dd67ac5}\label{classparadiseo_1_1smp_1_1_m_w_model_a3bea46c1927e81b14eb065e20dd67ac5}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!apply@{apply}}
+\index{apply@{apply}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{func,  }\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop }\end{DoxyParamCaption})}
+
+Apply an unary functor to the population 
+\begin{DoxyParams}{Parameters}
+{\em func} & unary functor \\
+\hline
+{\em pop} & population \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_a001ac1d810518f04d425de0c9378e0d8}\label{classparadiseo_1_1smp_1_1_m_w_model_a001ac1d810518f04d425de0c9378e0d8}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop }\end{DoxyParamCaption})}
+
+Evaluate the population 
+\begin{DoxyParams}{Parameters}
+{\em pop} & population to evaluate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_a8fa65c81edcda0efd8997f170014c35e}\label{classparadiseo_1_1smp_1_1_m_w_model_a8fa65c81edcda0efd8997f170014c35e}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop }\end{DoxyParamCaption})}
+
+Run the algorithm on population 
+\begin{DoxyParams}{Parameters}
+{\em pop} & population to run the algorithm \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_a16fcafbf98e09eaaac4bfe506b2a2bc6}\label{classparadiseo_1_1smp_1_1_m_w_model_a16fcafbf98e09eaaac4bfe506b2a2bc6}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{const \mbox{\hyperlink{structparadiseo_1_1smp_1_1eo_easy_e_a__tag}{eo\+Easy\+E\+A\+\_\+tag}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Specific algorithm for \mbox{\hyperlink{classeo_easy_e_a}{eo\+Easy\+EA}} \mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_a9c99b369cb900cd0d0f7988ca726f342}\label{classparadiseo_1_1smp_1_1_m_w_model_a9c99b369cb900cd0d0f7988ca726f342}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{const \mbox{\hyperlink{structparadiseo_1_1smp_1_1eo_easy_p_s_o__tag}{eo\+Easy\+P\+S\+O\+\_\+tag}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Specific algorithm for Easy\+P\+SO \mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_a96b29be3068859957031a7a38dd94f18}\label{classparadiseo_1_1smp_1_1_m_w_model_a96b29be3068859957031a7a38dd94f18}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{const \mbox{\hyperlink{structparadiseo_1_1smp_1_1eo_sync_easy_p_s_o__tag}{eo\+Sync\+Easy\+P\+S\+O\+\_\+tag}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Specific algorithm for \mbox{\hyperlink{classeo_sync_easy_p_s_o}{eo\+Sync\+Easy\+P\+SO}} \mbox{\Hypertarget{classparadiseo_1_1smp_1_1_m_w_model_ae8cf83bbddd8702fcf66523344200d9c}\label{classparadiseo_1_1smp_1_1_m_w_model_ae8cf83bbddd8702fcf66523344200d9c}} 
+\index{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$@{paradiseo::smp::MWModel$<$ EOAlgo, EOT, Policy $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class E\+O\+Algo, class E\+OT , class Policy $>$ \\
+void \mbox{\hyperlink{classparadiseo_1_1smp_1_1_m_w_model}{paradiseo\+::smp\+::\+M\+W\+Model}}$<$ E\+O\+Algo, \mbox{\hyperlink{struct_dummy}{E\+OT}}, \mbox{\hyperlink{structboost_1_1numeric_1_1interval__lib_1_1policies}{Policy}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{pop,  }\item[{const \mbox{\hyperlink{structparadiseo_1_1smp_1_1error__tag}{error\+\_\+tag}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+If we don\textquotesingle{}t know the algorithm type 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+smp/src/M\+W\+Model.\+h\item 
+smp/src/\+M\+W\+Algo/eo\+Easy\+E\+A.\+cpp\item 
+smp/src/\+M\+W\+Algo/eo\+Easy\+P\+S\+O.\+cpp\item 
+smp/src/\+M\+W\+Algo/eo\+Sync\+Easy\+P\+S\+O.\+cpp\item 
+smp/src/M\+W\+Model.\+cpp\end{DoxyCompactItemize}

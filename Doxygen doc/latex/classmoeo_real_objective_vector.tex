@@ -1,0 +1,168 @@
+\hypertarget{classmoeo_real_objective_vector}{}\doxysection{moeo\+Real\+Objective\+Vector$<$ Objective\+Vector\+Traits $>$ Class Template Reference}
+\label{classmoeo_real_objective_vector}\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Real\+Objective\+Vector.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Real\+Objective\+Vector$<$ Objective\+Vector\+Traits $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classmoeo_real_objective_vector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Real\+Objective\+Vector$<$ Objective\+Vector\+Traits $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classmoeo_real_objective_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_real_objective_vector_a07b6df71c6ca3b50a0a0379838233525}{moeo\+Real\+Objective\+Vector}} (double \+\_\+value=0.\+0)
+\item 
+\mbox{\hyperlink{classmoeo_real_objective_vector_a59083142c6a1766f0df30f2457fff34c}{moeo\+Real\+Objective\+Vector}} (std\+::vector$<$ double $>$ \&\+\_\+v)
+\item 
+bool \mbox{\hyperlink{classmoeo_real_objective_vector_aa9050208a52036925244e1b52c07ebfd}{dominates}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_real_objective_vector_a5b94f85017f95c918432d4a7dd2b7905}{operator==}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_real_objective_vector_a14a55e8c43aeb7bf09cd6e7d2af21095}{operator!=}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_real_objective_vector_aaf19b1467765c4e50fbbed2779d07621}{operator$<$}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_real_objective_vector_a3e940b40f24e3753650b75fc95422220}{operator$>$}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_real_objective_vector_abd92526d1bbf192133bcb423b6a4ce16}{operator$<$=}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&\+\_\+other) const
+\item 
+bool \mbox{\hyperlink{classmoeo_real_objective_vector_a339f0a23f3637cac8a3a02021552d31d}{operator$>$=}} (const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&\+\_\+other) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Objective\+Vector\+Traits$>$\newline
+class moeo\+Real\+Objective\+Vector$<$ Objective\+Vector\+Traits $>$}
+
+This class allows to represent a solution in the objective space (phenotypic representation) by a std\+::vector of real values, i.\+e. that an objective value is represented using a double, and this for any objective. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_a07b6df71c6ca3b50a0a0379838233525}\label{classmoeo_real_objective_vector_a07b6df71c6ca3b50a0a0379838233525}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!moeoRealObjectiveVector@{moeoRealObjectiveVector}}
+\index{moeoRealObjectiveVector@{moeoRealObjectiveVector}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{moeoRealObjectiveVector()}{moeoRealObjectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+\mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::\mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} (\begin{DoxyParamCaption}\item[{double}]{\+\_\+value = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor \mbox{\Hypertarget{classmoeo_real_objective_vector_a59083142c6a1766f0df30f2457fff34c}\label{classmoeo_real_objective_vector_a59083142c6a1766f0df30f2457fff34c}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!moeoRealObjectiveVector@{moeoRealObjectiveVector}}
+\index{moeoRealObjectiveVector@{moeoRealObjectiveVector}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{moeoRealObjectiveVector()}{moeoRealObjectiveVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+\mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::\mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor from a vector of doubles 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+v} & the std\+::vector $<$ double $>$ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_aa9050208a52036925244e1b52c07ebfd}\label{classmoeo_real_objective_vector_aa9050208a52036925244e1b52c07ebfd}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!dominates@{dominates}}
+\index{dominates@{dominates}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{dominates()}{dominates()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+bool \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::dominates (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector dominates \+\_\+other according to the Pareto dominance relation (but it\textquotesingle{}s better to use a \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} object to compare solutions) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_a14a55e8c43aeb7bf09cd6e7d2af21095}\label{classmoeo_real_objective_vector_a14a55e8c43aeb7bf09cd6e7d2af21095}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+bool \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is different than \+\_\+other (according to a tolerance value) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_aaf19b1467765c4e50fbbed2779d07621}\label{classmoeo_real_objective_vector_aaf19b1467765c4e50fbbed2779d07621}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+bool \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is smaller than \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_abd92526d1bbf192133bcb423b6a4ce16}\label{classmoeo_real_objective_vector_abd92526d1bbf192133bcb423b6a4ce16}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+bool \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is smaller than or equal to \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_a5b94f85017f95c918432d4a7dd2b7905}\label{classmoeo_real_objective_vector_a5b94f85017f95c918432d4a7dd2b7905}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+bool \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is equal to \+\_\+other (according to a tolerance value) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_a3e940b40f24e3753650b75fc95422220}\label{classmoeo_real_objective_vector_a3e940b40f24e3753650b75fc95422220}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+bool \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is greater than \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_real_objective_vector_a339f0a23f3637cac8a3a02021552d31d}\label{classmoeo_real_objective_vector_a339f0a23f3637cac8a3a02021552d31d}} 
+\index{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$@{moeoRealObjectiveVector$<$ ObjectiveVectorTraits $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily template$<$class Objective\+Vector\+Traits $>$ \\
+bool \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}}$<$ \mbox{\hyperlink{class_objective_vector_traits}{Objective\+Vector\+Traits}} $>$ \&}]{\+\_\+other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the current objective vector is greater than or equal to \+\_\+other on the first objective, then on the second, and so on (can be usefull for sorting/printing) 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+other} & the other \mbox{\hyperlink{classmoeo_real_objective_vector}{moeo\+Real\+Objective\+Vector}} object to compare with \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/core/moeo\+Real\+Objective\+Vector.\+h\end{DoxyCompactItemize}

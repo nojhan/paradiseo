@@ -1,0 +1,165 @@
+\hypertarget{classmoeo_epsilon_hyperbox_archive}{}\doxysection{moeo\+Epsilon\+Hyperbox\+Archive$<$ M\+O\+E\+OT $>$ Class Template Reference}
+\label{classmoeo_epsilon_hyperbox_archive}\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+
+
+{\ttfamily \#include $<$moeo\+Epsilon\+Hyperbox\+Archive.\+h$>$}
+
+
+
+Inheritance diagram for moeo\+Epsilon\+Hyperbox\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_epsilon_hyperbox_archive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for moeo\+Epsilon\+Hyperbox\+Archive$<$ M\+O\+E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmoeo_epsilon_hyperbox_archive__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_afda35be2634cdeea3ba5d0fed52cc546}{moeo\+Epsilon\+Hyperbox\+Archive}} (\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}} $>$ \&\+\_\+comparator, std\+::vector$<$ double $>$ \+\_\+epsilon, bool \+\_\+replace=true)
+\item 
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a15371a8b8a331d74c0288e424cb6de9a}{moeo\+Epsilon\+Hyperbox\+Archive}} (std\+::vector$<$ double $>$ \+\_\+epsilon, bool \+\_\+replace=true)
+\item 
+bool \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_abba295ac2156d49131d6d215bffe6df0}{operator()}} (const M\+O\+E\+OT \&\+\_\+moeo)
+\item 
+bool \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a9314b44e00f857b2d4a7e0a369886233}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&\+\_\+pop)
+\item 
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}} \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a88b58e0f3bc371a6d6b7f54268a33a93}{get\+Nadir}} ()
+\item 
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}} \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_ad46c3ee3cb83bb4c98b2ded26800c77e}{get\+Ideal}} ()
+\item 
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_aa0288e6c62db3efd90a5a9dc5fa05dca}\label{classmoeo_epsilon_hyperbox_archive_aa0288e6c62db3efd90a5a9dc5fa05dca}} 
+void {\bfseries filtre} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class M\+O\+E\+OT$>$\newline
+class moeo\+Epsilon\+Hyperbox\+Archive$<$ M\+O\+E\+O\+T $>$}
+
+This class represents an epsilon hyperbox archive. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}\label{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}} 
+\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}!ObjectiveVector@{ObjectiveVector}}
+\index{ObjectiveVector@{ObjectiveVector}!moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectiveVector}{ObjectiveVector}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+typedef M\+O\+E\+O\+T\+::\+Objective\+Vector \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}}}
+
+The type of an objective vector for a solution 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_afda35be2634cdeea3ba5d0fed52cc546}\label{classmoeo_epsilon_hyperbox_archive_afda35be2634cdeea3ba5d0fed52cc546}} 
+\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}!moeoEpsilonHyperboxArchive@{moeoEpsilonHyperboxArchive}}
+\index{moeoEpsilonHyperboxArchive@{moeoEpsilonHyperboxArchive}!moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEpsilonHyperboxArchive()}{moeoEpsilonHyperboxArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}}$<$ \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}} $>$ \&}]{\+\_\+comparator,  }\item[{std\+::vector$<$ double $>$}]{\+\_\+epsilon,  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor where you can choose your own \mbox{\hyperlink{classmoeo_objective_vector_comparator}{moeo\+Objective\+Vector\+Comparator}} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+comparator} & the functor used to compare objective vectors \\
+\hline
+{\em \+\_\+epsilon} & the vector contains epsilon values for each objective \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_a15371a8b8a331d74c0288e424cb6de9a}\label{classmoeo_epsilon_hyperbox_archive_a15371a8b8a331d74c0288e424cb6de9a}} 
+\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}!moeoEpsilonHyperboxArchive@{moeoEpsilonHyperboxArchive}}
+\index{moeoEpsilonHyperboxArchive@{moeoEpsilonHyperboxArchive}!moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{moeoEpsilonHyperboxArchive()}{moeoEpsilonHyperboxArchive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}}$<$ M\+O\+E\+OT $>$\+::\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{\+\_\+epsilon,  }\item[{bool}]{\+\_\+replace = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default Ctor 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+epsilon} & the vector contains epsilon values for each objective \\
+\hline
+{\em \+\_\+replace} & boolean which determine if a solution with the same objective\+Vector than another one, can replace it or not \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_ad46c3ee3cb83bb4c98b2ded26800c77e}\label{classmoeo_epsilon_hyperbox_archive_ad46c3ee3cb83bb4c98b2ded26800c77e}} 
+\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}!getIdeal@{getIdeal}}
+\index{getIdeal@{getIdeal}!moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{getIdeal()}{getIdeal()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}} \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}}$<$ M\+O\+E\+OT $>$\+::get\+Ideal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+get the idealpoint \begin{DoxyReturn}{Returns}
+Objective\+Vector corresponding to the ideal point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_a88b58e0f3bc371a6d6b7f54268a33a93}\label{classmoeo_epsilon_hyperbox_archive_a88b58e0f3bc371a6d6b7f54268a33a93}} 
+\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}!getNadir@{getNadir}}
+\index{getNadir@{getNadir}!moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{getNadir()}{getNadir()}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+\mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive_a4540b9e987fba1e52871506d3c681521}{Objective\+Vector}} \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}}$<$ M\+O\+E\+OT $>$\+::get\+Nadir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+get the nadir point \begin{DoxyReturn}{Returns}
+Objective\+Vector corresponding to the nadir point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_a9314b44e00f857b2d4a7e0a369886233}\label{classmoeo_epsilon_hyperbox_archive_a9314b44e00f857b2d4a7e0a369886233}} 
+\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ M\+O\+E\+OT $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given population \+\_\+pop 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & the given population \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if an archive\textquotesingle{}s element is non-\/dominated (and not if it is added to the archive) 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_aad2b1aecc1533e55c1d55b4b9757a952}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+\mbox{\Hypertarget{classmoeo_epsilon_hyperbox_archive_abba295ac2156d49131d6d215bffe6df0}\label{classmoeo_epsilon_hyperbox_archive_abba295ac2156d49131d6d215bffe6df0}} 
+\index{moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoEpsilonHyperboxArchive$<$ MOEOT $>$@{moeoEpsilonHyperboxArchive$<$ MOEOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class M\+O\+E\+OT $>$ \\
+bool \mbox{\hyperlink{classmoeo_epsilon_hyperbox_archive}{moeo\+Epsilon\+Hyperbox\+Archive}}$<$ M\+O\+E\+OT $>$\+::operator() (\begin{DoxyParamCaption}\item[{const M\+O\+E\+OT \&}]{\+\_\+moeo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Updates the archive with a given individual \+\_\+moeo 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+moeo} & the given individual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if \+\_\+moeo is non-\/dominated (and not if it is added to the archive) 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classmoeo_archive_a9b377903adc289ccc6e4b0ec52ae1245}{moeo\+Archive$<$ M\+O\+E\+O\+T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+moeo/src/archive/moeo\+Epsilon\+Hyperbox\+Archive.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,17 @@
+<map id="Core components" name="Core components">
+<area shape="rect" id="node1" href="$group___variators.html" title="Variators are operators that modify individuals." alt="" coords="377,37,523,62"/>
+<area shape="rect" id="node2" title="This are the base classes from which useful objects inherits." alt="" coords="5,381,141,406"/>
+<area shape="rect" id="node3" href="$group___repairers.html" title="A set of classes that modifies an unfeasible candidate solution so as to respect a given set of const..." alt="" coords="408,94,492,119"/>
+<area shape="rect" id="node4" href="$group___combination.html" title="Classes that permits to combine several operators in a single one." alt="" coords="365,143,535,169"/>
+<area shape="rect" id="node5" href="$group___evaluation.html" title=" " alt="" coords="405,193,495,218"/>
+<area shape="rect" id="node6" href="$group___modifiers.html" title="A set of classes that arbitrarly modify a given distribution." alt="" coords="409,242,491,267"/>
+<area shape="rect" id="node7" href="$group___foundry.html" title="Tools for automatic algorithms assembling, selection and search." alt="" coords="413,306,487,331"/>
+<area shape="rect" id="node8" href="$group___utilities.html" title="Classes that may help you write elegant code." alt="" coords="413,355,487,381"/>
+<area shape="rect" id="node9" href="$group___replacors.html" title="Replacors are operators that replace a subset of a population by another set of individuals." alt="" coords="363,405,537,430"/>
+<area shape="rect" id="node10" href="$group___samplers.html" title="Functors that draw and repair individuals according to a given distribution." alt="" coords="409,454,491,479"/>
+<area shape="rect" id="node11" href="$group___continuators.html" title="A stopping criterion is called a &quot;continue&quot;. This is a functor that is called at each generation end ..." alt="" coords="385,538,515,563"/>
+<area shape="rect" id="node12" href="$group___estimators.html" title="Estimators takes an eoPop and estimates the parameters of a distributions (defined as an hypothesis) ..." alt="" coords="404,594,496,619"/>
+<area shape="rect" id="node13" href="$group___algorithms.html" title="In EO, an algorithm is a functor that takes one or several solutions to an optimization problem as ar..." alt="" coords="403,643,497,669"/>
+<area shape="rect" id="node14" href="$group___distributions.html" title="A distribution is a data structure that holds sufficient informations to describe a probability densi..." alt="" coords="397,693,503,718"/>
+<area shape="rect" id="node15" href="$group___selectors.html" title="Selectors are operators that select a subset of a population." alt="" coords="376,750,524,775"/>
+</map>

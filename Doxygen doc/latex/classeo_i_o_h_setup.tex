@@ -1,0 +1,53 @@
+\hypertarget{classeo_i_o_h_setup}{}\doxysection{eo\+I\+O\+H\+Setup$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_i_o_h_setup}\index{eoIOHSetup$<$ EOT $>$@{eoIOHSetup$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Eval\+I\+O\+H.\+h$>$}
+
+
+
+Inheritance diagram for eo\+I\+O\+H\+Setup$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classeo_i_o_h_setup__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+I\+O\+H\+Setup$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classeo_i_o_h_setup__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_i_o_h_setup_a96d37b830bbf8dab69c89274180c2d28}\label{classeo_i_o_h_setup_a96d37b830bbf8dab69c89274180c2d28}} 
+using {\bfseries Atom\+Type} = typename E\+O\+T\+::\+Atom\+Type
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_i_o_h_setup_a4285d5582d56a81314a21c930d87972d}\label{classeo_i_o_h_setup_a4285d5582d56a81314a21c930d87972d}} 
+virtual void {\bfseries operator()} (\mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&pop, typename I\+O\+Hprofiler\+\_\+suite$<$ Atom\+Type $>$\+::Problem\+\_\+ptr pb)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+I\+O\+H\+Setup$<$ E\+O\+T $>$}
+
+Operator that is called before search for each problem within an I\+OH suite.
+
+You most probably need to reinstanciate some operators within your algorithm\+: at least the operators depending on the dimension, as it will change between two calls.
+
+By providing an operator using this interface, you can have access to all the information needed to do so. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/eo\+Eval\+I\+O\+H.\+h\end{DoxyCompactItemize}

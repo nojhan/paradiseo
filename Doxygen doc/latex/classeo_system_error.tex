@@ -1,0 +1,66 @@
+\hypertarget{classeo_system_error}{}\doxysection{eo\+System\+Error Class Reference}
+\label{classeo_system_error}\index{eoSystemError@{eoSystemError}}
+
+
+Exception related to a system call.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Exceptions.\+h$>$}
+
+
+
+Inheritance diagram for eo\+System\+Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classeo_system_error__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+System\+Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classeo_system_error__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_system_error_a8913436844edc87ac4546b61d641e8de}\label{classeo_system_error_a8913436844edc87ac4546b61d641e8de}} 
+{\bfseries eo\+System\+Error} (std\+::string cmd)
+\item 
+\mbox{\Hypertarget{classeo_system_error_a8a57f7e1449680ce7bd74a44fd415096}\label{classeo_system_error_a8a57f7e1449680ce7bd74a44fd415096}} 
+{\bfseries eo\+System\+Error} (std\+::string cmd, int err\+\_\+code, std\+::string output=\char`\"{}\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_system_error_a63d2ce1700b3cc9bdc430d81e2d95460}\label{classeo_system_error_a63d2ce1700b3cc9bdc430d81e2d95460}} 
+virtual std\+::string {\bfseries message} () const  throw ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_system_error_add9577601bade1d0f194fd073dd91e43}\label{classeo_system_error_add9577601bade1d0f194fd073dd91e43}} 
+const std\+::string {\bfseries \+\_\+cmd}
+\item 
+\mbox{\Hypertarget{classeo_system_error_a74fa00214bee4431d2c4b90491110b7d}\label{classeo_system_error_a74fa00214bee4431d2c4b90491110b7d}} 
+const bool {\bfseries \+\_\+has\+\_\+pipe}
+\item 
+\mbox{\Hypertarget{classeo_system_error_ae863a4fe8be2286e429527da99d49ee5}\label{classeo_system_error_ae863a4fe8be2286e429527da99d49ee5}} 
+const int {\bfseries \+\_\+err\+\_\+code}
+\item 
+\mbox{\Hypertarget{classeo_system_error_ad7ba4dcf61cacd09db5e09156acb918c}\label{classeo_system_error_ad7ba4dcf61cacd09db5e09156acb918c}} 
+const std\+::string {\bfseries \+\_\+output}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Exception related to a system call. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/eo\+Exceptions.\+h\end{DoxyCompactItemize}

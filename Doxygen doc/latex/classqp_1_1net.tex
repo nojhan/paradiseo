@@ -1,0 +1,78 @@
+\hypertarget{classqp_1_1net}{}\doxysection{qp\+::net Class Reference}
+\label{classqp_1_1net}\index{qp::net@{qp::net}}
+
+
+Inheritance diagram for qp\+::net\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{classqp_1_1net__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for qp\+::net\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classqp_1_1net__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classqp_1_1net_ade1e2444c98e6f2a9ad0bf7561427257}\label{classqp_1_1net_ade1e2444c98e6f2a9ad0bf7561427257}} 
+{\bfseries net} (\mbox{\hyperlink{classmlp_1_1net}{mlp\+::net}} \&n)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a2759510df41afa7c5bed8d6d8fdaddb2}\label{classqp_1_1net_a2759510df41afa7c5bed8d6d8fdaddb2}} 
+void {\bfseries reset} ()
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a19f9bb06945ad17bd8ca3ade48790276}\label{classqp_1_1net_a19f9bb06945ad17bd8ca3ade48790276}} 
+real {\bfseries train} (const \mbox{\hyperlink{classmlp_1_1set}{set}} \&ts, unsigned epochs, real target\+\_\+error, real tolerance, real eta=eta\+\_\+default, real momentum=alpha\+\_\+default, real lambda=lambda\+\_\+default)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_aea3b1a7fa248814b4dafac7b8bda44a0}\label{classqp_1_1net_aea3b1a7fa248814b4dafac7b8bda44a0}} 
+virtual real {\bfseries error} (const \mbox{\hyperlink{classmlp_1_1set}{set}} \&ts)=0
+\item 
+\mbox{\Hypertarget{classqp_1_1net_afdc7c3d29788d9601eb322f7a0b0dbf4}\label{classqp_1_1net_afdc7c3d29788d9601eb322f7a0b0dbf4}} 
+void {\bfseries forward} (vector input)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_af129d5ef82276718d5de67edfe1d9628}\label{classqp_1_1net_af129d5ef82276718d5de67edfe1d9628}} 
+void {\bfseries init\+\_\+delta} ()
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a32ccf8020377d9c60cb00cc535903e5e}\label{classqp_1_1net_a32ccf8020377d9c60cb00cc535903e5e}} 
+void {\bfseries coeff\+\_\+adapt} (real \&eta, real \&momentum, real \&lambda)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a83edfb05d41d72e189466e56225551dc}\label{classqp_1_1net_a83edfb05d41d72e189466e56225551dc}} 
+void {\bfseries weight\+\_\+update} (unsigned size, bool fire, real eta, real momentum)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_ade1e2444c98e6f2a9ad0bf7561427257}\label{classqp_1_1net_ade1e2444c98e6f2a9ad0bf7561427257}} 
+{\bfseries net} (\mbox{\hyperlink{classmlp_1_1net}{mlp\+::net}} \&n)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a2759510df41afa7c5bed8d6d8fdaddb2}\label{classqp_1_1net_a2759510df41afa7c5bed8d6d8fdaddb2}} 
+void {\bfseries reset} ()
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a19f9bb06945ad17bd8ca3ade48790276}\label{classqp_1_1net_a19f9bb06945ad17bd8ca3ade48790276}} 
+real {\bfseries train} (const \mbox{\hyperlink{classmlp_1_1set}{set}} \&ts, unsigned epochs, real target\+\_\+error, real tolerance, real eta=eta\+\_\+default, real momentum=alpha\+\_\+default, real lambda=lambda\+\_\+default)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_aea3b1a7fa248814b4dafac7b8bda44a0}\label{classqp_1_1net_aea3b1a7fa248814b4dafac7b8bda44a0}} 
+virtual real {\bfseries error} (const \mbox{\hyperlink{classmlp_1_1set}{set}} \&ts)=0
+\item 
+\mbox{\Hypertarget{classqp_1_1net_afdc7c3d29788d9601eb322f7a0b0dbf4}\label{classqp_1_1net_afdc7c3d29788d9601eb322f7a0b0dbf4}} 
+void {\bfseries forward} (vector input)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_af129d5ef82276718d5de67edfe1d9628}\label{classqp_1_1net_af129d5ef82276718d5de67edfe1d9628}} 
+void {\bfseries init\+\_\+delta} ()
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a32ccf8020377d9c60cb00cc535903e5e}\label{classqp_1_1net_a32ccf8020377d9c60cb00cc535903e5e}} 
+void {\bfseries coeff\+\_\+adapt} (real \&eta, real \&momentum, real \&lambda)
+\item 
+\mbox{\Hypertarget{classqp_1_1net_a83edfb05d41d72e189466e56225551dc}\label{classqp_1_1net_a83edfb05d41d72e189466e56225551dc}} 
+void {\bfseries weight\+\_\+update} (unsigned size, bool fire, real eta, real momentum)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/app/gprop/qp.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,85 @@
+\hypertarget{classeo_second_moment_stats}{}\doxysection{eo\+Second\+Moment\+Stats$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_second_moment_stats}\index{eoSecondMomentStats$<$ EOT $>$@{eoSecondMomentStats$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Stat.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Second\+Moment\+Stats$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_second_moment_stats__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Second\+Moment\+Stats$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classeo_second_moment_stats__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_a249c38106b5b73b7467e67caf8b4e32a}\label{classeo_second_moment_stats_a249c38106b5b73b7467e67caf8b4e32a}} 
+typedef E\+O\+T\+::\+Fitness {\bfseries fitness\+\_\+type}
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_ac9b7694a5368eb84de97635d1c7837a3}\label{classeo_second_moment_stats_ac9b7694a5368eb84de97635d1c7837a3}} 
+typedef std\+::pair$<$ double, double $>$ {\bfseries Square\+Pair}
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_ac3793d1e546ea7ac8d25d0108a94c4de}\label{classeo_second_moment_stats_ac3793d1e546ea7ac8d25d0108a94c4de}} 
+typedef double {\bfseries FitT}
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_a04ef40d234cedb01e00a94189711c180}\label{classeo_second_moment_stats_a04ef40d234cedb01e00a94189711c180}} 
+typedef std\+::pair$<$ FitT, FitT $>$ {\bfseries Square\+Pair}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_a716c775a1da524b5e16005282692abc9}\label{classeo_second_moment_stats_a716c775a1da524b5e16005282692abc9}} 
+{\bfseries eo\+Second\+Moment\+Stats} (std\+::string \+\_\+description=\char`\"{}Average \& Stdev\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_a2db563398ff794fbd7fe03fe9be4628b}\label{classeo_second_moment_stats_a2db563398ff794fbd7fe03fe9be4628b}} 
+virtual void \mbox{\hyperlink{classeo_second_moment_stats_a2db563398ff794fbd7fe03fe9be4628b}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_add48b88c4a634b1f8cb572ba15125474}\label{classeo_second_moment_stats_add48b88c4a634b1f8cb572ba15125474}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_a716c775a1da524b5e16005282692abc9}\label{classeo_second_moment_stats_a716c775a1da524b5e16005282692abc9}} 
+{\bfseries eo\+Second\+Moment\+Stats} (std\+::string \+\_\+description=\char`\"{}Average \& Stdev\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_a2db563398ff794fbd7fe03fe9be4628b}\label{classeo_second_moment_stats_a2db563398ff794fbd7fe03fe9be4628b}} 
+virtual void \mbox{\hyperlink{classeo_second_moment_stats_a2db563398ff794fbd7fe03fe9be4628b}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_add48b88c4a634b1f8cb572ba15125474}\label{classeo_second_moment_stats_add48b88c4a634b1f8cb572ba15125474}} 
+virtual std\+::string {\bfseries class\+Name} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_aed0068909c899c8c756aa63c6eb30e37}\label{classeo_second_moment_stats_aed0068909c899c8c756aa63c6eb30e37}} 
+static Square\+Pair {\bfseries sum\+Of\+Squares} (Square\+Pair \+\_\+sq, const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\item 
+\mbox{\Hypertarget{classeo_second_moment_stats_aed0068909c899c8c756aa63c6eb30e37}\label{classeo_second_moment_stats_aed0068909c899c8c756aa63c6eb30e37}} 
+static Square\+Pair {\bfseries sum\+Of\+Squares} (Square\+Pair \+\_\+sq, const \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+eo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Second\+Moment\+Stats$<$ E\+O\+T $>$}
+
+Average fitness + Std. dev. of a population, fitness needs to be scalar.
+
+Average fitness + Std. dev. of a population, fitness H\+A\+VE TO BE to be scalar. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+Stat.\+h\end{DoxyCompactItemize}

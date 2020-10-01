@@ -1,0 +1,85 @@
+\hypertarget{classeo_sequential_select}{}\doxysection{eo\+Sequential\+Select$<$ E\+OT $>$ Class Template Reference}
+\label{classeo_sequential_select}\index{eoSequentialSelect$<$ EOT $>$@{eoSequentialSelect$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$eo\+Sequential\+Select.\+h$>$}
+
+
+
+Inheritance diagram for eo\+Sequential\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_sequential_select__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+Sequential\+Select$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classeo_sequential_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeo_sequential_select_ae268a53031e963243fa6f64eff54f464}{eo\+Sequential\+Select}} (bool \+\_\+ordered=true)
+\item 
+\mbox{\Hypertarget{classeo_sequential_select_a90192181e897daa20bcca4afeb7bd545}\label{classeo_sequential_select_a90192181e897daa20bcca4afeb7bd545}} 
+void \mbox{\hyperlink{classeo_sequential_select_a90192181e897daa20bcca4afeb7bd545}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_sequential_select_ada552e856115bf8c7b9fec0a5b6f2ed2}\label{classeo_sequential_select_ada552e856115bf8c7b9fec0a5b6f2ed2}} 
+virtual const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_sequential_select_ada552e856115bf8c7b9fec0a5b6f2ed2}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classeo_sequential_select_ae268a53031e963243fa6f64eff54f464}{eo\+Sequential\+Select}} (bool \+\_\+ordered=true)
+\item 
+\mbox{\Hypertarget{classeo_sequential_select_a3af03835d0bf1551e5bbbbafc1a0ab4e}\label{classeo_sequential_select_a3af03835d0bf1551e5bbbbafc1a0ab4e}} 
+virtual void \mbox{\hyperlink{classeo_sequential_select_a3af03835d0bf1551e5bbbbafc1a0ab4e}{setup}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em virtual function to setup some population stats (for instance eo\+Proportional can benefit greatly from this) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_sequential_select_ada552e856115bf8c7b9fec0a5b6f2ed2}\label{classeo_sequential_select_ada552e856115bf8c7b9fec0a5b6f2ed2}} 
+virtual const \mbox{\hyperlink{struct_dummy}{E\+OT}} \& \mbox{\hyperlink{classeo_sequential_select_ada552e856115bf8c7b9fec0a5b6f2ed2}{operator()}} (const \mbox{\hyperlink{classeo_pop}{eo\+Pop}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_sequential_select_acfa07e4afe22c9e9ffa5393b8f7eaca5}\label{classeo_sequential_select_acfa07e4afe22c9e9ffa5393b8f7eaca5}} 
+virtual std\+::string {\bfseries class\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class eo\+Sequential\+Select$<$ E\+O\+T $>$}
+
+Contains the following classes\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classeo_sequential_select}{eo\+Sequential\+Select}}, returns all individuals one by one, either sorted or shuffled
+\item \mbox{\hyperlink{classeo_elite_sequential_select}{eo\+Elite\+Sequential\+Select}}, returns all indivisuals one by one starting with best, continuing shuffled (see G3 engine) All Individuals in order
+\end{DoxyItemize}
+
+Looping back to the beginning when exhausted, can be from best to worse, or in random order.
+
+It is the \mbox{\hyperlink{classeo_select_one}{eo\+Select\+One}} equivalent of \mbox{\hyperlink{classeo_det_select}{eo\+Det\+Select}} -\/ though \mbox{\hyperlink{classeo_det_select}{eo\+Det\+Select}} always returns individuals from best to worst 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeo_sequential_select_ae268a53031e963243fa6f64eff54f464}\label{classeo_sequential_select_ae268a53031e963243fa6f64eff54f464}} 
+\index{eoSequentialSelect$<$ EOT $>$@{eoSequentialSelect$<$ EOT $>$}!eoSequentialSelect@{eoSequentialSelect}}
+\index{eoSequentialSelect@{eoSequentialSelect}!eoSequentialSelect$<$ EOT $>$@{eoSequentialSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoSequentialSelect()}{eoSequentialSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_sequential_select}{eo\+Sequential\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_sequential_select}{eo\+Sequential\+Select}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+ordered = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: sets the current pter to numeric\+\_\+limits$<$unsigned$>$\+::max() so init will take place first time not very elegant, maybe ... \mbox{\Hypertarget{classeo_sequential_select_ae268a53031e963243fa6f64eff54f464}\label{classeo_sequential_select_ae268a53031e963243fa6f64eff54f464}} 
+\index{eoSequentialSelect$<$ EOT $>$@{eoSequentialSelect$<$ EOT $>$}!eoSequentialSelect@{eoSequentialSelect}}
+\index{eoSequentialSelect@{eoSequentialSelect}!eoSequentialSelect$<$ EOT $>$@{eoSequentialSelect$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{eoSequentialSelect()}{eoSequentialSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{classeo_sequential_select}{eo\+Sequential\+Select}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{classeo_sequential_select}{eo\+Sequential\+Select}} (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+ordered = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Ctor\+: sets the current pter to numeric\+\_\+limits$<$unsigned$>$\+::max() so init will take place first time not very elegant, maybe ... 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/eo\+Sequential\+Select.\+h\end{DoxyCompactItemize}

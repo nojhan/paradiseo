@@ -1,0 +1,223 @@
+\hypertarget{classeo_state}{}\doxysection{eo\+State Class Reference}
+\label{classeo_state}\index{eoState@{eoState}}
+
+
+{\ttfamily \#include $<$eo\+State.\+h$>$}
+
+
+
+Inheritance diagram for eo\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classeo_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classeo_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeo_state_1_1loading__error}{loading\+\_\+error}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classeo_state_acb0bd1acd133e738a510cca34d18e9a5}{register\+Object}} (\mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} \&registrant)
+\item 
+{\footnotesize template$<$class T $>$ }\\T \& \mbox{\hyperlink{classeo_state_aa91858d5144414709bbe31813ad5aac0}{take\+Ownership}} (const T \&persistent)
+\item 
+\mbox{\Hypertarget{classeo_state_a676987a8eed1c0bb4c9ec4fd01c94126}\label{classeo_state_a676987a8eed1c0bb4c9ec4fd01c94126}} 
+std\+::string {\bfseries get\+Comment\+String} (void) const
+\item 
+void \mbox{\hyperlink{classeo_state_a9fee1c45635a373d1b7a8748e44e8c09}{load}} (const std\+::string \&\+\_\+filename)
+\item 
+void \mbox{\hyperlink{classeo_state_a604f19ac33b292b92660d643b51551b8}{load}} (std\+::istream \&is)
+\item 
+void \mbox{\hyperlink{classeo_state_a94599cf0a2fe4d126943157ec67bfa81}{save}} (const std\+::string \&\+\_\+filename) const
+\item 
+void \mbox{\hyperlink{classeo_state_a679a7a27cd272eeeef071f530ad64791}{save}} (std\+::ostream \&os) const
+\item 
+\mbox{\Hypertarget{classeo_state_a15312021bfa7c6da599a5457b355e99f}\label{classeo_state_a15312021bfa7c6da599a5457b355e99f}} 
+{\bfseries eo\+State} (std\+::string name=\char`\"{}\char`\"{})
+\item 
+\mbox{\Hypertarget{classeo_state_ae890ffd0c538a37237c431d185c02a93}\label{classeo_state_ae890ffd0c538a37237c431d185c02a93}} 
+void {\bfseries format\+Latex} (std\+::string name)
+\item 
+\mbox{\Hypertarget{classeo_state_a0fe21e26779df21dc17a2b64b02e783e}\label{classeo_state_a0fe21e26779df21dc17a2b64b02e783e}} 
+void {\bfseries format\+J\+S\+ON} (std\+::string name)
+\item 
+void \mbox{\hyperlink{classeo_state_acb0bd1acd133e738a510cca34d18e9a5}{register\+Object}} (\mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} \&registrant)
+\item 
+{\footnotesize template$<$class T $>$ }\\T \& \mbox{\hyperlink{classeo_state_aa91858d5144414709bbe31813ad5aac0}{take\+Ownership}} (const T \&persistent)
+\item 
+\mbox{\Hypertarget{classeo_state_a676987a8eed1c0bb4c9ec4fd01c94126}\label{classeo_state_a676987a8eed1c0bb4c9ec4fd01c94126}} 
+std\+::string {\bfseries get\+Comment\+String} (void) const
+\item 
+void \mbox{\hyperlink{classeo_state_a9fee1c45635a373d1b7a8748e44e8c09}{load}} (const std\+::string \&\+\_\+filename)
+\item 
+void \mbox{\hyperlink{classeo_state_a604f19ac33b292b92660d643b51551b8}{load}} (std\+::istream \&is)
+\item 
+void \mbox{\hyperlink{classeo_state_a94599cf0a2fe4d126943157ec67bfa81}{save}} (const std\+::string \&\+\_\+filename) const
+\item 
+void \mbox{\hyperlink{classeo_state_a679a7a27cd272eeeef071f530ad64791}{save}} (std\+::ostream \&os) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_state_a075d542045d7215b6e0d76847312f717}\label{classeo_state_a075d542045d7215b6e0d76847312f717}} 
+void {\bfseries save\+Section} (std\+::ostream \&os, std\+::vector$<$ Object\+Map\+::iterator $>$\+::const\+\_\+iterator it) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classeo_state}{eo\+State}} can be used to register derivants of \mbox{\hyperlink{classeo_persistent}{eo\+Persistent}}. It will then in turn implement the persistence framework through members load and save, that will call read\+From and print\+On for the registrated objects.
+
+It is derived from \mbox{\hyperlink{classeo_functor_store}{eo\+Functor\+Store}}, so that it also serves as a place where all those nifty eo functors can be stored. This is useful in the case you want to use one of the make\+\_\+$\ast$ functions. These functions generally take as their last argument an \mbox{\hyperlink{classeo_functor_store}{eo\+Functor\+Store}} (or a state) which is used to hold all dynamically generated data. Note however, that unlike with \mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} derived classes, \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}} derived classes are not saved or loaded. To govern the creation of functors, command-\/line parameters (which can be stored) are needed. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_state_a9fee1c45635a373d1b7a8748e44e8c09}\label{classeo_state_a9fee1c45635a373d1b7a8748e44e8c09}} 
+\index{eoState@{eoState}!load@{load}}
+\index{load@{load}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void eo\+State\+::load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+filename }\end{DoxyParamCaption})}
+
+Reads the file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & the name of the file to load from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_a9fee1c45635a373d1b7a8748e44e8c09}\label{classeo_state_a9fee1c45635a373d1b7a8748e44e8c09}} 
+\index{eoState@{eoState}!load@{load}}
+\index{load@{load}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void eo\+State\+::load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+filename }\end{DoxyParamCaption})}
+
+Reads the file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & the name of the file to load from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_a604f19ac33b292b92660d643b51551b8}\label{classeo_state_a604f19ac33b292b92660d643b51551b8}} 
+\index{eoState@{eoState}!load@{load}}
+\index{load@{load}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void eo\+State\+::load (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})}
+
+Reads the file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & the stream to load from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_a604f19ac33b292b92660d643b51551b8}\label{classeo_state_a604f19ac33b292b92660d643b51551b8}} 
+\index{eoState@{eoState}!load@{load}}
+\index{load@{load}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void eo\+State\+::load (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})}
+
+Reads the file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & the stream to load from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_acb0bd1acd133e738a510cca34d18e9a5}\label{classeo_state_acb0bd1acd133e738a510cca34d18e9a5}} 
+\index{eoState@{eoState}!registerObject@{registerObject}}
+\index{registerObject@{registerObject}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{registerObject()}{registerObject()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+State\+::register\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} \&}]{registrant }\end{DoxyParamCaption})}
+
+Object registration function, note that it does not take ownership! \mbox{\Hypertarget{classeo_state_acb0bd1acd133e738a510cca34d18e9a5}\label{classeo_state_acb0bd1acd133e738a510cca34d18e9a5}} 
+\index{eoState@{eoState}!registerObject@{registerObject}}
+\index{registerObject@{registerObject}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{registerObject()}{registerObject()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+State\+::register\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_persistent}{eo\+Persistent}} \&}]{registrant }\end{DoxyParamCaption})}
+
+Object registration function, note that it does not take ownership! \mbox{\Hypertarget{classeo_state_a94599cf0a2fe4d126943157ec67bfa81}\label{classeo_state_a94599cf0a2fe4d126943157ec67bfa81}} 
+\index{eoState@{eoState}!save@{save}}
+\index{save@{save}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void eo\+State\+::save (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+filename }\end{DoxyParamCaption}) const}
+
+Saves the state in file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & the name of the file to save into \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_a94599cf0a2fe4d126943157ec67bfa81}\label{classeo_state_a94599cf0a2fe4d126943157ec67bfa81}} 
+\index{eoState@{eoState}!save@{save}}
+\index{save@{save}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void eo\+State\+::save (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+filename }\end{DoxyParamCaption}) const}
+
+Saves the state in file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & the name of the file to save into \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_a679a7a27cd272eeeef071f530ad64791}\label{classeo_state_a679a7a27cd272eeeef071f530ad64791}} 
+\index{eoState@{eoState}!save@{save}}
+\index{save@{save}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void eo\+State\+::save (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const}
+
+Saves the state in file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & the stream to save into \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_a679a7a27cd272eeeef071f530ad64791}\label{classeo_state_a679a7a27cd272eeeef071f530ad64791}} 
+\index{eoState@{eoState}!save@{save}}
+\index{save@{save}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void eo\+State\+::save (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const}
+
+Saves the state in file specified
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & the stream to save into \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_state_aa91858d5144414709bbe31813ad5aac0}\label{classeo_state_aa91858d5144414709bbe31813ad5aac0}} 
+\index{eoState@{eoState}!takeOwnership@{takeOwnership}}
+\index{takeOwnership@{takeOwnership}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{takeOwnership()}{takeOwnership()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T\& eo\+State\+::take\+Ownership (\begin{DoxyParamCaption}\item[{const T \&}]{persistent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copies the object (M\+U\+ST be derived from \mbox{\hyperlink{classeo_persistent}{eo\+Persistent}}) and returns a reference to the owned object. Note\+: it does not register the object, this must be done afterwards! \mbox{\Hypertarget{classeo_state_aa91858d5144414709bbe31813ad5aac0}\label{classeo_state_aa91858d5144414709bbe31813ad5aac0}} 
+\index{eoState@{eoState}!takeOwnership@{takeOwnership}}
+\index{takeOwnership@{takeOwnership}!eoState@{eoState}}
+\doxysubsubsection{\texorpdfstring{takeOwnership()}{takeOwnership()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T\& eo\+State\+::take\+Ownership (\begin{DoxyParamCaption}\item[{const T \&}]{persistent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copies the object (M\+U\+ST be derived from \mbox{\hyperlink{classeo_persistent}{eo\+Persistent}}) and returns a reference to the owned object. Note\+: it does not register the object, this must be done afterwards! 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/utils/eo\+State.\+h\item 
+deprecated/eo/src/utils/eo\+State.\+cpp\end{DoxyCompactItemize}

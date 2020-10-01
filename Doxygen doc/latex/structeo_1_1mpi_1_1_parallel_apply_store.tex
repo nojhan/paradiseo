@@ -1,0 +1,110 @@
+\hypertarget{structeo_1_1mpi_1_1_parallel_apply_store}{}\doxysection{eo\+::mpi\+::Parallel\+Apply\+Store$<$ E\+OT $>$ Struct Template Reference}
+\label{structeo_1_1mpi_1_1_parallel_apply_store}\index{eo::mpi::ParallelApplyStore$<$ EOT $>$@{eo::mpi::ParallelApplyStore$<$ EOT $>$}}
+
+
+Store containing all the datas and the functors for the parallel apply (map) job.  
+
+
+
+
+{\ttfamily \#include $<$eo\+Parallel\+Apply.\+h$>$}
+
+
+
+Inheritance diagram for eo\+::mpi\+::Parallel\+Apply\+Store$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{structeo_1_1mpi_1_1_parallel_apply_store__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eo\+::mpi\+::Parallel\+Apply\+Store$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structeo_1_1mpi_1_1_parallel_apply_store__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_store_a77392eb1714b25c2299d39b1b2e36eb6}{Parallel\+Apply\+Store}} (\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&\+\_\+proc, int \+\_\+master\+Rank, int \+\_\+packet\+Size=1, \mbox{\hyperlink{classeo_1_1mpi_1_1_send_task_parallel_apply}{Send\+Task\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$stpa=0, \mbox{\hyperlink{classeo_1_1mpi_1_1_handle_response_parallel_apply}{Handle\+Response\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$hrpa=0, \mbox{\hyperlink{classeo_1_1mpi_1_1_process_task_parallel_apply}{Process\+Task\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ptpa=0, \mbox{\hyperlink{classeo_1_1mpi_1_1_is_finished_parallel_apply}{Is\+Finished\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ifpa=0)
+\begin{DoxyCompactList}\small\item\em Main constructor for the parallel apply (map) job. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_store_a50b9096cb89d6d17383c43b63e03e402}\label{structeo_1_1mpi_1_1_parallel_apply_store_a50b9096cb89d6d17383c43b63e03e402}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data}{Parallel\+Apply\+Data}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$ {\bfseries data} ()
+\item 
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_store_a84af0df2b81ea7ede14b474318750311}{data}} (std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&\+\_\+pop)
+\begin{DoxyCompactList}\small\item\em Reinits the store with a new table to evaluate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_store_aec9a850efdb6eddba97fb6b436a622fc}\label{structeo_1_1mpi_1_1_parallel_apply_store_aec9a850efdb6eddba97fb6b436a622fc}} 
+\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_data}{Parallel\+Apply\+Data}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ {\bfseries \+\_\+data}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+struct eo\+::mpi\+::\+Parallel\+Apply\+Store$<$ E\+O\+T $>$}
+
+Store containing all the datas and the functors for the parallel apply (map) job. 
+
+User can tune functors when constructing the object. For each functor which is not given, a default one is generated. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_store_a77392eb1714b25c2299d39b1b2e36eb6}\label{structeo_1_1mpi_1_1_parallel_apply_store_a77392eb1714b25c2299d39b1b2e36eb6}} 
+\index{eo::mpi::ParallelApplyStore$<$ EOT $>$@{eo::mpi::ParallelApplyStore$<$ EOT $>$}!ParallelApplyStore@{ParallelApplyStore}}
+\index{ParallelApplyStore@{ParallelApplyStore}!eo::mpi::ParallelApplyStore$<$ EOT $>$@{eo::mpi::ParallelApplyStore$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{ParallelApplyStore()}{ParallelApplyStore()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_store}{eo\+::mpi\+::\+Parallel\+Apply\+Store}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_store}{Parallel\+Apply\+Store}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classeo_u_f}{eo\+UF}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} \&, void $>$ \&}]{\+\_\+proc,  }\item[{int}]{\+\_\+master\+Rank,  }\item[{int}]{\+\_\+packet\+Size = {\ttfamily 1},  }\item[{\mbox{\hyperlink{classeo_1_1mpi_1_1_send_task_parallel_apply}{Send\+Task\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$}]{stpa = {\ttfamily 0},  }\item[{\mbox{\hyperlink{classeo_1_1mpi_1_1_handle_response_parallel_apply}{Handle\+Response\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$}]{hrpa = {\ttfamily 0},  }\item[{\mbox{\hyperlink{classeo_1_1mpi_1_1_process_task_parallel_apply}{Process\+Task\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$}]{ptpa = {\ttfamily 0},  }\item[{\mbox{\hyperlink{classeo_1_1mpi_1_1_is_finished_parallel_apply}{Is\+Finished\+Parallel\+Apply}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ $\ast$}]{ifpa = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Main constructor for the parallel apply (map) job. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+proc} & The procedure to apply to each element of the table. \\
+\hline
+{\em \+\_\+master\+Rank} & The rank of the master process. \\
+\hline
+{\em \+\_\+packet\+Size} & The number of elements of the table to be evaluated at a time, by the worker. \\
+\hline
+{\em stpa} & Pointer to Send Task parallel apply functor descendant. If null, a default one is used. \\
+\hline
+{\em hrpa} & Pointer to Handle Response parallel apply functor descendant. If null, a default one is used. \\
+\hline
+{\em ptpa} & Pointer to Process Task parallel apply functor descendant. If null, a default one is used. \\
+\hline
+{\em ifpa} & Pointer to Is Finished parallel apply functor descendant. If null, a default one is used. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structeo_1_1mpi_1_1_parallel_apply_store_a84af0df2b81ea7ede14b474318750311}\label{structeo_1_1mpi_1_1_parallel_apply_store_a84af0df2b81ea7ede14b474318750311}} 
+\index{eo::mpi::ParallelApplyStore$<$ EOT $>$@{eo::mpi::ParallelApplyStore$<$ EOT $>$}!data@{data}}
+\index{data@{data}!eo::mpi::ParallelApplyStore$<$ EOT $>$@{eo::mpi::ParallelApplyStore$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{structeo_1_1mpi_1_1_parallel_apply_store}{eo\+::mpi\+::\+Parallel\+Apply\+Store}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::data (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$ \&}]{\+\_\+pop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reinits the store with a new table to evaluate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pop} & The table of elements to be evaluated. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/mpi/\mbox{\hyperlink{eo_parallel_apply_8h}{eo\+Parallel\+Apply.\+h}}\end{DoxyCompactItemize}

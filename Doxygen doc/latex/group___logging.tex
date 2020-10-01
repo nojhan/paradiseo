@@ -1,0 +1,77 @@
+\hypertarget{group___logging}{}\doxysection{Logging}
+\label{group___logging}\index{Logging@{Logging}}
+Collaboration diagram for Logging\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___logging}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classeo_logger}{eo\+Logger}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___logging_ga03c28b709422a7043dbda8a40a495f3b}\label{group___logging_ga03c28b709422a7043dbda8a40a495f3b}} 
+void \mbox{\hyperlink{group___logging_ga03c28b709422a7043dbda8a40a495f3b}{make\+\_\+verbose}} (\mbox{\hyperlink{classeo_parser}{eo\+Parser}} \&)
+\begin{DoxyCompactList}\small\item\em make\+\_\+verbose gets level of verbose and sets it in \mbox{\hyperlink{classeo_logger}{eo\+Logger}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global logger for \mbox{\hyperlink{class_e_o}{EO}}.
+
+Here\textquotesingle{}s an example explaning how to use \mbox{\hyperlink{classeo_logger}{eo\+Logger}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <eo>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} ac, \textcolor{keywordtype}{char}** av)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{comment}{// We are declaring the usual eoParser class}}
+\DoxyCodeLine{\mbox{\hyperlink{classeo_parser}{eoParser}} parser(ac, av);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// This call is important to allow -\/v parameter to change user level.}}
+\DoxyCodeLine{\mbox{\hyperlink{group___logging_ga03c28b709422a7043dbda8a40a495f3b}{make\_verbose}}(parser);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// At this time we are switching to warning message and messages}}
+\DoxyCodeLine{\textcolor{comment}{// which are going to follow it are going to be warnings message too.}}
+\DoxyCodeLine{\textcolor{comment}{// These messages can be displayed only if the user level (sets with}}
+\DoxyCodeLine{\textcolor{comment}{// eo::setlevel function) is set to eo::warnings.}}
+\DoxyCodeLine{eo::log << eo::warnings;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// With the following eo::file function we are defining that}}
+\DoxyCodeLine{\textcolor{comment}{// all future logs are going to this new file resource which is}}
+\DoxyCodeLine{\textcolor{comment}{// test.txt}}
+\DoxyCodeLine{eo::log << \mbox{\hyperlink{structeo_1_1file}{eo::file}}(\textcolor{stringliteral}{"test.txt"}) << \textcolor{stringliteral}{"In FILE"} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Now we are changing again the resources destination to cout which}}
+\DoxyCodeLine{\textcolor{comment}{// is the standard output.}}
+\DoxyCodeLine{eo::log << std::cout << \textcolor{stringliteral}{"In COUT"} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Here are 2 differents examples of how to set the errors user level}}
+\DoxyCodeLine{\textcolor{comment}{// in using either a string or an identifier.}}
+\DoxyCodeLine{eo::log << \mbox{\hyperlink{structeo_1_1setlevel}{eo::setlevel}}(\textcolor{stringliteral}{"errors"});}
+\DoxyCodeLine{eo::log << \mbox{\hyperlink{structeo_1_1setlevel}{eo::setlevel}}(eo::errors);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Now we are writting a message, that will be displayed only if we are above the "quiet" level}}
+\DoxyCodeLine{eo::log << eo::quiet << \textcolor{stringliteral}{"1) Must be in quiet mode to see that"} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// And so on...}}
+\DoxyCodeLine{eo::log << \mbox{\hyperlink{structeo_1_1setlevel}{eo::setlevel}}(eo::warnings) << eo::warnings << \textcolor{stringliteral}{"2) Must be in warnings mode to see that"} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{eo::log << \mbox{\hyperlink{structeo_1_1setlevel}{eo::setlevel}}(eo::logging);}
+\DoxyCodeLine{}
+\DoxyCodeLine{eo::log << eo::errors;}
+\DoxyCodeLine{eo::log << \textcolor{stringliteral}{"3) Must be in errors mode to see that"};}
+\DoxyCodeLine{eo::log << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{eo::log << eo::debug << 4 << \textcolor{charliteral}{')'}}
+\DoxyCodeLine{<< \textcolor{stringliteral}{" Must be in debug mode to see that\(\backslash\)n"};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ 

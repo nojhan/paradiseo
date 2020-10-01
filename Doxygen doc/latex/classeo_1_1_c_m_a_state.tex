@@ -1,0 +1,112 @@
+\hypertarget{classeo_1_1_c_m_a_state}{}\doxysection{eo\+::C\+M\+A\+State Class Reference}
+\label{classeo_1_1_c_m_a_state}\index{eo::CMAState@{eo::CMAState}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_1_1_c_m_a_state_a396d850438d995261b3062d9ba743e7c}\label{classeo_1_1_c_m_a_state_a396d850438d995261b3062d9ba743e7c}} 
+{\bfseries C\+M\+A\+State} (const \mbox{\hyperlink{classeo_1_1_c_m_a_params}{C\+M\+A\+Params}} \&, const std\+::vector$<$ double $>$ \&initial\+\_\+point, const double initial\+\_\+sigma=1.\+0)
+\item 
+\mbox{\Hypertarget{classeo_1_1_c_m_a_state_a898ce46216b8545f578d96774f2266f8}\label{classeo_1_1_c_m_a_state_a898ce46216b8545f578d96774f2266f8}} 
+{\bfseries C\+M\+A\+State} (const \mbox{\hyperlink{classeo_1_1_c_m_a_state}{C\+M\+A\+State}} \&)
+\item 
+\mbox{\Hypertarget{classeo_1_1_c_m_a_state_a98d08899c26255c9c86ee7a94db9e70a}\label{classeo_1_1_c_m_a_state_a98d08899c26255c9c86ee7a94db9e70a}} 
+\mbox{\hyperlink{classeo_1_1_c_m_a_state}{C\+M\+A\+State}} \& {\bfseries operator=} (const \mbox{\hyperlink{classeo_1_1_c_m_a_state}{C\+M\+A\+State}} \&)
+\item 
+void \mbox{\hyperlink{classeo_1_1_c_m_a_state_af9d84abbe92acccaef70fbd9a1aad645}{sample}} (std\+::vector$<$ double $>$ \&v) const
+\item 
+void \mbox{\hyperlink{classeo_1_1_c_m_a_state_a23ad72409913356122c2a56527350e66}{reestimate}} (const std\+::vector$<$ const std\+::vector$<$ double $>$ $\ast$ $>$ \&sorted\+\_\+population, double mu\+Best, double mu\+Worst)
+\item 
+bool \mbox{\hyperlink{classeo_1_1_c_m_a_state_a364c27482189669f5c01d468273761fe}{update\+Eigen\+System}} (unsigned max\+\_\+tries=1, unsigned max\+\_\+iters=0)
+\item 
+\mbox{\Hypertarget{classeo_1_1_c_m_a_state_a396d850438d995261b3062d9ba743e7c}\label{classeo_1_1_c_m_a_state_a396d850438d995261b3062d9ba743e7c}} 
+{\bfseries C\+M\+A\+State} (const \mbox{\hyperlink{classeo_1_1_c_m_a_params}{C\+M\+A\+Params}} \&, const std\+::vector$<$ double $>$ \&initial\+\_\+point, const double initial\+\_\+sigma=1.\+0)
+\item 
+\mbox{\Hypertarget{classeo_1_1_c_m_a_state_a898ce46216b8545f578d96774f2266f8}\label{classeo_1_1_c_m_a_state_a898ce46216b8545f578d96774f2266f8}} 
+{\bfseries C\+M\+A\+State} (const \mbox{\hyperlink{classeo_1_1_c_m_a_state}{C\+M\+A\+State}} \&)
+\item 
+\mbox{\Hypertarget{classeo_1_1_c_m_a_state_ac59aa2b7e05437045589651492845e2f}\label{classeo_1_1_c_m_a_state_ac59aa2b7e05437045589651492845e2f}} 
+\mbox{\hyperlink{classeo_1_1_c_m_a_state}{C\+M\+A\+State}} \& {\bfseries operator=} (const \mbox{\hyperlink{classeo_1_1_c_m_a_state}{C\+M\+A\+State}} \&)
+\item 
+void \mbox{\hyperlink{classeo_1_1_c_m_a_state_af9d84abbe92acccaef70fbd9a1aad645}{sample}} (std\+::vector$<$ double $>$ \&v) const
+\item 
+void \mbox{\hyperlink{classeo_1_1_c_m_a_state_a23ad72409913356122c2a56527350e66}{reestimate}} (const std\+::vector$<$ const std\+::vector$<$ double $>$ $\ast$ $>$ \&sorted\+\_\+population, double mu\+Best, double mu\+Worst)
+\item 
+bool \mbox{\hyperlink{classeo_1_1_c_m_a_state_a364c27482189669f5c01d468273761fe}{update\+Eigen\+System}} (unsigned max\+\_\+tries=1, unsigned max\+\_\+iters=0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_1_1_c_m_a_state_a23ad72409913356122c2a56527350e66}\label{classeo_1_1_c_m_a_state_a23ad72409913356122c2a56527350e66}} 
+\index{eo::CMAState@{eo::CMAState}!reestimate@{reestimate}}
+\index{reestimate@{reestimate}!eo::CMAState@{eo::CMAState}}
+\doxysubsubsection{\texorpdfstring{reestimate()}{reestimate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+::\+C\+M\+A\+State\+::reestimate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ const std\+::vector$<$ double $>$ $\ast$ $>$ \&}]{sorted\+\_\+population,  }\item[{double}]{mu\+Best,  }\item[{double}]{mu\+Worst }\end{DoxyParamCaption})}
+
+Reestimate covariance matrix and other internal parameters Does N\+OT update the eigen system (call that seperately)
+
+Needs a population of mu individuals, sorted on fitness, plus
+
+mu\+Best\+: the best fitness in the population mu\+Worst\+: the worst fitness in the population \mbox{\Hypertarget{classeo_1_1_c_m_a_state_a23ad72409913356122c2a56527350e66}\label{classeo_1_1_c_m_a_state_a23ad72409913356122c2a56527350e66}} 
+\index{eo::CMAState@{eo::CMAState}!reestimate@{reestimate}}
+\index{reestimate@{reestimate}!eo::CMAState@{eo::CMAState}}
+\doxysubsubsection{\texorpdfstring{reestimate()}{reestimate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+::\+C\+M\+A\+State\+::reestimate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ const std\+::vector$<$ double $>$ $\ast$ $>$ \&}]{sorted\+\_\+population,  }\item[{double}]{mu\+Best,  }\item[{double}]{mu\+Worst }\end{DoxyParamCaption})}
+
+Reestimate covariance matrix and other internal parameters Does N\+OT update the eigen system (call that seperately)
+
+Needs a population of mu individuals, sorted on fitness, plus
+
+mu\+Best\+: the best fitness in the population mu\+Worst\+: the worst fitness in the population \mbox{\Hypertarget{classeo_1_1_c_m_a_state_af9d84abbe92acccaef70fbd9a1aad645}\label{classeo_1_1_c_m_a_state_af9d84abbe92acccaef70fbd9a1aad645}} 
+\index{eo::CMAState@{eo::CMAState}!sample@{sample}}
+\index{sample@{sample}!eo::CMAState@{eo::CMAState}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void eo\+::\+C\+M\+A\+State\+::sample (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{v }\end{DoxyParamCaption}) const}
+
+sample a vector from the distribution
+
+If the sample is not to your liking (i.\+e., not within bounds) you can do one of two things\+:
+
+a) Call sample again b) multiply the entire vector with a number between -\/1 and 1
+
+Do not modify the sample in any other way as this will invalidate the internal consistency of the system.
+
+A final approach is to copy the sample and modify the copy externally (in the evaluation function) and possibly add a penalty depending on the size of the modification. \mbox{\Hypertarget{classeo_1_1_c_m_a_state_af9d84abbe92acccaef70fbd9a1aad645}\label{classeo_1_1_c_m_a_state_af9d84abbe92acccaef70fbd9a1aad645}} 
+\index{eo::CMAState@{eo::CMAState}!sample@{sample}}
+\index{sample@{sample}!eo::CMAState@{eo::CMAState}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void eo\+::\+C\+M\+A\+State\+::sample (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{v }\end{DoxyParamCaption}) const}
+
+sample a vector from the distribution
+
+If the sample is not to your liking (i.\+e., not within bounds) you can do one of two things\+:
+
+a) Call sample again b) multiply the entire vector with a number between -\/1 and 1
+
+Do not modify the sample in any other way as this will invalidate the internal consistency of the system.
+
+A final approach is to copy the sample and modify the copy externally (in the evaluation function) and possibly add a penalty depending on the size of the modification. \mbox{\Hypertarget{classeo_1_1_c_m_a_state_a364c27482189669f5c01d468273761fe}\label{classeo_1_1_c_m_a_state_a364c27482189669f5c01d468273761fe}} 
+\index{eo::CMAState@{eo::CMAState}!updateEigenSystem@{updateEigenSystem}}
+\index{updateEigenSystem@{updateEigenSystem}!eo::CMAState@{eo::CMAState}}
+\doxysubsubsection{\texorpdfstring{updateEigenSystem()}{updateEigenSystem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool eo\+::\+C\+M\+A\+State\+::update\+Eigen\+System (\begin{DoxyParamCaption}\item[{unsigned}]{max\+\_\+tries = {\ttfamily 1},  }\item[{unsigned}]{max\+\_\+iters = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+call this function after reestimate in order to update the eigen system It is a seperate call to allow the user to periodically skip this expensive step
+
+max\+\_\+iters = 0 implies 30 $\ast$ N iterations
+
+If after max\+\_\+tries still no numerically sound eigen system is constructed, the function returns false \mbox{\Hypertarget{classeo_1_1_c_m_a_state_a364c27482189669f5c01d468273761fe}\label{classeo_1_1_c_m_a_state_a364c27482189669f5c01d468273761fe}} 
+\index{eo::CMAState@{eo::CMAState}!updateEigenSystem@{updateEigenSystem}}
+\index{updateEigenSystem@{updateEigenSystem}!eo::CMAState@{eo::CMAState}}
+\doxysubsubsection{\texorpdfstring{updateEigenSystem()}{updateEigenSystem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool eo\+::\+C\+M\+A\+State\+::update\+Eigen\+System (\begin{DoxyParamCaption}\item[{unsigned}]{max\+\_\+tries = {\ttfamily 1},  }\item[{unsigned}]{max\+\_\+iters = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+call this function after reestimate in order to update the eigen system It is a seperate call to allow the user to periodically skip this expensive step
+
+max\+\_\+iters = 0 implies 30 $\ast$ N iterations
+
+If after max\+\_\+tries still no numerically sound eigen system is constructed, the function returns false 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/src/es/C\+M\+A\+State.\+h\item 
+deprecated/eo/src/es/C\+M\+A\+State.\+cpp\end{DoxyCompactItemize}

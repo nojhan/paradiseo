@@ -1,0 +1,176 @@
+\hypertarget{class_max_s_a_teval}{}\doxysection{Max\+S\+A\+Teval$<$ E\+OT $>$ Class Template Reference}
+\label{class_max_s_a_teval}\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+
+
+{\ttfamily \#include $<$max\+S\+A\+Teval.\+h$>$}
+
+
+
+Inheritance diagram for Max\+S\+A\+Teval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_max_s_a_teval__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Max\+S\+A\+Teval$<$ E\+OT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_max_s_a_teval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_max_s_a_teval_a5b983d9315fbc5691dec6c07edccfd65}{Max\+S\+A\+Teval}} (unsigned \+\_\+n, unsigned \+\_\+m, unsigned \+\_\+k)
+\item 
+\mbox{\hyperlink{class_max_s_a_teval_a15d7c356d93179300bbb9dd1e7f86924}{Max\+S\+A\+Teval}} (std\+::string \&\+\_\+file\+Name)
+\item 
+\mbox{\hyperlink{class_max_s_a_teval_a2791e0bdd8a1605be71c59c63808f1e7}{$\sim$\+Max\+S\+A\+Teval}} ()
+\item 
+void \mbox{\hyperlink{class_max_s_a_teval_a305d0e5888aa39b3dd17503d04b6c94a}{save}} (std\+::string \&\+\_\+file\+Name)
+\item 
+bool \mbox{\hyperlink{class_max_s_a_teval_a0ea700f029b0521fb4f2f17d89af80f2}{clause\+Eval}} (unsigned int \+\_\+n, \mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)
+\item 
+virtual void \mbox{\hyperlink{class_max_s_a_teval_a17918045522c2f8d23af885ab1f14f16}{operator()}} (\mbox{\hyperlink{struct_dummy}{E\+OT}} \&\+\_\+solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_max_s_a_teval_a8c31d223a1b0a3fcc55db409619637c1}{nb\+Var}}
+\item 
+\mbox{\Hypertarget{class_max_s_a_teval_a88e3d982158e196886d7219dce1efa3a}\label{class_max_s_a_teval_a88e3d982158e196886d7219dce1efa3a}} 
+unsigned int {\bfseries nb\+Clauses}
+\item 
+\mbox{\Hypertarget{class_max_s_a_teval_a8a375ca63850dac4afa8bc66cbf7d2d6}\label{class_max_s_a_teval_a8a375ca63850dac4afa8bc66cbf7d2d6}} 
+unsigned int {\bfseries nb\+Litteral}
+\item 
+\mbox{\Hypertarget{class_max_s_a_teval_ac89a2c8311073aaab3559bf35d45857b}\label{class_max_s_a_teval_ac89a2c8311073aaab3559bf35d45857b}} 
+std\+::vector$<$ int $>$ $\ast$ {\bfseries clauses}
+\item 
+\mbox{\Hypertarget{class_max_s_a_teval_a061780fae6c859c80387847f9761953d}\label{class_max_s_a_teval_a061780fae6c859c80387847f9761953d}} 
+std\+::vector$<$ int $>$ $\ast$ {\bfseries variables}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class E\+OT$>$\newline
+class Max\+S\+A\+Teval$<$ E\+O\+T $>$}
+
+Full evaluation \mbox{\hyperlink{struct_function}{Function}} for max-\/\+S\+AT problem 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_max_s_a_teval_a5b983d9315fbc5691dec6c07edccfd65}\label{class_max_s_a_teval_a5b983d9315fbc5691dec6c07edccfd65}} 
+\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}!MaxSATeval@{MaxSATeval}}
+\index{MaxSATeval@{MaxSATeval}!MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{MaxSATeval()}{MaxSATeval()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}} (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+n,  }\item[{unsigned}]{\+\_\+m,  }\item[{unsigned}]{\+\_\+k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor generate a random instance of max k-\/\+S\+AT problem
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+n} & number of variables \\
+\hline
+{\em \+\_\+m} & number of clauses \\
+\hline
+{\em \+\_\+k} & of litteral by clause \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_max_s_a_teval_a15d7c356d93179300bbb9dd1e7f86924}\label{class_max_s_a_teval_a15d7c356d93179300bbb9dd1e7f86924}} 
+\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}!MaxSATeval@{MaxSATeval}}
+\index{MaxSATeval@{MaxSATeval}!MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{MaxSATeval()}{MaxSATeval()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}} (\begin{DoxyParamCaption}\item[{std\+::string \&}]{\+\_\+file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor instance is given in the cnf format (see dimacs)
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Name} & file name of the instance in cnf format \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_max_s_a_teval_a2791e0bdd8a1605be71c59c63808f1e7}\label{class_max_s_a_teval_a2791e0bdd8a1605be71c59c63808f1e7}} 
+\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}!````~MaxSATeval@{$\sim$MaxSATeval}}
+\index{````~MaxSATeval@{$\sim$MaxSATeval}!MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$MaxSATeval()}{~MaxSATeval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::$\sim$\mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_max_s_a_teval_a0ea700f029b0521fb4f2f17d89af80f2}\label{class_max_s_a_teval_a0ea700f029b0521fb4f2f17d89af80f2}} 
+\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}!clauseEval@{clauseEval}}
+\index{clauseEval@{clauseEval}!MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{clauseEval()}{clauseEval()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+bool \mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::clause\+Eval (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+n,  }\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+evaluation the clause
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+n} & number of the given clause \\
+\hline
+{\em \+\_\+solution} & the solution to evaluation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when the clause is true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_max_s_a_teval_a17918045522c2f8d23af885ab1f14f16}\label{class_max_s_a_teval_a17918045522c2f8d23af885ab1f14f16}} 
+\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+virtual void \mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_dummy}{E\+OT}} \&}]{\+\_\+solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+fitness evaluation of the solution
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+solution} & the solution to evaluation \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_u_f_a786e028409366dc273e19104f17ba68a}{eo\+U\+F$<$ E\+O\+T \&, void $>$}}.
+
+\mbox{\Hypertarget{class_max_s_a_teval_a305d0e5888aa39b3dd17503d04b6c94a}\label{class_max_s_a_teval_a305d0e5888aa39b3dd17503d04b6c94a}} 
+\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}!save@{save}}
+\index{save@{save}!MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+void \mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::save (\begin{DoxyParamCaption}\item[{std\+::string \&}]{\+\_\+file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+export the instance to a file in cnf format
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Name} & file name to export the instance \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_max_s_a_teval_a8c31d223a1b0a3fcc55db409619637c1}\label{class_max_s_a_teval_a8c31d223a1b0a3fcc55db409619637c1}} 
+\index{MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}!nbVar@{nbVar}}
+\index{nbVar@{nbVar}!MaxSATeval$<$ EOT $>$@{MaxSATeval$<$ EOT $>$}}
+\doxysubsubsection{\texorpdfstring{nbVar}{nbVar}}
+{\footnotesize\ttfamily template$<$class E\+OT $>$ \\
+unsigned int \mbox{\hyperlink{class_max_s_a_teval}{Max\+S\+A\+Teval}}$<$ \mbox{\hyperlink{struct_dummy}{E\+OT}} $>$\+::nb\+Var}
+
+Public variables (used in incremental evaluation) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+problems/eval/max\+S\+A\+Teval.\+h\end{DoxyCompactItemize}

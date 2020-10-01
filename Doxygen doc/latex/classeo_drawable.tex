@@ -1,0 +1,72 @@
+\hypertarget{classeo_drawable}{}\doxysection{eo\+Drawable$<$ Object $>$ Class Template Reference}
+\label{classeo_drawable}\index{eoDrawable$<$ Object $>$@{eoDrawable$<$ Object $>$}}
+
+
+{\ttfamily \#include $<$eo\+Drawable.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeo_drawable_a090f2588f8405be7c91e0bf467c38d65}\label{classeo_drawable_a090f2588f8405be7c91e0bf467c38d65}} 
+\mbox{\hyperlink{classeo_drawable_a090f2588f8405be7c91e0bf467c38d65}{eo\+Drawable}} (const Object \&\+\_\+o)
+\begin{DoxyCompactList}\small\item\em Main ctor from an already built Object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_drawable_ab77d300806a20aaf887d819edb69dd91}\label{classeo_drawable_ab77d300806a20aaf887d819edb69dd91}} 
+\mbox{\hyperlink{classeo_drawable_ab77d300806a20aaf887d819edb69dd91}{eo\+Drawable}} (const \mbox{\hyperlink{classeo_drawable}{eo\+Drawable}} \&\+\_\+d)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_drawable_a11f3dd06c984c911c5aa89d02571a49a}\label{classeo_drawable_a11f3dd06c984c911c5aa89d02571a49a}} 
+virtual \mbox{\hyperlink{classeo_drawable_a11f3dd06c984c911c5aa89d02571a49a}{$\sim$eo\+Drawable}} ()
+\begin{DoxyCompactList}\small\item\em Virtual dtor. They are needed in virtual class hierarchies. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_drawable_a2176a037fa86ab0ebd3b7cd704368446}{draw}} (unsigned \+\_\+x, unsigned \+\_\+y)=0
+\item 
+\mbox{\Hypertarget{classeo_drawable_a090f2588f8405be7c91e0bf467c38d65}\label{classeo_drawable_a090f2588f8405be7c91e0bf467c38d65}} 
+\mbox{\hyperlink{classeo_drawable_a090f2588f8405be7c91e0bf467c38d65}{eo\+Drawable}} (const Object \&\+\_\+o)
+\begin{DoxyCompactList}\small\item\em Main ctor from an already built Object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_drawable_ab77d300806a20aaf887d819edb69dd91}\label{classeo_drawable_ab77d300806a20aaf887d819edb69dd91}} 
+\mbox{\hyperlink{classeo_drawable_ab77d300806a20aaf887d819edb69dd91}{eo\+Drawable}} (const \mbox{\hyperlink{classeo_drawable}{eo\+Drawable}} \&\+\_\+d)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeo_drawable_a11f3dd06c984c911c5aa89d02571a49a}\label{classeo_drawable_a11f3dd06c984c911c5aa89d02571a49a}} 
+virtual \mbox{\hyperlink{classeo_drawable_a11f3dd06c984c911c5aa89d02571a49a}{$\sim$eo\+Drawable}} ()
+\begin{DoxyCompactList}\small\item\em Virtual dtor. They are needed in virtual class hierarchies. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classeo_drawable_a2176a037fa86ab0ebd3b7cd704368446}{draw}} (unsigned \+\_\+x, unsigned \+\_\+y)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Object$>$\newline
+class eo\+Drawable$<$ Object $>$}
+
+\mbox{\hyperlink{classeo_drawable}{eo\+Drawable}} is a template class that adds a drawing interface to an object. Requisites for template instantiation are that the object must admit a default ctor and a copy ctor. The Object must be an \mbox{\hyperlink{classeo_object}{eo\+Object}}, thus, it must have its methods\+: class\+Name, eo\+Drawables can be drawn on any two-\/dimensional surface; it can be added to any object with above characteristics. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classeo_object}{eo\+Object}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeo_drawable_a2176a037fa86ab0ebd3b7cd704368446}\label{classeo_drawable_a2176a037fa86ab0ebd3b7cd704368446}} 
+\index{eoDrawable$<$ Object $>$@{eoDrawable$<$ Object $>$}!draw@{draw}}
+\index{draw@{draw}!eoDrawable$<$ Object $>$@{eoDrawable$<$ Object $>$}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Object $>$ \\
+virtual void \mbox{\hyperlink{classeo_drawable}{eo\+Drawable}}$<$ Object $>$\+::draw (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+x,  }\item[{unsigned}]{\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Draws the object. It must be redefined in any subclass, it´s impossible to have a general drawing method 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+x,\+\_\+y} & coorinates \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classeo_drawable_a2176a037fa86ab0ebd3b7cd704368446}\label{classeo_drawable_a2176a037fa86ab0ebd3b7cd704368446}} 
+\index{eoDrawable$<$ Object $>$@{eoDrawable$<$ Object $>$}!draw@{draw}}
+\index{draw@{draw}!eoDrawable$<$ Object $>$@{eoDrawable$<$ Object $>$}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Object $>$ \\
+virtual void \mbox{\hyperlink{classeo_drawable}{eo\+Drawable}}$<$ Object $>$\+::draw (\begin{DoxyParamCaption}\item[{unsigned}]{\+\_\+x,  }\item[{unsigned}]{\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Draws the object. It must be redefined in any subclass, it´s impossible to have a general drawing method 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+x,\+\_\+y} & coorinates \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+deprecated/eo/contrib/eo\+Drawable.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+\hypertarget{classeoserial_1_1_string}{}\doxysection{eoserial\+::String Class Reference}
+\label{classeoserial_1_1_string}\index{eoserial::String@{eoserial::String}}
+
+
+J\+S\+ON \mbox{\hyperlink{classeoserial_1_1_string}{String}}.  
+
+
+
+
+{\ttfamily \#include $<$Serial\+String.\+h$>$}
+
+
+
+Inheritance diagram for eoserial\+::String\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classeoserial_1_1_string__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for eoserial\+::String\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classeoserial_1_1_string__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classeoserial_1_1_string_af1885deb50186f08f741c1eca0544ea5}{String}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Default ctor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeoserial_1_1_string_ac7f716969fea1b14b902b18f3149e576}\label{classeoserial_1_1_string_ac7f716969fea1b14b902b18f3149e576}} 
+\mbox{\hyperlink{classeoserial_1_1_string_ac7f716969fea1b14b902b18f3149e576}{String}} ()
+\begin{DoxyCompactList}\small\item\em Ctor used only when parsing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeoserial_1_1_string_ab32cbc21afdf15e7d00a43ce39ccc1c9}\label{classeoserial_1_1_string_ab32cbc21afdf15e7d00a43ce39ccc1c9}} 
+virtual std\+::ostream \& \mbox{\hyperlink{classeoserial_1_1_string_ab32cbc21afdf15e7d00a43ce39ccc1c9}{print}} (std\+::ostream \&out) const
+\begin{DoxyCompactList}\small\item\em Prints out the string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classeoserial_1_1_string_a24c26858cb5f57163bffb7be9fd88732}{deserialize}} (T \&value) const
+\begin{DoxyCompactList}\small\item\em Deserializes the current \mbox{\hyperlink{classeoserial_1_1_string}{String}} into a given primitive type value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classeoserial_1_1_string_a22a278a626eee60ede2e0f4702acda12}\label{classeoserial_1_1_string_a22a278a626eee60ede2e0f4702acda12}} 
+template$<$$>$ void \mbox{\hyperlink{classeoserial_1_1_string_a22a278a626eee60ede2e0f4702acda12}{deserialize}} (std\+::string \&value) const
+\begin{DoxyCompactList}\small\item\em Specialization for strings, which don\textquotesingle{}t need to be converted through a stringstream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classeoserial_1_1_string_a6962f6036226130940a648efbd8a975c}\label{classeoserial_1_1_string_a6962f6036226130940a648efbd8a975c}} 
+{\bfseries String} (const \mbox{\hyperlink{classeoserial_1_1_string}{String}} \&\+\_\+)
+\item 
+\mbox{\Hypertarget{classeoserial_1_1_string_a92304e5a3a25562342a3afb834a5c4bd}\label{classeoserial_1_1_string_a92304e5a3a25562342a3afb834a5c4bd}} 
+\mbox{\hyperlink{classeoserial_1_1_string}{String}} \& {\bfseries operator=} (const \mbox{\hyperlink{classeoserial_1_1_string}{String}} \&\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+J\+S\+ON \mbox{\hyperlink{classeoserial_1_1_string}{String}}. 
+
+Wrapper for string, so as to be used as a J\+S\+ON object. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_string_af1885deb50186f08f741c1eca0544ea5}\label{classeoserial_1_1_string_af1885deb50186f08f741c1eca0544ea5}} 
+\index{eoserial::String@{eoserial::String}!String@{String}}
+\index{String@{String}!eoserial::String@{eoserial::String}}
+\doxysubsubsection{\texorpdfstring{String()}{String()}}
+{\footnotesize\ttfamily eoserial\+::\+String\+::\+String (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default ctor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string we want to wrap. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classeoserial_1_1_string_a24c26858cb5f57163bffb7be9fd88732}\label{classeoserial_1_1_string_a24c26858cb5f57163bffb7be9fd88732}} 
+\index{eoserial::String@{eoserial::String}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!eoserial::String@{eoserial::String}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void eoserial\+::\+String\+::deserialize (\begin{DoxyParamCaption}\item[{T \&}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deserializes the current \mbox{\hyperlink{classeoserial_1_1_string}{String}} into a given primitive type value. 
+
+Casts a \mbox{\hyperlink{classeoserial_1_1_string}{eoserial\+::\+String}} into a primitive value, or in a type which at least overload operator$>$$>$.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value in which we\textquotesingle{}re writing.\\
+\hline
+{\em value} & A reference to the variable we\textquotesingle{}re writing into.\\
+\hline
+\end{DoxyParams}
+It\textquotesingle{}s not necessary to specify the variable type, which can be infered by compiler when invoking. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eo/src/serial/Serial\+String.\+h\item 
+eo/src/serial/Serial\+String.\+cpp\end{DoxyCompactItemize}

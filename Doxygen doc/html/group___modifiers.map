@@ -1,0 +1,5 @@
+<map id="Modifiers" name="Modifiers">
+<area shape="rect" id="node1" href="$group___core.html" title="This are the base classes from which useful objects inherits." alt="" coords="288,5,424,31"/>
+<area shape="rect" id="node2" title="A set of classes that arbitrarly modify a given distribution." alt="" coords="5,31,88,56"/>
+<area shape="rect" id="node3" href="$group___mononormal.html" title="A normal (Gaussian) distribution that only model variances of variables." alt="" coords="321,55,391,80"/>
+</map>

@@ -1,0 +1,73 @@
+\hypertarget{class_flow_shop_op_crossover_quad}{}\doxysection{Flow\+Shop\+Op\+Crossover\+Quad Class Reference}
+\label{class_flow_shop_op_crossover_quad}\index{FlowShopOpCrossoverQuad@{FlowShopOpCrossoverQuad}}
+
+
+{\ttfamily \#include $<$Flow\+Shop\+Op\+Crossover\+Quad.\+h$>$}
+
+
+
+Inheritance diagram for Flow\+Shop\+Op\+Crossover\+Quad\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_flow_shop_op_crossover_quad__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Flow\+Shop\+Op\+Crossover\+Quad\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_flow_shop_op_crossover_quad__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_flow_shop_op_crossover_quad_a1f2adcc203bfc19cf19f265018edf5dc}{class\+Name}} () const
+\item 
+bool \mbox{\hyperlink{class_flow_shop_op_crossover_quad_a92f70807bea24d3c233af580e2c55e3a}{operator()}} (\mbox{\hyperlink{class_flow_shop}{Flow\+Shop}} \&\+\_\+flowshop1, \mbox{\hyperlink{class_flow_shop}{Flow\+Shop}} \&\+\_\+flowshop2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Quadratic crossover operator for flow-\/shop (modify the both genotypes) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_flow_shop_op_crossover_quad_a1f2adcc203bfc19cf19f265018edf5dc}\label{class_flow_shop_op_crossover_quad_a1f2adcc203bfc19cf19f265018edf5dc}} 
+\index{FlowShopOpCrossoverQuad@{FlowShopOpCrossoverQuad}!className@{className}}
+\index{className@{className}!FlowShopOpCrossoverQuad@{FlowShopOpCrossoverQuad}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily std\+::string Flow\+Shop\+Op\+Crossover\+Quad\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+the class name (used to display statistics) 
+
+Reimplemented from \mbox{\hyperlink{classeo_functor_base}{eo\+Functor\+Base}}.
+
+\mbox{\Hypertarget{class_flow_shop_op_crossover_quad_a92f70807bea24d3c233af580e2c55e3a}\label{class_flow_shop_op_crossover_quad_a92f70807bea24d3c233af580e2c55e3a}} 
+\index{FlowShopOpCrossoverQuad@{FlowShopOpCrossoverQuad}!operator()@{operator()}}
+\index{operator()@{operator()}!FlowShopOpCrossoverQuad@{FlowShopOpCrossoverQuad}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily bool Flow\+Shop\+Op\+Crossover\+Quad\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_flow_shop}{Flow\+Shop}} \&}]{\+\_\+flowshop1,  }\item[{\mbox{\hyperlink{class_flow_shop}{Flow\+Shop}} \&}]{\+\_\+flowshop2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+eo\+Quad crossover -\/ {\itshape flowshop1 and \+\_\+flowshop2 are the (future) offspring, i.\+e. \+\_\+copies} of the parents 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+flowshop1} & the first parent \\
+\hline
+{\em \+\_\+flowshop2} & the second parent \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classeo_b_f_aa03c40b95210569b826df79a2237a0d0}{eo\+B\+F$<$ Flow\+Shop \&, Flow\+Shop \&, bool $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+moeo/tutorial/examples/flowshop/Flow\+Shop\+Op\+Crossover\+Quad.\+h\item 
+moeo/tutorial/examples/flowshop/Flow\+Shop\+Op\+Crossover\+Quad.\+cpp\end{DoxyCompactItemize}
