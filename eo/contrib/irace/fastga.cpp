@@ -150,6 +150,11 @@ int main(int argc, char* argv[])
     // rng is a global
     rng.reseed(seed);
 
+    auto pop_size_p = parser.getORcreateParam<size_t>(0,
+            "pop-size", "Population size",
+            'P', "Operator Choice", /*required=*/false);
+    const size_t pop_size = pop_size_p.value();
+
     auto instance_p = parser.getORcreateParam<size_t>(1,
             "instance", "Instance ID",
             'i', "Problem", /*required=*/true);
@@ -200,10 +205,11 @@ int main(int argc, char* argv[])
             'r', "Operator Choice", /*required=*/true);
     const size_t replacement = replacement_p.value();
 
-    auto pop_size_p = parser.getORcreateParam<size_t>(0,
-            "pop-size", "Offsprings pop size (0 = same size than the parents pop)",
+    auto offspring_size_p = parser.getORcreateParam<size_t>(0,
+            "offspring-size", "Offspringssize (0 = same size than the parents pop, see --pop-size)",
             'P', "Operator Choice", /*required=*/true);
-    const size_t pop_size = pop_size_p.value();
+    const size_t offspring_size = offspring_size_p.value();
+
 
     // Help + Verbose routines
     make_verbose(parser);
@@ -245,7 +251,7 @@ int main(int argc, char* argv[])
         print_param_range(  mutation_selector_p, fake_foundry.mutation_selectors  .size(), std::cout);
         print_param_range(           mutation_p, fake_foundry.mutations           .size(), std::cout);
         print_param_range(        replacement_p, fake_foundry.replacements        .size(), std::cout);
-        print_param_range(           pop_size_p, fake_foundry.pop_sizes           .size(), std::cout);
+        print_param_range(     offspring_size_p, fake_foundry.pop_sizes           .size(), std::cout);
 
         // std::ofstream irace_param("fastga.params");
         // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
@@ -352,7 +358,7 @@ int main(int argc, char* argv[])
     encoded_algo[foundry.mutations           .index()] = mutation;
     encoded_algo[foundry.replacements        .index()] = replacement;
     encoded_algo[foundry.continuators        .index()] = continuator;
-    encoded_algo[foundry.pop_sizes           .index()] = pop_size;
+    encoded_algo[foundry.pop_sizes           .index()] = offspring_size;
 
     std::clog << "Encoded algorithm:" << std::endl;
     foundry.select(encoded_algo);
