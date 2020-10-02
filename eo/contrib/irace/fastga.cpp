@@ -41,10 +41,10 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
     /***** Offsprings size *****/
     // for(size_t i=5; i<100; i+=10) {
-    //     foundry.pop_sizes.add<size_t>(i);
+    //     foundry.offspring_sizes.add<size_t>(i);
     // }
 
-    foundry.pop_sizes.add<size_t>(0); // 0 = use parents fixed pop size.
+    foundry.offspring_sizes.add<size_t>(0); // 0 = use parents fixed pop size.
 
     /***** Crossovers ****/
     for(double i=0.1; i<0.9; i+=0.1) {
@@ -155,14 +155,14 @@ int main(int argc, char* argv[])
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
 
-    auto instance_p = parser.getORcreateParam<size_t>(1,
+    auto instance_p = parser.getORcreateParam<size_t>(0,
             "instance", "Instance ID",
             'i', "Problem", /*required=*/true);
     const size_t instance = instance_p.value();
 
     auto continuator_p = parser.getORcreateParam<size_t>(0,
             "continuator", "Stopping criterion",
-            'o', "Operator Choice", /*required=*/true);
+            'o', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t continuator = continuator_p.value();
 
     auto crossover_rate_p = parser.getORcreateParam<size_t>(0,
@@ -182,7 +182,7 @@ int main(int argc, char* argv[])
 
     auto aftercross_selector_p = parser.getORcreateParam<size_t>(0,
             "aftercross-selector", "How to selects between the two individuals altered by cross-over which one will mutate",
-            'a', "Operator Choice", /*required=*/true);
+            'a', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t aftercross_selector = aftercross_selector_p.value();
 
     auto mutation_rate_p = parser.getORcreateParam<size_t>(0,
@@ -207,7 +207,7 @@ int main(int argc, char* argv[])
 
     auto offspring_size_p = parser.getORcreateParam<size_t>(0,
             "offspring-size", "Offsprings size (0 = same size than the parents pop, see --pop-size)",
-            'P', "Operator Choice", /*required=*/true);
+            'P', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t offspring_size = offspring_size_p.value();
 
 
@@ -234,7 +234,7 @@ int main(int argc, char* argv[])
             * fake_foundry.mutations.size()
             * fake_foundry.replacements.size()
             * fake_foundry.continuators.size()
-            * fake_foundry.pop_sizes.size();
+            * fake_foundry.offspring_sizes.size();
         std::clog << std::endl;
         std::clog << n << " possible algorithms instances." << std::endl;
 
@@ -251,7 +251,7 @@ int main(int argc, char* argv[])
         print_param_range(  mutation_selector_p, fake_foundry.mutation_selectors  .size(), std::cout);
         print_param_range(           mutation_p, fake_foundry.mutations           .size(), std::cout);
         print_param_range(        replacement_p, fake_foundry.replacements        .size(), std::cout);
-        print_param_range(     offspring_size_p, fake_foundry.pop_sizes           .size(), std::cout);
+        print_param_range(     offspring_size_p, fake_foundry.offspring_sizes     .size(), std::cout);
 
         // std::ofstream irace_param("fastga.params");
         // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
@@ -274,30 +274,30 @@ int main(int argc, char* argv[])
     };
 
     std::map<size_t, Problem> problem_config_mapping {
-        {0, {0, 0, 1, 0, 1000}},
-        {1, {0, 0, 3, 0, 333}},
-        {2, {0, 0, 5, 0, 200}},
-        {3, {0, 2, 1, 0, 1000}},
-        {4, {0, 2, 3, 0, 333}},
-        {5, {0, 2, 3, 0, 200}},
-        {6, {0, 4, 1, 0, 1000}},
-        {7, {0, 4, 3, 0, 333}},
-        {8, {0, 4, 5, 0, 200}},
-        {9, {0.5, 0, 1, 0, 500}},
-        {10, {0.5, 0, 3, 0, 166}},
-        {11, {0.5, 0, 5, 0, 100}},
-        {12, {0.5, 2, 1, 0, 500}},
-        {13, {0.5, 2, 3, 0, 166}},
-        {14, {0.5, 2, 5, 0, 100}},
-        {15, {0.5, 4, 1, 0, 500}},
-        {16, {0.5, 4, 3, 0, 166}},
-        {17, {0.5, 4, 5, 0, 100}},
+        { 0, {0,   0, 1, 0, 1000}},
+        { 1, {0,   0, 3, 0,  333}},
+        { 2, {0,   0, 5, 0,  200}},
+        { 3, {0,   2, 1, 0, 1000}},
+        { 4, {0,   2, 3, 0,  333}},
+        { 5, {0,   2, 3, 0,  200}},
+        { 6, {0,   4, 1, 0, 1000}},
+        { 7, {0,   4, 3, 0,  333}},
+        { 8, {0,   4, 5, 0,  200}},
+        { 9, {0.5, 0, 1, 0,  500}},
+        {10, {0.5, 0, 3, 0,  166}},
+        {11, {0.5, 0, 5, 0,  100}},
+        {12, {0.5, 2, 1, 0,  500}},
+        {13, {0.5, 2, 3, 0,  166}},
+        {14, {0.5, 2, 5, 0,  100}},
+        {15, {0.5, 4, 1, 0,  500}},
+        {16, {0.5, 4, 3, 0,  166}},
+        {17, {0.5, 4, 5, 0,  100}},
     };
 
 
 
     /***** IOH logger *****/
-    auto max_target_para = problem_config_mapping[instance - 1].max_target;
+    auto max_target_para = problem_config_mapping[instance].max_target;
     IOHprofiler_RangeLinear<size_t> target_range(0, max_target_para, buckets);
     IOHprofiler_RangeLinear<size_t> budget_range(0, max_evals, buckets);
     IOHprofiler_ecdf_logger<int, size_t, size_t> logger(target_range, budget_range);
@@ -307,10 +307,10 @@ int main(int argc, char* argv[])
     logger.activate_logger();
 
     /***** IOH problem *****/
-    double w_model_suite_dummy_para = problem_config_mapping[instance - 1].dummy;
-    int w_model_suite_epitasis_para = problem_config_mapping[instance - 1].epistasis;
-    int w_model_suite_neutrality_para = problem_config_mapping[instance - 1].neutrality;
-    int w_model_suite_ruggedness_para = problem_config_mapping[instance - 1].ruggedness;
+    double w_model_suite_dummy_para   = problem_config_mapping[instance].dummy;
+    int w_model_suite_epitasis_para   = problem_config_mapping[instance].epistasis;
+    int w_model_suite_neutrality_para = problem_config_mapping[instance].neutrality;
+    int w_model_suite_ruggedness_para = problem_config_mapping[instance].ruggedness;
 
     W_Model_OneMax w_model_om;
     std::string problem_name = "OneMax";
@@ -329,8 +329,8 @@ int main(int argc, char* argv[])
     w_model_om.IOHprofiler_set_problem_name(problem_name);
 
     /// Set problem_id as 1
-    w_model_om.IOHprofiler_set_problem_id(1);
-    w_model_om.IOHprofiler_set_instance_id(instance);
+    w_model_om.IOHprofiler_set_problem_id(0); // FIXME check what that means
+    w_model_om.IOHprofiler_set_instance_id(instance); // FIXME check what that means
 
     /// Set dimension.
     w_model_om.IOHprofiler_set_number_of_variables(dimension);
@@ -338,14 +338,14 @@ int main(int argc, char* argv[])
     /***** Bindings *****/
     logger.track_problem(w_model_om);
 
-    eoEvalIOHproblem<Bits> onemax_eval(w_model_om, logger);
-    eoPopLoopEval<Bits> pop_onemax(onemax_eval);
+    eoEvalIOHproblem<Bits> onemax_pb(w_model_om, logger);
+    eoPopLoopEval<Bits> onemax_eval(onemax_pb);
 
     /***** Instanciate and run the algo *****/
 
     eoUniformGenerator<int> ugen(0, 1);
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, ugen);
-    auto& foundry = make_foundry(store, onemax_init, onemax_eval, max_evals, generations);
+    auto& foundry = make_foundry(store, onemax_init, onemax_pb, max_evals, generations);
 
     Ints encoded_algo(foundry.size());
 
@@ -358,7 +358,7 @@ int main(int argc, char* argv[])
     encoded_algo[foundry.mutations           .index()] = mutation;
     encoded_algo[foundry.replacements        .index()] = replacement;
     encoded_algo[foundry.continuators        .index()] = continuator;
-    encoded_algo[foundry.pop_sizes           .index()] = offspring_size;
+    encoded_algo[foundry.offspring_sizes     .index()] = offspring_size;
 
     std::clog << "Encoded algorithm:" << std::endl;
     foundry.select(encoded_algo);
@@ -366,7 +366,10 @@ int main(int argc, char* argv[])
 
     // Evaluation of a forged encoded_algo on the sub-problem
     eoEvalFoundryFastGA<Ints, Bits> eval_foundry(
-            foundry, onemax_init, pop_onemax, /*penalization=*/ 0);
+            foundry, pop_size,
+            onemax_init, onemax_eval,
+            /*penalization=*/ dimension, // Worst case penalization.
+            /*normalized=*/ false); // Use direct integer encoding.
 
     // Actually instanciate and run the algorithm.
     eval_foundry(encoded_algo);

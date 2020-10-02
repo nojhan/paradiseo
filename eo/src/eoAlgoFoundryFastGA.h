@@ -101,7 +101,7 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
 
             replacements(7, false),
             continuators(8, true), // Always re-instantiate continuators, because they hold a state.
-            pop_sizes(9, false),
+            offspring_sizes(9, false),
             _eval(eval),
             _init(init),
             _max_evals(max_evals),
@@ -122,7 +122,7 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
 
         eoOperatorFoundry< eoReplacement<EOT> > replacements;
         eoOperatorFoundry< eoContinue<EOT>    > continuators;
-        eoOperatorFoundry< size_t             > pop_sizes;
+        eoOperatorFoundry< size_t             > offspring_sizes;
         /* @} */
 
         /** instantiate and call the pre-selected algorithm.
@@ -138,7 +138,7 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
             assert(           mutations.size() > 0); assert(this->at(           mutations.index()) <            mutations.size());
             assert(        replacements.size() > 0); assert(this->at(        replacements.index()) <         replacements.size());
             assert(        continuators.size() > 0); assert(this->at(        continuators.index()) <         continuators.size());
-            assert(           pop_sizes.size() > 0); assert(this->at(           pop_sizes.index()) <            pop_sizes.size());
+            assert(           offspring_sizes.size() > 0); assert(this->at(           offspring_sizes.index()) <            offspring_sizes.size());
 
             // Objective function calls counter
             eoEvalCounterThrowException<EOT> eval(_eval, _max_evals);
@@ -156,7 +156,7 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
                 pop_eval,
                 this->replacement(),
                 this->continuator(),
-                this->pop_size()
+                this->offspring_size()
             );
 
             // Restart wrapper
@@ -188,7 +188,7 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
             name << this->at(           mutations.index()) << " (" << this->           mutation().className() << ") + ";
             name << this->at(        replacements.index()) << " (" << this->        replacement().className() << ") + ";
             name << this->at(        continuators.index()) << " (" << this->        continuator().className() << ") + ";
-            name << this->at(           pop_sizes.index()) << " (" << this->           pop_size()             << ")";
+            name << this->at(           offspring_sizes.index()) << " (" << this->           offspring_size()             << ")";
             return name.str();
         }
 
@@ -247,10 +247,10 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
             return mutation_selectors.instantiate(this->at(mutation_selectors.index()));
         }
 
-        size_t& pop_size()
+        size_t& offspring_size()
         {
-            assert(this->at(pop_sizes.index()) < pop_sizes.size());
-            return pop_sizes.instantiate(this->at(pop_sizes.index()));
+            assert(this->at(offspring_sizes.index()) < offspring_sizes.size());
+            return offspring_sizes.instantiate(this->at(offspring_sizes.index()));
         }
 
         eoReplacement<EOT>& replacement()

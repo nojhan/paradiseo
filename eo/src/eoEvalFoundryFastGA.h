@@ -47,17 +47,19 @@ public:
      *
      * @param foundry The set of algorithms among which to select.
      * @param subpb_init An initilizer for sub-problem encoding.
-     * @param pop_size Population size for the sub-problem solver.
+     * @param offspring_size Population size for the sub-problem solver.
      * @param subpb_eval The sub-problem itself.
      * @param penalization If any solution to the high-level algorithm selection problem is out of bounds, set it to this value.
      */
     eoEvalFoundryFastGA(
             eoAlgoFoundryFastGA<SUB>& foundry,
+            const size_t pop_size,
             eoInit<SUB>& subpb_init,
             eoPopEvalFunc<SUB>& subpb_eval,
             const typename SUB::Fitness penalization,
             const bool normalized = false
         ) :
+            _pop_size(pop_size),
             _subpb_init(subpb_init),
             _subpb_eval(subpb_eval),
             _foundry(foundry),
@@ -72,7 +74,7 @@ public:
             i_muta(foundry.mutations.index()),
             i_repl(foundry.replacements.index()),
             i_cont(foundry.continuators.index()),
-            i_pops(foundry.pop_sizes.index())
+            i_offs(foundry.offspring_sizes.index())
     { }
 
 protected:
@@ -85,7 +87,7 @@ protected:
     const size_t i_muta;
     const size_t i_repl;
     const size_t i_cont;
-    const size_t i_pops;
+    const size_t i_offs;
 
 public:
 
@@ -111,7 +113,7 @@ public:
         size_t muta;
         size_t repl;
         size_t cont;
-        size_t pops;
+        size_t offs;
 
         if(_normalized) {
             crat = static_cast<size_t>(std::ceil( sol[i_crat] * _foundry.crossover_rates.size() ));
@@ -123,7 +125,7 @@ public:
             muta = static_cast<size_t>(std::ceil( sol[i_muta] * _foundry.mutations.size() ));
             repl = static_cast<size_t>(std::ceil( sol[i_repl] * _foundry.replacements.size() ));
             cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() ));
-            pops = static_cast<size_t>(std::ceil( sol[i_pops] * _foundry.pop_sizes.size() ));
+            offs = static_cast<size_t>(std::ceil( sol[i_offs] * _foundry.offspring_sizes.size() ));
 
         } else {
             crat = static_cast<size_t>(std::ceil( sol[i_crat] ));
@@ -135,9 +137,9 @@ public:
             muta = static_cast<size_t>(std::ceil( sol[i_muta] ));
             repl = static_cast<size_t>(std::ceil( sol[i_repl] ));
             cont = static_cast<size_t>(std::ceil( sol[i_cont] ));
-            pops = static_cast<size_t>(std::ceil( sol[i_pops] ));
+            offs = static_cast<size_t>(std::ceil( sol[i_offs] ));
         }
-        return {crat, crsl, cros, afcr, mrat, musl, muta, repl, cont, pops};
+        return {crat, crsl, cros, afcr, mrat, musl, muta, repl, cont, offs};
     }
 
     /** Perform a sub-problem search with the configuration encoded in the given solution
@@ -160,7 +162,7 @@ public:
         double muta = config[i_muta];
         double repl = config[i_repl];
         double cont = config[i_cont];
-        double pops = config[i_pops];
+        double offs = config[i_offs];
 
         if(
                 0 <= crat and crat < _foundry.crossover_rates.size()
@@ -172,14 +174,13 @@ public:
             and 0 <= muta and muta < _foundry.mutations.size()
             and 0 <= repl and repl < _foundry.replacements.size()
             and 0 <= cont and cont < _foundry.continuators.size()
-            and 0 <= pops and pops < _foundry.pop_sizes.size()
+            and 0 <= offs and offs < _foundry.offspring_sizes.size()
           ) {
             _foundry.select(config);
 
-            // FIXME should pop_size belong to this eval and moved out from the foundry?
             // Reset pop
             eoPop<SUB> pop;
-            pop.append( _foundry.pop_size(), _subpb_init);
+            pop.append( _pop_size, _subpb_init);
             _subpb_eval(pop,pop);
 
             // Actually perform a search
@@ -194,6 +195,7 @@ public:
     }
 
 protected:
+    const size_t _pop_size;
     eoInit<SUB>& _subpb_init;
     eoPopEvalFunc<SUB>& _subpb_eval;
     eoAlgoFoundryFastGA<SUB>& _foundry;
