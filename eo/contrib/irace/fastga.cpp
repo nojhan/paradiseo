@@ -151,7 +151,7 @@ int main(int argc, char* argv[])
     // rng is a global
     rng.reseed(seed);
 
-    auto pop_size_p = parser.getORcreateParam<size_t>(0,
+    auto pop_size_p = parser.getORcreateParam<size_t>(1,
             "pop-size", "Population size",
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
@@ -207,7 +207,7 @@ int main(int argc, char* argv[])
     const size_t replacement = replacement_p.value();
 
     auto offspring_size_p = parser.getORcreateParam<size_t>(0,
-            "offspring-size", "Offspringssize (0 = same size than the parents pop, see --pop-size)",
+            "offspring-size", "Offsprings size (0 = same size than the parents pop, see --pop-size)",
             'P', "Operator Choice", /*required=*/true);
     const size_t offspring_size = offspring_size_p.value();
 
