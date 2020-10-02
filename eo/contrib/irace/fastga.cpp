@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-
 #include <eo>
 #include <ga.h>
 #include <utils/checkpointing>
@@ -263,8 +262,43 @@ int main(int argc, char* argv[])
     const size_t generations = static_cast<size_t>(std::floor(
                 static_cast<double>(max_evals) / static_cast<double>(pop_size)));
 
+
+
+    // Problem configuration code.
+    struct Problem {
+        double dummy;  
+        size_t epistasis;
+        size_t neutrality;
+        size_t ruggedness;
+        size_t max_target;
+    };
+
+    std::map<size_t, Problem> problem_config_mapping {
+        {0, {0, 0, 1, 0, 1000}},
+        {1, {0, 0, 3, 0, 333}},
+        {2, {0, 0, 5, 0, 200}},
+        {3, {0, 2, 1, 0, 1000}},
+        {4, {0, 2, 3, 0, 333}},
+        {5, {0, 2, 3, 0, 200}},
+        {6, {0, 4, 1, 0, 1000}},
+        {7, {0, 4, 3, 0, 333}},
+        {8, {0, 4, 5, 0, 200}},
+        {9, {0.5, 0, 1, 0, 500}},
+        {10, {0.5, 0, 3, 0, 166}},
+        {11, {0.5, 0, 5, 0, 100}},
+        {12, {0.5, 2, 1, 0, 500}},
+        {13, {0.5, 2, 3, 0, 166}},
+        {14, {0.5, 2, 5, 0, 100}},
+        {15, {0.5, 4, 1, 0, 500}},
+        {16, {0.5, 4, 3, 0, 166}},
+        {17, {0.5, 4, 5, 0, 100}},
+    };
+
+
+
     /***** IOH logger *****/
-    IOHprofiler_RangeLinear<size_t> target_range(0, dimension, buckets);
+    auto max_target_para = problem_config_mapping[instance - 1].max_target;
+    IOHprofiler_RangeLinear<size_t> target_range(0, max_target_para, buckets);
     IOHprofiler_RangeLinear<size_t> budget_range(0, max_evals, buckets);
     IOHprofiler_ecdf_logger<int, size_t, size_t> logger(target_range, budget_range);
 
@@ -273,10 +307,10 @@ int main(int argc, char* argv[])
     logger.activate_logger();
 
     /***** IOH problem *****/
-    double w_model_suite_dummy_para = 0;
-    int w_model_suite_epitasis_para = 0;
-    int w_model_suite_neutrality_para = 0;
-    int w_model_suite_ruggedness_para = 0;
+    double w_model_suite_dummy_para = problem_config_mapping[instance - 1].dummy;
+    int w_model_suite_epitasis_para = problem_config_mapping[instance - 1].epistasis;
+    int w_model_suite_neutrality_para = problem_config_mapping[instance - 1].neutrality;
+    int w_model_suite_ruggedness_para = problem_config_mapping[instance - 1].ruggedness;
 
     W_Model_OneMax w_model_om;
     std::string problem_name = "OneMax";
@@ -285,6 +319,7 @@ int main(int argc, char* argv[])
                     + "_E" + std::to_string(w_model_suite_epitasis_para)
                     + "_N" + std::to_string(w_model_suite_neutrality_para)
                     + "_R" + std::to_string(w_model_suite_ruggedness_para);
+
 
     /// This must be called to configure the w-model to be tested.
     w_model_om.set_w_setting(w_model_suite_dummy_para,w_model_suite_epitasis_para,
