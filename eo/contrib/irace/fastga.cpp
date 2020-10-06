@@ -34,7 +34,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     //     foundry.continuators.add< eoSteadyFitContinue<Bits> >(10,i);
     // }
 
-    for(double i=0.1; i<1.0; i+=0.1) {
+    for(double i=0.1; i<1.0; i+=0.2) {
         foundry.crossover_rates.add<double>(i);
         foundry.mutation_rates.add<double>(i);
     }
@@ -47,10 +47,11 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     foundry.offspring_sizes.add<size_t>(0); // 0 = use parents fixed pop size.
 
     /***** Crossovers ****/
-    for(double i=0.1; i<0.9; i+=0.1) {
+    for(double i=0.1; i<1.0; i+=0.2) {
         foundry.crossovers.add< eoUBitXover<Bits> >(i); // preference over 1
     }
-    for(size_t i=1; i < 11; i+=1) {
+    for(size_t i=1; i < 10; i+=2) {
+
         foundry.crossovers.add< eoNPtsBitXover<Bits> >(i); // nb of points
     }
     foundry.crossovers.add< eo1PtBitXover<Bits> >();
@@ -63,7 +64,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     foundry.mutations.add< eoShiftedBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in binomial distrib, changing zeros to one
     foundry.mutations.add< eoNormalBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in normal distrib
     foundry.mutations.add< eoFastBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in powerlaw distrib
-    for(size_t i=1; i < 11; i+=1) {
+    for(size_t i=1; i < 11; i+=2) {
         foundry.mutations.add< eoDetSingleBitFlip<Bits> >(i); // mutate k bits without duplicates
     }
 
@@ -76,7 +77,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
         ops.add< eoStochTournamentSelect<Bits> >(0.5);
         ops.add< eoSequentialSelect<Bits> >();
         ops.add< eoProportionalSelect<Bits> >();
-        for(size_t i=2; i < 10; i+=4) {
+        for(size_t i=2; i < 11; i+=4) {
             ops.add< eoDetTournamentSelect<Bits> >(i);
         }
     }
@@ -88,10 +89,10 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     foundry.replacements.add< eoPlusReplacement<Bits> >();
     foundry.replacements.add< eoCommaReplacement<Bits> >();
     foundry.replacements.add< eoSSGAWorseReplacement<Bits> >();
-    for(double i=0.51; i<0.91; i+=0.1) {
+    for(double i=0.51; i<0.92; i+=0.2) {
         foundry.replacements.add< eoSSGAStochTournamentReplacement<Bits> >(i);
     }
-    for(size_t i=2; i < 10; i+=1) {
+    for(size_t i=2; i < 11; i+=2) {
         foundry.replacements.add< eoSSGADetTournamentReplacement<Bits> >(i);
     }
 
@@ -150,14 +151,21 @@ int main(int argc, char* argv[])
     // rng is a global
     rng.reseed(seed);
 
-    auto pop_size_p = parser.getORcreateParam<size_t>(1,
+
+    auto problem_p = parser.getORcreateParam<size_t>(0,
+            "problem", "Problem ID",
+            'p', "Problem", /*required=*/true);
+    const size_t problem = problem_p.value();
+
+
+    auto pop_size_p = parser.getORcreateParam<size_t>(5,
             "pop-size", "Population size",
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
 
     auto instance_p = parser.getORcreateParam<size_t>(0,
             "instance", "Instance ID",
-            'i', "Problem", /*required=*/true);
+            'i', "Instance", /*required=*/false);
     const size_t instance = instance_p.value();
 
     auto continuator_p = parser.getORcreateParam<size_t>(0,
@@ -207,7 +215,7 @@ int main(int argc, char* argv[])
 
     auto offspring_size_p = parser.getORcreateParam<size_t>(0,
             "offspring-size", "Offsprings size (0 = same size than the parents pop, see --pop-size)",
-            'P', "Operator Choice", /*required=*/false); // Single alternative, not required.
+            'O', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t offspring_size = offspring_size_p.value();
 
 
@@ -236,12 +244,13 @@ int main(int argc, char* argv[])
             * fake_foundry.continuators.size()
             * fake_foundry.offspring_sizes.size();
         std::clog << std::endl;
-        std::clog << n << " possible algorithms instances." << std::endl;
+        std::clog << n << " possible algorithms configurations." << std::endl;
 
         std::clog << "Ranges of configurable parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
 
         std::cout << "# name\tswitch\ttype\trange" << std::endl;
-        print_param_range(           instance_p, 18, std::cout);
+        print_param_range(           instance_p, 41, std::cout);
+        print_param_range(            problem_p, 18, std::cout);
         print_param_range(        continuator_p, fake_foundry.continuators        .size(), std::cout);
         print_param_range(     crossover_rate_p, fake_foundry.crossover_rates     .size(), std::cout);
         print_param_range( crossover_selector_p, fake_foundry.crossover_selectors .size(), std::cout);
@@ -297,7 +306,7 @@ int main(int argc, char* argv[])
 
 
     /***** IOH logger *****/
-    auto max_target_para = problem_config_mapping[instance].max_target;
+    auto max_target_para = problem_config_mapping[problem].max_target;
     IOHprofiler_RangeLinear<size_t> target_range(0, max_target_para, buckets);
     IOHprofiler_RangeLinear<size_t> budget_range(0, max_evals, buckets);
     IOHprofiler_ecdf_logger<int, size_t, size_t> logger(target_range, budget_range);
@@ -307,10 +316,10 @@ int main(int argc, char* argv[])
     logger.activate_logger();
 
     /***** IOH problem *****/
-    double w_model_suite_dummy_para   = problem_config_mapping[instance].dummy;
-    int w_model_suite_epitasis_para   = problem_config_mapping[instance].epistasis;
-    int w_model_suite_neutrality_para = problem_config_mapping[instance].neutrality;
-    int w_model_suite_ruggedness_para = problem_config_mapping[instance].ruggedness;
+    double w_model_suite_dummy_para   = problem_config_mapping[problem].dummy;
+    int w_model_suite_epitasis_para   = problem_config_mapping[problem].epistasis;
+    int w_model_suite_neutrality_para = problem_config_mapping[problem].neutrality;
+    int w_model_suite_ruggedness_para = problem_config_mapping[problem].ruggedness;
 
     W_Model_OneMax w_model_om;
     std::string problem_name = "OneMax";
@@ -329,7 +338,7 @@ int main(int argc, char* argv[])
     w_model_om.IOHprofiler_set_problem_name(problem_name);
 
     /// Set problem_id as 1
-    w_model_om.IOHprofiler_set_problem_id(0); // FIXME check what that means
+    w_model_om.IOHprofiler_set_problem_id(problem); // FIXME check what that means
     w_model_om.IOHprofiler_set_instance_id(instance); // FIXME check what that means
 
     /// Set dimension.
