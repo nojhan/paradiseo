@@ -108,7 +108,11 @@ void print_param_range(const eoParam& param, const size_t slot_size, std::ostrea
         out << "# ";
     }
 
-    out << param.longName()
+    // irace doesn't support "-" in names.
+    std::string irace_name = param.longName();
+    irace_name.erase(std::remove(irace_name.begin(), irace_name.end(), '-'), irace_name.end());
+
+    out << irace_name
         << "\t\"--" << param.longName() << "=\""
         << "\ti";
 
@@ -248,9 +252,8 @@ int main(int argc, char* argv[])
 
         std::clog << "Ranges of configurable parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
 
+        // Do not print problem and instances, as they are managed separately by irace.
         std::cout << "# name\tswitch\ttype\trange" << std::endl;
-        print_param_range(           instance_p, 41, std::cout);
-        print_param_range(            problem_p, 18, std::cout);
         print_param_range(        continuator_p, fake_foundry.continuators        .size(), std::cout);
         print_param_range(     crossover_rate_p, fake_foundry.crossover_rates     .size(), std::cout);
         print_param_range( crossover_selector_p, fake_foundry.crossover_selectors .size(), std::cout);
@@ -388,8 +391,14 @@ int main(int argc, char* argv[])
     // iRace expects minimization
     long perf = ecdf_sum(logger.data());
 
+    // assert(0 < perf and perf <= buckets*buckets);
+    if(perf <= 0 or buckets*buckets < perf) {
+        std::cerr << "WARNING: illogical performance: " << perf
+                  << ", check the bounds?"
+                  << " Will let it as is." << std::endl;
+    }
+
     // Output
     std::cout << -1 * perf << std::endl;
 
-    assert(0 < perf and perf <= buckets*buckets);
 }
