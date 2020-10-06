@@ -71,9 +71,9 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     /***** Offspring population size *****/
-    foundry.pop_sizes.add<size_t>(0); // 0 = same as parent pop
+    foundry.offspring_sizes.add<size_t>(0); // 0 = same as parent pop
     // for(size_t s = pop_size; s < 2*pop_size; s+=pop_size/10) {
-    //     foundry.pop_sizes.add<size_t>(s);
+    //     foundry.offspring_sizes.add<size_t>(s);
     // }
 
 
@@ -87,7 +87,7 @@ int main(int /*argc*/, char** /*argv*/)
         * foundry.mutations.size()
         * foundry.replacements.size()
         * foundry.continuators.size()
-        * foundry.pop_sizes.size();
+        * foundry.offspring_sizes.size();
     std::clog << n << " possible algorithms instances." << std::endl;
 
     EOT best_sol;
@@ -103,7 +103,7 @@ int main(int /*argc*/, char** /*argv*/)
                             for(size_t i_mut = 0; i_mut < foundry.mutations.size(); ++i_mut ) {
                                 for(size_t i_rep = 0; i_rep < foundry.replacements.size(); ++i_rep ) {
                                     for(size_t i_cont = 0; i_cont < foundry.continuators.size(); ++i_cont ) {
-                                        for(size_t i_pop = 0; i_pop < foundry.pop_sizes.size(); ++i_pop ) {
+                                        for(size_t i_pop = 0; i_pop < foundry.offspring_sizes.size(); ++i_pop ) {
                                             std::clog << "\r" << i++ << "/" << n-1; std::clog.flush();
 
                                             eoPop<EOT> pop;
