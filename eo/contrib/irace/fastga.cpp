@@ -345,7 +345,7 @@ int main(int argc, char* argv[])
 
     /// Set problem_id as 1
     w_model_om.IOHprofiler_set_problem_id(problem); // FIXME check what that means
-    w_model_om.IOHprofiler_set_instance_id(instance); // FIXME check what that means
+    // w_model_om.IOHprofiler_set_instance_id(instance); // FIXME changing the instance seems to change the target upper bound.
 
     /// Set dimension.
     w_model_om.IOHprofiler_set_number_of_variables(dimension);
