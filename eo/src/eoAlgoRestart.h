@@ -147,6 +147,7 @@ public:
     virtual void operator()(eoPop<EOT> & pop)
     {
         do {
+            eo::log << eo::debug << "Restart" << std::endl;
             _reseter(pop);
             _algo(pop);
         } while( _continue(pop) );
