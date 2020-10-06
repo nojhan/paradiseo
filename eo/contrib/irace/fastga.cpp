@@ -307,7 +307,7 @@ int main(int argc, char* argv[])
         {17, {0.5, 4, 5, 0,  100}},
     };
 
-
+    assert(0 <= problem and problem < problem_config_mapping.size());
 
     /***** IOH logger *****/
     auto max_target_para = problem_config_mapping[problem].max_target;
