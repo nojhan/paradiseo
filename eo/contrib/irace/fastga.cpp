@@ -11,8 +11,8 @@
 #include <f_w_model_one_max.hpp>
 
 // using Particle = eoRealParticle<eoMaximizingFitness>;
-using Ints = eoInt<eoMinimizingFitnessT<int>, size_t>;
-using Bits = eoBit<eoMinimizingFitnessT<int>, int>;
+using Ints = eoInt<eoMaximizingFitnessT<int>, size_t>;
+using Bits = eoBit<eoMaximizingFitnessT<int>, int>;
 
 // by enumerating candidate operators and their parameters.
 eoAlgoFoundryFastGA<Bits>& make_foundry(
@@ -23,7 +23,8 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
         const size_t generations
     )
 {
-    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals /*, max_restarts = max */);
+    // FIXME using max_restarts>1 does not allow to honor max evals.
+    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals, /*max_restarts=*/1);
 
     /***** Continuators ****/
     foundry.continuators.add< eoGenContinue<Bits> >(generations);
@@ -312,7 +313,9 @@ int main(int argc, char* argv[])
     auto max_target_para = problem_config_mapping[problem].max_target;
     IOHprofiler_RangeLinear<size_t> target_range(0, max_target_para, buckets);
     IOHprofiler_RangeLinear<size_t> budget_range(0, max_evals, buckets);
-    IOHprofiler_ecdf_logger<int, size_t, size_t> logger(target_range, budget_range);
+    IOHprofiler_ecdf_logger<int, size_t, size_t> logger(
+            target_range, budget_range,
+            /*use_known_optimum*/false);
 
     logger.set_complete_flag(true);
     logger.set_interval(0);
@@ -394,8 +397,7 @@ int main(int argc, char* argv[])
     // assert(0 < perf and perf <= buckets*buckets);
     if(perf <= 0 or buckets*buckets < perf) {
         std::cerr << "WARNING: illogical performance: " << perf
-                  << ", check the bounds?"
-                  << " Will let it as is." << std::endl;
+                  << ", check the bounds or the algorithm." << std::endl;
     }
 
     // Output
