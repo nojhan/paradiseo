@@ -189,7 +189,7 @@ public:
             sol.fitness( pop.best_element().fitness() );
 
         } else {
-            eo::log << eo::warnings << "WARNING: encoded algo is out of bounds" << std::endl;
+            eo::log << eo::warnings << "WARNING: encoded algo is out of bounds, penalize to: " << _penalization << std::endl;
             sol.fitness( _penalization ); // penalization
         }
     }

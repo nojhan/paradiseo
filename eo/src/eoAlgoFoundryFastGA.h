@@ -138,7 +138,7 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
             assert(           mutations.size() > 0); assert(this->at(           mutations.index()) <            mutations.size());
             assert(        replacements.size() > 0); assert(this->at(        replacements.index()) <         replacements.size());
             assert(        continuators.size() > 0); assert(this->at(        continuators.index()) <         continuators.size());
-            assert(           offspring_sizes.size() > 0); assert(this->at(           offspring_sizes.index()) <            offspring_sizes.size());
+            assert(     offspring_sizes.size() > 0); assert(this->at(     offspring_sizes.index()) <      offspring_sizes.size());
 
             // Objective function calls counter
             eoEvalCounterThrowException<EOT> eval(_eval, _max_evals);
@@ -167,10 +167,13 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
             try {
                 restart(pop);
             } catch(eoMaxEvalException e) {
+#ifndef NDEBUG
+                eo::log << eo::debug << "Reached maximum evaluations: " << eval.getValue() << " / " << _max_evals << std::endl;
+#endif
                 // In case some solutions were not evaluated when max eval occured.
                 // FIXME can this even be considered legal?
-                eoPopLoopEval<EOT> pop_last_eval(_eval);
-                pop_last_eval(pop,pop);
+                // eoPopLoopEval<EOT> pop_last_eval(_eval);
+                // pop_last_eval(pop,pop);
             }
         }
 

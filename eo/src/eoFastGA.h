@@ -101,8 +101,8 @@ public:
                     EOT sol1 = _select_cross(pop);
                     EOT sol2 = _select_cross(pop);
 
-                    // If the operator returns true, 
-                    // olutions have been altered.
+                    // If the operator returns true,
+                    // solutions have been altered.
                     if(_crossover(sol1, sol2)) {
                         sol1.invalidate();
                         sol2.invalidate();
