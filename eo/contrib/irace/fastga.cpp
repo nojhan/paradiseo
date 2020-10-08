@@ -24,7 +24,8 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     )
 {
     // FIXME using max_restarts>1 does not allow to honor max evals.
-    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals, /*max_restarts=*/1);
+    // auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals, /*max_restarts=*/1);
+    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals);
 
     /***** Continuators ****/
     foundry.continuators.add< eoGenContinue<Bits> >(generations);
@@ -272,9 +273,9 @@ int main(int argc, char* argv[])
         exit(NO_ERROR);
     }
 
-    const size_t generations = static_cast<size_t>(std::floor(
-                static_cast<double>(max_evals) / static_cast<double>(pop_size)));
-
+    // const size_t generations = static_cast<size_t>(std::floor(
+                // static_cast<double>(max_evals) / static_cast<double>(pop_size)));
+    const size_t generations = std::numeric_limits<size_t>::max();
 
 
     // Problem configuration code.
@@ -354,13 +355,18 @@ int main(int argc, char* argv[])
     logger.track_problem(w_model_om);
 
     eoEvalIOHproblem<Bits> onemax_pb(w_model_om, logger);
-    eoPopLoopEval<Bits> onemax_eval(onemax_pb);
+
+    eoEvalFuncCounter<Bits> eval_count(onemax_pb);
+
+    // eoPopLoopEval<Bits> onemax_eval(onemax_pb);
+    eoPopLoopEval<Bits> onemax_eval(eval_count);
 
     /***** Instanciate and run the algo *****/
 
     eoUniformGenerator<int> ugen(0, 1);
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, ugen);
-    auto& foundry = make_foundry(store, onemax_init, onemax_pb, max_evals, generations);
+    // auto& foundry = make_foundry(store, onemax_init, onemax_pb, max_evals, generations);
+    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals, generations);
 
     Ints encoded_algo(foundry.size());
 
@@ -379,15 +385,20 @@ int main(int argc, char* argv[])
     foundry.select(encoded_algo);
     std::clog << foundry.name() << std::endl;
 
-    // Evaluation of a forged encoded_algo on the sub-problem
-    eoEvalFoundryFastGA<Ints, Bits> eval_foundry(
-            foundry, pop_size,
-            onemax_init, onemax_eval,
-            /*penalization=*/ dimension, // Worst case penalization.
-            /*normalized=*/ false); // Use direct integer encoding.
+    // // Evaluation of a forged encoded_algo on the sub-problem
+    // eoEvalFoundryFastGA<Ints, Bits> eval_foundry(
+    //         foundry, pop_size,
+    //         onemax_init, onemax_eval,
+    //         /*penalization=*/ dimension, // Worst case penalization.
+    //         /*normalized=*/ false); // Use direct integer encoding.
+    //
+    // // Actually instanciate and run the algorithm.
+    // eval_foundry(encoded_algo);
 
-    // Actually instanciate and run the algorithm.
-    eval_foundry(encoded_algo);
+    eoPop<Bits> pop;
+    pop.append(pop_size, onemax_init);
+    onemax_eval(pop,pop);
+    foundry(pop); // Actually run the selected algorithm.
 
     /***** IOH perf stats *****/
     IOHprofiler_ecdf_sum ecdf_sum;
@@ -399,6 +410,8 @@ int main(int argc, char* argv[])
         std::cerr << "WARNING: illogical performance: " << perf
                   << ", check the bounds or the algorithm." << std::endl;
     }
+
+    std::clog << "After " << eval_count.getValue() << " / " << max_evals << " evaluations" << std::endl;
 
     // Output
     std::cout << -1 * perf << std::endl;
