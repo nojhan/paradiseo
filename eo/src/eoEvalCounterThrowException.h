@@ -64,19 +64,17 @@ public :
         // bypass already evaluated individuals
         if (eo.invalid()) {
 
-            // increment the value of the self parameter
-            // (eoEvalFuncCounter inherits from @see eoValueParam)
-            value()++;
+            // evaluate
+            this->eoEvalFuncCounter<EOT>::operator()(eo);
+            // No need to increment value(), it is done in the superclass.
 
+            // increment t
             // if we have reached the maximum
-            if ( value() >= _threshold ) {
+            if ( this->value() >= _threshold ) {
 
                 // go back through the stack until catched
                 throw eoMaxEvalException(_threshold);
             }
-
-            // evaluate
-            this->eoEvalFuncCounter<EOT>::operator()(eo);
 
         } // if invalid
     }
