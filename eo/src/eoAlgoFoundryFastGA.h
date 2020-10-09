@@ -142,6 +142,7 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
 
             // Objective function calls counter
             eoEvalCounterThrowException<EOT> eval(_eval, _max_evals);
+            eo::log << eo::xdebug << "Evaluations: " << eval.value() << " / " << _max_evals << std::endl;
             eoPopLoopEval<EOT> pop_eval(eval);
 
             // Algorithm itself
@@ -160,12 +161,13 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
             );
 
             // Restart wrapper
-            eoAlgoPopReset<EOT> reset_pop(_init, pop_eval);
-            eoGenContinue<EOT> restart_cont(_max_restarts);
-            eoAlgoRestart<EOT> restart(eval, algo, restart_cont, reset_pop);
+            // eoAlgoPopReset<EOT> reset_pop(_init, pop_eval);
+            // eoGenContinue<EOT> restart_cont(_max_restarts);
+            // eoAlgoRestart<EOT> restart(eval, algo, restart_cont, reset_pop);
 
             try {
-                restart(pop);
+                // restart(pop);
+                algo(pop);
             } catch(eoMaxEvalException e) {
 #ifndef NDEBUG
                 eo::log << eo::debug << "Reached maximum evaluations: " << eval.getValue() << " / " << _max_evals << std::endl;
@@ -182,16 +184,16 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
         std::string name()
         {
             std::ostringstream name;
-            name << "crossover_rates: " << this->at(     crossover_rates.index()) << " (" << this->     crossover_rate()             << ") + ";
+            name << "crossover_rates: "     << this->at(     crossover_rates.index()) << " (" << this->     crossover_rate()             << ") + ";
             name << "crossover_selectors: " << this->at( crossover_selectors.index()) << " (" << this-> crossover_selector().className() << ") + ";
             name << "aftercross_selector: " << this->at(aftercross_selectors.index()) << " (" << this->aftercross_selector().className() << ") + ";
-            name << "crossovers: " << this->at(          crossovers.index()) << " (" << this->          crossover().className() << ") + ";
-            name << "mutation_rates: " << this->at(      mutation_rates.index()) << " (" << this->      mutation_rate()             << ") + ";
-            name << "mutation_selectors: " << this->at(  mutation_selectors.index()) << " (" << this->  mutation_selector().className() << ") + ";
-            name << "mutations: " << this->at(           mutations.index()) << " (" << this->           mutation().className() << ") + ";
-            name << "replacements: " << this->at(        replacements.index()) << " (" << this->        replacement().className() << ") + ";
-            name << "continuators: " << this->at(        continuators.index()) << " (" << this->        continuator().className() << ") + ";
-            name << "offspring_sizes: " << this->at(           offspring_sizes.index()) << " (" << this->           offspring_size()             << ")";
+            name << "crossovers: "          << this->at(          crossovers.index()) << " (" << this->          crossover().className() << ") + ";
+            name << "mutation_rates: "      << this->at(      mutation_rates.index()) << " (" << this->      mutation_rate()             << ") + ";
+            name << "mutation_selectors: "  << this->at(  mutation_selectors.index()) << " (" << this->  mutation_selector().className() << ") + ";
+            name << "mutations: "           << this->at(           mutations.index()) << " (" << this->           mutation().className() << ") + ";
+            name << "replacements: "        << this->at(        replacements.index()) << " (" << this->        replacement().className() << ") + ";
+            name << "continuators: "        << this->at(        continuators.index()) << " (" << this->        continuator().className() << ") + ";
+            name << "offspring_sizes: "     << this->at(     offspring_sizes.index()) << " (" << this->     offspring_size()             << ")";
             return name.str();
         }
 

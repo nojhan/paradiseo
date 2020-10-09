@@ -24,7 +24,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     )
 {
     // FIXME using max_restarts>1 does not allow to honor max evals.
-    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, generations, max_evals, /*max_restarts=*/1);
+    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals, /*max_restarts=*/1);
 
     /***** Continuators ****/
     foundry.continuators.add< eoGenContinue<Bits> >(generations);
