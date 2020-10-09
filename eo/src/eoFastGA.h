@@ -82,6 +82,7 @@ public:
         // Set lambda to the pop size
         // if it was not set up at construction.
         if(_offsprings_size == 0) {
+            // eo::log << eo::debug << "Set offspring size to: " << pop.size() << std::endl;
             _offsprings_size = pop.size();
         }
 
@@ -89,8 +90,10 @@ public:
             eoPop<EOT> offsprings;
 
             for(size_t i=0; i < _offsprings_size; ++i) {
+                // eo::log << eo::xdebug << "\tOffspring #" << i << std::endl;
 
                 if(eo::rng.flip(_rate_crossover)) {
+                    // eo::log << eo::xdebug << "\t\tDo crossover" << std::endl;
                     // Manual setup of eoSelectOne
                     // (usually they are setup in a
                     // wrapping eoSelect).
@@ -118,6 +121,7 @@ public:
 
                     // Additional mutation (X)OR the crossed/cloned solution.
                     if(eo::rng.flip(_rate_mutation)) {
+                        // eo::log << eo::xdebug << "\t\tDo mutation" << std::endl;
                         if(_mutation(sol3)) {
                             sol3.invalidate();
                         }
@@ -125,9 +129,12 @@ public:
                     offsprings.push_back(sol3);
 
                 } else { // If not crossing, always mutate.
+                    // eo::log << eo::xdebug << "\t\tNo crossover, do mutation" << std::endl;
                     _select_mut.setup(pop);
                     EOT sol3 = _select_mut(pop);
-                    _mutation(sol3);
+                    if(_mutation(sol3)) {
+                        sol3.invalidate();
+                    }
                     offsprings.push_back(sol3);
                 }
             }
@@ -135,6 +142,8 @@ public:
 
             _pop_eval(pop, offsprings);
             _replace(pop, offsprings);
+
+            // eo::log << eo::xdebug << "\tEnd of generation" << std::endl;
 
         } while(_continuator(pop));
 #ifndef NDEBUG
