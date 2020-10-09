@@ -182,16 +182,16 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
         std::string name()
         {
             std::ostringstream name;
-            name << this->at(     crossover_rates.index()) << " (" << this->     crossover_rate()             << ") + ";
-            name << this->at( crossover_selectors.index()) << " (" << this-> crossover_selector().className() << ") + ";
-            name << this->at(aftercross_selectors.index()) << " (" << this->aftercross_selector().className() << ") + ";
-            name << this->at(          crossovers.index()) << " (" << this->          crossover().className() << ") + ";
-            name << this->at(      mutation_rates.index()) << " (" << this->      mutation_rate()             << ") + ";
-            name << this->at(  mutation_selectors.index()) << " (" << this->  mutation_selector().className() << ") + ";
-            name << this->at(           mutations.index()) << " (" << this->           mutation().className() << ") + ";
-            name << this->at(        replacements.index()) << " (" << this->        replacement().className() << ") + ";
-            name << this->at(        continuators.index()) << " (" << this->        continuator().className() << ") + ";
-            name << this->at(           offspring_sizes.index()) << " (" << this->           offspring_size()             << ")";
+            name << "crossover_rates: " << this->at(     crossover_rates.index()) << " (" << this->     crossover_rate()             << ") + ";
+            name << "crossover_selectors: " << this->at( crossover_selectors.index()) << " (" << this-> crossover_selector().className() << ") + ";
+            name << "aftercross_selector: " << this->at(aftercross_selectors.index()) << " (" << this->aftercross_selector().className() << ") + ";
+            name << "crossovers: " << this->at(          crossovers.index()) << " (" << this->          crossover().className() << ") + ";
+            name << "mutation_rates: " << this->at(      mutation_rates.index()) << " (" << this->      mutation_rate()             << ") + ";
+            name << "mutation_selectors: " << this->at(  mutation_selectors.index()) << " (" << this->  mutation_selector().className() << ") + ";
+            name << "mutations: " << this->at(           mutations.index()) << " (" << this->           mutation().className() << ") + ";
+            name << "replacements: " << this->at(        replacements.index()) << " (" << this->        replacement().className() << ") + ";
+            name << "continuators: " << this->at(        continuators.index()) << " (" << this->        continuator().className() << ") + ";
+            name << "offspring_sizes: " << this->at(           offspring_sizes.index()) << " (" << this->           offspring_size()             << ")";
             return name.str();
         }
 
