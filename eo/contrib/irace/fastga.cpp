@@ -24,8 +24,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     )
 {
     // FIXME using max_restarts>1 does not allow to honor max evals.
-    // auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals, /*max_restarts=*/1);
-    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals);
+    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, generations, max_evals, /*max_restarts=*/1);
 
     /***** Continuators ****/
     foundry.continuators.add< eoGenContinue<Bits> >(generations);
@@ -36,7 +35,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     //     foundry.continuators.add< eoSteadyFitContinue<Bits> >(10,i);
     // }
 
-    for(double i=0.1; i<1.0; i+=0.2) {
+    for(double i=0.0; i<1.0; i+=0.2) {
         foundry.crossover_rates.add<double>(i);
         foundry.mutation_rates.add<double>(i);
     }
@@ -164,7 +163,7 @@ int main(int argc, char* argv[])
     const size_t problem = problem_p.value();
 
 
-    auto pop_size_p = parser.getORcreateParam<size_t>(5,
+    auto pop_size_p = parser.getORcreateParam<size_t>(1,
             "pop-size", "Population size",
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
@@ -273,14 +272,14 @@ int main(int argc, char* argv[])
         exit(NO_ERROR);
     }
 
-    // const size_t generations = static_cast<size_t>(std::floor(
-                // static_cast<double>(max_evals) / static_cast<double>(pop_size)));
-    const size_t generations = std::numeric_limits<size_t>::max();
-
+    const size_t generations = static_cast<size_t>(std::floor(
+                static_cast<double>(max_evals) / static_cast<double>(pop_size)));
+    // const size_t generations = std::numeric_limits<size_t>::max();
+    eo::log << eo::debug << "Number of generations: " << generations << std::endl;
 
     // Problem configuration code.
     struct Problem {
-        double dummy;  
+        double dummy;
         size_t epistasis;
         size_t neutrality;
         size_t ruggedness;
@@ -356,17 +355,16 @@ int main(int argc, char* argv[])
 
     eoEvalIOHproblem<Bits> onemax_pb(w_model_om, logger);
 
+    // eoEvalPrint<Bits> eval_print(onemax_pb, std::clog, "\n");
     eoEvalFuncCounter<Bits> eval_count(onemax_pb);
 
-    // eoPopLoopEval<Bits> onemax_eval(onemax_pb);
     eoPopLoopEval<Bits> onemax_eval(eval_count);
 
     /***** Instanciate and run the algo *****/
 
-    eoUniformGenerator<int> ugen(0, 1);
-    eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, ugen);
-    // auto& foundry = make_foundry(store, onemax_init, onemax_pb, max_evals, generations);
-    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals, generations);
+    eoBooleanGenerator<int> bgen;
+    eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, bgen);
+    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals - pop_size, generations);
 
     Ints encoded_algo(foundry.size());
 
@@ -411,7 +409,7 @@ int main(int argc, char* argv[])
                   << ", check the bounds or the algorithm." << std::endl;
     }
 
-    std::clog << "After " << eval_count.getValue() << " / " << max_evals << " evaluations" << std::endl;
+    // std::clog << "After " << eval_count.getValue() << " / " << max_evals << " evaluations" << std::endl;
 
     // Output
     std::cout << -1 * perf << std::endl;
