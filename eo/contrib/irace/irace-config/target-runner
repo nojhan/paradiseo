@@ -23,6 +23,7 @@ error() {
 
 
 EXE="./fastga"
+LOG_DIR="irace_logs"
 
 FIXED_PARAMS="--problem=0"
 
@@ -41,8 +42,8 @@ shift 11 || error "Not enough parameters"
 
 INSTANCE_PARAMS=$*
 
-# STDOUT=c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stdout
-# STDERR=c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stderr
+# STDOUT=${LOG_DIR}/c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stdout
+# STDERR=${LOG_DIR}/c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stderr
 STDOUT="/dev/null"
 STDERR="/dev/null"
 

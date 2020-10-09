@@ -15,5 +15,5 @@ cp ../irace-config/default.instances .
 
 # Generate the parameter list file.
 ./fastga -h > fastga.param 2>/dev/null
-/usr/lib/R/site-library/irace/bin/irace --scenario example.scen
+/usr/lib/R/site-library/irace/bin/irace --scenario example.scen 2>&1 | tee irace.log
 
