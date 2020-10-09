@@ -45,8 +45,9 @@ template<class EOT> class eoEvalFuncCounter : public eoEvalFunc<EOT>, public eoV
         {
             if (_eo.invalid())
             {
-                value()++;
                 func(_eo);
+                value()++;
+                eo::log << eo::xdebug << "eoEvalFuncCounter: " << value() << std::endl;
             }
         }
 
