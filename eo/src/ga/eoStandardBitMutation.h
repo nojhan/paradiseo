@@ -28,6 +28,8 @@ class eoStandardBitMutation : public eoMonOp<EOT>
             return _bitflip(chrom);
         }
 
+        virtual std::string className() const {return "eoStandardBitMutation";}
+
     protected:
         double _rate;
         unsigned _nb;
@@ -57,6 +59,8 @@ class eoUniformBitMutation : public eoMonOp<EOT>
             // thus one don't need to re-instantiate.
             return _bitflip(chrom);
         }
+
+        virtual std::string className() const {return "eoUniformBitMutation";}
 
     protected:
         double _rate;
@@ -93,6 +97,8 @@ class eoConditionalBitMutation : public eoStandardBitMutation<EOT>
             // thus one don't need to re-instantiate.
             return this->_bitflip(chrom);
         }
+
+        virtual std::string className() const {return "eoConditionalBitMutation";}
 };
 
 /** Shifted standard bit mutation with mutation rate p:
@@ -125,6 +131,8 @@ class eoShiftedBitMutation : public eoStandardBitMutation<EOT>
             // thus one don't need to re-instantiate.
             return this->_bitflip(chrom);
         }
+
+        virtual std::string className() const {return "eoShiftedBitMutation";}
 };
 
 /** Mutation which size is sample in a gaussian.
@@ -163,6 +171,8 @@ class eoNormalBitMutation : public eoStandardBitMutation<EOT>
             return this->_bitflip(chrom);
         }
 
+        virtual std::string className() const {return "eoNormalBitMutation";}
+
     protected:
         double _variance;
 };
@@ -195,6 +205,8 @@ class eoFastBitMutation : public eoStandardBitMutation<EOT>
             // thus one don't need to re-instantiate.
             return this->_bitflip(chrom);
         }
+
+        virtual std::string className() const {return "eoFastBitMutation";}
 
     protected:
 

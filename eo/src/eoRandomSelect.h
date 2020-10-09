@@ -48,6 +48,9 @@ template <class EOT> class eoRandomSelect: public eoSelectOne<EOT>
   {
     return _pop[eo::rng.random(_pop.size())] ;
   }
+
+  virtual std::string className() const {return "eoRandomSelect";}
+
 };
 
 /** eoBestSelect: a selection method that always return the best
@@ -64,6 +67,8 @@ template <class EOT> class eoBestSelect: public eoSelectOne<EOT>
   {
     return _pop.best_element() ;
   }
+
+  virtual std::string className() const {return "eoBestSelect";}
 };
 
 /** eoNoSelect: returns all individual in order WITHOUT USING FITNESS!!!
@@ -86,6 +91,9 @@ template <class EOT> class eoNoSelect: public eoSelectOne<EOT>
     current++;
     return _pop[current-1] ;
   }
+
+  virtual std::string className() const {return "eoNoSelect";}
+
 private:
   unsigned current;
 };
