@@ -41,8 +41,10 @@ shift 11 || error "Not enough parameters"
 
 INSTANCE_PARAMS=$*
 
-STDOUT=c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stdout
-STDERR=c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stderr
+# STDOUT=c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stdout
+# STDERR=c${CONFIG_ID}_i${INSTANCE_ID}_s${SEED}.stderr
+STDOUT="/dev/null"
+STDERR="/dev/null"
 
 if [ ! -x "${EXE}" ]; then
     error "${EXE}: not found or not executable (pwd: $(pwd))"
