@@ -110,10 +110,8 @@ class eoDetSingleBitFlip: public eoMonOp<Chrom>
    * (Default) Constructor.
    * @param _num_bit The number of bits to change
    * default is one - equivalent to eoOneBitFlip then
-   *
-   * @note: use a reference for num_bit, thus you may change and recall without having to re-instantiate.
    */
-  eoDetSingleBitFlip(const unsigned& _num_bit = 1): num_bit(_num_bit) {}
+  eoDetSingleBitFlip(const unsigned _num_bit = 1): num_bit(_num_bit) {}
 
   /// The class name.
   virtual std::string className() const { return "eoDetSingleBitFlip"; }
@@ -138,6 +136,7 @@ class eoDetSingleBitFlip: public eoMonOp<Chrom>
       }
 
       // Flip at first indices
+      assert(num_bit <= chrom.size());
       for(unsigned i=0; i<num_bit; ++i) {
         chrom[indices[i]] = !chrom[indices[i]];
       }
@@ -149,8 +148,13 @@ class eoDetSingleBitFlip: public eoMonOp<Chrom>
       }
   }
 
+  void number_bits(const unsigned _num_bit)
+  {
+      num_bit = _num_bit;
+  }
+
  protected:
-  const unsigned& num_bit;
+  unsigned num_bit;
 };
 
 

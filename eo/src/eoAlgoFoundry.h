@@ -76,12 +76,12 @@ class eoOperatorFoundry : public eoForgeVector< Itf >
  * In a second step, the operators to be used should be selected
  * by indicating their index, just like if the foundry was an array:
  * @code
- * foundry = {0, 1, 2};
- * //         ^  ^  ^
- * //         |  |  |
- * //         |  |  + 3d operator
- * //         |  + 2d operator
- * //         + 1st operator
+ * foundry.select({0, 1, 2});
+ * //              ^  ^  ^
+ * //              |  |  |
+ * //              |  |  + 3d operator
+ * //              |  + 2d operator
+ * //              + 1st operator
  * @endcode
  *
  * If you don't (want to) recall the order of the operators in the encoding,

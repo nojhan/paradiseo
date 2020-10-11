@@ -34,6 +34,7 @@
 
 #include "utils/eoRNG.h"
 #include "utils/selectors.h"
+#include "utils/eoLogger.h"
 #include "eoSelectOne.h"
 #include "eoPop.h"
 
@@ -92,9 +93,9 @@ public:
       typename FitVec::iterator result
           = std::upper_bound(cumulative.begin(), cumulative.end(), fortune);
 
-      assert(fortune <= cumulative.back());
+      // assert(fortune <= cumulative.back());
 
-      if(result - cumulative.begin() == _pop.size()) {
+      if(result - cumulative.begin() >= _pop.size()) {
             return _pop.back();
       } else {
           return _pop[result - cumulative.begin()];

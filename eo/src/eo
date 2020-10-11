@@ -85,6 +85,7 @@
 #include "eoEvalKeepBest.h"
 #include "eoEvalTimeThrowException.h"
 #include "eoEvalUserTimeThrowException.h"
+#include "eoEvalPrint.h"
 
 // Continuators - all include eoContinue.h
 #include "eoCombinedContinue.h"
@@ -146,6 +147,7 @@
 // Algorithms
 #include "eoEasyEA.h"
 #include "eoSGA.h"
+#include "eoFastGA.h"
 // #include "eoEvolutionStrategy.h"   removed for a while - until eoGenOp is done
 #include "eoAlgoReset.h"
 #include "eoAlgoRestart.h"
@@ -164,6 +166,7 @@
 #include "eoAlgoFoundryEA.h"
 #include "eoAlgoFoundryFastGA.h"
 #include "eoEvalFoundryEA.h"
+#include "eoEvalFoundryFastGA.h"
 
 //-----------------------------------------------------------------------------
 // to be continued ...

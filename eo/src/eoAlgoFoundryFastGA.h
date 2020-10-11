@@ -27,30 +27,30 @@
 #include <tuple>
 #include <limits>
 
-/** A class that assemble an eoEasyEA on the fly, given a combination of available operators.
+/** A class that assemble an eoFastGA on the fly, given a combination of available operators.
  *
  * The foundry should first be set up with sets of operators
- * for the main modules of an EA:
- * continuators, crossovers, mutations, selection and replacement operators.
+ * for the main modules of a FastGA:
+ * continuators, crossovers, mutations, selections, replacement operators, etc.
  *
  * This is done through public member variable's `add` method,
  * which takes the class name as template and its constructor's parameters
  * as arguments. For example:
  * @code
- * foundry.selectors.add< eoStochTournamentSelect<EOT> >( 0.5 );
+ * foundry.selectors.add< eoRandomSelect<EOT> >();
  * @endcode
  *
  * @warning If the constructor takes a reference YOU SHOULD ABSOLUTELY wrap it
  * in a `std::ref`, or it will silently be passed as a copy,
- * which would effectively disable any link between operators.
+ * which would effectively disable any link with other operator(s).
  *
  * In a second step, the operators to be used should be selected
- * by indicating their index, passing an array of eight elements:
+ * by indicating their index, passing an array of 10 elements:
  * @code
- * foundry.select({0, 1, 2, 3, 4, 5, 6, 7});
+ * foundry.select({0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
  * @endcode
  *
- * @note: by default, the firsts of the eight operators are selected.
+ * @note: by default, the firsts of the 10 operators are selected.
  *
  * If you don't (want to) recall the order of the operators in the encoding,
  * you can use the `index()` member, for example:
@@ -58,7 +58,7 @@
  * foundry.at(foundry.continuators.index()) = 2; // select the third continuator
  * @endcode
  *
- * Now, you can call the fourdry just like any eoAlgo, by passing it an eoPop:
+ * Now, you can call the foundry just like any eoAlgo, by passing it an eoPop:
  * @code
  * foundry(pop);
  * @encode
@@ -69,7 +69,7 @@
  * Every instantiation is deferred upon actual use. That way, you can still reconfigure them
  * at any time with `eoForgeOperator::setup`, for example:
  * @code
- * foundry.selector.at(0).setup(0.5); // using constructor's arguments
+ * foundry.selector.at(0).setup(0.5); // Will call constructor's arguments
  * @endcode
  *
  * @ingroup Foundry
@@ -82,16 +82,26 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
         /** The constructon only take an eval, because all other operators
          * are stored in the public containers.
          */
-        eoAlgoFoundryFastGA( eoInit<EOT> & init, eoEvalFunc<EOT>& eval, size_t max_evals = 10000, size_t max_restarts = std::numeric_limits<size_t>::max() ) :
-            eoAlgoFoundry<EOT>(8),
-            continuators(0, true), // Always re-instantiate continuators, because they hold a state.
-            crossover_rates(1, false),
+        eoAlgoFoundryFastGA(
+                eoInit<EOT> & init,
+                eoEvalFunc<EOT>& eval,
+                size_t max_evals = 10000,
+                size_t max_restarts = std::numeric_limits<size_t>::max()
+            ) :
+            eoAlgoFoundry<EOT>(10),
+
+            crossover_rates(0, false),
+            crossover_selectors(1, false),
             crossovers(2, false),
-            mutation_rates(3, false),
-            mutations(4, false),
-            selectors(5, false),
-            pop_sizes(6, false),
+            aftercross_selectors(3, false),
+
+            mutation_rates(4, false),
+            mutation_selectors(5, false),
+            mutations(6, false),
+
             replacements(7, false),
+            continuators(8, true), // Always re-instantiate continuators, because they hold a state.
+            offspring_sizes(9, false),
             _eval(eval),
             _init(init),
             _max_evals(max_evals),
@@ -101,93 +111,89 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
     public:
 
         /* Operators containers @{ */
-        eoOperatorFoundry< eoContinue<EOT>    > continuators;
         eoOperatorFoundry< double             > crossover_rates;
+        eoOperatorFoundry< eoSelectOne<EOT>   > crossover_selectors;
         eoOperatorFoundry< eoQuadOp<EOT>      > crossovers;
+        eoOperatorFoundry< eoSelectOne<EOT>   > aftercross_selectors;
+
         eoOperatorFoundry< double             > mutation_rates;
+        eoOperatorFoundry< eoSelectOne<EOT>   > mutation_selectors;
         eoOperatorFoundry< eoMonOp<EOT>       > mutations;
-        eoOperatorFoundry< eoSelectOne<EOT>   > selectors;
-        eoOperatorFoundry< size_t             > pop_sizes;
+
         eoOperatorFoundry< eoReplacement<EOT> > replacements;
+        eoOperatorFoundry< eoContinue<EOT>    > continuators;
+        eoOperatorFoundry< size_t             > offspring_sizes;
         /* @} */
 
         /** instantiate and call the pre-selected algorithm.
          */
         void operator()(eoPop<EOT>& pop)
         {
-            assert(continuators.size() > 0); assert(this->at(continuators.index()) < continuators.size());
-            assert(  crossover_rates.size() > 0); assert(this->at(  crossover_rates.index()) <   crossover_rates.size());
-            assert(  crossovers.size() > 0); assert(this->at(  crossovers.index()) <   crossovers.size());
-            assert(   mutation_rates.size() > 0); assert(this->at(   mutation_rates.index()) <    mutation_rates.size());
-            assert(   mutations.size() > 0); assert(this->at(   mutations.index()) <    mutations.size());
-            assert(   selectors.size() > 0); assert(this->at(   selectors.index()) <    selectors.size());
-            assert(   pop_sizes.size() > 0); assert(this->at(   pop_sizes.index()) <    pop_sizes.size());
-            assert(replacements.size() > 0); assert(this->at(replacements.index()) < replacements.size());
-
-            // Crossover or clone
-            double cross_rate = this->crossover_rate();
-            eoProportionalOp<EOT> cross;
-            // Cross-over that produce only one offspring,
-            // made by wrapping the quad op (which produce 2 offsprings)
-            // in a bin op (which ignore the second offspring).
-            eoQuad2BinOp<EOT> single_cross(this->crossover());
-            cross.add(single_cross, cross_rate);
-            eoBinCloneOp<EOT> cross_clone;
-            cross.add(cross_clone, 1 - cross_rate); // Clone
-
-            // Mutation or clone
-            double mut_rate = this->mutation_rate();
-            eoProportionalOp<EOT> mut;
-            mut.add(this->mutation(), mut_rate);
-            eoMonCloneOp<EOT> mut_clone;
-            mut.add(mut_clone, 1 - mut_rate); // FIXME TBC
-
-            // Apply mutation after cross-over.
-            eoSequentialOp<EOT> variator;
-            variator.add(cross,1.0);
-            variator.add(mut,1.0);
-
-            // All variatiors
-            double lambda = this->pop_size();
-            eoGeneralBreeder<EOT> breeder(this->selector(), variator, lambda, /*as rate*/false);
+            assert(     crossover_rates.size() > 0); assert(this->at(     crossover_rates.index()) <      crossover_rates.size());
+            assert( crossover_selectors.size() > 0); assert(this->at( crossover_selectors.index()) <  crossover_selectors.size());
+            assert(          crossovers.size() > 0); assert(this->at(          crossovers.index()) <           crossovers.size());
+            assert(aftercross_selectors.size() > 0); assert(this->at(aftercross_selectors.index()) < aftercross_selectors.size());
+            assert(      mutation_rates.size() > 0); assert(this->at(      mutation_rates.index()) <       mutation_rates.size());
+            assert(  mutation_selectors.size() > 0); assert(this->at(  mutation_selectors.index()) <   mutation_selectors.size());
+            assert(           mutations.size() > 0); assert(this->at(           mutations.index()) <            mutations.size());
+            assert(        replacements.size() > 0); assert(this->at(        replacements.index()) <         replacements.size());
+            assert(        continuators.size() > 0); assert(this->at(        continuators.index()) <         continuators.size());
+            assert(     offspring_sizes.size() > 0); assert(this->at(     offspring_sizes.index()) <      offspring_sizes.size());
 
             // Objective function calls counter
             eoEvalCounterThrowException<EOT> eval(_eval, _max_evals);
+            eo::log << eo::xdebug << "Evaluations: " << eval.value() << " / " << _max_evals << std::endl;
             eoPopLoopEval<EOT> pop_eval(eval);
 
             // Algorithm itself
-            eoEasyEA<EOT> algo = eoEasyEA<EOT>(this->continuator(), pop_eval, breeder, this->replacement());
+            eoFastGA<EOT> algo(
+                this->crossover_rate(),
+                this->crossover_selector(),
+                this->crossover(),
+                this->aftercross_selector(),
+                this->mutation_rate(),
+                this->mutation_selector(),
+                this->mutation(),
+                pop_eval,
+                this->replacement(),
+                this->continuator(),
+                this->offspring_size()
+            );
 
             // Restart wrapper
-            eoAlgoPopReset<EOT> reset_pop(_init, pop_eval);
-            eoGenContinue<EOT> restart_cont(_max_restarts);
-            eoAlgoRestart<EOT> restart(eval, algo, restart_cont, reset_pop);
+            // eoAlgoPopReset<EOT> reset_pop(_init, pop_eval);
+            // eoGenContinue<EOT> restart_cont(_max_restarts);
+            // eoAlgoRestart<EOT> restart(eval, algo, restart_cont, reset_pop);
 
             try {
-                restart(pop);
+                // restart(pop);
+                algo(pop);
             } catch(eoMaxEvalException e) {
+#ifndef NDEBUG
+                eo::log << eo::debug << "Reached maximum evaluations: " << eval.getValue() << " / " << _max_evals << std::endl;
+#endif
                 // In case some solutions were not evaluated when max eval occured.
-                eoPopLoopEval<EOT> pop_last_eval(_eval);
-                pop_last_eval(pop,pop);
+                // FIXME can this even be considered legal?
+                // eoPopLoopEval<EOT> pop_last_eval(_eval);
+                // pop_last_eval(pop,pop);
             }
         }
 
         /** Return an approximate name of the selected algorithm.
-         *
-         * @note: does not take into account parameters of the operators,
-         * only show class names.
          */
         std::string name()
         {
             std::ostringstream name;
-            name << this->at(continuators.index()) << " (" << this->continuator().className() << ") + ";
-            name << this->at(crossover_rates.index())   << " (" << this->crossover_rate().className()   << ") + ";
-            name << this->at(crossovers.index())   << " (" << this->crossover().className()   << ") + ";
-            name << this->at(mutation_rates.index())    << " (" << this->mutation_rate().className()    << ") + ";
-            name << this->at(mutations.index())    << " (" << this->mutation().className()    << ") + ";
-            name << this->at(selectors.index())    << " (" << this->selector().className()    << ") + ";
-            name << this->at(pop_sizes.index()) << " (" << this->pop_size().className() << ")";
-            name << this->at(replacements.index()) << " (" << this->replacement().className() << ")";
+            name << "crossover_rates: "     << this->at(     crossover_rates.index()) << " (" << this->     crossover_rate()             << ") + ";
+            name << "crossover_selectors: " << this->at( crossover_selectors.index()) << " (" << this-> crossover_selector().className() << ") + ";
+            name << "aftercross_selector: " << this->at(aftercross_selectors.index()) << " (" << this->aftercross_selector().className() << ") + ";
+            name << "crossovers: "          << this->at(          crossovers.index()) << " (" << this->          crossover().className() << ") + ";
+            name << "mutation_rates: "      << this->at(      mutation_rates.index()) << " (" << this->      mutation_rate()             << ") + ";
+            name << "mutation_selectors: "  << this->at(  mutation_selectors.index()) << " (" << this->  mutation_selector().className() << ") + ";
+            name << "mutations: "           << this->at(           mutations.index()) << " (" << this->           mutation().className() << ") + ";
+            name << "replacements: "        << this->at(        replacements.index()) << " (" << this->        replacement().className() << ") + ";
+            name << "continuators: "        << this->at(        continuators.index()) << " (" << this->        continuator().className() << ") + ";
+            name << "offspring_sizes: "     << this->at(     offspring_sizes.index()) << " (" << this->     offspring_size()             << ")";
             return name.str();
         }
 
@@ -228,16 +234,28 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
             return mutations.instantiate(this->at(mutations.index()));
         }
 
-        eoSelectOne<EOT>& selector()
+        eoSelectOne<EOT>& crossover_selector()
         {
-            assert(this->at(selectors.index()) < selectors.size());
-            return selectors.instantiate(this->at(selectors.index()));
+            assert(this->at(crossover_selectors.index()) < crossover_selectors.size());
+            return crossover_selectors.instantiate(this->at(crossover_selectors.index()));
         }
 
-        size_t& pop_size()
+        eoSelectOne<EOT>& aftercross_selector()
         {
-            assert(this->at(pop_sizes.index()) < pop_sizes.size());
-            return pop_sizes.instantiate(this->at(pop_sizes.index()));
+            assert(this->at(aftercross_selectors.index()) < aftercross_selectors.size());
+            return aftercross_selectors.instantiate(this->at(aftercross_selectors.index()));
+        }
+
+        eoSelectOne<EOT>& mutation_selector()
+        {
+            assert(this->at(mutation_selectors.index()) < mutation_selectors.size());
+            return mutation_selectors.instantiate(this->at(mutation_selectors.index()));
+        }
+
+        size_t& offspring_size()
+        {
+            assert(this->at(offspring_sizes.index()) < offspring_sizes.size());
+            return offspring_sizes.instantiate(this->at(offspring_sizes.index()));
         }
 
         eoReplacement<EOT>& replacement()

@@ -200,7 +200,7 @@ class eoEvalIOHsuiteSingleDim : public eoEvalFunc<EOT>
             // Evaluate the performance of the encoded algo instance
             // on a whole IOH suite benchmark.
             typename IOHprofiler_suite<ScalarType>::Problem_ptr pb;
-            while(pb = _ioh_suite->get_next_problem()) {
+            while( (pb = _ioh_suite->get_next_problem()) ) {
 
                 // Consider a new problem.
                 _eval.problem(*pb); // Will call logger's target_problem.

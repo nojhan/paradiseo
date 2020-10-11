@@ -115,15 +115,16 @@ inline bool eoUniformGenerator<bool>::operator()(void)
    to easily generate random booleans with a specified bias
    \ingroup bitstring
 */
-class eoBooleanGenerator : public eoRndGenerator<bool>
+template<class T=bool>
+class eoBooleanGenerator : public eoRndGenerator<T>
 {
-  public :
-  eoBooleanGenerator(float _bias = 0.5, eoRng& _rng = rng) : bias(_bias), gen(_rng) {}
+    public :
+        eoBooleanGenerator(float _bias = 0.5, eoRng& _rng = rng) : bias(_bias), gen(_rng) {}
 
-  bool operator()(void) { return gen.flip(bias); }
-  private :
-  float bias;
-  eoRng& gen;
+        T operator()(void) { return gen.flip(bias); }
+    private :
+        float bias;
+        eoRng& gen;
 };
 
 /**

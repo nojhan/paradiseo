@@ -26,7 +26,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(eoFunctorStore& store, eoInit<Bits>& ini
     }
 
     for(size_t i=5; i<100; i+=10) {
-        foundry.pop_sizes.add<size_t>(i);
+        foundry.offspring_sizes.add<size_t>(i);
     }
 
     /***** Crossovers ****/
@@ -51,14 +51,24 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(eoFunctorStore& store, eoInit<Bits>& ini
     }
 
     /***** Selectors *****/
-    foundry.selectors.add< eoRandomSelect<Bits> >();
-    foundry.selectors.add< eoSequentialSelect<Bits> >();
-    foundry.selectors.add< eoProportionalSelect<Bits> >();
-    for(size_t i=2; i < 10; i+=1) { // Tournament size.
-        foundry.selectors.add< eoDetTournamentSelect<Bits> >(i);
+    for(eoOperatorFoundry<eoSelectOne<Bits>>& ops :
+        {std::ref(foundry.crossover_selectors),
+         std::ref(foundry.aftercross_selectors),
+         std::ref(foundry.mutation_selectors) }) {
+
+        ops.add< eoRandomSelect<Bits> >();
+        ops.add< eoStochTournamentSelect<Bits> >(0.5);
+        ops.add< eoSequentialSelect<Bits> >();
+        ops.add< eoProportionalSelect<Bits> >();
+        for(size_t i=2; i < 10; i+=4) {
+            ops.add< eoDetTournamentSelect<Bits> >(i);
+        }
     }
-    for(double i=0.51; i<0.91; i+=0.1) { // Tournament size as perc of pop.
-        foundry.selectors.add< eoStochTournamentSelect<Bits> >(i);
+
+    /***** Variation rates *****/
+    for(double r = 0.0; r < 1.0; r+=0.1) {
+        foundry.crossover_rates.add<double>(r);
+        foundry. mutation_rates.add<double>(r);
     }
 
     /***** Replacements ****/
@@ -88,8 +98,20 @@ int main(int /*argc*/, char** /*argv*/)
 
     auto& foundry = make_foundry(store, init, onemax_eval);
 
-    size_t n = foundry.continuators.size() * foundry.crossovers.size() * foundry.mutations.size() * foundry.selectors.size() * foundry.replacements.size()* foundry.crossover_rates.size() * foundry.mutation_rates.size() * foundry.pop_sizes.size();
-    std::clog << n << " possible algorithms instances." << std::endl;
+
+    size_t n =
+          foundry.crossover_rates.size()
+        * foundry.crossover_selectors.size()
+        * foundry.crossovers.size()
+        * foundry.aftercross_selectors.size()
+        * foundry.mutation_rates.size()
+        * foundry.mutation_selectors.size()
+        * foundry.mutations.size()
+        * foundry.replacements.size()
+        * foundry.continuators.size()
+        * foundry.offspring_sizes.size();
+
+        std::clog << n << " possible algorithms instances." << std::endl;
 
     eoPop<Bits> pop;
     pop.append(5,init);

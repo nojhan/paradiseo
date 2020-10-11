@@ -36,7 +36,7 @@
   *
   * @ingroup Representations
 */
-template <class FitT> class eoInt: public eoVector<FitT, int>
+template <class FitT, class T = size_t> class eoInt: public eoVector<FitT, T>
 {
  public:
 
@@ -45,14 +45,14 @@ template <class FitT> class eoInt: public eoVector<FitT, int>
    * @param size Size of the std::vector
    * @param value fill the vector with this value
    */
-  eoInt(unsigned size = 0, int value = 0) :
-    eoVector<FitT, int>(size, value)
+  eoInt(unsigned size = 0, T value = 0) :
+    eoVector<FitT, T>(size, value)
   {}
 
   /** Constructor copying from a vector (or an initialization list).
    */
-  eoInt(std::vector<int> vec) :
-    eoVector<FitT, int>(vec)
+  eoInt(std::vector<T> vec) :
+    eoVector<FitT, T>(vec)
   {}
 
   /// My class name.

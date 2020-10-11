@@ -112,9 +112,14 @@ comparing with less is the default behaviour.
 // typedef eoScalarFitness<double, std::greater<double> > eoMinimizingFitness;
 // #endif
 
-using eoMaximizingFitness = eoScalarFitness<double, std::less<double> >;
-using eoMinimizingFitness = eoScalarFitness<double, std::greater<double> >;
+template<class T=double>
+using eoMaximizingFitnessT = eoScalarFitness<T, std::less<T> >;
 
+template<class T=double>
+using eoMinimizingFitnessT = eoScalarFitness<T, std::greater<T> >;
+
+using eoMaximizingFitness = eoMaximizingFitnessT<double>;
+using eoMinimizingFitness = eoMinimizingFitnessT<double>;
 
 template <class F, class Cmp>
 std::ostream& operator<<(std::ostream& os, const eoScalarFitness<F, Cmp>& f)

@@ -50,7 +50,7 @@
 #include "eoGenCounter.h"
 
 // and make_help - any better suggestion to include it?
-void make_help(eoParser & _parser, bool exit_after = true);
+void make_help(eoParser & _parser, bool exit_after = true, std::ostream& out = std::cout);
 
 #endif // !_CHECKPOINTING_
 
