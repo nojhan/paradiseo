@@ -8,6 +8,8 @@
 #include <problems/eval/eoEvalIOH.h>
 
 #include <IOHprofiler_ecdf_logger.h>
+#include <IOHprofiler_csv_logger.h>
+#include <IOHprofiler_observer_combine.h>
 #include <f_w_model_one_max.hpp>
 
 // using Particle = eoRealParticle<eoMaximizingFitness>;
@@ -156,6 +158,10 @@ int main(int argc, char* argv[])
     // rng is a global
     rng.reseed(seed);
 
+    bool full_log =
+        parser.getORcreateParam<bool>(0,
+            "full-log", "Log the full search in CSV files (using the IOH profiler format)",
+            'F').value();
 
     auto problem_p = parser.getORcreateParam<size_t>(0,
             "problem", "Problem ID",
@@ -310,16 +316,26 @@ int main(int argc, char* argv[])
     assert(0 <= problem and problem < problem_config_mapping.size());
 
     /***** IOH logger *****/
+
+
     auto max_target_para = problem_config_mapping[problem].max_target;
     IOHprofiler_RangeLinear<size_t> target_range(0, max_target_para, buckets);
     IOHprofiler_RangeLinear<size_t> budget_range(0, max_evals, buckets);
-    IOHprofiler_ecdf_logger<int, size_t, size_t> logger(
+    IOHprofiler_ecdf_logger<int, size_t, size_t> ecdf_logger(
             target_range, budget_range,
             /*use_known_optimum*/false);
 
-    logger.set_complete_flag(true);
-    logger.set_interval(0);
-    logger.activate_logger();
+    // ecdf_logger.set_complete_flag(true);
+    // ecdf_logger.set_interval(0);
+    ecdf_logger.activate_logger();
+
+    IOHprofiler_observer_combine<int> loggers(ecdf_logger);
+
+    std::shared_ptr<IOHprofiler_csv_logger<int>> csv_logger;
+    if(full_log) {
+        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(/*TODO: dir, folder, algo, desc*/);
+        loggers.add(*csv_logger);
+    }
 
     /***** IOH problem *****/
     double w_model_suite_dummy_para   = problem_config_mapping[problem].dummy;
@@ -351,9 +367,12 @@ int main(int argc, char* argv[])
     w_model_om.IOHprofiler_set_number_of_variables(dimension);
 
     /***** Bindings *****/
-    logger.track_problem(w_model_om);
+    ecdf_logger.track_problem(w_model_om);
+    if(full_log) {
+        csv_logger->track_problem(w_model_om);
+    }
 
-    eoEvalIOHproblem<Bits> onemax_pb(w_model_om, logger);
+    eoEvalIOHproblem<Bits> onemax_pb(w_model_om, loggers);
 
     // eoEvalPrint<Bits> eval_print(onemax_pb, std::clog, "\n");
     eoEvalFuncCounter<Bits> eval_count(onemax_pb);
@@ -401,7 +420,7 @@ int main(int argc, char* argv[])
     /***** IOH perf stats *****/
     IOHprofiler_ecdf_sum ecdf_sum;
     // iRace expects minimization
-    long perf = ecdf_sum(logger.data());
+    long perf = ecdf_sum(ecdf_logger.data());
 
     // assert(0 < perf and perf <= buckets*buckets);
     if(perf <= 0 or buckets*buckets < perf) {
