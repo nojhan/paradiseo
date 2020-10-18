@@ -333,7 +333,11 @@ int main(int argc, char* argv[])
 
     std::shared_ptr<IOHprofiler_csv_logger<int>> csv_logger;
     if(full_log) {
-        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(/*TODO: dir, folder, algo, desc*/);
+        std::string dir(".");
+        std::string folder("."); // Avoid an IOH bug.
+        std::string algo_name = "FoundryFastGA"; // FIXME use foundry.name()
+        std::string desc = "One of the many FastGA algorithms instances";
+        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(dir, folder, algo_name, desc);
         loggers.add(*csv_logger);
     }
 
