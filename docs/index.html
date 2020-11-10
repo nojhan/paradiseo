@@ -325,7 +325,7 @@
     <p><em class="excerpt">You can expect that validating <em>an algorithm implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em></em> will be up to <strong>10 times faster</strong> than its (heavily optimized) Python counterpart.</em> </p>
     <p>To give an order of magnitude:
     <ul>
-        <li>If you use the "official" <em>vanilla implementation of <a href="https://github.com/CMA-ES/pycma">CMA-ES in Python/Numpy</a></em> solving the BBOB problem suite through the <a href="https://github.com/numbbo/coco">COCO plateform</a>, running the whole benchmark will take approximately <em>10 minutes</em> on a single Intel Core i5 @ 2.50GHz with a colid state disk.</li>
+        <li>If you use the "official" <em>vanilla implementation of <a href="https://github.com/CMA-ES/pycma">CMA-ES in Python/Numpy</a></em> solving the BBOB problem suite through the <a href="https://github.com/numbbo/coco">COCO plateform</a>, running the whole benchmark will take approximately <em>10 minutes</em> on a single Intel Core i5 @ 2.50GHz with a solid state disk.</li>
         <li>The same experiment, running <em>the <em class="logo">Paradis<span class="logo_eo">eo</span></em> implementation</em> using the seamless binding to the <a href="https://iohprofiler.github.io/">IOHprofiler</a> BBOB implementation, will take <em>1 minute</em>.</li>
     </ul>
     </p>
@@ -490,10 +490,14 @@
              width="100%"
              style="max-width:640px;"
              title="ParadisEO interfaced with IOHexperimenter and irace − Johann Dréo − CC-BY-SA" />
-        <figcaption>An example of binding between <em class="logo">Paradis<span class="logo_eo">eo</span></em>, IOHexperimenter and irace. ParadisEO provides a on-the-fly algorithm instanciation, which is ran on an IOH problem, with performances estimated with a generic and fast module. All components figured with lego bricks forms a single, integrated, binary.</figcaption>
+        <figcaption>A simplified example of binding between <em class="logo">Paradis<span class="logo_eo">eo</span></em>, IOHexperimenter and irace. ParadisEO provides a on-the-fly algorithm instanciation, which is ran on an IOH problem, with performances estimated with a generic and fast module. All components figured with lego bricks forms a single, integrated, binary.</figcaption>
     </figure>
 
-    <p>As the <em class="logo">Paradis<span class="logo_eo">eo</span></em> codebase provides generic algorithm and a large set of operators, this can make a huge number of algorithms alternatives (easily millions of them). To evaluate those algorithms, you can use bindings toward fast benchmarking tools (like <a href="https://github.com/IOHprofiler/IOHexperimenter">IOHexperimenter</a>), which allow for insanely fast runs. For instance, you can plug this binary with <a href="https://iridia.ulb.ac.be/irace/">irace</a> (<em class="logo">Paradis<span class="logo_eo">eo</span></em> provides an automatic interface generation) and reach budgets of 10 000 runs in just one hour (!).</p>
+    <p>As the <em class="logo">Paradis<span class="logo_eo">eo</span></em> codebase provides generic algorithm and a large set of operators, it's easy to have access to a huge number of algorithms alternatives: there's easily millions of unique combinations.</p>
+    <p>To evaluate those algorithms, you can use bindings toward fast benchmarking tools (like <a href="https://github.com/IOHprofiler/IOHexperimenter">IOHexperimenter</a>), which allow for the fastests runs of the market.</p>
+    <p>You can then wrap this evaluation within an optimizer, to automatically search for the best algorithm instance. For instance, you can either use an optimizer made with <em class="logo">Paradis<span class="logo_eo">eo</span></em>, either plug the binary with <a href="https://iridia.ulb.ac.be/irace/">irace</a> (<em class="logo">Paradis<span class="logo_eo">eo</span></em> provides an automatic interface generation) and reach budgets of 10 000 runs in just one hour (!).</p>
+    <p>And <em>voilà</em>! You started by just designing a high-level view of a solver, and you now know which algorithm instance allow for the best performance.</p>
+    <p>Note that the binding with IOHexperimenter also allow to easily import and explore experimental results in the <a href="https://iohprofiler.liacs.nl/">IOHanalyzer HMI</a>. <em>Ohlala</em>.</p>
     </div>
 
 
