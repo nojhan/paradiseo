@@ -61,6 +61,7 @@
                         <lh><a href="#Features">Features</a></lh>
                         <li><a href="#Component-based">Composable design</a></li>
                         <li><a href="#LargeChoice">Lot of Components</a></li>
+                        <li><a href="#AlgoSelection">Algorithm Selection</a></li>
                         <li><a href="#Portability">Portability</a></li>
                         <li><a href="#VS">VS other Frameworks</a></li>
                     </ol>
@@ -477,6 +478,24 @@
     </ul>
     </div>
     </div>
+
+    <div id="AlgoSelection">
+    <h2><a name="AlgoSelection"></a>Algorithm Selection and Configuration</h2>
+
+    <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> provides meta-algorithmics features, like on-the-fly algorithm instanciation. This is useful to dynamically assemble and run an algorithm from a simple numerical encoding. This "algorithm forge" can handle a set of operators and parameter configurations, to be assembled in different "slots" to form an algorithm.</p>
+
+    <figure>
+        <img src="img/bindings_ioh_irace.png"
+             srcset="img/bindings_ioh_irace.svg"
+             width="100%"
+             style="max-width:640px;"
+             title="ParadisEO interfaced with IOHexperimenter and irace − Johann Dréo − CC-BY-SA" />
+        <figcaption>An example of binding between <em class="logo">Paradis<span class="logo_eo">eo</span></em>, IOHexperimenter and irace. ParadisEO provides a on-the-fly algorithm instanciation, which is ran on an IOH problem, with performances estimated with a generic and fast module. All components figured with lego bricks forms a single, integrated, binary.</figcaption>
+    </figure>
+
+    <p>As the <em class="logo">Paradis<span class="logo_eo">eo</span></em> codebase provides generic algorithm and a large set of operators, this can make a huge number of algorithms alternatives (easily millions of them). To evaluate those algorithms, you can use bindings toward fast benchmarking tools (like <a href="https://github.com/IOHprofiler/IOHexperimenter">IOHexperimenter</a>), which allow for insanely fast runs. For instance, you can plug this binary with <a href="https://iridia.ulb.ac.be/irace/">irace</a> (<em class="logo">Paradis<span class="logo_eo">eo</span></em> provides an automatic interface generation) and reach budgets of 10 000 runs in just one hour (!).</p>
+    </div>
+
 
     <div id="Portability">
     <h2><a name="Portability"></a>Portability</h2>
