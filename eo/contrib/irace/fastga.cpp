@@ -60,15 +60,22 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     foundry.crossovers.add< eo1PtBitXover<Bits> >();
 
     /***** Mutations ****/
-    double p = 1.0; // Probability of flipping eath bit.
-    foundry.mutations.add< eoUniformBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in uniform distrib
-    foundry.mutations.add< eoStandardBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in binomial distrib
-    foundry.mutations.add< eoConditionalBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in binomial distrib, minus zero
-    foundry.mutations.add< eoShiftedBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in binomial distrib, changing zeros to one
-    foundry.mutations.add< eoNormalBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in normal distrib
-    foundry.mutations.add< eoFastBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in powerlaw distrib
+    double p = 1.0; // Probability of flipping each bit.
+    // proba of flipping k bits, k drawn in uniform distrib
+    foundry.mutations.add< eoUniformBitMutation<Bits> >(p);
+    // proba of flipping k bits, k drawn in binomial distrib
+    foundry.mutations.add< eoStandardBitMutation<Bits> >(p);
+    // proba of flipping k bits, k drawn in binomial distrib, minus zero
+    foundry.mutations.add< eoConditionalBitMutation<Bits> >(p);
+    // proba of flipping k bits, k drawn in binomial distrib, changing zeros to one
+    foundry.mutations.add< eoShiftedBitMutation<Bits> >(p);
+    // proba of flipping k bits, k drawn in normal distrib
+    foundry.mutations.add< eoNormalBitMutation<Bits> >(p);
+    // proba of flipping k bits, k drawn in powerlaw distrib
+    foundry.mutations.add< eoFastBitMutation<Bits> >(p);
     for(size_t i=1; i < 11; i+=2) {
-        foundry.mutations.add< eoDetSingleBitFlip<Bits> >(i); // mutate k bits without duplicates
+        // mutate k bits without duplicates
+        foundry.mutations.add< eoDetSingleBitFlip<Bits> >(i);
     }
 
     /***** Selectors *****/
