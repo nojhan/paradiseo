@@ -219,6 +219,7 @@ template<class Itf>
 class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 {
     public:
+        using Interface = Itf;
         /** Default constructor do not cache instantiations.
          *
          * @warning

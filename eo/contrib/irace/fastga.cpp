@@ -111,8 +111,10 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
 Bits::Fitness fake_func(const Bits&) { return 0; }
 
-void print_param_range(const eoParam& param, const size_t slot_size, std::ostream& out = std::cout)
+void print_param_full(const eoParam& param, const size_t slot_size, std::string type="i", std::ostream& out = std::cout)
 {
+    assert(type == "i" or type =="c");
+
     // If there is no choice to be made on this operator, comment it out.
     if(slot_size - 1 <= 0) {
         out << "# ";
@@ -124,15 +126,42 @@ void print_param_range(const eoParam& param, const size_t slot_size, std::ostrea
 
     out << irace_name
         << "\t\"--" << param.longName() << "=\""
-        << "\ti";
+        << "\t" << type;
 
-    if(slot_size -1 <= 0) {
-        out << "\t(0)";
-    } else {
-        out << "\t(0," << slot_size-1 << ")";
+    if(type == "i") {
+        if(slot_size -1 <= 0) {
+            out << "\t(0)";
+        } else {
+            out << "\t(0," << slot_size-1 << ")";
+        }
+        out << std::endl;
+    } else if(type == "c") {
+        out << "\t(0";
+        for(size_t i=1; i<slot_size; ++i) {
+            out << "," << i;
+        }
+        out << ")" << std::endl;
     }
-    out << std::endl;
 }
+
+template<class ITF>
+void print_param_typed(const eoParam& param, const eoForgeVector<ITF>& op_foundry, std::ostream& out = std::cout)
+{
+    print_param_full(param, op_foundry.size(), "c", out);
+}
+
+template<>
+void print_param_typed(const eoParam& param, const eoForgeVector<double>& op_foundry, std::ostream& out)
+{
+    print_param_full(param, op_foundry.size(), "i", out);
+}
+
+template<class OPF>
+void print_param(const eoParam& param, const OPF& op_foundry, std::ostream& out = std::cout)
+{
+    print_param_typed<typename OPF::Interface>(param, op_foundry, out);
+}
+
 
 int main(int argc, char* argv[])
 {
@@ -268,16 +297,16 @@ int main(int argc, char* argv[])
 
         // Do not print problem and instances, as they are managed separately by irace.
         std::cout << "# name\tswitch\ttype\trange" << std::endl;
-        print_param_range(        continuator_p, fake_foundry.continuators        .size(), std::cout);
-        print_param_range(     crossover_rate_p, fake_foundry.crossover_rates     .size(), std::cout);
-        print_param_range( crossover_selector_p, fake_foundry.crossover_selectors .size(), std::cout);
-        print_param_range(aftercross_selector_p, fake_foundry.aftercross_selectors.size(), std::cout);
-        print_param_range(          crossover_p, fake_foundry.crossovers          .size(), std::cout);
-        print_param_range(      mutation_rate_p, fake_foundry.mutation_rates      .size(), std::cout);
-        print_param_range(  mutation_selector_p, fake_foundry.mutation_selectors  .size(), std::cout);
-        print_param_range(           mutation_p, fake_foundry.mutations           .size(), std::cout);
-        print_param_range(        replacement_p, fake_foundry.replacements        .size(), std::cout);
-        print_param_range(     offspring_size_p, fake_foundry.offspring_sizes     .size(), std::cout);
+        print_param(        continuator_p, fake_foundry.continuators        , std::cout);
+        print_param(     crossover_rate_p, fake_foundry.crossover_rates     , std::cout);
+        print_param( crossover_selector_p, fake_foundry.crossover_selectors , std::cout);
+        print_param(aftercross_selector_p, fake_foundry.aftercross_selectors, std::cout);
+        print_param(          crossover_p, fake_foundry.crossovers          , std::cout);
+        print_param(      mutation_rate_p, fake_foundry.mutation_rates      , std::cout);
+        print_param(  mutation_selector_p, fake_foundry.mutation_selectors  , std::cout);
+        print_param(           mutation_p, fake_foundry.mutations           , std::cout);
+        print_param(        replacement_p, fake_foundry.replacements        , std::cout);
+        print_param(     offspring_size_p, fake_foundry.offspring_sizes     , std::cout);
 
         // std::ofstream irace_param("fastga.params");
         // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
