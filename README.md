@@ -13,10 +13,10 @@ your file tree clean.
 2. cd build
 3. cmake ..
 4. make
-5. Take a cofee.
-6. Congratulation, ParadiseEO is installed !
+5. Take a coffee.
+6. Congratulation, ParadisEO is installed !
 
-Please refer to paradisEO website or INSTALL file for further information about
+Please refer to ParadisEO website or INSTALL file for further information about
 installation types and options.
 
 DIRECTORY STRUCTURE
