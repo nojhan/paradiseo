@@ -1,0 +1,66 @@
+
+RELEASE
+==========================================================================================
+
+The current release is paradisEO-2.0
+
+INSTALLATION
+==========================================================================================
+The basic installation procedure must be done in a separatly folder in order to keep
+your file tree clean.
+
+1. mkdir build
+2. cd build
+3. cmake ..
+4. make
+5. Take a cofee.
+6. Congratulation, ParadiseEO is installed !
+
+Please refer to paradisEO website or INSTALL file for further information about
+installation types and options.
+
+DIRECTORY STRUCTURE
+==========================================================================================
+After unpacking the archive file, you should end up with the following
+structure:
+
+.\
++-- AUTHORS Author list\
+|\
++-- cmake                 CMake dir\
+|\
++-- CMakeLists.txt			  For building process\
+|\
++-- CTestConfig.cmake		  For testing process\
+|\
++-- INSTALL                    INSTALL file\
+|\
++-- LICENCE				      Licence contents\
+|\
++-- paradiseo-eo 			  paradiseo-eo dir\
+|\
++-- paradiseo-mo               paradiseo-mo dir\
+|\
++-- paradiseo-moeo             paradiseo-moeo  dir\
+|\
++-- problems                    classical problems evaluation functions\
+|\
++-- README				       README file\
+
+
+NOTES
+==========================================================================================
+
+ParadisEO uses EO, a templates-based, ANSI-C++ compliant evolutionary computation library.
+It contains classes for almost any kind of evolutionary computation you might come up to - at
+least for the ones we could think of.
+EO Website: http://eodev.sourceforge.net/.
+EO is distributed under the GNU Lesser General Public License: http://www.gnu.org/copyleft/lesser.html
+
+Please read README file of each extracted directory if you have
+problems for the installation.
+
+CONTACT
+==========================================================================================
+For further information about ParadisEO, help or to report any
+problem : paradiseo-help@lists.gforge.inria.fr
