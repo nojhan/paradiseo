@@ -1,8 +1,10 @@
-
 RELEASE
 ==========================================================================================
-
 The current release is paradisEO-2.0
+
+DOCUMENTATION
+==========================================================================================
+[https://gitlab.inria.fr/paradiseo/paradiseo/-/wikis/home](https://gitlab.inria.fr/paradiseo/paradiseo/-/wikis/home)
 
 INSTALLATION
 ==========================================================================================
