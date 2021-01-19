@@ -169,16 +169,18 @@ struct Problem {
     size_t neutrality;
     size_t ruggedness;
     size_t max_target;
+    size_t dimension;
     friend std::ostream& operator<<(std::ostream& os, const Problem& pb);
 };
 
 std::ostream& operator<<(std::ostream& os, const Problem& pb)
 {
-    os << "d=" << pb.dummy << "_"
+    os << "u=" << pb.dummy << "_"
        << "e=" << pb.epistasis << "_"
        << "n=" << pb.neutrality << "_"
        << "r=" << pb.ruggedness << "_"
-       << "t=" << pb.max_target;
+       << "t=" << pb.max_target << "_"
+       << "d=" << pb.dimension;
     return os;
 }
 
@@ -187,13 +189,50 @@ int main(int argc, char* argv[])
     /***** Global parameters. *****/
     enum { NO_ERROR = 0, ERROR_USAGE = 100 };
 
+    std::map<size_t, Problem> problem_config_mapping {
+       /* ┌ problem index in the map
+        * │    ┌ problem ID in IOH experimenter
+        * │    │     ┌ dummy
+        * │    │     │   ┌ epistasis
+        * │    │     │   │  ┌ neutrality
+        * │    │     │   │  │    ┌ ruggedness
+        * │    │     │   │  │    │   ┌ max target
+        * │    │     │   │  │    │   │    ┌ dimension (bitstring length) */
+        { 0 /* 1*/, {0,  6, 2,  10, 10,  20 }},
+        { 1 /* 2*/, {0,  6, 2,  18, 10,  20 }},
+        { 2 /* 3*/, {0,  5, 1,  72, 16,  16 }},
+        { 3 /* 4*/, {0,  9, 3,  72, 16,  48 }},
+        { 4 /* 5*/, {0, 23, 1,  90, 25,  25 }},
+        { 5 /* 6*/, {0,  2, 1, 397, 32,  32 }},
+        { 6 /* 7*/, {0, 11, 4,   0, 32, 128 }},
+        { 7 /* 8*/, {0, 14, 4,   0, 32, 128 }},
+        { 8 /* 9*/, {0,  8, 4, 128, 32, 128 }},
+        { 9 /*10*/, {0, 36, 1, 245, 50,  50 }},
+        {10 /*11*/, {0, 21, 2, 256, 50, 100 }},
+        {11 /*12*/, {0, 16, 3, 613, 50, 150 }},
+        {12 /*13*/, {0, 32, 2, 256, 64, 128 }},
+        {13 /*14*/, {0, 21, 3,  16, 64, 192 }},
+        {14 /*15*/, {0, 21, 3, 256, 64, 192 }},
+        {15 /*16*/, {0, 21, 3, 403, 64, 192 }},
+        {16 /*17*/, {0, 52, 4,   2, 64, 256 }},
+        {17 /*18*/, {0, 60, 1,  16, 75,  75 }},
+        {18 /*19*/, {0, 32, 2,   4, 75, 150 }}
+    };
+
     eoFunctorStore store;
 
     eoParser parser(argc, argv, "FastGA interface for iRace");
 
-    const size_t dimension = parser.getORcreateParam<size_t>(1000,
-            "dimension", "Dimension size",
-            'd', "Problem").value();
+    auto problem_p = parser.getORcreateParam<size_t>(0,
+            "problem", "Problem ID",
+            'p', "Problem", /*required=*/true);
+    const size_t problem = problem_p.value();
+    assert(0 <= problem and problem < problem_config_mapping.size());
+
+    // const size_t dimension = parser.getORcreateParam<size_t>(1000,
+    //         "dimension", "Dimension size",
+    //         'd', "Problem").value();
+    const size_t dimension = problem_config_mapping[problem].dimension;
 
     const size_t max_evals = parser.getORcreateParam<size_t>(2 * dimension,
             "max-evals", "Maximum number of evaluations",
@@ -217,11 +256,6 @@ int main(int argc, char* argv[])
         parser.getORcreateParam<bool>(0,
             "full-log", "Log the full search in CSV files (using the IOH profiler format)",
             'F').value();
-
-    auto problem_p = parser.getORcreateParam<size_t>(0,
-            "problem", "Problem ID",
-            'p', "Problem", /*required=*/true);
-    const size_t problem = problem_p.value();
 
 
     auto pop_size_p = parser.getORcreateParam<size_t>(1,
@@ -337,37 +371,6 @@ int main(int argc, char* argv[])
                 static_cast<double>(max_evals) / static_cast<double>(pop_size)));
     // const size_t generations = std::numeric_limits<size_t>::max();
     eo::log << eo::debug << "Number of generations: " << generations << std::endl;
-
-    std::map<size_t, Problem> problem_config_mapping {
-       /* ┌ problem index in the map
-        * │    ┌ problem ID in IOH experimenter
-        * │    │     ┌ dummy
-        * │    │     │   ┌ epistasis
-        * │    │     │   │  ┌ neutrality
-        * │    │     │   │  │    ┌ ruggedness
-        * │    │     │   │  │    │   ┌ max target
-        * │    │     │   │  │    │   │         ┌ dimension (bitstring length) */
-        { 0 /* 1*/, {0,  6, 2,  10, 10}}, //  20
-        { 1 /* 2*/, {0,  6, 2,  18, 10}}, //  20
-        { 2 /* 3*/, {0,  5, 1,  72, 16}}, //  16
-        { 3 /* 4*/, {0,  9, 3,  72, 16}}, //  48
-        { 4 /* 5*/, {0, 23, 1,  90, 25}}, //  25
-        { 5 /* 6*/, {0,  2, 1, 397, 32}}, //  32
-        { 6 /* 7*/, {0, 11, 4,   0, 32}}, // 128
-        { 7 /* 8*/, {0, 14, 4,   0, 32}}, // 128
-        { 8 /* 9*/, {0,  8, 4, 128, 32}}, // 128
-        { 9 /*10*/, {0, 36, 1, 245, 50}}, //  50
-        {10 /*11*/, {0, 21, 2, 256, 50}}, // 100
-        {11 /*12*/, {0, 16, 3, 613, 50}}, // 150
-        {12 /*13*/, {0, 32, 2, 256, 64}}, // 128
-        {13 /*14*/, {0, 21, 3,  16, 64}}, // 192
-        {14 /*15*/, {0, 21, 3, 256, 64}}, // 192
-        {15 /*16*/, {0, 21, 3, 403, 64}}, // 192
-        {16 /*17*/, {0, 52, 4,   2, 64}}, // 256
-        {17 /*18*/, {0, 60, 1,  16, 75}}, //  75
-        {18 /*19*/, {0, 32, 2,   4, 75}}, // 150
-    };
-    assert(0 <= problem and problem < problem_config_mapping.size());
 
     /***** IOH logger *****/
 
