@@ -162,6 +162,25 @@ void print_param(const eoParam& param, const OPF& op_foundry, std::ostream& out 
     print_param_typed<typename OPF::Interface>(param, op_foundry, out);
 }
 
+// Problem configuration.
+struct Problem {
+    double dummy;
+    size_t epistasis;
+    size_t neutrality;
+    size_t ruggedness;
+    size_t max_target;
+    friend std::ostream& operator<<(std::ostream& os, const Problem& pb);
+};
+
+std::ostream& operator<<(std::ostream& os, const Problem& pb)
+{
+    os << "d=" << pb.dummy << "_"
+       << "e=" << pb.epistasis << "_"
+       << "n=" << pb.neutrality << "_"
+       << "r=" << pb.ruggedness << "_"
+       << "t=" << pb.max_target;
+    return os;
+}
 
 int main(int argc, char* argv[])
 {
@@ -319,36 +338,35 @@ int main(int argc, char* argv[])
     // const size_t generations = std::numeric_limits<size_t>::max();
     eo::log << eo::debug << "Number of generations: " << generations << std::endl;
 
-    // Problem configuration code.
-    struct Problem {
-        double dummy;
-        size_t epistasis;
-        size_t neutrality;
-        size_t ruggedness;
-        size_t max_target;
-    };
-
     std::map<size_t, Problem> problem_config_mapping {
-        { 0, {0,   0, 1, 0, 1000}},
-        { 1, {0,   0, 3, 0,  333}},
-        { 2, {0,   0, 5, 0,  200}},
-        { 3, {0,   2, 1, 0, 1000}},
-        { 4, {0,   2, 3, 0,  333}},
-        { 5, {0,   2, 3, 0,  200}},
-        { 6, {0,   4, 1, 0, 1000}},
-        { 7, {0,   4, 3, 0,  333}},
-        { 8, {0,   4, 5, 0,  200}},
-        { 9, {0.5, 0, 1, 0,  500}},
-        {10, {0.5, 0, 3, 0,  166}},
-        {11, {0.5, 0, 5, 0,  100}},
-        {12, {0.5, 2, 1, 0,  500}},
-        {13, {0.5, 2, 3, 0,  166}},
-        {14, {0.5, 2, 5, 0,  100}},
-        {15, {0.5, 4, 1, 0,  500}},
-        {16, {0.5, 4, 3, 0,  166}},
-        {17, {0.5, 4, 5, 0,  100}},
+       /* ┌ problem index in the map
+        * │    ┌ problem ID in IOH experimenter
+        * │    │     ┌ dummy
+        * │    │     │   ┌ epistasis
+        * │    │     │   │  ┌ neutrality
+        * │    │     │   │  │    ┌ ruggedness
+        * │    │     │   │  │    │   ┌ max target
+        * │    │     │   │  │    │   │         ┌ dimension (bitstring length) */
+        { 0 /* 1*/, {0,  6, 2,  10, 10}}, //  20
+        { 1 /* 2*/, {0,  6, 2,  18, 10}}, //  20
+        { 2 /* 3*/, {0,  5, 1,  72, 16}}, //  16
+        { 3 /* 4*/, {0,  9, 3,  72, 16}}, //  48
+        { 4 /* 5*/, {0, 23, 1,  90, 25}}, //  25
+        { 5 /* 6*/, {0,  2, 1, 397, 32}}, //  32
+        { 6 /* 7*/, {0, 11, 4,   0, 32}}, // 128
+        { 7 /* 8*/, {0, 14, 4,   0, 32}}, // 128
+        { 8 /* 9*/, {0,  8, 4, 128, 32}}, // 128
+        { 9 /*10*/, {0, 36, 1, 245, 50}}, //  50
+        {10 /*11*/, {0, 21, 2, 256, 50}}, // 100
+        {11 /*12*/, {0, 16, 3, 613, 50}}, // 150
+        {12 /*13*/, {0, 32, 2, 256, 64}}, // 128
+        {13 /*14*/, {0, 21, 3,  16, 64}}, // 192
+        {14 /*15*/, {0, 21, 3, 256, 64}}, // 192
+        {15 /*16*/, {0, 21, 3, 403, 64}}, // 192
+        {16 /*17*/, {0, 52, 4,   2, 64}}, // 256
+        {17 /*18*/, {0, 60, 1,  16, 75}}, //  75
+        {18 /*19*/, {0, 32, 2,   4, 75}}, // 150
     };
-
     assert(0 <= problem and problem < problem_config_mapping.size());
 
     /***** IOH logger *****/
@@ -369,11 +387,32 @@ int main(int argc, char* argv[])
 
     std::shared_ptr<IOHprofiler_csv_logger<int>> csv_logger;
     if(full_log) {
-        std::string dir(".");
-        std::string folder("."); // Avoid an IOH bug.
-        std::string algo_name = "FoundryFastGA"; // FIXME use foundry.name()
-        std::string desc = "One of the many FastGA algorithms instances";
-        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(dir, folder, algo_name, desc);
+        // Build up an algorithm name from main parameters.
+        std::ostringstream name;
+        name << "FastGA";
+        for(auto& p : {pop_size_p,
+                crossover_rate_p,
+                crossover_selector_p,
+                crossover_p,
+                aftercross_selector_p,
+                mutation_rate_p,
+                mutation_selector_p,
+                mutation_p,
+                replacement_p,
+                offspring_size_p}) {
+            name << "_" << p.shortName() << "=" << p.getValue();
+        }
+        std::clog << name.str() << std::endl;
+
+        // Build up a problem description.
+        std::ostringstream desc;
+        desc << "pb=" << problem << "_";
+        desc << problem_config_mapping[problem]; // Use the `operator<<` above.
+        std::clog << desc.str() << std::endl;
+
+        std::string dir(name.str());
+        std::string folder(desc.str());
+        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(dir, folder, name.str(), desc.str());
         loggers.add(*csv_logger);
     }
 
@@ -438,7 +477,7 @@ int main(int argc, char* argv[])
     encoded_algo[foundry.continuators        .index()] = continuator;
     encoded_algo[foundry.offspring_sizes     .index()] = offspring_size;
 
-    std::clog << "Encoded algorithm:" << std::endl;
+    // std::clog << "Encoded algorithm:" << std::endl;
     foundry.select(encoded_algo);
     std::clog << foundry.name() << std::endl;
 
