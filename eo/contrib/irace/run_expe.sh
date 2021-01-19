@@ -19,3 +19,4 @@ for algo in "${algos[@]}" ; do
     i=$((i+1))
 done
 
+echo "Done"

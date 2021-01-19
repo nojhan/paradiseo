@@ -13,6 +13,9 @@ algo="$@"
 # You most probably want to run on release builds.
 exe="./release/fastga"
 
+outdir="results"
+mkdir -p ${outdir}
+
 i=1 # Loop counter.
 for pb in "${problems[@]}" ; do # Iterate over the problems array.
     for seed in $(seq ${runs}) ; do # Iterates over runs/seeds.
@@ -25,18 +28,18 @@ for pb in "${problems[@]}" ; do # Iterate over the problems array.
         # echo ${cmd} # Print the command.
 
         # Progress print.
-        echo "problem ${pb}, run ${seed}"
+        echo -n "problem ${pb}, run ${seed}"
 
         # Actually start the command.
-        ${cmd} > "${name}.dat" 2> "${name}.log"
+        ${cmd} > "${outdir}/${name}.dat" 2> "${outdir}/${name}.log"
 
         # Check for the most common problem in the log file.
-        cat "${name}.log" | grep "illogical performance"
+        cat "${outdir}/${name}.log" | grep "illogical performance"
 
         perc=$(echo "scale=2;${i}/(${#problems[@]}*${runs})*100" | bc)
-        echo -e "${perc}%\n"
+        echo -e " -- ${perc}%"
         i=$((i+1))
     done
 done
 
-echo "Done $((${#problems[@]}*${runs})) runs"
+echo "Done $((${#problems[@]}*${runs})) runs, results in ${outdir}"
