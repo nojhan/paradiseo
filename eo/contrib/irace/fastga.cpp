@@ -111,7 +111,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
 Bits::Fitness fake_func(const Bits&) { return 0; }
 
-void print_param_full(const eoParam& param, const size_t slot_size, std::string type="i", std::ostream& out = std::cout)
+void print_irace_full(const eoParam& param, const size_t slot_size, std::string type="i", std::ostream& out = std::cout)
 {
     assert(type == "i" or type =="c");
 
@@ -145,22 +145,47 @@ void print_param_full(const eoParam& param, const size_t slot_size, std::string 
 }
 
 template<class ITF>
-void print_param_typed(const eoParam& param, const eoForgeVector<ITF>& op_foundry, std::ostream& out = std::cout)
+void print_irace_typed(const eoParam& param, const eoForgeVector<ITF>& op_foundry, std::ostream& out = std::cout)
 {
-    print_param_full(param, op_foundry.size(), "c", out);
+    print_irace_full(param, op_foundry.size(), "c", out);
 }
 
 template<>
-void print_param_typed(const eoParam& param, const eoForgeVector<double>& op_foundry, std::ostream& out)
+void print_irace_typed(const eoParam& param, const eoForgeVector<double>& op_foundry, std::ostream& out)
 {
-    print_param_full(param, op_foundry.size(), "i", out);
+    print_irace_full(param, op_foundry.size(), "i", out);
 }
 
 template<class OPF>
-void print_param(const eoParam& param, const OPF& op_foundry, std::ostream& out = std::cout)
+void print_irace(const eoParam& param, const OPF& op_foundry, std::ostream& out = std::cout)
 {
-    print_param_typed<typename OPF::Interface>(param, op_foundry, out);
+    print_irace_typed<typename OPF::Interface>(param, op_foundry, out);
 }
+
+
+
+void print_operator_typed(const eoFunctorBase& op, std::ostream& out)
+{
+    out << op.className();
+}
+
+void print_operator_typed(const double& op, std::ostream& out)
+{
+    out << op;
+}
+
+template<class OPF>
+void print_operators(const eoParam& param, OPF& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
+{
+    out << indent << op_foundry.size() << " " << param.longName() << ":" << std::endl;
+    for(size_t i=0; i < op_foundry.size(); ++i) {
+        out << indent << indent << i << ": ";
+        auto& op = op_foundry.instantiate(i);
+        print_operator_typed(op, out);
+        out << std::endl;
+    }
+}
+
 
 // Problem configuration.
 struct Problem {
@@ -332,6 +357,18 @@ int main(int argc, char* argv[])
         eoInitFixedLength<Bits> fake_init(/*bitstring size=*/1, fake_gen);
         auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1);
 
+        std::clog << std::endl << "Available operators:" << std::endl;
+        print_operators(        continuator_p, fake_foundry.continuators        , std::clog);
+        print_operators(     crossover_rate_p, fake_foundry.crossover_rates     , std::clog);
+        print_operators( crossover_selector_p, fake_foundry.crossover_selectors , std::clog);
+        print_operators(aftercross_selector_p, fake_foundry.aftercross_selectors, std::clog);
+        print_operators(          crossover_p, fake_foundry.crossovers          , std::clog);
+        print_operators(      mutation_rate_p, fake_foundry.mutation_rates      , std::clog);
+        print_operators(  mutation_selector_p, fake_foundry.mutation_selectors  , std::clog);
+        print_operators(           mutation_p, fake_foundry.mutations           , std::clog);
+        print_operators(        replacement_p, fake_foundry.replacements        , std::clog);
+        print_operators(     offspring_size_p, fake_foundry.offspring_sizes     , std::clog);
+
         size_t n =
               fake_foundry.crossover_rates.size()
             * fake_foundry.crossover_selectors.size()
@@ -350,16 +387,16 @@ int main(int argc, char* argv[])
 
         // Do not print problem and instances, as they are managed separately by irace.
         std::cout << "# name\tswitch\ttype\trange" << std::endl;
-        print_param(        continuator_p, fake_foundry.continuators        , std::cout);
-        print_param(     crossover_rate_p, fake_foundry.crossover_rates     , std::cout);
-        print_param( crossover_selector_p, fake_foundry.crossover_selectors , std::cout);
-        print_param(aftercross_selector_p, fake_foundry.aftercross_selectors, std::cout);
-        print_param(          crossover_p, fake_foundry.crossovers          , std::cout);
-        print_param(      mutation_rate_p, fake_foundry.mutation_rates      , std::cout);
-        print_param(  mutation_selector_p, fake_foundry.mutation_selectors  , std::cout);
-        print_param(           mutation_p, fake_foundry.mutations           , std::cout);
-        print_param(        replacement_p, fake_foundry.replacements        , std::cout);
-        print_param(     offspring_size_p, fake_foundry.offspring_sizes     , std::cout);
+        print_irace(        continuator_p, fake_foundry.continuators        , std::cout);
+        print_irace(     crossover_rate_p, fake_foundry.crossover_rates     , std::cout);
+        print_irace( crossover_selector_p, fake_foundry.crossover_selectors , std::cout);
+        print_irace(aftercross_selector_p, fake_foundry.aftercross_selectors, std::cout);
+        print_irace(          crossover_p, fake_foundry.crossovers          , std::cout);
+        print_irace(      mutation_rate_p, fake_foundry.mutation_rates      , std::cout);
+        print_irace(  mutation_selector_p, fake_foundry.mutation_selectors  , std::cout);
+        print_irace(           mutation_p, fake_foundry.mutations           , std::cout);
+        print_irace(        replacement_p, fake_foundry.replacements        , std::cout);
+        print_irace(     offspring_size_p, fake_foundry.offspring_sizes     , std::cout);
 
         // std::ofstream irace_param("fastga.params");
         // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
