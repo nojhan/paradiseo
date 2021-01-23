@@ -283,6 +283,11 @@ int main(int argc, char* argv[])
             "full-log", "Log the full search in CSV files (using the IOH profiler format)",
             'F').value();
 
+    bool output_mat =
+        parser.getORcreateParam<bool>(0,
+            "output-mat", "Output the aggregated attainment matrix instead of its scalar sum.",
+            'A').value();
+
 
     auto pop_size_p = parser.getORcreateParam<size_t>(1,
             "pop-size", "Population size",
@@ -558,7 +563,22 @@ int main(int argc, char* argv[])
 
     // std::clog << "After " << eval_count.getValue() << " / " << max_evals << " evaluations" << std::endl;
 
-    // Output
-    std::cout << -1 * perf << std::endl;
+    if(output_mat) {
 
+        IOHprofiler_ecdf_aggregate agg;
+        IOHprofiler_ecdf_aggregate::Mat mat = agg(ecdf_logger.data());
+        std::clog << "Attainment matrix sum: " << std::endl;
+        assert(mat.size() > 0);
+        assert(mat[0].size() > 1);
+        for(int i = mat.size()-1; i >= 0; --i) {
+            std::cout << mat[i][0];
+            for(int j = 1; j < mat[i].size(); ++j) {
+                std::cout << "," << mat[i][j];
+            }
+            std::cout << std::endl;
+        }
+
+    } else {
+        std::cout << -1 * perf << std::endl;
+    }
 }
