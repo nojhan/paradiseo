@@ -8,13 +8,11 @@ runs=50
 problems=($(seq 0 18))
 
 # Capture anything passed to the script
-algo="$@"
+outdir="$1"
+algo="${@:2}"
 
 # You most probably want to run on release builds.
 exe="./release/fastga"
-
-outdir="results"
-mkdir -p ${outdir}
 
 i=1 # Loop counter.
 for pb in "${problems[@]}" ; do # Iterate over the problems array.
@@ -25,7 +23,7 @@ for pb in "${problems[@]}" ; do # Iterate over the problems array.
 
         # This is the command to be ran.
         cmd="${exe} --problem=${pb} --seed=${seed} ${algo}"
-        # echo ${cmd} # Print the command.
+        echo ${cmd} # Print the command.
 
         # Progress print.
         echo -n "problem ${pb}, run ${seed}"

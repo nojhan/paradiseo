@@ -25,7 +25,7 @@ error() {
 EXE="./fastga"
 LOG_DIR="irace_logs"
 
-FIXED_PARAMS="--problem=0"
+FIXED_PARAMS="--problem={{PROBLEM}}"
 
 CONFIG_ID=$1
 INSTANCE_ID=$2

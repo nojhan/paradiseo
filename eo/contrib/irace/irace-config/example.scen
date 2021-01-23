@@ -63,7 +63,7 @@ targetRunner = "./target-runner"
 ## Maximum number of runs (invocations of targetRunner) that will be
 ## performed. It determines the maximum budget of experiments for the
 ## tuning.
-maxExperiments = 2000
+maxExperiments = 100000
 
 ## Maximum total execution time in seconds for the executions of
 ## targetRunner. targetRunner must return two values: cost and time.
