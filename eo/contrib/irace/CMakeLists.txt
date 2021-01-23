@@ -93,5 +93,5 @@ endif()
 ######################################################################################
 
 add_executable(fastga fastga.cpp)
-target_link_libraries(fastga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY})
+target_link_libraries(fastga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
 

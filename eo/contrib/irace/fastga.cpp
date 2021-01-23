@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -451,7 +452,15 @@ int main(int argc, char* argv[])
         std::clog << desc.str() << std::endl;
 
         std::string dir(name.str());
+        std::filesystem::path d = name.str();
+        std::filesystem::create_directory(d);
+
         std::string folder(desc.str());
+        std::filesystem::path f = desc.str();
+
+        std::filesystem::create_directory(d);
+        std::filesystem::create_directory(d/f);
+
         csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(dir, folder, name.str(), desc.str());
         loggers.add(*csv_logger);
     }
