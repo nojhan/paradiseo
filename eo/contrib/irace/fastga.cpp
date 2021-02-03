@@ -260,7 +260,7 @@ int main(int argc, char* argv[])
     //         'd', "Problem").value();
     const size_t dimension = problem_config_mapping[problem].dimension;
 
-    const size_t max_evals = parser.getORcreateParam<size_t>(2 * dimension,
+    const size_t max_evals = parser.getORcreateParam<size_t>(5 * dimension,
             "max-evals", "Maximum number of evaluations",
             'e', "Stopping criterion").value();
 
@@ -289,7 +289,7 @@ int main(int argc, char* argv[])
             'A').value();
 
 
-    auto pop_size_p = parser.getORcreateParam<size_t>(1,
+    auto pop_size_p = parser.getORcreateParam<size_t>(5,
             "pop-size", "Population size",
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
@@ -466,7 +466,7 @@ int main(int argc, char* argv[])
         std::filesystem::create_directory(d);
         std::filesystem::create_directory(d/f);
 
-        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(dir, folder, name.str(), desc.str());
+        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(dir, folder, d, f);
         loggers.add(*csv_logger);
     }
 
