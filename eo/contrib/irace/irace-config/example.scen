@@ -15,7 +15,7 @@ execDir = "."
 
 ## File to save tuning results as an R dataset, either absolute path or
 ## relative to execDir.
-# logFile = "./irace.Rdata"
+logFile = "" # "./irace.Rdata"
 
 ## Previously saved log file to recover the execution of irace, either
 ## absolute path or relative to the current directory.  If empty or NULL,
@@ -63,7 +63,7 @@ targetRunner = "./target-runner"
 ## Maximum number of runs (invocations of targetRunner) that will be
 ## performed. It determines the maximum budget of experiments for the
 ## tuning. (minimum: 180)
-maxExperiments = 20000 # 100000
+maxExperiments = 100000
 
 ## Maximum total execution time in seconds for the executions of
 ## targetRunner. targetRunner must return two values: cost and time.
@@ -129,13 +129,13 @@ digits = 2
 
 ## Number of calls to targetRunner to execute in parallel. Values 0 or 1
 ## mean no parallelization.
-# parallel = 0
+parallel = 0
 
 ## Enable/disable load-balancing when executing experiments in parallel.
 ## Load-balancing makes better use of computing resources, but increases
 ## communication overhead. If this overhead is large, disabling
 ## load-balancing may be faster.
-# loadBalancing = 1
+loadBalancing = 0
 
 ## Enable/disable MPI. Use Rmpi to execute targetRunner in parallel
 ## (parameter parallel is the number of slaves).
