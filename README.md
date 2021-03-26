@@ -230,3 +230,11 @@ For academic articles, books, more tutorials, presentations slides,
 real life example of solvers and contact information,
 please see the web site (available in `paradiseo/website/index.html`).
 
+There is also an [online wiki](https://gitlab.inria.fr/paradiseo/paradiseo/-/wikis/home)
+
+
+# Contact
+
+For further information about ParadisEO, help or to report any
+problem, you can send an e-mail to: `paradiseo-help@lists.gforge.inria.fr`
+
