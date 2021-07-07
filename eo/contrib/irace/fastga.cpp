@@ -41,17 +41,17 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     //     foundry.continuators.add< eoSteadyFitContinue<Bits> >(10,i);
     // }
 
-    for(double i=0.0; i<1.0; i+=0.2) {
-        foundry.crossover_rates.add<double>(i);
-        foundry.mutation_rates.add<double>(i);
-    }
+    // for(double i=0.0; i<1.0; i+=0.2) {
+    //     foundry.crossover_rates.add<double>(i);
+    //     foundry.mutation_rates.add<double>(i);
+    // }
 
     /***** Offsprings size *****/
     // for(size_t i=5; i<100; i+=10) {
     //     foundry.offspring_sizes.add<size_t>(i);
     // }
 
-    foundry.offspring_sizes.add<size_t>(0); // 0 = use parents fixed pop size.
+    foundry.offspring_sizes.setup(0,100); // 0 = use parents fixed pop size.
 
     /***** Crossovers ****/
     for(double i=0.1; i<1.0; i+=0.2) {
@@ -61,7 +61,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
         foundry.crossovers.add< eoNPtsBitXover<Bits> >(i); // nb of points
     }
-    foundry.crossovers.add< eo1PtBitXover<Bits> >();
+    // foundry.crossovers.add< eo1PtBitXover<Bits> >(); // Same as NPts=1
 
     /***** Mutations ****/
     double p = 1.0; // Probability of flipping each bit.
@@ -119,10 +119,8 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
 Bits::Fitness fake_func(const Bits&) { return 0; }
 
-void print_irace_full(const eoParam& param, const size_t slot_size, std::string type="i", std::ostream& out = std::cout)
+void print_irace_categorical(const eoParam& param, const size_t slot_size, std::string type="c", std::ostream& out = std::cout)
 {
-    assert(type == "i" or type =="c");
-
     // If there is no choice to be made on this operator, comment it out.
     if(slot_size - 1 <= 0) {
         out << "# ";
@@ -136,40 +134,76 @@ void print_irace_full(const eoParam& param, const size_t slot_size, std::string 
         << "\t\"--" << param.longName() << "=\""
         << "\t" << type;
 
-    if(type == "i") {
-        if(slot_size -1 <= 0) {
-            out << "\t(0)";
-        } else {
-            out << "\t(0," << slot_size-1 << ")";
-        }
-        out << std::endl;
-    } else if(type == "c") {
-        out << "\t(0";
-        for(size_t i=1; i<slot_size; ++i) {
-            out << "," << i;
-        }
-        out << ")" << std::endl;
+    out << "\t(0";
+    for(size_t i=1; i<slot_size; ++i) {
+        out << "," << i;
     }
+    out << ")" << std::endl;
 }
+
+template<class T>
+void print_irace_ranged(const eoParam& param, const T min, const T max, std::string type="r", std::ostream& out = std::cout)
+{
+    // If there is no choice to be made on this operator, comment it out.
+    if(max - min <= 0) {
+        out << "# ";
+    }
+
+    // irace doesn't support "-" in names.
+    std::string irace_name = param.longName();
+    irace_name.erase(std::remove(irace_name.begin(), irace_name.end(), '-'), irace_name.end());
+
+    out << irace_name
+        << "\t\"--" << param.longName() << "=\""
+        << "\t" << type;
+
+    if(max-min <= 0) {
+        out << "\t(?)";
+    } else {
+        out << "\t(" << min << "," << max << ")";
+    }
+    out << std::endl;
+}
+
 
 template<class ITF>
-void print_irace_typed(const eoParam& param, const eoForgeVector<ITF>& op_foundry, std::ostream& out = std::cout)
+void print_irace_oper(const eoParam& param, const eoOperatorFoundry<ITF>& op_foundry, std::ostream& out = std::cout)
 {
-    print_irace_full(param, op_foundry.size(), "c", out);
+    print_irace_categorical(param, op_foundry.size(), "c", out);
 }
 
-template<>
-void print_irace_typed(const eoParam& param, const eoForgeVector<double>& op_foundry, std::ostream& out)
+// FIXME generalize to any scalar type with enable_if
+// template<class ITF>
+void print_irace_param(
+    const eoParam& param,
+    // const eoParameterFoundry<typename std::enable_if< std::is_floating_point<ITF>::value >::type>& op_foundry,
+    const eoParameterFoundry<double>& op_foundry,
+    std::ostream& out)
 {
-    print_irace_full(param, op_foundry.size(), "i", out);
+    print_irace_ranged(param, op_foundry.min(), op_foundry.max(), "r", out);
 }
 
-template<class OPF>
-void print_irace(const eoParam& param, const OPF& op_foundry, std::ostream& out = std::cout)
+// template<class ITF>
+void print_irace_param(
+    const eoParam& param,
+    // const eoParameterFoundry<typename std::enable_if< std::is_integral<ITF>::value >::type>& op_foundry,
+    const eoParameterFoundry<size_t>& op_foundry,
+    std::ostream& out)
 {
-    print_irace_typed<typename OPF::Interface>(param, op_foundry, out);
+    print_irace_ranged(param, op_foundry.min(), op_foundry.max(), "i", out);
 }
 
+
+template<class ITF>
+void print_irace(const eoParam& param, const eoOperatorFoundry<ITF>& op_foundry, std::ostream& out = std::cout)
+{
+    print_irace_oper<ITF>(param, op_foundry, out);
+}
+template<class ITF>
+void print_irace(const eoParam& param, const eoParameterFoundry<ITF>& op_foundry, std::ostream& out = std::cout)
+{
+    print_irace_param/*<ITF>*/(param, op_foundry, out);
+}
 
 
 void print_operator_typed(const eoFunctorBase& op, std::ostream& out)
@@ -182,8 +216,8 @@ void print_operator_typed(const double& op, std::ostream& out)
     out << op;
 }
 
-template<class OPF>
-void print_operators(const eoParam& param, OPF& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
+template<class ITF>
+void print_operators(const eoParam& param, eoOperatorFoundry<ITF>& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
 {
     out << indent << op_foundry.size() << " " << param.longName() << ":" << std::endl;
     for(size_t i=0; i < op_foundry.size(); ++i) {
@@ -194,6 +228,11 @@ void print_operators(const eoParam& param, OPF& op_foundry, std::ostream& out = 
     }
 }
 
+template<class ITF>
+void print_operators(const eoParam& param, eoParameterFoundry<ITF>& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
+{
+    out << indent << "[" << op_foundry.min() << "," << op_foundry.max() << "] " << param.longName() << "." << std::endl;
+}
 
 // Problem configuration.
 struct Problem {
@@ -322,16 +361,22 @@ int main(int argc, char* argv[])
     // const size_t generations = std::numeric_limits<size_t>::max();
     eo::log << eo::debug << "Number of generations: " << generations << std::endl;
 
-    /***** operators / parameters *****/
+    /***** metric parameters *****/
+    auto crossover_rate_p = parser.getORcreateParam<double>(0.5,
+            "crossover-rate", "",
+            'C', "Operator Choice", /*required=*/true);
+    const double crossover_rate = crossover_rate_p.value();
+
+    auto mutation_rate_p = parser.getORcreateParam<double>(0,
+            "mutation-rate", "",
+            'M', "Operator Choice", /*required=*/true);
+    const double mutation_rate = mutation_rate_p.value();
+
+    /***** operators *****/
     auto continuator_p = parser.getORcreateParam<size_t>(0,
             "continuator", "Stopping criterion",
             'o', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t continuator = continuator_p.value();
-
-    auto crossover_rate_p = parser.getORcreateParam<size_t>(0,
-            "crossover-rate", "",
-            'C', "Operator Choice", /*required=*/true);
-    const size_t crossover_rate = crossover_rate_p.value();
 
     auto crossover_selector_p = parser.getORcreateParam<size_t>(0,
             "cross-selector", "How to selects candidates for cross-over",
@@ -347,11 +392,6 @@ int main(int argc, char* argv[])
             "aftercross-selector", "How to selects between the two individuals altered by cross-over which one will mutate",
             'a', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t aftercross_selector = aftercross_selector_p.value();
-
-    auto mutation_rate_p = parser.getORcreateParam<size_t>(0,
-            "mutation-rate", "",
-            'M', "Operator Choice", /*required=*/true);
-    const size_t mutation_rate = mutation_rate_p.value();
 
     auto mutation_selector_p = parser.getORcreateParam<size_t>(0,
             "mut-selector", "How to selects candidate for mutation",
@@ -393,19 +433,21 @@ int main(int argc, char* argv[])
         print_operators(        replacement_p, fake_foundry.replacements        , std::clog);
         print_operators(     offspring_size_p, fake_foundry.offspring_sizes     , std::clog);
 
+        size_t fake_sample_size = 10;
         size_t n =
-              fake_foundry.crossover_rates.size()
+              fake_sample_size //crossover_rates
             * fake_foundry.crossover_selectors.size()
             * fake_foundry.crossovers.size()
             * fake_foundry.aftercross_selectors.size()
-            * fake_foundry.mutation_rates.size()
+            * fake_sample_size //mutation_rates
             * fake_foundry.mutation_selectors.size()
             * fake_foundry.mutations.size()
             * fake_foundry.replacements.size()
             * fake_foundry.continuators.size()
-            * fake_foundry.offspring_sizes.size();
+            * fake_sample_size //offspring_sizes
+            ;
         std::clog << std::endl;
-        std::clog << n << " possible algorithms configurations." << std::endl;
+        std::clog << "~" << n << " possible algorithms configurations." << std::endl;
 
         std::clog << "Ranges of configurable parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
 
@@ -445,16 +487,22 @@ int main(int argc, char* argv[])
         // Build up an algorithm name from main parameters.
         std::ostringstream name;
         name << "FastGA";
-        for(auto& p : {pop_size_p,
-                crossover_rate_p,
+        for(auto& p : {
                 crossover_selector_p,
                 crossover_p,
                 aftercross_selector_p,
-                mutation_rate_p,
                 mutation_selector_p,
                 mutation_p,
-                replacement_p,
-                offspring_size_p}) {
+                replacement_p }) {
+            name << "_" << p.shortName() << "=" << p.getValue();
+        }
+        for(auto& p : {
+                crossover_rate_p,
+                mutation_rate_p }) {
+            name << "_" << p.shortName() << "=" << p.getValue();
+        }
+        for(auto& p : {pop_size_p,
+                offspring_size_p }) {
             name << "_" << p.shortName() << "=" << p.getValue();
         }
         std::clog << name.str() << std::endl;
@@ -580,7 +628,8 @@ int main(int argc, char* argv[])
         std::clog << "Attainment matrix distribution: " << std::endl;
         assert(mat.size() > 0);
         assert(mat[0].size() > 1);
-        for(size_t i = mat.size()-1; i >= 0; --i) {
+        for(size_t i = mat.size()-1; i > 0; --i) {
+            assert(mat[i].size() >= 1);
             std::cout << mat[i][0];
             for(size_t j = 1; j < mat[i].size(); ++j) {
                 std::cout << "," << mat[i][j];

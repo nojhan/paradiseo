@@ -215,7 +215,7 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
  *
  * @ingroup Foundry
  */
-template<class Itf>
+template<class Itf, typename Enable = void>
 class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 {
     public:
@@ -237,6 +237,19 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
         eoForgeVector( bool always_reinstantiate = true ) :
             _no_cache(always_reinstantiate)
         { }
+
+         /** instantiate the operator managed at the given index.
+          */
+         Itf& instantiate(double index)
+         {
+             double frac_part, int_part;
+             frac_part = std::modf(index, &int_part);
+             if(frac_part != 0) {
+                eo::log << eo::errors << "there is a fractional part in the given index (" << index << ")" << std::endl;
+                assert(frac_part != 0);
+             }
+             return this->at(static_cast<size_t>(index))->instantiate(_no_cache);
+         }
 
         /** Add an operator to the list.
          *
@@ -295,13 +308,6 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
             this->at(index) = pfo;
         }
 
-        /** instantiate the operator managed at the given index.
-         */
-        Itf& instantiate(size_t index)
-        {
-            return this->at(index)->instantiate(_no_cache);
-        }
-
         virtual ~eoForgeVector()
         {
             for(auto p : *this) {
@@ -311,6 +317,67 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 
     protected:
         bool _no_cache;
+};
+
+template<class Itf>
+class eoForgeScalar
+{
+    public:
+        using Interface = Itf;
+
+        eoForgeScalar(Itf min, Itf max) :
+            _min(min),
+            _max(max)
+        { }
+        
+        /** Just return the same value, without managing any instantiation.
+         */
+        Itf& instantiate(double value)
+        {
+            this->_value = value;
+            if(not (_min <= value and value <= _max) ) {
+                eo::log << eo::errors << "ERROR: the given value is out of range, I'll cap it." << std::endl;
+                assert(_min <= value and value <= _max);
+                if(value < _min) {
+                    this->_value = _min;
+                    return this->_value;
+                }
+                if(value > _max) {
+                    this->_value = _max;
+                    return this->_value;
+                }
+            }
+            return this->_value;
+        }
+
+        Itf min() const { return _min; }
+        Itf max() const { return _max; }
+
+        void min(Itf min)
+        {
+            assert(_min <= _max);
+            _min = min;
+        }
+        
+        void max(Itf max)
+        {
+            assert(_max >= _min);
+            _max = max;
+        }
+
+        void setup(Itf min, Itf max)
+        {
+            _min = min;
+            _max = max;
+            assert(_min <= _max);
+        }
+
+        // Nothing else, as it would not make sense.
+    protected:
+        Itf _value;
+
+        Itf _min;
+        Itf _max;
 };
 
 #endif // _eoForge_H_
