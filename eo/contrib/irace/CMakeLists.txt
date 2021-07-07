@@ -45,46 +45,23 @@ set(PARADISEO_LIBRARIES ga eoutils eo)
 
 # IOH
 set(IOH_ROOT "~/code/IOHexperimenter/" CACHE PATH "Where to find IOHexperimenter")
-find_path(IOH_PROBLEM_H "IOHprofiler_problem.h" PATHS ${IOH_ROOT}/src/Template/)
-find_library(IOH_LIBRARY "IOH" PATHS ${IOH_ROOT} PATH_SUFFIXES release Release debug Debug build Build)
+find_path(IOH_HPP "ioh.hpp" PATHS ${IOH_ROOT}/include/)
+# find_library(IOH_LIBRARY "IOH" PATHS ${IOH_ROOT} PATH_SUFFIXES release Release debug Debug build Build)
 
-if(EXISTS ${IOH_PROBLEM_H} AND EXISTS ${IOH_LIBRARY})
+if(EXISTS ${IOH_HPP}) # AND EXISTS ${IOH_LIBRARY})
     message(STATUS "Found IOH in ${IOH_ROOT}")
-    include_directories(${IOH_ROOT}/build/Cpp/src/)
-    link_directories(${IOH_ROOT}/build/Cpp/bin/)
-
-    # Workaround IOH's poorly designed headers inclusion scheme.
-    SET(PROBLEMS_BBOB_DIR "src/Problems/BBOB")
-    SET(PROBLEMS_BBOB_COMMON_DIR "src/Problems/BBOB/bbob_common_used_functions")
-    SET(PROBLEMS_COMMON_DIR "src/Problems/common_used_functions")
-    SET(PROBLEMS_PBO_DIR "src/Problems/PBO")
-    SET(PROBLEMS_WMODEL_DIR "src/Problems/WModel")
-    SET(PROBLEMS_PYTHON_DIR "src/Problems/Python")
-    SET(SUITES_DIR "src/Suites")
-    SET(TEMPLATE_DIR "src/Template")
-    SET(TEMPLATE_EXPERIMENTS_DIR "src/Template/Experiments")
-    SET(TEMPLATE_LOGGERS_DIR "src/Template/Loggers")
-    SET(IOHEXPERIMENTER_DIR
-      "${IOH_ROOT}/${PROBLEMS_COMMON_DIR}"
-      "${IOH_ROOT}/${PROBLEMS_BBOB_DIR}"
-      "${IOH_ROOT}/${PROBLEMS_BBOB_COMMON_DIR}"
-      "${IOH_ROOT}/${PROBLEMS_PBO_DIR}"
-      "${IOH_ROOT}/${PROBLEMS_WMODEL_DIR}"
-      "${IOH_ROOT}/${PROBLEMS_PYTHON_DIR}"
-      "${IOH_ROOT}/${SUITES_DIR}"
-      "${IOH_ROOT}/${TEMPLATE_DIR}"
-      "${IOH_ROOT}/${TEMPLATE_EXPERIMENTS_DIR}"
-      "${IOH_ROOT}/${TEMPLATE_LOGGERS_DIR}"
-    )
-    include_directories(${IOHEXPERIMENTER_DIR})
+    include_directories(${IOH_ROOT}/include/)
+    include_directories(${IOH_ROOT}/external/fmt/include/)
+    include_directories(${IOH_ROOT}/external/clutchlog/)
+    link_directories(${IOH_ROOT}/release/external/fmt/)
 
 else()
-    if(NOT EXISTS ${IOH_PROBLEM_H})
-        message(FATAL_ERROR "Could not find `IOHprofiler_problem.h` in: ${IOH_ROOT}/src/Template/ (did you forget to compile it?)")
+    if(NOT EXISTS ${IOH_HPP})
+        message(FATAL_ERROR "Could not find `ioh.hpp` in: ${IOH_ROOT}/include/")
     endif()
-    if(NOT EXISTS ${IOH_LIBRARIES})
-        message(FATAL_ERROR "Could not find `libIOH` in: ${IOH_ROOT}/[release|debug|build] (did you forget to compile it?)")
-    endif()
+    # if(NOT EXISTS ${IOH_LIBRARIES})
+    #     message(FATAL_ERROR "Could not find `libIOH` in: ${IOH_ROOT}/[release|debug|build] (did you forget to compile it?)")
+    # endif()
 endif()
 
 
@@ -93,5 +70,6 @@ endif()
 ######################################################################################
 
 add_executable(fastga fastga.cpp)
-target_link_libraries(fastga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
+# target_link_libraries(fastga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
+target_link_libraries(fastga ${PARADISEO_LIBRARIES} stdc++fs fmt)
 

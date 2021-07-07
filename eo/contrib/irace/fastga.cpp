@@ -2,16 +2,19 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <memory>
+
 #include <eo>
 #include <ga.h>
 #include <utils/checkpointing>
 #include <eoInt.h>
 #include <problems/eval/eoEvalIOH.h>
 
-#include <IOHprofiler_ecdf_logger.h>
-#include <IOHprofiler_csv_logger.h>
-#include <IOHprofiler_observer_combine.h>
-#include <f_w_model_one_max.hpp>
+#include <ioh.hpp>
+
+/*****************************************************************************
+ * ParadisEO algorithmic grammar definition.
+ *****************************************************************************/
 
 // using Particle = eoRealParticle<eoMaximizingFitness>;
 using Ints = eoInt<eoMaximizingFitnessT<int>, size_t>;
@@ -109,6 +112,10 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
     return foundry;
 }
+
+/*****************************************************************************
+ * irace helper functions.
+ *****************************************************************************/
 
 Bits::Fitness fake_func(const Bits&) { return 0; }
 
@@ -210,12 +217,16 @@ std::ostream& operator<<(std::ostream& os, const Problem& pb)
     return os;
 }
 
+/*****************************************************************************
+ * Command line interface.
+ *****************************************************************************/
+
 int main(int argc, char* argv[])
 {
     /***** Global parameters. *****/
     enum { NO_ERROR = 0, ERROR_USAGE = 100 };
 
-    std::map<size_t, Problem> problem_config_mapping {
+    std::map<size_t, Problem> benchmark {
        /* ┌ problem index in the map
         * │    ┌ problem ID in IOH experimenter
         * │    │     ┌ dummy
@@ -249,16 +260,22 @@ int main(int argc, char* argv[])
 
     eoParser parser(argc, argv, "FastGA interface for iRace");
 
+    /***** Problem parameters *****/
     auto problem_p = parser.getORcreateParam<size_t>(0,
             "problem", "Problem ID",
             'p', "Problem", /*required=*/true);
     const size_t problem = problem_p.value();
-    assert(0 <= problem and problem < problem_config_mapping.size());
+    assert(0 <= problem and problem < benchmark.size());
 
     // const size_t dimension = parser.getORcreateParam<size_t>(1000,
     //         "dimension", "Dimension size",
     //         'd', "Problem").value();
-    const size_t dimension = problem_config_mapping[problem].dimension;
+    const size_t dimension = benchmark[problem].dimension;
+
+    auto instance_p = parser.getORcreateParam<size_t>(0,
+            "instance", "Instance ID",
+            'i', "Instance", /*required=*/false);
+    const size_t instance = instance_p.value();
 
     const size_t max_evals = parser.getORcreateParam<size_t>(5 * dimension,
             "max-evals", "Maximum number of evaluations",
@@ -268,6 +285,7 @@ int main(int argc, char* argv[])
             "buckets", "Number of buckets for discretizing the ECDF",
             'b', "Performance estimation").value();
 
+    /***** Generic options *****/
     uint32_t seed =
         parser.getORcreateParam<uint32_t>(0,
             "seed", "Random number seed (0 = epoch)",
@@ -280,25 +298,31 @@ int main(int argc, char* argv[])
 
     bool full_log =
         parser.getORcreateParam<bool>(0,
-            "full-log", "Log the full search in CSV files (using the IOH profiler format)",
+            "full-log", "Log the full search in CSV files"/* (using the IOH profiler format)"*/,
             'F').value();
 
     bool output_mat =
         parser.getORcreateParam<bool>(0,
-            "output-mat", "Output the aggregated attainment matrix instead of its scalar sum.",
+            "output-mat", "Output the aggregated attainment matrix instead of its scalar sum (fancy colormap on stderr, parsable CSV on stdout).",
             'A').value();
 
-
+    /***** populations sizes *****/
     auto pop_size_p = parser.getORcreateParam<size_t>(5,
             "pop-size", "Population size",
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
 
-    auto instance_p = parser.getORcreateParam<size_t>(0,
-            "instance", "Instance ID",
-            'i', "Instance", /*required=*/false);
-    const size_t instance = instance_p.value();
+    auto offspring_size_p = parser.getORcreateParam<size_t>(0,
+            "offspring-size", "Offsprings size (0 = same size than the parents pop, see --pop-size)",
+            'O', "Operator Choice", /*required=*/false); // Single alternative, not required.
+    const size_t offspring_size = offspring_size_p.value();
 
+    const size_t generations = static_cast<size_t>(std::floor(
+                static_cast<double>(max_evals) / static_cast<double>(pop_size)));
+    // const size_t generations = std::numeric_limits<size_t>::max();
+    eo::log << eo::debug << "Number of generations: " << generations << std::endl;
+
+    /***** operators / parameters *****/
     auto continuator_p = parser.getORcreateParam<size_t>(0,
             "continuator", "Stopping criterion",
             'o', "Operator Choice", /*required=*/false); // Single alternative, not required.
@@ -343,12 +367,6 @@ int main(int argc, char* argv[])
             "replacement", "",
             'r', "Operator Choice", /*required=*/true);
     const size_t replacement = replacement_p.value();
-
-    auto offspring_size_p = parser.getORcreateParam<size_t>(0,
-            "offspring-size", "Offsprings size (0 = same size than the parents pop, see --pop-size)",
-            'O', "Operator Choice", /*required=*/false); // Single alternative, not required.
-    const size_t offspring_size = offspring_size_p.value();
-
 
     // Help + Verbose routines
     make_verbose(parser);
@@ -410,28 +428,19 @@ int main(int argc, char* argv[])
         exit(NO_ERROR);
     }
 
-    const size_t generations = static_cast<size_t>(std::floor(
-                static_cast<double>(max_evals) / static_cast<double>(pop_size)));
-    // const size_t generations = std::numeric_limits<size_t>::max();
-    eo::log << eo::debug << "Number of generations: " << generations << std::endl;
+    /*****************************************************************************
+     * IOH stuff.
+     *****************************************************************************/
 
     /***** IOH logger *****/
+    auto max_target = benchmark[problem].max_target;
+    ioh::logger::eah::Log10Scale<double> target_range(0, max_target, buckets);
+    ioh::logger::eah::Log10Scale<size_t> budget_range(0, max_evals, buckets);
+    ioh::logger::EAH eah_logger(target_range, budget_range);
 
+    ioh::logger::Combine loggers(eah_logger);
 
-    auto max_target_para = problem_config_mapping[problem].max_target;
-    IOHprofiler_RangeLinear<size_t> target_range(0, max_target_para, buckets);
-    IOHprofiler_RangeLinear<size_t> budget_range(0, max_evals, buckets);
-    IOHprofiler_ecdf_logger<int, size_t, size_t> ecdf_logger(
-            target_range, budget_range,
-            /*use_known_optimum*/false);
-
-    // ecdf_logger.set_complete_flag(true);
-    // ecdf_logger.set_interval(0);
-    ecdf_logger.activate_logger();
-
-    IOHprofiler_observer_combine<int> loggers(ecdf_logger);
-
-    std::shared_ptr<IOHprofiler_csv_logger<int>> csv_logger;
+    std::shared_ptr<ioh::logger::FlatFile> csv_logger = nullptr;
     if(full_log) {
         // Build up an algorithm name from main parameters.
         std::ostringstream name;
@@ -453,57 +462,54 @@ int main(int argc, char* argv[])
         // Build up a problem description.
         std::ostringstream desc;
         desc << "pb=" << problem << "_";
-        desc << problem_config_mapping[problem]; // Use the `operator<<` above.
+        desc << benchmark[problem]; // Use the `operator<<` above.
         std::clog << desc.str() << std::endl;
 
-        std::string dir(name.str());
-        std::filesystem::path d = name.str();
-        std::filesystem::create_directory(d);
+        std::filesystem::path folder = desc.str();
+        std::filesystem::create_directories(folder);
 
-        std::string folder(desc.str());
-        std::filesystem::path f = desc.str();
-
-        std::filesystem::create_directory(d);
-        std::filesystem::create_directory(d/f);
-
-        csv_logger = std::make_shared<IOHprofiler_csv_logger<int>>(dir, folder, d, f);
-        loggers.add(*csv_logger);
+        ioh::trigger::OnImprovement on_improvement;
+        ioh::watch::Evaluations evaluations;
+        ioh::watch::TransformedYBest transformed_y_best;
+        std::vector<std::reference_wrapper<ioh::logger::Trigger >> t = {std::ref(on_improvement)};
+        std::vector<std::reference_wrapper<ioh::logger::Property>> w = {std::ref(evaluations),std::ref(transformed_y_best)};
+        csv_logger = std::make_shared<ioh::logger::FlatFile>(
+            // {std::ref(on_improvement)},
+            // {std::ref(evaluations),std::ref(transformed_y_best)},
+            t, w,
+            name.str(),
+            folder
+        );
+        loggers.append(*csv_logger);
     }
 
     /***** IOH problem *****/
-    double w_model_suite_dummy_para   = problem_config_mapping[problem].dummy;
-    int w_model_suite_epitasis_para   = problem_config_mapping[problem].epistasis;
-    int w_model_suite_neutrality_para = problem_config_mapping[problem].neutrality;
-    int w_model_suite_ruggedness_para = problem_config_mapping[problem].ruggedness;
+    double w_dummy   = benchmark[problem].dummy;
+    int w_epitasis   = benchmark[problem].epistasis;
+    int w_neutrality = benchmark[problem].neutrality;
+    int w_ruggedness = benchmark[problem].ruggedness;
 
-    W_Model_OneMax w_model_om;
-    std::string problem_name = "OneMax";
-    problem_name = problem_name
-                    + "_D" + std::to_string((int)(w_model_suite_dummy_para * dimension))
-                    + "_E" + std::to_string(w_model_suite_epitasis_para)
-                    + "_N" + std::to_string(w_model_suite_neutrality_para)
-                    + "_R" + std::to_string(w_model_suite_ruggedness_para);
+    // std::string problem_name = "OneMax";
+    // problem_name = problem_name
+    //                 + "_D" + std::to_string((int)(w_dummy * dimension))
+    //                 + "_E" + std::to_string(w_epitasis)
+    //                 + "_N" + std::to_string(w_neutrality)
+    //                 + "_R" + std::to_string(w_ruggedness);
 
-
-    /// This must be called to configure the w-model to be tested.
-    w_model_om.set_w_setting(w_model_suite_dummy_para,w_model_suite_epitasis_para,
-                                    w_model_suite_neutrality_para,w_model_suite_ruggedness_para);
-
-    /// Set problem_name based on the configuration.
-    w_model_om.IOHprofiler_set_problem_name(problem_name);
-
-    /// Set problem_id as 1
-    w_model_om.IOHprofiler_set_problem_id(problem); // FIXME check what that means
-    // w_model_om.IOHprofiler_set_instance_id(instance); // FIXME changing the instance seems to change the target upper bound.
-
-    /// Set dimension.
-    w_model_om.IOHprofiler_set_number_of_variables(dimension);
+    ioh::problem::wmodel::WModelOneMax w_model_om(
+        instance,
+        dimension, 
+        w_dummy,
+        w_epitasis,
+        w_neutrality,
+        w_ruggedness);
 
     /***** Bindings *****/
-    ecdf_logger.track_problem(w_model_om);
-    if(full_log) {
-        csv_logger->track_problem(w_model_om);
-    }
+    w_model_om.attach_logger(loggers);
+
+    /*****************************************************************************
+     * Binding everything together.
+     *****************************************************************************/
 
     eoEvalIOHproblem<Bits> onemax_pb(w_model_om, loggers);
 
@@ -545,40 +551,45 @@ int main(int argc, char* argv[])
     // // Actually instanciate and run the algorithm.
     // eval_foundry(encoded_algo);
 
+    /*****************************************************************************
+     * Run and output results.
+     *****************************************************************************/
+
     eoPop<Bits> pop;
     pop.append(pop_size, onemax_init);
     onemax_eval(pop,pop);
     foundry(pop); // Actually run the selected algorithm.
 
     /***** IOH perf stats *****/
-    IOHprofiler_ecdf_sum ecdf_sum;
-    // iRace expects minimization
-    long perf = ecdf_sum(ecdf_logger.data());
+    double perf = ioh::logger::eah::stat::under_curve::volume(eah_logger);
 
-    // assert(0 < perf and perf <= buckets*buckets);
-    if(perf <= 0 or buckets*buckets < perf) {
-        std::cerr << "WARNING: illogical performance: " << perf
-                  << ", check the bounds or the algorithm." << std::endl;
+    if(perf == 0 or perf > max_target * max_evals * 1.0) {
+        std::cerr << "WARNING: illogical performance? " << perf
+                  << " Check the bounds or the algorithm." << std::endl;
     }
 
     // std::clog << "After " << eval_count.getValue() << " / " << max_evals << " evaluations" << std::endl;
 
     if(output_mat) {
+        std::vector<std::vector<double>> mat = ioh::logger::eah::stat::distribution(eah_logger);
 
-        IOHprofiler_ecdf_aggregate agg;
-        IOHprofiler_ecdf_aggregate::Mat mat = agg(ecdf_logger.data());
-        std::clog << "Attainment matrix sum: " << std::endl;
+        // Fancy color map on clog.
+        std::clog << ioh::logger::eah::colormap(mat) << std::endl;
+
+        // Parsable CSV on cout.
+        std::clog << "Attainment matrix distribution: " << std::endl;
         assert(mat.size() > 0);
         assert(mat[0].size() > 1);
-        for(int i = mat.size()-1; i >= 0; --i) {
+        for(size_t i = mat.size()-1; i >= 0; --i) {
             std::cout << mat[i][0];
-            for(int j = 1; j < mat[i].size(); ++j) {
+            for(size_t j = 1; j < mat[i].size(); ++j) {
                 std::cout << "," << mat[i][j];
             }
             std::cout << std::endl;
         }
 
     } else {
+        // iRace expects minimization
         std::cout << -1 * perf << std::endl;
     }
 }
