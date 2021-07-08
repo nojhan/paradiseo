@@ -1,0 +1,63 @@
+Bootstrap: library
+From: ubuntu:20.04
+
+%post
+
+    # Dependencies
+    apt -y install software-properties-common
+    add-apt-repository universe
+    apt -y update
+    apt -y dist-upgrade
+    apt -y install git clang-9 cmake make libeigen3-dev
+    apt clean
+    update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-9 90
+    update-alternatives --set c++ /usr/bin/clang++-9
+
+    # Temporary directory where we are going to build everything.
+    tmpdir=$(mktemp -d)
+    mkdir -p ${tmpdir}/fastga/
+
+    # Build IOH
+    cd ${tmpdir}/fastga/
+    git clone --branch feat+EAF --single-branch --recurse-submodules https://github.com/jdreo/IOHexperimenter.git
+    cd IOHexperimenter
+    mkdir -p release
+    cd release
+    cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTS=OFF -D BUILD_EXAMPLE=OFF -D BUILD_GMOCK=OFF ..
+    make
+
+    # Build Paradiseo
+    cd ${tmpdir}/fastga/
+    git clone --branch feat+num_foundry --single-branch https://github.com/jdreo/paradiseo.git
+    cd paradiseo
+    touch LICENSE
+    mkdir -p release
+    cd release
+    cmake -D CMAKE_BUILD_TYPE=Release -EDO=ON -EDO_USE_LIB=Eigen3 ..
+    make
+
+    # Build FastGA
+    cd ${tmpdir}/fastga/paradiseo/eo/contrib/irace/
+    mkdir -p release
+    cd release
+    cmake -D CMAKE_BUILD_TYPE=Release -D IOH_ROOT=${tmpdir}/fastga/IOHexperimenter/ -D PARADISEO_ROOT=${tmpdir}/fastga/paradiseo/ -D PARADISEO_BUILD=${tmpdir}/fastga/paradiseo/release/ ..
+    make
+
+    # Install FastGA
+    cp fastga /usr/local/bin/
+
+    # Clean-up
+    rm -rf ${tmpdir}
+    apt -y purge software-properties-common git clang-9 cmake make libeigen3-dev
+    apt -y --purge autoremove
+    apt -y autoclean
+    apt clean
+
+%environment
+
+%runscript
+    /usr/local/bin/fastga $*
+    
+%labels
+    Author Quentin Renau
+    Author Johann Dreo
