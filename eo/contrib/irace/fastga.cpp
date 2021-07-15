@@ -519,8 +519,8 @@ int main(int argc, char* argv[])
         ioh::trigger::OnImprovement on_improvement;
         ioh::watch::Evaluations evaluations;
         ioh::watch::TransformedYBest transformed_y_best;
-        std::vector<std::reference_wrapper<ioh::logger::Trigger >> t = {std::ref(on_improvement)};
-        std::vector<std::reference_wrapper<ioh::logger::Property>> w = {std::ref(evaluations),std::ref(transformed_y_best)};
+        std::vector<std::reference_wrapper<ioh::logger::Trigger >> t = {on_improvement};
+        std::vector<std::reference_wrapper<ioh::logger::Property>> w = {evaluations,transformed_y_best};
         csv_logger = std::make_shared<ioh::logger::FlatFile>(
             // {std::ref(on_improvement)},
             // {std::ref(evaluations),std::ref(transformed_y_best)},

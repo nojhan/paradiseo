@@ -71,5 +71,5 @@ endif()
 
 add_executable(fastga fastga.cpp)
 # target_link_libraries(fastga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
-target_link_libraries(fastga ${PARADISEO_LIBRARIES} stdc++fs fmt)
+target_link_libraries(fastga ${PARADISEO_LIBRARIES} fmt)
 
