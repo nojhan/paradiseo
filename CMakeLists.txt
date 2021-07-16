@@ -51,16 +51,16 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Target.cmake)
 ######################################################################################
 
 ## Paths to sources of modules
-set(  EO_SRC_DIR "${CMAKE_SOURCE_DIR}/eo"   CACHE INTERNAL "ParadisEO-EO   source directory" FORCE)
-set( EDO_SRC_DIR "${CMAKE_SOURCE_DIR}/edo"  CACHE INTERNAL "ParadisEO-EDO  source directory" FORCE)
-set(  MO_SRC_DIR "${CMAKE_SOURCE_DIR}/mo"   CACHE INTERNAL "ParadisEO-MO   source directory" FORCE)
-set(MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/moeo" CACHE INTERNAL "ParadisEO-MOEO source directory" FORCE)
-set( SMP_SRC_DIR "${CMAKE_SOURCE_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP  source directory" FORCE)
-set( MPI_SRC_DIR "${CMAKE_SOURCE_DIR}/eo/src/mpi"  CACHE INTERNAL "ParadisEO-MPI source directory" FORCE)
+set(  EO_SRC_DIR "${PROJECT_SOURCE_DIR}/eo"   CACHE INTERNAL "ParadisEO-EO   source directory" FORCE)
+set( EDO_SRC_DIR "${PROJECT_SOURCE_DIR}/edo"  CACHE INTERNAL "ParadisEO-EDO  source directory" FORCE)
+set(  MO_SRC_DIR "${PROJECT_SOURCE_DIR}/mo"   CACHE INTERNAL "ParadisEO-MO   source directory" FORCE)
+set(MOEO_SRC_DIR "${PROJECT_SOURCE_DIR}/moeo" CACHE INTERNAL "ParadisEO-MOEO source directory" FORCE)
+set( SMP_SRC_DIR "${PROJECT_SOURCE_DIR}/smp"  CACHE INTERNAL "ParadisEO-SMP  source directory" FORCE)
+set( MPI_SRC_DIR "${PROJECT_SOURCE_DIR}/eo/src/mpi"  CACHE INTERNAL "ParadisEO-MPI source directory" FORCE)
 
-set(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dependant source directory" FORCE)
+set(PROBLEMS_SRC_DIR "${PROJECT_SOURCE_DIR}/problems" CACHE INTERNAL "Problems dependant source directory" FORCE)
 
-set(CMAKE_BASE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
+set(CMAKE_BASE_SOURCE_DIR ${PROJECT_SOURCE_DIR})
 
 # All libraries are built in <build_dir>/lib/
 set(  EO_BIN_DIR "${CMAKE_BINARY_DIR}" CACHE INTERNAL "ParadisEO-EO   binary directory" FORCE)
