@@ -268,6 +268,26 @@ std::ostream& operator<<(std::ostream& os, const Problem& pb)
 }
 
 /*****************************************************************************
+ * IOH problem adaptation.
+ *****************************************************************************/
+
+class WModelFlat : public ioh::problem::wmodel::WModelOneMax
+{
+    public:
+        WModelFlat(const int instance, const int n_variables,
+                   const double dummy_para, const int epistasis_para, const int neutrality_para,
+                   const int ruggedness_para)
+        : WModelOneMax(instance, n_variables, dummy_para, epistasis_para, neutrality_para, ruggedness_para)
+        { }
+
+    protected:
+        double transform_objectives(const double y) override
+        { // Disable objective function shift & scaling.
+            return y;
+        }
+};
+
+/*****************************************************************************
  * Command line interface.
  *****************************************************************************/
 
@@ -562,7 +582,8 @@ int main(int argc, char* argv[])
     //                 + "_N" + std::to_string(w_neutrality)
     //                 + "_R" + std::to_string(w_ruggedness);
 
-    ioh::problem::wmodel::WModelOneMax w_model_om(
+    // ioh::problem::wmodel::WModelOneMax w_model_om(
+    WModelFlat w_model_om(
         instance,
         dimension, 
         w_dummy,
