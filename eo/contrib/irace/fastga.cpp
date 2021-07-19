@@ -199,12 +199,17 @@ void print_irace(const eoParam& param, const eoOperatorFoundry<ITF>& op_foundry,
 {
     print_irace_oper<ITF>(param, op_foundry, out);
 }
+
 template<class ITF>
 void print_irace(const eoParam& param, const eoParameterFoundry<ITF>& op_foundry, std::ostream& out = std::cout)
 {
     print_irace_param/*<ITF>*/(param, op_foundry, out);
 }
 
+void print_irace(const eoParam& param, const size_t min, const size_t max, std::ostream& out = std::cout)
+{
+    print_irace_ranged(param, min, max, "i", out);
+}
 
 void print_operator_typed(const eoFunctorBase& op, std::ostream& out)
 {
@@ -228,10 +233,16 @@ void print_operators(const eoParam& param, eoOperatorFoundry<ITF>& op_foundry, s
     }
 }
 
+template<class T>
+void print_operators(const eoParam& param, T min, T max, std::ostream& out = std::cout, std::string indent="  ")
+{
+    out << indent << "[" << min << "," << max << "] " << param.longName() << "." << std::endl;
+}
+
 template<class ITF>
 void print_operators(const eoParam& param, eoParameterFoundry<ITF>& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
 {
-    out << indent << "[" << op_foundry.min() << "," << op_foundry.max() << "] " << param.longName() << "." << std::endl;
+    print_operators(param, op_foundry.min(), op_foundry.max(), out, indent);
 }
 
 // Problem configuration.
@@ -350,6 +361,7 @@ int main(int argc, char* argv[])
             "pop-size", "Population size",
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
+    const size_t pop_size_max = 200;
 
     auto offspring_size_p = parser.getORcreateParam<size_t>(0,
             "offspring-size", "Offsprings size (0 = same size than the parents pop, see --pop-size)",
@@ -432,8 +444,13 @@ int main(int argc, char* argv[])
         print_operators(           mutation_p, fake_foundry.mutations           , std::clog);
         print_operators(        replacement_p, fake_foundry.replacements        , std::clog);
         print_operators(     offspring_size_p, fake_foundry.offspring_sizes     , std::clog);
+        print_operators(           pop_size_p, (size_t)1, pop_size_max          , std::clog);
+        std::clog << std::endl;
 
+        // If we were to make a DoE sampling numeric parameters,
+        // we would use that many samples:
         size_t fake_sample_size = 10;
+        std::clog << "With " << fake_sample_size << " samples for numeric parameters..." << std::endl;
         size_t n =
               fake_sample_size //crossover_rates
             * fake_foundry.crossover_selectors.size()
@@ -445,8 +462,8 @@ int main(int argc, char* argv[])
             * fake_foundry.replacements.size()
             * fake_foundry.continuators.size()
             * fake_sample_size //offspring_sizes
+            * fake_sample_size //pop_size
             ;
-        std::clog << std::endl;
         std::clog << "~" << n << " possible algorithms configurations." << std::endl;
 
         std::clog << "Ranges of configurable parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
@@ -463,6 +480,7 @@ int main(int argc, char* argv[])
         print_irace(           mutation_p, fake_foundry.mutations           , std::cout);
         print_irace(        replacement_p, fake_foundry.replacements        , std::cout);
         print_irace(     offspring_size_p, fake_foundry.offspring_sizes     , std::cout);
+        print_irace(           pop_size_p, 1, pop_size_max                  , std::cout);
 
         // std::ofstream irace_param("fastga.params");
         // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
