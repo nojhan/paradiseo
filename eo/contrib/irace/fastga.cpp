@@ -24,13 +24,13 @@ using Bits = eoBit<eoMaximizingFitnessT<int>, int>;
 eoAlgoFoundryFastGA<Bits>& make_foundry(
         eoFunctorStore& store,
         eoInit<Bits>& init,
-        eoEvalFunc<Bits>& eval_onemax,
+        eoEvalFunc<Bits>& eval,
         const size_t max_evals,
         const size_t generations
     )
 {
     // FIXME using max_restarts>1 does not allow to honor max evals.
-    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals, /*max_restarts=*/1);
+    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval, max_evals, /*max_restarts=*/1);
 
     /***** Continuators ****/
     foundry.continuators.add< eoGenContinue<Bits> >(generations);
@@ -348,7 +348,7 @@ int main(int argc, char* argv[])
     const size_t instance = instance_p.value();
 
     const size_t max_evals = parser.getORcreateParam<size_t>(5 * dimension,
-            "max-evals", "Maximum number of evaluations",
+            "max-evals", "Maximum number of evaluations (default: 5*dim, else the given value)",
             'e', "Stopping criterion").value();
 
     const size_t buckets = parser.getORcreateParam<size_t>(100,
@@ -388,10 +388,12 @@ int main(int argc, char* argv[])
             'O', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t offspring_size = offspring_size_p.value();
 
-    const size_t generations = static_cast<size_t>(std::floor(
+    size_t generations = static_cast<size_t>(std::floor(
                 static_cast<double>(max_evals) / static_cast<double>(pop_size)));
     // const size_t generations = std::numeric_limits<size_t>::max();
-    eo::log << eo::debug << "Number of generations: " << generations << std::endl;
+    if(generations < 1) {
+        generations = 1;
+    }
 
     /***** metric parameters *****/
     auto crossover_rate_p = parser.getORcreateParam<double>(0.5,
@@ -508,6 +510,10 @@ int main(int argc, char* argv[])
         exit(NO_ERROR);
     }
 
+    eo::log << eo::debug << "Maximum number of evaluations: " << max_evals << std::endl;
+    eo::log << eo::debug << "Number of generations: " << generations << std::endl;
+
+
     /*****************************************************************************
      * IOH stuff.
      *****************************************************************************/
@@ -601,7 +607,8 @@ int main(int argc, char* argv[])
     eoEvalIOHproblem<Bits> onemax_pb(w_model_om, loggers);
 
     // eoEvalPrint<Bits> eval_print(onemax_pb, std::clog, "\n");
-    eoEvalFuncCounter<Bits> eval_count(onemax_pb);
+    // eoEvalFuncCounter<Bits> eval_count(onemax_pb);
+    eoEvalCounterThrowException<Bits> eval_count(onemax_pb, max_evals);
 
     eoPopLoopEval<Bits> onemax_eval(eval_count);
 
@@ -609,7 +616,7 @@ int main(int argc, char* argv[])
 
     eoBooleanGenerator<int> bgen;
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, bgen);
-    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals - pop_size, generations);
+    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals, generations);
 
     Ints encoded_algo(foundry.size());
 
@@ -644,8 +651,13 @@ int main(int argc, char* argv[])
 
     eoPop<Bits> pop;
     pop.append(pop_size, onemax_init);
-    onemax_eval(pop,pop);
-    foundry(pop); // Actually run the selected algorithm.
+    try {
+        onemax_eval(pop,pop);
+        foundry(pop); // Actually run the selected algorithm.
+        
+    } catch(eoMaxEvalException e) {
+        eo::log << eo::debug << "Reached maximum evaluations: " << eval_count.getValue() << " / " << max_evals << std::endl;
+    }
 
     /***** IOH perf stats *****/
     double perf = ioh::logger::eah::stat::under_curve::volume(eah_logger);
