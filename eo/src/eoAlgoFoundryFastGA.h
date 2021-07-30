@@ -85,8 +85,8 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
         eoAlgoFoundryFastGA(
                 eoInit<EOT> & init,
                 eoEvalFunc<EOT>& eval,
-                size_t max_evals = 10000,
-                size_t max_restarts = std::numeric_limits<size_t>::max()
+                const size_t max_evals = 10000,
+                const size_t max_restarts = std::numeric_limits<size_t>::max()
             ) :
             eoAlgoFoundry<EOT>(10),
 
