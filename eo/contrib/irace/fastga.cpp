@@ -26,14 +26,20 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
         eoInit<Bits>& init,
         eoEvalFunc<Bits>& eval,
         const size_t max_evals,
-        const size_t generations
+        const size_t generations,
+        const double optimum
     )
 {
     // FIXME using max_restarts>1 does not allow to honor max evals.
     auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval, max_evals, /*max_restarts=*/1);
 
     /***** Continuators ****/
-    foundry.continuators.add< eoGenContinue<Bits> >(generations);
+    auto& fitcont = store.pack< eoFitContinue<Bits> >(optimum);
+    auto& gencont = store.pack< eoGenContinue<Bits> >(generations);
+    auto combconts = std::make_shared< std::vector<eoContinue<Bits>*> >();
+    combconts->push_back( &fitcont );
+    combconts->push_back( &gencont );
+    foundry.continuators.add< eoCombinedContinue<Bits> >( *combconts );
     // for(size_t i=1; i<10; i++) {
     //     foundry.continuators.add< eoGenContinue<Bits> >(i);
     // }
@@ -453,7 +459,7 @@ int main(int argc, char* argv[])
         eoEvalFuncPtr<Bits> fake_eval(fake_func);
         eoUniformGenerator<int> fake_gen(0, 1);
         eoInitFixedLength<Bits> fake_init(/*bitstring size=*/1, fake_gen);
-        auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1);
+        auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1, 0);
 
         std::clog << std::endl << "Available operators:" << std::endl;
         print_operators(        continuator_p, fake_foundry.continuators        , std::clog);
@@ -616,7 +622,7 @@ int main(int argc, char* argv[])
 
     eoBooleanGenerator<int> bgen;
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, bgen);
-    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals, generations);
+    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals, generations, max_target);
 
     Ints encoded_algo(foundry.size());
 
