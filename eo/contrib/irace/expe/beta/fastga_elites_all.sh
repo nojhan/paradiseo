@@ -1,6 +1,6 @@
 #!/bin/bash
-ldata=$1 # eg : ./csv_plan2/ don t forget to end the path with /
-file_py=$2
+ldata=$1 # eg : ./csv_planF/ don t forget to end the path with /
+file_sh=$2 #eg : ./run_elites_planF
 ldir=$(echo $(ls ${ldata}))
 fastga_dir="fastga_results_all"
 mkdir -p /scratchbeta/${USER}/${fatga_dir}
@@ -16,7 +16,7 @@ for data in ${ldir[@]} ; do
     mevals=$(echo ${data[@]} | cut -d _ -f5)
     mevals_id=$(echo ${mevals} | cut -d = -f2)
     path="/scratchbeta/${USER}/${fastga_dir}/fastga_results_plan${plan_name[@]:0:1}"
-    cmd="bash ${file_py} ${path_csv} ${mexp_id} ${mevals_id} ${path}"
+    cmd="bash ${file_sh} ${path_csv} ${mexp_id} ${mevals_id} ${path}"
     name="fastga${plan_name[@]:0:1}_${mexp}_${mevals}_$(date -Iseconds)_results_elites_all"
     ${cmd} &> "${path}/output${plan_name[@]:0:1}_fastga_${mexp}_${mevals}_$(date -Iseconds).txt"
 done
