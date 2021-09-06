@@ -1,15 +1,16 @@
 #!/bin/bash
-ldata=$1 # eg : ./csv_planF/ don t forget to end the path with /
-file_sh=$2 #eg : ./run_elites_planF
+ldata=$1 
+file_sh=$2
 ldir=$(echo $(ls ${ldata}))
 fastga_dir="fastga_results_all"
 mkdir -p /scratchbeta/${USER}/${fatga_dir}
 #mkdir -p "/home/${USER}/${fastga_dir}/fastga_results_plan1"
 mkdir -p "/scratchbeta/${USER}/${fastga_dir}/fastga_results_planF"
 mkdir -p "/scratchbeta/${USER}/${fastga_dir}/fastga_results_planA"
+mkdir -p "/scratchbeta/${USER}/${fastga_dir}/fastga_results_planO"
 
 for data in ${ldir[@]} ; do 
-    path_csv="${ldata}${data}"
+    path_csv="${ldata}/${data}"
     plan_name=$(echo ${data} | sed "s/results_irace_plan//")
     mexp=$(echo ${data[@]} | cut -d _ -f4)
     mexp_id=$(echo ${mexp} | cut -d = -f2)

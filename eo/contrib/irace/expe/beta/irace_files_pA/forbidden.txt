@@ -1,0 +1,13 @@
+## Template for specifying forbidden parameter configurations in irace.
+##
+## This filename must be specified via the --forbidden-file command-line option
+## (or forbiddenFile in scenario.txt).
+##
+## The format is one constraint per line. Each constraint is a logical
+## expression (in R syntax). If a parameter configuration
+## is generated that makes the logical expression evaluate to TRUE,
+## then the configuration is discarded.
+##
+## Examples of valid logical operators are: ==  !=  >=  <=  >  <  &  |  !  %in%
+(replacement %in% c(2,3,4,5,6,7,8,9,10)) & (offspringsize > popsize)
+(replacement %in% c(1)) & (offspringsize < popsize)

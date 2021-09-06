@@ -1,7 +1,7 @@
 #!/bin/bash
 ldata=$1
 file_py=$2
-csvdir="csv_FA"
+csvdir="csv_FAO"
 ldir=$(echo $(ls ${ldata}))
 for data in ${ldir[@]} ; do 
     path="${ldata}/${data}"
