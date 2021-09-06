@@ -1,0 +1,12 @@
+# name	switch	type	range
+# continuator	"--continuator="	c	(0)
+crossoverrate	"--crossover-rate="	r	(0,1)
+crossselector	"--cross-selector="	c	(0,1,2,3,4,5,6)
+# aftercrossselector	"--aftercross-selector="	c	(0)
+crossover	"--crossover="	c	(0,1,2,3,4,5,6,7,8,9)
+mutationrate	"--mutation-rate="	r	(0,1)
+mutselector	"--mut-selector="	c	(0,1,2,3,4,5,6)
+mutation	"--mutation="	c	(0,1,2,3,4,5,6,7,8,9,10)
+replacement "--replacement=" c (0,1,2,3,4,5,6,7,8,9,10)
+popsize         "--pop-size="           i	(1,50)
+offspringsize	"--offspring-size="	i	(1,50)
