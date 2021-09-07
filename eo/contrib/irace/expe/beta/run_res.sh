@@ -14,7 +14,7 @@ done
 
 #get validation run of each config 
 
-dir=/scratchbeta/$USER/csv_FA
+dir=/scratchbeta/$USER/csv_FAO
 listdir=$(echo $(ls ${dir}))
 echo ${listdir[@]}
 for csvdir in ${listdir[@]} ; do

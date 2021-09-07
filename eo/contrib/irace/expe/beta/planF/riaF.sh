@@ -15,7 +15,7 @@ for r in $(seq 2); do
     echo "Run $r/15";
     #date -Iseconds 
     #cmd="qsub -N irace_${runs}_${buckets}" -q beta -l select=1:ncpus=1 -l walltime=00:04:00 --${HOME}/run_irace.sh ${dir}
-    cmd="qsub -N iraceF_${mevals}_run=${r} -q beta -l select=1:ncpus=1 -l walltime=00:30:00 -- ${scratchpath}/planF/r_iF.sh ${dir} ${r} ${mexp} ${mevals} ${myhome}"
+    cmd="qsub -N iraceF_${mevals}_run=${r} -q beta -l select=1:ncpus=1 -l walltime=00:25:00 -- ${scratchpath}/planF/r_iF.sh ${dir} ${r} ${mexp} ${mevals} ${myhome}"
     #time -p bash ${HOME}/plan2/run_irace2.sh ${dir} ${r} &> ${dir}/erreur_${r}.txt
     #bash ${HOME}/test/r_i.sh
     echo $cmd
