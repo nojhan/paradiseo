@@ -114,7 +114,8 @@ public:
         {
           resize(bits.size());
           std::transform(bits.begin(), bits.end(), begin(),
-                         std::bind2nd(std::equal_to<char>(), '1'));
+                         //std::bind2nd(std::equal_to<char>(), '1'));
+                        [](char bit){return bit == '1';} );
         }
     }
 };

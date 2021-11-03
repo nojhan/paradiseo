@@ -85,23 +85,23 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
         eoAlgoFoundryFastGA(
                 eoInit<EOT> & init,
                 eoEvalFunc<EOT>& eval,
-                size_t max_evals = 10000,
-                size_t max_restarts = std::numeric_limits<size_t>::max()
+                const size_t max_evals = 10000,
+                const size_t max_restarts = std::numeric_limits<size_t>::max()
             ) :
             eoAlgoFoundry<EOT>(10),
 
-            crossover_rates(0, false),
+            crossover_rates(0, 0.0, 1.0),
             crossover_selectors(1, false),
             crossovers(2, false),
             aftercross_selectors(3, false),
 
-            mutation_rates(4, false),
+            mutation_rates(4, 0.0, 1.0),
             mutation_selectors(5, false),
             mutations(6, false),
 
             replacements(7, false),
             continuators(8, true), // Always re-instantiate continuators, because they hold a state.
-            offspring_sizes(9, false),
+            offspring_sizes(9, 0, std::numeric_limits<size_t>::max()),
             _eval(eval),
             _init(init),
             _max_evals(max_evals),
@@ -111,34 +111,31 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
     public:
 
         /* Operators containers @{ */
-        eoOperatorFoundry< double             > crossover_rates;
+        eoParameterFoundry< double             > crossover_rates;
         eoOperatorFoundry< eoSelectOne<EOT>   > crossover_selectors;
         eoOperatorFoundry< eoQuadOp<EOT>      > crossovers;
         eoOperatorFoundry< eoSelectOne<EOT>   > aftercross_selectors;
 
-        eoOperatorFoundry< double             > mutation_rates;
+        eoParameterFoundry< double             > mutation_rates;
         eoOperatorFoundry< eoSelectOne<EOT>   > mutation_selectors;
         eoOperatorFoundry< eoMonOp<EOT>       > mutations;
 
         eoOperatorFoundry< eoReplacement<EOT> > replacements;
         eoOperatorFoundry< eoContinue<EOT>    > continuators;
-        eoOperatorFoundry< size_t             > offspring_sizes;
+        eoParameterFoundry< size_t             > offspring_sizes;
         /* @} */
 
         /** instantiate and call the pre-selected algorithm.
          */
         void operator()(eoPop<EOT>& pop)
         {
-            assert(     crossover_rates.size() > 0); assert(this->at(     crossover_rates.index()) <      crossover_rates.size());
             assert( crossover_selectors.size() > 0); assert(this->at( crossover_selectors.index()) <  crossover_selectors.size());
             assert(          crossovers.size() > 0); assert(this->at(          crossovers.index()) <           crossovers.size());
             assert(aftercross_selectors.size() > 0); assert(this->at(aftercross_selectors.index()) < aftercross_selectors.size());
-            assert(      mutation_rates.size() > 0); assert(this->at(      mutation_rates.index()) <       mutation_rates.size());
             assert(  mutation_selectors.size() > 0); assert(this->at(  mutation_selectors.index()) <   mutation_selectors.size());
             assert(           mutations.size() > 0); assert(this->at(           mutations.index()) <            mutations.size());
             assert(        replacements.size() > 0); assert(this->at(        replacements.index()) <         replacements.size());
             assert(        continuators.size() > 0); assert(this->at(        continuators.index()) <         continuators.size());
-            assert(     offspring_sizes.size() > 0); assert(this->at(     offspring_sizes.index()) <      offspring_sizes.size());
 
             // Objective function calls counter
             eoEvalCounterThrowException<EOT> eval(_eval, _max_evals);
@@ -212,7 +209,6 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
 
         double& crossover_rate()
         {
-            assert(this->at(crossover_rates.index()) < crossover_rates.size());
             return crossover_rates.instantiate(this->at(crossover_rates.index()));
         }
 
@@ -224,7 +220,6 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
 
         double& mutation_rate()
         {
-            assert(this->at(mutation_rates.index()) < mutation_rates.size());
             return mutation_rates.instantiate(this->at(mutation_rates.index()));
         }
 
@@ -254,7 +249,6 @@ class eoAlgoFoundryFastGA : public eoAlgoFoundry<EOT>
 
         size_t& offspring_size()
         {
-            assert(this->at(offspring_sizes.index()) < offspring_sizes.size());
             return offspring_sizes.instantiate(this->at(offspring_sizes.index()));
         }
 

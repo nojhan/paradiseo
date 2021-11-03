@@ -34,6 +34,7 @@ Authors:
 #ifndef _EOPOP_H_
 #define _EOPOP_H_
 
+#include <random>
 #include <algorithm>
 #include <iostream>
 #include <iterator> // needed for GCC 3.2
@@ -182,8 +183,10 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
         */
         void shuffle(void)
         {
-            UF_random_generator<unsigned int> gen;
-            std::random_shuffle(begin(), end(), gen);
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            //UF_random_generator<unsigned int> gen; // FIXME refactor
+            std::shuffle(begin(), end(), gen);
         }
 
 
@@ -194,8 +197,10 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
 
             std::transform(begin(), end(), result.begin(), Ref());
 
-            UF_random_generator<unsigned int> gen;
-            std::random_shuffle(result.begin(), result.end(), gen);
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            //UF_random_generator<unsigned int> gen; // FIXME refactor
+            std::shuffle(result.begin(), result.end(), gen);
         }
 
 

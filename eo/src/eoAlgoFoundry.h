@@ -59,9 +59,28 @@ class eoOperatorFoundry : public eoForgeVector< Itf >
         size_t index() const { return _index; }
 
     protected:
+        //! Unique index in the eoAlgoFoundry.
         size_t _index;
 };
 
+template<class Itf>
+class eoParameterFoundry : public eoForgeScalar< Itf >
+{
+    static_assert(std::is_arithmetic<Itf>::value,
+        "eoParameterFoundry should only be used on arithmetic types (i.e. integer or floating point types)");
+
+    public:
+        eoParameterFoundry(size_t encoding_index, Itf min, Itf max) :
+            eoForgeScalar<Itf>(min, max),
+            _index(encoding_index)
+        { }
+
+        size_t index() const { return _index; }
+
+    protected:
+        //! Unique index in the eoAlgoFoundry.
+        size_t _index;
+};
 
 /** Interface of a Foundry: a class that instantiate an eoAlgo on-the-fly, given a choice of its operators.
  *

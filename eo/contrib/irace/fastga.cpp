@@ -24,16 +24,22 @@ using Bits = eoBit<eoMaximizingFitnessT<int>, int>;
 eoAlgoFoundryFastGA<Bits>& make_foundry(
         eoFunctorStore& store,
         eoInit<Bits>& init,
-        eoEvalFunc<Bits>& eval_onemax,
+        eoEvalFunc<Bits>& eval,
         const size_t max_evals,
-        const size_t generations
+        const size_t generations,
+        const double optimum
     )
 {
     // FIXME using max_restarts>1 does not allow to honor max evals.
-    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval_onemax, max_evals, /*max_restarts=*/1);
+    auto& foundry = store.pack< eoAlgoFoundryFastGA<Bits> >(init, eval, max_evals, /*max_restarts=*/1);
 
     /***** Continuators ****/
-    foundry.continuators.add< eoGenContinue<Bits> >(generations);
+    auto& fitcont = store.pack< eoFitContinue<Bits> >(optimum);
+    auto& gencont = store.pack< eoGenContinue<Bits> >(generations);
+    auto combconts = std::make_shared< std::vector<eoContinue<Bits>*> >();
+    combconts->push_back( &fitcont );
+    combconts->push_back( &gencont );
+    foundry.continuators.add< eoCombinedContinue<Bits> >( *combconts );
     // for(size_t i=1; i<10; i++) {
     //     foundry.continuators.add< eoGenContinue<Bits> >(i);
     // }
@@ -41,17 +47,17 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
     //     foundry.continuators.add< eoSteadyFitContinue<Bits> >(10,i);
     // }
 
-    for(double i=0.0; i<1.0; i+=0.2) {
-        foundry.crossover_rates.add<double>(i);
-        foundry.mutation_rates.add<double>(i);
-    }
+    // for(double i=0.0; i<1.0; i+=0.2) {
+    //     foundry.crossover_rates.add<double>(i);
+    //     foundry.mutation_rates.add<double>(i);
+    // }
 
     /***** Offsprings size *****/
     // for(size_t i=5; i<100; i+=10) {
     //     foundry.offspring_sizes.add<size_t>(i);
     // }
 
-    foundry.offspring_sizes.add<size_t>(0); // 0 = use parents fixed pop size.
+    foundry.offspring_sizes.setup(0,100); // 0 = use parents fixed pop size.
 
     /***** Crossovers ****/
     for(double i=0.1; i<1.0; i+=0.2) {
@@ -61,7 +67,7 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
         foundry.crossovers.add< eoNPtsBitXover<Bits> >(i); // nb of points
     }
-    foundry.crossovers.add< eo1PtBitXover<Bits> >();
+    // foundry.crossovers.add< eo1PtBitXover<Bits> >(); // Same as NPts=1
 
     /***** Mutations ****/
     double p = 1.0; // Probability of flipping each bit.
@@ -119,10 +125,8 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(
 
 Bits::Fitness fake_func(const Bits&) { return 0; }
 
-void print_irace_full(const eoParam& param, const size_t slot_size, std::string type="i", std::ostream& out = std::cout)
+void print_irace_categorical(const eoParam& param, const size_t slot_size, std::string type="c", std::ostream& out = std::cout)
 {
-    assert(type == "i" or type =="c");
-
     // If there is no choice to be made on this operator, comment it out.
     if(slot_size - 1 <= 0) {
         out << "# ";
@@ -136,41 +140,82 @@ void print_irace_full(const eoParam& param, const size_t slot_size, std::string 
         << "\t\"--" << param.longName() << "=\""
         << "\t" << type;
 
-    if(type == "i") {
-        if(slot_size -1 <= 0) {
-            out << "\t(0)";
-        } else {
-            out << "\t(0," << slot_size-1 << ")";
-        }
-        out << std::endl;
-    } else if(type == "c") {
-        out << "\t(0";
-        for(size_t i=1; i<slot_size; ++i) {
-            out << "," << i;
-        }
-        out << ")" << std::endl;
+    out << "\t(0";
+    for(size_t i=1; i<slot_size; ++i) {
+        out << "," << i;
     }
+    out << ")" << std::endl;
+}
+
+template<class T>
+void print_irace_ranged(const eoParam& param, const T min, const T max, std::string type="r", std::ostream& out = std::cout)
+{
+    // If there is no choice to be made on this operator, comment it out.
+    if(max - min <= 0) {
+        out << "# ";
+    }
+
+    // irace doesn't support "-" in names.
+    std::string irace_name = param.longName();
+    irace_name.erase(std::remove(irace_name.begin(), irace_name.end(), '-'), irace_name.end());
+
+    out << irace_name
+        << "\t\"--" << param.longName() << "=\""
+        << "\t" << type;
+
+    if(max-min <= 0) {
+        out << "\t(?)";
+    } else {
+        out << "\t(" << min << "," << max << ")";
+    }
+    out << std::endl;
+}
+
+
+template<class ITF>
+void print_irace_oper(const eoParam& param, const eoOperatorFoundry<ITF>& op_foundry, std::ostream& out = std::cout)
+{
+    print_irace_categorical(param, op_foundry.size(), "c", out);
+}
+
+// FIXME generalize to any scalar type with enable_if
+// template<class ITF>
+void print_irace_param(
+    const eoParam& param,
+    // const eoParameterFoundry<typename std::enable_if< std::is_floating_point<ITF>::value >::type>& op_foundry,
+    const eoParameterFoundry<double>& op_foundry,
+    std::ostream& out)
+{
+    print_irace_ranged(param, op_foundry.min(), op_foundry.max(), "r", out);
+}
+
+// template<class ITF>
+void print_irace_param(
+    const eoParam& param,
+    // const eoParameterFoundry<typename std::enable_if< std::is_integral<ITF>::value >::type>& op_foundry,
+    const eoParameterFoundry<size_t>& op_foundry,
+    std::ostream& out)
+{
+    print_irace_ranged(param, op_foundry.min(), op_foundry.max(), "i", out);
+}
+
+
+template<class ITF>
+void print_irace(const eoParam& param, const eoOperatorFoundry<ITF>& op_foundry, std::ostream& out = std::cout)
+{
+    print_irace_oper<ITF>(param, op_foundry, out);
 }
 
 template<class ITF>
-void print_irace_typed(const eoParam& param, const eoForgeVector<ITF>& op_foundry, std::ostream& out = std::cout)
+void print_irace(const eoParam& param, const eoParameterFoundry<ITF>& op_foundry, std::ostream& out = std::cout)
 {
-    print_irace_full(param, op_foundry.size(), "c", out);
+    print_irace_param/*<ITF>*/(param, op_foundry, out);
 }
 
-template<>
-void print_irace_typed(const eoParam& param, const eoForgeVector<double>& op_foundry, std::ostream& out)
+void print_irace(const eoParam& param, const size_t min, const size_t max, std::ostream& out = std::cout)
 {
-    print_irace_full(param, op_foundry.size(), "i", out);
+    print_irace_ranged(param, min, max, "i", out);
 }
-
-template<class OPF>
-void print_irace(const eoParam& param, const OPF& op_foundry, std::ostream& out = std::cout)
-{
-    print_irace_typed<typename OPF::Interface>(param, op_foundry, out);
-}
-
-
 
 void print_operator_typed(const eoFunctorBase& op, std::ostream& out)
 {
@@ -182,8 +227,8 @@ void print_operator_typed(const double& op, std::ostream& out)
     out << op;
 }
 
-template<class OPF>
-void print_operators(const eoParam& param, OPF& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
+template<class ITF>
+void print_operators(const eoParam& param, eoOperatorFoundry<ITF>& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
 {
     out << indent << op_foundry.size() << " " << param.longName() << ":" << std::endl;
     for(size_t i=0; i < op_foundry.size(); ++i) {
@@ -194,6 +239,17 @@ void print_operators(const eoParam& param, OPF& op_foundry, std::ostream& out = 
     }
 }
 
+template<class T>
+void print_operators(const eoParam& param, T min, T max, std::ostream& out = std::cout, std::string indent="  ")
+{
+    out << indent << "[" << min << "," << max << "] " << param.longName() << "." << std::endl;
+}
+
+template<class ITF>
+void print_operators(const eoParam& param, eoParameterFoundry<ITF>& op_foundry, std::ostream& out = std::cout, std::string indent="  ")
+{
+    print_operators(param, op_foundry.min(), op_foundry.max(), out, indent);
+}
 
 // Problem configuration.
 struct Problem {
@@ -216,6 +272,26 @@ std::ostream& operator<<(std::ostream& os, const Problem& pb)
        << "d=" << pb.dimension;
     return os;
 }
+
+/*****************************************************************************
+ * IOH problem adaptation.
+ *****************************************************************************/
+
+class WModelFlat : public ioh::problem::wmodel::WModelOneMax
+{
+    public:
+        WModelFlat(const int instance, const int n_variables,
+                   const double dummy_para, const int epistasis_para, const int neutrality_para,
+                   const int ruggedness_para)
+        : WModelOneMax(instance, n_variables, dummy_para, epistasis_para, neutrality_para, ruggedness_para)
+        { }
+
+    protected:
+        double transform_objectives(const double y) override
+        { // Disable objective function shift & scaling.
+            return y;
+        }
+};
 
 /*****************************************************************************
  * Command line interface.
@@ -278,7 +354,7 @@ int main(int argc, char* argv[])
     const size_t instance = instance_p.value();
 
     const size_t max_evals = parser.getORcreateParam<size_t>(5 * dimension,
-            "max-evals", "Maximum number of evaluations",
+            "max-evals", "Maximum number of evaluations (default: 5*dim, else the given value)",
             'e', "Stopping criterion").value();
 
     const size_t buckets = parser.getORcreateParam<size_t>(100,
@@ -311,27 +387,36 @@ int main(int argc, char* argv[])
             "pop-size", "Population size",
             'P', "Operator Choice", /*required=*/false);
     const size_t pop_size = pop_size_p.value();
+    const size_t pop_size_max = 200;
 
     auto offspring_size_p = parser.getORcreateParam<size_t>(0,
             "offspring-size", "Offsprings size (0 = same size than the parents pop, see --pop-size)",
             'O', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t offspring_size = offspring_size_p.value();
 
-    const size_t generations = static_cast<size_t>(std::floor(
+    size_t generations = static_cast<size_t>(std::floor(
                 static_cast<double>(max_evals) / static_cast<double>(pop_size)));
     // const size_t generations = std::numeric_limits<size_t>::max();
-    eo::log << eo::debug << "Number of generations: " << generations << std::endl;
+    if(generations < 1) {
+        generations = 1;
+    }
 
-    /***** operators / parameters *****/
+    /***** metric parameters *****/
+    auto crossover_rate_p = parser.getORcreateParam<double>(0.5,
+            "crossover-rate", "",
+            'C', "Operator Choice", /*required=*/true);
+    const double crossover_rate = crossover_rate_p.value();
+
+    auto mutation_rate_p = parser.getORcreateParam<double>(0,
+            "mutation-rate", "",
+            'M', "Operator Choice", /*required=*/true);
+    const double mutation_rate = mutation_rate_p.value();
+
+    /***** operators *****/
     auto continuator_p = parser.getORcreateParam<size_t>(0,
             "continuator", "Stopping criterion",
             'o', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t continuator = continuator_p.value();
-
-    auto crossover_rate_p = parser.getORcreateParam<size_t>(0,
-            "crossover-rate", "",
-            'C', "Operator Choice", /*required=*/true);
-    const size_t crossover_rate = crossover_rate_p.value();
 
     auto crossover_selector_p = parser.getORcreateParam<size_t>(0,
             "cross-selector", "How to selects candidates for cross-over",
@@ -347,11 +432,6 @@ int main(int argc, char* argv[])
             "aftercross-selector", "How to selects between the two individuals altered by cross-over which one will mutate",
             'a', "Operator Choice", /*required=*/false); // Single alternative, not required.
     const size_t aftercross_selector = aftercross_selector_p.value();
-
-    auto mutation_rate_p = parser.getORcreateParam<size_t>(0,
-            "mutation-rate", "",
-            'M', "Operator Choice", /*required=*/true);
-    const size_t mutation_rate = mutation_rate_p.value();
 
     auto mutation_selector_p = parser.getORcreateParam<size_t>(0,
             "mut-selector", "How to selects candidate for mutation",
@@ -379,7 +459,7 @@ int main(int argc, char* argv[])
         eoEvalFuncPtr<Bits> fake_eval(fake_func);
         eoUniformGenerator<int> fake_gen(0, 1);
         eoInitFixedLength<Bits> fake_init(/*bitstring size=*/1, fake_gen);
-        auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1);
+        auto fake_foundry = make_foundry(store, fake_init, fake_eval, max_evals, /*generations=*/ 1, 0);
 
         std::clog << std::endl << "Available operators:" << std::endl;
         print_operators(        continuator_p, fake_foundry.continuators        , std::clog);
@@ -392,20 +472,27 @@ int main(int argc, char* argv[])
         print_operators(           mutation_p, fake_foundry.mutations           , std::clog);
         print_operators(        replacement_p, fake_foundry.replacements        , std::clog);
         print_operators(     offspring_size_p, fake_foundry.offspring_sizes     , std::clog);
+        print_operators(           pop_size_p, (size_t)1, pop_size_max          , std::clog);
+        std::clog << std::endl;
 
+        // If we were to make a DoE sampling numeric parameters,
+        // we would use that many samples:
+        size_t fake_sample_size = 10;
+        std::clog << "With " << fake_sample_size << " samples for numeric parameters..." << std::endl;
         size_t n =
-              fake_foundry.crossover_rates.size()
+              fake_sample_size //crossover_rates
             * fake_foundry.crossover_selectors.size()
             * fake_foundry.crossovers.size()
             * fake_foundry.aftercross_selectors.size()
-            * fake_foundry.mutation_rates.size()
+            * fake_sample_size //mutation_rates
             * fake_foundry.mutation_selectors.size()
             * fake_foundry.mutations.size()
             * fake_foundry.replacements.size()
             * fake_foundry.continuators.size()
-            * fake_foundry.offspring_sizes.size();
-        std::clog << std::endl;
-        std::clog << n << " possible algorithms configurations." << std::endl;
+            * fake_sample_size //offspring_sizes
+            * fake_sample_size //pop_size
+            ;
+        std::clog << "~" << n << " possible algorithms configurations." << std::endl;
 
         std::clog << "Ranges of configurable parameters (redirect the stdout in a file to use it with iRace): " << std::endl;
 
@@ -421,12 +508,17 @@ int main(int argc, char* argv[])
         print_irace(           mutation_p, fake_foundry.mutations           , std::cout);
         print_irace(        replacement_p, fake_foundry.replacements        , std::cout);
         print_irace(     offspring_size_p, fake_foundry.offspring_sizes     , std::cout);
+        print_irace(           pop_size_p, 1, pop_size_max                  , std::cout);
 
         // std::ofstream irace_param("fastga.params");
         // irace_param << "# name\tswitch\ttype\tvalues" << std::endl;
 
         exit(NO_ERROR);
     }
+
+    eo::log << eo::debug << "Maximum number of evaluations: " << max_evals << std::endl;
+    eo::log << eo::debug << "Number of generations: " << generations << std::endl;
+
 
     /*****************************************************************************
      * IOH stuff.
@@ -445,16 +537,22 @@ int main(int argc, char* argv[])
         // Build up an algorithm name from main parameters.
         std::ostringstream name;
         name << "FastGA";
-        for(auto& p : {pop_size_p,
-                crossover_rate_p,
+        for(auto& p : {
                 crossover_selector_p,
                 crossover_p,
                 aftercross_selector_p,
-                mutation_rate_p,
                 mutation_selector_p,
                 mutation_p,
-                replacement_p,
-                offspring_size_p}) {
+                replacement_p }) {
+            name << "_" << p.shortName() << "=" << p.getValue();
+        }
+        for(auto& p : {
+                crossover_rate_p,
+                mutation_rate_p }) {
+            name << "_" << p.shortName() << "=" << p.getValue();
+        }
+        for(auto& p : {pop_size_p,
+                offspring_size_p }) {
             name << "_" << p.shortName() << "=" << p.getValue();
         }
         std::clog << name.str() << std::endl;
@@ -471,8 +569,8 @@ int main(int argc, char* argv[])
         ioh::trigger::OnImprovement on_improvement;
         ioh::watch::Evaluations evaluations;
         ioh::watch::TransformedYBest transformed_y_best;
-        std::vector<std::reference_wrapper<ioh::logger::Trigger >> t = {std::ref(on_improvement)};
-        std::vector<std::reference_wrapper<ioh::logger::Property>> w = {std::ref(evaluations),std::ref(transformed_y_best)};
+        std::vector<std::reference_wrapper<ioh::logger::Trigger >> t = {on_improvement};
+        std::vector<std::reference_wrapper<ioh::logger::Property>> w = {evaluations,transformed_y_best};
         csv_logger = std::make_shared<ioh::logger::FlatFile>(
             // {std::ref(on_improvement)},
             // {std::ref(evaluations),std::ref(transformed_y_best)},
@@ -496,7 +594,8 @@ int main(int argc, char* argv[])
     //                 + "_N" + std::to_string(w_neutrality)
     //                 + "_R" + std::to_string(w_ruggedness);
 
-    ioh::problem::wmodel::WModelOneMax w_model_om(
+    // ioh::problem::wmodel::WModelOneMax w_model_om(
+    WModelFlat w_model_om(
         instance,
         dimension, 
         w_dummy,
@@ -514,7 +613,8 @@ int main(int argc, char* argv[])
     eoEvalIOHproblem<Bits> onemax_pb(w_model_om, loggers);
 
     // eoEvalPrint<Bits> eval_print(onemax_pb, std::clog, "\n");
-    eoEvalFuncCounter<Bits> eval_count(onemax_pb);
+    // eoEvalFuncCounter<Bits> eval_count(onemax_pb);
+    eoEvalCounterThrowException<Bits> eval_count(onemax_pb, max_evals);
 
     eoPopLoopEval<Bits> onemax_eval(eval_count);
 
@@ -522,7 +622,7 @@ int main(int argc, char* argv[])
 
     eoBooleanGenerator<int> bgen;
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, bgen);
-    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals - pop_size, generations);
+    auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals, generations, max_target);
 
     Ints encoded_algo(foundry.size());
 
@@ -557,8 +657,13 @@ int main(int argc, char* argv[])
 
     eoPop<Bits> pop;
     pop.append(pop_size, onemax_init);
-    onemax_eval(pop,pop);
-    foundry(pop); // Actually run the selected algorithm.
+    try {
+        onemax_eval(pop,pop);
+        foundry(pop); // Actually run the selected algorithm.
+        
+    } catch(eoMaxEvalException e) {
+        eo::log << eo::debug << "Reached maximum evaluations: " << eval_count.getValue() << " / " << max_evals << std::endl;
+    }
 
     /***** IOH perf stats *****/
     double perf = ioh::logger::eah::stat::under_curve::volume(eah_logger);
@@ -580,7 +685,8 @@ int main(int argc, char* argv[])
         std::clog << "Attainment matrix distribution: " << std::endl;
         assert(mat.size() > 0);
         assert(mat[0].size() > 1);
-        for(size_t i = mat.size()-1; i >= 0; --i) {
+        for(size_t i = mat.size()-1; i > 0; --i) {
+            assert(mat[i].size() >= 1);
             std::cout << mat[i][0];
             for(size_t j = 1; j < mat[i].size(); ++j) {
                 std::cout << "," << mat[i][j];
