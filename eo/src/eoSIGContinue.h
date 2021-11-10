@@ -32,7 +32,7 @@
 #ifndef eoSIGContinue_h
 #define eoSIGContinue_h
 
-#include <signal.h>
+#include <csignal>
 #include "eoContinue.h"
 
 /** @addtogroup Continuators
@@ -51,6 +51,11 @@ template< class EOT>
 class eoSIGContinue: public eoContinue<EOT>
 {
 public:
+
+#ifdef __APPLE__ // FIXME there should be a way to be more portable here
+    using sighandler_t = void (*)(int);
+#endif
+
   /// Ctor : installs the signal handler
   eoSIGContinue(int sig, sighandler_t fct)
     : _sig(sig), _fct(fct)
