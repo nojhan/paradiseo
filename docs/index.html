@@ -28,8 +28,8 @@
             <p>Shortcuts:</p>
             <ul>
                 <li><a href="#Why">Why choosing <em class="logo">Paradis<span class="logo_eo">eo</span></em>?</a></li>
-                <li><a href="https://gforge.inria.fr/frs/?group_id=145">Downloads</a></li>
-                <li><a href="https://gforge.inria.fr/scm/?group_id=145">Git repository</a></li>
+                <li><a href="https://github.com/nojhan/paradiseo/releases">Downloads</a></li>
+                <li><a href="https://github.com/nojhan/paradiseo">Git repository</a></li>
                 <li><a href="https://app.element.io/#/room/#paradiseo:matrix.org">Chat with us</a></li>
             </ul>
         </div>
@@ -125,9 +125,9 @@
     <div id="Download">
     <h2><a name="Download"></a>Download</h2>
 
-    Download the <a href="https://gforge.inria.fr/frs/download.php/31733/Paradiseo-2.0.1.zip">latest stable release</a>.
+    Download the <a href="https://github.com/nojhan/paradiseo/releases">latest stable release</a>.
 
-    <p>Or clone the latest version: <code class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</code></p>
+    <p>Or clone the latest version: <code class="command">git clone https://github.com/nojhan/paradiseo.git</code></p>
     </div>
 
     <div id="Build">
@@ -147,7 +147,9 @@
     <div id="Develop">
     <h2><a name="Develop"></a>Develop</h2>
 
+    <!--
     <p>Download the <a href="https://gforge.inria.fr/frs/download.php/31755/QuickStart.zip">quick start project template</a>, edit the <code>CMakeLists.txt</code> file to indicate where to find <em class="logo">Paradis<span class="logo_eo">eo</span></em> and start developing your own solver.</p>
+    -->
 
     <p>To show you how does a <em class="logo">Paradis<span class="logo_eo">eo</span></em> code look, you will find here a minimal implementation of the popular <a href="https://en.wikipedia.org/wiki/CMA-ES">CMA-ES algorithm</a>.</p>
 
@@ -808,18 +810,32 @@
 
     <ul>
         <li>
-            <p>The core EO module is described in the following scientific article:
-            <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
-                <a href= "http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">Evolving
-                    objects: A general purpose evolutionary computation
-                    library</a>, <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
+            <p>The latest state of the whole <em class="logo">Paradis<span class="logo_eo">eo</span></em> framework is introduced in the following article (see also <a href="https://arxiv.org/abs/2105.00420">the preprint</a>):
+            <blockquote>Johann Dreo, Arnaud Liefooghe, Sébastien Verel, Marc Schoenauer, Juan J. Merelo, Alexandre Quemy, Benjamin Bouvier, and Jan Gmys,
+                <a href= "https://doi.org/10.1145/3449726.3463276">Paradiseo: from a modular framework for evolutionary computation to the automated design of metaheuristics —22 years of Paradiseo—</a>, <i>GECCO'21: Proceedings of the Genetic and Evolutionary Computation Conference Companion</i>, 1522–1530 (2021).</blockquote>
             </p>
-
-            <button class="collapsible">BiBTeX entry for citing EO…</button>
+            
+            <button class="collapsible">BiBTeX entry for citing <em class="logo">Paradis<span class="logo_eo">eo</span></em>…</button>
             <div class="details">
-                <p>If you used EO in a study, please cite it. As of today, it has been <a href="https://scholar.google.com/scholar?cites=900770489172177244&as_sdt=2005&sciodt=0,5&hl=fr">cited more than 250 times.</a></p>
+                <p>If you used <em class="logo">Paradis<span class="logo_eo">eo</span></em> in a study, please cite the publication above:</p>
                 <figure style="text-align:left;">
                     <p>
+                        <font face="monospace">
+                        @<font color="#f917f3">inproceedings</font>{<font color="#519f50">Dreo-al_2021_Paradiseo</font>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>author</b></font>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;{Dreo, Johann and Liefooghe, Arnaud and Verel, S\'{e}bastien and Schoenauer, Marc and Merelo, Juan J. and Quemy, Alexandre and Bouvier, Benjamin and Gmys, Jan},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>title</b></font>&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;{Paradiseo: From a Modular Framework for Evolutionary Computation to the Automated Design of Metaheuristics: 22 Years of Paradiseo},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>year</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;{2021},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>isbn</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;{9781450383516},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>publisher</b></font>&nbsp;=&nbsp;{Association for Computing Machinery},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>address</b></font>&nbsp;&nbsp; =&nbsp;{New York, NY, USA},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>url</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;{<a href="https://doi.org/10.1145/3449726.3463276},">https://doi.org/10.1145/3449726.3463276},</a><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>booktitle</b></font>&nbsp;=&nbsp;{Proceedings of the Genetic and Evolutionary Computation Conference Companion},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#da4939"><b>pages</b></font>&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;{1522–1530},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<font color="#6d9cbe">numpages</font>&nbsp;&nbsp;=&nbsp;{9}<br>
+                        }<br>
+                        </font>
+
+                    <!--
                     <font face="monospace">
                         @<font color="#0000ff">Article</font>{<font color="#ff00ff">Keijzer2001</font>,<br/>
                         &nbsp;&nbsp;<font color="#a52a2a">title</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Evolving Objects: A General Purpose Evolutionary Computation Library &quot;,<br/>
@@ -831,19 +847,23 @@
                         &nbsp;&nbsp;<font color="#a020f0">keywords</font>&nbsp;=&nbsp; &quot;genetic algorithms, genetic programming, evolutionary computation, metaheuristic, computational intelligence, optimization&quot;,<br/>
                         &nbsp;&nbsp;<font color="#a020f0">URL</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;<a href="http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">http://www.lri.fr/~marc/EO/EO-EA01.ps.gz</a>&quot;,<br/>
                         &nbsp;&nbsp;<font color="#ff00ff">size</font>&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;12 pages&quot;,<br/>
-                        <!-- &nbsp;&nbsp;<font color="#a020f0">abstract</font>&nbsp;=&nbsp; &quot;This paper presents the evolving objects library<br/> -->
-                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (EOlib), an object-oriented framework for evolutionary<br/> -->
-                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; computation (EC)&nbsp;that aims to provide a flexible set of<br/> -->
-                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; classes to build EC applications. EOlib design<br/> -->
-                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objective is to be able to evolve any object in which<br/> -->
-                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fitness makes sense.&quot;,<br/> -->
                         }<br/>
                         <br/>
                     </font>
+                    -->
                     </p>
                     <figcaption></figcaption>
                 </figure>
             </div>
+        </li>
+
+        <li>
+            <p>The core EO module is described in the following scientific article:
+            <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
+                <a href= "http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">Evolving
+                    objects: A general purpose evolutionary computation
+                    library</a>, <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
+            </p>
         </li>
 
         <!-- <li> -->
@@ -1132,16 +1152,17 @@ undiscovered knowledge.
     <div id="Downloads">
     <h2><a name="Downloads"></a>Downloads</h2>
 
-    <p>The current stable release is version 2.0.1: <a href="https://gforge.inria.fr/frs/download.php/31733/Paradiseo-2.0.1.ziph">ParadisEO 2.0.1</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/releases">GitHub/paradiseo/releases</a>.</p>
+    <p>The current stable release is version: <a href="https://github.com/nojhan/paradiseo/releases">Paradiseo 3.0.0-beta</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/tags">GitHub/paradiseo/releases</a>.</p>
 
-    <p> You can obtain the latest stable and beta version directly via the official Git repository:
-    <code class="command">git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git</code>.
+    <p> You can obtain the latest stable and beta version directly via the Git repository:
+    <code class="command">git clone https://github.com/jdreo/paradiseo.git</code>.
     The release are on the "master" branch.
     </p>
 
     <p>Or you can use (at your own risks) the development repositories of the developers:
         <ul>
-            <li>Johann Dreo's: <a href="https://github.com/nojhan/paradiseo">on GitHub</b>.</li>
+            <li>Johann Dreo's: <a href="https://github.com/jdreo/paradiseo">on GitHub</a>.</li>
+            <li>INRIA's: <a href="https://gitlab.inria.fr/paradiseo/paradiseo">on their Gitlab</a>.</li>
         </ul>
     </p>
     </div>
@@ -1214,7 +1235,7 @@ undiscovered knowledge.
     <h2><a name="Contribute"></a>Contribute</h2>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> development is open and contributions are welcomed.</p>
-    <p>The official bug tracker is available on the <a href="https://gforge.inria.fr/projects/paradiseo/">project page</a>. But you may be more confortable using the <a href="https://github.com/nojhan/paradiseo/issues">issue tracker of Johann Dreo's project page on GitHub</a>.</p>
+    <p>The official bug tracker is available on the <a href="https://github.com/nojhan/paradiseo/issues">project page</a>.</p>
     <p>If you have any question about contributing: subscribe to our <a href='http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users'>(low traffic) mailing-list</a>.</p>
 
     </div>
@@ -1231,7 +1252,8 @@ undiscovered knowledge.
     <ul>
         <li><a href="https://www.inria.fr">INRIA</a> (current maintainer)</li>
         <li><a href="https://www.univ-littoral.fr/">University of the Littoral Opal Coast</a> (current maintainer)</li>
-        <li><a href="https://thalesgroup.com">Thales</a> (current maintainer)</li>
+        <li><a href="https://www.pasteur.fr/">Institut Pasteur</a> (current maintainer)</li>
+        <li><a href="https://thalesgroup.com">Thales group</a></li>
         <li><a href="https://www.polytechnique.edu/">École Polytechnique</a></li>
         <li><a href="https://www.ugr.es">University of Granada</a></li>
         <li><a href="https://www.vu.nl">Vrije Universiteit Amsterdam</a></li>
