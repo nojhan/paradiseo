@@ -1,9 +1,10 @@
-Bootstrap: library
+https://github.com/drbild/json2yaml.gitBootstrap: library
 From: ubuntu:20.04
 
 %post
 
     # Dependencies
+    apt -y update
     apt -y install software-properties-common
     add-apt-repository universe
     apt -y update
