@@ -222,4 +222,52 @@ class eoFastBitMutation : public eoStandardBitMutation<EOT>
         double _beta;
 };
 
+/** Bucket mutation which assign probability for each bucket
+ *
+ * From:
+ * Carola Doerr, Johann Dréo, Alexis Robbes
+ */
+template<class EOT>
+class eoBucketBitMutation : public eoStandardBitMutation<EOT>
+{
+    public:
+        eoBucketBitMutation(std::vector<double> bucketsSizes, std::vector<double> bucketValues) :
+            _bucketsSizes(bucketsSizes),
+            _bucketValues(bucketValues)
+    
+        {
+            assert(bucketsSizes.size() != bucketValues.size());
+        }
+
+        virtual bool operator()(EOT& chrom)
+        {
+
+            this->_nb = customlaw(chrom.size(), _bucketsSizes, _bucketValues);
+            // BitFlip operator is bound to the _nb reference,
+            // thus one don't need to re-instantiate.
+            return this->_bitflip(chrom);
+        }
+
+        virtual std::string className() const {return "eoBucketBitMutation";}
+
+    protected:
+
+        double customlaw(unsigned n, std::vector<double> bucketsSizes, std::vector<double> bucketValues)
+        {
+            int targetBucketIndex = eo::rng.roulette_wheel(bucketValues);
+            int nb = 0;
+            int bucketIndex = 0;
+            while (nb < n && bucketIndex <= targetBucketIndex)
+            {
+                if (bucketIndex < targetBucketIndex) nb += int(n*bucketsSizes[bucketIndex]);
+                else nb += int(eo::rng.uniform(1, n*bucketsSizes[targetBucketIndex]));
+            }
+            if (nb > n) nb = n;
+            
+            return nb;
+        }
+
+        std::vector<double> _bucketsSizes;
+        std::vector<double> _bucketValues;
+};
 #endif // _eoStandardBitMutation_h_

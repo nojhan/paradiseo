@@ -73,3 +73,7 @@ add_executable(fastga fastga.cpp)
 # target_link_libraries(fastga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
 target_link_libraries(fastga ${PARADISEO_LIBRARIES} fmt)
 
+add_executable(onlymutga onlymutga.cpp)
+# target_link_libraries(onlymutga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
+target_link_libraries(onlymutga ${PARADISEO_LIBRARIES} fmt)
+
