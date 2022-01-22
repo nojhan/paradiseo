@@ -95,7 +95,7 @@ public:
 
       // assert(fortune <= cumulative.back());
 
-      if(result - cumulative.begin() >= _pop.size()) {
+      if(static_cast<size_t>(result - cumulative.begin()) >= _pop.size()) {
             return _pop.back();
       } else {
           return _pop[result - cumulative.begin()];
