@@ -20,15 +20,6 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(eoFunctorStore& store, eoInit<Bits>& ini
         foundry.continuators.add< eoSteadyFitContinue<Bits> >(10,i);
     }
 
-    for(double i=0.1; i<1.0; i+=0.1) {
-        foundry.crossover_rates.add<double>(i);
-        foundry.mutation_rates.add<double>(i);
-    }
-
-    for(size_t i=5; i<100; i+=10) {
-        foundry.offspring_sizes.add<size_t>(i);
-    }
-
     /***** Crossovers ****/
     for(double i=0.1; i<0.9; i+=0.1) {
         foundry.crossovers.add< eoUBitXover<Bits> >(i); // preference over 1
@@ -65,12 +56,6 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(eoFunctorStore& store, eoInit<Bits>& ini
         }
     }
 
-    /***** Variation rates *****/
-    for(double r = 0.0; r < 1.0; r+=0.1) {
-        foundry.crossover_rates.add<double>(r);
-        foundry. mutation_rates.add<double>(r);
-    }
-
     /***** Replacements ****/
     foundry.replacements.add< eoPlusReplacement<Bits> >();
     foundry.replacements.add< eoCommaReplacement<Bits> >();
@@ -100,16 +85,13 @@ int main(int /*argc*/, char** /*argv*/)
 
 
     size_t n =
-          foundry.crossover_rates.size()
-        * foundry.crossover_selectors.size()
-        * foundry.crossovers.size()
+          foundry.crossover_selectors.size()
         * foundry.aftercross_selectors.size()
-        * foundry.mutation_rates.size()
         * foundry.mutation_selectors.size()
         * foundry.mutations.size()
         * foundry.replacements.size()
         * foundry.continuators.size()
-        * foundry.offspring_sizes.size();
+        ;
 
         std::clog << n << " possible algorithms instances." << std::endl;
 
@@ -117,7 +99,7 @@ int main(int /*argc*/, char** /*argv*/)
     pop.append(5,init);
     ::apply(onemax_eval,pop);
 
-    foundry.select({0,0,0,0,0,0,0,0});
+    foundry.select({0,0,0,0,0,0/*,0,0*/});
     foundry(pop);
 
     std::cout << "Done" << std::endl;
