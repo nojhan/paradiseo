@@ -71,10 +71,10 @@ class moeoDetArchiveSelect : public eoSelect<MOEOT>
 						_dest.push_back(archive[i]);
 				}
 				else if (archive_size > max){
-					UF_random_generator<unsigned int> rndGen;
 					std::vector <int> permutation;
 					for(unsigned int i=0; i < archive_size; i++)
 						permutation.push_back(i);
+					UF_random_generator<unsigned int> rndGen(permutation.size());
 					random_shuffle(permutation.begin(), permutation.end(), rndGen);
 					for (unsigned int i=0; i<max; i++)
 						_dest.push_back(archive[permutation[i]]);

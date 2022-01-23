@@ -193,17 +193,19 @@ class eoInitPermutation: public eoInit<EOT> // FIXME inherit from eoInitWithDim
         virtual void operator()(EOT& chrom)
         {
             chrom.resize(chromSize);
-            for(unsigned idx=0;idx <chrom.size();idx++)
-                        chrom[idx]=idx+startFrom;
+            for(unsigned idx=0; idx < chrom.size(); idx++) {
+                chrom[idx] = idx+startFrom;
+            }
 
-            std::shuffle(chrom.begin(), chrom.end(),gen);
+            UF_random_generator<unsigned int> gen(chrom.size());
+            std::shuffle(chrom.begin(), chrom.end(), gen);
             chrom.invalidate();
         }
 
     private :
         unsigned chromSize;
         unsigned startFrom;
-        UF_random_generator<unsigned int> gen;
+        // UF_random_generator<unsigned int> gen;
 };
 /** @example t-eoInitPermutation.cpp
  */

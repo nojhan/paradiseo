@@ -72,7 +72,7 @@ public:
             	res.push_back(i);
         }
         if(number < res.size()){
-        	UF_random_generator<unsigned int> rndGen;
+        	UF_random_generator<unsigned int> rndGen(res.size());
         	std::random_shuffle(res.begin(), res.end(), rndGen);
         	res.resize(number);
         }

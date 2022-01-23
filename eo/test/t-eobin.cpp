@@ -123,17 +123,17 @@ void main_function()
 	   << chrom << " " << chrom2 << std::endl;
     }
 
-  for (i = 1; i < SIZE / 2; i++)
-    for (j = 1; j < SIZE / 2; j++)
-      {
-	eoBitGxOver<Chrom> gxover(i, j);
-	std::fill(chrom.begin(), chrom.end(), false);
-	std::fill(chrom2.begin(), chrom2.end(), true);
-	gxover(chrom, chrom2);
-	chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-	std::cout  << "eoBinGxOver(" << i << ", " << j << ") ..... "
-	      << chrom << " " << chrom2 << std::endl;
+  for (i = 1; i < SIZE / 2; i++) {
+    for (j = 1; j < SIZE / 2; j++) {
+        eoBitGxOver<Chrom> gxover(i, j);
+        std::fill(chrom.begin(), chrom.end(), false);
+        std::fill(chrom2.begin(), chrom2.end(), true);
+        gxover(chrom, chrom2);
+        chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
+        std::cout  << "eoBinGxOver(" << i << ", " << j << ") ..... "
+              << chrom << " " << chrom2 << std::endl;
       }
+  }
 
     // test SGA algorithm
     eoGenContinue<Chrom> continuator1(50);

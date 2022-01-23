@@ -43,7 +43,7 @@ int main()
   unsigned i;
 
    // a chromosome randomizer
-  eoInitPermutation <Chrom> random(CHROM_SIZE);
+  eoInitPermutation <Chrom> randomize(CHROM_SIZE);
 
    // the population:
   eoPop<Chrom> pop;
@@ -55,7 +55,7 @@ int main()
     {
       Chrom chrom(CHROM_SIZE);
       std::cout << " Initial chromosome n°" << i << " : " << chrom << "..." <<  std::endl;
-      random(chrom);
+      randomize(chrom);
       eval(chrom);
       std::cout << " ... becomes : " << chrom << " after initialization" << std::endl;
       check_permutation(chrom);

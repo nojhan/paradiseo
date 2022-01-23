@@ -86,6 +86,7 @@ public:
       for(unsigned int i = 0; i < LSvector.size(); i++)
 	order.push_back(i);
     
+    UF_random_generator<unsigned int> gen(order.size());
     std::random_shuffle(order.begin(), order.end(), gen);
 
     currentOrder = 0;
@@ -110,9 +111,6 @@ private:
   unsigned int currentOrder;
   // the index of heuristics in random order
   std::vector<unsigned int> order;
-  // random generator
-  UF_random_generator<unsigned int> gen;
-
 };
 
 #endif

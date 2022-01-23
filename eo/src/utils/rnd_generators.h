@@ -89,7 +89,8 @@ class boolean_generator
    either between [0, _max) if only one value (_max) is given to the ctor
    or in [_min,_max) if 2 values are given (_min, _max)
 */
-template <class T = uint32_t> class random_generator
+template <class T = uint32_t>
+class random_generator
 {
   public :
   // added new ctor with 2 params, and modified the data to minim and range
@@ -123,16 +124,25 @@ inline bool random_generator<bool>::operator()(void)
    function (see eoPop::shuffle): its operator() takes an unsigned argument m
    and  must return an unsigned uniformly distributed in [0,m}
 */
-template <class T = uint32_t> class UF_random_generator
+template <class T = uint32_t>
+class UF_random_generator
 {
-  public :
-    UF_random_generator(eoRng& _rng = rng) :
-      random(_rng) {}
+    public :
+        using result_type = T;
 
-  T operator()(T _t) { return (T) (random.random(_t)); }
+        UF_random_generator(T max, eoRng& _rng = rng)
+            : _max(max), _random(_rng)
+        {}
 
-private :
-  eoRng& random;
+        T operator()() { return _random.random(_max); }
+        T operator()(T m) { return _random.random(m); }
+
+        T min() { return 0; }
+        T max() { return _max; }
+
+    private :
+        T _max;
+        eoRng& _random;
 };
 
 
