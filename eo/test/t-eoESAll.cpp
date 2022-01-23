@@ -101,7 +101,7 @@ in test dir)
 template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state)
 {
-    typedef typename EOT::Fitness FitT;
+    // typedef typename EOT::Fitness FitT;
 
     ///// FIRST, problem or representation dependent stuff
     //////////////////////////////////////////////////////
