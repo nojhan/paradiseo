@@ -44,7 +44,7 @@ template <class EOT> class eoStochasticUniversalSelect: public eoSelectOne<EOT>
 {
 public:
   /// Sanity check
-  eoStochasticUniversalSelect(const eoPop<EOT>& pop = eoPop<EOT>())
+  eoStochasticUniversalSelect(/*const eoPop<EOT>& pop = eoPop<EOT>()*/)
   {
     if (minimizing_fitness<EOT>())
       throw eoException("eoStochasticUniversalSelect: minimizing fitness");
