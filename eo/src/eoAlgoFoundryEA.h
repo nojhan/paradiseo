@@ -15,9 +15,10 @@
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
    © 2020 Thales group
+   © 2022 Institut Pasteur
 
     Authors:
-        Johann Dreo <johann.dreo@thalesgroup.com>
+        Johann Dreo <johann@dreo.fr>
 */
 
 #ifndef _eoAlgoFoundryEA_H_
@@ -36,7 +37,7 @@
  * which takes the class name as template and its constructor's parameters
  * as arguments. For example:
  * @code
- * foundry.selectors.add< eoStochTournamentSelect<EOT> >( 0.5 );
+ *   foundry.selectors.add< eoStochTournamentSelect<EOT> >( 0.5 );
  * @endcode
  *
  * @warning If the constructor takes a reference YOU SHOULD ABSOLUTELY wrap it
@@ -46,12 +47,12 @@
  * In a second step, the operators to be used should be selected
  * by indicating their index, just like the foundry was a array of five elements:
  * @code
- * foundry = {0, 1, 2, 0, 3};
- * //         ^  ^  ^  ^  ^ replacement
- * //         |  |  |  + selection
- * //         |  |  + mutation
- * //         |  + crossover
- * //         + continue
+ * foundry = {size_t{0}, size_t{1}, size_t{2}, size_t{0}, size_t{3}};
+ * //                ^          ^          ^          ^          ^ replacement
+ * //                |          |          |          + selection
+ * //                |          |          + mutation
+ * //                |          + crossover
+ * //                + continue
  * @endcode
  *
  * @note: by default, the firsts of the five operators are selected.
@@ -59,12 +60,12 @@
  * If you don't (want to) recall the order of the operators in the encoding,
  * you can use the `index()` member, for example:
  * @code
- * foundry.at(foundry.continuators.index()) = 2; // select the third continuator
+ *   foundry.at(foundry.continuators.index()) = size_t{2}; // select the third continuator
  * @endcode
  *
  * Now, you can call the fourdry just like any eoAlgo, by passing it an eoPop:
  * @code
- * foundry(pop);
+ *   foundry(pop);
  * @encode
  * It will instantiate the needed operators (only) and the algorithm itself on-the-fly,
  * and then run it.
@@ -73,7 +74,7 @@
  * Every instantiation is deferred upon actual use. That way, you can still reconfigure them
  * at any time with `eoForgeOperator::setup`, for example:
  * @code
- * foundry.selector.at(0).setup(0.5); // using constructor's arguments
+ *   foundry.selectors.at(0).setup(0.5); // using constructor's arguments
  * @endcode
  *
  * @ingroup Foundry
@@ -111,11 +112,11 @@ class eoAlgoFoundryEA : public eoAlgoFoundry<EOT>
          */
         void operator()(eoPop<EOT>& pop)
         {
-            assert(continuators.size() > 0); assert(this->at(continuators.index()) < continuators.size());
-            assert(  crossovers.size() > 0); assert(this->at(  crossovers.index()) <   crossovers.size());
-            assert(   mutations.size() > 0); assert(this->at(   mutations.index()) <    mutations.size());
-            assert(   selectors.size() > 0); assert(this->at(   selectors.index()) <    selectors.size());
-            assert(replacements.size() > 0); assert(this->at(replacements.index()) < replacements.size());
+            assert(continuators.size() > 0); assert(this->rank(continuators) < continuators.size());
+            assert(  crossovers.size() > 0); assert(this->rank(  crossovers) <   crossovers.size());
+            assert(   mutations.size() > 0); assert(this->rank(   mutations) <    mutations.size());
+            assert(   selectors.size() > 0); assert(this->rank(   selectors) <    selectors.size());
+            assert(replacements.size() > 0); assert(this->rank(replacements) < replacements.size());
 
             eoSequentialOp<EOT> variator;
             variator.add(this->crossover(), 1.0);
@@ -140,11 +141,11 @@ class eoAlgoFoundryEA : public eoAlgoFoundry<EOT>
         std::string name()
         {
             std::ostringstream name;
-            name << this->at(continuators.index()) << " (" << this->continuator().className() << ") + ";
-            name << this->at(crossovers.index())   << " (" << this->crossover().className()   << ") + ";
-            name << this->at(mutations.index())    << " (" << this->mutation().className()    << ") + ";
-            name << this->at(selectors.index())    << " (" << this->selector().className()    << ") + ";
-            name << this->at(replacements.index()) << " (" << this->replacement().className() << ")";
+            name << this->continuator().className() << " [" << this->rank(continuators) << "] + ";
+            name << this->crossover()  .className() << " [" << this->rank(crossovers)   << "] + ";
+            name << this->mutation()   .className() << " [" << this->rank(mutations)    << "] + ";
+            name << this->selector()   .className() << " [" << this->rank(selectors)    << "] + ";
+            name << this->replacement().className() << " [" << this->rank(replacements) << "]";
             return name.str();
         }
 
@@ -153,34 +154,44 @@ class eoAlgoFoundryEA : public eoAlgoFoundry<EOT>
         const size_t _max_gen;
 
     public:
+        /** Currently selected continuator.
+         */
         eoContinue<EOT>& continuator()
         {
-            assert(this->at(continuators.index()) < continuators.size());
-            return continuators.instantiate(this->at(continuators.index()));
+            assert(this->rank(continuators) < continuators.size());
+            return continuators.instantiate(this->rank(continuators));
         }
 
+        /** Currently selected crossover.
+         */
         eoQuadOp<EOT>& crossover()
         {
-            assert(this->at(crossovers.index()) < crossovers.size());
-            return crossovers.instantiate(this->at(crossovers.index()));
+            assert(this->rank(crossovers) < crossovers.size());
+            return crossovers.instantiate(this->rank(crossovers));
         }
 
+        /** Currently selected mutation.
+         */
         eoMonOp<EOT>& mutation()
         {
-            assert(this->at(mutations.index()) < mutations.size());
-            return mutations.instantiate(this->at(mutations.index()));
+            assert(this->rank(mutations) < mutations.size());
+            return mutations.instantiate(this->rank(mutations));
         }
 
+        /** Currently selected selector.
+         */
         eoSelectOne<EOT>& selector()
         {
-            assert(this->at(selectors.index()) < selectors.size());
-            return selectors.instantiate(this->at(selectors.index()));
+            assert(this->rank(selectors) < selectors.size());
+            return selectors.instantiate(this->rank(selectors));
         }
 
+        /** Currently selected replacement.
+         */
         eoReplacement<EOT>& replacement()
         {
-            assert(this->at(replacements.index()) < replacements.size());
-            return replacements.instantiate(this->at(replacements.index()));
+            assert(this->rank(replacements) < replacements.size());
+            return replacements.instantiate(this->rank(replacements));
         }
 
 };

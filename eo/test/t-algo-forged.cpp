@@ -77,14 +77,13 @@ int main(int /*argc*/, char** /*argv*/)
                         pop.append(pop_size, init);
                         eval(pop,pop);
 
-                        foundry.at(foundry.continuators.index()) = i_cont;
-                        foundry.at(foundry.crossovers.index()) = i_cross;
-                        foundry.at(foundry.mutations.index()) = i_mut;
-                        foundry.at(foundry.selectors.index()) = i_sel;
-                        foundry.at(foundry.replacements.index()) = i_rep;
-
-                        // Or, if you know the order.
-                        foundry.select({i_cont, i_cross, i_mut, i_sel, i_rep});
+                        foundry.select({
+                                size_t{i_cont},
+                                size_t{i_cross},
+                                size_t{i_mut},
+                                size_t{i_sel},
+                                size_t{i_rep}
+                            });
 
                         // Actually perform a search
                         foundry(pop);

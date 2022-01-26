@@ -13,6 +13,11 @@
    You should have received a copy of the GNU Lesser General Public
    License along with this library; if not, write to the Free Software
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+   © 2022 Institut Pasteur
+
+    Authors:
+        Johann Dreo <johann@dreo.fr>
 */
 
 #ifndef _eoFastGA_H_
@@ -116,6 +121,11 @@ public:
                     eoPop<EOT> crossed; 
                     crossed.push_back(sol1);
                     crossed.push_back(sol2);
+
+                    // The aftercross selector may need fitness,
+                    // so we evaluate those two solutions, if needed.
+                    _pop_eval(crossed,crossed);
+                    
                     _select_aftercross.setup(crossed);
                     EOT sol3 = _select_aftercross(crossed);
 

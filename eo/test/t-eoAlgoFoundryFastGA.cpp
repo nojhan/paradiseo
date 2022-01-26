@@ -16,6 +16,7 @@ int main(int /*argc*/, char** /*argv*/)
     using EOT = eoBit<double>;
 
     oneMaxEval<EOT> eval;
+    eoPopLoopEval<EOT> popeval(eval);
 
     eoBooleanGenerator gen(0.5);
     eoInitFixedLength<EOT> init(dim, gen);
@@ -76,6 +77,8 @@ int main(int /*argc*/, char** /*argv*/)
         ;
     std::clog << n << " possible algorithms instances." << std::endl;
 
+    std::clog << "Running everything (this may take time)..." << std::endl;
+
     EOT best_sol;
     std::string best_algo = "";
 
@@ -91,15 +94,20 @@ int main(int /*argc*/, char** /*argv*/)
 
                                             eoPop<EOT> pop;
                                             pop.append(pop_size, init);
+                                            popeval(pop,pop);
 
+                                            // FIXME put the parameters in the test?
                                             foundry.select({
-                                                i_crossselect,
-                                                i_cross,
-                                                i_aftercrosel,
-                                                i_mutselect,
-                                                i_mut,
-                                                i_rep,
-                                                i_cont
+                                                double{0.5}, // crossover_rate
+                                                size_t{i_crossselect},
+                                                size_t{i_cross},
+                                                size_t{i_aftercrosel},
+                                                double{0.5}, // mutation_rate
+                                                size_t{i_mutselect},
+                                                size_t{i_mut},
+                                                size_t{i_rep},
+                                                size_t{i_cont},
+                                                size_t{pop_size} // offspring_size
                                             });
 
                                             // Actually perform a search

@@ -55,6 +55,7 @@ typedef unsigned long uint32_t;
 #include "../eoObject.h"
 
 
+
 /** Random Number Generator
 
 @class eoRng eoRNG.h utils/eoRNG.h

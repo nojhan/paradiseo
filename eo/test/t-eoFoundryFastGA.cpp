@@ -99,7 +99,18 @@ int main(int /*argc*/, char** /*argv*/)
     pop.append(5,init);
     ::apply(onemax_eval,pop);
 
-    foundry.select({0,0,0,0,0,0/*,0,0*/});
+    foundry.select({
+            /*crossover_rates     */ double{0.8},
+            /*crossover_selectors */ size_t{0},
+            /*crossovers          */ size_t{0},
+            /*aftercross_selectors*/ size_t{0},
+            /*mutation_rates      */ double{0.9},
+            /*mutation_selectors  */ size_t{0},
+            /*mutations           */ size_t{0},
+            /*replacements        */ size_t{0},
+            /*continuators        */ size_t{0},
+            /*offspring_sizes     */ size_t{1},
+        });
     foundry(pop);
 
     std::cout << "Done" << std::endl;

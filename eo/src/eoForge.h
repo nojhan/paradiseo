@@ -15,9 +15,10 @@
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
    © 2020 Thales group
+   © 2022 Institut Pasteur
 
     Authors:
-        Johann Dreo <johann.dreo@thalesgroup.com>
+        Johann Dreo <johann@dreo.fr>
 */
 
 #ifndef _eoForge_H_
@@ -185,7 +186,7 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
         Itf* _instantiated;
 };
 
-/** A vector holding an operator with deferred instantiation at a given index.
+/** A vector holding an operator (with deferred instantiation) at a given index.
  *
  * @note You can actually store several instances of the same class,
  * with different parametrization (or not).
@@ -319,18 +320,41 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
         bool _no_cache;
 };
 
+/** A range holding a parameter value at a given index.
+ * 
+ * This is essential a scalar numerical parameter, with bounds check
+ * and an interface similar to an eoForgeVector.
+ *
+ * @note Contrary to eoForgeVector, this does not store a set of possible values.
+ *
+ * @code
+    eoForgeScalar<double> factories(0.0, 1.0);
+
+    // Actually instantiate.
+    double param  = factories.instantiate(0.5);
+ * @endcode
+ *
+ * @ingroup Foundry
+ */
 template<class Itf>
 class eoForgeScalar
 {
     public:
         using Interface = Itf;
 
+        /** Constructor
+         *
+         * @param min Minimum possible value.
+         * @param may Maximum possible value.
+         */
         eoForgeScalar(Itf min, Itf max) :
             _min(min),
             _max(max)
         { }
         
         /** Just return the same value, without managing any instantiation.
+         * 
+         * Actually checks if value is in range.
          */
         Itf& instantiate(double value)
         {
@@ -353,18 +377,24 @@ class eoForgeScalar
         Itf min() const { return _min; }
         Itf max() const { return _max; }
 
+        /** Set the minimum possible value.
+         */
         void min(Itf min)
         {
             assert(_min <= _max);
             _min = min;
         }
         
+        /** Set the maximum possible value.
+         */
         void max(Itf max)
         {
             assert(_max >= _min);
             _max = max;
         }
 
+        /** Set the possible range of values.
+         */
         void setup(Itf min, Itf max)
         {
             _min = min;

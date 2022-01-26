@@ -16,8 +16,6 @@
  * ParadisEO algorithmic grammar definition.
  *****************************************************************************/
 
-// using Particle = eoRealParticle<eoMaximizingFitness>;
-using Ints = eoInt<eoMaximizingFitnessT<int>, size_t>;
 using Bits = eoBit<eoMaximizingFitnessT<int>, int>;
 
 // by enumerating candidate operators and their parameters.
@@ -341,7 +339,7 @@ int main(int argc, char* argv[])
             "problem", "Problem ID",
             'p', "Problem", /*required=*/true);
     const size_t problem = problem_p.value();
-    assert(0 <= problem and problem < benchmark.size());
+    assert(problem < benchmark.size());
 
     // const size_t dimension = parser.getORcreateParam<size_t>(1000,
     //         "dimension", "Dimension size",
@@ -624,7 +622,7 @@ int main(int argc, char* argv[])
     eoInitFixedLength<Bits> onemax_init(/*bitstring size=*/dimension, bgen);
     auto& foundry = make_foundry(store, onemax_init, eval_count, max_evals, generations, max_target);
 
-    Ints encoded_algo(foundry.size());
+    eoAlgoFoundry<Bits>::Encodings encoded_algo(foundry.size());
 
     encoded_algo[foundry.crossover_rates     .index()] = crossover_rate;
     encoded_algo[foundry.crossover_selectors .index()] = crossover_selector;
@@ -641,16 +639,6 @@ int main(int argc, char* argv[])
     foundry.select(encoded_algo);
     std::clog << foundry.name() << std::endl;
 
-    // // Evaluation of a forged encoded_algo on the sub-problem
-    // eoEvalFoundryFastGA<Ints, Bits> eval_foundry(
-    //         foundry, pop_size,
-    //         onemax_init, onemax_eval,
-    //         /*penalization=*/ dimension, // Worst case penalization.
-    //         /*normalized=*/ false); // Use direct integer encoding.
-    //
-    // // Actually instanciate and run the algorithm.
-    // eval_foundry(encoded_algo);
-
     /*****************************************************************************
      * Run and output results.
      *****************************************************************************/
@@ -661,7 +649,7 @@ int main(int argc, char* argv[])
         onemax_eval(pop,pop);
         foundry(pop); // Actually run the selected algorithm.
         
-    } catch(eoMaxEvalException e) {
+    } catch(eoMaxEvalException & e) {
         eo::log << eo::debug << "Reached maximum evaluations: " << eval_count.getValue() << " / " << max_evals << std::endl;
     }
 

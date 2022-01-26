@@ -15,9 +15,10 @@
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
    © 2020 Thales group
+   © 2022 Institut Pasteur
 
     Authors:
-        Johann Dreo <johann.dreo@thalesgroup.com>
+        Johann Dreo <johann@dreo.fr>
 */
 
 #ifndef _eoEvalFoundryEA_H_
@@ -90,7 +91,7 @@ public:
      * auto& cont = foundry.continuator(); // Get the configured operator
      * @encode
      */
-    std::vector<size_t> decode( const EOT& sol ) const
+    typename eoAlgoFoundry<SUB>::Encodings decode( const EOT& sol ) const
     {
         // // Denormalize
         // size_t cont = static_cast<size_t>(std::ceil( sol[i_cont] * _foundry.continuators.size() ));
@@ -125,18 +126,18 @@ public:
         _subpb_eval(pop,pop);
 
         auto config = decode(sol);
-        double cont = config[i_cont];
-        double cros = config[i_cros];
-        double muta = config[i_muta];
-        double sele = config[i_sele];
-        double repl = config[i_repl];
+        size_t cont = std::get<size_t>(config[i_cont]);
+        size_t cros = std::get<size_t>(config[i_cros]);
+        size_t muta = std::get<size_t>(config[i_muta]);
+        size_t sele = std::get<size_t>(config[i_sele]);
+        size_t repl = std::get<size_t>(config[i_repl]);
 
         if(
-               0 <= cont and cont < _foundry.continuators.size()
-           and 0 <= cros and cros < _foundry.crossovers  .size()
-           and 0 <= muta and muta < _foundry.mutations   .size()
-           and 0 <= sele and sele < _foundry.selectors   .size()
-           and 0 <= repl and repl < _foundry.replacements.size()
+               cont < _foundry.continuators.size()
+           and cros < _foundry.crossovers  .size()
+           and muta < _foundry.mutations   .size()
+           and sele < _foundry.selectors   .size()
+           and repl < _foundry.replacements.size()
         ) {
             _foundry.select(config);
 
