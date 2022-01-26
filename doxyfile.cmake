@@ -25,13 +25,13 @@ DOXYFILE_ENCODING      = UTF-8
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded
 # by quotes) that should identify the project.
 
-PROJECT_NAME           = @PACKAGE_NAME@
+PROJECT_NAME           = @MODULE_NAME@
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number.
 # This could be handy for archiving the generated documentation or
 # if some version control system is used.
 
-PROJECT_NUMBER         = @PACKAGE_VERSION@
+PROJECT_NUMBER         = @PROJECT_VERSION@
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
@@ -272,22 +272,6 @@ SUBGROUPING            = YES
 
 TYPEDEF_HIDES_STRUCT   = NO
 
-# The SYMBOL_CACHE_SIZE determines the size of the internal cache use to
-# determine which symbols to keep in memory and which to flush to disk.
-# When the cache is full, less often used symbols will be written to disk.
-# For small to medium size projects (<1000 input files) the default value is
-# probably good enough. For larger projects a too small cache size can cause
-# doxygen to be busy swapping symbols to and from disk most of the time
-# causing a significant performance penality.
-# If the system has enough physical memory increasing the cache will improve the
-# performance by keeping more symbols in memory. Note that the value works on
-# a logarithmic scale so increasing the size by one will rougly double the
-# memory usage. The cache size is given by this formula:
-# 2^(16+SYMBOL_CACHE_SIZE). The valid range is 0..9, the default is 0,
-# corresponding to a cache size of 2^16 = 65536 symbols
-
-SYMBOL_CACHE_SIZE      = 0
-
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
@@ -500,7 +484,7 @@ FILE_VERSION_FILTER    =
 # file name after the option, if omitted DoxygenLayout.xml will be used as the name
 # of the layout file.
 
-LAYOUT_FILE            =
+LAYOUT_FILE            = @CMAKE_SOURCE_DIR@/DoxygenLayout.xml
 
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
@@ -594,7 +578,7 @@ RECURSIVE              = YES
 # excluded from the INPUT source files. This way you can easily exclude a
 # subdirectory from a directory tree whose root is specified with the INPUT tag.
 
-EXCLUDE                = @CMAKE_SOURCE_DIR@/src/obsolete @CMAKE_SOURCE_DIR@/test @CMAKE_SOURCE_DIR@/tutorial @CMAKE_SOURCE_DIR@/contrib @CMAKE_SOURCE_DIR@/app  
+EXCLUDE                = @CMAKE_SOURCE_DIR@/deprecated @CMAKE_SOURCE_DIR@/eo/contrib @CMAKE_SOURCE_DIR@/eo/app  @CMAKE_SOURCE_DIR@/eo/tutorial @CMAKE_SOURCE_DIR@/mo/tutorial @CMAKE_SOURCE_DIR@/moeo/tutorial @CMAKE_SOURCE_DIR@/smp/tutorial 
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or
 # directories that are symbolic links (a Unix filesystem feature) are excluded
@@ -608,7 +592,7 @@ EXCLUDE_SYMLINKS       = NO
 # against the file with absolute path, so to exclude all test directories
 # for example use the pattern */test/*
 
-EXCLUDE_PATTERNS       =
+EXCLUDE_PATTERNS       = *.sif/*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the
@@ -622,7 +606,7 @@ EXCLUDE_SYMBOLS        =
 # directories that contain example code fragments that are included (see
 # the \include command).
 
-EXAMPLE_PATH           = @CMAKE_SOURCE_DIR@/test
+EXAMPLE_PATH           = @CMAKE_SOURCE_DIR@/eo/test @CMAKE_SOURCE_DIR@/edo/test @CMAKE_SOURCE_DIR@/mo/test @CMAKE_SOURCE_DIR@/moeo/test @CMAKE_SOURCE_DIR@/smp/test 
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp
@@ -784,14 +768,16 @@ HTML_HEADER            =
 
 HTML_FOOTER            =
 
-# The HTML_STYLESHEET tag can be used to specify a user-defined cascading
+# The HTML_EXTRA_STYLESHEET tag can be used to specify a user-defined cascading
 # style sheet that is used by each HTML page. It can be used to
 # fine-tune the look of the HTML output. If the tag is left blank doxygen
 # will generate a default style sheet. Note that doxygen will try to copy
 # the style sheet file to the HTML output directory, so don't put your own
 # stylesheet in the HTML output directory as well, or it will be erased!
 
-HTML_STYLESHEET        =
+# HTML_EXTRA_STYLESHEET        = @CMAKE_SOURCE_DIR@/doxygen-awesome-css/doxygen-awesome.css
+# HTML_EXTRA_STYLESHEET        = @CMAKE_SOURCE_DIR@/doxygen_theme_flat_design/src/doxygen-style.css
+HTML_EXTRA_STYLESHEET        = @CMAKE_SOURCE_DIR@/doxygen-style.css
 
 
 # If the HTML_DYNAMIC_SECTIONS tag is set to YES then the generated HTML
@@ -800,7 +786,7 @@ HTML_STYLESHEET        =
 # JavaScript and DHTML is required (for instance Mozilla 1.0+, Firefox
 # Netscape 6.0+, Internet explorer 5.0+, Konqueror, or Safari).
 
-HTML_DYNAMIC_SECTIONS  = NO
+HTML_DYNAMIC_SECTIONS  = YES
 
 # If the GENERATE_DOCSET tag is set to YES, additional index files
 # will be generated that can be used as input for Apple's Xcode 3
@@ -970,7 +956,7 @@ SEARCHENGINE           = YES
 # If the GENERATE_LATEX tag is set to YES (the default) Doxygen will
 # generate Latex output.
 
-GENERATE_LATEX         = YES
+GENERATE_LATEX         = NO
 
 # The LATEX_OUTPUT tag is used to specify where the LaTeX docs will be put.
 # If a relative path is entered the value of OUTPUT_DIRECTORY will be
@@ -1128,18 +1114,6 @@ GENERATE_XML           = NO
 # put in front of it. If left blank `xml' will be used as the default path.
 
 XML_OUTPUT             = xml
-
-# The XML_SCHEMA tag can be used to specify an XML schema,
-# which can be used by a validating XML parser to check the
-# syntax of the XML files.
-
-XML_SCHEMA             =
-
-# The XML_DTD tag can be used to specify an XML DTD,
-# which can be used by a validating XML parser to check the
-# syntax of the XML files.
-
-XML_DTD                =
 
 # If the XML_PROGRAMLISTING tag is set to YES Doxygen will
 # dump the program listings (including syntax highlighting
@@ -1301,11 +1275,6 @@ ALLEXTERNALS           = NO
 
 EXTERNAL_GROUPS        = YES
 
-# The PERL_PATH should be the absolute path and name of the perl script
-# interpreter (i.e. the result of `which perl').
-
-PERL_PATH              = /usr/bin/perl
-
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
 #---------------------------------------------------------------------------
@@ -1318,15 +1287,6 @@ PERL_PATH              = /usr/bin/perl
 # powerful graphs.
 
 CLASS_DIAGRAMS         = YES
-
-# You can define message sequence charts within doxygen comments using the \msc
-# command. Doxygen will then run the mscgen tool (see
-# http://www.mcternan.me.uk/mscgen/) to produce the chart and insert it in the
-# documentation. The MSCGEN_PATH tag allows you to specify the directory where
-# the mscgen tool resides. If left empty the tool is assumed to be found in the
-# default search path.
-
-MSCGEN_PATH            =
 
 # If set to YES, the inheritance and collaboration graphs will hide
 # inheritance and usage relations if the target is undocumented
@@ -1350,7 +1310,7 @@ HAVE_DOT               = YES
 # DOTFONTPATH environment variable or by setting DOT_FONTPATH to the directory
 # containing the font.
 
-DOT_FONTNAME           = FreeSans
+DOT_FONTNAME           = 
 
 # The DOT_FONTSIZE tag can be used to set the size of the font of dot graphs.
 # The default size is 10pt.
@@ -1392,7 +1352,7 @@ UML_LOOK               = NO
 # If set to YES, the inheritance and collaboration graphs will show the
 # relations between templates and their instances.
 
-TEMPLATE_RELATIONS     = NO
+TEMPLATE_RELATIONS     = YES
 
 # If the ENABLE_PREPROCESSING, SEARCH_INCLUDES, INCLUDE_GRAPH, and HAVE_DOT
 # tags are set to YES then doxygen will generate a graph for each documented
@@ -1440,7 +1400,18 @@ DIRECTORY_GRAPH        = YES
 # generated by dot. Possible values are png, jpg, or gif
 # If left blank png will be used.
 
-DOT_IMAGE_FORMAT       = png
+DOT_IMAGE_FORMAT       = svg
+
+# If DOT_IMAGE_FORMAT is set to svg, then this option can be set to YES
+# to enable generation of interactive SVG images that allow zooming and panning.
+# Note that this requires a modern browser other than Internet Explorer.
+# Tested and working are Firefox, Chrome, Safari, and Opera.
+# Note: For IE 9+ you need to set HTML_FILE_EXTENSION to xhtml
+#       in order to make the SVG files visible.
+#        Older versions of IE do not have SVG support.
+# This tag requires that the tag HAVE_DOT is set to YES. 
+
+INTERACTIVE_SVG = YES
 
 # The tag DOT_PATH can be used to specify the path where the dot tool can be
 # found. If left blank, it is assumed the dot tool can be found in the path.
@@ -1486,7 +1457,7 @@ DOT_TRANSPARENT        = NO
 # makes dot run faster, but since only newer versions of dot (>1.8.10)
 # support this, this feature is disabled by default.
 
-DOT_MULTI_TARGETS      = NO
+DOT_MULTI_TARGETS      = YES
 
 # If the GENERATE_LEGEND tag is set to YES (the default) Doxygen will
 # generate a legend page explaining the meaning of the various boxes and

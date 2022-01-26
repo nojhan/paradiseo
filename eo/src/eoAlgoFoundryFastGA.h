@@ -62,7 +62,7 @@
  *   });
  * @endcode
  *
- * @note: by default, the firsts of the 10 operators are selected.
+ * @note by default, the firsts of the 10 operators are selected.
  *
  * If you don't (want to) recall the order of the operators in the encoding,
  * you can use the `index()` member, for example:
@@ -73,11 +73,12 @@
  * Now, you can call the foundry just like any eoAlgo, by passing it an eoPop:
  * @code
  *   foundry(pop);
- * @encode
+ * @endcode
+ * 
  * It will instantiate the needed operators (only) and the algorithm itself on-the-fly,
  * and then run it.
  *
- * @note: Thanks to the underlying eoOperatorFoundry, not all the added operators are instantiated.
+ * @note Thanks to the underlying eoOperatorFoundry, not all the added operators are instantiated.
  *        Every instantiation is deferred upon actual use. That way, you can still reconfigure them
  *        at any time with `eoForgeOperator::setup`, for example:
  *        @code

@@ -206,6 +206,10 @@ If you `ENABLE_CMAKE_TESTING` and `BUILD_TESTING`, it will be the tests, which y
 
 If you `ENABLE_CMAKE_EXAMPLE`, it will also build the examples.
 
+If may want to make build scripts more verbose (especially when building the
+doc) by enabling `CMAKE_VERBOSE_MAKEFILE`.
+
+
 ## Licenses
 
 Paradiseo is distributed under the GNU Lesser General Public License and the CeCILL license (depending on the modules).

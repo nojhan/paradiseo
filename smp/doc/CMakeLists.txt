@@ -19,7 +19,8 @@ if(DOXYGEN_FOUND)
                 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
         endif(UNIX AND NOT ${CMAKE_VERBOSE_MAKEFILE})
     endif(DOXYGEN_EXECUTABLE)
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${SMP_DOC_CONFIG_FILE}.cmake"
+    # configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${SMP_DOC_CONFIG_FILE}.cmake"
+    configure_file("${CMAKE_SOURCE_DIR}/doxyfile.cmake"
                    "${SMP_DOC_DIR}/${SMP_DOC_CONFIG_FILE}")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

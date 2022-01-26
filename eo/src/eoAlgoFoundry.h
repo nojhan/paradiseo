@@ -99,7 +99,7 @@ class eoParameterFoundry : public eoForgeScalar< Itf >
     public:
         /** Underlying type of the parameter.
          * 
-         * @note: You probably only want to use either `double` or `size_t`.
+         * @note You probably only want to use either `double` or `size_t`.
          * @see eoAlgoFoundry
          */
         using Type = Itf;
@@ -154,24 +154,25 @@ class eoParameterFoundry : public eoForgeScalar< Itf >
  * Now, you must implement the foundry just like any eoAlgo, by using the eoPop interface:
  * @code
  *   foundry(pop);
- * @encode
+ * @endcode
+ * 
  * It will instantiate the needed operators (only) and the algorithm itself on-the-fly,
  * and then run it.
  * 
- * @note: The "encoding" which represent the selected options, figuring the actual meta-algorithm,
+ * @note The "encoding" which represent the selected options, figuring the actual meta-algorithm,
  *        is a vector of `std::variant`, which can hold either a `size_t` or a `double`.
  *        The first one is used to indicate the index of an operator class
  *        *or* a parameter which is a size.
  *        The second is used to store numerical parameters values.
  *
- * @note: Thanks to the underlying eoOperatorFoundry, not all the added operators are instantiated.
+ * @note Thanks to the underlying eoOperatorFoundry, not all the added operators are instantiated.
  *        Every instantiation is deferred upon actual use. That way, you can still reconfigure them
  *        at any time with `eoForgeOperator::setup`, for example:
  *        @code
  *        foundry.selector.at(0).setup(0.5); // using constructor's arguments
  *        @endcode
  *
- * @warning If the managed constructor takes a reference YOU SHOULD ABSOLUTELY wrap it
+ * @warning If the managed constructor takes a reference *YOU SHOULD ABSOLUTELY* wrap it
  *          in a `std::ref` when using `add` or `setup`, or it will silently be passed as a copy,
  *          which would effectively disable any link between operators.
  *
@@ -215,7 +216,7 @@ class eoAlgoFoundry : public eoAlgo<EOT>
          *
          * i.e. Select an algorithm to instantiate.
          * 
-         * @note: You need to indicate the type of each item
+         * @note You need to indicate the type of each item
          *        if you want to call this with a brace-initialized vector.
          * 
          * For example:
@@ -230,7 +231,7 @@ class eoAlgoFoundry : public eoAlgo<EOT>
          *   eoAlgoFoundry<EOT>::Encodings encoded_algo(foundry.size());
          *   encoded_algo[foundry.crossover_rates.index()] = crossover_rate;
          *   encoded_algo[foundry.crossover_opers.index()] = crossover_oper;
-         * @encdoe
+         * @endcode
          */
         void select( Encodings encodings )
         {
@@ -240,7 +241,7 @@ class eoAlgoFoundry : public eoAlgo<EOT>
 
         /** Access to the encoding of the currently selected operator.
          * 
-         * @warning: This returns a `std::variant`, which you should `std::get<T>`.
+         * @warning This returns a `std::variant`, which you should `std::get<T>`.
          * 
          * For example:
          * @code
@@ -248,14 +249,14 @@ class eoAlgoFoundry : public eoAlgo<EOT>
          *   double param_id = std::get<double>(foundry.at(3));
          * @endcode
          * 
-         * @note: You can use rank, value or len to have automatic casting.
+         * @see rank, @see value or @see len to have automatic casting.
          */
         Encoding & at(size_t i)
         {
             return _encodings.at(i);
         }
 
-        /** Access to the currently selected ID of an operator.
+         /** Access to the currently selected ID of an operator.
          */
         template<class OP>
         size_t rank(const OP& op)

@@ -81,13 +81,15 @@ set(SMP "false" CACHE BOOL "Build the SMP module")
 set(MPI "false" CACHE BOOL "Build the MPI module")
 
 ## EO Module
-set(EO_MODULE_NAME "Evolving Object")
+# set(EO_MODULE_NAME "Evolving Objects")
+set(MODULE_NAME "Evolving Objects")
 set(CMAKE_SOURCE_DIR ${EO_SRC_DIR})
 add_subdirectory(${EO_SRC_DIR})
 
 if(NOT EO_ONLY)
     ## MO Module
-    set(MO_MODULE_NAME "Moving objects")
+    # set(MO_MODULE_NAME "Moving Objects")
+    set(MODULE_NAME "Moving Objects")
     set(CMAKE_SOURCE_DIR ${MO_SRC_DIR})
     add_subdirectory(${MO_SRC_DIR})
 
