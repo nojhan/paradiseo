@@ -81,33 +81,34 @@ set(SMP "false" CACHE BOOL "Build the SMP module")
 set(MPI "false" CACHE BOOL "Build the MPI module")
 
 ## EO Module
+set(MODULE_NAME "Paradiseo")
+set(DOXYGEN_CONFIG_DIR ${CMAKE_SOURCE_DIR}/doxygen)
 # set(EO_MODULE_NAME "Evolving Objects")
-set(MODULE_NAME "Evolving Objects")
 set(CMAKE_SOURCE_DIR ${EO_SRC_DIR})
 add_subdirectory(${EO_SRC_DIR})
 
 if(NOT EO_ONLY)
     ## MO Module
     # set(MO_MODULE_NAME "Moving Objects")
-    set(MODULE_NAME "Moving Objects")
+    # set(MODULE_NAME "Moving Objects")
     set(CMAKE_SOURCE_DIR ${MO_SRC_DIR})
     add_subdirectory(${MO_SRC_DIR})
 
     ## EDO Module
     if(EDO)
-        set(EDO_MODULE_NAME "Evolving Distribution Objects")
+        # set(EDO_MODULE_NAME "Evolving Distribution Objects")
         set(CMAKE_SOURCE_DIR ${EDO_SRC_DIR})
         add_subdirectory(${EDO_SRC_DIR})
     endif()
 
     ## MOEO Module
-    set(MOEO_MODULE_NAME "Multi-Objectives EO")
+    # set(MOEO_MODULE_NAME "Multi-Objectives EO")
     set(CMAKE_SOURCE_DIR ${MOEO_SRC_DIR})
     add_subdirectory(${MOEO_SRC_DIR})
 
     ## SMP Module
     if(SMP)
-        set(SMP_MODULE_NAME "Symmetric Multi-Processing")
+        # set(SMP_MODULE_NAME "Symmetric Multi-Processing")
         set(CMAKE_SOURCE_DIR ${SMP_SRC_DIR})
         add_subdirectory(${SMP_SRC_DIR})
     endif()

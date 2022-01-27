@@ -1,11 +1,20 @@
-# ignore html files
+# ignore generated files
 *.html
+*.pdf
 
 # ignore all textual files
 *.txt
+*.swp
+*.swo
+.kak_history
+*.log
+*.csv
+*.ods
 
 # ignore object and archive files
 *.[oa]
+*.bak
+*.tar*
 tags
 
 # ignore auto-saved files
@@ -29,4 +38,7 @@ debug/*
 build/*
 website/EO_star.png
 website/paradiseo_logo.png
+Release/*
+Debug/*
+Build/*
 

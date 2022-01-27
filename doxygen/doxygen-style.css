@@ -8,9 +8,10 @@
     --bgfont: #303030;
     --bgfont2: #3771c8;
     --bgfont-hover: #3771c8;
-    --bgfont-hover-text-decoration: none;
+    --bgfont-hover-text-decoration: underline solid #3771c8;
     --bgborder: #7d7d7d;
     --bgborder2: #f6f6f6;
+    --bgfont-link:#1751a8;
     /* Main Header */
     --bg1color: #303030;
     --bg1font: #ffffff;
@@ -26,15 +27,16 @@
     --bg3font: #303030;
     --bg3font2: #7D7D7D;
     /* Code */
-    --code-bg: #f6f6f6;
-    --code-comment: #7D7D7D;
-    --code-keyword: #d73a49;
-    --code-preprocessor: #d73a49;
-    --code-keywordtype: #d73a49;
-    --code-text: #303030;
-    --code-code: #6f42c1;
-    --code-line: #7D7D7D;
-    --code-line-bg: #D8D8D8;
+    --code-bg: #232323;
+    --code-comment: #a5c261;
+    --code-keyword: #db4939;
+    --code-preprocessor: #efcd45;
+    --code-keywordtype: #87bbff;
+    --code-text: #b1cfb1;
+    --code-code: #d3d0cc;
+    --code-line: #73707c;
+    --code-line-bg: #232323;
+    --code-link: #b7dbff;
     /* Namespace List, Class List icon */
     --icon-bg: #303030
     --icon-font: #3771c8;
@@ -105,6 +107,7 @@ div.contents ul {
 
 #projectalign {
     padding: 0px !important;
+    vertical-align: bottom;
 }
 
 /***********************************/
@@ -245,11 +248,22 @@ div.summary {
 /***********************************/
 
 a, a:visited, a:active, .contents a:visited, body.SRPage a, body.SRPage a:visited, body.SRPage a:active {
-    color: var(--bgfont);
+    color: var(--bgfont-link);
     text-decoration: none;
 }
 
 a:hover, .contents a:hover, body.SRPage a:hover {
+    color: var(--bgfont-hover);
+    text-decoration: var(--bgfont-hover-text-decoration);
+    
+}
+
+.dynheader {
+    color: var(--bgfont-link);
+    text-decoration: none;
+}
+
+.dynheader:hover {
     color: var(--bgfont-hover);
     text-decoration: var(--bgfont-hover-text-decoration);
 }
@@ -341,11 +355,11 @@ li.navelem a {
 }
 
 .memdoc p, .memdoc dt {
-    padding: 0px 20px;
+    /*padding: 0px 20px;*/
 }
 
 .memdoc > p {
-    font-size:1.2em;
+    font-size:1em;
 }
 
 .paramname {
@@ -462,13 +476,33 @@ h3 {
     margin-bottom:2em;
     border: 2px solid var(--bgfont2);
     box-shadow:0.5em 0.5em 0.5em var(--bgfont);
+    font-family:monospace;
 }
 
 div.fragment, pre.fragment {
     border: none;
-    padding: 20px;
-    margin: none;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
     background-color: var(--code-bg);
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid grey;
+    border-bottom: 2px solid grey;
+}
+
+div.fragment > div.line {
+    font-size:1em;
+    line-height:150%;
+    color: var(--code-code);
+}
+
+.textblock > div.fragment {
+    font-size: 1em;
+}
+
+.textblock > dl.section {
+    font-size: 1.2em;
 }
 
 div.line {
@@ -491,6 +525,10 @@ span.keywordtype {
     color: var(--code-keywordtype);
 }
 
+span.stringliteral {
+    color: var(--code-text);
+}
+
 span.mlabel {
     background-color: var(--code-text);
     color: var(--code-bg);
@@ -502,8 +540,8 @@ span.mlabel {
     border-radius: 0px;
 }
 
-a.code {
-    color: var(--code-code);
+div.fragment > div.line > a.code {
+    color: var(--code-link);
 }
 
 span.lineno, span.lineno>* {
@@ -519,6 +557,10 @@ span.lineno a {
 span.lineno a:hover {
     color: var(--bg3font);
     background-color: var(--code-line-bg);
+}
+
+code {
+    color:black;
 }
 
 /***********************************/
@@ -603,6 +645,19 @@ table.classindex {
 
 table.classindex a.el {
     font-weight: normal;
+}
+
+table.params {
+    margin-top:1em;
+}
+
+#titlearea > table {
+    margin-top:0px;
+}
+
+table.directory > tbody > tr {
+    border-top: thin solid var(--nav-tree-bg);
+    border-bottom: thin solid var(--nav-tree-bg);
 }
 
 /***********************************/

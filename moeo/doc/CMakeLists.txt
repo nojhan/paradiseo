@@ -23,7 +23,7 @@ if(DOXYGEN_FOUND)
         endif(UNIX AND NOT ${CMAKE_VERBOSE_MAKEFILE})
     endif(DOXYGEN_EXECUTABLE)
     # configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${MOEO_DOC_CONFIG_FILE}.cmake"
-    configure_file("${CMAKE_SOURCE_DIR}/doxyfile.cmake"
+    configure_file("${DOXYGEN_CONFIG_DIR}/doxyfile.cmake"
                    "${MOEO_DOC_DIR}/${MOEO_DOC_CONFIG_FILE}")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

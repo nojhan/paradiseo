@@ -27,6 +27,14 @@ DOXYFILE_ENCODING      = UTF-8
 
 PROJECT_NAME           = @MODULE_NAME@
 
+# With the PROJECT_LOGO tag one can specify a logo or an icon
+# that is included in the documentation.
+# The maximum height of the logo should not exceed 55 pixels
+# and the maximum width should not exceed 200 pixels.
+# Doxygen will copy the logo to the output directory.
+
+PROJECT_LOGO           = @CMAKE_SOURCE_DIR@/docs/img/paradiseo_logo.svg
+
 # The PROJECT_NUMBER tag can be used to enter a project or revision number.
 # This could be handy for archiving the generated documentation or
 # if some version control system is used.
@@ -484,7 +492,7 @@ FILE_VERSION_FILTER    =
 # file name after the option, if omitted DoxygenLayout.xml will be used as the name
 # of the layout file.
 
-LAYOUT_FILE            = @CMAKE_SOURCE_DIR@/DoxygenLayout.xml
+LAYOUT_FILE            = @CMAKE_SOURCE_DIR@/doxygen/DoxygenLayout.xml
 
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
@@ -775,9 +783,7 @@ HTML_FOOTER            =
 # the style sheet file to the HTML output directory, so don't put your own
 # stylesheet in the HTML output directory as well, or it will be erased!
 
-# HTML_EXTRA_STYLESHEET        = @CMAKE_SOURCE_DIR@/doxygen-awesome-css/doxygen-awesome.css
-# HTML_EXTRA_STYLESHEET        = @CMAKE_SOURCE_DIR@/doxygen_theme_flat_design/src/doxygen-style.css
-HTML_EXTRA_STYLESHEET        = @CMAKE_SOURCE_DIR@/doxygen-style.css
+HTML_EXTRA_STYLESHEET        = @CMAKE_SOURCE_DIR@/doxygen/doxygen-style.css
 
 
 # If the HTML_DYNAMIC_SECTIONS tag is set to YES then the generated HTML

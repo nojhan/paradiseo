@@ -34,7 +34,7 @@ IF (DOXYGEN_FOUND)
   # configure cfg file
     # "${CMAKE_CURRENT_SOURCE_DIR}/${EO_DOC_CONFIG_FILE}.cmake"
   CONFIGURE_FILE(
-    "${CMAKE_SOURCE_DIR}/doxyfile.cmake"
+    "${DOXYGEN_CONFIG_DIR}/doxyfile.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/${EO_DOC_CONFIG_FILE}"
     )
 
