@@ -70,10 +70,9 @@ endif()
 ######################################################################################
 
 add_executable(fastga fastga.cpp)
-# target_link_libraries(fastga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
-target_link_libraries(fastga ${PARADISEO_LIBRARIES} fmt)
+# Link to stdc++fs at the end because of an Ubuntu bug, see:  https://stackoverflow.com/a/57760267
+target_link_libraries(fastga ${PARADISEO_LIBRARIES} fmt stdc++fs)
 
 add_executable(onlymutga onlymutga.cpp)
-# target_link_libraries(onlymutga ${PARADISEO_LIBRARIES} ${IOH_LIBRARY} stdc++fs)
 target_link_libraries(onlymutga ${PARADISEO_LIBRARIES} fmt)
 
