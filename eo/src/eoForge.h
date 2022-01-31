@@ -192,13 +192,13 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
  * with different parametrization (or not).
  *
  * @warning When passing a reference (as it is often the case within ParadisEO),
- * it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
- * This is is a source of bug which your compiler will to detect and that would
- * disable any link between operators.
+ *          it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+ *          This is is a source of bug which your compiler will fail to detect and that would
+ *          disable any link between operators.
  *
  * @warning You may want to enable instantiation cache to grab some performances.
- * The default is set to disable the cache, because its use with operators
- * which hold a state will lead to unwanted behaviour.
+ *          The default is set to disable the cache, because its use with operators
+ *          which hold a state will lead to unwanted behaviour.
  *
  * @code
     eoForgeVector<eoSelect<EOT>> factories(false);
@@ -319,6 +319,134 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
     protected:
         bool _no_cache;
 };
+
+/** A map holding an operator (with deferred instantiation) at a given name.
+ *
+ * @note You can actually store several instances of the same class,
+ * with different parametrization (or not).
+ *
+ * @warning When passing a reference (as it is often the case within ParadisEO),
+ *          it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+ *          This is is a source of bug which your compiler will fail to detect and that would
+ *          disable any link between operators.
+ *
+ * @warning You may want to enable instantiation cache to grab some performances.
+ *          The default is set to disable the cache, because its use with operators
+ *          which hold a state will lead to unwanted behaviour.
+ *
+ * @code
+    eoForgeMap<eoSelect<EOT>> factories(false);
+
+    // Capture constructor's parameters and defer instantiation.
+    factories.add<eoRankMuSelect<EOT>>(1);
+    factories.setup<eoRankMuSelect<EOT>>(0, 5); // Edit
+
+    // Actually instantiate.
+    eoSelect<EOT>& op  = factories.instantiate(0);
+
+    // Call.
+    op();
+ * @endcode
+ *
+ * @ingroup Foundry
+ */
+template<class Itf, typename Enable = void>
+class eoForgeMap : public std::map<std::string,eoForgeInterface<Itf>*>
+{
+    public:
+        using Interface = Itf;
+
+        /** Default constructor do not cache instantiations.
+         *
+         * @warning
+         * You most probably want to disable caching for operators that hold a state.
+         * If you enable the cache, the last used instantiation will be used,
+         * at its last state.
+         * For example, continuators should most probably not be cached,
+         * as they very often hold a state in the form of a counter.
+         * At the end of a search, the continuator will be in the end state,
+         * and thus always ask for a stop.
+         * Reusing an instance in this state will de facto disable further searches.
+         *
+         * @param always_reinstantiate If false, will enable cache for the forges in this container.
+         */
+        eoForgeMap( bool always_reinstantiate = true ) :
+            _no_cache(always_reinstantiate)
+        { }
+
+         /** instantiate the operator managed at the given name.
+          */
+         Itf& instantiate(const std::string& name)
+         {
+             return this->at(name)->instantiate(_no_cache);
+         }
+
+        /** Add an operator to the list.
+         *
+         * @warning When passing a reference (as it is often the case within ParadisEO),
+         *          it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+         *          This is is a source of bug which your compiler will to detect and that would
+         *          disable any link between operators.
+         *
+         */
+        template<class Op, typename... Args>
+        void add(const std::string& name, Args... args)
+        {
+            // We decay all args to ensure storing everything by value within the forge.
+            // The references should thus be wrapped in a std::ref.
+            auto pfo = new eoForgeOperator<Itf,Op,std::decay_t<Args>...>(
+                    std::forward<Args>(args)...);
+            this->insert({name, pfo});
+        }
+
+        /** Specialization for operators with empty constructors.
+         */
+        template<class Op>
+        void add(const std::string& name)
+        {
+            eoForgeInterface<Itf>* pfo = new eoForgeOperator<Itf,Op>;
+            this->insert({name, pfo});
+        }
+
+        /** Change the set up arguments to the constructor.
+         *
+         * @warning When passing a reference (as it is often the case within ParadisEO),
+         *          it is MANDATORY to wrap it in `std::ref`, or else it will default to use copy.
+         *          This is is a source of bug which your compiler will to detect and that would
+         *          disable any link between operators.
+         *
+         * @warning The operator at `name` should have been added with eoForgeMap::add already..
+         */
+        template<class Op, typename... Args>
+        void setup(const std::string& name, Args... args)
+        {
+            delete this->at(name); // Silent on nullptr.
+            auto pfo = new eoForgeOperator<Itf,Op,std::decay_t<Args>...>(
+                    std::forward<Args>(args)...);
+            this->emplace({name, pfo});
+        }
+
+        /** Specialization for empty constructors.
+         */
+        template<class Op>
+        void setup(const std::string& name)
+        {
+            delete this->at(name);
+            auto pfo = new eoForgeOperator<Itf,Op>;
+            this->emplace({name, pfo});
+        }
+
+        virtual ~eoForgeMap()
+        {
+            for(auto kv : *this) {
+                delete kv.second;
+            }
+        }
+
+    protected:
+        bool _no_cache;
+};
+
 
 /** A range holding a parameter value at a given index.
  * 
