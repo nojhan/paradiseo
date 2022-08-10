@@ -35,6 +35,8 @@
 #include <csignal>
 #include "eoContinue.h"
 
+typedef void (*sighandler_t)(int);
+
 /** @addtogroup Continuators
  * @{
  */
