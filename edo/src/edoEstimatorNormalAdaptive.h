@@ -233,7 +233,7 @@ public:
             Matrix mD = eigensolver.eigenvalues().asDiagonal();
 
             // from variance to standard deviations
-            mD.cwiseSqrt();
+            mD=mD.cwiseSqrt();
             d.scaling( mD.diagonal() );
 
             d.coord_sys( eigensolver.eigenvectors() );
