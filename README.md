@@ -8,7 +8,9 @@ It focus on the efficiency of the implementation of solvers, by providing:
 - tools for ***automated design and selection*** of algorithms,
 - a focus on ***speed*** and several ***parallelization*** options.
 
-![Paradiseo logo](https://github.com/nojhan/paradiseo/blob/master/website/paradiseo_logo_200px_dark.png)
+<div align="center">
+  <img width="640" alt="Paradiseo logo" src="https://raw.githubusercontent.com/nojhan/paradiseo/master/docs/img/paradiseo_logo_dark.svg"/>
+</div>
 
 # Quick Start
 
