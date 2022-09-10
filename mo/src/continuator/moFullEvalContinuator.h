@@ -63,7 +63,7 @@ public:
      * @param _solution a solution
      * @return true if number of evaluations < maxFullEval
      */
-    virtual bool operator()(EOT & _solution) {
+    virtual bool operator()(EOT & /*_solution*/) {
         return (eval.value() - nbEval_start < maxFullEval);
     }
 
@@ -71,7 +71,7 @@ public:
      * Reset the number of evaluations
      * @param _solution a solution
      */
-    virtual void init(EOT & _solution) {
+    virtual void init(EOT & /*_solution*/) {
       if (restartCounter)
         nbEval_start = eval.value();
       else

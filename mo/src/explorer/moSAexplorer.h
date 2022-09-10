@@ -95,7 +95,7 @@ public:
      * decrease the temperature if necessary
      * @param _solution unused solution
      */
-    virtual void updateParam(EOT & _solution) {
+    virtual void updateParam(EOT & /*_solution*/) {
         coolingSchedule.update(temperature, this->moveApplied());
     };
 
@@ -103,7 +103,7 @@ public:
      * terminate: NOTHING TO DO
      * @param _solution unused solution
      */
-    virtual void terminate(EOT & _solution) {};
+    virtual void terminate(EOT & /*_solution*/) {};
 
     /**
      * Explore one random solution in the neighborhood
@@ -129,7 +129,7 @@ public:
      * @param _solution the solution
      * @return true if the criteria from the cooling schedule is true
      */
-    virtual bool isContinue(EOT & _solution) {
+    virtual bool isContinue(EOT & /*_solution*/) {
         return coolingSchedule(temperature);
     };
 

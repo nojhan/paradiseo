@@ -52,7 +52,7 @@ public :
      * Constructor
      * @param _description a description of the parameter
      */
-    moSolutionStat(std::string _description = "solution"):
+    moSolutionStat(std::string /*_description */= "solution"):
       moStat<EOT, EOT>(EOT(), "fitness solution") {  }
 
     /**

@@ -73,7 +73,7 @@ public:
      * init the tabuList by clearing the memory
      * @param _sol the current solution
      */
-    virtual void init(EOT & _sol) {
+    virtual void init(EOT & /*_sol*/) {
         clearMemory();
     }
 
@@ -83,7 +83,7 @@ public:
      * @param _sol unused solution
      * @param _neighbor the current neighbor
      */
-    virtual void add(EOT & _sol, Neighbor & _neighbor) {
+    virtual void add(EOT & /*_sol*/, Neighbor & _neighbor) {
       if (_neighbor.index() < maxSize) {
 	if (robust)
 	  // random value between min and max
@@ -98,7 +98,7 @@ public:
      * @param _sol unused solution
      * @param _neighbor unused neighbor
      */
-    virtual void update(EOT & _sol, Neighbor & _neighbor) {
+    virtual void update(EOT & /*_sol*/, Neighbor & /*_neighbor*/) {
       for (unsigned int i = 0; i < maxSize; i++)
 	if (tabuList[i] > 0)
 	  tabuList[i]--;
@@ -110,7 +110,7 @@ public:
      * @param _neighbor the current neighbor
      * @return true if tabuList contains _sol
      */
-    virtual bool check(EOT & _sol, Neighbor & _neighbor) {
+    virtual bool check(EOT & /*_sol*/, Neighbor & _neighbor) {
       return (tabuList[_neighbor.index()] > 0);
     }
 

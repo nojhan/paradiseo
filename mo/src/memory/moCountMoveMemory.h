@@ -45,7 +45,7 @@ public:
      * Init all the counters
      * @param _sol unused solution
      */
-    void init(EOT & _sol) {
+    void init(EOT & /*_sol*/) {
         nbMove=0;
         nbNoMove=0;
         counter=0;
@@ -55,7 +55,7 @@ public:
      * @param _sol unused solution
      * @param _neighbor unused neighbor
      */
-    void add(EOT & _sol, Neighbor & _neighbor) {
+    void add(EOT & /*_sol*/, Neighbor & /*_neighbor*/) {
         nbMove++;
         counter=0;
     }
@@ -64,7 +64,7 @@ public:
      * @param _sol unused solution
      * @param _neighbor unused neighbor
      */
-    void update(EOT & _sol, Neighbor & _neighbor) {
+    void update(EOT & /*_sol*/, Neighbor & /*_neighbor*/) {
         nbNoMove++;
         counter++;
     }

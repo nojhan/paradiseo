@@ -142,7 +142,7 @@ public:
    * @param _solution the solution to explore 
    * @param _neighbor the first neighbor
    */
-  virtual void init(EOT & _solution, Neighbor & _neighbor) {
+  virtual void init(EOT & /*_solution*/, Neighbor & _neighbor) {
     maxIndex = neighborhoodSize ;
 
     unsigned i = rng.random(maxIndex);
@@ -163,7 +163,7 @@ public:
    * @param _solution the solution to explore (population of solutions)
    * @param _neighbor the next neighbor which in order of distance
    */
-  virtual void next(EOT & _solution, Neighbor & _neighbor) {
+  virtual void next(EOT & /*_solution*/, Neighbor & _neighbor) {
     unsigned i = rng.random(maxIndex);
     key = indexVector[i];
 
@@ -180,7 +180,7 @@ public:
    * @param _solution the solution to explore
    * @return true if there is again a neighbor to explore: population size larger or equals than 1
    */
-  virtual bool cont(EOT & _solution) {
+  virtual bool cont(EOT & /*_solution*/) {
     return neighborhoodSize - maxIndex < sampleSize ;
   }
   

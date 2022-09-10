@@ -54,20 +54,20 @@ public:
      * NOTHING TO DO
      * @param _solution unused solution
      */
-    void initParam (EOT& _solution) { } ;
+    void initParam (EOT& /*_solution*/) { } ;
 
     /**
      * NOTHING TO DO
      * @param _solution unused solution
      */
-    void updateParam (EOT& _solution) { } ;
+    void updateParam (EOT& /*_solution*/) { } ;
 
     /**
      * NOTHING TO DO
      * @param _solution unused solution
      * @return always false
      */
-    bool isContinue(EOT& _solution) {
+    bool isContinue(EOT& /*_solution*/) {
         return false;
     } ;
 
@@ -75,14 +75,14 @@ public:
      * NOTHING TO DO
      * @param _solution unused solution
      */
-    void move(EOT& _solution) { } ;
+    void move(EOT& /*_solution*/) { } ;
 
     /**
      * NOTHING TO DO
      * @param _solution unused solution
      * @return always false
      */
-    virtual bool accept(EOT& _solution) {
+    virtual bool accept(EOT& /*_solution*/) {
         return false;
     } ;
 
@@ -90,13 +90,13 @@ public:
      * NOTHING TO DO
      * @param _solution unused solution
      */
-    virtual void terminate(EOT& _solution) { } ;
+    virtual void terminate(EOT& /*_solution*/) { } ;
 
     /**
      * NOTHING TO DO
      * @param _solution unused solution
      */
-    void operator()(EOT & _solution) { }
+    void operator()(EOT & /*_solution*/) { }
 
     /**
      * Return the class name

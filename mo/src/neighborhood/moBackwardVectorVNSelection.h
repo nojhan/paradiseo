@@ -69,7 +69,7 @@ public:
    * @param _solution the current solution
    * @return true if there is some heuristics
    */
-  virtual bool cont(EOT& _solution){
+  virtual bool cont(EOT& /*_solution*/){
     return (cycle || (current > 0));
   }
 
@@ -78,7 +78,7 @@ public:
    *
    * @param _solution the current solution
    */
-  virtual void init(EOT& _solution){
+  virtual void init(EOT& /*_solution*/){
     current = LSvector.size() - 1;
   }
 
@@ -87,7 +87,7 @@ public:
    *
    * @param _solution the current solution
    */
-  virtual void next(EOT& _solution){
+  virtual void next(EOT& /*_solution*/){
     current = (current + LSvector.size() -1) % LSvector.size();
   }
 

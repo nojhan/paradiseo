@@ -106,7 +106,7 @@ public:
      * terminate: NOTHING TO DO
      * @param _solution a solution (unused)
      */
-    virtual void terminate(EOT & _solution) {};
+    virtual void terminate(EOT & /*_solution*/) {};
 
     /**
      * Perturb and apply local search on a solution
@@ -135,7 +135,7 @@ public:
      * @param _solution the solution
      * @return always true
      */
-    virtual bool isContinue(EOT & _solution) {
+    virtual bool isContinue(EOT & /*_solution*/) {
         return true;
     };
 

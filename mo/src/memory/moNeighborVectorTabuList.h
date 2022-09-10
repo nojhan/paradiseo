@@ -57,7 +57,7 @@ public:
      * init the tabuList by clearing the memory
      * @param _sol the current solution
      */
-    virtual void init(EOT & _sol) {
+    virtual void init(EOT & /*_sol*/) {
         clearMemory();
     }
 
@@ -67,7 +67,7 @@ public:
      * @param _sol unused solution
      * @param _neighbor the current neighbor
      */
-    virtual void add(EOT & _sol, Neighbor & _neighbor) {
+    virtual void add(EOT & /*_sol*/, Neighbor & _neighbor) {
 
         if (tabuList.size() < maxSize) {
             std::pair<Neighbor, unsigned int> tmp;
@@ -87,7 +87,7 @@ public:
      * @param _sol unused solution
      * @param _neighbor unused neighbor
      */
-    virtual void update(EOT & _sol, Neighbor & _neighbor) {
+    virtual void update(EOT & /*_sol*/, Neighbor & /*_neighbor*/) {
         if (howlong > 0)
             for (unsigned int i=0; i<tabuList.size(); i++)
                 if (tabuList[i].second > 0)
@@ -100,7 +100,7 @@ public:
      * @param _neighbor the current neighbor
      * @return true if tabuList contains _sol
      */
-    virtual bool check(EOT & _sol, Neighbor & _neighbor) {
+    virtual bool check(EOT & /*_sol*/, Neighbor & _neighbor) {
         for (unsigned int i=0; i<tabuList.size(); i++) {
             if ((howlong > 0 && tabuList[i].second > 0 && tabuList[i].first.equals(_neighbor)) || (howlong==0 && tabuList[i].first.equals(_neighbor)))
                 return true;

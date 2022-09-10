@@ -124,7 +124,7 @@ public:
    * @param _solution the solution
    * @return true if an ameliorated neighbor was be found
    */
-  virtual bool isContinue(EOT & _solution) {
+  virtual bool isContinue(EOT & /*_solution*/) {
     return !stop;
   };
 

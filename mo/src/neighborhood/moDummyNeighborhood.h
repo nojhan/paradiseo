@@ -46,7 +46,7 @@ public:
      * @param _solution unused solution
      * @return always false
      */
-    virtual bool hasNeighbor(EOT & _solution) {
+    virtual bool hasNeighbor(EOT & /*_solution*/) {
         return false;
     }
 
@@ -55,21 +55,21 @@ public:
      * @param _solution unused solution
      * @param _current unused neighbor
      */
-    virtual void init(EOT & _solution, Neighbor & _current) {}
+    virtual void init(EOT & /*_solution*/, Neighbor & /*_current*/) {}
 
     /**
      * NOTHING TO DO
      * @param _solution unused solution
      * @param _current unused neighbor
      */
-    virtual void next(EOT & _solution, Neighbor & _current) {}
+    virtual void next(EOT & /*_solution*/, Neighbor & /*_current*/) {}
 
     /**
      * NOTHING TO DO
      * @param _solution unused solution
      * @return always false
      */
-    virtual bool cont(EOT & _solution) {
+    virtual bool cont(EOT & /*_solution*/) {
         return false;
     }
 

@@ -126,7 +126,7 @@ public:
 	 * @param _param unvalid Parameter
 	 */
 	template <class T>
-	moVectorMonitor(eoValueParam<T> & _param) : doubleParam(NULL), intParam(NULL), intLongParam(NULL), intLongLongParam(NULL), eotParam(NULL)
+	moVectorMonitor(eoValueParam<T> & /*_param*/) : doubleParam(NULL), intParam(NULL), intLongParam(NULL), intLongLongParam(NULL), eotParam(NULL)
 	{
 		std::cerr << "Sorry the type can not be in a vector of moVectorMonitor" << std::endl;
 	}

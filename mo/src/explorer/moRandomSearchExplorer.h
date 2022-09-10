@@ -74,7 +74,7 @@ public:
      * initialization of the number of step to be done
      * @param _solution unused solution
      */
-    virtual void initParam(EOT & _solution) {
+    virtual void initParam(EOT & /*_solution*/) {
         step     = 0;
     };
 
@@ -82,7 +82,7 @@ public:
      * increase the number of step
      * @param _solution unused solution
      */
-    virtual void updateParam(EOT & _solution) {
+    virtual void updateParam(EOT & /*_solution*/) {
         step++;
     };
 
@@ -90,7 +90,7 @@ public:
      * terminate: NOTHING TO DO
      * @param _solution unused solution
      */
-    virtual void terminate(EOT & _solution) {};
+    virtual void terminate(EOT & /*_solution*/) {};
 
     /**
      * Explore the neighborhood with only one random solution
@@ -111,7 +111,7 @@ public:
      * @param _solution the solution
      * @return true there is some steps to do
      */
-    virtual bool isContinue(EOT & _solution) {
+    virtual bool isContinue(EOT & /*_solution*/) {
         return (step < nbStep) ;
     };
 
@@ -119,7 +119,7 @@ public:
      * move the solution with the best neighbor
      * @param _solution the solution to move
      */
-    virtual void move(EOT & _solution) {
+    virtual void move(EOT & /*_solution*/) {
         // the solution is already move. So nothing to do !
     };
 
@@ -128,7 +128,7 @@ public:
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */
-    virtual bool accept(EOT & _solution) {
+    virtual bool accept(EOT & /*_solution*/) {
         return true;
     };
 

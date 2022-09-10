@@ -43,6 +43,6 @@ public:
      * NOTHING TO DO
      * @param _solution the related solution
      */
-    virtual void move(EOT& _solution) {}
+    virtual void move(EOT& /*_solution*/) {}
 };
 #endif

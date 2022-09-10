@@ -72,7 +72,7 @@ public:
    * @param _solution the current solution
    * @return true if there is some heuristics
    */
-  virtual bool cont(EOT& _solution){
+  virtual bool cont(EOT& /*_solution*/){
     return ( cycle || (currentOrder <= (order.size() - 2)) );
   }
 
@@ -81,7 +81,7 @@ public:
    *
    * @param _solution the current solution
    */
-  virtual void init(EOT& _solution) {
+  virtual void init(EOT& /*_solution*/) {
     if(order.size() == 0)
       for(unsigned int i = 0; i < LSvector.size(); i++)
 	order.push_back(i);
@@ -98,7 +98,7 @@ public:
    *
    * @param _solution the current solution
    */
-  virtual void next(EOT& _solution){
+  virtual void next(EOT& /*_solution*/){
     currentOrder = (currentOrder + 1) % order.size();
 
     current = order[currentOrder];

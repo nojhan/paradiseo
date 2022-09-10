@@ -44,17 +44,17 @@ public:
     /**
      * Init : NOTHIING TO DO
      */
-    void init(EOT & _sol) {}
+    void init(EOT & /*_sol*/) {}
 
     /**
      * Add : NOTHIING TO DO
      */
-    void add(EOT & _sol, Neighbor & _neighbor) {}
+    void add(EOT & /*_sol*/, Neighbor & /*_neighbor*/) {}
 
     /**
      * Update : NOTHIING TO DO
      */
-    void update(EOT & _sol, Neighbor & _neighbor) {}
+    void update(EOT & /*_sol*/, Neighbor & /*_neighbor*/) {}
 
     /**
      * ClearMemory : NOTHIING TO DO

@@ -57,7 +57,7 @@ public:
      * @param _solution the solution to explore
      * @param _current the first neighbor
      */
-    virtual void init(EOT& _solution, Neighbor& _current) {
+    virtual void init(EOT& /*_solution*/, Neighbor& _current) {
         indices.first=0;
         indices.second=1;
         _current.setIndices(0,1);

@@ -57,7 +57,7 @@ public :
      * The value of this stat is a copy of the value of the initial stat
      * @param _sol a solution
      */
-    virtual void init(EOT & _sol) {
+    virtual void init(EOT & /*_sol*/) {
         value() = stat.value();
     }
 
@@ -65,7 +65,7 @@ public :
      * The value of this stat is a copy of the value of the initial stat
      * @param _sol a solution
      */
-    virtual void operator()(EOT & _sol) {
+    virtual void operator()(EOT & /*_sol*/) {
         value() = stat.value();
     }
 

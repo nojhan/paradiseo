@@ -109,7 +109,7 @@ public:
 	 * @param _solution solution from which the neighborhood is visited
 	 * @param _key index of the IndexNeighbor
 	 */
-         virtual void index(EOT & _solution, unsigned int _key) {
+         virtual void index(EOT & /*_solution*/, unsigned int _key) {
            key = _key;
          }
 

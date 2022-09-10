@@ -47,7 +47,7 @@ public:
    * Do nothing on the solution
    * @param _solution the related solution
    */
-  virtual bool operator()(EOT & _solution) {
+  virtual bool operator()(EOT & /*_solution*/) {
     return true;
   }
 };

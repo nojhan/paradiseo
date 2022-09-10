@@ -105,7 +105,7 @@ public:
      * @param _solution the solution
      * @return true there is some steps to do
      */
-    virtual bool isContinue(EOT & _solution) {
+    virtual bool isContinue(EOT & /*_solution*/) {
         return (step < nbStep)  && isAccept ;
     };
 
