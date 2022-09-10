@@ -85,19 +85,19 @@ public:
      * initParam: NOTHING TO DO
      * @param _solution unused solution
      */
-    virtual void initParam(EOT & _solution) {};
+    virtual void initParam(EOT & /*_solution*/) {};
 
     /**
      * updateParam: NOTHING TO DO
      * @param _solution unused solution
      */
-    virtual void updateParam(EOT & _solution) {};
+    virtual void updateParam(EOT & /*_solution*/) {};
 
     /**
      * terminate: NOTHING TO DO
      * @param _solution unused solution
      */
-    virtual void terminate(EOT & _solution) {};
+    virtual void terminate(EOT & /*_solution*/) {};
 
     /**
      * Explore the neighborhood of a solution until an ameliorated neighbor is found
@@ -135,7 +135,7 @@ public:
      * @param _solution the solution
      * @return true if an ameliorated neighbor was found
      */
-    virtual bool isContinue(EOT & _solution) {
+    virtual bool isContinue(EOT & /*_solution*/) {
       if (stop)
         return isAccept ;
       else

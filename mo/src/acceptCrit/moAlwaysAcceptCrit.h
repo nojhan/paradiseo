@@ -48,7 +48,7 @@ public:
      * @param _sol2 the new solution after local search
      * @return always true
      */
-    bool operator()(EOT& _sol1, EOT& _sol2) {
+    bool operator()(EOT& /*_sol1*/, EOT& /*_sol2*/) {
         return true;
     }
 

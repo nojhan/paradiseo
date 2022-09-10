@@ -88,7 +88,7 @@ public:
      * Returns false when the running time is reached.
      * @param _sol the current solution
      */
-    virtual bool operator() (EOT& _sol)
+    virtual bool operator() (EOT& /*_sol*/)
     {
         bool res;
         time_t elapsed = (time_t) difftime(time(NULL), start);
@@ -102,7 +102,7 @@ public:
      * reset the start time
      * @param _solution a solution
      */
-    virtual void init(EOT & _solution) {
+    virtual void init(EOT & /*_solution*/) {
       if (!external)
         start = time(NULL);
     }

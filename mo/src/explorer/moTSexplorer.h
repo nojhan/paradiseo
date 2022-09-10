@@ -195,7 +195,7 @@ public:
      * @param _solution the solution
      * @return true
      */
-    virtual bool isContinue(EOT & _solution) {
+    virtual bool isContinue(EOT & /*_solution*/) {
         return true;
     };
 
@@ -204,7 +204,7 @@ public:
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */
-    virtual bool accept(EOT & _solution) {
+    virtual bool accept(EOT & /*_solution*/) {
         return isAccept;
     };
 

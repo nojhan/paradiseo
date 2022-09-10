@@ -62,7 +62,7 @@ public :
      * Set the number of solutions in the neighborhood
      * @param _sol the first solution
      */
-    virtual void init(EOT & _sol) {
+    virtual void init(EOT & /*_sol*/) {
         value() = nhStat.getSize();
     }
 
@@ -70,7 +70,7 @@ public :
      * Set the number of solutions in the neighborhood
      * @param _sol the corresponding solution
      */
-    virtual void operator()(EOT & _sol) {
+    virtual void operator()(EOT & /*_sol*/) {
         value() = nhStat.getSize();
     }
 

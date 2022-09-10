@@ -93,7 +93,7 @@ public:
 	 * @param _neighbor a neighbor
 	 * @return if _neighbor and this one are equals
 	 */
-	virtual bool equals(moNeighbor<EOT, Fitness> & _neighbor) {
+	virtual bool equals(moNeighbor<EOT, Fitness> & /*_neighbor*/) {
 		return false;
 	}
 

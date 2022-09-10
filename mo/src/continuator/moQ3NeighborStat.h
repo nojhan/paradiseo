@@ -63,7 +63,7 @@ public :
      * Set the third quartile of fitness in the neighborhood
      * @param _sol the third solution
      */
-    virtual void init(EOT & _sol) {
+    virtual void init(EOT & /*_sol*/) {
         value() = nhStat.getQ3();
     }
 
@@ -71,7 +71,7 @@ public :
      * Set the third quartile of fitness in the neighborhood
      * @param _sol the corresponding solution
      */
-    virtual void operator()(EOT & _sol) {
+    virtual void operator()(EOT & /*_sol*/) {
         value() = nhStat.getQ3();
     }
 

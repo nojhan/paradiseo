@@ -85,7 +85,7 @@ public:
    *
    * @param _solution the current solution 
    */
-  virtual void operator()(EOT & _solution) {
+  virtual void operator()(EOT & /*_solution*/) {
   }
 
   /** the delta of fitness for each neighbors 

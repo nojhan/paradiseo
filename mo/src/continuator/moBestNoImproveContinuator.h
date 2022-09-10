@@ -93,7 +93,7 @@ public:
    * reset the counter of iteration
    * @param _solution a solution
    */
-  virtual void init(EOT & _solution) {
+  virtual void init(EOT & /*_solution*/) {
     cpt = 0;
   }
 

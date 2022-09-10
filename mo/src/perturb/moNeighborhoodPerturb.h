@@ -79,7 +79,7 @@ public:
      * @param _sol the current solution
      * @param _neighbor unused neighbor (always empty)
      */
-    virtual void add(EOT & _sol, Neighbor & _neighbor) {
+    virtual void add(EOT & _sol, Neighbor & /*_neighbor*/) {
         (*this).init(_sol);
     }
 
@@ -88,7 +88,7 @@ public:
      * @param _sol the current solution
      * @param _neighbor unused neighbor (always empty)
      */
-    virtual void update(EOT & _sol, Neighbor & _neighbor) {
+    virtual void update(EOT & _sol, Neighbor & /*_neighbor*/) {
         if (otherNeighborhood.cont(_sol))
             otherNeighborhood.next(_sol, current);
         else

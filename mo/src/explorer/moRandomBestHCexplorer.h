@@ -85,7 +85,7 @@ public:
      * empty the vector of best solutions
      * @param _solution unused solution
      */
-    virtual void initParam(EOT & _solution) {
+    virtual void initParam(EOT & /*_solution*/) {
         // delete all the best solutions
         bestVector.clear();
     };
@@ -94,7 +94,7 @@ public:
      * empty the vector of best solutions
      * @param _solution unused solution
      */
-    virtual void updateParam(EOT & _solution) {
+    virtual void updateParam(EOT & /*_solution*/) {
         // delete all the best solutions
         bestVector.clear();
     };
@@ -103,7 +103,7 @@ public:
      * terminate: NOTHING TO DO
      * @param _solution unused solution
      */
-    virtual void terminate(EOT & _solution) {};
+    virtual void terminate(EOT & /*_solution*/) {};
 
     /**
      * Explore the neighborhood of a solution
@@ -156,7 +156,7 @@ public:
      * @param _solution the solution
      * @return true if an ameliorated neighbor was be found
      */
-    virtual bool isContinue(EOT & _solution) {
+    virtual bool isContinue(EOT & /*_solution*/) {
         return isAccept ;
     };
 

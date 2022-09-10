@@ -46,7 +46,7 @@ public:
      * @param _sol unused solution
      * @param _n unused neighbor
      */
-    void operator()(EOT& _sol, Neighbor& _n) {}
+    void operator()(EOT& /*_sol*/, Neighbor& /*_n*/) {}
 
 };
 

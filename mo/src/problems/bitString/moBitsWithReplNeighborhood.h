@@ -98,13 +98,13 @@ public:
    * @param _neighbor the first neighbor
    * @param _n Hamming distance of the neighbor
    */
-  virtual void randomNeighbor(EOT & _solution, Neighbor & _neighbor, unsigned _n) {
+  virtual void randomNeighbor(EOT & /*_solution*/, Neighbor & _neighbor, unsigned _n) {
     _neighbor.bits.resize(_n);
     _neighbor.nBits = _n;
 
     unsigned i;
     unsigned b;
-    unsigned tmp;
+    // unsigned tmp;
 
     for(unsigned k = 0; k < _n; k++) {
       i = rng.random(length - k);
@@ -167,7 +167,7 @@ public:
    * @param _solution the solution to explore
    * @return true if there is again a neighbor to explore: population size larger or equals than 1
    */
-  virtual bool cont(EOT & _solution) {
+  virtual bool cont(EOT & /*_solution*/) {
     return nNeighbors < sampleSize ;
   }
   

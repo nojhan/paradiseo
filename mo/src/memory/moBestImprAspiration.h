@@ -56,7 +56,7 @@ public:
      * @param _sol a solution
      * @param _neighbor a neighbor
      */
-    void update(EOT & _sol, Neighbor & _neighbor) {
+    void update(EOT & _sol, Neighbor & /*_neighbor*/) {
         if (bestFoundSoFar.fitness() < _sol.fitness())
             bestFoundSoFar = _sol;
     }
@@ -68,7 +68,7 @@ public:
      * @param _neighbor a neighbor
      * @return true if _neighbor fitness is better than the "bestFoundSoFar"
      */
-    bool operator()(EOT & _sol, Neighbor & _neighbor) {
+    bool operator()(EOT & /*_sol*/, Neighbor & _neighbor) {
         return (bestFoundSoFar.fitness() < _neighbor.fitness());
     }
 

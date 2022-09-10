@@ -68,7 +68,7 @@ public:
      * @param _solution the solution to explore
      * @return true if the neighborhood was not empty
      */
-    virtual bool hasNeighbor(EOT& _solution) {
+    virtual bool hasNeighbor(EOT& /*_solution*/) {
         return neighborhoodSize > 0;
     }
 
@@ -97,7 +97,7 @@ public:
      * @param _solution the solution to explore
      * @return true if there is again a neighbor to explore
      */
-    virtual bool cont(EOT & _solution) {
+    virtual bool cont(EOT & /*_solution*/) {
       if (maxNeighbors == 0)
         return neighborhoodSize > 0;
       else

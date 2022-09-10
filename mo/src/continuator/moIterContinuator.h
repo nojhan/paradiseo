@@ -52,7 +52,7 @@ public:
      *@param _solution a solution
      *@return true if counter < maxIter
      */
-    virtual bool operator()(EOT & _solution) {
+    virtual bool operator()(EOT & /*_solution*/) {
         bool res;
         cpt++;
         res = (cpt < maxIter);
@@ -65,7 +65,7 @@ public:
      * reset the counter of iteration
      * @param _solution a solution
      */
-    virtual void init(EOT & _solution) {
+    virtual void init(EOT & /*_solution*/) {
       cpt = 0;
     }
 

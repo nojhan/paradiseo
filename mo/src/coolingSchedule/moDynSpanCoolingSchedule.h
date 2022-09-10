@@ -63,7 +63,7 @@ public:
      * Initial temperature
      * @param _solution initial solution
      */
-    virtual double init(EOT & _solution) {
+    virtual double init(EOT & /*_solution*/) {
         // number of tries since the last temperature change
         spanTries = 0;
 
@@ -105,7 +105,7 @@ public:
      * @param _temp current temperature
      * @return true if the search can continue
      */
-    virtual bool operator()(double _temp) {
+    virtual bool operator()(double /*_temp*/) {
         return nbSpan <= nbSpanMax;
     }
 

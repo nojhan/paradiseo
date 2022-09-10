@@ -67,7 +67,7 @@ public:
    * @param _sol unused solution
    * @param _neighbor the current neighbor
    */
-  virtual void add(EOT & _sol, Neighbor & _neighbor) {
+  virtual void add(EOT & /*_sol*/, Neighbor & _neighbor) {
     if (_neighbor.index() < maxSize) 
       tabuList[_neighbor.index()] = howlong + rng.uniform(howlongRnd) ;
   }

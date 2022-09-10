@@ -52,13 +52,13 @@ public:
      * Init Continuator parameters
      * @param _solution the related solution
      */
-    virtual void init(EOT& _solution) {};
+    virtual void init(EOT& /*_solution*/) {};
 
     /**
      * Last Call to terminate the checkpoint
      * @param _solution the related solution
      */
-    virtual void lastCall(EOT& _solution) {};
+    virtual void lastCall(EOT& /*_solution*/) {};
 };
 
 #endif

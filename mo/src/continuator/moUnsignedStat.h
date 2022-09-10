@@ -56,7 +56,7 @@ public :
      * Init the number of iteration
      * @param _sol a solution
      */
-    virtual void init(EOT & _sol) {
+    virtual void init(EOT & /*_sol*/) {
         value() = *b;
     }
 
@@ -64,7 +64,7 @@ public :
      * Set the number of iteration
      * @param _sol a solution
      */
-    virtual void operator()(EOT & _sol) {
+    virtual void operator()(EOT & /*_sol*/) {
         value() = *b;
     }
 
