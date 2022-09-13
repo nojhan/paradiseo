@@ -6,25 +6,53 @@
 
 #include "moBinaryPartition.h"
 
+/** Stable neighbor for a binary partition.
+ *
+ * Models how to move from a solution to a neighbor,
+ * by swaping one selected atom for one rejected atom.
+ * The number of selected atoms is thus guaranteed to be stable.
+ *
+ * The core data structure is two atoms:
+ * - the selected one,
+ * - the rejected one.
+ */
 template<class EOT, class Fitness=typename EOT::Fitness>
 class moBinaryPartitionSwapNeighbor :
             public moBackableNeighbor<EOT,double>//,
-            // public moIndexNeighbor<EOT,double>
+            // public moIndexNeighbor<EOT,double> // FIXME see if we can model that.
 {
     public:
+        /** Shortcut for Atom’s type. */
         using AtomType = typename EOT::AtomType;
+
+        /** Shortcut for container’s type. */
         using ContainerType = typename EOT::ContainerType;
+
+        /** Shortcut for fitness. */
         using moBackableNeighbor<EOT, Fitness>::fitness;
+
         // using moIndexNeighbor<EOT, Fitness>::key;
         // using moIndexNeighbor<EOT, Fitness>::index;
 
+        /** Consistent constructor.
+         *
+         * Will ensure that the dimension of the partition does not change.
+         *
+         * @param _selected_nb Number of selected atoms to maintain.
+         */
         moBinaryPartitionSwapNeighbor( const size_t _selected_nb ) :
-            selected_nb(_selected_nb),
-            is_set(false)
+            selected_nb(_selected_nb)
+            #ifndef NDEBUG
+                , is_set(false)
+            #endif
         {
             assert(selected_nb > 0);
         }
 
+        /** Apply the currently stored move.
+         *
+         * That is: reject one atom and select one other.
+         */
         virtual void move(EOT& solution) override {
             assert(is_set);
             // Swap the two atoms.
@@ -35,6 +63,10 @@ class moBinaryPartitionSwapNeighbor :
             solution.invalidate();
         }
 
+        /** Apply the opposite of the currently stored move.
+         *
+         * That is: reject the selected atom, and select the rejected one.
+         */
         virtual void moveBack(EOT& solution) override {
             assert(is_set);
             solution.reject(this->select);
@@ -44,6 +76,11 @@ class moBinaryPartitionSwapNeighbor :
             solution.invalidate();
         }
 
+        /** Set the considered atoms.
+         *
+         * @param in The selected atom.
+         * @param out The rejected atom.
+         */
         void set(AtomType in, AtomType out) {
             this->select = in;
             this->reject = out;
@@ -52,11 +89,16 @@ class moBinaryPartitionSwapNeighbor :
             #endif
         }
 
+        /** Get the considered atom.
+         *
+         * @returns A pair of atoms, the first being the selected atom, the second being the rejected one.
+         */
         std::pair<AtomType,AtomType> get() {
             assert(is_set);
             return std::make_pair(select, reject);
         }
 
+        /** Returns true if this neighbor has the same selected & rejected atoms than the given neighbor. */
         virtual bool equals(moBinaryPartitionSwapNeighbor<EOT,Fitness>& neighbor) {
             auto [in, out] = neighbor.get();
             return this->select == in and this->reject == out;
@@ -66,6 +108,7 @@ class moBinaryPartitionSwapNeighbor :
             return "moBinaryPartitionSwapNeighbor";
         }
 
+        /** Fancy print. */
         virtual void printOn(std::ostream& out) const override {
             assert(is_set);
             out << selected_nb
@@ -78,10 +121,21 @@ class moBinaryPartitionSwapNeighbor :
 #else
     protected:
 #endif
+        /** Fixed dimension of the handled solutions. */
         const size_t selected_nb;
+
+        /** Selected atom. */
         AtomType select;
+
+        /** Rejected atom. */
         AtomType reject;
+
         #ifndef NDEBUG
+            /** Sanity flag.
+             *
+             * Used in debug builds to ensure that the neighbor
+             * have been set before being used.
+             */
             bool is_set;
         #endif
 };

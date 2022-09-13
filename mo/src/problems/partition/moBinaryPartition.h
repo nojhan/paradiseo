@@ -4,30 +4,76 @@
 
 #include <eo>
 
+/** A partition of a binary space.
+ *
+ * This data structure defines a grouping of the elements of a multi-dimensional
+ * set in a space of boolean numbers.
+ * \f[
+ *      \mathrm{1}^n = \bigcup_{i=1}^n \{0,1\}_i
+ * \f]
+ * Elements of the set may be either "selected" (in the set S) or "rejected" (in the set R).
+ * \f[
+ *      (S \in \mathrm{1}^m) \cup (R \in \mathrm{1}^k) \in \mathrm{1}^n,\; n=m+k
+ * \f]
+ * Elements are referred to by their index in the set (hereby named "atoms").
+ *
+ * This representation is useful if your problem can be defined has selecting
+ * a subset of elements that optimize some objective function.
+ *
+ * The core data structures are two ordered sets of unique atoms,
+ * the union of which is guaranteed to have the correct dimension.
+ */
 template<class FitT>
 class moBinaryPartition : public EO<FitT>
 {
     public:
+        /** The type for indices. */
         using AtomType = size_t;
+
+        /** The data structures holding the indices. */
         using ContainerType = std::set<AtomType>;
 
+        /** The set of selected atoms. */
         ContainerType selected;
+
+        /** The set of not-selected atoms. */
         ContainerType rejected;
 
-        /** Constructor
+        /** Consistent constructor
          *
-         * @param total_nb_genes Total number of possible genes from whith to select.
+         * Put all `total_nb_atoms` indices in the @ref rejected set.
+         * Indices starts at zero and fill the set in increasing order.
+         *
+         * @param total_nb_atoms Total number of possible atoms from whith to select.
          */
-        moBinaryPartition( const size_t total_nb_genes )
+        moBinaryPartition( const size_t total_nb_atoms )
         {
             // Fill the rejected list with all possible gene indices,
             // starting from zero.
-            for(size_t i = 0; i < total_nb_genes; ++i) {
+            for(size_t i = 0; i < total_nb_atoms; ++i) {
                 rejected.insert(i);
             }
-            // No selected.
+            // None selected.
         }
 
+        /** Empty constructor
+         *
+         * Do not fill the @ref rejected set.
+         * You are responsible for making it consistent after instantiation.
+         *
+         * @warning If you do not fill at least the @ref rejected set,
+         *          errors will be raised whe trying to @ref select or @ref reject.
+         */
+        moBinaryPartition()
+        { }
+
+        /** Move one atom in the @ref selected set.
+         *
+         * That is: erase the atom from @ref rejected,
+         * insert it in @ref selected.
+         *
+         * @note In debug mode, double check that elements were actually moved.
+         */
         void select(const size_t atom) {
             assert(not selected.contains(atom));
 
@@ -44,6 +90,13 @@ class moBinaryPartition : public EO<FitT>
             assert(has_inserted);
         }
 
+        /** Move one atom in the @ref rejected set.
+         *
+         * That is: insert the atom in @ref rejected,
+         * erase it from @ref selected.
+         *
+         * @note In debug mode, double check that elements were actually moved.
+         */
         void reject(const size_t atom) {
             assert(not rejected.contains(atom));
 
@@ -95,6 +148,7 @@ class moBinaryPartition : public EO<FitT>
             assert(rejected.size() == size);
         }
 
+        /** Returns true if all sets are equals. */
         bool operator==(const moBinaryPartition& other) {
             return this->selected == other.selected
                and this->rejected == other.rejected;

@@ -5,13 +5,32 @@
 #include <mo>
 #include "moBinaryPartition.h"
 
+/** Stable neighborhood for binary partitions.
+ *
+ * This generates all neighbors of a binary partition
+ * that have the same dimension than the considered solution.
+ * I.e. it enumerates all the swaps of two atoms
+ * between the selected and rejected sets.
+ *
+ * The core data structure is two indices:
+ * - one for the position within the selected set of a binary partition,
+ * - the other for the position within the rejected set.
+ *
+ * The neighborhood is defined as enumerating the neighbors,
+ * first by going over the rejected atoms (outer loop),
+ * then by iterating over the selected atoms (inner loop).
+ */
 template <class EOT, class Fitness=typename EOT::Fitness>
 class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitionSwapNeighbor<EOT, Fitness> >
 {
     public:
+        /** Shortcut for neighbor's type. */
         using Neighbor = moBinaryPartitionSwapNeighbor<EOT, Fitness>;
+
+        /** Shortcut for Atom’s type. */
         using AtomType = typename EOT::AtomType;
 
+        /** Get the currently pointed selected atom. */
         AtomType selected(EOT& from, const size_t i_select) {
             typename EOT::ContainerType::iterator
                 it = std::begin(from.rejected);
@@ -19,6 +38,7 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             return *it;
         }
 
+        /** Get the currently pointed rejected atom. */
         AtomType rejected(EOT& from, const size_t j_reject) {
             typename EOT::ContainerType::iterator
                 it = std::begin(from.selected);
@@ -26,6 +46,11 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             return *it;
         }
 
+        /** Initialize the neighborhood.
+         *
+         * This actually make the neighborhood point to the first possible swap:
+         * between the first selected atom and the first rejected atom.
+         */
         virtual void init(EOT& from, Neighbor& to) override {
             i_select = 0;
             j_reject = 0;
@@ -41,6 +66,7 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             to.set(in, out);
         }
 
+        /** Point to the next neighbor. */
         virtual void next(EOT& from, Neighbor& to) override {
             // If last item of the inner loop.
             if( i_select == from.rejected.size()-1 ) {
@@ -66,9 +92,8 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             );
         }
 
+        /** Returns true if there is more neighbors to be enumerated. */
         virtual bool cont(EOT& from) override {
-            // Outer loop on selected,
-            // inner loop on rejected.
             // std::clog << "cont neighborhood?"
             //     << " " << j_reject << "(-" << rejected(from, j_reject) << ")/" << from.selected.size()
             //     << " " << i_select << "(-" << selected(from, i_select) << ")/" << from.rejected.size()
@@ -90,6 +115,10 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             }
         }
 
+    /** Returns true if there is actual neighbors in the neighborhood.
+     *
+     * Essentially just tells if the rejected set is not empty.
+     */
     virtual bool hasNeighbor(EOT& solution) override {
         return solution.rejected.size() > 0;
     }
@@ -103,6 +132,9 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
 #else
     protected:
 #endif
+        /** Index of the currently pointed selected atom. */
         size_t i_select;
+
+        /** Index of the currently pointed rejected atom. */
         size_t j_reject;
 };
