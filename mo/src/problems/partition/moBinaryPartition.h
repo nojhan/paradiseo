@@ -118,7 +118,7 @@ class moBinaryPartition : public EO<FitT>
         {
             EO<FitT>::printOn(out); // Fitness.
             // Trailing space already inserted.
-            out << selected.size() << "  "; // Size.
+            out << selected.size() << "   "; // Size.
             std::copy(std::begin(selected), std::end(selected),
                 std::ostream_iterator<AtomType>(out, " ")); // Values.
             out << "   ";
