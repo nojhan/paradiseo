@@ -49,6 +49,43 @@ class moBinaryPartitionSwapNeighbor :
             assert(selected_nb > 0);
         }
 
+        /** Default constructor.
+         *
+         * Will NOT ensure that the dimension of the partition does not change.
+         */
+        moBinaryPartitionSwapNeighbor() :
+            selected_nb(0)
+            #ifndef NDEBUG
+                , is_set(false)
+            #endif
+        {
+            // Invalid fitness by default.
+        }
+
+        /** Copy constructor.
+         */
+        moBinaryPartitionSwapNeighbor( const moBinaryPartitionSwapNeighbor<EOT>& other) :
+            selected_nb(other.selected_nb )
+            #ifndef NDEBUG
+                , is_set(other.is_set)
+            #endif
+        {
+            this->fitness(other.fitness());
+        }
+
+        /** Default assignment operator.
+         */
+        moBinaryPartitionSwapNeighbor<EOT>& operator=(
+            const moBinaryPartitionSwapNeighbor<EOT>& other)
+        {
+            this->fitness(other.fitness());
+            this->selected_nb = other.selected_nb;
+            #ifndef NDEBUG
+                this->is_set = other.is_set;
+            #endif
+            return *this;
+        }
+
         /** Apply the currently stored move.
          *
          * That is: reject one atom and select one other.
@@ -58,7 +95,9 @@ class moBinaryPartitionSwapNeighbor :
             // Swap the two atoms.
             solution.reject(this->reject);
             solution.select(this->select);
-            assert(solution.selected.size() == this->selected_nb);
+            #ifndef NDEBUG
+                assert(solution.selected.size() == this->selected_nb);
+            #endif
 
             solution.invalidate();
         }
@@ -71,7 +110,9 @@ class moBinaryPartitionSwapNeighbor :
             assert(is_set);
             solution.reject(this->select);
             solution.select(this->reject);
-            assert(solution.selected.size() == this->selected_nb);
+            #ifndef NDEBUG
+                assert(solution.selected.size() == this->selected_nb);
+            #endif
 
             solution.invalidate();
         }
@@ -116,13 +157,22 @@ class moBinaryPartitionSwapNeighbor :
                 << " +" << select;
         }
 
+        void size(size_t _selected_nb) {
+            assert(_selected_nb > 0);
+            this->selected_nb = _selected_nb;
+        }
+
+        size_t size() const {
+            return this->selected_nb;
+        }
+
 #ifndef NDEBUG
     public:
 #else
     protected:
 #endif
         /** Fixed dimension of the handled solutions. */
-        const size_t selected_nb;
+        size_t selected_nb;
 
         /** Selected atom. */
         AtomType select;

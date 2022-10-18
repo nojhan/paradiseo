@@ -64,6 +64,7 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             AtomType in  = selected(from, i_select);
             AtomType out = rejected(from, j_reject);
             to.set(in, out);
+            to.size(from.selected.size());
         }
 
         /** Point to the next neighbor. */
@@ -90,6 +91,7 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
                 selected(from, i_select),
                 rejected(from, j_reject)
             );
+            to.size(from.selected.size());
         }
 
         /** Returns true if there is more neighbors to be enumerated. */
