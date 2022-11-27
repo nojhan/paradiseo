@@ -1,0 +1,15 @@
+{
+    "name": "Paradiseo",
+    "context": "..",
+    "dockerFile": "Dockerfile",
+    "settings": {},
+    "extensions": [
+        "aaron-bond.better-comments",
+        "cschlosser.doxdocgen",
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cpptools-themes",
+        "twxs.cmake"
+    ],
+    "remoteUser": "paradiseo"
+}
