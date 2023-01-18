@@ -144,6 +144,11 @@ class moBinaryPartitionSwapNeighbor :
             auto [in, out] = neighbor.get();
             return this->select == in and this->reject == out;
         }
+    private:
+        // Disable access to `equals(moNeighbor<…>&)` (removes the related overloaded-virtual warning).
+        using moBackableNeighbor<EOT,double>::equals;
+
+    public:
 
         virtual std::string className() const override {
             return "moBinaryPartitionSwapNeighbor";
