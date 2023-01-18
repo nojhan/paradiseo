@@ -113,12 +113,16 @@ class moBinaryPartition : public EO<FitT>
             assert(has_inserted);
         }
 
-        /** Serialization of the `selected` atoms. */
+        /** Serialization of the `selected` and `rejected` atoms.
+         *
+         * Output a string of the form (spaces replaced with period here, to show their count):
+         *   `<fitness>..<nb_selected>..<sel_0>…<sel_n>...<nb_rejected>..<rej_0>…<rej_m>`
+         */
         virtual void printOn(std::ostream& out) const
         {
             EO<FitT>::printOn(out); // Fitness.
             // Trailing space already inserted.
-            out << selected.size() << "   "; // Size.
+            out << " " << selected.size() << "  "; // Size.
             std::copy(std::begin(selected), std::end(selected),
                 std::ostream_iterator<AtomType>(out, " ")); // Values.
             out << "   ";
@@ -127,7 +131,11 @@ class moBinaryPartition : public EO<FitT>
                 std::ostream_iterator<AtomType>(out, " ")); // Values.
         }
 
-        /** Deserialization of the `selected` atoms. */
+        /** Deserialization of the `selected` and `rejected` atoms.
+         *
+         * Expects a string of the form (spaces replaced with period here, to show their count):
+         *   `<fitness>..<nb_selected>..<sel_0>…<sel_n>...<nb_rejected>..<rej_0>…<rej_m>`
+         */
         virtual void readFrom(std::istream& in)
         {
             EO<FitT>::readFrom(in); // Fitness.
