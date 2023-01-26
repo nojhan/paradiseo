@@ -65,7 +65,9 @@ class moBinaryPartitionSwapNeighbor :
         /** Copy constructor.
          */
         moBinaryPartitionSwapNeighbor( const moBinaryPartitionSwapNeighbor<EOT>& other) :
-            selected_nb(other.selected_nb )
+            selected_nb(other.selected_nb),
+            select(other.select),
+            reject(other.reject)
             #ifndef NDEBUG
                 , is_set(other.is_set)
             #endif
@@ -78,11 +80,13 @@ class moBinaryPartitionSwapNeighbor :
         moBinaryPartitionSwapNeighbor<EOT>& operator=(
             const moBinaryPartitionSwapNeighbor<EOT>& other)
         {
-            this->fitness(other.fitness());
             this->selected_nb = other.selected_nb;
+            this->select = other.select;
+            this->reject = other.reject;
             #ifndef NDEBUG
                 this->is_set = other.is_set;
             #endif
+            this->fitness(other.fitness());
             return *this;
         }
 
@@ -95,10 +99,7 @@ class moBinaryPartitionSwapNeighbor :
             // Swap the two atoms.
             solution.reject(this->reject);
             solution.select(this->select);
-            #ifndef NDEBUG
-                assert(solution.selected.size() == this->selected_nb);
-            #endif
-
+            assert(solution.selected.size() == this->selected_nb);
             solution.invalidate();
         }
 
@@ -110,10 +111,7 @@ class moBinaryPartitionSwapNeighbor :
             assert(is_set);
             solution.reject(this->select);
             solution.select(this->reject);
-            #ifndef NDEBUG
-                assert(solution.selected.size() == this->selected_nb);
-            #endif
-
+            assert(solution.selected.size() == this->selected_nb);
             solution.invalidate();
         }
 
@@ -128,6 +126,15 @@ class moBinaryPartitionSwapNeighbor :
             #ifndef NDEBUG
                 is_set = true;
             #endif
+            this->invalidate();
+        }
+
+        /** Set the considered atoms.
+         *
+         * @param in_out A pair of {selected,rejected} atoms.
+         */
+        void set(std::pair<AtomType,AtomType> in_out) {
+            this->set(in_out.first, in_out.second);
         }
 
         /** Get the considered atom.
@@ -157,7 +164,9 @@ class moBinaryPartitionSwapNeighbor :
         /** Fancy print. */
         virtual void printOn(std::ostream& out) const override {
             assert(is_set);
-            out << selected_nb
+            EO<Fitness>::printOn(out); // Fitness.
+            out << " "
+                << selected_nb
                 << " -" << reject
                 << " +" << select;
         }
@@ -165,10 +174,20 @@ class moBinaryPartitionSwapNeighbor :
         void size(size_t _selected_nb) {
             assert(_selected_nb > 0);
             this->selected_nb = _selected_nb;
+            this->invalidate();
         }
 
         size_t size() const {
             return this->selected_nb;
+        }
+
+        void fitness(const Fitness& fit) {
+            CLUTCHLOG(debug, "Fitness assignment -- neighbor: " << *this << " gets fitness: " << fit);
+            EO<Fitness>::fitness(fit);
+        }
+
+        Fitness fitness() const {
+            return EO<Fitness>::fitness();
         }
 
 #ifndef NDEBUG

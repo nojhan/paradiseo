@@ -166,4 +166,13 @@ class moBinaryPartition : public EO<FitT>
         {
             return "moBinaryPartition";
         }
+
+        void fitness(const FitT& fit) {
+            CLUTCHLOG(debug, "Fitness assignment -- solution: " << *this << " gets fitness: " << fit);
+            EO<FitT>::fitness(fit);
+        }
+
+        FitT fitness() const {
+            return EO<FitT>::fitness();
+        }
 };
