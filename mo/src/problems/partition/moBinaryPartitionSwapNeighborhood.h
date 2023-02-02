@@ -55,13 +55,13 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             i_select = 0;
             j_reject = 0;
 
-            std::clog << "Init neighborhood:"
-                << " outer:" << j_reject+1 << "/" << from.selected.size() << ","
-                << " inner:" << i_select+1 << "/" << from.rejected.size() << " ="
-                << " -" << rejected(from, j_reject)
-                << " +" << selected(from, i_select)
-                << " from: " << from
-                << std::endl;
+            // std::clog << "Init neighborhood:"
+            //     << " outer:" << j_reject+1 << "/" << from.selected.size() << ","
+            //     << " inner:" << i_select+1 << "/" << from.rejected.size() << " ="
+            //     << " -" << rejected(from, j_reject)
+            //     << " +" << selected(from, i_select)
+            //     << " from: " << from
+            //     << std::endl;
 
             // First item in both lists.
             AtomType in  = selected(from, i_select);
@@ -81,11 +81,11 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
                 i_select++; // Next inner loop.
             }
 
-            std::clog << "Next in neighborhood:"
-                << " -" << rejected(from, j_reject)
-                << " +" << selected(from, i_select)
-                << " from: " << from
-                << std::endl;
+            // std::clog << "Next in neighborhood:"
+            //     << " -" << rejected(from, j_reject)
+            //     << " +" << selected(from, i_select)
+            //     << " from: " << from
+            //     << std::endl;
 
             assert( from.rejected.contains(selected(from,i_select)) );
             assert( from.selected.contains(rejected(from,j_reject)) );
@@ -102,25 +102,25 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
 
         /** Returns true if there is more neighbors to be enumerated. */
         virtual bool cont(EOT& from) override {
-            std::clog << "cont neighborhood?"
-                << " outer:" << j_reject+1 << "/" << from.selected.size() << ","
-                << " inner:" << i_select+1 << "/" << from.rejected.size()// << " ="
-                // << " -" << rejected(from, j_reject)
-                // << " +" << selected(from, i_select)
-                << " from: " << from
-                << std::endl;
+            // std::clog << "cont neighborhood?"
+            //     << " outer:" << j_reject+1 << "/" << from.selected.size() << ","
+            //     << " inner:" << i_select+1 << "/" << from.rejected.size()// << " ="
+            //     // << " -" << rejected(from, j_reject)
+            //     // << " +" << selected(from, i_select)
+            //     << " from: " << from
+            //     << std::endl;
 
             // If reached the last item of the outer loop.
             if( i_select == from.rejected.size()-1
             and j_reject == from.selected.size()-1) {
                 // We should also have reached the end of the inner loop,
                 // and have set the inner loop to zero.
-                std::clog << "\tnope" << std::endl;
+                // std::clog << "\tnope" << std::endl;
                 return false;
 
             } else { // There is still some items in the outer loop.
                      // and thus also in the inner loop.
-                std::clog << "\tyes" << std::endl;
+                // std::clog << "\tyes" << std::endl;
                 assert( j_reject < from.selected.size() );
                 return true;
             }

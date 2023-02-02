@@ -118,7 +118,7 @@ class moBinaryPartition : public EO<FitT>
          * Output a string of the form (spaces replaced with period here, to show their count):
          *   `<fitness>..<nb_selected>..<sel_0>…<sel_n>...<nb_rejected>..<rej_0>…<rej_m>`
          */
-        virtual void printOn(std::ostream& out) const
+        virtual void printOn(std::ostream& out) const override
         {
             EO<FitT>::printOn(out); // Fitness.
             // Trailing space already inserted.
@@ -136,7 +136,7 @@ class moBinaryPartition : public EO<FitT>
          * Expects a string of the form (spaces replaced with period here, to show their count):
          *   `<fitness>..<nb_selected>..<sel_0>…<sel_n>...<nb_rejected>..<rej_0>…<rej_m>`
          */
-        virtual void readFrom(std::istream& in)
+        virtual void readFrom(std::istream& in) override
         {
             EO<FitT>::readFrom(in); // Fitness.
             unsigned size;
@@ -162,17 +162,25 @@ class moBinaryPartition : public EO<FitT>
                and this->rejected == other.rejected;
         }
 
-        virtual std::string className() const
+        virtual std::string className() const override
         {
             return "moBinaryPartition";
         }
 
-        void fitness(const FitT& fit) {
-            CLUTCHLOG(debug, "Fitness assignment -- solution: " << *this << " gets fitness: " << fit);
+        virtual void fitness(const FitT& fit) override
+        {
+            // std::clog << "Fitness assignment -- solution: " << *this << " gets fitness: " << fit << std::endl;
             EO<FitT>::fitness(fit);
         }
 
-        FitT fitness() const {
+        virtual const FitT& fitness() const override
+        {
             return EO<FitT>::fitness();
+        }
+
+        virtual void invalidate() override
+        {
+            // this->fitness().clear();
+            EO<FitT>::invalidate();
         }
 };

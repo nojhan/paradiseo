@@ -18,7 +18,7 @@
  */
 template<class EOT, class Fitness=typename EOT::Fitness>
 class moBinaryPartitionSwapNeighbor :
-            public moBackableNeighbor<EOT,double>//,
+            public moBackableNeighbor<EOT,Fitness>//,
             // public moIndexNeighbor<EOT,double> // FIXME see if we can model that.
 {
     public:
@@ -100,6 +100,7 @@ class moBinaryPartitionSwapNeighbor :
             solution.reject(this->reject);
             solution.select(this->select);
             assert(solution.selected.size() == this->selected_nb);
+            // this->fitness( Fitness(solution.fitness()) ); // For the cache.
             solution.invalidate();
         }
 
@@ -112,6 +113,7 @@ class moBinaryPartitionSwapNeighbor :
             solution.reject(this->select);
             solution.select(this->reject);
             assert(solution.selected.size() == this->selected_nb);
+            // this->fitness( Fitness(solution.fitness()) ); // For the cache.
             solution.invalidate();
         }
 
@@ -153,7 +155,7 @@ class moBinaryPartitionSwapNeighbor :
         }
     private:
         // Disable access to `equals(moNeighbor<…>&)` (removes the related overloaded-virtual warning).
-        using moBackableNeighbor<EOT,double>::equals;
+        using moBackableNeighbor<EOT,Fitness>::equals;
 
     public:
 
@@ -181,12 +183,14 @@ class moBinaryPartitionSwapNeighbor :
             return this->selected_nb;
         }
 
-        void fitness(const Fitness& fit) {
-            CLUTCHLOG(debug, "Fitness assignment -- neighbor: " << *this << " gets fitness: " << fit);
+        virtual void fitness(const Fitness& fit) override
+        {
+            // std::clog << "Fitness assignment -- neighbor: " << *this << " gets fitness: " << fit << std::endl;
             EO<Fitness>::fitness(fit);
         }
 
-        Fitness fitness() const {
+        virtual const Fitness& fitness() const override
+        {
             return EO<Fitness>::fitness();
         }
 
