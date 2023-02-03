@@ -127,6 +127,7 @@ class moBinaryPartition : public EO<FitT>
                 std::ostream_iterator<AtomType>(out, " ")); // Values.
         }
 
+        //! Convenience function to only render the fitess and the selected atoms (and not the rejected ones).
         std::string str() const
         {
             std::ostringstream msg;
