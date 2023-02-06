@@ -159,6 +159,7 @@ class moBinaryPartitionSwapNeighbor :
 
     public:
 
+        //! Class name for state management.
         virtual std::string className() const override {
             return "moBinaryPartitionSwapNeighbor";
         }
@@ -173,26 +174,28 @@ class moBinaryPartitionSwapNeighbor :
                 << " +" << select;
         }
 
+        //! Accessor to set the size.
         void size(size_t _selected_nb) {
             assert(_selected_nb > 0);
             this->selected_nb = _selected_nb;
             this->invalidate();
         }
 
+        //! Accessor to get the size.
         size_t size() const {
             return this->selected_nb;
         }
 
-        virtual void fitness(const Fitness& fit) override
-        {
-            // std::clog << "Fitness assignment -- neighbor: " << *this << " gets fitness: " << fit << std::endl;
-            EO<Fitness>::fitness(fit);
-        }
+        // virtual void fitness(const Fitness& fit) override
+        // {
+        //     // std::clog << "Fitness assignment -- neighbor: " << *this << " gets fitness: " << fit << std::endl;
+        //     EO<Fitness>::fitness(fit);
+        // }
 
-        virtual const Fitness& fitness() const override
-        {
-            return EO<Fitness>::fitness();
-        }
+        // virtual const Fitness& fitness() const override
+        // {
+        //     return EO<Fitness>::fitness();
+        // }
 
 #ifndef NDEBUG
     public:

@@ -180,25 +180,29 @@ class moBinaryPartition : public EO<FitT>
                and this->rejected == other.rejected;
         }
 
+        //! Class name for state management.
         virtual std::string className() const override
         {
             return "moBinaryPartition";
         }
 
-        virtual void fitness(const FitT& fit) override
-        {
-            // std::clog << "Fitness assignment -- solution: " << *this << " gets fitness: " << fit << std::endl;
-            EO<FitT>::fitness(fit);
-        }
+        // //! Accessor to set fitness.
+        // virtual void fitness(const FitT& fit) override
+        // {
+        //     // std::clog << "Fitness assignment -- solution: " << *this << " gets fitness: " << fit << std::endl;
+        //     EO<FitT>::fitness(fit);
+        // }
 
-        virtual const FitT& fitness() const override
-        {
-            return EO<FitT>::fitness();
-        }
+        // //! Accessor to get fitness.
+        // virtual const FitT& fitness() const override
+        // {
+        //     return EO<FitT>::fitness();
+        // }
 
-        virtual void invalidate() override
-        {
-            // this->fitness().clear();
-            EO<FitT>::invalidate();
-        }
+        // //! Accessor to invalidate fitness.
+        // virtual void invalidate() override
+        // {
+        //     // this->fitness().clear();
+        //     EO<FitT>::invalidate();
+        // }
 };

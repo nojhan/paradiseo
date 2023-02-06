@@ -134,6 +134,7 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
         return solution.rejected.size() > 0;
     }
 
+    //! Class name for state management.
     virtual std::string className() const override {
         return "moBinaryPartitionSwapNeighborhood";
     }
