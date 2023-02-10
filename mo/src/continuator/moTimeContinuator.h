@@ -94,7 +94,7 @@ public:
         time_t elapsed = (time_t) difftime(time(NULL), start);
         res = (elapsed < max);
         if (!res && verbose)
-            std::cout << "STOP in moTimeContinuator: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
+            std::clog << "STOP in moTimeContinuator: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
         return res;
     }
 

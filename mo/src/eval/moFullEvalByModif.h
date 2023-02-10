@@ -40,7 +40,9 @@
 
 /**
  * Full evaluation to use with a moBackableNeighbor
- * !!!WARNING!!! Use only when your solution is composed by a fitness Value and a "genotype"
+ *
+ * @warning Use only when your solution is composed by a fitness Value and a "genotype",
+ *          and no any other data structure.
  *
  */
 template<class BackableNeighbor>

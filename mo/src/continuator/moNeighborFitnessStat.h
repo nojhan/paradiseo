@@ -62,7 +62,7 @@ public :
             neighborhood(_neighborhood), eval(_eval)
     {
         if (!neighborhood.isRandom()) {
-            std::cout << "moNeighborFitnessStat::Warning -> the neighborhood used is not random, the neighbor will not be random" << std::endl;
+            std::clog << "moNeighborFitnessStat::Warning -> the neighborhood used is not random, the neighbor will not be random" << std::endl;
         }
     }
 
