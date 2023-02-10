@@ -35,11 +35,13 @@
 #ifndef _moRandomBestHCexplorer_h
 #define _moRandomBestHCexplorer_h
 
+#include <vector>
+#include <cassert>
+
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <neighborhood/moNeighborhood.h>
-#include <vector>
 #include <utils/eoRNG.h>
 
 /**
