@@ -95,7 +95,7 @@ public:
   /** Set fitness. At the same time, validates it.
    *  @param _fitness New fitness value.
    */
-  void fitness(const Fitness& _fitness)
+  virtual void fitness(const Fitness& _fitness)
   {
     repFitness = _fitness;
     invalidFitness = false;
