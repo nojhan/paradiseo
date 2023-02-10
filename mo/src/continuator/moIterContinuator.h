@@ -57,7 +57,7 @@ public:
         cpt++;
         res = (cpt < maxIter);
         if (!res && verbose)
-            std::cout << "STOP in moIterContinuator: Reached maximum number of iterations [" << cpt << "/" << maxIter << "]" << std::endl;
+            std::clog << "STOP in moIterContinuator: Reached maximum number of iterations [" << cpt << "/" << maxIter << "]" << std::endl;
         return res;
     }
 

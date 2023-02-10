@@ -75,7 +75,7 @@ public:
 		checkpoint = new moCheckpoint<Neighbor>(*continuator);
 		add(_stat, _monitoring);
 		// precision of the output by default
-		precisionOutput = std::cout.precision();
+		precisionOutput = std::clog.precision();
 	}
 
 	/**

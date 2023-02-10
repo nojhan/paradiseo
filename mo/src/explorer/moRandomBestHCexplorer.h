@@ -120,6 +120,7 @@ public:
             eval(_solution, currentNeighbor);
 
             //initialize the best neighbor
+            assert(not currentNeighbor.invalid());
             bestVector.push_back(currentNeighbor);
 
             //test all others neighbors
@@ -129,21 +130,37 @@ public:
 
                 //eval
                 eval(_solution, currentNeighbor);
+                assert(not currentNeighbor.invalid());
 
                 //if we found a better neighbor, update the best
+                #ifndef NDEBUG
+                assert(bestVector.size() > 0);
+                assert(not bestVector.at(0).invalid());
+                if (neighborComparator(bestVector.at(0), currentNeighbor)) {
+                #else
                 if (neighborComparator(bestVector[0], currentNeighbor)) {
+                #endif
                     bestVector.clear();
+                    assert(not currentNeighbor.invalid());
                     bestVector.push_back(currentNeighbor);
                 }
-                else if (neighborComparator.equals(currentNeighbor, bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
+                //if the current is equals to previous best solutions
+                // then update vector of the best solution
+                #ifndef NDEBUG
+                else if (neighborComparator.equals(currentNeighbor, bestVector.at(0))) {
+                #else
+                else if (neighborComparator.equals(currentNeighbor, bestVector[0])) {
+                #endif
+                    assert(not currentNeighbor.invalid());
                     bestVector.push_back(currentNeighbor);
+                }
             }
 
-	    // choose randomly one of the best solutions
-	    unsigned int i = rng.random(bestVector.size());
+            // choose randomly one of the best solutions
+            unsigned int i = rng.random(bestVector.size());
 
-	    // the selected Neighbor
-	    selectedNeighbor = bestVector[i];
+            // the selected Neighbor
+            selectedNeighbor = bestVector[i];
         }
         else {
             //if _solution hasn't neighbor,

@@ -84,7 +84,7 @@ public:
     bool res = (cpt < maxNoImprove);
 
     if (!res && verbose)
-      std::cout << "STOP in moBestNoImproveContinuator: Reached maximum number of iterations without improvement [" << cpt << "/" << maxNoImprove << "]" << std::endl;
+      std::clog << "STOP in moBestNoImproveContinuator: Reached maximum number of iterations without improvement [" << cpt << "/" << maxNoImprove << "]" << std::endl;
 
     return res;
   }

@@ -72,7 +72,7 @@ public:
         isAccept = false;
 
         if (!neighborhood.isRandom()) {
-            std::cout << "moSAexplorer::Warning -> the neighborhood used is not random" << std::endl;
+            std::clog << "moSAexplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
     }
 

@@ -44,16 +44,16 @@
 #include <eval/moDummyEval.h>
 
 /**
- * Explore the neighborhood according to the local search algorithm 
+ * Explore the neighborhood according to the local search algorithm
  *
  * During this exploration,
  *   the parameters are updated
  *   one neighbor is selected
  *   a comparason with the solution is made to acccept or not this new neighbor
- * 
+ *
  * The current neighbor (currentNeigbor) is the neighbor under consideration during the search (in operator()(EOT &))
  *
- * The selected neighbor (selectedNeighbor) is the neighbor selected in method operator()(EOT &). 
+ * The selected neighbor (selectedNeighbor) is the neighbor selected in method operator()(EOT &).
  * If this neighbor is accepted, then the solution is moved on this neighbor (in move(EOT &))
  *
  */

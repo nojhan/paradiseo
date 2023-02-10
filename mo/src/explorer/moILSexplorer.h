@@ -126,7 +126,7 @@ public:
         //apply the local search on the copy
         ls(currentSol);
 
-//        std::cout << "(solution)\t" << current << std::endl;
+//        std::clog << "(solution)\t" << current << std::endl;
 
     };
 
