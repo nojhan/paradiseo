@@ -7,6 +7,8 @@
 /** Standard bit mutation with mutation rate p:
  * choose k from the binomial distribution Bin(n,p) and apply flip_k(x).
  *
+ * If rate is null (the default), use 1/chrom.size().
+ *
  * @ingroup Bitstrings
  * @ingroup Variators
  */
@@ -14,7 +16,11 @@ template<class EOT>
 class eoStandardBitMutation : public eoMonOp<EOT>
 {
     public:
-        eoStandardBitMutation(double rate = 0.5) :
+        /** Constructor.
+         *
+         * @param rate mutation rate, 1/chrom.size() if ignored or zero (the default)
+         */
+        eoStandardBitMutation(double rate = 0) :
             _rate(rate),
             _nb(1),
             _bitflip(_nb)
@@ -22,9 +28,12 @@ class eoStandardBitMutation : public eoMonOp<EOT>
 
         virtual bool operator()(EOT& chrom)
         {
+            assert(chrom.size()>0);
+            if(_rate == 0) {
+                _rate = (double) 1/chrom.size();
+            }
             _nb = eo::rng.binomial(chrom.size(),_rate);
-            // BitFlip operator is bound to the _nb reference,
-            // thus one don't need to re-instantiate.
+            _bitflip.number_bits(_nb);
             return _bitflip(chrom);
         }
 
@@ -46,8 +55,7 @@ template<class EOT>
 class eoUniformBitMutation : public eoMonOp<EOT>
 {
     public:
-        eoUniformBitMutation(double rate = 0.5) :
-            _rate(rate),
+        eoUniformBitMutation() :
             _nb(1),
             _bitflip(_nb)
         {}
@@ -55,15 +63,13 @@ class eoUniformBitMutation : public eoMonOp<EOT>
         virtual bool operator()(EOT& chrom)
         {
             _nb = eo::rng.random(chrom.size());
-            // BitFlip operator is bound to the _nb reference,
-            // thus one don't need to re-instantiate.
+            _bitflip.number_bits(_nb);
             return _bitflip(chrom);
         }
 
         virtual std::string className() const {return "eoUniformBitMutation";}
 
     protected:
-        double _rate;
         unsigned _nb;
         eoDetSingleBitFlip<EOT> _bitflip;
 };
@@ -84,17 +90,21 @@ template<class EOT>
 class eoConditionalBitMutation : public eoStandardBitMutation<EOT>
 {
     public:
-        eoConditionalBitMutation(double rate = 0.5) :
+        eoConditionalBitMutation(double rate = 0) :
             eoStandardBitMutation<EOT>(rate)
         {}
 
         virtual bool operator()(EOT& chrom)
         {
             assert(chrom.size()>0);
-            this->_nb = eo::rng.binomial(chrom.size()-1,this->_rate);
-            this->_nb++;
-            // BitFlip operator is bound to the _nb reference,
-            // thus one don't need to re-instantiate.
+            if(this->_rate == 0) {
+                this->_rate = (double) 1/chrom.size();
+            }
+            this->_nb = 0;
+            while(this->_nb < 1) {
+                this->_nb = eo::rng.binomial(chrom.size(),this->_rate);
+            }
+            this->_bitflip.number_bits(this->_nb);
             return this->_bitflip(chrom);
         }
 
@@ -123,12 +133,14 @@ class eoShiftedBitMutation : public eoStandardBitMutation<EOT>
         virtual bool operator()(EOT& chrom)
         {
             assert(chrom.size()>0);
-            this->_nb = eo::rng.binomial(chrom.size()-1,this->_rate);
+            if(this->_rate == 0) {
+                this->_rate = (double) 1/chrom.size();
+            }
+            this->_nb = eo::rng.binomial(chrom.size(),this->_rate);
             if(this->_nb == 0) {
                 this->_nb = 1;
             }
-            // BitFlip operator is bound to the _nb reference,
-            // thus one don't need to re-instantiate.
+            this->_bitflip.number_bits(this->_nb);
             return this->_bitflip(chrom);
         }
 
@@ -142,7 +154,7 @@ class eoShiftedBitMutation : public eoStandardBitMutation<EOT>
  *
  * From:
  * Furong Ye, Carola Doerr, and Thomas Back.
- * Interpolating local and global search by controllingthe variance of standard bit mutation.
+ * Interpolating local and global search by controlling the variance of standard bit mutation.
  * In 2019 IEEE Congress on Evolutionary Computation(CEC), pages 2292–2299.
  *
  * In contrast to standard bit mutation, this operators allows to scale
@@ -152,29 +164,40 @@ class eoShiftedBitMutation : public eoStandardBitMutation<EOT>
  * @ingroup Variators
  */
 template<class EOT>
-class eoNormalBitMutation : public eoStandardBitMutation<EOT>
+class eoNormalBitMutation : public eoMonOp<EOT>
 {
     public:
-        eoNormalBitMutation(double rate = 0.5, double variance = 1) :
-            eoStandardBitMutation<EOT>(rate),
-            _variance(variance)
+        eoNormalBitMutation(double mean = 0, double variance = 0) :
+            _mean(mean),
+            _variance(variance),
+            _nb(1),
+            _bitflip(_nb)
         {}
 
         virtual bool operator()(EOT& chrom)
         {
-            this->_nb = eo::rng.normal(this->_rate * chrom.size(), _variance);
-            if(this->_nb >= chrom.size()) {
-                this->_nb = eo::rng.random(chrom.size());
+            assert(chrom.size() > 0);
+            if(_mean == 0) {
+                _mean = (double) 1/chrom.size();
             }
-            // BitFlip operator is bound to the _nb reference,
-            // thus one don't need to re-instantiate.
-            return this->_bitflip(chrom);
+            if(_variance == 0) {
+                _variance = std::log(chrom.size());
+            }
+            _nb = eo::rng.normal(_mean, _variance);
+            if(_nb >= chrom.size()) {
+                _nb = eo::rng.random(chrom.size());
+            }
+            _bitflip.number_bits(_nb);
+            return _bitflip(chrom);
         }
 
         virtual std::string className() const {return "eoNormalBitMutation";}
 
     protected:
+        double _mean;
         double _variance;
+        unsigned _nb;
+        eoDetSingleBitFlip<EOT> _bitflip;
 };
 
 /** Fast mutation which size is sampled from an adaptive power law.
@@ -188,11 +211,10 @@ class eoNormalBitMutation : public eoStandardBitMutation<EOT>
  * @ingroup Variators
  */
 template<class EOT>
-class eoFastBitMutation : public eoStandardBitMutation<EOT>
+class eoFastBitMutation : public eoMonOp<EOT>
 {
     public:
-        eoFastBitMutation(double rate = 0.5, double beta = 1.5) :
-            eoStandardBitMutation<EOT>(rate),
+        eoFastBitMutation(double beta = 1.5) :
             _beta(beta)
         {
             assert(beta > 1);
@@ -200,74 +222,96 @@ class eoFastBitMutation : public eoStandardBitMutation<EOT>
 
         virtual bool operator()(EOT& chrom)
         {
-            this->_nb = powerlaw(chrom.size(),_beta);
-            // BitFlip operator is bound to the _nb reference,
-            // thus one don't need to re-instantiate.
-            return this->_bitflip(chrom);
+            _nb = powerlaw(chrom.size(),_beta);
+            _bitflip.number_bits(_nb);
+            return _bitflip(chrom);
         }
 
         virtual std::string className() const {return "eoFastBitMutation";}
 
     protected:
-
-        double powerlaw(unsigned n, double beta)
+        double powerlaw(unsigned int n, double beta)
         {
             double cnb = 0;
-            for(unsigned i=1; i<n; ++i) {
+            for(unsigned int i=1; i<=n/2; ++i) {
                 cnb += std::pow(i,-beta);
             }
-            return eo::rng.powerlaw(0,n,beta) / cnb;
+            double trigger = eo::rng.uniform(0,1);
+            double cursor = 0;
+            double rate = 1;
+            for(unsigned int i=1; i<=n/2; ++i) {
+                cursor += std::pow(i,-beta) / cnb;
+                if(cursor >= trigger) {
+                    rate = static_cast<double>(i) / static_cast<double>(n);
+                    break;
+                }
+            }
+            return eo::rng.binomial(n,rate);
         }
 
+        // double powerlaw(unsigned n, double beta)
+        // {
+        //     double cnb = 0;
+        //     for(unsigned i=1; i<n; ++i) {
+        //         cnb += std::pow(i,-beta);
+        //     }
+        //     return eo::rng.powerlaw(0,n,beta) / cnb;
+        // }
+
         double _beta;
+        unsigned _nb;
+        eoDetSingleBitFlip<EOT> _bitflip;
 };
 
 /** Bucket mutation which assign probability for each bucket
  *
+ * @warning Highly untested code, use with caution.
+ *
  * From:
- * Carola Doerr, Johann Dréo, Alexis Robbes
+ * Carola Doerr, Johann Dreo, Alexis Robbes
  */
 template<class EOT>
-class eoBucketBitMutation : public eoStandardBitMutation<EOT>
+class eoBucketBitMutation : public eoMonOp<EOT>
 {
     public:
-        eoBucketBitMutation(std::vector<double> bucketsSizes, std::vector<double> bucketValues) :
-            _bucketsSizes(bucketsSizes),
-            _bucketValues(bucketValues)
-    
+        eoBucketBitMutation(std::vector<std::vector<int>> buckets, std::vector<double> bucketsValues) :
+            _buckets(buckets),
+            _bucketsValues(bucketsValues)
         {
-            assert(bucketsSizes.size() != bucketValues.size());
+            assert(buckets.size() == bucketsValues.size());
         }
 
         virtual bool operator()(EOT& chrom)
         {
-
-            this->_nb = customlaw(chrom.size(), _bucketsSizes, _bucketValues);
-            // BitFlip operator is bound to the _nb reference,
-            // thus one don't need to re-instantiate.
-            return this->_bitflip(chrom);
+            _nb = customlaw(chrom.size(), _buckets, _bucketsValues);
+            _bitflip.number_bits(_nb);
+            return _bitflip(chrom);
         }
 
         virtual std::string className() const {return "eoBucketBitMutation";}
 
     protected:
 
-        double customlaw(unsigned n, std::vector<double> bucketsSizes, std::vector<double> bucketValues)
+        double customlaw(unsigned n, std::vector<std::vector<int>> buckets, std::vector<double> bucketsValues)
         {
-            int targetBucketIndex = eo::rng.roulette_wheel(bucketValues);
-            int nb = 0;
-            int bucketIndex = 0;
-            while (nb < n && bucketIndex <= targetBucketIndex)
-            {
-                if (bucketIndex < targetBucketIndex) nb += int(n*bucketsSizes[bucketIndex]);
-                else nb += int(eo::rng.uniform(1, n*bucketsSizes[targetBucketIndex]));
-            }
-            if (nb > n) nb = n;
-            
-            return nb;
-        }
+            int bucketIndex = eo::rng.roulette_wheel(bucketsValues);
+            int startBit    = buckets[bucketIndex][0];
+            int endBit      = buckets[bucketIndex][1];
+            int gapBit      = endBit - startBit;
 
-        std::vector<double> _bucketsSizes;
-        std::vector<double> _bucketValues;
+            int nbBits;
+            if (gapBit > 0) {
+                nbBits = rand() % gapBit + startBit;
+            } else {
+                nbBits = endBit;
+            }
+            return nbBits;
+        }
+        std::vector<double> _bucketsValues;
+        std::vector<std::vector<int>> _buckets;
+
+        unsigned _nb;
+        eoDetSingleBitFlip<EOT> _bitflip;
 };
+
 #endif // _eoStandardBitMutation_h_
