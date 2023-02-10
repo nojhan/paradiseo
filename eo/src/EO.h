@@ -72,7 +72,7 @@ public:
   virtual ~EO() {};
 
   /// Return fitness value.
-  const Fitness& fitness() const {
+  virtual const Fitness& fitness() const {
     if (invalid())
         throw eoInvalidFitnessError("Cannot retrieve unevaluated fitness");
     return repFitness;
@@ -86,12 +86,12 @@ public:
   }
 
   // Set fitness as invalid.
-  void invalidate() { invalidFitness = true; repFitness = Fitness(); }
+  virtual void invalidate() { invalidFitness = true; repFitness = Fitness(); }
 
   /** Set fitness. At the same time, validates it.
    *  @param _fitness New fitness value.
    */
-  void fitness(const Fitness& _fitness)
+  virtual void fitness(const Fitness& _fitness)
   {
     repFitness = _fitness;
     invalidFitness = false;
