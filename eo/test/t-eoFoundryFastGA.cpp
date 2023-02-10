@@ -30,13 +30,13 @@ eoAlgoFoundryFastGA<Bits>& make_foundry(eoFunctorStore& store, eoInit<Bits>& ini
     foundry.crossovers.add< eo1PtBitXover<Bits> >();
 
     /***** Mutations ****/
-    double p = 1.0; // Probability of flipping eath bit.
-    foundry.mutations.add< eoUniformBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in uniform distrib
-    foundry.mutations.add< eoStandardBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in binomial distrib
-    foundry.mutations.add< eoConditionalBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in binomial distrib, minus zero
-    foundry.mutations.add< eoShiftedBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in binomial distrib, changing zeros to one
-    foundry.mutations.add< eoNormalBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in normal distrib
-    foundry.mutations.add< eoFastBitMutation<Bits> >(p); // proba of flipping k bits, k drawn in powerlaw distrib
+    // Use defaults for all operators (usually falls back to p=1/chrom.size()).
+    foundry.mutations.add< eoUniformBitMutation<Bits> >(); // proba of flipping k bits, k drawn in uniform distrib
+    foundry.mutations.add< eoStandardBitMutation<Bits> >(); // proba of flipping k bits, k drawn in binomial distrib
+    foundry.mutations.add< eoConditionalBitMutation<Bits> >(); // proba of flipping k bits, k drawn in binomial distrib, minus zero
+    foundry.mutations.add< eoShiftedBitMutation<Bits> >(); // proba of flipping k bits, k drawn in binomial distrib, changing zeros to one
+    foundry.mutations.add< eoNormalBitMutation<Bits> >(); // proba of flipping k bits, k drawn in normal distrib
+    foundry.mutations.add< eoFastBitMutation<Bits> >(); // proba of flipping k bits, k drawn in powerlaw distrib
     for(size_t i=1; i < 11; i+=1) {
         foundry.mutations.add< eoDetSingleBitFlip<Bits> >(i); // mutate k bits without duplicates
     }
