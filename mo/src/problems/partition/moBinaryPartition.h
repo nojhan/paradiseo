@@ -143,10 +143,12 @@ class moBinaryPartition : public EO<FitT>
         virtual void printOn(std::ostream& out) const override
         {
             this->printSelectedOn(out);
-            out << "   ";
-            out << rejected.size() << "  "; // Size.
-            std::copy(std::begin(rejected), std::end(rejected),
-                std::ostream_iterator<AtomType>(out, " ")); // Values.
+            // Printing the rejected atom should not be necessary,
+            // as this is the complementary set of the selected.
+            // out << "   ";
+            // out << rejected.size() << "  "; // Size.
+            // std::copy(std::begin(rejected), std::end(rejected),
+            //     std::ostream_iterator<AtomType>(out, " ")); // Values.
         }
 
         /** Deserialization of the `selected` and `rejected` atoms.
