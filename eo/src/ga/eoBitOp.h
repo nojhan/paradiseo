@@ -361,10 +361,10 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
         {
           if (chrom1[i] != chrom2[i] && eo::rng.flip(preference))
             {
-              // bool tmp = chrom1[i];
-              // chrom1[i]=chrom2[i];
-              // chrom2[i] = tmp;
-              std::swap(chrom1[i], chrom2[i]);
+              bool tmp = chrom1[i];
+              chrom1[i]=chrom2[i];
+              chrom2[i] = tmp;
+              // std::swap(chrom1[i], chrom2[i]);
               changed = true;
             }
         }

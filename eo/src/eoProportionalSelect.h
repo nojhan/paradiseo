@@ -68,16 +68,12 @@ public:
       }
       assert(not _pop[0].invalid());
 
-      const typename EOT::Fitness min_fit
-          = std::min_element( std::begin(_pop), std::end(_pop) )
-              ->fitness();
-
       cumulative.clear();
-      cumulative.push_back(_pop[0].fitness() - min_fit);
+      cumulative.push_back(_pop[0].fitness() );
 
       for (unsigned i = 1; i < _pop.size(); ++i) {
           assert(not _pop[i].invalid());
-          cumulative.push_back(cumulative.back() + _pop[i].fitness() - min_fit);
+          cumulative.push_back(cumulative.back() + _pop[i].fitness());
       }
       assert(cumulative.size() == _pop.size());
   }
