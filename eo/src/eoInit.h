@@ -198,7 +198,7 @@ class eoInitPermutation: public eoInit<EOT> // FIXME inherit from eoInitWithDim
             }
 
             UF_random_generator<unsigned int> gen(chrom.size());
-            std::shuffle(chrom.begin(), chrom.end(), gen);
+            std::random_shuffle(chrom.begin(), chrom.end(), gen);
             chrom.invalidate();
         }
 
