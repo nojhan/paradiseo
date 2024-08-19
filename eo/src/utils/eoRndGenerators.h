@@ -115,7 +115,7 @@ inline bool eoUniformGenerator<bool>::operator()(void)
    to easily generate random booleans with a specified bias
    \ingroup bitstring
 */
-template<class T=bool>
+template<class T=char>
 class eoBooleanGenerator : public eoRndGenerator<T>
 {
     public :
