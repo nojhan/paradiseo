@@ -45,7 +45,7 @@ Authors:
 #include "eoOp.h" // for eoInit
 #include "eoPersistent.h"
 #include "eoInit.h"
-#include "utils/rnd_generators.h"  // for shuffle method
+// #include "utils/rnd_generators.h"  // for shuffle method
 #include "eoExceptions.h"
 
 /** A std::vector of EO object, to be used in all algorithms

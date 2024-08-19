@@ -124,6 +124,7 @@ inline bool random_generator<bool>::operator()(void)
    function (see eoPop::shuffle): its operator() takes an unsigned argument m
    and  must return an unsigned uniformly distributed in [0,m}
 */
+// FIXME this is probably deprecated by the new STL way of managing random generators.
 template <class T = uint32_t>
 class UF_random_generator
 {
@@ -134,11 +135,11 @@ class UF_random_generator
             : _max(max), _random(_rng)
         {}
 
-        T operator()() { return _random.random(_max); }
-        T operator()(T m) { return _random.random(m); }
+        T operator()() const { return _random.random(_max); }
+        T operator()(T m) const { return _random.random(m); }
 
-        T min() { return 0; }
-        T max() { return _max; }
+        T min() const { return 0; }
+        T max() const { return _max; }
 
     private :
         T _max;

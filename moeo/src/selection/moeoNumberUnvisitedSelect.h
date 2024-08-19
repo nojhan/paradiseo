@@ -39,6 +39,8 @@
 #ifndef _MOEONUMBERUNVISITEDSELECT_H
 #define _MOEONUMBERUNVISITEDSELECT_H
 
+#include <random>
+
 #include <eoPop.h>
 #include <selection/moeoUnvisitedSelect.h>
 
@@ -51,10 +53,10 @@ class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
 
 public:
 
-	/**
-	 * Constructor
-	 * @param _number the number of individuals to select
-	 */
+    /**
+     * Constructor
+     * @param _number the number of individuals to select
+     */
     moeoNumberUnvisitedSelect(unsigned int _number): number(_number){}
 
     /**
@@ -64,24 +66,25 @@ public:
      */
     std::vector <unsigned int> operator()(eoPop < MOEOT > & _src)
     {
-    	std::vector <unsigned int> res;
-    	res.resize(0);
+        std::vector <unsigned int> res;
+        res.resize(0);
         for (unsigned int i=0; i<_src.size(); i++)
         {
             if (_src[i].flag() == 0)
-            	res.push_back(i);
+                res.push_back(i);
         }
         if(number < res.size()){
-        	UF_random_generator<unsigned int> rndGen(res.size());
-        	std::random_shuffle(res.begin(), res.end(), rndGen);
-        	res.resize(number);
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::shuffle(res.begin(), res.end(), gen);
+            res.resize(number);
         }
         return res;
     }
 
 private:
-	/** number of individuals to select */
-	unsigned int number;
+    /** number of individuals to select */
+    unsigned int number;
 
 };
 

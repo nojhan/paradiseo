@@ -29,11 +29,12 @@
 
 #include <algorithm>
 #include <cassert>
+#include <random>
 
 #include "eoOp.h"
 #include "eoSTLFunctor.h"
 #include "utils/eoRndGenerators.h"
-#include "utils/rnd_generators.h"  // for shuffle method
+// #include "utils/rnd_generators.h"  // for shuffle method
 #include "eoExceptions.h"
 
 
@@ -197,7 +198,8 @@ class eoInitPermutation: public eoInit<EOT> // FIXME inherit from eoInitWithDim
                 chrom[idx] = idx+startFrom;
             }
 
-            UF_random_generator<unsigned int> gen(chrom.size());
+            std::random_device rd;
+            std::mt19937 gen(rd());
             std::shuffle(chrom.begin(), chrom.end(), gen);
             chrom.invalidate();
         }
