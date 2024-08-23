@@ -114,6 +114,7 @@ class eoForgeOperator : public eoForgeInterface<Itf>
         template<class ...Args2>
         eoForgeOperator(Args2... args) :
             _args(std::forward<Args2>(args)...),
+            _instantiated_ptr(nullptr),
             _instantiated(nullptr)
         { }
 
@@ -127,31 +128,30 @@ class eoForgeOperator : public eoForgeInterface<Itf>
          */
         Itf& instantiate(bool no_cache = true) override
         {
-            if(no_cache or not _instantiated) {
-                // if(_instantiated) {
-                    // delete _instantiated;
-                // }
+            if(no_cache or _instantiated == nullptr) {
+                if(_instantiated) {
+                    delete _instantiated;
+                }
                 _instantiated = op_constructor(_args);
-                // _instantiated = op_constructor(_args);
             }
             return *_instantiated;
         }
 
         std::shared_ptr<Itf> instantiate_ptr(bool no_cache = true) override
         {
-            if(no_cache or not _instantiated) {
-                if(_instantiated) {
+            if(no_cache or _instantiated == nullptr) {
+                // if(_instantiated) {
                     // delete _instantiated;
-                }
-                _instantiated = op_constructor(_args);
+                // }
+                _instantiated_ptr = op_constructor_ptr(_args);
                 // _instantiated = op_constructor(_args);
             }
-            return _instantiated;
+            return _instantiated_ptr;
         }
 
         virtual ~eoForgeOperator() override
         {
-            // delete _instantiated;
+            delete _instantiated;
         }
 
     protected:
@@ -160,18 +160,22 @@ class eoForgeOperator : public eoForgeInterface<Itf>
     private:
         /** Metaprogramming machinery which deals with arguments lists @{ */
         template<class T>
-        std::shared_ptr<Op> op_constructor(T& args)
-        // Op* op_constructor(T& args)
+        Op* op_constructor(T& args)
         {
             // FIXME double-check that the copy-constructor is a good idea to make_from_tuple with dynamic storage duration.
-            return std::make_shared<Op>(std::make_from_tuple<Op>(args));
-            // return new Op(std::make_from_tuple<Op>(args));
+            return new Op(std::make_from_tuple<Op>(args));
+        }
+
+        template<class T>
+        std::shared_ptr<Op> op_constructor_ptr(T& args)
+        {
+            return std::make_shared<Op>( std::make_from_tuple<Op>(args) );
         }
         /** @} */
 
     protected:
-        std::shared_ptr<Itf> _instantiated;
-        // Itf* _instantiated;
+        std::shared_ptr<Itf> _instantiated_ptr;
+        Itf* _instantiated;
 };
 
 /** Partial specialization for constructors without any argument.
@@ -181,41 +185,37 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
 {
     public:
         eoForgeOperator() :
+            _instantiated_ptr(nullptr),
             _instantiated(nullptr)
         { }
 
         Itf& instantiate( bool no_cache = true ) override
         {
-            if(no_cache or not _instantiated) {
-                // if(_instantiated) {
-                    // delete _instantiated;
-                // }
-                _instantiated = std::shared_ptr<Op>();
-                // _instantiated = new Op;
+            if(no_cache or _instantiated == nullptr) {
+                if(_instantiated) {
+                    delete _instantiated;
+                }
+                _instantiated = new Op;
             }
             return *_instantiated;
         }
 
         std::shared_ptr<Itf> instantiate_ptr( bool no_cache = true ) override
         {
-            if(no_cache or not _instantiated) {
-                // if(_instantiated) {
-                    // delete _instantiated;
-                // }
-                _instantiated = std::shared_ptr<Op>();
-                // _instantiated = new Op;
+            if(no_cache or _instantiated == nullptr) {
+                _instantiated_ptr = std::shared_ptr<Op>();
             }
-            return _instantiated;
+            return _instantiated_ptr;
         }
 
         virtual ~eoForgeOperator() override
         {
-            // delete _instantiated;
+            delete _instantiated;
         }
 
     protected:
-        std::shared_ptr<Itf> _instantiated;
-        // Itf* _instantiated;
+        std::shared_ptr<Itf> _instantiated_ptr;
+        Itf* _instantiated;
 };
 
 /** A vector holding an operator (with deferred instantiation) at a given index.
@@ -273,7 +273,7 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
 
          /** instantiate the operator managed at the given index.
           */
-         Itf& instantiate(double index)
+         Itf& instantiate_from(double index)
          {
              double frac_part, int_part;
              frac_part = std::modf(index, &int_part);
@@ -281,19 +281,32 @@ class eoForgeVector : public std::vector<eoForgeInterface<Itf>*>
                 eo::log << eo::errors << "there is a fractional part in the given index (" << index << ")" << std::endl;
                 assert(frac_part != 0);
              }
+             return instantiate(index);
+         }
+
+         std::shared_ptr<Itf> instantiate_ptr_from(double index)
+         {
+             double frac_part, int_part;
+             frac_part = std::modf(index, &int_part);
+             if(frac_part != 0) {
+                eo::log << eo::errors << "there is a fractional part in the given index (" << index << ")" << std::endl;
+                assert(frac_part != 0);
+             }
+             return instantiate_ptr(index);
+         }
+
+         /** instantiate the operator managed at the given index.
+          */
+         Itf& instantiate(size_t index)
+         {
              return this->at(static_cast<size_t>(index))->instantiate(_no_cache);
          }
 
-         std::shared_ptr<Itf> instantiate_ptr(double index)
+         std::shared_ptr<Itf> instantiate_ptr(size_t index)
          {
-             double frac_part, int_part;
-             frac_part = std::modf(index, &int_part);
-             if(frac_part != 0) {
-                eo::log << eo::errors << "there is a fractional part in the given index (" << index << ")" << std::endl;
-                assert(frac_part != 0);
-             }
              return this->at(static_cast<size_t>(index))->instantiate_ptr(_no_cache);
          }
+
 
         /** Add an operator to the list.
          *
