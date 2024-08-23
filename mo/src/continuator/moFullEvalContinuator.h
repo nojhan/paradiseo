@@ -54,7 +54,11 @@ public:
      * @param _maxFullEval number maximum of iterations
      * @param _restartCounter if true the counter of number of evaluations restarts to "zero" at initialization, if false, the number is cumulative
      */
-    moFullEvalContinuator(eoEvalFuncCounter<EOT> & _eval, unsigned int _maxFullEval, bool _restartCounter = true): eval(_eval), maxFullEval(_maxFullEval), restartCounter(_restartCounter)  {
+    moFullEvalContinuator(eoEvalFuncCounter<EOT> & _eval, unsigned int _maxFullEval, bool _restartCounter = true):
+        eval(_eval),
+        restartCounter(_restartCounter),
+        maxFullEval(_maxFullEval)
+    {
         nbEval_start = eval.value();
     }
 

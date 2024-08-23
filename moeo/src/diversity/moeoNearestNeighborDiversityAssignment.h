@@ -143,7 +143,7 @@ public:
      * @param _objVec the objective vector
      * @warning NOT IMPLEMENTED, DOES NOTHING !
      */
-    void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+    void updateByDeleting(eoPop < MOEOT > & /*_pop*/, ObjectiveVector & /*_objVec*/)
     {
         std::cout << "WARNING : updateByDeleting not implemented in moeoNearestNeighborDiversityAssignment" << std::endl;
     }

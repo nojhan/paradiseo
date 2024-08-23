@@ -99,7 +99,11 @@ class moeoBitVector : public moeoVector < MOEOObjectiveVector, bool, MOEOFitness
       if (_is)
         {
           resize(bits.size());
+#if __cplusplus >= 201103L
+          std::transform(bits.begin(), bits.end(), begin(), std::bind(std::equal_to<char>(), std::placeholders::_1, '1'));
+#else
           std::transform(bits.begin(), bits.end(), begin(), std::bind2nd(std::equal_to<char>(), '1'));
+#endif
         }
     }
 

@@ -167,7 +167,7 @@ public :
 
             if (nb > 1) {
 	      sd = 0;
-	      for(int i = 0; i < nb; i++) 
+	      for(unsigned i = 0; i < nb; i++) 
 		sd += (neighborFitness[i] - mean) * (neighborFitness[i] - mean) ;  
 	      sd = sqrt( sd / (nb - 1.0) ); // becareful: could be infinite when large values
 	      //sd = sqrt( (sd - nb * mean * mean) / (nb - 1.0) );  // becareful: could be negative due to approximation of large values 

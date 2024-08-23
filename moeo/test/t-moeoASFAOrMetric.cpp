@@ -48,11 +48,11 @@
 class ObjectiveVectorTraits : public moeoObjectiveVectorTraits
 {
 public:
-    static bool minimizing (int i)
+    static bool minimizing (int /*i*/)
     {
         return true;
     }
-    static bool maximizing (int i)
+    static bool maximizing (int /*i*/)
     {
         return false;
     }
@@ -67,7 +67,7 @@ typedef moeoRealObjectiveVector < ObjectiveVectorTraits > ObjectiveVector;
 typedef MOEO < ObjectiveVector, double, double > Solution;
 
 class DummyEval: public eoEvalFunc<Solution>{
-	void operator()(Solution &moeo){
+	void operator()(Solution &/*moeo*/){
 	}
 } eval;
 //-----------------------------------------------------------------------------

@@ -72,7 +72,7 @@ public:
 	 * @param _neighbor the neighbor to assign
 	 * @return a neighbor equal to the other
 	 */
-	virtual moNeighbor<EOT, Fitness>& operator=(
+	moNeighbor<EOT, Fitness>& operator=(
 			const moNeighbor<EOT, Fitness>& _neighbor) {
 		if (!(_neighbor.invalid()))
 			fitness(_neighbor.fitness());
@@ -93,7 +93,7 @@ public:
 	 * @param _neighbor a neighbor
 	 * @return if _neighbor and this one are equals
 	 */
-	virtual bool equals(moNeighbor<EOT, Fitness> & /*_neighbor*/) {
+	bool equals(moNeighbor<EOT, Fitness> & /*_neighbor*/) {
 		return false;
 	}
 

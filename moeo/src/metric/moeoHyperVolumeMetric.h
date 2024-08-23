@@ -318,8 +318,8 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
 
     		//if there are less than 3 objectifs take the fisrt objectif of the first point of front to begin computation of hypervolume
     		if(_no_objectives < 3){
-    	    	if(_no_objectives < 1)
-    	    		throw("Error in moeoHyperVolumeUnaryMetric::calc_hypervolume -> argument3: _no_objectives must be greater than 0");
+    	    	if(_no_objectives < 1) {
+    	    		throw("Error in moeoHyperVolumeUnaryMetric::calc_hypervolume -> argument3: _no_objectives must be greater than 0"); }
     			temp_vol=_front[0][0];
     		}
     		//else if there at least 3 objectives, a recursive computation of hypervolume starts with _no_objectives -1 on the filter_nondominated_set calculating previously.

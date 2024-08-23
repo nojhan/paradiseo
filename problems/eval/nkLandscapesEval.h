@@ -114,7 +114,7 @@ public:
   void deleteTables()
   {
     if (links != NULL) {
-      for(int i = 0; i < N; i++) {
+      for(unsigned i = 0; i < N; i++) {
 	delete [] (links[i]);
       }
       delete [] links;
@@ -122,7 +122,7 @@ public:
     }
 
     if (tables != NULL) {
-      for(int i = 0; i < N; i++) {
+      for(unsigned i = 0; i < N; i++) {
 	delete [] (tables[i]);
       }
       delete [] tables;
@@ -210,8 +210,8 @@ public:
    * @param file the file to read 
    */
   void loadLinks(std::fstream & file) {
-    for(int j = 0; j < K+1; j++)
-      for(int i = 0; i < N; i++) {
+    for(unsigned j = 0; j < K+1; j++)
+      for(unsigned i = 0; i < N; i++) {
 	file >> links[i][j];
       }
   }
@@ -222,8 +222,8 @@ public:
    * @param file the file to read 
    */
   void loadTables(std::fstream & file) {
-    for(int j = 0; j < (1<<(K+1)); j++)
-      for(int i = 0; i < N; i++)
+    for(unsigned j = 0; j < (1<<(K+1)); j++)
+      for(unsigned i = 0; i < N; i++)
 	file >> tables[i][j];
   }
 
@@ -241,13 +241,13 @@ public:
       file << "p NK " << N << " " << K <<std::endl;
 
       file << "p links" << std::endl;
-      for(int j=0; j<K+1; j++)
-	for(int i=0; i<N; i++)
+      for(unsigned j=0; j<K+1; j++)
+	for(unsigned i=0; i<N; i++)
 	  file << links[i][j] << std::endl;
 
       file << "p tables" << std::endl;
-      for(int j=0; j<(1<<(K+1)); j++) {
-	for(int i=0; i<N; i++)
+      for(unsigned j=0; j<(1<<(K+1)); j++) {
+	for(unsigned i=0; i<N; i++)
 	  file << tables[i][j] << " ";
 	file << std::endl;
       }
@@ -264,7 +264,7 @@ public:
    */
   void print() {
     int j;
-    for(int i=0; i<N; i++) {
+    for(unsigned i=0; i<N; i++) {
       std::cout <<"link " <<i <<" : ";
       for(j = 0; j <= K; j++) 
 	std::cout <<links[i][j] <<" ";
@@ -272,7 +272,7 @@ public:
     }
     std::cout << std::endl;
     
-    for(int i=0; i<N; i++) {
+    for(unsigned i=0; i<N; i++) {
       std::cout <<"table " << i << std::endl;
       for(j=0; j<(1<<(K+1)); j++)
 	std::cout << tables[i][j] << std::endl;
@@ -287,7 +287,7 @@ public:
   virtual void operator() (EOT & _solution) {
     double accu = 0.0;
   
-    for(int i = 0; i < N; i++)
+    for(unsigned i = 0; i < N; i++)
       accu += tables[ i ][ sigma(_solution, i) ];
 
     _solution.fitness( accu / (double) N );  
@@ -305,7 +305,7 @@ protected:
     unsigned int n    = 1;
     unsigned int accu = 0;
 
-    for(int j = 0; j < K+1; j++) {
+    for(unsigned j = 0; j < K+1; j++) {
       if (_solution[ links[i][j] ] == 1)
 	accu = accu | n;
       n = n << 1;
@@ -320,7 +320,7 @@ protected:
    * @param tabTirage the table to initialize
    */
   void initTirage(int tabTirage[]) {
-    for(int i = 0; i<N; i++)
+    for(unsigned i = 0; i<N; i++)
       tabTirage[i] = i;
   };
 
@@ -346,7 +346,7 @@ protected:
    */
   void choose(int i, int tabTirage[]) {
     int t[K+1];
-    for(int j=0; j<K+1; j++) {
+    for(unsigned j=0; j<K+1; j++) {
       if (j==0) t[j]=i;
       else t[j] = rng.random(N-j);
       links[i][j] = tabTirage[t[j]];
@@ -362,7 +362,7 @@ protected:
    * @param i the bit of contribution
    */
   void consecutiveLinks(int i) {
-    for(int j = 0; j < K+1; j++) {
+    for(unsigned j = 0; j < K+1; j++) {
       links[i][j] = (i + j) % N;
     }
   }
@@ -375,8 +375,8 @@ protected:
    *
    */
   virtual void generateTables() {
-    for(int i = 0; i < N; i++) {
-      for(int j = 0; j < (1<<(K+1)); j++) 
+    for(unsigned i = 0; i < N; i++) {
+      for(unsigned j = 0; j < (1<<(K+1)); j++) 
 	tables[i][j] = contribution();
     }
   }
@@ -399,7 +399,7 @@ protected:
     int tabTirage[N];
     initTirage(tabTirage);
 
-    for(int i = 0; i < N; i++) {
+    for(unsigned i = 0; i < N; i++) {
       // random links to the bit
       choose(i, tabTirage);  
     }
@@ -412,7 +412,7 @@ protected:
   virtual void consecutiveTables() {
     buildTables();
       
-    for(int i = 0; i < N; i++) {
+    for(unsigned i = 0; i < N; i++) {
       // consecutive link to bit i
       consecutiveLinks(i);  
     }

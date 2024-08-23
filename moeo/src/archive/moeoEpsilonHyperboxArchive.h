@@ -258,9 +258,9 @@ public:
 
     void filtre(){
     	eoPop<MOEOT> pop;
-    	for(int i=0; i<size(); i++)
+    	for(unsigned i=0; i<size(); i++)
     		pop.push_back(operator[](i));
-    	for(int i=0; i<pop.size(); i++)
+    	for(unsigned i=0; i<pop.size(); i++)
     		(*this)(pop[i]);
     }
 

@@ -84,10 +84,10 @@ public:
                           moEval<Neighbor>& _eval,
                           unsigned int _nbAdaptWalk) :
             moSampling<Neighbor>(initHC, * new moRandomSearch<Neighbor>(initHC, _fullEval, _nbAdaptWalk), copyStat),
-	    neighborEvalCount(_eval),
-	    nEvalStat(neighborEvalCount, true),
-            copyStat(lengthStat),  // copy is used to report the statistic of the first walk
+            neighborEvalCount(_eval),
+            nEvalStat(neighborEvalCount, true),
             copyEvalStat(nEvalStat),
+            copyStat(lengthStat),  // copy is used to report the statistic of the first walk
             checkpoint(trueCont),
             hc(_neighborhood, _fullEval, neighborEvalCount, checkpoint),
             initHC(_init, hc)
@@ -95,15 +95,15 @@ public:
         // to count the number of step in the HC
         checkpoint.add(lengthStat);
 
-	// set the long name of this statistic which is the length of the walk
-	copyStat.setLongName("length");
+        // set the long name of this statistic which is the length of the walk
+        copyStat.setLongName("length");
 
-	// to count the number of evaluations
+        // to count the number of evaluations
         checkpoint.add(nEvalStat);
 
-	// set the long name of this statistic which is the number of neighbor evaluation
-	copyEvalStat.setLongName("ngheval");
-	
+        // set the long name of this statistic which is the number of neighbor evaluation
+        copyEvalStat.setLongName("ngheval");
+
         // add the solution into statistics
         this->add(copyEvalStat);
         this->add(solStat);
@@ -118,10 +118,10 @@ public:
     }
 
 protected:
-  /* count the number of evaluations */
-  moEvalCounter<Neighbor> neighborEvalCount;
-  moValueStat<EOT, unsigned long> nEvalStat;
-  moStatFromStat<EOT, double> copyEvalStat;
+    /* count the number of evaluations */
+    moEvalCounter<Neighbor> neighborEvalCount;
+    moValueStat<EOT, unsigned long> nEvalStat;
+    moStatFromStat<EOT, double> copyEvalStat;
 
     moSolutionStat<EOT> solStat;
     moMinusOneCounterStat<EOT> lengthStat;

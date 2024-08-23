@@ -124,12 +124,12 @@ class moeoAugmentedWeightedChebychevMetricFitnessAssignment : public moeoSingleO
 		 * @param _pop the population
 		 * @param _objVec the objective vector
 		 */
-		void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec){}
+		void updateByDeleting(eoPop < MOEOT > & /*_pop*/, ObjectiveVector & /*_objVec*/){}
 
 	private:
 
 		class DummyEval: public eoEvalFunc<MOEOT>{
-			void operator()(MOEOT &moeo){
+			void operator()(MOEOT &/*moeo*/){
 			}
 		} defaultEval;
 

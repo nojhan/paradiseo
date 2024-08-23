@@ -37,8 +37,6 @@ struct Dummy : public EO<double>
 int the_main(int argc, char **argv)
 { // ok, we have a command line parser and a state
 
-    typedef eoBit<float> Chrom;
-
     eoParser parser(argc, argv);
 
     // Define Parameters

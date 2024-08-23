@@ -66,7 +66,7 @@ public:
      * @param _objVec the objective vector
      * @warning NOT IMPLEMENTED, DO NOTHING !
      */
-    void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+    void updateByDeleting(eoPop < MOEOT > & /*_pop*/, ObjectiveVector & /*_objVec*/)
     {
         std::cout << "WARNING : updateByDeleting not implemented in moeoFrontByFrontCrowdingDistanceDiversityAssignment" << std::endl;
     }

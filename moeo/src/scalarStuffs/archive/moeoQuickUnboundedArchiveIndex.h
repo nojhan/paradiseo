@@ -54,7 +54,11 @@ class moeoQuickUnboundedArchiveIndex : public moeoArchiveIndex < MOEOT >
 		 * equivalent to "number one element should be on top of number two element" in the list by looking to the first obj
 		 */
 		struct CompareByFirst
+#if __cplusplus >= 201103L
+			: std::function< bool(entree, entree) > {
+#else
 			: std::binary_function< bool, entree, entree > {
+#endif
 				bool operator ()(
 						const entree& elem1,
 						const entree& elem2
@@ -71,7 +75,11 @@ class moeoQuickUnboundedArchiveIndex : public moeoArchiveIndex < MOEOT >
 		 * equivalent to "number one element should be on top of number two element" in the list by looking to the 2nd obj
 		 */
 		struct CompareByLast
+#if __cplusplus >= 201103L
+			: std::function< bool(entree, entree) > {
+#else
 			: std::binary_function< bool, entree, entree > {
+#endif
 				bool operator ()(
 						const entree& elem1,
 						const entree& elem2
@@ -87,7 +95,11 @@ class moeoQuickUnboundedArchiveIndex : public moeoArchiveIndex < MOEOT >
 
 
 		struct CompareByLast2
+#if __cplusplus >= 201103L
+			: std::function< bool(MOEOT, MOEOT) > {
+#else
 			: std::binary_function< bool, MOEOT, MOEOT > {
+#endif
 				bool operator ()(
 						const MOEOT& elem1,
 						const MOEOT& elem2

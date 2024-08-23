@@ -71,15 +71,15 @@ typedef EO<int> Solution;
 
 class moDummyNeighborTest: public moNeighbor<Solution> {
 public:
-	virtual void move(Solution & _solution) {
+	virtual void move(Solution & /*_solution*/) {
 	}
 };
 
 class moDummyBackableNeighbor: public moBackableNeighbor<Solution> {
 public:
-	virtual void move(Solution & _solution) {
+	virtual void move(Solution & /*_solution*/) {
 	}
-	virtual void moveBack(Solution & _solution) {
+	virtual void moveBack(Solution & /*_solution*/) {
 	}
 };
 
@@ -91,7 +91,7 @@ public:
 		i(0), j(0) {
 	}
 
-	virtual bool hasNeighbor(EOT & _solution) {
+	virtual bool hasNeighbor(EOT & /*_solution*/) {
 		bool res;
 		if (i % 3 == 0 || i == 1)
 			res = false;
@@ -100,11 +100,11 @@ public:
 		i++;
 		return res;
 	}
-	virtual void init(EOT & _solution, Neighbor & _current) {
+	virtual void init(EOT & /*_solution*/, Neighbor & /*_current*/) {
 	}
-	virtual void next(EOT & _solution, Neighbor & _current) {
+	virtual void next(EOT & /*_solution*/, Neighbor & /*_current*/) {
 	}
-	virtual bool cont(EOT & _solution) {
+	virtual bool cont(EOT & /*_solution*/) {
 		j++;
 		return (j % 10 != 0);
 	}
@@ -227,7 +227,7 @@ private:
 
 class dummyInit: public eoInit<bitVector> {
 public:
-	void operator()(bitVector& sol) {
+	void operator()(bitVector& /*sol*/) {
 	}
 };
 

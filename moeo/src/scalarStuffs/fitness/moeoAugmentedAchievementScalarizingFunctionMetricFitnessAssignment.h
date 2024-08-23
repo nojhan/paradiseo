@@ -138,7 +138,7 @@ class moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment : publi
 		 * @param _pop the populing
 		 * @param _objVec the objective vector
 		 */
-		void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+		void updateByDeleting(eoPop < MOEOT > & /*_pop*/, ObjectiveVector & /*_objVec*/)
 		{
 		}
 
@@ -146,7 +146,7 @@ class moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment : publi
 	private:
 
 		class DummyEval: public eoEvalFunc<MOEOT>{
-			void operator()(MOEOT &moeo){
+			void operator()(MOEOT &/*moeo*/){
 			}
 		} defaultEval;
 

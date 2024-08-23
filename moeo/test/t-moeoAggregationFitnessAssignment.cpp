@@ -48,11 +48,11 @@
 class ObjectiveVectorTraits : public moeoObjectiveVectorTraits
 {
 public:
-    static bool minimizing (int i)
+    static bool minimizing (int /*i*/)
     {
         return false;
     }
-    static bool maximizing (int i)
+    static bool maximizing (int /*i*/)
     {
         return true;
     }

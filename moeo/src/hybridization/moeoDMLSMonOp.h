@@ -108,8 +108,8 @@ class moeoDMLSMonOp : public eoMonOp < typename Neighbor::EOT >
 		tmp = rng.random(dmlsArchive.size());
 		_moeo = dmlsArchive[tmp];
 		defaultContinuator.totalGenerations(defaultContinuator.totalGenerations());
-    	if(verbose)
-    		std::cout << "moeoDMLSMonOp: dmls stop" << std::endl << std::endl;
+    	if(verbose) {
+    		std::cout << "moeoDMLSMonOp: dmls stop" << std::endl << std::endl; }
 		return false;
     }
 

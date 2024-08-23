@@ -112,7 +112,7 @@ private:
     nonSig = 0;
 
     unsigned int n = 1;
-    for(int j = 0; j < nk.K + 1; j++) {
+    for(unsigned j = 0; j < nk.K + 1; j++) {
       if (_solution[ nk.links[i][j] ] == 1)
 	sig = sig | n;
 

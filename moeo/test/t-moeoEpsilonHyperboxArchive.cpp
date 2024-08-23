@@ -46,11 +46,11 @@
 class ObjectiveVectorTraits : public moeoObjectiveVectorTraits
 {
 public:
-    static bool minimizing (int i)
+    static bool minimizing (int /*i*/)
     {
         return true;
     }
-    static bool maximizing (int i)
+    static bool maximizing (int /*i*/)
     {
         return false;
     }
@@ -88,7 +88,7 @@ int main()
 
 
 
-    for(int i=0; i< pop.size()/2; i++){
+    for(unsigned i=0; i< pop.size()/2; i++){
 //    	tmp=rng.uniform()*100;
     	obj[0]=o1;
     	obj[1]=o2;
@@ -132,10 +132,10 @@ int main()
     std::cout << "nadir: " << nadir << std::endl;
     std::cout << "ideal: " << ideal << std::endl;
 
-    for(int i=0; i<pop.size() ; i++)
+    for(unsigned i=0; i<pop.size() ; i++)
     	std::cout << pop[i].objectiveVector() << std::endl;
 
-    for(int i=0; i<pop.size() ; i++){
+    for(unsigned i=0; i<pop.size() ; i++){
     	arch(pop[i]);
 //    nadir = arch.getNadir();
 //    ideal = arch.getIdeal();

@@ -57,7 +57,7 @@ class moeoDetArchiveSelect : public eoSelect<MOEOT>
 		 * @param _source compatibility parameter, not used
 		 * @param _dest destination population, selected from archive
 		 */
-		void operator()(const eoPop < MOEOT > & _source, eoPop < MOEOT > & _dest)
+		void operator()(const eoPop < MOEOT > & /*_source*/, eoPop < MOEOT > & _dest)
 		{
 			if(max < min){
 				std::cout << "Warning! moeoDetArchiveSelect: min value > max value!!! Nothing is done." << std::endl;
@@ -74,8 +74,11 @@ class moeoDetArchiveSelect : public eoSelect<MOEOT>
 					std::vector <int> permutation;
 					for(unsigned int i=0; i < archive_size; i++)
 						permutation.push_back(i);
-					UF_random_generator<unsigned int> rndGen(permutation.size());
-					random_shuffle(permutation.begin(), permutation.end(), rndGen);
+					// UF_random_generator<unsigned int> rndGen(permutation.size());
+					// random_shuffle(permutation.begin(), permutation.end(), rndGen);
+					std::random_device rd;
+					std::mt19937 gen(rd());
+					std::shuffle(permutation.begin(), permutation.end(), gen);
 					for (unsigned int i=0; i<max; i++)
 						_dest.push_back(archive[permutation[i]]);
 				}

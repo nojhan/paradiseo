@@ -126,7 +126,7 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
       }
 
     // hard-coded directory name ...
-    const int ignored = system("mkdir ResSelect");
+    (void) system("mkdir ResSelect");
     std::cout << "Testing the Selections\nParents size = " << pSize
 	 << ", offspring rate = " << oRate;
     std::cout << " and putting rsulting files in dir ResSelect" << std::endl;

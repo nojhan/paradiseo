@@ -50,7 +50,11 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     protected:
         // a binary predicate for sorting
         // hopefully this will work with M$VC++ 6.0
+#if __cplusplus >= 201103L
+        struct lt_arity:public std::function<bool(Node,Node)>
+#else
         struct lt_arity:public std::binary_function<Node,Node,bool>
+#endif
         {
                 bool operator()(const Node &_node1, const Node &_node2) { return (_node1.arity() < _node2.arity());};
         };

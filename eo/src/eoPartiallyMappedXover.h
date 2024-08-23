@@ -82,9 +82,9 @@ public:
 
       // replace if necessary
       for(i = 0; i < i1; i++) {
-	while (p1[ _solution1[i] ] != -1) 
+	while (p1[ _solution1[i] ] != -1) // FIXME as an unsigned int, p1 cannot hold negative values!
 	  _solution1[i] = p1[_solution1[i]];
-	while (p2[ _solution2[i] ] != -1) 
+	while (p2[ _solution2[i] ] != -1)  // FIXME as an unsigned int, p2 cannot hold negative values!
 	  _solution2[i] = p2[_solution2[i]];
       }      
 
@@ -96,9 +96,9 @@ public:
 
       // replace if necessary
       for(i = i2 + 1; i < _solution1.size(); i++) {
-	while (p1[ _solution1[i] ] != -1) 
+	while (p1[ _solution1[i] ] != -1)  // FIXME as an unsigned int, p1 cannot hold negative values!
 	  _solution1[i] = p1[_solution1[i]];
-	while (p2[ _solution2[i] ] != -1) 
+	while (p2[ _solution2[i] ] != -1)  // FIXME as an unsigned int, p2 cannot hold negative values!
 	  _solution2[i] = p2[_solution2[i]];
       }      
 

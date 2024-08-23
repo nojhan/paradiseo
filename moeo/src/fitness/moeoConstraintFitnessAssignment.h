@@ -135,7 +135,7 @@ class moeoConstraintFitnessAssignment : public moeoSingleObjectivization < MOEOT
 		 * @param _pop the population
 		 * @param _objVec the objective vector
 		 */
-		void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+		void updateByDeleting(eoPop < MOEOT > & /*_pop*/, ObjectiveVector & /*_objVec*/)
 		{
 			//std::cout << "WARNING : updateByDeleting not implemented in moeoAssignmentFitnessAssignment" << std::endl;
 		}
@@ -144,7 +144,7 @@ class moeoConstraintFitnessAssignment : public moeoSingleObjectivization < MOEOT
 
 		//dummy evaluation function
 		class DummyEval: public eoEvalFunc<MOEOT>{
-			void operator()(MOEOT &moeo){
+			void operator()(MOEOT &/*moeo*/){
 			}
 		} defaultEval;
 

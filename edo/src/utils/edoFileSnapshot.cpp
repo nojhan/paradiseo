@@ -76,8 +76,7 @@ edoFileSnapshot::edoFileSnapshot(std::string dirname,
 	    s = " ";
 	}
 
-    int dummy;
-    dummy = system(s.c_str());
+    (void)/*ignore returned*/ system(s.c_str());
     // all done
 
     _descOfFiles = new std::ofstream( std::string(dirname + "/list_of_files.txt").c_str() );

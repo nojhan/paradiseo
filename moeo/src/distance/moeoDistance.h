@@ -52,7 +52,7 @@ class moeoDistance : public eoBF < const MOEOT &, const MOEOT &, const Type >
      * Nothing to do
      * @param _pop the population
      */
-    virtual void setup(const eoPop < MOEOT > & _pop)
+    virtual void setup(const eoPop < MOEOT > & /*_pop*/)
     {}
 
 
@@ -62,7 +62,7 @@ class moeoDistance : public eoBF < const MOEOT &, const MOEOT &, const Type >
      * @param _max upper bound
      * @param _obj the objective index
      */
-    virtual void setup(double _min, double _max, unsigned int _obj)
+    virtual void setup(double /*_min*/, double /*_max*/, unsigned int /*_obj*/)
     {}
 
 
@@ -71,7 +71,7 @@ class moeoDistance : public eoBF < const MOEOT &, const MOEOT &, const Type >
      * @param _realInterval the eoRealInterval object
      * @param _obj the objective index
      */
-    virtual void setup(eoRealInterval _realInterval, unsigned int _obj)
+    virtual void setup(eoRealInterval /*_realInterval*/, unsigned int /*_obj*/)
     {}
 
   };

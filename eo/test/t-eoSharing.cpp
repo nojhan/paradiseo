@@ -193,7 +193,7 @@ int the_main(int argc, char **argv)
 
       std::cout << "The resulting file (in dir ResSelect), contains \n";
     std::cout << " the empirical proba. for each indi to be selected." << std::endl;
-    const int ignored = system("mkdir ResSelect");
+    (void) system("mkdir ResSelect");
 
     // initialize parent population
     parentsOrg.resize(pSize);

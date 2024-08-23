@@ -192,9 +192,9 @@ protected:
   moSolutionStat<EOT> solutionStat;
   moDistanceStat<EOT> distStat;
   moNeighborhoodStat< Neighbor > neighborhoodStat;
-  moMinNeighborStat< Neighbor > minStat;
   moAverageFitnessNeighborStat< Neighbor > averageStat;
   moStdFitnessNeighborStat< Neighbor > stdStat;
+  moMinNeighborStat< Neighbor > minStat;
   moMaxNeighborStat< Neighbor > maxStat;
   moNbSupNeighborStat< Neighbor > nbSupStat;
   moNbInfNeighborStat< Neighbor > nbInfStat;
