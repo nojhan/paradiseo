@@ -27,6 +27,7 @@
 #include <string>
 #include <tuple>
 #include <utility>
+#include <memory>
 
 // In case you want to debug arguments captured in tuples:
 // template<typename Type, unsigned N, unsigned Last>
