@@ -56,7 +56,7 @@ int main() {
   nkLandscapesEval<Solution> eval(N, K);
 
   // init
-  eoUniformGenerator<char> uGen;
+  eoUniformGenerator<bool> uGen;
   eoInitFixedLength<Solution> init(N, uGen);
 
   // verif constructor

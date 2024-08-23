@@ -68,7 +68,7 @@ eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT, float _b
 
   // Then we can built a bitstring random initializer
   // based on boolean_generator class (see utils/rnd_generator.h)
-  eoBooleanGenerator<char> * gen = new eoBooleanGenerator<char>(_bias);
+  eoBooleanGenerator<bool> * gen = new eoBooleanGenerator<bool>(_bias);
   _state.storeFunctor(gen);
   eoInitFixedLength<EOT>* init = new eoInitFixedLength<EOT>(theSize, *gen);
   // store in state
