@@ -41,7 +41,8 @@ Authors:
  * The entities are here shortly described, if you need further details, don't hesitate
  * to visit the boost URL.
  */
-
+namespace eo
+{
 namespace mpi
 {
     /**
@@ -81,6 +82,14 @@ namespace mpi
          * @brief Closes MPI context.
          */
         ~environment();
+    };
+
+    struct MPI_Status {
+        int count;
+        int cancelled;
+        int MPI_SOURCE;
+        int MPI_TAG;
+        int MPI_ERROR;
     };
 
     /**
@@ -318,5 +327,6 @@ namespace mpi
      * @}
      */
 } // namespace mpi
+} // namespace eo
 
 # endif //__EO_IMPL_MPI_HPP__

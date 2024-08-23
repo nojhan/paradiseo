@@ -54,7 +54,7 @@ namespace eo
             typedef eoUF< eoPop<EOT>&, void> ResetAlgo;
 
             MultiStartData(
-                    bmpi::communicator& _comm,
+                    eo::mpi::communicator& _comm,
                     eoAlgo<EOT>& _algo,
                     int _masterRank,
                     ResetAlgo & _resetAlgo )
@@ -87,7 +87,7 @@ namespace eo
             /**
              * @brief Communicator, used to send and retrieve messages.
              */
-            bmpi::communicator& comm;
+            eo::mpi::communicator& comm;
 
             /**
              * @brief Algorithm which will be performed by the worker.

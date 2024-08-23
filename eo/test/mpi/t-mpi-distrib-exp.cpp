@@ -382,7 +382,7 @@ class Experiment : public eoserial::Persistent
 
     void run()
     {
-        mpi::communicator& comm = eo::mpi::Node::comm();
+        communicator& comm = eo::mpi::Node::comm();
         // reinits every objects
         eo::rng.reseed( _seed );
         eo::rng.clearCache(); // trick for repeatable sequences of normal numbers, cf eo::rng

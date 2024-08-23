@@ -137,7 +137,7 @@ namespace eo
             std::vector<EOT> tempArray;
 
             int masterRank;
-            bmpi::communicator& comm;
+            eo::mpi::communicator& comm;
         };
 
         /**

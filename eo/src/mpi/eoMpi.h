@@ -29,6 +29,7 @@ Authors:
 # include "../eoFunctor.h"
 # include "../eoExceptions.h"
 
+# include "mpi/implMpi.h"
 # include "eoMpiNode.h"
 # include "eoMpiAssignmentAlgorithm.h"
 
@@ -669,7 +670,7 @@ namespace eo
                         timerStat.start("master_wait_for_all_responses");
                         while( assignmentAlgo.availableWorkers() != totalWorkers )
                         {
-                            bmpi::status status = comm.probe( bmpi::any_source, eo::mpi::Channel::Messages );
+                            eo::mpi::status status = comm.probe( eo::mpi::any_source, eo::mpi::Channel::Messages );
                             int wrkRank = status.source();
                             that.handleResponse( wrkRank );
                             comm.send( wrkRank, Channel::Commands, Message::Finish );
@@ -686,7 +687,7 @@ namespace eo
                     AssignmentAlgorithm& assignmentAlgo;
                     Job< JobData > & that;
 
-                    bmpi::communicator & comm;
+                    eo::mpi::communicator & comm;
                 };
 
                 /**
@@ -713,7 +714,7 @@ namespace eo
                             {
                                 eo::log << eo::debug << "[M" << comm.rank() << "] Waitin' for node..." << std::endl;
 
-                                bmpi::status status = comm.probe( bmpi::any_source, eo::mpi::Channel::Messages );
+                                eo::mpi::status status = comm.probe( eo::mpi::any_source, eo::mpi::Channel::Messages );
                                 int wrkRank = status.source();
 
                                 eo::log << eo::debug << "[M" << comm.rank() << "] Node " << wrkRank << " just terminated." << std::endl;
@@ -797,7 +798,7 @@ namespace eo
                 AssignmentAlgorithm& assignmentAlgo;
                 int masterRank;
                 const int workerStopCondition;
-                bmpi::communicator& comm;
+                eo::mpi::communicator& comm;
 
                 JobStore<JobData>& store;
                 SendTaskFunction<JobData> & sendTask;

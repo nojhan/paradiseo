@@ -27,14 +27,14 @@ namespace eo
     {
         void Node::init( int argc, char** argv )
         {
-            static bmpi::environment env( argc, argv );
+            static eo::mpi::environment env( argc, argv );
         }
 
-        bmpi::communicator& Node::comm()
+        eo::mpi::communicator& Node::comm()
         {
             return _comm;
         }
 
-        bmpi::communicator Node::_comm;
+        eo::mpi::communicator Node::_comm;
     }
 }

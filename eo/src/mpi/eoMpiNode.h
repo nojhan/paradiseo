@@ -23,7 +23,7 @@ Authors:
 # define __MPI_NODE_H__
 
 # include "implMpi.h"
-namespace bmpi = mpi;
+// namespace bmpi = mpi;
 
 namespace eo
 {
@@ -54,10 +54,10 @@ namespace eo
                 /**
                  * @brief Returns the global mpi::communicator
                  */
-                static bmpi::communicator& comm();
+                static eo::mpi::communicator& comm();
 
             protected:
-                static bmpi::communicator _comm;
+                static eo::mpi::communicator _comm;
         };
     }
 }

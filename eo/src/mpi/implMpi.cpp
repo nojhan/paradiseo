@@ -21,6 +21,8 @@ Authors:
 */
 #include "implMpi.h"
 
+namespace eo
+{
 namespace mpi
 {
     const int any_source = MPI_ANY_SOURCE;
@@ -163,4 +165,5 @@ namespace mpi
     {
         MPI_Bcast( &value, 1, MPI_INT, root, MPI_COMM_WORLD );
     }
-}
+} // namespace mpi
+} // namespace eo
