@@ -302,7 +302,7 @@
 
     <div id="Why_efficiency">
     <h3>Efficient</h3>
-    <p class="excerpt"><em class="logo">Paradis<span class="logo_eo">eo</span></em> is <em>the fastest</em> framework on the market, which is a crucial feature for modern and robust approach to solver <em>design and validation</em>.</p>
+    <p class="excerpt"><em class="logo">Paradis<span class="logo_eo">eo</span></em> is <em>the fastest</em> framework on the market, which is a crucial feature for modern and robust approach to solver <em>design and validation</em> (especially on combinatorial problems).</p>
     </div>
 
     <div id="Why_efficiency_details">
@@ -311,6 +311,7 @@
         <p>Another classical criticism against <em class="logo">Paradis<span class="logo_eo">eo</span></em> is that C++ is hard and that a fast language is useless because speed is not a concern when your objective function is dominating all the runtime.</p>
         <p>However, we argue that:
             <ul>
+                <li>The numerical optimization community often sees objective functions as monolithic “black-box”, but in combinatorial opimization, it is very often the case that the objective function can be only partially evaluated on neighbor solutions, which allows for (tremendous) speed gains. The Paradiseo-mo module is architectured around that idea, a feature that is not so often found in other frameworks.</li>
                 <li>During the design phase of your solver, you will need to estimate its performance against synthetic benchmarks that are fast to compute. In that case, fast computation means fast design iterations. And it's even more true if you plan to use automated design to find the best solver for your problem.</li>
                 <li>Modern C++ makes use of the very same high-level abstractions you would find in more accepted languages like Python. Sure, the syntax is cumbersome, but you will not see it after a while, given that you will work at the algorithm level.</li>
                 <li>C++ provides full type checking and the largest set of tooling for any modern language, which are your first line of defense against long-term bugs. Sure, it sometimes gives you the impression that you fight against the compiler, but chasing subtle interface bugs across a complex Python code is even harder.</li>
