@@ -71,13 +71,6 @@ public:
             i_repl(foundry.replacements.index())
     { }
 
-protected:
-    const size_t i_cont;
-    const size_t i_cros;
-    const size_t i_muta;
-    const size_t i_sele;
-    const size_t i_repl;
-
 public:
 
     /** Decode the high-level problem encoding as an array of indices.
@@ -156,6 +149,13 @@ protected:
     eoAlgoFoundryEA<SUB>& _foundry;
     const typename EOT::Fitness _penalization;
     const size_t _pop_size;
+
+    const size_t i_cont;
+    const size_t i_cros;
+    const size_t i_muta;
+    const size_t i_sele;
+    const size_t i_repl;
+
 };
 
 /** Helper function to instanciate an eoEvalFoundryEA without having to indicate the template for the sub-problem encoding.
