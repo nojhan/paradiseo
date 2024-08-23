@@ -114,7 +114,12 @@ eoFunctorBase::procedure_tag functor_category(const eoF<R>&)
     result_type
 **/
 template <class A1, class R>
+#if __cplusplus >= 201103L
+class eoUF : public eoFunctorBase, public std::function<R(A1)>
+#else
+// Deprecated in C++11
 class eoUF : public eoFunctorBase, public std::unary_function<A1, R>
+#endif
 {
 public :
 
@@ -151,7 +156,12 @@ eoFunctorBase::unary_function_tag functor_category(const eoUF<A1, R>&)
     result_type
 **/
 template <class A1, class A2, class R>
+#if __cplusplus >= 201103L
+class eoBF : public eoFunctorBase, public std::function<R(A1, A2)>
+#else
+// Deprecated in C++11
 class eoBF : public eoFunctorBase, public std::binary_function<A1, A2, R>
+#endif
 {
 public :
         /// virtual dtor here so there is no need to define it in derived classes

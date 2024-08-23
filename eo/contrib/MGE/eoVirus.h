@@ -108,7 +108,12 @@ public:
         if (is) {
             virus.resize(bits.size());
             std::transform(bits.begin(), bits.end(), virus.begin(),
+#if __cplusplus >= 201103L
+                           std::bind(std::equal_to<char>(), std::placeholders::_1, '1'));
+#else
+                           // Deprecated since C++11.
                            std::bind2nd(std::equal_to<char>(), '1'));
+#endif
         }
     }
 

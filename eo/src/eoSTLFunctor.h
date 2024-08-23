@@ -79,7 +79,12 @@ void eoSTLF<void>::operator()(void)
   respectively
 */
 template <class A1, class R>
+#if __cplusplus >= 201103L
+class eoSTLUF : public std::function<R(A1)>
+#else
+// Deprecated since C++11
 class eoSTLUF : public std::unary_function<A1, R>
+#endif
 {
   public:
     eoSTLUF(eoUF<A1,R>& _f) : f(_f) {}
@@ -102,7 +107,12 @@ class eoSTLUF : public std::unary_function<A1, R>
   respectively
 */
 template <class A1, class A2, class R>
+#if __cplusplus >= 201103L
+class eoSTLBF : public std::function<R(A1, A2)>
+#else
+// Deprecated since C++11
 class eoSTLBF : public std::binary_function<A1, A2, R>
+#endif
 {
   public:
     eoSTLBF(eoUF<A1,R>& _f) : f(_f) {}
