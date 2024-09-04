@@ -82,7 +82,7 @@ set(MPI "false" CACHE BOOL "Build the MPI module")
 
 ## EO Module
 set(MODULE_NAME "Paradiseo")
-set(DOXYGEN_CONFIG_DIR ${CMAKE_SOURCE_DIR}/doxygen)
+set(DOXYGEN_CONFIG_DIR ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
 # set(EO_MODULE_NAME "Evolving Objects")
 set(CMAKE_SOURCE_DIR ${EO_SRC_DIR})
 add_subdirectory(${EO_SRC_DIR})
