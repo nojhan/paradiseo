@@ -52,7 +52,7 @@ public:
   /**
    * Default constructor with first search heuristics
    *
-   * @param _firstLS first local search 
+   * @param _firstLS first local search
    * @param _firstShake first heuristic which perturbs the solution
    * @param _cycle when true, the first heuristics follows the last ones. Otherwise the search stop.
    */
@@ -67,7 +67,7 @@ public:
   }
 
   /**
-   * test if there is still some heuristics 
+   * test if there is still some heuristics
    *
    * @param _solution the current solution
    * @return true if there is some heuristics
@@ -83,11 +83,17 @@ public:
    */
   virtual void init(EOT& /*_solution*/) {
     if(order.size() == 0)
-      for(unsigned int i = 0; i < LSvector.size(); i++)
-	order.push_back(i);
-    
+      for(unsigned int i = 0; i < LSvector.size(); i++) {
+          order.push_back(i); }
+
+#if __cplusplus >= 201103L
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::shuffle(order.begin(), order.end(), gen);
+#else
     UF_random_generator<unsigned int> gen(order.size());
     std::random_shuffle(order.begin(), order.end(), gen);
+#endif
 
     currentOrder = 0;
     current = order[currentOrder];
