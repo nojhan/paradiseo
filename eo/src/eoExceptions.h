@@ -45,7 +45,7 @@ public:
 
     const char* what() const throw()
     {
-        return message().c_str();
+        return _msg.c_str();
     }
 
     ~eoException() throw() {}
