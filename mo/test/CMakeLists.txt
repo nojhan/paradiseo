@@ -96,6 +96,7 @@ set (TEST_LIST
 		t-moIndexedVectorTabuList
 #		t-moRndIndexedVectorTabuList
 		t-moDynSpanCoolingSchedule
+		t-moBinaryPartition
 		)
 
 ######################################################################################

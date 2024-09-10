@@ -87,8 +87,13 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
             //     << " from: " << from
             //     << std::endl;
 
-            assert( from.rejected.contains(selected(from,i_select)) );
-            assert( from.selected.contains(rejected(from,j_reject)) );
+            #if __cplusplus >= 202002L
+                assert( from.rejected.contains(selected(from,i_select)) );
+                assert( from.selected.contains(rejected(from,j_reject)) );
+            #else
+                assert( from.rejected.count(selected(from,i_select)) > 0 );
+                assert( from.selected.count(rejected(from,j_reject)) > 0 );
+            #endif
             assert( selected(from,i_select) != rejected(from,j_reject) );
 
             // Implant this move in the neighbor.

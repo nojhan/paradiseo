@@ -75,7 +75,11 @@ class moBinaryPartition : public EO<FitT>
          * @note In debug mode, double check that elements were actually moved.
          */
         void select(const size_t atom) {
-            assert(not selected.contains(atom));
+            #if __cplusplus >= 202002L
+                assert(not selected.contains(atom));
+            #else
+                assert(selected.count(atom) == 0);
+            #endif
 
             #ifndef NDEBUG
                 size_t has_erased =
@@ -98,7 +102,11 @@ class moBinaryPartition : public EO<FitT>
          * @note In debug mode, double check that elements were actually moved.
          */
         void reject(const size_t atom) {
-            assert(not rejected.contains(atom));
+            #if __cplusplus >= 202002L
+                assert(not rejected.contains(atom));
+            #else
+                assert(rejected.count(atom) == 0);
+            #endif
 
             #ifndef NDEBUG
                 size_t has_erased =

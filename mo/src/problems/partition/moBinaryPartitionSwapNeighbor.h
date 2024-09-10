@@ -3,7 +3,6 @@
 #include <utility>
 
 #include <mo>
-
 #include "moBinaryPartition.h"
 
 /** Stable neighbor for a binary partition.

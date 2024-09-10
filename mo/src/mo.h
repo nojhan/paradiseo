@@ -184,6 +184,10 @@
 #include <problems/permutation/moTwoOptExNeighbor.h>
 #include <problems/permutation/moTwoOptExNeighborhood.h>
 
+#include <problems/partition/moBinaryPartition.h>
+#include <problems/partition/moBinaryPartitionSwapNeighbor.h>
+#include <problems/partition/moBinaryPartitionSwapNeighborhood.h>
+
 //#include <problems/eval/moMaxSATincrEval.h>
 //#include <problems/eval/moOneMaxIncrEval.h>
 //#include <problems/eval/moQAPIncrEval.h>
@@ -192,7 +196,6 @@
 //#include <problems/eval/moUBQPdoubleIncrEvaluation.h>
 //#include <problems/eval/moUBQPBitsIncrEval.h>
 //#include <problems/eval/moNKlandscapesIncrEval.h>
-
 
 #include <sampling/moAdaptiveWalkSampling.h>
 #include <sampling/moAutocorrelationSampling.h>

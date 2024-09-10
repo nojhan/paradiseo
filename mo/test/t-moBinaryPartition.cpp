@@ -1,7 +1,5 @@
 
-#include <frictionless/moBinaryPartition.h>
-#include <frictionless/moBinaryPartitionSwapNeighbor.h>
-#include <frictionless/moBinaryPartitionSwapNeighborhood.h>
+#include <mo>
 
 int main()
 {
