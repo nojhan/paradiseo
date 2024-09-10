@@ -179,7 +179,8 @@ double sum_fitness(const eoPop<EOT>& _pop)
 template <class EOT>
 double sum_fitness(const eoPop<EOT>& _pop, std::pair<double, double>& _minmax)
 {
-    double rawTotal, scaledTotal;
+    double rawTotal = 0;
+    double scaledTotal;
 
     typename eoPop<EOT>::const_iterator it = _pop.begin();
 
