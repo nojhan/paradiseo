@@ -62,7 +62,7 @@ class moBinaryPartition : public EO<FitT>
          * You are responsible for making it consistent after instantiation.
          *
          * @warning If you do not fill at least the @ref rejected set,
-         *          errors will be raised whe trying to @ref select or @ref reject.
+         *          errors will be raised when trying to @ref select or @ref reject.
          */
         moBinaryPartition()
         { }
@@ -127,7 +127,7 @@ class moBinaryPartition : public EO<FitT>
                 std::ostream_iterator<AtomType>(out, " ")); // Values.
         }
 
-        //! Convenience function to only render the fitess and the selected atoms (and not the rejected ones).
+        //! Convenience function to only render the fitness and the selected atoms (and not the rejected ones).
         std::string str() const
         {
             std::ostringstream msg;

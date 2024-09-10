@@ -31,7 +31,7 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
         using AtomType = typename EOT::AtomType;
 
         /** Get the currently pointed selected atom. */
-        AtomType selected(EOT& from, const size_t i_select) {
+        AtomType selected(EOT& from, const size_t i_select) const {
             typename EOT::ContainerType::iterator
                 it = std::begin(from.rejected);
             std::advance(it, i_select);
@@ -39,7 +39,7 @@ class moBinaryPartitionSwapNeighborhood : public moNeighborhood<moBinaryPartitio
         }
 
         /** Get the currently pointed rejected atom. */
-        AtomType rejected(EOT& from, const size_t j_reject) {
+        AtomType rejected(EOT& from, const size_t j_reject) const {
             typename EOT::ContainerType::iterator
                 it = std::begin(from.selected);
             std::advance(it, j_reject);
