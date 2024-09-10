@@ -56,22 +56,24 @@ eoGnuplot::~eoGnuplot()
 }
 
 
-
+#ifdef HAVE_GNUPLOT
 void eoGnuplot::gnuplotCommand(const char *_command)
 {
-#ifdef HAVE_GNUPLOT
     if(gpCom) {
         PipeComSend( gpCom, _command );
         PipeComSend( gpCom, "\n" );
     }
-#endif
 }
+#else
+void eoGnuplot::gnuplotCommand(const char *)
+{ }
+#endif
 
 
 
+#ifdef HAVE_GNUPLOT
 void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
 {
-#ifdef HAVE_GNUPLOT
     std::ostringstream os;
     os << "250x150-0+" << 170 * numWindow++;
     char *args[6];
@@ -89,8 +91,12 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
         PipeComSend( gpCom, _extra.c_str() );
         PipeComSend( gpCom, "\n" );
     }
-#endif
+
 }
+#else
+void eoGnuplot::initGnuPlot(std::string, std::string)
+{ }
+#endif
 
 
 
