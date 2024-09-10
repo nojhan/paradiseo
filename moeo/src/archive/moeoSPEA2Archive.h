@@ -81,7 +81,7 @@ public:
      * Default ctor.
      * @param _maxSize the size of archive (must be smaller or equal to the population size)
      */
-    moeoSPEA2Archive(unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(true), maxSize(_maxSize), borne(0), indiComparator(defaultComparator), distance(defaultDistance)
+    moeoSPEA2Archive(unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(true), maxSize(_maxSize), borne(0), defaultComparator(), indiComparator(defaultComparator), defaultDistance(), distance(defaultDistance)
     {}
 
 
@@ -90,7 +90,7 @@ public:
      * @param _dist the distance used
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
      */
-    moeoSPEA2Archive(moeoDistance <MOEOT, double>& _dist, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(true), maxSize(_maxSize), borne(0), indiComparator(defaultComparator), distance(_dist)
+    moeoSPEA2Archive(moeoDistance <MOEOT, double>& _dist, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(true), maxSize(_maxSize), borne(0), defaultComparator(), indiComparator(defaultComparator), distance(_dist)
     {}
 
 
@@ -99,7 +99,7 @@ public:
      * @param _comparator the functor used to compare objective vectors
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
      */
-    moeoSPEA2Archive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(_comparator, true), maxSize(_maxSize), borne(0), indiComparator(defaultComparator), distance(defaultDistance)
+    moeoSPEA2Archive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(_comparator, true), maxSize(_maxSize), borne(0), defaultComparator(), indiComparator(defaultComparator), defaultDistance(), distance(defaultDistance)
     {}
 
 
@@ -108,7 +108,7 @@ public:
      * @param _indiComparator the functor used to compare MOEOT
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
      */
-    moeoSPEA2Archive(moeoComparator <MOEOT>& _indiComparator, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(true), maxSize(_maxSize), borne(0), indiComparator(_indiComparator), distance(defaultDistance)
+    moeoSPEA2Archive(moeoComparator <MOEOT>& _indiComparator, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(true), maxSize(_maxSize), borne(0), defaultComparator(), indiComparator(_indiComparator), defaultDistance(), distance(defaultDistance)
     {}
 
 
@@ -119,7 +119,7 @@ public:
      * @param _comparator the functor used to compare objective vectors
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
      */
-    moeoSPEA2Archive(moeoComparator <MOEOT>& _indiComparator, moeoDistance <MOEOT, double>& _dist, moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100) : moeoFixedSizeArchive < MOEOT >(_comparator, true), maxSize(_maxSize), borne(0), indiComparator(_indiComparator), distance(_dist)
+    moeoSPEA2Archive(moeoComparator <MOEOT>& _indiComparator, moeoDistance <MOEOT, double>& _dist, moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100) : moeoFixedSizeArchive < MOEOT >(_comparator, true), maxSize(_maxSize), borne(0), defaultComparator(), indiComparator(_indiComparator), distance(_dist)
     {}
 
 
@@ -283,11 +283,12 @@ public:
 
 
 private:
-
     /** archive max size */
     unsigned int maxSize;
     /** archive size */
     unsigned int borne;
+    /** default moeoComparator*/
+    moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
     /**
      * Wrapper which allow to used an moeoComparator in std::sort
      * @param _comp the comparator to used
@@ -314,12 +315,10 @@ private:
         moeoComparator < MOEOT > & comp;
     }
     indiComparator;
-    /** default moeoComparator*/
-    moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
-    /** distance */
-    moeoDistance <MOEOT, double>& distance;
     /** default distance */
     moeoEuclideanDistance < MOEOT > defaultDistance;
+    /** distance */
+    moeoDistance <MOEOT, double>& distance;
 
 
     /**
