@@ -71,7 +71,9 @@ private:
     eoValueParam<bool> _enableResults;
     eoValueParam<bool> _doMeasure;
     eoValueParam<unsigned int> _packetSize;
+#ifdef _OPENMP
     double _t_start;
+#endif
 };
 
 void make_parallel(eoParser&);
