@@ -21,9 +21,9 @@ Authors:
 Johann Dréo <johann.dreo@thalesgroup.com>
 */
 
-#if !defined(__unix__) && !defined(_WINDOWS)
+#if !defined(_POSIX_VERSION) && !defined(__unix__) && !defined(_WINDOWS)
 #warning "Warning: class 'eoEvalUserTimeThrowException' is only available under UNIX (defining 'rusage' in 'sys/resource.h') or Win32 (defining 'GetProcessTimes' in 'WinBase.h') systems, contributions for other systems are welcomed."
-#else //!defined(__unix__) && !defined(_WINDOWS)
+#else // defined(_POSIX_VERSION) || defined(__unix__) || defined(_WINDOWS)
 
 #ifndef __EOEVALUSERTIMETHROWEXCEPTION_H__
 #define __EOEVALUSERTIMETHROWEXCEPTION_H__
@@ -40,7 +40,7 @@ Johann Dréo <johann.dreo@thalesgroup.com>
 
 #include "eoExceptions.h"
 
-#ifdef __unix__
+#if defined(_POSIX_VERSION) || defined(__unix__)
 
 #include <sys/time.h>
 #include <sys/resource.h>
@@ -106,6 +106,6 @@ protected:
 };
 
 #endif // _WINDOWS
-#endif //__unix__
+#endif // defined(_POSIX_VERSION) || defined(__unix__)
 #endif // __EOEVALUSERTIMETHROWEXCEPTION_H__
-#endif //!defined(__unix__) && !defined(_WINDOWS)
+#endif //!defined(_POSIX_VERSION) && !defined(__unix__) && !defined(_WINDOWS)
