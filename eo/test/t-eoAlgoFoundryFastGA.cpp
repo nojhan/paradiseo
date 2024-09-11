@@ -25,7 +25,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     /***** Crossovers ****/
     foundry.crossovers.add< eo1PtBitXover<EOT> >();
-    foundry.crossovers.add< eoUBitXover<EOT> >(0.5); // preference over 1
+    // foundry.crossovers.add< eoUBitXover<EOT> >(0.5); // preference over 1
     for(size_t i=1; i < 11; i+=4) {
         foundry.crossovers.add< eoNPtsBitXover<EOT> >(i); // nb of points
     }
@@ -43,9 +43,9 @@ int main(int /*argc*/, char** /*argv*/)
          std::ref(foundry.mutation_selectors) }) {
 
         ops.add< eoRandomSelect<EOT> >();
-        ops.add< eoStochTournamentSelect<EOT> >(0.5);
-        ops.add< eoSequentialSelect<EOT> >();
-        ops.add< eoProportionalSelect<EOT> >();
+        // ops.add< eoStochTournamentSelect<EOT> >(0.5);
+        // ops.add< eoSequentialSelect<EOT> >();
+        // ops.add< eoProportionalSelect<EOT> >();
         for(size_t i=2; i < 10; i+=4) {
             ops.add< eoDetTournamentSelect<EOT> >(i);
         }
@@ -53,16 +53,16 @@ int main(int /*argc*/, char** /*argv*/)
 
     /***** Replacements ****/
     foundry.replacements.add< eoCommaReplacement<EOT> >();
-    foundry.replacements.add< eoPlusReplacement<EOT> >();
-    foundry.replacements.add< eoSSGAWorseReplacement<EOT> >();
-    foundry.replacements.add< eoSSGAStochTournamentReplacement<EOT> >(0.51);
+    // foundry.replacements.add< eoPlusReplacement<EOT> >();
+    // foundry.replacements.add< eoSSGAWorseReplacement<EOT> >();
+    // foundry.replacements.add< eoSSGAStochTournamentReplacement<EOT> >(0.51);
     for(size_t i=2; i < 10; i+=4) {
         foundry.replacements.add< eoSSGADetTournamentReplacement<EOT> >(i);
     }
 
     /***** Continuators ****/
-    for(size_t i=10; i < 30; i+=10 ) {
-        foundry.continuators.add< eoSteadyFitContinue<EOT> >(10,i);
+    for(size_t i=3; i < 5; i+=1 ) {
+        foundry.continuators.add< eoGenContinue<EOT> >(i);
     }
 
 

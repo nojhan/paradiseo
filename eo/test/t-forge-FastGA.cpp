@@ -19,7 +19,7 @@ int main(int /*argc*/, char** /*argv*/)
     eoBooleanGenerator gen(0.5);
     eoInitFixedLength<EOT> init(dim, gen);
 
-    eoGenContinue<EOT> common_cont(100);
+    eoGenContinue<EOT> common_cont(5);
 
     eoForgeVector< eoContinue<EOT> > continuators;
     continuators.add< eoSteadyFitContinue<EOT> >(10,10);
