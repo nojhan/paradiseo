@@ -80,6 +80,8 @@ set (TEST_LIST
   t-forge-FastGA
   t-eoFoundryFastGA
   t-eoAlgoFoundryFastGA
+  t-eoRealToIntMonOp
+  t-eoRealToIntQuadOp
   )
 
 

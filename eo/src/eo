@@ -224,6 +224,10 @@
 #include "utils/eoLogger.h"
 #include "utils/eoParallel.h"
 
+#include "eoInt.h"
+#include "eoRealToIntMonOp.h"
+#include "eoRealToIntQuadOp.h"
+
 #endif
 
 // Local Variables:

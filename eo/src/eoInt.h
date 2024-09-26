@@ -36,9 +36,12 @@
   *
   * @ingroup Representations
 */
-template <class FitT, class T = size_t> class eoInt: public eoVector<FitT, T>
+template <class FitT, class T = size_t>
+class eoInt: public eoVector<FitT, T>
 {
  public:
+     using AtomType = size_t;
+     using FitnessType = FitT;
 
   /**
    * (Default) Constructor.
