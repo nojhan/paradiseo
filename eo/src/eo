@@ -227,6 +227,7 @@
 #include "eoInt.h"
 #include "eoRealToIntMonOp.h"
 #include "eoRealToIntQuadOp.h"
+#include "eoRealToIntInit.h"
 
 #endif
 
