@@ -64,6 +64,8 @@ template<class F = double> class EO: public eoObject, public eoPersistent
 public:
   typedef F Fitness;
 
+  static constexpr const char* invalidTag = "INVALID";
+
   /** Default constructor.
   */
   EO(): repFitness(Fitness()), invalidFitness(true) { }
@@ -124,25 +126,21 @@ public:
    * The read and print methods should be compatible and have the same format.
    * In principle, format is "plain": they just print a number
    * @param _is a std::istream.
-   * @throw eoInvalidFitnessError If a valid object can't be read.
    */
-  virtual void readFrom(std::istream& _is) {
-
-        // the new version of the reafFrom function.
-        // It can distinguish between valid and invalid fitness values.
+  virtual void readFrom(std::istream& _is)
+  {
         std::string fitness_str;
-        int pos = _is.tellg();
         _is >> fitness_str;
 
-        if (fitness_str == "INVALID")
+        if (fitness_str == invalidTag)
         {
                 invalidFitness = true;
         }
         else
         {
                 invalidFitness = false;
-                _is.seekg(pos); // rewind
-                _is >> repFitness;
+                std::istringstream iss(fitness_str);
+                iss >> repFitness;
         }
   }
 
@@ -150,12 +148,11 @@ public:
    * Write object. Called printOn since it prints the object _on_ a stream.
    * @param _os A std::ostream.
    */
-  virtual void printOn(std::ostream& _os) const {
-
-
-    // the latest version of the code. Very similar to the old code
-    if (invalid()) {
-        _os << "INVALID ";
+  virtual void printOn(std::ostream& _os) const
+  {
+    if (invalid())
+    {
+        _os << invalidTag << ' ';
     }
     else
     {
