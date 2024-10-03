@@ -45,7 +45,7 @@ class edoEstimatorAdaptive : public edoEstimator<D>
 public:
     typedef typename D::EOType EOType;
 
-    edoEstimatorAdaptive<D>( D& distrib ) : _distrib(distrib) {}
+    edoEstimatorAdaptive( D& distrib ) : _distrib(distrib) {}
 
     // virtual D operator() ( eoPop< EOT >& )=0 (provided by eoUF< A1, R >)
 

@@ -41,12 +41,12 @@ class edoEstimatorAdaptiveReset : public edoEstimatorAdaptive<D>
 public:
     typedef typename D::EOType EOType;
 
-    edoEstimatorAdaptiveReset<D>( D& distrib ) :
+    edoEstimatorAdaptiveReset( D& distrib ) :
         edoEstimatorAdaptive<D>(distrib),
         _dim(0)
     { }
 
-    edoEstimatorAdaptiveReset<D>( D& distrib, size_t dim ) :
+    edoEstimatorAdaptiveReset( D& distrib, size_t dim ) :
         edoEstimatorAdaptive<D>(distrib),
         _dim(dim)
     { }

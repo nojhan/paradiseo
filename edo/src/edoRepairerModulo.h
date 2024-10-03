@@ -39,7 +39,7 @@ template < typename EOT >
 class edoRepairerModulo: public edoRepairerApplyBinary<EOT>
 {
 public:
-    edoRepairerModulo<EOT>( double denominator ) : edoRepairerApplyBinary<EOT>( std::fmod, denominator ) {}
+    edoRepairerModulo( double denominator ) : edoRepairerApplyBinary<EOT>( std::fmod, denominator ) {}
 };
 
 

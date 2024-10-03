@@ -43,12 +43,12 @@ class edoEstimatorCombinedAdaptive : public edoEstimatorAdaptive<D>, public std:
 public:
     typedef typename D::EOType EOType;
 
-    edoEstimatorCombinedAdaptive<D>( D& distrib, edoEstimator<D>& estim) :
+    edoEstimatorCombinedAdaptive( D& distrib, edoEstimator<D>& estim) :
         edoEstimatorAdaptive<D>(distrib),
         std::vector<edoEstimator<D>*>(1,&estim)
     {}
 
-    edoEstimatorCombinedAdaptive<D>( D& distrib, std::vector<edoEstimator<D>*> estims) :
+    edoEstimatorCombinedAdaptive( D& distrib, std::vector<edoEstimator<D>*> estims) :
         edoEstimatorAdaptive<D>(distrib),
         std::vector<edoEstimator<D>*>(estims)
     {}
@@ -78,11 +78,11 @@ class edoEstimatorCombinedStateless : public edoEstimatorCombinedAdaptive<D>
 public:
     typedef typename D::EOType EOType;
 
-    edoEstimatorCombinedStateless<D>( edoEstimator<D>& estim ) :
+    edoEstimatorCombinedStateless( edoEstimator<D>& estim ) :
         edoEstimatorCombinedAdaptive<D>(*(new D), estim)
     {}
 
-    edoEstimatorCombinedStateless<D>( std::vector<edoEstimator<D>*> estims) :
+    edoEstimatorCombinedStateless( std::vector<edoEstimator<D>*> estims) :
         edoEstimatorCombinedAdaptive<D>(*(new D), estims)
     {}
 
