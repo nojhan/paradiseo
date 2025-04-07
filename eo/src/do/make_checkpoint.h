@@ -65,7 +65,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 
 #ifndef _MSC_VER
     // the CtrlC monitoring interception
-    eoSignal<EOT> *mon_ctrlCCont;
+    eoSignal<EOT> *mon_ctrlCCont = nullptr;
     eoValueParam<bool>& mon_ctrlCParam = _parser.createParam(false, "monitor-with-CtrlC", "Monitor current generation upon Ctrl C",0, "Stopping criterion");
     if (mon_ctrlCParam.value())
       {
