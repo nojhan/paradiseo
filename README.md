@@ -168,7 +168,7 @@ It is, for instance, easy to start with a simple local search, then add multi-ob
 
 Paradiseo is mainly developed under Linux operating systems, where its dependencies and the C++ toolchain are easy to install. Recent versions have been tested with gcc and clang compilers.
 
-Stable versions should however work on Windows and any Unix-like operating system with a standard-conforming C++ development system. 
+Stable versions should however work on Windows and any Unix-like operating system with a standard-conforming C++ development system.
 
 
 # Code
@@ -195,7 +195,7 @@ The build chain uses the classical workflow of CMake. The recommended method is 
 
 Under Linux, the default is make, and a build command is straitghtforward: `mkdir build ; cd build ; cmake .. && make -j`.
 
-There is, however, several build options which you may want to switch. To see them, we recommend the use of a CMake gui, like ccmake or cmake-gui . On the command line, you can see the available options with: `cmake -LH ..` . Those options can be set with the `-D<option>=<value>` argument to cmake.
+There is, however, several build options which you may want to switch. To see them, we recommend the use of a CMake gui, like ccmake or cmake-gui. On the command line, you can see the available options with: `cmake -LH ..` . Those options can be set with the `-D<option>=<value>` argument to cmake.
 
 **The first option to consider is `CMAKE_BUILD_TYPE`, which you most probably want to set to `Debug` (during development/tests) or `Release` (for production/validation).**
 
@@ -211,7 +211,9 @@ If you `ENABLE_CMAKE_EXAMPLE`, it will also build the examples.
 If may want to make build scripts more verbose (especially when building the
 doc) by enabling `CMAKE_VERBOSE_MAKEFILE`.
 
-If `ccache` installed in your environment, library recompilation times can be significantly reduced. To clear all cached objects, execute `ccache -C`.
+If `ccache` installed in your environment, it will try its best to re-use other compilations,
+which may speed-up your builds if you manage several compatible builds at the same time.
+To clear all cached objects, execute `ccache -C`.
 
 ## Licenses
 
@@ -237,11 +239,35 @@ For academic articles, books, more tutorials, presentations slides,
 real life example of solvers and contact information,
 please see the web site (available in `paradiseo/website/index.html`).
 
-There is also an [online wiki](https://gitlab.inria.fr/paradiseo/paradiseo/-/wikis/home)
 
+# Citing Paradiseo
+
+If you use Paradiseo, please cite the following publication:
+
+Johann Dreo, Arnaud Liefooghe, Sébastien Verel, Marc Schoenauer, Juan J. Merelo, Alexandre Quemy, Benjamin Bouvier, and Jan Gmys, [Paradiseo: from a modular framework for evolutionary computation to the automated design of metaheuristics —22 years of Paradiseo—](https://doi.org/10.1145/3449726.3463276), GECCO'21: Proceedings of the Genetic and Evolutionary Computation Conference Companion, 1522–1530 (2021).
+
+BiBTeX entry:
+
+```
+@inproceedings{Dreo-al_2021_Paradiseo,
+    author    = {Dreo, Johann and Liefooghe, Arnaud and Verel, S\'{e}bastien and Schoenauer, Marc and Merelo, Juan J. and Quemy, Alexandre and Bouvier, Benjamin and Gmys, Jan},
+    title     = {Paradiseo: From a Modular Framework for Evolutionary Computation to the Automated Design of Metaheuristics: 22 Years of Paradiseo},
+    year      = {2021},
+    isbn      = {9781450383516},
+    publisher = {Association for Computing Machinery},
+    address   = {Online conference},
+    url       = {https://doi.org/10.1145/3449726.3463276},
+    booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference Companion},
+    pages     = {1522–1530},
+    numpages  = {9}
+}
+```
 
 # Contact
 
 For further information about ParadisEO, help or to report any
-problem, you can send an e-mail to: `paradiseo-help@lists.gforge.inria.fr`
+problem, you can either:
+
+- Chat with us on our Matrix chatroom: https://app.element.io/#/room/#paradiseo:matrix.org
+- Post an issue: https://github.com/nojhan/paradiseo/issues
 
