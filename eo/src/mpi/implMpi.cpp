@@ -161,7 +161,7 @@ namespace mpi
         MPI_Barrier( MPI_COMM_WORLD );
     }
 
-    void broadcast( communicator & comm, int value, int root )
+    void broadcast( communicator & /*comm*/, int value, int root )
     {
         MPI_Bcast( &value, 1, MPI_INT, root, MPI_COMM_WORLD );
     }

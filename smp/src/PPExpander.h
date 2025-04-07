@@ -52,7 +52,7 @@ class Loop<T,Arg...>
     }
  
     template<class U>
-    U& findValueImpl(T& t, Arg&... arg, std::true_type)
+    U& findValueImpl(T& t, Arg&... /*arg*/, std::true_type)
     {
         return t;
     }

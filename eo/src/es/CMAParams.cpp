@@ -113,16 +113,19 @@ CMAParams::CMAParams(eoParser& parser, unsigned dimensionality) {
                 for (unsigned i = 0; i < weights.size(); ++i) {
                     weights[i] = mu - i;
                 }
+                break;
             }
         case 2:
             {
                 weights = 1.;
+                break;
             }
         default :
             {
                 for (unsigned i = 0; i < weights.size(); ++i) {
                     weights[i] = log(mu+1.)-log(i+1.);
                 }
+                break;
             }
 
     }

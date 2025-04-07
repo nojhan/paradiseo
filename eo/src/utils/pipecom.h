@@ -23,8 +23,8 @@ typedef struct PipeCommunication {
 } PCom;
 
 
-extern PCom *PipeComOpen( char *prog );
-extern PCom *PipeComOpenArgv( char *prog, char *argv[] );
+extern PCom *PipeComOpen( const char *prog );
+extern PCom *PipeComOpenArgv( const char *prog, char *argv[] );
 
 extern int PipeComSend( PCom *to, const char *line );
 extern int PipeComSendn( PCom *to, const char *data, int n );

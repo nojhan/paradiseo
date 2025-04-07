@@ -66,7 +66,7 @@ bool testDirRes(std::string _dirName, bool _erase);
  * @param _archive the archive of non-dominated solutions
  */
 template < class MOEOT >
-eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & _state, eoEvalFuncCounter < MOEOT > & _eval, eoContinue < MOEOT > & _continue, eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _archive)
+eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & _state, eoEvalFuncCounter < MOEOT > & /*_eval*/, eoContinue < MOEOT > & _continue, eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _archive)
 {
   eoCheckPoint < MOEOT > & checkpoint = _state.storeFunctor(new eoCheckPoint < MOEOT > (_continue));
   /* the objective vector type */

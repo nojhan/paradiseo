@@ -30,6 +30,8 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _QAPGA_h
 #define _QAPGA_h
 
+extern int n; // size
+
 class ProblemInit : public eoInit<Problem>
 {
 public:

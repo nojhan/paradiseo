@@ -468,8 +468,11 @@ private :
                 switch(new_arity)
                 {
                 case 3 : args[2].copy(s.args[2]); args[2].parent = this; // no break!
+                    [[fallthrough]];
                 case 2 : args[1].copy(s.args[1]); args[1].parent = this;
+                    [[fallthrough]];
                 case 1 : args[0].copy(s.args[0]); args[0].parent = this;
+                    [[fallthrough]];
                 case 0 : break;
                 default :
                         {
@@ -523,7 +526,9 @@ private :
                 switch(arity())
                 {
                 case 3 : args[2].parent = 0; // no break!
+                    [[fallthrough]];
                 case 2 : args[1].parent = 0;
+                    [[fallthrough]];
                 case 1 : args[0].parent = 0; break;
                 case 0 : break;
                 default :
@@ -542,7 +547,9 @@ private :
                 switch(arity())
                 {
                 case 3 : args[2].parent = this; // no break!
+                    [[fallthrough]];
                 case 2 : args[1].parent = this;
+                    [[fallthrough]];
                 case 1 : args[0].parent = this; break;
                 case 0 : break;
                 default :

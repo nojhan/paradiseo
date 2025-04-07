@@ -60,6 +60,10 @@ paradiseo::smp::Island<EOAlgo,EOT,bEOT>::Island(eoPop<EOT>& _pop, IntPolicy<EOT>
 { }
 
 template<template <class> class EOAlgo, class EOT, class bEOT>
+paradiseo::smp::Island<EOAlgo,EOT,bEOT>::~Island()
+{ }
+
+template<template <class> class EOAlgo, class EOT, class bEOT>
 void paradiseo::smp::Island<EOAlgo,EOT,bEOT>::operator()()
 {
     stopped = false;

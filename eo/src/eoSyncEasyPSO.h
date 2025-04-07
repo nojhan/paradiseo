@@ -230,27 +230,25 @@ protected:
 
     // if the eval does not need to be used, use the dummy eval instance
         class eoDummyEval : public eoEvalFunc<POT>
-            {
-            public:
-                void operator()(POT &)
-                {}
-            }
-            dummyEval;
-
-         class eoDummyFlight:public eoFlight < POT >
         {
-                public:
-        eoDummyFlight () {}
-	void operator  () (POT &) {}
-        }dummyFlight;
+            public:
+                void operator()(POT &) override {}
+        } dummyEval;
+
+        class eoDummyFlight:public eoFlight < POT >
+        {
+            public:
+            eoDummyFlight () {}
+            void operator() (POT &) override {}
+        } dummyFlight;
 
         // if the initializer does not need to be used, use the dummy one instead
         class eoDummyInitializer:public eoInitializerBase < POT >
         {
-         public:
-        eoDummyInitializer () {}
-        void operator  () (POT &) {}
-        }dummyInit;
+            public:
+            eoDummyInitializer () {}
+            void operator() () override {}
+        } dummyInit;
 
 };
 /** @example t-eoSyncEasyPSO.cpp

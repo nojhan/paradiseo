@@ -42,16 +42,16 @@ int Check( PCom *com )
 }
 
 
-PCom * PipeComOpen( char *prog )
+PCom * PipeComOpen( const char *prog )
 {
     char	*args[2];
-    args[0] = prog;
+    args[0] = strdup( prog );
     args[1] = NULL;
     return PipeComOpenArgv( prog, args );
 }
 
 
-PCom * PipeComOpenArgv( char *prog, char *argv[] )
+PCom * PipeComOpenArgv( const char *prog, char *argv[] )
 {
     int		toFils[2];
     int		toPere[2];

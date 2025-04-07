@@ -174,18 +174,18 @@ protected:
          // if the flight does not need to be used, use the dummy flight instance
         class eoDummyFlight:public eoFlight < POT >
         {
-         public:
-        eoDummyFlight () {}
-        void operator  () (POT &) {}
-        }dummyFlight;
+            public:
+            eoDummyFlight () {}
+            void operator() (POT &) override {}
+        } dummyFlight;
 
         // if the initializer does not need to be used, use the dummy one instead
         class eoDummyInitializer:public eoInitializerBase < POT >
         {
-         public:
-        eoDummyInitializer () {}
-        void operator  () (POT &) {}
-        }dummyInit;
+            public:
+            eoDummyInitializer () {}
+            void operator() () override {}
+        } dummyInit;
 
 };
 /**
