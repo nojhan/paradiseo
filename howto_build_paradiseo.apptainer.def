@@ -1,0 +1,54 @@
+Bootstrap: docker
+From: ubuntu:24.04
+
+%post
+    # Update the available packages list.
+    apt -y update
+    # And add the "universe" repository (allow to install many more software).
+    apt -y install software-properties-common
+    add-apt-repository universe
+    apt -y update
+    # Update the operating systems (install last versions with bugfixes).
+    apt -y dist-upgrade
+
+    # Install dependencies for your project.
+    apt -y install git g++ cmake ccache make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev
+
+    # Download sources.
+    git clone --branch master --single-branch --recurse-submodules https://github.com/nojhan/paradiseo
+    cd paradiseo
+
+    # Build directory that holds built binaries and cache.
+    mkdir -p build
+    cd build
+
+    # Example of minimum build:
+    # Use that if you want the minimal set of libraries needed to build a simple solver.
+    # cmake -DCMAKE_BUILD_TYPE=Release -DEDO=ON .. && make
+
+    # Example of trying to build everything:
+    # Use that to test if everything can be built with your setup,
+    # or if you modified something in Paradiseo and want to test it.
+    cmake -DCMAKE_BUILD_TYPE=Release -DEDO=ON -DENABLE_CMAKE_EXAMPLE=ON -DENABLE_CMAKE_TESTING=ON -DENABLE_GNUPLOT=ON -DENABLE_OPENMP=ON -DMPI=ON -DSMP=ON .. && make
+
+    # You may run the tests, to check if everything works:
+    ctest
+
+    # Make the documentation:
+    make doc
+
+    # Clean-up of the APT cache (will lighten the container).
+    apt -y purge software-properties-common git g++ cmake ccache make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev
+    apt -y --purge autoremove
+    apt -y autoclean
+    apt clean
+
+%environment
+
+%runscript
+    # When executing the container, this will be called,
+    # and pass all the command line arguments.
+    ./paradiseo/build/edo/application/cmaes/cmaes $*
+
+%labels
+    Author Johann Dreo
