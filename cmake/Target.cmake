@@ -27,7 +27,7 @@ if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
     #         set(DOC_SMP "")
     #     endif()
     #     if(MPI)
-    #         set(DOC_MPI "make doc-mpi")
+            # set(DOC_MPI "make doc-mpi")
     #     else()
     #         set(DOC_MPI "")
     #     endif()
@@ -78,7 +78,7 @@ if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
                 COMMAND make doc-eo
                 COMMAND make doc-mo
                 COMMAND make doc-moeo
-                COMMAND make doc-mpi
+                # COMMAND make doc-mpi
             )
         endif()
 
@@ -89,7 +89,7 @@ if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
                 COMMAND make doc-mo
                 COMMAND make doc-moeo
                 COMMAND make doc-smp
-                COMMAND make doc-mpi
+                # COMMAND make doc-mpi
             )
         endif()
         if(EDO AND NOT SMP AND MPI)
@@ -98,7 +98,7 @@ if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
                 COMMAND make doc-mo
                 COMMAND make doc-moeo
                 COMMAND make doc-edo
-                COMMAND make doc-mpi
+                # COMMAND make doc-mpi
             )
         endif()
         if(EDO AND SMP AND NOT MPI)
@@ -119,7 +119,7 @@ if(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
                 COMMAND make doc-moeo
                 COMMAND make doc-edo
                 COMMAND make doc-smp
-                COMMAND make doc-mpi
+                # COMMAND make doc-mpi
             )
         endif()
 
@@ -131,7 +131,7 @@ endif(DOXYGEN_FOUND AND DOXYGEN_EXECUTABLE)
 ######################################################################################
 
 if(PROFILING)
-    find_program(LCOV 
+    find_program(LCOV
         NAMES lcov
         PATHS
         "/usr/local/bin /usr/bin [HKEY_LOCAL_MACHINE\\SOFTWARE\\Rational Software\\Purify\\Setup;InstallFolder] [HKEY_CURRENT_USER\\Software]"
