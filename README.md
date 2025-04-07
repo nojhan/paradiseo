@@ -211,6 +211,7 @@ If you `ENABLE_CMAKE_EXAMPLE`, it will also build the examples.
 If may want to make build scripts more verbose (especially when building the
 doc) by enabling `CMAKE_VERBOSE_MAKEFILE`.
 
+If `ccache` installed in your environment, library recompilation times can be significantly reduced. To clear all cached objects, execute `ccache -C`.
 
 ## Licenses
 
