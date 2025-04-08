@@ -2,7 +2,8 @@
 Summary
 =======
 
-As Paradiseo is a development framework, you do not really need to install it on all your systems. Just put it somewhere on your development computer, compile it from here and indicate where to find it to your favorite build system.
+As Paradiseo is a development framework, you do not really need to install it on all your systems.
+Just put it somewhere on your development computer, compile it from here and indicate where to find it to your favorite build system.
 
 
 Build
@@ -17,6 +18,11 @@ Paradiseo use the CMake build system, so building it should be as simple as:
 ```bash
 mkdir build ; cd build ; cmake -DEDO=ON .. && make -j
 ```
+
+The file `howto_build_paradiseo.apptainer.def` shows you how to install and build from scratch.
+It is a definition file for the [Apptainer](https://apptainer.org/) container system,
+which is often used on HPC clusters.
+
 
 Develop
 -------
@@ -187,13 +193,13 @@ Examples and lessons are generated when `ENABLE_CMAKE_EXAMPLE` is set.
 If you want to build a specific lesson or example, you can check the list of available targets with `make help`.
 
 All lessons are build on the same pattern: `<module>Lesson<number>`.
-For instance, make `moLesson4` will build the Lesson 4 from the MO module. 
+For instance, make `moLesson4` will build the Lesson 4 from the MO module.
 Easy, isn't it ?
 
 Tests
 -----
 
-By performing tests, you can check your installation. 
+By performing tests, you can check your installation.
 Testing is disable by default, except if you build with the full install type.
 To enable testing, define `ENABLE_CMAKE_TESTING` when you run cmake.
 
