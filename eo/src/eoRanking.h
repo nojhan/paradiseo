@@ -148,7 +148,6 @@ public:
    */
   virtual void operator()(const eoPop<EOT> &_pop)
   {
-
     unsigned pSize = _pop.size();
 
     if (pSize <= 1)
@@ -170,16 +169,19 @@ public:
     std::vector<const EOT *> rank;
     _pop.sort(rank);
 
-    // vector of indices sorted by fitness
-    std::vector<size_t> indices(pSize);
-    for (size_t i = 0; i < pSize; ++i)
-      indices[i] = i;
+    // map of indices for the population
+    std::unordered_map<const EOT *, unsigned> indexMap;
+    for (unsigned i = 0; i < pSize; ++i)
+    {
+      indexMap[&_pop[i]] = i;
+    }
 
     if (exponent == 1.0) // no need for exponetial then (linear case)
     {
       for (unsigned i = 0; i < pSize; i++)
       {
-        int which = indices[i];
+        const EOT *indiv = rank[i];
+        int which = indexMap[indiv];
         value()[which] = cached_alpha * (pSize - i) + cached_beta;
       }
     }
@@ -187,7 +189,8 @@ public:
     {
       for (unsigned i = 0; i < pSize; i++)
       {
-        int which = indices[i];
+        const EOT *indiv = rank[i];
+        int which = indexMap[indiv];
         // value in in [0,1]
         double tmp = ((double)(pSize - i)) / pSize;
         // to the exponent, and back to [m,M]
