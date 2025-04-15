@@ -81,7 +81,7 @@ public:
         value().resize(pSize);
 
         double beta = (2 - pressure) / pSize;
-        if (exponent == 1.0) // no need for exponetial then
+        if (exponent == 1.0) // no need for exponential then
         {
             double alpha = (2 * pressure - 2) / (pSize * pSizeMinusOne);
             for (unsigned i = 0; i < pSize; i++)
@@ -96,7 +96,7 @@ public:
             for (unsigned i = 0; i < pSize; i++)
             {
                 int which = lookfor(rank[i], _pop);
-                // value in in [0,1]
+                // value is in [0,1]
                 double tmp = ((double)(pSize - i)) / pSize;
                 // to the exponent, and back to [m,M]
                 value()[which] = gamma * pow(tmp, exponent) + beta;

@@ -101,7 +101,7 @@ public:
             indexMap[&_pop[i]] = i;
         }
 
-        if (exponent == 1.0) // no need for exponetial then (linear case)
+        if (exponent == 1.0) // no need for exponential then (linear case)
         {
             for (unsigned i = 0; i < pSize; i++)
             {
@@ -116,7 +116,7 @@ public:
             {
                 const EOT *indiv = rank[i];
                 int which = indexMap[indiv];
-                // value in in [0,1]
+                // value is in [0,1]
                 double tmp = ((double)(pSize - i)) / pSize;
                 // to the exponent, and back to [m,M]
                 value()[which] = cached_gamma * pow(tmp, exponent) + cached_beta;
