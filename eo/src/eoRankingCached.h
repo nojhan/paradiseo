@@ -59,19 +59,7 @@ public:
     */
     eoRankingCached(double _p = 2.0, double _e = 1.0) : pressure(_p), exponent(_e), cached_pSize(0)
     {
-        if (pressure <= 1.0)
-        {
-            std::string msg = "eoRankingCached: pressure must be > 1.0";
-            eo::log << eo::errors << "ERROR: " << msg << std::endl;
-            throw eoException(msg);
-        }
-
-        if (exponent > 2.0)
-        {
-            std::string msg = "eoRankingCached: exponent must be <= 2.0";
-            eo::log << eo::errors << "ERROR: " << msg << std::endl;
-            throw eoException(msg);
-        }
+        assert(1 < pressure and exponent <= 2);
     }
 
     /*
