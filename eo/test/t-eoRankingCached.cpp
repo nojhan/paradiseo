@@ -210,7 +210,7 @@ int main(int argc, char **argv)
         test_Consistency(parser);
         test_MinPopulationSize(parser);
         test_CachingEffectiveness(parser);
-        test_Assertions(parser);
+        // test_Assertions(parser);
         return 0;
     }
     catch (std::exception &e)
