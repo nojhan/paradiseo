@@ -40,73 +40,73 @@ template <class EOT>
 class eoRanking : public eoPerf2Worth<EOT> // false: do not cache fitness
 {
 public:
-
     using eoPerf2Worth<EOT>::value;
 
-  /* Ctor:
-   @param _p selective pressure (in (1,2]
-   @param _e exponent (1 == linear)
-  */
-  eoRanking(double _p=2.0, double _e=1.0):
-    pressure(_p), exponent(_e) {}
-
-  /* helper function: finds index in _pop of _eo, an EOT * */
-  int lookfor(const EOT *_eo, const eoPop<EOT>& _pop)
+    /* Ctor:
+     @param _p selective pressure (in (1,2]
+     @param _e exponent (1 == linear)
+    */
+    eoRanking(double _p = 2.0, double _e = 1.0) : pressure(_p), exponent(_e)
     {
-      typename eoPop<EOT>::const_iterator it;
-      for (it=_pop.begin(); it<_pop.end(); it++)
-        {
-          if (_eo == &(*it))
-            return it-_pop.begin();
-        }
-      throw eoException("Not found in eoLinearRanking");
+        assert(1 < pressure and pressure <= 2);
     }
 
-  /* COmputes the ranked fitness: fitnesses range in [m,M]
-     with m=2-pressure/popSize and M=pressure/popSize.
-     in between, the progression depstd::ends on exponent (linear if 1).
-   */
-  virtual void operator()(const eoPop<EOT>& _pop)
+    /* helper function: finds index in _pop of _eo, an EOT * */
+    int lookfor(const EOT *_eo, const eoPop<EOT> &_pop)
     {
-      std::vector<const EOT *> rank;
-      _pop.sort(rank);
-      unsigned pSize =_pop.size();
-      unsigned int pSizeMinusOne = pSize-1;
-
-      if (pSize <= 1)
-        throw eoPopSizeException(pSize,"cannot do ranking with population of size <= 1");
-
-      // value() refers to the std::vector of worthes (we're in an eoParamvalue)
-      value().resize(pSize);
-
-      double beta = (2-pressure)/pSize;
-      if (exponent == 1.0)         // no need for exponetial then
+        typename eoPop<EOT>::const_iterator it;
+        for (it = _pop.begin(); it < _pop.end(); it++)
         {
-          double alpha = (2*pressure-2)/(pSize*pSizeMinusOne);
-          for (unsigned i=0; i<pSize; i++)
+            if (_eo == &(*it))
+                return it - _pop.begin();
+        }
+        throw eoException("Not found in eoLinearRanking");
+    }
+
+    /* COmputes the ranked fitness: fitnesses range in [m,M]
+       with m=2-pressure/popSize and M=pressure/popSize.
+       in between, the progression depstd::ends on exponent (linear if 1).
+     */
+    virtual void operator()(const eoPop<EOT> &_pop)
+    {
+        std::vector<const EOT *> rank;
+        _pop.sort(rank);
+        unsigned pSize = _pop.size();
+        unsigned int pSizeMinusOne = pSize - 1;
+
+        if (pSize <= 1)
+            throw eoPopSizeException(pSize, "cannot do ranking with population of size <= 1");
+
+        // value() refers to the std::vector of worthes (we're in an eoParamvalue)
+        value().resize(pSize);
+
+        double beta = (2 - pressure) / pSize;
+        if (exponent == 1.0) // no need for exponential then
+        {
+            double alpha = (2 * pressure - 2) / (pSize * pSizeMinusOne);
+            for (unsigned i = 0; i < pSize; i++)
             {
-              int which = lookfor(rank[i], _pop);
-              value()[which] = alpha*(pSize-i)+beta; // worst -> 1/[P(P-1)/2]
+                int which = lookfor(rank[i], _pop);
+                value()[which] = alpha * (pSize - i) + beta; // worst -> 1/[P(P-1)/2]
             }
         }
-      else                                 // exponent != 1
+        else // exponent != 1
         {
-          double gamma = (2*pressure-2)/pSize;
-          for (unsigned i=0; i<pSize; i++)
+            double gamma = (2 * pressure - 2) / pSize;
+            for (unsigned i = 0; i < pSize; i++)
             {
-              int which = lookfor(rank[i], _pop);
-              // value in in [0,1]
-              double tmp = ((double)(pSize-i))/pSize;
-              // to the exponent, and back to [m,M]
-              value()[which] = gamma*pow(tmp, exponent)+beta;
+                int which = lookfor(rank[i], _pop);
+                // value is in [0,1]
+                double tmp = ((double)(pSize - i)) / pSize;
+                // to the exponent, and back to [m,M]
+                value()[which] = gamma * pow(tmp, exponent) + beta;
             }
         }
     }
- private:
-  double pressure;	// selective pressure
-  double exponent;
+
+private:
+    double pressure; // selective pressure
+    double exponent;
 };
-
-
 
 #endif

@@ -82,6 +82,7 @@ set (TEST_LIST
   t-eoAlgoFoundryFastGA
   t-eoRealToIntMonOp
   t-eoRealToIntQuadOp
+  t-eoRankingCached
   )
 
 
