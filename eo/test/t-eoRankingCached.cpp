@@ -2,18 +2,20 @@
 #include <es/eoReal.h>
 #include <utils/eoRNG.h>
 #include <eoRanking.h>
+#include <eoRankingCached.h>
 #include <apply.h>
 #include "real_value.h"
 
 class RankingTest
 {
 public:
-    RankingTest(eoParser &parser, eoEvalFuncCounter<eoReal<double>> &_eval, unsigned size = 100) : rng(0),
-                                                                                                   popSize(size),
-                                                                                                   seedParam(parser.createParam(uint32_t(time(0)), "seed", "Random seed", 'S')),
-                                                                                                   pressureParam(parser.createParam(1.5, "pressure", "Selective pressure", 'p')),
-                                                                                                   exponentParam(parser.createParam(1.0, "exponent", "Ranking exponent", 'e')),
-                                                                                                   eval(_eval)
+    RankingTest(eoParser &parser, eoEvalFuncCounter<eoReal<double>> &_eval, unsigned size = 100)
+        : rng(0),
+          popSize(size),
+          seedParam(parser.createParam(uint32_t(time(0)), "seed", "Random seed", 'S')),
+          pressureParam(parser.createParam(1.5, "pressure", "Selective pressure", 'p')),
+          exponentParam(parser.createParam(1.0, "exponent", "Ranking exponent", 'e')),
+          eval(_eval)
     {
         rng.reseed(seedParam.value());
         initPopulation();
@@ -68,7 +70,7 @@ void test_Consistency(eoParser &parser)
             throw std::runtime_error("Inconsistent ranking values between implementations");
         }
     }
-    std::cout << "Test 1 passed: Both implementations produce identical results\n";
+    std::clog << "Test 1 passed: Both implementations produce identical results" << std::endl;
 }
 
 // Test case 2: Test edge case with minimum population size
@@ -99,7 +101,7 @@ void test_MinPopulationSize(eoParser &parser)
     {
         throw std::runtime_error("Invalid ranking for population size 2");
     }
-    std::cout << "Test 2 passed: Minimum population size handled correctly\n";
+    std::clog << "Test 2 passed: Minimum population size handled correctly" << std::endl;
 }
 
 // Test case 3: Verify caching actually works
@@ -117,7 +119,9 @@ void test_CachingEffectiveness(eoParser &parser)
 
     // Modify fitness values but keep same population size
     for (auto &ind : fixture.pop)
+    {
         ind[0] = fixture.rng.uniform();
+    }
 
     apply<eoReal<double>>(eval, fixture.pop);
 
@@ -135,7 +139,7 @@ void test_CachingEffectiveness(eoParser &parser)
     // Third run - should recompute coefficients
     rankingCached(fixture.pop);
 
-    std::cout << "Test 3 passed: Caching mechanism properly invalidated\n";
+    std::clog << "Test 3 passed: Caching mechanism properly invalidated" << std::endl;
 }
 
 int main(int argc, char **argv)
@@ -150,7 +154,7 @@ int main(int argc, char **argv)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::clog << "Exception: " << e.what() << std::endl;
         return 1;
     }
 }
