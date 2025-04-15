@@ -175,19 +175,17 @@ void test_Assertions(eoParser &parser)
 {
     // Test valid parameters (should succeed)
     bool valid_ok = true;
-    valid_ok &= testRankingConstructor(1.1, 1.0);       // Valid pressure and exponent
-    valid_ok &= testRankingConstructor(1.1, 2.0);       // Edge case valid
-    valid_ok &= testRankingCachedConstructor(1.1, 1.0); // Valid pressure and exponent
-    valid_ok &= testRankingCachedConstructor(1.1, 2.0); // Edge case valid
+    valid_ok &= testRankingConstructor(1.1, 1.0);       // Valid pressure
+    valid_ok &= testRankingCachedConstructor(1.1, 1.0); // Valid pressure
 
     // Test invalid parameters (should fail)
     bool invalid_ok = true;
     invalid_ok &= !testRankingConstructor(1.0, 1.0);       // pressure = 1 (invalid)
     invalid_ok &= !testRankingConstructor(0.5, 1.0);       // pressure < 1 (invalid)
-    invalid_ok &= !testRankingConstructor(2.0, 2.1);       // exponent > 2 (invalid)
+    invalid_ok &= !testRankingConstructor(2.1, 1.0);       // pressure > 2 (invalid)
     invalid_ok &= !testRankingCachedConstructor(1.0, 1.0); // pressure = 1 (invalid)
     invalid_ok &= !testRankingCachedConstructor(0.5, 1.0); // pressure < 1 (invalid)
-    invalid_ok &= !testRankingCachedConstructor(2.5, 2.1); // exponent > 2 (invalid)
+    invalid_ok &= !testRankingCachedConstructor(2.1, 1.0); // pressure > 2 (invalid)
 
     if (!valid_ok)
     {

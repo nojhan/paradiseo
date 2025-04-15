@@ -48,7 +48,7 @@ public:
     */
     eoRanking(double _p = 2.0, double _e = 1.0) : pressure(_p), exponent(_e)
     {
-        assert(1 < pressure and exponent <= 2);
+        assert(1 < pressure and pressure <= 2);
     }
 
     /* helper function: finds index in _pop of _eo, an EOT * */

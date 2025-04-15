@@ -59,7 +59,7 @@ public:
     */
     eoRankingCached(double _p = 2.0, double _e = 1.0) : pressure(_p), exponent(_e), cached_pSize(0)
     {
-        assert(1 < pressure and exponent <= 2);
+        assert(1 < pressure and pressure <= 2);
     }
 
     /*
