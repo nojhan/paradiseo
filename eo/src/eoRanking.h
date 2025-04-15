@@ -48,7 +48,19 @@ public:
     */
     eoRanking(double _p = 2.0, double _e = 1.0) : pressure(_p), exponent(_e)
     {
-        assert(1 < pressure and exponent <= 2);
+        if (pressure <= 1.0)
+        {
+            std::string msg = "eoRanking: pressure must be > 1.0";
+            eo::log << eo::errors << "ERROR: " << msg << std::endl;
+            throw eoException(msg);
+        }
+
+        if (exponent > 2.0)
+        {
+            std::string msg = "eoRanking: exponent must be <= 2.0";
+            eo::log << eo::errors << "ERROR: " << msg << std::endl;
+            throw eoException(msg);
+        }
     }
 
     /* helper function: finds index in _pop of _eo, an EOT * */
