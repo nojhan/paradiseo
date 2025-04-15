@@ -1,9 +1,9 @@
+#include <apply.h>
 #include <eo>
-#include <es/eoReal.h>
-#include <utils/eoRNG.h>
 #include <eoRanking.h>
 #include <eoRankingCached.h>
-#include <apply.h>
+#include <es/eoReal.h>
+#include <utils/eoRNG.h>
 #include "real_value.h"
 
 class RankingTest
@@ -142,6 +142,66 @@ void test_CachingEffectiveness(eoParser &parser)
     std::clog << "Test 3 passed: Caching mechanism properly invalidated" << std::endl;
 }
 
+// Helper function to test constructor assertions
+bool testRankingConstructor(double pressure, double exponent)
+{
+    try
+    {
+        eoRanking<eoReal<double>> ranking(pressure, exponent);
+        return true; // Constructor succeeded
+    }
+    catch (...)
+    {
+        return false; // Assertion failed
+    }
+}
+
+// Helper function to test constructor assertions
+bool testRankingCachedConstructor(double pressure, double exponent)
+{
+    try
+    {
+        eoRankingCached<eoReal<double>> ranking(pressure, exponent);
+        return true;
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+// Test case 4: Verify assertions on invalid parameters
+void test_Assertions(eoParser &parser)
+{
+    // Test valid parameters (should succeed)
+    bool valid_ok = true;
+    valid_ok &= testRankingConstructor(1.1, 1.0);       // Valid pressure and exponent
+    valid_ok &= testRankingConstructor(1.1, 2.0);       // Edge case valid
+    valid_ok &= testRankingCachedConstructor(1.1, 1.0); // Valid pressure and exponent
+    valid_ok &= testRankingCachedConstructor(1.1, 2.0); // Edge case valid
+
+    // Test invalid parameters (should fail)
+    bool invalid_ok = true;
+    invalid_ok &= !testRankingConstructor(1.0, 1.0);       // pressure = 1 (invalid)
+    invalid_ok &= !testRankingConstructor(0.5, 1.0);       // pressure < 1 (invalid)
+    invalid_ok &= !testRankingConstructor(2.0, 2.1);       // exponent > 2 (invalid)
+    invalid_ok &= !testRankingCachedConstructor(1.0, 1.0); // pressure = 1 (invalid)
+    invalid_ok &= !testRankingCachedConstructor(0.5, 1.0); // pressure < 1 (invalid)
+    invalid_ok &= !testRankingCachedConstructor(2.5, 2.1); // exponent > 2 (invalid)
+
+    if (!valid_ok)
+    {
+        throw std::runtime_error("Valid parameter tests failed");
+    }
+
+    if (!invalid_ok)
+    {
+        throw std::runtime_error("Invalid parameter tests failed - some invalid values were accepted");
+    }
+
+    std::clog << "Test 4 passed: All parameter assertions working correctly\n";
+}
+
 int main(int argc, char **argv)
 {
     try
@@ -150,6 +210,7 @@ int main(int argc, char **argv)
         test_Consistency(parser);
         test_MinPopulationSize(parser);
         test_CachingEffectiveness(parser);
+        test_Assertions(parser);
         return 0;
     }
     catch (std::exception &e)
