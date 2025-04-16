@@ -13,7 +13,7 @@ cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
 ## Name
 project("ParadisEO"
-    VERSION 3.0.0
+    VERSION 3.1.3
     DESCRIPTION "Evolutionary optimization framework"
     LANGUAGES C CXX)
 
