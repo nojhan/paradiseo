@@ -33,12 +33,36 @@
 #include <map>
 #include <vector>
 
+#ifdef _WINDOWS
+#define NOMINMAX
+#include <Windows.h>
+#endif // _WINDOWS
+
 /**
  * @addtogroup Continuators
  * @{
  */
 
 extern std::map< int, bool > signals_called;
+
+#ifdef _WINDOWS
+// Windows console control handler - process level handler
+// Returns TRUE if the signal was handled, FALSE otherwise
+inline BOOL WINAPI ConsoleCtrlHandler(DWORD dwCtrlType)
+{
+    if (dwCtrlType == CTRL_C_EVENT || dwCtrlType == CTRL_BREAK_EVENT)
+	{
+	    // Map Windows control event to SIGINT for compatibility
+	    ::signals_called[SIGINT] = true;
+	    eo::log << eo::logging << "Signal wished…" << std::endl;
+	    return TRUE;  // Signal handled, don't terminate the process
+	}
+    return FALSE;
+}
+
+// Track if console handler is already installed
+static bool console_handler_installed = false;
+#endif // _WINDOWS
 
 /** eoSignal inherits from eoCheckPoint including signals handling (see signal(7))
  *
@@ -53,7 +77,14 @@ public :
     {
 	::signals_called[_sig] = false;
 
-#ifndef _WINDOWS
+#ifdef _WINDOWS
+	// Install Windows console control handler (only once per process)
+	if (!console_handler_installed)
+	    {
+		SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
+		console_handler_installed = true;
+	    }
+#else
 #ifdef SIGQUIT
 	::signal( _sig, handler );
 #endif // !SIGQUIT
@@ -64,7 +95,14 @@ public :
     {
 	::signals_called[_sig] = false;
 
-#ifndef _WINDOWS
+#ifdef _WINDOWS
+	// Install Windows console control handler (only once per process)
+	if (!console_handler_installed)
+	    {
+		SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
+		console_handler_installed = true;
+	    }
+#else
 #ifdef SIGQUIT
 	::signal( _sig, handler );
 #endif // !SIGQUIT

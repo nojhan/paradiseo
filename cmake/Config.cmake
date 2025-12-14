@@ -43,6 +43,19 @@ if(SMP)
 endif(SMP)
 
 ######################################################################################
+### MSVC specific compiler options
+######################################################################################
+
+if(MSVC)
+    # Add /Zc:__cplusplus compiler option to enable correct __cplusplus macro
+    add_compile_options(/Zc:__cplusplus)
+    # Add utf8
+    add_compile_options(/utf-8)
+    # Add HAVE_UINT32_T=1 preprocessor definition
+    add_definitions(-DHAVE_UINT32_T=1)
+endif(MSVC)
+
+######################################################################################
 ### 1) Define installation type
 ######################################################################################
 

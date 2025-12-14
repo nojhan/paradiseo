@@ -1,4 +1,4 @@
-/*
+﻿/*
  * C++ification of Nikolaus Hansen's original C-source code for the
  * CMA-ES
  *
@@ -66,7 +66,8 @@ using namespace std;
 
 namespace eo {
 
-struct CMAStateImpl {
+class CMAStateImpl {
+ public:
 
     CMAParams p;
 
