@@ -143,8 +143,58 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Package.cmake)
 endif()
 
+######################################################################################
+### 6) CMake Package Configuration
+######################################################################################
 
-# Add all targets to the build-tree export set
+# Determine install paths (INSTALL_SUB_DIR and LIB are set in Config.cmake)
+if(NOT DEFINED INSTALL_SUB_DIR)
+    if(UNIX)
+        set(INSTALL_SUB_DIR /paradiseo)
+    else()
+        set(INSTALL_SUB_DIR "")
+    endif()
+endif()
+
+if(NOT DEFINED INSTALL_LIB_DIR)
+    set(INSTALL_LIB_DIR ${LIB})
+endif()
+
+# Export all targets
+set(CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}" CACHE PATH "Installation directory")
+
+# Create export set for all targets
+install(EXPORT paradiseo-targets
+    FILE ParadisEOTargets.cmake
+    NAMESPACE ParadisEO::
+    DESTINATION ${INSTALL_LIB_DIR}/cmake/ParadisEO
+    COMPONENT libraries
+)
+
+# Generate and install Config.cmake
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ParadisEOConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/ParadisEOConfig.cmake"
+    INSTALL_DESTINATION ${INSTALL_LIB_DIR}/cmake/ParadisEO
+    PATH_VARS INSTALL_SUB_DIR INSTALL_LIB_DIR
+)
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/ParadisEOConfigVersion.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/ParadisEOConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/ParadisEOConfigVersion.cmake"
+    DESTINATION ${INSTALL_LIB_DIR}/cmake/ParadisEO
+    COMPONENT libraries
+)
+
+# Add all targets to the build-tree export set (for build-tree usage)
 export(TARGETS eo FILE "${PROJECT_BINARY_DIR}/paradiseo-config.cmake")
 
 # Export the package for use from the build-tree

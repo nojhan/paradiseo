@@ -31,6 +31,9 @@
 
 #include <iterator>
 #include <utility>
+#ifdef _MSC_VER
+#include <ciso646>  // For alternative operators (not, and, or) in MSVC
+#endif
 
 #include "utils/eoRNG.h"
 #include "utils/selectors.h"

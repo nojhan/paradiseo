@@ -32,28 +32,34 @@ endif()
 ######################################################################################
 
 add_definitions(-DDEPRECATED_MESSAGES)
-set(CMAKE_CXX_FLAGS_DEBUG  "-Wunknown-pragmas -O0 -g -Wall -Wextra -ansi -pedantic" CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_RELEASE  "-Wunknown-pragmas -O2" CACHE STRING "" FORCE)
 
-if(SMP)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -pthread" CACHE STRING "" FORCE)
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -pthread" CACHE STRING "" FORCE)
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11 -pthread" CACHE STRING "" FORCE)
-    add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
-endif(SMP)
-
-######################################################################################
-### MSVC specific compiler options
-######################################################################################
-
+# Compiler-specific flags
 if(MSVC)
-    # Add /Zc:__cplusplus compiler option to enable correct __cplusplus macro
+    # MSVC specific flags
+    set(CMAKE_CXX_FLAGS_DEBUG "/Od /Zi /RTC1" CACHE STRING "" FORCE)
+    set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG" CACHE STRING "" FORCE)
+    
+    # Add MSVC specific compiler options
     add_compile_options(/Zc:__cplusplus)
-    # Add utf8
     add_compile_options(/utf-8)
-    # Add HAVE_UINT32_T=1 preprocessor definition
     add_definitions(-DHAVE_UINT32_T=1)
-endif(MSVC)
+    
+    if(SMP)
+        # MSVC doesn't use -pthread, OpenMP or other threading is handled differently
+        add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
+    endif(SMP)
+else()
+    # GCC/Clang specific flags
+    set(CMAKE_CXX_FLAGS_DEBUG "-Wunknown-pragmas -O0 -g -Wall -Wextra -ansi -pedantic" CACHE STRING "" FORCE)
+    set(CMAKE_CXX_FLAGS_RELEASE "-Wunknown-pragmas -O2" CACHE STRING "" FORCE)
+    
+    if(SMP)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -pthread" CACHE STRING "" FORCE)
+        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -pthread" CACHE STRING "" FORCE)
+        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11 -pthread" CACHE STRING "" FORCE)
+        add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
+    endif(SMP)
+endif()
 
 ######################################################################################
 ### 1) Define installation type
@@ -97,8 +103,12 @@ set(ENABLE_CMAKE_EXAMPLE "true" CACHE BOOL "ParadisEO examples")
 ### 6) Determine prefix for installation
 ######################################################################################
 
-if(UNIX)
-    set(INSTALL_SUB_DIR /paradiseo)
+if(NOT DEFINED INSTALL_SUB_DIR)
+    if(UNIX)
+        set(INSTALL_SUB_DIR /paradiseo)
+    else()
+        set(INSTALL_SUB_DIR "")
+    endif()
 endif()
 
 
