@@ -203,7 +203,7 @@ class eoForgeOperator<Itf,Op> : public eoForgeInterface<Itf>
         std::shared_ptr<Itf> instantiate_ptr( bool no_cache = true ) override
         {
             if(no_cache or _instantiated == nullptr) {
-                _instantiated_ptr = std::shared_ptr<Op>();
+                _instantiated_ptr = std::make_shared<Op>();
             }
             return _instantiated_ptr;
         }
@@ -479,7 +479,7 @@ class eoForgeMap : public std::map<std::string,eoForgeInterface<Itf>*>
             delete this->at(name); // Silent on nullptr.
             auto pfo = new eoForgeOperator<Itf,Op,std::decay_t<Args>...>(
                     std::forward<Args>(args)...);
-            this->emplace({name, pfo});
+            this->at(name) = pfo;
         }
 
         /** Specialization for empty constructors.
@@ -489,7 +489,7 @@ class eoForgeMap : public std::map<std::string,eoForgeInterface<Itf>*>
         {
             delete this->at(name);
             auto pfo = new eoForgeOperator<Itf,Op>;
-            this->emplace({name, pfo});
+            this->at(name) = pfo;
         }
 
         virtual ~eoForgeMap()
