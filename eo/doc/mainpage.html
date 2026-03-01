@@ -35,23 +35,18 @@ background: #00309c;
         in it, it is very easy to subclass existing abstract or concrete
         classes. </p>
 
-        <p> EO was started by the <a href="http://geneura.ugr.es/">Geneura
-        Team</a> at the University of Granada, headed by <a
-        href="http://geneura.ugr.es/%7Ejmerelo/">Juan Julián Merelo</a>. The <a
-        href="http://geneura.ugr.es/~jmerelo/EO.orig.html"
-        target="_blank">original Web site</a> is also the only place where you
-        will find old releases of EO (up to 0.8.7), but beware that it is not
-        compatible at all with the current version. </p>
+        <p> EO was started by the Geneura
+        Team at the University of Granada, headed by
+        Juan Juli&aacute;n Merelo. </p>
 
-        <p> The developement team has then been reinforced by <a
-        href="http://www.cs.vu.nl/~mkeijzer">Maarten Keijzer</a>, the C++
-        wizzard, and <a href="http://www.lri.fr/%7Emarc">Marc Schoenauer</a>.
-        Later came <a href="http://www.liacs.nl/%7Ejeggermo/">Jeroen
-        Eggermont</a>, who, among other things, did a lot of work on GP,
-        INRIA Dolphin Team, <a
-        href="mailto:okoenig@users.sourceforge.net">Olivier König</a>, who did a
+        <p> The developement team has then been reinforced by
+        Maarten Keijzer (the C++
+        wizard), and Marc Schoenauer.
+        Later came Jeroen
+        Eggermont, who, among other things, did a lot of work on GP,
+        INRIA Dolphin Team, Olivier K&ouml;nig, who did a
         lot of useful additions and cleaning of the code and <a
-        href="http://www.jochen-kuepper.de">Jochen Küpper</a>, working on
+        href="https://www.jochen-kuepper.de">Jochen K&uuml;pper</a>, working on
         infrastructure maintenance. </p>
 
       </td>
@@ -81,7 +76,7 @@ background: #00309c;
         </ul>
 
         <p> If you have tested EO on a system not listed here, please <a
-        href="mailto:eodev-main@lists.sourceforge.net?subject=test-report">let
+        href="https://github.com/nojhan/paradiseo/issues">let
         us know</a>. </p>
 
         <p> If you are working on a system with an older C++ compiler there
@@ -98,26 +93,11 @@ background: #00309c;
 
         <p>The tutorial demonstrates that writing an evolutionary algorithm
         evolving your own structures is now <em>easy</em>, using ready-to-use
-        template files. Although the tutorial has not been upgraded for some
-        time now and refers to version 0.9.2 of EO, it nevertheless remains the
-        best way to dive into EO. You can start by trying it on-line at <a
-        href="http://www.lri.fr/%7Emarc/EO/eo/tutorial/html/eoTutorial.html">LRI</a>
-        or <a
-        href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">SourceForge</a>,
-        before <a href="http://www.lri.fr/%7Emarc/EO/">downloading it</a>. The
-        tutorial is also included in the <a
-        href="http://sourceforge.net/project/showfiles.php?group_id=9775">released
-        sources</a>. </p>
+        template files. The tutorial is included in the source tree at
+        <a href="https://github.com/nojhan/paradiseo/tree/master/eo/tutorial">eo/tutorial/</a>. </p>
 
-        <p>The latest <a
-        href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">tutorial
-        release</a>
-	</p>
-
-        <p>The complete code is also well documented and you can look at the
-        generated <a
-        href="http://eodev.sourceforge.net/eo/doc/html/index.html">interface
-        documentation</a>. </p>
+        <p>The complete code is also well documented and you can generate the
+        API documentation locally with <code>make doc-eo</code>. </p>
 
         <p>The easiest way to create a complete new EO-project, even for new
         genomes, is to use the script provided in tutorial/Templates/; see
@@ -132,17 +112,9 @@ background: #00309c;
       </td>
       <td bgcolor="#ffcc99">
         
-        <p> A functional and "philosophical" overview of EO was presented at <a
-        href="http://www.cmap.polytechnique.fr/%7Eea01/">EA'01 conference</a>.
-        You can download <a
-        href="http://eodev.sourceforge.net/eo/doc/EO_EA2001.pdf">the paper</a>
-        or <a href="http://eodev.sourceforge.net/eo/doc/LeCreusot.pdf">the
-        slides</a>. </p>
-        
-        <p> A <a href="http://geneura.ugr.es/~jmerelo/GAPPT/index.html"
-        target="_blank">PowerPoint presentation</a> shows the EO philosophy, and
-        it includes a Visual Basic macro for evolving objects in Visual Basic
-        for Applications. </p>
+        <p> A functional and "philosophical" overview of EO was presented at EA'01 conference.
+        You can find the paper (<code>EO_EA2001.pdf</code>)
+        and the slides (<code>LeCreusot.pdf</code>) in the <code>eo/doc/</code> directory. </p>
         
         <p>You can also look a the <a href="publications.html">list of
         publications</a> that used EO to solve real problems. </p>
@@ -155,18 +127,14 @@ background: #00309c;
       </td>
       <td bgcolor="#ffcc99">
 
-        <p> The current release is <a
-        href="http://sourceforge.net/project/showfiles.php?group_id=9775">EO 1.0</a>.
-        It supports any Standard-compliant C++ compiler. </p>
-        
-        <p> You can obtain the latest version directly via <a
-        href="http://sourceforge.net/cvs/?group_id=9775">cvs</a> or download a
-        daily snapshot from <a
-        href="http://www.lri.fr/%7Emarc/EO/snapshot">LRI</a>. </p>
-        
-        <p> All releases can be obtained from the SourceForge <a
-        href="http://sourceforge.net/project/showfiles.php?group_id=9775">download
-        area</a>. </p>
+        <p> EO is now part of <a
+        href="https://github.com/nojhan/paradiseo">ParadisEO</a>.
+        You can obtain the latest version via Git:
+        <code>git clone https://github.com/nojhan/paradiseo.git</code> </p>
+
+        <p> Releases can be obtained from the <a
+        href="https://github.com/nojhan/paradiseo/releases">GitHub releases
+        page</a>. </p>
         
       </td>
     </tr>
@@ -176,11 +144,9 @@ background: #00309c;
       </td>
       <td bgcolor="#ffcc99">
 
-        We would like EO to be an open development effort; that is why we have
-        created mailing lists to discuss future developments, solve technical
-        problems, announce releases, publish patches, and discuss evolutionary
-        computation in general. Browse the archives or join the <a
-        href="http://sourceforge.net/mail/?group_id=9775">EO mailing lists</a>.
+        For questions, bug reports, or contributions, please use the
+        <a href="https://github.com/nojhan/paradiseo/issues">GitHub issue tracker</a>
+        or the <a href="https://app.element.io/#/room/#paradiseo:matrix.org">Matrix chatroom</a>.
         
       </td>
     </tr>
@@ -190,23 +156,11 @@ background: #00309c;
       </td>
       <td bgcolor="#ffcc99">
         
-        <p>The following resources are available, thanks to sourceforge</p>
+        <p>EO is now developed as part of ParadisEO on GitHub:</p>
         <ul>
-          <li> <a href="http://sourceforge.net/project/?group_id=9775">EO
-          SourceForge Project Page</a></li>
-          <li><a href="http://eodev.sourceforge.net/eo/doc/html/index.html">EO
-          automatic documentation page at SF</a><br>
-          </li>
-          <li><a href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">EO
-          tutorial page at SF</a><br>
-          </li>
-          <li> <a href="https://sourceforge.net/project/showfiles.php?group_id=9775">Releases</a></li>
-          <li> <a href="http://sourceforge.net/mail/?group_id=9775">Mailing Lists</a></li>
-          <li> <a href="http://sourceforge.net/forum/?group_id=9775">Message Forums</a></li>
-          <li> <a href="http://sourceforge.net/bugs/?group_id=9775">Bug Submission and Tracking</a></li>
-          <li> <a href="http://sourceforge.net/support/?group_id=9775">Technical Support</a></li>
-          <li> <a href="http://sourceforge.net/patch/?group_id=9775">Patch Submission</a></li>
-          <li> <a href="http://sourceforge.net/cvs/?group_id=9775">CVS repository</a></li>
+          <li> <a href="https://github.com/nojhan/paradiseo">ParadisEO GitHub repository</a></li>
+          <li> <a href="https://github.com/nojhan/paradiseo/issues">Issue tracker</a></li>
+          <li> <a href="https://github.com/nojhan/paradiseo/releases">Releases</a></li>
         </ul>
       </td>
     </tr>
@@ -226,15 +180,10 @@ background: #00309c;
       </td>
       <td bgcolor="#ffcc99">
 
-        <p> <a href="http://paradiseo.gforge.inria.fr"
-        target="_blank">ParadisEO</a> provides EO extensions for
+        <p> <a href="https://nojhan.github.io/paradiseo/">ParadisEO</a> provides EO extensions for
         the flexible design of <b>single solution-based metaheuristics</b>,
 		metaheuristics for <b>multi objective optimization</b> as well as <b>hybrid, parallel and distributed
 		metaheuristics</b>.</p>
-
-        <p> <a href="http://geneura.ugr.es/~jmerelo/DegaX/"
-        target="_blank">DegaX</a> is an ActiveX control which embeds EO 0.8.4.
-        </p>
 
       </td>
     </tr>
@@ -245,30 +194,20 @@ background: #00309c;
       <td bgcolor="#ffcc99">
 
         <ul>
-          <li><a href="http://www.aip.de/~ast/EvolCompFAQ" target="_blank">The
-          Hitch-Hiker's Guide to Evolutionary Computation</a>, FAQ for 
-          <a href="news:comp.ai.genetic">comp.ai.genetic</a>.</li>
-          <li><a href="http://en.wikipedia.org/wiki/Evolutionary_algorithm" target="_blank">Wikipedia</a>
+          <li><a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm" target="_blank">Wikipedia</a>
           on Evolutionary algorithms.</li>
-          <li>Charles Darwin: <a href="http://en.wikipedia.org/wiki/The_Origin_of_Species" target="_blank">The
+          <li>Charles Darwin: <a href="https://en.wikipedia.org/wiki/The_Origin_of_Species" target="_blank">The
           Origin of Species</a>.</li>
-          <li>Nikolaus Hansen: <a
-          href="http://www.bionik.tu-berlin.de/user/niko/cec2005.html" target="_blank">Comparison
-          of Evolutionary Algorithms on a Benchmark Function Set</a>.</li>
+          <li><a href="https://cma-es.github.io/" target="_blank">CMA-ES</a>:
+          Covariance Matrix Adaptation Evolution Strategy.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-<center> <p> Hosted by:<br/><a href="http://sourceforge.net/"><img alt="SF logo"
-src="http://eodev.sourceforge.net/eo/doc/sflogo-hammer1.jpg"></a> </p> </center>
-
-<p> <a href="http://validator.w3.org/check?uri=referer"> <img
-src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Transitional"
-height="31" width="88"></a> <br/> Please send comments on this webpage to the <a
-href="mailto:eodev-main@lists.sourceforge.net?subject=webpage">EO mailing
-list</a>. </p>
+<p>Please report issues on the <a
+href="https://github.com/nojhan/paradiseo/issues">GitHub issue tracker</a>. </p>
 
 </body>
 </html>

@@ -53,7 +53,7 @@ set(CPACK_PACKAGE_DESCRIPTION "ParadisEO is a white-box object-oriented framewor
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A Software Framework for Metaheuristics")
 set(CPACK_PACKAGE_VENDOR "Inria/Thales")
-set(CPACK_PACKAGE_CONTACT "paradiseo-help@lists.gforge.inria.fr")
+set(CPACK_PACKAGE_CONTACT "https://github.com/nojhan/paradiseo/issues")
 set(CPACK_PACKAGE_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 set(CPACK_STRIP_FILES ${PACKAGE_NAME})
 set(CPACK_SOURCE_STRIP_FILES "bin/${PROJECT_NAME}")

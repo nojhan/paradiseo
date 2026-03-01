@@ -16,7 +16,8 @@ using the whole version of ParadisEO.
 
 @section tutorials Tutorials
 
-Tutorials for ParadisEO-MOEO are available in the "Tutorials section" of the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
+Tutorials for ParadisEO-MOEO are available in the moeo/tutorial/ directory. See also the
+<a href="https://nojhan.github.io/paradiseo/">ParadisEO website</a>.
 
 
 
@@ -29,7 +30,7 @@ The installation procedure of the package is detailed in the README file in the 
 @section Design
 
 For an introduction to the design of ParadisEO-MOEO,
-you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
+you can look at the <a href="https://nojhan.github.io/paradiseo/">ParadisEO website</a>.
 
 
 @section LICENSE
@@ -58,14 +59,14 @@ you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website
  The fact that you are presently reading this means that you have had
  knowledge of the CeCILL license and that you accept its terms.
 
- ParadisEO WebSite : http://paradiseo.gforge.inria.fr
- Contact: paradiseo-help@lists.gforge.inria.fr
+ ParadisEO WebSite : https://nojhan.github.io/paradiseo/
+ Contact: https://github.com/nojhan/paradiseo/issues
 
 */
 
 /** @page webpages Related webpages
 
-- ParadisEO <a href="http://paradiseo.gforge.inria.fr">homepage</a>
-- INRIA GForge <a href="http://gforge.inria.fr/projects/paradiseo/">project page</a>
+- ParadisEO <a href="https://nojhan.github.io/paradiseo/">homepage</a>
+- GitHub <a href="https://github.com/nojhan/paradiseo">project page</a>
 - <a href="../../README">README</a>
 */

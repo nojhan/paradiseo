@@ -22,7 +22,7 @@ When reaching stable versions:
     insanely fast.
 
     Learn more about EO on the official website:
-    http://eodev.sourceforge.net/
+    https://nojhan.github.io/paradiseo/
 
     You will find the release x.y.z at the following address:
     https://sourceforge.net/projects/eodev/files/eo/
@@ -39,7 +39,7 @@ When reaching stable versions:
 - Post the message to:
     - EO news https://sourceforge.net/news/?group_id=9775
     - EO mailing list: eodev-main@lists.sourceforge.net
-    - ParadisEO mailing list: paradiseo-users@lists.gforge.inria.fr
+    - ParadisEO: https://github.com/nojhan/paradiseo/issues
     - EC-digest maling list: ec-digest-l@listserv.gmu.edu
     - JET mailing list: jet@inria.fr
 

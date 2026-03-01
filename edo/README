@@ -9,7 +9,7 @@ On Windows write your path with double antislash (ex: C:\\Users\\...)
 
 # Step 2 - Build process
 ------------------------
-ParadisEO is assumed to be compiled. To download ParadisEO, please visit http://paradiseo.gforge.inria.fr/.
+ParadisEO is assumed to be compiled. To download ParadisEO, please visit https://nojhan.github.io/paradiseo/.
 Go to the DO/build/ directory and lunch cmake:
 (Unix)       > cmake ..
 (Windows)    > cmake .. -G"Visual Studio 9 2008"
@@ -22,23 +22,23 @@ Note for windows users: if you don't use VisualStudio 9, enter the name of your 
 In the edo/build/ directory:
 (Unix)       > make
 (Windows)    Open the VisualStudio solution and compile it, compile also the target install.
-You can refer to this tutorial if you don't know how to compile a solution: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
+You can refer to this tutorial if you don't know how to compile a solution: https://nojhan.github.io/paradiseo/index.php?n=Paradiseo.VisualCTutorial
 
 
 # Step 4 - Execution
 ---------------------
 A toy example is given to test the components. You can run these tests as following.
-To define problem-related components for your own problem, please refer to the tutorials available on the website : http://paradiseo.gforge.inria.fr/.
+To define problem-related components for your own problem, please refer to the tutorials available on the website : https://nojhan.github.io/paradiseo/.
 In the edo/build/ directory:
 (Unix)       > ctest
-Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
+Windows users, please refer to this tutorial: https://nojhan.github.io/paradiseo/index.php?n=Paradiseo.VisualCTutorial
 
 In the directory "application", there are several directory such as eda which instantiate EDA solver.
 
 (Unix) After compilation you can run the binary "build/eda" and see results. Parameters can be modified from command line.
 
 (Windows) Add argument "eda.param" and execute the corresponding algorithms.
-Windows users, please refer to this tutorial: http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.VisualCTutorial
+Windows users, please refer to this tutorial: https://nojhan.github.io/paradiseo/index.php?n=Paradiseo.VisualCTutorial
 
 
 # Documentation

@@ -8,7 +8,8 @@ Different parallelism models are available such as the Master / Slaves Model or 
 
 @section tutorials Tutorials
 
-Tutorials for ParadisEO-SMP are available in the "Tutorials section" of the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
+Tutorials for ParadisEO-SMP are available in the smp/tutorial/ directory. See also the
+<a href="https://nojhan.github.io/paradiseo/">ParadisEO website</a>.
 
 @section LICENSE
 
@@ -36,14 +37,14 @@ Tutorials for ParadisEO-SMP are available in the "Tutorials section" of the <a h
  The fact that you are presently reading this means that you have had
  knowledge of the CeCILL license and that you accept its terms.
 
- ParadisEO WebSite : http://paradiseo.gforge.inria.fr
- Contact: paradiseo-help@lists.gforge.inria.fr
+ ParadisEO WebSite : https://nojhan.github.io/paradiseo/
+ Contact: https://github.com/nojhan/paradiseo/issues
 
 */
 
 /** @page webpages Related webpages
 
-- ParadisEO <a href="http://paradiseo.gforge.inria.fr">homepage</a>
-- INRIA GForge <a href="http://gforge.inria.fr/projects/paradiseo/">project page</a>
+- ParadisEO <a href="https://nojhan.github.io/paradiseo/">homepage</a>
+- GitHub <a href="https://github.com/nojhan/paradiseo">project page</a>
 - <a href="../../README">README</a>
 */

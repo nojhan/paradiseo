@@ -218,5 +218,5 @@ int main(int argc, char **argv)
     catch (exception& e) {
         cout << "Exception: " << e.what() << '\n';
     }
-    return 1;
+    return 0;
 }

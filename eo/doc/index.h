@@ -56,7 +56,7 @@ Thus, you can easily build your own algorithm by trying several combination of o
 For a more detailled introduction to the design of %EO you can look at the
 slides from a talk at EA 2001 or at the corresponding
 article in Lecture Notes In Computer Science, 2310, Selected Papers from the 5th European Conference on Artificial Evolution:
-    - http://portal.acm.org/citation.cfm?id=727742
-    - http://eodev.sourceforge.net/eo/doc/LeCreusot.pdf
-    - http://eodev.sourceforge.net/eo/doc/EO_EA2001.pdf
+    - https://doi.org/10.1007/3-540-46033-0_13
+    - LeCreusot.pdf (available in eo/doc/)
+    - EO_EA2001.pdf (available in eo/doc/)
 */

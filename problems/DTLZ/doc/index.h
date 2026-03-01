@@ -15,7 +15,7 @@ The installation procedure of the package is detailed in the "README.txt" file l
 @section Design
 
 For an introduction to the design of ParadisEO,
-you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
+you can look at the <a href="https://nojhan.github.io/paradiseo/">ParadisEO website</a>.
 
 
 @section LICENSE
@@ -44,14 +44,14 @@ you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website
  The fact that you are presently reading this means that you have had
  knowledge of the CeCILL license and that you accept its terms.
 
- ParadisEO WebSite : http://paradiseo.gforge.inria.fr
- Contact: paradiseo-help@lists.gforge.inria.fr
+ ParadisEO WebSite : https://nojhan.github.io/paradiseo/
+ Contact: https://github.com/nojhan/paradiseo/issues
 
 */
 
 /** @page webpages Related webpages
 
-- ParadisEO <a href="http://paradiseo.gforge.inria.fr">homepage</a>
-- INRIA GForge <a href="http://gforge.inria.fr/projects/paradiseo/">project page</a>
-- Fore any questions, please contact paradiseo-help@lists.gforge.inria.fr
+- ParadisEO <a href="https://nojhan.github.io/paradiseo/">homepage</a>
+- GitHub <a href="https://github.com/nojhan/paradiseo">project page</a>
+- For any questions, please use the <a href="https://github.com/nojhan/paradiseo/issues">GitHub issue tracker</a>
 */

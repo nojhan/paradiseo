@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-Contact: http://eodev.sourceforge.net
+Contact: https://nojhan.github.io/paradiseo
 
 Authors:
      todos@geneura.ugr.es

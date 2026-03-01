@@ -16,8 +16,8 @@ It focus on the efficiency of the implementation of solvers, by providing:
 
 # Very Quick Start
 
-1. Use a recent Linux, like an Ubuntu.
-2. `sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev`
+1. Use a recent Linux, like Ubuntu.
+2. `sudo apt install g++ cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev`
 3. From the Paradiseo directory: `mkdir build ; cd build ; cmake -D CMAKE_BUILD_TYPE=Release -DEDO=ON .. && make -j`
 4. Copy-paste this CMA-ES code in `cmaes.cpp`:
 ```cpp
@@ -173,7 +173,7 @@ Stable versions should however work on Windows and any Unix-like operating syste
 
 # Code
 
-The latest stable version is on the official Git repository of INRIA: `git clone git://scm.gforge.inria.fr/paradiseo/paradiseo.git`
+The latest version is on the official Git repository: `git clone https://github.com/nojhan/paradiseo.git`
 
 ## Dependencies
 
@@ -187,7 +187,7 @@ Some features are only available if some dependencies are installed:
 - Doxygen is needed to build the API documentation, and you should also install graphviz if you want the class relationship diagrams.
 - GNUplot is needed to have the… GNUplot graphs at checkpoints.
 
-To install all those dependencies at once under Ubuntu (18.04), just type: `sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev`.
+To install all those dependencies at once under Ubuntu, just type: `sudo apt install g++ cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev`.
 
 ## Compilation
 
@@ -237,7 +237,7 @@ benchmark libraries are in `paradiseo/problems`.
 
 For academic articles, books, more tutorials, presentations slides,
 real life example of solvers and contact information,
-please see the web site (available in `paradiseo/website/index.html`).
+please see the web site (available in `docs/index.html`).
 
 
 # Citing Paradiseo

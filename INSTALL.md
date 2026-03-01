@@ -9,9 +9,9 @@ Just put it somewhere on your development computer, compile it from here and ind
 Build
 -----
 
-Paradiseo is mainly developed for Linux, on which it is straightforward to install a C++ build chain. For example, on Ubuntu 18.04:
+Paradiseo is mainly developed for Linux, on which it is straightforward to install a C++ build chain. For example, on Ubuntu:
 ```bash
-sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev
+sudo apt install g++ cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev
 ```
 
 Paradiseo use the CMake build system, so building it should be as simple as:
@@ -67,7 +67,7 @@ Feel free to test with another compiler and to send us your report.
 
 As of today, we cannot guarantee that it will be easy to
 install ParadisEO under Windows if you're a beginner.
-There is still some (possibly outdated) help about oldest version on the [Website](http://paradiseo.gforge.inria.fr/).
+There is still some (possibly outdated) help about oldest version on the [Website](https://nojhan.github.io/paradiseo/).
 
 If you know how to install a working compiler and the dependencies,
 you may follow the same steps than the Linux process below.
@@ -89,9 +89,9 @@ Some features are only available if some dependencies are installed:
 - Doxygen is needed to build the API documentation, and you should also install graphviz if you want the class relationship diagrams.
 - GNUplot is needed to have the… GNUplot graphs at checkpoints.
 
-To install all those dependencies at once under Ubuntu (18.04), just type:
+To install all those dependencies at once under Ubuntu, just type:
 ```bash
-sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev.
+sudo apt install g++ cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev
 ```
 
 
@@ -144,19 +144,9 @@ this can be helpful if you don't need other modules with more complex dependenci
 Shared Memory Processing (SMP) module
 -------------------------------------
 
-The SMP module requires gcc 4.7 or higher. This is due to the fact that it uses the new C++ standard.
-
-At the moment, the SMP module does not work on Windows or Mac OS X since MinGW does not provide support for std::thread and Apple does not supply a recent version of gcc (but you can try to compile gcc 4.7 by yourself).  
+ParadisEO requires C++17, so any modern compiler (GCC, Clang) should work.
 
 To enable the compilation of the SMP module, just set the `SMP` option.
-
-Depending on your distribution, you might have to give to CMake the path of gcc and g++ 4.7.
-This is the case for Ubuntu 12.04 LTS for instance.
-
-If you are in that case and assuming you have a standard path for gcc et g++ 4.7:
-```bash
-cmake .. -DSMP=true -DCMAKE_C_COMPILER=/usr/bin/gcc-4.7 -DCMAKE_CXX_COMPILER=/usr/bin/g++-4.7
-```
 
 Estimating Distribution Objects (EDO) module
 --------------------------------------------
@@ -178,12 +168,12 @@ Targets for the build system (usually `make`) are:
 - `doc` for all documentations,
 - `doc-eo` for building EO documentation,
 - `doc-mo` for MO,
-- `doc-edo` for MO,
+- `doc-edo` for EDO,
 - `doc-moeo` for MOEO,
 - `doc-smp` for SMP.
 
 Each documentation are generated separatly in the module build folder.
-For instance, after the generation of the MO documentation, you will find it in `build/paradise-mo/doc`.
+For instance, after the generation of the MO documentation, you will find it in `build/mo/doc`.
 
 Examples
 --------

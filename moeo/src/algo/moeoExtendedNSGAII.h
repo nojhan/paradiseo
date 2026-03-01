@@ -5,8 +5,8 @@
 Author:
        Oumayma BAHRI <oumaymabahri.com>
 
-ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-Contact: paradiseo-help@lists.gforge.inria.fr	   
+ParadisEO WebSite : https://nojhan.github.io/paradiseo/
+Contact: https://github.com/nojhan/paradiseo/issues	   
 
 */
 //-----------------------------------------------------------------------------

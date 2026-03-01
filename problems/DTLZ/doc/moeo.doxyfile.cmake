@@ -199,7 +199,7 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references   
 #---------------------------------------------------------------------------
-TAGFILES               = @EO_BIN_DIR@/doc/eo.doxytag=http://eodev.sourceforge.net/eo/doc/html
+TAGFILES               = @EO_BIN_DIR@/doc/eo.doxytag=https://nojhan.github.io/paradiseo/eo/doc/html
 GENERATE_TAGFILE       = @CMAKE_BINARY_DIR@/doc/moeo.doxytag
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES

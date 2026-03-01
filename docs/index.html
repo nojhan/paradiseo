@@ -136,7 +136,7 @@
     <p>As <em class="logo">Paradis<span class="logo_eo">eo</span></em> is a development framework, you do not really need to install it on all your systems. Just put it somewhere on your development computer, compile it from here and indicate where to find it to your favorite build system.</p>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> is mainly developed for Linux, on which it is straightforward to install a C++ build chain.
-    For example, on Ubuntu 18.04: <code class="command">sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</code></p>
+    For example, on Ubuntu: <code class="command">sudo apt install g++ cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</code></p>
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> use the CMake build system, so building it should be as simple as:
     <code class="command">mkdir build ; cd build ; cmake -DEDO=ON .. && make -j</code></p>
@@ -234,11 +234,12 @@
     <div id="Gethelp">
     <h2><a name="Gethelp"></a>Get help</h2>
 
-    <p>If you need <em>immediate support or have any question</em>, the best way to get
-    answers is to send an email to <a href='mailto:paradiseo-help@lists.gforge.inria.fr'>paradiseo-help@lists.gforge.inria.fr</a>. You can also <a href='http://lists.gforge.inria.fr/pipermail/paradiseo-help/'>consult the help archives</a>, subscribe to our <a href='http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users'>(low traffic) mailing-list</a> or <a href='http://lists.gforge.inria.fr/pipermail/paradiseo-users/'>consult its archives</a>.
+    <p>If you need <em>immediate support or have any question</em>, you can:
+    <ul>
+        <li><a href="https://github.com/nojhan/paradiseo/issues">Open an issue</a> on GitHub.</li>
+        <li>Join the official <a href="https://app.element.io/#/room/#paradiseo:matrix.org">Matrix chatroom</a> (<em>#paradiseo:matrix.org</em>), using the online webchat or your favorite <a href="https://element.io">Element.io</a> client.</li>
+    </ul>
     </p>
-
-    <p>Alternatively, you can join us on the official chatroom. You can try the <a href="https://app.element.io/#/room/#paradiseo:matrix.org">online webchat app</a>, or if you already use <a href="https://element.io">Element.io</a>, you can directly connect to the <em>#paradiseo:matrix.org</em> multi-user chatroom with your favorite client.</p>
 
     </div>
     </div>
@@ -531,7 +532,7 @@
 
     <p>Recent versions of <em class="logo">Paradis<span class="logo_eo">eo</span></em> uses the <a href="http://www.cmake.org">CMake</a> portable build system, that permits to easily generate a build script for your environment.</p>
 
-    <p> If you have tested <em class="logo">Paradis<span class="logo_eo">eo</span></em> on a system not listed here, please <a href="mailto:eodev-main@lists.sourceforge.net?subject=test-report">let
+    <p> If you have tested <em class="logo">Paradis<span class="logo_eo">eo</span></em> on a system not listed here, please <a href="https://github.com/nojhan/paradiseo/issues">let
         us know</a>. </p>
     </div>
 
@@ -861,7 +862,7 @@
         <li>
             <p>The core EO module is described in the following scientific article:
             <blockquote>M. Keijzer, J.J. Merelo, G. Romero, G., M. Schoenauer,
-                <a href= "http://www.lri.fr/~marc/EO/EO-EA01.ps.gz">Evolving
+                <a href= "https://doi.org/10.1007/3-540-46033-0_13">Evolving
                     objects: A general purpose evolutionary computation
                     library</a>, <i>Artificial Evolution</i>, <b>2310</b>, 829--888 (2002).</blockquote>
             </p>
@@ -875,7 +876,7 @@
 
         <li>
             <p>The multi-objective module (MOEO) is described in:
-            <blockquote>A. Liefooghe, M. Basseur, L. Jourdan, E.-G. Talbi, <a href="http://www2.lifl.fr/~jourdan/publi/jourdan_EMO07_A.pdf"><em class="logo">Paradis<span class="logo_eo">eo</span></em>-MOEO: A Framework for Evolutionary Multi-objective Optimization</a>, EMO 2007, LNCS Vol. 4403, pp. 386-400, Matsushima, Japan.</blockquote>
+            <blockquote>A. Liefooghe, M. Basseur, L. Jourdan, E.-G. Talbi, <a href="https://doi.org/10.1007/978-3-540-70928-2_31"><em class="logo">Paradis<span class="logo_eo">eo</span></em>-MOEO: A Framework for Evolutionary Multi-objective Optimization</a>, EMO 2007, LNCS Vol. 4403, pp. 386-400, Matsushima, Japan.</blockquote>
             </p>
         </li>
 
@@ -887,7 +888,7 @@
 
         <li>
             <p>A book about metaheuristics use <em class="logo">Paradis<span class="logo_eo">eo</span></em> as its framework of choice and explains in details several of its concepts, along with algorithmics content:
-            <blockquote>El-Ghazali Talbi, <a href="http://eu.wiley.com/WileyCDA/WileyTitle/productCd-0470278587.html">Metaheuristics: from design to implementation</a>, Wiley, 2009.
+            <blockquote>El-Ghazali Talbi, <a href="https://www.wiley.com/en-us/Metaheuristics:+From+Design+to+Implementation-p-9780470278581">Metaheuristics: from design to implementation</a>, Wiley, 2009.
 (624pp),
 ISBN: 978-0-470-27858-1</blockquote>
             </p>
@@ -1026,24 +1027,24 @@ undiscovered knowledge.
 <h3>Paradiseo-EO</h3>
 
 <ul>
-    <li> A functional and "philosophical" overview of the EO module was presented at <a href="http://www.cmap.polytechnique.fr/%7Eea01/">EA'01 conference</a>.
-    You can download <a href="https://www.lri.fr/~marc/EO/eo/doc/EO_EA2001.pdf">the paper</a>
-    or <a href="https://www.lri.fr/~marc/EO/eo/doc/LeCreusot.pdf">the
-        slides</a>.</li>
-<li><strong><a href='http://paradiseo.gforge.inria.fr/addon/paradiseo-eo/concepts/paradiseo-eo-design.pdf'>Metaheuristics for Combinatorial Optimization</a></strong> [pdf] by E-G. Talbi and S.Cahon: provides general concept on metaheuristics for combinatorial optimization.
-</li><li><strong><a href='http://paradiseo.gforge.inria.fr/addon/paradiseo-eo/concepts/paradiseo-eo-implem.pdf'>Reusable Design of Metaheuristics</a></strong> [pdf] by S.Cahon, E-G. Talbi and N. Melab: explains how to use Paradiseo-EO with a simple example.
+    <li> A functional and "philosophical" overview of the EO module was presented at EA'01 conference.
+    You can download <a href="https://github.com/nojhan/paradiseo/blob/master/eo/doc/EO_EA2001.pdf">the paper</a>
+    or <a href="https://github.com/nojhan/paradiseo/blob/master/eo/doc/LeCreusot.pdf">the
+        slides</a> (also available locally in <code>eo/doc/</code>).</li>
+<li><strong>Metaheuristics for Combinatorial Optimization</strong> [pdf] by E-G. Talbi and S.Cahon: provides general concept on metaheuristics for combinatorial optimization. [No longer available online]
+</li><li><strong>Reusable Design of Metaheuristics</strong> [pdf] by S.Cahon, E-G. Talbi and N. Melab: explains how to use Paradiseo-EO with a simple example. [No longer available online]
 </li></ul>
 
 <h3>Paradiseo-MO</h3>
 
-<ul><li><strong><a href='http://paradiseo.gforge.inria.fr/addon/paradiseo-mo/concepts/paradiseo-newmo-design.pdf'>Reusable Design of Local Searches and Tools for Landscape Analysis</a></strong> [pdf] by S.Verel, A.Liefooghe and J.Humeau: explains the new design of Paradiseo-MO.
+<ul><li><strong>Reusable Design of Local Searches and Tools for Landscape Analysis</strong> [pdf] by S.Verel, A.Liefooghe and J.Humeau: explains the new design of Paradiseo-MO. [No longer available online]
 </li><li><strong><a href='https://hal.inria.fr/hal-00665421v2'><em class="logo">Paradis<span class="logo_eo">eo</span></em>-MO: From fitness landscape analysis to efficient local search algorithms</a></strong> [pdf] by J.Humeau, A.Liefooghe, E-G. Talbi, and S.Verel (presented at ROADEF 2012).
 </li></ul>
 
 <h3>Paradiseo-MOEO</h3>
 
-<ul><li><strong><a href='http://paradiseo.gforge.inria.fr/addon/paradiseo-moeo/concepts/paradiseo-moeo-design.pdf'>Metaheuristics for Multi-objective Optimization</a></strong> [pdf] by E.-G. Talbi and the <em class="logo">Paradis<span class="logo_eo">eo</span></em> group: presents multi-objective optimization concepts, a taxonomy of resolution methods and gives performance evaluation examples.
-</li><li><strong><a href='http://paradiseo.gforge.inria.fr/addon/paradiseo-moeo/concepts/paradiseo-moeo-implem.pdf'>Reusable Design of Metaheuristics for Multi-objective Optimization</a></strong> [pdf] by E.-G. Talbi and the <em class="logo">Paradis<span class="logo_eo">eo</span></em> group: explains how to implement metaheuristics for multi-objective optimization using Paradiseo-MOEO through a simple example.
+<ul><li><strong>Metaheuristics for Multi-objective Optimization</strong> [pdf] by E.-G. Talbi and the <em class="logo">Paradis<span class="logo_eo">eo</span></em> group: presents multi-objective optimization concepts, a taxonomy of resolution methods and gives performance evaluation examples. [No longer available online]
+</li><li><strong>Reusable Design of Metaheuristics for Multi-objective Optimization</strong> [pdf] by E.-G. Talbi and the <em class="logo">Paradis<span class="logo_eo">eo</span></em> group: explains how to implement metaheuristics for multi-objective optimization using Paradiseo-MOEO through a simple example. [No longer available online]
 </li></ul>
 
 <!-- <h3>Paradiseo-PEO</h3> -->
@@ -1068,30 +1069,32 @@ undiscovered knowledge.
 
 <h3>Tutorials on EO (evolutionary algorithms module)</h3>
 
-<ul><li><a href='http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html'>EO Lesson1-5</a> Implement a GA
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part1'>EO Lesson6 first part</a> Implement a real PSO algorithm
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoEOLesson6part2'>EO Lesson6 second part</a> Implement a binary PSO algorithm
+<ul><li><a href='https://github.com/nojhan/paradiseo/blob/master/eo/tutorial/html/eoTutorial.html'>EO Lessons 1–5</a> Implement a GA (also available locally in <code>eo/tutorial/html/</code>)
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/eo/tutorial/Lesson6'>EO Lesson 6</a> Implement real and binary PSO algorithms (see <code>RealPSO.cpp</code> and <code>BinaryPSO.cpp</code>)
 </li></ul>
 
 <h3>Tutorials on MO (local search module)</h3>
 
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson1'>MO Lesson1</a> Hill Climber
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson2'>MO Lesson2</a> Neighborhoods (classical and indexed)
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson3'>MO Lesson3</a> Simulated Annealing and Checkpointing
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson4'>MO Lesson4</a> Tabu Search
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson5'>MO Lesson5</a> Iterated Local Search
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson6'>MO Lesson6</a> Fitness Landscapes Analysis
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOLesson7'>MO Lesson7</a> Hybrid Lesson
+</p><ul><li><a href='https://github.com/nojhan/paradiseo/tree/master/mo/tutorial/Lesson1'>MO Lesson 1</a> Hill Climber
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/mo/tutorial/Lesson2'>MO Lesson 2</a> Neighborhoods (classical and indexed)
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/mo/tutorial/Lesson3'>MO Lesson 3</a> Simulated Annealing and Checkpointing
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/mo/tutorial/Lesson4'>MO Lesson 4</a> Tabu Search
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/mo/tutorial/Lesson5'>MO Lesson 5</a> Iterated Local Search
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/mo/tutorial/Lesson6'>MO Lesson 6</a> Fitness Landscapes Analysis
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/mo/tutorial/Lesson7'>MO Lesson 7</a> Hybrid Lesson
 </li></ul>
 
 <h3>Tutorials on MOEO (multi-objective module)</h3>
 
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson1'>MOEO Lesson1</a> Implement NSGA, NSGA-II and IBEA for the SCH1 problem
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson2'>MOEO Lesson2</a> Evolutionary Algorithms for the flow-shop scheduling problem
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson3'>MOEO Lesson3</a> Evolutionary Algorithms with a user-friendly parameter file
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoMOEOLesson4'>MOEO Lesson4</a> Dominance-based Local Search for the flow-shop scheduling problem
-</li></ul><p>Tutorials SMP: <span  style='color: red;'>  new</span>
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoSMPLesson1'>SMP Lesson1</a> Algorithm wrapping with Master / Workers model
+</p><ul><li><a href='https://github.com/nojhan/paradiseo/tree/master/moeo/tutorial/Lesson1'>MOEO Lesson 1</a> Implement NSGA, NSGA-II and IBEA for the SCH1 problem
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/moeo/tutorial/Lesson2'>MOEO Lesson 2</a> Evolutionary Algorithms for the flow-shop scheduling problem
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/moeo/tutorial/Lesson3'>MOEO Lesson 3</a> Evolutionary Algorithms with a user-friendly parameter file
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/moeo/tutorial/Lesson4'>MOEO Lesson 4</a> Dominance-based Local Search for the flow-shop scheduling problem
+</li></ul><p>Tutorials SMP:
+</p><ul><li><a href='https://github.com/nojhan/paradiseo/tree/master/smp/tutorial/Lesson1'>SMP Lesson 1</a> Algorithm wrapping with Master / Workers model
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/smp/tutorial/Lesson2'>SMP Lesson 2</a> Homogeneous island model
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/smp/tutorial/Lesson3'>SMP Lesson 3</a> Heterogeneous island model
+</li><li><a href='https://github.com/nojhan/paradiseo/tree/master/smp/tutorial/Lesson4'>SMP Lesson 4</a> Island topology
 </li></ul>
 
 <h3>Tutorials on parallelization</h3>
@@ -1104,12 +1107,8 @@ undiscovered knowledge.
             <a href="https://endomorphis.me/island-model-with-paradiseo-components-and-basics-en.html">2. components and basics</a>,
             <a href="https://endomorphis.me/island-model-with-paradiseo-advanced-island-model-manipulations-en.html">3. advanced island model manipulations</a>.
         </li>
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOIntro'>PEO Intro</a> Technical introduction</li>
-        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson1'>PEO Lesson1</a> Multistart over a MO, Packing and Unpacking  (use old-mo) -->
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson2'>PEO Lesson2</a> Multistart over an evolutionary algorithm</li>
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson3'>PEO Lesson3</a> Parallel evaluation </li>
-        <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson4'>PEO Lesson4</a> Parallel transformation (use old-mo) -->
-        <li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson5'>PEO Lesson5</a> Island model</li>
+        <!-- PEO tutorials are no longer available — the PEO module has been removed from ParadisEO.
+             See the SMP module tutorials above for current parallelization features. -->
         <!-- </li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoPEOLesson6'>PEO Lesson6</a> Hybridization (use old-mo) -->
         <!-- </li></ul><p><span  style='display: none;'>GPU tutorials: </span> -->
         <!-- <span  style='display: none;'>*<a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoGPULesson1'>GPU Lesson1</a> CUDA installation and configuration</span> -->
@@ -1124,9 +1123,9 @@ undiscovered knowledge.
 
 <h3>Utilities</h3>
 
-</p><ul><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsParamFiles'>Utils Lesson1</a> Using configuration files
-</li><li><a href='http://paradiseo.gforge.inria.fr/index.php?n=Doc.TutoUtilsStats'>Utils Lesson2</a> Using statistics
-</li></ul>
+<!-- Utils tutorials were hosted on the GForge wiki only and are no longer available online.
+     See eo/src/utils/ for parameter file and statistics source code. -->
+
     </div>
 
     <div id="API">
@@ -1134,16 +1133,7 @@ undiscovered knowledge.
 
     <p>The heart of <em class="logo">Paradis<span class="logo_eo">eo</span></em> is a set of classes implementing operators. Each module has a separate API documentation. If you want to browse the features and find which class to use, this is the right entry point</p>
 
-    <p>For your convenience, you can browse an online API doc for <em class="logo">Paradis<span class="logo_eo">eo</span></em> version 2.0:
-    <ul>
-        <li><a href='http://paradiseo.gforge.inria.fr/addon/eo/doc/index.html'>doc-eo</a> (includes doc on EO, PSO and EDO)</li>
-        <li><a href='http://paradiseo.gforge.inria.fr/addon/mo/doc/index.html'>doc-mo</a> </li>
-        <li><a href='http://paradiseo.gforge.inria.fr/addon/moeo/doc/index.html'>doc-moeo</a> </li>
-        <li><a href='http://paradiseo.gforge.inria.fr/addon/smp/doc/index.html'>doc-smp</a> </li>
-    </ul>
-    </p>
-
-    <p>Note that if you want to find the API documentation for the version you have at hand, just build the <code class="command">make doc</code> target and open <code>paradiseo/&lt;build&gt;/&lt;module&gt;/doc/html/index.html</code> in your web browser.</p>
+    <p>The previously hosted online API docs (v2.0) are no longer available. To generate the API documentation for your version, build the <code class="command">make doc</code> target and open <code>paradiseo/&lt;build&gt;/&lt;module&gt;/doc/html/index.html</code> in your web browser. Per-module targets are also available: <code>make doc-eo</code>, <code>make doc-mo</code>, <code>make doc-moeo</code>, <code>make doc-smp</code>, <code>make doc-edo</code>.</p>
     </div>
 
     <div id="Examples">
@@ -1151,9 +1141,8 @@ undiscovered knowledge.
 
     <p>If you want to see examples of real solvers:
     <ul>
-        <li>The <a href="http://paradiseo.gforge.inria.fr/index.php?n=Problems.Problems">examples page</a> on INRIA <em class="logo">Paradis<span class="logo_eo">eo</span></em> pages (with explanations).</li>
-        <li>The <a href="https://gforge.inria.fr/frs/?group_id=145">contributed code</a> on the project page.</li>
-        <li>The <a href="https://github.com/nojhan/descarwin">Descarwin</a> project hold the "DaE" planning solver,
+        <li>The <a href="https://github.com/nojhan/paradiseo/tree/master/problems">problems directory</a> in the repository contains benchmark problem implementations (DTLZ, NK landscapes, QAP, etc.).</li>
+        <li>The <a href="https://github.com/nojhan/descarwin">Descarwin</a> project holds the "DaE" planning solver,
         which is implemented with <em class="logo">Paradis<span class="logo_eo">eo</span></em> and won the International Planning Competition.</li>
     </ul>
     </p>
@@ -1172,7 +1161,7 @@ undiscovered knowledge.
     <p>The current stable release is version: <a href="https://github.com/nojhan/paradiseo/releases">Paradiseo 3.1.3</a>. Some other releases (older or newer) can be found on <a href="https://github.com/nojhan/paradiseo/tags">GitHub/paradiseo/releases</a>.</p>
 
     <p> You can obtain the latest stable and beta version directly via the Git repository:
-    <code class="command">git clone https://github.com/jdreo/paradiseo.git</code>.
+    <code class="command">git clone https://github.com/nojhan/paradiseo.git</code>.
     The release are on the "master" branch.
     </p>
 
@@ -1205,7 +1194,7 @@ undiscovered knowledge.
         </ul>
     </p>
 
-    <p class="excerpt">To install all those dependencies at once under Ubuntu (18.04), just type: <em>sudo apt install g++-8 cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</em>.  </p>
+    <p class="excerpt">To install all those dependencies at once under Ubuntu, just type: <em>sudo apt install g++ cmake make libeigen3-dev libopenmpi-dev doxygen graphviz libgnuplot-iostream-dev</em>.  </p>
     </div>
 
     <div id="Compilation">
@@ -1253,7 +1242,7 @@ undiscovered knowledge.
 
     <p><em class="logo">Paradis<span class="logo_eo">eo</span></em> development is open and contributions are welcomed.</p>
     <p>The official bug tracker is available on the <a href="https://github.com/nojhan/paradiseo/issues">project page</a>.</p>
-    <p>If you have any question about contributing: subscribe to our <a href='http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users'>(low traffic) mailing-list</a>.</p>
+    <p>If you have any question about contributing, <a href='https://github.com/nojhan/paradiseo/issues'>open an issue</a> or join the <a href='https://app.element.io/#/room/#paradiseo:matrix.org'>Matrix chatroom</a>.</p>
 
     </div>
     </div>
@@ -1289,35 +1278,26 @@ undiscovered knowledge.
     <div id="Authors">
     <h2><a name="Authors"></a>Authors</h2>
 
-    <p>The EO module was started in 1999 by the <a href="http://geneura.ugr.es/">Geneura
-        Team</a> at the University of Granada, headed by <a
-        href="http://geneura.ugr.es/%7Ejmerelo/">Juan Julián Merelo</a>. The <a
-        href="http://geneura.ugr.es/~jmerelo/EO.orig.html"
-        >original Web site</a> is also the only place where you
-    will find old releases of <em class="logo">Paradis<span class="logo_eo">eo</span></em> (up to 0.8.7), but beware that it is not
-    compatible at all with the current version. </p>
+    <p>The EO module was started in 1999 by the Geneura
+        Team at the University of Granada, headed by
+        Juan Julián Merelo. </p>
 
-    <p>You can read this <a href="http://geneura.ugr.es/~jmerelo/GAPPT/index.html">
-        PowerPoint presentation</a>, that shows the EO philosophy back then.
-    It includes a Visual Basic (!) macro for evolving objects in Visual Basic
-    for Applications.</p>
-
-    <p>The developement team has then been reinforced by <a
-        href="http://www.cs.vu.nl/~mkeijzer">Maarten Keijzer</a>, the C++
+    <p>The developement team has then been reinforced by
+    Maarten Keijzer (the C++
     wizard who designed the current neat architecture),
-    and <a href="http://www.lri.fr/%7Emarc">Marc Schoenauer</a>
+    and Marc Schoenauer
     (who became a prominent researcher in the evolutionary algorithm community).
-    Later came <a href="http://www.liacs.nl/%7Ejeggermo/">Jeroen Eggermont</a>,
+    Later came Jeroen Eggermont,
     who, among other things, did a lot of work on GP,
     INRIA Dolphin Team, Olivier König, who did a
     lot of useful additions and cleaning of the code
-    and <a href="http://www.jochen-kuepper.de">Jochen Küpper</a>, working on
+    and <a href="https://www.jochen-kuepper.de">Jochen Küpper</a>, working on
     infrastructure maintenance. </p>
 
-    <p><a href="https://www.lifl.fr/~talbi/">El-Ghazali Talbi</a>'s
+    <p>El-Ghazali Talbi's
     INRIA team did a lot of contributions starting from around 2003,
     on their own module collection called <em class="logo">Paradis<span class="logo_eo">eo</span></em>.
-    Thomas Legrand, Sébastien Cahon and <a href="https://www.lifl.fr/~melab">Nouredine Melab</a>
+    Thomas Legrand, Sébastien Cahon and Nouredine Melab
     worked on parallelization modules.
     <a href="https://sites.google.com/site/arnaudliefooghe/">Arnaud Liefooghe</a>
     worked a lot on the multi-objective module and
@@ -1326,7 +1306,7 @@ undiscovered knowledge.
     In the same team, C. C. and J. Boisson made significant contributions.
     Karima Boufaras specifically worked on (now deprecated) GPU tools.</p>
 
-    <p>The (then) EO project was then taken over by <a href="http://johann.dreo.fr">Johann Dreo</a>,
+    <p>The (then) EO project was then taken over by <a href="https://johann.dreo.fr">Johann Dreo</a>,
     who worked with the help of Caner Candan on adding the EDO module.
     Johann and <a href="https://github.com/bnjbvr">Benjamin Bouvier</a> have also designed a
     MPI parallelization module. <a href="https://aquemy.info/">Alexandre Quemy</a>
@@ -1346,14 +1326,13 @@ undiscovered knowledge.
     <p>Some softwares listed here are using <em class="logo">Paradis<span class="logo_eo">eo</span></em>, but they are not maintained by the <em class="logo">Paradis<span class="logo_eo">eo</span></em> team.
     They may not be free softwares.</p>
     <p><ul>
-        <li> <a href="http://geneura.ugr.es/~jmerelo/DegaX/">DegaX</a>
-        is an ActiveX control which embeds <em class="logo">Paradis<span class="logo_eo">eo</span></em> 0.8.4.
+        <li> DegaX was an ActiveX control which embedded <em class="logo">Paradis<span class="logo_eo">eo</span></em> 0.8.4.
         </li>
 
-        <li><a href="https://lsiit.u-strasbg.fr/easea/index.php/EASEA_platform">EASEA</a> was a GUI that permits to build evolutionary algorithm with <em class="logo">Paradis<span class="logo_eo">eo</span></em> or the <a href="http://lancet.mit.edu/ga/">GAlib</a>.
-        It is now a platform that allows program evolutionary algorithms on massively parallel many-core architectures.</li>
+        <li>EASEA was a GUI that permits to build evolutionary algorithm with <em class="logo">Paradis<span class="logo_eo">eo</span></em> or GAlib.
+        It became a platform that allows programming evolutionary algorithms on massively parallel many-core architectures.</li>
 
-        <li><a href="https://gforge.inria.fr/projects/guide">GUIDE</a> is a GUI that allows the generation of evolutionary algorithms. It can use <em class="logo">Paradis<span class="logo_eo">eo</span></em> or <a href="http://cs.gmu.edu/~eclab/projects/ecj/">ECJ</a>.</li>
+        <li>GUIDE was a GUI that allows the generation of evolutionary algorithms. It could use <em class="logo">Paradis<span class="logo_eo">eo</span></em> or <a href="https://cs.gmu.edu/~eclab/projects/ecj/">ECJ</a>.</li>
     </ul>
     </p>
     </div>

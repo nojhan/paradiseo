@@ -23,8 +23,8 @@ same conditions as regards security.
 The fact that you are presently reading this means that you have had
 knowledge of the CeCILL license and that you accept its terms.
 
-ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-Contact: paradiseo-help@lists.gforge.inria.fr
+ParadisEO WebSite : https://nojhan.github.io/paradiseo/
+Contact: https://github.com/nojhan/paradiseo/issues
 */
 
 /**
@@ -125,5 +125,5 @@ int main(int argc, char **argv)
     delete[] b;
 
 
-    return 1;
+    return 0;
 }

@@ -1296,7 +1296,7 @@ SKIP_FUNCTION_MACROS   = YES
 # If a tag file is not located in the directory in which doxygen 
 # is run, you must also specify the path to the tagfile here.
 
-TAGFILES               = @SMP_BIN_DIR@/doc/smp.doxytag=http://paradiseo.gforge.inria.fr/addon/smp/doc/index.html
+TAGFILES               = @SMP_BIN_DIR@/doc/smp.doxytag=https://nojhan.github.io/paradiseo/
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create 
 # a tag file that is based on the input files it reads.

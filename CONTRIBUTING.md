@@ -19,9 +19,8 @@ Contribution Workflow
 
 The maintainer(s) will try to answer under a couple of weeks, if not, do not hesitate to send an e-mail.
 
-If you're not familiar with Git and merge requests, start by cloning one of the main repository:
+If you're not familiar with Git and merge requests, start by cloning the main repository:
 - `git clone https://github.com/nojhan/paradiseo.git`
-- `git clone https://scm.gforge.inria.fr/anonscm/git/paradiseo/paradiseo.git`
 
 
 Git workflow
@@ -38,7 +37,7 @@ git checkout -b <my_feature> # Always work on a dedicated branch.
 git commit <whatever>
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Debug -BUILD_TESTING=ON -DENABLE_CMAKE_TESTING=ON .. && make && ctest # Always test.
+cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON -DENABLE_CMAKE_TESTING=ON .. && make && ctest # Always test.
 cd ..
 git pull origin master # Always check that your modification still merges.
 ```
@@ -46,7 +45,7 @@ git pull origin master # Always check that your modification still merges.
 If everything went without error, you can either send the patch or submit a merge request.
 To do so, you can either:
 - submit a "pull request" on Github: [nojhan/paradiseo](https://github.com/nojhan/paradiseo),
-- or send a patch on the [ParadisEO mailing list](https://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users).
+- or [open an issue](https://github.com/nojhan/paradiseo/issues) to discuss your proposed changes.
 
 See below for the details.
 
@@ -79,6 +78,6 @@ git pull origin master
 git diff master <my_feature> > my_feature.patch
 ```
 
-Then send the `my_feature.patch` (along with your explanations about why the maintainer should merge your modifications)
-to the [mailing list](https://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/paradiseo-users).
+Then [open an issue](https://github.com/nojhan/paradiseo/issues) with `my_feature.patch` attached
+(along with your explanations about why the maintainer should merge your modifications).
 
