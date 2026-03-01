@@ -32,6 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <MWModel.h>
 #include <scheduler.h>
+#include <SerializableBase.h>
 #include <islandModel.h>
 #include <islandModelWrapper.h>
 #include <island.h>
