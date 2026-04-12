@@ -3,6 +3,7 @@
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2012
 
 Alexandre Quemy, Thibault Lasnier - INSA Rouen
+Eremey Valetov
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -42,6 +43,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eoSelect.h>
 #include <eoAlgo.h>
 #include <eoPop.h>
+#include <algo/moeoAlgoFinalized.h>
 
 #include <abstractIsland.h>
 #include <islandModel.h>
@@ -51,24 +53,35 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <contWrapper.h>
 #include <contDispatching.h>
 
+#include <MPI_IslandModel.h>
+
 namespace paradiseo
 {
 namespace smp
 {
+
+enum IslandType {
+    HOMOGENEOUS_ISLAND,
+    HETEROGENEOUS_ISLAND,
+    DEFAULT = HETEROGENEOUS_ISLAND
+};
+
 /** Island: Concrete island that wraps an algorithm
 
 The island wraps an algorithm and provide mecanisms for emigration and integration of populations.
 An island also have a base type which represents the type of individuals of the Island Model.
+The optional algoEOT template parameter allows the algorithm to operate on a different
+type than the island's EOT (useful when the algorithm's MOEOT differs from the base type).
 
 @see smp::AbstractIsland, smp::MigPolicy
 */
 
-template<template <class> class EOAlgo, class EOT, class bEOT = EOT>
+template<template <class> class EOAlgo, class EOT, class bEOT = EOT, class algoEOT = EOT>
 class Island : private ContWrapper<EOT, bEOT>, public AIsland<bEOT>
 {
 public:
     /**
-     * Constructor
+     * Constructor with type converters
      * @param _convertFromBase Function to convert EOT from base EOT
      * @param _convertToBase Function to convert base EOT to EOT
      * @param _pop Population of the island
@@ -77,83 +90,64 @@ public:
      * @param args Parameters to construct the algorithm.
      */
     template<class... Args>
-    Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase, eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
+    Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase,
+           eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
+
     /**
-     * Constructor
-     * @param _pop Population of the island
-     * @param _intPolicy Integration policy
-     * @param _migPolicy Migration policy
-     * @param args Parameters to construct the algorithm.
+     * Constructor for homogeneous islands (bEOT == EOT)
      */
     template<class... Args>
     Island(eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy, Args&... args);
-    
+
     /**
-     * Start the island.
+     * Constructor with type converters and island type
      */
+    template<class... Args>
+    Island(std::function<EOT(bEOT&)> _convertFromBase, std::function<bEOT(EOT&)> _convertToBase,
+           eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy,
+           IslandType islandType, Args&... args);
+
+    /**
+     * Constructor with island type
+     */
+    template<class... Args>
+    Island(eoPop<EOT>& pop, IntPolicy<EOT>& _intPolicy, MigPolicy<EOT>& _migPolicy,
+           IslandType islandType, Args&... args);
+
     void operator()(void);
-    
-    /**
-     * Set model
-     * @param _model Pointer to the Island Model corresponding 
-     */
+
     virtual void setModel(IslandModel<bEOT>* _model);
-    
-    /**
-     * Return a reference to the island population.
-     * @return Reference to the island population
-     */
+    virtual void setModel(MPI_IslandModel<bEOT>* _model);
+    virtual void setModel(Redis_IslandModel<bEOT>* _model);
+
     eoPop<EOT>& getPop() const;
-    
-    /**
-     * Check if there is population to receive or to migrate
-     */
     virtual void check(void);
-    
-    /**
-     * Update the list of imigrants.
-     * @param _data Elements to integrate in the main population.
-     */
     bool update(eoPop<bEOT> _data);
-    
-    /**
-     * Check if the algorithm is stopped.
-     * @return true if stopped
-     */
     virtual bool isStopped(void) const;
-    
-    /**
-     * Set the stopped indicator on false
-     */
-    virtual void setRunning(void); 
-    
-    /**
-     * Check if there is population to receive
-     */
+    virtual void setRunning(void);
     virtual void receive(void);
-    
-    //AIsland<bEOT> clone() const;
 
-    virtual ~Island();
 protected:
-
-    /**
-     * Send population to mediator
-     * @param _select Method to select EOT to send
-     */
     virtual void send(eoSelect<EOT>& _select);
-    
-    EOAlgo<EOT> algo;
-    eoEvalFunc<EOT>& eval;               
+
+    EOAlgo<algoEOT> algo;
+    eoEvalFunc<EOT>& eval;
     eoPop<EOT>& pop;
     std::queue<eoPop<bEOT>> listImigrants;
     IntPolicy<EOT>& intPolicy;
     MigPolicy<EOT>& migPolicy;
     std::atomic<bool> stopped;
     std::vector<std::shared_future<bool>> sentMessages;
-    IslandModel<bEOT>* model;
-    std::function<EOT(bEOT&)> convertFromBase; 
+
+    enum class IslandModelKind { None, Shared, MPI, Redis };
+    IslandModelKind modelKind_ = IslandModelKind::None;
+    IslandModel<bEOT>* sharedModel_ = nullptr;
+    MPI_IslandModel<bEOT>* mpiModel_ = nullptr;
+    Redis_IslandModel<bEOT>* redisModel_ = nullptr;
+
+    std::function<EOT(bEOT&)> convertFromBase;
     std::function<bEOT(EOT&)> convertToBase;
+    IslandType _islandType = DEFAULT;
 };
 
 #include <island.cpp>

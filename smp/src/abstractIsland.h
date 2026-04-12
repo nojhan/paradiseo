@@ -40,9 +40,15 @@ namespace paradiseo
 namespace smp
 {
 
-// Forward declaration
+// Forward declarations
 template<class bEOT>
 class IslandModel;
+
+template<class bEOT>
+class MPI_IslandModel;
+
+template<class bEOT>
+class Redis_IslandModel;
 
 /** AbstractIsland: An abstract island.
 
@@ -64,6 +70,8 @@ public:
      * @param _model The model which manipulate the island.
      */
     virtual void setModel(IslandModel<bEOT>* _model) = 0;
+    virtual void setModel(MPI_IslandModel<bEOT>*) {}
+    virtual void setModel(Redis_IslandModel<bEOT>*) {}
     
     /**
      * Check if there is population to receive or to emigrate.
