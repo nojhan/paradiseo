@@ -47,6 +47,7 @@
  */
 template < class MOEOT >
 class moeoPopAlgo : public moeoAlgo, public eoAlgo < MOEOT >
-  {};
+{
+};
 
 #endif /*MOEOPOPALGO_H_*/
