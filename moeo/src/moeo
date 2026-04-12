@@ -56,6 +56,7 @@
 #include <algo/moeoSEEA.h>
 #include <algo/moeoSPEA2.h>
 #include <algo/moeoUnifiedDominanceBasedLS.h>
+#include <algo/moeoUnifiedDominanceBasedLS_Real.h>
 
 //#include <archive/moeo2DMinHypervolumeArchive.h>
 #include <archive/moeoArchive.h>
@@ -115,6 +116,7 @@
 #include <explorer/moeoNoDesimprovingNeighborhoodExplorer.h>
 #include <explorer/moeoPopNeighborhoodExplorer.h>
 #include <explorer/moeoSimpleSubNeighborhoodExplorer.h>
+#include <explorer/moeoRealVectorNeighborhoodExplorer.h>
 #include <explorer/moeoSubNeighborhoodExplorer.h>
 
 #include <fitness/moeoAggregationFitnessAssignment.h>
@@ -206,6 +208,7 @@
 #include <selection/moeoSelectors.h>
 #include <selection/moeoStochTournamentSelect.h>
 #include <selection/moeoUnvisitedSelect.h>
+#include <selection/moeoBestUnvisitedSelect.h>
 
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoArchiveUpdater.h>

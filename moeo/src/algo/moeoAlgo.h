@@ -42,6 +42,9 @@
  * Abstract class for multi-objective algorithms.
  */
 class moeoAlgo
-  {};
+{
+public:
+    virtual ~moeoAlgo() = default;
+};
 
 #endif /*MOEOALGO_H_*/

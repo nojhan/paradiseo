@@ -48,6 +48,7 @@
 #include <eoPopEvalFunc.h>
 #include <eoSGAGenOp.h>
 #include <algo/moeoEA.h>
+#include <algo/moeoAlgoFinalized.h>
 #include <diversity/moeoFrontByFrontCrowdingDiversityAssignment.h>
 #include <fitness/moeoDominanceDepthFitnessAssignment.h>
 #include <replacement/moeoElitistReplacement.h>
@@ -59,7 +60,7 @@
  * This class builds the NSGA-II algorithm only by using the fine-grained components of the ParadisEO-MOEO framework.
  */
 template < class MOEOT >
-class moeoNSGAII: public moeoEA < MOEOT >
+class moeoNSGAII: public moeoEA < MOEOT >, public moeoAlgoFinalized < MOEOT >
 {
 public:
 
@@ -148,6 +149,15 @@ public:
         while (continuator (_pop));
     }
 
+    /**
+     * Recompute fitness and diversity assignments on the population.
+     * Useful after integrating immigrants from an island model.
+     * @param _pop the population to finalize
+     */
+    void finalize(eoPop<MOEOT>& _pop) override {
+        fitnessAssignment(_pop);
+        diversityAssignment(_pop);
+    }
 
 protected:
 
