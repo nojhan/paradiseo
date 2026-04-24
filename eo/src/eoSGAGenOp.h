@@ -1,4 +1,4 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+﻿// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
 // eoSGAGenOp.h
@@ -29,6 +29,7 @@
 
 #include "eoGenOp.h"
 #include "eoInvalidateOps.h"
+#include "eoOpContainer.h"
 ///////////////////////////////////////////////////////////////////////////////
 // class eoSGAGenOp
 ///////////////////////////////////////////////////////////////////////////////

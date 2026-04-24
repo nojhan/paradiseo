@@ -1,4 +1,4 @@
-/** Random number generator adapted from (see comments below)
+﻿/** Random number generator adapted from (see comments below)
 
 The random number generator is modified into a class
 by Maarten Keijzer (mak@dhi.dk). Also added the Box-Muller
@@ -37,7 +37,12 @@ Old contact information: todos@geneura.ugr.es, http://geneura.ugr.es
  optimization levels so feel free to try your options and see what's best for
  you.
 */
+#if HAVE_UINT32_T
+#include <cstdint>
+#else
 typedef unsigned long uint32_t;
+#endif  // HAVE_UINT32_T
+
 #else
 #if (! defined __sun)
 // The C99-standard defines uint32_t to be declared in stdint.h, but some

@@ -33,6 +33,7 @@
 
 #include "eoFunctor.h"
 #include "eoPop.h"
+#include "eoSelectOne.h"
 #include "utils/eoLogger.h"
 #include "utils/selectors.h"
 
